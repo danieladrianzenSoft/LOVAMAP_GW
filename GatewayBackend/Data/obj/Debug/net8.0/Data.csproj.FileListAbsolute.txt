@@ -12,3 +12,18 @@
 /Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Data/obj/Debug/net8.0/Data.pdb
 /Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Data/obj/Debug/net8.0/Data.genruntimeconfig.cache
 /Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Data/obj/Debug/net8.0/ref/Data.dll
+/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Data/bin/Debug/net8.0/Data.deps.json
+/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Data/bin/Debug/net8.0/Data.runtimeconfig.json
+/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Data/bin/Debug/net8.0/Data.dll
+/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Data/bin/Debug/net8.0/Data.pdb
+/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Data/obj/Debug/net8.0/Data.csproj.AssemblyReference.cache
+/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Data/obj/Debug/net8.0/Data.GeneratedMSBuildEditorConfig.editorconfig
+/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Data/obj/Debug/net8.0/Data.AssemblyInfoInputs.cache
+/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Data/obj/Debug/net8.0/Data.AssemblyInfo.cs
+/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Data/obj/Debug/net8.0/Data.csproj.CoreCompileInputs.cache
+/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Data/obj/Debug/net8.0/Data.sourcelink.json
+/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Data/obj/Debug/net8.0/Data.dll
+/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Data/obj/Debug/net8.0/refint/Data.dll
+/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Data/obj/Debug/net8.0/Data.pdb
+/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Data/obj/Debug/net8.0/Data.genruntimeconfig.cache
+/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Data/obj/Debug/net8.0/ref/Data.dll
