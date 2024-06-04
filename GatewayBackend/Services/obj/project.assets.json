@@ -3898,11 +3898,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Services/Services.csproj",
+      "projectUniqueName": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Services/Services.csproj",
       "projectName": "Services",
-      "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Services/Services.csproj",
+      "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Services/Services.csproj",
       "packagesPath": "/Users/dzen/.nuget/packages/",
-      "outputPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Services/obj/",
+      "outputPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Services/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/dzen/.nuget/NuGet/NuGet.Config"
@@ -3917,14 +3917,14 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Data/Data.csproj": {
-              "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Data/Data.csproj"
+            "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Data/Data.csproj": {
+              "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Data/Data.csproj"
             },
-            "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Infrastructure/Infrastructure.csproj": {
-              "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Infrastructure/Infrastructure.csproj"
+            "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Infrastructure/Infrastructure.csproj": {
+              "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Infrastructure/Infrastructure.csproj"
             },
-            "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Repositories/Repositories.csproj": {
-              "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Repositories/Repositories.csproj"
+            "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Repositories/Repositories.csproj": {
+              "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Repositories/Repositories.csproj"
             }
           }
         }

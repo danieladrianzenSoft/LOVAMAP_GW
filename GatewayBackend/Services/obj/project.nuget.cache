@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "vNm+8X5+htDSwlFJOrtbhcrwnYm1zayGCxXl795QOYNm5k+ixOI+i/NQSpBFGzrjAsiaAEylx/xa1QgERafnvA==",
+  "dgSpecHash": "zBSrI/iL4SmZXINUgEVCRPUAp3Io0p27HVhPrFUqo47OQqMKcbdVN7lZENDZjxhxqigtSb6p8hExkGmijBkxIA==",
   "success": true,
-  "projectFilePath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Services/Services.csproj",
+  "projectFilePath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Services/Services.csproj",
   "expectedPackageFiles": [
     "/Users/dzen/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/Users/dzen/.nuget/packages/microsoft.aspnetcore.authentication/2.2.0/microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",

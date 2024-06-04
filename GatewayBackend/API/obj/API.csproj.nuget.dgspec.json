@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/API/API.csproj": {}
+    "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/API.csproj": {}
   },
   "projects": {
-    "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/API/API.csproj": {
+    "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/API/API.csproj",
+        "projectUniqueName": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/API.csproj",
         "projectName": "API",
-        "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/API/API.csproj",
+        "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/API.csproj",
         "packagesPath": "/Users/dzen/.nuget/packages/",
-        "outputPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/API/obj/",
+        "outputPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/dzen/.nuget/NuGet/NuGet.Config"
@@ -26,17 +26,17 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Data/Data.csproj": {
-                "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Data/Data.csproj"
+              "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Data/Data.csproj": {
+                "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Data/Data.csproj"
               },
-              "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Infrastructure/Infrastructure.csproj": {
-                "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Infrastructure/Infrastructure.csproj"
+              "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Infrastructure/Infrastructure.csproj": {
+                "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Infrastructure/Infrastructure.csproj"
               },
-              "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Repositories/Repositories.csproj": {
-                "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Repositories/Repositories.csproj"
+              "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Repositories/Repositories.csproj": {
+                "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Repositories/Repositories.csproj"
               },
-              "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Services/Services.csproj": {
-                "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Services/Services.csproj"
+              "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Services/Services.csproj": {
+                "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Services/Services.csproj"
               }
             }
           }
@@ -116,14 +116,14 @@
         }
       }
     },
-    "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Data/Data.csproj": {
+    "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Data/Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Data/Data.csproj",
+        "projectUniqueName": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Data/Data.csproj",
         "projectName": "Data",
-        "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Data/Data.csproj",
+        "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Data/Data.csproj",
         "packagesPath": "/Users/dzen/.nuget/packages/",
-        "outputPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Data/obj/",
+        "outputPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Data/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/dzen/.nuget/NuGet/NuGet.Config"
@@ -196,14 +196,14 @@
         }
       }
     },
-    "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Infrastructure/Infrastructure.csproj": {
+    "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Infrastructure/Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Infrastructure/Infrastructure.csproj",
+        "projectUniqueName": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Infrastructure/Infrastructure.csproj",
         "projectName": "Infrastructure",
-        "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Infrastructure/Infrastructure.csproj",
+        "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Infrastructure/Infrastructure.csproj",
         "packagesPath": "/Users/dzen/.nuget/packages/",
-        "outputPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Infrastructure/obj/",
+        "outputPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Infrastructure/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/dzen/.nuget/NuGet/NuGet.Config"
@@ -218,8 +218,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Data/Data.csproj": {
-                "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Data/Data.csproj"
+              "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Data/Data.csproj": {
+                "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Data/Data.csproj"
               }
             }
           }
@@ -276,14 +276,14 @@
         }
       }
     },
-    "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Repositories/Repositories.csproj": {
+    "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Repositories/Repositories.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Repositories/Repositories.csproj",
+        "projectUniqueName": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Repositories/Repositories.csproj",
         "projectName": "Repositories",
-        "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Repositories/Repositories.csproj",
+        "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Repositories/Repositories.csproj",
         "packagesPath": "/Users/dzen/.nuget/packages/",
-        "outputPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Repositories/obj/",
+        "outputPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Repositories/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/dzen/.nuget/NuGet/NuGet.Config"
@@ -298,11 +298,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Data/Data.csproj": {
-                "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Data/Data.csproj"
+              "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Data/Data.csproj": {
+                "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Data/Data.csproj"
               },
-              "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Infrastructure/Infrastructure.csproj": {
-                "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Infrastructure/Infrastructure.csproj"
+              "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Infrastructure/Infrastructure.csproj": {
+                "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Infrastructure/Infrastructure.csproj"
               }
             }
           }
@@ -351,14 +351,14 @@
         }
       }
     },
-    "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Services/Services.csproj": {
+    "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Services/Services.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Services/Services.csproj",
+        "projectUniqueName": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Services/Services.csproj",
         "projectName": "Services",
-        "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Services/Services.csproj",
+        "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Services/Services.csproj",
         "packagesPath": "/Users/dzen/.nuget/packages/",
-        "outputPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Services/obj/",
+        "outputPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Services/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/dzen/.nuget/NuGet/NuGet.Config"
@@ -373,14 +373,14 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Data/Data.csproj": {
-                "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Data/Data.csproj"
+              "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Data/Data.csproj": {
+                "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Data/Data.csproj"
               },
-              "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Infrastructure/Infrastructure.csproj": {
-                "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Infrastructure/Infrastructure.csproj"
+              "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Infrastructure/Infrastructure.csproj": {
+                "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Infrastructure/Infrastructure.csproj"
               },
-              "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Repositories/Repositories.csproj": {
-                "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Repositories/Repositories.csproj"
+              "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Repositories/Repositories.csproj": {
+                "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Repositories/Repositories.csproj"
               }
             }
           }
