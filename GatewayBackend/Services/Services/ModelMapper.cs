@@ -1,0 +1,499 @@
+using Repositories.IRepositories;
+using Data.Models;
+using Infrastructure.DTOs;
+using Services.IServices;
+using Infrastructure.Helpers;
+using System.Text.Json;
+
+namespace Services.Services
+{
+    public class ModelMapper : IModelMapper
+    {
+        private readonly IDescriptorRepository _descriptorRepository;
+        private readonly ITagRepository _tagRepository;
+        private readonly IUserAuthHelper _userAuthHelper;
+
+        public ModelMapper(
+            IDescriptorRepository descriptorRepository, 
+            ITagRepository tagRepository, 
+            IUserAuthHelper userAuthHelper)
+        {
+            _descriptorRepository = descriptorRepository;
+            _tagRepository = tagRepository;
+            _userAuthHelper = userAuthHelper;
+        }
+
+        public Role MapToRole(RoleToCreateDto dto)
+        {
+            var role = new Role
+            {
+                Name = dto.Name,
+                
+            };
+            return role;
+        }
+		public User MapToUser(UserToCreateDto dto)
+        {
+            var user = new User
+            {
+                UserName = dto.Email,
+                Email = dto.Email
+            };
+
+            return user;
+        }
+        public async Task<ScaffoldGroup> MapToScaffoldGroup(ScaffoldGroupToCreateDto dto)
+        {
+            var scaffoldGroup = new ScaffoldGroup
+            {
+                Name = dto.Name,
+                UploaderId = dto.UploaderId ?? null,
+                IsSimulated = dto.IsSimulated,
+                Comments = dto.Comments,
+                InputGroup = MapToInputGroup(dto.InputGroup),
+                Scaffolds = []
+            };
+
+            int replicateNumber = 1;  // Start from 1 or dynamically determine if loading an existing scaffold group
+
+            foreach (var scaffoldDto in dto.Scaffolds)
+            {
+                var scaffold = await MapToScaffold(scaffoldDto, replicateNumber++);
+                scaffoldGroup.Scaffolds.Add(scaffold);
+            }
+
+            foreach (var scaffold in scaffoldGroup.Scaffolds)
+            {
+                scaffold.ScaffoldGroup = scaffoldGroup;
+            }
+
+            scaffoldGroup.InputGroup.ScaffoldGroup = scaffoldGroup;
+
+            return scaffoldGroup;
+        }
+        public async Task<Scaffold> MapToScaffold(ScaffoldToCreateDto dto, int replicateNumber)
+        {
+            // var tags = new List<ScaffoldTag>();
+            // foreach (var st in dto.ScaffoldTags)
+            // {
+            //     tags.Add(await MapToScaffoldTag(st));  // Await immediately
+            // }
+
+            var globalDescriptors = new List<GlobalDescriptor>();
+            foreach (var gd in dto.GlobalDescriptors)
+            {
+                globalDescriptors.Add(await MapToGlobalDescriptor(gd));  // Await immediately
+            }
+
+            var poreDescriptors = new List<PoreDescriptor>();
+            foreach (var pd in dto.PoreDescriptors)
+            {
+                poreDescriptors.Add(await MapToPoreDescriptor(pd));  // Await immediately
+            }
+
+            var otherDescriptors = new List<OtherDescriptor>();
+            foreach (var od in dto.OtherDescriptors)
+            {
+                otherDescriptors.Add(await MapToOtherDescriptor(od));  // Await immediately
+            }
+
+            return new Scaffold
+            {
+                ReplicateNumber = replicateNumber,
+                ScaffoldTags = [],
+                GlobalDescriptors = globalDescriptors,
+                PoreDescriptors = poreDescriptors,
+                OtherDescriptors = otherDescriptors,
+            };
+        }
+
+        public InputGroup MapToInputGroup(InputGroupToCreateDto dto)
+        {
+            var inputGroup = new InputGroup
+            {
+                Dx = dto.Dx,
+                NumVoxels = dto.NumVoxels,
+                ContainerShape = dto.ContainerShape,
+                ContainerSize = dto.ContainerSize,
+                IsAnisotropic = dto.IsAnisotropic,
+                ParticlePropertyGroups = dto.ParticlePropertyGroups.Select(ppg => MapToParticlePropertyGroup(ppg)).ToList(),
+            };
+
+            foreach (var particlePropertyGroup in inputGroup.ParticlePropertyGroups)
+            {
+                particlePropertyGroup.InputGroup = inputGroup;
+            }
+
+            return inputGroup;
+        }
+        public ParticlePropertyGroup MapToParticlePropertyGroup(ParticlePropertyGroupToCreateDto dto)
+        {
+            return new ParticlePropertyGroup
+            {
+                Shape = dto.Shape,
+                Stiffness = dto.Stiffness,
+                Friction = dto.Friction,
+                Dispersity = dto.Dispersity,
+                SizeDistributionType = dto.SizeDistributionType,
+                MeanSize = dto.MeanSize,
+                StandardDeviationSize = dto.StandardDeviationSize,
+                Proportion = dto.Proportion,
+                SizeDistribution = dto.SizeDistribution
+            };  
+        }
+
+        public Tag MapToTag(TagToCreateDto dto)
+        {
+            return new Tag
+            {
+                Name = dto.Name,
+            };
+        }
+        public async Task<ScaffoldTag> MapToScaffoldTag(ScaffoldTagToCreateDto dto)
+        {
+            try
+            {
+                Tag? tag = null;
+                bool isAutoGenerated = true;  // Assume the tag is auto-generated
+                bool isPrivate = false;  // Assume the tag is auto-generated, and therefore not private
+
+                // Attempt to retrieve the tag by ID if provided
+                if (dto.TagId.HasValue)
+                {
+                    tag = await _tagRepository.GetTagById(dto.TagId.Value);
+                }
+                
+                // If no tag found by ID, try by name or create a new one
+                if (tag == null && !string.IsNullOrEmpty(dto.Name))
+                {
+                    tag = await _tagRepository.GetTagByName(dto.Name);
+                    if (tag == null)
+                    {
+                        if (String.IsNullOrEmpty(dto.ReferenceProperty) == true)
+                        {
+                            tag = new Tag { Name = dto.Name };
+                        }
+                        else
+                        {
+                            tag = new Tag { Name = dto.Name, ReferenceProperty = dto.ReferenceProperty };
+                        }
+                        isAutoGenerated = false;  // A new tag is created, so it's not auto-generated
+                        isPrivate = true; // By default, keep custom tags as private to the uploader
+                    }
+                }
+
+                // If no tag is available by now, throw error
+                if (tag == null) throw new Exception("Error creating Tag");
+
+
+                return new ScaffoldTag
+                {
+                    Tag = tag,
+                    IsAutoGenerated = isAutoGenerated,
+                    IsPrivate = isPrivate
+                };
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public DescriptorType MapToDescriptorType(DescriptorTypeToCreateDto dto)
+        {
+            return new DescriptorType
+            {
+                Name = dto.Name,
+                Label = dto.Label,
+                Category = dto.Category,
+                Unit = dto.Unit,
+                DataType = dto.DataType,
+            };
+        }
+
+        public async Task<GlobalDescriptor> MapToGlobalDescriptor(GlobalDescriptorToCreateDto dto)
+        {
+            try
+            {
+                // Fetch the DescriptorType based on the Name provided.
+                var descriptorType = await _descriptorRepository.GetDescriptorByName(dto.Name) ?? throw new ArgumentException($"Descriptor {dto.Name} not found");
+
+                // Create the GlobalDescriptor and map the values accordingly.
+                var globalDescriptor = new GlobalDescriptor
+                {
+                    DescriptorTypeId = descriptorType.Id,
+                    DescriptorType = descriptorType
+                };
+
+                // Determine how to map the value based on the DataType.
+                switch (descriptorType.DataType.ToLower())
+                {
+                    case "string":
+                        globalDescriptor.ValueString = dto.Value.ToString();
+                        break;
+                    case "int":
+                        globalDescriptor.ValueInt = (int)dto.Value;
+                        break;
+                    case "double":
+                        globalDescriptor.ValueDouble = dto.Value;
+                        break;
+                    default:
+                        throw new InvalidOperationException("Unsupported DataType for Descriptor");
+                }
+
+                return globalDescriptor;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            
+        }
+        public async Task<PoreDescriptor> MapToPoreDescriptor(PoreDescriptorToCreateDto dto)
+        {
+            try
+            {
+                // Fetch the DescriptorType based on the name provided
+                var descriptorType = await _descriptorRepository.GetDescriptorByName(dto.Name) ?? throw new KeyNotFoundException($"Descriptor {dto.Name} not found");
+
+                // Create the PoreDescriptor object
+                var poreDescriptor = new PoreDescriptor
+                {
+                    DescriptorTypeId = descriptorType.Id,
+                    DescriptorType = descriptorType,
+                    Values = dto.Values
+                };
+
+                return poreDescriptor;
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+        
+        }
+        public async Task<OtherDescriptor> MapToOtherDescriptor(OtherDescriptorToCreateDto dto)
+        {
+            try
+            {
+                // Fetch the DescriptorType based on the name provided
+                var descriptorType = await _descriptorRepository.GetDescriptorByName(dto.Name) ?? throw new KeyNotFoundException($"Descriptor {dto.Name} not found");
+
+                // Create the PoreDescriptor object
+                var otherDescriptor = new OtherDescriptor
+                {
+                    DescriptorTypeId = descriptorType.Id,
+                    DescriptorType = descriptorType,
+                    Values = dto.Values
+                };
+
+                return otherDescriptor;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            
+        }
+
+        public async Task<AuthenticatedUserDto> MapToAuthenticatedUserDto(User user, string token)
+        {
+            var roles = await _userAuthHelper.GetUserRoles(user);
+
+            if (user.Email == null)
+                throw new InvalidOperationException("User email cannot be null");
+
+            return new AuthenticatedUserDto 
+            {
+                Id = user.Id,
+                Email = user.Email,
+                AccessToken = token,
+                Roles = roles
+            };
+        }
+
+        public ScaffoldGroupBaseDto MapScaffoldGroupToDto(ScaffoldGroup scaffoldGroup, IEnumerable<Scaffold> scaffolds, string userId, bool isDetailed)
+        {
+            if (!isDetailed)
+            {
+                return MapToScaffoldGroupSummaryDto(scaffoldGroup, userId);
+            }
+            else
+            {
+                var globalDescriptors = scaffolds.SelectMany(s => s.GlobalDescriptors);
+                var poreDescriptors = scaffolds.SelectMany(s => s.PoreDescriptors);
+                var otherDescriptors = scaffolds.SelectMany(s => s.OtherDescriptors);
+                return MapToScaffoldGroupDetailedDto(scaffoldGroup, scaffolds, userId);
+            }
+        }
+
+       public ScaffoldGroupSummaryDto MapToScaffoldGroupSummaryDto(ScaffoldGroup scaffoldGroup, string userId)
+        {
+            var tags = scaffoldGroup.Scaffolds?
+                    .SelectMany(s => s.ScaffoldTags)
+                    .Where(st => (st.IsAutoGenerated && !st.IsPrivate) || (scaffoldGroup.UploaderId == userId))
+                    .Select(st => st.Tag.Name)
+                    .Distinct()
+                    .ToList() ?? [];
+
+            var particles = scaffoldGroup.InputGroup?.ParticlePropertyGroups
+                    .Select(ppg => MapToScaffoldPropertyGroupBase(ppg))
+                    .ToList();
+
+            return new ScaffoldGroupSummaryDto 
+            {
+                Id = scaffoldGroup.Id,
+                Name = scaffoldGroup.Name,
+                IsSimulated = scaffoldGroup.IsSimulated,
+                Tags = tags,
+                NumReplicates = scaffoldGroup.Scaffolds?.Count ?? 0,
+                Inputs = new InputGroupBaseDto 
+                {
+                    Dx = scaffoldGroup.InputGroup?.Dx,
+                    NumVoxels = scaffoldGroup.InputGroup?.NumVoxels,
+                    ContainerShape = scaffoldGroup.InputGroup?.ContainerShape,
+                    IsAnisotropic = scaffoldGroup.InputGroup?.IsAnisotropic,
+                    Particles = particles ?? []
+                },
+            };
+        }
+
+        public ScaffoldGroupDetailedDto MapToScaffoldGroupDetailedDto(ScaffoldGroup scaffoldGroup, IEnumerable<Scaffold> scaffolds, string userId)
+        {
+            var tags = scaffoldGroup.Scaffolds?
+                    .SelectMany(s => s.ScaffoldTags)
+                    .Where(st => (st.IsAutoGenerated && !st.IsPrivate) || (scaffoldGroup.UploaderId == userId))
+                    .Select(st => st.Tag.Name)
+                    .Distinct()
+                    .ToList() ?? [];
+
+            var particles = scaffoldGroup.InputGroup?.ParticlePropertyGroups
+                    .Select(ppg => MapToScaffoldPropertyGroupBase(ppg))
+                    .ToList();
+
+        // Group descriptors by ScaffoldId
+            // var globalDescriptorGroups = globalDescriptors.GroupBy(gd => gd.ScaffoldId);
+            // var poreDescriptorGroups = poreDescriptors.GroupBy(pd => pd.ScaffoldId);
+            // var otherDescriptorGroups = otherDescriptors.GroupBy(od => od.ScaffoldId);
+
+
+            // var scaffoldDtos = scaffoldGroup.Scaffolds?.Select(scaffold => new ScaffoldBaseDto
+            // {
+            //     GlobalDescriptors = globalDescriptorGroups.FirstOrDefault(g => g.Key == scaffold.Id)?.Select(gd => MapGlobalDescriptorToDto(gd)).ToList() ?? [],
+            //     PoreDescriptors = poreDescriptorGroups.FirstOrDefault(p => p.Key == scaffold.Id)?.Select(pd => MapPoreDescriptorToDto(pd)).ToList() ?? [],
+            //     OtherDescriptors = otherDescriptorGroups.FirstOrDefault(o => o.Key == scaffold.Id)?.Select(od => MapOtherDescriptorToDto(od)).ToList() ?? [],
+            // }).ToList();
+
+            var scaffoldDtos = scaffolds.Select(scaffold => new ScaffoldBaseDto
+            {
+                Id = scaffold.Id,
+                ReplicateNumber = scaffold.ReplicateNumber,
+                GlobalDescriptors = scaffold.GlobalDescriptors.Select(MapGlobalDescriptorToDto).ToList(),
+                PoreDescriptors = scaffold.PoreDescriptors.Select(MapPoreDescriptorToDto).ToList(),
+                OtherDescriptors = scaffold.OtherDescriptors.Select(MapOtherDescriptorToDto).ToList(),
+            }).ToList();
+
+
+            // var globalDescriptorDtos = globalDescriptors.Select(gd => MapGlobalDescriptorToDto(gd)).ToList();
+            // var poreDescriptorDtos = poreDescriptors.Select(pd => MapPoreDescriptorToDto(pd)).ToList();
+            // var otherDescriptorDtos = otherDescriptors.Select(od => MapOtherDescriptorToDto(od)).ToList();
+
+            return new ScaffoldGroupDetailedDto 
+            {
+                Id = scaffoldGroup.Id,
+                Name = scaffoldGroup.Name,
+                IsSimulated = scaffoldGroup.IsSimulated,
+                Tags = tags,
+                NumReplicates = scaffoldGroup.Scaffolds?.Count ?? 0,
+                Comments = scaffoldGroup.Comments,
+                Inputs = new InputGroupBaseDto 
+                {
+                    Dx = scaffoldGroup.InputGroup?.Dx,
+                    NumVoxels = scaffoldGroup.InputGroup?.NumVoxels,
+                    ContainerShape = scaffoldGroup.InputGroup?.ContainerShape,
+                    IsAnisotropic = scaffoldGroup.InputGroup?.IsAnisotropic,
+                    Particles = particles ?? []
+                },
+                Scaffolds = scaffoldDtos,
+            };
+        }
+        public ParticlePropertyBaseDto MapToScaffoldPropertyGroupBase(ParticlePropertyGroup particlePropertyGroup)
+        {
+            return new ParticlePropertyBaseDto 
+            {
+                Shape = particlePropertyGroup?.Shape,
+                Stiffness = particlePropertyGroup?.Stiffness,
+                Dispersity = particlePropertyGroup!.Dispersity,
+                SizeDistributionType = particlePropertyGroup?.SizeDistributionType,
+                MeanSize = particlePropertyGroup!.MeanSize,
+                StandardDeviationSize = particlePropertyGroup?.StandardDeviationSize,
+                Proportion = particlePropertyGroup?.Proportion
+            };
+        }
+
+        public DescriptorDto MapGlobalDescriptorToDto(GlobalDescriptor global)
+        {
+            return new DescriptorDto
+            {
+                Name = global.DescriptorType?.Name ?? "N/A",
+                Label = global.DescriptorType?.Label ?? "N/A",
+                Unit = global.DescriptorType?.Unit ?? "N/A",
+                Values = global.ValueString ?? global.ValueInt?.ToString() ?? global.ValueDouble?.ToString() ?? "N/A"
+            };
+        }
+
+        public DescriptorDto MapPoreDescriptorToDto(PoreDescriptor pore)
+        {
+            return new DescriptorDto
+            {
+                Name = pore.DescriptorType?.Name ?? "N/A",
+                Label = pore.DescriptorType?.Label ?? "N/A",
+                Unit = pore.DescriptorType?.Unit ?? "N/A",
+                Values = JsonDocumentToString(pore.Values)
+            };
+        }
+
+        public DescriptorDto MapOtherDescriptorToDto(OtherDescriptor other)
+        {
+            return new DescriptorDto
+            {
+                Name = other.DescriptorType?.Name ?? "N/A",
+                Label = other.DescriptorType?.Label ?? "N/A",
+                Unit = other.DescriptorType?.Unit ?? "N/A",
+                Values = JsonDocumentToString(other.Values)
+            };
+        }
+
+        public TagForFilterDto MapTagToDto(Tag tag)
+        {
+            return new TagForFilterDto
+            {
+                Id = tag.Id,
+                Name = tag.Name,
+                ReferenceProperty = tag.ReferenceProperty
+            };
+        }
+
+        private string JsonDocumentToString(JsonDocument jsonDocument)
+        {
+            if (jsonDocument == null)
+                return "N/A";
+
+            try
+            {
+                // Assuming the JsonDocument contains an array of doubles
+                // Extract the array from the JsonDocument
+                var doubles = jsonDocument.RootElement.EnumerateArray()
+                                    .Select(element => element.GetDouble())
+                                    .ToList();
+
+                // Convert the list of doubles to a comma-separated string
+                return string.Join(", ", doubles);
+            }
+            catch
+            {
+                return "N/A";
+            }
+        }
+    }
+}

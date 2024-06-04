@@ -1,0 +1,17 @@
+/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Repositories/obj/Debug/net8.0/Repositories.csproj.AssemblyReference.cache
+/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Repositories/obj/Debug/net8.0/Repositories.GeneratedMSBuildEditorConfig.editorconfig
+/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Repositories/obj/Debug/net8.0/Repositories.AssemblyInfoInputs.cache
+/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Repositories/obj/Debug/net8.0/Repositories.AssemblyInfo.cs
+/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Repositories/obj/Debug/net8.0/Repositories.csproj.CoreCompileInputs.cache
+/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Repositories/bin/Debug/net8.0/Repositories.deps.json
+/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Repositories/bin/Debug/net8.0/Repositories.dll
+/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Repositories/bin/Debug/net8.0/Repositories.pdb
+/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Repositories/bin/Debug/net8.0/Data.dll
+/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Repositories/bin/Debug/net8.0/Infrastructure.dll
+/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Repositories/bin/Debug/net8.0/Data.pdb
+/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Repositories/bin/Debug/net8.0/Infrastructure.pdb
+/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Repositories/obj/Debug/net8.0/Reposito.787EC4B2.Up2Date
+/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Repositories/obj/Debug/net8.0/Repositories.dll
+/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Repositories/obj/Debug/net8.0/refint/Repositories.dll
+/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Repositories/obj/Debug/net8.0/Repositories.pdb
+/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Repositories/obj/Debug/net8.0/ref/Repositories.dll

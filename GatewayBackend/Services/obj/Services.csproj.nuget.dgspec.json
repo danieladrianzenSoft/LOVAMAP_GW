@@ -1,0 +1,311 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Services/Services.csproj": {}
+  },
+  "projects": {
+    "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Data/Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Data/Data.csproj",
+        "projectName": "Data",
+        "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Data/Data.csproj",
+        "packagesPath": "/Users/dzen/.nuget/packages/",
+        "outputPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Data/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/dzen/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.3, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "target": "Package",
+              "version": "[8.0.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "target": "Package",
+              "version": "[8.0.3, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[8.0.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.200/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Infrastructure/Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Infrastructure/Infrastructure.csproj",
+        "projectName": "Infrastructure",
+        "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Infrastructure/Infrastructure.csproj",
+        "packagesPath": "/Users/dzen/.nuget/packages/",
+        "outputPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Infrastructure/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/dzen/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Data/Data.csproj": {
+                "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Data/Data.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.3, )"
+            },
+            "Microsoft.AspNetCore.Identity": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.3, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[7.5.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.200/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Repositories/Repositories.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Repositories/Repositories.csproj",
+        "projectName": "Repositories",
+        "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Repositories/Repositories.csproj",
+        "packagesPath": "/Users/dzen/.nuget/packages/",
+        "outputPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Repositories/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/dzen/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Data/Data.csproj": {
+                "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Data/Data.csproj"
+              },
+              "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Infrastructure/Infrastructure.csproj": {
+                "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Infrastructure/Infrastructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.3, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[8.0.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.200/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Services/Services.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Services/Services.csproj",
+        "projectName": "Services",
+        "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Services/Services.csproj",
+        "packagesPath": "/Users/dzen/.nuget/packages/",
+        "outputPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Services/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/dzen/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Data/Data.csproj": {
+                "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Data/Data.csproj"
+              },
+              "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Infrastructure/Infrastructure.csproj": {
+                "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Infrastructure/Infrastructure.csproj"
+              },
+              "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Repositories/Repositories.csproj": {
+                "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP Gateway/GatewayBackend/Repositories/Repositories.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.200/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

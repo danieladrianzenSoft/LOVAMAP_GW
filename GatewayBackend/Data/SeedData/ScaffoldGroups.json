@@ -1,0 +1,1561 @@
+[
+	{
+		"name": "Monodisperse 100um rigid spheres",
+		"isSimulated": true,
+		"comments": "Contains scaffolds of rigid spherical particles of 100um diameter",
+		"inputGroup": {
+			"dx": 2,
+			"numVoxels": 10000,
+			"containerShape": "cube",
+			"containerSize": 2,
+			"isAnisotropic": false,
+			"particlePropertyGroups": [
+				{
+					"shape": "spheres",
+					"stiffness": "rigid",
+					"friction": "high",
+					"dispersity": "monodisperse",
+					"sizeDistributionType": "delta",
+					"meanSize": 100,
+					"standardDeviationSize": 0,
+					"sizeDistribution": [
+						100
+					]
+				}
+			]
+		},
+		"scaffolds": [
+			{
+				"scaffoldTags": [
+					{
+						"id": "",
+						"name": "spheres"
+					},
+					{
+						"id": "",
+						"name": "rigid"
+					},
+					{
+						"id": "",
+						"name": "monodisperse"
+					}
+				],
+				"globalDescriptors": [
+					{
+						"name":"dx",
+						"value":2
+					},
+					{
+						"name":"numVoxels",
+						"value":30806244
+					},
+					{
+						"name":"numParticles",
+						"value":209
+					},
+					{
+						"name":"numParticleContacts",
+						"value":572
+					},
+					{
+						"name":"voidVolumeFraction",
+						"value":0.394062885143899
+					},
+					{
+						"name":"particleFraction",
+						"value":0.605937114856101
+					},
+					{
+						"name":"num3dPores",
+						"value":129
+					},
+					{
+						"name":"numInterior3dPores",
+						"value":97
+					},
+					{
+						"name":"num3dPoresPerNumParticlesSurrIntPores",
+						"value":0.795081967213115
+					},
+					{
+						"name":"numExteriorDoors",
+						"value":258
+					},
+					{
+						"name":"numInteriorDoors",
+						"value":703
+					},
+					{
+						"name":"numPaths",
+						"value":294
+					},
+					{
+						"name":"particleAdjMaxEig",
+						"value":11.949382776585
+					},
+					{
+						"name":"peakAdjMaxEig",
+						"value":3.19787323545161
+					},
+					{
+						"name":"poreAdjMaxEig",
+						"value":11.1527365752117
+					},
+					{
+						"name":"maxNumPeaksEdgePore",
+						"value":308
+					},
+					{
+						"name":"ligandHotspotsVolumeFraction",
+						"value":0.00137094347518102
+					},
+					{
+						"name":"maxNumEquidistantParticles",
+						"value":6
+					}
+				],
+				"poreDescriptors":[
+					{
+						"name": "volume",
+						"values": [
+							43.7,
+							30.58,
+							33.72,
+							578.37,
+							39.9
+						]
+					},
+					{
+						"name": "surfaceArea",
+						"values": [
+							9.98,
+							8.08,
+							7.78,
+							75.7,
+							8.92
+						]
+					},
+					{
+						"name":"characteristicLength",
+						"values": [
+							4.378757515,
+							3.784653465,
+							4.334190231,
+							7.640290621,
+							4.47309417
+						]
+					},
+					{
+						"name":"longestLength",
+						"values": [
+							78.20485918,
+							84.54584555,
+							67.08203932,
+							171.2074765,
+							71.04927867
+						]
+					},
+					{
+						"name":"avgInternalDiam",
+						"values": [
+							28.56571388,
+							25.61249733,
+							26.83281517,
+							43.86913597,
+							30.19933701
+						]
+					},
+					{
+						"name":"aspectRatio",
+						"values": [
+							2.737717654,
+							3.300960639,
+							2.500000052,
+							3.902686312,
+							2.352676771
+						]
+					},
+					{
+						"name":"numHallways",
+						"values": [
+							4,
+							4,
+							4,
+							17,
+							4
+						]
+					},
+					{
+						"name":"numCrawlSpaces",
+						"values": [
+							6,
+							6,
+							6,
+							24,
+							6
+						]
+					},
+					{
+						"name":"numSurroundingPores",
+						"values": [
+							2,
+							1,
+							3,
+							11,
+							2
+						]
+					},
+					{
+						"name":"normalizedNeighbors",
+						"values": [
+							0.666666667,
+							0.666666667,
+							0.666666667,
+							0.708333333,
+							0.666666667
+						]
+					},
+					{
+						"name":"meanLocalThickness",
+						"values": [
+							19.06204245,
+							16.28585418,
+							17.65344988,
+							32.82652216,
+							21.21033527
+						]
+					},
+					{
+						"name":"numPeaks",
+						"values": [
+							1,
+							1,
+							1,
+							9,
+							1
+						]
+					},
+					{
+						"name":"numSurroundingParticles",
+						"values": [
+							4,
+							4,
+							4,
+							10,
+							4
+						]
+					},
+					{
+						"name":"largestEnclosedSphereDiam",
+						"values": [
+							28.56571388,
+							25.61249733,
+							26.83281517,
+							50.27922058,
+							30.19933701
+						]
+					},
+					{
+						"name":"largestDoorDiam",
+						"values": [
+							25.37206636,
+							23.60538798,
+							21.92009503,
+							37.00696785,
+							30.09668225
+						]
+					},
+					{
+						"name":"smallestDoorDiam",
+						"values": [
+							19.86946771,
+							16.64271422,
+							18.60482558,
+							16.60176656,
+							16.66613332
+						]
+					},
+					{
+						"name":"ellipsoidAxis1Length",
+						"values": [
+							28.5156873,
+							25.17490457,
+							22.12048196,
+							65.49502912,
+							25.08817077
+						]
+					},
+					{
+						"name":"ellipsoidAxis2Length",
+						"values": [
+							20.11676396,
+							18.90367611,
+							20.14771839,
+							57.95255944,
+							22.08165349
+						]
+					},
+					{
+						"name":"ellipsoidAxis3Length",
+						"values": [
+							18.29229123,
+							16.66502435,
+							17.33626172,
+							39.03462716,
+							17.38312352
+						]
+					},
+					{
+						"name":"ellipsoidClassification",
+						"values": [
+							0,
+							0,
+							0,
+							0,
+							0
+						]
+					},
+					{
+						"name":"isotropy",
+						"values": [
+							0.588350316,
+							0.894046151,
+							0.198011717,
+							0.962444265,
+							0.874245379
+						]
+					},
+					{
+						"name":"ligandConcentration",
+						"values": [
+							47.11739824,
+							62.55227223,
+							50.88249038,
+							32.26182673,
+							45.50467077
+						]
+					},
+					{
+						"name":"accessibleLigand",
+						"values": [
+							1.4928E-08,
+							1.3016E-08,
+							1.2176E-08,
+							1.31272E-07,
+							1.224E-08
+						]
+					},
+					{
+						"name":"xCentroid",
+						"values": [
+							256.0159253,
+							143.9223123,
+							442.0586002,
+							322.8712515,
+							332.7786688
+						]
+					},
+					{
+						"name":"yCentroid",
+						"values": [
+							191.4620172,
+							345.3594036,
+							337.0659549,
+							303.8812382,
+							488.4951885
+						]
+					},
+					{
+						"name":"zCentroid",
+						"values": [
+							100.4409665,
+							111.434214,
+							109.2790036,
+							154.7698075,
+							112.9935846
+						]
+					}			
+				],
+				"otherDescriptors": [
+					{
+						"name": "particleDiam",
+						"values": [
+							100.0038975,
+							99.99880469,
+							100.0032609,
+							99.99562142,
+							99.98925426
+						]
+					},
+					{
+						"name": "particleCoordinationNum",
+						"values": [
+							13,
+							16,
+							9,
+							13,
+							5
+						]
+					},
+					{
+						"name": "touchingParticleCoordNum",
+						"values": [
+							6,
+							7,
+							4,
+							8,
+							4
+						]
+					},
+					{
+						"name": "exitDoorDiam",
+						"values": [
+							32.98841151,
+							32.98841151,
+							45.84290068,
+							26.18434331,
+							41.52643067
+						]
+					},
+					{
+						"name": "internalDoorDiam",
+						"values": [
+							15.74767887,
+							15.9071827,
+							15.92025582,
+							16.02441087,
+							16.03567451
+						]
+					},
+					{
+						"name": "crawlSpaceWidth",
+						"values": [
+							8.944272041,
+							20,
+							0,
+							0,
+							6.928203106
+						]
+					},
+					{
+						"name": "pathLength",
+						"values": [
+							451.3588751,
+							407.5855577,
+							568.0298269,
+							529.0585737,
+							558.9576599
+						]
+					},
+					{
+						"name": "tortuosityByLength",
+						"values": [
+							1.268262357,
+							1.242407952,
+							1.411037589,
+							1.327667876,
+							1.388484368
+						]
+					},
+					{
+						"name": "tortuosityByVolume",
+						"values": [
+							215.444,
+							152.1586667,
+							526.7093333,
+							368.2946667,
+							466.4586667
+						]
+					},
+					{
+						"name": "surfaceLigandConc",
+						"values": [
+							6.7819E-14,
+							4.25648E-14,
+							4.95659E-14,
+							9.29479E-14,
+							1.21356E-13
+						]
+					},
+					{
+						"name": "surfaceAccessibleLigand",
+						"values": [
+							1.232E-09,
+							5.632E-09,
+							4.304E-09,
+							1.36E-09,
+							7.2E-10
+						]
+					},
+					{
+						"name": "regionVolsLess1",
+						"values": [
+							47605.35
+						]
+					},
+					{
+						"name": "regionVols10",
+						"values": [
+							47605.35
+						]
+					},
+					{
+						"name": "regionVols30",
+						"values": [
+							31.65,
+							28.54,
+							866.91,
+							29.12,
+							29.15
+						]
+					},
+					{
+						"name": "regionVols60",
+						"values": [
+							686.3,
+							200.32,
+							239.1,
+							136.57,
+							492.26
+						]
+					}
+					
+				]
+			},
+			{
+				"scaffoldTags": [
+					{
+						"Id": "",
+						"name": "spheres"
+					},
+					{
+						"Id": "",
+						"name": "rigid"
+					},
+					{
+						"Id": "",
+						"name": "monodisperse"
+					}
+				],
+				"globalDescriptors": [
+					{
+						"name":"dx",
+						"value":2
+					},
+					{
+						"name":"numVoxels",
+						"value":28306140
+					},
+					{
+						"name":"numParticles",
+						"value":189
+					},
+					{
+						"name":"numParticleContacts",
+						"value":489
+					},
+					{
+						"name":"voidVolumeFraction",
+						"value":0.41
+					},
+					{
+						"name":"particleFraction",
+						"value":0.59
+					},
+					{
+						"name":"num3dPores",
+						"value":101
+					},
+					{
+						"name":"numInterior3dPores",
+						"value":82
+					},
+					{
+						"name":"num3dPoresPerNumParticlesSurrIntPores",
+						"value":0.723
+					},
+					{
+						"name":"numExteriorDoors",
+						"value":231
+					},
+					{
+						"name":"numInteriorDoors",
+						"value":509
+					},
+					{
+						"name":"numPaths",
+						"value":302
+					},
+					{
+						"name":"particleAdjMaxEig",
+						"value":10.2
+					},
+					{
+						"name":"peakAdjMaxEig",
+						"value":3.3
+					},
+					{
+						"name":"poreAdjMaxEig",
+						"value":12.1
+					},
+					{
+						"name":"maxNumPeaksEdgePore",
+						"value":298
+					},
+					{
+						"name":"ligandHotspotsVolumeFraction",
+						"value":0.0015
+					},
+					{
+						"name":"maxNumEquidistantParticles",
+						"value":5
+					}
+				],
+				"poreDescriptors":[
+					{
+						"name": "volume",
+						"values": [
+							52.1,
+							28.2,
+							24.7,
+							598.4,
+							37.2
+						]
+					},
+					{
+						"name": "surfaceArea",
+						"values": [
+							7.9,
+							6.1,
+							9.0,
+							23.1,
+							7.3
+						]
+					},
+					{
+						"name":"characteristicLength",
+						"values": [
+							5.3,
+							3.7,
+							4.2,
+							8.2,
+							4.2
+						]
+					},
+					{
+						"name":"longestLength",
+						"values": [
+							80.2,
+							86.0,
+							60.5,
+							171.9,
+							68.2
+						]
+					},
+					{
+						"name":"avgInternalDiam",
+						"values": [
+							25.2,
+							20.4,
+							34.5,
+							50.2,
+							20.9
+						]
+					},
+					{
+						"name":"aspectRatio",
+						"values": [
+							2.92,
+							4.49,
+							1.89,
+							5.21,
+							2.45
+						]
+					},
+					{
+						"name":"numHallways",
+						"values": [
+							4,
+							6,
+							6,
+							2,
+							4
+						]
+					},
+					{
+						"name":"numCrawlSpaces",
+						"values": [
+							5,
+							3,
+							2,
+							8,
+							2
+						]
+					},
+					{
+						"name":"numSurroundingPores",
+						"values": [
+							8,
+							2,
+							4,
+							16,
+							7
+						]
+					},
+					{
+						"name":"normalizedNeighbors",
+						"values": [
+							0.78,
+							0.78,
+							0.67,
+							0.82,
+							0.72
+						]
+					},
+					{
+						"name":"meanLocalThickness",
+						"values": [
+							16.43,
+							15.83,
+							24.35,
+							17.94,
+							89.92
+						]
+					},
+					{
+						"name":"numPeaks",
+						"values": [
+							2,
+							2,
+							1,
+							3,
+							1
+						]
+					},
+					{
+						"name":"numSurroundingParticles",
+						"values": [
+							2,
+							3,
+							3,
+							6,
+							4
+						]
+					},
+					{
+						"name":"largestEnclosedSphereDiam",
+						"values": [
+							29.5,
+							22.6,
+							20.8,
+							34.2,
+							29.2
+						]
+					},
+					{
+						"name":"largestDoorDiam",
+						"values": [
+							28.2,
+							20.1,
+							18.3,
+							45.2,
+							14.5
+						]
+					},
+					{
+						"name":"smallestDoorDiam",
+						"values": [
+							19.8,
+							12.5,
+							18.9,
+							14.8,
+							19.8
+						]
+					},
+					{
+						"name":"ellipsoidAxis1Length",
+						"values": [
+							22.5,
+							25.1,
+							29.1,
+							34.4,
+							36.0
+						]
+					},
+					{
+						"name":"ellipsoidAxis2Length",
+						"values": [
+							24.2,
+							32.2,
+							17.2,
+							14.3,
+							28.9
+						]
+					},
+					{
+						"name":"ellipsoidAxis3Length",
+						"values": [
+							23.2,
+							14.6,
+							28.3,
+							32.0,
+							14.3
+						]
+					},
+					{
+						"name":"ellipsoidClassification",
+						"values": [
+							0,
+							0,
+							0,
+							0,
+							0
+						]
+					},
+					{
+						"name":"isotropy",
+						"values": [
+							0.56,
+							0.98,
+							0.24,
+							0.84,
+							0.23
+						]
+					},
+					{
+						"name":"ligandConcentration",
+						"values": [
+							54.9,
+							83.8,
+							38.7,
+							39.2,
+							29.5
+						]
+					},
+					{
+						"name":"accessibleLigand",
+						"values": [
+							1.32E-08,
+							1.67E-08,
+							1.01E-08,
+							1.78E-07,
+							1.84E-08
+						]
+					},
+					{
+						"name":"xCentroid",
+						"values": [
+							234.0,
+							183.9,
+							420.1,
+							238.8,
+							199.7
+						]
+					},
+					{
+						"name":"yCentroid",
+						"values": [
+							183.4,
+							289.3,
+							402.0,
+							289.8,
+							342.4
+						]
+					},
+					{
+						"name":"zCentroid",
+						"values": [
+							103.4,
+							193.4,
+							99.7,
+							123.8,
+							103.7
+						]
+					}			
+				],
+				"otherDescriptors": [
+					{
+						"name": "particleDiam",
+						"values": [
+							99.0,
+							103.9,
+							105.0,
+							98.9,
+							93.9
+						]
+					},
+					{
+						"name": "particleCoordinationNum",
+						"values": [
+							10,
+							12,
+							7,
+							18,
+							4
+						]
+					},
+					{
+						"name": "touchingParticleCoordNum",
+						"values": [
+							7,
+							8,
+							9,
+							3,
+							5
+						]
+					},
+					{
+						"name": "exitDoorDiam",
+						"values": [
+							27.98,
+							45.84,
+							34.47,
+							25.04,
+							40.52
+						]
+					},
+					{
+						"name": "internalDoorDiam",
+						"values": [
+							15.23,
+							15.81,
+							13.34,
+							16.18,
+							12.23
+						]
+					},
+					{
+						"name": "crawlSpaceWidth",
+						"values": [
+							2.78,
+							12,
+							0,
+							0,
+							8.3
+						]
+					},
+					{
+						"name": "pathLength",
+						"values": [
+							473.12,
+							399.23,
+							123.99,
+							582.45,
+							612.95
+						]
+					},
+					{
+						"name": "tortuosityByLength",
+						"values": [
+							1.45,
+							1.01,
+							1.41,
+							1.32,
+							1.38
+						]
+					},
+					{
+						"name": "tortuosityByVolume",
+						"values": [
+							282.23,
+							137.18,
+							590.12,
+							623.29,
+							321.38
+						]
+					},
+					{
+						"name": "surfaceLigandConc",
+						"values": [
+							7.32E-14,
+							2.28E-14,
+							3.23E-14,
+							5.29E-14,
+							5.21E-14
+						]
+					},
+					{
+						"name": "surfaceAccessibleLigand",
+						"values": [
+							7.23E-09,
+							2.63E-09,
+							3.30E-09,
+							4.36E-09,
+							9.26E-10
+						]
+					},
+					{
+						"name": "regionVolsLess1",
+						"values": [
+							40201.12
+						]
+					},
+					{
+						"name": "regionVols10",
+						"values": [
+							40201.12
+						]
+					},
+					{
+						"name": "regionVols30",
+						"values": [
+							12.65,
+							34.54,
+							78.91,
+							101.12,
+							89.15
+						]
+					},
+					{
+						"name": "regionVols60",
+						"values": [
+							823.3,
+							134.32,
+							174.1,
+							492.57,
+							500.26
+						]
+					}
+					
+				]
+			}
+		]
+	},
+	{
+		"name": "Bidisperse soft spheres, 40um and 60um",
+		"isSimulated": true,
+		"comments": "Contains scaffolds of soft spherical particles of mean diameters 40 and 60um",
+		"inputGroup": {
+			"dx": 2,
+			"numVoxels": 10000,
+			"containerShape": "cube",
+			"containerSize": 2,
+			"isAnisotropic": false,
+			"particlePropertyGroups": [
+				{
+					"shape": "spheres",
+					"stiffness": "soft",
+					"friction": "high",
+					"dispersity": "monodisperse",
+					"sizeDistributionType": "delta",
+					"meanSize": 40,
+					"standardDeviationSize": 0,
+					"sizeDistribution": [
+						40
+					]
+				},
+				{
+					"shape": "spheres",
+					"stiffness": "soft",
+					"friction": "high",
+					"dispersity": "monodisperse",
+					"sizeDistributionType": "delta",
+					"meanSize": 60,
+					"standardDeviationSize": 0,
+					"sizeDistribution": [
+						60
+					]
+				}
+			]
+		},
+		"scaffolds": [
+			{
+				"scaffoldTags": [
+					{
+						"Id": "",
+						"name": "spheres"
+					},
+					{
+						"Id": "",
+						"name": "soft"
+					},
+					{
+						"Id": "",
+						"name": "bidisperse"
+					}
+				],
+				"globalDescriptors": [
+					{
+						"name":"dx",
+						"value":2
+					},
+					{
+						"name":"numVoxels",
+						"value":3280204
+					},
+					{
+						"name":"numParticles",
+						"value":98
+					},
+					{
+						"name":"numParticleContacts",
+						"value":193
+					},
+					{
+						"name":"voidVolumeFraction",
+						"value":0.28
+					},
+					{
+						"name":"particleFraction",
+						"value":0.82
+					},
+					{
+						"name":"num3dPores",
+						"value":98
+					},
+					{
+						"name":"numInterior3dPores",
+						"value":90
+					},
+					{
+						"name":"num3dPoresPerNumParticlesSurrIntPores",
+						"value":0.89
+					},
+					{
+						"name":"numExteriorDoors",
+						"value":202
+					},
+					{
+						"name":"numInteriorDoors",
+						"value":794
+					},
+					{
+						"name":"numPaths",
+						"value":278
+					},
+					{
+						"name":"particleAdjMaxEig",
+						"value":9.8
+					},
+					{
+						"name":"peakAdjMaxEig",
+						"value":3.8
+					},
+					{
+						"name":"poreAdjMaxEig",
+						"value":11.48
+					},
+					{
+						"name":"maxNumPeaksEdgePore",
+						"value":324
+					},
+					{
+						"name":"ligandHotspotsVolumeFraction",
+						"value":0.01
+					},
+					{
+						"name":"maxNumEquidistantParticles",
+						"value":8
+					}
+				],
+				"poreDescriptors":[
+					{
+						"name": "volume",
+						"values": [
+							20.7,
+							89.58,
+							34.72,
+							102.37,
+							402.9
+						]
+					},
+					{
+						"name": "surfaceArea",
+						"values": [
+							19.98,
+							2.08,
+							4.78,
+							29.7,
+							234.92
+						]
+					},
+					{
+						"name":"characteristicLength",
+						"values": [
+							3.5,
+							4.9,
+							2.4,
+							9.2,
+							21.4
+						]
+					},
+					{
+						"name":"longestLength",
+						"values": [
+							78.2,
+							84.5,
+							59.2,
+							12.9,
+							89.0
+						]
+					},
+					{
+						"name":"avgInternalDiam",
+						"values": [
+							24.5,
+							82.6,
+							13.8,
+							48.8,
+							21.1
+						]
+					},
+					{
+						"name":"aspectRatio",
+						"values": [
+							2.73,
+							1.32,
+							3.54,
+							4.91,
+							8.12
+						]
+					},
+					{
+						"name":"numHallways",
+						"values": [
+							7,
+							4,
+							3,
+							5,
+							12
+						]
+					},
+					{
+						"name":"numCrawlSpaces",
+						"values": [
+							14,
+							5,
+							14,
+							8,
+							31
+						]
+					},
+					{
+						"name":"numSurroundingPores",
+						"values": [
+							3,
+							6,
+							14,
+							31,
+							21
+						]
+					},
+					{
+						"name":"normalizedNeighbors",
+						"values": [
+							0.667,
+							0.727,
+							0.837,
+							0.837,
+							0.667
+						]
+					},
+					{
+						"name":"meanLocalThickness",
+						"values": [
+							21.06,
+							28.29,
+							24.69,
+							32.82,
+							41.21
+						]
+					},
+					{
+						"name":"numPeaks",
+						"values": [
+							1,
+							1,
+							1,
+							1,
+							13
+						]
+					},
+					{
+						"name":"numSurroundingParticles",
+						"values": [
+							8,
+							4,
+							5,
+							4,
+							14
+						]
+					},
+					{
+						"name":"largestEnclosedSphereDiam",
+						"values": [
+							12.56,
+							23.61,
+							53.83,
+							52.27,
+							35.19
+						]
+					},
+					{
+						"name":"largestDoorDiam",
+						"values": [
+							25.37,
+							23.61,
+							42.92,
+							13.00,
+							62.19
+						]
+					},
+					{
+						"name":"smallestDoorDiam",
+						"values": [
+							12.86,
+							9.64,
+							15.60,
+							16.60,
+							17.66
+						]
+					},
+					{
+						"name":"ellipsoidAxis1Length",
+						"values": [
+							22.51,
+							18.11,
+							14.19,
+							26.42,
+							42.08
+						]
+					},
+					{
+						"name":"ellipsoidAxis2Length",
+						"values": [
+							23.11,
+							13.90,
+							24.14,
+							15.95,
+							19.08
+						]
+					},
+					{
+						"name":"ellipsoidAxis3Length",
+						"values": [
+							11.29,
+							14.66,
+							21.33,
+							23.03,
+							57.38
+						]
+					},
+					{
+						"name":"ellipsoidClassification",
+						"values": [
+							0,
+							0,
+							0,
+							0,
+							0
+						]
+					},
+					{
+						"name":"isotropy",
+						"values": [
+							0.58,
+							0.89,
+							0.45,
+							0.48,
+							0.82
+						]
+					},
+					{
+						"name":"ligandConcentration",
+						"values": [
+							72.1,
+							69.5,
+							23.8,
+							89.3,
+							42.5
+						]
+					},
+					{
+						"name":"accessibleLigand",
+						"values": [
+							1.49E-08,
+							1.30E-08,
+							1.21E-06,
+							1.34E-07,
+							1.29E-07
+						]
+					},
+					{
+						"name":"xCentroid",
+						"values": [
+							284.0,
+							193.9,
+							102.0,
+							312.8,
+							412.7
+						]
+					},
+					{
+						"name":"yCentroid",
+						"values": [
+							423.4,
+							512.2,
+							374.1,
+							298.0,
+							273.7
+						]
+					},
+					{
+						"name":"zCentroid",
+						"values": [
+							142.4,
+							90.4,
+							113.2,
+							183.7,
+							142.9
+						]
+					}			
+				],
+				"otherDescriptors": [
+					{
+						"name": "particleDiam",
+						"values": [
+							60.23,
+							60.09,
+							59.98,
+							60.01,
+							60.0
+						]
+					},
+					{
+						"name": "particleCoordinationNum",
+						"values": [
+							8,
+							2,
+							12,
+							18,
+							3
+						]
+					},
+					{
+						"name": "touchingParticleCoordNum",
+						"values": [
+							6,
+							9,
+							7,
+							12,
+							5
+						]
+					},
+					{
+						"name": "exitDoorDiam",
+						"values": [
+							46.98,
+							28.41,
+							74.29,
+							19.43,
+							52.52
+						]
+					},
+					{
+						"name": "internalDoorDiam",
+						"values": [
+							14.8,
+							12.9,
+							17.2,
+							10.0,
+							31.2
+						]
+					},
+					{
+						"name": "crawlSpaceWidth",
+						"values": [
+							7.94,
+							20,
+							2,
+							0,
+							8.13
+						]
+					},
+					{
+						"name": "pathLength",
+						"values": [
+							434.8,
+							583.5,
+							672.0,
+							390.2,
+							612.9
+						]
+					},
+					{
+						"name": "tortuosityByLength",
+						"values": [
+							1.26,
+							1.44,
+							1.82,
+							1.02,
+							1.87
+						]
+					},
+					{
+						"name": "tortuosityByVolume",
+						"values": [
+							273.4,
+							142.1,
+							892.9,
+							234.2,
+							309.7
+						]
+					},
+					{
+						"name": "surfaceLigandConc",
+						"values": [
+							6.78E-14,
+							3.20E-14,
+							2.99E-14,
+							1.47E-13,
+							1.21356E-13
+						]
+					},
+					{
+						"name": "surfaceAccessibleLigand",
+						"values": [
+							1.23E-09,
+							8.13E-09,
+							2.034E-09,
+							2.42E-09,
+							1.2E-08
+						]
+					},
+					{
+						"name": "regionVolsLess1",
+						"values": [
+							52000.24
+						]
+					},
+					{
+						"name": "regionVols10",
+						"values": [
+							52000.24
+						]
+					},
+					{
+						"name": "regionVols30",
+						"values": [
+							18.6,
+							42.5,
+							73.9,
+							234.8,
+							99.7
+						]
+					},
+					{
+						"name": "regionVols60",
+						"values": [
+							482.3,
+							819.3,
+							194.1,
+							234.7,
+							290.2
+						]
+					}
+					
+				]
+			}
+		]
+	}
+]

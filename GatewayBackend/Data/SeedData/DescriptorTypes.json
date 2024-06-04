@@ -1,0 +1,443 @@
+[
+    {
+        "name": "Dx",
+		"label": "dx",
+        "category": "Global",
+		"unit": "",
+		"dataType": "double"
+    },
+	{
+        "name": "NumVoxels",
+		"label": "voxels",
+        "category": "Global",
+		"unit": "",
+		"dataType": "int"
+    },
+	{
+        "name": "NumParticles",
+        "label": "# Particles",
+		"category": "Global",
+		"unit": "",
+		"dataType": "int"
+    },
+	{
+        "name": "NumParticleContacts",
+        "label": "# Particle Contacts",
+		"category": "Global",
+		"unit": "",
+		"dataType": "int"
+    },
+	{
+        "name": "VoidVolumeFraction",
+        "label": "Void Vol Fraction",
+		"category": "Global",
+		"unit": "",
+		"dataType": "double"
+    },
+	{
+        "name": "ParticleFraction",
+        "label": "Particle Fraction",
+		"category": "Global",
+		"unit": "",
+		"dataType": "double"
+    },
+	{
+        "name": "Num3dPores",
+        "label": "# 3D-Pores",
+		"category": "Global",
+		"unit": "",
+		"dataType": "int"
+    },
+	{
+        "name": "NumInterior3dPores",
+        "label": "# Interior 3D-Pores",
+		"category": "Global",
+		"unit": "",
+		"dataType": "int"
+    },
+	{
+        "name": "Num3dPoresPerNumParticlesSurrIntPores",
+        "label": "# Int 3D-Pores / # Particles Surr Int Pores",
+		"category": "Global",
+		"unit": "",
+		"dataType": "double"
+    },
+	{
+        "name": "NumExteriorDoors",
+        "label": "# Exterior Doors",
+		"category": "Global",
+		"unit": "",
+		"dataType": "int"
+    },
+	{
+        "name": "NumInteriorDoors",
+        "label": "# Interior Doors",
+		"category": "Global",
+		"unit": "",
+		"dataType": "int"
+    },
+	{
+        "name": "NumPaths",
+        "label": "# Paths",
+		"category": "Global",
+		"unit": "",
+		"dataType": "int"
+    },
+	{
+        "name": "ParticleAdjMaxEig",
+        "label": "Particle Adj Max Eig",
+		"category": "Global",
+		"unit": "",
+		"dataType": "double"
+    },
+	{
+        "name": "PeakAdjMaxEig",
+        "label": "Peak Adj Max Eig",
+		"category": "Global",
+		"unit": "",
+		"dataType": "double"
+    },
+	{
+        "name": "PoreAdjMaxEig",
+        "label": "Pore Adj Max Eig",
+		"category": "Global",
+		"unit": "",
+		"dataType": "double"
+    },
+	{
+        "name": "MaxNumPeaksEdgePore",
+        "label": "Max # Pks of Edge Pore",
+		"category": "Global",
+		"unit": "",
+		"dataType": "int"
+    },
+	{
+        "name": "LigandHotspotsVolumeFraction",
+        "label": "Ligand Hotspots Volume Fraction",
+		"category": "Global",
+		"unit": "",
+		"dataType": "double"
+    },
+	{
+        "name": "MaxNumEquidistantParticles",
+        "label": "Max # Equidistant Particles",
+		"category": "Global",
+		"unit": "",
+		"dataType": "int"
+    },
+	{
+        "name": "Volume",
+        "label": "Volume",
+		"category": "Pore",
+		"unit": "pL",
+		"dataType": "double"
+    },
+	{
+        "name": "SurfaceArea",
+        "label": "Surface Area",
+		"category": "Pore",
+		"unit": "μm^2/1000",
+		"dataType": "double"
+    },
+	{
+        "name": "CharacteristicLength",
+        "label": "Characteristic Length",
+		"category": "Pore",
+		"unit": "μm",
+		"dataType": "double"
+    },
+	{
+        "name": "LongestLength",
+        "label": "Longest Length",
+		"category": "Pore",
+		"unit": "μm",
+		"dataType": "double"
+    },
+	{
+        "name": "AvgInternalDiam",
+        "label": "Avg Internal Diam",
+		"category": "Pore",
+		"unit": "μm",
+		"dataType": "double"
+    },
+	{
+        "name": "AspectRatio",
+        "label": "Aspect Ratio",
+		"category": "Pore",
+		"unit": "",
+		"dataType": "double"
+    },
+	{
+        "name": "NumHallways",
+        "label": "# Hallways",
+		"category": "Pore",
+		"unit": "",
+		"dataType": "int"
+    },
+	{
+        "name": "NumCrawlSpaces",
+        "label": "# Crawl Spaces",
+		"category": "Pore",
+		"unit": "",
+		"dataType": "int"
+    },
+	{
+        "name": "NumConnectedPores",
+        "label": "# Connected Pores",
+		"category": "Pore",
+		"unit": "",
+		"dataType": "int"
+    },
+	{
+        "name": "NumSurroundingPores",
+        "label": "# Surrounding Pores",
+		"category": "Pore",
+		"unit": "",
+		"dataType": "int"
+    },
+	{
+        "name": "NormalizedNeighbors",
+        "label": "Normalized Neighbors",
+		"category": "Pore",
+		"unit": "",
+		"dataType": "double"
+    },
+	{
+        "name": "MeanLocalThickness",
+        "label": "Mean Local Thickness",
+		"category": "Pore",
+		"unit": "μm",
+		"dataType": "double"
+    },
+	{
+        "name": "NumPeaks",
+        "label": "# Peaks",
+		"category": "Pore",
+		"unit": "",
+		"dataType": "int"
+    },
+	{
+        "name": "NumSurroundingParticles",
+        "label": "# Surrounding Particles",
+		"category": "Pore",
+		"unit": "",
+		"dataType": "int"
+    },
+	{
+        "name": "LargestEnclosedSphereDiam",
+        "label": "Largest Enclosed Sphere Diameter",
+		"category": "Pore",
+		"unit": "μm",
+		"dataType": "double"
+    },
+	{
+        "name": "LargestDoorDiam",
+        "label": "Largest Door Diameter",
+		"category": "Pore",
+		"unit": "μm",
+		"dataType": "double"
+    },
+	{
+        "name": "SmallestDoorDiam",
+        "label": "Smallest Door Diameter",
+		"category": "Pore",
+		"unit": "μm",
+		"dataType": "double"
+    },
+	{
+        "name": "EllipsoidAxis1Length",
+        "label": "Ellipsoid Axis 1 Length",
+		"category": "Pore",
+		"unit": "μm",
+		"dataType": "double"
+    },
+	{
+        "name": "EllipsoidAxis2Length",
+        "label": "Ellipsoid Axis 2 Length",
+		"category": "Pore",
+		"unit": "μm",
+		"dataType": "double"
+    },
+	{
+        "name": "EllipsoidAxis3Length",
+        "label": "Ellipsoid Axis 3 Length",
+		"category": "Pore",
+		"unit": "μm",
+		"dataType": "double"
+    },
+	{
+        "name": "EllipsoidClassification",
+        "label": "Ellipsoid Classification",
+		"category": "Pore",
+		"unit": "",
+		"dataType": "int"
+    },
+	{
+        "name": "Isotropy",
+        "label": "Isotropy",
+		"category": "Pore",
+		"unit": "",
+		"dataType": "double"
+    },
+	{
+        "name": "LigandConcentration",
+        "label": "Ligand Concentration",
+		"category": "Pore",
+		"unit": "μmoles / L",
+		"dataType": "double"
+    },
+	{
+        "name": "AccessibleLigand",
+        "label": "Accessible Ligand",
+		"category": "Pore",
+		"unit": "μmoles",
+		"dataType": "double"
+    },
+	{
+        "name": "ParticleSurfaceArea",
+        "label": "Particle Surface Area",
+		"category": "Pore",
+		"unit": "μm^2",
+		"dataType": "double"
+    },
+	{
+        "name": "OpenSurfaceArea",
+        "label": "Open (Non-Particle) Surface Area",
+		"category": "Pore",
+		"unit": "μm^2",
+		"dataType": "double"
+    },
+	{
+        "name": "XCentroid",
+        "label": "x Centroid",
+		"category": "Pore",
+		"unit": "",
+		"dataType": "double"
+    },
+	{
+        "name": "YCentroid",
+        "label": "y Centroid",
+		"category": "Pore",
+		"unit": "",
+		"dataType": "double"
+    },
+	{
+        "name": "ZCentroid",
+        "label": "z Centroid",
+		"category": "Pore",
+		"unit": "",
+		"dataType": "double"
+    },
+	{
+        "name": "UniqueId",
+        "label": "UniqueID",
+		"category": "Pore",
+		"unit": "",
+		"dataType": "string"
+    },
+	{
+        "name": "ParticleDiam",
+        "label": "Particle Diameter",
+		"category": "Other",
+		"unit": "μm",
+		"dataType": "double"
+    },
+	{
+        "name": "ParticleCoordinationNum",
+        "label": "Particle Coordination #",
+		"category": "Other",
+		"unit": "",
+		"dataType": "int"
+    },
+	{
+        "name": "TouchingParticleCoordNum",
+        "label": "Touching Particle Coord #",
+		"category": "Other",
+		"unit": "",
+		"dataType": "int"
+    },
+	{
+        "name": "ExitDoorDiam",
+        "label": "Exit Door Diameter",
+		"category": "Other",
+		"unit": "μm",
+		"dataType": "double"
+    },
+	{
+        "name": "InternalDoorDiam",
+        "label": "Internal Door Diameter",
+		"category": "Other",
+		"unit": "",
+		"dataType": "double"
+    },
+	{
+        "name": "CrawlSpaceWidth",
+        "label": "Crawl Space Width",
+		"category": "Other",
+		"unit": "μm",
+		"dataType": "double"
+    },
+	{
+        "name": "PathLength",
+        "label": "Path Length",
+		"category": "Other",
+		"unit": "μm",
+		"dataType": "double"
+    },
+	{
+        "name": "TortuosityByLength",
+        "label": "Tortuosity by Length",
+		"category": "Other",
+		"unit": "",
+		"dataType": "double"
+    },
+	{
+        "name": "TortuosityByVolume",
+        "label": "Tortuosity by Volume",
+		"category": "Other",
+		"unit": "pL",
+		"dataType": "double"
+    },
+	{
+        "name": "SurfaceLigandConc",
+        "label": "Surface Ligand Conc",
+		"category": "Other",
+		"unit": "μmoles / μm^2",
+		"dataType": "double"
+    },
+	{
+        "name": "SurfaceAccessibleLigand",
+        "label": "Surface Accessible Ligand",
+		"category": "Other",
+		"unit": "μmoles",
+		"dataType": "double"
+    },
+	{
+        "name": "RegionVolsLess1",
+        "label": "Region Vols, <1 μm",
+		"category": "Other",
+		"unit": "pL",
+		"dataType": "double"
+    },
+	{
+        "name": "RegionVols10",
+        "label": "Region Vols, 10 μm",
+		"category": "Other",
+		"unit": "pL",
+		"dataType": "double"
+    },
+	{
+        "name": "RegionVols30",
+        "label": "Region Vols, 30 μm",
+		"category": "Other",
+		"unit": "pL",
+		"dataType": "double"
+    },
+	{
+        "name": "RegionVols60",
+        "label": "Region Vols, 60 μm",
+		"category": "Other",
+		"unit": "pL",
+		"dataType": "double"
+    }
+]
