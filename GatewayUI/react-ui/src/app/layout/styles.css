@@ -1,0 +1,234 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  /* .sidebar-icon {
+    @apply relative flex items-center
+      justify-center h-12 w-12 mt-2 mb-2 mx-auto
+      bg-gray-300 dark:bg-gray-800
+      text-orange-600 hover:bg-orange-600 
+      hover:text-white 
+      rounded-3xl hover:rounded-xl 
+      transition-all duration-200 ease-linear 
+      cursor-pointer shadow-lg;
+  } */
+  /* .sidebar-tooltip {
+    @apply absolute w-auto p-2 m-2 min-w-max left-14
+      rounded-md shadow-md text-white bg-gray-900
+      text-xs font-bold transition-all duration-100
+      scale-0 origin-left;
+  } */
+  /* .sidebar-hr {
+    @apply bg-gray-200 dark:bg-gray-800 
+    border border-gray-200 dark:border-gray-800 rounded-full
+    mx-2;
+  } */
+  .main-screen-container {
+    @apply flex flex-col 
+    m-0 ml-16
+    h-full w-full bg-white
+  }
+  .main-screen{
+    @apply flex flex-col items-center
+    h-full w-full mt-0 ml-0 mx-auto px-0 pb-12
+    overflow-y-scroll bg-white
+  }
+  .top-navigation {
+    @apply flex flex-row items-center justify-evenly bg-white
+    w-full h-16 z-10
+    m-0;
+  }
+  .top-navigation-icon {
+    @apply text-gray-500 dark:text-gray-300
+    mr-3 ml-4
+    transition duration-300 ease-in-out 
+    hover:text-orange-500
+    cursor-pointer;
+  }
+  .top-navigation-icon:first {
+    @apply ml-auto mr-4;
+  }
+  .title-text {
+    @apply text-xl tracking-wider font-semibold text-opacity-80 
+    text-gray-600 dark:text-gray-300
+    mr-auto ml-4 my-auto 
+    transition duration-300 ease-in-out;
+  }
+  .search {
+    @apply w-1/5 flex items-center justify-start 
+    bg-gray-200 dark:bg-gray-600
+    text-gray-500 dark:text-gray-300
+    px-2 h-9 ml-0 mr-0 
+    rounded-md
+    transition duration-300 ease-in-out;
+  }
+  .search-input {
+    @apply w-full font-sans font-semibold
+    bg-transparent outline-none 
+    text-gray-500 dark:text-gray-300
+    placeholder-gray-400
+    pl-1 rounded;
+  }
+  .table-heading {
+    @apply px-5 py-3 
+    border-b-2 border-gray-200 bg-gray-100 
+    text-left text-xs font-semibold text-gray-600 
+    uppercase tracking-wider dark:bg-slate-900
+    dark:text-gray-200 dark:border-gray-700
+  }
+  .table-row {
+    @apply px-5 py-5 border-b border-gray-200 text-sm
+  }
+  .text-input {
+    @apply block w-full px-3 py-1.5 text-base font-normal
+    text-gray-700 bg-white bg-clip-padding
+    border border-solid border-gray-300 rounded
+    transition ease-in-out m-0
+    focus:border-blue-600 focus:outline-none
+  }
+  .text-input-error {
+    @apply block w-full px-3 py-1.5 text-base font-normal
+    text-gray-700 bg-white bg-clip-padding
+    border border-solid border-red-500 rounded
+    transition ease-in-out m-0
+    focus:border-red-500 focus:outline-none
+  }
+  .dropdown-menu {
+    @apply divide-gray-100 rounded-md bg-white dark:bg-gray-800 
+    shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none
+  }
+  .dropdown-menu-item {
+    @apply dark:hover:bg-indigo-600 hover:bg-indigo-500 hover:text-white dark:text-gray-200
+    text-gray-900 flex w-full items-center 
+    rounded-md px-2 py-2 text-sm
+  }
+  .pagination-icon {
+    @apply relative flex items-center
+      justify-center h-1 w-5 mt-2 mb-2 mx-auto 
+      cursor-pointer;
+  }
+  .pagination-tooltip {
+    @apply absolute w-auto p-2 m-2 min-w-max
+      rounded-md shadow-md text-white bg-gray-900
+      text-xs font-bold transition-all duration-100
+      scale-0 origin-left mt-20 z-10
+  }
+  .button-icon {
+    @apply relative flex items-center
+    justify-center h-10 w-10 mt-2 mb-2 mx-auto
+    bg-gray-50 dark:bg-teal-600
+    text-gray-700 dark:text-gray-100
+    hover:bg-indigo-500 dark:hover:bg-indigo-600
+    hover:text-white
+    rounded-3xl hover:shadow-md
+    transition-all duration-200 ease-linear 
+    cursor-pointer shadow-lg;
+  }
+  .button-icon-tooltip {
+    @apply absolute w-auto p-2 m-2 min-w-max 
+      rounded-md shadow-md text-white bg-gray-900
+      text-xs font-bold transition-all duration-100
+      scale-0 origin-left z-50;
+  }
+  /* .app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  
+  .layout-container {
+    display: flex;
+    height: 100%;
+  }
+  
+  .main-content {
+    flex-grow: 1;
+    overflow: auto;
+  } */
+
+  .button-primary {
+    @apply inline-block px-6 py-2.5 text-white font-medium text-xs 
+    leading-tight uppercase rounded shadow-md 
+    focus:shadow-lg focus:outline-none focus:ring-0 
+    active:shadow-lg 
+    transition duration-150 ease-in-out w-full mb-3
+    bg-gradient-to-r from-indigo-500 to-blue-500
+    hover:bg-blue-200 hover:shadow-lg disabled:opacity-25
+  }
+
+  .button-outline {
+    @apply inline-block px-6 py-2 border-2 border-blue-600 
+    font-medium text-xs leading-tight uppercase rounded
+    hover:bg-opacity-5 hover:bg-black focus:outline-none
+    focus:ring-0 transition duration-150 ease-in-out
+  }
+
+  .title-text {
+    @apply text-xl tracking-wider font-semibold text-opacity-80 
+    text-gray-600 dark:text-gray-300
+    mr-auto ml-4 my-auto 
+    transition duration-300 ease-in-out;
+  }
+  .text-input {
+    @apply block w-full px-3 py-1.5 text-base font-normal
+    text-gray-700 bg-white bg-clip-padding
+    border border-solid border-gray-300 rounded
+    transition ease-in-out m-0
+    focus:border-blue-600 focus:outline-none
+  }
+  .text-input-error {
+    @apply block w-full px-3 py-1.5 text-base font-normal
+    text-gray-700 bg-white bg-clip-padding
+    border border-solid border-red-500 rounded
+    transition ease-in-out m-0
+    focus:border-red-500 focus:outline-none
+  }
+  .main-screen-container {
+    @apply flex flex-col 
+    /* dark:bg-gray-700 */
+    m-0
+    h-full w-full 
+  }
+  .main-screen{
+    @apply flex flex-col items-center
+    h-full w-full mt-0 ml-0 mx-auto px-0 pb-12
+    overflow-y-scroll
+  }
+  .main-screen-authenticated{
+    @apply ml-48
+  }
+  .dashboard-container {
+    @apply flex flex-col 
+    /* dark:bg-gray-700 */
+    m-0 ml-16
+    h-full w-full 
+  }
+  .top-navigation {
+    @apply flex flex-row items-center justify-between 
+    /* dark:bg-gray-700 bg-opacity-90  */
+    w-full h-16 z-10
+    m-0;
+  }
+  .top-navigation-icon {
+    @apply text-gray-500 dark:text-gray-300
+    ml-4
+    transition duration-300 ease-in-out 
+    hover:text-indigo-600
+    cursor-pointer;
+  }
+  .top-navigation-icon:first {
+    @apply ml-auto mr-4;
+  }
+  .sidebar {
+    @apply shadow-md
+  }
+  .sidebar-tab{
+    @apply outline-none border-none py-4 rounded-lg 
+    hover:bg-gray-200 active:bg-gray-100 px-2 text-gray-700
+  }
+  .sidebar-tab-selected {
+    @apply outline-none border-none py-4 rounded-lg bg-gray-100 px-2 font-bold text-gray-700
+  }
+
+}
