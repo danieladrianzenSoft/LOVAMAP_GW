@@ -15,11 +15,14 @@ const SideBar: React.FC = () => {
 			<TabList className="fixed top-0 left-0 h-full w-52
 		 	flex flex-col bg-white shadow-lg
 		 	z-20">
-				<img
-					className="mx-auto w-40 mb-6 ml-1 mt-2"
-					src={logo}
-					alt="logo"
-				/>
+				<NavLink to="/">
+					<img
+						className="mx-auto w-40 mb-6 ml-1 mt-2"
+						src={logo}
+						alt="logo"
+					/>					
+				</NavLink>
+				
 				<Tab as={NavLink} to='/'>
 					{({ selected }) => (
 						<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
@@ -32,17 +35,6 @@ const SideBar: React.FC = () => {
 					)}
 				</Tab>
 				{/* <SideBarDivider /> */}
-				<Tab as={NavLink} to='/experiments'>
-					{({ selected }) => (
-						<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
-							{/* {selected && 
-								<ActiveTabMarker />
-							} */}
-							<p>Create Experiments</p>
-							{/* <SideBarIcon icon={<FaFire size="24"/>} text='Dashboard'/> */}
-						</div>
-					)}
-				</Tab>
 				<Tab as={NavLink} to='/learn'>
 					{({ selected }) => (
 						<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
@@ -54,6 +46,18 @@ const SideBar: React.FC = () => {
 						</div>
 					)}
 				</Tab>
+				<Tab as={NavLink} to='/experiments'>
+					{({ selected }) => (
+						<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
+							{/* {selected && 
+								<ActiveTabMarker />
+							} */}
+							<p>Create Experiments</p>
+							{/* <SideBarIcon icon={<FaFire size="24"/>} text='Dashboard'/> */}
+						</div>
+					)}
+				</Tab>
+				
 				{/* <SideBarDivider /> */}
 			</TabList>
 		</TabGroup>

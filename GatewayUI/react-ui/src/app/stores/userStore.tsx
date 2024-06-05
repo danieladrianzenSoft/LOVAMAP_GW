@@ -57,19 +57,19 @@ export default class UserStore {
 			store.commonStore.setToken(user.accessToken);
 			runInAction(() => {
 				this.user = user;
-				// store.commonStore.setActiveTab(1);
+				console.log('Login successful. Redirecting...');
+				store.commonStore.setActiveTab(0);
+				history.push('/');
 			});
-			history.push('/');
 		} catch (error) {
 			throw error;
 		}
 	}
 
 	logout = () => {
-		console.log('logout')
 		store.commonStore.setActiveTab(0);
 		store.commonStore.setToken(null);
-		window.localStorage.removeItem('token');
+		window.localStorage.removeItem('accessToken');
 		this.user = null;
 		history.push('/');
 	}

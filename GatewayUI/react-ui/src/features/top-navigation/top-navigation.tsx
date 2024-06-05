@@ -2,11 +2,13 @@ import React from 'react';
 import { useStore } from '../../app/stores/store';
 import UserDropdown from './user-dropdown';
 import { observer } from 'mobx-react-lite';
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import history from "../../app/helpers/History";
 
 
 const TopNavigation = () => {
-	const {userStore: {isLoggedIn}} = useStore();
+	const {commonStore} = useStore();
+	const isLoggedIn = commonStore.isLoggedIn();
 
 	return (
 		<div className="top-navigation">
@@ -21,7 +23,7 @@ const TopNavigation = () => {
 						<UserCircle />
 				}
 				{!isLoggedIn && 
-					<Link to="/login" className='button-primary mr-4'>Login</Link>
+					<button onClick={() => history.push('/login')} className='button-primary mr-4'>Login</button>
 				}
 			</div>
 

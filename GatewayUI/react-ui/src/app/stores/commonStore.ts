@@ -19,6 +19,10 @@ export default class CommonStore {
 		)
 	}
 
+	get getAccessToken() {
+		return this.accessToken;
+	}
+	
 	isLoggedIn = () =>{
 		return this.accessToken != null;
 	}

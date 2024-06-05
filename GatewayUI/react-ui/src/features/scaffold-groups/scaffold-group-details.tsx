@@ -52,53 +52,55 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 						</div>
 						<table className="w-full text-sm text-left text-gray-500">
 							<tbody>
-							<tr>
-								<td className="font-medium text-gray-900 align-top w-32">Simulated:</td>
-								<td>{scaffoldGroup.isSimulated ? 'yes' : 'no'}</td>
-							</tr>
-							<tr>
-								<td className="font-medium text-gray-900 align-top w-32">Container Shape:</td>
-								<td>{scaffoldGroup.inputs?.containerShape ?? 'n/a'}</td>
-							</tr>
-							<tr>
-								<td className="font-medium text-gray-900 align-top w-32">Container Size:</td>
-								<td>{scaffoldGroup.inputs?.containerSize ?? 'n/a'}</td>
-							</tr>
-							<tr>
-								<td className="font-medium text-gray-900 align-top">Anisotropic:</td>
-								<td>{scaffoldGroup.inputs?.isAnisotropic ? 'yes' : 'no'}</td>
-							</tr>
+								<tr>
+									<td className="font-medium text-gray-900 align-top w-32">Simulated:</td>
+									<td>{scaffoldGroup.isSimulated ? 'yes' : 'no'}</td>
+								</tr>
+								<tr>
+									<td className="font-medium text-gray-900 align-top w-32">Container Shape:</td>
+									<td>{scaffoldGroup.inputs?.containerShape ?? 'n/a'}</td>
+								</tr>
+								<tr>
+									<td className="font-medium text-gray-900 align-top w-32">Container Size:</td>
+									<td>{scaffoldGroup.inputs?.containerSize ?? 'n/a'}</td>
+								</tr>
+								<tr>
+									<td className="font-medium text-gray-900 align-top">Anisotropic:</td>
+									<td>{scaffoldGroup.inputs?.isAnisotropic ? 'yes' : 'no'}</td>
+								</tr>
 								<tr>
 									<td className="w-32 align-top font-medium text-gray-900">Particles:</td>
 									<td>
-									<table className="w-full text-sm text-left text-gray-500">
-										<tbody>
-											{scaffoldGroup.inputs?.particles?.map((particle, index, array) => (
-												<React.Fragment key={index}>
-													<tr>
-														<td className="font-bold" colSpan={2}>{particle.proportion*100}% {particle.meanSize}μm diameter {particle.shape}</td>
-														<td></td>
-													</tr>
-													<tr>
-														<td className="w-9"></td> 
-														<td className="text-gray-500">stiffness: {particle.stiffness}</td>
-													</tr>
-													<tr>
-														<td></td>  {/* Empty cell for alignment */}
-														<td className="text-gray-500">dispersity: {particle.dispersity}</td>
-													</tr>
-													<tr>
-														<td></td>  {/* Empty cell for alignment */}
-														<td className="text-gray-500">size distribution: {particle.sizeDistributionType}</td>
-													</tr>
-													<tr>
-														<td></td>  {/* Empty cell for alignment */}
-														<td className="text-gray-500">standard deviation of diameter: {particle.standardDeviationSize} μm</td>
-													</tr>
-												</React.Fragment>
-											))}
-										</tbody>
-									</table>
+										<table className="w-full text-sm text-left text-gray-500">
+											<tbody>
+											{ 
+												scaffoldGroup.inputs?.particles?.map((particle, index, array) => (
+													<React.Fragment key={index}>
+														<tr>
+															<td className="font-bold" colSpan={2}>{particle.proportion*100}% {particle.meanSize}μm diameter {particle.shape}</td>
+															<td></td>
+														</tr>
+														<tr>
+															<td className="w-9"></td>
+															<td className="text-gray-500">stiffness: {particle.stiffness}</td>
+														</tr>
+														<tr>
+															<td></td>
+															<td className="text-gray-500">dispersity: {particle.dispersity}</td>
+														</tr>
+														<tr>
+															<td></td>
+															<td className="text-gray-500">size distribution: {particle.sizeDistributionType}</td>
+														</tr>
+														<tr>
+															<td></td>
+															<td className="text-gray-500">standard deviation of diameter: {particle.standardDeviationSize} μm</td>
+														</tr>
+													</React.Fragment>
+												))
+											}
+											</tbody>
+										</table>
 									</td>
 								</tr>
 								<tr>

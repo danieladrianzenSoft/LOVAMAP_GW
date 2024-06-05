@@ -1,23 +1,32 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import Layout from './layout';
-import { store } from '../stores/store';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 import { useStore } from '../stores/store';
-import { Toaster, toast } from 'react-hot-toast';
+import HistoryRouter from '../helpers/HistoryRouter';
+import history from '../helpers/History';
+import LoginPage from '../../features/login/login';
+import RegisterPage from '../../features/register/register';
+import ExploreScreen from '../../features/explore-screen/explore-screen';
+import LearnScreen from '../../features/learn-screen/learn-screen';
+import CreateExperiments from '../../features/create-experiments-screen/create-experiments';
+import TopNavigation from '../../features/top-navigation/top-navigation';
+import Sidebar from '../../features/sidebar/sidebar';
+import { observer } from 'mobx-react-lite';
 
 const App: React.FC = () => {
-  const { userStore, commonStore } = useStore();
+  const { commonStore, userStore } = useStore();
 
   useEffect(() => {
-    if (commonStore.accessToken) {
-      userStore.getCurrentUser().catch(() => commonStore.setToken(null));
+    if (commonStore.isLoggedIn()) {
+      userStore.getCurrentUser().catch(() => {
+        commonStore.setToken(null);
+      });
     }
   }, [commonStore, userStore]);
 
-
   return (
-    <BrowserRouter>
-    <Toaster
+    <HistoryRouter history={history}>
+      <Toaster
         position="bottom-right"
         reverseOrder={false}
         toastOptions={{
@@ -26,7 +35,6 @@ const App: React.FC = () => {
             background: '#fff',
             color: '#333',
           },
-          // You can specify options per toast type here
           success: {
             iconTheme: {
               primary: '#000',
@@ -35,9 +43,41 @@ const App: React.FC = () => {
           },
         }}
       />
-      <Layout />
-    </BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/" element={<MainLayout />}>
+          <Route path="/" element={<ExploreScreen />} />
+          <Route path="/learn" element={<LearnScreen />} />
+          <Route path="/experiments" element={<CreateExperiments />} />
+        </Route>
+      </Routes>
+    </HistoryRouter>
   );
 };
 
-export default App;
+const MainLayout: React.FC = () => {
+  const { commonStore } = useStore();
+  const isLoggedIn = commonStore.isLoggedIn();
+
+  return (
+    <>
+      <TopNavigation />
+      <Sidebar />
+      <Routes>
+        <Route path="/" element={<ExploreScreen />} />
+        <Route path="/learn" element={<LearnScreen />} />
+        {isLoggedIn ? (
+          <>
+             <Route path="/experiments" element={<CreateExperiments />} />
+          </>
+          ) : (
+            <Route path="*" element={<Navigate to="/login" />} />
+          )
+        }
+      </Routes>
+    </>
+  );
+};
+
+export default observer(App);

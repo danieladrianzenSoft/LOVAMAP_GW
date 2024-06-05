@@ -99,7 +99,7 @@
     shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none
   }
   .dropdown-menu-item {
-    @apply dark:hover:bg-indigo-600 hover:bg-indigo-500 hover:text-white dark:text-gray-200
+    @apply hover:bg-gray-500 hover:text-white
     text-gray-900 flex w-full items-center 
     rounded-md px-2 py-2 text-sm
   }
@@ -214,7 +214,7 @@
     @apply text-gray-500 dark:text-gray-300
     ml-4
     transition duration-300 ease-in-out 
-    hover:text-indigo-600
+    hover:text-gray-600
     cursor-pointer;
   }
   .top-navigation-icon:first {
