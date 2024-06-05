@@ -12,7 +12,7 @@ const RegisterPage: React.FC = () => {
 
 	const register = (values: any, setErrors: Function) => {
 		const {error, ...user} = values;
-		userStore.login(user)
+		userStore.register(user)
 		.catch(error => {
 			setErrors({error: error.message})
 		})
