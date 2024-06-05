@@ -61,22 +61,21 @@ const MainLayout: React.FC = () => {
   const isLoggedIn = commonStore.isLoggedIn();
 
   return (
-    <>
+    <div className="main-layout">
       <TopNavigation />
       <Sidebar />
-      <Routes>
-        <Route path="/" element={<ExploreScreen />} />
-        <Route path="/learn" element={<LearnScreen />} />
-        {isLoggedIn ? (
-          <>
-             <Route path="/experiments" element={<CreateExperiments />} />
-          </>
+      <div className="content">
+        <Routes>
+          <Route path="/" element={<ExploreScreen />} />
+          <Route path="/learn" element={<LearnScreen />} />
+          {isLoggedIn ? (
+            <Route path="/experiments" element={<CreateExperiments />} />
           ) : (
             <Route path="*" element={<Navigate to="/login" />} />
-          )
-        }
-      </Routes>
-    </>
+          )}
+        </Routes>
+      </div>
+    </div>
   );
 };
 

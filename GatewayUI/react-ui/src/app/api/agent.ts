@@ -11,11 +11,9 @@ axios.defaults.baseURL = 'https://localhost:44381/api';
 axios.interceptors.request.use(async (config) => {
     const token = store.commonStore.getAccessToken;
 	const isLoggedIn = store.commonStore.isLoggedIn();
-	console.log('IsLoggedIn:', isLoggedIn)
 
     if (!isLoggedIn && !token && !isPublicRoute(config.url ?? '')) {
         // Redirect to login page if there is no token and the route is not a public route
-		console.log('redirecting back to login')
         History.push('/login');
         // Correct way to construct an AxiosError with a message and the config
 		const mockResponse = {

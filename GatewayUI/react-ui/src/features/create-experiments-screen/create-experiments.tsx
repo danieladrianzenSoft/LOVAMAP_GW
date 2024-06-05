@@ -34,7 +34,7 @@ const CreateExperiments = () => {
     }
 
     return (
-        <div className={`container mx-auto p-8 ml-52`}>
+        <div className={`container mx-auto py-8 px-2`}>
 			<div className="text-3xl text-gray-700 font-bold mb-12">Create experiments</div>
             {/* <ScaffoldGroupFilters />
             {rows.map((row, index) => (

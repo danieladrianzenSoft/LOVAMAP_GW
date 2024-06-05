@@ -62,7 +62,7 @@ namespace Repositories.Repositories
 			// Apply particle size filter if it exists
 			if (filter.ParticleSizes?.Count > 0)
 			{
-				var ranges = filter.ParticleSizes.Select(ps => new { Lower = ps - 5, Upper = ps + 5 }).ToList();
+				var ranges = filter.ParticleSizes.Select(ps => new { Lower = ps - 5, Upper = ps + 9 }).ToList();
 				var inputGroupIds = new HashSet<int>();
 
 				foreach (var range in ranges)
@@ -137,7 +137,7 @@ namespace Repositories.Repositories
 			// List<int> matchingInputGroupIds = new List<int>();
 			// if (filter.ParticleSizes?.Count > 0)
 			// {
-			// 	var ranges = filter.ParticleSizes.Select(ps => new { Lower = ps - 5, Upper = ps + 5 }).ToList();
+			// 	var ranges = filter.ParticleSizes.Select(ps => new { Lower = ps - 5, Upper = ps + 9 }).ToList();
 			// 	var particleQuery = _context.ParticlePropertyGroups.AsQueryable();
 
 			// 	foreach (var range in ranges)

@@ -34,11 +34,11 @@ const ExploreScreen = () => {
     }
 
     return (
-        <div className={`container mx-auto p-8 ml-52`}>
+        <div className={`container mx-auto py-8 px-2`}>
 			{!isLoggedIn && <div className="text-3xl text-gray-700 font-bold mb-12">Explore public scaffolds</div>}
 			{isLoggedIn && <div className="text-3xl text-gray-700 font-bold mb-12">Explore scaffolds</div>}
-			<div className="flex justify-center">
-                <div className="w-full pr-8">
+			<div className="flex">
+                <div className="w-full">
 					<ScaffoldGroupFilters />
 					{rows.map((row, index) => (
 						<React.Fragment key={index}>
