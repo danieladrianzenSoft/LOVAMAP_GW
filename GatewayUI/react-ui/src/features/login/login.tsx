@@ -6,7 +6,7 @@ import TextInput from "../../app/common/form/text-input";
 import { useStore } from "../../app/stores/store";
 // import logo from "../../../src/LOVAMAP_logo_isolated.png";
 import logo from '../../../src/LOVAMAP_logo.png';
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const LoginPage: React.FC = () => {
 	const {userStore} = useStore();

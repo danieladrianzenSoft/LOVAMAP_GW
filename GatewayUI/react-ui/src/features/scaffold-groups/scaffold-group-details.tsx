@@ -1,7 +1,6 @@
 import React from 'react';
 import { ScaffoldGroup } from '../../app/models/scaffoldGroup';
 import Tag from '../../app/common/tag/tag';
-import { FaCaretDown, FaCaretRight } from 'react-icons/fa';
 import { Formik } from 'formik';
 import TextInput from '../../app/common/form/text-input';
 import { downloadScaffoldGroupAsExcel } from '../../app/common/excel-generator/excel-generator';

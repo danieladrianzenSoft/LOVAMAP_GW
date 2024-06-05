@@ -31,7 +31,7 @@ export default class UserStore {
 
 	register = async (creds: UserRegister) => {
 		try {
-			const apiResponse = await agent.Users.register(creds);
+			await agent.Users.register(creds);
 			runInAction(() => {
 				toast.custom((t) => (
 					<ToastNotification

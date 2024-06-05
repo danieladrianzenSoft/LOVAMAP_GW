@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../../app/stores/store";
-import ScaffoldGroupDetails from "../scaffold-groups/scaffold-group-details";
-import ScaffoldGroupFilters from "../scaffold-groups/scaffold-group-filter";
-import ScaffoldGroupCard from "../scaffold-groups/scaffold-group-card";
+// import ScaffoldGroupDetails from "../scaffold-groups/scaffold-group-details";
+// import ScaffoldGroupFilters from "../scaffold-groups/scaffold-group-filter";
+// import ScaffoldGroupCard from "../scaffold-groups/scaffold-group-card";
 
 const CreateExperiments = () => {
     const { commonStore, scaffoldGroupStore } = useStore();

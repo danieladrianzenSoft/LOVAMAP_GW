@@ -1,8 +1,5 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import agent from "../api/agent";
-import { User, UserLogin, UserRegister } from "../models/user";
-import history from "../helpers/History";
-import { store } from "./store";
 import { Tag } from "../models/tag";
 
 export default class ResourceStore {

@@ -2,7 +2,6 @@ import React from 'react';
 import { useStore } from '../../app/stores/store';
 import UserDropdown from './user-dropdown';
 import { observer } from 'mobx-react-lite';
-import { Link, NavLink } from "react-router-dom";
 import history from "../../app/helpers/History";
 
 

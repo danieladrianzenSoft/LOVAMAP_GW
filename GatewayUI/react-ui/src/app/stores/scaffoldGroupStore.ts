@@ -1,8 +1,5 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import agent from "../api/agent";
-import { User, UserLogin, UserRegister } from "../models/user";
-import history from "../helpers/History";
-import { store } from "./store";
 import { Tag } from "../models/tag";
 import { ScaffoldGroup } from "../models/scaffoldGroup";
 
@@ -34,7 +31,7 @@ export default class ScaffoldGroupStore {
 			if (selectedTags!= null){
 				queryParams = queryParams + selectedTags.map(tag => `tagIds=${tag.id}`).join('&');
 			} 
-			if (queryParams != '')
+			if (queryParams !== '')
 			{
 				queryParams = queryParams + '&';
 			}
@@ -65,7 +62,7 @@ export default class ScaffoldGroupStore {
 			if (selectedTags!= null){
 				queryParams = queryParams + selectedTags.map(tag => `tagIds=${tag.id}`).join('&');
 			} 
-			if (queryParams != '')
+			if (queryParams !== '')
 			{
 				queryParams = queryParams + '&';
 			}
