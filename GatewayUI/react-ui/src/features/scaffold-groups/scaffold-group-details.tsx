@@ -5,6 +5,7 @@ import { Formik } from 'formik';
 import TextInput from '../../app/common/form/text-input';
 import { downloadScaffoldGroupAsExcel } from '../../app/common/excel-generator/excel-generator';
 import { useStore } from '../../app/stores/store';
+import { observer } from 'mobx-react-lite';
 
 interface ScaffoldGroupDetailsProps {
     scaffoldGroup: ScaffoldGroup;
@@ -146,4 +147,4 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
     );
 };
 
-export default ScaffoldGroupDetails;
+export default observer(ScaffoldGroupDetails);

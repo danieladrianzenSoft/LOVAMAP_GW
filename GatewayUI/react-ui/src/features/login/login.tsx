@@ -6,7 +6,7 @@ import TextInput from "../../app/common/form/text-input";
 import { useStore } from "../../app/stores/store";
 // import logo from "../../../src/LOVAMAP_logo_isolated.png";
 import logo from '../../../src/LOVAMAP_logo.png';
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const LoginPage: React.FC = () => {
 	const {userStore} = useStore();
@@ -41,11 +41,13 @@ const LoginPage: React.FC = () => {
 									<div className="lg:w-full px-4 md:px-0">
 										<div className="md:p-12 md:mx-6">
 											<div className="text-center">
-												<img
-													className="mx-auto w-52 mb-8"
-													src={logo}
-													alt="logo"
-												/>
+												<NavLink to="/">
+													<img
+														className="mx-auto w-52 mb-8"
+														src={logo}
+														alt="logo"
+													/>
+												</NavLink>
 												{/* <h4 className="text-xl font-semibold mt-1 mb-12 pb-1">LOVAMAP</h4> */}
 											</div>
 											{/* FORM GOES HERE */}

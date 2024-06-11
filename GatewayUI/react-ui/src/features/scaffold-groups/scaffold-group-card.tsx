@@ -1,6 +1,7 @@
 import React from 'react';
 import { ScaffoldGroup } from '../../app/models/scaffoldGroup';
 import { FaCaretDown } from 'react-icons/fa';
+import { observer } from 'mobx-react-lite';
 
 interface ScaffoldGroupCardProps {
     scaffoldGroup: ScaffoldGroup;
@@ -19,4 +20,4 @@ const ScaffoldGroupCard: React.FC<ScaffoldGroupCardProps> = ({ scaffoldGroup, is
     );
 };
 
-export default ScaffoldGroupCard;
+export default observer(ScaffoldGroupCard);

@@ -1,4 +1,4 @@
-import axios, { AxiosError, InternalAxiosRequestConfig, AxiosResponse } from "axios";
+import axios, { AxiosError, AxiosResponse } from "axios";
 import History from "../helpers/History";
 import { store } from "../stores/store";
 import { User, UserLogin, UserRegister } from "../models/user";
@@ -44,7 +44,8 @@ axios.interceptors.response.use(response => {
         return Promise.reject(error);
     }
     
-    const {data, status} = error.response;
+    const {status, data} = error.response;
+
     switch (status) {
         case 400:
             console.error('Bad request:', data);
@@ -60,7 +61,7 @@ axios.interceptors.response.use(response => {
             console.error('Server error:', data);
             break;
     }
-    return Promise.reject(error);
+    return Promise.reject(data);
 });
 
 const responseBody = <T> (response: AxiosResponse<T>) => response.data;

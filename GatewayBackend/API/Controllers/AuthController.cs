@@ -57,13 +57,14 @@ public class AuthController : ControllerBase
             var (succeeded, errorMessage, user) = await _userService.AuthenticateUser(userToAuthenticate);
             if (!succeeded)
             {
-                var error = GetErrorMessageByCode(errorMessage);
-                return BadRequest(new ApiResponse<string>(400, error));
+                var (statusCode, error) = GetErrorObjectByMessage(errorMessage);
+                
+                return StatusCode(statusCode, new ApiResponse<string>(statusCode, error));
             }
 
             if (user == null)
             {
-                var error = GetErrorMessageByCode("UserNotFound");
+                var (code, error) = GetErrorObjectByMessage("UserNotFound");
                 return NotFound(new ApiResponse<string>(404, error));
             }
 
@@ -76,16 +77,16 @@ public class AuthController : ControllerBase
         }
     }  
 
-    private string GetErrorMessageByCode(string errorCode)
+    private (int code, string message) GetErrorObjectByMessage(string errorCode)
     {
         return errorCode switch
         {
-            "UserNotFound" => "User does not exist",
-            "UserLockedOut" => "User account is locked out",
-            "SignInNotAllowed" => "User is not allowed to sign in",
-            "RequiresTwoFactor" => "Two-factor authentication is required",
-            "InvalidCredentials" => "Invalid credentials",
-            _ => "An unexpected error occurred"
+            "UserNotFound" =>(404, "User does not exist"),
+            "UserLockedOut" => (403, "User account is locked out"),
+            "SignInNotAllowed" => (403, "User is not allowed to sign in"),
+            "RequiresTwoFactor" => (401, "Two-factor authentication is required"),
+            "InvalidCredentials" => (401, "Invalid credentials"),
+            _ => (400, "An unexpected error occurred")
         };
     }
 }

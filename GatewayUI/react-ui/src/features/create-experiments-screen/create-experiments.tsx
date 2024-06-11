@@ -36,7 +36,12 @@ const CreateExperiments = () => {
     return (
         <div className={`container mx-auto py-8 px-2`}>
 			<div className="text-3xl text-gray-700 font-bold mb-12">Create experiments</div>
-            {/* <ScaffoldGroupFilters />
+            <div className="flex">
+                <div className="w-full mb-12">
+                    <p className="text-xl">1. Select the scaffold groups to include in your experiment</p>
+                </div>
+            </div>
+            <ScaffoldGroupFilters />
             {rows.map((row, index) => (
                 <React.Fragment key={index}>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
@@ -59,7 +64,7 @@ const CreateExperiments = () => {
                         </div>
                     )}
                 </React.Fragment>
-            ))} */}
+            ))}
         </div>
     );
 };

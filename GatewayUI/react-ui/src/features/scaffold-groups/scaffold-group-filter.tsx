@@ -63,15 +63,6 @@ const ScaffoldGroupFilters: React.FC = () => {
                 updatedTags[groupKey] = updatedTags[groupKey] ? [...updatedTags[groupKey], tag] : [tag];
             }
             // Flatten the tags from all groups into a single array
-            const allSelectedTags = Object.values(updatedTags).flat();
-    
-            if (!isLoggedIn){
-                scaffoldGroupStore.getPublicScaffoldGroups(allSelectedTags, selectedParticleSizeIds);
-            }
-            else
-            {
-                scaffoldGroupStore.getSummarizedScaffoldGroups(allSelectedTags, selectedParticleSizeIds);
-            }
     
             return updatedTags;
         });

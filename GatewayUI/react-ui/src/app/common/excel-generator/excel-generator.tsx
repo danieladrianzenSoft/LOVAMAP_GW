@@ -3,6 +3,7 @@ import { ScaffoldGroup } from '../../models/scaffoldGroup';
 import { Descriptor } from '../../models/descriptor';
 
 export function downloadScaffoldGroupAsExcel(scaffoldGroup: ScaffoldGroup) {
+    console.log(scaffoldGroup)
     const wb = XLSX.utils.book_new();
 
     // General Info and Input Group Info combined
@@ -65,7 +66,9 @@ export function downloadScaffoldGroupAsExcel(scaffoldGroup: ScaffoldGroup) {
             XLSX.utils.sheet_add_aoa(ws, data, { origin: { r: descriptorsStartRow+1, c: nextColStart } });
         }
 
-        XLSX.utils.book_append_sheet(wb, ws, `Replicate ${scaffold.replicateNumber}`);
+        const sheetName = `Replicate ${scaffold.replicateNumber}`;
+        XLSX.utils.book_append_sheet(wb, ws, sheetName);
+
     });
 
     XLSX.writeFile(wb, `${scaffoldGroup.name.replace(/\s+/g, '_')}.xlsx`);
