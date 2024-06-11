@@ -1,4 +1,4 @@
-d<h1>LOVAMAP Gateway</h1>
+<h1>LOVAMAP Gateway</h1>
 
 <h2>Overview</h2>
 
