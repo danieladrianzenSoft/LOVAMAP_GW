@@ -1,5 +1,3 @@
-# lovamap
-
 <h1>LOVAMAP Gateway</h1>
 
 <h2>Overview</h2>
