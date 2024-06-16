@@ -36,7 +36,7 @@ To initiate, after adding the appsettings files and customizing with a valid dat
 	</code>
 </pre>
 
-The browser should automatically open to reveal the swagger profile of the web applicaition backend, usually hosten in https://localhost:44381.
+The browser should automatically open to reveal the swagger profile of the web application backend, usually hosted in https://localhost:44381.
 
 <h3>Frontend</h3>
 The frontend consists of a React v18.3.1 applciation with Typescript v5.4.5. TailwindCSS is used for styling, MobX for state management, Axios for http requests to the backend, Formik for forms, and Yup for validation. History is used for url navigation and xlsx for generation of custom scaffold descriptor download files. All dependencies and corresponding versions are listed in GatewayUI/react-ui/package.json. To initiate, cd into GatewayUI/react-ui and then run:
