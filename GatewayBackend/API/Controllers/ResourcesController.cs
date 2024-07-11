@@ -18,10 +18,12 @@ public class ResourcesController : ControllerBase
 {
     private readonly ILogger<ResourcesController> _logger;
 	private readonly ITagService _tagService;
+    private readonly IDescriptorService _descriptorService;
 
-    public ResourcesController(ITagService tagService, ILogger<ResourcesController> logger)
+    public ResourcesController(ITagService tagService, IDescriptorService descriptorService, ILogger<ResourcesController> logger)
     {
 		_tagService = tagService;
+        _descriptorService = descriptorService;
 		_logger = logger;
     }
 
@@ -37,6 +39,21 @@ public class ResourcesController : ControllerBase
         {
             _logger.LogError(ex, "Failed to get tags for scaffold group filters");
         	return StatusCode(500, new ApiResponse<string>(500, "An error occurred while getting tags"));
+        }
+    }
+
+    [HttpGet("descriptorTypes")]
+    public async Task<IActionResult> GetDescriptors()
+    {
+        try
+        {
+			var descriptors = await _descriptorService.GetAllDescriptorTypes();
+            return Ok(new ApiResponse<ICollection<DescriptorTypeDto>>(200, "Descriptors obtained successfully", descriptors));
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Failed to get descriptors types");
+        	return StatusCode(500, new ApiResponse<string>(500, "An error occurred while getting descriptor types"));
         }
     }
 }

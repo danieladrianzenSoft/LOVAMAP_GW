@@ -68,7 +68,7 @@ public class ScaffoldGroupsController : ControllerBase
 				return BadRequest(new ApiResponse<string>(400, errorMessage));
 			}
 
-			return Ok(new ApiResponse<IEnumerable<ScaffoldGroupBaseDto>>(201, "Scaffold groups created", scaffoldGroups));
+			return Ok(new ApiResponse<IEnumerable<ScaffoldGroupBaseDto>>(201, "Scaffold groups created", scaffoldGroups?.OrderByDescending(sg => sg.CreatedAt)));
 		}
 		catch (Exception ex)
 		{

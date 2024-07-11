@@ -6,6 +6,7 @@ using Repositories.IRepositories;
 using Data;
 using Data.Models;
 using Infrastructure.DTOs;
+using System.Collections.Immutable;
 
 namespace Repositories.Repositories
 {
@@ -34,6 +35,11 @@ namespace Repositories.Repositories
 		public async Task<DescriptorType?> GetDescriptorByName(string name)
 		{
 			return await _context.DescriptorTypes.Where(d => d.Name.ToLower() == name.ToLower()).FirstOrDefaultAsync();
+		}
+
+		public async Task<ICollection<DescriptorType>> GetAllDescriptorTypes()
+		{
+			return await _context.DescriptorTypes.ToListAsync();
 		}
 		
 		public async Task<ICollection<GlobalDescriptor>> GetGlobalDescriptorsByScaffoldIdsAndFilter(IEnumerable<int> scaffoldIds, ScaffoldFilter filter)

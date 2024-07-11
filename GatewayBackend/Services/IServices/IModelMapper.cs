@@ -25,7 +25,7 @@ namespace Services.IServices
 		// Maps to DTOs
 		Task<AuthenticatedUserDto> MapToAuthenticatedUserDto(User user, string token);
 		TagForFilterDto MapTagToDto(Tag tag);
-
+		DescriptorTypeDto MapDescriptorTypeToDto(DescriptorType descriptorType);
 		ScaffoldGroupBaseDto MapScaffoldGroupToDto(ScaffoldGroup scaffoldGroup, IEnumerable<Scaffold> scaffolds, string userId, bool isDetailed);
 		ScaffoldGroupSummaryDto MapToScaffoldGroupSummaryDto(ScaffoldGroup scaffoldGroup, string userId);
 		ScaffoldGroupDetailedDto MapToScaffoldGroupDetailedDto(ScaffoldGroup scaffoldGroup, IEnumerable<Scaffold> scaffolds, string userId);

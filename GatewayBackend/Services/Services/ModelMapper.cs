@@ -344,6 +344,7 @@ namespace Services.Services
             {
                 Id = scaffoldGroup.Id,
                 Name = scaffoldGroup.Name,
+                CreatedAt = scaffoldGroup.CreatedAt,
                 IsSimulated = scaffoldGroup.IsSimulated,
                 Tags = tags,
                 NumReplicates = scaffoldGroup.Scaffolds?.Count ?? 0,
@@ -473,6 +474,19 @@ namespace Services.Services
                 ReferenceProperty = tag.ReferenceProperty
             };
         }
+
+        public DescriptorTypeDto MapDescriptorTypeToDto(DescriptorType descriptorType)
+        {
+            return new DescriptorTypeDto
+            {
+                Id = descriptorType.Id,
+                Name = descriptorType.Name,
+                Label = descriptorType.Label,
+                Category = descriptorType.Category,
+                Unit = descriptorType.Unit,
+                DataType = descriptorType.DataType
+            };
+        } 
 
         private string JsonDocumentToString(JsonDocument jsonDocument)
         {

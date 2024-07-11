@@ -11,6 +11,7 @@ namespace Repositories.IRepositories
 		void Add(DescriptorType descriptor);		
 		Task<DescriptorType?> GetDescriptorById(int id);
 		Task<DescriptorType?> GetDescriptorByName(string name);
+		Task<ICollection<DescriptorType>> GetAllDescriptorTypes();
 		Task<ICollection<GlobalDescriptor>> GetGlobalDescriptorsByScaffoldIdsAndFilter(IEnumerable<int> scaffoldIds, ScaffoldFilter filter);
 		Task<ICollection<PoreDescriptor>> GetPoreDescriptorsByScaffoldIdsAndFilter(IEnumerable<int> scaffoldIds, ScaffoldFilter filter);
 		Task<ICollection<OtherDescriptor>> GetOtherDescriptorsByScaffoldIdsAndFilter(IEnumerable<int> scaffoldIds, ScaffoldFilter filter);

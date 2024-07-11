@@ -4,20 +4,93 @@ import { useStore } from "../../app/stores/store";
 import ScaffoldGroupDetails from "../scaffold-groups/scaffold-group-details";
 import ScaffoldGroupFilters from "../scaffold-groups/scaffold-group-filter";
 import ScaffoldGroupCard from "../scaffold-groups/scaffold-group-card";
+import { ScaffoldGroup } from "../../app/models/scaffoldGroup";
+import { FaTimes } from 'react-icons/fa';
+import { Formik } from 'formik';
+import TextInput from "../../app/common/form/text-input";
+import DescriptorFilters from "../descriptors/descriptor-filters";
+import { DescriptorType } from "../../app/models/descriptorType";
+
+type OptionKey = 'excelFileOption' | 'sheetOption' | 'columnOption' | 'stackedColumnOption';
 
 const CreateExperiments = () => {
-    const { commonStore, scaffoldGroupStore } = useStore();
-	const isLoggedIn = commonStore.isLoggedIn();
+    const { scaffoldGroupStore } = useStore();
     const { scaffoldGroups } = scaffoldGroupStore;
     const [visibleDetails, setVisibleDetails] = useState<number | null>(null);
     const [numberOfColumns, setNumberOfColumns] = useState(3);
+    const [selectedScaffoldGroups, setSelectedScaffoldGroups] = useState<ScaffoldGroup[]>([]);
+    const [selectedDescriptorTypes, setSelectedDescriptorTypes] = useState<DescriptorType[]>([]);
+    const [experimentStage, setExperimentStage] = useState(1);
+    const [numFiles, setNumFiles] = useState(2);
+
+    const maxNumFiles = 2;
+    const numSheets = 4;
+    const numRows = 5;
+    const numCols = 4;
+
+    const [options, setOptions] = useState({
+        excelFileOption: 'Scaffold Groups',
+        sheetOption: 'Scaffold Replicates',
+        columnOption: 'Descriptors',
+        stackedColumnOption: 'False'
+    });
+
+    const handleSelectDescriptorType = (descriptorType: DescriptorType) => {
+        setSelectedDescriptorTypes(prev => {
+            if (prev.some(descriptor => descriptor.id === descriptorType.id)) {
+                return prev.filter(descriptor => descriptor.id !== descriptorType.id);
+            } else {
+                return [...prev, descriptorType];
+            }
+        });
+    };
+
+    const handleUnselectDescriptorType = (descriptorTypeId: number) => {
+        setSelectedDescriptorTypes(selectedDescriptorTypes.filter(descriptor => descriptor.id !== descriptorTypeId));
+    };
+
+    const handleSelectScaffoldGroup = (scaffoldGroup: ScaffoldGroup) => {
+        if (!selectedScaffoldGroups.some(group => group.id === scaffoldGroup.id)) {
+            setSelectedScaffoldGroups([...selectedScaffoldGroups, scaffoldGroup]);
+        }
+    };
+
+    const handleUnselectScaffoldGroup = (scaffoldGroupId: number) => {
+        setSelectedScaffoldGroups(selectedScaffoldGroups.filter(group => group.id !== scaffoldGroupId));
+    };
+
+    const handleOptionChange = (optionName: OptionKey, value: string) => {
+        let newOptions = { ...options, [optionName]: value };
+
+        if (optionName === 'stackedColumnOption' && value === 'True')
+        {
+            setNumFiles(1);
+            setOptions(newOptions);
+            return;
+        }
+        else if (optionName === 'stackedColumnOption' && value === 'False') {
+            setNumFiles(maxNumFiles);
+            setOptions(newOptions);
+            return;
+        }
+
+        const allOptions = ['Descriptors', 'Scaffold Replicates', 'Scaffold Groups'];
+
+        const remainingOptions = allOptions.filter(opt => opt !== value);
+        const otherOptions = Object.keys(newOptions).filter(key => key !== optionName) as OptionKey[];
+
+        otherOptions.forEach((key, index) => {
+            newOptions[key] = remainingOptions[index];
+        });
+
+        setOptions(newOptions);
+    };
 
     useEffect(() => {
         const updateNumberOfColumns = () => {
             const width = window.innerWidth;
             if (width < 640) setNumberOfColumns(1);
-            else if (width < 768) setNumberOfColumns(2);
-            else setNumberOfColumns(3);
+            else setNumberOfColumns(2);
         };
         window.addEventListener('resize', updateNumberOfColumns);
         updateNumberOfColumns();
@@ -33,38 +106,322 @@ const CreateExperiments = () => {
         rows.push(scaffoldGroups.slice(i, i + numberOfColumns));
     }
 
+    const getTablePlaceholderData = (option: string, optionKey: string) => {
+        let numVals = 4;
+        if (optionKey === "excelFileOption"){
+            numVals = numFiles;
+        }
+        else if (optionKey === "sheetOption") {
+            numVals = numSheets;
+        }
+        else if (optionKey === "rowOption") {
+            numVals = numRows;
+        }
+        else {
+            numVals = numCols;
+        }
+        switch (option) {
+            case "Descriptors":
+                // return selectedDescriptorTypes.map(descriptor => descriptor.label + (descriptor.unit.length > 0 ? " (" + descriptor.unit + ")" : "")).slice(0, numVals);
+                return Array.from({ length: numVals }, (_, i) => "Descriptor " + (i + 1).toString());
+            case "Scaffold Groups":
+                // return selectedScaffoldGroups.map(group => group.name).slice(0, numVals);
+                return Array.from({ length: numVals }, (_, i) => "Scaffold Group " + (i + 1).toString());
+            case "Scaffold Replicates":
+                // const maxReplicates = Math.max(...selectedScaffoldGroups.map(group => group.numReplicates));
+                // return Array.from({ length: maxReplicates < numVals ? maxReplicates : numVals }, (_, i) => (i + 1).toString());
+                return Array.from({ length: numVals }, (_, i) => "Replicate " + (i + 1).toString());
+            case "Data":
+                return new Array(numVals).fill("data");
+            default:
+                return selectedDescriptorTypes.map(descriptor => descriptor.label + (descriptor.unit.length > 0 ? " (" + descriptor.unit + ")" : "")).slice(0, numVals);
+        }
+    }
+
+    const renderPlaceholderTable = (columnOption: string) => {
+        const tableHeaders = getTablePlaceholderData(columnOption, "columnOption");
+        const replicatesAlongRows = options.stackedColumnOption === 'True' && (options.columnOption !== "Scaffold Replicates" && options.sheetOption !== "Scaffold Replicates");
+        const rowOption = replicatesAlongRows ? "Scaffold Replicates" : "Data"
+        const tableRows = getTablePlaceholderData(rowOption, "rowOption")
+    
+        return (
+            <table className="table-auto w-full text-xs">
+                <thead>
+                    <tr>
+                        {replicatesAlongRows &&
+                            <th className="border py-1">{rowOption}</th>
+                        }
+                        {tableHeaders.map((header, index) => (
+                            columnOption === "Scaffold Replicates" ? 
+                                <th key={index} className="border py-1">{"Replicate " + header}</th>
+                                :
+                                <th key={index} className="border py-1">{header}</th>
+                        ))}
+                    </tr>
+                </thead>
+                <tbody>
+                    {tableRows.map((row, rowIndex) => (
+                        <tr key={rowIndex}>
+                            {replicatesAlongRows && <td className="border py-1 italic text-gray-300">{row}</td>}
+                            {tableHeaders.map((_, colIndex) => (
+                                <td key={colIndex} className={`py-1 italic text-gray-300 ${colIndex === numRows - 1 ? "border-b-0" : "border"}`}>data</td>
+                            ))}
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        );
+    };
+
+    const renderSheetOptionsTable = (sheetOption: string) => {
+        const tableFooters = getTablePlaceholderData(sheetOption, "sheetOption");        
+        return (
+            <div className="bg-gray-100 h-2 -mt-1 mb-12">
+                <table className="table-auto w-full my-0 text-xs text-gray-500 border-collapse">
+                    <thead>
+                        <tr>
+                            {tableFooters.map((footer, index) => (
+                                <th key={index} className={`py-1 border border-gray-300  ${index === 0 ? 'rounded-bl-md rounded-br-md shadow-md bg-white border-gray-300' : index<3 ? 'bg-gray-100 border-b-0' : "bg-gray-100 border border-b-0 border-r-0 min-w-32 border-t-1 border-gray-300"}`}>
+                                    {index<3 ? footer : ""}
+                                </th>
+                            ))}
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            
+        );
+    };
+
     return (
         <div className={`container mx-auto py-8 px-2`}>
-			<div className="text-3xl text-gray-700 font-bold mb-12">Create experiments</div>
+            <div className="text-3xl text-gray-700 font-bold mb-12">Create experiments</div>
             <div className="flex">
-                <div className="w-full mb-12">
-                    <p className="text-xl">1. Select the scaffold groups to include in your experiment</p>
+                {experimentStage === 1 && 
+                    <div className="w-3/4 mb-12">
+                        <div className="flex justify-between items-center">
+                            <p className="text-xl mb-4">1. Select the scaffold groups to include in your experiment</p>
+                            <div className="mr-5 -mt-2">
+                                <button className="button-outline" onClick={() => setExperimentStage(2)}>Next</button>
+                            </div>
+                        </div>
+                        <ScaffoldGroupFilters condensed={true} />
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div className="col-span-3 px-3">
+                                {rows.map((row, index) => (
+                                    <React.Fragment key={index}>
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                            {row.map(scaffoldGroup => {
+                                                const isSelected = selectedScaffoldGroups.some(group => group.id === scaffoldGroup.id);
+                                                return (
+                                                    <ScaffoldGroupCard
+                                                        key={scaffoldGroup.id}
+                                                        scaffoldGroup={scaffoldGroup}
+                                                        isVisible={visibleDetails === scaffoldGroup.id}
+                                                        toggleDetails={() => toggleDetails(scaffoldGroup.id)}
+                                                        isSelected={isSelected}
+                                                        isSelectable={true}
+                                                        onSelect={() => isSelected ? handleUnselectScaffoldGroup(scaffoldGroup.id) : handleSelectScaffoldGroup(scaffoldGroup)}
+                                                    />
+                                                )}
+                                            )}
+                                        </div>
+                                        {row.some(sg => sg.id === visibleDetails) && (
+                                            <div className={`transition-opacity duration-500 ease-in-out transform ${visibleDetails ? 'opacity-100 scale-100' : 'opacity-0 scale-95'} overflow-hidden`}>
+                                                <ScaffoldGroupDetails
+                                                    scaffoldGroup={row.find(sg => sg.id === visibleDetails)!}
+                                                    isVisible={true}
+                                                    toggleDetails={() => visibleDetails && toggleDetails(visibleDetails)}
+                                                />
+                                            </div>
+                                        )}
+                                    </React.Fragment>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                }
+                {experimentStage === 2 && 
+                    <div className="w-3/4 mb-12">
+                        <div className="flex justify-between items-center">
+                            <p className="text-xl mb-4">2. Select the descriptors to output in your experiment</p>
+                            <div className="mr-5 -mt-2">
+                                <button className="button-outline" onClick={() => setExperimentStage(1)}>Back</button>
+                                <button className="button-outline" onClick={() => setExperimentStage(3)}>Next</button>
+                            </div>
+                        </div>
+                        <DescriptorFilters 
+                            selectedDescriptorTypes={selectedDescriptorTypes}
+                            onSelect={handleSelectDescriptorType}
+                        />
+                    </div>
+                }
+                {experimentStage === 3 && 
+                    <div className="w-3/4 mb-12">
+                        <div className="flex justify-between items-center">
+                            <p className="text-xl mb-4">3. Design your output layout</p>
+                            <div className="mr-5 -mt-2">
+                                <button className="button-outline" onClick={() => setExperimentStage(2)}>Back</button>
+                                <button className="button-outline" onClick={() => console.log('Generating Output')}>Generate Output</button>
+                            </div>
+                        </div>
+                        <div className="flex w-full justify-between items-stretch">
+                            <div className="w-1/5 mt-4">
+                                <div className="mb-4">
+                                    <h3 className="text-md font-bold mb-2">Columns</h3>
+                                    <select value={options.columnOption} onChange={(e) => handleOptionChange('columnOption', e.target.value)} className="w-full border px-2 py-1 text-md">
+                                        <option value="Scaffold Groups">Scaffold Groups</option>
+                                        <option value="Descriptors">Descriptors</option>
+                                        <option value="Scaffold Replicates">Scaffold Replicates</option>
+                                    </select>
+                                </div>
+                                <div className="mb-4">
+                                    <h3 className="text-md font-bold mb-2">Sheets</h3>
+                                    <select value={options.sheetOption} onChange={(e) => handleOptionChange('sheetOption', e.target.value)} className="w-full border px-2 py-1 text-md">
+                                        <option value="Scaffold Replicates">Scaffold Replicates</option>
+                                        <option value="Descriptors">Descriptors</option>
+                                        <option value="Scaffold Groups">Scaffold Groups</option>
+                                    </select>
+                                </div>
+                                <div className="mb-4">
+                                    <h3 className="text-md font-bold mb-2">Excel files</h3>
+                                    <select value={options.excelFileOption} onChange={(e) => handleOptionChange('excelFileOption', e.target.value)} className="w-full border px-2 py-1 text-md">
+                                        <option value="Descriptors">Descriptors</option>
+                                        <option value="Scaffold Replicates">Scaffold Replicates</option>
+                                        <option value="Scaffold Groups">Scaffold Groups</option>
+                                    </select>
+                                </div>
+                                {options.sheetOption !== "Scaffold Replicates" && options.columnOption !== "Scaffold Replicates" &&
+                                <div className="mb-4">
+                                    <h3 className="text-md font-bold mb-2">Stack replicates in single file?</h3>
+                                    <select value={options.stackedColumnOption} onChange={(e) => handleOptionChange('stackedColumnOption', e.target.value)} className="w-full border px-2 py-1 text-md">
+                                        <option value='False'>No</option>
+                                        <option value='True'>Yes</option>
+                                    </select>
+                                </div>
+                                }
+                                
+                            </div>
+                            <div className="w-4/5 px-6">
+                                {Array.from({ length: numFiles }, (_, i) => (
+                                    <div className="" key={i}>
+                                        <p className="mb-1 mt-5">{options.stackedColumnOption === 'True' ? "experiment.xlsx" : options.excelFileOption.toLowerCase().replace(" ", "_") + "_" + i + ".xlsx"}</p>
+                                        {renderPlaceholderTable(options.columnOption)}
+                                        {/* <p className="text-xs italic font-bold mb-0 pb-0">Sheets</p> */}
+                                        {renderSheetOptionsTable(options.sheetOption)}
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                }
+                <div className="w-1/4 p-4 bg-gray-100">
+                    <h2 className="text-lg font-bold text-gray-700 mb-6">Experiment</h2>
+                    {experimentStage >= 3 && 
+                    <div className="mb-8">
+                        <h3 className="text-gray-700 font-bold mb-3">Output Layout</h3>
+                        <ul>
+                            <li key={options.excelFileOption} className="my-4">
+                                <div>{"Excel Files - " + options.excelFileOption}</div>
+                            </li>
+                            <li key={options.sheetOption} className="my-4">
+                                <div>{"Sheets - " + options.sheetOption}</div>
+                            </li>
+                            
+                            <li key={options.columnOption} className="my-4">
+                                <div>{"Columns - " + options.columnOption}</div>
+                            </li>
+                            {/* {options. === 0 ? 
+                                <p className="italic">None selected</p> : 
+                                selectedDescriptorTypes.map(descriptorType => (
+                                    <li key={descriptorType.id} className="my-4">
+                                        <div className="flex justify-left items-center">
+                                            <button 
+                                                className="bg-gray-300 text-gray-700 p-2 rounded-full mr-2 text-xs hover:shadow-md"
+                                                onClick={() => handleUnselectDescriptorType(descriptorType.id)}
+                                            >
+                                                <FaTimes />
+                                            </button>
+                                            {descriptorType.name}
+                                        </div>
+                                    </li>
+                                ))
+                            } */}
+                        </ul>
+                    </div>
+                    }
+                    {(experimentStage >= 2 || selectedDescriptorTypes.length > 0) && 
+                    <div className="mb-8">
+                        <h3 className="text-gray-700 font-bold mb-3">Selected Descriptors</h3>
+                        <ul>
+                            {selectedDescriptorTypes.length === 0 ? 
+                                <p className="italic">None selected</p> : 
+                                selectedDescriptorTypes.map(descriptorType => (
+                                    <li key={descriptorType.id} className="my-4">
+                                        <div className="flex justify-left items-center">
+                                            <button 
+                                                className="bg-gray-300 text-gray-700 p-2 rounded-full mr-2 text-xs hover:shadow-md"
+                                                onClick={() => handleUnselectDescriptorType(descriptorType.id)}
+                                            >
+                                                <FaTimes />
+                                            </button>
+                                            {descriptorType.label + (descriptorType.unit.length > 0 ? " (" + descriptorType.unit + ")" : "")}
+                                        </div>
+                                    </li>
+                                ))
+                            }
+                        </ul>
+                    </div>
+                    }
+                    <div className="">
+                        <h3 className="text-gray-700 font-bold mb-3">Selected Scaffold Groups</h3>
+                        <ul>
+                            {selectedScaffoldGroups.length === 0 ? 
+                                <p className="italic">None selected</p> : 
+                                selectedScaffoldGroups.map(group => (
+                                    <li key={group.id} className="my-4">
+                                        <div className="flex justify-left items-center">
+                                            <button 
+                                                className="bg-gray-300 text-gray-700 p-2 rounded-full mr-2 text-xs hover:shadow-md"
+                                                onClick={() => handleUnselectScaffoldGroup(group.id)}
+                                            >
+                                                <FaTimes />
+                                            </button>
+                                            {group.name}
+                                        </div>
+                                        <Formik
+                                            initialValues={{scaffoldGroup:group.id, replicates: 1 }}
+                                            onSubmit={(values, {setErrors}) => console.log(values, setErrors)}
+                                        >
+                                            {formik => (
+                                                <form onSubmit={formik.handleSubmit}>
+                                                    <div className='flex flex-col items-end'>
+                                                        <div className='flex items-center space-x-2'>
+                                                            <TextInput
+                                                                type="number"
+                                                                name="replicates"
+                                                                placeholder={'1'}
+                                                                errors={formik.errors}
+                                                                touched={formik.touched}
+                                                                min={1}
+                                                                max={group.numReplicates}
+                                                                step={1}
+                                                                className="p-1 text-sm w-12 appearance-none"
+                                                            />
+                                                            <p className="text-sm ml-2 my-auto mb-5">{` of ${group.numReplicates} replicates`}</p>
+                                                        </div>
+                                                        {/* <button type="submit" className='button-outline self-start'>Download Descriptors</button> */}
+                                                    </div>							
+                                                </form>
+                                            )}
+                                        </Formik>
+                                    </li>
+                                ))
+                            }
+                        </ul>
+                    </div>
                 </div>
             </div>
-            <ScaffoldGroupFilters />
-            {rows.map((row, index) => (
-                <React.Fragment key={index}>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                        {row.map(scaffoldGroup => (
-                            <ScaffoldGroupCard
-                                key={scaffoldGroup.id}
-                                scaffoldGroup={scaffoldGroup}
-                                isVisible={visibleDetails === scaffoldGroup.id}
-                                toggleDetails={() => toggleDetails(scaffoldGroup.id)}
-                            />
-                        ))}
-                    </div>
-                    {row.some(sg => sg.id === visibleDetails) && (
-                        <div className={`transition-opacity duration-500 ease-in-out transform ${visibleDetails ? 'opacity-100 scale-100' : 'opacity-0 scale-95'} overflow-hidden`}>
-                            <ScaffoldGroupDetails
-                                scaffoldGroup={row.find(sg => sg.id === visibleDetails)!}
-                                isVisible={true}
-                                toggleDetails={() => visibleDetails && toggleDetails(visibleDetails)}
-                            />
-                        </div>
-                    )}
-                </React.Fragment>
-            ))}
         </div>
     );
 };

@@ -43,6 +43,29 @@ namespace Repositories.Repositories
 				.FirstOrDefaultAsync();
 		}
 
+		// public async Task<ICollection<ScaffoldGroup>?> GetSpecificScaffoldGroupsById(ScaffoldFilter filter, string currentUserId)
+		// {
+		// 	var query = _context.ScaffoldGroups.AsQueryable();
+
+		// 	// Filter by uploader based on visibility and user context
+		// 	if (!string.IsNullOrEmpty(filter.UserId))
+		// 	{
+		// 		query = filter.UserId == currentUserId
+		// 			? query.Where(sg => sg.UploaderId == filter.UserId)
+		// 			: query.Where(sg => sg.UploaderId == filter.UserId && sg.IsPublic);
+		// 	}
+		// 	else
+		// 	{
+		// 		query = query.Where(sg => sg.UploaderId == currentUserId || sg.IsPublic);
+		// 	}
+
+		// 	if (filter.ScaffoldGroupIds?.Count > 0)
+		// 	{
+		// 		var scaffoldGroupIds = filter.ScaffoldGroupIds ?? new List<int>();
+		// 		query = query.Where(sg => scaffoldGroupIds.Contains(sg.Id));
+		// 	}
+		// }
+
 		public async Task<ICollection<ScaffoldGroup>?> GetFilteredScaffoldGroupsByRelevance(ScaffoldFilter filter, string currentUserId)
 		{
 			var query = _context.ScaffoldGroups.AsQueryable();
@@ -58,6 +81,22 @@ namespace Repositories.Repositories
 			{
 				query = query.Where(sg => sg.UploaderId == currentUserId || sg.IsPublic);
 			}
+
+			// if (filter.ScaffoldGroupIds?.Count > 0)
+			// {
+			// 	var scaffoldGroupIds = filter.ScaffoldGroupIds ?? new List<int>();
+			// 	query = query.Where(sg => scaffoldGroupIds.Contains(sg.Id));
+
+			// 	return await query
+			// 		.AsNoTracking()
+			// 		.AsSplitQuery()
+			// 		.Include(sg => sg.InputGroup)
+			// 			.ThenInclude(ig => ig != null ? ig.ParticlePropertyGroups : null)
+			// 		.Include(sg => sg.Scaffolds)
+			// 			.ThenInclude(s => s.ScaffoldTags)
+			// 				.ThenInclude(st => st.Tag)
+			// 		.ToListAsync();
+			// }
 
 			// Apply particle size filter if it exists
 			if (filter.ParticleSizes?.Count > 0)
@@ -108,6 +147,7 @@ namespace Repositories.Repositories
 			var scaffoldGroups = await query
 				.AsNoTracking()
 				.AsSplitQuery()
+				.OrderByDescending(sg => sg.CreatedAt)
 				.Include(sg => sg.InputGroup)
 					.ThenInclude(ig => ig != null ? ig.ParticlePropertyGroups : null)
 				.Include(sg => sg.Scaffolds)

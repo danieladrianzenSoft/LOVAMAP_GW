@@ -1,5 +1,5 @@
 
-import { Descriptor } from "./descriptor";
+import { Descriptor, DescriptorToCreate } from "./descriptor";
 
 export interface Scaffold {
     id: number;
@@ -7,4 +7,10 @@ export interface Scaffold {
     globalDescriptors: Descriptor[];
     poreDescriptors: Descriptor[];
     otherDescriptors: Descriptor[];
+}
+
+export interface ScaffoldToCreate {
+    globalDescriptors: DescriptorToCreate[];
+    poreDescriptors: DescriptorToCreate[];
+    otherDescriptors: DescriptorToCreate[];
 }

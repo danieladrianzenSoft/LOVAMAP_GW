@@ -12,6 +12,7 @@ import CreateExperiments from '../../features/create-experiments-screen/create-e
 import TopNavigation from '../../features/top-navigation/top-navigation';
 import Sidebar from '../../features/sidebar/sidebar';
 import { observer } from 'mobx-react-lite';
+import ScaffoldGroupUploads from '../../features/scaffold-groups/scaffold-group-uploads';
 
 const App: React.FC = () => {
   const { commonStore, userStore } = useStore();
@@ -50,6 +51,7 @@ const App: React.FC = () => {
           <Route path="/" element={<ExploreScreen />} />
           <Route path="/learn" element={<LearnScreen />} />
           <Route path="/experiments" element={<CreateExperiments />} />
+          <Route path="/uploads" element={<ScaffoldGroupUploads />} />
         </Route>
       </Routes>
     </HistoryRouter>
@@ -69,7 +71,10 @@ const MainLayout: React.FC = () => {
           <Route path="/" element={<ExploreScreen />} />
           <Route path="/learn" element={<LearnScreen />} />
           {isLoggedIn ? (
-            <Route path="/experiments" element={<CreateExperiments />} />
+            <>
+              <Route path="/experiments" element={<CreateExperiments />} />
+              <Route path="/uploads" element={<ScaffoldGroupUploads />} />
+            </>
           ) : (
             <Route path="*" element={<Navigate to="/login" />} />
           )}

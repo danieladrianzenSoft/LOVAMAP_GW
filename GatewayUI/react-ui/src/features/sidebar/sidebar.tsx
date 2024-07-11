@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Tab, TabList, TabGroup } from '@headlessui/react'
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { useStore } from '../../app/stores/store';
 import { observer } from 'mobx-react-lite';
 import logo from '../../../src/LOVAMAP_logo.png';
@@ -9,6 +9,27 @@ const SideBar: React.FC = () => {
 
 	const {commonStore} = useStore();
 	const {setActiveTab, activeTab} = commonStore;
+	const location = useLocation();
+
+	useEffect(() => {
+        switch (location.pathname) {
+            case '/':
+                setActiveTab(0);
+                break;
+            case '/learn':
+                setActiveTab(1);
+                break;
+            case '/experiments':
+                setActiveTab(2);
+                break;
+			case '/uploads':
+				setActiveTab(3);
+				break;
+            default:
+                setActiveTab(0);
+                break;
+        }
+    }, [location.pathname, setActiveTab]);
 
 	return (
 		<div className='sidebar'>
@@ -28,7 +49,6 @@ const SideBar: React.FC = () => {
 								{/* {selected && 
 									<ActiveTabMarker />
 								} */}
-								{/* <SideBarIcon icon={<VscGraph size="26"/>} text='Markets'/> */}
 								<p>Explore scaffolds</p>
 							</div>		
 						)}
@@ -41,7 +61,6 @@ const SideBar: React.FC = () => {
 									<ActiveTabMarker />
 								} */}
 								<p >Learn</p>
-								{/* <SideBarIcon icon={<BsFillLightningFill size="24"/>} text='Transactions'/> */}
 							</div>
 						)}
 					</Tab>
@@ -52,7 +71,16 @@ const SideBar: React.FC = () => {
 									<ActiveTabMarker />
 								} */}
 								<p>Create Experiments</p>
-								{/* <SideBarIcon icon={<FaFire size="24"/>} text='Dashboard'/> */}
+							</div>
+						)}
+					</Tab>
+					<Tab as={NavLink} to='/uploads' className="focus:outline-none">
+						{({ selected }) => (
+							<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
+								{/* {selected && 
+									<ActiveTabMarker />
+								} */}
+								<p>Run</p>
 							</div>
 						)}
 					</Tab>

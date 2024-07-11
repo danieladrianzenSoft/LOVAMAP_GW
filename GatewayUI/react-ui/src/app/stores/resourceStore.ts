@@ -1,4 +1,4 @@
-import { makeAutoObservable, runInAction } from "mobx";
+import { makeAutoObservable } from "mobx";
 import agent from "../api/agent";
 import { Tag } from "../models/tag";
 
@@ -17,6 +17,15 @@ export default class ResourceStore {
 			// 	this.tags = response.data
 			// 	return response.data
 			// })
+		} catch (error) {
+			console.error(error)
+		}
+	}
+
+	getDescriptorTypes = async () => {
+		try {
+			const response = await agent.Resources.getDescriptorTypes();
+			return response.data;
 		} catch (error) {
 			console.error(error)
 		}

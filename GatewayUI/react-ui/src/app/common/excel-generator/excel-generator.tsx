@@ -3,7 +3,6 @@ import { ScaffoldGroup } from '../../models/scaffoldGroup';
 import { Descriptor } from '../../models/descriptor';
 
 export function downloadScaffoldGroupAsExcel(scaffoldGroup: ScaffoldGroup) {
-    console.log(scaffoldGroup)
     const wb = XLSX.utils.book_new();
 
     // General Info and Input Group Info combined

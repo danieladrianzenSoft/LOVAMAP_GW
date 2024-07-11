@@ -16,6 +16,9 @@ namespace Infrastructure.DTOs
 		[FromQuery(Name = "tags")]
     	public ICollection<string>? Tags { get; set; }
 
+		// [FromQuery(Name = "scaffoldGroupIds")]
+		// public ICollection<int>? ScaffoldGroupIds { get; set; }
+
 		[FromQuery(Name = "descriptorIds")]
 		public ICollection<int>? DescriptorIds { get; set; }
 		

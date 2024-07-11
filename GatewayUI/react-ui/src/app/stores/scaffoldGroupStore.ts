@@ -1,13 +1,19 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import agent from "../api/agent";
 import { Tag } from "../models/tag";
-import { ScaffoldGroup } from "../models/scaffoldGroup";
+import { ScaffoldGroup, ScaffoldGroupToCreate } from "../models/scaffoldGroup";
+import { Scaffold } from "../models/scaffold";
 
 export default class ScaffoldGroupStore {
 	scaffoldGroups: ScaffoldGroup[] = [];
+	uploadedScaffoldGroups: ScaffoldGroup[] = [];
 
 	constructor() {
 		makeAutoObservable(this)
+	}
+
+	setUploadedScaffoldGroups(groups: any[]) {
+		this.uploadedScaffoldGroups = groups;
 	}
 
 	getDetailedScaffoldGroupById = async (data: any) => {
@@ -23,7 +29,34 @@ export default class ScaffoldGroupStore {
 			console.error("Failed to fetch detailed scaffold group:", error);
 		}
 	};
-	
+
+	uploadScaffoldGroup = async (scaffoldGroupToCreate: ScaffoldGroupToCreate) => {
+		try {
+			const apiResponse = await agent.ScaffoldGroups.uploadScaffoldGroup(scaffoldGroupToCreate);
+			const scaffoldGroup = apiResponse.data;
+			return scaffoldGroup;
+		} catch (error) {
+			console.error("Failed to create scaffold group:", error);
+			return null;
+		}
+	}
+
+	uploadScaffoldGroupBatch = async (scaffoldGroupsToCreate: ScaffoldGroupToCreate[]) => {
+		try {
+			const apiResponse = await agent.ScaffoldGroups.uploadScaffoldGroupBatch(scaffoldGroupsToCreate);
+			const scaffoldGroups = apiResponse.data;
+
+			scaffoldGroups.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+
+			runInAction(() => {
+				this.uploadedScaffoldGroups = [...scaffoldGroups, ...this.uploadedScaffoldGroups];
+			  });
+			return scaffoldGroups;
+		} catch (error) {
+			console.error("Failed to create scaffold group:", error);
+			return null;
+		}
+	}
 
 	getPublicScaffoldGroups = async (selectedTags?: Tag[] | null, sizeIds?: number[] | null) => {
 		try {
@@ -52,7 +85,7 @@ export default class ScaffoldGroupStore {
 			return response.data;
 
 		} catch (error) {
-			console.error(error)
+			console.error(error);
 		}
 	}
 
@@ -82,10 +115,23 @@ export default class ScaffoldGroupStore {
 
 			return response.data;
 		} catch (error) {
-			console.error(error)
+			console.error(error);
 		}
 	}
 
+	getUploadedScaffoldGroups = async () => {
+		try {
+			const response = await agent.ScaffoldGroups.getUploadedScaffoldGroups();
+
+			runInAction(() => {
+				this.uploadedScaffoldGroups = response.data;
+			})
+
+			return response.data;
+		} catch (error) {
+			console.error(error);
+		}
+	}
 
 	
 }

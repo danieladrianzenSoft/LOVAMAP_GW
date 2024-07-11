@@ -205,5 +205,12 @@
   .top-navigation-icon:first {
     @apply ml-auto mr-4;
   }
+  .ellipsis {
+    @apply overflow-hidden whitespace-nowrap text-ellipsis
+  }
+  .default-upload-button {
+    @apply bg-white border border-gray-300 text-gray-700 py-2 px-4 rounded cursor-pointer
+    hover:bg-gray-100 focus:outline-none;
+  }
 
 }

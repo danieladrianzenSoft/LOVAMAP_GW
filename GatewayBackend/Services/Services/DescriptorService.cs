@@ -38,6 +38,26 @@ namespace Services.Services
 			
 		}
 
+		public async Task<ICollection<DescriptorTypeDto>> GetAllDescriptorTypes()
+		{
+			try 
+			{
+				var descriptorTypes = await _descriptorRepository.GetAllDescriptorTypes();
+				var descriptorTypesToReturn = new List<DescriptorTypeDto>();
+
+				foreach (var descriptorType in descriptorTypes)
+				{
+					descriptorTypesToReturn.Add(_modelMapper.MapDescriptorTypeToDto(descriptorType));
+				}
+
+				return descriptorTypesToReturn;
+			}
+			catch (Exception ex)
+			{
+				throw new ApplicationException("Unknown error getting descriptors types", ex);
+			}
+		}
+
 		public async Task<(IEnumerable<GlobalDescriptor>, IEnumerable<PoreDescriptor>, IEnumerable<OtherDescriptor>)> GetFilteredDescriptorsForScaffolds(IEnumerable<int> scaffoldIds, ScaffoldFilter filter)
 		{
 			var globalDescriptors = await _descriptorRepository.GetGlobalDescriptorsByScaffoldIdsAndFilter(scaffoldIds, filter);

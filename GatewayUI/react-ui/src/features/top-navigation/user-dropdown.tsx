@@ -28,8 +28,8 @@ const UserDropdown = () => {
 						<MenuItem>
 						{({ active }) => (
 							<button
-							className="dropdown-menu-item group"
-							onClick={logout}
+								className="dropdown-menu-item group"
+								onClick={logout}
 							>
 							Logout
 							</button>
@@ -41,8 +41,8 @@ const UserDropdown = () => {
 						<MenuItem>
 						{({ active }) => (
 							<button
-							className="dropdown-menu-item group"
-							onClick={() => History.push("/login")}
+								className="dropdown-menu-item group"
+								onClick={() => History.push("/login")}
 							>
 							Login
 							</button>

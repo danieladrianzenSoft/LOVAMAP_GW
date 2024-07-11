@@ -8,3 +8,12 @@ export interface InputGroup {
     isAnisotropic: boolean;
     particles: ParticlePropertyGroup[];
 }
+
+export interface InputGroupToCreate {
+    dx: number;
+    numVoxels: number;
+    containerShape: string;
+    containerSize: number;
+    isAnisotropic: boolean;
+    particlePropertyGroups: ParticlePropertyGroup[];
+}
