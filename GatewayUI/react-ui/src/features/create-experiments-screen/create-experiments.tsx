@@ -10,18 +10,21 @@ import { Formik } from 'formik';
 import TextInput from "../../app/common/form/text-input";
 import DescriptorFilters from "../descriptors/descriptor-filters";
 import { DescriptorType } from "../../app/models/descriptorType";
+import { FaSpinner } from 'react-icons/fa';
+import { downloadExperimentsAsExcel } from '../../app/common/excel-generator/excel-generator';
 
 type OptionKey = 'excelFileOption' | 'sheetOption' | 'columnOption' | 'stackedColumnOption';
 
 const CreateExperiments = () => {
     const { scaffoldGroupStore } = useStore();
-    const { scaffoldGroups } = scaffoldGroupStore;
+    const { scaffoldGroups, getDetailedScaffoldGroupsForExperiment } = scaffoldGroupStore;
     const [visibleDetails, setVisibleDetails] = useState<number | null>(null);
     const [numberOfColumns, setNumberOfColumns] = useState(3);
     const [selectedScaffoldGroups, setSelectedScaffoldGroups] = useState<ScaffoldGroup[]>([]);
     const [selectedDescriptorTypes, setSelectedDescriptorTypes] = useState<DescriptorType[]>([]);
     const [experimentStage, setExperimentStage] = useState(1);
     const [numFiles, setNumFiles] = useState(2);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const maxNumFiles = 2;
     const numSheets = 4;
@@ -59,33 +62,83 @@ const CreateExperiments = () => {
         setSelectedScaffoldGroups(selectedScaffoldGroups.filter(group => group.id !== scaffoldGroupId));
     };
 
-    const handleOptionChange = (optionName: OptionKey, value: string) => {
+    const handleGetExperiment = async () => {
+        setIsLoading(true);
+        try {
+          const scaffoldGroups = await getDetailedScaffoldGroupsForExperiment(
+            selectedScaffoldGroups.map(sg => sg.id),
+            selectedDescriptorTypes.map(dt => dt.id)
+          );
+          if (scaffoldGroups) {
+            downloadExperimentsAsExcel(scaffoldGroups, selectedDescriptorTypes, options);
+          }
+        } catch (error) {
+          console.error("Failed to get scaffold groups for experiment", error);
+        } finally {
+          setIsLoading(false);
+        }
+      };
+
+      const handleOptionChange = (optionName: OptionKey, value: string) => {
         let newOptions = { ...options, [optionName]: value };
-
-        if (optionName === 'stackedColumnOption' && value === 'True')
-        {
-            setNumFiles(1);
-            setOptions(newOptions);
-            return;
-        }
-        else if (optionName === 'stackedColumnOption' && value === 'False') {
-            setNumFiles(maxNumFiles);
-            setOptions(newOptions);
-            return;
-        }
-
+        
+        // All available options
         const allOptions = ['Descriptors', 'Scaffold Replicates', 'Scaffold Groups'];
-
-        const remainingOptions = allOptions.filter(opt => opt !== value);
-        const otherOptions = Object.keys(newOptions).filter(key => key !== optionName) as OptionKey[];
-
-        otherOptions.forEach((key, index) => {
-            newOptions[key] = remainingOptions[index];
-        });
-
+    
+        // Function to check for duplicates
+        const hasDuplicates = (opts: { [key: string]: string }) => {
+            const values = Object.values(opts);
+            return values.length !== new Set(values).size;
+        };
+    
+        // Adjust options to avoid duplicates
+        const adjustOptions = (changedOption: OptionKey) => {
+            const usedValues = new Set<string>([newOptions[changedOption]]);
+            const optionKeys: OptionKey[] = ['columnOption', 'sheetOption', 'excelFileOption'];
+    
+            optionKeys.forEach((key) => {
+                if (key !== changedOption) {
+                    if (usedValues.has(newOptions[key])) {
+                        // Find the first available option not used yet
+                        const availableOption = allOptions.find(opt => !usedValues.has(opt));
+                        if (availableOption) {
+                            newOptions[key] = availableOption;
+                            usedValues.add(availableOption);
+                        }
+                    } else {
+                        usedValues.add(newOptions[key]);
+                    }
+                }
+            });
+        };
+    
+        // Apply adjustments for no duplicate states
+        adjustOptions(optionName);
+    
+        // Check if 'stackedColumnOption' should be adjusted based on user change
+        if (optionName === 'stackedColumnOption') {
+            newOptions.stackedColumnOption = value;
+        } else {
+            // Handle the case where 'stackedColumnOption' needs to be automatically set
+            const isReplicatesSelected = newOptions.excelFileOption === 'Scaffold Replicates' ||
+                                         newOptions.columnOption === 'Scaffold Replicates' ||
+                                         newOptions.sheetOption === 'Scaffold Replicates';
+    
+            if (isReplicatesSelected) {
+                newOptions.stackedColumnOption = 'True';
+                setNumFiles(1);
+            } else if (newOptions.stackedColumnOption !== 'True') {
+                // Allow the stacked option to be 'False' if no auto-setting is required
+                newOptions.stackedColumnOption = 'False';
+                setNumFiles(maxNumFiles);
+            }
+        }
+    
+        // Set the new options state
         setOptions(newOptions);
     };
-
+    
+    
     useEffect(() => {
         const updateNumberOfColumns = () => {
             const width = window.innerWidth;
@@ -152,10 +205,10 @@ const CreateExperiments = () => {
                             <th className="border py-1">{rowOption}</th>
                         }
                         {tableHeaders.map((header, index) => (
-                            columnOption === "Scaffold Replicates" ? 
-                                <th key={index} className="border py-1">{"Replicate " + header}</th>
-                                :
-                                <th key={index} className="border py-1">{header}</th>
+                            // columnOption === "Scaffold Replicates" ? 
+                            //     <th key={index} className="border py-1">{"Replicate " + header}</th>
+                            //     :
+                            <th key={index} className="border py-1">{header}</th>
                         ))}
                     </tr>
                 </thead>
@@ -205,40 +258,46 @@ const CreateExperiments = () => {
                                 <button className="button-outline" onClick={() => setExperimentStage(2)}>Next</button>
                             </div>
                         </div>
-                        <ScaffoldGroupFilters condensed={true} />
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <div className="col-span-3 px-3">
-                                {rows.map((row, index) => (
-                                    <React.Fragment key={index}>
-                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                            {row.map(scaffoldGroup => {
-                                                const isSelected = selectedScaffoldGroups.some(group => group.id === scaffoldGroup.id);
-                                                return (
-                                                    <ScaffoldGroupCard
-                                                        key={scaffoldGroup.id}
-                                                        scaffoldGroup={scaffoldGroup}
-                                                        isVisible={visibleDetails === scaffoldGroup.id}
-                                                        toggleDetails={() => toggleDetails(scaffoldGroup.id)}
-                                                        isSelected={isSelected}
-                                                        isSelectable={true}
-                                                        onSelect={() => isSelected ? handleUnselectScaffoldGroup(scaffoldGroup.id) : handleSelectScaffoldGroup(scaffoldGroup)}
-                                                    />
+                        <ScaffoldGroupFilters condensed={true} setIsLoading={setIsLoading} />
+                        {isLoading ? (
+						<div className="flex justify-center items-center py-8">
+							<FaSpinner className="animate-spin" size={40} />
+						</div>
+						) : (
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div className="col-span-3 px-3">
+                                    {rows.map((row, index) => (
+                                        <React.Fragment key={index}>
+                                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                                {row.map(scaffoldGroup => {
+                                                    const isSelected = selectedScaffoldGroups.some(group => group.id === scaffoldGroup.id);
+                                                    return (
+                                                        <ScaffoldGroupCard
+                                                            key={scaffoldGroup.id}
+                                                            scaffoldGroup={scaffoldGroup}
+                                                            isVisible={visibleDetails === scaffoldGroup.id}
+                                                            toggleDetails={() => toggleDetails(scaffoldGroup.id)}
+                                                            isSelected={isSelected}
+                                                            isSelectable={true}
+                                                            onSelect={() => isSelected ? handleUnselectScaffoldGroup(scaffoldGroup.id) : handleSelectScaffoldGroup(scaffoldGroup)}
+                                                        />
+                                                    )}
                                                 )}
-                                            )}
-                                        </div>
-                                        {row.some(sg => sg.id === visibleDetails) && (
-                                            <div className={`transition-opacity duration-500 ease-in-out transform ${visibleDetails ? 'opacity-100 scale-100' : 'opacity-0 scale-95'} overflow-hidden`}>
-                                                <ScaffoldGroupDetails
-                                                    scaffoldGroup={row.find(sg => sg.id === visibleDetails)!}
-                                                    isVisible={true}
-                                                    toggleDetails={() => visibleDetails && toggleDetails(visibleDetails)}
-                                                />
                                             </div>
-                                        )}
-                                    </React.Fragment>
-                                ))}
+                                            {row.some(sg => sg.id === visibleDetails) && (
+                                                <div className={`transition-opacity duration-500 ease-in-out transform ${visibleDetails ? 'opacity-100 scale-100' : 'opacity-0 scale-95'} overflow-hidden`}>
+                                                    <ScaffoldGroupDetails
+                                                        scaffoldGroup={row.find(sg => sg.id === visibleDetails)!}
+                                                        isVisible={true}
+                                                        toggleDetails={() => visibleDetails && toggleDetails(visibleDetails)}
+                                                    />
+                                                </div>
+                                            )}
+                                        </React.Fragment>
+                                    ))}
+                                </div>
                             </div>
-                        </div>
+                        )}
                     </div>
                 }
                 {experimentStage === 2 && 
@@ -262,7 +321,7 @@ const CreateExperiments = () => {
                             <p className="text-xl mb-4">3. Design your output layout</p>
                             <div className="mr-5 -mt-2">
                                 <button className="button-outline" onClick={() => setExperimentStage(2)}>Back</button>
-                                <button className="button-outline" onClick={() => console.log('Generating Output')}>Generate Output</button>
+                                <button className="button-outline" onClick={() => handleGetExperiment()}>Generate Output</button>
                             </div>
                         </div>
                         <div className="flex w-full justify-between items-stretch">

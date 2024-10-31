@@ -3,6 +3,7 @@ import agent from "../api/agent";
 import { Tag } from "../models/tag";
 import { ScaffoldGroup, ScaffoldGroupToCreate } from "../models/scaffoldGroup";
 import { Scaffold } from "../models/scaffold";
+import { Image, ImageToCreate, ImageToUpdate } from "../models/image";
 
 export default class ScaffoldGroupStore {
 	scaffoldGroups: ScaffoldGroup[] = [];
@@ -27,6 +28,40 @@ export default class ScaffoldGroupStore {
 			return scaffoldGroup; 
 		} catch (error) {
 			console.error("Failed to fetch detailed scaffold group:", error);
+		}
+	};
+
+	getDetailedScaffoldGroupsForExperiment = async (selectedScaffoldGroupIds?: number[], selectedDescriptorIds?: number[]) => {
+
+		try {
+			let queryParams = ''
+			if (selectedScaffoldGroupIds!= null){
+				queryParams = queryParams + selectedScaffoldGroupIds.map(num => `scaffoldGroupIds=${num}`).join('&');
+			} 
+			if (queryParams !== '')
+			{
+				queryParams = queryParams + '&';
+			}
+			if (selectedDescriptorIds != null)
+			{
+				queryParams = queryParams + selectedDescriptorIds.map(num => `descriptorIds=${num}`).join('&')
+			}
+			if (queryParams !== '')
+			{
+				queryParams = '?' + queryParams
+			}
+
+			console.log(queryParams);
+			const response = await agent.ScaffoldGroups.getDetailedForExperiment(queryParams);
+
+			// runInAction(() => {
+			// 	this.scaffoldGroups = response.data
+			// })
+			
+			return response.data;
+
+		} catch (error) {
+			console.error("Failed to fetch detailed scaffold groups:", error);
 		}
 	};
 
@@ -57,6 +92,30 @@ export default class ScaffoldGroupStore {
 			return null;
 		}
 	}
+
+	uploadImageForScaffoldGroup = async (
+        scaffoldGroupId: number,
+        image: ImageToCreate,
+        imageType?: string
+    ): Promise<Image | null> => {
+        try {
+            // const formData = new FormData();
+            // formData.append('image', imageFile);
+            // if (imageType) formData.append('imageType', imageType);
+
+            const response = await agent.ScaffoldGroups.uploadScaffoldGroupImage(scaffoldGroupId, image);
+			return response.data;
+            // if (response.statusCode === 200) {
+            //     console.log('Image uploaded successfully');
+            // } else {
+            //     console.error('Image upload failed:', response);
+            // }
+        } catch (error) {
+            console.error('Error uploading image for scaffold group:', error);
+			return null;
+        }
+    };
+
 
 	getPublicScaffoldGroups = async (selectedTags?: Tag[] | null, sizeIds?: number[] | null) => {
 		try {
@@ -127,6 +186,24 @@ export default class ScaffoldGroupStore {
 				this.uploadedScaffoldGroups = response.data;
 			})
 
+			return response.data;
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
+	updateImage = async(scaffoldGroupId: number, image: ImageToUpdate) => {
+		try {
+			const response = await agent.ScaffoldGroups.updateImage(scaffoldGroupId, image)
+			return response.data;
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
+	deleteImage = async(scaffoldGroupId: number, imageId: number) => {
+		try {
+			const response = await agent.ScaffoldGroups.deleteImage(scaffoldGroupId, imageId)
 			return response.data;
 		} catch (error) {
 			console.error(error);

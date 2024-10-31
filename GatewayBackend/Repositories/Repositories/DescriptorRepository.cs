@@ -39,7 +39,7 @@ namespace Repositories.Repositories
 
 		public async Task<ICollection<DescriptorType>> GetAllDescriptorTypes()
 		{
-			return await _context.DescriptorTypes.ToListAsync();
+			return await _context.DescriptorTypes.Include(d => d.Publication).ToListAsync();
 		}
 		
 		public async Task<ICollection<GlobalDescriptor>> GetGlobalDescriptorsByScaffoldIdsAndFilter(IEnumerable<int> scaffoldIds, ScaffoldFilter filter)
@@ -49,19 +49,20 @@ namespace Repositories.Repositories
 			query = query.Where(gd => scaffoldIds.Contains(gd.ScaffoldId));
 
 			// Handling descriptor filtering by id & name
-			if (filter.DescriptorIds?.Count > 0 || filter.Descriptors?.Count > 0)
+			if (filter.DescriptorIds?.Count > 0)
 			{
 				var descriptorIds = filter.DescriptorIds ?? new List<int>();
-				var descriptorNames = filter.Descriptors?.Select(sg => sg.ToLower()) ?? new List<string>();
 
-				query = query.Where(sg => descriptorIds.Contains(sg.DescriptorTypeId) || descriptorNames.Contains(sg.DescriptorType.Name.ToLower()));
+				query = query.Where(sg => descriptorIds.Contains(sg.DescriptorTypeId));
 			}
 
     		var descriptors = await query.Include(gd => gd.DescriptorType).ToListAsync();
-			// return descriptors.GroupBy(gd => gd.DescriptorTypeId)
-			// 				.Select(group => group.First())
-			// 				.ToList();
+
 			return descriptors;
+
+			// return await query.GroupBy(gd => gd.DescriptorTypeId)
+			// 				.Select(group => group.First())
+			// 				.ToListAsync();
 		}
 
 		public async Task<ICollection<PoreDescriptor>> GetPoreDescriptorsByScaffoldIdsAndFilter(IEnumerable<int> scaffoldIds, ScaffoldFilter filter)
@@ -71,20 +72,21 @@ namespace Repositories.Repositories
 			query = query.Where(gd => scaffoldIds.Contains(gd.ScaffoldId));
 
 			// Handling descriptor filtering by id & name
-			if (filter.DescriptorIds?.Count > 0 || filter.Descriptors?.Count > 0)
+			if (filter.DescriptorIds?.Count > 0)
 			{
 				var descriptorIds = filter.DescriptorIds ?? new List<int>();
-				var descriptorNames = filter.Descriptors?.Select(sg => sg.ToLower()) ?? new List<string>();
 
-				query = query.Where(sg => descriptorIds.Contains(sg.DescriptorTypeId) || descriptorNames.Contains(sg.DescriptorType.Name.ToLower()));
+				query = query.Where(sg => descriptorIds.Contains(sg.DescriptorTypeId));
 			}
 
 
 			var descriptors = await query.Include(sg => sg.DescriptorType).ToListAsync();
-			// return descriptors.GroupBy(gd => gd.DescriptorTypeId)
-			// 				.Select(group => group.First())
-			// 				.ToList();
+
 			return descriptors;
+
+			// return await query.GroupBy(gd => gd.DescriptorTypeId)
+			// 				.Select(group => group.First())
+			// 				.ToListAsync();
 		}
 		public async Task<ICollection<OtherDescriptor>> GetOtherDescriptorsByScaffoldIdsAndFilter(IEnumerable<int> scaffoldIds, ScaffoldFilter filter)
 		{
@@ -93,20 +95,21 @@ namespace Repositories.Repositories
 			query = query.Where(gd => scaffoldIds.Contains(gd.ScaffoldId));
 
 			// Handling descriptor filtering by id & name
-			if (filter.DescriptorIds?.Count > 0 || filter.Descriptors?.Count > 0)
+			if (filter.DescriptorIds?.Count > 0)
 			{
 				var descriptorIds = filter.DescriptorIds ?? new List<int>();
-				var descriptorNames = filter.Descriptors?.Select(sg => sg.ToLower()) ?? new List<string>();
 
-				query = query.Where(sg => descriptorIds.Contains(sg.DescriptorTypeId) || descriptorNames.Contains(sg.DescriptorType.Name.ToLower()));
+				query = query.Where(sg => descriptorIds.Contains(sg.DescriptorTypeId));
 			}
 
 			// Ensure results are distinct by DescriptorTypeId
 			var descriptors = await query.Include(sg => sg.DescriptorType).ToListAsync();
-			// return descriptors.GroupBy(gd => gd.DescriptorTypeId)
-			// 				.Select(group => group.First())
-			// 				.ToList();
+
 			return descriptors;
+
+			// return await query.GroupBy(gd => gd.DescriptorTypeId)
+			// 				.Select(group => group.First())
+			// 				.ToListAsync();
 		}
 
 	}

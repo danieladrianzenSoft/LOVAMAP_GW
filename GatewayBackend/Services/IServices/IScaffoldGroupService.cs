@@ -11,6 +11,8 @@ namespace Services.IServices
 		Task<(bool Succeeded, string ErrorMessage, IEnumerable<ScaffoldGroupBaseDto>? CreatedScaffoldGroups)> CreateScaffoldGroups(IEnumerable<ScaffoldGroupToCreateDto> scaffoldGroupsToCreate, string? userId);
 		Task<(bool Succeeded, string ErrorMessage, ScaffoldGroupBaseDto? scaffoldGroup)> GetScaffoldGroup(int id, string userId, int? numReplicates);
 		Task<(bool Succeeded, string ErrorMessage, ICollection<ScaffoldGroupBaseDto>? scaffoldGroups)> GetFilteredScaffoldGroups(ScaffoldFilter filters, string userId, bool isDetailed=false);
+		Task<(bool Succeeded, string ErrorMessage, ICollection<ImageToShowDto>? scaffoldGroupImages)> GetScaffoldGroupImages(int scaffoldGroupId);
+		Task<(bool Succeeded, string ErrorMessage, ScaffoldGroupSummaryDto? updatedScaffoldGroup)> UpdateScaffoldGroupImage(string userId, int scaffoldGroupId, ImageToUpdateDto image);
 
 	}
 }

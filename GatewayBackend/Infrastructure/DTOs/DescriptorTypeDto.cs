@@ -10,6 +10,9 @@ namespace Infrastructure.DTOs
 		public string Category { get; set; } = null!;
 		public string? Unit { get; set; }
 		public string DataType { get; set; } = null!;
+		public string? Publication { get; set; }
+		public string? Description { get; set; }
+		public string? ImageUrl { get; set; }
 		
 	}
 }

@@ -9,6 +9,8 @@ using Infrastructure.DTOs;
 using Infrastructure.Helpers;
 using Services.IServices;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using CloudinaryDotNet;
 
 namespace Services.Services
 {	public class ScaffoldGroupService : IScaffoldGroupService
@@ -20,18 +22,20 @@ namespace Services.Services
 		private readonly IDescriptorService _descriptorService;
 		private readonly IDownloadService _downloadService;
 		private readonly ITagService _tagService;
+		private readonly IImageService _imageService;
 		private readonly ILogger<ScaffoldGroupService> _logger;
 
 		public ScaffoldGroupService(DataContext context, IModelMapper modelMapper, 
 			IScaffoldGroupRepository scaffoldGroupRepository, IDescriptorService descriptorService, 
-			IDownloadService downloadService, ITagService tagService, 
-			IUserAuthHelper userAuthHelper, ILogger<ScaffoldGroupService> logger)
+			IDownloadService downloadService, ITagService tagService, IUserAuthHelper userAuthHelper,
+			IImageService imageService, ILogger<ScaffoldGroupService> logger)
 		{
 			_context = context;
 			_modelMapper = modelMapper;
 			_userAuthHelper = userAuthHelper;
 			_scaffoldGroupRepository = scaffoldGroupRepository;
 			_descriptorService = descriptorService;
+			_imageService = imageService;
 			_downloadService = downloadService;
 			_tagService = tagService;
 			_logger = logger;
@@ -84,7 +88,7 @@ namespace Services.Services
 					}
 
 					_scaffoldGroupRepository.Add(scaffoldGroup);
-					var scaffoldGroupToReturn = _modelMapper.MapToScaffoldGroupSummaryDto(scaffoldGroup, userId ?? scaffoldGroup.UploaderId!);
+					var scaffoldGroupToReturn = _modelMapper.MapToScaffoldGroupSummaryDto(scaffoldGroup, [], userId ?? scaffoldGroup.UploaderId!);
 					createdScaffoldGroups.Add(scaffoldGroupToReturn);
 				}
 
@@ -117,7 +121,9 @@ namespace Services.Services
 
 				var (globalDescriptors, poreDescriptors, otherDescriptors) = await _descriptorService.GetFilteredDescriptorsForScaffolds(scaffoldIds, new ScaffoldFilter());
 
-				var detailedDto = _modelMapper.MapScaffoldGroupToDto(scaffoldGroup, scaffolds, userId, true);
+				var images = await _imageService.GetThumbnails(scaffoldGroup.Id);
+
+				var detailedDto = _modelMapper.MapScaffoldGroupToDto(scaffoldGroup, scaffolds, images, userId, true);
 
 				var descriptorTypeIds = globalDescriptors.Select(g => g.DescriptorTypeId)
 									.Concat(poreDescriptors.Select(p => p.DescriptorTypeId))
@@ -162,7 +168,25 @@ namespace Services.Services
 				{
 					var scaffoldIds = scaffoldGroup.Scaffolds.Select(s => s.Id).ToList();
 					var (globalDescriptors, poreDescriptors, otherDescriptors) = await _descriptorService.GetFilteredDescriptorsForScaffolds(scaffoldIds, filter);
-					var scaffoldGroupToReturn = _modelMapper.MapScaffoldGroupToDto(scaffoldGroup, scaffoldGroup.Scaffolds, userId, isDetailed);
+
+					foreach (var scaffold in scaffoldGroup.Scaffolds)
+					{
+						scaffold.GlobalDescriptors = globalDescriptors.Where(d => d.ScaffoldId == scaffold.Id).ToList();
+						scaffold.PoreDescriptors = poreDescriptors.Where(d => d.ScaffoldId == scaffold.Id).ToList();
+						scaffold.OtherDescriptors = otherDescriptors.Where(d => d.ScaffoldId == scaffold.Id).ToList();
+					}
+
+					ICollection<Image> images = [];
+					if (scaffoldGroup.UploaderId == userId)
+					{
+						images = await _imageService.GetAllImagesForScaffoldGroup(scaffoldGroup.Id);
+					}
+					else
+					{
+						images = await _imageService.GetThumbnails(scaffoldGroup.Id);
+					}
+
+					var scaffoldGroupToReturn = _modelMapper.MapScaffoldGroupToDto(scaffoldGroup, scaffoldGroup.Scaffolds, images, userId, isDetailed);
 					scaffoldGroupsToReturn.Add(scaffoldGroupToReturn);
 				}
 
@@ -172,6 +196,48 @@ namespace Services.Services
 			catch (Exception ex)
 			{
 				_logger.LogError(ex, "Failed to get filtered scaffold groups");
+        		return (false, "UnexpectedError", null);
+			}
+		}
+
+		public async Task<(bool Succeeded, string ErrorMessage, ICollection<ImageToShowDto>? scaffoldGroupImages)> GetScaffoldGroupImages(int scaffoldGroupId)
+		{
+			try
+			{
+				var images = await _scaffoldGroupRepository.GetScaffoldGroupImages(scaffoldGroupId);
+				var imagesToReturn = images.Select(_modelMapper.MapImageToDto).ToList();
+				return (true, "", imagesToReturn);
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, "Failed to get scaffold group images");
+        		return (false, "UnexpectedError", null);
+			}
+		}
+
+		public async Task<(bool Succeeded, string ErrorMessage, ScaffoldGroupSummaryDto? updatedScaffoldGroup)> UpdateScaffoldGroupImage(string userId, int scaffoldGroupId, ImageToUpdateDto image)
+		{
+			try
+			{
+				var scaffoldGroup = await _scaffoldGroupRepository.Get(scaffoldGroupId);
+
+				if (scaffoldGroup == null) return (false, "ScaffoldGroup not found", null);
+
+				if (scaffoldGroup.UploaderId != userId) return (false, "Unauthorized", null);
+
+				var updatedImage = await _imageService.UpdateImage(image, scaffoldGroup);
+
+				if (updatedImage == null) return (false, "Image not found", null);
+
+				var updatedScaffoldGroup = await _scaffoldGroupRepository.Get(scaffoldGroupId);
+				var images = await _scaffoldGroupRepository.GetScaffoldGroupImages(scaffoldGroupId);
+				var scaffoldGroupToReturn = _modelMapper.MapToScaffoldGroupSummaryDto(updatedScaffoldGroup!, images, userId);
+
+				return (true, "", scaffoldGroupToReturn);
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, "Failed to update scaffold group image");
         		return (false, "UnexpectedError", null);
 			}
 		}

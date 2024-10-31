@@ -312,22 +312,22 @@ namespace Services.Services
             };
         }
 
-        public ScaffoldGroupBaseDto MapScaffoldGroupToDto(ScaffoldGroup scaffoldGroup, IEnumerable<Scaffold> scaffolds, string userId, bool isDetailed)
+        public ScaffoldGroupBaseDto MapScaffoldGroupToDto(ScaffoldGroup scaffoldGroup, IEnumerable<Scaffold> scaffolds, IEnumerable<Image> images, string userId, bool isDetailed)
         {
             if (!isDetailed)
             {
-                return MapToScaffoldGroupSummaryDto(scaffoldGroup, userId);
+                return MapToScaffoldGroupSummaryDto(scaffoldGroup, images, userId);
             }
             else
             {
                 var globalDescriptors = scaffolds.SelectMany(s => s.GlobalDescriptors);
                 var poreDescriptors = scaffolds.SelectMany(s => s.PoreDescriptors);
                 var otherDescriptors = scaffolds.SelectMany(s => s.OtherDescriptors);
-                return MapToScaffoldGroupDetailedDto(scaffoldGroup, scaffolds, userId);
+                return MapToScaffoldGroupDetailedDto(scaffoldGroup, scaffolds, images, userId);
             }
         }
 
-       public ScaffoldGroupSummaryDto MapToScaffoldGroupSummaryDto(ScaffoldGroup scaffoldGroup, string userId)
+       public ScaffoldGroupSummaryDto MapToScaffoldGroupSummaryDto(ScaffoldGroup scaffoldGroup, IEnumerable<Image> images, string userId)
         {
             var tags = scaffoldGroup.Scaffolds?
                     .SelectMany(s => s.ScaffoldTags)
@@ -340,6 +340,8 @@ namespace Services.Services
                     .Select(ppg => MapToScaffoldPropertyGroupBase(ppg))
                     .ToList();
 
+            var imagesToReturn = images.Select(MapImageToDto).ToList();
+
             return new ScaffoldGroupSummaryDto 
             {
                 Id = scaffoldGroup.Id,
@@ -348,6 +350,7 @@ namespace Services.Services
                 IsSimulated = scaffoldGroup.IsSimulated,
                 Tags = tags,
                 NumReplicates = scaffoldGroup.Scaffolds?.Count ?? 0,
+                Images = imagesToReturn,
                 Inputs = new InputGroupBaseDto 
                 {
                     Dx = scaffoldGroup.InputGroup?.Dx,
@@ -359,7 +362,7 @@ namespace Services.Services
             };
         }
 
-        public ScaffoldGroupDetailedDto MapToScaffoldGroupDetailedDto(ScaffoldGroup scaffoldGroup, IEnumerable<Scaffold> scaffolds, string userId)
+        public ScaffoldGroupDetailedDto MapToScaffoldGroupDetailedDto(ScaffoldGroup scaffoldGroup, IEnumerable<Scaffold> scaffolds, IEnumerable<Image> images, string userId)
         {
             var tags = scaffoldGroup.Scaffolds?
                     .SelectMany(s => s.ScaffoldTags)
@@ -371,6 +374,8 @@ namespace Services.Services
             var particles = scaffoldGroup.InputGroup?.ParticlePropertyGroups
                     .Select(ppg => MapToScaffoldPropertyGroupBase(ppg))
                     .ToList();
+            
+            var imagesToReturn = images.Select(MapImageToDto).ToList();
 
         // Group descriptors by ScaffoldId
             // var globalDescriptorGroups = globalDescriptors.GroupBy(gd => gd.ScaffoldId);
@@ -407,6 +412,7 @@ namespace Services.Services
                 Tags = tags,
                 NumReplicates = scaffoldGroup.Scaffolds?.Count ?? 0,
                 Comments = scaffoldGroup.Comments,
+                Images = imagesToReturn,
                 Inputs = new InputGroupBaseDto 
                 {
                     Dx = scaffoldGroup.InputGroup?.Dx,
@@ -418,6 +424,7 @@ namespace Services.Services
                 Scaffolds = scaffoldDtos,
             };
         }
+        
         public ParticlePropertyBaseDto MapToScaffoldPropertyGroupBase(ParticlePropertyGroup particlePropertyGroup)
         {
             return new ParticlePropertyBaseDto 
@@ -432,10 +439,23 @@ namespace Services.Services
             };
         }
 
+        public ImageToShowDto MapImageToDto(Image image)
+        {
+            return new ImageToShowDto
+            {
+                Id = image.Id,
+                Url = image.Url,
+                PublicId = image.PublicId,
+                IsThumbnail = image.IsThumbnail,
+                Category = image.Category.ToString()
+            };
+        }
+
         public DescriptorDto MapGlobalDescriptorToDto(GlobalDescriptor global)
         {
             return new DescriptorDto
             {
+                DescriptorTypeId = global.DescriptorTypeId,
                 Name = global.DescriptorType?.Name ?? "N/A",
                 Label = global.DescriptorType?.Label ?? "N/A",
                 Unit = global.DescriptorType?.Unit ?? "N/A",
@@ -447,6 +467,7 @@ namespace Services.Services
         {
             return new DescriptorDto
             {
+                DescriptorTypeId = pore.DescriptorTypeId,
                 Name = pore.DescriptorType?.Name ?? "N/A",
                 Label = pore.DescriptorType?.Label ?? "N/A",
                 Unit = pore.DescriptorType?.Unit ?? "N/A",
@@ -458,6 +479,7 @@ namespace Services.Services
         {
             return new DescriptorDto
             {
+                DescriptorTypeId = other.DescriptorTypeId,
                 Name = other.DescriptorType?.Name ?? "N/A",
                 Label = other.DescriptorType?.Label ?? "N/A",
                 Unit = other.DescriptorType?.Unit ?? "N/A",
@@ -484,9 +506,25 @@ namespace Services.Services
                 Label = descriptorType.Label,
                 Category = descriptorType.Category,
                 Unit = descriptorType.Unit,
-                DataType = descriptorType.DataType
+                DataType = descriptorType.DataType,
+                Publication = descriptorType.PublicationId != null ? (descriptorType.Publication?.Journal + ", doi: " + descriptorType.Publication?.Doi) : null,
+                Description = descriptorType.Description,
+                ImageUrl = descriptorType.ImageUrl,
             };
         } 
+
+        public Image MapToImage(ImageForCreationDto imageToCreate, string uploaderId)
+        {
+            return new Image
+            {
+                Url = imageToCreate.Url,
+                IsThumbnail = true,
+                ScaffoldGroupId = imageToCreate.ScaffoldGroupId,
+                ScaffoldId = imageToCreate.ScaffoldId,
+                UploaderId = uploaderId,
+                PublicId = imageToCreate.PublicId,
+            };
+        }
 
         private string JsonDocumentToString(JsonDocument jsonDocument)
         {

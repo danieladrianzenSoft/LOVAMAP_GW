@@ -5,7 +5,7 @@ import { observer } from 'mobx-react-lite';
 
 interface UploadFileProps {
 	acceptedFileTypes: Accept;
-	onUploadSubmit: (files: File[], combinedJson?: any) => Promise<void>;
+	onUploadSubmit: (files: File[], combinedJson?: any, imageType?: string) => Promise<void>;
 	onUploadSuccess?: (response: any) => void;
 	onUploadError?: (error: any) => void;
 }
@@ -13,30 +13,37 @@ interface UploadFileProps {
 const UploadFile: React.FC<UploadFileProps> = ({ acceptedFileTypes, onUploadSubmit, onUploadSuccess, onUploadError }) => {
 	const [files, setFiles] = useState<File[]>([]);
 	const [isLoading, setIsLoading] = useState<boolean>(false);
+
 	const fileInputRef = useRef<HTMLInputElement | null>(null);
 
 	const onDrop = useCallback((acceptedFiles: File[]) => {
 		const validFiles = acceptedFiles.filter(file =>
-		  Object.keys(acceptedFileTypes).some(type => file.type === type)
+			Object.entries(acceptedFileTypes).some(([key]) => 
+				key === 'image/*' || file.type.startsWith(key)
+			)
 		);
+	
 		if (validFiles.length !== acceptedFiles.length) {
-		  alert('Some files were not of the accepted file type and were not added.');
+			alert('Some files were not of the accepted file type and were not added.');
 		}
 		setFiles(prevFiles => [...prevFiles, ...validFiles]);
-	  }, [acceptedFileTypes]);
+	}, [acceptedFileTypes]);
 
-	  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+	const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const selectedFiles = Array.from(event.target.files || []);
 		const validFiles = selectedFiles.filter(file =>
-		  Object.keys(acceptedFileTypes).some(type => file.type === type)
+			Object.entries(acceptedFileTypes).some(([key]) => 
+				key === 'image/*' || file.type.startsWith(key)
+			)
 		);
+	
 		if (validFiles.length !== selectedFiles.length) {
-		  alert('Some files were not of the accepted file type and were not added.');
+			alert('Some files were not of the accepted file type and were not added.');
 		}
 		setFiles(prevFiles => [...prevFiles, ...validFiles]);
-	  };
+	};
 
-	  const handleFileUpload = async () => {
+	const handleFileUpload = async () => {
 		if (files.length === 0) {
 		  alert('No files selected.');
 		  return;
@@ -45,32 +52,21 @@ const UploadFile: React.FC<UploadFileProps> = ({ acceptedFileTypes, onUploadSubm
 		setIsLoading(true);
 	
 		try {
-			if ('application/json' in acceptedFileTypes) {
-				const jsonPromises = files.map(file => file.text().then(text => JSON.parse(text)));
-				const jsonArray = await Promise.all(jsonPromises);
-				const scaffoldsToCreate = jsonArray.reduce((acc, json) => acc.concat(json), []);
-				await onUploadSubmit(files, scaffoldsToCreate);
-			} else {
-				await onUploadSubmit(files);
-			}
-	
-		  if (onUploadSuccess) onUploadSuccess('Files uploaded successfully!');
+			await onUploadSubmit(files);
 		} catch (error) {
 			if (onUploadError) onUploadError(error instanceof Error ? error.message : 'Failed to upload files.');
-			//   alert('Failed to upload files.');
-		  	console.error(error);
+			console.error(error);
 		} finally {
-		  setIsLoading(false);
-		  setFiles([]);
+			setIsLoading(false);
+			setFiles([]);
 		}
-	  };
+	};
 
-	const { getRootProps, getInputProps } = useDropzone({
+	const { getRootProps, getInputProps, isDragActive } = useDropzone({
 		onDrop,
 		accept: acceptedFileTypes,
 		multiple: true
 	});
-
 
   return (
     <div className="p-4 w-full">
@@ -97,7 +93,7 @@ const UploadFile: React.FC<UploadFileProps> = ({ acceptedFileTypes, onUploadSubm
 			</label>
 			<button
 				onClick={handleFileUpload}
-				className="button-outline"
+				className="button-outline flex items-center justify-center space-x-2"
 				disabled={isLoading} // Disable button when loading
 			>
 				Upload File
@@ -108,7 +104,8 @@ const UploadFile: React.FC<UploadFileProps> = ({ acceptedFileTypes, onUploadSubm
 		</div>
 		<div
 			{...getRootProps()}
-			className="border-2 border-dashed border-gray-300 p-4 mb-4 w-full cursor-pointer flex justify-center items-center"
+			className={`border-2 border-dashed p-4 mb-4 w-full cursor-pointer flex justify-center items-center ${
+          isDragActive ? 'border-blue-500' : 'border-gray-300'}`}
 		>
 			<input {...getInputProps()} className="hidden" />
 			<p>Drag & drop a file here, or click to select a file</p>

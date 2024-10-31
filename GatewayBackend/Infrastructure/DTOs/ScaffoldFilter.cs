@@ -13,17 +13,17 @@ namespace Infrastructure.DTOs
 		[FromQuery(Name = "tagIds")]
 		public ICollection<int>? TagIds { get; set; }
 
-		[FromQuery(Name = "tags")]
-    	public ICollection<string>? Tags { get; set; }
+		// [FromQuery(Name = "tags")]
+    	// public ICollection<string>? Tags { get; set; }
 
-		// [FromQuery(Name = "scaffoldGroupIds")]
-		// public ICollection<int>? ScaffoldGroupIds { get; set; }
+		[FromQuery(Name = "scaffoldGroupIds")]
+		public ICollection<int>? ScaffoldGroupIds { get; set; }
 
 		[FromQuery(Name = "descriptorIds")]
 		public ICollection<int>? DescriptorIds { get; set; }
 		
-		[FromQuery(Name = "descriptors")]
-    	public ICollection<string>? Descriptors { get; set; }
+		// [FromQuery(Name = "descriptors")]
+    	// public ICollection<string>? Descriptors { get; set; }
 
 	}
 }

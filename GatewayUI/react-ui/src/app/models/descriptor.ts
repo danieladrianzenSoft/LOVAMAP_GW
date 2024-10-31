@@ -1,4 +1,5 @@
 export interface Descriptor {
+    descriptorTypeId: number;
     name: string;
     label: string;
     unit: string;

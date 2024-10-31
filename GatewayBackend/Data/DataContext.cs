@@ -79,6 +79,12 @@ public partial class DataContext : IdentityDbContext<User, Role, string>
             .WithOne(g => g.Publication)
             .HasForeignKey(g => g.PublicationId)
             .OnDelete(DeleteBehavior.SetNull);  // Set to null if the Publication is deleted
+        
+        builder.Entity<Publication>()
+            .HasMany(p => p.DescriptorTypes)
+            .WithOne(d => d.Publication)
+            .HasForeignKey(p => p.PublicationId)
+            .OnDelete(DeleteBehavior.SetNull);
 		
 		// One-to-One relationship between Experiment and InputGroup
         builder.Entity<InputGroup>()
@@ -86,23 +92,50 @@ public partial class DataContext : IdentityDbContext<User, Role, string>
             .WithOne(g => g.InputGroup)
             .HasForeignKey<ScaffoldGroup>(g => g.Id)
 			.OnDelete(DeleteBehavior.Cascade);
+            
         builder.Entity<ScaffoldGroup>()
             .HasOne(g => g.InputGroup)
             .WithOne(i => i.ScaffoldGroup)
             .HasForeignKey<InputGroup>(i => i.ScaffoldGroupId)
 			.OnDelete(DeleteBehavior.Cascade);
+        
+        // One-to-Many relationship between ScaffoldGroup and Images
+        builder.Entity<ScaffoldGroup>()
+            .HasMany(s => s.Images)
+            .WithOne(i => i.ScaffoldGroup)
+            .HasForeignKey( s => s.ScaffoldGroupId)
+            .OnDelete(DeleteBehavior.Cascade);
+            
+        builder.Entity<Image>()
+            .HasOne(i => i.ScaffoldGroup)
+            .WithMany(s => s.Images)
+            .HasForeignKey(i => i.ScaffoldGroupId)
+			.OnDelete(DeleteBehavior.SetNull);
 
         // One-to-Many relationship between Scaffold and Images
         builder.Entity<Scaffold>()
             .HasMany(s => s.Images)
             .WithOne(i => i.Scaffold)
             .HasForeignKey( s => s.ScaffoldId)
-            .OnDelete(DeleteBehavior.Cascade);
+            .OnDelete(DeleteBehavior.SetNull);
             
         builder.Entity<Image>()
             .HasOne(i => i.Scaffold)
             .WithMany(s => s.Images)
             .HasForeignKey(i => i.ScaffoldId)
+			.OnDelete(DeleteBehavior.SetNull);
+
+        // One-to-Many relationship between Image and User (uploader)
+        builder.Entity<User>()
+            .HasMany(u => u.UploadedImages)
+            .WithOne(i => i.Uploader)
+            .HasForeignKey(i => i.UploaderId)
+            .OnDelete(DeleteBehavior.Cascade);
+            
+        builder.Entity<Image>()
+            .HasOne(i => i.Uploader)
+            .WithMany(u => u.UploadedImages)
+            .HasForeignKey(i => i.UploaderId)
 			.OnDelete(DeleteBehavior.SetNull);
 
         // One-to-Many relationship between InputGroup and ParticlePropertyGroup
@@ -122,6 +155,12 @@ public partial class DataContext : IdentityDbContext<User, Role, string>
             .WithOne(g => g.DescriptorType)
             .HasForeignKey(g => g.DescriptorTypeId)
             .OnDelete(DeleteBehavior.Cascade);
+
+        builder.Entity<DescriptorType>()
+            .HasOne(d => d.Publication)
+            .WithMany(p => p.DescriptorTypes)
+            .HasForeignKey(g => g.PublicationId)
+            .OnDelete(DeleteBehavior.SetNull);
 
         builder.Entity<DescriptorType>()
             .HasMany(d => d.PoreDescriptors)

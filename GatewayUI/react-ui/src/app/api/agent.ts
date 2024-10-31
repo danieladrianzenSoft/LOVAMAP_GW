@@ -6,6 +6,7 @@ import { ApiResponse } from "../models/apiResponse";
 import { Tag } from "../models/tag";
 import { ScaffoldGroup, ScaffoldGroupToCreate } from "../models/scaffoldGroup";
 import { DescriptorType } from "../models/descriptorType";
+import { Image, ImageToCreate, ImageToUpdate } from "../models/image";
 
 axios.defaults.baseURL = 'https://localhost:44381/api';
 
@@ -89,9 +90,26 @@ const ScaffoldGroups = {
 	getSummarized: (queryParams: string) => requests.get<ApiResponse<ScaffoldGroup[]>>('/scaffoldGroups' + queryParams),
 	getPublic: (queryParams: string) => requests.get<ApiResponse<ScaffoldGroup[]>>('/scaffoldGroups/public' + queryParams),
 	getDetailed: (id: number) => requests.get<ApiResponse<ScaffoldGroup>>('/scaffoldGroups/' + id),
+    getDetailedForExperiment: (queryParams: string) => requests.get<ApiResponse<ScaffoldGroup[]>>('/scaffoldGroups/detailed' + queryParams),
     uploadScaffoldGroup: (scaffoldGroup: ScaffoldGroupToCreate) => requests.post<ApiResponse<ScaffoldGroup>>('/scaffoldGroups/create', scaffoldGroup),
     uploadScaffoldGroupBatch: (scaffoldGroups: ScaffoldGroupToCreate[]) => requests.post<ApiResponse<ScaffoldGroup[]>>('/scaffoldGroups/createBatch', scaffoldGroups),
-    getUploadedScaffoldGroups: () => requests.get<ApiResponse<ScaffoldGroup[]>>('/users/me/scaffoldgroups')
+    // uploadScaffoldGroupImage: (image: ImageToCreate) => requests.post<ApiResponse<Image>>('/scaffoldGroups/image', image),
+    getUploadedScaffoldGroups: () => requests.get<ApiResponse<ScaffoldGroup[]>>('/users/me/scaffoldgroups'),
+    uploadScaffoldGroupImage: async (scaffoldGroupId: number, image: ImageToCreate, imageType?: string) => {
+        const formData = new FormData();
+        formData.append('file', image.file); // Append the image file
+        formData.append('scaffoldGroupId', image.scaffoldGroupId.toString());
+        if (image.scaffoldId) formData.append('scaffoldId', image.scaffoldId.toString());
+        if (imageType) formData.append('imageType', imageType); // Optional image type
+
+        const response =  await axios.post<ApiResponse<Image>>(`/scaffoldGroups/${scaffoldGroupId}/image`, formData, {
+            headers: { 'Content-Type': 'multipart/form-data' },
+        });
+
+        return response.data;
+    },
+    updateImage: (scaffoldGroupId: number, image: ImageToUpdate) => requests.put<ApiResponse<ScaffoldGroup>>(`/scaffoldGroups/${scaffoldGroupId}/image/${image.id}`, image),
+    deleteImage: (scaffoldGroupId: number, imageId: number) => requests.del<ApiResponse<ScaffoldGroup>>(`/scaffoldGroups/${scaffoldGroupId}/image/${imageId}`),
 }
 
 const agent = {

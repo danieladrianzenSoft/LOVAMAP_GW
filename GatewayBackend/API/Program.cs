@@ -13,6 +13,8 @@ using Repositories.Repositories;
 using Services.IServices;
 using Services.Services;
 using Infrastructure;
+using Infrastructure.DTOs;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -69,6 +71,7 @@ builder.Services.AddScoped<IInputGroupRepository, InputGroupRepository>();
 builder.Services.AddScoped<IDescriptorRepository, DescriptorRepository>();
 builder.Services.AddScoped<IDownloadRepository, DownloadRepository>();
 builder.Services.AddScoped<ITagRepository, TagRepository>();
+builder.Services.AddScoped<IImageRepository, ImageRepository>();
 
 // Add helpers
 builder.Services.AddScoped<IUserAuthHelper, UserAuthHelper>();
@@ -82,9 +85,12 @@ builder.Services.AddScoped<IDescriptorService, DescriptorService>();
 builder.Services.AddScoped<IDownloadService, DownloadService>();
 builder.Services.AddScoped<ITagService, TagService>();
 builder.Services.AddScoped<IScaffoldGroupService, ScaffoldGroupService>();
-
+builder.Services.AddScoped<IImageService, ImageService>();
 builder.Services.AddScoped<IModelMapper, ModelMapper>();
 builder.Services.AddScoped<SeedingService>();
+
+// Adding configurations as IOptions
+builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
 
 var app = builder.Build();
 

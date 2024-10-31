@@ -1,5 +1,6 @@
 import { InputGroup, InputGroupToCreate } from "./inputGroup";
 import { Scaffold, ScaffoldToCreate } from "./scaffold";
+import { Image } from "./image";
 
 export interface ScaffoldGroup {
     id: number;
@@ -11,6 +12,7 @@ export interface ScaffoldGroup {
     numReplicates: number;
     tags: string[];
     scaffolds: Scaffold[];
+    images: Image[];
 }
 
 export interface ScaffoldGroupToCreate {

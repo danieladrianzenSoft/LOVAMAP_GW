@@ -7,5 +7,7 @@ namespace Data.Models
 		public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 		public ICollection<ScaffoldGroup> ScaffoldGroups { get; set; } = [];
 		public virtual ICollection<Download> Downloads { get; set; } = [];
+		public virtual ICollection<Image> UploadedImages { get; set; } = [];
+
 	}
 }

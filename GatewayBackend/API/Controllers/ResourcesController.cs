@@ -55,5 +55,5 @@ public class ResourcesController : ControllerBase
             _logger.LogError(ex, "Failed to get descriptors types");
         	return StatusCode(500, new ApiResponse<string>(500, "An error occurred while getting descriptor types"));
         }
-    }
+    }   
 }

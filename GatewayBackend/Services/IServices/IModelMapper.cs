@@ -21,14 +21,16 @@ namespace Services.IServices
 		Task<GlobalDescriptor> MapToGlobalDescriptor(GlobalDescriptorToCreateDto dto);
 		Task<PoreDescriptor> MapToPoreDescriptor(PoreDescriptorToCreateDto dto);
 		Task<OtherDescriptor> MapToOtherDescriptor(OtherDescriptorToCreateDto dto);
+		Image MapToImage(ImageForCreationDto dto, string uploaderId);
 
 		// Maps to DTOs
 		Task<AuthenticatedUserDto> MapToAuthenticatedUserDto(User user, string token);
 		TagForFilterDto MapTagToDto(Tag tag);
 		DescriptorTypeDto MapDescriptorTypeToDto(DescriptorType descriptorType);
-		ScaffoldGroupBaseDto MapScaffoldGroupToDto(ScaffoldGroup scaffoldGroup, IEnumerable<Scaffold> scaffolds, string userId, bool isDetailed);
-		ScaffoldGroupSummaryDto MapToScaffoldGroupSummaryDto(ScaffoldGroup scaffoldGroup, string userId);
-		ScaffoldGroupDetailedDto MapToScaffoldGroupDetailedDto(ScaffoldGroup scaffoldGroup, IEnumerable<Scaffold> scaffolds, string userId);
+		ScaffoldGroupBaseDto MapScaffoldGroupToDto(ScaffoldGroup scaffoldGroup, IEnumerable<Scaffold> scaffolds, IEnumerable<Image> images, string userId, bool isDetailed);
+		ScaffoldGroupSummaryDto MapToScaffoldGroupSummaryDto(ScaffoldGroup scaffoldGroup, IEnumerable<Image> images, string userId);
+		ScaffoldGroupDetailedDto MapToScaffoldGroupDetailedDto(ScaffoldGroup scaffoldGroup, IEnumerable<Scaffold> scaffolds, IEnumerable<Image> images, string userId);
+		ImageToShowDto MapImageToDto(Image image);
 
 	}
 }

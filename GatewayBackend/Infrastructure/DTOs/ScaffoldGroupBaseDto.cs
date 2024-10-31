@@ -9,6 +9,7 @@ namespace Infrastructure.DTOs
 		public InputGroupBaseDto Inputs { get; set; }
 		public ICollection<string> Tags {get; set;} = [];
 		public int NumReplicates { get; set; }
+		public ICollection<ImageToShowDto> Images { get; set; } = [];
 	}
 
 	public class ScaffoldGroupSummaryDto : ScaffoldGroupBaseDto

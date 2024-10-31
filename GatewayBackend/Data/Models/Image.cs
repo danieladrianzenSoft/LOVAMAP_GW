@@ -7,10 +7,22 @@ namespace Data.Models
         public string Url { get; set; } = null!;
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 		public string PublicId { get; set; } = null!;
-		public int ScaffoldId { get; set; }
-		public Scaffold Scaffold { get; set; } = null!;
 		public bool IsThumbnail { get; set; } = false;
+		public ImageCategory Category { get; set; } = 0;
+		public int ScaffoldGroupId { get; set; }
+		public ScaffoldGroup ScaffoldGroup {get; set; } = null!;
+		public int? ScaffoldId { get; set; }
+		public virtual Scaffold? Scaffold { get; set; } 
+		public string UploaderId { get; set; } = null!;
+		public virtual User Uploader { get; set; } = null!;
 
+	}
 
+	public enum ImageCategory 
+	{
+		ExteriorPores = 0,
+		InteriorPores = 1,
+		ParticleSizeDistribution = 2,
+		Other = 3
 	}
 }

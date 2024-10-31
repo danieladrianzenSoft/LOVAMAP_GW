@@ -13,6 +13,13 @@ interface ScaffoldGroupDetailsProps {
     toggleDetails: () => void;
 }
 
+const categoryOrder: { [key: string]: number } = {
+    ExteriorPores: 0,
+    InteriorPores: 1,
+    ParticleSizeDistribution: 2,
+    Other: 3 // Additional categories if needed
+};
+
 const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGroup, isVisible, toggleDetails }) => {
     const {scaffoldGroupStore} = useStore();
 	const {getDetailedScaffoldGroupById} = scaffoldGroupStore;
@@ -41,8 +48,44 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 				<div className="flex justify-center items-center space-x-4">
 					<div className="flex-1 p-4">
 						{/* Container for figures */}
-						<p>Figures</p>
+                        {/* <p className="text-lg font-semibold mb-4">Figures</p> */}
 						{/* Additional figures as needed */}
+						{scaffoldGroup.images.length > 0 ? (
+							<div className="grid grid-cols-2 gap-0">
+								{scaffoldGroup.images
+									.slice() // Create a copy to avoid mutating the original array
+									.sort((a, b) => {
+										// Use categoryOrder mapping, defaulting to 999 if category is unrecognized
+										const orderA = categoryOrder[a.category] ?? 999;
+										const orderB = categoryOrder[b.category] ?? 999;
+										return orderA - orderB;
+									})
+									.map((image, index) => (
+										<div key={index} className="flex flex-col items-center">
+											<img 
+												src={image.url} 
+												alt={image.category} 
+												className="w-full h-64 object-cover mb-2"
+											/>
+											<p className="text-sm text-gray-600">{image.category}</p>
+										</div>
+								))}
+                        </div>
+							// <div className="grid grid-cols-2 gap-0">
+							// 	{scaffoldGroup.images.map((image, index) => (
+							// 		<div key={index} className="flex flex-col items-center">
+							// 			<img 
+							// 				src={image.url} 
+							// 				alt={image.category} 
+							// 				className="w-full h-auto max-h-48 object-contain mb-2"
+							// 			/>
+							// 			<p className="text-sm text-gray-600">{image.category}</p>
+							// 		</div>
+							// 	))}
+							// </div>
+						) : (
+							<p className="text-sm text-gray-500 italic">No figures added</p>
+						)}
 					</div>
 					<div className="flex-1 p-4">
 						<div className="flex flex-wrap mb-4">

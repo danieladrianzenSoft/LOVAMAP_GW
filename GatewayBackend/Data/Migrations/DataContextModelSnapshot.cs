@@ -42,6 +42,12 @@ namespace Data.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("text");
+
                     b.Property<string>("Label")
                         .IsRequired()
                         .HasColumnType("text");
@@ -50,10 +56,15 @@ namespace Data.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int?>("PublicationId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Unit")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("PublicationId");
 
                     b.ToTable("DescriptorTypes");
                 });
@@ -138,6 +149,9 @@ namespace Data.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("Category")
+                        .HasColumnType("integer");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
@@ -148,8 +162,15 @@ namespace Data.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("ScaffoldId")
+                    b.Property<int>("ScaffoldGroupId")
                         .HasColumnType("integer");
+
+                    b.Property<int?>("ScaffoldId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("UploaderId")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("Url")
                         .IsRequired()
@@ -157,7 +178,11 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ScaffoldGroupId");
+
                     b.HasIndex("ScaffoldId");
+
+                    b.HasIndex("UploaderId");
 
                     b.ToTable("Images");
                 });
@@ -314,6 +339,10 @@ namespace Data.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Doi")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("Journal")
                         .IsRequired()
@@ -667,6 +696,16 @@ namespace Data.Migrations
                     b.ToTable("UserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Data.Models.DescriptorType", b =>
+                {
+                    b.HasOne("Data.Models.Publication", "Publication")
+                        .WithMany("DescriptorTypes")
+                        .HasForeignKey("PublicationId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("Publication");
+                });
+
             modelBuilder.Entity("Data.Models.DescriptorTypeDownload", b =>
                 {
                     b.HasOne("Data.Models.DescriptorType", "DescriptorType")
@@ -718,13 +757,28 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Data.Models.Image", b =>
                 {
+                    b.HasOne("Data.Models.ScaffoldGroup", "ScaffoldGroup")
+                        .WithMany("Images")
+                        .HasForeignKey("ScaffoldGroupId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .IsRequired();
+
                     b.HasOne("Data.Models.Scaffold", "Scaffold")
                         .WithMany("Images")
                         .HasForeignKey("ScaffoldId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.HasOne("Data.Models.User", "Uploader")
+                        .WithMany("UploadedImages")
+                        .HasForeignKey("UploaderId")
                         .OnDelete(DeleteBehavior.SetNull)
                         .IsRequired();
 
                     b.Navigation("Scaffold");
+
+                    b.Navigation("ScaffoldGroup");
+
+                    b.Navigation("Uploader");
                 });
 
             modelBuilder.Entity("Data.Models.InputGroup", b =>
@@ -928,6 +982,8 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Data.Models.Publication", b =>
                 {
+                    b.Navigation("DescriptorTypes");
+
                     b.Navigation("ScaffoldGroups");
                 });
 
@@ -948,7 +1004,10 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Data.Models.ScaffoldGroup", b =>
                 {
-                    b.Navigation("InputGroup");
+                    b.Navigation("Images");
+
+                    b.Navigation("InputGroup")
+                        .IsRequired();
 
                     b.Navigation("Scaffolds");
                 });
@@ -963,6 +1022,8 @@ namespace Data.Migrations
                     b.Navigation("Downloads");
 
                     b.Navigation("ScaffoldGroups");
+
+                    b.Navigation("UploadedImages");
                 });
 #pragma warning restore 612, 618
         }

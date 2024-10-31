@@ -18,14 +18,16 @@ public class ScaffoldGroupsController : ControllerBase
 {
     private readonly ILogger<ScaffoldGroupsController> _logger;
     private readonly IScaffoldGroupService _scaffoldGroupService;
+	private readonly IImageService _imageService;
 	private readonly IUserService _userService;
 
     public ScaffoldGroupsController(ILogger<ScaffoldGroupsController> logger, 
-		IScaffoldGroupService scaffoldGroupService,
+		IScaffoldGroupService scaffoldGroupService, IImageService imageService,
 		IUserService userService)
     {
         _scaffoldGroupService = scaffoldGroupService;
 		_userService = userService;
+		_imageService = imageService;
 		_logger = logger;
     }
 
@@ -181,8 +183,81 @@ public class ScaffoldGroupsController : ControllerBase
 		catch (Exception ex)
 		{
 			_logger.LogError(ex, "Failed to get the scaffold groups");
-        	return StatusCode(500, new ApiResponse<string>(500, "An error occurred while getting the scaffold grous"));
+        	return StatusCode(500, new ApiResponse<string>(500, "An error occurred while getting the scaffold groups"));
 		}
     }
+
+	[HttpPost("{scaffoldGroupId}/image")]
+	public async Task<IActionResult> UploadImageForScaffoldGroup(int scaffoldGroupId, [FromForm] ImageForCreationDto imageToUpload)
+	{
+		try
+		{
+			var currentUserId = _userService.GetCurrentUserId();
+
+			if (currentUserId == null) return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
+
+			var (succeeded, errorMessage, image) = await _imageService.UploadImage(imageToUpload, currentUserId);
+
+			if (!succeeded) {
+				return BadRequest(new ApiResponse <string>(400, errorMessage));
+			}
+
+			return Ok(new ApiResponse<ImageToShowDto>(200, "", image));
+		}
+		catch (Exception ex)
+		{
+			
+			_logger.LogError(ex, "Failed to upload the scaffold group image");
+        	return StatusCode(500, new ApiResponse<string>(500, "An error occurred while uploading the image"));
+		}
+	}
+
+	[HttpPut("{scaffoldGroupId}/image/{imageId}")]
+	public async Task<IActionResult> UpdateScaffoldGroupImage(int scaffoldGroupId, [FromBody] ImageToUpdateDto imageToUpdate)
+	{
+		try
+		{
+			var currentUserId = _userService.GetCurrentUserId();
+			if (currentUserId == null) return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
+
+			var (succeeded, errorMessage, scaffoldGroup) = await _scaffoldGroupService.UpdateScaffoldGroupImage(currentUserId, scaffoldGroupId, imageToUpdate);
+
+			if (!succeeded && errorMessage == "Unauthorized") return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
+
+			if (!succeeded) return NotFound(new ApiResponse<string>(404, errorMessage));
+
+			return Ok(new ApiResponse<ScaffoldGroupSummaryDto>(200, "", scaffoldGroup));
+		}
+		catch (Exception ex)
+		{
+			_logger.LogError(ex, "Failed to upload the scaffold group image");
+        	return StatusCode(500, new ApiResponse<string>(500, "An error occurred while uploading the image"));
+		}
+	}
+
+	[HttpDelete("{scaffoldGroupId}/image/{imageId}")]
+	public async Task<IActionResult> DeleteScaffoldGroupImage(int scaffoldGroupId, int imageId)
+	{
+		try
+		{
+			var currentUserId = _userService.GetCurrentUserId();
+			if (currentUserId == null) return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
+
+			var (succeeded, ErrorMessage) = await _imageService.DeleteImage(imageId, currentUserId);
+
+			if (!succeeded && ErrorMessage == "Unauthorized") return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
+
+			if (!succeeded && ErrorMessage == "Not_Found") return NotFound(new ApiResponse<string>(404, "The image was not found"));
+			if (!succeeded) return BadRequest(new ApiResponse<string>(400, "Unknown error"));
+
+			return Ok(new ApiResponse<bool>(200, "", succeeded));
+		}
+		catch (Exception ex)
+		{
+			_logger.LogError(ex, "Failed to delete the scaffold group image");
+        	return StatusCode(500, new ApiResponse<string>(500, "An error occurred deleting the image"));
+		}
+	}
+
 
 }
