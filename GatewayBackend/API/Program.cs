@@ -119,8 +119,13 @@ using (var scope = scopeFactory.CreateScope())
 
 app.UseHttpsRedirection();
 
+app.UseDefaultFiles(); // Serves `index.html` by default
+app.UseStaticFiles();  // Serves files from the `wwwroot` directory
+
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.MapFallbackToFile("index.html");
 
 app.MapControllers();
 
