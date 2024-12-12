@@ -51,7 +51,6 @@ export default class ScaffoldGroupStore {
 				queryParams = '?' + queryParams
 			}
 
-			console.log(queryParams);
 			const response = await agent.ScaffoldGroups.getDetailedForExperiment(queryParams);
 
 			// runInAction(() => {

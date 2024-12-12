@@ -6,7 +6,7 @@ import { displayNameMap, GroupedDescriptorTypes } from "../../app/models/descrip
 // import ScaffoldGroupFilters from "../scaffold-groups/scaffold-group-filter";
 // import ScaffoldGroupCard from "../scaffold-groups/scaffold-group-card";
 
-const CreateExperiments = () => {
+const LearnScreen = () => {
 	const {resourceStore} = useStore();
 	const {getDescriptorTypes} = resourceStore;
 
@@ -32,57 +32,6 @@ const CreateExperiments = () => {
 
     const categoryOrder = ["Global", "Pore", "Other"];
 
-    // useEffect(() => {
-    //     const updateNumberOfColumns = () => {
-    //         const width = window.innerWidth;
-    //         if (width < 640) setNumberOfColumns(1);
-    //         else if (width < 768) setNumberOfColumns(2);
-    //         else setNumberOfColumns(3);
-    //     };
-    //     window.addEventListener('resize', updateNumberOfColumns);
-    //     updateNumberOfColumns();
-    //     return () => window.removeEventListener('resize', updateNumberOfColumns);
-    // }, []);
-
-    // const toggleDetails = (id: number) => {
-    //     setVisibleDetails(prev => prev === id ? null : id);
-    // };
-
-    //https://res.cloudinary.com/<cloud_name>/<asset_type>/<delivery_type>/<transformations>/<version>/<public_id>.<extension>
-    // const descriptors = [
-    //     {
-    //         name: 'Average internal diameter (µm)',
-    //         // https://res.cloudinary.com/hospitalsolidario/image/upload/v1727662561/jmlmhcyabbj3ompbqnbx.png
-    //         imgSrc: 'https://res.cloudinary.com/magsoft-images/image/upload/cjrenphjercsdybjsitm.png', // Placeholder image URL
-    //         explanation: 'Average thickness (in µm) along 1D ridges that are contained entirely within a 3D pore',
-    //         publication: 'Nature Computational Science, doi: 10349823984'
-    //     },
-    //     {
-    //         name: 'Largest enclosed spheres diameter (µm)',
-    //         imgSrc: 'https://res.cloudinary.com/magsoft-images/image/upload/eokuy5wrd3pmyvdisrhn.png', // Placeholder image URL
-    //         explanation: 'Diameter (in µm) of the largest sphere that can fit entirely within a 3D pore',
-    //         publication: 'Small, doi: 10349823984'
-    //     },
-    //     {
-    //         name: 'Number of 3D pores',
-    //         imgSrc: 'https://res.cloudinary.com/magsoft-images/image/upload/t1ciq742wweuau1cjksd.png', // Placeholder image URL
-    //         explanation: 'The total number of 3D pores - both interior and surface pores',
-    //         publication: 'Nature Computational Science, doi: 10349823984'
-    //     },
-    //     {
-    //         name: 'Volume (pL)',
-    //         imgSrc: 'https://res.cloudinary.com/magsoft-images/image/upload/bnuhob6akrjae4s67sb5.png', // Placeholder image URL
-    //         explanation: 'Volume of a 3D pore, reported in pL',
-    //         publication: 'Nature Computational Science, doi: 10349823984'
-    //     },
-    //     {
-    //         name: 'Void volume fraction',
-    //         imgSrc: 'https://res.cloudinary.com/magsoft-images/image/upload/pbtlchvnkmqz42fdi4je.png', // Placeholder image URL
-    //         explanation: 'Volume of void space divided by the total volume of the scaffold. We define "void space" as the non-particle voxels contained.',
-    //         publication: 'Small, doi: 10349823984'
-    //     }
-    // ];
-
     return (
         <div className={`container mx-auto py-8 px-2`}>
             
@@ -104,23 +53,29 @@ const CreateExperiments = () => {
                                 <table className="min-w-full border-collapse">
                                 <thead>
                                     <tr>
-                                        <th className="px-4 py-2 text-left font-normal">Name</th>
-                                        <th className="px-4 py-2 text-left font-normal">Visualization</th>
-                                        <th className="px-4 py-2 text-left font-normal">Explanation</th>
-                                        <th className="px-4 py-2 text-left font-normal">Publication</th>
+                                        {/* <th className="px-4 py-2 text-left font-normal">Name</th> */}
+                                        <th className="px-4 py-2 text-left font-normal" style={{ width: '15%' }}>Name</th>
+
+                                        {/* <th className="px-4 py-2 text-left font-normal">Visualization</th> */}
+                                        <th className="px-4 py-2 text-left font-normal" style={{ width: '25%' }}>Visualization</th>
+                                        {/* <th className="px-4 py-2 text-left font-normal">Explanation</th> */}
+                                        <th className="px-4 py-2 text-left font-normal" style={{ width: '40%' }}>Explanation</th>
+
+                                        {/* <th className="px-4 py-2 text-left font-normal">Publication</th> */}
+                                        <th className="px-4 py-2 text-left font-normal" style={{ width: '20%' }}>Publication</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {descriptorTypes.map((descriptor,index) => 
                                         <tr key={index} className="border-t border-gray-300">
-                                            <td className="px-4 py-2 border-l border-gray-300 whitespace-normal">
+                                            <td className="px-4 py-2 border-l border-gray-300 whitespace-normal" style={{ width: '15%' }}>
                                                 <div className="max-w-[150px]">
                                                     {descriptor.label}
                                                 </div>
                                             </td>
 
                                             {/* <td className="px-4 py-2 border-l border-gray-300">{descriptor.label}</td> */}
-                                            <td className="px-4 py-2">
+                                            {/* <td className="px-4 py-2">
                                                 <div className="max-w-[300px]">
                                                     <img
                                                         src={descriptor.imageUrl ? descriptor.imageUrl : 'https://via.placeholder.com/150'}
@@ -128,9 +83,19 @@ const CreateExperiments = () => {
                                                         className="w-full max-w-[300px] h-auto object-contain"
                                                     />
                                                 </div>
+                                            </td> */}
+                                            <td className="px-4 py-2" style={{ width: '25%' }}>
+                                                <div className="w-full">
+                                                    <img
+                                                        src={descriptor.imageUrl ? descriptor.imageUrl : 'https://res.cloudinary.com/magsoft-images/image/upload/v1730398715/angellovamap.png'}
+                                                        alt={descriptor.name}
+                                                        className="w-full h-auto object-contain"
+                                                        style={{ maxWidth: '100%', display: 'block' }} // Ensures the image scales within its container
+                                                    />
+                                                </div>
                                             </td>
-                                            <td className="px-4 py-2">{descriptor.description}</td>
-                                            <td className="px-4 py-2 border-r border-gray-300">{descriptor.publication}</td>
+                                            <td className="px-4 py-2" style={{ width: '40%' }}>{descriptor.description}</td>
+                                            <td className="px-4 py-2 border-r border-gray-300" style={{ width: '20%' }}>{descriptor.publication}</td>
                                         </tr>
                                     )}
                                 </tbody>
@@ -141,4 +106,4 @@ const CreateExperiments = () => {
     );
 };
 
-export default observer(CreateExperiments);
+export default observer(LearnScreen);

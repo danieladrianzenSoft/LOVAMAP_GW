@@ -674,8 +674,6 @@ export function downloadExperimentsAsExcel(
         });
     };
 
-    console.log(options);
-
     if (
         options.stackedColumnOption === 'True' &&
         options.excelFileOption === 'Scaffold Replicates' &&
