@@ -7,8 +7,9 @@ import { Tag } from "../models/tag";
 import { ScaffoldGroup, ScaffoldGroupToCreate } from "../models/scaffoldGroup";
 import { DescriptorType } from "../models/descriptorType";
 import { Image, ImageToCreate, ImageToUpdate } from "../models/image";
+import environment from "../environments/environment"
 
-axios.defaults.baseURL = 'https://localhost:44381/api';
+axios.defaults.baseURL = environment.baseUrl;
 
 axios.interceptors.request.use(async (config) => {
     const token = store.commonStore.getAccessToken;
