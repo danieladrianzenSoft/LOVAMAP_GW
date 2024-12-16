@@ -73,7 +73,7 @@ const LearnScreen = () => {
                             {groupedDescriptorTypes[activeTab].map((descriptor, index) => (
                                 <tr key={index} className="border-t border-gray-300 last:border-b">
                                     <td className="px-4 py-2 border-l border-gray-300 whitespace-normal" style={{ width: "15%" }}>
-                                        <div className="max-w-[150px]">{descriptor.label}</div>
+                                        <div className="max-w-[150px]">{descriptor.tableLabel}</div>
                                     </td>
                                     <td className="px-4 py-2" style={{ width: "25%" }}>
                                         <div className="w-full">

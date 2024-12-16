@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "NnZ3xKtyZhhSgpST5LuHXlaisfIGYq2VUj7p18P9gVk=",
+  "Hash": "wC7yA8KLRVacYLh+swDx3BUFD0H3h6lEtg4Dr3VVvvs=",
   "Source": "API",
   "BasePath": "_content/API",
   "Mode": "Default",
@@ -150,12 +150,12 @@
       "OriginalItemSpec": "wwwroot/robots.txt"
     },
     {
-      "Identity": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/wwwroot/static/css/main.33993083.css",
+      "Identity": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/wwwroot/static/css/main.8dcfdd9c.css",
       "SourceId": "API",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/wwwroot/",
       "BasePath": "_content/API",
-      "RelativePath": "static/css/main.33993083.css",
+      "RelativePath": "static/css/main.8dcfdd9c.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -166,15 +166,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/static/css/main.33993083.css"
+      "OriginalItemSpec": "wwwroot/static/css/main.8dcfdd9c.css"
     },
     {
-      "Identity": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/wwwroot/static/css/main.33993083.css.map",
+      "Identity": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/wwwroot/static/css/main.8dcfdd9c.css.map",
       "SourceId": "API",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/wwwroot/",
       "BasePath": "_content/API",
-      "RelativePath": "static/css/main.33993083.css.map",
+      "RelativePath": "static/css/main.8dcfdd9c.css.map",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -185,7 +185,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/static/css/main.33993083.css.map"
+      "OriginalItemSpec": "wwwroot/static/css/main.8dcfdd9c.css.map"
     },
     {
       "Identity": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/wwwroot/static/js/453.910a7fd8.chunk.js",
@@ -226,12 +226,12 @@
       "OriginalItemSpec": "wwwroot/static/js/453.910a7fd8.chunk.js.map"
     },
     {
-      "Identity": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/wwwroot/static/js/main.412ae1ad.js",
+      "Identity": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/wwwroot/static/js/main.8638006b.js",
       "SourceId": "API",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/wwwroot/",
       "BasePath": "_content/API",
-      "RelativePath": "static/js/main.412ae1ad.js",
+      "RelativePath": "static/js/main.8638006b.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -242,15 +242,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/static/js/main.412ae1ad.js"
+      "OriginalItemSpec": "wwwroot/static/js/main.8638006b.js"
     },
     {
-      "Identity": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/wwwroot/static/js/main.412ae1ad.js.LICENSE.txt",
+      "Identity": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/wwwroot/static/js/main.8638006b.js.LICENSE.txt",
       "SourceId": "API",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/wwwroot/",
       "BasePath": "_content/API",
-      "RelativePath": "static/js/main.412ae1ad.js.LICENSE.txt",
+      "RelativePath": "static/js/main.8638006b.js.LICENSE.txt",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -261,15 +261,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/static/js/main.412ae1ad.js.LICENSE.txt"
+      "OriginalItemSpec": "wwwroot/static/js/main.8638006b.js.LICENSE.txt"
     },
     {
-      "Identity": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/wwwroot/static/js/main.412ae1ad.js.map",
+      "Identity": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/wwwroot/static/js/main.8638006b.js.map",
       "SourceId": "API",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/wwwroot/",
       "BasePath": "_content/API",
-      "RelativePath": "static/js/main.412ae1ad.js.map",
+      "RelativePath": "static/js/main.8638006b.js.map",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -280,7 +280,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/static/js/main.412ae1ad.js.map"
+      "OriginalItemSpec": "wwwroot/static/js/main.8638006b.js.map"
     },
     {
       "Identity": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/wwwroot/static/media/LOVAMAP_logo.224b74fa5e9206853d17.png",

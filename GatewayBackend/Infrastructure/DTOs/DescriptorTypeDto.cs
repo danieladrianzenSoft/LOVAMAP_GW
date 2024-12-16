@@ -7,6 +7,7 @@ namespace Infrastructure.DTOs
 		public int Id { get; set; }
 		public string Name { get; set; } = null!;
 		public string Label { get; set; } = null!;
+		public string TableLabel { get; set; } = null!;
 		public string Category { get; set; } = null!;
 		public string? Unit { get; set; }
 		public string DataType { get; set; } = null!;

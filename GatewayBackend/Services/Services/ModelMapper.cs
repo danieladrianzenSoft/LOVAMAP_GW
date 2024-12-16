@@ -464,6 +464,7 @@ namespace Services.Services
                 DescriptorTypeId = global.DescriptorTypeId,
                 Name = global.DescriptorType?.Name ?? "N/A",
                 Label = global.DescriptorType?.Label ?? "N/A",
+                TableLabel = global.DescriptorType?.TableLabel ?? "N/A",
                 Unit = global.DescriptorType?.Unit ?? "N/A",
                 Values = global.ValueString ?? global.ValueInt?.ToString() ?? global.ValueDouble?.ToString() ?? "N/A"
             };
@@ -476,6 +477,7 @@ namespace Services.Services
                 DescriptorTypeId = pore.DescriptorTypeId,
                 Name = pore.DescriptorType?.Name ?? "N/A",
                 Label = pore.DescriptorType?.Label ?? "N/A",
+                TableLabel = pore.DescriptorType?.TableLabel ?? "N/A",
                 Unit = pore.DescriptorType?.Unit ?? "N/A",
                 Values = JsonDocumentToString(pore.Values)
             };
@@ -488,6 +490,7 @@ namespace Services.Services
                 DescriptorTypeId = other.DescriptorTypeId,
                 Name = other.DescriptorType?.Name ?? "N/A",
                 Label = other.DescriptorType?.Label ?? "N/A",
+                TableLabel = other.DescriptorType?.TableLabel ?? "N/A",
                 Unit = other.DescriptorType?.Unit ?? "N/A",
                 Values = JsonDocumentToString(other.Values)
             };
@@ -509,6 +512,7 @@ namespace Services.Services
             {
                 Id = descriptorType.Id,
                 Name = descriptorType.Name,
+                TableLabel = descriptorType.TableLabel,
                 Label = descriptorType.Label,
                 Category = descriptorType.Category,
                 Unit = descriptorType.Unit,

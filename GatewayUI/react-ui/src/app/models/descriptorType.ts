@@ -4,6 +4,7 @@ export interface DescriptorType {
     description: string;
     imageUrl: string;
     label: string;
+    tableLabel: string;
 	category: string;
     unit: string;
     dataType: string;
