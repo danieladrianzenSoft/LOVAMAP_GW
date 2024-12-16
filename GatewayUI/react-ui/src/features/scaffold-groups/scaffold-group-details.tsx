@@ -70,7 +70,7 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 											<p className="text-sm text-gray-600">{image.category}</p>
 										</div>
 								))}
-                        </div>
+                        	</div>
 							// <div className="grid grid-cols-2 gap-0">
 							// 	{scaffoldGroup.images.map((image, index) => (
 							// 		<div key={index} className="flex flex-col items-center">

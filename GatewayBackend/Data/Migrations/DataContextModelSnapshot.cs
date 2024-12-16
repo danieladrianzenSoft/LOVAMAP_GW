@@ -35,6 +35,9 @@ namespace Data.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("Comments")
+                        .HasColumnType("text");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
@@ -58,6 +61,13 @@ namespace Data.Migrations
 
                     b.Property<int?>("PublicationId")
                         .HasColumnType("integer");
+
+                    b.Property<string>("SubCategory")
+                        .HasColumnType("text");
+
+                    b.Property<string>("TableLabel")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("Unit")
                         .HasColumnType("text");

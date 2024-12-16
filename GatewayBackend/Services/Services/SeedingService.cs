@@ -7,6 +7,8 @@ using Microsoft.EntityFrameworkCore;
 using Data;
 using Infrastructure.DTOs;
 using Services.IServices;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.Extensions.Configuration;
 
 namespace Services.Services
 {
@@ -16,6 +18,7 @@ namespace Services.Services
 		private readonly IRoleService _roleService;
 		private readonly ITagService _tagService;
 		private readonly IUserService _userService;
+		private readonly IConfiguration _configuration;
 		private readonly IDescriptorService _descriptorService;
 		private readonly DataContext _context;
 		private readonly ILogger<SeedingService> _logger;
@@ -28,6 +31,7 @@ namespace Services.Services
 			ITagService tagService,
 			IUserService userService,
 			IDescriptorService descriptorService,
+			IConfiguration configuration,
 			DataContext context,
 			ILogger<SeedingService> logger)
 		{
@@ -36,6 +40,7 @@ namespace Services.Services
 			_tagService = tagService;
 			_userService = userService;
 			_descriptorService = descriptorService;
+			_configuration = configuration;
 			_context = context;
 			_logger = logger;
 
@@ -55,7 +60,7 @@ namespace Services.Services
 				await SeedUsersAsync();
 				await SeedDescriptorTypesAsync();
 				await SeedTagsAsync();
-				await SeedScaffoldGroupsAsync();
+				// await SeedScaffoldGroupsAsync();
 			}
 			catch (Exception ex)
 			{
@@ -81,10 +86,17 @@ namespace Services.Services
 			if (await _context.Users.AnyAsync() == false){
 				var userDataFile = "Users.json";
 				var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-				if (env == "Production")
+            	var adminPassword = _configuration["AdminPassword"]; // Fetch AdminPassword from appsettings.json
+
+				// if (env == "Production")
+				// {
+				// 	userDataFile = "UsersProduction.json";
+				// }
+				if (string.IsNullOrEmpty(adminPassword))
 				{
-					userDataFile = "UsersProduction.json";
+					throw new ApplicationException("AdminPassword environment variable is not set.");
 				}
+
 				var userData = File.ReadAllText(baseUrl + userDataFile);
 				var usersToCreate = JsonSerializer.Deserialize<List<UserToCreateDto>>(userData, _jsonSerializerOptions);
 				if (usersToCreate == null) {
@@ -92,9 +104,13 @@ namespace Services.Services
 				}
 				foreach (var userToCreate in usersToCreate)
 				{
+					if (userToCreate.Email == "admin@lovamap.com")
+					{
+						userToCreate.Password = adminPassword;
+					}
 					var (succeeded, errorMessage, user) = await _userService.CreateUser(userToCreate);
 					if (!succeeded || user == null) {
-						throw new ApplicationException("Failed to create user");
+						throw new ApplicationException($"Failed to create user: {errorMessage}");
 
 					}
 					if (user.Email == "admin@lovamap.com")

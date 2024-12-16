@@ -204,9 +204,15 @@ namespace Services.Services
             {
                 Name = dto.Name,
                 Label = dto.Label,
+                TableLabel = dto.TableLabel,
                 Category = dto.Category,
+                SubCategory = dto.SubCategory,
+                ImageUrl = dto.ImageUrl,
+                Comments = dto.Comments,
                 Unit = dto.Unit,
                 DataType = dto.DataType,
+                Description = dto.Description,
+                PublicationId = dto.PublicationId
             };
         }
 

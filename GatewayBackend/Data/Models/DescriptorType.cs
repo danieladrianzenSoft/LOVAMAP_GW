@@ -7,7 +7,10 @@ namespace Data.Models
 		public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 		public string Name { get; set; } = null!;
 		public string Label { get; set; } = null!;
+		public string TableLabel { get; set; } = null!;
 		public string Category { get; set; } = null!;
+		public string? SubCategory { get; set; }
+		public string? Comments { get; set; }
 		public string? Unit { get; set; }
 		public string DataType { get; set; } = null!;
 		public string? ImageUrl { get; set; }
