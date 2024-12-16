@@ -7,8 +7,11 @@ import ToastNotification from "../../app/common/notification/toast-notification"
 import { FaSpinner, FaPlus, FaStar, FaRegStar, FaTimes } from 'react-icons/fa';
 import { Image, ImageToCreate, ImageToUpdate } from '../../app/models/image';
 import { ScaffoldGroup } from '../../app/models/scaffoldGroup';
+import { useDescriptorTypes } from '../../app/common/hooks/useDescriptorTypes';
+import { processExcelFile } from '../../app/common/excel-processor/excel-processor';
 
 const ScaffoldGroupUploads: React.FC = () => {
+    const { descriptorTypes, loading: descriptorTypesLoading, error: descriptorTypesError } = useDescriptorTypes();
     const { scaffoldGroupStore } = useStore();
     const { getUploadedScaffoldGroups, uploadedScaffoldGroups = [], updateImage, deleteImage } = scaffoldGroupStore;
 
@@ -27,10 +30,36 @@ const ScaffoldGroupUploads: React.FC = () => {
         fetchUploadedScaffoldGroups();
     }, [getUploadedScaffoldGroups]);
 
+    // Utility function to trigger JSON download
+    const triggerJsonDownload = (jsonObject: any, fileName: string) => {
+        const jsonBlob = new Blob([JSON.stringify(jsonObject, null, 2)], { type: "application/json" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(jsonBlob);
+        link.download = fileName;
+        link.click();
+    };
+
     const handleUploadSubmitFile = async (files: File[]) => {
         try {
-            const jsonFiles = files.filter(file => file.type === 'application/json');
+            // Handle Excel files
+            const excelFiles = files.filter(file => file.name.endsWith(".xlsx") || file.name.endsWith(".xls"));
+            if (excelFiles.length > 0) {
+                if (!descriptorTypes || descriptorTypes.length === 0) {
+                    alert("Descriptor types are not available. Cannot process Excel files.");
+                    return;
+                }
+                await Promise.all(
+                    excelFiles.map(async (file) => {
+                        const outputJson =  await processExcelFile(file, descriptorTypes); // Use descriptorTypes
+                        const fileName = `${file.name.replace(/\.[^/.]+$/, "")}_output.json`; // Generate file name
+                        triggerJsonDownload(outputJson, fileName);
+                    })
+                );
+            }
+
             // Handle JSON uploads
+            const jsonFiles = files.filter(file => file.type === 'application/json');
+            
             if (jsonFiles.length > 0) {
                 const parsedJson = await Promise.all(jsonFiles.map(file => file.text().then(JSON.parse)));
                 const combinedJson = parsedJson.flat();
@@ -136,13 +165,14 @@ const ScaffoldGroupUploads: React.FC = () => {
     return (
         <div className={`container mx-auto py-8 px-2`}>
             <div className="text-3xl text-gray-700 font-bold mb-12">Uploaded scaffolds</div>
-
             <UploadFile
-                acceptedFileTypes={{ 'application/json': ['.json'] }}
+                acceptedFileTypes={{ 
+                    'application/json': ['.json'],
+                    'application/vnd.ms-excel': [".xls", ".xlsx"],
+                 }}
                 onUploadSubmit={handleUploadSubmitFile}
                 onUploadError={handleUploadError}
             />
-
             {isLoading ? (
                 <div className="flex justify-center items-center py-8">
                     <FaSpinner className="animate-spin" size={40} />

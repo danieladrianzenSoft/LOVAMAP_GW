@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "wC7yA8KLRVacYLh+swDx3BUFD0H3h6lEtg4Dr3VVvvs=",
+  "Hash": "cPbvNXh1CA0D7tpRapuUQJzsKQfYpIzjYeYX07/yrvc=",
   "Source": "API",
   "BasePath": "_content/API",
   "Mode": "Default",
@@ -226,12 +226,12 @@
       "OriginalItemSpec": "wwwroot/static/js/453.910a7fd8.chunk.js.map"
     },
     {
-      "Identity": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/wwwroot/static/js/main.8638006b.js",
+      "Identity": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/wwwroot/static/js/main.9efb658e.js",
       "SourceId": "API",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/wwwroot/",
       "BasePath": "_content/API",
-      "RelativePath": "static/js/main.8638006b.js",
+      "RelativePath": "static/js/main.9efb658e.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -242,15 +242,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/static/js/main.8638006b.js"
+      "OriginalItemSpec": "wwwroot/static/js/main.9efb658e.js"
     },
     {
-      "Identity": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/wwwroot/static/js/main.8638006b.js.LICENSE.txt",
+      "Identity": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/wwwroot/static/js/main.9efb658e.js.LICENSE.txt",
       "SourceId": "API",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/wwwroot/",
       "BasePath": "_content/API",
-      "RelativePath": "static/js/main.8638006b.js.LICENSE.txt",
+      "RelativePath": "static/js/main.9efb658e.js.LICENSE.txt",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -261,15 +261,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/static/js/main.8638006b.js.LICENSE.txt"
+      "OriginalItemSpec": "wwwroot/static/js/main.9efb658e.js.LICENSE.txt"
     },
     {
-      "Identity": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/wwwroot/static/js/main.8638006b.js.map",
+      "Identity": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/wwwroot/static/js/main.9efb658e.js.map",
       "SourceId": "API",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/wwwroot/",
       "BasePath": "_content/API",
-      "RelativePath": "static/js/main.8638006b.js.map",
+      "RelativePath": "static/js/main.9efb658e.js.map",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -280,7 +280,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/static/js/main.8638006b.js.map"
+      "OriginalItemSpec": "wwwroot/static/js/main.9efb658e.js.map"
     },
     {
       "Identity": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/wwwroot/static/media/LOVAMAP_logo.224b74fa5e9206853d17.png",

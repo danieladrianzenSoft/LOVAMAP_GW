@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/static/css/main.8dcfdd9c.css",
-    "main.js": "/static/js/main.9efb658e.js",
+    "main.js": "/static/js/main.d6279cd0.js",
     "static/js/453.910a7fd8.chunk.js": "/static/js/453.910a7fd8.chunk.js",
     "static/media/LOVAMAP_logo.png": "/static/media/LOVAMAP_logo.224b74fa5e9206853d17.png",
     "index.html": "/index.html",
     "main.8dcfdd9c.css.map": "/static/css/main.8dcfdd9c.css.map",
-    "main.9efb658e.js.map": "/static/js/main.9efb658e.js.map",
+    "main.d6279cd0.js.map": "/static/js/main.d6279cd0.js.map",
     "453.910a7fd8.chunk.js.map": "/static/js/453.910a7fd8.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.8dcfdd9c.css",
-    "static/js/main.9efb658e.js"
+    "static/js/main.d6279cd0.js"
   ]
 }

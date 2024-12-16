@@ -1,8 +1,11 @@
 import { makeAutoObservable } from "mobx";
 import agent from "../api/agent";
 import { Tag } from "../models/tag";
+import { DescriptorType } from "../models/descriptorType";
 
 export default class ResourceStore {
+	descriptorTypes: DescriptorType[] = [];
+    isFetchingDescriptorTypes: boolean = false;
 	tags: Tag[] | null = null;
 
 	constructor() {
@@ -22,14 +25,34 @@ export default class ResourceStore {
 		}
 	}
 
+	// getDescriptorTypes = async () => {
+	// 	try {
+	// 		const response = await agent.Resources.getDescriptorTypes();
+	// 		return response.data;
+	// 	} catch (error) {
+	// 		console.error(error)
+	// 	}
+	// }
 	getDescriptorTypes = async () => {
-		try {
-			const response = await agent.Resources.getDescriptorTypes();
-			return response.data;
-		} catch (error) {
-			console.error(error)
-		}
-	}
+        if (this.descriptorTypes.length > 0) {
+            // If cached, return the cached descriptorTypes
+            return this.descriptorTypes;
+        }
+
+        this.isFetchingDescriptorTypes = true;
+
+        try {
+            const response = await agent.Resources.getDescriptorTypes();
+            this.descriptorTypes = response.data || [];
+        } catch (error) {
+            console.error("Error fetching descriptor types:", error);
+            this.descriptorTypes = [];
+        } finally {
+            this.isFetchingDescriptorTypes = false;
+        }
+
+        return this.descriptorTypes;
+    };
 
 
 	

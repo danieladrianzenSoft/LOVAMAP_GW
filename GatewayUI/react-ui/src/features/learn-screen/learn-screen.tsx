@@ -4,31 +4,27 @@ import { useStore } from "../../app/stores/store";
 import { displayNameMap, GroupedDescriptorTypes } from "../../app/models/descriptorType";
 import ReactMarkdown from "react-markdown";
 import rehypeSanitize from "rehype-sanitize";
+import { useDescriptorTypes } from "../../app/common/hooks/useDescriptorTypes";
 
 const LearnScreen = () => {
-	const {resourceStore} = useStore();
-	const {getDescriptorTypes} = resourceStore;
+    const { descriptorTypes, loading, error } = useDescriptorTypes(); // Use the hook
     const [activeTab, setActiveTab] = useState("Global"); // Default active tab is "Global"
 
 	const [groupedDescriptorTypes, setGroupedDescriptorTypes] = useState<GroupedDescriptorTypes>({});
-	useEffect(() => {
-        getDescriptorTypes().then(fetchedDescriptors => {
-			// console.log(fetchedDescriptors)
-            if (fetchedDescriptors) {
-                const groups = fetchedDescriptors.reduce<GroupedDescriptorTypes>((acc, descriptorType) => {
-                    const groupKey = descriptorType.category;
-                    if (displayNameMap[groupKey]) {
-                        acc[groupKey] = acc[groupKey] || [];
-                        acc[groupKey].push(descriptorType);
-                    }
-                    return acc;
-                }, {});
-                setGroupedDescriptorTypes(groups);
-            }
-        }).catch(error => {
-            console.error("Error fetching descriptor types:", error);
-        });
-    }, [getDescriptorTypes]);
+
+    useEffect(() => {
+        if (descriptorTypes.length > 0) {
+            const groups = descriptorTypes.reduce<GroupedDescriptorTypes>((acc, descriptorType) => {
+                const groupKey = descriptorType.category;
+                if (displayNameMap[groupKey]) {
+                    acc[groupKey] = acc[groupKey] || [];
+                    acc[groupKey].push(descriptorType);
+                }
+                return acc;
+            }, {});
+            setGroupedDescriptorTypes(groups);
+        }
+    }, [descriptorTypes]);
 
     const categoryOrder = ["Global", "Pore", "Other"];
 

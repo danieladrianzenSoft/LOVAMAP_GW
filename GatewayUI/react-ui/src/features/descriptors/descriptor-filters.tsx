@@ -4,6 +4,7 @@ import { useStore } from "../../app/stores/store";
 // import { GroupedTags, Tag, displayNameMap } from "../../app/models/tag";
 import MultiSelectDropdown from "../../app/common/form/multiselect-dropdown";
 import { DescriptorType, GroupedDescriptorTypes, displayNameMap } from "../../app/models/descriptorType";
+import { useDescriptorTypes } from "../../app/common/hooks/useDescriptorTypes";
 
 interface DescriptorFiltersProps {
 	onSelect: (descriptorType: DescriptorType) => void;
@@ -11,32 +12,22 @@ interface DescriptorFiltersProps {
 }
 
 const DescriptorFilters: React.FC<DescriptorFiltersProps> = ({onSelect, selectedDescriptorTypes}) => {
-	const {resourceStore} = useStore();
-	const {getDescriptorTypes} = resourceStore;
-
+	const { descriptorTypes, loading, error } = useDescriptorTypes(); // Use the hook
 	const [groupedDescriptorTypes, setGroupedDescriptorTypes] = useState<GroupedDescriptorTypes>({});
-    // const [selectedDescriptorTypes, setSelectedDescriptorTypes] = useState<{ [key: string]: DescriptorType[] }>({});
-    // const [selectedDescriptorTypeIds, setSelectedDescriptorTypeIds] = useState<number[]>([]);
-    // const [filtersVisible, setFiltersVisible] = useState<boolean>(false);
 
 	useEffect(() => {
-        getDescriptorTypes().then(fetchedDescriptors => {
-			// console.log(fetchedDescriptors)
-            if (fetchedDescriptors) {
-                const groups = fetchedDescriptors.reduce<GroupedDescriptorTypes>((acc, descriptorType) => {
-                    const groupKey = descriptorType.category;
-                    if (displayNameMap[groupKey]) {
-                        acc[groupKey] = acc[groupKey] || [];
-                        acc[groupKey].push(descriptorType);
-                    }
-                    return acc;
-                }, {});
-                setGroupedDescriptorTypes(groups);
-            }
-        }).catch(error => {
-            console.error("Error fetching descriptor types:", error);
-        });
-    }, [getDescriptorTypes]);
+        if (descriptorTypes.length > 0) {
+            const groups = descriptorTypes.reduce<GroupedDescriptorTypes>((acc, descriptorType) => {
+                const groupKey = descriptorType.category;
+                if (displayNameMap[groupKey]) {
+                    acc[groupKey] = acc[groupKey] || [];
+                    acc[groupKey].push(descriptorType);
+                }
+                return acc;
+            }, {});
+            setGroupedDescriptorTypes(groups);
+        }
+    }, [descriptorTypes]);
 
 	const handleSelectDescriptorType = (groupKey: string, descriptorType: DescriptorType) => {
         onSelect(descriptorType);

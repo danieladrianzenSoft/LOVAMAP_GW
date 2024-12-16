@@ -18,8 +18,8 @@ const UploadFile: React.FC<UploadFileProps> = ({ acceptedFileTypes, onUploadSubm
 
 	const onDrop = useCallback((acceptedFiles: File[]) => {
 		const validFiles = acceptedFiles.filter(file =>
-			Object.entries(acceptedFileTypes).some(([key]) => 
-				key === 'image/*' || file.type.startsWith(key)
+			Object.entries(acceptedFileTypes).some(([mimeType, extensions]) =>
+				file.type === mimeType || extensions.some(ext => file.name.endsWith(ext))
 			)
 		);
 	
@@ -28,12 +28,12 @@ const UploadFile: React.FC<UploadFileProps> = ({ acceptedFileTypes, onUploadSubm
 		}
 		setFiles(prevFiles => [...prevFiles, ...validFiles]);
 	}, [acceptedFileTypes]);
-
+	
 	const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const selectedFiles = Array.from(event.target.files || []);
 		const validFiles = selectedFiles.filter(file =>
-			Object.entries(acceptedFileTypes).some(([key]) => 
-				key === 'image/*' || file.type.startsWith(key)
+			Object.entries(acceptedFileTypes).some(([mimeType, extensions]) =>
+				file.type === mimeType || extensions.some(ext => file.name.endsWith(ext))
 			)
 		);
 	
@@ -42,6 +42,33 @@ const UploadFile: React.FC<UploadFileProps> = ({ acceptedFileTypes, onUploadSubm
 		}
 		setFiles(prevFiles => [...prevFiles, ...validFiles]);
 	};
+
+	// const onDrop = useCallback((acceptedFiles: File[]) => {
+	// 	const validFiles = acceptedFiles.filter(file =>
+	// 		Object.entries(acceptedFileTypes).some(([key]) => 
+	// 			key === 'image/*' || file.type.startsWith(key)
+	// 		)
+	// 	);
+	
+	// 	if (validFiles.length !== acceptedFiles.length) {
+	// 		alert('Some files were not of the accepted file type and were not added.');
+	// 	}
+	// 	setFiles(prevFiles => [...prevFiles, ...validFiles]);
+	// }, [acceptedFileTypes]);
+
+	// const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+	// 	const selectedFiles = Array.from(event.target.files || []);
+	// 	const validFiles = selectedFiles.filter(file =>
+	// 		Object.entries(acceptedFileTypes).some(([key]) => 
+	// 			key === 'image/*' || file.type.startsWith(key)
+	// 		)
+	// 	);
+	
+	// 	if (validFiles.length !== selectedFiles.length) {
+	// 		alert('Some files were not of the accepted file type and were not added.');
+	// 	}
+	// 	setFiles(prevFiles => [...prevFiles, ...validFiles]);
+	// };
 
 	const handleFileUpload = async () => {
 		if (files.length === 0) {
@@ -74,7 +101,9 @@ const UploadFile: React.FC<UploadFileProps> = ({ acceptedFileTypes, onUploadSubm
 			<label className="block">
 				<input
 					type="file"
-					accept={Object.keys(acceptedFileTypes).join(',')}
+					accept={Object.entries(acceptedFileTypes)
+						.flatMap(([mimeType, extensions]) => [mimeType, ...extensions])
+						.join(',')}
 					onChange={handleFileChange}
 					multiple
 					className="hidden"
