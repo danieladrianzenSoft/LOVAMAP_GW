@@ -108,27 +108,25 @@ export function processExcelFile(file: File, descriptorTypes: DescriptorType[]):
 
                 // Placeholder for manual input
                 const jsonOutput = {
-                    name: "<STRING>",
                     isSimulated: "<BOOLEAN: true | false>",
                     comments: "<STRING>",
                     inputGroup: {
-                        dx: dxDescriptor ? dxDescriptor.value : "<NUMBER>",
-                        numVoxels: numVoxelsDescriptor ? numVoxelsDescriptor.value : "<NUMBER>",
                         containerShape: "<STRING>",
                         containerSize: "<NUMBER>",
-                        isAnisotropic: "<BOOLEAN: true | false>",
+                        packingConfiguration: "<STRING: isotropic | anisotropic | square | hexagonal>",
                         particlePropertyGroups: [
                             {
                                 shape: "<STRING: spheres | rods | nuggets | ellipsoids | amorphous>",
                                 stiffness: "<STRING: rigid | semisoft | soft>",
                                 friction: "<STRING>",
-                                dispersity: "<STRING: monodisperse | bidisperse | polydisperse>",
-                                sizeDistributionType: "<STRING: gaussian | binomial | poisson | uniform | bimodal>",
+                                dispersity: "<STRING: monodisperse | polydisperse>",
+                                sizeDistributionType: "<STRING: gaussian | binomial | poisson | uniform>",
                                 meanSize: "<NUMBER>",
                                 standardDeviationSize: "<NUMBER>",
-                                sizeDistribution: ["<NUMBER>"]
+                                proportion: "<NUMBER>"
                             }
-                        ]
+                        ],
+                        sizeDistribution: ["<NUMBER>"]
                     },
                     scaffolds
                 };
