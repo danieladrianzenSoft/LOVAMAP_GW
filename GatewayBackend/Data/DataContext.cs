@@ -145,9 +145,15 @@ public partial class DataContext : IdentityDbContext<User, Role, string>
             .HasForeignKey(p => p.InputGroupId)
             .OnDelete(DeleteBehavior.Cascade);
 
-        builder.Entity<ParticlePropertyGroup>()
+        builder.Entity<InputGroup>()
             .Property(p => p.SizeDistribution)
             .HasColumnType("jsonb"); 
+        
+        builder.Entity<ParticlePropertyGroup>()
+            .HasOne(p => p.InputGroup)
+            .WithMany(i => i.ParticlePropertyGroups)
+            .HasForeignKey(p => p.InputGroupId)
+            .OnDelete(DeleteBehavior.SetNull);
 
         // DescriptorType relationships
         builder.Entity<DescriptorType>()

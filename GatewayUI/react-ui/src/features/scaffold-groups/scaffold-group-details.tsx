@@ -109,7 +109,7 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 								</tr>
 								<tr>
 									<td className="font-medium text-gray-900 align-top">Anisotropic:</td>
-									<td>{scaffoldGroup.inputs?.isAnisotropic ? 'yes' : 'no'}</td>
+									<td>{scaffoldGroup.inputs?.packingConfiguration ?? 'unknown'}</td>
 								</tr>
 								<tr>
 									<td className="w-32 align-top font-medium text-gray-900">Particles:</td>

@@ -17,11 +17,9 @@ export function downloadScaffoldGroupAsExcel(scaffoldGroup: ScaffoldGroup) {
         ["Number of Replicates", scaffoldGroup.numReplicates],
         [], // Adding an empty row for spacing
         ["Scaffold Inputs"],
-        ["Dx", scaffoldGroup.inputs.dx],
-        ["Number of Voxels", scaffoldGroup.inputs.numVoxels],
         ["Container Shape", scaffoldGroup.inputs.containerShape ?? 'n/a'],
         ["Container Size", scaffoldGroup.inputs.containerSize ?? 'n/a'],
-        ["Anisotropic", scaffoldGroup.inputs.isAnisotropic.toString().toLowerCase()],
+        ["Packing Configuration", scaffoldGroup.inputs.packingConfiguration.toString().toLowerCase()],
         [], // Another empty row for spacing
         ["Particle Properties"]
     ];
@@ -98,11 +96,9 @@ export function downloadExperimentsAsExcel(
                 ["Number of Replicates", scaffoldGroup.numReplicates],
                 [],
                 ["Scaffold Inputs"],
-                ["Dx", scaffoldGroup.inputs.dx],
-                ["Number of Voxels", scaffoldGroup.inputs.numVoxels],
                 ["Container Shape", scaffoldGroup.inputs.containerShape ?? 'n/a'],
                 ["Container Size", scaffoldGroup.inputs.containerSize ?? 'n/a'],
-                ["Anisotropic", scaffoldGroup.inputs.isAnisotropic.toString().toLowerCase()],
+                ["Packing Configuration", scaffoldGroup.inputs.packingConfiguration.toString().toLowerCase()],
                 [],
                 ["Particle Properties"]
             ];

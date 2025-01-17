@@ -111,12 +111,11 @@ namespace Services.Services
         {
             var inputGroup = new InputGroup
             {
-                Dx = dto.Dx,
-                NumVoxels = dto.NumVoxels,
                 ContainerShape = dto.ContainerShape,
                 ContainerSize = dto.ContainerSize,
-                IsAnisotropic = dto.IsAnisotropic,
+                PackingConfiguration = ParsePackingConfiguration(dto.PackingConfiguration), // Map int to enum
                 ParticlePropertyGroups = dto.ParticlePropertyGroups.Select(ppg => MapToParticlePropertyGroup(ppg)).ToList(),
+                SizeDistribution = dto.SizeDistribution
             };
 
             foreach (var particlePropertyGroup in inputGroup.ParticlePropertyGroups)
@@ -138,7 +137,6 @@ namespace Services.Services
                 MeanSize = dto.MeanSize,
                 StandardDeviationSize = dto.StandardDeviationSize,
                 Proportion = dto.Proportion,
-                SizeDistribution = dto.SizeDistribution
             };  
         }
 
@@ -359,10 +357,10 @@ namespace Services.Services
                 Images = imagesToReturn,
                 Inputs = new InputGroupBaseDto 
                 {
-                    Dx = scaffoldGroup.InputGroup?.Dx,
-                    NumVoxels = scaffoldGroup.InputGroup?.NumVoxels,
                     ContainerShape = scaffoldGroup.InputGroup?.ContainerShape,
-                    IsAnisotropic = scaffoldGroup.InputGroup?.IsAnisotropic,
+                    PackingConfiguration = scaffoldGroup.InputGroup?.PackingConfiguration != null
+                        ? scaffoldGroup.InputGroup.PackingConfiguration.ToString()
+                        : "Unknown",
                     Particles = particles ?? []
                 },
             };
@@ -421,10 +419,10 @@ namespace Services.Services
                 Images = imagesToReturn,
                 Inputs = new InputGroupBaseDto 
                 {
-                    Dx = scaffoldGroup.InputGroup?.Dx,
-                    NumVoxels = scaffoldGroup.InputGroup?.NumVoxels,
                     ContainerShape = scaffoldGroup.InputGroup?.ContainerShape,
-                    IsAnisotropic = scaffoldGroup.InputGroup?.IsAnisotropic,
+                    PackingConfiguration = scaffoldGroup.InputGroup?.PackingConfiguration != null
+                        ? scaffoldGroup.InputGroup.PackingConfiguration.ToString()
+                        : "Unknown",
                     Particles = particles ?? []
                 },
                 Scaffolds = scaffoldDtos,
@@ -556,6 +554,26 @@ namespace Services.Services
             {
                 return "N/A";
             }
+        }
+
+        private PackingConfiguration ParsePackingConfiguration(object? input)
+        {
+            if (input == null)
+            {
+                return PackingConfiguration.Unknown; // Default for missing input
+            }
+
+            if (input is int intValue && Enum.IsDefined(typeof(PackingConfiguration), intValue))
+            {
+                return (PackingConfiguration)intValue;
+            }
+
+            if (input is string stringValue && Enum.TryParse<PackingConfiguration>(stringValue, true, out var result))
+            {
+                return result;
+            }
+
+            return PackingConfiguration.Unknown; // Default for invalid input
         }
     }
 }

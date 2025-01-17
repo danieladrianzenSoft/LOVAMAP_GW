@@ -13,7 +13,6 @@ namespace Infrastructure.DTOs
 		public double MeanSize { get; set; } 
 		public double StandardDeviationSize { get; set; }
 		public double Proportion { get; set; } = 1;
-		public JsonDocument SizeDistribution { get; set; } 
 
 	}
 }

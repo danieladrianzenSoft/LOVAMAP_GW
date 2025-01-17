@@ -1,19 +1,15 @@
 import { ParticlePropertyGroup } from "./particlePropertyGroup";
 
 export interface InputGroup {
-    dx: number;
-    numVoxels: number;
     containerShape: string;
     containerSize: number;
-    isAnisotropic: boolean;
+    packingConfiguration: string;
     particles: ParticlePropertyGroup[];
 }
 
 export interface InputGroupToCreate {
-    dx: number;
-    numVoxels: number;
     containerShape: string;
     containerSize: number;
-    isAnisotropic: boolean;
+    packingConfiguration: string;
     particlePropertyGroups: ParticlePropertyGroup[];
 }

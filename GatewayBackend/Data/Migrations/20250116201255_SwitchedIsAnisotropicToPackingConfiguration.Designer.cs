@@ -4,6 +4,7 @@ using System.Text.Json;
 using Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -12,9 +13,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20250116201255_SwitchedIsAnisotropicToPackingConfiguration")]
+    partial class SwitchedIsAnisotropicToPackingConfiguration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -217,9 +220,6 @@ namespace Data.Migrations
                     b.Property<int>("ScaffoldGroupId")
                         .HasColumnType("integer");
 
-                    b.Property<JsonDocument>("SizeDistribution")
-                        .HasColumnType("jsonb");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ScaffoldGroupId")
@@ -282,6 +282,9 @@ namespace Data.Migrations
                     b.Property<string>("Shape")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<JsonDocument>("SizeDistribution")
+                        .HasColumnType("jsonb");
 
                     b.Property<string>("SizeDistributionType")
                         .HasColumnType("text");
@@ -820,7 +823,7 @@ namespace Data.Migrations
                     b.HasOne("Data.Models.InputGroup", "InputGroup")
                         .WithMany("ParticlePropertyGroups")
                         .HasForeignKey("InputGroupId")
-                        .OnDelete(DeleteBehavior.SetNull)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("InputGroup");
