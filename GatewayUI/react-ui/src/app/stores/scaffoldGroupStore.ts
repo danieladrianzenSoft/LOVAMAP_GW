@@ -2,7 +2,6 @@ import { makeAutoObservable, runInAction } from "mobx";
 import agent from "../api/agent";
 import { Tag } from "../models/tag";
 import { ScaffoldGroup, ScaffoldGroupToCreate } from "../models/scaffoldGroup";
-import { Scaffold } from "../models/scaffold";
 import { Image, ImageToCreate, ImageToUpdate } from "../models/image";
 
 export default class ScaffoldGroupStore {

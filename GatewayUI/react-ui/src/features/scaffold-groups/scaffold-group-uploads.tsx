@@ -3,7 +3,6 @@ import { observer } from 'mobx-react-lite';
 import UploadFile from '../../app/common/upload-file/upload-file';
 import { useStore } from '../../app/stores/store';
 import toast from "react-hot-toast";
-import ToastNotification from "../../app/common/notification/toast-notification";
 import { FaSpinner, FaPlus, FaStar, FaRegStar, FaTimes } from 'react-icons/fa';
 import { Image, ImageToCreate, ImageToUpdate } from '../../app/models/image';
 import { ScaffoldGroup } from '../../app/models/scaffoldGroup';
@@ -11,11 +10,10 @@ import { useDescriptorTypes } from '../../app/common/hooks/useDescriptorTypes';
 import { processExcelFile } from '../../app/common/excel-processor/excel-processor';
 
 const ScaffoldGroupUploads: React.FC = () => {
-    const { descriptorTypes, loading: descriptorTypesLoading, error: descriptorTypesError } = useDescriptorTypes();
+    const { descriptorTypes} = useDescriptorTypes();
     const { scaffoldGroupStore } = useStore();
-    const { getUploadedScaffoldGroups, uploadedScaffoldGroups = [], updateImage, deleteImage } = scaffoldGroupStore;
+    const { getUploadedScaffoldGroups, uploadedScaffoldGroups = [], updateImage } = scaffoldGroupStore;
 
-    const [visibleDetails, setVisibleDetails] = useState<number | null>(null); // Track visible details
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [selectedGroup, setSelectedGroup] = useState<ScaffoldGroup | null>(null); // Track selected group
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false); // Track modal state
@@ -134,7 +132,7 @@ const ScaffoldGroupUploads: React.FC = () => {
             
             // Update selectedGroup with the updated scaffold group data
             if (result) {
-                selectedGroup.images = selectedGroup.images?.filter((image:Image) => image.id != imageId);
+                selectedGroup.images = selectedGroup.images?.filter((image:Image) => image.id !== imageId);
                 // toast.success('Image deleted successfully!');
             }
         } catch (error) {
@@ -232,7 +230,7 @@ const ScaffoldGroupUploads: React.FC = () => {
                                 <div key={image.id} className="relative border rounded-lg overflow-hidden">
                                     <img
                                         src={image.url}
-                                        alt={`Image ${image.id}`}
+                                        alt={`${image.id}`}
                                         className="object-cover w-full h-24 p-2"
                                     />
                                     <button

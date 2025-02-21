@@ -207,7 +207,7 @@
   },
   {
     "name": "Volume",
-    "label": "Volume (pL)",
+    "label": "Volume",
     "tableLabel": "Volume",
     "category": "Pore",
     "subCategory": "Size",
@@ -220,7 +220,7 @@
   },
   {
     "name": "SA",
-    "label": "Surface Area (um2 / 1000)",
+    "label": "Surface Area",
     "tableLabel": "Surface area",
     "category": "Pore",
     "subCategory": "Size",
@@ -233,7 +233,7 @@
   },
   {
     "name": "CharacteristicLength",
-    "label": "Characteristic Length (um)",
+    "label": "Characteristic Length",
     "tableLabel": "Characteristic length",
     "category": "Pore",
     "subCategory": "Size",
@@ -246,7 +246,7 @@
   },
   {
     "name": "LongestLength",
-    "label": "Longest Length (um)",
+    "label": "Longest Length",
     "tableLabel": "Longest length",
     "category": "Pore",
     "subCategory": "Size",
@@ -259,7 +259,7 @@
   },
   {
     "name": "AvgInternalDiam",
-    "label": "Avg Internal Diam (um)",
+    "label": "Avg Internal Diam",
     "tableLabel": "Average internal diameter",
     "category": "Pore",
     "subCategory": "Size",
@@ -284,7 +284,7 @@
   },
   {
     "name": "LargestEnclosedSphereDiam",
-    "label": "Largest Enclosed Sphere Diameter (um)",
+    "label": "Largest Enclosed Sphere Diameter",
     "tableLabel": "Largest enclosed sphere diameter",
     "category": "Pore",
     "subCategory": "Size",
@@ -318,7 +318,7 @@
   },
   {
     "name": "ParticleSA",
-    "label": "Particle Surface Area (um^2)",
+    "label": "Particle Surface Area",
     "tableLabel": "Particle surface area",
     "category": "Pore",
     "subCategory": "Size",
@@ -328,7 +328,7 @@
   },
   {
     "name": "OpenSA",
-    "label": "Open (Non-Particle) Surface Area (um^2)",
+    "label": "Open (Non-Particle) Surface Area",
     "tableLabel": "Open (non-particle) surface area",
     "category": "Pore",
     "subCategory": "Size",
@@ -338,7 +338,7 @@
   },
   {
     "name": "MeanLocalThickness",
-    "label": "Mean Local Thickness (um)",
+    "label": "Mean Local Thickness",
     "tableLabel": "Mean local thickness",
     "category": "Pore",
     "subCategory": "Shape",
@@ -383,7 +383,7 @@
   },
   {
     "name": "EllipsoidAxis1Length",
-    "label": "Ellipsoid Axis 1 Length (um)",
+    "label": "Ellipsoid Axis 1 Length",
     "tableLabel": "Ellipsoid axis 1 length",
     "category": "Pore",
     "subCategory": "Shape",
@@ -394,7 +394,7 @@
   },
   {
     "name": "EllipsoidAxis2Length",
-    "label": "Ellipsoid Axis 2 Length (um)",
+    "label": "Ellipsoid Axis 2 Length",
     "tableLabel": "Ellipsoid axis 2 length",
     "category": "Pore",
     "subCategory": "Shape",
@@ -405,7 +405,7 @@
   },
   {
     "name": "EllipsoidAxis3Length",
-    "label": "Ellipsoid Axis 3 Length (um)",
+    "label": "Ellipsoid Axis 3 Length",
     "tableLabel": "Ellipsoid axis 3 length",
     "category": "Pore",
     "subCategory": "Shape",
@@ -480,7 +480,7 @@
   },
   {
     "name": "LargestDoorDiam",
-    "label": "Largest Door Diameter (um)",
+    "label": "Largest Door Diameter",
     "tableLabel": "Largest door diameter",
     "category": "Pore",
     "subCategory": "Internal Connectivity",
@@ -492,7 +492,7 @@
   },
   {
     "name": "SmallestDoorDiam",
-    "label": "Smallest Door Diameter (um)",
+    "label": "Smallest Door Diameter",
     "tableLabel": "Smallest door diameter",
     "category": "Pore",
     "subCategory": "Internal Connectivity",
@@ -504,19 +504,19 @@
   },
   {
     "name": "LigandConcentration",
-    "label": "Ligand Concentration (umoles / L)",
+    "label": "Ligand Concentration",
     "tableLabel": "Ligand concentration",
     "category": "Pore",
     "subCategory": "Ligand Availability",
     "imageUrl": "https://res.cloudinary.com/dx2hux1qt/image/upload/v1734322732/LOVAMAP/peq7cgaio0h5nlu1nvzk.png",
     "comments": "d",
-    "unit": "µmoles / L",
+    "unit": "µmoles / µm^2",
     "dataType": "double",
     "description": "**Effective ligand concentration** of the pore as felt by a migrating object whose diameter is 1/60th the x-axis length of the scaffold"
   },
   {
     "name": "AccessibleLigand",
-    "label": "Accessible Ligand (umoles)",
+    "label": "Accessible Ligand",
     "tableLabel": "Accessible ligand",
     "category": "Pore",
     "subCategory": "Ligand Availability",
@@ -566,7 +566,7 @@
   },
   {
     "name": "ParticleDiam",
-    "label": "Particle Diameter (um)",
+    "label": "Particle Diameter",
     "tableLabel": "Particle diameter",
     "category": "Other",
     "subCategory": "Particles",
@@ -598,7 +598,7 @@
   },
   {
     "name": "ExitDoorDiam",
-    "label": "Exit Door Diameter (um)",
+    "label": "Exit Door Diameter",
     "tableLabel": "Entrance (or Exit) door diameter",
     "category": "Other",
     "subCategory": "External Connectivity",
@@ -608,7 +608,7 @@
   },
   {
     "name": "IntDoorDiam",
-    "label": "Internal Door Diameter (um)",
+    "label": "Internal Door Diameter",
     "tableLabel": "Interior door diameter",
     "category": "Other",
     "subCategory": "Internal Connectivity",
@@ -618,7 +618,7 @@
   },
   {
     "name": "CrawlSpaceWidth",
-    "label": "Crawl Space Width (um)",
+    "label": "Crawl Space Width",
     "tableLabel": "Crawl space width",
     "category": "Other",
     "subCategory": "Internal Connectivity",
@@ -630,7 +630,7 @@
   },
   {
     "name": "PathLength",
-    "label": "Path Length (um)",
+    "label": "Path Length",
     "tableLabel": "Path length",
     "category": "Other",
     "subCategory": "Paths",
@@ -653,7 +653,7 @@
   },
   {
     "name": "TortuositybyVol",
-    "label": "Tortuosity by Volume (pL)",
+    "label": "Tortuosity by Volume",
     "tableLabel": "Tortuosity-by-volume",
     "category": "Other",
     "subCategory": "Paths",
@@ -716,7 +716,7 @@
   },
   {
     "name": "AvgBottleneckDiamTotal",
-    "label": "Avg Bottleneck Diameter (total) (um)",
+    "label": "Avg Bottleneck Diameter (total)",
     "tableLabel": "Average bottleneck diameter (total)",
     "category": "Other",
     "subCategory": "Paths",
@@ -739,7 +739,7 @@
   },
   {
     "name": "AvgBottleneckDiamDoors",
-    "label": "Avg Bottleneck Diameter (doors) (um)",
+    "label": "Avg Bottleneck Diameter (doors)",
     "tableLabel": "Average bottleneck diameter (doors)",
     "category": "Other",
     "subCategory": "Paths",
@@ -751,19 +751,19 @@
   },
   {
     "name": "SurfaceLigandConc",
-    "label": "Surface Ligand Conc (µmoles / µm^2)",
+    "label": "Surface Ligand Conc",
     "tableLabel": "Ligand concentration",
     "category": "Other",
     "subCategory": "Ligand Availability",
     "imageUrl": "https://res.cloudinary.com/dx2hux1qt/image/upload/v1734322732/LOVAMAP/idbetmz2ixc7j8siq481.png",
     "comments": "d",
-    "unit": "µmoles / L",
+    "unit": "µmoles / µm^2",
     "dataType": "double",
     "description": "**Effective ligand concentration** of the surface pore as felt by a migrating object whose diameter is 1/60th the x-axis length of the scaffold"
   },
   {
     "name": "SurfaceAccessibleLigand",
-    "label": "Surface Accessible Ligand (µmoles)",
+    "label": "Surface Accessible Ligand",
     "tableLabel": "Accessible ligand",
     "category": "Other",
     "subCategory": "Ligand Availability",
@@ -775,8 +775,8 @@
   },
   {
     "name": "RegionsVol0",
-    "label": "Region Vols, <1 um (pL)",
-    "tableLabel": "0 µm object region volumes (pL)",
+    "label": "Region Vols, <1 µm",
+    "tableLabel": "0 µm object region volumes",
     "category": "Other",
     "subCategory": "Accessible Regions",
     "imageUrl": "https://res.cloudinary.com/dx2hux1qt/image/upload/v1734322732/LOVAMAP/pnlvioasqw7a0e4ha4l6.png",
@@ -787,8 +787,8 @@
   },
   {
     "name": "RegionsVol10",
-    "label": "Region Vols, 10 um (pL)",
-    "tableLabel": "10 µm object region volumes (pL)",
+    "label": "Region Vols, 10 µm",
+    "tableLabel": "10 µm object region volumes",
     "category": "Other",
     "subCategory": "Accessible Regions",
     "imageUrl": "https://res.cloudinary.com/dx2hux1qt/image/upload/v1734322732/LOVAMAP/kp2po8t8yy3mpg8bcwh9.png",
@@ -799,8 +799,8 @@
   },
   {
     "name": "RegionsVol30",
-    "label": "Region Vols, 30 um (pL)",
-    "tableLabel": "30 µm object region volumes (pL)",
+    "label": "Region Vols, 30 µm",
+    "tableLabel": "30 µm object region volumes",
     "category": "Other",
     "subCategory": "Accessible Regions",
     "imageUrl": "https://res.cloudinary.com/dx2hux1qt/image/upload/v1734322732/LOVAMAP/ecj46kzcpl8wgrplgruw.png",
@@ -811,8 +811,8 @@
   },
   {
     "name": "RegionsVol60",
-    "label": "Region Vols, 60 um (pL)",
-    "tableLabel": "60 µm object region volumes (pL)",
+    "label": "Region Vols, 60 µm",
+    "tableLabel": "60 µm object region volumes",
     "category": "Other",
     "subCategory": "Accessible Regions",
     "imageUrl": "https://res.cloudinary.com/dx2hux1qt/image/upload/v1734322732/LOVAMAP/h6qtjvmqznfzagcbzutb.png",

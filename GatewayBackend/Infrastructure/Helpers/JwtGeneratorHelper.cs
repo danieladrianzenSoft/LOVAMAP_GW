@@ -11,7 +11,8 @@ using Microsoft.IdentityModel.Tokens;
 using Data.Models;
 
 namespace Infrastructure.Helpers
-{	public class JwtGeneratorHelper : IJwtGeneratorHelper
+{	
+	public class JwtGeneratorHelper : IJwtGeneratorHelper
 	{
 		private readonly IConfiguration _config;
 		private readonly UserManager<User> _userManager;

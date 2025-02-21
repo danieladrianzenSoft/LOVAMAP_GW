@@ -9,6 +9,8 @@ using Infrastructure.DTOs;
 using Services.IServices;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Configuration;
+using Data.Models;
+using System.Globalization;
 
 namespace Services.Services
 {
@@ -20,6 +22,7 @@ namespace Services.Services
 		private readonly IUserService _userService;
 		private readonly IConfiguration _configuration;
 		private readonly IDescriptorService _descriptorService;
+		private readonly IPublicationService _publicationService;
 		private readonly DataContext _context;
 		private readonly ILogger<SeedingService> _logger;
 		private readonly JsonSerializerOptions _jsonSerializerOptions;
@@ -31,6 +34,7 @@ namespace Services.Services
 			ITagService tagService,
 			IUserService userService,
 			IDescriptorService descriptorService,
+			IPublicationService publicationService,
 			IConfiguration configuration,
 			DataContext context,
 			ILogger<SeedingService> logger)
@@ -40,6 +44,7 @@ namespace Services.Services
 			_tagService = tagService;
 			_userService = userService;
 			_descriptorService = descriptorService;
+			_publicationService = publicationService;
 			_configuration = configuration;
 			_context = context;
 			_logger = logger;
@@ -50,7 +55,8 @@ namespace Services.Services
 			};
 		}
 
-		private static readonly string baseUrl = "../Data/SeedData/";
+		// private static readonly string baseUrl = "../Data/SeedData/";
+		private static readonly string baseUrl = Path.Combine(Directory.GetCurrentDirectory(), "Data", "SeedData");
 
 		public async Task SeedAllAsync()
 		{
@@ -58,6 +64,7 @@ namespace Services.Services
 			{
 				await SeedRolesAsync();
 				await SeedUsersAsync();
+				await SeedPublicationsAsync();
 				await SeedDescriptorTypesAsync();
 				await SeedTagsAsync();
 				// await SeedScaffoldGroupsAsync();
@@ -65,14 +72,14 @@ namespace Services.Services
 			catch (Exception ex)
 			{
 				_logger.LogError(ex, "An error occurred while seeding the database.");
-				throw;
 			}
 		}
 
 		private async Task SeedRolesAsync()
 		{
 			if (await _context.Roles.AnyAsync() == false){
-				var roleData = File.ReadAllText(baseUrl + "Roles.json");
+				var path = Path.Combine(baseUrl, "Roles.json");
+				var roleData = File.ReadAllText(path);
 				var roles = JsonSerializer.Deserialize<List<RoleToCreateDto>>(roleData, _jsonSerializerOptions);
 				if (roles == null) {
 					throw new ApplicationException("Failed to deserialize roles.");
@@ -84,7 +91,7 @@ namespace Services.Services
 		private async Task SeedUsersAsync()
 		{
 			if (await _context.Users.AnyAsync() == false){
-				var userDataFile = "Users.json";
+				var path = Path.Combine(baseUrl, "Users.json");
 				var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
             	var adminPassword = _configuration["AdminPassword"]; // Fetch AdminPassword from appsettings.json
 
@@ -97,7 +104,7 @@ namespace Services.Services
 					throw new ApplicationException("AdminPassword environment variable is not set.");
 				}
 
-				var userData = File.ReadAllText(baseUrl + userDataFile);
+				var userData = File.ReadAllText(path);
 				var usersToCreate = JsonSerializer.Deserialize<List<UserToCreateDto>>(userData, _jsonSerializerOptions);
 				if (usersToCreate == null) {
 					throw new ApplicationException("Failed to deserialize users");
@@ -125,11 +132,30 @@ namespace Services.Services
 			}
 		}
 
+		private async Task SeedPublicationsAsync()
+		{
+			if (await _context.Publications.AnyAsync() == false)
+			{
+				var path = Path.Combine(baseUrl, "Publications.json");
+				var publicationData = File.ReadAllText(path);
+				var publications = JsonSerializer.Deserialize<List<PublicationToCreateDto>>(publicationData, _jsonSerializerOptions);
+				if (publications == null) {
+					throw new ApplicationException("Failed to deserialize descriptors");
+				}
+				foreach (var publication in publications)
+				{
+					publication.PublishedAt = DateTime.SpecifyKind(publication.PublishedAt, DateTimeKind.Utc);
+					await _publicationService.CreatePublication(publication);
+				}
+			}
+		}
+
 		private async Task SeedDescriptorTypesAsync()
 		{
 			if (await _context.DescriptorTypes.AnyAsync() == false)
 			{
-				var descriptorTypeData = File.ReadAllText(baseUrl + "DescriptorTypes.json");
+				var path = Path.Combine(baseUrl, "DescriptorTypes.json");
+				var descriptorTypeData = File.ReadAllText(path);
 				var descriptorTypes = JsonSerializer.Deserialize<List<DescriptorTypeToCreateDto>>(descriptorTypeData, _jsonSerializerOptions);
 				if (descriptorTypes == null) {
 					throw new ApplicationException("Failed to deserialize descriptors");
@@ -145,7 +171,8 @@ namespace Services.Services
 		{
 			if (await _context.Tags.AnyAsync() == false)
 			{
-				var tagData = File.ReadAllText(baseUrl + "Tags.json");
+				var path = Path.Combine(baseUrl, "Tags.json");
+				var tagData = File.ReadAllText(path);
 				var tags = JsonSerializer.Deserialize<List<TagToCreateDto>>(tagData, _jsonSerializerOptions);
 				if (tags == null) {
 					throw new ApplicationException("Failed to deserialize tags");
@@ -159,7 +186,8 @@ namespace Services.Services
 		{
 			if (await _context.ScaffoldGroups.AnyAsync() == false)
 			{
-				var scaffoldGroupsData = File.ReadAllText(baseUrl + "ScaffoldGroups.json");
+				var path = Path.Combine(baseUrl, "ScaffoldGroups.json");
+				var scaffoldGroupsData = File.ReadAllText(path);
 				var scaffoldGroups = JsonSerializer.Deserialize<List<ScaffoldGroupToCreateDto>>(scaffoldGroupsData, _jsonSerializerOptions);
 				if (scaffoldGroups == null) {
 					throw new ApplicationException("Failed to deserialize scaffold groups");

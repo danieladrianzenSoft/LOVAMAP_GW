@@ -1,0 +1,94 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:17
+    container_name: lovamap_db
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backups:/backups
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build: 
+      context: ./GatewayBackend
+      args:
+        ENVIRONMENT: production
+    ports:
+      - "5001:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    env_file:
+        - .env
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+
+  frontend:
+    build: 
+      context: ./GatewayUI/react-ui
+      args:
+        NODE_ENV: production
+    volumes:
+      - react_build:/usr/share/nginx/html
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    environment:
+      - NODE_ENV=production
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx_proxy
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - react_build:/usr/share/nginx/html
+      - ./nginx/nginx.production.conf:/etc/nginx/nginx.conf:ro
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    depends_on:
+      - backend
+      - frontend
+    environment:
+      - CERTBOT_INIT=false # Will be set to true once certificates exist
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+  
+  certbot:
+    image: certbot/certbot
+    profiles: ["production"]
+    volumes:
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    entrypoint: >
+        sh -c "
+          if [ \"$ENVIRONMENT\" = \"production\" ]; then
+            if [ ! -f /etc/letsencrypt/live/lovamap.com/fullchain.pem ]; then
+              certbot certonly --webroot -w /var/www/certbot --email admin@mimccore.com --agree-tos --no-eff-email --force-renewal -d lovamap.com -d www.lovamap.com;
+            fi;
+            trap exit TERM;
+            while :; do certbot renew --webroot -w /var/www/certbot && nginx -s reload; sleep 12h & wait $${!}; done;
+          else
+            echo 'Skipping Certbot setup - Not in production';
+            sleep infinity;
+          fi;
+        "
+volumes:
+  postgres_data:
+  react_build:

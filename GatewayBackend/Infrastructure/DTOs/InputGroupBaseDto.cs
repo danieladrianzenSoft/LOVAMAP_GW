@@ -8,6 +8,6 @@ namespace Infrastructure.DTOs
 		public int? ContainerSize { get; set; }
 		// public bool? IsAnisotropic { get; set; }
 		public string PackingConfiguration { get; set; } = "";
-		public ICollection<ParticlePropertyBaseDto> Particles { get; set; } = [];
+		public IEnumerable<ParticlePropertyBaseDto> Particles { get; set; } = [];
 	}
 }

@@ -5,7 +5,7 @@ namespace Data.Models
 	{
 		public int Id { get; set; }
 		public int ReplicateNumber { get; set; } = 1;
-		public int? ScaffoldGroupId { get; set; }
+		public int ScaffoldGroupId { get; set; }
 		public ScaffoldGroup ScaffoldGroup { get; set; } = null!;
 		public ICollection<ScaffoldTag> ScaffoldTags { get; set; } = new List<ScaffoldTag>();
 		public virtual ICollection<Image> Images { get; set; } = new List<Image>();

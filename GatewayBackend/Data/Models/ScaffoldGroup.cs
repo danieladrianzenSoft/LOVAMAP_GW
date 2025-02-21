@@ -14,10 +14,10 @@ namespace Data.Models
 		public string? Comments { get; set; }
 		public int? PublicationId { get; set; }
 		public Publication? Publication { get; set; }
-		public InputGroup InputGroup { get; set; } = new InputGroup();
+		// public int InputGroupId { get; set; }
+		public InputGroup InputGroup { get; set; } = null!;
 		public virtual ICollection<Scaffold> Scaffolds { get; set; } = new List<Scaffold>();
 		public virtual ICollection<Image> Images { get; set; } = new List<Image>();
-
 
 	}
 }

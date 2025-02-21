@@ -11,16 +11,19 @@ using Infrastructure.DTOs;
 using System.Runtime.CompilerServices;
 using Npgsql;
 using System.Linq.Expressions;
+using Microsoft.Extensions.Logging;
 
 namespace Repositories.Repositories
 {
 	public class ScaffoldGroupRepository : IScaffoldGroupRepository
 	{
 		private readonly DataContext _context;
+		private readonly ILogger<ScaffoldGroupRepository> _logger;
 
-		public ScaffoldGroupRepository(DataContext context)
+		public ScaffoldGroupRepository(DataContext context, ILogger<ScaffoldGroupRepository> logger)
 		{
 			_context = context;
+			_logger = logger;
 		}
 
 		public bool HasChanges()
@@ -42,22 +45,70 @@ namespace Repositories.Repositories
 					.ThenInclude(s => s.ScaffoldTags)
 						.ThenInclude(st => st.Tag)
 				.Include(sg => sg.Images)
-				.FirstOrDefaultAsync();
-			
-			// var scaffoldGroup = await (from sg in _context.ScaffoldGroups
-			// 	where sg.Id == id
-			// 	join ig in _context.InputGroups on sg.Id equals ig.ScaffoldGroupId
-			// 	join ppg in _context.ParticlePropertyGroups on ig.Id equals ppg.InputGroupId
-			// 	join s in _context.Scaffolds on sg.Id equals s.ScaffoldGroupId
-			// 	join st in _context.ScaffoldTags on s.Id equals st.ScaffoldId
-			// 	join t in _context.Tags on st.TagId equals t.Id
-			// 	join im in _context.Images on sg.Id equals im.ScaffoldGroupId into imGroup
-			// 	from ims in imGroup.DefaultIfEmpty()
-			// 	select sg).Include(sg => sg.Images)
-			// 	.FirstOrDefaultAsync();
-			 
-			// return scaffoldGroup;
-			
+				.FirstOrDefaultAsync();			
+		}
+
+		public async Task<ScaffoldGroupSummaryDto?> GetSummary(int id)
+		{
+			// var query = from sg in _context.ScaffoldGroups
+            //     join ig in _context.InputGroups on sg.InputGroupId equals ig.Id into igJoin
+            //     from ig in igJoin.DefaultIfEmpty()
+            //     where sg.Id == id
+            //     select new
+            //     {
+            //         ScaffoldGroup = sg,
+            //         InputGroup = ig
+            //     };
+			var query = _context.ScaffoldGroups
+				.Where(sg => sg.Id == id)
+				.Select(sg => new
+				{
+					ScaffoldGroup = sg,
+                    sg.InputGroup
+				});
+
+			var scaffoldGroupData = await query.FirstOrDefaultAsync();
+			if (scaffoldGroupData == null) return null;
+
+			// Get the number of scaffolds for this ScaffoldGroup
+			var numReplicates = await _context.Scaffolds
+				.Where(s => s.ScaffoldGroupId == id)
+				.CountAsync();
+
+			// Fetch particle properties for the InputGroup
+			var particleProperties = await _context.ParticlePropertyGroups
+				.Where(pp => pp.InputGroupId == scaffoldGroupData.InputGroup.Id)
+				.Select(pp => new ParticlePropertyBaseDto
+				{
+					Shape = pp.Shape,
+					Stiffness = pp.Stiffness,
+					Dispersity = pp.Dispersity,
+					SizeDistributionType = pp.SizeDistributionType,
+					MeanSize = pp.MeanSize,
+					StandardDeviationSize = pp.StandardDeviationSize,
+					Proportion = pp.Proportion
+				}).ToListAsync();
+
+			return new ScaffoldGroupSummaryDto
+			{
+				Id = scaffoldGroupData.ScaffoldGroup.Id,
+				Name = scaffoldGroupData.ScaffoldGroup.Name,
+				CreatedAt = scaffoldGroupData.ScaffoldGroup.CreatedAt,
+				IsSimulated = scaffoldGroupData.ScaffoldGroup.IsSimulated,
+				Comments = scaffoldGroupData.ScaffoldGroup.Comments,
+				UploaderId = scaffoldGroupData.ScaffoldGroup.UploaderId,
+				IsPublic = scaffoldGroupData.ScaffoldGroup.IsPublic,
+				NumReplicates = numReplicates,
+				Inputs = scaffoldGroupData.InputGroup != null
+					? new InputGroupBaseDto
+					{
+						ContainerShape = scaffoldGroupData.InputGroup.ContainerShape,
+						ContainerSize = scaffoldGroupData.InputGroup.ContainerSize,
+						PackingConfiguration = scaffoldGroupData.InputGroup.PackingConfiguration.ToString(),
+						Particles = particleProperties
+					}
+					: new InputGroupBaseDto()
+			};	
 		}
 
 		public async Task<ICollection<Image>> GetScaffoldGroupImages(int scaffoldGroupId) 
@@ -71,106 +122,166 @@ namespace Repositories.Repositories
 			return scaffoldGroupImages;
 		}
 
-		// public async Task<ICollection<ScaffoldGroup>?> GetSpecificScaffoldGroupsById(ScaffoldFilter filter, string currentUserId)
-		// {
-		// 	var query = _context.ScaffoldGroups.AsQueryable();
-
-		// 	// Filter by uploader based on visibility and user context
-		// 	if (!string.IsNullOrEmpty(filter.UserId))
-		// 	{
-		// 		query = filter.UserId == currentUserId
-		// 			? query.Where(sg => sg.UploaderId == filter.UserId)
-		// 			: query.Where(sg => sg.UploaderId == filter.UserId && sg.IsPublic);
-		// 	}
-		// 	else
-		// 	{
-		// 		query = query.Where(sg => sg.UploaderId == currentUserId || sg.IsPublic);
-		// 	}
-
-		// 	if (filter.ScaffoldGroupIds?.Count > 0)
-		// 	{
-		// 		var scaffoldGroupIds = filter.ScaffoldGroupIds ?? new List<int>();
-		// 		query = query.Where(sg => scaffoldGroupIds.Contains(sg.Id));
-		// 	}
-		// }
-
-		public async Task<ICollection<ScaffoldGroup>?> GetFilteredScaffoldGroupsByRelevance(ScaffoldFilter filter, string currentUserId)
+		public async Task<ICollection<ScaffoldGroupSummaryDto>?> GetFilteredScaffoldGroupSummaries(ScaffoldFilter filter, string currentUserId)
 		{
-			// var query = _context.ScaffoldGroups.AsNoTracking();
+			var query = _context.ScaffoldGroups.AsNoTracking();
+			
+			// Apply primary filters
+			query = ApplyFilters(query, filter, currentUserId);
 
-			// // Filter by uploader visibility and context
-			// if (!string.IsNullOrEmpty(filter.UserId))
-			// {
-			// 	if (filter.UserId == currentUserId)
-			// 		query = query.Where(sg => sg.UploaderId == filter.UserId);
-			// 	else
-			// 		query = query.Where(sg => sg.UploaderId == filter.UserId && sg.IsPublic);
-			// }
-			// else
-			// {
-			// 	query = query.Where(sg => sg.UploaderId == currentUserId || sg.IsPublic);
-			// }
+			// Get additional filtering data
+			var matchingInputGroupIds = await GetMatchingInputGroupIds(filter);
+			var tagIds = filter?.TagIds?.ToList() ?? new List<int>();
 
-			// // Apply filters if present, otherwise return all scaffold groups for the user
-			// if (filter.ScaffoldGroupIds?.Count > 0)
-			// {
-			// 	query = query.Where(sg => filter.ScaffoldGroupIds.Contains(sg.Id));
-			// }
-			// else
-			// {
-			// 	bool hasParticleSizeFilter = filter.ParticleSizes?.Count > 0;
-			// 	bool hasTagFilter = filter.TagIds?.Count > 0;
+			// Apply optimized joins instead of .Include()
+			query = ApplyJoins(query, matchingInputGroupIds, tagIds);
 
-			// 	// Apply particle size filter if provided
-			// 	if (hasParticleSizeFilter)
-			// 	{
-			// 		var ranges = filter.ParticleSizes.Select(ps => new { Lower = ps - 5, Upper = ps + 9 }).ToList();
-			// 		query = from sg in query
-			// 				join pp in _context.ParticlePropertyGroups
-			// 				on sg.InputGroup.Id equals pp.InputGroupId
-			// 				where ranges.Any(r => pp.MeanSize > r.Lower && pp.MeanSize <= r.Upper)
-			// 				select sg;
-			// 	}
+			// var scaffoldGroups = await (from sg in query
+            //                 join ig in _context.InputGroups on sg.InputGroupId equals ig.Id into igJoin
+            //                 from ig in igJoin.DefaultIfEmpty()
+            //                 select new
+            //                 {
+            //                     ScaffoldGroup = sg,
+            //                     InputGroup = ig,
+            //                 }).ToListAsync();
 
-			// 	// Apply tag filter if provided
-			// 	if (hasTagFilter)
-			// 	{
-			// 		query = from sg in query
-			// 				join s in _context.Scaffolds on sg.Id equals s.ScaffoldGroupId
-			// 				join st in _context.ScaffoldTags on s.Id equals st.ScaffoldId
-			// 				where filter.TagIds.Contains(st.TagId)
-			// 				select sg;
-			// 	}
+			var scaffoldGroups = await query
+				.Select(sg => new
+				{
+					ScaffoldGroup = sg,
+					InputGroup = sg.InputGroup // Directly use navigation property
+				})
+				.ToListAsync();
+			
+			var inputGroupIds = scaffoldGroups
+				.Where(sg => sg.InputGroup != null)
+				.Select(sg => sg.InputGroup.Id)
+				.Distinct()
+				.ToList();
 
-			// 	// If either filter is applied, ensure that we order by relevance
-			// 	if (hasParticleSizeFilter || hasTagFilter)
-			// 	{
-			// 		query = query.Select(sg => new
-			// 		{
-			// 			ScaffoldGroup = sg,
-			// 			MatchingParticleCount = sg.InputGroup.ParticlePropertyGroups
-			// 				.Count(ppg => filter.ParticleSizes != null && filter.ParticleSizes.Any(ps => ppg.MeanSize > ps - 5 && ppg.MeanSize <= ps + 9)), // Null-check for ParticleSizes
-			// 			MatchingTagsCount = sg.Scaffolds
-			// 				.SelectMany(s => s.ScaffoldTags)
-			// 				.Count(st => filter.TagIds != null && filter.TagIds.Contains(st.TagId)) // Null-check for TagIds
-			// 		})
-			// 		.Where(sg => sg.MatchingParticleCount > 0 || sg.MatchingTagsCount > 0)
-			// 		.OrderByDescending(sg => sg.MatchingParticleCount + sg.MatchingTagsCount)
-			// 		.Select(sg => sg.ScaffoldGroup);
-			// 	}
-			// }
+			var particleGroupsLookup = await _context.ParticlePropertyGroups
+				.Where(pp => inputGroupIds.Contains(pp.InputGroupId))
+				.GroupBy(pp => pp.InputGroupId)
+				.ToDictionaryAsync(g => g.Key, g => g.Select(pp => new ParticlePropertyBaseDto
+				{
+					Shape = pp.Shape,
+					Stiffness = pp.Stiffness,
+					Dispersity = pp.Dispersity,
+					SizeDistributionType = pp.SizeDistributionType,
+					MeanSize = pp.MeanSize,
+					StandardDeviationSize = pp.StandardDeviationSize,
+					Proportion = pp.Proportion
+				}).ToList());
 
-			// // Fetch related data with split queries for large result sets
-			// query = query
-			// 	.Include(sg => sg.InputGroup)
-			// 		.ThenInclude(ig => ig.ParticlePropertyGroups)
-			// 	.Include(sg => sg.Scaffolds)
-			// 		.ThenInclude(s => s.ScaffoldTags)
-			// 			.ThenInclude(st => st.Tag)
-			// 	.AsSplitQuery();
+			var scaffoldCounts = await _context.Scaffolds
+				.GroupBy(s => s.ScaffoldGroupId)
+				.Select(g => new { ScaffoldGroupId = g.Key, NumReplicates = g.Count() })
+				.ToDictionaryAsync(g => g.ScaffoldGroupId, g => g.NumReplicates);
 
-			// var scaffoldGroups = await query.ToListAsync();
-			// return scaffoldGroups;
+			var scaffoldGroupResults = scaffoldGroups.Select(sg => new ScaffoldGroupSummaryDto
+			{
+				Id = sg.ScaffoldGroup.Id,
+				Name = sg.ScaffoldGroup.Name,
+				CreatedAt = sg.ScaffoldGroup.CreatedAt,
+				IsSimulated = sg.ScaffoldGroup.IsSimulated,
+				Comments = sg.ScaffoldGroup.Comments,
+				UploaderId = sg.ScaffoldGroup.UploaderId,
+				IsPublic = sg.ScaffoldGroup.IsPublic,
+				NumReplicates = scaffoldCounts.ContainsKey(sg.ScaffoldGroup.Id) ? scaffoldCounts[sg.ScaffoldGroup.Id] : 0,
+				Inputs = sg.InputGroup != null ? new InputGroupBaseDto
+				{
+					ContainerShape = sg.InputGroup.ContainerShape,
+					ContainerSize = sg.InputGroup.ContainerSize,
+					PackingConfiguration = sg.InputGroup.PackingConfiguration.ToString(),
+					Particles = particleGroupsLookup.ContainsKey(sg.InputGroup.Id) 
+						? particleGroupsLookup[sg.InputGroup.Id] 
+						: new List<ParticlePropertyBaseDto>()
+				} : new InputGroupBaseDto()
+			}).ToList();
+
+			return scaffoldGroupResults;
+		}
+
+		private IQueryable<ScaffoldGroup> ApplyFilters(IQueryable<ScaffoldGroup> query, ScaffoldFilter filter, string currentUserId)
+		{
+			// Filter by uploader based on visibility and user context
+			if (!string.IsNullOrEmpty(filter.UserId))
+			{
+				query = filter.UserId == currentUserId
+					? query.Where(sg => sg.UploaderId == filter.UserId)
+					: query.Where(sg => sg.UploaderId == filter.UserId && sg.IsPublic);
+			}
+			else
+			{
+				query = query.Where(sg => sg.UploaderId == currentUserId || sg.IsPublic);
+			}
+
+			// Filter by scaffold group IDs if provided
+			if (filter.ScaffoldGroupIds?.Count > 0)
+			{
+				var scaffoldGroupIds = filter.ScaffoldGroupIds ?? new List<int>();
+				query = query.Where(sg => scaffoldGroupIds.Contains(sg.Id));
+			}
+
+			return query;
+		}
+
+		private async Task<List<int>> GetMatchingInputGroupIds(ScaffoldFilter filter)
+		{
+			if (filter.ParticleSizes?.Count > 0)
+			{
+				var ranges = filter.ParticleSizes.Select(ps => new { Lower = ps - 5, Upper = ps + 9 }).ToList();
+
+				// Construct the query dynamically
+				var query = _context.ParticlePropertyGroups.AsQueryable();
+				var predicate = PredicateBuilder.False<ParticlePropertyGroup>();
+
+				foreach (var range in ranges)
+				{
+					var tempRange = range;
+					predicate = predicate.Or(ppg => ppg.MeanSize > tempRange.Lower && ppg.MeanSize <= tempRange.Upper);
+				}
+
+				var inputGroupIds = await query.Where(predicate)
+                                        .Select(ppg => ppg.InputGroupId)
+                                        .Distinct()
+                                        .ToListAsync();
+				
+				return inputGroupIds;
+			}
+
+			return new List<int>(); // Return empty if no filtering needed
+		}
+
+		private IQueryable<ScaffoldGroup> ApplyJoins(IQueryable<ScaffoldGroup> query, List<int> matchingInputGroupIds, List<int> tagIds)
+		{
+			if (matchingInputGroupIds.Count > 0 || tagIds.Count > 0)
+			{
+				query = from sg in query
+					join ppg in _context.ParticlePropertyGroups on sg.InputGroup.Id equals ppg.InputGroupId into ppgJoin
+					from ppg in ppgJoin.DefaultIfEmpty()
+
+					join s in _context.Scaffolds on sg.Id equals s.ScaffoldGroupId into sJoin
+					from s in sJoin.DefaultIfEmpty()
+
+					join st in _context.ScaffoldTags on s.Id equals st.ScaffoldId into stJoin
+					from st in stJoin.DefaultIfEmpty()
+
+					where (!matchingInputGroupIds.Any() || matchingInputGroupIds.Contains(sg.InputGroup.Id))
+						&& (tagIds.Count == 0 || st != null && tagIds.Contains(st.TagId))
+
+					group new { sg, ppg, st } by sg into grouped
+					orderby grouped.Count(g => g.ppg != null) + grouped.Count(g => g.st != null) descending
+					select grouped.Key;
+			}
+
+			var sql = query.ToQueryString();
+
+			return query;
+		}
+
+		public async Task<ICollection<ScaffoldGroup>?> GetFilteredScaffoldGroupsByRelevance_v1(ScaffoldFilter filter, string currentUserId)
+		{
 			
 			var query = _context.ScaffoldGroups.AsNoTracking();
 			
@@ -253,79 +364,6 @@ namespace Repositories.Repositories
 
 			//////////////////
 			
-			// var query = _context.ScaffoldGroups.AsQueryable();
-
-			// // Filter by uploader based on visibility and user context
-			// if (!string.IsNullOrEmpty(filter.UserId))
-			// {
-			// 	query = filter.UserId == currentUserId
-			// 		? query.Where(sg => sg.UploaderId == filter.UserId)
-			// 		: query.Where(sg => sg.UploaderId == filter.UserId && sg.IsPublic);
-			// }
-			// else
-			// {
-			// 	query = query.Where(sg => sg.UploaderId == currentUserId || sg.IsPublic);
-			// }
-
-			// if (filter.ScaffoldGroupIds?.Count > 0)
-			// {
-			// 	var scaffoldGroupIds = filter.ScaffoldGroupIds ?? new List<int>();
-			// 	query = query.Where(sg => scaffoldGroupIds.Contains(sg.Id));
-			// }
-			// else
-			// {
-
-			// 	// Separate query for particle size filtering
-			// 	List<int> matchingInputGroupIds = new List<int>();
-			// 	if (filter.ParticleSizes?.Count > 0)
-			// 	{
-			// 		var ranges = filter.ParticleSizes.Select(ps => new { Lower = ps - 5, Upper = ps + 9 }).ToList();
-			// 		var particleQuery = _context.ParticlePropertyGroups.AsQueryable();
-
-			// 		foreach (var range in ranges)
-			// 		{
-			// 			particleQuery = particleQuery.Where(ppg => ppg.MeanSize > range.Lower && ppg.MeanSize < range.Upper);
-			// 		}
-
-			// 		matchingInputGroupIds = await particleQuery.Select(ppg => ppg.InputGroupId).Distinct().ToListAsync();
-			// 	}
-
-			// 	// Apply combined filters if they exist
-			// 	if (filter.ParticleSizes?.Count > 0 || filter.TagIds?.Count > 0)
-			// 	{
-			// 		var tagIds = filter.TagIds ?? new List<int>();
-
-			// 		query = query.Select(sg => new
-			// 		{
-			// 			ScaffoldGroup = sg,
-			// 			MatchingParticleCount = sg.InputGroup != null && matchingInputGroupIds.Contains(sg.InputGroup.Id)
-			// 				? sg.InputGroup.ParticlePropertyGroups.Count(ppg => matchingInputGroupIds.Contains(ppg.InputGroupId))
-			// 				: 0,
-			// 			MatchingTagsCount = sg.Scaffolds
-			// 				.SelectMany(s => s.ScaffoldTags)
-			// 				.Where(st => tagIds.Contains(st.TagId))
-			// 				.Select(st => st.TagId)
-			// 				.Distinct()
-			// 				.Count(),
-			// 		})
-			// 		.Where(sg => sg.MatchingParticleCount > 0 || sg.MatchingTagsCount > 0)
-			// 		.OrderByDescending(sg => sg.MatchingParticleCount)
-			// 		.ThenByDescending(sg => sg.MatchingTagsCount)
-			// 		.Select(sg => sg.ScaffoldGroup);
-			// 	}
-			// }
-
-			// var scaffoldGroups = await query
-			// 	.AsNoTracking()
-			// 	.AsSplitQuery()
-			// 	.Include(sg => sg.InputGroup)
-			// 		.ThenInclude(ig => ig != null ? ig.ParticlePropertyGroups : null)
-			// 	.Include(sg => sg.Scaffolds)
-			// 		.ThenInclude(s => s.ScaffoldTags)
-			// 			.ThenInclude(st => st.Tag)
-			// 	.ToListAsync();
-
-			// return scaffoldGroups;
 		}
 
 		public async Task<ICollection<ScaffoldGroup>?> GetFilteredScaffoldGroups(ScaffoldFilter filter, string currentUserId)

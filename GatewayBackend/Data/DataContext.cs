@@ -86,13 +86,7 @@ public partial class DataContext : IdentityDbContext<User, Role, string>
             .HasForeignKey(p => p.PublicationId)
             .OnDelete(DeleteBehavior.SetNull);
 		
-		// One-to-One relationship between Experiment and InputGroup
-        builder.Entity<InputGroup>()
-            .HasOne(i => i.ScaffoldGroup)
-            .WithOne(g => g.InputGroup)
-            .HasForeignKey<ScaffoldGroup>(g => g.Id)
-			.OnDelete(DeleteBehavior.Cascade);
-            
+		// One-to-One relationship between ScaffoldGroup and InputGroup          
         builder.Entity<ScaffoldGroup>()
             .HasOne(g => g.InputGroup)
             .WithOne(i => i.ScaffoldGroup)

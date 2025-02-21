@@ -36,8 +36,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "postbuild": "rm -rf ../../GatewayBackend/API/wwwroot/* && cp -r build/* ../../GatewayBackend/API/wwwroot/"
-  },
+    "postbuild": "[ -d ../../GatewayBackend/API/wwwroot/ ] && rm -rf ../../GatewayBackend/API/wwwroot/* && cp -r build/* ../../GatewayBackend/API/wwwroot/ || echo 'Skipping postbuild: No wwwroot found'"},
   "eslintConfig": {
     "extends": [
       "react-app",

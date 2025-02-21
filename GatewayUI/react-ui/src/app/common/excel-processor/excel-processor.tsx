@@ -50,9 +50,9 @@ export function processExcelFile(file: File, descriptorTypes: DescriptorType[]):
 
                         // Extract UniqueId column values
                         const uniqueIds = rows.slice(3).map((row) => row[uniqueIdIndex]).filter((id) => id != null);
-                        if (uniqueIds.length === 0) {
-                            throw new Error(`No valid entries found in "UniqueId" column of sheet "${sheetName}".`);
-                        }
+                        // if (uniqueIds.length === 0) {
+                        //     throw new Error(`No valid entries found in "UniqueId" column of sheet "${sheetName}".`);
+                        // }
 
                         // Parse Other and Pore descriptors
                         const otherDescriptors = [];
@@ -102,18 +102,17 @@ export function processExcelFile(file: File, descriptorTypes: DescriptorType[]):
                     .filter(Boolean); // Remove null values from skipped sheets
 				
 				// Check for dx and numVoxels in the global descriptors of the first sheet
-				const firstSheetGlobalDescriptors = scaffolds[0]?.globalDescriptors || [];
-				const dxDescriptor = firstSheetGlobalDescriptors.find(d => d.name.toLowerCase() === "dx");
-				const numVoxelsDescriptor = firstSheetGlobalDescriptors.find(d => d.name.toLowerCase() === "numvoxels");
+				// const firstSheetGlobalDescriptors = scaffolds[0]?.globalDescriptors || [];
+				// const dxDescriptor = firstSheetGlobalDescriptors.find(d => d.name.toLowerCase() === "dx");
+				// const numVoxelsDescriptor = firstSheetGlobalDescriptors.find(d => d.name.toLowerCase() === "numvoxels");
 
                 // Placeholder for manual input
                 const jsonOutput = {
                     isSimulated: "<BOOLEAN: true | false>",
-                    comments: "<STRING>",
                     inputGroup: {
                         containerShape: "<STRING>",
                         containerSize: "<NUMBER>",
-                        packingConfiguration: "<STRING: isotropic | anisotropic | square | hexagonal>",
+                        packingConfiguration: "<STRING: isotropic | anisotropic | square | hexagonal | unknown>",
                         particlePropertyGroups: [
                             {
                                 shape: "<STRING: spheres | rods | nuggets | ellipsoids | amorphous>",

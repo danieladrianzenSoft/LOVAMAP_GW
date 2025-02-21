@@ -257,3 +257,4 @@
 /Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/bin/Debug/net8.0/Newtonsoft.Json.dll
 /Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/bin/Debug/net8.0/SixLabors.ImageSharp.dll
 /Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/bin/Debug/net8.0/API.staticwebassets.runtime.json
+/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/bin/Debug/net8.0/appsettings.Production.json

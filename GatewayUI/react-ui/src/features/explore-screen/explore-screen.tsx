@@ -31,7 +31,7 @@ const ExploreScreen = () => {
     };
 
     const rows = [];
-    for (let i = 0; i < scaffoldGroups.length; i += numberOfColumns) {
+    for (let i = 0; i < scaffoldGroups?.length; i += numberOfColumns) {
         rows.push(scaffoldGroups.slice(i, i + numberOfColumns));
     }
 

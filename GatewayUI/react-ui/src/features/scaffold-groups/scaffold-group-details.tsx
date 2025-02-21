@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ScaffoldGroup } from '../../app/models/scaffoldGroup';
 import Tag from '../../app/common/tag/tag';
 import { Formik } from 'formik';
@@ -6,6 +6,7 @@ import TextInput from '../../app/common/form/text-input';
 import { downloadScaffoldGroupAsExcel } from '../../app/common/excel-generator/excel-generator';
 import { useStore } from '../../app/stores/store';
 import { observer } from 'mobx-react-lite';
+import { FaSpinner } from 'react-icons/fa';
 
 interface ScaffoldGroupDetailsProps {
     scaffoldGroup: ScaffoldGroup;
@@ -23,10 +24,13 @@ const categoryOrder: { [key: string]: number } = {
 const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGroup, isVisible, toggleDetails }) => {
     const {scaffoldGroupStore} = useStore();
 	const {getDetailedScaffoldGroupById} = scaffoldGroupStore;
+	const [isLoading, setIsLoading] = useState<boolean>(false);
 
 	const download = async (values: any, setErrors: Function) => {
+		setIsLoading(true);
 		try {
 			const downloadedData = await getDetailedScaffoldGroupById({scaffoldGroupId: values.scaffoldGroup});
+			console.log(downloadedData);
 			if (downloadedData)
 			{
 				downloadScaffoldGroupAsExcel(downloadedData)
@@ -34,6 +38,8 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 		} catch (error) {
 			console.error("Error downloading data:", error);
 			setErrors({ submit: 'Failed to download data. Please try again.' });
+		} finally {
+			setIsLoading(false);
 		}
 	}
 	
@@ -108,7 +114,7 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 									<td>{scaffoldGroup.inputs?.containerSize ?? 'n/a'}</td>
 								</tr>
 								<tr>
-									<td className="font-medium text-gray-900 align-top">Anisotropic:</td>
+									<td className="font-medium text-gray-900 align-top">Packing Configuration:</td>
 									<td>{scaffoldGroup.inputs?.packingConfiguration ?? 'unknown'}</td>
 								</tr>
 								<tr>
@@ -170,7 +176,10 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 															/>
 															<p className="text-sm ml-2 my-auto mb-5">{` of ${scaffoldGroup.numReplicates}`}</p>
 														</div>
-														<button type="submit" className='button-outline self-start'>Download Descriptors</button>
+														<button type="submit" className="button-outline self-start flex items-center gap-2">
+															Download Descriptors
+															{isLoading && <FaSpinner className="animate-spin text-current text-[1em]" />}
+														</button>
 													</div>							
 												</form>
 											)}

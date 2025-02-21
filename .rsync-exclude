@@ -1,0 +1,8 @@
+GatewayUI/react-ui/node_modules
+GatewayUI/react-ui/build
+GatewayUI/react-ui/dist
+.env
+.vscode
+.git
+docker-compose.override.yml
+certbot/

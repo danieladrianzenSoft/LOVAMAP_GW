@@ -11,6 +11,7 @@ namespace Services.IServices
 		// Maps to model entities
 		Role MapToRole(RoleToCreateDto dto);
 		User MapToUser(UserToCreateDto dto);
+		Publication MapToPublication(PublicationToCreateDto dto);
 		Task<ScaffoldGroup> MapToScaffoldGroup(ScaffoldGroupToCreateDto dto);
     	Task<Scaffold> MapToScaffold(ScaffoldToCreateDto dto, int replicateNumber);
 		InputGroup MapToInputGroup(InputGroupToCreateDto dto);
@@ -27,8 +28,8 @@ namespace Services.IServices
 		Task<AuthenticatedUserDto> MapToAuthenticatedUserDto(User user, string token);
 		TagForFilterDto MapTagToDto(Tag tag);
 		DescriptorTypeDto MapDescriptorTypeToDto(DescriptorType descriptorType);
-		ScaffoldGroupBaseDto MapScaffoldGroupToDto(ScaffoldGroup scaffoldGroup, IEnumerable<Scaffold> scaffolds, IEnumerable<Image> images, string userId, bool isDetailed);
-		ScaffoldGroupSummaryDto MapToScaffoldGroupSummaryDto(ScaffoldGroup scaffoldGroup, IEnumerable<Image> images, string userId);
+		ScaffoldGroupBaseDto MapScaffoldGroupToDto(ScaffoldGroup scaffoldGroup, IEnumerable<Scaffold> scaffolds, IEnumerable<Image> images, IEnumerable<string> tags, string userId, bool isDetailed);
+		ScaffoldGroupSummaryDto MapToScaffoldGroupSummaryDto(ScaffoldGroup scaffoldGroup, IEnumerable<Image> images, IEnumerable<string> tags, string userId);
 		ScaffoldGroupDetailedDto MapToScaffoldGroupDetailedDto(ScaffoldGroup scaffoldGroup, IEnumerable<Scaffold> scaffolds, IEnumerable<Image> images, string userId);
 		ImageToShowDto MapImageToDto(Image image);
 

@@ -17,9 +17,9 @@ namespace Data.Models
 		public string? Description { get; set; }
 		public int? PublicationId { get; set; } 
 		public Publication? Publication { get; set; }
-		public ICollection<GlobalDescriptor> GlobalDescriptors { get; set; } = new List<GlobalDescriptor>();
-    	public ICollection<PoreDescriptor> PoreDescriptors { get; set; } = new List<PoreDescriptor>();
-   	 	public ICollection<OtherDescriptor> OtherDescriptors { get; set; } = new List<OtherDescriptor>();
+		public virtual ICollection<GlobalDescriptor> GlobalDescriptors { get; set; } = new List<GlobalDescriptor>();
+    	public virtual ICollection<PoreDescriptor> PoreDescriptors { get; set; } = new List<PoreDescriptor>();
+   	 	public virtual ICollection<OtherDescriptor> OtherDescriptors { get; set; } = new List<OtherDescriptor>();
 		public virtual ICollection<DescriptorTypeDownload> DescriptorTypeDownloads { get; set; } = new List<DescriptorTypeDownload>();
 
 	}

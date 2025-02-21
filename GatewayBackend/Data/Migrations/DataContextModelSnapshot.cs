@@ -404,7 +404,7 @@ namespace Data.Migrations
                     b.Property<int>("ReplicateNumber")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("ScaffoldGroupId")
+                    b.Property<int>("ScaffoldGroupId")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
@@ -850,7 +850,8 @@ namespace Data.Migrations
                     b.HasOne("Data.Models.ScaffoldGroup", "ScaffoldGroup")
                         .WithMany("Scaffolds")
                         .HasForeignKey("ScaffoldGroupId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("ScaffoldGroup");
                 });

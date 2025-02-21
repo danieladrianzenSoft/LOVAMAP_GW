@@ -5,8 +5,8 @@ namespace Infrastructure.DTOs
 {
 	public class InputGroupToCreateDto
 	{
-		public int Dx { get; set; }
-		public int NumVoxels { get; set; }
+		// public int Dx { get; set; }
+		// public int NumVoxels { get; set; }
 		public string ContainerShape { get; set; } = "Cube";
 		public int ContainerSize { get; set; }
 		public string PackingConfiguration { get; set; } = "Isotropic";

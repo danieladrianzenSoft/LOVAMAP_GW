@@ -1,6 +1,6 @@
 const environment = {
     production: true,
-    baseUrl: "https://lovamap-0fe98e9420ce.herokuapp.com/api",
+    baseUrl: "https://lovamap.com/api"
 };
 
 export default environment;

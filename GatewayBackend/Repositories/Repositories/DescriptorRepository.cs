@@ -6,6 +6,7 @@ using Repositories.IRepositories;
 using Data;
 using Data.Models;
 using Infrastructure.DTOs;
+using Infrastructure.Helpers;
 using System.Collections.Immutable;
 
 namespace Repositories.Repositories
@@ -59,10 +60,6 @@ namespace Repositories.Repositories
     		var descriptors = await query.Include(gd => gd.DescriptorType).ToListAsync();
 
 			return descriptors;
-
-			// return await query.GroupBy(gd => gd.DescriptorTypeId)
-			// 				.Select(group => group.First())
-			// 				.ToListAsync();
 		}
 
 		public async Task<ICollection<PoreDescriptor>> GetPoreDescriptorsByScaffoldIdsAndFilter(IEnumerable<int> scaffoldIds, ScaffoldFilter filter)
@@ -79,14 +76,10 @@ namespace Repositories.Repositories
 				query = query.Where(sg => descriptorIds.Contains(sg.DescriptorTypeId));
 			}
 
-
 			var descriptors = await query.Include(sg => sg.DescriptorType).ToListAsync();
 
 			return descriptors;
 
-			// return await query.GroupBy(gd => gd.DescriptorTypeId)
-			// 				.Select(group => group.First())
-			// 				.ToListAsync();
 		}
 		public async Task<ICollection<OtherDescriptor>> GetOtherDescriptorsByScaffoldIdsAndFilter(IEnumerable<int> scaffoldIds, ScaffoldFilter filter)
 		{
@@ -106,10 +99,104 @@ namespace Repositories.Repositories
 			var descriptors = await query.Include(sg => sg.DescriptorType).ToListAsync();
 
 			return descriptors;
+		}
 
-			// return await query.GroupBy(gd => gd.DescriptorTypeId)
-			// 				.Select(group => group.First())
-			// 				.ToListAsync();
+		public async Task<(Dictionary<int, List<ScaffoldBaseDto>>, Dictionary<int, List<DescriptorDto>>, Dictionary<int, List<DescriptorDto>>, Dictionary<int, List<DescriptorDto>>)>
+			GetScaffoldsAndDescriptorsFromScaffoldGroupIds(IEnumerable<int> scaffoldGroupIds)
+		{
+			// Fetch scaffolds grouped by scaffold group ID
+			var scaffolds = await _context.Scaffolds
+				.Where(s => scaffoldGroupIds.Contains(s.ScaffoldGroupId))
+				.Select(s => new
+				{
+					s.ScaffoldGroupId,
+					Scaffold = new ScaffoldBaseDto
+					{
+						Id = s.Id,
+						ReplicateNumber = s.ReplicateNumber
+					}
+				})
+				.ToListAsync();
+
+			var scaffoldLookup = scaffolds
+				.GroupBy(s => s.ScaffoldGroupId)
+				.ToDictionary(g => g.Key, g => g.Select(s => s.Scaffold).ToList());
+
+			// Fetch all descriptors in one go, grouped by scaffold ID
+			var globalDescriptors = await (
+				from gd in _context.GlobalDescriptors
+				join dt in _context.DescriptorTypes on gd.DescriptorTypeId equals dt.Id
+				where scaffolds.Select(s => s.Scaffold.Id).Contains(gd.ScaffoldId)
+				select new
+				{
+					gd.ScaffoldId,
+					Descriptor = new DescriptorDto
+					{
+						Id = gd.Id,
+						DescriptorTypeId = gd.DescriptorTypeId,
+						Name = dt.Name,
+						Label = dt.Label,
+						TableLabel = dt.TableLabel,
+						Unit = dt.Unit,
+						Values = gd.ValueString ?? gd.ValueInt.ToString() ?? gd.ValueDouble.ToString() ?? "N/A"
+					}
+				})
+				.ToListAsync();
+
+			var poreDescriptors = await (
+				from pd in _context.PoreDescriptors
+				join dt in _context.DescriptorTypes on pd.DescriptorTypeId equals dt.Id
+				where scaffolds.Select(s => s.Scaffold.Id).Contains(pd.ScaffoldId)
+				select new
+				{
+					pd.ScaffoldId,
+					Descriptor = new DescriptorDto
+					{
+						Id = pd.Id,
+						DescriptorTypeId = pd.DescriptorTypeId,
+						Name = dt.Name,
+						Label = dt.Label,
+						TableLabel = dt.TableLabel,
+						Unit = dt.Unit,
+						Values = ParsingMethods.JsonDocumentToString(pd.Values)
+					}
+				})
+				.ToListAsync();
+
+			var otherDescriptors = await (
+				from od in _context.OtherDescriptors
+				join dt in _context.DescriptorTypes on od.DescriptorTypeId equals dt.Id
+				where scaffolds.Select(s => s.Scaffold.Id).Contains(od.ScaffoldId)
+				select new
+				{
+					od.ScaffoldId,
+					Descriptor = new DescriptorDto
+					{
+						Id = od.Id,
+						DescriptorTypeId = od.DescriptorTypeId,
+						Name = dt.Name,
+						Label = dt.Label,
+						TableLabel = dt.TableLabel,
+						Unit = dt.Unit,
+						Values = ParsingMethods.JsonDocumentToString(od.Values)
+					}
+				})
+				.ToListAsync();
+
+			// Convert descriptor lists into dictionary lookups
+			var globalDescriptorLookup = globalDescriptors
+				.GroupBy(d => d.ScaffoldId)
+				.ToDictionary(g => g.Key, g => g.Select(d => d.Descriptor).ToList());
+
+			var poreDescriptorLookup = poreDescriptors
+				.GroupBy(d => d.ScaffoldId)
+				.ToDictionary(g => g.Key, g => g.Select(d => d.Descriptor).ToList());
+
+			var otherDescriptorLookup = otherDescriptors
+				.GroupBy(d => d.ScaffoldId)
+				.ToDictionary(g => g.Key, g => g.Select(d => d.Descriptor).ToList());
+
+			return (scaffoldLookup, globalDescriptorLookup, poreDescriptorLookup, otherDescriptorLookup);
 		}
 
 	}

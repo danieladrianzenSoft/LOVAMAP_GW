@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Data;
 using Data.Models;
 using Infrastructure.DTOs;
+using Microsoft.Extensions.Logging;
 using Repositories.IRepositories;
 using Services.IServices;
 
@@ -14,12 +15,14 @@ namespace Services.Services
 		private readonly DataContext _context;
 		private readonly ITagRepository _tagRepository;
 		private readonly IModelMapper _modelMapper;
+		private readonly ILogger<TagService> _logger;
 
-		public TagService(DataContext context, IModelMapper modelMapper, ITagRepository tagRepository)
+		public TagService(DataContext context, IModelMapper modelMapper, ITagRepository tagRepository, ILogger<TagService> logger)
 		{
 			_context = context;
 			_modelMapper = modelMapper;
 			_tagRepository = tagRepository;
+			_logger = logger;
 		}
 
 		public async Task CreateTags(IEnumerable<TagToCreateDto> tagsToCreate)
@@ -114,6 +117,21 @@ namespace Services.Services
 			}
 
 			return tags;
+		}
+
+		public async Task<Dictionary<int, List<string>>> GetTagNamesForScaffoldGroups(IEnumerable<int> scaffoldGroupIds, string userId)
+		{
+			try
+			{
+				var tags = await _tagRepository.GetTagNamesForScaffoldGroups(scaffoldGroupIds, userId);
+
+				return tags ?? new Dictionary<int, List<string>>();
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, "Error retreiving tag names for selected scaffold group ids");
+        		return new Dictionary<int, List<string>>();
+			}
 		}
 
 

@@ -21,8 +21,11 @@ var builder = WebApplication.CreateBuilder(args);
 var jwtIssuer = builder.Configuration.GetSection("Jwt:Issuer").Get<string>();
 var jwtKey = builder.Configuration.GetSection("Jwt:Key").Get<string>();
 
+var connectionString = Environment.GetEnvironmentVariable("LOVAMAP_DB") 
+    ?? builder.Configuration.GetConnectionString("LOVAMAP_DB");
+
 builder.Services.AddDbContext<DataContext>(options => {
-    options.UseNpgsql(builder.Configuration.GetConnectionString("LOVAMAP_DB"));
+    options.UseNpgsql(connectionString);
 });
 
 builder.Services.AddIdentity<User, Role>()
@@ -61,7 +64,7 @@ builder.Services.AddCors(opt =>
 {
     opt.AddPolicy("CorsPolicy", policy =>
     {
-        policy.AllowAnyHeader().AllowAnyMethod().AllowCredentials().WithOrigins("http://localhost:3000");
+        policy.AllowAnyHeader().AllowAnyMethod().AllowCredentials().WithOrigins("http://localhost:3000","http://localhost:5001","http://152.3.103.246:3000");
     });
 });
 
@@ -72,6 +75,7 @@ builder.Services.AddScoped<IDescriptorRepository, DescriptorRepository>();
 builder.Services.AddScoped<IDownloadRepository, DownloadRepository>();
 builder.Services.AddScoped<ITagRepository, TagRepository>();
 builder.Services.AddScoped<IImageRepository, ImageRepository>();
+builder.Services.AddScoped<IPublicationRepository, PublicationRepository>();
 
 // Add helpers
 builder.Services.AddScoped<IUserAuthHelper, UserAuthHelper>();
@@ -86,6 +90,7 @@ builder.Services.AddScoped<IDownloadService, DownloadService>();
 builder.Services.AddScoped<ITagService, TagService>();
 builder.Services.AddScoped<IScaffoldGroupService, ScaffoldGroupService>();
 builder.Services.AddScoped<IImageService, ImageService>();
+builder.Services.AddScoped<IPublicationService, PublicationService>();
 builder.Services.AddScoped<IModelMapper, ModelMapper>();
 builder.Services.AddScoped<SeedingService>();
 
@@ -99,8 +104,9 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-    app.UseCors("CorsPolicy");
 }
+
+app.UseCors("CorsPolicy");
 
 // Running migrations
 using (var scope = app.Services.CreateScope())

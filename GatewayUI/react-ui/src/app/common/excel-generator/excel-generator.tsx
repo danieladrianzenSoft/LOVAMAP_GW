@@ -710,19 +710,52 @@ export function downloadExperimentsAsExcel(
 }
 
 function layoutDescriptors(descriptors: Descriptor[]): { data: any[][], maxCol: number } {
+    // Sort alphabetically for consistency
+    descriptors = descriptors.sort((a, b) => a.label.localeCompare(b.label));
     const headers = descriptors.map(desc => `${desc.label}${desc.unit ? ' (' + desc.unit + ')' : ''}`);
     const rows: any[][] = [];
     let maxCol = 0;
+    let uniqueIdColumn: string[] = []; // Stores unique ID column from first two-column descriptor
+
+    let foundTwoColumnDescriptor = false; // Track if we've already captured a two-column descriptor
 
     descriptors.forEach((desc, index) => {
-        const values = desc.values.split(',').map(value => value.trim());
+        let values = desc.values.includes(';') 
+            ? desc.values.split(';').map(row => {
+                const columns = row.split(', ').map(col => col.trim());
+                
+                // If this descriptor contains 2+ columns, store the first column only ONCE
+                if (columns.length > 1 && !foundTwoColumnDescriptor) {
+                    uniqueIdColumn = []; // Store first column as unique ID
+                    foundTwoColumnDescriptor = true; // Mark that we've taken the first one
+                }
+
+                // Store first column only for the first descriptor with 2 columns
+                if (foundTwoColumnDescriptor && columns.length > 1) {
+                    uniqueIdColumn.push(columns[0]); // Extract first column only
+                }
+
+                return columns.length > 1 ? columns[1] : columns[0]; // Extract second column (value)
+            })
+            : desc.values.split(',').map(value => value.trim());
+
         values.forEach((value, i) => {
-            if (!rows[i]) rows[i] = []; // Ensure the row exists
+            if (!rows[i]) rows[i] = []; // Ensure row exists
             rows[i][index] = value; // Place the value in the correct column
         });
-        maxCol = Math.max(maxCol, index + 1); // Update maxCol to ensure correct placement for Pore Descriptors
+
+        maxCol = Math.max(maxCol, index + 1);
     });
+
+    // If we detected a two-column descriptor, append "Unique Id" column at the end
+    if (uniqueIdColumn.length > 0) {
+        headers.push("Unique Id"); // Add header for Unique Id column
+        uniqueIdColumn.forEach((id, i) => {
+            if (!rows[i]) rows[i] = [];
+            rows[i].push(id); // Append unique ID value at the end of each row
+        });
+        maxCol++; // Increase max column count for new "Unique Id" column
+    }
 
     return { data: [headers, ...rows], maxCol };
 }
-  

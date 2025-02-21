@@ -40,6 +40,24 @@ namespace Repositories.Repositories
 				.ToListAsync();
 		}
 
+		public async Task<Dictionary<int, IEnumerable<ImageToShowDto>>> GetAllImagesForScaffoldGroups(IEnumerable<int> scaffoldGroupIds)
+		{
+			var images = await _context.Images
+				.Where(img => scaffoldGroupIds.Contains(img.ScaffoldGroupId))
+				.OrderByDescending(img => img.IsThumbnail)
+				.GroupBy(img => img.ScaffoldGroupId)
+				.ToDictionaryAsync(g => g.Key, g => g.Select(img => new ImageToShowDto
+				{
+					Id = img.Id,
+					Url = img.Url,
+					PublicId = img.PublicId,
+					IsThumbnail = img.IsThumbnail,
+					Category = img.Category.ToString()
+				}).ToList() as IEnumerable<ImageToShowDto>);
+
+			return images;
+		}
+
 		public async Task<int> GetNumThumbnails(int scaffoldGroupId)
 		{
 			return await _context.Images
@@ -53,6 +71,23 @@ namespace Repositories.Repositories
 				.Where(x => x.ScaffoldGroupId == scaffoldGroupId && x.IsThumbnail)
 				.Take(3)
 				.ToListAsync();
+
+			return images;
+		}
+
+		public async Task<Dictionary<int, IEnumerable<ImageToShowDto>>> GetThumbnailsForScaffoldGroups(IEnumerable<int> scaffoldGroupIds)
+		{
+			var images = await _context.Images
+				.Where(img => scaffoldGroupIds.Contains(img.ScaffoldGroupId) && img.IsThumbnail)
+				.GroupBy(img => img.ScaffoldGroupId)
+				.ToDictionaryAsync(g => g.Key, g => g.Select(img => new ImageToShowDto
+				{
+					Id = img.Id,
+					Url = img.Url,
+					PublicId = img.PublicId,
+					IsThumbnail = img.IsThumbnail,
+					Category = img.Category.ToString()
+				}).ToList() as IEnumerable<ImageToShowDto>);
 
 			return images;
 		}

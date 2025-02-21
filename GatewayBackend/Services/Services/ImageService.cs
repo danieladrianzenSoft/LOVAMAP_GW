@@ -215,11 +215,41 @@ namespace Services.Services
 			}
 		}
 
+		public async Task<Dictionary<int, IEnumerable<ImageToShowDto>>> GetThumbnailsForScaffoldGroups(IEnumerable<int> scaffoldGroupIds)
+		{
+			try
+			{
+				var images = await _imageRepository.GetThumbnailsForScaffoldGroups(scaffoldGroupIds);
+				return images;
+			}
+			catch (Exception ex)
+			{
+				
+				_logger.LogError(ex, "Error getting scaffold group images");
+				return [];
+			}
+		}
+
 		public async Task<ICollection<Image>> GetAllImagesForScaffoldGroup(int scaffoldGroupId)
 		{
 			try
 			{
 				var images = await _imageRepository.GetAll(scaffoldGroupId);
+				return images;
+			}
+			catch (Exception ex)
+			{
+				
+				_logger.LogError(ex, "Error getting scaffold group images");
+				return [];
+			}
+		}
+
+		public async Task<Dictionary<int, IEnumerable<ImageToShowDto>>> GetAllImagesForScaffoldGroups(IEnumerable<int> scaffoldGroupIds)
+		{
+			try
+			{
+				var images = await _imageRepository.GetAllImagesForScaffoldGroups(scaffoldGroupIds);
 				return images;
 			}
 			catch (Exception ex)
