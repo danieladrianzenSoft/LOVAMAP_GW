@@ -8,6 +8,7 @@ namespace Data.Models
 		public int ScaffoldGroupId { get; set; }
 		public ScaffoldGroup ScaffoldGroup { get; set; } = null!;
 		public ICollection<ScaffoldTag> ScaffoldTags { get; set; } = new List<ScaffoldTag>();
+		public virtual ICollection<Domain> Domains { get; set; } = new List<Domain>();
 		public virtual ICollection<Image> Images { get; set; } = new List<Image>();
 		public virtual ICollection<GlobalDescriptor> GlobalDescriptors { get; set; } = new List<GlobalDescriptor>();
 		public virtual ICollection<PoreDescriptor> PoreDescriptors { get; set; } = new List<PoreDescriptor>();

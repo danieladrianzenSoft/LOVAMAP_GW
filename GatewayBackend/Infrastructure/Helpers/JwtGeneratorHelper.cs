@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Data.Models;
+using Infrastructure.IHelpers;
 
 namespace Infrastructure.Helpers
 {	

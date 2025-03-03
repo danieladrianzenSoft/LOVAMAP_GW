@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "KcLZKPbOY898K0gGpoHdx4c1mLUfBnAw+E31v8l70WN1Hhif2y5KpGoVlNlZTvpHTd2XrkdFgDwngyJi+04gTg==",
+  "dgSpecHash": "5H6M5a94LN299YbOlmfKsS4tPm1YIZFYCKQnChcsprO5cb7edkXiw13zI4llWZlIyJOLmDxTbTbTWtei5j5Lgg==",
   "success": true,
   "projectFilePath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/API.csproj",
   "expectedPackageFiles": [
     "/Users/dzen/.nuget/packages/cloudinarydotnet/1.26.2/cloudinarydotnet.1.26.2.nupkg.sha512",
     "/Users/dzen/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
+    "/Users/dzen/.nuget/packages/miconvexhull/1.1.19.1019/miconvexhull.1.1.19.1019.nupkg.sha512",
     "/Users/dzen/.nuget/packages/microsoft.aspnetcore.authentication/2.2.0/microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "/Users/dzen/.nuget/packages/microsoft.aspnetcore.authentication.abstractions/2.2.0/microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "/Users/dzen/.nuget/packages/microsoft.aspnetcore.authentication.cookies/2.2.0/microsoft.aspnetcore.authentication.cookies.2.2.0.nupkg.sha512",
@@ -83,6 +84,9 @@
     "/Users/dzen/.nuget/packages/runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl/4.3.2/runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
     "/Users/dzen/.nuget/packages/runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl/4.3.2/runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
     "/Users/dzen/.nuget/packages/runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl/4.3.2/runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
+    "/Users/dzen/.nuget/packages/sharpgltf.core/1.0.3/sharpgltf.core.1.0.3.nupkg.sha512",
+    "/Users/dzen/.nuget/packages/sharpgltf.runtime/1.0.3/sharpgltf.runtime.1.0.3.nupkg.sha512",
+    "/Users/dzen/.nuget/packages/sharpgltf.toolkit/1.0.3/sharpgltf.toolkit.1.0.3.nupkg.sha512",
     "/Users/dzen/.nuget/packages/sixlabors.imagesharp/3.1.5/sixlabors.imagesharp.3.1.5.nupkg.sha512",
     "/Users/dzen/.nuget/packages/swashbuckle.aspnetcore/6.4.0/swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
     "/Users/dzen/.nuget/packages/swashbuckle.aspnetcore.swagger/6.4.0/swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",

@@ -8,6 +8,7 @@ import { ScaffoldGroup, ScaffoldGroupToCreate } from "../models/scaffoldGroup";
 import { DescriptorType } from "../models/descriptorType";
 import { Image, ImageToCreate, ImageToUpdate } from "../models/image";
 import environment from "../environments/environment"
+import { Domain } from "../models/domain";
 
 axios.defaults.baseURL = environment.baseUrl;
 
@@ -35,7 +36,7 @@ axios.interceptors.request.use(async (config) => {
 });
 
 function isPublicRoute(url: string) {
-    const publicRoutes = ['/auth/login', '/auth/register', '/scaffoldGroups/public', '/resources'];
+    const publicRoutes = ['/auth/login', '/auth/register', '/scaffoldGroups/public', '/resources', '/visualize'];
     return publicRoutes.some(route => url.includes(route));
 }
 
@@ -90,6 +91,7 @@ const Users = {
 const ScaffoldGroups = {
 	getSummarized: (queryParams: string) => requests.get<ApiResponse<ScaffoldGroup[]>>('/scaffoldGroups' + queryParams),
 	getPublic: (queryParams: string) => requests.get<ApiResponse<ScaffoldGroup[]>>('/scaffoldGroups/public' + queryParams),
+    getSummary: (id: number) => requests.get<ApiResponse<ScaffoldGroup>>('/scaffoldGroups/' + id + '/summary'),
 	getDetailed: (id: number) => requests.get<ApiResponse<ScaffoldGroup>>('/scaffoldGroups/' + id),
     getDetailedForExperiment: (queryParams: string) => requests.get<ApiResponse<ScaffoldGroup[]>>('/scaffoldGroups/detailed' + queryParams),
     uploadScaffoldGroup: (scaffoldGroup: ScaffoldGroupToCreate) => requests.post<ApiResponse<ScaffoldGroup>>('/scaffoldGroups/create', scaffoldGroup),
@@ -113,10 +115,39 @@ const ScaffoldGroups = {
     deleteImage: (scaffoldGroupId: number, imageId: number) => requests.del<ApiResponse<ScaffoldGroup>>(`/scaffoldGroups/${scaffoldGroupId}/image/${imageId}`),
 }
 
+const Domains = {
+    visualize: async (scaffoldId: number) => {
+        const response = await axios.get(`/domains/${scaffoldId}`, {
+            responseType: 'blob', // Ensures we get the response as binary data
+        });
+
+        // Extract metadata from headers
+        const domain: Domain = {
+            id: response.headers['x-domain-id'],
+            scaffoldId: response.headers['x-scaffold-id'],
+            category: response.headers['x-category'],
+            voxelCount: response.headers['x-voxel-count'],
+            voxelSize: response.headers['x-voxel-size'],
+            domainSize: response.headers['x-domain-size'],
+            meshFilePath: response.headers['x-mesh-filepath']
+        };
+
+        return { file: response.data, domain };
+    },
+    createDomain: async (formData: FormData) => {
+        const response = await axios.post<ApiResponse<Domain>>(`/domains/create`, formData, {
+            headers: { 'Content-Type': 'multipart/form-data' },
+        });
+
+        return response.data;
+    },
+}
+
 const agent = {
 	Resources,
 	Users,
-	ScaffoldGroups
+	ScaffoldGroups,
+    Domains
 }
 
 export default agent;

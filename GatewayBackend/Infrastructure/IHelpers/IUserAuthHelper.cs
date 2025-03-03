@@ -6,7 +6,7 @@ using Data.Models;
 using Infrastructure.DTOs;
 using Microsoft.AspNetCore.Identity;
 
-namespace Infrastructure.Helpers
+namespace Infrastructure.IHelpers
 {	public interface IUserAuthHelper
 	{
 		Task<IdentityResult> CreateUser(User user, string password);

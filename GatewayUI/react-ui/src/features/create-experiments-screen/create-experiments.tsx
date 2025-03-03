@@ -86,10 +86,10 @@ const CreateExperiments = () => {
         const allOptions = ['Descriptors', 'Scaffold Replicates', 'Scaffold Groups'];
     
         // Function to check for duplicates
-        const hasDuplicates = (opts: { [key: string]: string }) => {
-            const values = Object.values(opts);
-            return values.length !== new Set(values).size;
-        };
+        // const hasDuplicates = (opts: { [key: string]: string }) => {
+        //     const values = Object.values(opts);
+        //     return values.length !== new Set(values).size;
+        // };
     
         // Adjust options to avoid duplicates
         const adjustOptions = (changedOption: OptionKey) => {

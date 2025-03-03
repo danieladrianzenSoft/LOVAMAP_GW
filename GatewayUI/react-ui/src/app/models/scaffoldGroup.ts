@@ -12,6 +12,8 @@ export interface ScaffoldGroup {
     numReplicates: number;
     tags: string[];
     scaffolds: Scaffold[];
+    scaffoldIds: number[];
+    scaffoldIdsWithDomains: number[];
     images: Image[];
 }
 

@@ -17,6 +17,7 @@ namespace Services.IServices
 		InputGroup MapToInputGroup(InputGroupToCreateDto dto);
 		ParticlePropertyGroup MapToParticlePropertyGroup(ParticlePropertyGroupToCreateDto dto);
 		Tag MapToTag(TagToCreateDto dto);
+		Tag MapToTag(TagToSeedDto dto);
 		Task<ScaffoldTag> MapToScaffoldTag(ScaffoldTagToCreateDto dto);
 		DescriptorType MapToDescriptorType(DescriptorTypeToCreateDto dto);
 		Task<GlobalDescriptor> MapToGlobalDescriptor(GlobalDescriptorToCreateDto dto);

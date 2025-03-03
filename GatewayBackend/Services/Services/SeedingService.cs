@@ -173,11 +173,11 @@ namespace Services.Services
 			{
 				var path = Path.Combine(baseUrl, "Tags.json");
 				var tagData = File.ReadAllText(path);
-				var tags = JsonSerializer.Deserialize<List<TagToCreateDto>>(tagData, _jsonSerializerOptions);
+				var tags = JsonSerializer.Deserialize<List<TagToSeedDto>>(tagData, _jsonSerializerOptions);
 				if (tags == null) {
 					throw new ApplicationException("Failed to deserialize tags");
 				}
-				await _tagService.CreateTags(tags);
+				await _tagService.SeedTags(tags);
 			}
 			
 		}

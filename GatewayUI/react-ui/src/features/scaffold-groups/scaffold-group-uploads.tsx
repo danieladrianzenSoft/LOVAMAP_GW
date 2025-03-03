@@ -12,7 +12,7 @@ import { processExcelFile } from '../../app/common/excel-processor/excel-process
 const ScaffoldGroupUploads: React.FC = () => {
     const { descriptorTypes} = useDescriptorTypes();
     const { scaffoldGroupStore } = useStore();
-    const { getUploadedScaffoldGroups, uploadedScaffoldGroups = [], updateImage } = scaffoldGroupStore;
+    const { getUploadedScaffoldGroups, uploadedScaffoldGroups = [], updateImage, navigateToVisualization } = scaffoldGroupStore;
 
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [selectedGroup, setSelectedGroup] = useState<ScaffoldGroup | null>(null); // Track selected group
@@ -209,7 +209,7 @@ const ScaffoldGroupUploads: React.FC = () => {
             )}
 
             {isModalOpen && selectedGroup && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
                     <div className="bg-white p-6 rounded-lg shadow-lg max-w-lg w-full">
                         <div className="flex justify-between items-center mb-4">
                             <h2 className="text-xl font-bold">{selectedGroup.name}</h2>
@@ -218,6 +218,12 @@ const ScaffoldGroupUploads: React.FC = () => {
                         <p className="mb-4">Tags: {selectedGroup.tags?.join(', ')}</p>
                         <p className="mb-4">
                             Created At: {new Date(selectedGroup.createdAt).toLocaleString()}
+                        </p>
+                        <p className="mb-4">
+                            Replicates: {selectedGroup.scaffoldIds.length}
+                        </p>
+                        <p className="mb-4">
+                            Domains: {selectedGroup.scaffoldIdsWithDomains.length}
                         </p>
 
                         <p className="mb-4">Uploaded Images: </p>
@@ -336,7 +342,15 @@ const ScaffoldGroupUploads: React.FC = () => {
                             </div>
                         )}
 
-                        <div className="mt-4 flex justify-end">
+                        <div className="mt-4 flex justify-between">
+                            <button
+                                className={`px-4 py-2 rounded transition ${
+                                        "bg-blue-600 text-white hover:bg-blue-700"
+                                }`}
+                                onClick={() => navigateToVisualization(selectedGroup)}
+                            >
+                                Interact
+                            </button>
                             <button
                                 onClick={closeModal}
                                 className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"

@@ -258,3 +258,7 @@
 /Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/bin/Debug/net8.0/SixLabors.ImageSharp.dll
 /Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/bin/Debug/net8.0/API.staticwebassets.runtime.json
 /Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/bin/Debug/net8.0/appsettings.Production.json
+/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/bin/Debug/net8.0/SharpGLTF.Core.dll
+/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/bin/Debug/net8.0/SharpGLTF.Runtime.dll
+/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/bin/Debug/net8.0/SharpGLTF.Toolkit.dll
+/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/bin/Debug/net8.0/MIConvexHull.dll

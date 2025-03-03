@@ -6,7 +6,7 @@ using Data.Models;
 using Infrastructure.DTOs;
 using Microsoft.AspNetCore.Identity;
 
-namespace Infrastructure.Helpers
+namespace Infrastructure.IHelpers
 {	public interface IJwtGeneratorHelper
 	{
         Task<string> GenerateJwtToken(User user);

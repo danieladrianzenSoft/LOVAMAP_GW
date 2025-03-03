@@ -13,6 +13,7 @@ import TopNavigation from '../../features/top-navigation/top-navigation';
 import Sidebar from '../../features/sidebar/sidebar';
 import { observer } from 'mobx-react-lite';
 import ScaffoldGroupUploads from '../../features/scaffold-groups/scaffold-group-uploads';
+import Visualization from '../../features/visualization/visualization';
 
 const App: React.FC = () => {
   const { commonStore, userStore } = useStore();
@@ -49,6 +50,8 @@ const App: React.FC = () => {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/" element={<MainLayout />}>
           <Route path="/" element={<ExploreScreen />} />
+          <Route path="/visualize" element={<Visualization/>} />
+          <Route path="/visualize/:scaffoldId" element={<Visualization/>} />
           <Route path="/learn" element={<LearnScreen />} />
           <Route path="/experiments" element={<CreateExperiments />} />
           <Route path="/uploads" element={<ScaffoldGroupUploads />} />
@@ -70,6 +73,8 @@ const MainLayout: React.FC = () => {
         <Routes>
           <Route path="/" element={<ExploreScreen />} />
           <Route path="/learn" element={<LearnScreen />} />
+          <Route path="/visualize" element={<Visualization />} />
+          <Route path="/visualize/:scaffoldId" element={<Visualization/>} />
           {isLoggedIn ? (
             <>
               <Route path="/experiments" element={<CreateExperiments />} />

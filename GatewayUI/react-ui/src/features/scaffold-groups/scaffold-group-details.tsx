@@ -7,6 +7,7 @@ import { downloadScaffoldGroupAsExcel } from '../../app/common/excel-generator/e
 import { useStore } from '../../app/stores/store';
 import { observer } from 'mobx-react-lite';
 import { FaSpinner } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 interface ScaffoldGroupDetailsProps {
     scaffoldGroup: ScaffoldGroup;
@@ -23,14 +24,15 @@ const categoryOrder: { [key: string]: number } = {
 
 const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGroup, isVisible, toggleDetails }) => {
     const {scaffoldGroupStore} = useStore();
-	const {getDetailedScaffoldGroupById} = scaffoldGroupStore;
+	const {getDetailedScaffoldGroupById, navigateToVisualization} = scaffoldGroupStore;
 	const [isLoading, setIsLoading] = useState<boolean>(false);
+	const navigate = useNavigate();
 
 	const download = async (values: any, setErrors: Function) => {
 		setIsLoading(true);
 		try {
 			const downloadedData = await getDetailedScaffoldGroupById({scaffoldGroupId: values.scaffoldGroup});
-			console.log(downloadedData);
+			// console.log(downloadedData);
 			if (downloadedData)
 			{
 				downloadScaffoldGroupAsExcel(downloadedData)
@@ -92,6 +94,23 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 						) : (
 							<p className="text-sm text-gray-500 italic">No figures added</p>
 						)}
+						
+						{scaffoldGroup.scaffoldIdsWithDomains.length === 0 ? (
+							<p className="text-sm text-gray-500 italic mt-2">No meshes available for visualization</p>
+						) : (
+							<button
+							className={`mt-4 px-4 py-2 rounded transition ${
+								scaffoldGroup.scaffoldIdsWithDomains.length > 0
+									? "bg-blue-600 text-white hover:bg-blue-700"
+									: "bg-blue-600 text-white hover:bg-blue-700 cursor-not-allowed"
+							}`}
+							onClick={() => navigateToVisualization(scaffoldGroup)}
+							disabled={scaffoldGroup.scaffoldIdsWithDomains.length === 0}
+						>
+							Interact
+						</button>
+						)}
+						
 					</div>
 					<div className="flex-1 p-4">
 						<div className="flex flex-wrap mb-4">
@@ -101,6 +120,10 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 						</div>
 						<table className="w-full text-sm text-left text-gray-500">
 							<tbody>
+								<tr>
+									<td className="font-medium text-gray-900 align-top w-32">Id:</td>
+									<td>{scaffoldGroup.id}</td>
+								</tr>
 								<tr>
 									<td className="font-medium text-gray-900 align-top w-32">Simulated:</td>
 									<td>{scaffoldGroup.isSimulated ? 'yes' : 'no'}</td>

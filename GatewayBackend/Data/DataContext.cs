@@ -12,6 +12,7 @@ public partial class DataContext : IdentityDbContext<User, Role, string>
 	public override DbSet<User> Users { get; set; }
 	public DbSet<ScaffoldGroup> ScaffoldGroups { get; set; }
     public DbSet<Scaffold> Scaffolds { get; set; }
+    public DbSet<Domain> Domains { get; set; }
 	public DbSet<Publication> Publications { get; set; }
 	public DbSet<InputGroup> InputGroups { get; set; }
     public DbSet<ParticlePropertyGroup> ParticlePropertyGroups { get; set; }
@@ -118,6 +119,13 @@ public partial class DataContext : IdentityDbContext<User, Role, string>
             .WithMany(s => s.Images)
             .HasForeignKey(i => i.ScaffoldId)
 			.OnDelete(DeleteBehavior.SetNull);
+
+        // One-to-Many relationship between Scaffold and Domains
+        builder.Entity<Scaffold>()
+            .HasMany(s => s.Domains)
+            .WithOne(i => i.Scaffold)
+            .HasForeignKey( s => s.ScaffoldId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         // One-to-Many relationship between Image and User (uploader)
         builder.Entity<User>()

@@ -1,4 +1,4 @@
-namespace Infrastructure
+namespace Infrastructure.IHelpers
 {
     public interface IUserContextHelper
     {

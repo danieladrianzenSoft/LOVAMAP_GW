@@ -6,24 +6,32 @@ import { observer } from 'mobx-react-lite';
 import logo from '../../../src/LOVAMAP_logo.png';
 
 const SideBar: React.FC = () => {
-
-	const {commonStore} = useStore();
+	const {commonStore, scaffoldGroupStore } = useStore();
 	const {setActiveTab, activeTab} = commonStore;
+	const {navigateToVisualization} = scaffoldGroupStore;
 	const location = useLocation();
+
+	const handleVisualizationClick = () => {
+		setActiveTab(1); // Set active tab before navigating
+		navigateToVisualization(null); // Navigate with no specific scaffold group
+	};
 
 	useEffect(() => {
         switch (location.pathname) {
             case '/':
                 setActiveTab(0);
                 break;
+			case '/visualize':
+				setActiveTab(1);
+				break;
             case '/learn':
-                setActiveTab(1);
-                break;
-            case '/experiments':
                 setActiveTab(2);
                 break;
+            case '/experiments':
+                setActiveTab(3);
+                break;
 			case '/uploads':
-				setActiveTab(3);
+				setActiveTab(4);
 				break;
             default:
                 setActiveTab(0);
@@ -50,6 +58,16 @@ const SideBar: React.FC = () => {
 									<ActiveTabMarker />
 								} */}
 								<p>Explore scaffolds</p>
+							</div>		
+						)}
+					</Tab>
+					<Tab as={NavLink} to='/visualize' onClick={handleVisualizationClick} className="focus:outline-none">
+						{({ selected }) => (
+							<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
+								{/* {selected && 
+									<ActiveTabMarker />
+								} */}
+								<p>Interact</p>
 							</div>		
 						)}
 					</Tab>
@@ -80,7 +98,7 @@ const SideBar: React.FC = () => {
 								{/* {selected && 
 									<ActiveTabMarker />
 								} */}
-								<p>Run</p>
+								<p>Upload</p>
 							</div>
 						)}
 					</Tab>

@@ -97,6 +97,46 @@ namespace Data.Migrations
                     b.ToTable("DescriptorTypeDownloads");
                 });
 
+            modelBuilder.Entity("Data.Models.Domain", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Category")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("DomainSize")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<byte[]>("Mesh")
+                        .HasColumnType("bytea");
+
+                    b.Property<string>("MeshFilePath")
+                        .HasColumnType("text");
+
+                    b.Property<int>("ScaffoldId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("VoxelCount")
+                        .HasColumnType("integer");
+
+                    b.Property<double>("VoxelSize")
+                        .HasColumnType("double precision");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ScaffoldId");
+
+                    b.ToTable("Domains");
+                });
+
             modelBuilder.Entity("Data.Models.Download", b =>
                 {
                     b.Property<int>("Id")
@@ -729,6 +769,17 @@ namespace Data.Migrations
                     b.Navigation("Download");
                 });
 
+            modelBuilder.Entity("Data.Models.Domain", b =>
+                {
+                    b.HasOne("Data.Models.Scaffold", "Scaffold")
+                        .WithMany("Domains")
+                        .HasForeignKey("ScaffoldId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Scaffold");
+                });
+
             modelBuilder.Entity("Data.Models.Download", b =>
                 {
                     b.HasOne("Data.Models.User", "Downloader")
@@ -994,6 +1045,8 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Data.Models.Scaffold", b =>
                 {
+                    b.Navigation("Domains");
+
                     b.Navigation("GlobalDescriptors");
 
                     b.Navigation("Images");

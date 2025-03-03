@@ -3,10 +3,13 @@ import agent from "../api/agent";
 import { Tag } from "../models/tag";
 import { ScaffoldGroup, ScaffoldGroupToCreate } from "../models/scaffoldGroup";
 import { Image, ImageToCreate, ImageToUpdate } from "../models/image";
+import History from "../helpers/History";
 
 export default class ScaffoldGroupStore {
 	scaffoldGroups: ScaffoldGroup[] = [];
 	uploadedScaffoldGroups: ScaffoldGroup[] = [];
+	selectedScaffoldGroup: ScaffoldGroup | null = null;
+	defaultScaffoldGroupId: number = 55;
 
 	constructor() {
 		makeAutoObservable(this)
@@ -15,6 +18,67 @@ export default class ScaffoldGroupStore {
 	setUploadedScaffoldGroups(groups: any[]) {
 		this.uploadedScaffoldGroups = groups;
 	}
+
+	navigateToVisualization = async (scaffoldGroup: ScaffoldGroup | null, scaffoldId?: number) => {
+		if (!scaffoldGroup) {
+			console.warn("No scaffold group provided. Redirecting to default.");
+
+			const foundGroup = 
+				this.scaffoldGroups.find(g => g.id === this.defaultScaffoldGroupId) || 
+				this.uploadedScaffoldGroups.find(g => g.id === this.defaultScaffoldGroupId);
+
+			if (foundGroup) {
+				this.setSelectedScaffoldGroup(foundGroup);
+				History.push(`/visualize/${foundGroup.scaffoldIdsWithDomains[0] || foundGroup.scaffoldIds[0]}`);
+				return;
+			}
+
+			const scaffoldGroup = await this.getScaffoldGroupSummary(this.defaultScaffoldGroupId);
+			console.log(scaffoldGroup)
+
+			if (scaffoldGroup) {
+				this.setSelectedScaffoldGroup(scaffoldGroup);
+				History.push(`/visualize/${scaffoldGroup.scaffoldIdsWithDomains[0] || scaffoldGroup.scaffoldIds[0]}`);
+				return;
+			}
+
+			History.push("/visualize"); // Redirect to generic visualization page
+			return;
+		}
+
+		if (scaffoldId) {
+			if (scaffoldGroup.scaffoldIds.includes(scaffoldId)) {
+				this.setSelectedScaffoldGroup(scaffoldGroup);
+				History.push(`/visualize/${scaffoldId}`);
+				return;
+			} else {
+				console.warn(`Scaffold ID ${scaffoldId} not found in ScaffoldGroup ${scaffoldGroup.id}.`);
+			}
+		}
+
+		this.setSelectedScaffoldGroup(scaffoldGroup);
+		
+		if (scaffoldGroup.scaffoldIdsWithDomains.length > 0) {
+			History.push(`/visualize/${scaffoldGroup.scaffoldIdsWithDomains[0]}`);
+		} else {
+			History.push(`/visualize/${scaffoldGroup.scaffoldIds[0]}`);
+			console.warn("No available meshes for visualization.");
+		}
+	}
+
+	setSelectedScaffoldGroup = (scaffoldGroup: ScaffoldGroup | null) => {
+		this.selectedScaffoldGroup = scaffoldGroup;
+	}
+
+	getScaffoldGroupSummary = async (id: any) => {
+		try {
+			const apiResponse = await agent.ScaffoldGroups.getSummary(id);
+			const scaffoldGroup = apiResponse.data;
+			return scaffoldGroup; 
+		} catch (error) {
+			console.error("Failed to fetch summarized scaffold group:", error);
+		}
+	};
 
 	getDetailedScaffoldGroupById = async (data: any) => {
 		try {
@@ -31,7 +95,6 @@ export default class ScaffoldGroupStore {
 	};
 
 	getDetailedScaffoldGroupsForExperiment = async (selectedScaffoldGroupIds?: number[], selectedDescriptorIds?: number[]) => {
-
 		try {
 			let queryParams = ''
 			if (selectedScaffoldGroupIds!= null){

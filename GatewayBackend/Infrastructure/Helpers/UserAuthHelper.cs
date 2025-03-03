@@ -6,10 +6,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Data;
 using Data.Models;
-using Infrastructure.DTOs;
+using Infrastructure.IHelpers;
 
 namespace Infrastructure.Helpers
-{	public class UserAuthHelper : IUserAuthHelper
+{	
+	public class UserAuthHelper : IUserAuthHelper
 	{
 		private readonly UserManager<User> _userManager;
 		private readonly SignInManager<User> _signInManager;

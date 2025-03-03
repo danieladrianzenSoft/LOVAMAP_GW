@@ -408,6 +408,18 @@
               "target": "Package",
               "version": "[1.26.2, )"
             },
+            "MIConvexHull": {
+              "target": "Package",
+              "version": "[1.1.19.1019, )"
+            },
+            "SharpGLTF.Core": {
+              "target": "Package",
+              "version": "[1.0.3, )"
+            },
+            "SharpGLTF.Toolkit": {
+              "target": "Package",
+              "version": "[1.0.3, )"
+            },
             "SixLabors.ImageSharp": {
               "target": "Package",
               "version": "[3.1.5, )"

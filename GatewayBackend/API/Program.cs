@@ -7,14 +7,14 @@ using Microsoft.AspNetCore.Identity;
 
 using Data;
 using Data.Models;
-using Infrastructure.Helpers;
 using Repositories.IRepositories;
 using Repositories.Repositories;
 using Services.IServices;
 using Services.Services;
-using Infrastructure;
 using Infrastructure.DTOs;
-
+using Infrastructure.Helpers;
+using Infrastructure.IHelpers;
+using Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -76,11 +76,13 @@ builder.Services.AddScoped<IDownloadRepository, DownloadRepository>();
 builder.Services.AddScoped<ITagRepository, TagRepository>();
 builder.Services.AddScoped<IImageRepository, ImageRepository>();
 builder.Services.AddScoped<IPublicationRepository, PublicationRepository>();
+builder.Services.AddScoped<IDomainRepository, DomainRepository>();
 
 // Add helpers
 builder.Services.AddScoped<IUserAuthHelper, UserAuthHelper>();
 builder.Services.AddScoped<IJwtGeneratorHelper, JwtGeneratorHelper>();
 builder.Services.AddScoped<IUserContextHelper, UserContextHelper>();
+builder.Services.AddScoped<IDomainFileService, DomainFileService>();
 
 // Add services registrations
 builder.Services.AddScoped<IRoleService, RoleService>();
@@ -91,6 +93,7 @@ builder.Services.AddScoped<ITagService, TagService>();
 builder.Services.AddScoped<IScaffoldGroupService, ScaffoldGroupService>();
 builder.Services.AddScoped<IImageService, ImageService>();
 builder.Services.AddScoped<IPublicationService, PublicationService>();
+builder.Services.AddScoped<IDomainService, DomainService>();
 builder.Services.AddScoped<IModelMapper, ModelMapper>();
 builder.Services.AddScoped<SeedingService>();
 

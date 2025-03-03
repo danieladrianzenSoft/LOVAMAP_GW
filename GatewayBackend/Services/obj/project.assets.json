@@ -33,6 +33,19 @@
           }
         }
       },
+      "MIConvexHull/1.1.19.1019": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/MIConvexHull.dll": {
+            "related": ".deps.json;.pdb"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/MIConvexHull.dll": {
+            "related": ".deps.json;.pdb"
+          }
+        }
+      },
       "Microsoft.AspNetCore.Authentication/2.2.0": {
         "type": "package",
         "dependencies": {
@@ -1374,6 +1387,51 @@
           }
         }
       },
+      "SharpGLTF.Core/1.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/SharpGLTF.Core.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/SharpGLTF.Core.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "SharpGLTF.Runtime/1.0.3": {
+        "type": "package",
+        "dependencies": {
+          "SharpGLTF.Core": "1.0.3"
+        },
+        "compile": {
+          "lib/net8.0/SharpGLTF.Runtime.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/SharpGLTF.Runtime.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "SharpGLTF.Toolkit/1.0.3": {
+        "type": "package",
+        "dependencies": {
+          "SharpGLTF.Runtime": "1.0.3"
+        },
+        "compile": {
+          "lib/net8.0/SharpGLTF.Toolkit.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/SharpGLTF.Toolkit.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "SixLabors.ImageSharp/3.1.5": {
         "type": "package",
         "compile": {
@@ -2497,6 +2555,23 @@
         "lib/netstandard2.0/Humanizer.dll",
         "lib/netstandard2.0/Humanizer.xml",
         "logo.png"
+      ]
+    },
+    "MIConvexHull/1.1.19.1019": {
+      "sha512": "Qz0BIRVyflj9jMkIKG1tpON5Xz1lFEA9XyRH0Pw5qIsCE75heHF4cHrBr8RqvQJRaaNXH+5jdWAfFP3m3OfTOA==",
+      "type": "package",
+      "path": "miconvexhull/1.1.19.1019",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard1.0/MIConvexHull.deps.json",
+        "lib/netstandard1.0/MIConvexHull.dll",
+        "lib/netstandard1.0/MIConvexHull.pdb",
+        "lib/netstandard2.0/MIConvexHull.deps.json",
+        "lib/netstandard2.0/MIConvexHull.dll",
+        "lib/netstandard2.0/MIConvexHull.pdb",
+        "miconvexhull.1.1.19.1019.nupkg.sha512",
+        "miconvexhull.nuspec"
       ]
     },
     "Microsoft.AspNetCore.Authentication/2.2.0": {
@@ -4272,6 +4347,66 @@
         "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
         "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.nuspec",
         "runtimes/ubuntu.16.10-x64/native/System.Security.Cryptography.Native.OpenSsl.so"
+      ]
+    },
+    "SharpGLTF.Core/1.0.3": {
+      "sha512": "su+Flcg2g6GgOIgulRGBDMHA6zY5NBx6NYH1Ayd6iBbSbwspHsN2VQgZfANgJy92cBf7qtpjC0uMiShbO+TEEg==",
+      "type": "package",
+      "path": "sharpgltf.core/1.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "glTF2Sharp.png",
+        "lib/net6.0/SharpGLTF.Core.dll",
+        "lib/net6.0/SharpGLTF.Core.xml",
+        "lib/net8.0/SharpGLTF.Core.dll",
+        "lib/net8.0/SharpGLTF.Core.xml",
+        "lib/netstandard2.0/SharpGLTF.Core.dll",
+        "lib/netstandard2.0/SharpGLTF.Core.xml",
+        "lib/netstandard2.1/SharpGLTF.Core.dll",
+        "lib/netstandard2.1/SharpGLTF.Core.xml",
+        "sharpgltf.core.1.0.3.nupkg.sha512",
+        "sharpgltf.core.nuspec"
+      ]
+    },
+    "SharpGLTF.Runtime/1.0.3": {
+      "sha512": "W0bg2WyXlcSAJVu153hNUNm+BU4RP46yLwGD4099hSm8dsXG/H+J95PBoLJbIq8KGVkUWvfM0+XWHoEkCyd50A==",
+      "type": "package",
+      "path": "sharpgltf.runtime/1.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "glTF2Sharp.png",
+        "lib/net6.0/SharpGLTF.Runtime.dll",
+        "lib/net6.0/SharpGLTF.Runtime.xml",
+        "lib/net8.0/SharpGLTF.Runtime.dll",
+        "lib/net8.0/SharpGLTF.Runtime.xml",
+        "lib/netstandard2.0/SharpGLTF.Runtime.dll",
+        "lib/netstandard2.0/SharpGLTF.Runtime.xml",
+        "lib/netstandard2.1/SharpGLTF.Runtime.dll",
+        "lib/netstandard2.1/SharpGLTF.Runtime.xml",
+        "sharpgltf.runtime.1.0.3.nupkg.sha512",
+        "sharpgltf.runtime.nuspec"
+      ]
+    },
+    "SharpGLTF.Toolkit/1.0.3": {
+      "sha512": "vkEuf8ch76NNgZXU/3zoXTIXRO0o14H3aRoSFzcuUQb0PTxvV6jEfmWkUVO6JtLDuFCIimqZaf3hdxr32ltpfQ==",
+      "type": "package",
+      "path": "sharpgltf.toolkit/1.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "glTF2Sharp.png",
+        "lib/net6.0/SharpGLTF.Toolkit.dll",
+        "lib/net6.0/SharpGLTF.Toolkit.xml",
+        "lib/net8.0/SharpGLTF.Toolkit.dll",
+        "lib/net8.0/SharpGLTF.Toolkit.xml",
+        "lib/netstandard2.0/SharpGLTF.Toolkit.dll",
+        "lib/netstandard2.0/SharpGLTF.Toolkit.xml",
+        "lib/netstandard2.1/SharpGLTF.Toolkit.dll",
+        "lib/netstandard2.1/SharpGLTF.Toolkit.xml",
+        "sharpgltf.toolkit.1.0.3.nupkg.sha512",
+        "sharpgltf.toolkit.nuspec"
       ]
     },
     "SixLabors.ImageSharp/3.1.5": {
@@ -6884,7 +7019,10 @@
       "CloudinaryDotNet >= 1.26.2",
       "Data >= 1.0.0",
       "Infrastructure >= 1.0.0",
+      "MIConvexHull >= 1.1.19.1019",
       "Repositories >= 1.0.0",
+      "SharpGLTF.Core >= 1.0.3",
+      "SharpGLTF.Toolkit >= 1.0.3",
       "SixLabors.ImageSharp >= 3.1.5"
     ]
   },
@@ -6943,6 +7081,18 @@
           "CloudinaryDotNet": {
             "target": "Package",
             "version": "[1.26.2, )"
+          },
+          "MIConvexHull": {
+            "target": "Package",
+            "version": "[1.1.19.1019, )"
+          },
+          "SharpGLTF.Core": {
+            "target": "Package",
+            "version": "[1.0.3, )"
+          },
+          "SharpGLTF.Toolkit": {
+            "target": "Package",
+            "version": "[1.0.3, )"
           },
           "SixLabors.ImageSharp": {
             "target": "Package",

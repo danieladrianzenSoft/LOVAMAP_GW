@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "Nz0IZyZdwIldUmHoTA8Y2Ok/Dz/42UFniiN+sMb7moMgTKw5UjXzSbMtRW8jQZtirCO2X92nviga6cHlPTPImA==",
+  "dgSpecHash": "IXKlo5Dhi9H79J1ieZMfCaEo8tQI7VGzqOEe5ETP1l/fg1p5x8Ob6vomWVcSZ/yJG2Mh9MONsohYdCOPpU2HRw==",
   "success": true,
   "projectFilePath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Services/Services.csproj",
   "expectedPackageFiles": [
     "/Users/dzen/.nuget/packages/cloudinarydotnet/1.26.2/cloudinarydotnet.1.26.2.nupkg.sha512",
     "/Users/dzen/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
+    "/Users/dzen/.nuget/packages/miconvexhull/1.1.19.1019/miconvexhull.1.1.19.1019.nupkg.sha512",
     "/Users/dzen/.nuget/packages/microsoft.aspnetcore.authentication/2.2.0/microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "/Users/dzen/.nuget/packages/microsoft.aspnetcore.authentication.abstractions/2.2.0/microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "/Users/dzen/.nuget/packages/microsoft.aspnetcore.authentication.cookies/2.2.0/microsoft.aspnetcore.authentication.cookies.2.2.0.nupkg.sha512",
@@ -81,6 +82,9 @@
     "/Users/dzen/.nuget/packages/runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl/4.3.2/runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
     "/Users/dzen/.nuget/packages/runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl/4.3.2/runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
     "/Users/dzen/.nuget/packages/runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl/4.3.2/runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
+    "/Users/dzen/.nuget/packages/sharpgltf.core/1.0.3/sharpgltf.core.1.0.3.nupkg.sha512",
+    "/Users/dzen/.nuget/packages/sharpgltf.runtime/1.0.3/sharpgltf.runtime.1.0.3.nupkg.sha512",
+    "/Users/dzen/.nuget/packages/sharpgltf.toolkit/1.0.3/sharpgltf.toolkit.1.0.3.nupkg.sha512",
     "/Users/dzen/.nuget/packages/sixlabors.imagesharp/3.1.5/sixlabors.imagesharp.3.1.5.nupkg.sha512",
     "/Users/dzen/.nuget/packages/system.buffers/4.5.0/system.buffers.4.5.0.nupkg.sha512",
     "/Users/dzen/.nuget/packages/system.codedom/4.4.0/system.codedom.4.4.0.nupkg.sha512",

@@ -13,6 +13,8 @@ namespace Infrastructure.DTOs
 		public IEnumerable<string> Tags { get; set; } = [];
 		public int NumReplicates { get; set; }
 		public IEnumerable<ImageToShowDto> Images { get; set; } = [];
+		public IEnumerable<int> ScaffoldIds { get; set; } = [];
+		public IEnumerable<int> ScaffoldIdsWithDomains { get; set; } = [];
 	}
 
 	public class ScaffoldGroupSummaryDto : ScaffoldGroupBaseDto

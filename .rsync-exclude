@@ -6,3 +6,6 @@ GatewayUI/react-ui/dist
 .git
 docker-compose.override.yml
 certbot/
+*.glb
+*.gltf
+*.stl

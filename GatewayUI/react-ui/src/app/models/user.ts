@@ -2,6 +2,7 @@ export interface User {
 	id: number;
 	email: string;
 	accessToken: string;
+	roles: string[];
 }
 
 export interface UserLogin {

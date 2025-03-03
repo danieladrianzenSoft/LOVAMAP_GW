@@ -6,7 +6,7 @@ using Data;
 using Data.Models;
 using Repositories.IRepositories;
 using Infrastructure.DTOs;
-using Infrastructure.Helpers;
+using Infrastructure.IHelpers;
 using Services.IServices;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -184,6 +184,34 @@ namespace Services.Services
         		return (false, "UnexpectedError", null);
 			}
 		}
+
+		public async Task<(bool Succeeded, string ErrorMessage, ScaffoldGroupSummaryDto? scaffoldGroup)> GetScaffoldGroupSummary(int id, string userId)
+		{
+			try
+			{
+				// ScaffoldGroup? scaffoldGroup = await _scaffoldGroupRepository.Get(id); 
+				var scaffoldGroup  = await _scaffoldGroupRepository.GetSummary(id);
+
+				if (scaffoldGroup == null)
+				{
+					return (false, "NotFound", null);
+				}
+				if (scaffoldGroup.IsPublic == false && scaffoldGroup.UploaderId != userId)
+				{
+					return (false, "Unauthorized", null);
+				}
+
+				return (true, "", scaffoldGroup);
+
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, "Failed to get scaffold group {id}", id);
+        		return (false, "UnexpectedError", null);
+			}
+		}
+
+
 
 		public async Task<(bool Succeeded, string ErrorMessage, IEnumerable<ScaffoldGroupBaseDto>? scaffoldGroups)>
 			GetFilteredScaffoldGroups(ScaffoldFilter filter, string userId, bool isDetailed = false)

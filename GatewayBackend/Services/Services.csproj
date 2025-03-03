@@ -12,6 +12,9 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="CloudinaryDotNet" Version="1.26.2" />
+    <PackageReference Include="MIConvexHull" Version="1.1.19.1019" />
+    <PackageReference Include="SharpGLTF.Core" Version="1.0.3" />
+    <PackageReference Include="SharpGLTF.Toolkit" Version="1.0.3" />
     <PackageReference Include="SixLabors.ImageSharp" Version="3.1.5" />
   </ItemGroup>
 

@@ -10,12 +10,20 @@ export default class UserStore {
 	user: User | null = null;
 
 	constructor() {
-		makeAutoObservable(this)
+		makeAutoObservable(this);
+		this.loadUser();
 	}
 	
 	get isLoggedIn() {
 		return !! this.user
 	}
+
+	loadUser = async() => {
+		const token = localStorage.getItem('accessToken');
+		if (token && !this.user) {
+			await this.getCurrentUser();
+		}
+	};
 
 	getCurrentUser = async () => {
 		try {
@@ -60,6 +68,7 @@ export default class UserStore {
 				console.log('Login successful. Redirecting...');
 				store.commonStore.setActiveTab(0);
 				history.push('/');
+				console.log(user)
 			});
 		} catch (error) {
 			throw error;

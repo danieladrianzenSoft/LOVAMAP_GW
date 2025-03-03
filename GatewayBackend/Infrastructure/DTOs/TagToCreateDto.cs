@@ -3,6 +3,6 @@ namespace Infrastructure.DTOs
 {
 	public class TagToCreateDto
 	{
-		public string Name { get; set; }
+		public string Name { get; set; } = null!;
 	}
 }
