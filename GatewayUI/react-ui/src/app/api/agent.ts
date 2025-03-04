@@ -11,34 +11,36 @@ import environment from "../environments/environment"
 import { Domain } from "../models/domain";
 
 axios.defaults.baseURL = environment.baseUrl;
+// const PUBLIC_ROUTES = ['/auth/login', '/auth/register', '/scaffoldGroups/public', '/resources', '/visualize'];
 
-axios.interceptors.request.use(async (config) => {
-    const token = store.commonStore.getAccessToken;
-	const isLoggedIn = store.commonStore.isLoggedIn();
 
-    if (!isLoggedIn && !token && !isPublicRoute(config.url ?? '')) {
-        // Redirect to login page if there is no token and the route is not a public route
-        History.push('/login');
-        // Correct way to construct an AxiosError with a message and the config
-		const mockResponse = {
-            data: { message: "Not authorized" },
-            status: 401,
-            statusText: 'Unauthorized',
-            headers: {},
-            config,
-            request: {},
-        };
-        return Promise.reject(new AxiosError('Not authorized.', 'ECONNABORTED', config, null, mockResponse));
-    }
+// axios.interceptors.request.use(async (config) => {
+//     const token = store.commonStore.getAccessToken;
+// 	const isLoggedIn = store.commonStore.isLoggedIn();
 
-    config.headers.Authorization = `Bearer ${token || ''}`;
-    return config;
-});
+//     if (!isLoggedIn && !token && !isPublicRoute(config.url ?? '')) {
+//         // Redirect to login page if there is no token and the route is not a public route
+//         History.push('/login');
+//         // Correct way to construct an AxiosError with a message and the config
+// 		const mockResponse = {
+//             data: { message: "Not authorized" },
+//             status: 401,
+//             statusText: 'Unauthorized',
+//             headers: {},
+//             config,
+//             request: {},
+//         };
+//         return Promise.reject(new AxiosError('Not authorized.', 'ECONNABORTED', config, null, mockResponse));
+//     }
 
-function isPublicRoute(url: string) {
-    const publicRoutes = ['/auth/login', '/auth/register', '/scaffoldGroups/public', '/resources', '/visualize'];
-    return publicRoutes.some(route => url.includes(route));
-}
+//     config.headers.Authorization = `Bearer ${token || ''}`;
+//     return config;
+// });
+
+// function isPublicRoute(url: string) {
+//     // const publicRoutes = ['/auth/login', '/auth/register', '/scaffoldGroups/public', '/resources', '/visualize'];
+//     return PUBLIC_ROUTES.some(route => url.startsWith(route));
+// }
 
 axios.interceptors.response.use(response => {
     return response;

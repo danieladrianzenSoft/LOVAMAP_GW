@@ -46,13 +46,15 @@ const Model = ({ url }: { url: string }) => {
 
 const Visualization: React.FC = () => {
 	const { domainStore, userStore, scaffoldGroupStore } = useStore();
-	const { domainMesh, isFetchingDomain, uploadDomainMesh } = domainStore;
+	const { domainMeshUrl, isFetchingDomain, uploadDomainMesh, clearDomainMesh } = domainStore;
 	const { selectedScaffoldGroup, navigateToVisualization } = scaffoldGroupStore 
 	const params = useParams<{ scaffoldId?: string }>();
 
 	const resolvedScaffoldId = params.scaffoldId ? parseInt(params.scaffoldId, 10) : 401;
 	const [isPanelOpen, setIsPanelOpen] = useState(true);
-	const [isModalOpen, setIsModalOpen] = useState(false); // 🔹 Track modal state
+	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [isRestoring, setIsRestoring] = useState(false);
+
 	const canEdit = userStore.user?.roles?.includes("administrator") ?? false;
 
 	useEffect(() => {
@@ -62,6 +64,20 @@ const Visualization: React.FC = () => {
 			})
 		}
 	}, [resolvedScaffoldId, domainStore]);
+
+	useEffect(() => {
+		if (!selectedScaffoldGroup && !isRestoring) {
+			setIsRestoring(true); // Mark restoration as in progress
+			scaffoldGroupStore.navigateToVisualization(null, resolvedScaffoldId)
+				.finally(() => setIsRestoring(false)); // Ensure UI updates when done
+		}
+	}, [selectedScaffoldGroup, resolvedScaffoldId, scaffoldGroupStore, isRestoring]);
+
+	useEffect(() => {
+		return () => {
+			clearDomainMesh();  // ✅ Cleanup when unmounting
+		};
+	}, [clearDomainMesh]);
 
 	const handleUploadSubmit = async (files: File[]) => {
         if (files.length === 0) return;
@@ -76,7 +92,9 @@ const Visualization: React.FC = () => {
 
 	const handleScaffoldChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
 		const newScaffoldId = parseInt(event.target.value, 10);
-		navigateToVisualization(selectedScaffoldGroup, newScaffoldId);
+		if (newScaffoldId !== resolvedScaffoldId) {
+			navigateToVisualization(selectedScaffoldGroup, newScaffoldId);
+		}
 	};
 
 	const canvasElement = useMemo(() => {
@@ -84,12 +102,13 @@ const Visualization: React.FC = () => {
 			return <p className="text-gray-500">Loading...</p>;
 		}
 
-		if (!domainMesh) {
+		if (!domainMeshUrl) {
 			return <p className="text-gray-500">The mesh for this scaffold has not been generated yet</p>;
 		}
 
 		return (
-			<Canvas 
+			<Canvas
+				key={domainMeshUrl}
 				shadows
 				gl={{ 
 					toneMapping: ACESFilmicToneMapping, 
@@ -120,7 +139,7 @@ const Visualization: React.FC = () => {
 
 				{/* Automatically centers and scales the mesh */}
 				<Bounds>
-					<Model url={URL.createObjectURL(domainMesh)} />
+					<Model url={domainMeshUrl} />
 				</Bounds>
 
 				<OrbitControls 
@@ -129,7 +148,11 @@ const Visualization: React.FC = () => {
 				/>
 			</Canvas>
 		);
-	}, [domainMesh, isFetchingDomain]); // Only re-renders when the domain mesh changes
+	}, [domainMeshUrl, isFetchingDomain]); // Only re-renders when the domain mesh changes
+
+	if (!selectedScaffoldGroup || isRestoring) {
+		return <p className="text-gray-500">Restoring scaffold group...</p>;
+	}
 
 	return (
 		<div className="container mx-auto py-8 px-2 justify-center h-screen">

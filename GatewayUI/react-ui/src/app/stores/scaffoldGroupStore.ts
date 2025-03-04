@@ -28,15 +28,21 @@ export default class ScaffoldGroupStore {
 				this.uploadedScaffoldGroups.find(g => g.id === this.defaultScaffoldGroupId);
 
 			if (foundGroup) {
+				// if (this.selectedScaffoldGroup?.id === foundGroup.id)
+				// {
+				// 	return;
+				// }
 				this.setSelectedScaffoldGroup(foundGroup);
 				History.push(`/visualize/${foundGroup.scaffoldIdsWithDomains[0] || foundGroup.scaffoldIds[0]}`);
 				return;
 			}
 
 			const scaffoldGroup = await this.getScaffoldGroupSummary(this.defaultScaffoldGroupId);
-			console.log(scaffoldGroup)
 
 			if (scaffoldGroup) {
+				// if (this.selectedScaffoldGroup?.id === scaffoldGroup.id) {
+				// 	return;
+				// }
 				this.setSelectedScaffoldGroup(scaffoldGroup);
 				History.push(`/visualize/${scaffoldGroup.scaffoldIdsWithDomains[0] || scaffoldGroup.scaffoldIds[0]}`);
 				return;
@@ -48,6 +54,10 @@ export default class ScaffoldGroupStore {
 
 		if (scaffoldId) {
 			if (scaffoldGroup.scaffoldIds.includes(scaffoldId)) {
+				// if (this.selectedScaffoldGroup?.id === scaffoldGroup.id) {
+				// 	return;
+				// }
+
 				this.setSelectedScaffoldGroup(scaffoldGroup);
 				History.push(`/visualize/${scaffoldId}`);
 				return;

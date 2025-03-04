@@ -46,8 +46,8 @@ public class DomainsController : ControllerBase
 		}
     } 
 
-	[HttpGet("{scaffoldId}")]
 	[AllowAnonymous]
+	[HttpGet("{scaffoldId}")]
     public async Task<IActionResult> Visualize(int scaffoldId)
     {
         try

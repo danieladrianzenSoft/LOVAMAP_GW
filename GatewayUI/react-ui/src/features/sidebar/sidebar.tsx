@@ -17,27 +17,20 @@ const SideBar: React.FC = () => {
 	};
 
 	useEffect(() => {
-        switch (location.pathname) {
-            case '/':
-                setActiveTab(0);
-                break;
-			case '/visualize':
-				setActiveTab(1);
-				break;
-            case '/learn':
-                setActiveTab(2);
-                break;
-            case '/experiments':
-                setActiveTab(3);
-                break;
-			case '/uploads':
-				setActiveTab(4);
-				break;
-            default:
-                setActiveTab(0);
-                break;
-        }
-    }, [location.pathname, setActiveTab]);
+		if (location.pathname === '/') {
+			setActiveTab(0);
+		} else if (location.pathname.startsWith('/visualize')) {
+			setActiveTab(1);
+		} else if (location.pathname === '/learn') {
+			setActiveTab(2);
+		} else if (location.pathname === '/experiments') {
+			setActiveTab(3);
+		} else if (location.pathname === '/uploads') {
+			setActiveTab(4);
+		} else {
+			setActiveTab(0);
+		}
+	}, [location.pathname, setActiveTab]);
 
 	return (
 		<div className='sidebar'>

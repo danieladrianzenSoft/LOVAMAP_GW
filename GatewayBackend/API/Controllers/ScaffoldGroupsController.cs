@@ -79,6 +79,7 @@ public class ScaffoldGroupsController : ControllerBase
 		}
     }
 
+	[AllowAnonymous]
 	[HttpGet("{id}/summary")]
     public async Task<IActionResult> GetSummarizedScaffoldGroup(int id)
     {
