@@ -45,7 +45,6 @@ export default class DomainStore {
             runInAction(() => {
                 // Store in cache
                 this.domainCache.set(scaffoldId, { mesh: file, metadata: domain });
-
                 // If cache exceeds limit, remove the oldest entry (FIFO order)
                 if (this.domainCache.size > this.cacheLimit) {
                     const oldestKey = this.domainCache.keys().next().value; // Get first inserted key
@@ -59,7 +58,7 @@ export default class DomainStore {
                 this.isFetchingDomain = false;
             })
         } catch (error) {
-            console.error("Failed to fetch domain mesh", error);
+            // console.error("Failed to fetch domain mesh", error);
             runInAction(() => {
                 this.domainMesh = null;  // Clear mesh on failure
                 this.domainMeshUrl = null;
@@ -74,7 +73,7 @@ export default class DomainStore {
             URL.revokeObjectURL(this.domainMeshUrl);
             this.domainMeshUrl = null;
         }
-    this.domainMesh = null;
+        this.domainMesh = null;
         this.domainMetadata = null;
     };
     

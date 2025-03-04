@@ -7,7 +7,7 @@ import history from "../../app/helpers/History";
 
 const TopNavigation = () => {
 	const {commonStore} = useStore();
-	const isLoggedIn = commonStore.isLoggedIn();
+	const isLoggedIn = commonStore.isLoggedIn;
 
 	return (
 		<div className="top-navigation">

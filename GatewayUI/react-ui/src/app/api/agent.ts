@@ -11,36 +11,14 @@ import environment from "../environments/environment"
 import { Domain } from "../models/domain";
 
 axios.defaults.baseURL = environment.baseUrl;
-// const PUBLIC_ROUTES = ['/auth/login', '/auth/register', '/scaffoldGroups/public', '/resources', '/visualize'];
 
+axios.interceptors.request.use(async (config) => {
+    const token = store.commonStore.getAccessToken;
+	// const isLoggedIn = store.commonStore.isLoggedIn;
 
-// axios.interceptors.request.use(async (config) => {
-//     const token = store.commonStore.getAccessToken;
-// 	const isLoggedIn = store.commonStore.isLoggedIn();
-
-//     if (!isLoggedIn && !token && !isPublicRoute(config.url ?? '')) {
-//         // Redirect to login page if there is no token and the route is not a public route
-//         History.push('/login');
-//         // Correct way to construct an AxiosError with a message and the config
-// 		const mockResponse = {
-//             data: { message: "Not authorized" },
-//             status: 401,
-//             statusText: 'Unauthorized',
-//             headers: {},
-//             config,
-//             request: {},
-//         };
-//         return Promise.reject(new AxiosError('Not authorized.', 'ECONNABORTED', config, null, mockResponse));
-//     }
-
-//     config.headers.Authorization = `Bearer ${token || ''}`;
-//     return config;
-// });
-
-// function isPublicRoute(url: string) {
-//     // const publicRoutes = ['/auth/login', '/auth/register', '/scaffoldGroups/public', '/resources', '/visualize'];
-//     return PUBLIC_ROUTES.some(route => url.startsWith(route));
-// }
+    config.headers.Authorization = `Bearer ${token || ''}`;
+    return config;
+});
 
 axios.interceptors.response.use(response => {
     return response;
@@ -58,7 +36,11 @@ axios.interceptors.response.use(response => {
             break;
         case 401:
             store.userStore.logout();
-            History.push('/login');
+            if (window.location.pathname.startsWith("/login")) {
+                break;
+            }
+            const currentPath = window.location.pathname + window.location.search;
+            History.push(`/login?redirect=${encodeURIComponent(currentPath)}`);
             break;
         case 404:
             console.error('Not found:', data);
@@ -121,17 +103,20 @@ const Domains = {
     visualize: async (scaffoldId: number) => {
         const response = await axios.get(`/domains/${scaffoldId}`, {
             responseType: 'blob', // Ensures we get the response as binary data
+            headers: {
+                'Accept': 'application/json, text/plain, */*'
+            }
         });
 
         // Extract metadata from headers
         const domain: Domain = {
-            id: response.headers['x-domain-id'],
-            scaffoldId: response.headers['x-scaffold-id'],
-            category: response.headers['x-category'],
-            voxelCount: response.headers['x-voxel-count'],
-            voxelSize: response.headers['x-voxel-size'],
-            domainSize: response.headers['x-domain-size'],
-            meshFilePath: response.headers['x-mesh-filepath']
+            id: parseInt(response.headers['x-domain-id'], 10) || undefined,
+            scaffoldId: parseInt(response.headers['x-scaffold-id'], 10) || undefined,
+            category: response.headers['x-category'] || undefined,
+            voxelCount: parseInt(response.headers['x-voxel-count'], 10) || undefined,
+            voxelSize: parseInt(response.headers['x-voxel-size'], 10) || undefined,
+            domainSize: response.headers['x-domain-size'] || undefined,
+            meshFilePath: response.headers['x-mesh-filepath'] || undefined
         };
 
         return { file: response.data, domain };

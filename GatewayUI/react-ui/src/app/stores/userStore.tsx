@@ -5,6 +5,7 @@ import history from "../helpers/History";
 import { store } from "./store";
 import toast from "react-hot-toast";
 import ToastNotification from "../common/notification/toast-notification";
+import { AxiosError } from "axios";
 
 export default class UserStore {
 	user: User | null = null;
@@ -62,16 +63,26 @@ export default class UserStore {
 		try {
 			const response = await agent.Users.login(creds);
 			const user = response.data;
-			store.commonStore.setToken(user.accessToken);
 			runInAction(() => {
+				store.commonStore.setToken(user.accessToken);
 				this.user = user;
-				console.log('Login successful. Redirecting...');
+				console.log('Login successful');
 				store.commonStore.setActiveTab(0);
-				history.push('/');
-				console.log(user)
 			});
+			return { success: true };
 		} catch (error) {
-			throw error;
+			let errorMessage = "An unknown error occurred";
+			if (error instanceof AxiosError) {
+				if (error.response) {
+					errorMessage = error.response.data.message || "Login failed";
+				} else if (error.request) {
+					errorMessage = "No response from server";
+				}
+			} else if (error instanceof Error) {
+				errorMessage = error.message;
+			}
+
+			return { success: false, error: errorMessage }; // Return structured error
 		}
 	}
 

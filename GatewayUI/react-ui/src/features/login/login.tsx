@@ -7,16 +7,28 @@ import { useStore } from "../../app/stores/store";
 // import logo from "../../../src/LOVAMAP_logo_isolated.png";
 import logo from '../../../src/LOVAMAP_logo.png';
 import { Link, NavLink } from "react-router-dom";
+import History from "../../app/helpers/History";
+import { useLocation } from "react-router-dom";
 
 const LoginPage: React.FC = () => {
-	const {userStore} = useStore();
+	const { userStore } = useStore();
+	const { search } = useLocation();
 
-	const login = (values: any, setErrors: Function) => {
+	const login = async (values: any, setErrors: Function) => {
 		const {error, ...user} = values;
-		userStore.login(user)
-		.catch(error => {
-			setErrors({error: error.message})
-		})
+		const result = await userStore.login(user)
+		if (result.success) {
+			const searchParams = new URLSearchParams(search);
+			let redirectPath = searchParams.get('redirect') || '/';
+
+			if (redirectPath.startsWith("/login")) {
+                redirectPath = "/";
+            }
+
+			History.replace(redirectPath); 
+		} else {
+            setErrors({ error: result.error });
+		}
 	}
 
 	const loginInitialValues: any = {

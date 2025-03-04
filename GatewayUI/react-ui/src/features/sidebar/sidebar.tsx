@@ -6,20 +6,22 @@ import { observer } from 'mobx-react-lite';
 import logo from '../../../src/LOVAMAP_logo.png';
 
 const SideBar: React.FC = () => {
-	const {commonStore, scaffoldGroupStore } = useStore();
+	const {commonStore, scaffoldGroupStore, userStore } = useStore();
 	const {setActiveTab, activeTab} = commonStore;
 	const {navigateToVisualization} = scaffoldGroupStore;
 	const location = useLocation();
+	
+	const isAdmin = userStore.user?.roles?.includes("administrator") ?? false;
 
 	const handleVisualizationClick = () => {
-		setActiveTab(1); // Set active tab before navigating
+		setActiveTab(0); // Set active tab before navigating
 		navigateToVisualization(null); // Navigate with no specific scaffold group
 	};
 
 	useEffect(() => {
-		if (location.pathname === '/') {
+		if (location.pathname === '/' || location.pathname.startsWith('/visualize')) {
 			setActiveTab(0);
-		} else if (location.pathname.startsWith('/visualize')) {
+		} else if (location.pathname === '/explore') {
 			setActiveTab(1);
 		} else if (location.pathname === '/learn') {
 			setActiveTab(2);
@@ -43,17 +45,6 @@ const SideBar: React.FC = () => {
 							alt="logo"
 						/>					
 					</NavLink>
-					
-					<Tab as={NavLink} to='/' className="focus:outline-none">
-						{({ selected }) => (
-							<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
-								{/* {selected && 
-									<ActiveTabMarker />
-								} */}
-								<p>Explore scaffolds</p>
-							</div>		
-						)}
-					</Tab>
 					<Tab as={NavLink} to='/visualize' onClick={handleVisualizationClick} className="focus:outline-none">
 						{({ selected }) => (
 							<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
@@ -61,6 +52,16 @@ const SideBar: React.FC = () => {
 									<ActiveTabMarker />
 								} */}
 								<p>Interact</p>
+							</div>		
+						)}
+					</Tab>
+					<Tab as={NavLink} to='/explore' className="focus:outline-none">
+						{({ selected }) => (
+							<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
+								{/* {selected && 
+									<ActiveTabMarker />
+								} */}
+								<p>Explore scaffolds</p>
 							</div>		
 						)}
 					</Tab>
@@ -85,16 +86,18 @@ const SideBar: React.FC = () => {
 							</div>
 						)}
 					</Tab>
-					<Tab as={NavLink} to='/uploads' className="focus:outline-none">
-						{({ selected }) => (
-							<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
-								{/* {selected && 
-									<ActiveTabMarker />
-								} */}
-								<p>Upload</p>
-							</div>
-						)}
-					</Tab>
+					{isAdmin && 
+						<Tab as={NavLink} to='/uploads' className="focus:outline-none" >
+							{({ selected }) => (
+								<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
+									{/* {selected && 
+										<ActiveTabMarker />
+									} */}
+									<p>Upload</p>
+								</div>
+							)}
+						</Tab>
+					}
 					{/* <SideBarDivider /> */}
 				</TabList>
 			</TabGroup>

@@ -7,7 +7,6 @@ import { downloadScaffoldGroupAsExcel } from '../../app/common/excel-generator/e
 import { useStore } from '../../app/stores/store';
 import { observer } from 'mobx-react-lite';
 import { FaSpinner } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
 
 interface ScaffoldGroupDetailsProps {
     scaffoldGroup: ScaffoldGroup;
@@ -26,7 +25,6 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
     const {scaffoldGroupStore} = useStore();
 	const {getDetailedScaffoldGroupById, navigateToVisualization} = scaffoldGroupStore;
 	const [isLoading, setIsLoading] = useState<boolean>(false);
-	const navigate = useNavigate();
 
 	const download = async (values: any, setErrors: Function) => {
 		setIsLoading(true);

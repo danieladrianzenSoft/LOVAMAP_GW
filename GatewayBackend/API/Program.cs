@@ -64,7 +64,18 @@ builder.Services.AddCors(opt =>
 {
     opt.AddPolicy("CorsPolicy", policy =>
     {
-        policy.AllowAnyHeader().AllowAnyMethod().AllowCredentials().WithOrigins("http://localhost:3000","http://localhost:5001","http://152.3.103.246:3000");
+        policy
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials()
+            .WithOrigins("http://localhost:3000","http://localhost:5001","http://152.3.103.246:3000")
+            .WithExposedHeaders("X-Domain-Id", 
+                "X-Scaffold-Id", 
+                "X-Category", 
+                "X-Voxel-Count", 
+                "X-Voxel-Size", 
+                "X-Domain-Size", 
+                "X-Mesh-FilePath");
     });
 });
 

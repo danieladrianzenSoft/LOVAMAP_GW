@@ -8,7 +8,7 @@ import { FaSpinner } from 'react-icons/fa';
 
 const ExploreScreen = () => {
     const { commonStore, scaffoldGroupStore } = useStore();
-	const isLoggedIn = commonStore.isLoggedIn();
+	const isLoggedIn = commonStore.isLoggedIn;
     const { scaffoldGroups } = scaffoldGroupStore;
     const [visibleDetails, setVisibleDetails] = useState<number | null>(null);
     const [numberOfColumns, setNumberOfColumns] = useState(3);

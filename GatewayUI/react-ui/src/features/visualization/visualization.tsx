@@ -46,7 +46,7 @@ const Model = ({ url }: { url: string }) => {
 
 const Visualization: React.FC = () => {
 	const { domainStore, userStore, scaffoldGroupStore } = useStore();
-	const { domainMeshUrl, isFetchingDomain, uploadDomainMesh, clearDomainMesh } = domainStore;
+	const { domainMeshUrl, domainMetadata, isFetchingDomain, uploadDomainMesh, clearDomainMesh } = domainStore;
 	const { selectedScaffoldGroup, navigateToVisualization } = scaffoldGroupStore 
 	const params = useParams<{ scaffoldId?: string }>();
 
@@ -161,13 +161,21 @@ const Visualization: React.FC = () => {
 			{/* Collapsible Info Panel */}
 			<div className="absolute mt-9 top-4 right-4 bg-white bg-opacity-80 shadow-lg rounded-lg p-4 w-64 transition-all duration-300">
 				{/* Panel Header */}
-				<div className="flex justify-between items-center cursor-pointer" onClick={() => setIsPanelOpen(!isPanelOpen)}>
-					<h2 className="text-sm font-semibold text-gray-800">Settings</h2>
+				<div className={`flex justify-between items-center cursor-pointer ${
+					isPanelOpen ? "border-b border-gray-300 pb-2" : "pb-0"
+				}`}
+					onClick={() => setIsPanelOpen(!isPanelOpen)}
+				>
+					<h2 className="text-sm font-semibold text-gray-800">Info</h2>
 					{isPanelOpen ? <FiChevronUp /> : <FiChevronDown />}
 				</div>
 
 				{/* Panel Content */}
-				{isPanelOpen && (
+				<div 
+					className={`overflow-hidden transition-all duration-300 ${
+						isPanelOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+					}`}
+				>
 					<div className="mt-3 text-sm text-gray-700">
 						<p><span className="font-semibold">Scaffold Group ID:</span> {selectedScaffoldGroup?.id ?? "Unknown"}</p>
 						{/* <p><span className="font-semibold">Scaffold ID:</span> {resolvedScaffoldId}</p> */}
@@ -185,6 +193,9 @@ const Visualization: React.FC = () => {
 							</select>
 						</div>
 
+						<p className='mt-2'><span className="font-semibold">Voxel Size:</span> {domainMetadata?.voxelSize ?? "Unknown"}</p>
+
+
 						{canEdit && (
 							<>
 								<div className="mt-4">
@@ -198,7 +209,10 @@ const Visualization: React.FC = () => {
 							</>
 						)}
 					</div>
-				)}
+				</div>
+				{/* {isPanelOpen && (
+					
+				)} */}
 
 				{/* Upload Modal */}
 				{isModalOpen && (

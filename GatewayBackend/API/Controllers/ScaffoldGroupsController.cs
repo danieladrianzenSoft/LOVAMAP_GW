@@ -85,11 +85,7 @@ public class ScaffoldGroupsController : ControllerBase
     {
 		try
 		{
-            var currentUserId = _userService.GetCurrentUserId();
-
-			if (currentUserId == null) return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
-
-			var (succeeded, errorMessage, scaffoldGroup) = await _scaffoldGroupService.GetScaffoldGroupSummary(id, currentUserId);
+			var (succeeded, errorMessage, scaffoldGroup) = await _scaffoldGroupService.GetScaffoldGroupSummary(id, "0");
 
 			if (!succeeded) {
 				return NotFound(new ApiResponse<string>(404, errorMessage));

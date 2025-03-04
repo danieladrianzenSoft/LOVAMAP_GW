@@ -23,11 +23,16 @@ export default class CommonStore {
 		return this.accessToken;
 	}
 	
-	isLoggedIn = () =>{
-		return this.accessToken != null;
+	get isLoggedIn() {
+		return !!this.accessToken;
 	}
 
 	setToken = (accessToken: string | null) => {
+		if (accessToken) {
+            localStorage.setItem("accessToken", accessToken);
+        } else {
+            localStorage.removeItem("accessToken");
+        }
 		this.accessToken = accessToken;
 	}
 
