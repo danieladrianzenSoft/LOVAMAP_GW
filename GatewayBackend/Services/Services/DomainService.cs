@@ -45,7 +45,7 @@ namespace Services.Services
 		{
 			try
 			{
-				var domain = await _domainRepository.GetByScaffoldId(scaffoldId);
+				var domain = await _domainRepository.GetByScaffoldIdAndCategory(scaffoldId, DomainCategory.Particle);
 
 				if (domain == null || String.IsNullOrEmpty(domain.MeshFilePath))
 				{
@@ -123,38 +123,67 @@ namespace Services.Services
 					return (false, $"Invalid domain category: {domainToCreate.Category}", null);
 				}
 
+				// Check if a domain already exists
+				var existingDomain = await _domainRepository.GetByScaffoldIdAndCategory(domainToCreate.ScaffoldId, (DomainCategory)domainToCreate.Category);
+
 				// Read file as byte array
 				using var memoryStream = new MemoryStream();
 				await domainToCreate.MeshFile.CopyToAsync(memoryStream);
 				var glbBytes = memoryStream.ToArray();
 
 				// Save .glb file using DomainFileService
-				var filePath = await _domainFileService.SaveGLBFile(glbBytes, domainToCreate.ScaffoldId);
+				var newFilePath = await _domainFileService.SaveGLBFile(glbBytes, domainToCreate.ScaffoldId);
+				
+				string? oldFilePath = null;
 
-				// Create domain entity with metadata
-				var domain = new Domain
+				// Update or create domain
+				if (existingDomain != null)
 				{
-					ScaffoldId = domainToCreate.ScaffoldId,
-					Category = (DomainCategory)domainToCreate.Category,
-					MeshFilePath = filePath,
-					VoxelCount = domainToCreate.VoxelCount ?? 0, // Default to 0 if missing
-					VoxelSize = domainToCreate.VoxelSize ?? 0, // Default to 0 if missing
-					DomainSize = domainToCreate.DomainSize ?? "N/A",
-					CreatedAt = DateTime.UtcNow
-				};
+					// Store the old file path for later deletion
+        			oldFilePath = existingDomain.MeshFilePath;
+					
+					// Update existing domain
+					existingDomain.MeshFilePath = newFilePath;
+					existingDomain.VoxelCount = domainToCreate.VoxelCount ?? 0;
+					existingDomain.VoxelSize = domainToCreate.VoxelSize ?? 0;
+					existingDomain.DomainSize = domainToCreate.DomainSize ?? "N/A";
+					existingDomain.CreatedAt = DateTime.UtcNow;
 
-				_domainRepository.Add(domain);
+					_domainRepository.Update(existingDomain);
+				}
+				else
+				{
+					var newDomain = new Domain
+					{
+						ScaffoldId = domainToCreate.ScaffoldId,
+						Category = (DomainCategory)domainToCreate.Category,
+						MeshFilePath = newFilePath,
+						VoxelCount = domainToCreate.VoxelCount ?? 0,
+						VoxelSize = domainToCreate.VoxelSize ?? 0,
+						DomainSize = domainToCreate.DomainSize ?? "N/A",
+						CreatedAt = DateTime.UtcNow
+					};
+					_domainRepository.Add(newDomain);
+					existingDomain = newDomain;
+				}
+
 				await _context.SaveChangesAsync();
+
+				// Now it's safe to delete the old file
+				if (!string.IsNullOrEmpty(oldFilePath) && oldFilePath != newFilePath)
+				{
+					await _domainFileService.DeleteFile(oldFilePath);
+				}
 
 				var domainToVisualize = new DomainToVisualizeDto
 				{
-					Id = domain.Id,
-					ScaffoldId = domain.ScaffoldId,
-					Category = (int)domain.Category,
-					VoxelCount = domain.VoxelCount,
-					VoxelSize = domain.VoxelSize,
-					DomainSize = domain.DomainSize,
-					MeshFilePath = domain.MeshFilePath
+					Id = existingDomain.Id,
+					ScaffoldId = existingDomain.ScaffoldId,
+					Category = (int)existingDomain.Category,
+					VoxelCount = existingDomain.VoxelCount,
+					VoxelSize = existingDomain.VoxelSize,
+					DomainSize = existingDomain.DomainSize,
+					MeshFilePath = existingDomain.MeshFilePath
 				};
 
 				return (true, "", domainToVisualize);

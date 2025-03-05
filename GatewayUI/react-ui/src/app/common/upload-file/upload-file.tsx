@@ -8,9 +8,11 @@ interface UploadFileProps {
 	onUploadSubmit: (files: File[], combinedJson?: any, imageType?: string) => Promise<void>;
 	onUploadSuccess?: (response: any) => void;
 	onUploadError?: (error: any) => void;
+	isUploadDisabled?: boolean;
+	extraData?: Record<string, any>;
 }
 
-const UploadFile: React.FC<UploadFileProps> = ({ acceptedFileTypes, onUploadSubmit, onUploadSuccess, onUploadError }) => {
+const UploadFile: React.FC<UploadFileProps> = ({ acceptedFileTypes, onUploadSubmit, onUploadError, isUploadDisabled, extraData }) => {
 	const [files, setFiles] = useState<File[]>([]);
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -94,9 +96,10 @@ const UploadFile: React.FC<UploadFileProps> = ({ acceptedFileTypes, onUploadSubm
 				</div>
 			</label>
 			<button
+				type="button"
 				onClick={handleFileUpload}
 				className="button-outline flex items-center justify-center space-x-2"
-				disabled={isLoading} // Disable button when loading
+				disabled={isLoading || isUploadDisabled} // Disable button when loading
 			>
 				Upload File
 				{isLoading && (

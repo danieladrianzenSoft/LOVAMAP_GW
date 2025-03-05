@@ -9,6 +9,7 @@ namespace Repositories.IRepositories
     {
 		bool HasChanges();
 		void Add(Domain domain);
-		Task<Domain?> GetByScaffoldId(int scaffoldId);
+		void Update(Domain domain);
+		Task<Domain?> GetByScaffoldIdAndCategory(int scaffoldId, DomainCategory category);
 	}
 }

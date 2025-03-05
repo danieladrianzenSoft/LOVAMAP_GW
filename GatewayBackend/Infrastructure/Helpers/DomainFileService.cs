@@ -1,6 +1,7 @@
 
 using System;
 using Infrastructure.IHelpers;
+using Microsoft.Extensions.Logging;
 
 namespace Infrastructure.Helpers
 {	
@@ -8,9 +9,11 @@ namespace Infrastructure.Helpers
 	{
 		private static readonly string basePath = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory())!.FullName, "Data", "Domains");
 
-		public DomainFileService()
+		private readonly ILogger<DomainFileService> _logger;
+
+		public DomainFileService(ILogger<DomainFileService> logger)
 		{
-        
+			_logger = logger;
 			if (!Directory.Exists(basePath))
 			{
 				Directory.CreateDirectory(basePath);
@@ -29,14 +32,22 @@ namespace Infrastructure.Helpers
 			return file ?? string.Empty;
 		}
 
-		public bool DeleteFile(string filePath)
+		public async Task<bool> DeleteFile(string filePath)
 		{
-			if (File.Exists(filePath))
+			try
 			{
-				File.Delete(filePath);
-				return true;
+				if (File.Exists(filePath))
+				{
+					await Task.Run(() => File.Delete(filePath)); // Run in background thread
+					return true;
+				}
+				return false; // File not found
 			}
-			return false;
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, $"Failed to delete file: {filePath}");
+				return false;
+			}
 		}
 	}
 }

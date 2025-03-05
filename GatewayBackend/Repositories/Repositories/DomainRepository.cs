@@ -29,10 +29,15 @@ namespace Repositories.Repositories
 			_context.Domains.Add(domain);
 		}
 
-		public async Task<Domain?> GetByScaffoldId(int scaffoldId)
+		public void Update(Domain domain)
+		{
+			_context.Domains.Update(domain);
+		}
+
+		public async Task<Domain?> GetByScaffoldIdAndCategory(int scaffoldId, DomainCategory category)
 		{
 			var domain = await _context.Domains
-				.Where(d => d.ScaffoldId == scaffoldId)
+				.Where(d => d.ScaffoldId == scaffoldId && d.Category == category)
 				.FirstOrDefaultAsync();
 			
 			return domain;

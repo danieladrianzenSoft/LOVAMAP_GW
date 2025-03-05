@@ -77,11 +77,21 @@ export default class DomainStore {
         this.domainMetadata = null;
     };
     
-    uploadDomainMesh = async (scaffoldId: number, file: File) => {
+    uploadDomainMesh = async (
+        scaffoldId: number, 
+        file: File,
+        category: number,
+        voxelSize?: number,
+        domainSize?: string
+    ) => {
         try {
             const formData = new FormData();
             formData.append("ScaffoldId", scaffoldId.toString());
+            formData.append("Category", category.toString());
             formData.append("MeshFile", file);
+
+            if (voxelSize) formData.append("VoxelSize", voxelSize.toString());
+            if (domainSize) formData.append("DomainSize", domainSize);
 
             const response = await agent.Domains.createDomain(formData);
 

@@ -9,6 +9,6 @@ namespace Infrastructure.IHelpers
 	{
 		Task<string> SaveGLBFile(byte[] glbBytes, int scaffoldId);
 		string GetFilePath(int domainId);
-		bool DeleteFile(string filePath);
+		Task<bool> DeleteFile(string filePath);
 	}
 }

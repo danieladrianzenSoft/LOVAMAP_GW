@@ -8,6 +8,7 @@ import { FiChevronDown, FiChevronUp } from 'react-icons/fi'; // Icons for collap
 import UploadFile from '../../app/common/upload-file/upload-file';
 import { ACESFilmicToneMapping, PCFSoftShadowMap } from 'three';
 import * as THREE from 'three';
+import { FaSpinner } from 'react-icons/fa';
 
 const Model = ({ url }: { url: string }) => {
 	const { scene } = useGLTF(url);
@@ -55,6 +56,13 @@ const Visualization: React.FC = () => {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [isRestoring, setIsRestoring] = useState(false);
 
+	const [category, setCategory] = useState<number | "">(""); // Required
+	const [voxelSize, setVoxelSize] = useState<number | null>(null); // Optional
+	const [domainSize, setDomainSize] = useState<[number | null, number | null, number | null]>([null, null, null]);
+	const [selectedFile, setSelectedFile] = useState<File | null>(null); // Required
+	const [error, setError] = useState<string | null>(null);
+	const [isLoading, setIsLoading] = useState(false);
+
 	const canEdit = userStore.user?.roles?.includes("administrator") ?? false;
 
 	useEffect(() => {
@@ -75,20 +83,46 @@ const Visualization: React.FC = () => {
 
 	useEffect(() => {
 		return () => {
-			clearDomainMesh();  // ✅ Cleanup when unmounting
+			clearDomainMesh(); 
 		};
 	}, [clearDomainMesh]);
 
-	const handleUploadSubmit = async (files: File[]) => {
-        if (files.length === 0) return;
-		
+	const handleDomainSizeChange = (index: number, value: string) => {
+		const updatedSize: [number | null, number | null, number | null] = [...domainSize];
+		updatedSize[index] = value ? parseFloat(value) : null; // Convert to number
+		setDomainSize(updatedSize);
+	};
+
+	const handleFormSubmit = async (e: React.FormEvent) => {	
+		e.preventDefault();
+
         try {
-            await uploadDomainMesh(resolvedScaffoldId, files[0]); // Upload the first file
-            setIsModalOpen(false); // Close modal after success
+			if (category === "" || !selectedFile) {
+				alert("Please select a category and upload a mesh file.");
+				return;
+			}
+
+			setIsLoading(true);
+			setError(null);
+
+			const formattedDomainSize = domainSize.every(value => value !== null) 
+				? `[${domainSize.join(",")}]` 
+				: undefined; // Convert to string if all values are set
+			
+			await uploadDomainMesh(resolvedScaffoldId, selectedFile, category, voxelSize || undefined, formattedDomainSize || undefined); // Upload the first file
+			setIsModalOpen(false); // Close modal after success
         } catch (error) {
             console.error("Upload failed", error);
-        }
+			setError("Upload failed. Please try again.");
+        } finally {
+			setIsLoading(false);
+		}
     };
+
+	const handleUploadSubmit = async (files: File[]) => {
+		if (files.length === 0) return;
+		setSelectedFile(files[0]);
+	}
 
 	const handleScaffoldChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
 		const newScaffoldId = parseInt(event.target.value, 10);
@@ -112,16 +146,16 @@ const Visualization: React.FC = () => {
 				shadows
 				gl={{ 
 					toneMapping: ACESFilmicToneMapping, 
-					toneMappingExposure: 1.2 ,
+					toneMappingExposure: 1.2,
 					shadowMapType: PCFSoftShadowMap
 				}}
 			>
 				<color attach="background" args={["white"]} />
-				<ambientLight intensity={0.4} />
+				<ambientLight intensity={0.2} />
 				<directionalLight 
 					castShadow
 					position={[5, 5, 5]} 
-					intensity={3} 
+					intensity={0.2} 
 				/>
 				{/* <directionalLight 
 					castShadow 
@@ -131,11 +165,11 @@ const Visualization: React.FC = () => {
 				<spotLight 
 					position={[0, 15, 10]} 
 					angle={0.3} 
-					penumbra={1} 
-					intensity={2.5} 
+					penumbra={0.8} 
+					intensity={0.8} 
 					castShadow 
 				/>
-				<Environment preset="city" background={false} />
+				<Environment preset="lobby" background={false} />
 
 				{/* Automatically centers and scales the mesh */}
 				<Bounds>
@@ -225,11 +259,103 @@ const Visualization: React.FC = () => {
 								</button>
 							</div>
 
-							{/* UploadFile Component */}
-							<UploadFile
+							{/* <UploadFile
 								acceptedFileTypes={{ "model/gltf-binary": [".glb"] }}
 								onUploadSubmit={handleUploadSubmit}
-							/>
+							/> */}
+							<form onSubmit={handleFormSubmit} className="space-y-4">
+								{/* Category Dropdown */}
+								<div>
+									<label className="block text-sm font-medium text-gray-700">Category *</label>
+									<select 
+										value={category}
+										onChange={(e) => setCategory(Number(e.target.value))}
+										className="mt-1 block w-full p-2 border rounded-md shadow-sm focus:ring focus:ring-blue-300"
+										required
+									>
+										<option value="">Select Category</option>
+										<option value="0">Particle</option>
+										<option value="1">Pore</option>
+										<option value="2">Other</option>
+									</select>
+								</div>
+
+								{/* Voxel Size (Optional) */}
+								<div>
+									<label className="block text-sm font-medium text-gray-700">Voxel Size</label>
+									<input 
+										type="number" 
+										step="any"
+										placeholder="Enter voxel size (optional)"
+										value={voxelSize ?? undefined}
+										onChange={(e) => setVoxelSize(e.target.value ? parseFloat(e.target.value) : null)}
+										className="mt-1 block w-full p-2 border rounded-md shadow-sm focus:ring focus:ring-blue-300"
+									/>
+								</div>
+
+								{/* Domain Size (Optional) */}
+								<div>
+									<label className="block text-sm font-medium text-gray-700">Domain Size (X, Y, Z)</label>
+									<div className="flex space-x-2">
+										<input 
+											type="number"
+											step="any"
+											placeholder="X"
+											value={domainSize[0] ?? ""}
+											onChange={(e) => handleDomainSizeChange(0, e.target.value)}
+											className="w-1/3 p-2 border rounded-md shadow-sm focus:ring focus:ring-blue-300"
+										/>
+										<input 
+											type="number"
+											step="any"
+											placeholder="Y"
+											value={domainSize[1] ?? ""}
+											onChange={(e) => handleDomainSizeChange(1, e.target.value)}
+											className="w-1/3 p-2 border rounded-md shadow-sm focus:ring focus:ring-blue-300"
+										/>
+										<input 
+											type="number"
+											step="any"
+											placeholder="Z"
+											value={domainSize[2] ?? ""}
+											onChange={(e) => handleDomainSizeChange(2, e.target.value)}
+											className="w-1/3 p-2 border rounded-md shadow-sm focus:ring focus:ring-blue-300"
+										/>
+									</div>
+								</div>
+
+								{/* UploadFile Component (Required) */}
+								<div>
+									<label className="block text-sm font-medium text-gray-700">Mesh File *</label>
+									<UploadFile 
+										acceptedFileTypes={{ "model/gltf-binary": [".glb"] }} 
+										onUploadSubmit={handleUploadSubmit}
+
+									/>
+									{selectedFile && (
+										<p className="text-sm text-gray-600 mt-1">
+											✔ File selected: {selectedFile.name}
+										</p>
+									)}
+								</div>
+
+								{/* Submit Button */}
+								<button 
+									type="submit" 
+									className={`w-full py-2 rounded-md transition ${
+										isLoading ? "bg-gray-400 cursor-not-allowed" : "bg-blue-600 text-white hover:bg-blue-700"
+									}`}
+								>
+									{isLoading ? (
+										<>
+											<FaSpinner className="animate-spin mr-2 inline" /> Uploading...
+										</>
+									) : (
+										"Upload Mesh"
+									)}
+								</button>
+								{error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+							</form>
 						</div>
 					</div>
 				)}
