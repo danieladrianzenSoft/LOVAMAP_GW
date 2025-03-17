@@ -11,6 +11,7 @@ import * as THREE from 'three';
 import { FaSpinner } from 'react-icons/fa';
 import History from '../../app/helpers/History';
 import useUndoShortcut from '../../app/common/hooks/undo';
+import Tag from '../../app/common/tag/tag';
 // import { Bloom, EffectComposer, Outline } from "@react-three/postprocessing";
 // import { BlendFunction } from "postprocessing";
 
@@ -668,11 +669,25 @@ const Visualization: React.FC = () => {
 						}`}
 					>
 						<div className="mt-3 text-sm text-gray-700">
-							<p><span className="font-semibold">Scaffold Group ID:</span> {selectedScaffoldGroup?.id ?? "Unknown"}</p>
 							{/* <p><span className="font-semibold">Scaffold ID:</span> {resolvedScaffoldId}</p> */}
 
+							<div className="flex flex-wrap gap-y-1 mb-2">
+								{selectedScaffoldGroup.tags.map((tag, index) => (
+									<Tag key={index} text={tag} />
+								))}
+							</div>
+
+							<p className='mt-2'><span className="font-semibold">Name:</span> {selectedScaffoldGroup?.name ?? "Unknown"}</p>
+
+							<p className='mt-2'><span className="font-semibold">ID:</span> {selectedScaffoldGroup?.id ?? "Unknown"}</p>
+							
+							<p className='mt-2'><span className="font-semibold">Simulated:</span> {selectedScaffoldGroup.isSimulated ? 'Yes' : 'No'}</p>
+
+							<p className='mt-2'><span className="font-semibold">Packing:</span> {selectedScaffoldGroup.inputs?.packingConfiguration ?? "Unknown"}</p>
+
+
 							<div className="mt-2">
-								<label className="block text-sm font-semibold text-gray-800">Scaffold ID:</label>
+								<label className="block text-sm font-semibold text-gray-800">Replicate ID:</label>
 								<select
 									className="mt-1 block w-full border bg-opacity-80 border-gray-300 rounded-md p-1 text-gray-700 focus:ring focus:ring-blue-300"
 									value={resolvedScaffoldId}
@@ -685,7 +700,6 @@ const Visualization: React.FC = () => {
 							</div>
 
 							<p className='mt-2'><span className="font-semibold">Voxel Size:</span> {domainMetadata?.voxelSize ?? "Unknown"}</p>
-
 
 							{canEdit && (
 								<>
