@@ -33,21 +33,12 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
 
-  frontend:
-    build: 
+  nginx:
+    build:
       context: ./GatewayUI/react-ui
+      dockerfile: Dockerfile
       args:
         NODE_ENV: production
-    volumes:
-      - ./GatewayUI/react-ui/build:/usr/share/nginx/html
-    ports:
-      - "3000:80"
-    depends_on:
-      - backend
-    environment:
-      - NODE_ENV=production
-
-  nginx:
     image: nginx:latest
     container_name: nginx_proxy
     restart: always
@@ -55,13 +46,11 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ./GatewayUI/react-ui/build:/usr/share/nginx/html
       - ./nginx/nginx.production.conf:/etc/nginx/nginx.conf:ro
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot
     depends_on:
       - backend
-      - frontend
     environment:
       - CERTBOT_INIT=false # Will be set to true once certificates exist
     healthcheck:
@@ -91,4 +80,3 @@ services:
         "
 volumes:
   postgres_data:
-  react_build:

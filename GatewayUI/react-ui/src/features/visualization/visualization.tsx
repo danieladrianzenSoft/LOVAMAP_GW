@@ -685,6 +685,7 @@ const Visualization: React.FC = () => {
 
 							<p className='mt-2'><span className="font-semibold">Packing:</span> {selectedScaffoldGroup.inputs?.packingConfiguration ?? "Unknown"}</p>
 
+							<p className='mt-2'><span className="font-semibold">TEST:</span> {selectedScaffoldGroup.inputs?.packingConfiguration ?? "Unknown"}</p>
 
 							<div className="mt-2">
 								<label className="block text-sm font-semibold text-gray-800">Replicate ID:</label>

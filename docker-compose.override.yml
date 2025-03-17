@@ -32,39 +32,27 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
 
-  frontend:
-    build: 
+  nginx:
+    build:
       context: ./GatewayUI/react-ui
+      dockerfile: Dockerfile
       args:
         NODE_ENV: preproduction
-    volumes:
-      - react_build_preprod:/usr/share/nginx/html
-    ports:
-      - "3000:80"
-    depends_on:
-      - backend
-    environment:
-      - NODE_ENV=preproduction
-
-  nginx:
     image: nginx:latest
     container_name: nginx_proxy
     restart: always
     ports:
-      - "80:80"
+      - "3000:80"
       - "443:443"
     volumes:
-      - react_build_preprod:/usr/share/nginx/html
       - ./nginx/nginx.preproduction.conf:/etc/nginx/nginx.conf:ro
     depends_on:
       - backend
-      - frontend
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost"]
       interval: 30s
       timeout: 10s
       retries: 3
-  
+
 volumes:
   postgres_data_preprod:
-  react_build_preprod:

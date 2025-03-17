@@ -35,7 +35,7 @@ RUN npm run build
 FROM nginx:alpine
 WORKDIR /usr/share/nginx/html
 
-# Remove default nginx content
+# Remove old frontend files before copying the new ones
 RUN rm -rf /usr/share/nginx/html/*
 
 # Copy build output from previous stage
