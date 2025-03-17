@@ -66,6 +66,7 @@ namespace Services.Services
                 Name = "",
                 UploaderId = dto.UploaderId ?? null,
                 IsSimulated = dto.IsSimulated,
+                OriginalFileName = dto.OriginalFileName,
                 Comments = "",
                 InputGroup = MapToInputGroup(dto.InputGroup),
                 Scaffolds = []
@@ -154,6 +155,9 @@ namespace Services.Services
                 Dispersity = dto.Dispersity ?? "unknown",
                 SizeDistributionType = dto.SizeDistributionType,
                 MeanSize = dto.MeanSize,
+                MedianSize = dto.MedianSize,
+                MaxSize = dto.MaxSize,
+                MinSize = dto.MinSize,
                 StandardDeviationSize = dto.StandardDeviationSize,
                 Proportion = dto.Proportion,
             };  
@@ -588,27 +592,28 @@ namespace Services.Services
 
         private ScaffoldGroup SetScaffoldGroupNameAndComments(ScaffoldGroup scaffoldGroup)
         {
-            // Ensure InputGroup is not null
-            if (scaffoldGroup.InputGroup?.ParticlePropertyGroups == null || !scaffoldGroup.InputGroup.ParticlePropertyGroups.Any())
+            // Filter out particle groups where Proportion = 0
+            var validParticleGroups = scaffoldGroup.InputGroup?.ParticlePropertyGroups
+                ?.Where(p => p.Proportion > 0)
+                .ToList() ?? new List<ParticlePropertyGroup>();
+
+            if (!validParticleGroups.Any())
                 return scaffoldGroup; // Return early if no valid data exists
                 
-            var packingConfigName = scaffoldGroup.InputGroup.PackingConfiguration.ToString();
+            var packingConfigName = scaffoldGroup.InputGroup?.PackingConfiguration.ToString();
             var distributionType = GetDistributionType(scaffoldGroup);
-            var particleGroups = scaffoldGroup.InputGroup.ParticlePropertyGroups.ToList();
-            
-            // Determine whether to include proportion
-            var includeProportion = particleGroups.Count > 1 || particleGroups.Any(p => p.Proportion > 0 && p.Proportion < 1);
+            var includeProportion = validParticleGroups.Count > 1 && validParticleGroups.Any(p => p.Proportion > 0 && p.Proportion < 1);
             var isSimulatedText = scaffoldGroup.IsSimulated ? "Simulated" : "Real";
             
-            var stiffnessDescriptions = particleGroups
+            var stiffnessDescriptions = validParticleGroups
                 .Select(p => p.Stiffness)
                 .Where(s => !string.IsNullOrEmpty(s)) // Ensure only non-null stiffness values are included
                 .ToList();
 
-            var particleDescriptions = particleGroups
+            var particleDescriptions = validParticleGroups
                 .Select(p => includeProportion
-                    ? $"{p.Proportion * 100}% {p.Shape}, size {p.MeanSize} μm"
-                    : $"{p.Shape}, size {p.MeanSize} μm")
+                    ? $"{Math.Round(p.Proportion * 100)}% {p.Shape}, size {Math.Round(p.MeanSize)} μm"
+                    : $"{p.Shape}, size {Math.Round(p.MeanSize)} μm")
                 .ToList();
 
             var name = CapitalizeFirstLetter($"{distributionType} distribution of {string.Join(" and ", particleDescriptions)}");
@@ -629,7 +634,10 @@ namespace Services.Services
 
         private string GetDistributionType(ScaffoldGroup scaffoldGroup)
         {
-            var particleGroups = scaffoldGroup.InputGroup?.ParticlePropertyGroups?.ToList() ?? new List<ParticlePropertyGroup>();
+            var particleGroups = scaffoldGroup.InputGroup?.ParticlePropertyGroups
+                ?.Where(p => p.Proportion > 0) // Exclude proportion = 0
+                .ToList() ?? new List<ParticlePropertyGroup>();
+
             int groupCount = particleGroups.Count;
 
             if (groupCount == 0) return "unknown"; // No particles available

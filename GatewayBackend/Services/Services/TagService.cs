@@ -84,19 +84,25 @@ namespace Services.Services
 			var dispersities = new List<string>();
 			var sizeDistributionTypes = new List<string>();
 
-			foreach (var particlePropertyGroup in scaffoldGroup.InputGroup!.ParticlePropertyGroups)
+			// Filter out particle groups with Proportion = 0
+			var validParticleGroups = scaffoldGroup.InputGroup?.ParticlePropertyGroups
+				?.Where(p => p.Proportion > 0)
+				.ToList() ?? new List<ParticlePropertyGroup>();
+
+			if (!validParticleGroups.Any()) return new List<ScaffoldTag>(); // Return empty list if no valid groups
+
+			foreach (var particlePropertyGroup in validParticleGroups)
 			{
 				// Always add a tag related to the shape and stiffness declared
 				AddTagIfNotEmpty(tagsToCreate, particlePropertyGroup.Shape);
-				if (!string.IsNullOrWhiteSpace(particlePropertyGroup.Stiffness))
-					AddTagIfNotEmpty(tagsToCreate, particlePropertyGroup.Stiffness);
+				AddTagIfNotEmpty(tagsToCreate, particlePropertyGroup.Stiffness);
 
 				dispersities.Add(particlePropertyGroup.Dispersity);
 				if (!string.IsNullOrWhiteSpace(particlePropertyGroup.SizeDistributionType))
 					sizeDistributionTypes.Add(particlePropertyGroup.SizeDistributionType);
 			}
 
-			int groupCount = scaffoldGroup.InputGroup.ParticlePropertyGroups.Count;
+			int groupCount = validParticleGroups.Count;
 
 			// Process tags based on dispersity and size distribution type
 			if (groupCount > 1)
@@ -119,10 +125,9 @@ namespace Services.Services
 			}
 			else if (groupCount == 1)
 			{
-				var particlePropertyGroup = scaffoldGroup.InputGroup.ParticlePropertyGroups.First();
+				var particlePropertyGroup = validParticleGroups.First();
 				AddTagIfNotEmpty(tagsToCreate, particlePropertyGroup.Dispersity);
-				if (!string.IsNullOrWhiteSpace(particlePropertyGroup.SizeDistributionType))
-					AddTagIfNotEmpty(tagsToCreate, particlePropertyGroup.SizeDistributionType);
+				AddTagIfNotEmpty(tagsToCreate, particlePropertyGroup.SizeDistributionType);
 			}
 
 			var distinctTagsToCreate = tagsToCreate.Distinct(new ScaffoldTagToCreateDtoComparer()).ToList();
@@ -155,7 +160,7 @@ namespace Services.Services
 		}
 
 
-		private static void AddTagIfNotEmpty(ICollection<ScaffoldTagToCreateDto> collection, string tag)
+		private static void AddTagIfNotEmpty(ICollection<ScaffoldTagToCreateDto> collection, string? tag)
 		{
 			if (!string.IsNullOrEmpty(tag))
 			{

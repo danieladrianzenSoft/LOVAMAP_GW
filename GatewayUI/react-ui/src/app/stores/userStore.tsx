@@ -70,15 +70,17 @@ export default class UserStore {
 				store.commonStore.setActiveTab(0);
 			});
 			return { success: true };
-		} catch (error) {
+		} catch (error: any) {
 			let errorMessage = "An unknown error occurred";
+			// if (error.message) return { success: false }
+			// console.error(error);
 			if (error instanceof AxiosError) {
 				if (error.response) {
 					errorMessage = error.response.data.message || "Login failed";
 				} else if (error.request) {
 					errorMessage = "No response from server";
 				}
-			} else if (error instanceof Error) {
+			} else if (error.message) {
 				errorMessage = error.message;
 			}
 

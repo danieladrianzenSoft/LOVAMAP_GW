@@ -147,7 +147,7 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 												scaffoldGroup.inputs?.particles?.map((particle, index, array) => (
 													<React.Fragment key={index}>
 														<tr>
-															<td className="font-bold" colSpan={2}>{particle.proportion*100}% {particle.meanSize}μm diameter {particle.shape}</td>
+															<td className="font-bold" colSpan={2}>{(particle.proportion*100).toPrecision(3)}% {particle.meanSize.toPrecision(3)}μm diameter {particle.shape}</td>
 															<td></td>
 														</tr>
 														<tr>
@@ -164,7 +164,7 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 														</tr>
 														<tr>
 															<td></td>
-															<td className="text-gray-500">standard deviation of diameter: {particle.standardDeviationSize} μm</td>
+															<td className="text-gray-500">standard deviation of diameter: {particle.standardDeviationSize.toPrecision(3)} μm</td>
 														</tr>
 													</React.Fragment>
 												))

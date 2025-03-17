@@ -13,8 +13,11 @@ namespace Data.Models
 		public string? MeshFilePath { get; set; }
 		public byte[]? Mesh { get; set; }
 		public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+		public string? Source { get; set; }
+		public string? Version { get; set; }
 	}
-
+	
+	
 	public enum DomainCategory
 	{
 		Particle,  // Particle mesh

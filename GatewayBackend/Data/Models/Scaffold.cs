@@ -6,6 +6,8 @@ namespace Data.Models
 		public int Id { get; set; }
 		public int ReplicateNumber { get; set; } = 1;
 		public int ScaffoldGroupId { get; set; }
+		public string? DescriptorSource { get; set; }
+		public string? DescriptorSourceVersion { get; set; }
 		public ScaffoldGroup ScaffoldGroup { get; set; } = null!;
 		public ICollection<ScaffoldTag> ScaffoldTags { get; set; } = new List<ScaffoldTag>();
 		public virtual ICollection<Domain> Domains { get; set; } = new List<Domain>();

@@ -4,6 +4,7 @@ using System.Text.Json;
 using Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -12,9 +13,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20250313180010_OriginalFileNameScaffoldGroupAndSourceVersionDomainScaffold")]
+    partial class OriginalFileNameScaffoldGroupAndSourceVersionDomainScaffold
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -319,16 +322,7 @@ namespace Data.Migrations
                     b.Property<int>("InputGroupId")
                         .HasColumnType("integer");
 
-                    b.Property<double>("MaxSize")
-                        .HasColumnType("double precision");
-
                     b.Property<double>("MeanSize")
-                        .HasColumnType("double precision");
-
-                    b.Property<double>("MedianSize")
-                        .HasColumnType("double precision");
-
-                    b.Property<double>("MinSize")
                         .HasColumnType("double precision");
 
                     b.Property<double>("Proportion")

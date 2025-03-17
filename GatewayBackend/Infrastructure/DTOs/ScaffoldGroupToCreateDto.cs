@@ -5,6 +5,7 @@ namespace Infrastructure.DTOs
 	{
 		// public string Name { get; set; }
 		// public string Comments { get; set; }
+		public string? OriginalFileName { get; set; }
 		public string? UploaderId { get; set; }	
 		public bool IsSimulated { get; set; }
 		public InputGroupToCreateDto InputGroup { get; set; } = new InputGroupToCreateDto();

@@ -12,6 +12,7 @@ namespace Data.Models
 		public bool IsPublic { get; set; } = false;	
 		public bool IsSimulated { get; set; } = false;
 		public string? Comments { get; set; }
+		public string? OriginalFileName { get; set; }
 		public int? PublicationId { get; set; }
 		public Publication? Publication { get; set; }
 		// public int InputGroupId { get; set; }
