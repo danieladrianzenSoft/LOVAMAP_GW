@@ -48,7 +48,7 @@ export default class ScaffoldGroupStore {
 				return;
 			}
 
-			History.push("/visualize"); // Redirect to generic visualization page
+			History.push("/explore"); // Redirect to generic explore page
 			return;
 		}
 
