@@ -39,7 +39,7 @@ services:
       args:
         NODE_ENV: production
     volumes:
-      - react_build:/usr/share/nginx/html
+      - ./GatewayUI/react-ui/build:/usr/share/nginx/html
     ports:
       - "3000:80"
     depends_on:
@@ -55,7 +55,7 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - react_build:/usr/share/nginx/html
+      - ./GatewayUI/react-ui/build:/usr/share/nginx/html
       - ./nginx/nginx.production.conf:/etc/nginx/nginx.conf:ro
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot
