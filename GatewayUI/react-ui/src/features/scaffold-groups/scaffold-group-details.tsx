@@ -92,22 +92,31 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 						) : (
 							<p className="text-sm text-gray-500 italic">No figures added</p>
 						)}
+
+							<button
+								className={`mt-4 px-4 py-2 rounded transition ${
+										"bg-blue-600 text-white hover:bg-blue-700"
+								}`}
+								onClick={() => navigateToVisualization(scaffoldGroup)}
+							>
+								Interact
+							</button>
 						
-						{scaffoldGroup.scaffoldIdsWithDomains.length === 0 ? (
+						{/* {scaffoldGroup.scaffoldIdsWithDomains.length === 0 ? (
 							<p className="text-sm text-gray-500 italic mt-2">No meshes available for visualization</p>
 						) : (
 							<button
-							className={`mt-4 px-4 py-2 rounded transition ${
-								scaffoldGroup.scaffoldIdsWithDomains.length > 0
-									? "bg-blue-600 text-white hover:bg-blue-700"
-									: "bg-blue-600 text-white hover:bg-blue-700 cursor-not-allowed"
-							}`}
-							onClick={() => navigateToVisualization(scaffoldGroup)}
-							disabled={scaffoldGroup.scaffoldIdsWithDomains.length === 0}
-						>
-							Interact
-						</button>
-						)}
+								className={`mt-4 px-4 py-2 rounded transition ${
+									scaffoldGroup.scaffoldIdsWithDomains.length > 0
+										? "bg-blue-600 text-white hover:bg-blue-700"
+										: "bg-blue-600 text-white hover:bg-blue-700 cursor-not-allowed"
+								}`}
+								onClick={() => navigateToVisualization(scaffoldGroup)}
+								disabled={scaffoldGroup.scaffoldIdsWithDomains.length === 0}
+							>
+								Interact
+							</button>
+						)} */}
 						
 					</div>
 					<div className="flex-1 p-4">

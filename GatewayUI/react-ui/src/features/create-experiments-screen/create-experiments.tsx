@@ -187,7 +187,7 @@ const CreateExperiments = () => {
             case "Data":
                 return new Array(numVals).fill("data");
             default:
-                return selectedDescriptorTypes.map(descriptor => descriptor.label + (descriptor.unit.length > 0 ? " (" + descriptor.unit + ")" : "")).slice(0, numVals);
+                return selectedDescriptorTypes.map(descriptor => descriptor.label + (descriptor.unit?.length > 0 ? " (" + descriptor.unit + ")" : "")).slice(0, numVals);
         }
     }
 
@@ -424,7 +424,7 @@ const CreateExperiments = () => {
                                             >
                                                 <FaTimes />
                                             </button>
-                                            {descriptorType.label + (descriptorType.unit.length > 0 ? " (" + descriptorType.unit + ")" : "")}
+                                            {descriptorType.label + (descriptorType.unit?.length > 0 ? " (" + descriptorType.unit + ")" : "")}
                                         </div>
                                     </li>
                                 ))
