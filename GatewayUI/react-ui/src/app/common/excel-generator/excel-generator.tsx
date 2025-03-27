@@ -4,7 +4,7 @@ import { Descriptor } from '../../models/descriptor';
 import { DescriptorType } from '../../models/descriptorType';
 import { Scaffold } from '../../models/scaffold';
 
-const headingCharacterLength = 20;
+const headingCharacterLength = 30;
 
 export function downloadScaffoldGroupAsExcel(scaffoldGroup: ScaffoldGroup) {
     const wb = XLSX.utils.book_new();
@@ -72,7 +72,13 @@ export function downloadScaffoldGroupAsExcel(scaffoldGroup: ScaffoldGroup) {
 
     });
 
-    XLSX.writeFile(wb, `${scaffoldGroup.name.replace(/\s+/g, '_').slice(0,headingCharacterLength)}.xlsx`);
+    // XLSX.writeFile(wb, `${scaffoldGroup.name.replace(/\s+/g, '_').slice(0,headingCharacterLength)}.xlsx`);
+    const filename = `${scaffoldGroup.name.replace(/\s+/g, '_').slice(0,headingCharacterLength)}.xlsx`;
+    return {file: wb, filename: filename};
+}
+
+export function triggerDownload(wb: XLSX.WorkBook, filename: string) {
+    XLSX.writeFile(wb, filename);
 }
 
 export function downloadExperimentsAsExcel(
@@ -315,10 +321,10 @@ export function downloadExperimentsAsExcel(
                     });
     
                     // Add each row to the worksheet
+                    const baseRow = currentRow;
                     rowData.forEach((row, rowIndex) => {
-                        XLSX.utils.sheet_add_aoa(ws, [row], { origin: { r: currentRow + rowIndex, c: 0 } });
+                        XLSX.utils.sheet_add_aoa(ws, [row], { origin: { r: baseRow + rowIndex, c: 0 } });
                     });
-    
                     currentRow += rowData.length; // Move the currentRow pointer for the next set of data
                 }
     
@@ -624,51 +630,51 @@ export function downloadExperimentsAsExcel(
         });
     };
     
-    const createStackedFile = (
-        scaffoldGroups: ScaffoldGroup[],
-        descriptors: DescriptorType[],
-        fileName: string
-    ) => {
-        descriptors.forEach(descriptor => {
-            const wb = XLSX.utils.book_new();
+    // const createStackedFile = (
+    //     scaffoldGroups: ScaffoldGroup[],
+    //     descriptors: DescriptorType[],
+    //     fileName: string
+    // ) => {
+    //     descriptors.forEach(descriptor => {
+    //         const wb = XLSX.utils.book_new();
     
-            // Add General Info worksheet
-            const generalInfoWs = createGeneralInfoWorksheet(scaffoldGroups);
-            XLSX.utils.book_append_sheet(wb, generalInfoWs, 'General Info');
+    //         // Add General Info worksheet
+    //         const generalInfoWs = createGeneralInfoWorksheet(scaffoldGroups);
+    //         XLSX.utils.book_append_sheet(wb, generalInfoWs, 'General Info');
     
-            const ws = XLSX.utils.aoa_to_sheet([]);
-            const tableHeaders = ['Scaffold Group', 'Replicate', `${descriptor.label}${descriptor.unit ? ' (' + descriptor.unit + ')' : ''}`];
-            XLSX.utils.sheet_add_aoa(ws, [tableHeaders], { origin: { r: 0, c: 0 } });
+    //         const ws = XLSX.utils.aoa_to_sheet([]);
+    //         const tableHeaders = ['Scaffold Group', 'Replicate', `${descriptor.label}${descriptor.unit ? ' (' + descriptor.unit + ')' : ''}`];
+    //         XLSX.utils.sheet_add_aoa(ws, [tableHeaders], { origin: { r: 0, c: 0 } });
     
-            let currentRow = 1; // Start from row 1 to place data below the headers
+    //         let currentRow = 1; // Start from row 1 to place data below the headers
     
-            scaffoldGroups.forEach(scaffoldGroup => {
-                scaffoldGroup.scaffolds.forEach((scaffold, scaffoldIndex) => {
-                    const descriptorData = getDescriptorData(scaffold, descriptor.id, descriptor.category);
+    //         scaffoldGroups.forEach(scaffoldGroup => {
+    //             scaffoldGroup.scaffolds.forEach((scaffold, scaffoldIndex) => {
+    //                 const descriptorData = getDescriptorData(scaffold, descriptor.id, descriptor.category);
     
-                    descriptorData.forEach(desc => {
-                        // const values = desc.values.split(',').map(value => value.trim());
-                        const values = Array.isArray(desc.values) ? desc.values : [desc.values];
+    //                 descriptorData.forEach(desc => {
+    //                     // const values = desc.values.split(',').map(value => value.trim());
+    //                     const values = Array.isArray(desc.values) ? desc.values : [desc.values];
 
-                        values.forEach((value: string, valueIndex:number) => {
-                            // Add a row for each value in the descriptor's data
-                            const row = [
-                                `${scaffoldGroup.id}`,
-                                `${scaffoldIndex + 1}`,
-                                value
-                            ];
-                            XLSX.utils.sheet_add_aoa(ws, [row], { origin: { r: currentRow, c: 0 } });
-                            currentRow++;
-                        });
-                    });
-                });
-            });
+    //                     values.forEach((value: string, valueIndex:number) => {
+    //                         // Add a row for each value in the descriptor's data
+    //                         const row = [
+    //                             `${scaffoldGroup.id}`,
+    //                             `${scaffoldIndex + 1}`,
+    //                             value
+    //                         ];
+    //                         XLSX.utils.sheet_add_aoa(ws, [row], { origin: { r: currentRow, c: 0 } });
+    //                         currentRow++;
+    //                     });
+    //                 });
+    //             });
+    //         });
     
-            // Save the workbook
-            XLSX.utils.book_append_sheet(wb, ws, `${descriptor.name.slice(0, headingCharacterLength)}`);
-            XLSX.writeFile(wb, `${fileName}_${descriptor.name.slice(0, headingCharacterLength)}.xlsx`);
-        });
-    };
+    //         // Save the workbook
+    //         XLSX.utils.book_append_sheet(wb, ws, `${descriptor.name.slice(0, headingCharacterLength)}`);
+    //         XLSX.writeFile(wb, `${fileName}_${descriptor.name.slice(0, headingCharacterLength)}.xlsx`);
+    //     });
+    // };
 
     if (
         options.stackedColumnOption === 'True' &&
@@ -716,34 +722,28 @@ function layoutDescriptors(descriptors: Descriptor[]): { data: any[][], maxCol: 
     const rows: any[][] = [];
     let maxCol = 0;
     let uniqueIdColumn: string[] = []; // Stores unique ID column from first two-column descriptor
-
-    let foundTwoColumnDescriptor = false; // Track if we've already captured a two-column descriptor
+    let uniqueIdDescriptorIndex: number | null = null;
 
     descriptors.forEach((desc, index) => {
-        let values = desc.values.includes(';') 
-            ? desc.values.split(';').map(row => {
-                const columns = row.split(', ').map(col => col.trim());
-                
-                // If this descriptor contains 2+ columns, store the first column only ONCE
-                if (columns.length > 1 && !foundTwoColumnDescriptor) {
-                    uniqueIdColumn = []; // Store first column as unique ID
-                    foundTwoColumnDescriptor = true; // Mark that we've taken the first one
-                }
-
-                // Store first column only for the first descriptor with 2 columns
-                if (foundTwoColumnDescriptor && columns.length > 1) {
-                    uniqueIdColumn.push(columns[0]); // Extract first column only
-                }
-
-                return columns.length > 1 ? columns[1] : columns[0]; // Extract second column (value)
-            })
-            : desc.values.split(',').map(value => value.trim());
-
-        values.forEach((value, i) => {
-            if (!rows[i]) rows[i] = []; // Ensure row exists
-            rows[i][index] = value; // Place the value in the correct column
+        let rowsFromDescriptor: string[][] = desc.values.includes(';')
+            ? desc.values.split(';').map(row => row.split(',').map(col => col.trim()))
+            : desc.values.split(',').map(val => [val.trim()]);
+    
+        // If this descriptor has 2+ columns and we haven't set the unique ID column yet
+        if (rowsFromDescriptor[0].length > 1 && uniqueIdDescriptorIndex === null) {
+            uniqueIdDescriptorIndex = index;
+            uniqueIdColumn = rowsFromDescriptor.map(cols => cols[0]); // Grab first column only
+        }
+    
+        const descriptorValues = rowsFromDescriptor.map(cols =>
+            cols.length > 1 ? cols[1] : cols[0]
+        );
+    
+        descriptorValues.forEach((value, i) => {
+            if (!rows[i]) rows[i] = [];
+            rows[i][index] = value;
         });
-
+    
         maxCol = Math.max(maxCol, index + 1);
     });
 

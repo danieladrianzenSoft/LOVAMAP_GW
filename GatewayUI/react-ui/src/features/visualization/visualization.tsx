@@ -24,7 +24,7 @@ interface ModelProps {
 	setHistory: React.Dispatch<React.SetStateAction<HistoryAction[]>>;
 }
 
-const Model: React.FC<ModelProps> = ({url, onParticleClick, onParticleRightClick, hiddenParticles, selectedParticle, setHistory }) => {
+const Model: React.FC<ModelProps> = ({url, onParticleClick, onParticleRightClick, hiddenParticles, selectedParticle }) => {
 	const { scene } = useGLTF(url);
 	const { camera } = useThree();
 	const cameraSetRef = useRef(false);
@@ -136,7 +136,7 @@ const Visualization: React.FC = () => {
     // const [selectedParticle, setSelectedParticle] = useState<string | null>(null);
 	const [selectedParticle, setSelectedParticle] = useState<{ id: string, mesh: THREE.Mesh } | null>(null);
 	// History to track actions for undo
-	const [history, setHistory] = useState<HistoryAction[]>([]);
+	const [, setHistory] = useState<HistoryAction[]>([]);
 	const maxHistorySize = 10;
 
 	const resolvedScaffoldId = params.scaffoldId ? parseInt(params.scaffoldId, 10) : 401;

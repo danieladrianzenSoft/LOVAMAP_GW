@@ -319,9 +319,13 @@ const CreateExperiments = () => {
                     <div className="w-3/4 mb-12">
                         <div className="flex justify-between items-center">
                             <p className="text-xl mb-4">3. Design your output layout</p>
-                            <div className="mr-5 -mt-2">
+                            <div className="mr-5 -mt-2 flex">
                                 <button className="button-outline" onClick={() => setExperimentStage(2)}>Back</button>
-                                <button className="button-outline" onClick={() => handleGetExperiment()}>Generate Output</button>
+                                {/* <button className="button-outline" onClick={() => handleGetExperiment()}>Generate Output</button> */}
+                                <button className="button-outline self-start flex items-center gap-2" onClick={() => handleGetExperiment()}>
+                                    Generate Output
+                                    {isLoading && <FaSpinner className="animate-spin text-current text-[1em]" />}
+                                </button>
                             </div>
                         </div>
                         <div className="flex w-full justify-between items-stretch">

@@ -5,7 +5,7 @@ interface MultiSelectDropdownProps<T> {
     groupName: string;
     items: T[];
     selectedItemIds: number[];  // Assuming the unique identifier is always a number for simplicity
-    renderItem: (item: T) => string; // Function to render the display text for each item
+    renderItem: (item: T) => React.ReactNode; // Function to render the display text for each item
     onItemSelect: (item: T) => void;
 }
 

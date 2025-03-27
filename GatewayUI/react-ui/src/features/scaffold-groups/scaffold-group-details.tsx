@@ -3,10 +3,11 @@ import { ScaffoldGroup } from '../../app/models/scaffoldGroup';
 import Tag from '../../app/common/tag/tag';
 import { Formik } from 'formik';
 import TextInput from '../../app/common/form/text-input';
-import { downloadScaffoldGroupAsExcel } from '../../app/common/excel-generator/excel-generator';
+import { downloadScaffoldGroupAsExcel, triggerDownload } from '../../app/common/excel-generator/excel-generator';
 import { useStore } from '../../app/stores/store';
 import { observer } from 'mobx-react-lite';
 import { FaSpinner } from 'react-icons/fa';
+import { openPreviewInNewTab } from '../../app/common/new-tab-preview/new-tab-preview';
 
 interface ScaffoldGroupDetailsProps {
     scaffoldGroup: ScaffoldGroup;
@@ -33,7 +34,15 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 			// console.log(downloadedData);
 			if (downloadedData)
 			{
-				downloadScaffoldGroupAsExcel(downloadedData)
+				// downloadScaffoldGroupAsExcel(downloadedData)
+				// setPreviewData(downloadedData); // Set the data for preview
+				openPreviewInNewTab(
+					downloadedData,
+					downloadScaffoldGroupAsExcel,
+					triggerDownload,
+					[0,4],
+					100
+				);
 			}
 		} catch (error) {
 			console.error("Error downloading data:", error);
@@ -52,7 +61,7 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
             </div> */}
 			<div className={`${isVisible ? 'block' : 'hidden'} bg-white p-4 rounded-md`}>
 				<div className="flex justify-center items-center space-x-4">
-					<div className="flex-1 p-4">
+					<div className="flex-1 p-4 w-full">
 						{/* Container for figures */}
                         {/* <p className="text-lg font-semibold mb-4">Figures</p> */}
 						{/* Additional figures as needed */}
@@ -119,7 +128,7 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 						)} */}
 						
 					</div>
-					<div className="flex-1 p-4">
+					<div className="flex-1 p-4 w-full">
 						<div className="flex flex-wrap mb-4">
 							{scaffoldGroup.tags.map((tag, index) => (
 								<Tag key={index} text={tag} />
@@ -183,7 +192,7 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 									</td>
 								</tr>
 								<tr>
-									<td className="font-medium text-gray-900 align-top">Replicates:</td>
+									<td className="w-32 font-medium text-gray-900 align-top">Replicates:</td>
 									<td>
 										<Formik
 											initialValues={{scaffoldGroup:scaffoldGroup.id, replicates: 1 }}
@@ -207,20 +216,29 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 															<p className="text-sm ml-2 my-auto mb-5">{` of ${scaffoldGroup.numReplicates}`}</p>
 														</div>
 														<button type="submit" className="button-outline self-start flex items-center gap-2">
-															Download Descriptors
+															Preview Data
 															{isLoading && <FaSpinner className="animate-spin text-current text-[1em]" />}
 														</button>
 													</div>							
 												</form>
 											)}
-										</Formik>
+										</Formik>	
+										{/* {previewData && (
+											<div className="mt-4 max-w-96 max-h-36 overflow-auto border-gray-100 border-2 rounded">
+												<ExcelPreview
+													generateExcel={downloadScaffoldGroupAsExcel}
+													data={previewData} // Pass the fetched data to ExcelPreview
+													handleDownload={triggerDownload} // Pass the download handler
+												/>
+											</div>
+										)}	 */}
 									</td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
+					{/* Conditionally show the preview if data is fetched */}
 				</div>
-				
 			</div>
             <div style={{ maxHeight: maxHeight, transition: 'max-height 0.5s ease-in-out', overflow: 'hidden' }}>
                 

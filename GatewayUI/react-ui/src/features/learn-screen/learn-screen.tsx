@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
-import { useStore } from "../../app/stores/store";
 import { displayNameMap, GroupedDescriptorTypes } from "../../app/models/descriptorType";
 import ReactMarkdown from "react-markdown";
 import rehypeSanitize from "rehype-sanitize";
 import { useDescriptorTypes } from "../../app/common/hooks/useDescriptorTypes";
 
 const LearnScreen = () => {
-    const { descriptorTypes, loading, error } = useDescriptorTypes(); // Use the hook
+    const { descriptorTypes } = useDescriptorTypes(); // Use the hook
     const [activeTab, setActiveTab] = useState("Global"); // Default active tab is "Global"
 
 	const [groupedDescriptorTypes, setGroupedDescriptorTypes] = useState<GroupedDescriptorTypes>({});
@@ -78,6 +77,7 @@ const LearnScreen = () => {
                                         <div className="w-full">
                                             <img
                                                 src={descriptor.imageUrl}
+                                                alt={descriptor.tableLabel}
                                                 className="w-full h-auto object-contain"
                                                 style={{ maxWidth: "100%", display: "block" }}
                                             />

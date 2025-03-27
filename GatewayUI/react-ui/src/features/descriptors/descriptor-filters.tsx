@@ -1,10 +1,10 @@
 import { observer } from "mobx-react-lite";
 import React, { useEffect, useState } from "react";
-import { useStore } from "../../app/stores/store";
 // import { GroupedTags, Tag, displayNameMap } from "../../app/models/tag";
 import MultiSelectDropdown from "../../app/common/form/multiselect-dropdown";
 import { DescriptorType, GroupedDescriptorTypes, displayNameMap } from "../../app/models/descriptorType";
 import { useDescriptorTypes } from "../../app/common/hooks/useDescriptorTypes";
+import DescriptorTypeInfo from "./descriptor-type-info";
 
 interface DescriptorFiltersProps {
 	onSelect: (descriptorType: DescriptorType) => void;
@@ -12,7 +12,7 @@ interface DescriptorFiltersProps {
 }
 
 const DescriptorFilters: React.FC<DescriptorFiltersProps> = ({onSelect, selectedDescriptorTypes}) => {
-	const { descriptorTypes, loading, error } = useDescriptorTypes(); // Use the hook
+	const { descriptorTypes } = useDescriptorTypes(); // Use the hook
 	const [groupedDescriptorTypes, setGroupedDescriptorTypes] = useState<GroupedDescriptorTypes>({});
 
 	useEffect(() => {
@@ -51,7 +51,14 @@ const DescriptorFilters: React.FC<DescriptorFiltersProps> = ({onSelect, selected
 										groupName={displayNameMap[key] || key}
 										items={descriptorTypes}
 										selectedItemIds={selectedDescriptorTypes.map(descriptorType => descriptorType.id)}
-										renderItem={(descriptorType) => descriptorType.label}
+										renderItem={(descriptorType) => (
+											<DescriptorTypeInfo
+												label={descriptorType.label}
+												tableLabel={descriptorType.tableLabel}
+												imageUrl={descriptorType.imageUrl}
+												description={descriptorType.description}
+											/>
+										)}
 										onItemSelect={(descriptorType) => handleSelectDescriptorType(key, descriptorType)}
 									/>
 								</div>
