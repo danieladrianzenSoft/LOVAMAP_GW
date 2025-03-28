@@ -72,7 +72,7 @@ const UploadFile: React.FC<UploadFileProps> = ({ acceptedFileTypes, onUploadSubm
 
   return (
     <div className="p-4 w-full">
-		<div className='w-full flex justify-between items-between mb-4'>
+		<div className='w-full flex flex-col sm:flex-row justify-between items-between sm:justify-between sm:items-center gap-4 mb-4'>
 			<label className="block">
 				<input
 					type="file"

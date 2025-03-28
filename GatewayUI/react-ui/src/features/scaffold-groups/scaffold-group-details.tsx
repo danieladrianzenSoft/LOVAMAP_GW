@@ -60,13 +60,13 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
                 {isVisible ? <FaCaretRight className="transition-transform duration-300" /> : <FaCaretDown className="transition-transform duration-300" />}
             </div> */}
 			<div className={`${isVisible ? 'block' : 'hidden'} bg-white p-4 rounded-md`}>
-				<div className="flex justify-center items-center space-x-4">
+				<div className="flex flex-col lg:flex-row justify-center items-start gap-4">
 					<div className="flex-1 p-4 w-full">
 						{/* Container for figures */}
                         {/* <p className="text-lg font-semibold mb-4">Figures</p> */}
 						{/* Additional figures as needed */}
 						{scaffoldGroup.images.length > 0 ? (
-							<div className="grid grid-cols-2 gap-0">
+							<div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
 								{scaffoldGroup.images
 									.slice() // Create a copy to avoid mutating the original array
 									.sort((a, b) => {
@@ -129,7 +129,7 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 						
 					</div>
 					<div className="flex-1 p-4 w-full">
-						<div className="flex flex-wrap mb-4">
+						<div className="flex flex-wrap gap-x-1 gap-y-1 mb-4">
 							{scaffoldGroup.tags.map((tag, index) => (
 								<Tag key={index} text={tag} />
 							))}
@@ -169,7 +169,7 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 															<td></td>
 														</tr>
 														<tr>
-															<td className="w-9"></td>
+															<td className="lg:w-5"></td>
 															<td className="text-gray-500">stiffness: {particle.stiffness}</td>
 														</tr>
 														<tr>

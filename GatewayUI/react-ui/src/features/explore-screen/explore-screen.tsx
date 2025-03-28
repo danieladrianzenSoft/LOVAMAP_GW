@@ -36,44 +36,42 @@ const ExploreScreen = () => {
     }
 
     return (
-        <div className={`container mx-auto py-8 px-2`}>
+        <div className={`container mx-auto py-8 px-4 sm:px-6 lg:px-8`}>
 			{!isLoggedIn && <div className="text-3xl text-gray-700 font-bold mb-12">Explore public scaffolds</div>}
 			{isLoggedIn && <div className="text-3xl text-gray-700 font-bold mb-12">Explore scaffolds</div>}
-			<div className="flex">
-                <div className="w-full">
-					<ScaffoldGroupFilters setIsLoading={setIsLoading} />
-					{isLoading ? (
-						<div className="flex justify-center items-center py-8">
-							<FaSpinner className="animate-spin" size={40} />
-						</div>
-						) : (
-						<div>
-							{rows.map((row, index) => (
-								<React.Fragment key={row.map(sg => sg.id).join('-')}>
-									<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-										{row.map(scaffoldGroup => (
-											<ScaffoldGroupCard
-												key={scaffoldGroup.id}
-												scaffoldGroup={scaffoldGroup}
-												isVisible={visibleDetails === scaffoldGroup.id}
-												toggleDetails={() => toggleDetails(scaffoldGroup.id)}
-											/>
-										))}
+			<div className="w-full">
+				<ScaffoldGroupFilters setIsLoading={setIsLoading} />
+				{isLoading ? (
+					<div className="flex justify-center items-center py-8">
+						<FaSpinner className="animate-spin" size={40} />
+					</div>
+					) : (
+					<div>
+						{rows.map((row, index) => (
+							<React.Fragment key={row.map(sg => sg.id).join('-')}>
+								<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+									{row.map(scaffoldGroup => (
+										<ScaffoldGroupCard
+											key={scaffoldGroup.id}
+											scaffoldGroup={scaffoldGroup}
+											isVisible={visibleDetails === scaffoldGroup.id}
+											toggleDetails={() => toggleDetails(scaffoldGroup.id)}
+										/>
+									))}
+								</div>
+								{row.some(sg => sg.id === visibleDetails) && (
+									<div className={`transition-opacity duration-500 ease-in-out transform ${visibleDetails ? 'opacity-100 scale-100' : 'opacity-0 scale-95'} overflow-hidden`}>
+										<ScaffoldGroupDetails
+											scaffoldGroup={row.find(sg => sg.id === visibleDetails)!}
+											isVisible={true}
+											toggleDetails={() => visibleDetails && toggleDetails(visibleDetails)}
+										/>
 									</div>
-									{row.some(sg => sg.id === visibleDetails) && (
-										<div className={`transition-opacity duration-500 ease-in-out transform ${visibleDetails ? 'opacity-100 scale-100' : 'opacity-0 scale-95'} overflow-hidden`}>
-											<ScaffoldGroupDetails
-												scaffoldGroup={row.find(sg => sg.id === visibleDetails)!}
-												isVisible={true}
-												toggleDetails={() => visibleDetails && toggleDetails(visibleDetails)}
-											/>
-										</div>
-									)}
-								</React.Fragment>
-							))}
-						</div>
-					)}
-				</div>
+								)}
+							</React.Fragment>
+						))}
+					</div>
+				)}
 			</div>
         </div>
     );

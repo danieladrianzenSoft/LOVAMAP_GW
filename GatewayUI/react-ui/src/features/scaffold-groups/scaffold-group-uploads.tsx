@@ -177,8 +177,8 @@ const ScaffoldGroupUploads: React.FC = () => {
                 </div>
             ) : (
                 <div className="flex">
-                    <div className="w-full">
-                        <table className="min-w-full divide-y divide-gray-200">
+                    <div className="w-full overflow-x-auto">
+                        <table className="min-w-full divide-y divide-gray-200 text-sm">
                             <thead className="bg-gray-50">
                                 <tr>
                                     <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
@@ -194,8 +194,8 @@ const ScaffoldGroupUploads: React.FC = () => {
                                         onClick={() => handleRowClick(group)}
                                         className="cursor-pointer hover:bg-gray-100"
                                     >
-                                        <td className="px-4 py-2 whitespace-nowrap text-sm text-gray-700">{group.name}</td>
-                                        <td className="px-4 py-2 whitespace-nowrap text-sm text-gray-700">{group.tags?.join(', ')}</td>
+                                        <td className="px-4 py-2 max-w-[300px] ellipsis text-sm text-gray-700">{group.name}</td>
+                                        <td className="px-4 py-2 max-w-[300px] ellipsis text-sm text-gray-700">{group.tags?.join(', ')}</td>
                                         <td className="px-4 py-2 whitespace-nowrap text-sm text-gray-700">{group.images.length}</td>
                                         <td className="px-4 py-2 whitespace-nowrap text-sm text-gray-700">
                                             {new Date(group.createdAt).toLocaleString()}

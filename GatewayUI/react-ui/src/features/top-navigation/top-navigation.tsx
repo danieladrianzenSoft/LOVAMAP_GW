@@ -3,30 +3,52 @@ import { useStore } from '../../app/stores/store';
 import UserDropdown from './user-dropdown';
 import { observer } from 'mobx-react-lite';
 import history from "../../app/helpers/History";
+import { NavLink } from 'react-router-dom';
+import logo from '../../../src/LOVAMAP_logo.png';
 
+interface TopNavigationProps {
+	isSidebarOpen: boolean;
+	setSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-const TopNavigation = () => {
+const TopNavigation: React.FC<TopNavigationProps> = ({ isSidebarOpen, setSidebarOpen }) => {
 	const {commonStore} = useStore();
 	const isLoggedIn = commonStore.isLoggedIn;
 
 	return (
 		<div className="top-navigation">
-			{/* <NavTitle title={title}/> */}
-			{/* <ThemeIcon /> */}
-			{/* <Search />
-			{ isLoggedIn && <BellIcon /> } */}
-			<div className="flex items-center space-x-4">
-			</div>
-			<div className="flex items-center space-x-4">
-				{isLoggedIn && 	
-						<UserCircle />
-				}
-				{!isLoggedIn && 
-					<button onClick={() => history.push('/login')} className='button-primary mr-4'>Login</button>
-				}
-			</div>
+			{/* Left side: Logo + hamburger */}
+			{!isSidebarOpen && (
+				<div className="flex items-center space-x-4">
+					{/* Hamburger only on mobile */}
+					<button
+						className="md:hidden focus:outline-none"
+						onClick={() => setSidebarOpen(prev => !prev)}
+					>
+					<svg className="h-6 w-6 text-gray-700" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+						<path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+					</svg>
+					</button>
 
-			
+					{/* Logo */}
+					<NavLink to="/" onClick={() => setSidebarOpen(false)}>
+						<img className="mx-auto w-32 my-4" src={logo} alt="logo" />
+					</NavLink>
+				</div>
+			)}
+			{isSidebarOpen && (
+				<div></div>
+			)}
+
+
+			{/* Right side: User/Login */}
+			<div className="flex items-center space-x-4">
+				{isLoggedIn ? <UserCircle /> : (
+				<button onClick={() => history.push('/login')} className='button-primary mr-4'>
+					Login
+				</button>
+				)}
+			</div>
 		</div>
 	)
 }

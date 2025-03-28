@@ -10,7 +10,7 @@ export const openPreviewInNewTab = <T extends {}>(
   headingRows?: number[],
   numRows?: number
 ) => {
-//   const newWindow = window.open("", "_blank", "width=1000,height=800");
+  	// const newWindow = window.open("", "_blank", "width=1000,height=800");
 	const newWindow = window.open("", "_blank");
 
 	if (!newWindow) {

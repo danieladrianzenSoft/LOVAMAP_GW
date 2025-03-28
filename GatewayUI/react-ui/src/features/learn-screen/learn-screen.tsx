@@ -46,8 +46,8 @@ const LearnScreen = () => {
 
             {/* Tab Content */}
             {groupedDescriptorTypes[activeTab] && (
-                <div>
-                    <table className="min-w-full border-collapse">
+                <div className="w-full overflow-x-auto">
+                    <table className="min-w-[768px] border-collapse w-full">
                         <thead>
                             <tr>
                                 <th className="px-4 py-2 text-left font-normal" style={{ width: "15%" }}>

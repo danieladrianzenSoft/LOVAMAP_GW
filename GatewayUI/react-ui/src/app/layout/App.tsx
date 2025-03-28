@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { useStore } from '../stores/store';
@@ -56,10 +56,12 @@ const App: React.FC = () => {
 };
 
 const MainLayout: React.FC = observer(() => {
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
+
   return (
     <div className="main-layout">
-      <TopNavigation />
-      <Sidebar />
+      <TopNavigation isSidebarOpen={isSidebarOpen} setSidebarOpen={setSidebarOpen}/>
+      <Sidebar isOpen={isSidebarOpen} setIsOpen={setSidebarOpen} />
       <div className="content">
         <Routes>
           <Route path="/" element={<Visualization />} />

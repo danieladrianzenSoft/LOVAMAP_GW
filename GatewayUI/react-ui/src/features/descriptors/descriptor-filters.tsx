@@ -46,7 +46,7 @@ const DescriptorFilters: React.FC<DescriptorFiltersProps> = ({onSelect, selected
 					{filtersVisible && ( */}
 						<div className="flex flex-wrap text-center"> 
 							{Object.entries(groupedDescriptorTypes).map(([key, descriptorTypes]) => (
-								<div key={key} className="w-1/3 p-2">
+								<div key={key} className="w-full sm:w-1/2 md:w-1/3 p-2">
 									<MultiSelectDropdown
 										groupName={displayNameMap[key] || key}
 										items={descriptorTypes}
