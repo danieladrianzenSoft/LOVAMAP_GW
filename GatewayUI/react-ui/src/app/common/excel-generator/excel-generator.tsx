@@ -242,10 +242,22 @@ export function downloadExperimentsAsExcel(
             } else if (sheetOption === 'Scaffold Replicates') {
                 scaffoldGroup.scaffolds.forEach((_, replicateIndex) => {
                     if (columnOption === 'Descriptors') {
-                        const ws = createDescriptorWorksheetWithColumns(scaffoldGroup, descriptors, 'Replicate', replicateIndex);
+                        // const ws = createDescriptorWorksheetWithColumns(scaffoldGroup, descriptors, 'Replicate', replicateIndex);
+                        const ws = createDescriptorWorksheetWithColumns(
+                            { ...scaffoldGroup, scaffolds: [scaffoldGroup.scaffolds[replicateIndex]] },
+                            descriptors,
+                            'Replicate',
+                            replicateIndex
+                        );
                         XLSX.utils.book_append_sheet(wb, ws, `Replicate ${replicateIndex + 1}`);
                     } else {
-                        const ws = createDescriptorWorksheet(scaffoldGroup, descriptors, 'Replicate', replicateIndex);
+                        // const ws = createDescriptorWorksheet(scaffoldGroup, descriptors, 'Replicate', replicateIndex);
+                        const ws = createDescriptorWorksheet(
+                            { ...scaffoldGroup, scaffolds: [scaffoldGroup.scaffolds[replicateIndex]] },
+                            descriptors,
+                            'Replicate',
+                            replicateIndex
+                        );
                         XLSX.utils.book_append_sheet(wb, ws, `Replicate ${replicateIndex + 1}`);
                     }
                 });
@@ -629,52 +641,6 @@ export function downloadExperimentsAsExcel(
             XLSX.writeFile(wb, `${fileName}_ScaffoldGroup${scaffoldGroup.id}.xlsx`);
         });
     };
-    
-    // const createStackedFile = (
-    //     scaffoldGroups: ScaffoldGroup[],
-    //     descriptors: DescriptorType[],
-    //     fileName: string
-    // ) => {
-    //     descriptors.forEach(descriptor => {
-    //         const wb = XLSX.utils.book_new();
-    
-    //         // Add General Info worksheet
-    //         const generalInfoWs = createGeneralInfoWorksheet(scaffoldGroups);
-    //         XLSX.utils.book_append_sheet(wb, generalInfoWs, 'General Info');
-    
-    //         const ws = XLSX.utils.aoa_to_sheet([]);
-    //         const tableHeaders = ['Scaffold Group', 'Replicate', `${descriptor.label}${descriptor.unit ? ' (' + descriptor.unit + ')' : ''}`];
-    //         XLSX.utils.sheet_add_aoa(ws, [tableHeaders], { origin: { r: 0, c: 0 } });
-    
-    //         let currentRow = 1; // Start from row 1 to place data below the headers
-    
-    //         scaffoldGroups.forEach(scaffoldGroup => {
-    //             scaffoldGroup.scaffolds.forEach((scaffold, scaffoldIndex) => {
-    //                 const descriptorData = getDescriptorData(scaffold, descriptor.id, descriptor.category);
-    
-    //                 descriptorData.forEach(desc => {
-    //                     // const values = desc.values.split(',').map(value => value.trim());
-    //                     const values = Array.isArray(desc.values) ? desc.values : [desc.values];
-
-    //                     values.forEach((value: string, valueIndex:number) => {
-    //                         // Add a row for each value in the descriptor's data
-    //                         const row = [
-    //                             `${scaffoldGroup.id}`,
-    //                             `${scaffoldIndex + 1}`,
-    //                             value
-    //                         ];
-    //                         XLSX.utils.sheet_add_aoa(ws, [row], { origin: { r: currentRow, c: 0 } });
-    //                         currentRow++;
-    //                     });
-    //                 });
-    //             });
-    //         });
-    
-    //         // Save the workbook
-    //         XLSX.utils.book_append_sheet(wb, ws, `${descriptor.name.slice(0, headingCharacterLength)}`);
-    //         XLSX.writeFile(wb, `${fileName}_${descriptor.name.slice(0, headingCharacterLength)}.xlsx`);
-    //     });
-    // };
 
     if (
         options.stackedColumnOption === 'True' &&

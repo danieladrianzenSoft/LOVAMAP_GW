@@ -10,21 +10,28 @@ interface Props {
     min?: number;
     max?: number;
     step?: number;
+    value?: any;
     className?: string;  // Optional className for custom styling
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export default function TextInput(props: Props) {
+    const fieldProps: any = {
+        type: props.type,
+        className: `${props.errors[props.name] && props.touched[props.name] ? 'text-input-error' : 'text-input'} ${props.className}`,
+        placeholder: props.placeholder,
+        name: props.name,
+        min: props.min,
+        max: props.max,
+        step: props.step,
+    };
+
+    if (props.onChange) fieldProps.onChange = props.onChange;
+    if (props.value !== undefined) fieldProps.value = props.value;
+
     return (
         <div className="mb-4">
-            <Field
-                type={props.type}
-                className={`${props.errors[props.name] && props.touched[props.name] ? 'text-input-error' : 'text-input'} ${props.className}`}
-                placeholder={props.placeholder}
-                name={props.name}
-                min={props.min} // Only applied if type is 'number'
-                max={props.max} // Only applied if type is 'number'
-                step={props.step} // Only applied if type is 'number'
-            />
+            <Field {...fieldProps} />
             <ErrorMessage
                 name={props.name}
                 render={(error) => (

@@ -22,8 +22,8 @@ namespace Infrastructure.DTOs
 		[FromQuery(Name = "descriptorIds")]
 		public ICollection<int>? DescriptorIds { get; set; }
 
-		[FromQuery(Name = "numReplicates")]
-		public int? NumReplicates { get; set; }
+		[FromQuery(Name = "numReplicatesByGroup")]
+		public Dictionary<int, int>? NumReplicatesByGroup { get; set; }
 		
 		// [FromQuery(Name = "descriptors")]
     	// public ICollection<string>? Descriptors { get; set; }

@@ -159,7 +159,7 @@ const Visualization: React.FC = () => {
 				domainStore.domainMesh = null;
 			})
 		}
-		console.log(resolvedScaffoldId);
+		// console.log(resolvedScaffoldId);
 	}, [resolvedScaffoldId, domainStore]);
 
 	useEffect(() => {

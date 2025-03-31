@@ -97,30 +97,28 @@ export default class ScaffoldGroupStore {
 		}
 	};
 
-	getDetailedScaffoldGroupsForExperiment = async (selectedScaffoldGroupIds?: number[], selectedDescriptorIds?: number[]) => {
+	getDetailedScaffoldGroupsForExperiment = async (
+		selectedScaffoldGroupIds?: number[], selectedDescriptorIds?: number[], 	numReplicatesByGroup?: Record<number, number>
+	) => {
 		try {
 			let queryParams = ''
 			if (selectedScaffoldGroupIds!= null){
-				queryParams = queryParams + selectedScaffoldGroupIds.map(num => `scaffoldGroupIds=${num}`).join('&');
+				queryParams += selectedScaffoldGroupIds.map(num => `scaffoldGroupIds=${num}`).join('&');
 			} 
-			if (queryParams !== '')
-			{
-				queryParams = queryParams + '&';
-			}
 			if (selectedDescriptorIds != null)
 			{
+				if (queryParams !== '') queryParams += '&';
 				queryParams = queryParams + selectedDescriptorIds.map(num => `descriptorIds=${num}`).join('&')
 			}
-			if (queryParams !== '')
-			{
-				queryParams = '?' + queryParams
+			if (numReplicatesByGroup != null && Object.keys(numReplicatesByGroup).length > 0) {
+				if (queryParams !== '') queryParams += '&';
+				queryParams += Object.entries(numReplicatesByGroup)
+					.map(([groupId, numReplicates]) => `numReplicatesByGroup[${groupId}]=${numReplicates}`)
+					.join('&');
 			}
+			if (queryParams !== '') queryParams = '?' + queryParams;
 
 			const response = await agent.ScaffoldGroups.getDetailedForExperiment(queryParams);
-
-			// runInAction(() => {
-			// 	this.scaffoldGroups = response.data
-			// })
 			
 			return response.data;
 

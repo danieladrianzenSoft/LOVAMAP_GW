@@ -71,24 +71,40 @@ namespace Services.Services
 			return (globalDescriptors, poreDescriptors, otherDescriptors);
 		}
 
-		public async Task<(Dictionary<int, List<ScaffoldBaseDto>>, Dictionary<int, List<DescriptorDto>>, Dictionary<int, List<DescriptorDto>>, Dictionary<int, List<DescriptorDto>>)>
-			GetScaffoldsAndDescriptorsFromScaffoldGroupIds(IEnumerable<int> scaffoldGroupIds)
+		public async Task<List<ScaffoldBaseDto>> GetScaffoldsWithDescriptorsFromScaffoldIds(List<int> scaffoldIds, ScaffoldFilter? filter)
 		{
 			try
 			{
-				var result = await _descriptorRepository.GetScaffoldsAndDescriptorsFromScaffoldGroupIds(scaffoldGroupIds);
+				var result = await _descriptorRepository.GetScaffoldsWithDescriptorsFromScaffoldIds(scaffoldIds, filter);
 				return result;
 			}
 			catch (Exception ex)
 			{
 				_logger.LogError(ex, "Unknown error getting scaffolds and descriptors from scaffold group id's");
-				return (new Dictionary<int, List<ScaffoldBaseDto>>(),
-					new Dictionary<int, List<DescriptorDto>>(),
-					new Dictionary<int, List<DescriptorDto>>(),
-					new Dictionary<int, List<DescriptorDto>>()
-				);
+				return new List<ScaffoldBaseDto>();
 			}
 		}
+
+		
+
+		// public async Task<(Dictionary<int, List<ScaffoldBaseDto>>, Dictionary<int, List<DescriptorDto>>, Dictionary<int, List<DescriptorDto>>, Dictionary<int, List<DescriptorDto>>)>
+		// 	GetScaffoldsAndDescriptorsFromScaffoldGroupIds(IEnumerable<int> scaffoldGroupIds)
+		// {
+		// 	try
+		// 	{
+		// 		var result = await _descriptorRepository.GetScaffoldsAndDescriptorsFromScaffoldGroupIds(scaffoldGroupIds);
+		// 		return result;
+		// 	}
+		// 	catch (Exception ex)
+		// 	{
+		// 		_logger.LogError(ex, "Unknown error getting scaffolds and descriptors from scaffold group id's");
+		// 		return (new Dictionary<int, List<ScaffoldBaseDto>>(),
+		// 			new Dictionary<int, List<DescriptorDto>>(),
+		// 			new Dictionary<int, List<DescriptorDto>>(),
+		// 			new Dictionary<int, List<DescriptorDto>>()
+		// 		);
+		// 	}
+		// }
 	}
 }
 

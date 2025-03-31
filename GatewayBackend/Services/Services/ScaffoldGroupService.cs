@@ -168,7 +168,7 @@ namespace Services.Services
 				}
 
 				var (succeeded, errorMessage, completeScaffoldGroups) = 
-					await GetCompleteScaffoldGroupsFromSummaries([scaffoldGroup], userId, isDetailed: true);
+					await GetCompleteScaffoldGroupsFromSummaries([scaffoldGroup], userId, isDetailed: true, filter: null);
 
 				if (!succeeded || completeScaffoldGroups == null)
 				{
@@ -234,7 +234,7 @@ namespace Services.Services
 					return (false, "NotFound", null);
 				}
 
-				return await GetCompleteScaffoldGroupsFromSummaries(scaffoldGroups, userId, isDetailed);
+				return await GetCompleteScaffoldGroupsFromSummaries(scaffoldGroups, userId, isDetailed, filter);
 
 			}
 			catch (Exception ex)
@@ -244,7 +244,7 @@ namespace Services.Services
 			}
 		}
 
-		private async Task<(bool Succeeded, string ErrorMessage, IEnumerable<ScaffoldGroupBaseDto>? scaffoldGroups)> GetCompleteScaffoldGroupsFromSummaries(IEnumerable<ScaffoldGroupSummaryDto> scaffoldGroups, string userId, bool isDetailed)
+		private async Task<(bool Succeeded, string ErrorMessage, IEnumerable<ScaffoldGroupBaseDto>? scaffoldGroups)> GetCompleteScaffoldGroupsFromSummaries(IEnumerable<ScaffoldGroupSummaryDto> scaffoldGroups, string userId, bool isDetailed, ScaffoldFilter? filter)
 		{
 			try
 			{
@@ -256,14 +256,17 @@ namespace Services.Services
 				var tagsLookup = await _tagService.GetTagNamesForScaffoldGroups(scaffoldGroupIds, userId);
 
 				Dictionary<int, List<ScaffoldBaseDto>> scaffoldLookup = [];
-				Dictionary<int, List<DescriptorDto>> globalDescriptorLookup = [];
-				Dictionary<int, List<DescriptorDto>> poreDescriptorLookup = [];
-				Dictionary<int, List<DescriptorDto>> otherDescriptorLookup = [];
 
 				if (isDetailed)
 				{
-					(scaffoldLookup, globalDescriptorLookup, poreDescriptorLookup, otherDescriptorLookup) =
-						await _descriptorService.GetScaffoldsAndDescriptorsFromScaffoldGroupIds(scaffoldGroupIds);
+					var scaffoldIds = scaffoldGroups
+						.SelectMany(sg => sg.ScaffoldIds)
+						.ToList();					
+					
+					var scaffolds = await _descriptorService.GetScaffoldsWithDescriptorsFromScaffoldIds(scaffoldIds, filter);
+					scaffoldLookup = scaffolds
+						.GroupBy(s => scaffoldGroups.First(sg => sg.ScaffoldIds.Contains(s.Id)).Id)
+						.ToDictionary(g => g.Key, g => g.ToList());
 				}
 
 				var scaffoldGroupDtos = scaffoldGroups.Select<ScaffoldGroupSummaryDto, ScaffoldGroupBaseDto>(sg =>
@@ -288,26 +291,9 @@ namespace Services.Services
 						NumReplicates = sg.NumReplicates,
 						Images = sg.Images,
 						Inputs = sg.Inputs,
-
-						// Assign scaffolds with descriptors
-						Scaffolds = scaffoldLookup.ContainsKey(sg.Id)
-							? scaffoldLookup[sg.Id].Select(s => new ScaffoldBaseDto
-							{
-								Id = s.Id,
-								ReplicateNumber = s.ReplicateNumber,
-
-								GlobalDescriptors = globalDescriptorLookup.ContainsKey(s.Id) 
-									? globalDescriptorLookup[s.Id] 
-									: [],
-								PoreDescriptors = poreDescriptorLookup.ContainsKey(s.Id) 
-									? poreDescriptorLookup[s.Id] 
-									: [],
-								OtherDescriptors = otherDescriptorLookup.ContainsKey(s.Id) 
-									? otherDescriptorLookup[s.Id] 
-									: []
-
-							}).ToList()
-							: []
+						ScaffoldIds = sg.ScaffoldIds,
+						ScaffoldIdsWithDomains = sg.ScaffoldIdsWithDomains,
+						Scaffolds = scaffoldLookup.ContainsKey(sg.Id) ? scaffoldLookup[sg.Id] : []
 					};
 				}).ToList();
 

@@ -22,6 +22,7 @@ const CreateExperiments = () => {
     const [numberOfColumns, setNumberOfColumns] = useState(3);
     const [selectedScaffoldGroups, setSelectedScaffoldGroups] = useState<ScaffoldGroup[]>([]);
     const [selectedDescriptorTypes, setSelectedDescriptorTypes] = useState<DescriptorType[]>([]);
+    const [replicatesByGroup, setReplicatesByGroup] = useState<Record<number, number>>({});
     const [experimentStage, setExperimentStage] = useState(1);
     const [numFiles, setNumFiles] = useState(2);
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -82,7 +83,8 @@ const CreateExperiments = () => {
         try {
           const scaffoldGroups = await getDetailedScaffoldGroupsForExperiment(
             selectedScaffoldGroups.map(sg => sg.id),
-            selectedDescriptorTypes.map(dt => dt.id)
+            selectedDescriptorTypes.map(dt => dt.id),
+            replicatesByGroup
           );
           if (scaffoldGroups) {
             downloadExperimentsAsExcel(scaffoldGroups, selectedDescriptorTypes, options);
@@ -432,6 +434,12 @@ const CreateExperiments = () => {
                             showTitle={true}
                             handleUnselectDescriptorType={handleUnselectDescriptorType}
                             handleUnselectScaffoldGroup={handleUnselectScaffoldGroup}
+                            onReplicatesChange={(groupId, numReplicates) => {
+                                setReplicatesByGroup((prev) => ({
+                                    ...prev,
+                                    [groupId]: numReplicates
+                                }));
+                            }}
                         />
                     </div>
 
@@ -461,6 +469,12 @@ const CreateExperiments = () => {
                                 showTitle={false}
                                 handleUnselectDescriptorType={handleUnselectDescriptorType}
                                 handleUnselectScaffoldGroup={handleUnselectScaffoldGroup}
+                                onReplicatesChange={(groupId, numReplicates) => {
+                                    setReplicatesByGroup((prev) => ({
+                                        ...prev,
+                                        [groupId]: numReplicates
+                                    }));
+                                }}
                             />
                         </div>
                     </div>

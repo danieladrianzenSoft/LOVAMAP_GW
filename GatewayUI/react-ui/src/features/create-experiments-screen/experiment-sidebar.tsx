@@ -11,6 +11,7 @@ const ExperimentSidebar = ({
 	showTitle,
 	handleUnselectDescriptorType,
 	handleUnselectScaffoldGroup,
+	onReplicatesChange
   }: {
 	experimentStage: number;
 	options: any;
@@ -19,6 +20,7 @@ const ExperimentSidebar = ({
 	showTitle: boolean;
 	handleUnselectDescriptorType: (id: number) => void;
 	handleUnselectScaffoldGroup: (id: number) => void;
+	onReplicatesChange: (groupId: number, numReplicates: number) => void;
   }) => {
 	return (
 	  <div className="w-full h-full p-4 bg-gray-100">
@@ -96,6 +98,12 @@ const ExperimentSidebar = ({
 											max={group.numReplicates}
 											step={1}
 											className="p-1 text-sm w-12 appearance-none"
+											onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+												const value = Number(e.target.value);
+												formik.setFieldValue('replicates', value);
+												onReplicatesChange(group.id, Number(e.target.value));
+											}}
+											value={formik.values.replicates}
 										/>
 										<p className="text-sm ml-2 my-auto mb-5">{` of ${group.numReplicates} replicates`}</p>
 									</div>

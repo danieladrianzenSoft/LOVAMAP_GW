@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ScaffoldGroup } from '../../app/models/scaffoldGroup';
 import Tag from '../../app/common/tag/tag';
 import { Formik } from 'formik';
-import TextInput from '../../app/common/form/text-input';
+// import TextInput from '../../app/common/form/text-input';
 import { downloadScaffoldGroupAsExcel, triggerDownload } from '../../app/common/excel-generator/excel-generator';
 import { useStore } from '../../app/stores/store';
 import { observer } from 'mobx-react-lite';
@@ -202,7 +202,7 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 												<form onSubmit={formik.handleSubmit}>
 													<div className='flex flex-col'>
 														<div className='flex items-center space-x-2'>
-															<TextInput
+															{/* <TextInput
 																type="number"
 																name="replicates"
 																placeholder={'1'}
@@ -213,9 +213,10 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 																step={1}
 																className="p-1 text-sm w-12 appearance-none"
 															/>
-															<p className="text-sm ml-2 my-auto mb-5">{` of ${scaffoldGroup.numReplicates}`}</p>
+															<p className="text-sm ml-2 my-auto mb-5">{` of ${scaffoldGroup.numReplicates}`}</p> */}
+															<p>{scaffoldGroup.numReplicates}</p>
 														</div>
-														<button type="submit" className="button-outline self-start flex items-center gap-2">
+														<button type="submit" className="button-outline self-start flex items-center gap-2 mt-2">
 															Preview Data
 															{isLoading && <FaSpinner className="animate-spin text-current text-[1em]" />}
 														</button>
@@ -223,15 +224,6 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 												</form>
 											)}
 										</Formik>	
-										{/* {previewData && (
-											<div className="mt-4 max-w-96 max-h-36 overflow-auto border-gray-100 border-2 rounded">
-												<ExcelPreview
-													generateExcel={downloadScaffoldGroupAsExcel}
-													data={previewData} // Pass the fetched data to ExcelPreview
-													handleDownload={triggerDownload} // Pass the download handler
-												/>
-											</div>
-										)}	 */}
 									</td>
 								</tr>
 							</tbody>
