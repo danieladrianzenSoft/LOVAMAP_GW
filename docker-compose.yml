@@ -41,7 +41,6 @@ services:
       dockerfile: Dockerfile
       args:
         NODE_ENV: production
-    image: nginx:latest
     container_name: nginx_proxy
     restart: always
     ports:
