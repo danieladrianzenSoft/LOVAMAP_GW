@@ -25,6 +25,8 @@ services:
         ENVIRONMENT: production
     ports:
       - "5001:8080"
+    volumes:
+      - ./GatewayBackend/Data/Domains:/app/Data/Domains
     depends_on:
       db:
         condition: service_healthy
