@@ -224,7 +224,8 @@ namespace Repositories.Repositories
 					PackingConfiguration = sg.InputGroup.PackingConfiguration.ToString(),
 					Particles = particleGroupsLookup.ContainsKey(sg.InputGroup.Id) 
 						? particleGroupsLookup[sg.InputGroup.Id] 
-						: new List<ParticlePropertyBaseDto>()
+						: new List<ParticlePropertyBaseDto>(),
+					SizeDistribution = sg.InputGroup.SizeDistribution
 				} : new InputGroupBaseDto(),
 				ScaffoldIds = scaffoldIdsLookup.ContainsKey(sg.ScaffoldGroup.Id)
 					? scaffoldIdsLookup[sg.ScaffoldGroup.Id] 

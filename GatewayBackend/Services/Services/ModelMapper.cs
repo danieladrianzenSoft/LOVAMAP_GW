@@ -395,7 +395,8 @@ namespace Services.Services
                     PackingConfiguration = scaffoldGroup.InputGroup?.PackingConfiguration != null
                         ? scaffoldGroup.InputGroup.PackingConfiguration.ToString()
                         : "unknown",
-                    Particles = particles ?? []
+                    Particles = particles ?? [],
+                    SizeDistribution = scaffoldGroup.InputGroup?.SizeDistribution
                 },
             };
         }
@@ -457,7 +458,8 @@ namespace Services.Services
                     PackingConfiguration = scaffoldGroup.InputGroup?.PackingConfiguration != null
                         ? scaffoldGroup.InputGroup.PackingConfiguration.ToString()
                         : "unknown",
-                    Particles = particles ?? []
+                    Particles = particles ?? [],
+                    SizeDistribution = scaffoldGroup.InputGroup?.SizeDistribution
                 },
                 Scaffolds = scaffoldDtos,
             };

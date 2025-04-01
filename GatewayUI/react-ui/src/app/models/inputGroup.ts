@@ -5,6 +5,7 @@ export interface InputGroup {
     containerSize: number;
     packingConfiguration: string;
     particles: ParticlePropertyGroup[];
+    sizeDistribution: number[];
 }
 
 export interface InputGroupToCreate {

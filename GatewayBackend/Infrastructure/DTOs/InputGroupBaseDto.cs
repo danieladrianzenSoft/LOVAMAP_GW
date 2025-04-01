@@ -1,3 +1,5 @@
+using System.Text.Json;
+
 namespace Infrastructure.DTOs
 {
 	public class InputGroupBaseDto
@@ -9,5 +11,6 @@ namespace Infrastructure.DTOs
 		// public bool? IsAnisotropic { get; set; }
 		public string PackingConfiguration { get; set; } = "";
 		public IEnumerable<ParticlePropertyBaseDto> Particles { get; set; } = [];
+		public JsonDocument? SizeDistribution { get; set; }
 	}
 }

@@ -8,6 +8,7 @@ import { useStore } from '../../app/stores/store';
 import { observer } from 'mobx-react-lite';
 import { FaSpinner } from 'react-icons/fa';
 import { openPreviewInNewTab } from '../../app/common/new-tab-preview/new-tab-preview';
+import { HistogramPlot } from '../plotting/histogram-plot';
 
 interface ScaffoldGroupDetailsProps {
     scaffoldGroup: ScaffoldGroup;
@@ -26,6 +27,10 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
     const {scaffoldGroupStore} = useStore();
 	const {getDetailedScaffoldGroupById, navigateToVisualization} = scaffoldGroupStore;
 	const [isLoading, setIsLoading] = useState<boolean>(false);
+
+	// useEffect(() => {
+	// 	console.log(scaffoldGroup);	
+	// }, [scaffoldGroup]);
 
 	const download = async (values: any, setErrors: Function) => {
 		setIsLoading(true);
@@ -64,6 +69,17 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 					<div className="flex-1 p-4 w-full">
 						{/* Container for figures */}
                         {/* <p className="text-lg font-semibold mb-4">Figures</p> */}
+						<div className="w-full h-[300px]">
+							<HistogramPlot 
+								data={scaffoldGroup.inputs.sizeDistribution} 
+								title={"Particle Size Distribution"} 
+								xlabel={""}
+								ylabel={""}
+								hideYLabels={true}
+							/>
+						</div>
+
+
 						{/* Additional figures as needed */}
 						{scaffoldGroup.images.length > 0 ? (
 							<div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
