@@ -115,19 +115,22 @@ namespace Data.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int>("DomainSource")
+                        .HasColumnType("integer");
+
                     b.Property<byte[]>("Mesh")
                         .HasColumnType("bytea");
 
                     b.Property<string>("MeshFilePath")
                         .HasColumnType("text");
 
+                    b.Property<Guid?>("ProducedByJobId")
+                        .HasColumnType("uuid");
+
                     b.Property<int>("ScaffoldId")
                         .HasColumnType("integer");
 
-                    b.Property<string>("Source")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Version")
+                    b.Property<string>("SegmentationVersion")
                         .HasColumnType("text");
 
                     b.Property<int>("VoxelCount")
@@ -137,6 +140,8 @@ namespace Data.Migrations
                         .HasColumnType("double precision");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ProducedByJobId");
 
                     b.HasIndex("ScaffoldId");
 
@@ -176,6 +181,9 @@ namespace Data.Migrations
                     b.Property<int>("DescriptorTypeId")
                         .HasColumnType("integer");
 
+                    b.Property<Guid?>("JobId")
+                        .HasColumnType("uuid");
+
                     b.Property<int>("ScaffoldId")
                         .HasColumnType("integer");
 
@@ -191,6 +199,8 @@ namespace Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("DescriptorTypeId");
+
+                    b.HasIndex("JobId");
 
                     b.HasIndex("ScaffoldId");
 
@@ -274,6 +284,40 @@ namespace Data.Migrations
                     b.ToTable("InputGroups");
                 });
 
+            modelBuilder.Entity("Data.Models.Job", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("CompletedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("FinalHeartbeatMessage")
+                        .HasColumnType("text");
+
+                    b.Property<int>("InputDomainId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("LovamapCoreVersion")
+                        .HasColumnType("text");
+
+                    b.Property<int>("ScaffoldId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("SubmittedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("InputDomainId")
+                        .IsUnique();
+
+                    b.HasIndex("ScaffoldId");
+
+                    b.ToTable("Jobs");
+                });
+
             modelBuilder.Entity("Data.Models.OtherDescriptor", b =>
                 {
                     b.Property<int>("Id")
@@ -285,6 +329,9 @@ namespace Data.Migrations
                     b.Property<int>("DescriptorTypeId")
                         .HasColumnType("integer");
 
+                    b.Property<Guid?>("JobId")
+                        .HasColumnType("uuid");
+
                     b.Property<int>("ScaffoldId")
                         .HasColumnType("integer");
 
@@ -295,6 +342,8 @@ namespace Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("DescriptorTypeId");
+
+                    b.HasIndex("JobId");
 
                     b.HasIndex("ScaffoldId");
 
@@ -365,6 +414,9 @@ namespace Data.Migrations
                     b.Property<int>("DescriptorTypeId")
                         .HasColumnType("integer");
 
+                    b.Property<Guid?>("JobId")
+                        .HasColumnType("uuid");
+
                     b.Property<int>("ScaffoldId")
                         .HasColumnType("integer");
 
@@ -375,6 +427,8 @@ namespace Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("DescriptorTypeId");
+
+                    b.HasIndex("JobId");
 
                     b.HasIndex("ScaffoldId");
 
@@ -456,11 +510,8 @@ namespace Data.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("DescriptorSource")
-                        .HasColumnType("text");
-
-                    b.Property<string>("DescriptorSourceVersion")
-                        .HasColumnType("text");
+                    b.Property<Guid?>("LatestJobId")
+                        .HasColumnType("uuid");
 
                     b.Property<int>("ReplicateNumber")
                         .HasColumnType("integer");
@@ -469,6 +520,9 @@ namespace Data.Migrations
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("LatestJobId")
+                        .IsUnique();
 
                     b.HasIndex("ScaffoldGroupId");
 
@@ -795,11 +849,18 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Data.Models.Domain", b =>
                 {
+                    b.HasOne("Data.Models.Job", "ProducedByJob")
+                        .WithMany("OutputDomains")
+                        .HasForeignKey("ProducedByJobId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
                     b.HasOne("Data.Models.Scaffold", "Scaffold")
                         .WithMany("Domains")
                         .HasForeignKey("ScaffoldId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("ProducedByJob");
 
                     b.Navigation("Scaffold");
                 });
@@ -823,13 +884,20 @@ namespace Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Data.Models.Job", "Job")
+                        .WithMany("GlobalDescriptors")
+                        .HasForeignKey("JobId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
                     b.HasOne("Data.Models.Scaffold", "Scaffold")
                         .WithMany("GlobalDescriptors")
                         .HasForeignKey("ScaffoldId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.SetNull)
                         .IsRequired();
 
                     b.Navigation("DescriptorType");
+
+                    b.Navigation("Job");
 
                     b.Navigation("Scaffold");
                 });
@@ -871,6 +939,25 @@ namespace Data.Migrations
                     b.Navigation("ScaffoldGroup");
                 });
 
+            modelBuilder.Entity("Data.Models.Job", b =>
+                {
+                    b.HasOne("Data.Models.Domain", "InputDomain")
+                        .WithOne("InputToJob")
+                        .HasForeignKey("Data.Models.Job", "InputDomainId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Data.Models.Scaffold", "Scaffold")
+                        .WithMany("Jobs")
+                        .HasForeignKey("ScaffoldId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("InputDomain");
+
+                    b.Navigation("Scaffold");
+                });
+
             modelBuilder.Entity("Data.Models.OtherDescriptor", b =>
                 {
                     b.HasOne("Data.Models.DescriptorType", "DescriptorType")
@@ -879,13 +966,20 @@ namespace Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Data.Models.Job", "Job")
+                        .WithMany("OtherDescriptors")
+                        .HasForeignKey("JobId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
                     b.HasOne("Data.Models.Scaffold", "Scaffold")
                         .WithMany("OtherDescriptors")
                         .HasForeignKey("ScaffoldId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.SetNull)
                         .IsRequired();
 
                     b.Navigation("DescriptorType");
+
+                    b.Navigation("Job");
 
                     b.Navigation("Scaffold");
                 });
@@ -909,24 +1003,38 @@ namespace Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Data.Models.Job", "Job")
+                        .WithMany("PoreDescriptors")
+                        .HasForeignKey("JobId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
                     b.HasOne("Data.Models.Scaffold", "Scaffold")
                         .WithMany("PoreDescriptors")
                         .HasForeignKey("ScaffoldId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.SetNull)
                         .IsRequired();
 
                     b.Navigation("DescriptorType");
+
+                    b.Navigation("Job");
 
                     b.Navigation("Scaffold");
                 });
 
             modelBuilder.Entity("Data.Models.Scaffold", b =>
                 {
+                    b.HasOne("Data.Models.Job", "LatestJob")
+                        .WithOne()
+                        .HasForeignKey("Data.Models.Scaffold", "LatestJobId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
                     b.HasOne("Data.Models.ScaffoldGroup", "ScaffoldGroup")
                         .WithMany("Scaffolds")
                         .HasForeignKey("ScaffoldGroupId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("LatestJob");
 
                     b.Navigation("ScaffoldGroup");
                 });
@@ -1048,6 +1156,11 @@ namespace Data.Migrations
                     b.Navigation("PoreDescriptors");
                 });
 
+            modelBuilder.Entity("Data.Models.Domain", b =>
+                {
+                    b.Navigation("InputToJob");
+                });
+
             modelBuilder.Entity("Data.Models.Download", b =>
                 {
                     b.Navigation("DescriptorTypeDownloads");
@@ -1058,6 +1171,17 @@ namespace Data.Migrations
             modelBuilder.Entity("Data.Models.InputGroup", b =>
                 {
                     b.Navigation("ParticlePropertyGroups");
+                });
+
+            modelBuilder.Entity("Data.Models.Job", b =>
+                {
+                    b.Navigation("GlobalDescriptors");
+
+                    b.Navigation("OtherDescriptors");
+
+                    b.Navigation("OutputDomains");
+
+                    b.Navigation("PoreDescriptors");
                 });
 
             modelBuilder.Entity("Data.Models.Publication", b =>
@@ -1074,6 +1198,8 @@ namespace Data.Migrations
                     b.Navigation("GlobalDescriptors");
 
                     b.Navigation("Images");
+
+                    b.Navigation("Jobs");
 
                     b.Navigation("OtherDescriptors");
 

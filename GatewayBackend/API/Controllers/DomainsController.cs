@@ -44,7 +44,7 @@ public class DomainsController : ControllerBase
 			_logger.LogError(ex, "Failed to create the domain");
         	return StatusCode(500, new ApiResponse<string>(500, "An error occurred while creating the domain"));
 		}
-    } 
+    }
 
 	[AllowAnonymous]
 	[HttpGet("{scaffoldId}")]

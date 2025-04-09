@@ -4,6 +4,8 @@ namespace Data.Models
 	public class GlobalDescriptor
 	{
 		public int Id { get; set; }
+		public Guid? JobId { get; set; }
+		public Job? Job { get; set; }
 		public int ScaffoldId { get; set; }
 		public Scaffold Scaffold { get; set; } = null!;
 		public int DescriptorTypeId { get; set; }
@@ -11,6 +13,5 @@ namespace Data.Models
 		public string? ValueString { get; set; }
 		public int? ValueInt { get; set; }
 		public double? ValueDouble { get; set; }
-
 	}
 }

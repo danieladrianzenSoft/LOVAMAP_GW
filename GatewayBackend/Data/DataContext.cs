@@ -13,6 +13,7 @@ public partial class DataContext : IdentityDbContext<User, Role, string>
 	public DbSet<ScaffoldGroup> ScaffoldGroups { get; set; }
     public DbSet<Scaffold> Scaffolds { get; set; }
     public DbSet<Domain> Domains { get; set; }
+    public DbSet<Job> Jobs { get; set; }
 	public DbSet<Publication> Publications { get; set; }
 	public DbSet<InputGroup> InputGroups { get; set; }
     public DbSet<ParticlePropertyGroup> ParticlePropertyGroups { get; set; }
@@ -73,6 +74,84 @@ public partial class DataContext : IdentityDbContext<User, Role, string>
             .WithMany(g => g.Scaffolds)
             .HasForeignKey(s => s.ScaffoldGroupId)
             .OnDelete(DeleteBehavior.Cascade);
+
+        // Scaffold to Job one-to-many relationship
+        builder.Entity<Job>()
+            .HasOne(j => j.Scaffold)
+            .WithMany(s => s.Jobs)
+            .HasForeignKey(j => j.ScaffoldId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        // Scaffold to latest job one-to-one relationship
+        builder.Entity<Scaffold>()
+            .HasOne(s => s.LatestJob)
+            .WithOne()
+            .HasForeignKey<Scaffold>(s => s.LatestJobId)
+            .OnDelete(DeleteBehavior.SetNull);
+
+        // Descriptors to job relationship
+        builder.Entity<GlobalDescriptor>().HasIndex(d => d.JobId);
+
+        builder.Entity<GlobalDescriptor>()
+            .HasOne(g => g.Job)
+            .WithMany(j => j.GlobalDescriptors)
+            .HasForeignKey(g => g.JobId)
+            .OnDelete(DeleteBehavior.SetNull);
+        
+        builder.Entity<PoreDescriptor>().HasIndex(d => d.JobId);
+        
+        builder.Entity<PoreDescriptor>()
+            .HasOne(g => g.Job)
+            .WithMany(j => j.PoreDescriptors)
+            .HasForeignKey(g => g.JobId)
+            .OnDelete(DeleteBehavior.SetNull);
+        
+        builder.Entity<OtherDescriptor>().HasIndex(d => d.JobId);
+        
+        builder.Entity<OtherDescriptor>()
+            .HasOne(g => g.Job)
+            .WithMany(j => j.OtherDescriptors)
+            .HasForeignKey(g => g.JobId)
+            .OnDelete(DeleteBehavior.SetNull);
+
+        // Descriptors to scaffolds relationship
+        builder.Entity<GlobalDescriptor>().HasIndex(d => d.ScaffoldId);
+
+        builder.Entity<GlobalDescriptor>()
+            .HasOne(g => g.Scaffold)
+            .WithMany(s => s.GlobalDescriptors)
+            .HasForeignKey(g => g.ScaffoldId)
+            .OnDelete(DeleteBehavior.SetNull);
+        
+        builder.Entity<PoreDescriptor>().HasIndex(d => d.ScaffoldId);
+
+        builder.Entity<PoreDescriptor>()
+            .HasOne(g => g.Scaffold)
+            .WithMany(j => j.PoreDescriptors)
+            .HasForeignKey(g => g.ScaffoldId)
+            .OnDelete(DeleteBehavior.SetNull);
+        
+        builder.Entity<OtherDescriptor>().HasIndex(d => d.ScaffoldId);
+        
+        builder.Entity<OtherDescriptor>()
+            .HasOne(g => g.Scaffold)
+            .WithMany(j => j.OtherDescriptors)
+            .HasForeignKey(g => g.ScaffoldId)
+            .OnDelete(DeleteBehavior.SetNull);
+
+        // Job to Input Domain one-to-one relationship
+        builder.Entity<Domain>()
+            .HasOne(d => d.InputToJob)
+            .WithOne(j => j.InputDomain)
+            .HasForeignKey<Job>(d => d.InputDomainId)
+			.OnDelete(DeleteBehavior.Cascade);
+
+        // Output domain to Job one-to-many relationship
+        builder.Entity<Domain>()
+            .HasOne(d => d.ProducedByJob)
+            .WithMany(j => j.OutputDomains)
+            .HasForeignKey(d => d.ProducedByJobId)
+            .OnDelete(DeleteBehavior.SetNull);
 
 		// Configure Publication to Experiment relationship
         builder.Entity<Publication>()

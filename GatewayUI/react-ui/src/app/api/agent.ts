@@ -9,6 +9,7 @@ import { DescriptorType } from "../models/descriptorType";
 import { Image, ImageToCreate, ImageToUpdate } from "../models/image";
 import environment from "../environments/environment"
 import { Domain } from "../models/domain";
+import { Job } from "../models/job";
 
 axios.defaults.baseURL = environment.baseUrl;
 
@@ -130,11 +131,34 @@ const Domains = {
     },
 }
 
+const Jobs = {
+    submitJob: async (job: Job, dx: number) => {
+        const formData = new FormData();
+        if (job.csvFile) {
+            formData.append('csvFile', job.csvFile);
+        }
+        else if (job.datFile) {
+            formData.append('datFile', job.datFile);
+        }
+        else if (job.jsonFile) {
+            formData.append('jsonFile', job.jsonFile);
+        }
+        formData.append('dx', dx.toString());
+
+        const response =  await axios.post<ApiResponse<Job>>(`/jobs/submit-job`, formData, {
+            headers: { 'Content-Type': 'multipart/form-data' },
+        });
+
+        return response.data;
+    },
+}
+
 const agent = {
 	Resources,
 	Users,
 	ScaffoldGroups,
-    Domains
+    Domains,
+    Jobs
 }
 
 export default agent;

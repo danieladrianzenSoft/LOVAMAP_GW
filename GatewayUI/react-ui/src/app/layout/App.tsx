@@ -15,6 +15,7 @@ import { observer } from 'mobx-react-lite';
 import ScaffoldGroupUploads from '../../features/scaffold-groups/scaffold-group-uploads';
 import Visualization from '../../features/visualization/visualization';
 import History from '../helpers/History';
+import RunJob from '../../features/jobs/run-job';
 
 const App: React.FC = () => {
   const { commonStore, userStore } = useStore();
@@ -71,6 +72,7 @@ const MainLayout: React.FC = observer(() => {
           <Route path="/explore" element={<ExploreScreen />} />
           <Route path="/experiments" element={<ProtectedRoute element={<CreateExperiments />} />} />
           <Route path="/uploads" element={<ProtectedRoute element={<ScaffoldGroupUploads />} />} />
+          <Route path="/jobs" element={<ProtectedRoute element={<RunJob />} />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </div>

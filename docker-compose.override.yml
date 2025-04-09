@@ -6,7 +6,7 @@ services:
     container_name: lovamap_db
     restart: always
     env_file:
-      - .env
+      - .env.preproduction
     ports:
       - "5432:5432"
     volumes:
@@ -30,7 +30,7 @@ services:
       db:
         condition: service_healthy
     env_file:
-        - .env
+        - .env.preproduction
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
 

@@ -6,6 +6,8 @@ namespace Data.Models
 	public class PoreDescriptor
 	{
 		public int Id { get; set; }
+		public Guid? JobId { get; set; }
+		public Job? Job { get; set; }
 		public int ScaffoldId { get; set; }
 		public Scaffold Scaffold { get; set; } = null!;
 		public int DescriptorTypeId { get; set; }

@@ -106,7 +106,11 @@ builder.Services.AddScoped<IImageService, ImageService>();
 builder.Services.AddScoped<IPublicationService, PublicationService>();
 builder.Services.AddScoped<IDomainService, DomainService>();
 builder.Services.AddScoped<IModelMapper, ModelMapper>();
+builder.Services.AddScoped<ILovamapCoreJobService, LovamapCoreJobService>();
 builder.Services.AddScoped<SeedingService>();
+
+// Other services
+builder.Services.AddHttpClient();
 
 // Adding configurations as IOptions
 builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
