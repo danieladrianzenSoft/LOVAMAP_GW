@@ -1,0 +1,26 @@
+# Build output
+bin/
+obj/
+out/
+*.user
+*.suo
+
+# IDE/editor
+.vscode/
+.idea/
+*.csproj.user
+
+# Logs and temp files
+*.log
+*.tmp
+
+# Git
+.git/
+.gitignore
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Environment/secrets
+.env

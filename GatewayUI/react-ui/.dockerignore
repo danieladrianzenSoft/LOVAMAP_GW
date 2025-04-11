@@ -1,0 +1,10 @@
+node_modules
+build
+dist
+.vscode
+.git
+.env
+*.log
+*.glb
+*.gltf
+*.stl
