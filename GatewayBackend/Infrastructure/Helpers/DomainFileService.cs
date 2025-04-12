@@ -2,18 +2,20 @@
 using System;
 using Infrastructure.IHelpers;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Configuration;
 
 namespace Infrastructure.Helpers
 {	
 	public class DomainFileService : IDomainFileService
 	{
-		private static readonly string basePath = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory())!.FullName, "Data", "Domains");
-
+		private readonly string _basePath;
 		private readonly ILogger<DomainFileService> _logger;
 
-		public DomainFileService(ILogger<DomainFileService> logger)
+		public DomainFileService(string basePath, ILogger<DomainFileService> logger)
 		{
 			_logger = logger;
+			_basePath = basePath;
+
 			if (!Directory.Exists(basePath))
 			{
 				Directory.CreateDirectory(basePath);
@@ -21,14 +23,14 @@ namespace Infrastructure.Helpers
 		}
 		public async Task<string> SaveGLBFile(byte[] glbBytes, int scaffoldId)
 		{
-			var filePath = Path.Combine(basePath, $"{scaffoldId}_{Guid.NewGuid()}.glb");
+			var filePath = Path.Combine(_basePath, $"{scaffoldId}_{Guid.NewGuid()}.glb");
 			await File.WriteAllBytesAsync(filePath, glbBytes);
 			return filePath;
 		}
 
 		public string GetFilePath(int domainId)
 		{
-			var file = Directory.GetFiles(basePath, $"{domainId}_*.glb").FirstOrDefault();
+			var file = Directory.GetFiles(_basePath, $"{domainId}_*.glb").FirstOrDefault();
 			return file ?? string.Empty;
 		}
 

@@ -19,58 +19,126 @@ export default class ScaffoldGroupStore {
 		this.uploadedScaffoldGroups = groups;
 	}
 
-	navigateToVisualization = async (scaffoldGroup: ScaffoldGroup | null, scaffoldId?: number) => {
-		if (!scaffoldGroup) {
-			console.warn("No scaffold group provided. Redirecting to default.");
+	// navigateToVisualization = async (scaffoldGroup: ScaffoldGroup | null, scaffoldId?: number) => {
+	// 	if (!scaffoldGroup) {
+	// 		console.warn("No scaffold group provided. Redirecting to default.");
 
-			const foundGroup = 
-				this.scaffoldGroups.find(g => g.id === this.defaultScaffoldGroupId) || 
-				this.uploadedScaffoldGroups.find(g => g.id === this.defaultScaffoldGroupId);
+	// 		const foundGroup = 
+	// 			this.scaffoldGroups.find(g => g.id === this.defaultScaffoldGroupId) || 
+	// 			this.uploadedScaffoldGroups.find(g => g.id === this.defaultScaffoldGroupId);
 
+	// 		if (foundGroup) {
+	// 			this.setSelectedScaffoldGroup(foundGroup);
+	// 			History.push(`/visualize/${foundGroup.scaffoldIdsWithDomains[0] || foundGroup.scaffoldIds[0]}`);
+	// 			return;
+	// 		}
+
+	// 		const scaffoldGroup = await this.getScaffoldGroupSummary(this.defaultScaffoldGroupId);
+
+	// 		if (scaffoldGroup) {
+	// 			this.setSelectedScaffoldGroup(scaffoldGroup);
+	// 			History.push(`/visualize/${scaffoldGroup.scaffoldIdsWithDomains[0] || scaffoldGroup.scaffoldIds[0]}`);
+	// 			return;
+	// 		}
+
+	// 		History.push("/explore"); // Redirect to generic explore page
+	// 		return;
+	// 	}
+
+	// 	if (scaffoldId) {
+	// 		if (scaffoldGroup.scaffoldIds.includes(scaffoldId)) {
+	// 			// if (this.selectedScaffoldGroup?.id === scaffoldGroup.id) {
+	// 			// 	return;
+	// 			// }
+
+	// 			this.setSelectedScaffoldGroup(scaffoldGroup);
+	// 			History.push(`/visualize/${scaffoldId}`);
+	// 			return;
+	// 		} else {
+	// 			console.warn(`Scaffold ID ${scaffoldId} not found in ScaffoldGroup ${scaffoldGroup.id}.`);
+	// 		}
+	// 	}
+
+	// 	this.setSelectedScaffoldGroup(scaffoldGroup);
+		
+	// 	if (scaffoldGroup.scaffoldIdsWithDomains.length > 0) {
+	// 		History.push(`/visualize/${scaffoldGroup.scaffoldIdsWithDomains[0]}`);
+	// 	} else {
+	// 		History.push(`/visualize/${scaffoldGroup.scaffoldIds[0]}`);
+	// 		console.warn("No available meshes for visualization.");
+	// 	}
+	// }
+
+	navigateToVisualization = async (
+		scaffoldGroup: ScaffoldGroup | null, 
+		scaffoldId?: number
+	) => {
+		if (!scaffoldGroup && scaffoldId) {
+			// Try to find scaffold group containing this scaffold ID
+			let foundGroup = this.scaffoldGroups.find(g => g.scaffoldIds.includes(scaffoldId)) 
+				|| this.uploadedScaffoldGroups.find(g => g.scaffoldIds.includes(scaffoldId)) 
+				|| null;
+	
+			if (!foundGroup) {
+				// If not in memory, fetch from server
+				// foundGroup = await this.getScaffoldGroupSummary(scaffoldId);
+				foundGroup = await this.getScaffoldGroupSummaryByScaffoldId(scaffoldId);
+
+			}
+	
 			if (foundGroup) {
 				this.setSelectedScaffoldGroup(foundGroup);
-				History.push(`/visualize/${foundGroup.scaffoldIdsWithDomains[0] || foundGroup.scaffoldIds[0]}`);
-				return;
+				return; // Don't redirect — let the page handle 404 mesh gracefully
 			}
-
-			const scaffoldGroup = await this.getScaffoldGroupSummary(this.defaultScaffoldGroupId);
-
-			if (scaffoldGroup) {
-				this.setSelectedScaffoldGroup(scaffoldGroup);
-				History.push(`/visualize/${scaffoldGroup.scaffoldIdsWithDomains[0] || scaffoldGroup.scaffoldIds[0]}`);
-				return;
+	
+			// Fallback — could not find scaffoldGroup for this scaffoldId
+			console.warn(`No scaffold group found for scaffoldId ${scaffoldId}`);
+			return; // Still don't redirect — show error UI instead
+		}
+	
+		if (!scaffoldGroup && !scaffoldId) {
+			// Total fallback behavior
+			const fallbackGroup = 
+				this.scaffoldGroups.find(g => g.id === this.defaultScaffoldGroupId) ||
+				this.uploadedScaffoldGroups.find(g => g.id === this.defaultScaffoldGroupId) ||
+				await this.getScaffoldGroupSummary(this.defaultScaffoldGroupId);
+	
+			if (fallbackGroup) {
+				this.setSelectedScaffoldGroup(fallbackGroup);
+				History.push(`/visualize/${fallbackGroup.scaffoldIdsWithDomains[0] || fallbackGroup.scaffoldIds[0]}`);
+			} else {
+				History.push("/explore");
 			}
-
-			History.push("/explore"); // Redirect to generic explore page
 			return;
 		}
-
-		if (scaffoldId) {
-			if (scaffoldGroup.scaffoldIds.includes(scaffoldId)) {
-				// if (this.selectedScaffoldGroup?.id === scaffoldGroup.id) {
-				// 	return;
-				// }
-
-				this.setSelectedScaffoldGroup(scaffoldGroup);
-				History.push(`/visualize/${scaffoldId}`);
-				return;
-			} else {
-				console.warn(`Scaffold ID ${scaffoldId} not found in ScaffoldGroup ${scaffoldGroup.id}.`);
-			}
+	
+		// If both group and ID are provided
+		if (scaffoldGroup && scaffoldId) {
+			this.setSelectedScaffoldGroup(scaffoldGroup);
+			History.push(`/visualize/${scaffoldId}`);
+			return;
 		}
-
-		this.setSelectedScaffoldGroup(scaffoldGroup);
-		
-		if (scaffoldGroup.scaffoldIdsWithDomains.length > 0) {
-			History.push(`/visualize/${scaffoldGroup.scaffoldIdsWithDomains[0]}`);
-		} else {
-			History.push(`/visualize/${scaffoldGroup.scaffoldIds[0]}`);
-			console.warn("No available meshes for visualization.");
+	
+		// If only scaffold group is passed, pick a scaffold from it
+		if (scaffoldGroup) {
+			this.setSelectedScaffoldGroup(scaffoldGroup);
+			History.push(`/visualize/${scaffoldGroup.scaffoldIdsWithDomains[0] || scaffoldGroup.scaffoldIds[0]}`);
 		}
 	}
 
 	setSelectedScaffoldGroup = (scaffoldGroup: ScaffoldGroup | null) => {
 		this.selectedScaffoldGroup = scaffoldGroup;
+	}
+
+	getScaffoldGroupSummaryByScaffoldId = async (scaffoldId: number) => {
+		try {
+			const apiResponse = await agent.ScaffoldGroups.getGroupSummaryByScaffoldId(scaffoldId);
+			const scaffoldGroup = apiResponse.data;
+			return scaffoldGroup;
+		} catch (error) {
+			console.error("Error fetching scaffold group by scaffoldId", error);
+			return null;
+		}
 	}
 
 	getScaffoldGroupSummary = async (id: any) => {

@@ -1,4 +1,5 @@
 #!/bin/bash
+echo "=== Cleanup started at $(date) ==="
 
 echo "🧹 Cleaning up Docker system..."
 docker system prune -af

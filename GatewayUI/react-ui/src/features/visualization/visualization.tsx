@@ -445,33 +445,7 @@ const Visualization: React.FC = () => {
 			},
 		});
 
-		// console.log(history)
-
 	}, [addToHistory, selectedParticle]);
-
-	// const handleParticleClick = (particleId: string, particle: THREE.Mesh) => {
-	// 	setSelectedParticles((prevSelected) => {
-	// 		const newSet = new Set(prevSelected);
-	
-	// 		if (newSet.has(particleId)) {
-	// 			// ✅ Unselect particle → Restore original material
-	// 			const originalMaterial = particle.userData.originalMaterial;
-	// 			if (originalMaterial) {
-	// 				particle.material = originalMaterial;
-	// 			}
-	// 			newSet.delete(particleId);
-	// 		} else {
-	// 			// ✅ Select particle → Store material & make red
-	// 			if (!particle.userData.originalMaterial) {
-	// 				particle.userData.originalMaterial = particle.material; // Store original
-	// 			}
-	// 			particle.material = new THREE.MeshStandardMaterial({ color: "red" });
-	// 			newSet.add(particleId);
-	// 		}
-	
-	// 		return newSet;
-	// 	});
-	// };
 
 	const handleParticleRightClick = (particleId: string, particle: THREE.Mesh) => {
 		if (!(particle instanceof THREE.Mesh)) return;

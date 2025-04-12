@@ -117,6 +117,76 @@ namespace Repositories.Repositories
 			};	
 		}
 
+		public async Task<ScaffoldGroupSummaryDto?> GetSummaryByScaffoldId(int scaffoldId)
+		{
+			var query = from sg in _context.ScaffoldGroups
+						join s in _context.Scaffolds on sg.Id equals s.ScaffoldGroupId
+						join ig in _context.InputGroups on sg.Id equals ig.ScaffoldGroupId into igJoin
+						from ig in igJoin.DefaultIfEmpty()
+						where s.Id == scaffoldId
+						select new { ScaffoldGroup = sg, InputGroup = ig };
+
+			var result = await query.FirstOrDefaultAsync();
+			if (result == null) return null;
+
+			var scaffoldGroup = result.ScaffoldGroup;
+			scaffoldGroup.InputGroup = result.InputGroup;
+
+			// Get the number of scaffolds for this ScaffoldGroup
+			var numReplicates = await _context.Scaffolds
+				.Where(s => s.ScaffoldGroupId == scaffoldGroup.Id)
+				.CountAsync();
+
+			// Fetch particle properties for the InputGroup
+			var particleProperties = await _context.ParticlePropertyGroups
+				.Where(pp => pp.InputGroupId == scaffoldGroup.InputGroup.Id)
+				.Select(pp => new ParticlePropertyBaseDto
+				{
+					Shape = pp.Shape,
+					Stiffness = pp.Stiffness,
+					Dispersity = pp.Dispersity,
+					SizeDistributionType = pp.SizeDistributionType,
+					MeanSize = pp.MeanSize,
+					StandardDeviationSize = pp.StandardDeviationSize,
+					Proportion = pp.Proportion
+				}).ToListAsync();
+
+			var scaffoldIds = await _context.Scaffolds
+				.Where(s => s.ScaffoldGroupId == scaffoldGroup.Id) // Only fetch IDs for relevant groups
+				.Select (s => s.Id)
+				.ToListAsync();
+
+			var scaffoldIdsWithDomainsLookup = await (
+				from s in _context.Scaffolds
+				join d in _context.Domains on s.Id equals d.ScaffoldId
+				where scaffoldIds.Contains(s.Id)
+				select s.Id
+			).Distinct().ToListAsync();
+
+			return new ScaffoldGroupSummaryDto
+			{
+				Id = scaffoldGroup.Id,
+				Name = scaffoldGroup.Name,
+				CreatedAt = scaffoldGroup.CreatedAt,
+				IsSimulated = scaffoldGroup.IsSimulated,
+				Comments = scaffoldGroup.Comments,
+				UploaderId = scaffoldGroup.UploaderId,
+				IsPublic = scaffoldGroup.IsPublic,
+				NumReplicates = numReplicates,
+				Inputs = scaffoldGroup.InputGroup != null
+					? new InputGroupBaseDto
+					{
+						ContainerShape = scaffoldGroup.InputGroup.ContainerShape,
+						ContainerSize = scaffoldGroup.InputGroup.ContainerSize,
+						PackingConfiguration = scaffoldGroup.InputGroup.PackingConfiguration.ToString(),
+						Particles = particleProperties
+					}
+					: new InputGroupBaseDto(),
+				ScaffoldIds = scaffoldIds,
+				ScaffoldIdsWithDomains = scaffoldIdsWithDomainsLookup
+			};	
+		}
+
 		public async Task<ICollection<Image>> GetScaffoldGroupImages(int scaffoldGroupId) 
 		{
 			var scaffoldGroupImages = await (from im in _context.Images

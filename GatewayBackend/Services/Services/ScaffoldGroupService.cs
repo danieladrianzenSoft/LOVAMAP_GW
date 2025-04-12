@@ -185,6 +185,32 @@ namespace Services.Services
 			}
 		}
 
+		public async Task<(bool Succeeded, string ErrorMessage, ScaffoldGroupSummaryDto? scaffoldGroup)> GetScaffoldGroupSummaryByScaffoldId(int scaffoldId, string userId)
+		{
+			try
+			{
+				// ScaffoldGroup? scaffoldGroup = await _scaffoldGroupRepository.Get(id); 
+				var scaffoldGroup  = await _scaffoldGroupRepository.GetSummaryByScaffoldId(scaffoldId);
+
+				if (scaffoldGroup == null)
+				{
+					return (false, "NotFound", null);
+				}
+				if (scaffoldGroup.IsPublic == false && scaffoldGroup.UploaderId != userId)
+				{
+					return (false, "Unauthorized", null);
+				}
+
+				return (true, "", scaffoldGroup);
+
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, "Failed to get scaffold group {scaffoldId}", scaffoldId);
+        		return (false, "UnexpectedError", null);
+			}
+		}
+
 		public async Task<(bool Succeeded, string ErrorMessage, ScaffoldGroupSummaryDto? scaffoldGroup)> GetScaffoldGroupSummary(int id, string userId)
 		{
 			try
@@ -210,8 +236,6 @@ namespace Services.Services
         		return (false, "UnexpectedError", null);
 			}
 		}
-
-
 
 		public async Task<(bool Succeeded, string ErrorMessage, IEnumerable<ScaffoldGroupBaseDto>? scaffoldGroups)>
 			GetFilteredScaffoldGroups(ScaffoldFilter filter, string userId, bool isDetailed = false)

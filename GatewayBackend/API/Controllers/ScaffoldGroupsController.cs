@@ -100,6 +100,28 @@ public class ScaffoldGroupsController : ControllerBase
 		}
     }
 
+	[AllowAnonymous]
+	[HttpGet("scaffold/{scaffoldId}/summary")]
+    public async Task<IActionResult> GetSummarizedScaffoldGroupByScaffoldId(int scaffoldId)
+    {
+		try
+		{
+			var (succeeded, errorMessage, scaffoldGroup) = await _scaffoldGroupService.GetScaffoldGroupSummaryByScaffoldId(scaffoldId, "0");
+
+			if (!succeeded) {
+				return NotFound(new ApiResponse<string>(404, errorMessage));
+			}
+
+			return Ok(new ApiResponse<ScaffoldGroupSummaryDto>(200, "", scaffoldGroup));
+		}
+		catch (Exception ex)
+		{
+			_logger.LogError(ex, "Failed to get the scaffold groups");
+        	return StatusCode(500, new ApiResponse<string>(500, "An error occurred while getting the scaffold grous"));
+		}
+    }
+
+
     [HttpGet("{id}")]
     public async Task<IActionResult> GetDetailedScaffoldGroup(int id, int? numReplicates = null)
     {

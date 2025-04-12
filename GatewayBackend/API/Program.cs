@@ -93,7 +93,16 @@ builder.Services.AddScoped<IDomainRepository, DomainRepository>();
 builder.Services.AddScoped<IUserAuthHelper, UserAuthHelper>();
 builder.Services.AddScoped<IJwtGeneratorHelper, JwtGeneratorHelper>();
 builder.Services.AddScoped<IUserContextHelper, UserContextHelper>();
-builder.Services.AddScoped<IDomainFileService, DomainFileService>();
+
+var domainDataPath = builder.Configuration["DomainSettings:DataPath"]
+                 ?? Environment.GetEnvironmentVariable("DOMAIN_DATA_PATH")
+                 ?? "Data/Domains";
+
+builder.Services.AddScoped<IDomainFileService>(provider =>
+{
+    var logger = provider.GetRequiredService<ILogger<DomainFileService>>();
+    return new DomainFileService(domainDataPath, logger);
+});
 
 // Add services registrations
 builder.Services.AddScoped<IRoleService, RoleService>();
