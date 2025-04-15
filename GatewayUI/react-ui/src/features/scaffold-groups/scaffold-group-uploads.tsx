@@ -8,16 +8,19 @@ import { Image, ImageToCreate, ImageToUpdate } from '../../app/models/image';
 import { ScaffoldGroup } from '../../app/models/scaffoldGroup';
 import { useDescriptorTypes } from '../../app/common/hooks/useDescriptorTypes';
 import { processExcelFile } from '../../app/common/excel-processor/excel-processor';
+import { RiDeleteBin5Fill } from "react-icons/ri";
 
 const ScaffoldGroupUploads: React.FC = () => {
     const { descriptorTypes} = useDescriptorTypes();
     const { scaffoldGroupStore } = useStore();
-    const { getUploadedScaffoldGroups, uploadedScaffoldGroups = [], updateImage, navigateToVisualization } = scaffoldGroupStore;
+    const { getUploadedScaffoldGroups, uploadedScaffoldGroups = [], 
+        updateImage, navigateToVisualization, deleteScaffoldGroup } = scaffoldGroupStore;
 
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [selectedGroup, setSelectedGroup] = useState<ScaffoldGroup | null>(null); // Track selected group
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false); // Track modal state
     const [isUploadVisible, setIsUploadVisible] = useState<boolean>(false); // Track visibility of UploadFile
+    const [showConfirmDelete, setShowConfirmDelete] = useState(false);
 
     useEffect(() => {
         const fetchUploadedScaffoldGroups = async () => {
@@ -36,6 +39,21 @@ const ScaffoldGroupUploads: React.FC = () => {
         link.download = fileName;
         link.click();
     };
+
+    const handleConfirmDeletion = async (scaffoldGroupId: number) => {
+        try {
+            await deleteScaffoldGroup(scaffoldGroupId);
+            toast.success('Scaffold group deleted successfully');
+            setShowConfirmDelete(false);
+            setIsModalOpen(false);
+            if (uploadedScaffoldGroups.some(g => g.id === scaffoldGroupId)) {
+                scaffoldGroupStore.removeUploadedScaffoldGroup(scaffoldGroupId);
+            }
+        } catch (error) {
+            toast.error('There was an error deleting this scaffold group');
+            console.error(error);
+        }
+    }
 
     const handleUploadSubmitFile = async (files: File[]) => {
         try {
@@ -180,6 +198,7 @@ const ScaffoldGroupUploads: React.FC = () => {
                         <table className="min-w-full divide-y divide-gray-200 text-sm">
                             <thead className="bg-gray-50">
                                 <tr>
+                                    <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Id</th>
                                     <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
                                     <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tags</th>
                                     <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Images</th>
@@ -193,6 +212,7 @@ const ScaffoldGroupUploads: React.FC = () => {
                                         onClick={() => handleRowClick(group)}
                                         className="cursor-pointer hover:bg-gray-100"
                                     >
+                                        <td className="px-4 py-2 max-w-[50px] ellipsis text-sm text-gray-700">{group.id}</td>
                                         <td className="px-4 py-2 max-w-[300px] ellipsis text-sm text-gray-700">{group.name}</td>
                                         <td className="px-4 py-2 max-w-[300px] ellipsis text-sm text-gray-700">{group.tags?.join(', ')}</td>
                                         <td className="px-4 py-2 whitespace-nowrap text-sm text-gray-700">{group.images.length}</td>
@@ -273,64 +293,7 @@ const ScaffoldGroupUploads: React.FC = () => {
                             >
                                 <FaPlus size={24} className="text-gray-400" />
                             </button>
-
-                            {/* {selectedGroup.images.map((image: any) => (
-                                <div key={image.id} className="relative border rounded-lg overflow-hidden">
-                                    <img
-                                        src={image.url}
-                                        alt={`Image ${image.id}`}
-                                        className="object-cover w-full h-24 p-2"
-                                    />
-                                    <button
-                                        onClick={() =>
-                                            handleImageUpdate(image, { isThumbnail: !image.isThumbnail })
-                                        }
-                                        className="absolute top-2 right-2 text-yellow-500 cursor-pointer hover:text-yellow-300"
-                                    >
-                                        {image.isThumbnail ? <FaStar /> : <FaRegStar />}
-                                    </button>
-                                    <select
-                                        className="absolute bottom-2 left-2 bg-white/80 text-sm max-w-full w-11/12 px-2 py-1 rounded-md"
-                                        value={image.category}
-                                        onChange={(e) => handleImageUpdate(image, { category: e.target.value })}
-                                    >
-                                        {['ExteriorPores', 'InteriorPores', 'ParticleSizeDistribution', 'Other'].map(
-                                            category => (
-                                                <option key={category} value={category}>
-                                                    {category}
-                                                </option>
-                                            )
-                                        )}
-                                    </select>
-                                </div>
-                            ))}
-
-                            <button
-                                onClick={toggleUploadSection}
-                                className="flex items-center justify-center border-2 border-dashed rounded-lg h-24 cursor-pointer hover:border-blue-500"
-                            >
-                                <FaPlus size={24} className="text-gray-400" />
-                            </button> */}
                         </div>
-                       
-                        {/* <div className="grid grid-cols-3 gap-2 mt-2">
-                            {selectedGroup.images.map((image: any, index: number) => (
-                                <div key={index} className="border rounded-lg overflow-hidden">
-                                    <img
-                                        src={image.url} // Assuming `image.url` contains the image URL
-                                        alt={`Image ${index + 1}`}
-                                        className="object-cover w-full h-24 p-2"
-                                    />
-                                </div>
-                            ))}
-
-                            <button
-                                onClick={toggleUploadSection}
-                                className="flex items-center justify-center border-2 border-dashed rounded-lg h-24"
-                            >
-                                <FaPlus size={24} className="text-gray-400" />
-                            </button>
-                        </div> */}
 
                         {isUploadVisible && (
                             <div className="mt-4">
@@ -341,7 +304,50 @@ const ScaffoldGroupUploads: React.FC = () => {
                             </div>
                         )}
 
-                        <div className="mt-4 flex justify-between">
+                        <div className="mt-4 flex justify-between items-center">
+                        {showConfirmDelete ? (
+                            <>
+                            <span className="text-sm text-gray-700 mr-auto">Are you sure you want to delete this scaffold group? All associated data, images and domains will be deleted permanently.</span>
+                            <button
+                                onClick={() => setShowConfirmDelete(false)}
+                                className="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 ml-2"
+                            >
+                                Cancel
+                            </button>
+                            <button
+                                onClick={() => handleConfirmDeletion(selectedGroup.id)}
+                                className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 ml-2"
+                            >
+                                Delete
+                            </button>
+                            </>
+                        ) : (
+                            <>
+                            <button
+                                className="px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700"
+                                onClick={() => navigateToVisualization(selectedGroup)}
+                            >
+                                Interact
+                            </button>
+                            <div className="flex gap-2">
+                                <button
+                                onClick={() => setShowConfirmDelete(true)}
+                                className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+                                >
+                                    <RiDeleteBin5Fill />
+                                </button>
+                                <button
+                                onClick={closeModal}
+                                className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
+                                >
+                                Close
+                                </button>
+                            </div>
+                            </>
+                        )}
+                        </div>
+
+                        {/* <div className="mt-4 flex justify-between">
                             <button
                                 className={`px-4 py-2 rounded transition ${
                                         "bg-blue-600 text-white hover:bg-blue-700"
@@ -356,7 +362,7 @@ const ScaffoldGroupUploads: React.FC = () => {
                             >
                                 Close
                             </button>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             )}

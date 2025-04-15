@@ -174,6 +174,10 @@ export default class ScaffoldGroupStore {
 		}
 	}
 
+	removeUploadedScaffoldGroup = (id: number) => {
+		this.uploadedScaffoldGroups = this.uploadedScaffoldGroups.filter(group => group.id !== id);
+	}
+
 	uploadImageForScaffoldGroup = async (
         scaffoldGroupId: number,
         image: ImageToCreate,
