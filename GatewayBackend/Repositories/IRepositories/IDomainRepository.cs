@@ -10,6 +10,8 @@ namespace Repositories.IRepositories
 		bool HasChanges();
 		void Add(Domain domain);
 		void Update(Domain domain);
+		void Delete(Domain domain);
+		Task<Domain?> GetById(int domainId);
 		Task<Domain?> GetByScaffoldIdAndCategory(int scaffoldId, DomainCategory category);
 	}
 }

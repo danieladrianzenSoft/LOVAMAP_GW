@@ -34,6 +34,18 @@ namespace Repositories.Repositories
 			_context.Domains.Update(domain);
 		}
 
+		public void Delete(Domain domain)
+		{
+			_context.Domains.Remove(domain);
+		}
+
+		public async Task<Domain?> GetById(int domainId)
+		{
+			var domain = await _context.Domains.FirstOrDefaultAsync(d => d.Id == domainId);
+
+			return domain;
+		}
+
 		public async Task<Domain?> GetByScaffoldIdAndCategory(int scaffoldId, DomainCategory category)
 		{
 			var domain = await _context.Domains

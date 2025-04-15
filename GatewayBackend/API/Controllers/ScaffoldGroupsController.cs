@@ -55,6 +55,30 @@ public class ScaffoldGroupsController : ControllerBase
 		}
     }
 
+	[HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(int id)
+    {
+		try
+		{
+            var currentUserId = _userService.GetCurrentUserId();
+
+			if (currentUserId == null) return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
+
+			var (succeeded, errorMessage) = await _scaffoldGroupService.DeleteScaffoldGroup(id, currentUserId);
+
+			if (!succeeded) {
+				return BadRequest(new ApiResponse<string>(400, errorMessage));
+			}
+
+			return Ok(new ApiResponse<string>(200, "Scaffold group deleted"));
+		}
+		catch (Exception ex)
+		{
+			_logger.LogError(ex, "Failed to delete the scaffold group");
+        	return StatusCode(500, new ApiResponse<string>(500, "An error occurred while deleting the scaffold group"));
+		}
+    }
+
 	[HttpPost("createBatch")]
     public async Task<IActionResult> CreateBatch(IEnumerable<ScaffoldGroupToCreateDto> scaffoldGroupsToCreate)
     {

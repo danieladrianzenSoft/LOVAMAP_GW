@@ -9,6 +9,7 @@ namespace Repositories.IRepositories
     {
 		bool HasChanges();
 		void Add(ScaffoldGroup experiment);
+		public void Delete(ScaffoldGroup scaffoldGroup);
 		Task<ScaffoldGroup?> Get(int id);
 		Task<ScaffoldGroupSummaryDto?> GetSummary(int id);
 		Task<ScaffoldGroupSummaryDto?> GetSummaryByScaffoldId(int scaffoldId);

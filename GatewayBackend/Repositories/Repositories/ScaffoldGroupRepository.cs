@@ -35,17 +35,26 @@ namespace Repositories.Repositories
 			_context.ScaffoldGroups.Add(scaffoldGroup);
 		}
 
+		public void Delete(ScaffoldGroup scaffoldGroup)
+		{
+			_context.ScaffoldGroups.Remove(scaffoldGroup);
+		}
+
 		public async Task<ScaffoldGroup?> Get(int id)
 		{
 			return await _context.ScaffoldGroups
-				.Where(sg => sg.Id == id)
-				.Include(sg => sg.InputGroup)
-					.ThenInclude (ig => ig != null ? ig.ParticlePropertyGroups : null)
-				.Include(sg => sg.Scaffolds)
-					.ThenInclude(s => s.ScaffoldTags)
-						.ThenInclude(st => st.Tag)
-				.Include(sg => sg.Images)
-				.FirstOrDefaultAsync();			
+					.Where(sg => sg.Id == id)
+					.Include(sg => sg.InputGroup)
+						.ThenInclude(ig => ig.ParticlePropertyGroups)
+					.Include(sg => sg.Scaffolds)
+						.ThenInclude(s => s.ScaffoldTags)
+							.ThenInclude(st => st.Tag)
+					.Include(sg => sg.Scaffolds)
+						.ThenInclude(s => s.Domains)
+					.Include(sg => sg.Scaffolds)
+						.ThenInclude(s => s.Images)
+					.Include(sg => sg.Images)
+					.FirstOrDefaultAsync();		
 		}
 
 		public async Task<ScaffoldGroupSummaryDto?> GetSummary(int id)

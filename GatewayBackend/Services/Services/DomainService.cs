@@ -113,6 +113,34 @@ namespace Services.Services
 			}
 		}
 
+		public async Task<(bool Succeeded, string ErrorMessage)> DeleteDomain(int domainId)
+		{
+			try
+			{
+				var domain = await _domainRepository.GetById(domainId);
+				if (domain == null)
+					return (false, "Domain not found.");
+
+				// Attempt to delete the mesh file
+				if (!string.IsNullOrWhiteSpace(domain.MeshFilePath))
+				{
+					var fileDeleted = await _domainFileService.DeleteFile(domain.MeshFilePath!);
+					if (!fileDeleted)
+						_logger.LogWarning("Mesh file not found or couldn't be deleted: {FilePath}", domain.MeshFilePath);
+				}
+
+				_domainRepository.Delete(domain);
+				await _context.SaveChangesAsync();
+
+				return (true, "");
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, "Failed to delete domain {DomainId}", domainId);
+				return (false, "Unexpected error occurred while deleting domain.");
+			}
+		}
+
 		private async Task<(bool Succeeded, string ErrorMessage, DomainToVisualizeDto? Domain)> ProcessGLBFile(DomainToCreateDto domainToCreate)
 		{
 			try

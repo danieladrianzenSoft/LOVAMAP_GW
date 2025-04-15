@@ -9,5 +9,6 @@ namespace Services.IServices
 	{
 		Task<(bool Succeeded, string ErrorMessage, Byte[]? Mesh, DomainToVisualizeDto? Domain)> GetDomain(int ScaffoldId);
 		Task<(bool Succeeded, string ErrorMessage, DomainToVisualizeDto? Domain)> CreateDomain(DomainToCreateDto domainToCreate);
+		Task<(bool Succeeded, string ErrorMessage)> DeleteDomain(int domainId);
 	}
 }

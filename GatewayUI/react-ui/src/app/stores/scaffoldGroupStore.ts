@@ -262,6 +262,15 @@ export default class ScaffoldGroupStore {
 		}
 	}
 
+	deleteScaffoldGroup = async (id: number) => {
+		try {
+			const response = await agent.ScaffoldGroups.delete(id);
+			return response.data;
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
 	updateImage = async(scaffoldGroupId: number, image: ImageToUpdate) => {
 		try {
 			const response = await agent.ScaffoldGroups.updateImage(scaffoldGroupId, image)

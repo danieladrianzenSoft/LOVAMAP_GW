@@ -4,6 +4,7 @@ using System.Text.Json;
 using Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -12,9 +13,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20250415175852_ChangedDeleteBehaviorCascadePPGs")]
+    partial class ChangedDeleteBehaviorCascadePPGs
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -887,12 +890,12 @@ namespace Data.Migrations
                     b.HasOne("Data.Models.Job", "Job")
                         .WithMany("GlobalDescriptors")
                         .HasForeignKey("JobId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("Data.Models.Scaffold", "Scaffold")
                         .WithMany("GlobalDescriptors")
                         .HasForeignKey("ScaffoldId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.SetNull)
                         .IsRequired();
 
                     b.Navigation("DescriptorType");
@@ -907,13 +910,13 @@ namespace Data.Migrations
                     b.HasOne("Data.Models.ScaffoldGroup", "ScaffoldGroup")
                         .WithMany("Images")
                         .HasForeignKey("ScaffoldGroupId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.SetNull)
                         .IsRequired();
 
                     b.HasOne("Data.Models.Scaffold", "Scaffold")
                         .WithMany("Images")
                         .HasForeignKey("ScaffoldId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("Data.Models.User", "Uploader")
                         .WithMany("UploadedImages")
@@ -969,12 +972,12 @@ namespace Data.Migrations
                     b.HasOne("Data.Models.Job", "Job")
                         .WithMany("OtherDescriptors")
                         .HasForeignKey("JobId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("Data.Models.Scaffold", "Scaffold")
                         .WithMany("OtherDescriptors")
                         .HasForeignKey("ScaffoldId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.SetNull)
                         .IsRequired();
 
                     b.Navigation("DescriptorType");
@@ -1006,12 +1009,12 @@ namespace Data.Migrations
                     b.HasOne("Data.Models.Job", "Job")
                         .WithMany("PoreDescriptors")
                         .HasForeignKey("JobId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("Data.Models.Scaffold", "Scaffold")
                         .WithMany("PoreDescriptors")
                         .HasForeignKey("ScaffoldId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.SetNull)
                         .IsRequired();
 
                     b.Navigation("DescriptorType");
@@ -1026,7 +1029,7 @@ namespace Data.Migrations
                     b.HasOne("Data.Models.Job", "LatestJob")
                         .WithOne()
                         .HasForeignKey("Data.Models.Scaffold", "LatestJobId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("Data.Models.ScaffoldGroup", "ScaffoldGroup")
                         .WithMany("Scaffolds")

@@ -48,7 +48,7 @@ public partial class DataContext : IdentityDbContext<User, Role, string>
             .HasForeignKey(g => g.UploaderId)
 			.OnDelete(DeleteBehavior.SetNull);
 
-        // Experiment to User relationship
+        // Scaffold Group to User relationship
         builder.Entity<ScaffoldGroup>()
             .HasOne(g => g.Uploader) // Each Experiment has one Uploader
             .WithMany(u => u.ScaffoldGroups) // A User has many Experiments
@@ -62,7 +62,7 @@ public partial class DataContext : IdentityDbContext<User, Role, string>
             .HasForeignKey(d => d.DownloaderId)
 			.OnDelete(DeleteBehavior.Cascade); 
 
-		// Experiment to Scaffold relationship
+		// Scaffold Group to Scaffold relationship
         builder.Entity<ScaffoldGroup>()
             .HasMany(g => g.Scaffolds)
             .WithOne(s => s.ScaffoldGroup)
@@ -87,7 +87,7 @@ public partial class DataContext : IdentityDbContext<User, Role, string>
             .HasOne(s => s.LatestJob)
             .WithOne()
             .HasForeignKey<Scaffold>(s => s.LatestJobId)
-            .OnDelete(DeleteBehavior.SetNull);
+            .OnDelete(DeleteBehavior.Cascade);
 
         // Descriptors to job relationship
         builder.Entity<GlobalDescriptor>().HasIndex(d => d.JobId);
@@ -96,7 +96,7 @@ public partial class DataContext : IdentityDbContext<User, Role, string>
             .HasOne(g => g.Job)
             .WithMany(j => j.GlobalDescriptors)
             .HasForeignKey(g => g.JobId)
-            .OnDelete(DeleteBehavior.SetNull);
+            .OnDelete(DeleteBehavior.Cascade);
         
         builder.Entity<PoreDescriptor>().HasIndex(d => d.JobId);
         
@@ -104,7 +104,7 @@ public partial class DataContext : IdentityDbContext<User, Role, string>
             .HasOne(g => g.Job)
             .WithMany(j => j.PoreDescriptors)
             .HasForeignKey(g => g.JobId)
-            .OnDelete(DeleteBehavior.SetNull);
+            .OnDelete(DeleteBehavior.Cascade);
         
         builder.Entity<OtherDescriptor>().HasIndex(d => d.JobId);
         
@@ -112,7 +112,7 @@ public partial class DataContext : IdentityDbContext<User, Role, string>
             .HasOne(g => g.Job)
             .WithMany(j => j.OtherDescriptors)
             .HasForeignKey(g => g.JobId)
-            .OnDelete(DeleteBehavior.SetNull);
+            .OnDelete(DeleteBehavior.Cascade);
 
         // Descriptors to scaffolds relationship
         builder.Entity<GlobalDescriptor>().HasIndex(d => d.ScaffoldId);
@@ -121,7 +121,7 @@ public partial class DataContext : IdentityDbContext<User, Role, string>
             .HasOne(g => g.Scaffold)
             .WithMany(s => s.GlobalDescriptors)
             .HasForeignKey(g => g.ScaffoldId)
-            .OnDelete(DeleteBehavior.SetNull);
+            .OnDelete(DeleteBehavior.Cascade);
         
         builder.Entity<PoreDescriptor>().HasIndex(d => d.ScaffoldId);
 
@@ -129,7 +129,7 @@ public partial class DataContext : IdentityDbContext<User, Role, string>
             .HasOne(g => g.Scaffold)
             .WithMany(j => j.PoreDescriptors)
             .HasForeignKey(g => g.ScaffoldId)
-            .OnDelete(DeleteBehavior.SetNull);
+            .OnDelete(DeleteBehavior.Cascade);
         
         builder.Entity<OtherDescriptor>().HasIndex(d => d.ScaffoldId);
         
@@ -137,7 +137,7 @@ public partial class DataContext : IdentityDbContext<User, Role, string>
             .HasOne(g => g.Scaffold)
             .WithMany(j => j.OtherDescriptors)
             .HasForeignKey(g => g.ScaffoldId)
-            .OnDelete(DeleteBehavior.SetNull);
+            .OnDelete(DeleteBehavior.Cascade);
 
         // Job to Input Domain one-to-one relationship
         builder.Entity<Domain>()
@@ -184,20 +184,20 @@ public partial class DataContext : IdentityDbContext<User, Role, string>
             .HasOne(i => i.ScaffoldGroup)
             .WithMany(s => s.Images)
             .HasForeignKey(i => i.ScaffoldGroupId)
-			.OnDelete(DeleteBehavior.SetNull);
+			.OnDelete(DeleteBehavior.Cascade);
 
         // One-to-Many relationship between Scaffold and Images
         builder.Entity<Scaffold>()
             .HasMany(s => s.Images)
             .WithOne(i => i.Scaffold)
             .HasForeignKey( s => s.ScaffoldId)
-            .OnDelete(DeleteBehavior.SetNull);
+            .OnDelete(DeleteBehavior.Cascade);
             
         builder.Entity<Image>()
             .HasOne(i => i.Scaffold)
             .WithMany(s => s.Images)
             .HasForeignKey(i => i.ScaffoldId)
-			.OnDelete(DeleteBehavior.SetNull);
+			.OnDelete(DeleteBehavior.Cascade);
 
         // One-to-Many relationship between Scaffold and Domains
         builder.Entity<Scaffold>()
@@ -234,7 +234,7 @@ public partial class DataContext : IdentityDbContext<User, Role, string>
             .HasOne(p => p.InputGroup)
             .WithMany(i => i.ParticlePropertyGroups)
             .HasForeignKey(p => p.InputGroupId)
-            .OnDelete(DeleteBehavior.SetNull);
+            .OnDelete(DeleteBehavior.Cascade);
 
         // DescriptorType relationships
         builder.Entity<DescriptorType>()

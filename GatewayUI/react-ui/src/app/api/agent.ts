@@ -85,6 +85,7 @@ const ScaffoldGroups = {
     uploadScaffoldGroupBatch: (scaffoldGroups: ScaffoldGroupToCreate[]) => requests.post<ApiResponse<ScaffoldGroup[]>>('/scaffoldGroups/createBatch', scaffoldGroups),
     // uploadScaffoldGroupImage: (image: ImageToCreate) => requests.post<ApiResponse<Image>>('/scaffoldGroups/image', image),
     getUploadedScaffoldGroups: () => requests.get<ApiResponse<ScaffoldGroup[]>>('/users/me/scaffoldgroups'),
+    delete: (id: number) => requests.del<ApiResponse<string>>('scaffoldGroups/' + id),
     uploadScaffoldGroupImage: async (scaffoldGroupId: number, image: ImageToCreate) => {
         const formData = new FormData();
         formData.append('file', image.file); // Append the image file

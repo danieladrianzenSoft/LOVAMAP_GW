@@ -21,6 +21,7 @@ namespace Services.Services
 		private readonly IScaffoldGroupRepository _scaffoldGroupRepository;
 		private readonly IDescriptorService _descriptorService;
 		private readonly IDownloadService _downloadService;
+		private readonly IDomainService _domainService;
 		private readonly ITagService _tagService;
 		private readonly IImageService _imageService;
 		private readonly ILogger<ScaffoldGroupService> _logger;
@@ -28,7 +29,7 @@ namespace Services.Services
 		public ScaffoldGroupService(DataContext context, IModelMapper modelMapper, 
 			IScaffoldGroupRepository scaffoldGroupRepository, IDescriptorService descriptorService, 
 			IDownloadService downloadService, ITagService tagService, IUserAuthHelper userAuthHelper,
-			IImageService imageService, ILogger<ScaffoldGroupService> logger)
+			IImageService imageService, IDomainService domainService, ILogger<ScaffoldGroupService> logger)
 		{
 			_context = context;
 			_modelMapper = modelMapper;
@@ -38,6 +39,7 @@ namespace Services.Services
 			_imageService = imageService;
 			_downloadService = downloadService;
 			_tagService = tagService;
+			_domainService = domainService;
 			_logger = logger;
 		}
 
@@ -328,6 +330,63 @@ namespace Services.Services
 			{
 				_logger.LogError(ex, "Failed to get filtered scaffold groups");
 				return (false, "UnexpectedError", null);
+			}
+		}
+
+		public async Task<(bool Succeeded, string ErrorMessage)> DeleteScaffoldGroup(int scaffoldGroupId, string userId)
+		{
+			try
+			{
+				var scaffoldGroup = await _scaffoldGroupRepository.Get(scaffoldGroupId);
+				if (scaffoldGroup == null)
+					return (false, "Scaffold group not found.");
+
+				// Authorization check: must be uploader or admin
+				var isAdmin = await _userAuthHelper.IsInRole(userId, "administrator");
+
+				if (scaffoldGroup.UploaderId != userId && !isAdmin)
+					return (false, "Unauthorized to delete this scaffold group.");
+
+				// 1. Gather all image IDs (group-level + scaffold-level)
+				var imageIds = scaffoldGroup.Images.Select(img => img.Id).ToList();
+
+				foreach (var scaffold in scaffoldGroup.Scaffolds)
+				{
+					imageIds.AddRange(scaffold.Images.Select(img => img.Id));
+				}
+
+				if (imageIds.Any())
+				{
+					var (imgSucceeded, failedImageIds) = await _imageService.DeleteImages(imageIds.Distinct(), userId);
+					if (!imgSucceeded)
+					{
+						return (false, $"Failed to delete some images from Cloudinary: {string.Join(", ", failedImageIds)}");
+					}
+				}
+
+				// 2. Delete all mesh files from disk
+				var domainsWithFiles = scaffoldGroup.Scaffolds
+					.SelectMany(s => s.Domains)
+					.ToList();
+
+				foreach (var domain in domainsWithFiles)
+				{
+					var (success, error) = await _domainService.DeleteDomain(domain.Id);
+					if (!success)
+					{
+						return (false, $"Failed to delete domain ID {domain.Id}: {error}");
+					}
+				}
+				// 3. Remove the scaffold group (EF cascade will clean up child entities)
+				_scaffoldGroupRepository.Delete(scaffoldGroup);
+				await _context.SaveChangesAsync(); // call SaveChanges from your repository
+
+				return (true, "");
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, "Error deleting scaffold group {ScaffoldGroupId}", scaffoldGroupId);
+				return (false, "Unexpected error occurred while deleting the scaffold group.");
 			}
 		}
 
