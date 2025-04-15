@@ -45,7 +45,7 @@ namespace Services.Services
 		{
 			try
 			{
-				var domain = await _domainRepository.GetByScaffoldIdAndCategory(scaffoldId, DomainCategory.Particle);
+				var domain = await _domainRepository.GetByScaffoldIdAndCategory(scaffoldId, DomainCategory.Particles);
 
 				if (domain == null || String.IsNullOrEmpty(domain.MeshFilePath))
 				{

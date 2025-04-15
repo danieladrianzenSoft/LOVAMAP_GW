@@ -40,6 +40,11 @@ namespace Repositories.Repositories
 				.ToListAsync();
 		}
 
+		public async Task<List<int>> GetAllImageIds()
+		{
+			return await _context.Images.Select(i => i.Id).ToListAsync();
+		}
+
 		public async Task<Dictionary<int, IEnumerable<ImageToShowDto>>> GetAllImagesForScaffoldGroups(IEnumerable<int> scaffoldGroupIds)
 		{
 			var images = await _context.Images
@@ -56,6 +61,14 @@ namespace Repositories.Repositories
 				}).ToList() as IEnumerable<ImageToShowDto>);
 
 			return images;
+		}
+
+		public async Task<bool> HasThumbnailInCategory(int scaffoldGroupId, ImageCategory category)
+		{
+			return await _context.Images.AnyAsync(img =>
+				img.ScaffoldGroupId == scaffoldGroupId &&
+				img.IsThumbnail &&
+				img.Category == category);
 		}
 
 		public async Task<int> GetNumThumbnails(int scaffoldGroupId)

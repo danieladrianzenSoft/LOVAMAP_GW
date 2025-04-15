@@ -35,6 +35,8 @@ const SideBar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
 			setActiveTab(3);
 		} else if (location.pathname === '/uploads') {
 			setActiveTab(4);
+		} else if (location.pathname.startsWith('/admin')) {
+			setActiveTab(5);
 		} else {
 			setActiveTab(0);
 		}
@@ -89,13 +91,23 @@ const SideBar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
 					)}
 					</Tab>
 					{isAdmin && (
-					<Tab as={NavLink} to='/uploads' onClick={() => setIsOpen(false)} className="focus:outline-none">
-						{({ selected }) => (
-						<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
-							<p>Upload</p>
-						</div>
-						)}
-					</Tab>
+						<>
+							<Tab as={NavLink} to='/uploads' onClick={() => setIsOpen(false)} className="focus:outline-none">
+								{({ selected }) => (
+								<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
+									<p>Upload</p>
+								</div>
+								)}
+							</Tab>
+							<Tab as={NavLink} to='/admin/batch-thumbnails' onClick={() => setIsOpen(false)} className="focus:outline-none">
+								{({ selected }) => (
+								<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
+									<p>Admin Utilities</p>
+								</div>
+								)}
+							</Tab>
+						</>
+
 					)}
 				</TabList>
 				</TabGroup>

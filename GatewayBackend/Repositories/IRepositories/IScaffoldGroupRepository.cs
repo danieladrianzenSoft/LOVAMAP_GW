@@ -12,6 +12,7 @@ namespace Repositories.IRepositories
 		Task<ScaffoldGroup?> Get(int id);
 		Task<ScaffoldGroupSummaryDto?> GetSummary(int id);
 		Task<ScaffoldGroupSummaryDto?> GetSummaryByScaffoldId(int scaffoldId);
+		Task<List<ScaffoldMissingThumbnailInfoDto>> GetScaffoldsMissingThumbnailsByCategory(ImageCategory imageCategory = ImageCategory.Particles);
 		Task<ICollection<Image>> GetScaffoldGroupImages(int scaffoldGroupId);
 		Task<ICollection<ScaffoldGroup>?> GetFilteredScaffoldGroups(ScaffoldFilter filter, string userId);
 		Task<ICollection<ScaffoldGroup>?> GetFilteredScaffoldGroupsByRelevance_v1(ScaffoldFilter filter, string currentUserId);

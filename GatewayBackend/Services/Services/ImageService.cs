@@ -42,7 +42,6 @@ namespace Services.Services
 			try
 			{
 				var file = imageToCreate.File;
-
 				var uploadResult = new ImageUploadResult();
 
 				if (file.Length > 0)
@@ -59,20 +58,21 @@ namespace Services.Services
 						uploadResult = _cloudinary.Upload(uploadParams);
 					}
 				}
-
-				var numThumbnails = await _imageRepository.GetNumThumbnails(imageToCreate.ScaffoldGroupId);
-
-				if (numThumbnails < 3) imageToCreate.IsThumbnail = true;
 				
 				imageToCreate.Url = uploadResult.SecureUrl.ToString();
 				imageToCreate.PublicId = uploadResult.PublicId;
 
 				var image = _modelMapper.MapToImage(imageToCreate, uploaderId);
-				image.Category = ImageCategory.Other;
+				var parsedCategory = Enum.TryParse<ImageCategory>(imageToCreate.Category, true, out var parsed)
+					? parsed
+					: ImageCategory.Other;
+
+				image.Category = parsedCategory;
+
+				bool hasThumbnailInCategory = await _imageRepository.HasThumbnailInCategory(image.ScaffoldGroupId, image.Category);
+				image.IsThumbnail = !hasThumbnailInCategory;
 
 				_imageRepository.Add(image);
-
-				// var imageToReturn = image;
 
 				await _context.SaveChangesAsync();
 
@@ -159,46 +159,130 @@ namespace Services.Services
 		// 	}
 		// }
 
+		// public async Task<(bool Succeeded, string ErrorMessage)> DeleteImage(int imageId, string userId)
+		// {
+		// 	try
+		// 	{
+		// 		var image = await _imageRepository.Get(imageId);
+		// 		if (image == null) return (false, "Not_Found");
+
+		// 		if (image.UploaderId != userId) return (false, "Unauthorized");
+
+		// 		if (image.PublicId != null)
+		// 		{
+		// 			var deleteParams = new DeletionParams(image.PublicId);
+
+		// 			var result = _cloudinary.Destroy(deleteParams);
+
+		// 			if (result.Result == "ok")
+		// 			{
+		// 				await _imageRepository.Delete(image.Id);
+		// 				await _context.SaveChangesAsync();
+		// 				return (true, "");
+		// 			}
+		// 		}
+
+		// 		if (image.PublicId == null)
+		// 		{
+		// 			await _imageRepository.Delete(image.Id);
+		// 			await _context.SaveChangesAsync();
+		// 			return (true, "");
+		// 		}
+
+		// 		return (false, "Unknown_Error");
+		// 	}
+		// 	catch (Exception ex)
+		// 	{
+		// 		_logger.LogError(ex, "Error deleting image");
+		// 		return (false, "Unknown_Error");
+		// 	}
+
+
+		// }
 		public async Task<(bool Succeeded, string ErrorMessage)> DeleteImage(int imageId, string userId)
 		{
 			try
 			{
 				var image = await _imageRepository.Get(imageId);
 				if (image == null) return (false, "Not_Found");
-
 				if (image.UploaderId != userId) return (false, "Unauthorized");
 
-				if (image.PublicId != null)
-				{
-					var deleteParams = new DeletionParams(image.PublicId);
+				var (succeeded, errorMessage) = await DeleteImageInternal(image);
+				if (!succeeded) return (false, errorMessage);
 
-					var result = _cloudinary.Destroy(deleteParams);
-
-					if (result.Result == "ok")
-					{
-						await _imageRepository.Delete(image.Id);
-						await _context.SaveChangesAsync();
-						return (true, "");
-					}
-				}
-
-				if (image.PublicId == null)
-				{
-					await _imageRepository.Delete(image.Id);
-					await _context.SaveChangesAsync();
-					return (true, "");
-				}
-
-				return (false, "Unknown_Error");
+				await _context.SaveChangesAsync();
+				return (true, "");
 			}
 			catch (Exception ex)
 			{
 				_logger.LogError(ex, "Error deleting image");
 				return (false, "Unknown_Error");
 			}
-
-
 		}
+
+		public async Task<(bool Succeeded, List<int> FailedImageIds)> DeleteImages(IEnumerable<int> imageIds, string userId)
+		{
+			var failed = new List<int>();
+
+			foreach (var imageId in imageIds)
+			{
+				try
+				{
+					var image = await _imageRepository.Get(imageId);
+					if (image == null || image.UploaderId != userId)
+					{
+						failed.Add(imageId);
+						continue;
+					}
+
+					var (succeeded, _) = await DeleteImageInternal(image);
+					if (!succeeded) failed.Add(imageId);
+				}
+				catch (Exception ex)
+				{
+					_logger.LogError(ex, $"Error deleting image {imageId}");
+					failed.Add(imageId);
+				}
+			}
+
+			try
+			{
+				await _context.SaveChangesAsync();
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, "Error saving changes after batch delete");
+				return (false, imageIds.ToList());
+			}
+
+			return (failed.Count == 0, failed);
+		}
+
+		private async Task<(bool Succeeded, string ErrorMessage)> DeleteImageInternal(Image image)
+		{
+			try
+			{
+				if (!string.IsNullOrEmpty(image.PublicId))
+				{
+					var deleteParams = new DeletionParams(image.PublicId);
+					var result = _cloudinary.Destroy(deleteParams);
+
+					if (result.Result != "ok")
+					{
+						return (false, "Cloudinary_Delete_Failed");
+					}
+				}
+
+				await _imageRepository.Delete(image.Id);
+				return (true, "");
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, "Error deleting image internally");
+				return (false, "Unknown_Error");
+			}
+		}
+
 
 		public async Task<ICollection<Image>> GetThumbnails(int scaffoldGroupId)
 		{
@@ -260,66 +344,48 @@ namespace Services.Services
 			}
 		}
 
+		public async Task<List<int>> GetAllImageIds()
+		{
+			try
+			{
+				return await _imageRepository.GetAllImageIds();
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, "Error retrieving image IDs");
+				return [];
+			}
+		}
+
 		public async Task<Image?> UpdateImage(ImageToUpdateDto imageToUpdate, ScaffoldGroup scaffoldGroup)
 		{
-			// Find the image to update from the group's images
-			// var image = scaffoldGroup.Images.FirstOrDefault(img => img.Id == imageToUpdate.Id);
 			var image = await _imageRepository.Get(imageToUpdate.Id);
 			if (image == null) return null;
 
-			// Handle thumbnail management if the image is to become a thumbnail
+			var newCategory = Enum.Parse<ImageCategory>(imageToUpdate.Category);
+			image.Category = newCategory;
+
 			if (imageToUpdate.IsThumbnail)
 			{
-                ManageThumbnails(scaffoldGroup, imageToUpdate);
-			}
+				// Find existing thumbnail in the same category
+				var existingThumbnail = scaffoldGroup.Images
+					.FirstOrDefault(img => img.IsThumbnail && img.Category == newCategory && img.Id != image.Id);
 
-			// Update the image's properties
-			image.Category = Enum.Parse<ImageCategory>(imageToUpdate.Category);
-			image.IsThumbnail = imageToUpdate.IsThumbnail;
+				if (existingThumbnail != null)
+				{
+					existingThumbnail.IsThumbnail = false;
+				}
 
-			// Save the changes via the repository (assume it has SaveChangesAsync)
-			await _context.SaveChangesAsync();
-
-			return image;
-		}
-
-		private static void ManageThumbnails(ScaffoldGroup scaffoldGroup, ImageToUpdateDto imageToUpdate)
-		{
-			// Get all existing thumbnails in the scaffold group
-			var thumbnails = scaffoldGroup.Images.Where(img => img.IsThumbnail).ToList();
-
-			if (thumbnails.Count < 3)
-			{
-				// If there are fewer than 3 thumbnails, no need to replace any
-				return;
-			}
-
-			// Check if there is a thumbnail with the same category as the new image
-			var matchingThumbnail = thumbnails.FirstOrDefault(
-				img => img.Category == Enum.Parse<ImageCategory>(imageToUpdate.Category)
-			);
-
-			if (matchingThumbnail != null)
-			{
-				// If a matching category thumbnail exists, replace it
-				matchingThumbnail.IsThumbnail = false;
+				image.IsThumbnail = true;
 			}
 			else
 			{
-				var otherCategoryThumbnail = thumbnails.FirstOrDefault(img => img.Category == ImageCategory.Other);
+				image.IsThumbnail = false;
+			}
 
-				if (otherCategoryThumbnail != null)
-				{
-					// Replace the 'Other' category thumbnail
-					otherCategoryThumbnail.IsThumbnail = false;
-				}
-				else
-				{
-					// If no 'Other' category thumbnail, remove one at random
-					var thumbnailToRemove = thumbnails.First();
-					thumbnailToRemove.IsThumbnail = false;
-				}
-				}
+			await _context.SaveChangesAsync();
+			return image;
 		}
+
 	}
 }

@@ -20,9 +20,10 @@ namespace Data.Models
 
 	public enum ImageCategory 
 	{
-		ExteriorPores = 0,
-		InteriorPores = 1,
-		ParticleSizeDistribution = 2,
-		Other = 3
+		Particles = 0,
+		ExteriorPores = 1,
+		InteriorPores = 2,
+		ParticleSizeDistribution = 3,
+		Other = 4
 	}
 }

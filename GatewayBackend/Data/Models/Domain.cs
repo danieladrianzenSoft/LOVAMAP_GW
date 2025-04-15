@@ -28,8 +28,9 @@ namespace Data.Models
 	
 	public enum DomainCategory
 	{
-		Particle,  // Particle mesh
-		Pore,      // Void space mesh
-		Other      // Future expansion
+		Particles,
+		ExteriorPores,
+		InteriorPores, 
+		Other
 	}
 }

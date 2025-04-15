@@ -14,3 +14,8 @@ export interface ScaffoldToCreate {
     poreDescriptors: DescriptorToCreate[];
     otherDescriptors: DescriptorToCreate[];
 }
+
+export interface ScaffoldWithMissingThumbnail {
+    scaffoldId: number;
+    scaffoldGroupId: number;
+}

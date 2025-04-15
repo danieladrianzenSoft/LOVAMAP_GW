@@ -212,15 +212,6 @@ namespace Repositories.Repositories
 			// Apply optimized joins instead of .Include()
 			query = ApplyJoins(query, matchingInputGroupIds, tagIds);
 
-			// var scaffoldGroups = await (from sg in query
-            //                 join ig in _context.InputGroups on sg.InputGroupId equals ig.Id into igJoin
-            //                 from ig in igJoin.DefaultIfEmpty()
-            //                 select new
-            //                 {
-            //                     ScaffoldGroup = sg,
-            //                     InputGroup = ig,
-            //                 }).ToListAsync();
-
 			var scaffoldGroups = await (from sg in query
                             join ig in _context.InputGroups on sg.Id equals ig.ScaffoldGroupId into igJoin
                             from ig in igJoin.DefaultIfEmpty()
@@ -515,6 +506,29 @@ namespace Repositories.Repositories
 				.ToListAsync();
 
 			return scaffoldGroups;
+		}
+
+		public async Task<List<ScaffoldMissingThumbnailInfoDto>> GetScaffoldsMissingThumbnailsByCategory(ImageCategory imageCategory = ImageCategory.Particles)
+		{
+			var domainCategory = CategoryMapper.ToDomainCategory(imageCategory);
+			if (domainCategory == null) return new List<ScaffoldMissingThumbnailInfoDto>();
+
+			var scaffolds = await (
+				from s in _context.Scaffolds
+				join d in _context.Domains on s.Id equals d.ScaffoldId
+				where d.Category == domainCategory && d.MeshFilePath != null
+				where !_context.Images.Any(img =>
+					img.ScaffoldGroupId == s.ScaffoldGroupId &&
+					img.IsThumbnail &&
+					img.Category == imageCategory)
+				select new ScaffoldMissingThumbnailInfoDto
+				{
+					ScaffoldId = s.Id,
+					ScaffoldGroupId = s.ScaffoldGroupId
+				}
+			).Distinct().ToListAsync();
+
+			return scaffolds;
 		}
 
 	}

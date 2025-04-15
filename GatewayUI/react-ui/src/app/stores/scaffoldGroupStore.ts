@@ -4,6 +4,7 @@ import { Tag } from "../models/tag";
 import { ScaffoldGroup, ScaffoldGroupToCreate } from "../models/scaffoldGroup";
 import { Image, ImageToCreate, ImageToUpdate } from "../models/image";
 import History from "../helpers/History";
+import { ScaffoldWithMissingThumbnail } from "../models/scaffold";
 
 export default class ScaffoldGroupStore {
 	scaffoldGroups: ScaffoldGroup[] = [];
@@ -18,56 +19,6 @@ export default class ScaffoldGroupStore {
 	setUploadedScaffoldGroups(groups: any[]) {
 		this.uploadedScaffoldGroups = groups;
 	}
-
-	// navigateToVisualization = async (scaffoldGroup: ScaffoldGroup | null, scaffoldId?: number) => {
-	// 	if (!scaffoldGroup) {
-	// 		console.warn("No scaffold group provided. Redirecting to default.");
-
-	// 		const foundGroup = 
-	// 			this.scaffoldGroups.find(g => g.id === this.defaultScaffoldGroupId) || 
-	// 			this.uploadedScaffoldGroups.find(g => g.id === this.defaultScaffoldGroupId);
-
-	// 		if (foundGroup) {
-	// 			this.setSelectedScaffoldGroup(foundGroup);
-	// 			History.push(`/visualize/${foundGroup.scaffoldIdsWithDomains[0] || foundGroup.scaffoldIds[0]}`);
-	// 			return;
-	// 		}
-
-	// 		const scaffoldGroup = await this.getScaffoldGroupSummary(this.defaultScaffoldGroupId);
-
-	// 		if (scaffoldGroup) {
-	// 			this.setSelectedScaffoldGroup(scaffoldGroup);
-	// 			History.push(`/visualize/${scaffoldGroup.scaffoldIdsWithDomains[0] || scaffoldGroup.scaffoldIds[0]}`);
-	// 			return;
-	// 		}
-
-	// 		History.push("/explore"); // Redirect to generic explore page
-	// 		return;
-	// 	}
-
-	// 	if (scaffoldId) {
-	// 		if (scaffoldGroup.scaffoldIds.includes(scaffoldId)) {
-	// 			// if (this.selectedScaffoldGroup?.id === scaffoldGroup.id) {
-	// 			// 	return;
-	// 			// }
-
-	// 			this.setSelectedScaffoldGroup(scaffoldGroup);
-	// 			History.push(`/visualize/${scaffoldId}`);
-	// 			return;
-	// 		} else {
-	// 			console.warn(`Scaffold ID ${scaffoldId} not found in ScaffoldGroup ${scaffoldGroup.id}.`);
-	// 		}
-	// 	}
-
-	// 	this.setSelectedScaffoldGroup(scaffoldGroup);
-		
-	// 	if (scaffoldGroup.scaffoldIdsWithDomains.length > 0) {
-	// 		History.push(`/visualize/${scaffoldGroup.scaffoldIdsWithDomains[0]}`);
-	// 	} else {
-	// 		History.push(`/visualize/${scaffoldGroup.scaffoldIds[0]}`);
-	// 		console.warn("No available meshes for visualization.");
-	// 	}
-	// }
 
 	navigateToVisualization = async (
 		scaffoldGroup: ScaffoldGroup | null, 
@@ -226,26 +177,15 @@ export default class ScaffoldGroupStore {
 	uploadImageForScaffoldGroup = async (
         scaffoldGroupId: number,
         image: ImageToCreate,
-        imageType?: string
     ): Promise<Image | null> => {
         try {
-            // const formData = new FormData();
-            // formData.append('image', imageFile);
-            // if (imageType) formData.append('imageType', imageType);
-
             const response = await agent.ScaffoldGroups.uploadScaffoldGroupImage(scaffoldGroupId, image);
 			return response.data;
-            // if (response.statusCode === 200) {
-            //     console.log('Image uploaded successfully');
-            // } else {
-            //     console.error('Image upload failed:', response);
-            // }
         } catch (error) {
             console.error('Error uploading image for scaffold group:', error);
 			return null;
         }
     };
-
 
 	getPublicScaffoldGroups = async (selectedTags?: Tag[] | null, sizeIds?: number[] | null) => {
 		try {
@@ -337,6 +277,16 @@ export default class ScaffoldGroupStore {
 			return response.data;
 		} catch (error) {
 			console.error(error);
+		}
+	}
+
+	getScaffoldsWithMissingThumbnails = async(): Promise<ScaffoldWithMissingThumbnail[]> => {
+		try {
+			const response = await agent.ScaffoldGroups.getScaffoldsWithMissingThumbnails()
+			return response.data ?? [];
+		} catch (error) {
+			console.error(error);
+			return [];
 		}
 	}
 

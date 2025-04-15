@@ -6,10 +6,11 @@ import { ApiResponse } from "../models/apiResponse";
 import { Tag } from "../models/tag";
 import { ScaffoldGroup, ScaffoldGroupToCreate } from "../models/scaffoldGroup";
 import { DescriptorType } from "../models/descriptorType";
-import { Image, ImageToCreate, ImageToUpdate } from "../models/image";
+import { Image, ImageCategory, ImageToCreate, ImageToUpdate } from "../models/image";
 import environment from "../environments/environment"
 import { Domain } from "../models/domain";
 import { Job } from "../models/job";
+import { ScaffoldWithMissingThumbnail } from "../models/scaffold";
 
 axios.defaults.baseURL = environment.baseUrl;
 
@@ -84,21 +85,24 @@ const ScaffoldGroups = {
     uploadScaffoldGroupBatch: (scaffoldGroups: ScaffoldGroupToCreate[]) => requests.post<ApiResponse<ScaffoldGroup[]>>('/scaffoldGroups/createBatch', scaffoldGroups),
     // uploadScaffoldGroupImage: (image: ImageToCreate) => requests.post<ApiResponse<Image>>('/scaffoldGroups/image', image),
     getUploadedScaffoldGroups: () => requests.get<ApiResponse<ScaffoldGroup[]>>('/users/me/scaffoldgroups'),
-    uploadScaffoldGroupImage: async (scaffoldGroupId: number, image: ImageToCreate, imageType?: string) => {
+    uploadScaffoldGroupImage: async (scaffoldGroupId: number, image: ImageToCreate) => {
         const formData = new FormData();
         formData.append('file', image.file); // Append the image file
         formData.append('scaffoldGroupId', image.scaffoldGroupId.toString());
         if (image.scaffoldId) formData.append('scaffoldId', image.scaffoldId.toString());
-        if (imageType) formData.append('imageType', imageType); // Optional image type
+        if (image.category !== null && image.category !== undefined) {
+            formData.append('category', ImageCategory[image.category]);
+          }
 
-        const response =  await axios.post<ApiResponse<Image>>(`/scaffoldGroups/${scaffoldGroupId}/image`, formData, {
+        const response =  await axios.post<ApiResponse<Image>>(`/scaffoldGroups/${scaffoldGroupId}/images`, formData, {
             headers: { 'Content-Type': 'multipart/form-data' },
         });
 
         return response.data;
     },
-    updateImage: (scaffoldGroupId: number, image: ImageToUpdate) => requests.put<ApiResponse<ScaffoldGroup>>(`/scaffoldGroups/${scaffoldGroupId}/image/${image.id}`, image),
-    deleteImage: (scaffoldGroupId: number, imageId: number) => requests.del<ApiResponse<ScaffoldGroup>>(`/scaffoldGroups/${scaffoldGroupId}/image/${imageId}`),
+    updateImage: (scaffoldGroupId: number, image: ImageToUpdate) => requests.put<ApiResponse<ScaffoldGroup>>(`/scaffoldGroups/${scaffoldGroupId}/images/${image.id}`, image),
+    deleteImage: (scaffoldGroupId: number, imageId: number) => requests.del<ApiResponse<ScaffoldGroup>>(`/scaffoldGroups/${scaffoldGroupId}/images/${imageId}`),
+    getScaffoldsWithMissingThumbnails: () => requests.get<ApiResponse<ScaffoldWithMissingThumbnail[]>>(`/scaffoldGroups/images/missing-thumbnails`)
 }
 
 const Domains = {

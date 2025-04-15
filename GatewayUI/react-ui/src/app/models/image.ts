@@ -14,6 +14,7 @@ export interface ImageToCreate {
     scaffoldGroupId: number;
     scaffoldId?: number | null;
     file: File;
+    category?: ImageCategory | null;
 }
 
 export interface ImageToUpdate {
@@ -22,4 +23,12 @@ export interface ImageToUpdate {
     isThumbnail: boolean;
     scaffoldGroupId: number;
     scaffoldId?: number | null;
+}
+
+export enum ImageCategory {
+    Particles = 0,
+    ExteriorPores = 1,
+    InteriorPores = 2,
+    ParticleSizeDistribution = 3,
+    Other = 4
 }

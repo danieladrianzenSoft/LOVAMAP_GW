@@ -373,6 +373,21 @@ namespace Services.Services
 			}
 		}
 
+		public async Task<List<ScaffoldMissingThumbnailInfoDto>> GetScaffoldsMissingThumbnailsByCategory(ImageCategory imageCategory = ImageCategory.Particles)
+		{
+			try
+			{
+				var scaffolds = await _scaffoldGroupRepository.GetScaffoldsMissingThumbnailsByCategory(imageCategory);
+				return scaffolds;
+			}
+			catch (Exception ex)
+			{
+				
+				_logger.LogError(ex, "Error getting thumbnails");
+				return [];
+			}
+		}
+
 
 	}
 }

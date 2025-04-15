@@ -1,5 +1,6 @@
 
 using System.ComponentModel.DataAnnotations;
+using Data.Models;
 using Microsoft.AspNetCore.Http;
 
 namespace Infrastructure.DTOs
@@ -13,6 +14,7 @@ namespace Infrastructure.DTOs
         public required IFormFile File { get; set; }
         public string PublicId { get; set; } = "";
         public bool IsThumbnail { get; set; } = false;
+        public string Category { get; set; } = "Other";
 
     }
 }

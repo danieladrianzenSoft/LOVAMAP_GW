@@ -17,10 +17,11 @@ interface ScaffoldGroupDetailsProps {
 }
 
 const categoryOrder: { [key: string]: number } = {
-    ExteriorPores: 0,
-    InteriorPores: 1,
-    ParticleSizeDistribution: 2,
-    Other: 3 // Additional categories if needed
+	Particles: 0,
+    ExteriorPores: 1,
+    InteriorPores: 2,
+    ParticleSizeDistribution: 3,
+    Other: 4
 };
 
 const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGroup, isVisible, toggleDetails }) => {

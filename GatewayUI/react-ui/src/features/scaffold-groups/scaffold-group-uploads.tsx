@@ -69,7 +69,7 @@ const ScaffoldGroupUploads: React.FC = () => {
         }
     }
 
-    const handleUploadSubmitImage = async (files: File[], imageType?: string) => {
+    const handleUploadSubmitImage = async (files: File[], category?: string) => {
         try {
             const imageFiles = files.filter(file => file.type.startsWith('image/'));
 
@@ -84,7 +84,6 @@ const ScaffoldGroupUploads: React.FC = () => {
                         const addedImage = await scaffoldGroupStore.uploadImageForScaffoldGroup(
                             selectedGroup.id,
                             image,
-                            imageType
                         );
 
                         // Update the selected group state to reflect the new images

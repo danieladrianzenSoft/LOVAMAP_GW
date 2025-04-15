@@ -16,6 +16,8 @@ import ScaffoldGroupUploads from '../../features/scaffold-groups/scaffold-group-
 import Visualization from '../../features/visualization/visualization';
 import History from '../helpers/History';
 import RunJob from '../../features/jobs/run-job';
+import ScreenshotViewer from '../../features/visualization/screenshot-viewer';
+import AdminBatchThumbnailGenerator from '../../features/admin/admin-batch-thumbnail-generator';
 
 const App: React.FC = () => {
   const { commonStore, userStore } = useStore();
@@ -73,6 +75,8 @@ const MainLayout: React.FC = observer(() => {
           <Route path="/experiments" element={<ProtectedRoute element={<CreateExperiments />} />} />
           <Route path="/uploads" element={<ProtectedRoute element={<ScaffoldGroupUploads />} />} />
           <Route path="/jobs" element={<ProtectedRoute element={<RunJob />} />} />
+          <Route path="/screenshots/:scaffoldId" element={<ProtectedRoute requiredRole="administrator" element={<ScreenshotViewer />} />} />
+          <Route path="/admin/batch-thumbnails" element={<ProtectedRoute requiredRole="administrator" element={<AdminBatchThumbnailGenerator />} />}/>
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </div>
@@ -80,9 +84,10 @@ const MainLayout: React.FC = observer(() => {
   );
 });
 
-const ProtectedRoute = observer(({ element }: { element: JSX.Element }) => {
-  const { commonStore } = useStore();
+const ProtectedRoute = observer(({ element, requiredRole }: { element: JSX.Element, requiredRole?: string }) => {
+  const { commonStore, userStore } = useStore();
   const isLoggedIn = commonStore.isLoggedIn;
+  const userRoles = userStore.user?.roles || [];
   const location = useLocation();
 
   useEffect(() => {
@@ -92,7 +97,9 @@ const ProtectedRoute = observer(({ element }: { element: JSX.Element }) => {
     }
   }, [isLoggedIn, location.pathname]);
 
-  return isLoggedIn ? element : null; // Avoid using `<Navigate />`
+  const isAuthorized = !requiredRole || userRoles.includes(requiredRole);
+
+  return isLoggedIn && isAuthorized ? element : null;
 });
 
 export default observer(App);

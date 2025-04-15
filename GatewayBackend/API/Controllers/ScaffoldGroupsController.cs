@@ -230,7 +230,7 @@ public class ScaffoldGroupsController : ControllerBase
 		}
     }
 
-	[HttpPost("{scaffoldGroupId}/image")]
+	[HttpPost("{scaffoldGroupId}/images")]
 	public async Task<IActionResult> UploadImageForScaffoldGroup(int scaffoldGroupId, [FromForm] ImageForCreationDto imageToUpload)
 	{
 		try
@@ -255,7 +255,7 @@ public class ScaffoldGroupsController : ControllerBase
 		}
 	}
 
-	[HttpPut("{scaffoldGroupId}/image/{imageId}")]
+	[HttpPut("{scaffoldGroupId}/images/{imageId}")]
 	public async Task<IActionResult> UpdateScaffoldGroupImage(int scaffoldGroupId, [FromBody] ImageToUpdateDto imageToUpdate)
 	{
 		try
@@ -278,7 +278,7 @@ public class ScaffoldGroupsController : ControllerBase
 		}
 	}
 
-	[HttpDelete("{scaffoldGroupId}/image/{imageId}")]
+	[HttpDelete("{scaffoldGroupId}/images/{imageId}")]
 	public async Task<IActionResult> DeleteScaffoldGroupImage(int scaffoldGroupId, int imageId)
 	{
 		try
@@ -301,6 +301,48 @@ public class ScaffoldGroupsController : ControllerBase
         	return StatusCode(500, new ApiResponse<string>(500, "An error occurred deleting the image"));
 		}
 	}
+
+	[Authorize(Roles = "administrator")]
+	[HttpGet("images/missing-thumbnails")]
+	public async Task<IActionResult> GetScaffoldsWithMissingThumbnails([FromQuery] ImageCategory? category = null)
+	{
+		try
+		{
+			var scaffolds = await _scaffoldGroupService.GetScaffoldsMissingThumbnailsByCategory(category ?? ImageCategory.Particles);
+
+			return Ok(new ApiResponse<List<ScaffoldMissingThumbnailInfoDto>>(200, "", scaffolds));
+		}
+		catch (Exception ex)
+		{
+			_logger.LogError(ex, "Failed to get scaffolds with missing thumbnails");
+        	return StatusCode(500, new ApiResponse<string>(500, "An error occurred deleting the image"));
+		}
+	}
+
+	[Authorize(Roles = "administrator")]
+	[HttpDelete("images/batch-delete")]
+	public async Task<IActionResult> BatchDeleteImages()
+	{
+		try
+		{
+			var userId = _userService.GetCurrentUserId();
+			if (userId == null) return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
+			
+			var imageIds = await _imageService.GetAllImageIds();
+			var result = await _imageService.DeleteImages(imageIds, userId);
+
+			if (!result.Succeeded) return BadRequest(new ApiResponse<List<int>>(400, "Some deletions failed", result.FailedImageIds));
+
+			return Ok(new ApiResponse<List<int>>(200, "All images deleted successfully", result.FailedImageIds));
+
+		}
+		catch (Exception ex)
+		{
+			_logger.LogError(ex, "Error deleting images in batch");
+			return StatusCode(500, new ApiResponse<string>(500, "An error occurred deleting images"));
+		}
+	}
+
 
 
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import { ScaffoldGroup } from '../../app/models/scaffoldGroup';
 import { FaCaretDown } from 'react-icons/fa';
 import { observer } from 'mobx-react-lite';
+// import { ImageCategory } from '../../app/models/image';
 
 interface ScaffoldGroupCardProps {
     scaffoldGroup: ScaffoldGroup;
@@ -25,10 +26,10 @@ const ScaffoldGroupCard: React.FC<ScaffoldGroupCardProps> = ({ scaffoldGroup, is
                 </div>
 
                 {/* Images Section */}
-                {scaffoldGroup.images.some((image) => image.category === 'InteriorPores' || image.category === 'ParticleSizeDistribution') ? (
+                {scaffoldGroup.images.some((image) => image.category === "Particles") ? (
                     <div className="mt-4 grid grid-cols-2 gap-4">
                         {scaffoldGroup.images
-                            .filter((image) => image.category === 'InteriorPores' || image.category === 'ParticleSizeDistribution')
+                            .filter((image) => image.category === "Particles")
                             .sort((a, b) => {
                                 // Sort to ensure 'InteriorPores' comes first
                                 const categoryOrder: { [key: string]: number } = { InteriorPores: 0, ParticleSizeDistribution: 1 };
