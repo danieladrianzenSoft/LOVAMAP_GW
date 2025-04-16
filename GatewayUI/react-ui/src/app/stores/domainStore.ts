@@ -15,58 +15,65 @@ export default class DomainStore {
 		makeAutoObservable(this)
 	}
 
-	visualizeDomain = async (scaffoldId: number) => {
-		try {
+	visualizeDomain = async (scaffoldId?: number | null): Promise<number | undefined> => {
+        try {
             runInAction(() => {
                 this.isFetchingDomain = true;
+    
                 if (this.domainMeshUrl) {
                     URL.revokeObjectURL(this.domainMeshUrl);
-                    this.domainMeshUrl = null;  // Clear previous mesh early to prevent WebGL issues
+                    this.domainMeshUrl = null;
                 }
+    
                 this.domainMesh = null;
                 this.domainMetadata = null;
-            })
-
-            // Check cache first
-            if (this.domainCache.has(scaffoldId)) {
+            });
+    
+            if (typeof scaffoldId === 'number' && this.domainCache.has(scaffoldId)) {
+                const cached = this.domainCache.get(scaffoldId)!;
+    
                 runInAction(() => {
-                    const cached = this.domainCache.get(scaffoldId);
-                    this.domainMesh = cached!.mesh;
-                    this.domainMeshUrl = URL.createObjectURL(cached!.mesh);
-                    this.domainMetadata = cached!.metadata;
+                    this.domainMesh = cached.mesh;
+                    this.domainMeshUrl = URL.createObjectURL(cached.mesh);
+                    this.domainMetadata = cached.metadata;
                     this.isFetchingDomain = false;
-                })
-                return;
+                });
+    
+                return cached.metadata.scaffoldId;
             }
-
-            // Fetch new data
+    
             const { file, domain } = await agent.Domains.visualize(scaffoldId);
-
+            const cacheKey = domain.id;
+    
             runInAction(() => {
-                // Store in cache
-                this.domainCache.set(scaffoldId, { mesh: file, metadata: domain });
-                // If cache exceeds limit, remove the oldest entry (FIFO order)
-                if (this.domainCache.size > this.cacheLimit) {
-                    const oldestKey = this.domainCache.keys().next().value; // Get first inserted key
-                    if (oldestKey !== undefined) {
-                        this.domainCache.delete(oldestKey);
+                if (typeof cacheKey === 'number') {
+                    this.domainCache.set(cacheKey, { mesh: file, metadata: domain });
+    
+                    if (this.domainCache.size > this.cacheLimit) {
+                        const oldestKey = this.domainCache.keys().next().value;
+                        if (oldestKey !== undefined) {
+                            this.domainCache.delete(oldestKey);
+                        }
                     }
                 }
+    
                 this.domainMesh = file;
                 this.domainMeshUrl = URL.createObjectURL(file);
                 this.domainMetadata = domain;
                 this.isFetchingDomain = false;
-            })
+            });
+    
+            return domain.scaffoldId;
+    
         } catch (error) {
-            // console.error("Failed to fetch domain mesh", error);
             runInAction(() => {
-                this.domainMesh = null;  // Clear mesh on failure
+                this.domainMesh = null;
                 this.domainMeshUrl = null;
                 this.domainMetadata = null;
                 this.isFetchingDomain = false;
-            })
+            });
         }
-	}
+    }
 
     clearDomainMesh = () => {
         if (this.domainMeshUrl) {

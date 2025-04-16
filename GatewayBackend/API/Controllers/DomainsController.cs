@@ -52,6 +52,15 @@ public class DomainsController : ControllerBase
     {
         try
 		{
+			if (scaffoldId == -1)
+			{
+				var randomId = await _domainService.GetRandomScaffoldIdForDomainAsync();
+				if (randomId == null)
+					return NotFound(new ApiResponse<string>(404, "No domains with mesh found."));
+
+				scaffoldId = randomId.Value;
+			}
+
 			var (succeeded, errorMessage, mesh, domainMetadata) = await _domainService.GetDomain(scaffoldId);
 
 			if (!succeeded && (mesh == null || domainMetadata == null))  {

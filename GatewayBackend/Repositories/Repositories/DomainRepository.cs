@@ -54,5 +54,16 @@ namespace Repositories.Repositories
 			
 			return domain;
 		}
+
+		public async Task<int?> GetRandomDomainIdWithMeshAsync()
+		{
+			var domain = await _context.Domains
+				.Where(d => d.MeshFilePath != null)
+				.OrderBy(d => Guid.NewGuid())
+				.Select(d => d.ScaffoldId)
+				.FirstOrDefaultAsync();
+
+			return domain == 0 ? null : domain;
+		}
 	}
 }

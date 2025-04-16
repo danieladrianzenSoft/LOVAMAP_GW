@@ -20,6 +20,22 @@ export default class ScaffoldGroupStore {
 		this.uploadedScaffoldGroups = groups;
 	}
 
+	loadGroupForScaffoldId = async (scaffoldId: number): Promise<ScaffoldGroup | null> => {
+		if (this.selectedScaffoldGroup?.scaffoldIds.includes(scaffoldId)) {
+			return this.selectedScaffoldGroup;
+		}
+	
+		const group = this.scaffoldGroups.find(g => g.scaffoldIds.includes(scaffoldId)) 
+			|| this.uploadedScaffoldGroups.find(g => g.scaffoldIds.includes(scaffoldId)) 
+			|| await this.getScaffoldGroupSummaryByScaffoldId(scaffoldId);
+	
+		if (group) {
+			return group;
+		}
+	
+		return null;
+	}
+
 	navigateToVisualization = async (
 		scaffoldGroup: ScaffoldGroup | null, 
 		scaffoldId?: number
@@ -39,6 +55,7 @@ export default class ScaffoldGroupStore {
 	
 			if (foundGroup) {
 				this.setSelectedScaffoldGroup(foundGroup);
+				// History.push(`/visualize/${scaffoldId}`);
 				return; // Don't redirect — let the page handle 404 mesh gracefully
 			}
 	

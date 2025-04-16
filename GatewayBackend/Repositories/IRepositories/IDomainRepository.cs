@@ -13,5 +13,6 @@ namespace Repositories.IRepositories
 		void Delete(Domain domain);
 		Task<Domain?> GetById(int domainId);
 		Task<Domain?> GetByScaffoldIdAndCategory(int scaffoldId, DomainCategory category);
+		Task<int?> GetRandomDomainIdWithMeshAsync();
 	}
 }

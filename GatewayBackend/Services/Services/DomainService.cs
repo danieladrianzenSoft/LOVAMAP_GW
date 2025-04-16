@@ -141,6 +141,11 @@ namespace Services.Services
 			}
 		}
 
+		public async Task<int?> GetRandomScaffoldIdForDomainAsync()
+		{
+			return await _domainRepository.GetRandomDomainIdWithMeshAsync();
+		}
+
 		private async Task<(bool Succeeded, string ErrorMessage, DomainToVisualizeDto? Domain)> ProcessGLBFile(DomainToCreateDto domainToCreate)
 		{
 			try

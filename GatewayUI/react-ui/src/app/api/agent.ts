@@ -107,8 +107,9 @@ const ScaffoldGroups = {
 }
 
 const Domains = {
-    visualize: async (scaffoldId: number) => {
-        const response = await axios.get(`/domains/${scaffoldId}`, {
+    visualize: async (scaffoldId?: number | null) => {
+        const id = scaffoldId ?? -1
+        const response = await axios.get(`/domains/${id}`, {
             responseType: 'blob', // Ensures we get the response as binary data
             headers: {
                 'Accept': 'application/json, text/plain, */*'

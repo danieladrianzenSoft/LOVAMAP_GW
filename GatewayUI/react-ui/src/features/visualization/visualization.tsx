@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo, useCallback } from 'react';
+import React, { useEffect, useState, useMemo, useCallback, useRef } from 'react';
 import { Canvas } from "@react-three/fiber";
 import { Bounds, Environment, OrbitControls } from "@react-three/drei";
 import { observer } from 'mobx-react-lite';
@@ -18,7 +18,7 @@ import { HistoryAction } from '../../app/models/historyAction';
 const Visualization: React.FC = () => {
 	const { domainStore, userStore, scaffoldGroupStore } = useStore();
 	const { domainMeshUrl, domainMetadata, isFetchingDomain, uploadDomainMesh, clearDomainMesh } = domainStore;
-	const { selectedScaffoldGroup, navigateToVisualization } = scaffoldGroupStore 
+	const { navigateToVisualization } = scaffoldGroupStore 
 	const params = useParams<{ scaffoldId?: string }>();
 
 	const [hiddenParticles, setHiddenParticles] = useState<Set<string>>(new Set());
@@ -27,11 +27,10 @@ const Visualization: React.FC = () => {
 	// History to track actions for undo
 	const [, setHistory] = useState<HistoryAction[]>([]);
 	const maxHistorySize = 10;
-
-	const resolvedScaffoldId = params.scaffoldId ? parseInt(params.scaffoldId, 10) : 401;
+	
 	const [isPanelOpen, setIsPanelOpen] = useState(true);
 	const [isModalOpen, setIsModalOpen] = useState(false);
-	const [isRestoring, setIsRestoring] = useState(false);
+	// const [isRestoring, setIsRestoring] = useState(false);
 
 	const [category, setCategory] = useState<number | "">(""); // Required
 	const [voxelSize, setVoxelSize] = useState<number | null>(null); // Optional
@@ -39,42 +38,54 @@ const Visualization: React.FC = () => {
 	const [selectedFile, setSelectedFile] = useState<File | null>(null); // Required
 	const [error, setError] = useState<string | null>(null);
 	const [isLoading, setIsLoading] = useState(false);
+	const [lastScaffoldId, setLastScaffoldId] = useState<number | null>(null);
+	const currentlyLoadingScaffoldIdRef = useRef<number | null>(null);
+
+
+	// const lastResolvedScaffoldIdRef = useRef<number | null>(null);
 
 	const canEdit = userStore.user?.roles?.includes("administrator") ?? false;
 
-	useEffect(() => {
-		if (!isNaN(resolvedScaffoldId)) {
-			domainStore.visualizeDomain(resolvedScaffoldId).catch(() => {
-				domainStore.domainMesh = null;
-			})
-		}
-		// console.log(resolvedScaffoldId);
-	}, [resolvedScaffoldId, domainStore]);
+	// const scaffoldIdFromUrl = resolvedScaffoldId ?? -1;
+	const resolvedScaffoldId = params.scaffoldId ? parseInt(params.scaffoldId, 10) : null;
+
 
 	useEffect(() => {
-		if (!selectedScaffoldGroup && !isRestoring) {
-			setIsRestoring(true); // Mark restoration as in progress
-			scaffoldGroupStore.navigateToVisualization(null, resolvedScaffoldId)
-				.finally(() => setIsRestoring(false)); // Ensure UI updates when done
+		domainStore.visualizeDomain(resolvedScaffoldId).then((actualScaffoldId) => {
+			if (actualScaffoldId != null) {
+				setLastScaffoldId(actualScaffoldId);
+			}
+		});
+	}, [resolvedScaffoldId, domainStore]);
+
+	// const selectedGroup = scaffoldGroupStore.selectedScaffoldGroup;
+
+	useEffect(() => {
+		if (
+			domainMetadata?.scaffoldId != null &&
+			domainMetadata.scaffoldId === lastScaffoldId
+		) {
+			currentlyLoadingScaffoldIdRef.current = domainMetadata.scaffoldId;
+	
+			const scaffoldIdToLoad = domainMetadata.scaffoldId; // 👈 fix here
+	
+			(async () => {
+				const group = await scaffoldGroupStore.loadGroupForScaffoldId(scaffoldIdToLoad);
+	
+				if (group && currentlyLoadingScaffoldIdRef.current === scaffoldIdToLoad) {
+					scaffoldGroupStore.setSelectedScaffoldGroup(group);
+				} else {
+					console.warn("⚠️ Outdated scaffold group ignored for", scaffoldIdToLoad);
+				}
+			})();
 		}
-	}, [selectedScaffoldGroup, resolvedScaffoldId, scaffoldGroupStore, isRestoring]);
+	}, [domainMetadata?.scaffoldId, lastScaffoldId, scaffoldGroupStore]);
 
 	useEffect(() => {
 		return () => {
 			clearDomainMesh(); 
 		};
 	}, [clearDomainMesh]);
-
-	// const addToHistory = useCallback((action: HistoryAction) => {
-	// 	setHistory((prevHistory) => {
-	// 		const newHistory = [...prevHistory, action];
-	// 		if (newHistory.length > maxHistorySize) {
-	// 			newHistory.shift(); // FIFO behavior
-	// 		}
-	// 		console.log(newHistory)
-	// 		return newHistory;
-	// 	});
-	// }, [setHistory]);
 
 	const addToHistory = useCallback((action: HistoryAction) => {
 		setHistory((prevHistory) => {
@@ -162,6 +173,10 @@ const Visualization: React.FC = () => {
 	const handleFormSubmit = async (e: React.FormEvent) => {	
 		e.preventDefault();
 
+		if (resolvedScaffoldId === null) {
+			return;
+		}
+
         try {
 			if (category === "" || !selectedFile) {
 				alert("Please select a category and upload a mesh file.");
@@ -190,10 +205,11 @@ const Visualization: React.FC = () => {
 		setSelectedFile(files[0]);
 	}
 
-	const handleScaffoldChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+	const handleScaffoldChange = async (event: React.ChangeEvent<HTMLSelectElement>) => {
 		const newScaffoldId = parseInt(event.target.value, 10);
 		if (newScaffoldId !== resolvedScaffoldId) {
-			navigateToVisualization(selectedScaffoldGroup, newScaffoldId);
+			navigateToVisualization(scaffoldGroupStore.selectedScaffoldGroup, newScaffoldId);
+			// await scaffoldGroupStore.getScaffoldGroupSummaryByScaffoldId(newScaffoldId);
 			setSelectedParticle(null);
 			setHiddenParticles(new Set())
 		}
@@ -494,7 +510,7 @@ const Visualization: React.FC = () => {
 		);
 	}, [isFetchingDomain, domainMeshUrl, handleParticleClick, hiddenParticles, selectedParticle]); // Only re-renders when the domain mesh changes
 
-	if (!selectedScaffoldGroup || isRestoring) {
+	if (!scaffoldGroupStore.selectedScaffoldGroup) {
 		return <p className="text-gray-500">Restoring scaffold group...</p>;
 	}
 
@@ -535,27 +551,27 @@ const Visualization: React.FC = () => {
 							{/* <p><span className="font-semibold">Scaffold ID:</span> {resolvedScaffoldId}</p> */}
 
 							<div className="flex flex-wrap gap-y-1 mb-2">
-								{selectedScaffoldGroup.tags.map((tag, index) => (
+								{scaffoldGroupStore.selectedScaffoldGroup.tags.map((tag, index) => (
 									<Tag key={index} text={tag} />
 								))}
 							</div>
 
-							<p className='mt-2'><span className="font-semibold">Name:</span> {selectedScaffoldGroup?.name ?? "Unknown"}</p>
+							<p className='mt-2'><span className="font-semibold">Name:</span> {scaffoldGroupStore.selectedScaffoldGroup?.name ?? "Unknown"}</p>
 
-							<p className='mt-2'><span className="font-semibold">ID:</span> {selectedScaffoldGroup?.id ?? "Unknown"}</p>
+							<p className='mt-2'><span className="font-semibold">ID:</span> {scaffoldGroupStore.selectedScaffoldGroup?.id ?? "Unknown"}</p>
 							
-							<p className='mt-2'><span className="font-semibold">Simulated:</span> {selectedScaffoldGroup.isSimulated ? 'Yes' : 'No'}</p>
+							<p className='mt-2'><span className="font-semibold">Simulated:</span> {scaffoldGroupStore.selectedScaffoldGroup.isSimulated ? 'Yes' : 'No'}</p>
 
-							<p className='mt-2'><span className="font-semibold">Packing:</span> {selectedScaffoldGroup.inputs?.packingConfiguration ?? "Unknown"}</p>
+							<p className='mt-2'><span className="font-semibold">Packing:</span> {scaffoldGroupStore.selectedScaffoldGroup.inputs?.packingConfiguration ?? "Unknown"}</p>
 
 							<div className="mt-2">
 								<label className="block text-sm font-semibold text-gray-800">Replicate ID:</label>
 								<select
 									className="mt-1 block w-full border bg-opacity-80 border-gray-300 rounded-md p-1 text-gray-700 focus:ring focus:ring-blue-300"
-									value={resolvedScaffoldId}
+									value={domainMetadata?.scaffoldId ?? ''}
 									onChange={handleScaffoldChange}
 								>
-									{selectedScaffoldGroup?.scaffoldIds.map(id => (
+									{scaffoldGroupStore.selectedScaffoldGroup?.scaffoldIds.map(id => (
 										<option key={id} value={id}>{id}</option>
 									))}
 								</select>
