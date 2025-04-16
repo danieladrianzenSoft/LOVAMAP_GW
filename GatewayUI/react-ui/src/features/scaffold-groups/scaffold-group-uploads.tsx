@@ -346,23 +346,6 @@ const ScaffoldGroupUploads: React.FC = () => {
                             </>
                         )}
                         </div>
-
-                        {/* <div className="mt-4 flex justify-between">
-                            <button
-                                className={`px-4 py-2 rounded transition ${
-                                        "bg-blue-600 text-white hover:bg-blue-700"
-                                }`}
-                                onClick={() => navigateToVisualization(selectedGroup)}
-                            >
-                                Interact
-                            </button>
-                            <button
-                                onClick={closeModal}
-                                className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
-                            >
-                                Close
-                            </button>
-                        </div> */}
                     </div>
                 </div>
             )}

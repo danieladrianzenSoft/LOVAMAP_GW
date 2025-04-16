@@ -4,6 +4,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { useStore } from '../../app/stores/store';
 import { observer } from 'mobx-react-lite';
 import logo from '../../../src/LOVAMAP_logo.png';
+import dukelogo from '../../../src/Duke_logo.png';
 
 interface SidebarProps {
 	isOpen: boolean;
@@ -54,61 +55,80 @@ const SideBar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
 					md:translate-x-0
 				`}
 			>
-				<TabGroup vertical selectedIndex={activeTab} onChange={setActiveTab}>
-					<TabList className="flex flex-col">
-						<NavLink to="/" onClick={() => setIsOpen(false)}>
-							<img className="mx-auto w-40 my-4" src={logo} alt="logo" />
-						</NavLink>
+				<div className='flex flex-col justify-between h-full p-0 m-0'>
+					<TabGroup vertical selectedIndex={activeTab} onChange={setActiveTab}>
+						<TabList className="flex flex-col">
+							<NavLink to="/" onClick={() => setIsOpen(false)}>
+								<img className="mx-auto w-40 my-4" src={logo} alt="logo" />
+							</NavLink>
 
-						<Tab as={NavLink} to='/visualize' onClick={handleVisualizationClick} className="focus:outline-none">
-						{({ selected }) => (
-							<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
-							<p>Interact</p>
-							</div>
-						)}
-						</Tab>
-						<Tab as={NavLink} to='/explore' onClick={() => setIsOpen(false)} className="focus:outline-none">
-						{({ selected }) => (
-							<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
-							<p>Explore scaffolds</p>
-							</div>
-						)}
-						</Tab>
-						<Tab as={NavLink} to='/learn' onClick={() => setIsOpen(false)} className="focus:outline-none">
-						{({ selected }) => (
-							<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
-							<p>Learn</p>
-							</div>
-						)}
-						</Tab>
-						<Tab as={NavLink} to='/experiments' onClick={() => setIsOpen(false)} className="focus:outline-none">
-						{({ selected }) => (
-							<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
-							<p>Create Experiments</p>
-							</div>
-						)}
-						</Tab>
-						{isAdmin && (
-							<>
-								<Tab as={NavLink} to='/uploads' onClick={() => setIsOpen(false)} className="focus:outline-none">
-									{({ selected }) => (
-									<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
-										<p>Upload</p>
-									</div>
-									)}
-								</Tab>
-								<Tab as={NavLink} to='/admin/batch-thumbnails' onClick={() => setIsOpen(false)} className="focus:outline-none">
-									{({ selected }) => (
-									<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
-										<p>Admin Utilities</p>
-									</div>
-									)}
-								</Tab>
-							</>
+							<Tab as={NavLink} to='/visualize' onClick={handleVisualizationClick} className="focus:outline-none">
+							{({ selected }) => (
+								<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
+								<p>Interact</p>
+								</div>
+							)}
+							</Tab>
+							<Tab as={NavLink} to='/explore' onClick={() => setIsOpen(false)} className="focus:outline-none">
+							{({ selected }) => (
+								<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
+								<p>Explore scaffolds</p>
+								</div>
+							)}
+							</Tab>
+							<Tab as={NavLink} to='/learn' onClick={() => setIsOpen(false)} className="focus:outline-none">
+							{({ selected }) => (
+								<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
+								<p>Learn</p>
+								</div>
+							)}
+							</Tab>
+							<Tab as={NavLink} to='/experiments' onClick={() => setIsOpen(false)} className="focus:outline-none">
+							{({ selected }) => (
+								<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
+								<p>Create Experiments</p>
+								</div>
+							)}
+							</Tab>
+							{isAdmin && (
+								<>
+									<Tab as={NavLink} to='/uploads' onClick={() => setIsOpen(false)} className="focus:outline-none">
+										{({ selected }) => (
+										<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
+											<p>Upload</p>
+										</div>
+										)}
+									</Tab>
+									<Tab as={NavLink} to='/admin/batch-thumbnails' onClick={() => setIsOpen(false)} className="focus:outline-none">
+										{({ selected }) => (
+										<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
+											<p>Admin Utilities</p>
+										</div>
+										)}
+									</Tab>
+								</>
 
-						)}
-					</TabList>
-				</TabGroup>
+							)}
+						</TabList>
+					</TabGroup>
+					{/* <div>
+					<img
+							className="mx-auto w-auto mb-0"
+							src={dukelogo}
+							alt="dukelogo"
+						/>				
+					</div> */}
+					<div className="shrink-0 text-center mb-6">
+						<img
+							className="mx-auto w-40 mt-0"
+							src={dukelogo}
+							alt="dukelogo"
+						/>
+						<p className="text-xs font-semibold tracking-wide text-gray-500 leading-tight mb-2 px-2">
+							Materials in<br />Medicine Center
+						</p>
+					</div>
+				</div>
 			</div>
 		</>
 		// <div className={`
