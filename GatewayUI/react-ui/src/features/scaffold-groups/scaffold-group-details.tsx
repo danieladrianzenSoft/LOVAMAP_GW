@@ -36,30 +36,54 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 	// 	console.log(scaffoldGroup);	
 	// }, [scaffoldGroup]);
 
-	const download = async (values: any, setErrors: Function) => {
+	// const download = async (values: any, setErrors: Function) => {
+	// 	setIsLoading(true);
+	// 	try {
+	// 		const downloadedData = await getDetailedScaffoldGroupById({scaffoldGroupId: values.scaffoldGroup});
+	// 		// console.log(downloadedData);
+	// 		if (downloadedData)
+	// 		{
+	// 			// downloadScaffoldGroupAsExcel(downloadedData)
+	// 			// setPreviewData(downloadedData); // Set the data for preview
+	// 			openPreviewInNewTab(
+	// 				downloadedData,
+	// 				downloadScaffoldGroupAsExcel,
+	// 				triggerDownload,
+	// 				[0,4],
+	// 				100
+	// 			);
+	// 		}
+	// 	} catch (error) {
+	// 		console.error("Error downloading data:", error);
+	// 		setErrors({ submit: 'Failed to download data. Please try again.' });
+	// 	} finally {
+	// 		setIsLoading(false);
+	// 	}
+	// }
+
+	const download = useCallback(async (values: any, setErrors: Function) => {
 		setIsLoading(true);
 		try {
-			const downloadedData = await getDetailedScaffoldGroupById({scaffoldGroupId: values.scaffoldGroup});
-			// console.log(downloadedData);
-			if (downloadedData)
-			{
-				// downloadScaffoldGroupAsExcel(downloadedData)
-				// setPreviewData(downloadedData); // Set the data for preview
+			const downloadedData = await getDetailedScaffoldGroupById({
+				scaffoldGroupId: values.scaffoldGroup
+			});
+	
+			if (downloadedData) {
 				openPreviewInNewTab(
 					downloadedData,
 					downloadScaffoldGroupAsExcel,
 					triggerDownload,
-					[0,4],
+					[0, 4],
 					100
 				);
 			}
 		} catch (error) {
 			console.error("Error downloading data:", error);
-			setErrors({ submit: 'Failed to download data. Please try again.' });
+			setErrors({ submit: "Failed to download data. Please try again." });
 		} finally {
 			setIsLoading(false);
 		}
-	}
+	}, [getDetailedScaffoldGroupById]);
 
 	const getPoreInfo = useCallback(async (scaffoldGroupId: number) => {
 		setIsLoading(true);
@@ -267,6 +291,7 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 									<td>
 										<Formik
 											initialValues={{scaffoldGroup:scaffoldGroup.id, replicates: 1 }}
+											enableReinitialize={true}
 											onSubmit={(values, {setErrors}) => download(values, setErrors)}
 										>
 											{formik => (
