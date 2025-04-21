@@ -8,9 +8,10 @@ namespace Services.IServices
 	public interface IDescriptorService
 	{
 		Task CreateDescriptorType(DescriptorTypeToCreateDto descriptorType);
-		Task <ICollection<DescriptorTypeDto>> GetAllDescriptorTypes();
+		Task<ICollection<DescriptorTypeDto>> GetAllDescriptorTypes();
 		Task<(IEnumerable<GlobalDescriptor>, IEnumerable<PoreDescriptor>, IEnumerable<OtherDescriptor>)> GetFilteredDescriptorsForScaffolds(IEnumerable<int> scaffoldIds, ScaffoldFilter filter);
 		Task<List<ScaffoldBaseDto>> GetScaffoldsWithDescriptorsFromScaffoldIds(List<int> scaffoldIds, ScaffoldFilter? filter);
+		Task<(bool Succeeded, string ErrorMessage, PoreInfoDto? poreInfo)> GetPoreInfo(int scaffoldGroupId, int? scaffoldId = null);
 		// Task<(Dictionary<int, List<ScaffoldBaseDto>>, Dictionary<int, List<DescriptorDto>>, Dictionary<int, List<DescriptorDto>>, Dictionary<int, List<DescriptorDto>>)> GetScaffoldsAndDescriptorsFromScaffoldGroupIds(IEnumerable<int> scaffoldGroupIds);
 		// Task<(Dictionary<int, List<ScaffoldBaseDto>>, Dictionary<int, List<DescriptorDto>>, Dictionary<int, List<DescriptorDto>>, Dictionary<int, List<DescriptorDto>>)>
 		// 	GetScaffoldsAndDescriptorsFromScaffoldIds(List<int> scaffoldIds, ScaffoldFilter filter);

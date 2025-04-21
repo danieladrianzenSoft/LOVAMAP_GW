@@ -256,6 +256,37 @@ namespace Repositories.Repositories
 			return scaffolds;
 		}
 
+		public async Task<PoreInfoDto?> GetPoreInfo(int scaffoldId)
+		{
+			var descriptorTypeIds = new List<int> { 22, 27 };
+
+			var descriptors = await _context.PoreDescriptors
+				.AsNoTracking()
+				.Where(pd => pd.ScaffoldId == scaffoldId && descriptorTypeIds.Contains(pd.DescriptorTypeId))
+				.Select(pd => new
+				{
+					pd.DescriptorTypeId,
+					pd.Values,
+					pd.Scaffold.ScaffoldGroupId // this works even if Scaffold is lazy-loaded, since it's projected
+				})
+				.ToListAsync();
+
+			var poreVolume = descriptors.FirstOrDefault(d => d.DescriptorTypeId == 22)?.Values;
+			var poreAspectRatio = descriptors.FirstOrDefault(d => d.DescriptorTypeId == 27)?.Values;
+			var scaffoldGroupId = descriptors.FirstOrDefault()?.ScaffoldGroupId ?? 0;
+
+			if (poreVolume == null || poreAspectRatio == null)
+				return null;
+
+			return new PoreInfoDto
+			{
+				ScaffoldId = scaffoldId,
+				ScaffoldGroupId = scaffoldGroupId,
+				PoreVolume = poreVolume,
+				PoreAspectRatio = poreAspectRatio
+			};
+		}
+
 		// public async Task<(Dictionary<int, List<ScaffoldBaseDto>>, Dictionary<int, List<DescriptorDto>>, Dictionary<int, List<DescriptorDto>>, Dictionary<int, List<DescriptorDto>>)>
 		// 	GetScaffoldsAndDescriptorsFromScaffoldGroupIds(IEnumerable<int> scaffoldGroupIds)
 		// {
@@ -298,25 +329,25 @@ namespace Repositories.Repositories
 		// 		})
 		// 		.ToListAsync();
 
-		// 	var poreDescriptors = await (
-		// 		from pd in _context.PoreDescriptors
-		// 		join dt in _context.DescriptorTypes on pd.DescriptorTypeId equals dt.Id
-		// 		where scaffolds.Select(s => s.Scaffold.Id).Contains(pd.ScaffoldId)
-		// 		select new
-		// 		{
-		// 			pd.ScaffoldId,
-		// 			Descriptor = new DescriptorDto
-		// 			{
-		// 				Id = pd.Id,
-		// 				DescriptorTypeId = pd.DescriptorTypeId,
-		// 				Name = dt.Name,
-		// 				Label = dt.Label,
-		// 				TableLabel = dt.TableLabel,
-		// 				Unit = dt.Unit,
-		// 				Values = ParsingMethods.JsonDocumentToString(pd.Values)
-		// 			}
-		// 		})
-		// 		.ToListAsync();
+			// var poreDescriptors = await (
+			// 	from pd in _context.PoreDescriptors
+			// 	join dt in _context.DescriptorTypes on pd.DescriptorTypeId equals dt.Id
+			// 	where scaffolds.Select(s => s.Scaffold.Id).Contains(pd.ScaffoldId)
+			// 	select new
+			// 	{
+			// 		pd.ScaffoldId,
+			// 		Descriptor = new DescriptorDto
+			// 		{
+			// 			Id = pd.Id,
+			// 			DescriptorTypeId = pd.DescriptorTypeId,
+			// 			Name = dt.Name,
+			// 			Label = dt.Label,
+			// 			TableLabel = dt.TableLabel,
+			// 			Unit = dt.Unit,
+			// 			Values = ParsingMethods.JsonDocumentToString(pd.Values)
+			// 		}
+			// 	})
+			// 	.ToListAsync();
 
 		// 	var otherDescriptors = await (
 		// 		from od in _context.OtherDescriptors

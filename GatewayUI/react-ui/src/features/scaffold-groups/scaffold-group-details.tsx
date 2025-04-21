@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { ScaffoldGroup } from '../../app/models/scaffoldGroup';
 import Tag from '../../app/common/tag/tag';
 import { Formik } from 'formik';
@@ -8,6 +8,8 @@ import { useStore } from '../../app/stores/store';
 import { observer } from 'mobx-react-lite';
 import { FaSpinner } from 'react-icons/fa';
 import { openPreviewInNewTab } from '../../app/common/new-tab-preview/new-tab-preview';
+import { PoreInfo } from '../../app/models/poreInfo';
+import { HistogramPlot } from '../plotting/histogram-plot';
 // import { HistogramPlot } from '../plotting/histogram-plot';
 
 interface ScaffoldGroupDetailsProps {
@@ -25,9 +27,10 @@ const categoryOrder: { [key: string]: number } = {
 };
 
 const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGroup, isVisible, toggleDetails }) => {
-    const {scaffoldGroupStore} = useStore();
+    const {scaffoldGroupStore, descriptorStore} = useStore();
 	const {getDetailedScaffoldGroupById, navigateToVisualization} = scaffoldGroupStore;
 	const [isLoading, setIsLoading] = useState<boolean>(false);
+	const [poreInfo, setPoreInfo] = useState<PoreInfo>();
 
 	// useEffect(() => {
 	// 	console.log(scaffoldGroup);	
@@ -57,6 +60,64 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 			setIsLoading(false);
 		}
 	}
+
+	const getPoreInfo = useCallback(async (scaffoldGroupId: number) => {
+		setIsLoading(true);
+		try {
+			const poreInfo = await descriptorStore.getPoreInfo(scaffoldGroupId);
+			if (poreInfo) {
+				setPoreInfo(poreInfo);
+			}
+		} catch (error) {
+			console.error(error);
+		} finally {
+			setIsLoading(false);
+		}
+	}, [descriptorStore]);
+
+	useEffect(() => {
+		if (isVisible && scaffoldGroup.id) {
+			getPoreInfo(scaffoldGroup.id);
+		}
+		// Only refetch if scaffoldGroup.id or visibility changes
+	}, [isVisible, scaffoldGroup.id, getPoreInfo]);
+	
+	const poreVolumeValues = useMemo(() => {
+		if (!poreInfo?.poreVolume) return [];
+		try {
+			const parsed = typeof poreInfo.poreVolume === 'string'
+				? JSON.parse(poreInfo.poreVolume)
+				: poreInfo.poreVolume;
+			return parsed.map((item: any) => item.value);
+		} catch (e) {
+			console.error("Failed to parse poreVolume", e);
+			return [];
+		}
+	}, [poreInfo]);
+
+	const poreAspectRatioValues = useMemo(() => {
+		if (!poreInfo?.poreAspectRatio) return [];
+		try {
+			const parsed = typeof poreInfo.poreAspectRatio === 'string'
+				? JSON.parse(poreInfo.poreAspectRatio)
+				: poreInfo.poreAspectRatio;
+			return parsed.map((item: any) => item.value);
+		} catch (e) {
+			console.error("Failed to parse poreAspectRatio", e);
+			return [];
+		}
+	}, [poreInfo]);
+	
+	// const poreAspectRatioValues = useMemo(() => {
+	// 	if (!poreInfo?.poreAspectRatio) return [];
+	// 	try {
+	// 		const parsed = JSON.parse(poreInfo.poreAspectRatio) as { value: number }[];
+	// 		return parsed.map(item => item.value);
+	// 	} catch (error) {
+	// 		console.error("Failed to parse poreAspectRatio", error);
+	// 		return [];
+	// 	}
+	// }, [poreInfo?.poreAspectRatio]);
 	
 	const maxHeight = isVisible ? "500px" : "0px";
 
@@ -69,20 +130,9 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 				<div className="flex flex-col lg:flex-row justify-center items-start gap-4">
 					<div className="flex-1 p-4 w-full">
 						{/* Container for figures */}
+
                         {/* <p className="text-lg font-semibold mb-4">Figures</p> */}
 
-						{/* <div className="w-full h-[300px]">
-							<HistogramPlot 
-								data={scaffoldGroup.inputs.sizeDistribution} 
-								title={"Particle Size Distribution"} 
-								xlabel={""}
-								ylabel={""}
-								hideYLabels={true}
-							/>
-						</div> */}
-
-
-						{/* Additional figures as needed */}
 						{scaffoldGroup.images.length > 0 ? (
 							<div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
 								{scaffoldGroup.images
@@ -104,46 +154,49 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 										</div>
 								))}
                         	</div>
-							// <div className="grid grid-cols-2 gap-0">
-							// 	{scaffoldGroup.images.map((image, index) => (
-							// 		<div key={index} className="flex flex-col items-center">
-							// 			<img 
-							// 				src={image.url} 
-							// 				alt={image.category} 
-							// 				className="w-full h-auto max-h-48 object-contain mb-2"
-							// 			/>
-							// 			<p className="text-sm text-gray-600">{image.category}</p>
-							// 		</div>
-							// 	))}
-							// </div>
 						) : (
 							<p className="text-sm text-gray-500 italic">No figures added</p>
 						)}
 
-							<button
-								className={`mt-4 px-4 py-2 rounded transition ${
-										"bg-blue-600 text-white hover:bg-blue-700"
-								}`}
-								onClick={() => navigateToVisualization(scaffoldGroup)}
-							>
-								Interact
-							</button>
-						
-						{/* {scaffoldGroup.scaffoldIdsWithDomains.length === 0 ? (
-							<p className="text-sm text-gray-500 italic mt-2">No meshes available for visualization</p>
-						) : (
-							<button
-								className={`mt-4 px-4 py-2 rounded transition ${
-									scaffoldGroup.scaffoldIdsWithDomains.length > 0
-										? "bg-blue-600 text-white hover:bg-blue-700"
-										: "bg-blue-600 text-white hover:bg-blue-700 cursor-not-allowed"
-								}`}
-								onClick={() => navigateToVisualization(scaffoldGroup)}
-								disabled={scaffoldGroup.scaffoldIdsWithDomains.length === 0}
-							>
-								Interact
-							</button>
-						)} */}
+						{/* <div className="w-full h-[300px]">
+							<HistogramPlot 
+								data={scaffoldGroup.inputs.sizeDistribution} 
+								title={"Particle Size Distribution"} 
+								xlabel={""}
+								ylabel={""}
+								hideYLabels={true}
+							/>
+						</div> */}
+
+						<div className="w-full h-48 mb-4">
+							{ poreVolumeValues.length > 0 && 
+								<HistogramPlot
+									data={poreVolumeValues}
+									xlabel="Pore Volume"
+									hideYLabels={true}
+									showHoverInfo={false}
+								/>
+							}
+						</div>
+						<div className="w-full h-48 mb-4">
+							{ poreAspectRatioValues.length > 0 && 
+								<HistogramPlot
+									data={poreAspectRatioValues}
+									xlabel="Pore Aspect Ratio"
+									hideYLabels={true}
+									showHoverInfo={false}
+								/>
+							}
+						</div>
+
+						<button
+							className={`mt-4 px-4 py-2 rounded transition ${
+									"bg-blue-600 text-white hover:bg-blue-700"
+							}`}
+							onClick={() => navigateToVisualization(scaffoldGroup)}
+						>
+							Interact
+						</button>
 						
 					</div>
 					<div className="flex-1 p-4 w-full">

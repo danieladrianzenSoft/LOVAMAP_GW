@@ -5,12 +5,14 @@ import ResourceStore from "./resourceStore";
 import ScaffoldGroupStore from "./scaffoldGroupStore";
 import DomainStore from "./domainStore";
 import JobStore from "./jobStore";
+import DescriptorStore from "./descriptorStore";
 
 interface Store {
 	commonStore: CommonStore,
 	userStore: UserStore,
 	resourceStore: ResourceStore,
 	scaffoldGroupStore: ScaffoldGroupStore,
+	descriptorStore: DescriptorStore,
 	domainStore: DomainStore,
 	jobStore: JobStore
 }
@@ -20,6 +22,7 @@ export const store: Store = {
 	userStore: new UserStore(),
 	resourceStore: new ResourceStore(),
 	scaffoldGroupStore: new ScaffoldGroupStore(),
+	descriptorStore: new DescriptorStore(),
 	domainStore: new DomainStore(),
 	jobStore: new JobStore(),
 }

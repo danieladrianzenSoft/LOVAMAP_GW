@@ -2,7 +2,7 @@ import React from "react";
 import { observer } from "mobx-react";
 
 interface MultiSelectDropdownProps<T> {
-    groupName: string;
+    groupName: React.ReactNode;
     items: T[];
     selectedItemIds: number[];  // Assuming the unique identifier is always a number for simplicity
     renderItem: (item: T) => React.ReactNode; // Function to render the display text for each item

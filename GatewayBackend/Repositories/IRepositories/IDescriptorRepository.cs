@@ -21,6 +21,7 @@ namespace Repositories.IRepositories
 		// Task<(Dictionary<int, List<ScaffoldBaseDto>>, Dictionary<int, List<DescriptorDto>>, Dictionary<int, List<DescriptorDto>>, Dictionary<int, List<DescriptorDto>>)>
 		// 	GetScaffoldsAndDescriptorsFromScaffoldIds(List<int> scaffoldIds, ScaffoldFilter filter);
 		Task<List<ScaffoldBaseDto>> GetScaffoldsWithDescriptorsFromScaffoldIds(List<int> scaffoldIds, ScaffoldFilter? filter);
+		Task<PoreInfoDto?> GetPoreInfo(int scaffoldId);
 
 
 	}

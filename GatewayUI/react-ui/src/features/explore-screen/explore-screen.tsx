@@ -77,7 +77,7 @@ const ExploreScreen = () => {
 				Explore {isLoggedIn ? "scaffolds" : "public scaffolds"}
 			</div>
 
-			<ScaffoldGroupFilters setIsLoading={setIsLoading} />
+			<ScaffoldGroupFilters setIsLoading={setIsLoading} condensed={true} allFiltersVisible={true} />
 
 			{isLoading ? (
 				<div className="flex justify-center items-center py-8">

@@ -90,10 +90,11 @@ namespace Repositories.Repositories
 					Proportion = pp.Proportion
 				}).ToListAsync();
 
-			var scaffoldIds = await _context.Scaffolds
-				.Where(s => s.ScaffoldGroupId == scaffoldGroup.Id) // Only fetch IDs for relevant groups
-				.Select (s => s.Id)
-				.ToListAsync();
+			// var scaffoldIds = await _context.Scaffolds
+			// 	.Where(s => s.ScaffoldGroupId == scaffoldGroup.Id) // Only fetch IDs for relevant groups
+			// 	.Select (s => s.Id)
+			// 	.ToListAsync();
+			var scaffoldIds = await GetScaffoldIdsForScaffoldGroup(scaffoldGroup.Id);
 
 			var scaffoldIdsWithDomainsLookup = await (
 				from s in _context.Scaffolds
@@ -124,6 +125,16 @@ namespace Repositories.Repositories
 				ScaffoldIds = scaffoldIds,
 				ScaffoldIdsWithDomains = scaffoldIdsWithDomainsLookup
 			};	
+		}
+
+		public async Task<List<int>> GetScaffoldIdsForScaffoldGroup(int scaffoldGroupId)
+		{
+			var scaffoldIds = await _context.Scaffolds
+				.Where(s => s.ScaffoldGroupId == scaffoldGroupId) // Only fetch IDs for relevant groups
+				.Select (s => s.Id)
+				.ToListAsync();
+
+			return scaffoldIds;
 		}
 
 		public async Task<ScaffoldGroupSummaryDto?> GetSummaryByScaffoldId(int scaffoldId)

@@ -4,6 +4,7 @@ import { useStore } from "../../app/stores/store";
 import { GroupedTags, Tag, displayNameMap } from "../../app/models/tag";
 import MultiSelectDropdown from "../../app/common/form/multiselect-dropdown";
 import { FaCaretDown } from "react-icons/fa";
+import TextTooltip from "../../app/common/tooltip/tooltip";
 
 interface ScaffoldGroupFiltersProps {
     condensed?: boolean;
@@ -118,7 +119,12 @@ const ScaffoldGroupFilters: React.FC<ScaffoldGroupFiltersProps> = ({ condensed =
                             <div className="flex flex-col w-full md:w-1/3">
                                 <div className="p-2">
                                     <MultiSelectDropdown
-                                        groupName="PARTICLE SIZES"
+                                        groupName={
+                                            <TextTooltip
+                                                label="PARTICLE DIAMETER"
+                                                tooltipText="Diameter (in micrometers) of a sphere with equivalent volume to the average particle volume"
+                                            />
+                                        }
                                         items={particleSizes}
                                         selectedItemIds={selectedParticleSizeIds}
                                         renderItem={item => item.label}
@@ -169,7 +175,7 @@ const ScaffoldGroupFilters: React.FC<ScaffoldGroupFiltersProps> = ({ condensed =
                                 <div className="flex flex-wrap text-center">
                                     <div className="w-full sm:w-1/2 lg:w-1/3 p-2">
                                         <MultiSelectDropdown
-                                            groupName="PARTICLE SIZES"
+                                            groupName="PARTICLE DIAMETER"
                                             items={particleSizes}
                                             selectedItemIds={selectedParticleSizeIds}
                                             renderItem={item => item.label}

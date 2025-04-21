@@ -11,6 +11,7 @@ import environment from "../environments/environment"
 import { Domain } from "../models/domain";
 import { Job } from "../models/job";
 import { ScaffoldWithMissingThumbnail } from "../models/scaffold";
+import { PoreInfo } from "../models/poreInfo";
 
 axios.defaults.baseURL = environment.baseUrl;
 
@@ -106,6 +107,10 @@ const ScaffoldGroups = {
     getScaffoldsWithMissingThumbnails: () => requests.get<ApiResponse<ScaffoldWithMissingThumbnail[]>>(`/scaffoldGroups/images/missing-thumbnails`)
 }
 
+const Descriptors = {
+    getPoreInfo: (scaffoldGroupId: number) => requests.get<ApiResponse<PoreInfo>>(`/descriptors/${scaffoldGroupId}`),
+}
+
 const Domains = {
     visualize: async (scaffoldId?: number | null) => {
         const id = scaffoldId ?? -1
@@ -164,6 +169,7 @@ const agent = {
 	Resources,
 	Users,
 	ScaffoldGroups,
+    Descriptors,
     Domains,
     Jobs
 }
