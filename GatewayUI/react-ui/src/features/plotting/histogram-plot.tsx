@@ -13,13 +13,15 @@ interface HistogramPlotProps {
   titleFontSize?: number;
   labelFontSize?: number;
   tickFontSize?: number;
+  tickDecimalPlaces?: number;
   showHoverInfo?: boolean;
 }
 
 export const HistogramPlot: React.FC<HistogramPlotProps> = ({ 
 		data, title, xlabel, ylabel, 
 		color, interactive, hideYLabels, showHoverInfo,
-		titleFontSize, labelFontSize, tickFontSize 
+		titleFontSize, labelFontSize, tickFontSize,
+		tickDecimalPlaces
 	}) => {
 	const min = Math.min(...data);
 	const max = Math.max(...data);
@@ -72,7 +74,7 @@ export const HistogramPlot: React.FC<HistogramPlotProps> = ({
 				},
 				tickfont: { size: tickFontSize || 12 },
 				tickvals: [xMin, median, xMax],
-				ticktext: [xMin.toFixed(2), median.toFixed(2), xMax.toFixed(2)],
+				ticktext: [xMin.toFixed(tickDecimalPlaces || 0), median.toFixed(tickDecimalPlaces || 0), xMax.toFixed(tickDecimalPlaces || 0)],
 				range: [xMin, xMax],
 				automargin: true
 			},
