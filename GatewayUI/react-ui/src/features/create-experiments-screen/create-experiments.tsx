@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../../app/stores/store";
-import ScaffoldGroupDetails from "../scaffold-groups/scaffold-group-details";
+// import ScaffoldGroupDetails from "../scaffold-groups/scaffold-group-details";
 import ScaffoldGroupFilters from "../scaffold-groups/scaffold-group-filter";
-import ScaffoldGroupCard from "../scaffold-groups/scaffold-group-card";
+// import ScaffoldGroupCard from "../scaffold-groups/scaffold-group-card";
 import { ScaffoldGroup } from "../../app/models/scaffoldGroup";
 import { FaTimes } from 'react-icons/fa';
 import DescriptorFilters from "../descriptors/descriptor-filters";
@@ -12,12 +12,20 @@ import { FaSpinner } from 'react-icons/fa';
 import { downloadExperimentsAsExcel } from '../../app/common/excel-generator/excel-generator';
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import ExperimentSidebar from "./experiment-sidebar";
+import ScaffoldGroupsFilterResults from "../scaffold-groups/scaffold-group-filter-results";
 
 type OptionKey = 'excelFileOption' | 'sheetOption' | 'columnOption' | 'stackedColumnOption';
 
 const CreateExperiments = () => {
     const { scaffoldGroupStore } = useStore();
-    const { scaffoldGroups, getDetailedScaffoldGroupsForExperiment } = scaffoldGroupStore;
+    // const { scaffoldGroups, getDetailedScaffoldGroupsForExperiment } = scaffoldGroupStore;
+    const {
+        scaffoldGroups,
+        selectedTagNames,
+		selectedParticleSizeIds,
+		segmentedScaffoldGroups: { exact, related },
+        getDetailedScaffoldGroupsForExperiment,
+    } = scaffoldGroupStore;
     const [visibleDetails, setVisibleDetails] = useState<number | null>(null);
     const [numberOfColumns, setNumberOfColumns] = useState(3);
     const [selectedScaffoldGroups, setSelectedScaffoldGroups] = useState<ScaffoldGroup[]>([]);
@@ -279,58 +287,40 @@ const CreateExperiments = () => {
                 {/* Toggle sidebar on small screens */}
                 
                 <div className="flex h-full">
-                    {experimentStage === 1 && 
-                        <div className="lg:w-3/4 sm:w-full mb-12">
-                            <div className="flex flex-col md:flex-row md:justify-between md:items-center md:mr-6">
-                                <p className="text-xl mb-2 md:mb-4 w-full">1. Select the scaffold groups to include in your experiment</p>
-                                <div className="flex justify-end space-x-1 w-full md:w-auto">
-                                    <button className="button-outline" onClick={() => setExperimentStage(2)}>Next</button>
-                                </div>
-                            </div>
-                            <div className="h-full overflow-y-auto">
-                            <ScaffoldGroupFilters condensed={true} allFiltersVisible={true} setIsLoading={setIsLoading} />
-                                {isLoading ? (
-                                    <div className="flex justify-center items-center py-8">
-                                        <FaSpinner className="animate-spin" size={40} />
-                                    </div>
-                                ) : (
-                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                        <div className="col-span-3 px-3">
-                                            {rows.map((row, index) => (
-                                                <React.Fragment key={index}>
-                                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                                        {row.map(scaffoldGroup => {
-                                                            const isSelected = selectedScaffoldGroups.some(group => group.id === scaffoldGroup.id);
-                                                            return (
-                                                                <ScaffoldGroupCard
-                                                                    key={scaffoldGroup.id}
-                                                                    scaffoldGroup={scaffoldGroup}
-                                                                    isVisible={visibleDetails === scaffoldGroup.id}
-                                                                    toggleDetails={() => toggleDetails(scaffoldGroup.id)}
-                                                                    isSelected={isSelected}
-                                                                    isSelectable={true}
-                                                                    onSelect={() => isSelected ? handleUnselectScaffoldGroup(scaffoldGroup.id) : handleSelectScaffoldGroup(scaffoldGroup)}
-                                                                />
-                                                            )}
-                                                        )}
-                                                    </div>
-                                                    {row.some(sg => sg.id === visibleDetails) && (
-                                                        <div className={`transition-opacity duration-500 ease-in-out transform ${visibleDetails ? 'opacity-100 scale-100' : 'opacity-0 scale-95'} overflow-hidden`}>
-                                                            <ScaffoldGroupDetails
-                                                                scaffoldGroup={row.find(sg => sg.id === visibleDetails)!}
-                                                                isVisible={true}
-                                                                toggleDetails={() => visibleDetails && toggleDetails(visibleDetails)}
-                                                            />
-                                                        </div>
-                                                    )}
-                                                </React.Fragment>
-                                            ))}
-                                        </div>
-                                    </div>
-                                )}
+                {experimentStage === 1 && 
+                    <div className="lg:w-3/4 sm:w-full mb-12">
+                        <div className="flex flex-col md:flex-row md:justify-between md:items-center md:mr-6">
+                            <p className="text-xl mb-2 md:mb-4 w-full">1. Select the scaffold groups to include in your experiment</p>
+                            <div className="flex justify-end space-x-1 w-full md:w-auto">
+                                <button className="button-outline" onClick={() => setExperimentStage(2)}>Next</button>
                             </div>
                         </div>
-                    }
+
+                        <ScaffoldGroupFilters condensed={true} allFiltersVisible={true} setIsLoading={setIsLoading} />
+
+                        {isLoading ? (
+                            <div className="flex justify-center items-center py-8">
+                                <FaSpinner className="animate-spin" size={40} />
+                            </div>
+                        ) : (
+                            <>
+                                <ScaffoldGroupsFilterResults
+                                    scaffoldGroups={scaffoldGroups}
+                                    exact={exact}
+                                    related={related}
+                                    selectedScaffoldGroups={selectedScaffoldGroups}
+                                    visibleDetails={visibleDetails}
+                                    toggleDetails={toggleDetails}
+                                    onSelect={handleSelectScaffoldGroup}
+                                    onUnselect={handleUnselectScaffoldGroup}
+                                    selectedTagNames={selectedTagNames}
+                                    selectedParticleSizeIds={selectedParticleSizeIds}
+                                    largeScreenColumns={2}
+                                />
+                            </>
+                        )}
+                    </div>
+                }
                     {experimentStage === 2 && 
                         <div className="lg:w-3/4 sm:w-full mb-12">
                             <div className="flex flex-col md:flex-row md:justify-between md:items-center md:mr-6">
@@ -479,96 +469,6 @@ const CreateExperiments = () => {
                         </div>
                     </div>
                     )}
-
-                    {/* <div className="w-1/4 p-4 bg-gray-100">
-                        <h2 className="text-lg font-bold text-gray-700 mb-6">Experiment</h2>
-                        {experimentStage >= 3 && 
-                        <div className="mb-8">
-                            <h3 className="text-gray-700 font-bold mb-3">Output Layout</h3>
-                            <ul>
-                                <li key={options.excelFileOption} className="my-4">
-                                    <div>{"Excel Files - " + options.excelFileOption}</div>
-                                </li>
-                                <li key={options.sheetOption} className="my-4">
-                                    <div>{"Sheets - " + options.sheetOption}</div>
-                                </li>
-                                
-                                <li key={options.columnOption} className="my-4">
-                                    <div>{"Columns - " + options.columnOption}</div>
-                                </li>
-                            </ul>
-                        </div>
-                        }
-                        {(experimentStage >= 2 || selectedDescriptorTypes.length > 0) && 
-                        <div className="mb-8">
-                            <h3 className="text-gray-700 font-bold mb-3">Selected Descriptors</h3>
-                            <ul>
-                                {selectedDescriptorTypes.length === 0 ? 
-                                    <p className="italic">None selected</p> : 
-                                    selectedDescriptorTypes.map(descriptorType => (
-                                        <li key={descriptorType.id} className="my-4">
-                                            <div className="flex justify-left items-center">
-                                                <button 
-                                                    className="bg-gray-300 text-gray-700 p-2 rounded-full mr-2 text-xs hover:shadow-md"
-                                                    onClick={() => handleUnselectDescriptorType(descriptorType.id)}
-                                                >
-                                                    <FaTimes />
-                                                </button>
-                                                {descriptorType.label + (descriptorType.unit?.length > 0 ? " (" + descriptorType.unit + ")" : "")}
-                                            </div>
-                                        </li>
-                                    ))
-                                }
-                            </ul>
-                        </div>
-                        }
-                        <div className="">
-                            <h3 className="text-gray-700 font-bold mb-3">Selected Scaffold Groups</h3>
-                            <ul>
-                                {selectedScaffoldGroups.length === 0 ? 
-                                    <p className="italic">None selected</p> : 
-                                    selectedScaffoldGroups.map(group => (
-                                        <li key={group.id} className="my-4">
-                                            <div className="flex justify-left items-center">
-                                                <button 
-                                                    className="bg-gray-300 text-gray-700 p-2 rounded-full mr-2 text-xs hover:shadow-md"
-                                                    onClick={() => handleUnselectScaffoldGroup(group.id)}
-                                                >
-                                                    <FaTimes />
-                                                </button>
-                                                {group.name}
-                                            </div>
-                                            <Formik
-                                                initialValues={{scaffoldGroup:group.id, replicates: 1 }}
-                                                onSubmit={(values, {setErrors}) => console.log(values, setErrors)}
-                                            >
-                                                {formik => (
-                                                    <form onSubmit={formik.handleSubmit}>
-                                                        <div className='flex flex-col items-end'>
-                                                            <div className='flex items-center space-x-2'>
-                                                                <TextInput
-                                                                    type="number"
-                                                                    name="replicates"
-                                                                    placeholder={'1'}
-                                                                    errors={formik.errors}
-                                                                    touched={formik.touched}
-                                                                    min={1}
-                                                                    max={group.numReplicates}
-                                                                    step={1}
-                                                                    className="p-1 text-sm w-12 appearance-none"
-                                                                />
-                                                                <p className="text-sm ml-2 my-auto mb-5">{` of ${group.numReplicates} replicates`}</p>
-                                                            </div>
-                                                        </div>							
-                                                    </form>
-                                                )}
-                                            </Formik>
-                                        </li>
-                                    ))
-                                }
-                            </ul>
-                        </div>
-                    </div> */}
                 </div>
             </div>
         </>

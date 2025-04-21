@@ -12,6 +12,9 @@ export default class ScaffoldGroupStore {
 	selectedScaffoldGroup: ScaffoldGroup | null = null;
 	defaultScaffoldGroupId: number = 55;
 
+	selectedTagNames: string[] = [];
+	selectedParticleSizeIds: number[] = [];
+
 	constructor() {
 		makeAutoObservable(this)
 	}
@@ -210,64 +213,138 @@ export default class ScaffoldGroupStore {
 
 	getPublicScaffoldGroups = async (selectedTags?: Tag[] | null, sizeIds?: number[] | null) => {
 		try {
-			let queryParams = ''
-			if (selectedTags!= null){
-				queryParams = queryParams + selectedTags.map(tag => `tagIds=${tag.id}`).join('&');
-			} 
-			if (queryParams !== '')
-			{
-				queryParams = queryParams + '&';
+			const tagIds = selectedTags?.map(tag => tag.id) || [];
+			this.selectedTagNames = selectedTags?.map(tag => tag.name) || [];
+			this.selectedParticleSizeIds = sizeIds || [];
+
+			let queryParams = '';
+			if (tagIds.length > 0) {
+				queryParams += tagIds.map(id => `tagIds=${id}`).join('&');
 			}
-			if (sizeIds != null)
-			{
-				queryParams = queryParams + sizeIds.map(id => `particleSizes=${id}`).join('&')
+			if (this.selectedParticleSizeIds.length > 0) {
+				if (queryParams !== '') queryParams += '&';
+				queryParams += this.selectedParticleSizeIds.map(id => `particleSizes=${id}`).join('&');
 			}
-			if (queryParams !== '')
-			{
-				queryParams = '?' + queryParams
-			}
+			if (queryParams !== '') queryParams = '?' + queryParams;
+
 			const response = await agent.ScaffoldGroups.getPublic(queryParams);
-
 			runInAction(() => {
-				this.scaffoldGroups = response.data
-			})
-			
+				this.scaffoldGroups = response.data;
+			});
 			return response.data;
-
 		} catch (error) {
 			console.error(error);
 		}
-	}
+	};
 
 	getSummarizedScaffoldGroups = async (selectedTags?: Tag[], sizeIds?: number[]) => {
 		try {
-			let queryParams = ''
-			if (selectedTags!= null){
-				queryParams = queryParams + selectedTags.map(tag => `tagIds=${tag.id}`).join('&');
-			} 
-			if (queryParams !== '')
-			{
-				queryParams = queryParams + '&';
+			const tagIds = selectedTags?.map(tag => tag.id) || [];
+			this.selectedTagNames = selectedTags?.map(tag => tag.name) || [];
+			this.selectedParticleSizeIds = sizeIds || [];
+
+			let queryParams = '';
+			if (tagIds.length > 0) {
+				queryParams += tagIds.map(id => `tagIds=${id}`).join('&');
 			}
-			if (sizeIds != null)
-			{
-				queryParams = queryParams + sizeIds.map(id => `particleSizes=${id}`).join('&')
+			if (this.selectedParticleSizeIds.length > 0) {
+				if (queryParams !== '') queryParams += '&';
+				queryParams += this.selectedParticleSizeIds.map(id => `particleSizes=${id}`).join('&');
 			}
-			if (queryParams !== '')
-			{
-				queryParams = '?' + queryParams
-			}
+			if (queryParams !== '') queryParams = '?' + queryParams;
+
 			const response = await agent.ScaffoldGroups.getSummarized(queryParams);
-
 			runInAction(() => {
-				this.scaffoldGroups = response.data
-			})
-
+				this.scaffoldGroups = response.data;
+			});
 			return response.data;
 		} catch (error) {
 			console.error(error);
 		}
+	};
+
+	isExactMatch = (group: ScaffoldGroup): boolean => {
+		// Match all selected tag *names*
+		const groupTagSet = new Set(group.tags || []);
+		const tagsMatch = this.selectedTagNames.every(name => groupTagSet.has(name));
+
+		// Match all selected particle sizes (±9 window)
+		const sizesMatch = this.selectedParticleSizeIds.every(selectedSize =>
+			group.inputs?.particles?.some(p =>
+				Math.abs(p.meanSize - selectedSize) <= 9
+			)
+		);
+
+		return tagsMatch && sizesMatch;
+	};
+
+	get segmentedScaffoldGroups() {
+		return {
+			exact: this.scaffoldGroups.filter(sg => this.isExactMatch(sg)),
+			related: this.scaffoldGroups.filter(sg => !this.isExactMatch(sg)),
+		};
 	}
+
+	// getPublicScaffoldGroups = async (selectedTags?: Tag[] | null, sizeIds?: number[] | null) => {
+	// 	try {
+	// 		let queryParams = ''
+	// 		if (selectedTags!= null){
+	// 			queryParams = queryParams + selectedTags.map(tag => `tagIds=${tag.id}`).join('&');
+	// 		} 
+	// 		if (queryParams !== '')
+	// 		{
+	// 			queryParams = queryParams + '&';
+	// 		}
+	// 		if (sizeIds != null)
+	// 		{
+	// 			queryParams = queryParams + sizeIds.map(id => `particleSizes=${id}`).join('&')
+	// 		}
+	// 		if (queryParams !== '')
+	// 		{
+	// 			queryParams = '?' + queryParams
+	// 		}
+	// 		const response = await agent.ScaffoldGroups.getPublic(queryParams);
+
+	// 		runInAction(() => {
+	// 			this.scaffoldGroups = response.data
+	// 		})
+			
+	// 		return response.data;
+
+	// 	} catch (error) {
+	// 		console.error(error);
+	// 	}
+	// }
+
+	// getSummarizedScaffoldGroups = async (selectedTags?: Tag[], sizeIds?: number[]) => {
+	// 	try {
+	// 		let queryParams = ''
+	// 		if (selectedTags!= null){
+	// 			queryParams = queryParams + selectedTags.map(tag => `tagIds=${tag.id}`).join('&');
+	// 		} 
+	// 		if (queryParams !== '')
+	// 		{
+	// 			queryParams = queryParams + '&';
+	// 		}
+	// 		if (sizeIds != null)
+	// 		{
+	// 			queryParams = queryParams + sizeIds.map(id => `particleSizes=${id}`).join('&')
+	// 		}
+	// 		if (queryParams !== '')
+	// 		{
+	// 			queryParams = '?' + queryParams
+	// 		}
+	// 		const response = await agent.ScaffoldGroups.getSummarized(queryParams);
+
+	// 		runInAction(() => {
+	// 			this.scaffoldGroups = response.data
+	// 		})
+
+	// 		return response.data;
+	// 	} catch (error) {
+	// 		console.error(error);
+	// 	}
+	// }
 
 	getUploadedScaffoldGroups = async () => {
 		try {

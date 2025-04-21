@@ -51,7 +51,7 @@ const LoginPage: React.FC = () => {
 							<div className="block bg-white shadow-lg rounded-lg">
 								<div className="lg:flex lg:flex-wrap g-0">
 									<div className="lg:w-full px-4 md:px-0">
-										<div className="md:p-12 md:mx-6">
+										<div className="p-8 md:p-12 md:mx-6">
 											<div className="text-center">
 												<NavLink to="/">
 													<img

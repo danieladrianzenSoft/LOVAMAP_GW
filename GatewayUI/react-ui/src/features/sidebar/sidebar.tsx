@@ -111,98 +111,19 @@ const SideBar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
 							)}
 						</TabList>
 					</TabGroup>
-					{/* <div>
-					<img
-							className="mx-auto w-auto mb-0"
-							src={dukelogo}
-							alt="dukelogo"
-						/>				
-					</div> */}
 					<div className="shrink-0 text-center mb-6">
+						<p className="text-xs font-semibold tracking-wide text-gray-500 leading-tight mb-2 px-2">
+							Materials in<br />Medicine Center
+						</p>
 						<img
 							className="mx-auto w-40 mt-0"
 							src={dukelogo}
 							alt="dukelogo"
 						/>
-						<p className="text-xs font-semibold tracking-wide text-gray-500 leading-tight mb-2 px-2">
-							Materials in<br />Medicine Center
-						</p>
 					</div>
 				</div>
 			</div>
 		</>
-		// <div className={`
-		// 	fixed z-50 top-0 left-0 h-full w-64 bg-white shadow-lg transition-transform duration-300 ease-in-out
-		// 	${isOpen ? 'translate-x-0' : '-translate-x-full'} 
-		// 	md:translate-x-0 md:relative md:z-auto
-		//   `}>
-		// 	<TabGroup vertical selectedIndex={activeTab} onChange={setActiveTab}>
-		// 		<TabList>
-		// 			<NavLink to="/">
-		// 				<img
-		// 					className="mx-auto w-40 mb-6 ml-1 mt-2"
-		// 					src={logo}
-		// 					alt="logo"
-		// 				/>					
-		// 			</NavLink>
-		// 			<Tab as={NavLink} to='/visualize' onClick={handleVisualizationClick} className="focus:outline-none">
-		// 				{({ selected }) => (
-		// 					<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
-		// 						{/* {selected && 
-		// 							<ActiveTabMarker />
-		// 						} */}
-		// 						<p>Interact</p>
-		// 					</div>		
-		// 				)}
-		// 			</Tab>
-		// 			<Tab as={NavLink} to='/explore' className="focus:outline-none">
-		// 				{({ selected }) => (
-		// 					<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
-		// 						{/* {selected && 
-		// 							<ActiveTabMarker />
-		// 						} */}
-		// 						<p>Explore scaffolds</p>
-		// 					</div>		
-		// 				)}
-		// 			</Tab>
-		// 			{/* <SideBarDivider /> */}
-		// 			<Tab as={NavLink} to='/learn' className="focus:outline-none">
-		// 				{({ selected }) => (
-		// 					<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
-		// 						{/* {selected && 
-		// 							<ActiveTabMarker />
-		// 						} */}
-		// 						<p >Learn</p>
-		// 					</div>
-		// 				)}
-		// 			</Tab>
-		// 			<Tab as={NavLink} to='/experiments' className="focus:outline-none">
-		// 				{({ selected }) => (
-		// 					<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
-		// 						{/* {selected && 
-		// 							<ActiveTabMarker />
-		// 						} */}
-		// 						<p>Create Experiments</p>
-		// 					</div>
-		// 				)}
-		// 			</Tab>
-		// 			{isAdmin && 
-		// 				<Tab as={NavLink} to='/uploads' className="focus:outline-none" >
-		// 					{({ selected }) => (
-		// 						<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
-		// 							{/* {selected && 
-		// 								<ActiveTabMarker />
-		// 							} */}
-		// 							<p>Upload</p>
-		// 						</div>
-		// 					)}
-		// 				</Tab>
-		// 			}
-		// 			{/* <SideBarDivider /> */}
-		// 		</TabList>
-		// 	</TabGroup>
-		// </div>
-		
 	)
 }
 

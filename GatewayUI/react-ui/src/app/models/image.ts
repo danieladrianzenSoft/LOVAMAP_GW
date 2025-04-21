@@ -19,7 +19,7 @@ export interface ImageToCreate {
 
 export interface ImageToUpdate {
     id: number;
-    category: string;
+    category?: string;
     isThumbnail: boolean;
     scaffoldGroupId: number;
     scaffoldId?: number | null;

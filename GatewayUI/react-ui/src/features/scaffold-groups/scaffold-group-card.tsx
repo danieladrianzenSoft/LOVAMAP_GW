@@ -2,6 +2,7 @@ import React from 'react';
 import { ScaffoldGroup } from '../../app/models/scaffoldGroup';
 import { FaCaretDown } from 'react-icons/fa';
 import { observer } from 'mobx-react-lite';
+import { HistogramPlot } from '../plotting/histogram-plot';
 // import { ImageCategory } from '../../app/models/image';
 
 interface ScaffoldGroupCardProps {
@@ -15,7 +16,7 @@ interface ScaffoldGroupCardProps {
 }
 const ScaffoldGroupCard: React.FC<ScaffoldGroupCardProps> = ({ scaffoldGroup, isVisible, isSelectable=false, isSelected=false, toggleDetails, onSelect }) => {
     return (
-        <div className={`cursor-pointer bg-white rounded-lg p-4 m-2 border-gray-100 border-2 hover:shadow-md text-gray-700 ${isVisible ? 'shadow-md' :''}`} onClick={toggleDetails}>
+        <div className={`flex flex-col h-full cursor-pointer bg-white rounded-lg p-4 m-2 border-gray-100 border-2 hover:shadow-md text-gray-700 ${isVisible ? 'shadow-md' :''}`} onClick={toggleDetails}>
             <div className="w-full">
                 {/* Name and Caret Icon Row */}
                 <div className="flex items-center">
@@ -26,64 +27,67 @@ const ScaffoldGroupCard: React.FC<ScaffoldGroupCardProps> = ({ scaffoldGroup, is
                 </div>
 
                 {/* Images Section */}
-                {scaffoldGroup.images.some((image) => image.category === "Particles") ? (
-                    <div className="mt-4 grid grid-cols-2 gap-4">
-                        {scaffoldGroup.images
-                            .filter((image) => image.category === "Particles")
-                            .sort((a, b) => {
-                                // Sort to ensure 'InteriorPores' comes first
-                                const categoryOrder: { [key: string]: number } = { InteriorPores: 0, ParticleSizeDistribution: 1 };
-                                return categoryOrder[a.category] - categoryOrder[b.category];
-                            })
-                            .map((image, index) => (
-                                <div key={index} className="flex flex-col items-center">
-                                    <img 
-                                        src={image.url} 
-                                        alt={image.category} 
-                                        className="w-full h-48 object-cover mb-2"
+                {(() => {
+                    const firstImage = scaffoldGroup.images.find(img => img.category === "Particles");
+                    const hasImage = Boolean(firstImage);
+
+                    if (hasImage) {
+                        return (
+                            <div className="mt-4 flex flex-wrap justify-center gap-4 items-stretch">
+                                {/* Image block */}
+                                <div className="flex-1 min-w-[180px] max-w-full flex flex-col items-center">
+                                    <img
+                                        src={firstImage!.url}
+                                        alt={firstImage!.category}
+                                        className="w-full h-48 object-cover mb-2 rounded"
                                     />
-                                    <p className="text-sm text-gray-600">{image.category}</p>
+                                    <p className="text-sm text-gray-600">{firstImage!.category}</p>
                                 </div>
-                            ))
-                        }
-                    </div>
-                ) : (
-                    <p className="mt-4 text-sm text-gray-500 italic">No images available</p>
-                )}
-                {/* {scaffoldGroup.images
-                    .filter((image) => image.category === 'ExteriorPores')
-                    .length > 0 ? (
-                    <div className="mt-4 grid grid-cols-1 gap-4">
-                        {scaffoldGroup.images
-                            .filter((image) => image.category === 'ExteriorPores')
-                            .map((image, index) => (
-                                <div key={index} className="flex flex-col items-center">
-                                    <img 
-                                        src={image.url} 
-                                        alt={image.category} 
-                                        className="w-full h-auto max-h-48 object-contain mb-2"
+
+                                {/* Histogram block */}
+                                <div className="flex-1 min-w-[180px] max-w-full flex flex-col items-center">
+                                    <div className="w-full h-52 mb-2 pb-0">
+                                        <HistogramPlot
+                                            data={scaffoldGroup.inputs.sizeDistribution}
+                                            labelFontSize={13}
+                                            hideYLabels={true}
+                                            showHoverInfo={false}
+                                        />
+                                    </div>
+                                    <p className="text-sm text-gray-600 -mt-4 z-10">Particle Size</p>
+                                </div>
+                            </div>
+                        );
+                    } else {
+                        // No image → full-width histogram
+                        return (
+                            <div className="flex flex-col items-center">
+                                <div className="w-full h-52 mb-2 pb-0">
+                                    <HistogramPlot
+                                        data={scaffoldGroup.inputs.sizeDistribution}
+                                        hideYLabels={true}
+                                        showHoverInfo={false}
                                     />
-                                    <p className="text-sm text-gray-600">{image.category}</p>
                                 </div>
-                            ))
-                        }
-                    </div>
-                ) : (
-                    <p className="mt-4 text-sm text-gray-500 italic">No images available</p>
-                )} */}
+                                <p className="text-sm text-gray-600 -mt-4 z-10">Particle Size</p>
+                            </div>
+                        );
+                    }
+                })()}
             </div>
-            <div className="flex justify-end mt-2">
+            <div className="mt-auto pt-4 flex justify-end">
                 {isSelectable && onSelect && (
-                    <button className={`button-outline border-none shadow-custom ${isSelected ? 'bg-red-50 hover:bg-red-100' : ''}`}
+                    <button
+                        className={`button-outline border-none shadow-custom ${isSelected ? 'bg-red-50 hover:bg-red-100' : ''}`}
                         onClick={(e) => {
                             e.stopPropagation();
                             onSelect();
-                    }}>
+                        }}
+                    >
                         {isSelected ? 'Remove' : 'Add'}
                     </button>
                 )}
             </div>
-            {/* You can add icons or other interactive elements here */}
         </div>
     );
 };

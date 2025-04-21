@@ -4,7 +4,7 @@ import UploadFile from '../../app/common/upload-file/upload-file';
 import { useStore } from '../../app/stores/store';
 import toast from "react-hot-toast";
 import { FaSpinner, FaPlus, FaStar, FaRegStar, FaTimes } from 'react-icons/fa';
-import { Image, ImageToCreate, ImageToUpdate } from '../../app/models/image';
+import { Image, ImageCategory, ImageToCreate, ImageToUpdate } from '../../app/models/image';
 import { ScaffoldGroup } from '../../app/models/scaffoldGroup';
 import { useDescriptorTypes } from '../../app/common/hooks/useDescriptorTypes';
 import { processExcelFile } from '../../app/common/excel-processor/excel-processor';
@@ -277,13 +277,13 @@ const ScaffoldGroupUploads: React.FC = () => {
                                         value={image.category}
                                         onChange={(e) => handleImageUpdate(image, { category: e.target.value })}
                                     >
-                                        {['ExteriorPores', 'InteriorPores', 'ParticleSizeDistribution', 'Other'].map(
-                                            category => (
+                                        {Object.keys(ImageCategory)
+                                            .filter((key) => isNaN(Number(key)))
+                                            .map((category) => (
                                                 <option key={category} value={category}>
                                                     {category}
                                                 </option>
-                                            )
-                                        )}
+                                        ))}
                                     </select>
                                 </div>
                             ))}
