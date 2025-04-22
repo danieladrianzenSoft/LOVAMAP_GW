@@ -74,6 +74,7 @@ const Visualization: React.FC = () => {
 	
 				if (group && currentlyLoadingScaffoldIdRef.current === scaffoldIdToLoad) {
 					scaffoldGroupStore.setSelectedScaffoldGroup(group);
+					
 				} else {
 					console.warn("⚠️ Outdated scaffold group ignored for", scaffoldIdToLoad);
 				}
@@ -643,6 +644,7 @@ const Visualization: React.FC = () => {
 						<div className="mt-2 text-sm text-gray-700 max-h-40 overflow-y-auto">
 							<div className="mt-3 text-sm text-gray-700">
 								<p><span className="font-semibold">ID:</span> {selectedParticle.id}</p>
+								<p><span className="font-semibold">Diameter:</span> {scaffoldGroupStore.selectedScaffoldGroup?.inputs?.sizeDistribution[Number(selectedParticle.id)]?.toFixed(2) + "um" || "Unknown"}</p>
 							</div>
 						</div>
 					</div>

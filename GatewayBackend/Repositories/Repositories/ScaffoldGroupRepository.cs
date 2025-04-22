@@ -199,7 +199,8 @@ namespace Repositories.Repositories
 						ContainerShape = scaffoldGroup.InputGroup.ContainerShape,
 						ContainerSize = scaffoldGroup.InputGroup.ContainerSize,
 						PackingConfiguration = scaffoldGroup.InputGroup.PackingConfiguration.ToString(),
-						Particles = particleProperties
+						Particles = particleProperties,
+						SizeDistribution = scaffoldGroup.InputGroup.SizeDistribution,
 					}
 					: new InputGroupBaseDto(),
 				ScaffoldIds = scaffoldIds,

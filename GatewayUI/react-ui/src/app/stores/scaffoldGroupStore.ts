@@ -33,6 +33,7 @@ export default class ScaffoldGroupStore {
 			|| await this.getScaffoldGroupSummaryByScaffoldId(scaffoldId);
 	
 		if (group) {
+			console.log(group);
 			return group;
 		}
 	
