@@ -515,6 +515,13 @@ const Visualization: React.FC = () => {
 		return <p className="text-gray-500">Restoring scaffold group...</p>;
 	}
 
+	// const getIndexFromParticleId = (id: string): number | null => {
+	// 	const match = id.match(/^(\d+)/);
+	// 	return match ? parseInt(match[1], 10) : null;
+	//   };
+	  
+	// const index = selectedParticle?.id ? getIndexFromParticleId(selectedParticle.id) : null;
+
 	return (
 		<div className="container mx-auto py-8 px-2 justify-center h-screen">
 			<div className="w-full h-full rounded-lg">{canvasElement}</div>
@@ -644,7 +651,16 @@ const Visualization: React.FC = () => {
 						<div className="mt-2 text-sm text-gray-700 max-h-40 overflow-y-auto">
 							<div className="mt-3 text-sm text-gray-700">
 								<p><span className="font-semibold">ID:</span> {selectedParticle.id}</p>
-								<p><span className="font-semibold">Diameter:</span> {scaffoldGroupStore.selectedScaffoldGroup?.inputs?.sizeDistribution[Number(selectedParticle.id)]?.toFixed(2) + "um" || "Unknown"}</p>
+								{/* <p><span className="font-semibold">Diameter:</span> {scaffoldGroupStore.selectedScaffoldGroup?.inputs?.sizeDistribution[Number(selectedParticle.id)]?.toFixed(2) + "um" || "Unknown"}</p> */}
+								{/* <p>
+									<span className="font-semibold">Diameter:</span>{" "}
+									{
+										index !== null &&
+										scaffoldGroupStore.selectedScaffoldGroup?.inputs.sizeDistribution[index] !== undefined
+										? scaffoldGroupStore.selectedScaffoldGroup.inputs.sizeDistribution[index].toFixed(2) + "μm"
+										: "Unknown"
+									}
+								</p> */}
 							</div>
 						</div>
 					</div>
