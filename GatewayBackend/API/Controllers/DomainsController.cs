@@ -19,11 +19,13 @@ public class DomainsController : ControllerBase
 {
     private readonly ILogger<AuthController> _logger;
     private readonly IDomainService _domainService;
+	private readonly IUserService _userService;
 
-    public DomainsController(ILogger<AuthController> logger, IDomainService domainService)
+    public DomainsController(ILogger<AuthController> logger, IDomainService domainService, IUserService userService)
     {
         _logger = logger;
         _domainService = domainService;
+		_userService = userService;
     }
 
 	[HttpPost("create")]
@@ -48,7 +50,7 @@ public class DomainsController : ControllerBase
 
 	[AllowAnonymous]
 	[HttpGet("{scaffoldId}")]
-    public async Task<IActionResult> Visualize(int scaffoldId)
+    public async Task<IActionResult> Visualize(int scaffoldId, [FromQuery] DomainCategory? category = null)
     {
         try
 		{
@@ -61,7 +63,9 @@ public class DomainsController : ControllerBase
 				scaffoldId = randomId.Value;
 			}
 
-			var (succeeded, errorMessage, mesh, domainMetadata) = await _domainService.GetDomain(scaffoldId);
+			var resolvedCategory = category ?? DomainCategory.Particles;
+
+			var (succeeded, errorMessage, mesh, domainMetadata) = await _domainService.GetDomain(scaffoldId, resolvedCategory);
 
 			if (!succeeded && (mesh == null || domainMetadata == null))  {
 				return NotFound(new ApiResponse<string>(404, errorMessage));
@@ -77,10 +81,60 @@ public class DomainsController : ControllerBase
 			Response.Headers.Append("X-Voxel-Count", domainMetadata?.VoxelCount.ToString());
 			Response.Headers.Append("X-Voxel-Size", domainMetadata?.VoxelSize.ToString());
 			Response.Headers.Append("X-Domain-Size", domainMetadata?.DomainSize);
-			Response.Headers.Append("X-Mesh-FilePath", domainMetadata?.MeshFilePath);
+			// Response.Headers.Append("X-Mesh-FilePath", domainMetadata?.MeshFilePath);
+			Response.Headers.Append("X-Original-Filename", domainMetadata?.OriginalFileName);
 
 			// Stream the `.glb` file for immediate rendering
 			return File(mesh!, "model/gltf-binary", domainMetadata?.MeshFilePath);
+		}
+		catch (Exception ex)
+		{
+			_logger.LogError(ex, "Failed to get the domain");
+        	return StatusCode(500, new ApiResponse<string>(500, "An error occurred while getting the domain"));
+		}
+    }
+
+	[AllowAnonymous]
+	[HttpGet("{domainId}/metadata")]
+	public async Task<IActionResult> GetDomainMetadata(int domainId)
+	{
+		try
+		{
+			var (succeeded, errorMessage, domainMetadata) = await _domainService.GetDomainMetadata(domainId);
+
+			if (!succeeded || domainMetadata == null) {
+				return BadRequest(new ApiResponse<string>(400, errorMessage));
+			}
+
+			var json = domainMetadata.RootElement;
+
+			return Ok(new ApiResponse<JsonElement>(200, "", json));
+
+		}
+		catch (Exception ex)
+		{
+			_logger.LogError(ex, "Failed to get the domain metadata");
+        	return StatusCode(500, new ApiResponse<string>(500, "An error occurred while getting the domain metadata"));
+		}
+	}
+
+	[HttpDelete("{domainId}")]
+    public async Task<IActionResult> DeleteDomain(int domainId)
+    {
+        try
+		{
+			var currentUserId = _userService.GetCurrentUserId();
+			
+			if (currentUserId == null) return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
+
+			var (succeeded, errorMessage) = await _domainService.DeleteDomain(domainId, currentUserId);
+
+			if (!succeeded) {
+				return BadRequest(new ApiResponse<string>(400, errorMessage));
+			}
+
+			return Ok(new ApiResponse<string>(201, "Domain deleted"));
+			
 		}
 		catch (Exception ex)
 		{

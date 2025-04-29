@@ -124,6 +124,12 @@ namespace Data.Migrations
                     b.Property<string>("MeshFilePath")
                         .HasColumnType("text");
 
+                    b.Property<JsonDocument>("Metadata")
+                        .HasColumnType("jsonb");
+
+                    b.Property<string>("OriginalFileName")
+                        .HasColumnType("text");
+
                     b.Property<Guid?>("ProducedByJobId")
                         .HasColumnType("uuid");
 

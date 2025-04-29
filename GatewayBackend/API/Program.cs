@@ -77,7 +77,7 @@ builder.Services.AddCors(opt =>
                 "X-Voxel-Count", 
                 "X-Voxel-Size", 
                 "X-Domain-Size", 
-                "X-Mesh-FilePath");
+                "X-Original-Filename");
     });
 });
 

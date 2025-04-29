@@ -7,8 +7,8 @@ public static class CategoryMapper
 		return category switch
 		{
 			ImageCategory.Particles => DomainCategory.Particles,
-			ImageCategory.ExteriorPores => DomainCategory.ExteriorPores,
-			ImageCategory.InteriorPores => DomainCategory.InteriorPores,
+			ImageCategory.ExteriorPores => DomainCategory.Pores,
+			ImageCategory.InteriorPores => DomainCategory.Pores,
 			_ => null
 		};
 	}

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Data.Models;
 using Infrastructure.DTOs;
@@ -14,5 +15,6 @@ namespace Repositories.IRepositories
 		Task<Domain?> GetById(int domainId);
 		Task<Domain?> GetByScaffoldIdAndCategory(int scaffoldId, DomainCategory category);
 		Task<int?> GetRandomDomainIdWithMeshAsync();
+		Task<JsonDocument?> GetDomainMetadataById(int domainId);
 	}
 }

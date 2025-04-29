@@ -5,5 +5,5 @@ export interface Domain {
 	voxelCount?: number;
 	voxelSize?: number;
 	domainSize?: string;
-	meshFilePath?: string;
+	originalFileName?: string;
 }

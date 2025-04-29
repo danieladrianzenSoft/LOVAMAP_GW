@@ -8,6 +8,7 @@ using Data.Models;
 using Infrastructure.DTOs;
 using Infrastructure.Helpers;
 using System.Collections.Immutable;
+using System.Text.Json;
 
 namespace Repositories.Repositories
 {
@@ -64,6 +65,16 @@ namespace Repositories.Repositories
 				.FirstOrDefaultAsync();
 
 			return domain == 0 ? null : domain;
+		}
+
+		public async Task<JsonDocument?> GetDomainMetadataById(int domainId)
+		{
+			var domainMetadata = await _context.Domains
+				.Where(d => d.Id == domainId)
+				.Select(d => d.Metadata)
+				.FirstOrDefaultAsync();
+			
+			return domainMetadata;
 		}
 	}
 }

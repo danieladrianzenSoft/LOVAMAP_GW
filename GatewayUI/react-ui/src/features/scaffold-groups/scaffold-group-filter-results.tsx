@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ScaffoldGroup } from '../../app/models/scaffoldGroup';
 import ScaffoldGroupCard from "./scaffold-group-card"; // adjust path if different
 import ScaffoldGroupDetails from "./scaffold-group-details";
+import Tag from "../../app/common/tag/tag";
 
 interface ScaffoldGroupsFilterResultsProps {
 	scaffoldGroups: ScaffoldGroup[];
@@ -17,6 +18,8 @@ interface ScaffoldGroupsFilterResultsProps {
 	selectedScaffoldGroups?: ScaffoldGroup[];
 	onSelect?: (group: ScaffoldGroup) => void;
 	onUnselect?: (groupId: number) => void;
+	onRemoveTag?: (tag: string) => void;
+
 }
 
 const ScaffoldGroupsFilterResults: React.FC<ScaffoldGroupsFilterResultsProps> = ({
@@ -28,12 +31,19 @@ const ScaffoldGroupsFilterResults: React.FC<ScaffoldGroupsFilterResultsProps> = 
 	toggleDetails,
 	onSelect,
 	onUnselect,
+	onRemoveTag,
 	selectedTagNames,
 	selectedParticleSizeIds,
 	largeScreenColumns = 3,
 }) => {
 	const totalFilters = selectedTagNames.length + selectedParticleSizeIds.length;
 	const [numberOfColumns, setNumberOfColumns] = useState(3);
+	// const {scaffoldGroupStore} = useStore();
+
+	// const handleRemoveTag = ((tag: string) => {
+	// 	console.log(tag);
+	// 	scaffoldGroupStore.removeFilterTag(tag);
+	// })
 
 	useEffect(() => {
 		const handleResize = () => {
@@ -63,24 +73,29 @@ const ScaffoldGroupsFilterResults: React.FC<ScaffoldGroupsFilterResultsProps> = 
 	
 					return (
 						<React.Fragment key={index}>
-							<div className={`grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-${largeScreenColumns}`}>
+							<div className={`flex flex-wrap gap-0`}>
 								{row.map(scaffoldGroup => {
 									const isSelected = selectedScaffoldGroups?.some(group => group.id === scaffoldGroup.id) ?? false;
-	
+									
 									return (
-										<ScaffoldGroupCard
+										<div
+											className={`w-full sm:w-1/2 ${largeScreenColumns === 3 ? "lg:w-1/3" : "lg:w-1/2"}`}
 											key={scaffoldGroup.id}
-											scaffoldGroup={scaffoldGroup}
-											isVisible={visibleDetails === scaffoldGroup.id}
-											toggleDetails={() => toggleDetails(scaffoldGroup.id)}
-											isSelected={isSelected}
-											isSelectable={!!onSelect && !!onUnselect}
-											onSelect={() =>
-												isSelected
-													? onUnselect?.(scaffoldGroup.id)
-													: onSelect?.(scaffoldGroup)
-											}
-										/>
+										>
+											<ScaffoldGroupCard
+												scaffoldGroup={scaffoldGroup}
+												isVisible={visibleDetails === scaffoldGroup.id}
+												toggleDetails={() => toggleDetails(scaffoldGroup.id)}
+												isSelected={isSelected}
+												isSelectable={!!onSelect && !!onUnselect}
+												onSelect={() =>
+													isSelected
+														? onUnselect?.(scaffoldGroup.id)
+														: onSelect?.(scaffoldGroup)
+												}
+											/>
+										</div>
+										
 									);
 								})}
 							</div>
@@ -106,20 +121,28 @@ const ScaffoldGroupsFilterResults: React.FC<ScaffoldGroupsFilterResultsProps> = 
 			{totalFilters === 0 && renderCards(scaffoldGroups)}
 
 			{totalFilters >= 1 && (
-				<>
+				<div>
 					<h2 className="text-2xl font-semibold text-gray-800 mt-10">Exact Matches</h2>
+					<div className="flex flex-wrap gap-x-1 gap-y-1 mt-2 mb-8">
+						{selectedTagNames.map((tag, index) => (
+							<Tag key={index} showRemove={true} onRemove={onRemoveTag} text={tag} />
+						))}
+						{selectedParticleSizeIds.map((tag, index) => (
+							<Tag key={index} showRemove={true} onRemove={onRemoveTag} text={tag.toString() + "um"} />
+						))}
+					</div>
 					{exact.length > 0
 						? renderCards(exact)
 						: <p className="text-gray-500">No scaffold groups fit all the filter criteria.</p>
 					}
 
 					{related.length > 0 && (
-						<>
-							<h2 className="text-2xl font-semibold text-gray-800">Related Results</h2>
+						<div className="mt-14">
+							<h2 className="text-2xl font-semibold text-gray-800 mb-8">Related Results</h2>
 							{renderCards(related)}
-						</>
+						</div>
 					)}
-				</>
+				</div>
 			)}
 		</div>
 	);

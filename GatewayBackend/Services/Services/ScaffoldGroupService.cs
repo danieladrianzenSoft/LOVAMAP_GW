@@ -371,7 +371,7 @@ namespace Services.Services
 
 				foreach (var domain in domainsWithFiles)
 				{
-					var (success, error) = await _domainService.DeleteDomain(domain.Id);
+					var (success, error) = await _domainService.DeleteDomain(domain.Id, userId);
 					if (!success)
 					{
 						return (false, $"Failed to delete domain ID {domain.Id}: {error}");

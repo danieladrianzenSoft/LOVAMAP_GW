@@ -28,24 +28,29 @@ namespace Services.Services
 		private readonly IModelMapper _modelMapper;
 		private readonly IDomainRepository _domainRepository;
 		private readonly IDomainFileService _domainFileService;
+		private readonly IUserAuthHelper _userAuthHelper;
+		private readonly IScaffoldGroupRepository _scaffoldGroupRepository;
 		private readonly ILogger<DomainService> _logger;
 
 		public DomainService(DataContext context, IModelMapper modelMapper, 
 			IDomainRepository domainRepository, IDomainFileService domainFileService, 
-			ILogger<DomainService> logger)
+			IScaffoldGroupRepository scaffoldGroupRepository,
+			IUserAuthHelper userAuthHelper, ILogger<DomainService> logger)
 		{
 			_context = context;
 			_modelMapper = modelMapper;
 			_domainRepository = domainRepository;
+			_scaffoldGroupRepository = scaffoldGroupRepository;
 			_domainFileService = domainFileService;
+			_userAuthHelper = userAuthHelper;
 			_logger = logger;
 		}
 
-		public async Task<(bool Succeeded, string ErrorMessage, Byte[]? Mesh, DomainToVisualizeDto? Domain)> GetDomain(int scaffoldId)
+		public async Task<(bool Succeeded, string ErrorMessage, Byte[]? Mesh, DomainToVisualizeDto? Domain)> GetDomain(int scaffoldId, DomainCategory category)
 		{
 			try
 			{
-				var domain = await _domainRepository.GetByScaffoldIdAndCategory(scaffoldId, DomainCategory.Particles);
+				var domain = await _domainRepository.GetByScaffoldIdAndCategory(scaffoldId, category);
 
 				if (domain == null || String.IsNullOrEmpty(domain.MeshFilePath))
 				{
@@ -68,6 +73,7 @@ namespace Services.Services
 					VoxelCount = domain.VoxelCount,
 					VoxelSize = domain.VoxelSize,
 					DomainSize = domain.DomainSize,
+					OriginalFileName = domain.OriginalFileName,
 					MeshFilePath = Path.GetFileName(filePath) // Path, not actual file content
 				};
 
@@ -77,6 +83,23 @@ namespace Services.Services
 			{
 				_logger.LogError(ex, "Failed to get the domain");
 				return (false, "UnexpectedError", null, null);
+			}
+		}
+
+		public async Task<(bool Succeeded, string ErrorMessage, JsonDocument? DomainMetadata)> GetDomainMetadata(int domainId)
+		{
+			try
+			{
+				var domainMetadata = await _domainRepository.GetDomainMetadataById(domainId);
+
+				if (domainMetadata == null) return (false, "NotFound", null);
+
+				return (true, "", domainMetadata);
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, "Failed to get domain metadata");
+				return (false, "UnexpectedError", null);
 			}
 		}
 
@@ -113,13 +136,22 @@ namespace Services.Services
 			}
 		}
 
-		public async Task<(bool Succeeded, string ErrorMessage)> DeleteDomain(int domainId)
+		public async Task<(bool Succeeded, string ErrorMessage)> DeleteDomain(int domainId, string userId)
 		{
 			try
 			{
 				var domain = await _domainRepository.GetById(domainId);
 				if (domain == null)
 					return (false, "Domain not found.");
+
+				var scaffoldGroup = await _scaffoldGroupRepository.GetSummaryByScaffoldId(domain.ScaffoldId);
+				if (scaffoldGroup == null)
+					return (false, "ScaffoldGroup not found.");
+
+				var isAdmin = await _userAuthHelper.IsInRole(userId, "administrator");
+
+				if (scaffoldGroup.UploaderId != userId && !isAdmin)
+					return (false, "Unauthorized to delete this domain.");
 
 				// Attempt to delete the mesh file
 				if (!string.IsNullOrWhiteSpace(domain.MeshFilePath))

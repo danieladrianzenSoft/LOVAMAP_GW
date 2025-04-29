@@ -6,7 +6,7 @@ export const useDescriptorTypes = () => {
     const { resourceStore } = useStore();
     const [descriptorTypes, setDescriptorTypes] = useState<DescriptorType[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
-    const [error, setError] = useState<string | null>(null);
+    const [error,] = useState<string | null>(null);
 
     useEffect(() => {
 		const fetchData = async () => {

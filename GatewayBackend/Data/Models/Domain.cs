@@ -1,4 +1,6 @@
 
+using System.Text.Json;
+
 namespace Data.Models
 {
     public class Domain
@@ -12,12 +14,14 @@ namespace Data.Models
 		public required string DomainSize { get; set; }
 		public string? MeshFilePath { get; set; }
 		public byte[]? Mesh { get; set; }
+		public string? OriginalFileName { get; set; }
 		public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 		public DomainSource DomainSource { get; set; }
 		public string? SegmentationVersion { get; set; }
 		public Job? InputToJob { get; set; }
 		public Guid? ProducedByJobId { get; set; }
 		public Job? ProducedByJob { get; set; }
+		public JsonDocument? Metadata { get; set; }
 	}
 
 	public enum DomainSource 
@@ -29,8 +33,7 @@ namespace Data.Models
 	public enum DomainCategory
 	{
 		Particles,
-		ExteriorPores,
-		InteriorPores, 
+		Pores,
 		Other
 	}
 }

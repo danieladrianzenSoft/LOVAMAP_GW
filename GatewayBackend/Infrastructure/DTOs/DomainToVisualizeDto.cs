@@ -10,6 +10,7 @@ namespace Infrastructure.DTOs
 		public int Category { get; set; }
 		public int VoxelCount { get; set; }
 		public double VoxelSize { get; set; }
+		public string? OriginalFileName { get; set; }
 		public required string DomainSize { get; set; }
 		public required string MeshFilePath { get; set; }
 	}

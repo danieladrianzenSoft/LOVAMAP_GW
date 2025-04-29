@@ -13,6 +13,7 @@ import { downloadExperimentsAsExcel } from '../../app/common/excel-generator/exc
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import ExperimentSidebar from "./experiment-sidebar";
 import ScaffoldGroupsFilterResults from "../scaffold-groups/scaffold-group-filter-results";
+import { useScaffoldGroupFiltering } from "../../app/common/hooks/useScaffoldGroupFiltering";
 
 type OptionKey = 'excelFileOption' | 'sheetOption' | 'columnOption' | 'stackedColumnOption';
 
@@ -21,8 +22,8 @@ const CreateExperiments = () => {
     // const { scaffoldGroups, getDetailedScaffoldGroupsForExperiment } = scaffoldGroupStore;
     const {
         scaffoldGroups,
-        selectedTagNames,
-		selectedParticleSizeIds,
+        // selectedTagNames,
+		// selectedParticleSizeIds,
 		segmentedScaffoldGroups: { exact, related },
         getDetailedScaffoldGroupsForExperiment,
     } = scaffoldGroupStore;
@@ -48,6 +49,15 @@ const CreateExperiments = () => {
         columnOption: 'Descriptors',
         stackedColumnOption: 'False'
     });
+
+    const {
+        selectedParticleSizeIds,
+        setSelectedParticleSizeIds,
+        selectedTags,
+        setSelectedTags,
+        selectedTagNames,
+        removeFilterTag
+    } = useScaffoldGroupFiltering(true, setIsLoading);
 
     const handleSelectDescriptorType = (descriptorType: DescriptorType) => {
         setSelectedDescriptorTypes(prev => {
@@ -296,7 +306,16 @@ const CreateExperiments = () => {
                             </div>
                         </div>
 
-                        <ScaffoldGroupFilters condensed={true} allFiltersVisible={true} setIsLoading={setIsLoading} />
+                        {/* <ScaffoldGroupFilters condensed={true} allFiltersVisible={true} setIsLoading={setIsLoading} /> */}
+                        <ScaffoldGroupFilters 
+                            setIsLoading={setIsLoading} 
+                            condensed={true} 
+                            allFiltersVisible={true}
+                            selectedParticleSizeIds={selectedParticleSizeIds}
+                            setSelectedParticleSizeIds={setSelectedParticleSizeIds}
+                            selectedTags={selectedTags}
+                            setSelectedTags={setSelectedTags}
+                        />
 
                         {isLoading ? (
                             <div className="flex justify-center items-center py-8">
@@ -315,6 +334,7 @@ const CreateExperiments = () => {
                                     onUnselect={handleUnselectScaffoldGroup}
                                     selectedTagNames={selectedTagNames}
                                     selectedParticleSizeIds={selectedParticleSizeIds}
+                                    onRemoveTag={removeFilterTag}
                                     largeScreenColumns={2}
                                 />
                             </>

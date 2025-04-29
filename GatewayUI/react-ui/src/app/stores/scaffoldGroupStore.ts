@@ -14,6 +14,7 @@ export default class ScaffoldGroupStore {
 
 	selectedTagNames: string[] = [];
 	selectedParticleSizeIds: number[] = [];
+	isFetchingScaffoldGroup: boolean = false;
 
 	constructor() {
 		makeAutoObservable(this)
@@ -33,7 +34,6 @@ export default class ScaffoldGroupStore {
 			|| await this.getScaffoldGroupSummaryByScaffoldId(scaffoldId);
 	
 		if (group) {
-			console.log(group);
 			return group;
 		}
 	
@@ -104,10 +104,15 @@ export default class ScaffoldGroupStore {
 
 	getScaffoldGroupSummaryByScaffoldId = async (scaffoldId: number) => {
 		try {
+			this.isFetchingScaffoldGroup = true;
 			const apiResponse = await agent.ScaffoldGroups.getGroupSummaryByScaffoldId(scaffoldId);
 			const scaffoldGroup = apiResponse.data;
+			this.setSelectedScaffoldGroup(scaffoldGroup);
+			this.isFetchingScaffoldGroup = false;
 			return scaffoldGroup;
 		} catch (error) {
+			this.isFetchingScaffoldGroup = false;
+			this.setSelectedScaffoldGroup(null);
 			console.error("Error fetching scaffold group by scaffoldId", error);
 			return null;
 		}
@@ -285,6 +290,21 @@ export default class ScaffoldGroupStore {
 			related: this.scaffoldGroups.filter(sg => !this.isExactMatch(sg)),
 		};
 	}
+
+	removeFilterTag = (tagText: string) => {
+		// Check if it's a particle size tag, like "150um"
+		if (tagText.endsWith("um")) {
+			const numberPart = parseInt(tagText.replace("um", ""), 10);
+	
+			if (!isNaN(numberPart) && this.selectedParticleSizeIds.includes(numberPart)) {
+				this.selectedParticleSizeIds = this.selectedParticleSizeIds.filter(id => id !== numberPart);
+				return;
+			}
+		}
+	
+		// Otherwise assume it's a regular tag name
+		this.selectedTagNames = this.selectedTagNames.filter(name => name !== tagText);
+	};
 
 	// getPublicScaffoldGroups = async (selectedTags?: Tag[] | null, sizeIds?: number[] | null) => {
 	// 	try {

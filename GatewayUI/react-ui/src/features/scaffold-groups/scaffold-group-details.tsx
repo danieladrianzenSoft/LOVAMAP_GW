@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { ScaffoldGroup } from '../../app/models/scaffoldGroup';
 import Tag from '../../app/common/tag/tag';
 import { Formik } from 'formik';
-// import TextInput from '../../app/common/form/text-input';
 import { downloadScaffoldGroupAsExcel, triggerDownload } from '../../app/common/excel-generator/excel-generator';
 import { useStore } from '../../app/stores/store';
 import { observer } from 'mobx-react-lite';
@@ -10,7 +9,6 @@ import { FaSpinner } from 'react-icons/fa';
 import { openPreviewInNewTab } from '../../app/common/new-tab-preview/new-tab-preview';
 import { PoreInfo } from '../../app/models/poreInfo';
 import { HistogramPlot } from '../plotting/histogram-plot';
-// import { HistogramPlot } from '../plotting/histogram-plot';
 
 interface ScaffoldGroupDetailsProps {
     scaffoldGroup: ScaffoldGroup;
@@ -31,35 +29,6 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 	const {getDetailedScaffoldGroupById, navigateToVisualization} = scaffoldGroupStore;
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const [poreInfo, setPoreInfo] = useState<PoreInfo>();
-
-	// useEffect(() => {
-	// 	console.log(scaffoldGroup);	
-	// }, [scaffoldGroup]);
-
-	// const download = async (values: any, setErrors: Function) => {
-	// 	setIsLoading(true);
-	// 	try {
-	// 		const downloadedData = await getDetailedScaffoldGroupById({scaffoldGroupId: values.scaffoldGroup});
-	// 		// console.log(downloadedData);
-	// 		if (downloadedData)
-	// 		{
-	// 			// downloadScaffoldGroupAsExcel(downloadedData)
-	// 			// setPreviewData(downloadedData); // Set the data for preview
-	// 			openPreviewInNewTab(
-	// 				downloadedData,
-	// 				downloadScaffoldGroupAsExcel,
-	// 				triggerDownload,
-	// 				[0,4],
-	// 				100
-	// 			);
-	// 		}
-	// 	} catch (error) {
-	// 		console.error("Error downloading data:", error);
-	// 		setErrors({ submit: 'Failed to download data. Please try again.' });
-	// 	} finally {
-	// 		setIsLoading(false);
-	// 	}
-	// }
 
 	const download = useCallback(async (values: any, setErrors: Function) => {
 		setIsLoading(true);
@@ -132,16 +101,6 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 		}
 	}, [poreInfo]);
 	
-	// const poreAspectRatioValues = useMemo(() => {
-	// 	if (!poreInfo?.poreAspectRatio) return [];
-	// 	try {
-	// 		const parsed = JSON.parse(poreInfo.poreAspectRatio) as { value: number }[];
-	// 		return parsed.map(item => item.value);
-	// 	} catch (error) {
-	// 		console.error("Failed to parse poreAspectRatio", error);
-	// 		return [];
-	// 	}
-	// }, [poreInfo?.poreAspectRatio]);
 	
 	const maxHeight = isVisible ? "500px" : "0px";
 

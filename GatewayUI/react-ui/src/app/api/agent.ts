@@ -12,6 +12,7 @@ import { Domain } from "../models/domain";
 import { Job } from "../models/job";
 import { ScaffoldWithMissingThumbnail } from "../models/scaffold";
 import { PoreInfo } from "../models/poreInfo";
+import { DomainMetadata } from "../models/domainMetadata";
 
 axios.defaults.baseURL = environment.baseUrl;
 
@@ -112,9 +113,12 @@ const Descriptors = {
 }
 
 const Domains = {
-    visualize: async (scaffoldId?: number | null) => {
+    visualize: async (scaffoldId?: number | null, category?: number | null) => {
         const id = scaffoldId ?? -1
         const response = await axios.get(`/domains/${id}`, {
+            params: {
+                category: category ?? 0  // Default to 0 (Particles) if not provided
+            },
             responseType: 'blob', // Ensures we get the response as binary data
             headers: {
                 'Accept': 'application/json, text/plain, */*'
@@ -129,11 +133,14 @@ const Domains = {
             voxelCount: parseInt(response.headers['x-voxel-count'], 10) || undefined,
             voxelSize: parseInt(response.headers['x-voxel-size'], 10) || undefined,
             domainSize: response.headers['x-domain-size'] || undefined,
-            meshFilePath: response.headers['x-mesh-filepath'] || undefined
+            originalFileName: response.headers['x-original-filename'] || undefined,
         };
 
         return { file: response.data, domain };
     },
+    
+    getDomainMetadata: (domainId: number) => requests.get<ApiResponse<DomainMetadata | null>>('/domains/' + domainId.toString() + '/metadata'),
+
     createDomain: async (formData: FormData) => {
         const response = await axios.post<ApiResponse<Domain>>(`/domains/create`, formData, {
             headers: { 'Content-Type': 'multipart/form-data' },
