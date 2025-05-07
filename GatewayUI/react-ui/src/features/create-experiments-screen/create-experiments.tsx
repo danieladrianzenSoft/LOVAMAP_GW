@@ -14,16 +14,15 @@ import { IoIosCloseCircleOutline } from "react-icons/io";
 import ExperimentSidebar from "./experiment-sidebar";
 import ScaffoldGroupsFilterResults from "../scaffold-groups/scaffold-group-filter-results";
 import { useScaffoldGroupFiltering } from "../../app/common/hooks/useScaffoldGroupFiltering";
+import AISearchBar from "../../app/common/ai-search-bar/ai-seach-bar";
+import Tag from "../../app/common/tag/tag";
 
 type OptionKey = 'excelFileOption' | 'sheetOption' | 'columnOption' | 'stackedColumnOption';
 
 const CreateExperiments = () => {
     const { scaffoldGroupStore } = useStore();
-    // const { scaffoldGroups, getDetailedScaffoldGroupsForExperiment } = scaffoldGroupStore;
     const {
         scaffoldGroups,
-        // selectedTagNames,
-		// selectedParticleSizeIds,
 		segmentedScaffoldGroups: { exact, related },
         getDetailedScaffoldGroupsForExperiment,
     } = scaffoldGroupStore;
@@ -56,8 +55,17 @@ const CreateExperiments = () => {
         selectedTags,
         setSelectedTags,
         selectedTagNames,
-        removeFilterTag
+        removeFilterTag,
+        loadAIResults,
+        aiSearchUsed,
+        setAiSearchUsed,
     } = useScaffoldGroupFiltering(true, setIsLoading);
+
+    const clearFilters = () => {
+		setSelectedTags({});
+		setSelectedParticleSizeIds([]);
+        setAiSearchUsed(false);
+	};
 
     const handleSelectDescriptorType = (descriptorType: DescriptorType) => {
         setSelectedDescriptorTypes(prev => {
@@ -278,9 +286,10 @@ const CreateExperiments = () => {
                     </thead>
                 </table>
             </div>
-            
         );
     };
+
+
 
     return (
         <>
@@ -289,62 +298,85 @@ const CreateExperiments = () => {
                     onClick={() => setSidebarVisible(true)}
                     className="fixed-vertical-button"
                 >
-                    Experiment Summary
+                    Download summary
                 </button>
             </div>
             <div className={`container mx-auto py-8 px-2`}>
-                <div className="text-3xl text-gray-700 font-bold mb-12">Create experiments</div>
+                <div className="text-3xl text-gray-700 font-bold mb-12">Customize downloads</div>
                 {/* Toggle sidebar on small screens */}
                 
                 <div className="flex h-full">
-                {experimentStage === 1 && 
-                    <div className="lg:w-3/4 sm:w-full mb-12">
-                        <div className="flex flex-col md:flex-row md:justify-between md:items-center md:mr-6">
-                            <p className="text-xl mb-2 md:mb-4 w-full">1. Select the scaffold groups to include in your experiment</p>
-                            <div className="flex justify-end space-x-1 w-full md:w-auto">
-                                <button className="button-outline" onClick={() => setExperimentStage(2)}>Next</button>
+                    {experimentStage === 1 && 
+                        <div className="lg:w-3/4 sm:w-full mb-12">
+                            <div className="flex flex-col md:flex-row md:justify-between md:items-center md:mr-6">
+                                <p className="text-xl mb-2 md:mb-4 w-full">1. Select the scaffold groups to include in your download</p>
+                                <div className="flex justify-end space-x-1 w-full md:w-auto">
+                                    <button className="button-outline" onClick={() => setExperimentStage(2)}>Next</button>
+                                </div>
                             </div>
+
+                            <div className="flex flex-col md:flex-row md:justify-between md:items-center md:mr-6">
+                                <AISearchBar onSearch={loadAIResults} onClear={clearFilters}/>
+                            </div>
+
+                            <div className="flex flex-col">
+                                {aiSearchUsed && (
+                                    <div className="text-gray-700 text-sm mb-4">
+                                            {aiSearchUsed && (
+                                                <div className="flex flex-wrap gap-x-1 gap-y-1">
+                                                    <p>Based on your search prompt, the tags that best match the search are:</p>
+                                                    {selectedTagNames.map((tag, index) => (
+                                                        <Tag key={index} text={tag} />
+                                                    ))}
+                                                    {selectedParticleSizeIds.map((tag, index) => (
+                                                        <Tag key={index} text={tag.toString() + "um"} />
+                                                    ))}
+                                                </div>
+                                            )}
+                                        </div>
+                                )}
+                            </div>
+
+
+
+                            <ScaffoldGroupFilters 
+                                setIsLoading={setIsLoading} 
+                                condensed={true} 
+                                allFiltersVisible={true}
+                                selectedParticleSizeIds={selectedParticleSizeIds}
+                                setSelectedParticleSizeIds={setSelectedParticleSizeIds}
+                                selectedTags={selectedTags}
+                                setSelectedTags={setSelectedTags}
+                            />
+
+                            {isLoading ? (
+                                <div className="flex justify-center items-center py-8">
+                                    <FaSpinner className="animate-spin" size={40} />
+                                </div>
+                            ) : (
+                                <>
+                                    <ScaffoldGroupsFilterResults
+                                        scaffoldGroups={scaffoldGroups}
+                                        exact={exact}
+                                        related={related}
+                                        selectedScaffoldGroups={selectedScaffoldGroups}
+                                        visibleDetails={visibleDetails}
+                                        toggleDetails={toggleDetails}
+                                        onSelect={handleSelectScaffoldGroup}
+                                        onUnselect={handleUnselectScaffoldGroup}
+                                        selectedTagNames={selectedTagNames}
+                                        selectedParticleSizeIds={selectedParticleSizeIds}
+                                        onRemoveTag={removeFilterTag}
+                                        largeScreenColumns={2}
+                                    />
+                                </>
+                            )}
                         </div>
-
-                        {/* <ScaffoldGroupFilters condensed={true} allFiltersVisible={true} setIsLoading={setIsLoading} /> */}
-                        <ScaffoldGroupFilters 
-                            setIsLoading={setIsLoading} 
-                            condensed={true} 
-                            allFiltersVisible={true}
-                            selectedParticleSizeIds={selectedParticleSizeIds}
-                            setSelectedParticleSizeIds={setSelectedParticleSizeIds}
-                            selectedTags={selectedTags}
-                            setSelectedTags={setSelectedTags}
-                        />
-
-                        {isLoading ? (
-                            <div className="flex justify-center items-center py-8">
-                                <FaSpinner className="animate-spin" size={40} />
-                            </div>
-                        ) : (
-                            <>
-                                <ScaffoldGroupsFilterResults
-                                    scaffoldGroups={scaffoldGroups}
-                                    exact={exact}
-                                    related={related}
-                                    selectedScaffoldGroups={selectedScaffoldGroups}
-                                    visibleDetails={visibleDetails}
-                                    toggleDetails={toggleDetails}
-                                    onSelect={handleSelectScaffoldGroup}
-                                    onUnselect={handleUnselectScaffoldGroup}
-                                    selectedTagNames={selectedTagNames}
-                                    selectedParticleSizeIds={selectedParticleSizeIds}
-                                    onRemoveTag={removeFilterTag}
-                                    largeScreenColumns={2}
-                                />
-                            </>
-                        )}
-                    </div>
-                }
+                    }
                     {experimentStage === 2 && 
                         <div className="lg:w-3/4 sm:w-full mb-12">
                             <div className="flex flex-col md:flex-row md:justify-between md:items-center md:mr-6">
-                                <p className="text-xl mb-2 md:mb-4 w-full">2. Select the descriptors to output in your experiment</p>
+                                <p className="text-xl mb-2 md:mb-4 w-full">2. Select the descriptors to output</p>
                                 <div className="flex justify-end space-x-1 w-full md:w-auto">
                                     <button className="button-outline whitespace-nowrap" onClick={() => setExperimentStage(1)}>Back</button>
                                     <button className="button-outline whitespace-nowrap" onClick={() => setExperimentStage(3)}>Next</button>
@@ -364,7 +396,7 @@ const CreateExperiments = () => {
                                     <button className="button-outline whitespace-nowrap" onClick={() => setExperimentStage(2)}>Back</button>
                                     {/* <button className="button-outline" onClick={() => handleGetExperiment()}>Generate Output</button> */}
                                     <button className="button-outline flex items-center gap-2 whitespace-nowrap" onClick={() => handleGetExperiment()}>
-                                        Generate Output
+                                        Download Data
                                         {isLoading && <FaSpinner className="animate-spin text-current text-[1em]" />}
                                     </button>
                                 </div>

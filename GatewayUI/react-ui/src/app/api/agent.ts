@@ -13,6 +13,7 @@ import { Job } from "../models/job";
 import { ScaffoldWithMissingThumbnail } from "../models/scaffold";
 import { PoreInfo } from "../models/poreInfo";
 import { DomainMetadata } from "../models/domainMetadata";
+import { AiScaffoldGroupSearch } from "../models/aiScaffoldGroupSearch";
 
 axios.defaults.baseURL = environment.baseUrl;
 
@@ -80,6 +81,7 @@ const ScaffoldGroups = {
 	getSummarized: (queryParams: string) => requests.get<ApiResponse<ScaffoldGroup[]>>('/scaffoldGroups' + queryParams),
 	getPublic: (queryParams: string) => requests.get<ApiResponse<ScaffoldGroup[]>>('/scaffoldGroups/public' + queryParams),
     getSummary: (id: number) => requests.get<ApiResponse<ScaffoldGroup>>('/scaffoldGroups/' + id + '/summary'),
+    search: (prompt: string) => requests.post<ApiResponse<AiScaffoldGroupSearch>>('/scaffoldGroups/search', {"prompt": prompt}),
     getGroupSummaryByScaffoldId: (id: number) => requests.get<ApiResponse<ScaffoldGroup>>('/scaffoldGroups/scaffold/' + id + '/summary'),
 	getDetailed: (id: number) => requests.get<ApiResponse<ScaffoldGroup>>('/scaffoldGroups/' + id),
     getDetailedForExperiment: (queryParams: string) => requests.get<ApiResponse<ScaffoldGroup[]>>('/scaffoldGroups/detailed' + queryParams),

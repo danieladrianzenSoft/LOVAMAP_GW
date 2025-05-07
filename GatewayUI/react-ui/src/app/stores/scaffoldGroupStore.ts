@@ -15,6 +15,7 @@ export default class ScaffoldGroupStore {
 	selectedTagNames: string[] = [];
 	selectedParticleSizeIds: number[] = [];
 	isFetchingScaffoldGroup: boolean = false;
+	groupedSelectedTags: { [key: string]: Tag[] } = {};
 
 	constructor() {
 		makeAutoObservable(this)
@@ -216,6 +217,29 @@ export default class ScaffoldGroupStore {
 			return null;
         }
     };
+
+	searchScaffoldGroups = async (searchPrompt: string) => {
+		try {
+			const response = await agent.ScaffoldGroups.search(searchPrompt);
+			runInAction(() => {
+				this.scaffoldGroups = response.data.scaffoldGroups;
+	
+				this.selectedParticleSizeIds = response.data.selectedParticleSizes || [];
+				this.selectedTagNames = response.data.selectedTags?.map((t: Tag) => t.name) || [];
+	
+				// Group selected tags by referenceProperty (for useScaffoldGroupFiltering)
+				const grouped: { [key: string]: Tag[] } = {};
+				response.data.selectedTags?.forEach((tag: Tag) => {
+					const key = tag.referenceProperty || "other";
+					if (!grouped[key]) grouped[key] = [];
+					grouped[key].push(tag);
+				});
+				this.groupedSelectedTags = grouped; // <-- add this to your store
+			});
+		} catch (error) {
+			console.error(error);
+		}
+	}
 
 	getPublicScaffoldGroups = async (selectedTags?: Tag[] | null, sizeIds?: number[] | null) => {
 		try {

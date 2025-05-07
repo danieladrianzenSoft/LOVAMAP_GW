@@ -1,6 +1,8 @@
 GatewayBackend/API/appsettings.json
 GatewayBackend/API/appsettings.Development.json
 GatewayBackend/API/appsettings.Production.json
+GatewayBackend/API/bin/
+GatewayBackend/API/obj/
 GatewayUI/react-ui/node_modules
 .env
 .env.production
@@ -8,3 +10,4 @@ GatewayUI/react-ui/node_modules
 *.glb
 *.gltf
 *.stl
+*.vscode/

@@ -258,7 +258,7 @@ namespace Repositories.Repositories
 
 		public async Task<PoreInfoDto?> GetPoreInfo(int scaffoldId)
 		{
-			var descriptorTypeIds = new List<int> { 22, 27 };
+			var descriptorTypeIds = new List<int> { 22, 23, 25, 27 };
 
 			var descriptors = await _context.PoreDescriptors
 				.AsNoTracking()
@@ -272,6 +272,8 @@ namespace Repositories.Repositories
 				.ToListAsync();
 
 			var poreVolume = descriptors.FirstOrDefault(d => d.DescriptorTypeId == 22)?.Values;
+			var poreSurfaceArea = descriptors.FirstOrDefault(d => d.DescriptorTypeId == 23)?.Values;
+			var poreLongestLength = descriptors.FirstOrDefault(d => d.DescriptorTypeId == 25)?.Values;
 			var poreAspectRatio = descriptors.FirstOrDefault(d => d.DescriptorTypeId == 27)?.Values;
 			var scaffoldGroupId = descriptors.FirstOrDefault()?.ScaffoldGroupId ?? 0;
 
@@ -283,6 +285,8 @@ namespace Repositories.Repositories
 				ScaffoldId = scaffoldId,
 				ScaffoldGroupId = scaffoldGroupId,
 				PoreVolume = poreVolume,
+				PoreSurfaceArea = poreSurfaceArea,
+				PoreLongestLength = poreLongestLength,
 				PoreAspectRatio = poreAspectRatio
 			};
 		}

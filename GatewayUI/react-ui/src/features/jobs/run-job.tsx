@@ -52,16 +52,20 @@ const RunJob: React.FC = () => {
 
 	return (
 		<div className={`container mx-auto py-8 px-2`}>
-			<div className="text-3xl text-gray-700 font-bold mb-12">Run job</div>
-			<UploadFile
-				acceptedFileTypes={{ 
-					'application/json': ['.json'],
-					'text/csv': ['.csv'],
-					'application/octet-stream': ['.dat']
-				 }}
-				onUploadSubmit={handleUploadSubmitFile}
-				onUploadError={handleUploadError}
-			/>
+			<div className="text-3xl text-gray-700 font-bold mb-12">Run LOVAMAP</div>
+			{process.env.REACT_APP_ENV === 'preproduction' ? (
+				<UploadFile
+					acceptedFileTypes={{ 
+						'application/json': ['.json'],
+						'text/csv': ['.csv'],
+						'application/octet-stream': ['.dat']
+					}}
+					onUploadSubmit={handleUploadSubmitFile}
+					onUploadError={handleUploadError}
+				/> 
+			) : ( 
+				<div className="text-gray-500">Coming Soon...</div>
+			)}
 		</div>
 	);
 };

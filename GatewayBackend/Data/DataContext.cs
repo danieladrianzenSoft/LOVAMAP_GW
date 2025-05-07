@@ -27,6 +27,7 @@ public partial class DataContext : IdentityDbContext<User, Role, string>
 	public DbSet<DescriptorTypeDownload> DescriptorTypeDownloads { get; set; }
 	public DbSet<ScaffoldDownload> ScaffoldDownloads { get; set; }
 	public DbSet<ScaffoldTag> ScaffoldTags { get; set; }
+    public DbSet<AISearch> AISearches { get; set; }
 
 	protected override void OnModelCreating(ModelBuilder builder)
 	{

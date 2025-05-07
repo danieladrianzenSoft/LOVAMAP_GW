@@ -9,6 +9,7 @@ import { FaSpinner } from 'react-icons/fa';
 import { openPreviewInNewTab } from '../../app/common/new-tab-preview/new-tab-preview';
 import { PoreInfo } from '../../app/models/poreInfo';
 import { HistogramPlot } from '../plotting/histogram-plot';
+import PlotSelector from '../../app/common/plot-selector/plot-selector';
 
 interface ScaffoldGroupDetailsProps {
     scaffoldGroup: ScaffoldGroup;
@@ -100,6 +101,32 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 			return [];
 		}
 	}, [poreInfo]);
+
+	const poreSurfaceAreaValues = useMemo(() => {
+		if (!poreInfo?.poreSurfaceArea) return [];
+		try {
+			const parsed = typeof poreInfo.poreSurfaceArea === 'string'
+				? JSON.parse(poreInfo.poreSurfaceArea)
+				: poreInfo.poreSurfaceArea;
+			return parsed.map((item: any) => item.value);
+		} catch (e) {
+			console.error("Failed to parse poreSurfaceArea", e);
+			return [];
+		}
+	}, [poreInfo]);
+
+	const poreLongestLengthValues = useMemo(() => {
+		if (!poreInfo?.poreLongestLength) return [];
+		try {
+			const parsed = typeof poreInfo.poreLongestLength === 'string'
+				? JSON.parse(poreInfo.poreLongestLength)
+				: poreInfo.poreLongestLength;
+			return parsed.map((item: any) => item.value);
+		} catch (e) {
+			console.error("Failed to parse poreLongestLength", e);
+			return [];
+		}
+	}, [poreInfo]);
 	
 	
 	const maxHeight = isVisible ? "500px" : "0px";
@@ -113,9 +140,6 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 				<div className="flex flex-col lg:flex-row justify-center items-start gap-4">
 					<div className="flex-1 p-4 w-full">
 						{/* Container for figures */}
-
-                        {/* <p className="text-lg font-semibold mb-4">Figures</p> */}
-
 						{scaffoldGroup.images.length > 0 ? (
 							<div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
 								{scaffoldGroup.images
@@ -128,58 +152,126 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 									})
 									.map((image, index) => (
 										<div key={index} className="flex flex-col items-center">
+										<div
+											className="relative w-full h-64 group overflow-hidden rounded-lg transition-shadow duration-300 hover:shadow-lg hover:scale-[1.01] cursor-pointer"
+											onClick={() => navigateToVisualization(scaffoldGroup)}
+										>
+											{/* Top-centered category label */}
+											<p className="absolute left-1/2 top-2 transform -translate-x-1/2 bg-white bg-opacity-70 text-sm text-gray-700 px-2 py-0.5 rounded z-10">
+												{image.category}
+											</p>
+
+											{/* Image */}
 											<img 
 												src={image.url} 
 												alt={image.category} 
-												className="w-full h-64 object-cover mb-2"
+												className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
 											/>
-											<p className="text-sm text-gray-600">{image.category}</p>
+
+											{/* Interact Button (visible on hover) */}
+											<div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-0 group-hover:bg-opacity-30 transition duration-300">
+												<button
+													className="opacity-0 group-hover:opacity-100 text-white bg-blue-600 hover:bg-blue-700 text-sm px-4 py-1 rounded shadow transition duration-200"
+													onClick={(e) => {
+														e.stopPropagation(); // prevent click from bubbling
+														navigateToVisualization(scaffoldGroup);
+													}}
+												>
+													Interact
+												</button>
+											</div>
 										</div>
+									</div>
 								))}
                         	</div>
 						) : (
 							<p className="text-sm text-gray-500 italic">No figures added</p>
 						)}
 
-						{/* <div className="w-full h-[300px]">
-							<HistogramPlot 
-								data={scaffoldGroup.inputs.sizeDistribution} 
-								title={"Particle Size Distribution"} 
-								xlabel={""}
-								ylabel={""}
-								hideYLabels={true}
+						<div className="flex flex-col items-center mt-8">
+							<p className="mt-0 -mb-5">Interior Pore Descriptors</p>
+							<PlotSelector
+								initialKey="volume"
+								plots={[
+									{
+										key: 'volume',
+										label: 'Volume',
+										component: poreVolumeValues.length > 0 ? (
+											<HistogramPlot
+												data={poreVolumeValues}
+												xlabel="Pore Volume"
+												hideYLabels
+												showHoverInfo={true}
+												interactive={false}
+											/>
+										) : (
+											<div className="text-sm text-gray-400 mt-4">No data for Pore Volume</div>
+										)
+									},
+									{
+										key: 'surfaceArea',
+										label: 'Surface Area',
+										component: poreSurfaceAreaValues.length > 0 ? (
+											<HistogramPlot
+												data={poreSurfaceAreaValues}
+												xlabel="Pore Surface Area"
+												hideYLabels
+												showHoverInfo={true}
+												interactive={false}
+											/>
+										) : (
+											<div className="text-sm text-gray-400 mt-4">No data for Surface Area</div>
+										)
+									},
+									{
+										key: 'aspect',
+										label: 'Aspect Ratio',
+										component: poreAspectRatioValues.length > 0 ? (
+											<HistogramPlot
+												data={poreAspectRatioValues}
+												xlabel="Pore Aspect Ratio"
+												hideYLabels
+												showHoverInfo={true}
+												interactive={false}
+											/>
+										) : (
+											<div className="text-sm text-gray-400 mt-4">No data for Aspect Ratio</div>
+										)
+									},
+									{
+										key: 'longestLength',
+										label: 'Longest Length',
+										component: poreLongestLengthValues.length > 0 ? (
+											<HistogramPlot
+												data={poreLongestLengthValues}
+												xlabel="Pore Longest Length"
+												hideYLabels
+												showHoverInfo={true}
+												interactive={false}
+											/>
+										) : (
+											<div className="text-sm text-gray-400 mt-4">No data for Longest Length</div>
+										)
+									},
+									{
+										key: 'more',
+										label: 'More...',
+										component: (
+											<div className="text-sm text-gray-400 italic mt-4">Coming soon...</div>
+										)
+									}
+								]}
 							/>
-						</div> */}
-
-						<div className="w-full h-48 mb-4">
-							{ poreVolumeValues.length > 0 && 
-								<HistogramPlot
-									data={poreVolumeValues}
-									xlabel="Pore Volume"
-									hideYLabels={true}
-									showHoverInfo={false}
-								/>
-							}
-						</div>
-						<div className="w-full h-48 mb-4">
-							{ poreAspectRatioValues.length > 0 && 
-								<HistogramPlot
-									data={poreAspectRatioValues}
-									xlabel="Pore Aspect Ratio"
-									hideYLabels={true}
-									showHoverInfo={false}
-								/>
-							}
 						</div>
 
-						<button
+						{/* <button
 							className={`mt-4 px-4 py-2 rounded transition ${
 									"bg-blue-600 text-white hover:bg-blue-700"
 							}`}
 							onClick={() => navigateToVisualization(scaffoldGroup)}
 						>
 							Interact
-						</button>
+						</button> */}
 						
 					</div>
 					<div className="flex-1 p-4 w-full">
@@ -202,10 +294,10 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 									<td className="font-medium text-gray-900 align-top w-32">Container Shape:</td>
 									<td>{scaffoldGroup.inputs?.containerShape ?? 'n/a'}</td>
 								</tr>
-								<tr>
+								{/* <tr>
 									<td className="font-medium text-gray-900 align-top w-32">Container Size:</td>
 									<td>{scaffoldGroup.inputs?.containerSize ?? 'n/a'}</td>
-								</tr>
+								</tr> */}
 								<tr>
 									<td className="font-medium text-gray-900 align-top">Packing Configuration:</td>
 									<td>{scaffoldGroup.inputs?.packingConfiguration ?? 'unknown'}</td>

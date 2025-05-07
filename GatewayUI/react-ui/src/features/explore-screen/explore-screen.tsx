@@ -5,22 +5,16 @@ import ScaffoldGroupFilters from "../scaffold-groups/scaffold-group-filter";
 import { FaSpinner } from 'react-icons/fa';
 import ScaffoldGroupsFilterResults from "../scaffold-groups/scaffold-group-filter-results";
 import { useScaffoldGroupFiltering } from "../../app/common/hooks/useScaffoldGroupFiltering";
+import AISearchBar from "../../app/common/ai-search-bar/ai-seach-bar";
+import Tag from "../../app/common/tag/tag";
 
 const ExploreScreen = () => {
 	const { commonStore, scaffoldGroupStore } = useStore();
 	const isLoggedIn = commonStore.isLoggedIn;
-	// const {
-	// 	scaffoldGroups,
-	// 	selectedTagNames,
-	// 	selectedParticleSizeIds,
-	// 	segmentedScaffoldGroups: { exact, related }
-	// } = scaffoldGroupStore;
-
 	const {
 		scaffoldGroups,
 		segmentedScaffoldGroups: { exact, related }
 	} = scaffoldGroupStore
-
 	const [visibleDetails, setVisibleDetails] = useState<number | null>(null);
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -34,11 +28,17 @@ const ExploreScreen = () => {
 		selectedTags,
 		setSelectedTags,
 		selectedTagNames,
-		removeFilterTag
+		removeFilterTag,
+		loadAIResults,
+		aiSearchUsed,
+		setAiSearchUsed,
 	} = useScaffoldGroupFiltering(isLoggedIn, setIsLoading);
 
-	// const selectedTagNames = Object.values(selectedTags).flat().map(tag => tag.name);
-
+	const clearFilters = () => {
+		setSelectedTags({});
+		setSelectedParticleSizeIds([]);
+		setAiSearchUsed(false);
+	};
 
 	return (
 		<div className="container mx-auto py-8 px-4 sm:px-6 lg:px-8">
@@ -46,10 +46,30 @@ const ExploreScreen = () => {
 				Explore {isLoggedIn ? "scaffolds" : "public scaffolds"}
 			</div>
 
+			<AISearchBar onSearch={loadAIResults} onClear={clearFilters}/>
+
+			{aiSearchUsed && (
+				<div className="mt-4 text-gray-700 text-sm mb-4">
+					<div className="mt-4 text-gray-700 text-sm">
+						{aiSearchUsed && (
+							<div className="flex flex-wrap gap-x-1 gap-y-1">
+								<p>Based on your search prompt, the tags that best match the search are:</p>
+								{selectedTagNames.map((tag, index) => (
+									<Tag key={index} text={tag} />
+								))}
+								{selectedParticleSizeIds.map((tag, index) => (
+									<Tag key={index} text={tag.toString() + "um"} />
+								))}
+							</div>
+						)}
+					</div>
+				</div>
+			)}
+
 			<ScaffoldGroupFilters 
 				setIsLoading={setIsLoading} 
 				condensed={true} 
-				allFiltersVisible={true}
+				allFiltersVisible={false}
 				selectedParticleSizeIds={selectedParticleSizeIds}
 				setSelectedParticleSizeIds={setSelectedParticleSizeIds}
 				selectedTags={selectedTags}

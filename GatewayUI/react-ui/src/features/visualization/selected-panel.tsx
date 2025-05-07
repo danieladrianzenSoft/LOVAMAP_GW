@@ -63,13 +63,13 @@ const SelectedPanel: React.FC<Props> = ({
       </div>
 
       {/* Particle Display */}
-      {domainCategory === 0 && particleDiameter !== undefined && (
+      {/* {domainCategory === 0 && particleDiameter !== undefined && (
         <div className="mt-2 text-sm text-gray-700">
           <p>
             <span className="font-semibold">Diameter:</span> {particleDiameter.toFixed(0)} um
           </p>
         </div>
-      )}
+      )} */}
 
       {/* Pore Display */}
       {domainCategory !== 0 && poreMetadata && (

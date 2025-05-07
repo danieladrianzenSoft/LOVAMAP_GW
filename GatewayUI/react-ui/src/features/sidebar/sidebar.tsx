@@ -4,7 +4,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { useStore } from '../../app/stores/store';
 import { observer } from 'mobx-react-lite';
 import logo from '../../../src/LOVAMAP_logo.png';
-import dukelogo from '../../../src/Duke_logo.png';
+import dukelogo from '../../../src/Duke-Pratt-Logo.svg';
 
 interface SidebarProps {
 	isOpen: boolean;
@@ -32,10 +32,12 @@ const SideBar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
 			setActiveTab(2);
 		} else if (location.pathname === '/experiments') {
 			setActiveTab(3);
-		} else if (location.pathname === '/uploads') {
+		} else if (location.pathname === '/jobs') {
 			setActiveTab(4);
-		} else if (location.pathname.startsWith('/admin')) {
+		} else if (location.pathname === '/uploads') {
 			setActiveTab(5);
+		} else if (location.pathname.startsWith('/admin')) {
+			setActiveTab(6);
 		} else {
 			setActiveTab(0);
 		}
@@ -86,7 +88,14 @@ const SideBar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
 							<Tab as={NavLink} to='/experiments' onClick={() => setIsOpen(false)} className="focus:outline-none">
 							{({ selected }) => (
 								<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
-								<p>Create Experiments</p>
+								<p>Customize downloads</p>
+								</div>
+							)}
+							</Tab>
+							<Tab as={NavLink} to='/jobs' onClick={() => setIsOpen(false)} className="focus:outline-none">
+							{({ selected }) => (
+								<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
+								<p>Run LOVAMAP</p>
 								</div>
 							)}
 							</Tab>
@@ -102,7 +111,7 @@ const SideBar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
 									<Tab as={NavLink} to='/admin/batch-thumbnails' onClick={() => setIsOpen(false)} className="focus:outline-none">
 										{({ selected }) => (
 										<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
-											<p>Admin Utilities</p>
+											<p>Admin utilities</p>
 										</div>
 										)}
 									</Tab>
@@ -116,7 +125,7 @@ const SideBar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
 							Materials in<br />Medicine Center
 						</p>
 						<img
-							className="mx-auto w-40 mt-0"
+							className="mx-auto w-20 mt-2"
 							src={dukelogo}
 							alt="dukelogo"
 						/>

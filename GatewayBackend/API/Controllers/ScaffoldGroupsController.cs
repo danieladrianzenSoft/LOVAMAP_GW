@@ -19,13 +19,15 @@ public class ScaffoldGroupsController : ControllerBase
     private readonly ILogger<ScaffoldGroupsController> _logger;
     private readonly IScaffoldGroupService _scaffoldGroupService;
 	private readonly IImageService _imageService;
+	private readonly IAISearchService _aiSearchService;
 	private readonly IUserService _userService;
 
     public ScaffoldGroupsController(ILogger<ScaffoldGroupsController> logger, 
 		IScaffoldGroupService scaffoldGroupService, IImageService imageService,
-		IUserService userService)
+		IAISearchService aiSearchService, IUserService userService)
     {
         _scaffoldGroupService = scaffoldGroupService;
+		_aiSearchService = aiSearchService;
 		_userService = userService;
 		_imageService = imageService;
 		_logger = logger;
@@ -198,6 +200,33 @@ public class ScaffoldGroupsController : ControllerBase
 		}
     }
 
+	[AllowAnonymous]
+	[HttpPost("search")]
+	public async Task<IActionResult> GetSummarizedScaffoldGroupsBySmartSearch([FromBody]AISearchRequest searchRequest)
+	{
+		try
+		{
+			var userId = _userService.GetCurrentUserId();
+
+			if (userId == null) {
+				var (succeededAdminUser, errorMessageAdminUser, adminUserId) = await _userService.GetAdminUserIdAsync();
+				if (!succeededAdminUser || adminUserId == null) return StatusCode(500, new ApiResponse<string>(500, errorMessageAdminUser));
+
+				userId = adminUserId;
+			}
+
+			var (success, errorMessage, searchResult) = await _aiSearchService.RunSearchScaffoldGroupPipeline(searchRequest.Prompt, userId);
+
+			if (!success || searchResult == null) return BadRequest(new ApiResponse<string>(400, errorMessage));
+
+			return Ok(new ApiResponse<AIScaffoldSearchResponse>(200, "", searchResult));
+		}
+		catch (Exception ex)
+		{
+			_logger.LogError(ex, "Failed to search the scaffold groups");
+        	return StatusCode(500, new ApiResponse<string>(500, "An error occurred while searching the scaffold grous"));
+		}
+	}
 
 	[AllowAnonymous]
 	[HttpGet("public")]

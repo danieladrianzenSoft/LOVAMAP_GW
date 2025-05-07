@@ -90,6 +90,7 @@ builder.Services.AddScoped<ITagRepository, TagRepository>();
 builder.Services.AddScoped<IImageRepository, ImageRepository>();
 builder.Services.AddScoped<IPublicationRepository, PublicationRepository>();
 builder.Services.AddScoped<IDomainRepository, DomainRepository>();
+builder.Services.AddScoped<IAISearchRepository, AISearchRepository>();
 
 // Add helpers
 builder.Services.AddScoped<IUserAuthHelper, UserAuthHelper>();
@@ -118,6 +119,8 @@ builder.Services.AddScoped<IPublicationService, PublicationService>();
 builder.Services.AddScoped<IDomainService, DomainService>();
 builder.Services.AddScoped<IModelMapper, ModelMapper>();
 builder.Services.AddScoped<ILovamapCoreJobService, LovamapCoreJobService>();
+builder.Services.AddScoped<IEmailService, EmailService>();
+builder.Services.AddScoped<IAISearchService, AISearchService>();
 builder.Services.AddScoped<SeedingService>();
 
 // Other services

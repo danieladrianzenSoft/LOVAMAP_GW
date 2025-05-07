@@ -7,6 +7,7 @@ export const useScaffoldGroupFiltering = (isLoggedIn: boolean, setIsLoading: (lo
 
 	const [selectedTags, setSelectedTags] = useState<{ [key: string]: Tag[] }>({});
 	const [selectedParticleSizeIds, setSelectedParticleSizeIds] = useState<number[]>([]);
+	const [aiSearchUsed, setAiSearchUsed] = useState(false);
 
 	// Trigger filtering whenever tags or particle sizes change
 	useEffect(() => {
@@ -49,6 +50,20 @@ export const useScaffoldGroupFiltering = (isLoggedIn: boolean, setIsLoading: (lo
 		});
 	};
 
+	const loadAIResults = async (prompt: string) => {
+		setIsLoading(true);
+		try {
+			await scaffoldGroupStore.searchScaffoldGroups(prompt);
+			setSelectedParticleSizeIds(scaffoldGroupStore.selectedParticleSizeIds);
+			setSelectedTags(scaffoldGroupStore.groupedSelectedTags);
+			setAiSearchUsed(true);
+		} catch (error) {
+			console.error("Failed to load AI scaffold group search:", error);
+		} finally {
+			setIsLoading(false);
+		}
+	};
+
 	const selectedTagNames = useMemo(
 		() => Object.values(selectedTags).flat().map(tag => tag.name),
 		[selectedTags]
@@ -61,5 +76,8 @@ export const useScaffoldGroupFiltering = (isLoggedIn: boolean, setIsLoading: (lo
 		setSelectedParticleSizeIds,
 		removeFilterTag,
 		selectedTagNames,
+		loadAIResults,
+		aiSearchUsed,
+		setAiSearchUsed
 	};
 }
