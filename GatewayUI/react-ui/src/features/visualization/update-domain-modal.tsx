@@ -61,42 +61,42 @@ const UpdateDomainModal: React.FC<UpdateDomainModalProps> = ({
 	}
 
 	const handleSubmit = (e: React.FormEvent) => {
-			e.preventDefault();
-			setError(null);
+		e.preventDefault();
+		setError(null);
 
 		if (!domain && !selectedFile) {
-		setError("Mesh file is required when creating a new domain.");
-		return;
+			setError("Mesh file is required when creating a new domain.");
+			return;
 		}
 
 		if (category === null || category === undefined) {
-		setError("Please select a valid category.");
-		return;
+			setError("Please select a valid category.");
+			return;
 		}
 
 		setSelectedFile(null);
 		setShowUploadField(false);
 
-			onFormSubmit(e, {
-				category,
-				voxelSize,
-				domainSize,
-		selectedFile,
-			});
-		};
+		onFormSubmit(e, {
+			category,
+			voxelSize,
+			domainSize,
+			selectedFile,
+		});
+	};
 
 	const handleFileSelect = async (files: File[]) => {
-			if (files?.length === 0) return;
+		if (files?.length === 0) return;
 		setError(null);
-			setSelectedFile(files[0]);
+		setSelectedFile(files[0]);
 		setShowUploadField(false);
-		}
+	}
 
-		const handleSizeChange = (index: number, value: string) => {
-			const updated = [...domainSize] as [number | null, number | null, number | null];
-			updated[index] = value ? parseFloat(value) : null;
-			setDomainSize(updated);
-		};
+	const handleSizeChange = (index: number, value: string) => {
+		const updated = [...domainSize] as [number | null, number | null, number | null];
+		updated[index] = value ? parseFloat(value) : null;
+		setDomainSize(updated);
+	};
 
 	if (!isOpen) return null;
 

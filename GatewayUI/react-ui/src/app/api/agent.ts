@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import History from "../helpers/History";
 import { store } from "../stores/store";
-import { User, UserLogin, UserRegister } from "../models/user";
+import { User, UserChangePassword, UserConfirmEmail, UserLogin, UserRegister, UserResetPassword } from "../models/user";
 import { ApiResponse } from "../models/apiResponse";
 import { Tag } from "../models/tag";
 import { ScaffoldGroup, ScaffoldGroupToCreate } from "../models/scaffoldGroup";
@@ -19,8 +19,6 @@ axios.defaults.baseURL = environment.baseUrl;
 
 axios.interceptors.request.use(async (config) => {
     const token = store.commonStore.getAccessToken;
-	// const isLoggedIn = store.commonStore.isLoggedIn;
-
     config.headers.Authorization = `Bearer ${token || ''}`;
     return config;
 });
@@ -34,11 +32,9 @@ axios.interceptors.response.use(response => {
     }
     
     const {status, data} = error.response;
+    const responseData = data as ApiResponse<any>;
 
     switch (status) {
-        case 400:
-            console.error('Bad request:', data);
-            break;
         case 401:
             store.userStore.logout();
             if (window.location.pathname.startsWith("/login")) {
@@ -47,14 +43,8 @@ axios.interceptors.response.use(response => {
             const currentPath = window.location.pathname + window.location.search;
             History.push(`/login?redirect=${encodeURIComponent(currentPath)}`);
             break;
-        case 404:
-            console.error('Not found:', data);
-            break;
-        case 500:
-            console.error('Server error:', data);
-            break;
     }
-    return Promise.reject(data);
+    return Promise.reject(responseData);
 });
 
 const responseBody = <T> (response: AxiosResponse<T>) => response.data;
@@ -75,6 +65,11 @@ const Users = {
 	getCurrent: () => requests.get<ApiResponse<User>>('/users/getCurrentUser'),
 	login: (user: UserLogin) => requests.post<ApiResponse<User>>('/auth/login', user),
 	register: (user: UserRegister) => requests.post<ApiResponse<User>>('/auth/register', user),
+    confirmEmail: (userConfirmEmail: UserConfirmEmail) => requests.post<ApiResponse<string>>('/auth/confirm-email', userConfirmEmail),
+    confirmEmailRequest: (email: string) => requests.post<ApiResponse<string>>('/auth/confirm-email-request', {email: email}),
+    forgotPassword: (email: string) => requests.post<ApiResponse<string>>('/auth/forgot-password', {email: email}),
+    resetPassword: (userResetPassword: UserResetPassword) => requests.post<ApiResponse<string>>('/auth/reset-password', userResetPassword),
+    changePassword: (userChangePassword: UserChangePassword) => requests.post<ApiResponse<string>>('/auth/change-password', userChangePassword),
 }
 
 const ScaffoldGroups = {

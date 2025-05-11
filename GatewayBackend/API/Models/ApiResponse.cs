@@ -8,6 +8,15 @@ namespace API.Models
         public bool Succeeded { get; set; } = statusCode >= 200 && statusCode < 300;  // Typical success status code range
         public string Message { get; set; } = message ?? GetDefaultMessageForStatusCode(statusCode);
         public T? Data { get; set; } = data;
+        public string? ErrorCode { get; set; }
+
+        public static ApiResponse<T> Fail(int statusCode, string errorCode, string message)
+        {
+            return new ApiResponse<T>(statusCode, message)
+            {
+                ErrorCode = errorCode
+            };
+        }
 
         private static string GetDefaultMessageForStatusCode(int statusCode)
         {

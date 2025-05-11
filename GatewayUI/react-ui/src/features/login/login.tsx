@@ -9,6 +9,7 @@ import logo from '../../../src/LOVAMAP_logo.png';
 import { Link, NavLink } from "react-router-dom";
 import History from "../../app/helpers/History";
 import { useLocation } from "react-router-dom";
+import { FaSpinner } from "react-icons/fa";
 
 const LoginPage: React.FC = () => {
 	const { userStore } = useStore();
@@ -68,26 +69,30 @@ const LoginPage: React.FC = () => {
 												enableReinitialize
 												initialValues={loginInitialValues}
 												onSubmit={(values, {setErrors}) => 	login(values, setErrors)}>
-												{({handleSubmit, errors, touched}) => (
+												{({handleSubmit, errors, touched, isSubmitting}) => (
 													<Form onSubmit={handleSubmit}>
 														<p className="mb-4">Login to your account</p>
-														<TextInput name='email' placeholder="Email" type='text' errors={errors} touched={touched}/>
-														<TextInput name='password' placeholder="Password" type='password' errors={errors} touched={touched}/>
+														<TextInput name='email' label="Email" type='text' errors={errors} touched={touched}/>
+														<TextInput name='password' label="Password" type='password' errors={errors} touched={touched}/>
 														<ErrorMessage 
 															name='error' 
 															render={(error) => 
-																<p className="text-red-500 text-xs mt-1 ml-1 mb-2 tracking-wide">
-																	{error}
-																</p>
+																	<div className="text-red-600 text-sm bg-red-50 p-2 mb-2 rounded">{error}</div>
 																}
 														/>
 														<div className="text-center pt-1 mb-12 pb-1"> 
-															<button className="button-primary"
+															<button className="button-primary flex items-center justify-center space-x-2"
 																type="submit"
+																disabled={isSubmitting}
 																>
 																Log in
+																{isSubmitting && (
+																	<FaSpinner className="animate-spin ml-2" size={20} />
+																)}
 															</button>
-															<a className="text-gray-500" href="#!">Forgot password?</a>
+															<a className="text-gray-500" href={'/forgot-password'}>
+																Forgot password?
+															</a>
 														</div>
 													</Form>
 												)}

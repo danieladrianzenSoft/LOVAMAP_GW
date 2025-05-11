@@ -18,6 +18,11 @@ import History from '../helpers/History';
 import RunJob from '../../features/jobs/run-job';
 import ScreenshotViewer from '../../features/visualization/screenshot-viewer';
 import AdminBatchThumbnailGenerator from '../../features/admin/admin-batch-thumbnail-generator';
+import ResetPasswordForm from '../../features/user/reset-password';
+import ForgotPasswordForm from '../../features/user/forgot-password';
+import ConfirmEmailPage from '../../features/user/confirm-email';
+import EmailNotConfirmed from '../../features/user/email-not-confirmed';
+import SettingsScreen from '../../features/settings-screen/settings-screen';
 
 const App: React.FC = () => {
   const { commonStore, userStore } = useStore();
@@ -52,6 +57,10 @@ const App: React.FC = () => {
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/confirm-email" element={<ConfirmEmailPage />} />
+        <Route path="/email-not-confirmed" element={<EmailNotConfirmed />} />
+        <Route path="/reset-password" element={<ResetPasswordForm />} />
+        <Route path="/forgot-password" element={<ForgotPasswordForm />} />  
         <Route path="/*" element={<MainLayout />} />
       </Routes>
     </HistoryRouter>
@@ -77,6 +86,7 @@ const MainLayout: React.FC = observer(() => {
           <Route path="/jobs" element={<ProtectedRoute element={<RunJob />} />} />
           <Route path="/screenshots/:scaffoldId" element={<ProtectedRoute requiredRole="administrator" element={<ScreenshotViewer />} />} />
           <Route path="/admin/batch-thumbnails" element={<ProtectedRoute requiredRole="administrator" element={<AdminBatchThumbnailGenerator />} />}/>
+          <Route path="/settings" element={<ProtectedRoute element={<SettingsScreen />} />}/>
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </div>

@@ -198,6 +198,7 @@ namespace Services.Services
 
 				// Save .glb file using DomainFileService
 				var newFilePath = await _domainFileService.SaveGLBFile(glbBytes, domainToCreate.ScaffoldId);
+				var originalFileName = domainToCreate.MeshFile.FileName;
 				
 				string? oldFilePath = null;
 
@@ -213,6 +214,7 @@ namespace Services.Services
 					existingDomain.VoxelSize = domainToCreate.VoxelSize ?? 0;
 					existingDomain.DomainSize = domainToCreate.DomainSize ?? "N/A";
 					existingDomain.CreatedAt = DateTime.UtcNow;
+					existingDomain.OriginalFileName = originalFileName;
 
 					_domainRepository.Update(existingDomain);
 				}
@@ -226,7 +228,8 @@ namespace Services.Services
 						VoxelCount = domainToCreate.VoxelCount ?? 0,
 						VoxelSize = domainToCreate.VoxelSize ?? 0,
 						DomainSize = domainToCreate.DomainSize ?? "N/A",
-						CreatedAt = DateTime.UtcNow
+						CreatedAt = DateTime.UtcNow,
+						OriginalFileName = originalFileName
 					};
 					_domainRepository.Add(newDomain);
 					existingDomain = newDomain;
@@ -248,7 +251,8 @@ namespace Services.Services
 					VoxelCount = existingDomain.VoxelCount,
 					VoxelSize = existingDomain.VoxelSize,
 					DomainSize = existingDomain.DomainSize,
-					MeshFilePath = existingDomain.MeshFilePath
+					MeshFilePath = existingDomain.MeshFilePath,
+					OriginalFileName = existingDomain.OriginalFileName
 				};
 
 				return (true, "", domainToVisualize);

@@ -6,9 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using Infrastructure.DTOs;
 using Services.IServices;
 using API.Models;
-using Infrastructure;
-using Data.Models;
-using Services.Services;
 using Infrastructure.Helpers;
 
 namespace API.Controllers;
@@ -106,5 +103,4 @@ public class UsersController : ControllerBase
             return StatusCode(500, new ApiResponse<string>(500, "An error occurred while trying to send the test email"));
         }
     }
-
 }

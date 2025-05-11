@@ -32,7 +32,8 @@ namespace Infrastructure.Helpers
 
 		public async Task<SignInResult> AuthenticateUser(User user, string password)
 		{
-			return await _signInManager.PasswordSignInAsync(user, password, false, false);
+			// return await _signInManager.PasswordSignInAsync(user, password, false, false);
+			return await _signInManager.CheckPasswordSignInAsync(user, password, false);
 		}
 
 		public async Task<ICollection<string>> GetUserRoles(User user)
@@ -87,7 +88,40 @@ namespace Infrastructure.Helpers
 		{
 			return await _userManager.FindByEmailAsync(email);
 		}
+
+		public async Task<string> GenerateEmailConfirmationTokenAsync(User user)
+		{
+			var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+			return Uri.EscapeDataString(token);
+		}
+
+		public async Task<bool> IsLockedOut(User user)
+		{
+			return await _userManager.IsLockedOutAsync(user);
+		}
+
+		public async Task<bool> IsEmailConfirmed(User user)
+		{
+			return await _userManager.IsEmailConfirmedAsync(user);
+		}
 		
+		public async Task<IdentityResult> ConfirmEmailAsync(User user, string token)
+		{
+			return await _userManager.ConfirmEmailAsync(user, token);
+		}
+		public async Task<IdentityResult> ChangePassword(User user, string oldPassword, string newPassword)
+		{
+			return await _userManager.ChangePasswordAsync(user, oldPassword, newPassword);
+		}
+		public async Task<string> GeneratePasswordResetTokenAsync(User user)
+		{
+			return await _userManager.GeneratePasswordResetTokenAsync(user);
+		}
+		
+		public async Task<IdentityResult> ResetPasswordAsync(User user, string token, string newPassword)
+		{
+			return await _userManager.ResetPasswordAsync(user, token, newPassword);
+		}
 
 	}
 }

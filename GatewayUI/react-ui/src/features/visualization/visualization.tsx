@@ -12,10 +12,13 @@ import SelectedPanel from './selected-panel';
 import * as THREE from 'three';
 import UpdateDomainModal from './update-domain-modal';
 import { useGLTF } from '@react-three/drei';
+import ScreenshotViewer from './screenshot-viewer';
+import { ImageCategory, ImageToCreate } from '../../app/models/image';
 
 const Visualization: React.FC = () => {
 	const { domainStore, userStore, scaffoldGroupStore } = useStore();
 	const { domainMeshUrl, domain, domainMetadata, isFetchingDomain, uploadDomainMesh, clearDomainMesh } = domainStore;
+	// const [screenshotTargetScaffoldId, setScreenshotTargetScaffoldId] = useState<number | null>(null);
 	const params = useParams<{ scaffoldId?: string }>();
 
 	const [hiddenParticles, setHiddenParticles] = useState<Set<string>>(new Set());
@@ -23,6 +26,9 @@ const Visualization: React.FC = () => {
 	const [, setHistory] = useState<HistoryAction[]>([]);
 	const [selectedCategories, setSelectedCategories] = useState<number[]>([]);
 	const [selectedScaffoldId, setSelectedScaffoldId] = useState<number | null>(null);
+	const [scaffoldIdForScreenshot, setScaffoldIdForScreenshot] = useState<number | null>(null);
+
+	const [selectedScaffoldGroupId, setSelectedScaffoldGroupId] = useState<number | null>(null);
 	const [isPanelOpen, setIsPanelOpen] = useState(true);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [, setError] = useState<string | null>(null);
@@ -56,12 +62,14 @@ const Visualization: React.FC = () => {
 		currentlyLoadingScaffoldIdRef.current = scaffoldId;
 	
 		try {
-			// if (domain?.id) {
-				await Promise.all([
-					scaffoldGroupStore.loadGroupForScaffoldId(scaffoldId),
-					domainStore.getDomainMetadata(domain?.id)
-				])
-			// }
+			const [group,] = await Promise.all([
+				scaffoldGroupStore.loadGroupForScaffoldId(scaffoldId),
+				domainStore.getDomainMetadata(domain?.id)
+			]);
+
+			if (group) {
+				setSelectedScaffoldGroupId(group.id);
+			}
 		} catch (error) {
 			console.warn("Failed to load scaffold group", error);
 		}
@@ -195,6 +203,7 @@ const Visualization: React.FC = () => {
 					payload.voxelSize || undefined,
 					formattedDomainSize || undefined
 				);
+				setScaffoldIdForScreenshot(resolvedScaffoldId);
 			}
 			
 			setIsModalOpen(false); // Close modal after success
@@ -214,6 +223,7 @@ const Visualization: React.FC = () => {
 		const returnedScaffoldId = await domainStore.visualizeDomain(newScaffoldId, selectedCategories[0] ?? 0);
 	
 		if (returnedScaffoldId != null) {
+			// setScreenshotTargetScaffoldId(returnedScaffoldId);
 			setSelectedParticle(null);
 			setHiddenParticles(new Set());
 		}
@@ -365,14 +375,51 @@ const Visualization: React.FC = () => {
 
 	};
 
+	const handleScreenshotUpload = async (blob: Blob) => {
+		if (!selectedScaffoldGroupId) return;
+
+		try {
+			const image: ImageToCreate = {
+				scaffoldGroupId: selectedScaffoldGroupId, // replace with real group ID if needed
+				scaffoldId: selectedScaffoldId,
+				file: new File([blob], `scaffold-${selectedScaffoldId}.png`, { type: "image/png" }),
+				category: ImageCategory.Particles,
+			};
+
+			await scaffoldGroupStore.uploadImageForScaffoldGroup(selectedScaffoldGroupId, image);
+			console.log("Thumbnail uploaded!");
+		} catch (err) {
+			console.error("Thumbnail upload failed", err);
+		} finally {
+			setScaffoldIdForScreenshot(null);
+		}
+	}
+	
+
 	if (isFetchingDomain) {
 		return <p className="text-gray-500">Loading...</p>;
 	}
 
 	return (
 		<div className="container mx-auto py-8 px-2 justify-center h-screen">
+			{/* <div className="w-full h-full rounded-lg">
+				{!scaffoldIdForScreenshot && domainMeshUrl ? (
+					<CanvasViewer
+						domainMeshUrl={domainMeshUrl}
+						hiddenParticles={hiddenParticles}
+						selectedParticle={selectedParticle}
+						onParticleClick={handleParticleClick}
+						onParticleRightClick={handleParticleRightClick}
+						setHistory={setHistory}
+					/>
+				) : (
+					<p className="text-gray-500">The mesh for this scaffold has not been generated yet</p>
+				)}
+			</div> */}
 			<div className="w-full h-full rounded-lg">
-				{domainMeshUrl ? (
+				{scaffoldIdForScreenshot ? (
+					<p className="text-gray-500">Generating thumbnail and loading mesh...</p>
+				) : domainMeshUrl ? (
 					<CanvasViewer
 						domainMeshUrl={domainMeshUrl}
 						hiddenParticles={hiddenParticles}
@@ -437,6 +484,15 @@ const Visualization: React.FC = () => {
 				domain={domain}
 				isLoading={isLoading}
 			/>
+
+			{domainMeshUrl && scaffoldIdForScreenshot && selectedScaffoldGroupId && (
+				<div style={{ opacity: 0, position: "absolute", width: 512, height: 512, pointerEvents: "none" }}>
+					<ScreenshotViewer
+						scaffoldId={scaffoldIdForScreenshot}
+						onScreenshotReady={handleScreenshotUpload}
+					/>
+				</div>
+			)}
 		</div>
 	);
 };

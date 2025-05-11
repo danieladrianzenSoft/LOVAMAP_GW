@@ -18,6 +18,13 @@ namespace Infrastructure.IHelpers
 		Task<User?> GetFirstUserByRoleAsync(string role);
 		Task<User?> GetUserById(string userId);
 		Task<User?> GetUserByEmail(string email);
+		Task<string> GenerateEmailConfirmationTokenAsync(User user);
+		Task<bool> IsLockedOut(User user);
+		Task<bool> IsEmailConfirmed(User user);
+		Task<IdentityResult> ChangePassword(User user, string oldPassword, string newPassword);
+		Task<IdentityResult> ConfirmEmailAsync(User user, string token);
+		Task<string> GeneratePasswordResetTokenAsync(User user);
+		Task<IdentityResult> ResetPasswordAsync(User user, string token, string newPassword);
 
 	}
 }

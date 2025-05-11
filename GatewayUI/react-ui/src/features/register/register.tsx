@@ -6,6 +6,7 @@ import TextInput from "../../app/common/form/text-input";
 import { useStore } from "../../app/stores/store";
 // import logo from "../../../src/LOVAMAP_logo_isolated.png";
 import logo from '../../../src/LOVAMAP_logo.png';
+import { FaSpinner } from "react-icons/fa";
 
 const RegisterPage: React.FC = () => {
 	const {userStore} = useStore();
@@ -55,12 +56,12 @@ const RegisterPage: React.FC = () => {
 												enableReinitialize
 												initialValues={registerInitialValues}
 												onSubmit={(values, {setErrors}) => 	register(values, setErrors)}>
-												{({handleSubmit, errors, touched}) => (
+												{({handleSubmit, errors, touched, isSubmitting}) => (
 													<Form onSubmit={handleSubmit}>
 														<p className="mb-4">Create your account</p>
-														<TextInput name='email' placeholder="Email" type='text' errors={errors} touched={touched}/>
-														<TextInput name='password' placeholder="Password" type='password' errors={errors} touched={touched}/>
-														<TextInput name='passwordConfirmation' placeholder="Confirm Password" type='password' errors={errors} touched={touched}/>
+														<TextInput name='email' label="Email" type='text' errors={errors} touched={touched} autoComplete="off"/>
+														<TextInput name='password' label="Password" type='password' errors={errors} touched={touched} autoComplete="off"/>
+														<TextInput name='passwordConfirmation' label="Confirm Password" type='password' errors={errors} touched={touched} autoComplete="off"/>
 
 														<ErrorMessage 
 															name='error' 
@@ -71,10 +72,14 @@ const RegisterPage: React.FC = () => {
 																}
 														/>
 														<div className="text-center pt-1 mb-12 pb-1"> 
-															<button className="button-primary"
+															<button className="button-primary flex items-center justify-center space-x-2"
 																type="submit"
+																disabled={isSubmitting}
 																>
 																Register
+																	{isSubmitting && (
+																		<FaSpinner className="animate-spin ml-2" size={20} />
+																	)}
 															</button>
 														</div>
 													</Form>

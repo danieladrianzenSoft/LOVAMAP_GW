@@ -29,6 +29,16 @@ const UserDropdown = () => {
 						{({ active }) => (
 							<button
 								className="dropdown-menu-item group"
+								onClick={() => History.push("/settings")}
+							>
+							Settings
+							</button>
+						)}
+						</MenuItem>
+						<MenuItem>
+						{({ active }) => (
+							<button
+								className="dropdown-menu-item group"
 								onClick={logout}
 							>
 							Logout

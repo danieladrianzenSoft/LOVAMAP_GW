@@ -33,6 +33,11 @@ builder.Services.AddIdentity<User, Role>()
     .AddEntityFrameworkStores<DataContext>()
     .AddDefaultTokenProviders();
 
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    options.SignIn.RequireConfirmedEmail = true;
+});
+
 if (string.IsNullOrEmpty(jwtIssuer) || string.IsNullOrEmpty(jwtKey))
 {
     throw new Exception("JWT configuration must include issuer and key");

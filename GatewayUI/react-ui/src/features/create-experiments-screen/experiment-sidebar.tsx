@@ -91,7 +91,6 @@ const ExperimentSidebar = ({
 												<TextInput
 													type="number"
 													name="replicates"
-													placeholder={'1'}
 													errors={formik.errors}
 													touched={formik.touched}
 													min={1}
@@ -103,9 +102,10 @@ const ExperimentSidebar = ({
 														formik.setFieldValue('replicates', value);
 														onReplicatesChange(group.id, Number(e.target.value));
 													}}
+													compact={true}
 													value={formik.values.replicates}
 												/>
-												<p className="text-sm ml-2 my-auto mb-5">{` of ${group.numReplicates} replicates`}</p>
+												<p className="text-sm ml-2 my-auto mb-7">{` of ${group.numReplicates} replicates`}</p>
 											</div>
 										</div>							
 									</form>
