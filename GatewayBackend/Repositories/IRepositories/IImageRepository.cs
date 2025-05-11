@@ -18,6 +18,7 @@ namespace Repositories.IRepositories
 		Task<int> GetNumThumbnails(int scaffoldGroupId);
 		Task<ICollection<Image>> GetThumbnails(int scaffoldGroupId);
 		Task<Dictionary<int, IEnumerable<ImageToShowDto>>> GetThumbnailsForScaffoldGroups(IEnumerable<int> scaffoldGroupIds);
+		Task ClearOtherThumbnails(int scaffoldGroupId, ImageCategory category, int? excludeImageId = null);
 
 
 	}

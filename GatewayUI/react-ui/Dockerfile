@@ -5,6 +5,7 @@ WORKDIR /app
 # Define build argument (default: development)
 ARG NODE_ENV=preproduction
 ENV NODE_ENV=${NODE_ENV}
+ENV NODE_OPTIONS=--max_old_space_size=4096
 
 # Debugging - Print the environment being used
 RUN echo "Building frontend with NODE_ENV=${NODE_ENV}"

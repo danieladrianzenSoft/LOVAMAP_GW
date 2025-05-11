@@ -136,5 +136,20 @@ namespace Repositories.Repositories
 			return true;
 		}
 
+		public async Task ClearOtherThumbnails(int scaffoldGroupId, ImageCategory category, int? excludeImageId = null)
+		{
+			var existingThumbnails = await _context.Images
+				.Where(img => img.ScaffoldGroupId == scaffoldGroupId &&
+							img.Category == category &&
+							img.IsThumbnail &&
+							(!excludeImageId.HasValue || img.Id != excludeImageId.Value))
+				.ToListAsync();
+
+			foreach (var img in existingThumbnails)
+			{
+				img.IsThumbnail = false;
+			}
+		}
+
 	}
 }

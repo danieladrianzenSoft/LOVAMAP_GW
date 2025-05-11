@@ -3,6 +3,7 @@ using CloudinaryDotNet.Actions;
 using Data;
 using Data.Models;
 using Infrastructure.DTOs;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Repositories.IRepositories;
@@ -69,8 +70,10 @@ namespace Services.Services
 
 				image.Category = parsedCategory;
 
-				bool hasThumbnailInCategory = await _imageRepository.HasThumbnailInCategory(image.ScaffoldGroupId, image.Category);
-				image.IsThumbnail = !hasThumbnailInCategory;
+				// bool hasThumbnailInCategory = await _imageRepository.HasThumbnailInCategory(image.ScaffoldGroupId, image.Category);
+				// image.IsThumbnail = !hasThumbnailInCategory;
+				await _imageRepository.ClearOtherThumbnails(image.ScaffoldGroupId, parsedCategory);
+				image.IsThumbnail = true;
 
 				_imageRepository.Add(image);
 
@@ -88,117 +91,6 @@ namespace Services.Services
 			}
 		}
 
-		// public async Task<(bool Succeeded, string ErrorMessage, ImageToShowDto? CreatedImage)> UploadImage(ImageForCreationDto imageToCreate, string uploaderId)
-		// {
-		// 	try
-		// 	{
-		// 		var file = imageToCreate.File;
-		// 		var uploadResult = new ImageUploadResult();
-
-		// 		if (file.Length > 0)
-		// 		{
-		// 			Transformation transformation;
-
-		// 			// Load the image using ImageSharp to get dimensions
-		// 			using (var imageFile = await SixLabors.ImageSharp.Image.LoadAsync<Rgba32>(file.OpenReadStream())) 
-		// 			{
-		// 				int width = imageFile.Width;
-		// 				int height = imageFile.Height;
-
-		// 				// Define transformation based on aspect ratio
-		// 				if (Math.Abs((double)width / height - 1) < 0.2) // nearly square
-		// 				{
-		// 					transformation = new Transformation()
-		// 						.Width(500).Height(500)
-		// 						.Crop("fill").Gravity("auto");
-		// 				}
-		// 				else // rectangular images
-		// 				{
-		// 					transformation = new Transformation()
-		// 						.Width(800).Height(500)
-		// 						.Crop("fill").Gravity("auto");
-		// 				}
-		// 			}
-
-		// 			// Perform the upload with the determined transformation
-		// 			using (var stream = file.OpenReadStream())
-		// 			{
-		// 				var uploadParams = new ImageUploadParams()
-		// 				{
-		// 					File = new FileDescription(file.Name, stream),
-		// 					Transformation = transformation
-		// 				};
-
-		// 				uploadResult = _cloudinary.Upload(uploadParams);
-		// 			}
-		// 		}
-
-		// 		// Set as thumbnail if fewer than 3 exist
-		// 		var numThumbnails = await _imageRepository.GetNumThumbnails(imageToCreate.ScaffoldGroupId);
-		// 		if (numThumbnails < 3) imageToCreate.IsThumbnail = true;
-
-		// 		// Assign URL and PublicId from the upload result
-		// 		imageToCreate.Url = uploadResult.SecureUrl.ToString();
-		// 		imageToCreate.PublicId = uploadResult.PublicId;
-
-		// 		// Map and save the new image entity
-		// 		var image = _modelMapper.MapToImage(imageToCreate, uploaderId);
-		// 		image.Category = ImageCategory.Other; // Default category
-
-		// 		_imageRepository.Add(image);
-		// 		await _context.SaveChangesAsync();
-
-		// 		var imageToReturn = _modelMapper.MapImageToDto(image);
-
-		// 		return (true, "", imageToReturn);
-		// 	}
-		// 	catch (Exception ex)
-		// 	{
-		// 		_logger.LogError(ex, "Error uploading image");
-		// 		return (false, "UnexpectedError", null);
-		// 	}
-		// }
-
-		// public async Task<(bool Succeeded, string ErrorMessage)> DeleteImage(int imageId, string userId)
-		// {
-		// 	try
-		// 	{
-		// 		var image = await _imageRepository.Get(imageId);
-		// 		if (image == null) return (false, "Not_Found");
-
-		// 		if (image.UploaderId != userId) return (false, "Unauthorized");
-
-		// 		if (image.PublicId != null)
-		// 		{
-		// 			var deleteParams = new DeletionParams(image.PublicId);
-
-		// 			var result = _cloudinary.Destroy(deleteParams);
-
-		// 			if (result.Result == "ok")
-		// 			{
-		// 				await _imageRepository.Delete(image.Id);
-		// 				await _context.SaveChangesAsync();
-		// 				return (true, "");
-		// 			}
-		// 		}
-
-		// 		if (image.PublicId == null)
-		// 		{
-		// 			await _imageRepository.Delete(image.Id);
-		// 			await _context.SaveChangesAsync();
-		// 			return (true, "");
-		// 		}
-
-		// 		return (false, "Unknown_Error");
-		// 	}
-		// 	catch (Exception ex)
-		// 	{
-		// 		_logger.LogError(ex, "Error deleting image");
-		// 		return (false, "Unknown_Error");
-		// 	}
-
-
-		// }
 		public async Task<(bool Succeeded, string ErrorMessage)> DeleteImage(int imageId, string userId)
 		{
 			try
@@ -368,14 +260,14 @@ namespace Services.Services
 			if (imageToUpdate.IsThumbnail)
 			{
 				// Find existing thumbnail in the same category
-				var existingThumbnail = scaffoldGroup.Images
-					.FirstOrDefault(img => img.IsThumbnail && img.Category == newCategory && img.Id != image.Id);
+				// var existingThumbnail = scaffoldGroup.Images
+				// 	.FirstOrDefault(img => img.IsThumbnail && img.Category == newCategory && img.Id != image.Id);
 
-				if (existingThumbnail != null)
-				{
-					existingThumbnail.IsThumbnail = false;
-				}
-
+				// if (existingThumbnail != null)
+				// {
+				// 	existingThumbnail.IsThumbnail = false;
+				// }
+				await _imageRepository.ClearOtherThumbnails(scaffoldGroup.Id, newCategory, image.Id);
 				image.IsThumbnail = true;
 			}
 			else
@@ -386,6 +278,8 @@ namespace Services.Services
 			await _context.SaveChangesAsync();
 			return image;
 		}
+
+
 
 	}
 }
