@@ -17,12 +17,13 @@ import Visualization from '../../features/visualization/visualization';
 import History from '../helpers/History';
 import RunJob from '../../features/jobs/run-job';
 import ScreenshotViewer from '../../features/visualization/screenshot-viewer';
-import AdminBatchThumbnailGenerator from '../../features/admin/admin-batch-thumbnail-generator';
+// import AdminBatchThumbnailGenerator from '../../features/admin/admin-batch-thumbnail-generator';
 import ResetPasswordForm from '../../features/user/reset-password';
 import ForgotPasswordForm from '../../features/user/forgot-password';
 import ConfirmEmailPage from '../../features/user/confirm-email';
 import EmailNotConfirmed from '../../features/user/email-not-confirmed';
 import SettingsScreen from '../../features/settings-screen/settings-screen';
+import AdminDashboard from '../../features/admin/admin-dashboard';
 
 const App: React.FC = () => {
   const { commonStore, userStore } = useStore();
@@ -85,7 +86,7 @@ const MainLayout: React.FC = observer(() => {
           <Route path="/uploads" element={<ProtectedRoute element={<ScaffoldGroupUploads />} />} />
           <Route path="/jobs" element={<ProtectedRoute element={<RunJob />} />} />
           <Route path="/screenshots/:scaffoldId" element={<ProtectedRoute requiredRole="administrator" element={<ScreenshotViewer />} />} />
-          <Route path="/admin/batch-thumbnails" element={<ProtectedRoute requiredRole="administrator" element={<AdminBatchThumbnailGenerator />} />}/>
+          <Route path="/admin" element={<ProtectedRoute requiredRole="administrator" element={<AdminDashboard />} />}/>
           <Route path="/settings" element={<ProtectedRoute element={<SettingsScreen />} />}/>
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>

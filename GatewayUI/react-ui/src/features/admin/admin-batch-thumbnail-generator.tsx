@@ -15,10 +15,9 @@ const AdminBatchThumbnailGenerator: React.FC = () => {
 
 	useEffect(() => {
 		const loadQueue = async () => {
-		const result = await scaffoldGroupStore.getScaffoldsWithMissingThumbnails();
-		setScaffoldQueue(result ?? []);
+			const result = await scaffoldGroupStore.getScaffoldsWithMissingThumbnails();
+			setScaffoldQueue(result ?? []);
 		};
-
 		loadQueue();
 	}, [scaffoldGroupStore]);
 
@@ -68,16 +67,28 @@ const AdminBatchThumbnailGenerator: React.FC = () => {
 	const progress = Math.round((completed.length / scaffoldQueue.length) * 100);
 
 	return (
-		<div className={`container mx-auto mt-12 py-8 px-4 sm:px-6 lg:px-8 w-4/12 border border-gray-200 rounded-lg`}>
+		<div className="border rounded-lg p-6 bg-white shadow flex flex-col justify-between">
 			<div>
-				<h2 className="text-lg font-semibold mb-2">Batch Thumbnail Generator</h2>
+				<h2 className="text-lg font-semibold mb-4">Batch Thumbnail Generator</h2>
+			</div>
+
+			<div>
 				<p className="mb-2">Scaffolds queued: {scaffoldQueue.length}</p>
 				<p className="mb-2">Completed: {completed.length}</p>
 				<p className="mb-4">Failed: {failed.length}</p>
 
-				{!isRunning && scaffoldQueue.length > 0 && (
-					<button onClick={handleStart} className="button-primary">Start Batch</button>
+				{completed.length + failed.length === scaffoldQueue.length && scaffoldQueue.length > 0 && (
+					<div className="mt-4 text-green-600 font-medium">Batch complete!</div>
 				)}
+			</div>
+
+			<div>
+				<button 
+					onClick={handleStart} 
+					disabled={isRunning || scaffoldQueue.length === 0}
+					className="button-primary">
+						Start Batch
+				</button>
 
 				{isRunning && (
 					<div className="w-full bg-gray-200 rounded-full h-4 mt-4">
@@ -90,12 +101,8 @@ const AdminBatchThumbnailGenerator: React.FC = () => {
 
 				{isRunning && currentItem && (
 					<div style={{ opacity: 0, position: "absolute", width: 512, height: 512, pointerEvents: "none" }}>
-					<ScreenshotViewer scaffoldId={currentItem.scaffoldId} onScreenshotReady={handleScreenshotReady} />
+						<ScreenshotViewer scaffoldId={currentItem.scaffoldId} onScreenshotReady={handleScreenshotReady} />
 					</div>
-				)}
-
-				{completed.length + failed.length === scaffoldQueue.length && scaffoldQueue.length > 0 && (
-					<div className="mt-4 text-green-600 font-medium">Batch complete!</div>
 				)}
 			</div>
 		</div>

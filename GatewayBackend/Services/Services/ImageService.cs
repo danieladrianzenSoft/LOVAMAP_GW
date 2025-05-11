@@ -236,16 +236,28 @@ namespace Services.Services
 			}
 		}
 
-		public async Task<List<int>> GetAllImageIds()
+		// public async Task<List<int>> GetAllImageIds()
+		// {
+		// 	try
+		// 	{
+		// 		return await _imageRepository.GetAllImageIds();
+		// 	}
+		// 	catch (Exception ex)
+		// 	{
+		// 		_logger.LogError(ex, "Error retrieving image IDs");
+		// 		return [];
+		// 	}
+		// }
+		public async Task<List<int>> GetImageIdsForDeletion(ImageCategory? category = null, bool includeThumbnails = false)
 		{
 			try
 			{
-				return await _imageRepository.GetAllImageIds();
+				return await _imageRepository.GetImageIdsForDeletion(category, includeThumbnails);
 			}
 			catch (Exception ex)
 			{
-				_logger.LogError(ex, "Error retrieving image IDs");
-				return [];
+				_logger.LogError(ex, "Error retrieving image IDs for deletion");
+				return new List<int>();
 			}
 		}
 

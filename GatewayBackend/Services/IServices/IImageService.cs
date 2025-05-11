@@ -7,7 +7,8 @@ namespace Services.IServices
 {
 	public interface IImageService
 	{
-		Task<List<int>> GetAllImageIds();
+		// Task<List<int>> GetAllImageIds();
+		Task<List<int>> GetImageIdsForDeletion(ImageCategory? category = null, bool includeThumbnails = false);
 		Task<(bool Succeeded, string ErrorMessage, ImageToShowDto? CreatedImage)> UploadImage(ImageForCreationDto imageToCreate, string uploaderId);
 		Task<ICollection<Image>> GetAllImagesForScaffoldGroup(int scaffoldGroupId);
 		Task<Dictionary<int, IEnumerable<ImageToShowDto>>> GetAllImagesForScaffoldGroups(IEnumerable<int> scaffoldGroupIds);

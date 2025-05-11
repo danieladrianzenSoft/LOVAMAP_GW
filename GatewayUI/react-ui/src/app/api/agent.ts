@@ -53,7 +53,7 @@ const requests = {
 	get: <T> (url: string) => axios.get<T>(url).then(responseBody),
 	post: <T> (url: string, body: {}) => axios.post<T>(url, body).then(responseBody),
 	put: <T> (url: string, body: {}) => axios.put<T>(url, body).then(responseBody),
-	del: <T> (url: string) => axios.delete<T>(url).then(responseBody),
+	del: <T> (url: string, body?: {}) => axios.delete<T>(url, body).then(responseBody),
 }
 
 const Resources = {
@@ -73,18 +73,17 @@ const Users = {
 }
 
 const ScaffoldGroups = {
-	getSummarized: (queryParams: string) => requests.get<ApiResponse<ScaffoldGroup[]>>('/scaffoldGroups' + queryParams),
-	getPublic: (queryParams: string) => requests.get<ApiResponse<ScaffoldGroup[]>>('/scaffoldGroups/public' + queryParams),
-    getSummary: (id: number) => requests.get<ApiResponse<ScaffoldGroup>>('/scaffoldGroups/' + id + '/summary'),
-    search: (prompt: string) => requests.post<ApiResponse<AiScaffoldGroupSearch>>('/scaffoldGroups/search', {"prompt": prompt}),
-    getGroupSummaryByScaffoldId: (id: number) => requests.get<ApiResponse<ScaffoldGroup>>('/scaffoldGroups/scaffold/' + id + '/summary'),
+	getSummarized: (queryParams: string) => requests.get<ApiResponse<ScaffoldGroup[]>>('/scaffoldgroups' + queryParams),
+	getPublic: (queryParams: string) => requests.get<ApiResponse<ScaffoldGroup[]>>('/scaffoldgroups/public' + queryParams),
+    getSummary: (id: number) => requests.get<ApiResponse<ScaffoldGroup>>('/scaffoldgroups/' + id + '/summary'),
+    search: (prompt: string) => requests.post<ApiResponse<AiScaffoldGroupSearch>>('/scaffoldgroups/search', {"prompt": prompt}),
+    getGroupSummaryByScaffoldId: (id: number) => requests.get<ApiResponse<ScaffoldGroup>>('/scaffoldgroups/scaffold/' + id + '/summary'),
 	getDetailed: (id: number) => requests.get<ApiResponse<ScaffoldGroup>>('/scaffoldGroups/' + id),
-    getDetailedForExperiment: (queryParams: string) => requests.get<ApiResponse<ScaffoldGroup[]>>('/scaffoldGroups/detailed' + queryParams),
-    uploadScaffoldGroup: (scaffoldGroup: ScaffoldGroupToCreate) => requests.post<ApiResponse<ScaffoldGroup>>('/scaffoldGroups/create', scaffoldGroup),
-    uploadScaffoldGroupBatch: (scaffoldGroups: ScaffoldGroupToCreate[]) => requests.post<ApiResponse<ScaffoldGroup[]>>('/scaffoldGroups/createBatch', scaffoldGroups),
-    // uploadScaffoldGroupImage: (image: ImageToCreate) => requests.post<ApiResponse<Image>>('/scaffoldGroups/image', image),
+    getDetailedForExperiment: (queryParams: string) => requests.get<ApiResponse<ScaffoldGroup[]>>('/scaffoldgroups/detailed' + queryParams),
+    uploadScaffoldGroup: (scaffoldGroup: ScaffoldGroupToCreate) => requests.post<ApiResponse<ScaffoldGroup>>('/scaffoldgroups/create', scaffoldGroup),
+    uploadScaffoldGroupBatch: (scaffoldGroups: ScaffoldGroupToCreate[]) => requests.post<ApiResponse<ScaffoldGroup[]>>('/scaffoldgroups/createBatch', scaffoldGroups),
     getUploadedScaffoldGroups: () => requests.get<ApiResponse<ScaffoldGroup[]>>('/users/me/scaffoldgroups'),
-    delete: (id: number) => requests.del<ApiResponse<string>>('scaffoldGroups/' + id),
+    delete: (id: number) => requests.del<ApiResponse<string>>('scaffoldgroups/' + id),
     uploadScaffoldGroupImage: async (scaffoldGroupId: number, image: ImageToCreate) => {
         const formData = new FormData();
         formData.append('file', image.file); // Append the image file
@@ -94,15 +93,17 @@ const ScaffoldGroups = {
             formData.append('category', ImageCategory[image.category]);
           }
 
-        const response =  await axios.post<ApiResponse<Image>>(`/scaffoldGroups/${scaffoldGroupId}/images`, formData, {
+        const response =  await axios.post<ApiResponse<Image>>(`/scaffoldgroups/${scaffoldGroupId}/images`, formData, {
             headers: { 'Content-Type': 'multipart/form-data' },
         });
 
         return response.data;
     },
-    updateImage: (scaffoldGroupId: number, image: ImageToUpdate) => requests.put<ApiResponse<ScaffoldGroup>>(`/scaffoldGroups/${scaffoldGroupId}/images/${image.id}`, image),
-    deleteImage: (scaffoldGroupId: number, imageId: number) => requests.del<ApiResponse<ScaffoldGroup>>(`/scaffoldGroups/${scaffoldGroupId}/images/${imageId}`),
-    getScaffoldsWithMissingThumbnails: () => requests.get<ApiResponse<ScaffoldWithMissingThumbnail[]>>(`/scaffoldGroups/images/missing-thumbnails`)
+    getImageIdsForDeletion: (queryParams: string) => requests.get<ApiResponse<number[]>>('/scaffoldgroups/images/ids-for-deletion' + queryParams),
+    updateImage: (scaffoldGroupId: number, image: ImageToUpdate) => requests.put<ApiResponse<ScaffoldGroup>>(`/scaffoldgroups/${scaffoldGroupId}/images/${image.id}`, image),
+    deleteImage: (scaffoldGroupId: number, imageId: number) => requests.del<ApiResponse<ScaffoldGroup>>(`/scaffoldgroups/${scaffoldGroupId}/images/${imageId}`),
+    deleteImages: (imageIds: number[]) => requests.del<ApiResponse<number[]>>('/scaffoldgroups/images/batch-delete', imageIds),
+    getScaffoldsWithMissingThumbnails: () => requests.get<ApiResponse<ScaffoldWithMissingThumbnail[]>>(`/scaffoldgroups/images/missing-thumbnails`)
 }
 
 const Descriptors = {

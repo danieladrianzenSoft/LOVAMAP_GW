@@ -12,7 +12,9 @@ namespace Repositories.IRepositories
 		Task<bool> Delete(int imageToDeleteId);
 		Task<Image?> Get(int imageId);
 		Task<ICollection<Image>> GetAll(int scaffoldGroupId);
-		Task<List<int>> GetAllImageIds();
+		
+		// Task<List<int>> GetAllImageIds();
+		Task<List<int>> GetImageIdsForDeletion(ImageCategory? category = null, bool includeThumbnails = false);
 		Task<Dictionary<int, IEnumerable<ImageToShowDto>>> GetAllImagesForScaffoldGroups(IEnumerable<int> scaffoldGroupIds);
 		Task<bool> HasThumbnailInCategory(int scaffoldGroupId, ImageCategory category);
 		Task<int> GetNumThumbnails(int scaffoldGroupId);

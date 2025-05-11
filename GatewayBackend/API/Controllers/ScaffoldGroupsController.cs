@@ -372,30 +372,83 @@ public class ScaffoldGroupsController : ControllerBase
 		}
 	}
 
+	// [Authorize(Roles = "administrator")]
+	// [HttpDelete("images/batch-delete")]
+	// public async Task<IActionResult> BatchDeleteImages()
+	// {
+	// 	try
+	// 	{
+	// 		var userId = _userService.GetCurrentUserId();
+	// 		if (userId == null) return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
+			
+	// 		var imageIds = await _imageService.GetAllImageIds();
+	// 		var result = await _imageService.DeleteImages(imageIds, userId);
+
+	// 		if (!result.Succeeded) return BadRequest(new ApiResponse<List<int>>(400, "Some deletions failed", result.FailedImageIds));
+
+	// 		return Ok(new ApiResponse<List<int>>(200, "All images deleted successfully", result.FailedImageIds));
+
+	// 	}
+	// 	catch (Exception ex)
+	// 	{
+	// 		_logger.LogError(ex, "Error deleting images in batch");
+	// 		return StatusCode(500, new ApiResponse<string>(500, "An error occurred deleting images"));
+	// 	}
+	// }
+
 	[Authorize(Roles = "administrator")]
-	[HttpDelete("images/batch-delete")]
-	public async Task<IActionResult> BatchDeleteImages()
+	[HttpGet("images/ids-for-deletion")]
+	public async Task<IActionResult> GetImageIdsForDeletion([FromQuery] string? category = null, [FromQuery] bool includeThumbnails = false)
 	{
 		try
 		{
 			var userId = _userService.GetCurrentUserId();
 			if (userId == null) return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
-			
-			var imageIds = await _imageService.GetAllImageIds();
-			var result = await _imageService.DeleteImages(imageIds, userId);
 
-			if (!result.Succeeded) return BadRequest(new ApiResponse<List<int>>(400, "Some deletions failed", result.FailedImageIds));
+			ImageCategory? parsedCategory = null;
+			if (!string.IsNullOrWhiteSpace(category))
+			{
+				if (!Enum.TryParse<ImageCategory>(category, true, out var tempCategory))
+					return BadRequest(new ApiResponse<string>(400, "Invalid category"));
+				parsedCategory = tempCategory;
+			}
 
-			return Ok(new ApiResponse<List<int>>(200, "All images deleted successfully", result.FailedImageIds));
+			var imageIds = await _imageService.GetImageIdsForDeletion(parsedCategory, includeThumbnails);
 
+			return Ok(new ApiResponse<List<int>>(200, "Images Id's obtained successfully", imageIds));
 		}
 		catch (Exception ex)
 		{
-			_logger.LogError(ex, "Error deleting images in batch");
-			return StatusCode(500, new ApiResponse<string>(500, "An error occurred deleting images"));
+			_logger.LogError(ex, "Error getting image Ids");
+			return StatusCode(500, new ApiResponse<string>(500, "An error occurred while getting image Ids"));
 		}
 	}
 
 
+	[Authorize(Roles = "administrator")]
+	[HttpDelete("images/batch-delete")]
+	public async Task<IActionResult> BatchDeleteImages([FromBody] List<int> imageIds)
+	{
+		try
+		{
+			var userId = _userService.GetCurrentUserId();
+			if (userId == null)
+				return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
 
+			if (imageIds == null || !imageIds.Any())
+				return BadRequest(new ApiResponse<string>(400, "No image IDs provided"));
+
+			var result = await _imageService.DeleteImages(imageIds, userId);
+
+			if (!result.Succeeded)
+				return BadRequest(new ApiResponse<List<int>>(400, "Some deletions failed", result.FailedImageIds));
+
+			return Ok(new ApiResponse<List<int>>(200, "Images deleted successfully", result.FailedImageIds));
+		}
+		catch (Exception ex)
+		{
+			_logger.LogError(ex, "Error deleting images");
+			return StatusCode(500, new ApiResponse<string>(500, "An error occurred while deleting images"));
+		}
+	}
 }

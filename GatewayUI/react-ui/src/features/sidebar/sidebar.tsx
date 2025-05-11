@@ -108,7 +108,7 @@ const SideBar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
 										</div>
 										)}
 									</Tab>
-									<Tab as={NavLink} to='/admin/batch-thumbnails' onClick={() => setIsOpen(false)} className="focus:outline-none">
+									<Tab as={NavLink} to='/admin' onClick={() => setIsOpen(false)} className="focus:outline-none">
 										{({ selected }) => (
 										<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
 											<p>Admin utilities</p>

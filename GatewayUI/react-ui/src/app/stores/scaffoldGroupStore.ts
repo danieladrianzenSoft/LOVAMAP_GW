@@ -218,6 +218,37 @@ export default class ScaffoldGroupStore {
         }
     };
 
+	getImageIdsForDeletion = async (category?: number | null, includeThumbnails?: boolean ): Promise<number[]> => {
+		try {
+			let queryParams = ''
+			if (category !== null && category !== undefined){
+				queryParams += `category=${category.toString()}`;
+			} 
+			if (includeThumbnails !== null && includeThumbnails !== undefined)
+			{
+				if (queryParams !== '') queryParams += '&';
+				queryParams += `includeThumbnails=${includeThumbnails.toString()}`;
+			}
+			if (queryParams !== '') queryParams = '?' + queryParams;
+
+			const response = await agent.ScaffoldGroups.getImageIdsForDeletion(queryParams);
+			return response.data;
+		} catch (error) {
+			console.error("Error fetching deletable image IDs:", error);
+			return [];
+		}
+	};
+
+	deleteImages = async (ids: number[]): Promise<number[] | null> => {
+		try {
+			const response = await agent.ScaffoldGroups.deleteImages(ids);
+			return response.data;
+		} catch (error) {
+			console.error('Error deleting images:', error);
+			return null;
+		}
+	};
+
 	searchScaffoldGroups = async (searchPrompt: string) => {
 		try {
 			const response = await agent.ScaffoldGroups.search(searchPrompt);

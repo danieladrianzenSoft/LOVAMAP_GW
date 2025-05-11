@@ -40,9 +40,25 @@ namespace Repositories.Repositories
 				.ToListAsync();
 		}
 
-		public async Task<List<int>> GetAllImageIds()
+		// public async Task<List<int>> GetAllImageIds()
+		// {
+		// 	return await _context.Images.Select(i => i.Id).ToListAsync();
+		// }
+		public async Task<List<int>> GetImageIdsForDeletion(ImageCategory? category = null, bool includeThumbnails = false)
 		{
-			return await _context.Images.Select(i => i.Id).ToListAsync();
+			var query = _context.Images.AsQueryable();
+
+			if (category.HasValue)
+			{
+				query = query.Where(i => i.Category == category.Value);
+			}
+
+			if (!includeThumbnails)
+			{
+				query = query.Where(i => !i.IsThumbnail);
+			}
+
+			return await query.Select(i => i.Id).ToListAsync();
 		}
 
 		public async Task<Dictionary<int, IEnumerable<ImageToShowDto>>> GetAllImagesForScaffoldGroups(IEnumerable<int> scaffoldGroupIds)
