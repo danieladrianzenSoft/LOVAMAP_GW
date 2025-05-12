@@ -46,6 +46,11 @@ namespace Services.Services
 			}
 			return userId;
 		}
+
+		public async Task<bool> IsAdmin(string userId) 
+		{
+			return await _userAuthHelper.IsInRole(userId, "administrator");
+		}
 		public async Task<(bool Succeeded, string ErrorMessage, string? UserId)> GetAdminUserIdAsync()
 		{
 			try

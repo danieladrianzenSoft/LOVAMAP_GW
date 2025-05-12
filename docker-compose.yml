@@ -73,22 +73,20 @@ services:
   
   certbot:
     image: certbot/certbot
+    container_name: certbot
     profiles: ["production"]
     volumes:
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot
-    entrypoint: >
-        sh -c "
-          if [ \"$ENVIRONMENT\" = \"production\" ]; then
-            if [ ! -f /etc/letsencrypt/live/lovamap.com/fullchain.pem ]; then
-              certbot certonly --webroot -w /var/www/certbot --email admin@mimccore.com --agree-tos --no-eff-email --force-renewal -d lovamap.com -d www.lovamap.com;
-            fi;
-            trap exit TERM;
-            while :; do certbot renew --webroot -w /var/www/certbot && nginx -s reload; sleep 12h & wait $${!}; done;
-          else
-            echo 'Skipping Certbot setup - Not in production';
-            sleep infinity;
-          fi;
-        "
+
+  certbot-renewer:
+    image: certbot/certbot
+    container_name: certbot_renewer
+    restart: always
+    entrypoint: /bin/sh -c 'trap exit TERM; while :; do certbot renew --webroot -w /var/www/certbot && touch /var/www/certbot/reload.flag || true; sleep 12h & wait $${!}; done'
+    volumes:
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+
 volumes:
   postgres_data:

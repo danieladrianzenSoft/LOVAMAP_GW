@@ -14,6 +14,7 @@ import { ScaffoldWithMissingThumbnail } from "../models/scaffold";
 import { PoreInfo } from "../models/poreInfo";
 import { DomainMetadata } from "../models/domainMetadata";
 import { AiScaffoldGroupSearch } from "../models/aiScaffoldGroupSearch";
+import { BatchOperationResult } from "../models/batchOperationResult";
 
 axios.defaults.baseURL = environment.baseUrl;
 
@@ -53,7 +54,7 @@ const requests = {
 	get: <T> (url: string) => axios.get<T>(url).then(responseBody),
 	post: <T> (url: string, body: {}) => axios.post<T>(url, body).then(responseBody),
 	put: <T> (url: string, body: {}) => axios.put<T>(url, body).then(responseBody),
-	del: <T> (url: string, body?: {}) => axios.delete<T>(url, body).then(responseBody),
+	del: <T> (url: string) => axios.delete<T>(url).then(responseBody),
 }
 
 const Resources = {
@@ -102,7 +103,7 @@ const ScaffoldGroups = {
     getImageIdsForDeletion: (queryParams: string) => requests.get<ApiResponse<number[]>>('/scaffoldgroups/images/ids-for-deletion' + queryParams),
     updateImage: (scaffoldGroupId: number, image: ImageToUpdate) => requests.put<ApiResponse<ScaffoldGroup>>(`/scaffoldgroups/${scaffoldGroupId}/images/${image.id}`, image),
     deleteImage: (scaffoldGroupId: number, imageId: number) => requests.del<ApiResponse<ScaffoldGroup>>(`/scaffoldgroups/${scaffoldGroupId}/images/${imageId}`),
-    deleteImages: (imageIds: number[]) => requests.del<ApiResponse<number[]>>('/scaffoldgroups/images/batch-delete', imageIds),
+    deleteImages: (imageIds: {imageIds: number[]}) => requests.post<ApiResponse<BatchOperationResult>>('/scaffoldgroups/images/batch-delete', imageIds),
     getScaffoldsWithMissingThumbnails: () => requests.get<ApiResponse<ScaffoldWithMissingThumbnail[]>>(`/scaffoldgroups/images/missing-thumbnails`)
 }
 

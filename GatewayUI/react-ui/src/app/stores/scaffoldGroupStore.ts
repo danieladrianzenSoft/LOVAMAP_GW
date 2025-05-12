@@ -5,6 +5,7 @@ import { ScaffoldGroup, ScaffoldGroupToCreate } from "../models/scaffoldGroup";
 import { Image, ImageToCreate, ImageToUpdate } from "../models/image";
 import History from "../helpers/History";
 import { ScaffoldWithMissingThumbnail } from "../models/scaffold";
+import { BatchOperationResult } from "../models/batchOperationResult";
 
 export default class ScaffoldGroupStore {
 	scaffoldGroups: ScaffoldGroup[] = [];
@@ -239,9 +240,10 @@ export default class ScaffoldGroupStore {
 		}
 	};
 
-	deleteImages = async (ids: number[]): Promise<number[] | null> => {
+	deleteImages = async (ids: number[]): Promise<BatchOperationResult | null> => {
 		try {
-			const response = await agent.ScaffoldGroups.deleteImages(ids);
+			const idsToDelete: {imageIds: number[]} = {imageIds: ids};
+			const response = await agent.ScaffoldGroups.deleteImages(idsToDelete);
 			return response.data;
 		} catch (error) {
 			console.error('Error deleting images:', error);

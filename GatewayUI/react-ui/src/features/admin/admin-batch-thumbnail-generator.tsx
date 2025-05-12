@@ -80,15 +80,6 @@ const AdminBatchThumbnailGenerator: React.FC = () => {
 				{completed.length + failed.length === scaffoldQueue.length && scaffoldQueue.length > 0 && (
 					<div className="mt-4 text-green-600 font-medium">Batch complete!</div>
 				)}
-			</div>
-
-			<div>
-				<button 
-					onClick={handleStart} 
-					disabled={isRunning || scaffoldQueue.length === 0}
-					className="button-primary">
-						Start Batch
-				</button>
 
 				{isRunning && (
 					<div className="w-full bg-gray-200 rounded-full h-4 mt-4">
@@ -98,6 +89,15 @@ const AdminBatchThumbnailGenerator: React.FC = () => {
 						></div>
 					</div>
 				)}
+			</div>
+
+			<div>
+				<button 
+					onClick={handleStart} 
+					disabled={isRunning || scaffoldQueue.length === 0}
+					className="button-primary">
+						Start Batch
+				</button>
 
 				{isRunning && currentItem && (
 					<div style={{ opacity: 0, position: "absolute", width: 512, height: 512, pointerEvents: "none" }}>

@@ -8,6 +8,7 @@ namespace Services.IServices
 	public interface IUserService
 	{
 		string? GetCurrentUserId();
+		Task<bool> IsAdmin(string userId);
 		Task<(bool Succeeded, string ErrorMessage, string? UserId)> GetAdminUserIdAsync();
 		Task<(bool Succeeded, string ErrorMessage, User? User)> CreateUser(UserToCreateDto userToCreate);
 		Task<(bool Succeeded, string ErrorMessage, AuthenticatedUserDto? User)> AuthenticateUser(UserToAuthenticateDto userToAuthenticate);

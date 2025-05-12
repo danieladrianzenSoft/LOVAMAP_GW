@@ -4,7 +4,6 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { useStore } from '../../app/stores/store';
 import { observer } from 'mobx-react-lite';
 import logo from '../../../src/LOVAMAP_logo.png';
-import dukelogo from '../../../src/Duke-Pratt-Logo.svg';
 
 interface SidebarProps {
 	isOpen: boolean;
@@ -125,8 +124,8 @@ const SideBar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
 							Materials in<br />Medicine Center
 						</p>
 						<img
-							className="mx-auto w-20 mt-2"
-							src={dukelogo}
+							className="mx-auto w-20 h-auto mt-2"
+							src="/Duke-Pratt-Logo.png"
 							alt="dukelogo"
 						/>
 					</div>

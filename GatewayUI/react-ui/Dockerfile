@@ -45,5 +45,10 @@ COPY --from=build /app/build /usr/share/nginx/html
 # Expose port 80
 EXPOSE 80
 
+# Add reload watcher for SSL cert reloads
+COPY reload-watcher.sh /reload-watcher.sh
+RUN chmod +x /reload-watcher.sh
+
+
 # Start Nginx
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["/bin/sh", "-c", "if [ \"$ENVIRONMENT\" = \"production\" ]; then /reload-watcher.sh & fi; nginx -g 'daemon off;'"]

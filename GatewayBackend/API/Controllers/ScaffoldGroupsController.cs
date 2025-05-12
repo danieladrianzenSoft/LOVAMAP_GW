@@ -426,8 +426,8 @@ public class ScaffoldGroupsController : ControllerBase
 
 
 	[Authorize(Roles = "administrator")]
-	[HttpDelete("images/batch-delete")]
-	public async Task<IActionResult> BatchDeleteImages([FromBody] List<int> imageIds)
+	[HttpPost("images/batch-delete")]
+	public async Task<IActionResult> BatchDeleteImages([FromBody] ImagesToDeleteDto imagesToDelete)
 	{
 		try
 		{
@@ -435,15 +435,23 @@ public class ScaffoldGroupsController : ControllerBase
 			if (userId == null)
 				return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
 
-			if (imageIds == null || !imageIds.Any())
+			var isAdmin = await _userService.IsAdmin(userId);
+
+			if (imagesToDelete.ImageIds == null || !imagesToDelete.ImageIds.Any())
 				return BadRequest(new ApiResponse<string>(400, "No image IDs provided"));
 
-			var result = await _imageService.DeleteImages(imageIds, userId);
+			var (success, operationResult) = await _imageService.DeleteImages(imagesToDelete.ImageIds, userId, isAdmin);
 
-			if (!result.Succeeded)
-				return BadRequest(new ApiResponse<List<int>>(400, "Some deletions failed", result.FailedImageIds));
+			if (!success)
+				return BadRequest(new ApiResponse<BatchOperationResult>(400, "Failed to delete images", operationResult));
 
-			return Ok(new ApiResponse<List<int>>(200, "Images deleted successfully", result.FailedImageIds));
+			return Ok(new ApiResponse<BatchOperationResult>(
+				200,
+				operationResult.SucceededIds.Count > 0
+					? "Images deleted successfully"
+					: "Request was processed, but no images were deleted",
+				operationResult
+			));
 		}
 		catch (Exception ex)
 		{

@@ -112,28 +112,31 @@ namespace Services.Services
 			}
 		}
 
-		public async Task<(bool Succeeded, List<int> FailedImageIds)> DeleteImages(IEnumerable<int> imageIds, string userId)
+		public async Task<(bool Succeeded, BatchOperationResult result)> DeleteImages(IEnumerable<int> imageIds, string userId, bool force = false)
 		{
-			var failed = new List<int>();
+			var result = new BatchOperationResult();
 
 			foreach (var imageId in imageIds)
 			{
 				try
 				{
 					var image = await _imageRepository.Get(imageId);
-					if (image == null || image.UploaderId != userId)
+					if (image == null || (!force && image.UploaderId != userId))
 					{
-						failed.Add(imageId);
+						result.FailedIds.Add(imageId);
 						continue;
 					}
 
 					var (succeeded, _) = await DeleteImageInternal(image);
-					if (!succeeded) failed.Add(imageId);
+					if (succeeded)
+						result.SucceededIds.Add(imageId);
+					else
+						result.FailedIds.Add(imageId);
 				}
 				catch (Exception ex)
 				{
 					_logger.LogError(ex, $"Error deleting image {imageId}");
-					failed.Add(imageId);
+					result.FailedIds.Add(imageId);
 				}
 			}
 
@@ -144,10 +147,11 @@ namespace Services.Services
 			catch (Exception ex)
 			{
 				_logger.LogError(ex, "Error saving changes after batch delete");
-				return (false, imageIds.ToList());
+				result.FailedIds.AddRange(result.SucceededIds);
+				result.SucceededIds.Clear();
 			}
 
-			return (failed.Count == 0, failed);
+			return (true, result);
 		}
 
 		private async Task<(bool Succeeded, string ErrorMessage)> DeleteImageInternal(Image image)
@@ -161,6 +165,7 @@ namespace Services.Services
 
 					if (result.Result != "ok")
 					{
+						_logger.LogInformation($"Cloudinary delete result for image {image.Id}: {result.Result}");
 						return (false, "Cloudinary_Delete_Failed");
 					}
 				}

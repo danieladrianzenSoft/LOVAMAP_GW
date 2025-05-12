@@ -16,7 +16,9 @@ namespace Services.IServices
 		Task<Dictionary<int, IEnumerable<ImageToShowDto>>> GetThumbnailsForScaffoldGroups(IEnumerable<int> scaffoldGroupIds);
 		Task<Image?> UpdateImage(ImageToUpdateDto imageToUpdate, ScaffoldGroup scaffoldGroup);
 		Task<(bool Succeeded, string ErrorMessage)> DeleteImage(int imageId, string userId);
-		Task<(bool Succeeded, List<int> FailedImageIds)> DeleteImages(IEnumerable<int> imageIds, string userId);
+		// Task<(bool Succeeded, List<int> FailedImageIds)> DeleteImages(IEnumerable<int> imageIds, string userId);
+		// Task<(bool Succeeded, BatchOperationResult result)> DeleteImages(IEnumerable<int> imageIds, string userId);
+		Task<(bool Succeeded, BatchOperationResult result)> DeleteImages(IEnumerable<int> imageIds, string userId, bool force = false);
 
 
 	}

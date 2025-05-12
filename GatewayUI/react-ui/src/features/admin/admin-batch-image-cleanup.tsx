@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useStore } from '../../app/stores/store';
 import { observer } from "mobx-react-lite";
+import { BatchOperationResult } from "../../app/models/batchOperationResult";
 
 const AdminBatchImageCleanup: React.FC = () => {
 	const { scaffoldGroupStore } = useStore();
@@ -8,8 +9,9 @@ const AdminBatchImageCleanup: React.FC = () => {
 	const [includeThumbnails, setIncludeThumbnails] = useState(false);
 	const [imageCount, setImageCount] = useState<number | null>(null);
 	const [imagesToDelete, setImagesToDelete] = useState<number[] | null>(null);
-	const [deletedCount, setDeletedCount] = useState<number | null>(null);
+	const [deleteOperationResult, setDeleteOperationResult] = useState<BatchOperationResult | null>(null);
 	const [isDeleting, setIsDeleting] = useState(false);
+	
 
 	const previewDeletableImages = useCallback(async () => {
 		const loadIds = async () => {
@@ -30,8 +32,8 @@ const AdminBatchImageCleanup: React.FC = () => {
 			return;
 		}
 		setIsDeleting(true);
-		const deleted = await scaffoldGroupStore.deleteImages(imagesToDelete);
-		setDeletedCount(deleted?.length ?? 0);
+		const result = await scaffoldGroupStore.deleteImages(imagesToDelete);
+		setDeleteOperationResult(result);
 		setIsDeleting(false);
 	};
 
@@ -75,6 +77,12 @@ const AdminBatchImageCleanup: React.FC = () => {
 				{imageCount !== null && (
 					<p className="mb-4 text-sm text-gray-700">{imageCount} images eligible for deletion</p>
 				)}
+				{deleteOperationResult !== null && (
+					<>
+						<p className="mt-4 text-green-600 text-sm">Deleted {deleteOperationResult.succeededIds?.length} images.</p>
+						<p className="mb-2 text-red-600 text-sm">Failed to delete {deleteOperationResult.failedIds?.length} images.</p>
+					</>
+				)}
 			</div>
 
 			<div>
@@ -86,10 +94,6 @@ const AdminBatchImageCleanup: React.FC = () => {
 				>
 					{isDeleting ? "Deleting..." : "Delete Images"}
 				</button>
-
-				{deletedCount !== null && (
-					<p className="mt-4 text-green-600">Failed to delete {deletedCount} images.</p>
-				)}
 			</div>
 		</div>
 	);
