@@ -184,7 +184,7 @@ const Visualization: React.FC = () => {
 		}) => {
 		e.preventDefault();
 
-		if (resolvedScaffoldId === null) {
+		if (selectedScaffoldId === null) {
 			return;
 		}
 
@@ -197,13 +197,13 @@ const Visualization: React.FC = () => {
 		
 			if (payload.selectedFile) {
 				await uploadDomainMesh(
-					resolvedScaffoldId,
+					selectedScaffoldId,
 					payload.selectedFile,
 					payload.category,
 					payload.voxelSize || undefined,
 					formattedDomainSize || undefined
 				);
-				setScaffoldIdForScreenshot(resolvedScaffoldId);
+				setScaffoldIdForScreenshot(selectedScaffoldId);
 			}
 			
 			setIsModalOpen(false); // Close modal after success

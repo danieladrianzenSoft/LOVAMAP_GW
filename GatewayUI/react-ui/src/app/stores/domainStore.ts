@@ -24,14 +24,18 @@ export default class DomainStore {
         return `${scaffoldId}|${category}`;
     };
 
-    visualizeDomain = async (scaffoldId?: number | null, category: number = 0): Promise<number | undefined> => {
+    visualizeDomain = async (
+        scaffoldId?: number | null, 
+        category: number = 0,
+        forceRefresh: boolean = false
+    ): Promise<number | undefined> => {
         try {
             this.isFetchingDomain = true;
     
             // If scaffoldId is defined, attempt to load from cache
             if (scaffoldId != null) {
                 const key = this.getDomainCacheKey(scaffoldId, category);
-                if (this.domainCache.has(key)) {
+                if (!forceRefresh && this.domainCache.has(key)) {
                     const cached = this.domainCache.get(key)!;
                     runInAction(() => {
                         if (this.domainMeshUrl) {
@@ -220,7 +224,7 @@ export default class DomainStore {
 
             if (response.statusCode === 201) {
                 console.log("Mesh file uploaded successfully:", response.data);
-                this.visualizeDomain(scaffoldId); // Refresh visualization
+                await this.visualizeDomain(scaffoldId, category, true); // Refresh visualization
             } else {
                 console.error("Error uploading mesh file:", response.message);
             }

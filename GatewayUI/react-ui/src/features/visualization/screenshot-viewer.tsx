@@ -133,10 +133,11 @@ const ScreenshotScene: React.FC<ScreenshotSceneProps> = ({ url, onScreenshotRead
 
 interface ScreenshotViewerProps {
 	scaffoldId?: number;
+	meshUrl?: string | null;
 	onScreenshotReady?: (blob: Blob) => void;
 }
 
-const ScreenshotViewer: React.FC<ScreenshotViewerProps> = ({ scaffoldId: propId, onScreenshotReady }) => {
+const ScreenshotViewer: React.FC<ScreenshotViewerProps> = ({ scaffoldId: propId, meshUrl, onScreenshotReady }) => {
 	const { scaffoldId: paramId } = useParams<{ scaffoldId: string }>();
 	const { domainStore } = useStore();
 	const { domainMeshUrl, visualizeDomain, clearDomainMesh } = domainStore;

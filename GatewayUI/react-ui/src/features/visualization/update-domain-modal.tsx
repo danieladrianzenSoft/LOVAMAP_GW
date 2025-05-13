@@ -23,7 +23,7 @@ const UpdateDomainModal: React.FC<UpdateDomainModalProps> = ({
 	isOpen,
 	onClose,
 	onFormSubmit,
-  domain,
+  	domain,
 	isLoading,
 }) => {
 	const [showUploadField, setShowUploadField] = useState(!domain);
