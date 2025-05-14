@@ -5,6 +5,7 @@ namespace Infrastructure.DTOs
 		public bool AllSucceeded => FailedIds.Count == 0;
 		public List<int> SucceededIds { get; set; } = [];
 		public List<int> FailedIds { get; set; } = [];
+		// public List<int> UnchangedIds { get; set; } = [];
 	}
 }
 

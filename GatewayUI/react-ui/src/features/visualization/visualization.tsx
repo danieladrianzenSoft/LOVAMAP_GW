@@ -16,7 +16,7 @@ import ScreenshotViewer from './screenshot-viewer';
 import { ImageCategory, ImageToCreate } from '../../app/models/image';
 
 const Visualization: React.FC = () => {
-	const { domainStore, userStore, scaffoldGroupStore } = useStore();
+	const { domainStore, userStore, scaffoldGroupStore, commonStore } = useStore();
 	const { domainMeshUrl, domain, domainMetadata, isFetchingDomain, uploadDomainMesh, clearDomainMesh } = domainStore;
 	// const [screenshotTargetScaffoldId, setScreenshotTargetScaffoldId] = useState<number | null>(null);
 	const params = useParams<{ scaffoldId?: string }>();
@@ -31,6 +31,7 @@ const Visualization: React.FC = () => {
 	const [selectedScaffoldGroupId, setSelectedScaffoldGroupId] = useState<number | null>(null);
 	const [isPanelOpen, setIsPanelOpen] = useState(true);
 	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [showHelp, setShowHelp] = useState(false);
 	const [, setError] = useState<string | null>(null);
 	const [isLoading, setIsLoading] = useState(false);
 	const currentlyLoadingScaffoldIdRef = useRef<number | null>(null);
@@ -394,51 +395,69 @@ const Visualization: React.FC = () => {
 			setScaffoldIdForScreenshot(null);
 		}
 	}
-	
 
 	if (isFetchingDomain) {
 		return <p className="text-gray-500">Loading...</p>;
 	}
 
 	return (
-		<div className="container mx-auto py-8 px-2 justify-center h-screen">
-			{/* <div className="w-full h-full rounded-lg">
-				{!scaffoldIdForScreenshot && domainMeshUrl ? (
-					<CanvasViewer
-						domainMeshUrl={domainMeshUrl}
-						hiddenParticles={hiddenParticles}
-						selectedParticle={selectedParticle}
-						onParticleClick={handleParticleClick}
-						onParticleRightClick={handleParticleRightClick}
-						setHistory={setHistory}
-					/>
-				) : (
-					<p className="text-gray-500">The mesh for this scaffold has not been generated yet</p>
-				)}
-			</div> */}
+		<div className="relative w-full h-screen overflow-hidden">
+			{showHelp && (
+				<div className={`absolute top-10 ${commonStore.isSidebarOpen ? 'left-48' : 'left-2'} z-30 max-w-sm px-4 py-3
+					bg-blue-50 border border-blue-300 text-blue-600 rounded-lg shadow-lg 
+					transition duration-300 ease-in-out`}
+				>
+					<button
+						onClick={() => setShowHelp(false)}
+						className="absolute top-1 right-2 text-blue-600 hover:text-blue-800 text-lg font-bold focus:outline-none"
+						aria-label="Close help"
+					>
+					&times;
+					</button>
+					<p className="font-semibold mb-2">Instructions:</p>
+					<ul className="list-disc list-inside space-y-1 text-sm">
+						<li>Click and drag to rotate</li>
+						<li>Scroll to zoom in and out</li>
+						<li>Left click to select geometry</li>
+						<li>Right click to hide geometry</li>
+						<li>Cmd+Z or Ctrl+Z to undo</li>
+					</ul>
+				</div>
+			)}
 			<div className="w-full h-full rounded-lg">
 				{scaffoldIdForScreenshot ? (
 					<p className="text-gray-500">Generating thumbnail and loading mesh...</p>
 				) : domainMeshUrl ? (
-					<CanvasViewer
-						domainMeshUrl={domainMeshUrl}
-						hiddenParticles={hiddenParticles}
-						selectedParticle={selectedParticle}
-						onParticleClick={handleParticleClick}
-						onParticleRightClick={handleParticleRightClick}
-						setHistory={setHistory}
-					/>
+					<div className="w-full h-full rounded-lg relative z-0">
+						<CanvasViewer
+							domainMeshUrl={domainMeshUrl}
+							hiddenParticles={hiddenParticles}
+							selectedParticle={selectedParticle}
+							onParticleClick={handleParticleClick}
+							onParticleRightClick={handleParticleRightClick}
+							setHistory={setHistory}
+						/>
+					</div>
 				) : (
 					<p className="text-gray-500">The mesh for this scaffold has not been generated yet</p>
 				)}
 			</div>
 
-			<div className="absolute mt-9 top-4 right-4">
+			<div className="absolute top-6 right-0 z-20 space-y-1 mr-2">
 				<div className="mt-4 flex w-full">
-				<button className="button-primary items-center content-center w-full" onClick={() => History.push('/explore')}>
-					Explore More
-				</button>
+					<button className="button-primary items-center content-center w-full" onClick={() => History.push('/explore')}>
+						Explore More
+					</button>
 				</div>
+				<div className="flex w-full text-sm bg-opacity-80">
+					<button
+						className="text-blue-600 hover:text-blue-800 text-xs"
+						onClick={() => {setShowHelp(!showHelp)}}
+					>
+						Help?
+					</button>
+				</div>
+
 
 				<InfoPanel
 					isOpen={isPanelOpen}

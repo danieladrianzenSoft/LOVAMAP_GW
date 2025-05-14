@@ -339,11 +339,11 @@ public class ScaffoldGroupsController : ControllerBase
 			var currentUserId = _userService.GetCurrentUserId();
 			if (currentUserId == null) return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
 
-			var (succeeded, ErrorMessage) = await _imageService.DeleteImage(imageId, currentUserId);
+			var (succeeded, errorMessage) = await _imageService.DeleteImage(imageId, currentUserId);
 
-			if (!succeeded && ErrorMessage == "Unauthorized") return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
+			if (!succeeded && errorMessage == "Unauthorized") return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
 
-			if (!succeeded && ErrorMessage == "Not_Found") return NotFound(new ApiResponse<string>(404, "The image was not found"));
+			if (!succeeded && errorMessage == "Not_Found") return NotFound(new ApiResponse<string>(404, "The image was not found"));
 			if (!succeeded) return BadRequest(new ApiResponse<string>(400, "Unknown error"));
 
 			return Ok(new ApiResponse<bool>(200, "", succeeded));
@@ -371,30 +371,6 @@ public class ScaffoldGroupsController : ControllerBase
         	return StatusCode(500, new ApiResponse<string>(500, "An error occurred deleting the image"));
 		}
 	}
-
-	// [Authorize(Roles = "administrator")]
-	// [HttpDelete("images/batch-delete")]
-	// public async Task<IActionResult> BatchDeleteImages()
-	// {
-	// 	try
-	// 	{
-	// 		var userId = _userService.GetCurrentUserId();
-	// 		if (userId == null) return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
-			
-	// 		var imageIds = await _imageService.GetAllImageIds();
-	// 		var result = await _imageService.DeleteImages(imageIds, userId);
-
-	// 		if (!result.Succeeded) return BadRequest(new ApiResponse<List<int>>(400, "Some deletions failed", result.FailedImageIds));
-
-	// 		return Ok(new ApiResponse<List<int>>(200, "All images deleted successfully", result.FailedImageIds));
-
-	// 	}
-	// 	catch (Exception ex)
-	// 	{
-	// 		_logger.LogError(ex, "Error deleting images in batch");
-	// 		return StatusCode(500, new ApiResponse<string>(500, "An error occurred deleting images"));
-	// 	}
-	// }
 
 	[Authorize(Roles = "administrator")]
 	[HttpGet("images/ids-for-deletion")]
@@ -457,6 +433,50 @@ public class ScaffoldGroupsController : ControllerBase
 		{
 			_logger.LogError(ex, "Error deleting images");
 			return StatusCode(500, new ApiResponse<string>(500, "An error occurred while deleting images"));
+		}
+	}
+
+	[Authorize(Roles = "administrator")]
+	[HttpGet("ids")]
+	public async Task<IActionResult> GetAllIds()
+	{
+		try
+		{
+			var ids = await _scaffoldGroupService.GetAllIds();
+			return Ok(new ApiResponse<List<int>>(200, "Scaffold Group Id's obtained successfully", ids));
+
+		}
+		catch (Exception ex)
+		{
+			_logger.LogError(ex, "Error getting scaffold group Id's");
+			return StatusCode(500, new ApiResponse<string>(500, "An error occurred while getting scaffold group Id's"));
+		}
+	}
+
+
+	[Authorize(Roles = "administrator")]
+	[HttpPost("reset-names")]
+	public async Task<IActionResult> ResetScaffoldGroupTitles([FromBody] ScaffoldGroupsToResetDto scaffoldGroupsToReset)
+	{
+		try
+		{
+			var (success, errorMessage, operationResult) = await _scaffoldGroupService.ResetNamesAndComments(scaffoldGroupsToReset.ScaffoldGroupIds);
+
+			if (!success || operationResult == null)
+				return BadRequest(new ApiResponse<BatchOperationResult>(400, errorMessage, operationResult));
+			
+			return Ok(new ApiResponse<BatchOperationResult>(
+				200,
+				operationResult.SucceededIds.Count > 0
+					? "Scaffold group names & titles reset successfully"
+					: "Request was processed, but no scaffold groups were reset",
+				operationResult
+			));
+		}
+		catch (Exception ex)
+		{
+			_logger.LogError(ex, "Error resetting titles");
+			return StatusCode(500, new ApiResponse<string>(500, "An error occurred while resetting scaffold group titles"));
 		}
 	}
 }

@@ -22,6 +22,28 @@ export default class ScaffoldGroupStore {
 		makeAutoObservable(this)
 	}
 
+	getIds = async(): Promise<number[]> => {
+		try {
+			const apiResponse = await agent.ScaffoldGroups.getAllIds();
+			const ids = apiResponse.data;
+			return ids;
+		} catch (error) {
+			console.error("Error fetching scaffold group ids", error);
+			return [];
+		}
+	}
+
+	resetNamesAndComments = async(ids: number[]): Promise<BatchOperationResult | null> => {
+		try {
+			const idsToReset: {scaffoldGroupIds: number[]} = {scaffoldGroupIds: ids};
+			const response = await agent.ScaffoldGroups.resetNameAndComments(idsToReset);
+			return response.data;
+		} catch (error) {
+			console.error('Error resetting scaffold group names:', error);
+			return null;
+		}
+	}
+
 	setUploadedScaffoldGroups(groups: any[]) {
 		this.uploadedScaffoldGroups = groups;
 	}
@@ -362,67 +384,6 @@ export default class ScaffoldGroupStore {
 		// Otherwise assume it's a regular tag name
 		this.selectedTagNames = this.selectedTagNames.filter(name => name !== tagText);
 	};
-
-	// getPublicScaffoldGroups = async (selectedTags?: Tag[] | null, sizeIds?: number[] | null) => {
-	// 	try {
-	// 		let queryParams = ''
-	// 		if (selectedTags!= null){
-	// 			queryParams = queryParams + selectedTags.map(tag => `tagIds=${tag.id}`).join('&');
-	// 		} 
-	// 		if (queryParams !== '')
-	// 		{
-	// 			queryParams = queryParams + '&';
-	// 		}
-	// 		if (sizeIds != null)
-	// 		{
-	// 			queryParams = queryParams + sizeIds.map(id => `particleSizes=${id}`).join('&')
-	// 		}
-	// 		if (queryParams !== '')
-	// 		{
-	// 			queryParams = '?' + queryParams
-	// 		}
-	// 		const response = await agent.ScaffoldGroups.getPublic(queryParams);
-
-	// 		runInAction(() => {
-	// 			this.scaffoldGroups = response.data
-	// 		})
-			
-	// 		return response.data;
-
-	// 	} catch (error) {
-	// 		console.error(error);
-	// 	}
-	// }
-
-	// getSummarizedScaffoldGroups = async (selectedTags?: Tag[], sizeIds?: number[]) => {
-	// 	try {
-	// 		let queryParams = ''
-	// 		if (selectedTags!= null){
-	// 			queryParams = queryParams + selectedTags.map(tag => `tagIds=${tag.id}`).join('&');
-	// 		} 
-	// 		if (queryParams !== '')
-	// 		{
-	// 			queryParams = queryParams + '&';
-	// 		}
-	// 		if (sizeIds != null)
-	// 		{
-	// 			queryParams = queryParams + sizeIds.map(id => `particleSizes=${id}`).join('&')
-	// 		}
-	// 		if (queryParams !== '')
-	// 		{
-	// 			queryParams = '?' + queryParams
-	// 		}
-	// 		const response = await agent.ScaffoldGroups.getSummarized(queryParams);
-
-	// 		runInAction(() => {
-	// 			this.scaffoldGroups = response.data
-	// 		})
-
-	// 		return response.data;
-	// 	} catch (error) {
-	// 		console.error(error);
-	// 	}
-	// }
 
 	getUploadedScaffoldGroups = async () => {
 		try {

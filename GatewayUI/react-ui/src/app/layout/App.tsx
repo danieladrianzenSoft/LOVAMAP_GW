@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { useStore } from '../stores/store';
@@ -23,7 +23,7 @@ import ForgotPasswordForm from '../../features/user/forgot-password';
 import ConfirmEmailPage from '../../features/user/confirm-email';
 import EmailNotConfirmed from '../../features/user/email-not-confirmed';
 import SettingsScreen from '../../features/settings-screen/settings-screen';
-import AdminDashboard from '../../features/admin/admin-dashboard';
+import AdminUtilities from '../../features/admin/admin-utilities';
 
 const App: React.FC = () => {
   const { commonStore, userStore } = useStore();
@@ -69,12 +69,12 @@ const App: React.FC = () => {
 };
 
 const MainLayout: React.FC = observer(() => {
-  const [isSidebarOpen, setSidebarOpen] = useState(false);
+  // const [isSidebarOpen, setSidebarOpen] = useState(false);
 
   return (
     <div className="main-layout">
-      <TopNavigation isSidebarOpen={isSidebarOpen} setSidebarOpen={setSidebarOpen}/>
-      <Sidebar isOpen={isSidebarOpen} setIsOpen={setSidebarOpen} />
+      <TopNavigation />
+      <Sidebar />
       <div className="content">
         <Routes>
           <Route path="/" element={<Visualization />} />
@@ -86,7 +86,7 @@ const MainLayout: React.FC = observer(() => {
           <Route path="/uploads" element={<ProtectedRoute element={<ScaffoldGroupUploads />} />} />
           <Route path="/jobs" element={<ProtectedRoute element={<RunJob />} />} />
           <Route path="/screenshots/:scaffoldId" element={<ProtectedRoute requiredRole="administrator" element={<ScreenshotViewer />} />} />
-          <Route path="/admin" element={<ProtectedRoute requiredRole="administrator" element={<AdminDashboard />} />}/>
+          <Route path="/admin" element={<ProtectedRoute requiredRole="administrator" element={<AdminUtilities />} />}/>
           <Route path="/settings" element={<ProtectedRoute element={<SettingsScreen />} />}/>
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>

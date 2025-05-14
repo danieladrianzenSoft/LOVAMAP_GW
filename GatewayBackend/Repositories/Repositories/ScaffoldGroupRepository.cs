@@ -40,6 +40,21 @@ namespace Repositories.Repositories
 			_context.ScaffoldGroups.Remove(scaffoldGroup);
 		}
 
+		public async Task<List<int>> GetAllIds()
+		{
+			return await _context.ScaffoldGroups.Select(sg => sg.Id).ToListAsync();
+		}
+
+		public async Task<List<ScaffoldGroup>> GetWithInputDataByIds(List<int> ids)
+		{
+			return await _context.ScaffoldGroups
+				.Where(sg => ids.Contains(sg.Id))
+				.Include(sg => sg.InputGroup)
+					.ThenInclude(ig => ig.ParticlePropertyGroups)
+				.AsSplitQuery()
+				.ToListAsync();
+		}
+
 		public async Task<ScaffoldGroup?> Get(int id)
 		{
 			return await _context.ScaffoldGroups

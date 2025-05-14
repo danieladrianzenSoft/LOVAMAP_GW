@@ -126,6 +126,7 @@ builder.Services.AddScoped<IModelMapper, ModelMapper>();
 builder.Services.AddScoped<ILovamapCoreJobService, LovamapCoreJobService>();
 builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<IAISearchService, AISearchService>();
+builder.Services.AddScoped<IScaffoldGroupMetadataService, ScaffoldGroupMetadataService>();
 builder.Services.AddScoped<SeedingService>();
 
 // Other services

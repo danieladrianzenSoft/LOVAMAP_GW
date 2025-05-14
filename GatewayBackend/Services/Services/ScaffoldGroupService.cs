@@ -18,6 +18,7 @@ namespace Services.Services
 		private readonly DataContext _context;
 		private readonly IModelMapper _modelMapper;
 		private readonly IUserAuthHelper _userAuthHelper;
+		private readonly IScaffoldGroupMetadataService _metadataService;
 		private readonly IScaffoldGroupRepository _scaffoldGroupRepository;
 		private readonly IDescriptorService _descriptorService;
 		private readonly IDownloadService _downloadService;
@@ -27,13 +28,15 @@ namespace Services.Services
 		private readonly ILogger<ScaffoldGroupService> _logger;
 
 		public ScaffoldGroupService(DataContext context, IModelMapper modelMapper, 
-			IScaffoldGroupRepository scaffoldGroupRepository, IDescriptorService descriptorService, 
-			IDownloadService downloadService, ITagService tagService, IUserAuthHelper userAuthHelper,
-			IImageService imageService, IDomainService domainService, ILogger<ScaffoldGroupService> logger)
+			IScaffoldGroupMetadataService metadataService, IScaffoldGroupRepository scaffoldGroupRepository, 
+			IDescriptorService descriptorService, IDownloadService downloadService, ITagService tagService, 
+			IUserAuthHelper userAuthHelper, IImageService imageService, IDomainService domainService,
+			 ILogger<ScaffoldGroupService> logger)
 		{
 			_context = context;
 			_modelMapper = modelMapper;
 			_userAuthHelper = userAuthHelper;
+			_metadataService = metadataService;
 			_scaffoldGroupRepository = scaffoldGroupRepository;
 			_descriptorService = descriptorService;
 			_imageService = imageService;
@@ -41,6 +44,11 @@ namespace Services.Services
 			_tagService = tagService;
 			_domainService = domainService;
 			_logger = logger;
+		}
+
+		public async Task<List<int>> GetAllIds()
+		{
+			return await _scaffoldGroupRepository.GetAllIds();
 		}
 
 		public async Task<(bool Succeeded, string ErrorMessage, ScaffoldGroupBaseDto? CreatedScaffoldGroup)> CreateScaffoldGroup(ScaffoldGroupToCreateDto scaffoldGroupToCreate, string? userId)
@@ -105,53 +113,45 @@ namespace Services.Services
 			}
 		}
 
-		// public async Task<(bool Succeeded, string ErrorMessage, ScaffoldGroupBaseDto? scaffoldGroup)> GetScaffoldGroup(int id, string userId, int? numReplicates)
-		// {
-		// 	try
-		// 	{
-		// 		// ScaffoldGroup? scaffoldGroup = await _scaffoldGroupRepository.Get(id); 
+		public async Task<(bool Succeeded, string ErrorMessage, BatchOperationResult? result)> ResetNamesAndComments(List<int> ids)
+		{
+			if (ids == null || ids.Count == 0)
+			{
+				return (false, "No scaffold group IDs provided", null);
+			}
 
-		// 		var filter = new ScaffoldFilter {
-		// 			ScaffoldGroupIds = [id]
-		// 		};
+			var scaffoldGroups = await _scaffoldGroupRepository.GetWithInputDataByIds(ids);
+			var result = new BatchOperationResult();
 
-		// 		ScaffoldGroup? scaffoldGroup = await _scaffoldGroupRepository.GetFilteredScaffoldGroupSummaries(new ScaffoldFilter)
+			foreach (var group in scaffoldGroups)
+			{
+				try
+				{
+					_metadataService.SetScaffoldGroupNameAndComments(group);
 
-		// 		if (scaffoldGroup == null){
-		// 			return (false, "NotFound", null);
-		// 		}
+					result.SucceededIds.Add(group.Id);
+				}
+				catch (Exception ex)
+				{
+					_logger.LogError(ex, $"Error updating title & comments for scaffold group {group.Id}");
+					result.FailedIds.Add(group.Id);
+					return (false, $"Error updating title & comments for scaffold group {group.Id}", result);
+				}
 
-		// 		if (scaffoldGroup.IsPublic == false && scaffoldGroup.UploaderId != userId)
-		// 		{
-		// 			return (false, "Unauthorized", null);
-		// 		}
+			}
 
-		// 		var scaffolds = numReplicates.HasValue ? scaffoldGroup.Scaffolds.Take(numReplicates.Value) : scaffoldGroup.Scaffolds;
-       	// 		var scaffoldIds = scaffolds.Select(s => s.Id).ToList();
+			try
+			{
+				await _context.SaveChangesAsync();
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, "Error saving updated scaffold group names/comments");
+				return (false, "Error saving updated scaffold group names/comments", result);
+			}
 
-		// 		var (globalDescriptors, poreDescriptors, otherDescriptors) = await _descriptorService.GetFilteredDescriptorsForScaffolds(scaffoldIds, new ScaffoldFilter());
-
-		// 		var images = await _imageService.GetThumbnails(scaffoldGroup.Id);
-
-		// 		var detailedDto = _modelMapper.MapScaffoldGroupToDto(scaffoldGroup, scaffolds, images, [], userId, true);
-
-		// 		var descriptorTypeIds = globalDescriptors.Select(g => g.DescriptorTypeId)
-		// 							.Concat(poreDescriptors.Select(p => p.DescriptorTypeId))
-		// 							.Concat(otherDescriptors.Select(o => o.DescriptorTypeId))
-		// 							.Distinct().ToList();
-
-		// 		// Create download record
-		// 		await _downloadService.CreateDownloadRecord(userId, scaffoldIds, descriptorTypeIds);
-
-		// 		return (true, "", detailedDto);
-
-		// 	}
-		// 	catch (Exception ex)
-		// 	{
-		// 		_logger.LogError(ex, "Failed to get scaffold group {id}", id);
-        // 		return (false, "UnexpectedError", null);
-		// 	}
-		// }
+			return (true, "", result);
+		}
 
 		public async Task<(bool Succeeded, string ErrorMessage, ScaffoldGroupBaseDto? scaffoldGroup)> GetScaffoldGroup(int id, string userId, int? numReplicates)
 		{

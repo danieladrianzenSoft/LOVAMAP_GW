@@ -10,15 +10,18 @@ namespace Services.Services
 {
     public class ModelMapper : IModelMapper
     {
+        private readonly IScaffoldGroupMetadataService _metadataService;
         private readonly IDescriptorRepository _descriptorRepository;
         private readonly ITagRepository _tagRepository;
         private readonly IUserAuthHelper _userAuthHelper;
 
         public ModelMapper(
+            IScaffoldGroupMetadataService metadataService,
             IDescriptorRepository descriptorRepository, 
             ITagRepository tagRepository, 
             IUserAuthHelper userAuthHelper)
         {
+            _metadataService = metadataService;
             _descriptorRepository = descriptorRepository;
             _tagRepository = tagRepository;
             _userAuthHelper = userAuthHelper;
@@ -87,7 +90,7 @@ namespace Services.Services
 
             scaffoldGroup.InputGroup.ScaffoldGroup = scaffoldGroup;
 
-            var namedScaffoldGroup = SetScaffoldGroupNameAndComments(scaffoldGroup);
+            var namedScaffoldGroup = _metadataService.SetScaffoldGroupNameAndComments(scaffoldGroup);
 
             return namedScaffoldGroup;
         }
@@ -133,7 +136,7 @@ namespace Services.Services
             {
                 ContainerShape = dto.ContainerShape,
                 ContainerSize = dto.ContainerSize,
-                PackingConfiguration = ParsePackingConfiguration(dto.PackingConfiguration), // Map int to enum
+                PackingConfiguration = _metadataService.ParsePackingConfiguration(dto.PackingConfiguration), // Map int to enum
                 ParticlePropertyGroups = dto.ParticlePropertyGroups.Select(ppg => MapToParticlePropertyGroup(ppg)).ToList(),
                 SizeDistribution = dto.SizeDistribution
             };
@@ -592,114 +595,6 @@ namespace Services.Services
         //     }
         // }
 
-        private ScaffoldGroup SetScaffoldGroupNameAndComments(ScaffoldGroup scaffoldGroup)
-        {
-            // Filter out particle groups where Proportion = 0
-            var validParticleGroups = scaffoldGroup.InputGroup?.ParticlePropertyGroups
-                ?.Where(p => p.Proportion > 0)
-                .ToList() ?? new List<ParticlePropertyGroup>();
-
-            if (!validParticleGroups.Any())
-                return scaffoldGroup; // Return early if no valid data exists
-                
-            var packingConfigName = scaffoldGroup.InputGroup?.PackingConfiguration.ToString();
-            var distributionType = GetDistributionType(scaffoldGroup);
-            var includeProportion = validParticleGroups.Count > 1 && validParticleGroups.Any(p => p.Proportion > 0 && p.Proportion < 1);
-            var isSimulatedText = scaffoldGroup.IsSimulated ? "Simulated" : "Real";
-            
-            var stiffnessDescriptions = validParticleGroups
-                .Select(p => p.Stiffness)
-                .Where(s => !string.IsNullOrEmpty(s)) // Ensure only non-null stiffness values are included
-                .ToList();
-
-            var particleDescriptions = validParticleGroups
-                .Select(p => includeProportion
-                    ? $"{Math.Round(p.Proportion * 100)}% {p.Shape}, size {Math.Round(p.MeanSize)} μm"
-                    : $"{p.Shape}, size {Math.Round(p.MeanSize)} μm")
-                .ToList();
-
-            var name = CapitalizeFirstLetter($"{distributionType} distribution of {string.Join(" and ", particleDescriptions)}");
-
-            scaffoldGroup.Name = name;
-
-            if (stiffnessDescriptions.Any())
-            {
-                scaffoldGroup.Comments = CapitalizeFirstLetter($"{isSimulatedText} scaffolds containing {string.Join(" and ", stiffnessDescriptions)} particles, {packingConfigName} packing");
-            }
-            else
-            {
-                scaffoldGroup.Comments = CapitalizeFirstLetter($"{isSimulatedText} scaffolds, {packingConfigName} packing"); // Fallback if no valid stiffness data is available
-            }
-
-            return scaffoldGroup;
-        }
-
-        private string GetDistributionType(ScaffoldGroup scaffoldGroup)
-        {
-            var particleGroups = scaffoldGroup.InputGroup?.ParticlePropertyGroups
-                ?.Where(p => p.Proportion > 0) // Exclude proportion = 0
-                .ToList() ?? new List<ParticlePropertyGroup>();
-
-            int groupCount = particleGroups.Count;
-
-            if (groupCount == 0) return "unknown"; // No particles available
-
-            if (groupCount == 1)
-            {
-                // Single group: use its Dispersity if available
-                return !string.IsNullOrWhiteSpace(particleGroups.First().Dispersity) 
-                    ? particleGroups.First().Dispersity 
-                    : "unknown";
-            }
-
-            var dispersities = particleGroups
-                .Select(p => p.Dispersity)
-                .Where(d => !string.IsNullOrWhiteSpace(d))
-                .ToList();
-
-            if (dispersities.All(d => d == "monodisperse") && groupCount == 2)
-            {
-                return "bidisperse";
-            }
-            else if (dispersities.Any(d => d == "polydisperse"))
-            {
-                return "polydisperse";
-            }
-            else if (groupCount > 2)
-            {
-                return "polydisperse";
-            }
-            
-            return "unknown";
-        }
-
-        private PackingConfiguration ParsePackingConfiguration(object? input)
-        {
-            if (input == null)
-            {
-                return PackingConfiguration.Unknown; // Default for missing input
-            }
-
-            if (input is int intValue && Enum.IsDefined(typeof(PackingConfiguration), intValue))
-            {
-                return (PackingConfiguration)intValue;
-            }
-
-            if (input is string stringValue && Enum.TryParse<PackingConfiguration>(stringValue, true, out var result))
-            {
-                return result;
-            }
-
-            return PackingConfiguration.Unknown; // Default for invalid input
-        }
-
-        private string CapitalizeFirstLetter(string text)
-        {
-            if (string.IsNullOrWhiteSpace(text))
-                return text;
-
-            text = text.Trim().ToLower(); // Convert the entire string to lowercase first
-            return char.ToUpper(text[0]) + text.Substring(1);
-        }
+        
     }
 }

@@ -173,7 +173,7 @@
     @apply flex items-stretch h-screen relative;
   }
   .content {
-    @apply flex-1 overflow-y-auto p-8 h-full w-full;
+    @apply flex-1 overflow-y-auto py-8 px-2 h-full w-full;
   }
   .sidebar {
     @apply fixed md:relative top-0 left-0 h-screen w-52 bg-white z-50 shadow-lg
@@ -198,7 +198,7 @@
   }
   .top-navigation {
     @apply flex flex-row items-center justify-between 
-    w-full h-16 z-30 fixed top-0 left-0
+    w-full h-16 z-40 fixed top-0 left-0
     m-0 overflow-x-hidden overflow-y-hidden;
   }
   .top-navigation-icon {

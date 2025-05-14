@@ -1,5 +1,5 @@
 export interface BatchOperationResult {
-	allSucceeded: number;
+	allSucceeded: boolean;
 	succeededIds: number[];
 	failedIds: number[];
 }

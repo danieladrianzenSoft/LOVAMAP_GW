@@ -7,6 +7,8 @@ namespace Services.IServices
 {
 	public interface IScaffoldGroupService
 	{
+		Task<List<int>> GetAllIds();
+		Task<(bool Succeeded, string ErrorMessage, BatchOperationResult? result)> ResetNamesAndComments(List<int> ids);
 		Task<(bool Succeeded, string ErrorMessage, ScaffoldGroupBaseDto? CreatedScaffoldGroup)> CreateScaffoldGroup(ScaffoldGroupToCreateDto scaffoldGroupToCreate, string? userId);
 		Task<(bool Succeeded, string ErrorMessage, IEnumerable<ScaffoldGroupBaseDto>? CreatedScaffoldGroups)> CreateScaffoldGroups(IEnumerable<ScaffoldGroupToCreateDto> scaffoldGroupsToCreate, string? userId);
 		Task<(bool Succeeded, string ErrorMessage)> DeleteScaffoldGroup(int scaffoldGroupId, string userId);

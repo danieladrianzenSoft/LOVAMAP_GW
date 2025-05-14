@@ -4,6 +4,7 @@ export default class CommonStore {
 	accessToken: string | null = window.localStorage.getItem('accessToken');
 	appLoaded = false;
 	activeTab = 0;
+	isSidebarOpen = false;
 
 	constructor() {
 		makeAutoObservable(this);
@@ -26,6 +27,8 @@ export default class CommonStore {
 	get isLoggedIn() {
 		return !!this.accessToken;
 	}
+
+	setSidebarOpen = (value: boolean) => { this.isSidebarOpen = value };
 
 	setToken = (accessToken: string | null) => {
 		if (accessToken) {

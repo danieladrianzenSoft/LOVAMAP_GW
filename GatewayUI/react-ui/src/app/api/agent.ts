@@ -74,6 +74,7 @@ const Users = {
 }
 
 const ScaffoldGroups = {
+    getAllIds: () => requests.get<ApiResponse<number[]>>('/scaffoldgroups/ids'),
 	getSummarized: (queryParams: string) => requests.get<ApiResponse<ScaffoldGroup[]>>('/scaffoldgroups' + queryParams),
 	getPublic: (queryParams: string) => requests.get<ApiResponse<ScaffoldGroup[]>>('/scaffoldgroups/public' + queryParams),
     getSummary: (id: number) => requests.get<ApiResponse<ScaffoldGroup>>('/scaffoldgroups/' + id + '/summary'),
@@ -83,6 +84,7 @@ const ScaffoldGroups = {
     getDetailedForExperiment: (queryParams: string) => requests.get<ApiResponse<ScaffoldGroup[]>>('/scaffoldgroups/detailed' + queryParams),
     uploadScaffoldGroup: (scaffoldGroup: ScaffoldGroupToCreate) => requests.post<ApiResponse<ScaffoldGroup>>('/scaffoldgroups/create', scaffoldGroup),
     uploadScaffoldGroupBatch: (scaffoldGroups: ScaffoldGroupToCreate[]) => requests.post<ApiResponse<ScaffoldGroup[]>>('/scaffoldgroups/createBatch', scaffoldGroups),
+    resetNameAndComments: (scaffoldGroupIds: {scaffoldGroupIds: number[]}) => requests.post<ApiResponse<BatchOperationResult>>('scaffoldGroups/reset-names', scaffoldGroupIds),
     getUploadedScaffoldGroups: () => requests.get<ApiResponse<ScaffoldGroup[]>>('/users/me/scaffoldgroups'),
     delete: (id: number) => requests.del<ApiResponse<string>>('scaffoldgroups/' + id),
     uploadScaffoldGroupImage: async (scaffoldGroupId: number, image: ImageToCreate) => {

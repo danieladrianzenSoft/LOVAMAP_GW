@@ -8,16 +8,23 @@ const AdminBatchImageCleanup: React.FC = () => {
 	const [category, setCategory] = useState<number | null>(null);
 	const [includeThumbnails, setIncludeThumbnails] = useState(false);
 	const [imageCount, setImageCount] = useState<number | null>(null);
-	const [imagesToDelete, setImagesToDelete] = useState<number[] | null>(null);
 	const [deleteOperationResult, setDeleteOperationResult] = useState<BatchOperationResult | null>(null);
-	const [isDeleting, setIsDeleting] = useState(false);
-	
+	const [isRunning, setIsRunning] = useState(false);
+	const [deletionQueue, setDeletionQueue] = useState<number[][]>([]);
+	const [completedBatches, setCompletedBatches] = useState<number>(0);
+	const BATCH_SIZE = 20;
 
 	const previewDeletableImages = useCallback(async () => {
 		const loadIds = async () => {
 			const ids = await scaffoldGroupStore.getImageIdsForDeletion(category, includeThumbnails);
-			setImagesToDelete(ids ?? []);
 			setImageCount(ids?.length ?? 0);
+
+			const batches: number[][] = [];
+			for (let i = 0; i < ids.length; i += BATCH_SIZE) {
+				batches.push(ids.slice(i, i + BATCH_SIZE));
+			}
+			setDeletionQueue(batches);
+			setCompletedBatches(0);
 		}
 		loadIds();
 	}, [category, includeThumbnails, scaffoldGroupStore]);
@@ -27,15 +34,38 @@ const AdminBatchImageCleanup: React.FC = () => {
 	}, [category, includeThumbnails, previewDeletableImages]);
 
 	const handleDelete = async () => {
-		if (!imagesToDelete || imagesToDelete.length === 0) {
-			setIsDeleting(false);
-			return;
+		if (!deletionQueue.length) return;
+		setIsRunning(true);
+
+		setIsRunning(true);
+		const allSucceeded: number[] = [];
+		const allFailed: number[] = [];
+
+		for (let i = 0; i < deletionQueue.length; i++) {
+			const batch = deletionQueue[i];
+			const result = await scaffoldGroupStore.deleteImages(batch);
+
+			if (result) {
+				allSucceeded.push(...(result.succeededIds ?? []));
+				allFailed.push(...(result.failedIds ?? []));
+			}
+
+			setCompletedBatches(i + 1);
 		}
-		setIsDeleting(true);
-		const result = await scaffoldGroupStore.deleteImages(imagesToDelete);
-		setDeleteOperationResult(result);
-		setIsDeleting(false);
+
+		const finalResult: BatchOperationResult = {
+			allSucceeded: allFailed.length === 0,
+			succeededIds: allSucceeded,
+			failedIds: allFailed,
+		};
+
+		setDeleteOperationResult(finalResult);
+		setIsRunning(false);
 	};
+
+	const progress = deletionQueue.length
+		? Math.round((completedBatches / deletionQueue.length) * 100)
+		: 0;
 
 	return (
 		<div className="border rounded-lg p-6 bg-white shadow flex flex-col justify-between">
@@ -83,6 +113,16 @@ const AdminBatchImageCleanup: React.FC = () => {
 						<p className="mb-2 text-red-600 text-sm">Failed to delete {deleteOperationResult.failedIds?.length} images.</p>
 					</>
 				)}
+
+				{isRunning && (
+					<div className="w-full bg-gray-200 rounded-full h-4 mt-4 mb-2">
+						<div
+							className="bg-blue-600 h-4 rounded-full transition-all duration-300"
+							style={{ width: `${progress}%` }}
+						></div>
+					</div>
+				)}
+
 			</div>
 
 			<div>
@@ -90,9 +130,9 @@ const AdminBatchImageCleanup: React.FC = () => {
 					type="button"
 					onClick={handleDelete}
 					className="button-primary w-full"
-					disabled={isDeleting || imageCount === 0}
+					disabled={isRunning || imageCount === 0}
 				>
-					{isDeleting ? "Deleting..." : "Delete Images"}
+					{isRunning ? "Deleting..." : "Delete Images"}
 				</button>
 			</div>
 		</div>

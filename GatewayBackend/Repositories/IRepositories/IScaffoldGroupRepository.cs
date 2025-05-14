@@ -11,6 +11,8 @@ namespace Repositories.IRepositories
 		void Add(ScaffoldGroup experiment);
 		public void Delete(ScaffoldGroup scaffoldGroup);
 		Task<ScaffoldGroup?> Get(int id);
+		Task<List<int>> GetAllIds();
+		Task<List<ScaffoldGroup>> GetWithInputDataByIds(List<int> ids);
 		Task<ScaffoldGroupSummaryDto?> GetSummary(int id);
 		Task<ScaffoldGroupSummaryDto?> GetSummaryByScaffoldId(int scaffoldId);
 		Task<List<int>> GetScaffoldIdsForScaffoldGroup(int scaffoldGroupId);
