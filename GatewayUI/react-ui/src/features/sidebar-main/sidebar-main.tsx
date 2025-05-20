@@ -5,7 +5,7 @@ import { useStore } from '../../app/stores/store';
 import { observer } from 'mobx-react-lite';
 import logo from '../../../src/LOVAMAP_logo.png';
 
-const SideBar: React.FC = () => {
+const SideBarMain: React.FC = () => {
 	const {commonStore, userStore } = useStore();
 	const {setActiveTab, activeTab} = commonStore;
 	const location = useLocation();
@@ -22,16 +22,18 @@ const SideBar: React.FC = () => {
 			setActiveTab(0);
 		} else if (location.pathname === '/explore') {
 			setActiveTab(1);
-		} else if (location.pathname === '/learn') {
+		} else if (location.pathname === '/data') {
 			setActiveTab(2);
-		} else if (location.pathname === '/experiments') {
+		} else if (location.pathname === '/learn') {
 			setActiveTab(3);
-		} else if (location.pathname === '/jobs') {
+		} else if (location.pathname === '/experiments') {
 			setActiveTab(4);
-		} else if (location.pathname === '/uploads') {
+		} else if (location.pathname === '/jobs') {
 			setActiveTab(5);
-		} else if (location.pathname.startsWith('/admin')) {
+		} else if (location.pathname === '/uploads') {
 			setActiveTab(6);
+		} else if (location.pathname.startsWith('/admin')) {
+			setActiveTab(7);
 		} else {
 			setActiveTab(0);
 		}
@@ -69,6 +71,13 @@ const SideBar: React.FC = () => {
 							{({ selected }) => (
 								<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
 								<p>Explore scaffolds</p>
+								</div>
+							)}
+							</Tab>
+							<Tab as={NavLink} to='/data' onClick={() => commonStore.setSidebarOpen(false)} className="focus:outline-none">
+							{({ selected }) => (
+								<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
+								<p>Explore data</p>
 								</div>
 							)}
 							</Tab>
@@ -135,4 +144,4 @@ const SideBar: React.FC = () => {
 	)
 }
 
-export default observer(SideBar)
+export default observer(SideBarMain)

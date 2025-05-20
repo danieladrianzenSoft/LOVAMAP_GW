@@ -8,6 +8,7 @@ using Data.Models;
 using Infrastructure.DTOs;
 using Infrastructure.Helpers;
 using System.Collections.Immutable;
+using System.Text.Json;
 
 namespace Repositories.Repositories
 {
@@ -19,7 +20,7 @@ namespace Repositories.Repositories
 		{
 			_context = context;
 		}
-		
+
 		public bool HasChanges()
 		{
 			return _context.ChangeTracker.HasChanges();
@@ -42,7 +43,7 @@ namespace Repositories.Repositories
 		{
 			return await _context.DescriptorTypes.Include(d => d.Publication).ToListAsync();
 		}
-		
+
 		public async Task<ICollection<GlobalDescriptor>> GetGlobalDescriptorsByScaffoldIdsAndFilter(IEnumerable<int> scaffoldIds, ScaffoldFilter filter)
 		{
 			var query = _context.GlobalDescriptors.AsQueryable();
@@ -57,7 +58,7 @@ namespace Repositories.Repositories
 				query = query.Where(sg => descriptorIds.Contains(sg.DescriptorTypeId));
 			}
 
-    		var descriptors = await query.Include(gd => gd.DescriptorType).ToListAsync();
+			var descriptors = await query.Include(gd => gd.DescriptorType).ToListAsync();
 
 			return descriptors;
 		}
@@ -168,9 +169,9 @@ namespace Repositories.Repositories
 
 			// Pore descriptors
 			var poreDescriptorQuery = from pd in _context.PoreDescriptors
-									join dt in _context.DescriptorTypes on pd.DescriptorTypeId equals dt.Id
-									where scaffoldIdSet.Contains(pd.ScaffoldId)
-									select new { pd, dt };
+									  join dt in _context.DescriptorTypes on pd.DescriptorTypeId equals dt.Id
+									  where scaffoldIdSet.Contains(pd.ScaffoldId)
+									  select new { pd, dt };
 
 			if (descriptorIdSet != null && descriptorIdSet.Any())
 			{
@@ -197,9 +198,9 @@ namespace Repositories.Repositories
 
 			// Other descriptors
 			var otherDescriptorQuery = from od in _context.OtherDescriptors
-									join dt in _context.DescriptorTypes on od.DescriptorTypeId equals dt.Id
-									where scaffoldIdSet.Contains(od.ScaffoldId)
-									select new { od, dt };
+									   join dt in _context.DescriptorTypes on od.DescriptorTypeId equals dt.Id
+									   where scaffoldIdSet.Contains(od.ScaffoldId)
+									   select new { od, dt };
 
 			if (descriptorIdSet != null && descriptorIdSet.Any())
 			{
@@ -291,6 +292,70 @@ namespace Repositories.Repositories
 			};
 		}
 
+		public async Task<PoreInfoScaffoldGroupDto?> GetPoreInfoForScaffoldGroup(int scaffoldGroupId)
+		{
+			var descriptorTypeIds = new List<int> { 22, 23, 25, 27 };
+
+			var descriptors = await _context.PoreDescriptors
+				.AsNoTracking()
+				.Include(pd => pd.Scaffold)
+				.Where(pd => pd.Scaffold.ScaffoldGroupId == scaffoldGroupId && descriptorTypeIds.Contains(pd.DescriptorTypeId))
+				.Select(pd => new
+				{
+					pd.DescriptorTypeId,
+					pd.Values,
+					pd.ScaffoldId
+				})
+				.ToListAsync();
+
+			if (!descriptors.Any()) return null;
+
+			var grouped = descriptors
+				.GroupBy(d => d.ScaffoldId)
+				.Select(g =>
+				{
+					var poreVolume = g.FirstOrDefault(d => d.DescriptorTypeId == 22)?.Values;
+					var poreSurfaceArea = g.FirstOrDefault(d => d.DescriptorTypeId == 23)?.Values;
+					var poreLongestLength = g.FirstOrDefault(d => d.DescriptorTypeId == 25)?.Values;
+					var poreAspectRatio = g.FirstOrDefault(d => d.DescriptorTypeId == 27)?.Values;
+
+					return new PoreInfoScaffoldDto
+					{
+						ScaffoldId = g.Key,
+						PoreVolume = ParseDoubleListFromObjectArray(poreVolume),
+						PoreSurfaceArea = ParseDoubleListFromObjectArray(poreSurfaceArea),
+						PoreLongestLength = ParseDoubleListFromObjectArray(poreLongestLength),
+						PoreAspectRatio = ParseDoubleListFromObjectArray(poreAspectRatio)
+					};
+				})
+				.ToList();
+
+			return new PoreInfoScaffoldGroupDto
+			{
+				ScaffoldGroupId = scaffoldGroupId,
+				Scaffolds = grouped
+			};
+		}
+		
+		private List<double>? ParseDoubleListFromObjectArray(JsonDocument? doc)
+		{
+			if (doc == null) return null;
+
+			try
+			{
+				return doc.RootElement
+					.EnumerateArray()
+					.Where(e => e.TryGetProperty("value", out _))
+					.Select(e => e.GetProperty("value").GetDouble())
+					.ToList();
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine("❌ Failed to parse object-array JSON: " + ex.Message);
+				return null;
+			}
+		}
+
 		// public async Task<(Dictionary<int, List<ScaffoldBaseDto>>, Dictionary<int, List<DescriptorDto>>, Dictionary<int, List<DescriptorDto>>, Dictionary<int, List<DescriptorDto>>)>
 		// 	GetScaffoldsAndDescriptorsFromScaffoldGroupIds(IEnumerable<int> scaffoldGroupIds)
 		// {
@@ -333,25 +398,25 @@ namespace Repositories.Repositories
 		// 		})
 		// 		.ToListAsync();
 
-			// var poreDescriptors = await (
-			// 	from pd in _context.PoreDescriptors
-			// 	join dt in _context.DescriptorTypes on pd.DescriptorTypeId equals dt.Id
-			// 	where scaffolds.Select(s => s.Scaffold.Id).Contains(pd.ScaffoldId)
-			// 	select new
-			// 	{
-			// 		pd.ScaffoldId,
-			// 		Descriptor = new DescriptorDto
-			// 		{
-			// 			Id = pd.Id,
-			// 			DescriptorTypeId = pd.DescriptorTypeId,
-			// 			Name = dt.Name,
-			// 			Label = dt.Label,
-			// 			TableLabel = dt.TableLabel,
-			// 			Unit = dt.Unit,
-			// 			Values = ParsingMethods.JsonDocumentToString(pd.Values)
-			// 		}
-			// 	})
-			// 	.ToListAsync();
+		// var poreDescriptors = await (
+		// 	from pd in _context.PoreDescriptors
+		// 	join dt in _context.DescriptorTypes on pd.DescriptorTypeId equals dt.Id
+		// 	where scaffolds.Select(s => s.Scaffold.Id).Contains(pd.ScaffoldId)
+		// 	select new
+		// 	{
+		// 		pd.ScaffoldId,
+		// 		Descriptor = new DescriptorDto
+		// 		{
+		// 			Id = pd.Id,
+		// 			DescriptorTypeId = pd.DescriptorTypeId,
+		// 			Name = dt.Name,
+		// 			Label = dt.Label,
+		// 			TableLabel = dt.TableLabel,
+		// 			Unit = dt.Unit,
+		// 			Values = ParsingMethods.JsonDocumentToString(pd.Values)
+		// 		}
+		// 	})
+		// 	.ToListAsync();
 
 		// 	var otherDescriptors = await (
 		// 		from od in _context.OtherDescriptors

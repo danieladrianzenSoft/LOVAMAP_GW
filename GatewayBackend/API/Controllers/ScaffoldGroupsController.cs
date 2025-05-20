@@ -283,6 +283,56 @@ public class ScaffoldGroupsController : ControllerBase
 		}
     }
 
+	[AllowAnonymous]
+	[HttpGet("data/{scaffoldGroupId}")]
+	public async Task<IActionResult> GetDataForVisualization(int scaffoldGroupId)
+	{
+		try
+		{
+			var currentUserId = _userService.GetCurrentUserId();
+
+			var (succeeded, errorMessage, data) = await _scaffoldGroupService.GetDataForVisualization(scaffoldGroupId, currentUserId);
+
+			if (!succeeded)
+			{
+				return NotFound(new ApiResponse<string>(404, errorMessage));
+			}
+
+			return Ok(new ApiResponse<ScaffoldGroupDataDto>(200, "", data));
+		}
+		catch (Exception ex)
+		{
+			_logger.LogError(ex, "Failed to get the scaffold group data");
+			return StatusCode(500, new ApiResponse<string>(500, "An error occurred while getting the scaffold group data"));
+		}
+	}
+	
+	[AllowAnonymous]
+	[HttpGet("data/random")]
+    public async Task<IActionResult> GetDataForVisualizationRandomScaffoldGroup()
+    {
+		try
+		{
+			var currentUserId = _userService.GetCurrentUserId();
+
+			var randomId = await _scaffoldGroupService.GetRandomScaffoldGroupId();
+
+			var (succeeded, errorMessage, data) = await _scaffoldGroupService.GetDataForVisualization(randomId, currentUserId);
+
+			if (!succeeded)
+			{
+				return NotFound(new ApiResponse<string>(404, errorMessage));
+			}
+
+			return Ok(new ApiResponse<ScaffoldGroupDataDto>(200, "", data));
+		}
+		catch (Exception ex)
+		{
+			_logger.LogError(ex, "Failed to get the scaffold group data");
+			return StatusCode(500, new ApiResponse<string>(500, "An error occurred while getting the scaffold group data"));
+		}
+    }
+
 	[HttpPost("{scaffoldGroupId}/images")]
 	public async Task<IActionResult> UploadImageForScaffoldGroup(int scaffoldGroupId, [FromForm] ImageForCreationDto imageToUpload)
 	{

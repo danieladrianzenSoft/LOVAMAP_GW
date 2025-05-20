@@ -10,7 +10,7 @@ import ExploreScreen from '../../features/explore-screen/explore-screen';
 import LearnScreen from '../../features/learn-screen/learn-screen';
 import CreateExperiments from '../../features/create-experiments-screen/create-experiments';
 import TopNavigation from '../../features/top-navigation/top-navigation';
-import Sidebar from '../../features/sidebar/sidebar';
+import SideBarMain from '../../features/sidebar-main/sidebar-main';
 import { observer } from 'mobx-react-lite';
 import ScaffoldGroupUploads from '../../features/scaffold-groups/scaffold-group-uploads';
 import Visualization from '../../features/visualization/visualization';
@@ -24,6 +24,8 @@ import ConfirmEmailPage from '../../features/user/confirm-email';
 import EmailNotConfirmed from '../../features/user/email-not-confirmed';
 import SettingsScreen from '../../features/settings-screen/settings-screen';
 import AdminUtilities from '../../features/admin/admin-utilities';
+import { ExploreData } from '../../features/explore-data/explore-data';
+// import SideBarMain from '../../features/sidebar-main/sidebar-main';
 
 const App: React.FC = () => {
   const { commonStore, userStore } = useStore();
@@ -74,7 +76,7 @@ const MainLayout: React.FC = observer(() => {
   return (
     <div className="main-layout">
       <TopNavigation />
-      <Sidebar />
+      <SideBarMain />
       <div className="content">
         <Routes>
           <Route path="/" element={<Visualization />} />
@@ -82,6 +84,7 @@ const MainLayout: React.FC = observer(() => {
           <Route path="/visualize/:scaffoldId" element={<Visualization />} />
           <Route path="/learn" element={<LearnScreen />} />
           <Route path="/explore" element={<ExploreScreen />} />
+          <Route path="/data" element={<ExploreData />} />
           <Route path="/experiments" element={<ProtectedRoute element={<CreateExperiments />} />} />
           <Route path="/uploads" element={<ProtectedRoute element={<ScaffoldGroupUploads />} />} />
           <Route path="/jobs" element={<ProtectedRoute element={<RunJob />} />} />

@@ -173,7 +173,7 @@
     @apply flex items-stretch h-screen relative;
   }
   .content {
-    @apply flex-1 overflow-y-auto py-8 px-2 h-full w-full;
+    @apply flex-1 overflow-y-auto py-8 px-2 h-full w-full overflow-x-auto;
   }
   .sidebar {
     @apply fixed md:relative top-0 left-0 h-screen w-52 bg-white z-50 shadow-lg
@@ -190,11 +190,13 @@
   bg-gray-100 px-2 font-bold text-gray-700 active:outline-none;
   }
   .fixed-vertical-button-container {
-    @apply fixed top-1/2 !-right-16 z-50 transform h-fit
-    -translate-y-1/2 lg:hidden;
+    @apply fixed top-1/2 right-10 z-50 h-fit transform -translate-y-1/2 lg:hidden;
   }
+
   .fixed-vertical-button {
-    @apply bg-blue-600 text-white px-3 py-2 rounded shadow-lg transform -rotate-90;
+    @apply bg-blue-600 text-white px-3 py-2 rounded shadow-lg;
+    transform: translateY(-50%) rotate(-90deg);
+    transform-origin: top right;
   }
   .top-navigation {
     @apply flex flex-row items-center justify-between 

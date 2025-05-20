@@ -6,3 +6,16 @@ export interface PoreInfo {
 	poreAspectRatio: string;
 	poreLongestLength: string;
 }
+
+export interface PoreInfoForScaffoldGroup {
+  scaffoldGroupId: number;
+  scaffolds: PoreInfoForScaffold[];
+}
+
+export interface PoreInfoForScaffold {
+    scaffoldId: number;
+    poreVolume?: number[];
+    poreSurfaceArea?: number[];
+    poreLongestLength?: number[];
+    poreAspectRatio?: number[];
+}

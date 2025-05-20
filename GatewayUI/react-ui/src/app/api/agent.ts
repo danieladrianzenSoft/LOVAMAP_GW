@@ -11,10 +11,11 @@ import environment from "../environments/environment"
 import { Domain } from "../models/domain";
 import { Job } from "../models/job";
 import { ScaffoldWithMissingThumbnail } from "../models/scaffold";
-import { PoreInfo } from "../models/poreInfo";
+import { PoreInfo, PoreInfoForScaffoldGroup } from "../models/poreInfo";
 import { DomainMetadata } from "../models/domainMetadata";
 import { AiScaffoldGroupSearch } from "../models/aiScaffoldGroupSearch";
 import { BatchOperationResult } from "../models/batchOperationResult";
+import { ScaffoldGroupData } from "../models/scaffoldGroupData";
 
 axios.defaults.baseURL = environment.baseUrl;
 
@@ -82,6 +83,8 @@ const ScaffoldGroups = {
     getGroupSummaryByScaffoldId: (id: number) => requests.get<ApiResponse<ScaffoldGroup>>('/scaffoldgroups/scaffold/' + id + '/summary'),
 	getDetailed: (id: number) => requests.get<ApiResponse<ScaffoldGroup>>('/scaffoldGroups/' + id),
     getDetailedForExperiment: (queryParams: string) => requests.get<ApiResponse<ScaffoldGroup[]>>('/scaffoldgroups/detailed' + queryParams),
+    getDataForVisualization: (scaffoldGroupId: number) => requests.get<ApiResponse<ScaffoldGroupData>>(`/scaffoldgroups/data/${scaffoldGroupId}`),
+    getDataForVisualizationRandom: () => requests.get<ApiResponse<ScaffoldGroupData>>(`/scaffoldgroups/data/random/`),
     uploadScaffoldGroup: (scaffoldGroup: ScaffoldGroupToCreate) => requests.post<ApiResponse<ScaffoldGroup>>('/scaffoldgroups/create', scaffoldGroup),
     uploadScaffoldGroupBatch: (scaffoldGroups: ScaffoldGroupToCreate[]) => requests.post<ApiResponse<ScaffoldGroup[]>>('/scaffoldgroups/createBatch', scaffoldGroups),
     resetNameAndComments: (scaffoldGroupIds: {scaffoldGroupIds: number[]}) => requests.post<ApiResponse<BatchOperationResult>>('scaffoldGroups/reset-names', scaffoldGroupIds),
@@ -111,6 +114,9 @@ const ScaffoldGroups = {
 
 const Descriptors = {
     getPoreInfo: (scaffoldGroupId: number) => requests.get<ApiResponse<PoreInfo>>(`/descriptors/${scaffoldGroupId}`),
+    getPoreInfoForScaffoldGroup: (scaffoldGroupId: number) => requests.get<ApiResponse<PoreInfoForScaffoldGroup>>(`/descriptors/data/${scaffoldGroupId}`),
+    getPoreInfoForRandomScaffoldGroup: () => requests.get<ApiResponse<PoreInfoForScaffoldGroup>>(`/descriptors/data/random/`),
+
 }
 
 const Domains = {

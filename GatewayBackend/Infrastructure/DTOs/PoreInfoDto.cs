@@ -11,6 +11,5 @@ namespace Infrastructure.DTOs
 		public JsonDocument? PoreSurfaceArea { get; set; }
 		public JsonDocument? PoreAspectRatio { get; set; }
 		public JsonDocument? PoreLongestLength { get; set; }
-
 	}
 }

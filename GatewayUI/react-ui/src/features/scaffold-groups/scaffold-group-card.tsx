@@ -54,7 +54,7 @@ const ScaffoldGroupCard: React.FC<ScaffoldGroupCardProps> = ({ scaffoldGroup, is
                                             showHoverInfo={false}
                                         />
                                     </div>
-                                    <p className="text-sm text-gray-600 -mt-4 z-10">Particle Size</p>
+                                    <p className="text-sm text-gray-600 -mt-4 z-10">Particle Size (μm)</p>
                                 </div>
                             </div>
                         );

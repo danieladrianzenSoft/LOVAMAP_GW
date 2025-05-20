@@ -45,6 +45,14 @@ namespace Repositories.Repositories
 			return await _context.ScaffoldGroups.Select(sg => sg.Id).ToListAsync();
 		}
 
+		public async Task<int> GetRandomScaffoldGroupId()
+		{
+			return await _context.ScaffoldGroups
+				.OrderBy(g => Guid.NewGuid()) // Random ordering
+				.Select(g => g.Id)
+				.FirstOrDefaultAsync();
+		}
+
 		public async Task<List<ScaffoldGroup>> GetWithInputDataByIds(List<int> ids)
 		{
 			return await _context.ScaffoldGroups

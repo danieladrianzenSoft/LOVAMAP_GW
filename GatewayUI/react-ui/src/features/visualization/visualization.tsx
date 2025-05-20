@@ -401,7 +401,7 @@ const Visualization: React.FC = () => {
 	}
 
 	return (
-		<div className="relative w-full h-screen overflow-hidden">
+		<div className="relative w-full h-screen overflow-hidden mt-8 ml-2">
 			{showHelp && (
 				<div className={`absolute top-10 ${commonStore.isSidebarOpen ? 'left-48' : 'left-2'} z-30 max-w-sm px-4 py-3
 					bg-blue-50 border border-blue-300 text-blue-600 rounded-lg shadow-lg 
@@ -443,7 +443,7 @@ const Visualization: React.FC = () => {
 				)}
 			</div>
 
-			<div className="absolute top-6 right-0 z-20 space-y-1 mr-2">
+			<div className="absolute top-0 right-0 z-20 space-y-1 mr-2">
 				<div className="mt-4 flex w-full">
 					<button className="button-primary items-center content-center w-full" onClick={() => History.push('/explore')}>
 						Explore More

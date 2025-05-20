@@ -1,58 +1,71 @@
 import React from "react";
 import Plot from "react-plotly.js";
 import PlotlyLoader from "../../app/helpers/PlotlyLoader";
+import { getPlotColor } from "../../app/utils/plot-colors";
 
 interface HistogramPlotProps {
-  data: number[];
-  title?: string;
-  xlabel?: string;
-  ylabel?: string;
-  color?: string;
-  interactive?: boolean;
-  hideYLabels?: boolean; 
-  titleFontSize?: number;
-  labelFontSize?: number;
-  tickFontSize?: number;
-  tickDecimalPlaces?: number;
-  showHoverInfo?: boolean;
+	data: number[] | number[][];
+	title?: string;
+	xlabel?: string;
+	ylabel?: string;
+	colors?: string[];
+	interactive?: boolean;
+	hideYLabels?: boolean; 
+	horizontalYLabel?: boolean;
+	titleFontSize?: number;
+	labelFontSize?: number;
+	tickFontSize?: number;
+	tickDecimalPlaces?: number;
+	showHoverInfo?: boolean;
+	isNormalized?: boolean;
+	showGrid?: boolean;
 }
 
 export const HistogramPlot: React.FC<HistogramPlotProps> = ({ 
-		data, title, xlabel, ylabel, 
-		color, interactive, hideYLabels, showHoverInfo,
+		data, title, xlabel, ylabel, horizontalYLabel,
+		colors, interactive, hideYLabels, showHoverInfo,
 		titleFontSize, labelFontSize, tickFontSize,
-		tickDecimalPlaces
+		tickDecimalPlaces, isNormalized, showGrid
 	}) => {
-	const min = Math.min(...data);
-	const max = Math.max(...data);
-	const median = data.sort((a, b) => a - b)[Math.floor(data.length / 2)];
-	const mean = data.reduce((sum, x) => sum + x, 0) / data.length;
-	const std = Math.sqrt(data.reduce((sum, x) => sum + Math.pow(x - mean, 2), 0) / data.length);
-	const roundedMin = Math.floor(min / 5) * 5;
-	const roundedMax = Math.ceil(max / 5) * 5;
-	const defaultColor = "rgba(220, 220, 220, 0.8)"; // light grey
-	const plotColor = color || defaultColor;
-	const xMin = roundedMin - 10 < 0 ? 0 : roundedMin - 10;
-	const xMax = roundedMax + 10;
+	
+	const seriesArray: number[][] = Array.isArray(data[0])
+		? (data as number[][])
+		: [data as number[]];
+
+	const allValues = seriesArray.flat();
+	const min = Math.min(...allValues);
+	const max = Math.max(...allValues);
+	const median = allValues.sort((a, b) => a - b)[Math.floor(allValues.length / 2)];
+	const mean = allValues.reduce((sum, x) => sum + x, 0) / allValues.length;
+	const std = Math.sqrt(allValues.reduce((sum, x) => sum + Math.pow(x - mean, 2), 0) / allValues.length);
+	const xMin = Math.floor(min / 5) * 5 - 10 < 0 ? 0 : Math.floor(min / 5) * 5 - 10;
+	const xMax = Math.ceil(max / 5) * 5 + 10;
 	const minBinSize = 1;
 	const isClustered = std < 0.05 * Math.abs(median);
+
+	const plotColors = colors && colors.length >= seriesArray.length
+		? colors
+		: seriesArray.map((_, i) => getPlotColor(i, seriesArray.length));
+	const shouldShowGrid = showGrid ?? false;
+
+	const plotData = seriesArray.map((series, i) => ({
+		type: "histogram",
+		x: series,
+		opacity: 0.8,
+		name: `Group ${i + 1}`,
+		marker: {
+			color: plotColors[i],
+		},
+		hoverinfo: showHoverInfo === false ? "skip" : undefined,
+		histnorm: isNormalized ? "percent" : undefined,
+		...(isClustered && {
+			xbins: { size: minBinSize },
+		}),
+		}));
+
 	return (
 		<Plot
-		data={[
-			{
-				type: "histogram",
-				x: data,
-				marker: {
-					color: plotColor,
-				},
-				hoverinfo: showHoverInfo === false ? "skip" : undefined,
-				...(isClustered && {
-					xbins: {
-					  size: minBinSize,
-					},
-				}),
-			},
-		]}
+		data={plotData}
 		layout={{
 			autosize: true,
 			hovermode: showHoverInfo === false ? false : "closest",
@@ -76,19 +89,41 @@ export const HistogramPlot: React.FC<HistogramPlotProps> = ({
 				tickvals: [xMin, median, xMax],
 				ticktext: [xMin.toFixed(tickDecimalPlaces || 0), median.toFixed(tickDecimalPlaces || 0), xMax.toFixed(tickDecimalPlaces || 0)],
 				range: [xMin, xMax],
-				automargin: true
+				automargin: true,
+				showgrid: shouldShowGrid,
 			},
 			yaxis: { 
-				title: { 
-					text: ylabel || "" ,
-					font: { 
-						size: labelFontSize || 14 ,
-						color: "#4B5563"
-					}, 
-				},
+				title: horizontalYLabel
+					? undefined
+					: {
+						text: ylabel || "",
+						font: {
+							size: labelFontSize || 14,
+							color: "#4B5563",
+						},
+						},
 				tickfont: { size: tickFontSize || 12 },
 				showticklabels: !hideYLabels,
+				showgrid: shouldShowGrid,
 			},
+			annotations: horizontalYLabel && ylabel
+				? [
+					{
+					text: ylabel,
+					xref: "paper",
+					yref: "paper",
+					x: -0.12, // adjust based on spacing
+					y: 0.5,
+					showarrow: false,
+					textangle: 0,
+					font: {
+						size: labelFontSize || 14,
+						color: "#4B5563",
+					},
+					align: "center",
+					},
+				]
+				: [],
 			bargap: 0.05,
 			margin: { t: 40, r: 20, l: 50, b: 50 },
 		}}
@@ -107,7 +142,7 @@ export const HistogramPlot: React.FC<HistogramPlotProps> = ({
 			height: "100%",
 			cursor: showHoverInfo === false ? "default" : undefined
 		}}
-		// 👇 Pass Plotly instance
+		// Pass Plotly instance
 		useResizeHandler
 		revision={data.length} // re-render if data changes
 		plotly={PlotlyLoader}

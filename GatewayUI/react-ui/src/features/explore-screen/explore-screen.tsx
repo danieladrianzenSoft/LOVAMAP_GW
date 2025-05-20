@@ -6,7 +6,7 @@ import { FaSpinner } from 'react-icons/fa';
 import ScaffoldGroupsFilterResults from "../scaffold-groups/scaffold-group-filter-results";
 import { useScaffoldGroupFiltering } from "../../app/common/hooks/useScaffoldGroupFiltering";
 import AISearchBar from "../../app/common/ai-search-bar/ai-seach-bar";
-import Tag from "../../app/common/tag/tag";
+import { SearchContextSummary } from "../../app/common/ai-search-bar/search-context-summary";
 
 const ExploreScreen = () => {
 	const { commonStore, scaffoldGroupStore } = useStore();
@@ -46,25 +46,11 @@ const ExploreScreen = () => {
 				Explore {isLoggedIn ? "scaffolds" : "public scaffolds"}
 			</div>
 
-			<AISearchBar onSearch={loadAIResults} onClear={clearFilters}/>
+			<div className="mb-4">
+				<AISearchBar onSearch={loadAIResults} onClear={clearFilters}/>
+				<SearchContextSummary aiSearchUsed={aiSearchUsed} selectedTagNames={selectedTagNames} selectedParticleSizeIds={selectedParticleSizeIds}/>
+			</div>
 
-			{aiSearchUsed && (
-				<div className="mt-4 text-gray-700 text-sm mb-4">
-					<div className="mt-4 text-gray-700 text-sm">
-						{aiSearchUsed && (
-							<div className="flex flex-wrap gap-x-1 gap-y-1">
-								<p>Based on your search prompt, the tags that best match the search are:</p>
-								{selectedTagNames.map((tag, index) => (
-									<Tag key={index} text={tag} />
-								))}
-								{selectedParticleSizeIds.map((tag, index) => (
-									<Tag key={index} text={tag.toString() + "um"} />
-								))}
-							</div>
-						)}
-					</div>
-				</div>
-			)}
 
 			<ScaffoldGroupFilters 
 				setIsLoading={setIsLoading} 

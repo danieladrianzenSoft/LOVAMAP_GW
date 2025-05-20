@@ -18,10 +18,10 @@ namespace Services.Services
 		private readonly IScaffoldGroupRepository _scaffoldGroupRepository;
 		private readonly ILogger<DescriptorService> _logger;
 
-		public DescriptorService(DataContext context, 
-			IDescriptorRepository descriptorRepository, 
+		public DescriptorService(DataContext context,
+			IDescriptorRepository descriptorRepository,
 			IScaffoldGroupRepository scaffoldGroupRepository,
-			IModelMapper modelMapper, 
+			IModelMapper modelMapper,
 			ILogger<DescriptorService> logger)
 		{
 			_context = context;
@@ -44,12 +44,12 @@ namespace Services.Services
 			{
 				_logger.LogError(ex, "Error saving descriptor");
 			}
-			
+
 		}
 
 		public async Task<ICollection<DescriptorTypeDto>> GetAllDescriptorTypes()
 		{
-			try 
+			try
 			{
 				var descriptorTypes = await _descriptorRepository.GetAllDescriptorTypes();
 				var descriptorTypesToReturn = new List<DescriptorTypeDto>();
@@ -73,7 +73,7 @@ namespace Services.Services
 			var globalDescriptors = await _descriptorRepository.GetGlobalDescriptorsByScaffoldIdsAndFilter(scaffoldIds, filter);
 			var poreDescriptors = await _descriptorRepository.GetPoreDescriptorsByScaffoldIdsAndFilter(scaffoldIds, filter);
 			var otherDescriptors = await _descriptorRepository.GetOtherDescriptorsByScaffoldIdsAndFilter(scaffoldIds, filter);
-			
+
 			return (globalDescriptors, poreDescriptors, otherDescriptors);
 		}
 
@@ -98,7 +98,7 @@ namespace Services.Services
 				int resolvedScaffoldId = scaffoldId ?? await _scaffoldGroupRepository
 					.GetScaffoldIdsForScaffoldGroup(scaffoldGroupId)
 					.ContinueWith(task => task.Result.FirstOrDefault());
-			
+
 				if (resolvedScaffoldId == 0) return (false, "NotFound", null);
 
 				var poreInfo = await _descriptorRepository.GetPoreInfo(resolvedScaffoldId);
@@ -111,6 +111,22 @@ namespace Services.Services
 				return (false, "UnexpectedError", null);
 			}
 
+		}
+		
+		public async Task<(bool Succeeded, string ErrorMessage, PoreInfoScaffoldGroupDto? poreInfo)> GetPoreInfoScaffoldGroup(int scaffoldGroupId)
+		{
+			try
+			{
+				var poreInfoGroup = await _descriptorRepository.GetPoreInfoForScaffoldGroup(scaffoldGroupId);
+				if (poreInfoGroup == null) return (false, "NotFound", null);
+
+				return (true, "", poreInfoGroup);
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, "Failed to get pore info group");
+				return (false, "UnexpectedError", null);
+			}
 		}
 
 		// public async Task<(Dictionary<int, List<ScaffoldBaseDto>>, Dictionary<int, List<DescriptorDto>>, Dictionary<int, List<DescriptorDto>>, Dictionary<int, List<DescriptorDto>>)>

@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 interface AISearchBarProps {
 	onSearch: (prompt: string) => void;
 	onClear?: () => void;
+	onClick?: () => void;
 	placeholder?: string;
 	buttonLabel?: string;
 }
@@ -10,6 +11,7 @@ interface AISearchBarProps {
 const AISearchBar: React.FC<AISearchBarProps> = ({
 	onSearch,
 	onClear,
+	onClick,
 	placeholder = "Describe the scaffold groups you want to find",
 	buttonLabel = "Search"
 }) => {
@@ -40,10 +42,11 @@ const AISearchBar: React.FC<AISearchBarProps> = ({
 	}, [input]);
 
 	return (
-		<div className="flex items-center space-x-2 w-full my-4">
+		<div className="flex items-center space-x-2 w-full mt-4">
 			<textarea
 				ref={textareaRef}
 				value={input}
+				onClick={onClick}
 				onChange={(e) => setInput(e.target.value)}
 				onKeyDown={handleKeyDown}
 				placeholder={placeholder}

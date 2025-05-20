@@ -5,7 +5,6 @@ import { useStore } from "../../app/stores/store";
 import ScaffoldGroupFilters from "../scaffold-groups/scaffold-group-filter";
 // import ScaffoldGroupCard from "../scaffold-groups/scaffold-group-card";
 import { ScaffoldGroup } from "../../app/models/scaffoldGroup";
-import { FaTimes } from 'react-icons/fa';
 import DescriptorFilters from "../descriptors/descriptor-filters";
 import { DescriptorType } from "../../app/models/descriptorType";
 import { FaSpinner } from 'react-icons/fa';
@@ -15,7 +14,8 @@ import ExperimentSidebar from "./experiment-sidebar";
 import ScaffoldGroupsFilterResults from "../scaffold-groups/scaffold-group-filter-results";
 import { useScaffoldGroupFiltering } from "../../app/common/hooks/useScaffoldGroupFiltering";
 import AISearchBar from "../../app/common/ai-search-bar/ai-seach-bar";
-import Tag from "../../app/common/tag/tag";
+import { SearchContextSummary } from "../../app/common/ai-search-bar/search-context-summary";
+import { Sidebar } from "../../app/common/sidebar/sidebar";
 
 type OptionKey = 'excelFileOption' | 'sheetOption' | 'columnOption' | 'stackedColumnOption';
 
@@ -292,52 +292,23 @@ const CreateExperiments = () => {
 
 
     return (
-        <>
-            <div className="fixed-vertical-button-container">
-                <button
-                    onClick={() => setSidebarVisible(true)}
-                    className="fixed-vertical-button"
-                >
-                    Download summary
-                </button>
-            </div>
-            <div className={`container mx-auto py-8 px-2`}>
-                <div className="text-3xl text-gray-700 font-bold mb-12">Customize downloads</div>
-                {/* Toggle sidebar on small screens */}
-                
-                <div className="flex h-full">
+        <div className="flex mx-auto py-8 px-2">
+            <div className="flex-1 space-y-12 pr-4">
+                <div className="text-3xl text-gray-700 font-bold mb-12">Customize downloads</div>                        
+                <div className="flex h-full w-full">
                     {experimentStage === 1 && 
-                        <div className="lg:w-3/4 sm:w-full mb-12">
-                            <div className="flex flex-col md:flex-row md:justify-between md:items-center md:mr-6">
+                        <div className="w-full mb-12">
+                            <div className="flex flex-col md:flex-row md:justify-between md:items-center">
                                 <p className="text-xl mb-2 md:mb-4 w-full">1. Select the scaffold groups to include in your download</p>
                                 <div className="flex justify-end space-x-1 w-full md:w-auto">
                                     <button className="button-outline" onClick={() => setExperimentStage(2)}>Next</button>
                                 </div>
                             </div>
 
-                            <div className="flex flex-col md:flex-row md:justify-between md:items-center md:mr-6">
+                            <div className="md:flex-row mb-4">
                                 <AISearchBar onSearch={loadAIResults} onClear={clearFilters}/>
+                                <SearchContextSummary aiSearchUsed={aiSearchUsed} selectedTagNames={selectedTagNames} selectedParticleSizeIds={selectedParticleSizeIds}/>
                             </div>
-
-                            <div className="flex flex-col">
-                                {aiSearchUsed && (
-                                    <div className="text-gray-700 text-sm mb-4">
-                                            {aiSearchUsed && (
-                                                <div className="flex flex-wrap gap-x-1 gap-y-1">
-                                                    <p>Based on your search prompt, the tags that best match the search are:</p>
-                                                    {selectedTagNames.map((tag, index) => (
-                                                        <Tag key={index} text={tag} />
-                                                    ))}
-                                                    {selectedParticleSizeIds.map((tag, index) => (
-                                                        <Tag key={index} text={tag.toString() + "um"} />
-                                                    ))}
-                                                </div>
-                                            )}
-                                        </div>
-                                )}
-                            </div>
-
-
 
                             <ScaffoldGroupFilters 
                                 setIsLoading={setIsLoading} 
@@ -374,8 +345,8 @@ const CreateExperiments = () => {
                         </div>
                     }
                     {experimentStage === 2 && 
-                        <div className="lg:w-3/4 sm:w-full mb-12">
-                            <div className="flex flex-col md:flex-row md:justify-between md:items-center md:mr-6">
+                        <div className="w-full mb-12">
+                            <div className="flex flex-col md:flex-row md:justify-between md:items-center">
                                 <p className="text-xl mb-2 md:mb-4 w-full">2. Select the descriptors to output</p>
                                 <div className="flex justify-end space-x-1 w-full md:w-auto">
                                     <button className="button-outline whitespace-nowrap" onClick={() => setExperimentStage(1)}>Back</button>
@@ -389,8 +360,8 @@ const CreateExperiments = () => {
                         </div>
                     }
                     {experimentStage === 3 && 
-                        <div className="lg:w-3/4 sm:w-full sm:flex-row mb-12">
-                            <div className="flex flex-col md:flex-row md:justify-between md:items-center md:mr-6">
+                        <div className="w-full sm:flex-row mb-12">
+                            <div className="flex flex-col md:flex-row md:justify-between md:items-center">
                                 <p className="text-xl mb-2 md:mb-4 w-full">3. Design your output layout</p>
                                 <div className="flex justify-end space-x-1 w-full md:w-auto">
                                     <button className="button-outline whitespace-nowrap" onClick={() => setExperimentStage(2)}>Back</button>
@@ -466,65 +437,33 @@ const CreateExperiments = () => {
                             </div>
                         </div>
                     }
-
-                    <div className="hidden lg:block w-1/4 h-full">
-                        <ExperimentSidebar
-                            experimentStage={experimentStage}
-                            options={options}
-                            selectedDescriptorTypes={selectedDescriptorTypes}
-                            selectedScaffoldGroups={selectedScaffoldGroups}
-                            showTitle={true}
-                            handleUnselectDescriptorType={handleUnselectDescriptorType}
-                            handleUnselectScaffoldGroup={handleUnselectScaffoldGroup}
-                            onReplicatesChange={(groupId, numReplicates) => {
-                                setReplicatesByGroup((prev) => ({
-                                    ...prev,
-                                    [groupId]: numReplicates
-                                }));
-                            }}
-                        />
-                    </div>
-
-                    {isSidebarVisible && (
-                    <div className="fixed inset-0 z-50 lg:hidden h-full">
-                        <div
-                            className="absolute inset-0 bg-black opacity-40"
-                            onClick={() => setSidebarVisible(false)}
-                        ></div>
-
-                        <div className="absolute right-0 top-0 h-full w-11/12 max-w-sm bg-white shadow-lg overflow-y-auto p-4 transition-transform duration-300 transform translate-x-0">
-                            <div className="flex justify-between items-center mb-4">
-                                <h2 className="text-lg font-bold">Experiment Summary</h2>
-                                <button
-                                onClick={() => setSidebarVisible(false)}
-                                className="text-gray-500 hover:text-gray-700"
-                                >
-                                <FaTimes />
-                                </button>
-                            </div>
-
-                            <ExperimentSidebar
-                                experimentStage={experimentStage}
-                                options={options}
-                                selectedDescriptorTypes={selectedDescriptorTypes}
-                                selectedScaffoldGroups={selectedScaffoldGroups}
-                                showTitle={false}
-                                handleUnselectDescriptorType={handleUnselectDescriptorType}
-                                handleUnselectScaffoldGroup={handleUnselectScaffoldGroup}
-                                onReplicatesChange={(groupId, numReplicates) => {
-                                    setReplicatesByGroup((prev) => ({
-                                        ...prev,
-                                        [groupId]: numReplicates
-                                    }));
-                                }}
-                            />
-                        </div>
-                    </div>
-                    )}
                 </div>
             </div>
-        </>
-        
+            <Sidebar
+                isVisible={isSidebarVisible}
+                onClose={() => setSidebarVisible(false)}
+                onOpen={() => setSidebarVisible(true)}
+                title="Download Summary"
+                toggleButtonLabel="Download Summary"
+                className="w-1/4 shrink-0 bg-gray-100 p-0"
+                >
+                <ExperimentSidebar
+                    experimentStage={experimentStage}
+                    options={options}
+                    selectedDescriptorTypes={selectedDescriptorTypes}
+                    selectedScaffoldGroups={selectedScaffoldGroups}
+                    showTitle={false}
+                    handleUnselectDescriptorType={handleUnselectDescriptorType}
+                    handleUnselectScaffoldGroup={handleUnselectScaffoldGroup}
+                    onReplicatesChange={(groupId, numReplicates) => {
+                        setReplicatesByGroup((prev) => ({
+                            ...prev,
+                            [groupId]: numReplicates
+                        }));
+                    }}
+                />
+            </Sidebar>
+        </div>        
     );
 };
 

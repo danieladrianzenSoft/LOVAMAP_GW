@@ -6,6 +6,7 @@ import { Image, ImageToCreate, ImageToUpdate } from "../models/image";
 import History from "../helpers/History";
 import { ScaffoldWithMissingThumbnail } from "../models/scaffold";
 import { BatchOperationResult } from "../models/batchOperationResult";
+import { ScaffoldGroupData } from "../models/scaffoldGroupData";
 
 export default class ScaffoldGroupStore {
 	scaffoldGroups: ScaffoldGroup[] = [];
@@ -165,6 +166,26 @@ export default class ScaffoldGroupStore {
 			console.error("Failed to fetch detailed scaffold group:", error);
 		}
 	};
+
+	getDataForVisualization = async (scaffoldGroupId: number): Promise<ScaffoldGroupData | null> => {
+		try {
+			const apiResponse = await agent.ScaffoldGroups.getDataForVisualization(scaffoldGroupId);
+			return apiResponse.data;
+		} catch (error) {
+			console.error("Failed to scaffold group data:", error);
+		}
+		return null;
+	}
+
+	getDataForVisualizationRandom = async (): Promise<ScaffoldGroupData | null> => {
+		try {
+			const apiResponse = await agent.ScaffoldGroups.getDataForVisualizationRandom();
+			return apiResponse.data;
+		} catch (error) {
+			console.error("Failed to fetch scaffold group data:", error);
+		}
+		return null;
+	}
 
 	getDetailedScaffoldGroupsForExperiment = async (
 		selectedScaffoldGroupIds?: number[], selectedDescriptorIds?: number[], 	numReplicatesByGroup?: Record<number, number>

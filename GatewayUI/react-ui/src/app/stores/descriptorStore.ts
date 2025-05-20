@@ -1,10 +1,11 @@
 import { makeAutoObservable } from "mobx";
 import agent from "../api/agent";
-import { PoreInfo } from "../models/poreInfo";
+import { PoreInfo, PoreInfoForScaffoldGroup } from "../models/poreInfo";
 import { runInAction } from "mobx";
 
 export default class DescriptorStore {
 	poreInfoCache: Map<number, PoreInfo> = new Map();
+	
 	constructor() {
 		makeAutoObservable(this)
 	}
@@ -39,4 +40,26 @@ export default class DescriptorStore {
 	clearPoreInfoCache = () => {
 		this.poreInfoCache.clear();
 	};
+
+	getPoreInfoForScaffoldGroup = async (scaffoldGroupId: number): Promise<PoreInfoForScaffoldGroup | null> => {
+		try {
+			const apiResponse = await agent.Descriptors.getPoreInfoForScaffoldGroup(scaffoldGroupId);
+			return apiResponse.data;
+		} catch (error) {
+			console.error("Failed to fetch pore info:", error);
+		}
+		return null;
+	}
+
+	getPoreInfoForRandomScaffoldGroup = async (): Promise<PoreInfoForScaffoldGroup | null> => {
+		try {
+			const apiResponse = await agent.Descriptors.getPoreInfoForRandomScaffoldGroup();
+			return apiResponse.data;
+		} catch (error) {
+			console.error("Failed to fetch pore info:", error);
+		}
+		return null;
+	}
+
+
 }
