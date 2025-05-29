@@ -4,6 +4,103 @@ import { Domain } from "../models/domain";
 import { runInAction } from "mobx";
 import { DomainMetadata } from "../models/domainMetadata";
 
+// getDomainMetadata = async(category:number, domainId?: number): Promise<any> => {
+//         if (!domainId) return;
+//         if (this.domainMetadataCache.has(domainId)) {
+//             runInAction(() => {
+//                 const metadata = this.domainMetadataCache.get(domainId);
+//                 if (metadata) {
+//                     this.domainMetadata = metadata;
+//                     console.log(metadata);
+//                 }
+//             });
+//             return this.domainMetadata
+//         }
+
+//         try {
+//             const response = await agent.Domains.getDomainMetadata(domainId);
+//             runInAction(() => {
+//                 if (response.data) {
+//                     this.updateDomainMetadataCache(domainId, response.data);
+//                     this.activeDomainMetadata[category] = response.data;
+//                     this.domainMetadata = response.data;
+//                 }
+//             });
+//             return response.data;
+//         } catch (error) {
+//             console.error(error);
+//             runInAction(() => {
+//                 this.domainMetadata = null;
+//             });
+//         }
+//     }
+
+// visualizeDomain = async (
+//         scaffoldId?: number | null, 
+//         category: number = 0,
+//         forceRefresh: boolean = false
+//     ): Promise<number | undefined> => {
+//         try {
+//             this.isFetchingDomain = true;
+    
+//             // If scaffoldId is defined, attempt to load from cache
+//             if (scaffoldId != null) {
+//                 const key = this.getDomainCacheKey(scaffoldId, category);
+//                 if (!forceRefresh && this.domainCache.has(key)) {
+//                     const cached = this.domainCache.get(key)!;
+//                     runInAction(() => {
+//                         if (this.domainMeshUrl) {
+//                             URL.revokeObjectURL(this.domainMeshUrl);
+//                             this.domainMeshUrl = null;
+//                         }
+//                         this.domainMesh = cached.mesh;
+//                         this.domainMeshUrl = URL.createObjectURL(cached.mesh);
+//                         this.domain = cached.domain;
+//                         this.isFetchingDomain = false;
+//                     });
+//                     return cached.domain.scaffoldId;
+//                 }
+//             }
+    
+//             // Fetch from API (supports null scaffoldId → random)
+//             const { file, domain } = await agent.Domains.visualize(scaffoldId, category);
+    
+//             const resolvedKey = this.getDomainCacheKey(domain.scaffoldId!, category);
+    
+//             runInAction(() => {
+//                 this.updateDomainCache(resolvedKey, {mesh: file, domain: domain})
+
+//                 if (this.domainMeshUrl) {
+//                     URL.revokeObjectURL(this.domainMeshUrl);
+//                     this.domainMeshUrl = null;
+//                 }
+    
+//                 this.domainMesh = file;
+//                 this.domainMeshUrl = URL.createObjectURL(file);
+//                 this.domain = domain;
+//                 this.isFetchingDomain = false;
+//             });
+    
+//             return domain.scaffoldId;
+    
+//         } catch (error) {
+//             runInAction(() => {
+//                 this.clearDomainMesh();
+//             });
+//             return undefined;
+//         }
+//     };
+
+// clearDomainMesh = () => {
+//     if (this.domainMeshUrl) {
+//         URL.revokeObjectURL(this.domainMeshUrl);
+//         this.domainMeshUrl = null;
+//     }
+//     this.domainMesh = null;
+//     this.domain = null;
+//     this.isFetchingDomain = false;
+// };
+
 export default class DomainStore {
 	domainMesh: Blob | null = null; // Store .glb file
     domain: Domain | null = null; // Store domain
@@ -16,8 +113,21 @@ export default class DomainStore {
     domainCache: Map<string, { mesh: Blob; domain: Domain; }> = new Map();
     domainMetadataCache: Map<number, object> = new Map();
 
+    activeDomains: Record<number, Domain | null> = {};
+    activeDomainUrls: Record<number, string | null> = {};
+    activeDomainMeshes: Record<number, Blob | null> = {};
+    activeDomainMetadata: Record<number, DomainMetadata | null> = {};
+
 	constructor() {
-		makeAutoObservable(this)
+		makeAutoObservable(this);
+        this.activeDomains[0] = null;
+        this.activeDomains[1] = null;
+        this.activeDomainUrls[0] = null;
+        this.activeDomainUrls[1] = null;
+        this.activeDomainMeshes[0] = null;
+        this.activeDomainMeshes[1] = null;
+        this.activeDomainMetadata[0] = null;
+        this.activeDomainMetadata[1] = null;
 	}
 
     getDomainCacheKey = (scaffoldId: number, category: number): string => {
@@ -31,50 +141,61 @@ export default class DomainStore {
     ): Promise<number | undefined> => {
         try {
             this.isFetchingDomain = true;
-    
-            // If scaffoldId is defined, attempt to load from cache
+
+            // Try cache first
             if (scaffoldId != null) {
                 const key = this.getDomainCacheKey(scaffoldId, category);
                 if (!forceRefresh && this.domainCache.has(key)) {
                     const cached = this.domainCache.get(key)!;
+
                     runInAction(() => {
-                        if (this.domainMeshUrl) {
-                            URL.revokeObjectURL(this.domainMeshUrl);
-                            this.domainMeshUrl = null;
+                        const oldUrl = this.activeDomainUrls[category];
+                        const newUrl = URL.createObjectURL(cached.mesh);
+
+                        this.activeDomains[category] = cached.domain;
+                        this.activeDomainMeshes[category] = cached.mesh;
+                        this.activeDomainUrls[category] = newUrl;
+
+                        if (oldUrl && oldUrl !== newUrl) {
+                            setTimeout(() => URL.revokeObjectURL(oldUrl), 1000);
                         }
-                        this.domainMesh = cached.mesh;
-                        this.domainMeshUrl = URL.createObjectURL(cached.mesh);
-                        this.domain = cached.domain;
+
                         this.isFetchingDomain = false;
                     });
+
                     return cached.domain.scaffoldId;
                 }
             }
-    
-            // Fetch from API (supports null scaffoldId → random)
-            const { file, domain } = await agent.Domains.visualize(scaffoldId, category);
-    
-            const resolvedKey = this.getDomainCacheKey(domain.scaffoldId!, category);
-    
-            runInAction(() => {
-                this.updateDomainCache(resolvedKey, {mesh: file, domain: domain})
 
-                if (this.domainMeshUrl) {
-                    URL.revokeObjectURL(this.domainMeshUrl);
-                    this.domainMeshUrl = null;
+            // Fetch from API
+            const { file, domain } = await agent.Domains.visualize(scaffoldId, category);
+            const resolvedKey = this.getDomainCacheKey(domain.scaffoldId!, category);
+
+            runInAction(() => {
+                this.updateDomainCache(resolvedKey, { mesh: file, domain });
+
+                const oldUrl = this.activeDomainUrls[category];
+                const newUrl = URL.createObjectURL(file);
+
+                this.activeDomains[category] = domain;
+                this.activeDomainMeshes[category] = file;
+                this.activeDomainUrls[category] = newUrl;
+
+                if (oldUrl && oldUrl !== newUrl) {
+                    setTimeout(() => URL.revokeObjectURL(oldUrl), 1000);
                 }
-    
-                this.domainMesh = file;
-                this.domainMeshUrl = URL.createObjectURL(file);
-                this.domain = domain;
+
                 this.isFetchingDomain = false;
             });
-    
+
             return domain.scaffoldId;
-    
         } catch (error) {
+            console.error(error);
             runInAction(() => {
-                this.clearDomainMesh();
+                this.activeDomains[category] = null;
+                this.activeDomainUrls[category] = null;
+                this.activeDomainMeshes[category] = null;
+                this.isFetchingDomain = false;
             });
             return undefined;
         }
@@ -104,17 +225,16 @@ export default class DomainStore {
         }
     }
 
-    getDomainMetadata = async(domainId?: number): Promise<any> => {
+    getDomainMetadata = async (category: number, domainId?: number): Promise<any> => {
         if (!domainId) return;
+
         if (this.domainMetadataCache.has(domainId)) {
+            const metadata = this.domainMetadataCache.get(domainId);
             runInAction(() => {
-                const metadata = this.domainMetadataCache.get(domainId);
-                if (metadata) {
-                    this.domainMetadata = metadata;
-                    console.log(metadata);
-                }
+                this.domainMetadata = metadata as DomainMetadata;
+                this.activeDomainMetadata[category] = metadata as DomainMetadata;
             });
-            return this.domainMetadata
+            return metadata;
         }
 
         try {
@@ -122,6 +242,7 @@ export default class DomainStore {
             runInAction(() => {
                 if (response.data) {
                     this.updateDomainMetadataCache(domainId, response.data);
+                    this.activeDomainMetadata[category] = response.data;
                     this.domainMetadata = response.data;
                 }
             });
@@ -129,79 +250,23 @@ export default class DomainStore {
         } catch (error) {
             console.error(error);
             runInAction(() => {
-                this.domainMetadata = null;
+                this.activeDomainMetadata[category] = null;
             });
         }
-    }
+    };
 
-	// visualizeDomain = async (scaffoldId?: number | null): Promise<number | undefined> => {
-    //     try {
-    //         runInAction(() => {
-    //             this.isFetchingDomain = true;
-    
-    //             if (this.domainMeshUrl) {
-    //                 URL.revokeObjectURL(this.domainMeshUrl);
-    //                 this.domainMeshUrl = null;
-    //             }
-    
-    //             this.domainMesh = null;
-    //             this.domainMetadata = null;
-    //         });
-    
-    //         if (typeof scaffoldId === 'number' && this.domainCache.has(scaffoldId)) {
-    //             const cached = this.domainCache.get(scaffoldId)!;
-    
-    //             runInAction(() => {
-    //                 this.domainMesh = cached.mesh;
-    //                 this.domainMeshUrl = URL.createObjectURL(cached.mesh);
-    //                 this.domainMetadata = cached.metadata;
-    //                 this.isFetchingDomain = false;
-    //             });
-    
-    //             return cached.metadata.scaffoldId;
-    //         }
-    
-    //         const { file, domain } = await agent.Domains.visualize(scaffoldId);
-    //         const cacheKey = domain.id;
-    
-    //         runInAction(() => {
-    //             if (typeof cacheKey === 'number') {
-    //                 this.domainCache.set(cacheKey, { mesh: file, metadata: domain });
-    
-    //                 if (this.domainCache.size > this.cacheLimit) {
-    //                     const oldestKey = this.domainCache.keys().next().value;
-    //                     if (oldestKey !== undefined) {
-    //                         this.domainCache.delete(oldestKey);
-    //                     }
-    //                 }
-    //             }
-    
-    //             this.domainMesh = file;
-    //             this.domainMeshUrl = URL.createObjectURL(file);
-    //             this.domainMetadata = domain;
-    //             this.isFetchingDomain = false;
-    //         });
-    
-    //         return domain.scaffoldId;
-    
-    //     } catch (error) {
-    //         runInAction(() => {
-    //             this.domainMesh = null;
-    //             this.domainMeshUrl = null;
-    //             this.domainMetadata = null;
-    //             this.isFetchingDomain = false;
-    //         });
-    //     }
-    // }
+    getActiveDomain = (category: number): Domain | null => this.activeDomains[category] ?? null;
+    getActiveMeshUrl = (category: number): string | null => this.activeDomainUrls[category] ?? null;
+    getActiveMetadata = (category: number): DomainMetadata | null => this.activeDomainMetadata[category] ?? null;
 
-    clearDomainMesh = () => {
-        if (this.domainMeshUrl) {
-            URL.revokeObjectURL(this.domainMeshUrl);
-            this.domainMeshUrl = null;
-        }
-        this.domainMesh = null;
-        this.domain = null;
-        this.isFetchingDomain = false;
+    clearDomainMesh = (category: number) => {
+        const url = this.activeDomainUrls[category];
+        if (url) URL.revokeObjectURL(url);
+
+        this.activeDomainUrls[category] = null;
+        this.activeDomainMeshes[category] = null;
+        this.activeDomains[category] = null;
+        this.activeDomainMetadata[category] = null;
     };
     
     uploadDomainMesh = async (

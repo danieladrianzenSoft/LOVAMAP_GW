@@ -123,9 +123,10 @@ const ScreenshotScene: React.FC<ScreenshotSceneProps> = ({ url, onScreenshotRead
 			<Environment preset="lobby" />
 			<Model
 				url={url}
-				selectedParticle={null}
-				hiddenParticles={new Set()}
-				setHistory={() => {}}
+				visible={true}
+				category={0}
+				selectedEntity={null}
+				hiddenIds={new Set()}
 			/>
 		</>
 	);
@@ -149,11 +150,13 @@ const ScreenshotViewer: React.FC<ScreenshotViewerProps> = ({ scaffoldId: propId,
 		if (!resolvedId) return;
 
 		visualizeDomain(resolvedId).catch(() => {
-			clearDomainMesh();
+			clearDomainMesh(0);
+			clearDomainMesh(1);
 		});
 
 		return () => {
-			clearDomainMesh();
+			clearDomainMesh(0);
+			clearDomainMesh(1);
 		};
 	}, [resolvedId, visualizeDomain, clearDomainMesh]);
 

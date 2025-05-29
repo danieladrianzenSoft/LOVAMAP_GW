@@ -1,7 +1,6 @@
 import React from "react";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import Tag from "../../app/common/tag/tag";
-import CategorySelector from "../../app/common/selector/category-selector";
 import { ScaffoldGroup } from "../../app/models/scaffoldGroup";
 import { Domain } from  "../../app/models/domain";
 
@@ -17,14 +16,13 @@ interface Props {
   canEdit: boolean;
   onEditClick: () => void;
   isLoading: boolean;
-  onToggleHideEdgePores?: (hide: boolean) => void;
 }
 
-const domainCategories = [
-  { value: 0, label: "Particles" },
-  { value: 1, label: "Pores" },
-  { value: 2, label: "Other" },
-];
+// const domainCategories = [
+//   { value: 0, label: "Particles" },
+//   { value: 1, label: "Pores" },
+//   { value: 2, label: "Other" },
+// ];
 
 const InfoPanel: React.FC<Props> = ({
   isOpen,
@@ -38,14 +36,7 @@ const InfoPanel: React.FC<Props> = ({
   canEdit,
   onEditClick,
   isLoading,
-  onToggleHideEdgePores
 }) => {
-
-  const onClickHideEdgePores = () =>  {
-    if (onToggleHideEdgePores) {
-      onToggleHideEdgePores(true);
-    }
-  }
 
   return (
     <div className="bg-white bg-opacity-80 shadow-lg rounded-lg p-4 w-64">
@@ -104,7 +95,7 @@ const InfoPanel: React.FC<Props> = ({
                 </select>
               </div>
 
-              <div className="mt-2">
+              {/* <div className="mt-2">
                 <CategorySelector
                   name="Domain Category: "
                   categories={domainCategories}
@@ -112,16 +103,10 @@ const InfoPanel: React.FC<Props> = ({
                   onChange={onCategoryChange}
                   multiSelect={false}
                 />
-              </div>
+              </div> */}
 
               {selectedCategories[0] === 1 && domain != null &&(
                 <div className="flex flex-end -mt-3 justify-end">
-                  <button
-                    className="text-blue-600 hover:text-blue-800 text-xs"
-                    onClick={onClickHideEdgePores}
-                  >
-                    Hide edge pores
-                  </button>
                   {/* <label className="flex items-center space-x-2">
                     <input
                       type="checkbox"
@@ -137,9 +122,9 @@ const InfoPanel: React.FC<Props> = ({
                 </div>
               )}
 
-              <p className="mt-2">
+              {/* <p className="mt-2">
                 <span className="font-semibold">Voxel Size:</span> {domain?.voxelSize ?? "Unknown"}
-              </p>
+              </p> */}
 
               {canEdit && (
                 <div className="mt-4">

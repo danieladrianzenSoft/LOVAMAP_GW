@@ -149,6 +149,11 @@
     hover:bg-opacity-5 hover:bg-black focus:outline-none
     focus:ring-0 transition duration-150 ease-in-out
   }
+  .button-tag {
+    @apply inline-block px-4 py-1 font-medium text-xs bg-slate-100 
+    rounded-md hover:bg-opacity-5 hover:bg-black focus:outline-none
+    focus:ring-0 transition duration-150 ease-in-out
+  }
   .title-text {
     @apply text-xl tracking-wider font-semibold text-opacity-80 
     text-gray-600 dark:text-gray-300
@@ -219,6 +224,24 @@
   .default-upload-button {
     @apply bg-white border border-gray-300 text-gray-700 py-2 px-4 rounded cursor-pointer
     hover:bg-gray-100 focus:outline-none;
+  }
+  .custom-slider::-webkit-slider-thumb {
+    appearance: none;
+    height: 12px;
+    width: 12px;
+    background-color: #3b82f6; /* Tailwind's blue-500 */
+    border-radius: 9999px;
+    cursor: pointer;
+    border: none;
+    /* margin-top: -5px; to vertically center the thumb on the track */
+  }
+  .custom-slider::-moz-range-thumb {
+    height: 12px;
+    width: 12px;
+    background-color: #3b82f6;
+    border-radius: 9999px;
+    cursor: pointer;
+    border: none;
   }
 
 }

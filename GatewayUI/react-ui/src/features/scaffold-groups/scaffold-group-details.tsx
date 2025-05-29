@@ -185,7 +185,18 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 								))}
                         	</div>
 						) : (
-							<p className="text-sm text-gray-500 italic">No figures added</p>
+							<>
+								<p className="text-sm text-gray-500 italic">No figures added</p>
+								<button
+									className="button-tag"
+									onClick={(e) => {
+										e.stopPropagation(); // prevent click from bubbling
+										navigateToVisualization(scaffoldGroup);
+									}}
+								>
+									Go to Visualization
+								</button>
+							</>
 						)}
 
 						<div className="flex flex-col items-center mt-8">
