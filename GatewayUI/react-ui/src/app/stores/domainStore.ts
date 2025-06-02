@@ -274,7 +274,8 @@ export default class DomainStore {
         file: File,
         category: number,
         voxelSize?: number,
-        domainSize?: string
+        domainSize?: string,
+        metadataFile?: File | null,
     ) => {
         try {
             const formData = new FormData();
@@ -284,6 +285,7 @@ export default class DomainStore {
 
             if (voxelSize) formData.append("VoxelSize", voxelSize.toString());
             if (domainSize) formData.append("DomainSize", domainSize);
+            if (metadataFile) formData.append("MetadataFile", metadataFile);
 
             const response = await agent.Domains.createDomain(formData);
 

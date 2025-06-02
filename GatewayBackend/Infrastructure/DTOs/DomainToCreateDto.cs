@@ -9,8 +9,11 @@ namespace Infrastructure.DTOs
 		public int ScaffoldId { get; set; }
 		public int Category { get; set; }
 		public required IFormFile MeshFile { get; set; }
+		public IFormFile? MetadataFile { get; set; }
+		public string? MetadataJson { get; set; }
 		public int? VoxelCount { get; set; }
 		public double? VoxelSize { get; set; }
 		public string? DomainSize { get; set; }
+		
 	}
 }

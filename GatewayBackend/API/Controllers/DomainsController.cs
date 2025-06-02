@@ -118,6 +118,26 @@ public class DomainsController : ControllerBase
 		}
 	}
 
+	[HttpPost("{domainId}/metadata")]
+    public async Task<IActionResult> UpdateDomainMetadata([FromForm] DomainMetadataToUpdateDto dto)
+    {
+        try
+		{
+			var (succeeded, errorMessage) = await _domainService.UpdateDomainMetadata(dto);
+
+			if (!succeeded) {
+				return BadRequest(new ApiResponse<string>(400, errorMessage));
+			}
+
+			return Ok(new ApiResponse<string>(200, "Metadata updated"));
+		}
+		catch (Exception ex)
+		{
+			_logger.LogError(ex, "Failed to update the domain metadata");
+        	return StatusCode(500, new ApiResponse<string>(500, "An error occurred while updating the domain metadata"));
+		}
+    }
+
 	[HttpDelete("{domainId}")]
     public async Task<IActionResult> DeleteDomain(int domainId)
     {

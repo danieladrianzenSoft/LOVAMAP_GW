@@ -12,7 +12,8 @@ interface UpdateDomainModalProps {
 			category: number;
 			voxelSize: number | null;
 			domainSize: [number | null, number | null, number | null];
-      selectedFile?: File | null;
+      		selectedFile?: File | null;
+			metadataFile?: File | null;
 		}
 	) => void;
   	domain: Domain | null;
@@ -26,9 +27,11 @@ const UpdateDomainModal: React.FC<UpdateDomainModalProps> = ({
   	domain,
 	isLoading,
 }) => {
-	const [showUploadField, setShowUploadField] = useState(!domain);
+	const [showUploadField, setShowUploadField] = useState(domain == null);
 
 	const [selectedFile, setSelectedFile] = useState<File | null>(null);
+	const [metadataFile, setMetadataFile] = useState<File | null>(null);
+	const [showMetadataField, setShowMetadataField] = useState(false);
 	const [category, setCategory] = useState<number | null>(null);
 	const [voxelSize, setVoxelSize] = useState<number | null>(null);
 	const [domainSize, setDomainSize] = useState<[number | null, number | null, number | null]>([null, null, null]);
@@ -82,6 +85,7 @@ const UpdateDomainModal: React.FC<UpdateDomainModalProps> = ({
 			voxelSize,
 			domainSize,
 			selectedFile,
+			metadataFile
 		});
 	};
 
@@ -91,6 +95,13 @@ const UpdateDomainModal: React.FC<UpdateDomainModalProps> = ({
 		setSelectedFile(files[0]);
 		setShowUploadField(false);
 	}
+
+	const handleMetadataSelect = async (files: File[]) => {
+		if (files?.length === 0) return;
+		setError(null);
+		setMetadataFile(files[0]);
+		setShowMetadataField(false);
+	};
 
 	const handleSizeChange = (index: number, value: string) => {
 		const updated = [...domainSize] as [number | null, number | null, number | null];
@@ -169,7 +180,10 @@ const UpdateDomainModal: React.FC<UpdateDomainModalProps> = ({
 							{(domain || (domain === null && selectedFile)) && (
 								<button
 									type="button"
-									onClick={() => setShowUploadField(!showUploadField)}
+									onClick={() => {
+										setShowUploadField(!showUploadField);
+										setShowMetadataField(false);
+									}}
 									className="text-sm text-blue-600 underline hover:text-blue-800"
 								>
 									{showUploadField ? "Cancel" : "Update Mesh"}
@@ -197,6 +211,43 @@ const UpdateDomainModal: React.FC<UpdateDomainModalProps> = ({
 								onUploadSubmit={handleFileSelect}
 							/>
 						</>
+						)}
+					</div>
+
+					{/* Metadata Upload */}
+					<div className="pt-3">
+						<div className="flex items-center justify-between">
+							<label className="block text-sm font-medium text-gray-700">
+								Metadata File
+							</label>
+
+							{(domain || metadataFile) && (
+								<button
+									type="button"
+									onClick={() => {
+										setShowMetadataField(!showMetadataField);
+										setShowUploadField(false);
+									}}
+									className="text-sm text-blue-600 underline hover:text-blue-800"
+								>
+									{showMetadataField ? "Cancel" : "Update Metadata"}
+								</button>
+							)}
+						</div>
+
+						{/* Show selected file info */}
+						{metadataFile && (
+							<p className="text-sm text-gray-600 mt-1">
+								✔ File selected: {metadataFile.name}
+							</p>
+						)}
+
+						{/* Upload input */}
+						{showMetadataField && (
+							<UploadFile
+								acceptedFileTypes={{ "application/json": [".json"] }}
+								onUploadSubmit={handleMetadataSelect}
+							/>
 						)}
 					</div>
 

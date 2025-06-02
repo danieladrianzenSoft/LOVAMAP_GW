@@ -20,7 +20,7 @@ namespace Repositories.Repositories
 		{
 			_context = context;
 		}
-		
+
 		public bool HasChanges()
 		{
 			return _context.ChangeTracker.HasChanges();
@@ -52,7 +52,7 @@ namespace Repositories.Repositories
 			var domain = await _context.Domains
 				.Where(d => d.ScaffoldId == scaffoldId && d.Category == category)
 				.FirstOrDefaultAsync();
-			
+
 			return domain;
 		}
 
@@ -73,7 +73,7 @@ namespace Repositories.Repositories
 				.Where(d => d.Id == domainId)
 				.Select(d => d.Metadata)
 				.FirstOrDefaultAsync();
-			
+
 			return domainMetadata;
 		}
 	}

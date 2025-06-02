@@ -434,6 +434,7 @@ const Visualization: React.FC = () => {
 			voxelSize: number | null;
 			domainSize: [number | null, number | null, number | null];
 			selectedFile?: File | null;
+			metadataFile?: File | null;
 		}
 		) => {
 		e.preventDefault();
@@ -453,7 +454,8 @@ const Visualization: React.FC = () => {
 					payload.selectedFile,
 					payload.category,
 					payload.voxelSize || undefined,
-					formattedDomainSize
+					formattedDomainSize,
+					payload.metadataFile
 				);
 
 				// Refresh that domain after upload
@@ -472,7 +474,7 @@ const Visualization: React.FC = () => {
 		} finally {
 			setIsLoading(false);
 		}
-		};
+	};
 
 	const activeCategory =
 		showParticlesPanelOpen ? 0 :
