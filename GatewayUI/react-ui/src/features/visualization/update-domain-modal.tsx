@@ -18,6 +18,7 @@ interface UpdateDomainModalProps {
 	) => void;
   	domain: Domain | null;
 	isLoading: boolean;
+	selectedCategory: number;
 }
 
 const UpdateDomainModal: React.FC<UpdateDomainModalProps> = ({
@@ -26,9 +27,9 @@ const UpdateDomainModal: React.FC<UpdateDomainModalProps> = ({
 	onFormSubmit,
   	domain,
 	isLoading,
+	selectedCategory,
 }) => {
 	const [showUploadField, setShowUploadField] = useState(domain == null);
-
 	const [selectedFile, setSelectedFile] = useState<File | null>(null);
 	const [metadataFile, setMetadataFile] = useState<File | null>(null);
 	const [showMetadataField, setShowMetadataField] = useState(false);
@@ -36,23 +37,46 @@ const UpdateDomainModal: React.FC<UpdateDomainModalProps> = ({
 	const [voxelSize, setVoxelSize] = useState<number | null>(null);
 	const [domainSize, setDomainSize] = useState<[number | null, number | null, number | null]>([null, null, null]);
 	const [error, setError] = useState<string | null>(null);
+	const [title, setTitle] = useState<string | null>(null);
 
 	useEffect(() => {
 		if (isOpen && domain) {
-		if (domain.category != null) setCategory(domain.category);
-		if (domain.voxelSize != null) setVoxelSize(domain.voxelSize);
-		if (domain.domainSize) {
-			// eslint-disable-next-line no-useless-escape
-			const cleaned = domain.domainSize.replace(/[\[\]]/g, "");
-			const parsed = cleaned.split(",").map(part => {
-			const n = parseFloat(part.trim());
-			return isNaN(n) ? null : n;
-			});
-			const padded = [...parsed, null, null, null].slice(0, 3) as [number | null, number | null, number | null];
-			setDomainSize(padded);
-		}
-		}
+			if (domain.category != null) {
+				setCategory(domain.category);
+				updateTitle(domain.category);
+				console.log(domain.category);
+			}
+			if (domain.voxelSize != null) setVoxelSize(domain.voxelSize);
+			if (domain.domainSize) {
+				// eslint-disable-next-line no-useless-escape
+				const cleaned = domain.domainSize.replace(/[\[\]]/g, "");
+				const parsed = cleaned.split(",").map(part => {
+				const n = parseFloat(part.trim());
+				return isNaN(n) ? null : n;
+				});
+				const padded = [...parsed, null, null, null].slice(0, 3) as [number | null, number | null, number | null];
+				setDomainSize(padded);
+			}
+		} 
 	}, [isOpen, domain]);
+
+	useEffect(() => {
+		if (!domain && selectedCategory != null) {
+			console.log(selectedCategory);
+			setCategory(selectedCategory);
+			updateTitle(selectedCategory);
+		}
+	}, [selectedCategory, domain]);
+
+	const updateTitle = (rawCategory: number | null) => {
+		const category = typeof rawCategory === "string" ? parseInt(rawCategory, 10) : rawCategory;
+
+		switch (category) {
+			case 0: setTitle('Edit Particle Domain'); break;
+			case 1: setTitle('Edit Pore Domain'); break;
+			default: setTitle('Edit Domain'); break;
+		}
+	};
 
 	const handleClose = () => {
 		setError(null);
@@ -115,7 +139,7 @@ const UpdateDomainModal: React.FC<UpdateDomainModalProps> = ({
 		<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
 			<div className="bg-white p-6 rounded-lg shadow-lg max-w-lg w-full">
 				<div className="flex justify-between items-center mb-4">
-					<h2 className="text-xl font-bold">Edit Domain</h2>
+					<h2 className="text-xl font-bold">{title}</h2>
 					<button onClick={handleClose} className="text-gray-500 hover:text-gray-700 cursor-pointer">
 						&times;
 					</button>
@@ -123,7 +147,7 @@ const UpdateDomainModal: React.FC<UpdateDomainModalProps> = ({
 
 				<form onSubmit={handleSubmit} className="space-y-4">
 					{/* Category */}
-					<div>
+					{/* <div>
 						<label className="block text-sm font-medium text-gray-700">Category *</label>
 						<select
 							value={category ?? ""}
@@ -136,7 +160,7 @@ const UpdateDomainModal: React.FC<UpdateDomainModalProps> = ({
 							<option value={1}>Pore</option>
 							<option value={2}>Other</option>
 						</select>
-					</div>
+					</div> */}
 
 					{/* Voxel Size */}
 					<div>
@@ -221,18 +245,16 @@ const UpdateDomainModal: React.FC<UpdateDomainModalProps> = ({
 								Metadata File
 							</label>
 
-							{(domain || metadataFile) && (
-								<button
-									type="button"
-									onClick={() => {
-										setShowMetadataField(!showMetadataField);
-										setShowUploadField(false);
-									}}
-									className="text-sm text-blue-600 underline hover:text-blue-800"
-								>
-									{showMetadataField ? "Cancel" : "Update Metadata"}
-								</button>
-							)}
+							<button
+								type="button"
+								onClick={() => {
+									setShowMetadataField(!showMetadataField);
+									setShowUploadField(false);
+								}}
+								className="text-sm text-blue-600 underline hover:text-blue-800"
+							>
+								{showMetadataField ? "Cancel" : "Update Metadata"}
+							</button>
 						</div>
 
 						{/* Show selected file info */}

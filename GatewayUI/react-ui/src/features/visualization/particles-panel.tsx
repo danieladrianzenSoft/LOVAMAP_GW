@@ -9,9 +9,11 @@ interface DomainPanelProps {
 	domain: Domain | null;
 	visible: boolean;
 	opacity: number;
+	canEdit: boolean;
 	setOpacity: (value: number) => void;
 	onToggleVisibility: () => void;
 	onResetOverrides: () => void;
+	onEditClick: () => void;
 }
 
 const ParticlesPanel: React.FC<DomainPanelProps> = ({
@@ -20,9 +22,11 @@ const ParticlesPanel: React.FC<DomainPanelProps> = ({
 	domain,
 	visible,
 	opacity,
+	canEdit,
 	setOpacity,
 	onToggleVisibility,
-	onResetOverrides
+	onResetOverrides,
+	onEditClick
 }) => {
 	return (
 		<div className="bg-white bg-opacity-80 shadow-lg rounded-lg p-4 w-64 mt-2">
@@ -72,6 +76,16 @@ const ParticlesPanel: React.FC<DomainPanelProps> = ({
 				</>
 			) : (
 				<p className="mt-2 text-sm italic text-gray-500">Non-existent domain</p>
+			)}
+			{canEdit && (
+				<div className="mt-4">
+					<button
+					className="button-outline self-start flex items-center gap-2"
+					onClick={onEditClick}
+					>
+					Update
+					</button>
+				</div>
 			)}
 		</div>
 		</div>

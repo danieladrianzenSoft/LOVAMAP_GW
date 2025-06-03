@@ -6,9 +6,11 @@ interface DomainPanelProps {
 	togglePanelOpen: () => void;
 	domain: Domain | null;
 	visible: boolean;
+	canEdit: boolean;
 	onToggleVisibility: () => void;
 	onToggleHideEdgePores?: (hide: boolean) => void;
 	areEdgePoresHidden?: boolean; 
+	onEditClick: () => void;
 }
 
 const PoresPanel: React.FC<DomainPanelProps> = ({
@@ -16,9 +18,11 @@ const PoresPanel: React.FC<DomainPanelProps> = ({
   togglePanelOpen,
   domain,
   visible,
+  canEdit,
   onToggleVisibility,
   onToggleHideEdgePores,
-  areEdgePoresHidden
+  areEdgePoresHidden,
+  onEditClick
 }) => {
   return (
     <div className="bg-white bg-opacity-80 shadow-lg rounded-lg p-4 w-64 mt-2">
@@ -66,6 +70,16 @@ const PoresPanel: React.FC<DomainPanelProps> = ({
 			</div>
 			) : (
 				<p className="mt-2 text-sm italic text-gray-500">Non-existent domain</p>
+			)}
+			{canEdit && (
+				<div className="mt-4">
+					<button
+					className="button-outline self-start flex items-center gap-2"
+					onClick={onEditClick}
+					>
+					Update
+					</button>
+				</div>
 			)}
       	</div>
     </div>

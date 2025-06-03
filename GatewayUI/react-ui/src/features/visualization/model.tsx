@@ -12,7 +12,7 @@ interface ModelProps {
 	selectedEntity: ({ id: string, mesh: THREE.Mesh } | null);
 
 	// Interactivity
-	onLoad?: () => void;
+	onLoad?: (loadedScene: THREE.Object3D, center: THREE.Vector3, size: number) => void;
 	onEntityClick?: (category: number, id: string, mesh: THREE.Mesh) => void;
 	onEntityRightClick?: (category: number, id: string, mesh: THREE.Mesh) => void;
 	
@@ -45,8 +45,6 @@ const Model: React.FC<ModelProps> = ({url, category, visible, onLoad, hiddenIds,
 		const size = box.getSize(new THREE.Vector3())?.length();
 		const center = box.getCenter(new THREE.Vector3());
 
-		// Position the model correctly
-		// const center = box.getCenter(new THREE.Vector3());
 		// scene.position.set(-center.x, -center.y, -center.z);
 
 		if (debugMode) {
@@ -70,36 +68,22 @@ const Model: React.FC<ModelProps> = ({url, category, visible, onLoad, hiddenIds,
 			);
 		}
 
-		// //const optimalDistance = Math.max(5, Math.log(size + 1) * 2);
-		// const optimalDistance = Math.max(2, size * 0.7);
-		// const angle = 0.3; // vertical component (less = more horizontal)
-		// const offset = optimalDistance * 0.9;
-
-		// camera.position.set(
-		// 	center.x + offset,
-		// 	center.y + offset,
-		// 	center.z + offset * angle // slightly above, but not steep
-		// );
-
-		// // Adjust camera position dynamically based on model size
-		// // camera.position.set(optimalDistance, optimalDistance * 0.6, optimalDistance * 1.2);
-		// // camera.lookAt(center);
-		// camera.lookAt(center);
-
 		// Direction vector from which to view the mesh
 		const direction = new THREE.Vector3(0.9, 0.5, 0.8).normalize(); // Equal X and Y, some upward Z
-		const distance = size * 1.1; // Pull back a bit more than size
+		const distance = size * 1; // Pull back a bit more than size
 
 		camera.position.copy(direction.clone().multiplyScalar(distance).add(center));
 		camera.lookAt(center);
 
-		camera.near = Math.max(0.1, size / 10);
-		camera.far = size * 10;
+		// camera.near = Math.max(0.1, size / 10);
+		// camera.far = size * 10;
+		camera.near = size / 10;
+    	camera.far = size * 10;
 		camera.updateProjectionMatrix();
 
 		cameraSetRef.current = true;
 		// setModelLoaded(true);
-		onLoad?.();				
+		onLoad?.(scene, center, size);				
 	}, [camera, scene, onLoad, debugMode, category]);
 
 	useEffect(() => {

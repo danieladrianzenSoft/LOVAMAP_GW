@@ -104,7 +104,7 @@ import { DomainMetadata } from "../models/domainMetadata";
 export default class DomainStore {
 	domainMesh: Blob | null = null; // Store .glb file
     domain: Domain | null = null; // Store domain
-    domainMeshUrl: string | null = null;
+    // domainMeshUrl: string | null = null;
 	isFetchingDomain: boolean = false;
     cacheLimit: number = 3;
     domainMetadata: DomainMetadata | null = null;
@@ -198,6 +198,24 @@ export default class DomainStore {
                 this.isFetchingDomain = false;
             });
             return undefined;
+        }
+    };
+
+    fetchMeshForScreenshot = async (
+        scaffoldId?: number | null,
+        category: number = 0
+    ): Promise<{ blobUrl: string; domain: Domain }> => {
+        if (!scaffoldId) {
+            throw new Error("Invalid scaffold ID");
+        }
+
+        try {
+            const { file, domain } = await agent.Domains.visualize(scaffoldId, category); // assumes { file: Blob, domain: Domain }
+            const blobUrl = URL.createObjectURL(file);
+            return { blobUrl, domain };
+        } catch (error) {
+            console.error("Failed to fetch mesh for screenshot", error);
+            throw error;
         }
     };
 

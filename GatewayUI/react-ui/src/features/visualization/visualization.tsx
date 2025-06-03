@@ -51,14 +51,19 @@ const Visualization: React.FC = () => {
 	const poreDomain = domainStore.getActiveDomain(1);
 	const particleUrl = domainStore.getActiveMeshUrl(0);
 	const poreUrl = domainStore.getActiveMeshUrl(1);
-	
+
 	const [dimmedParticles, setDimmedParticles] = useState(false);
 	const [dimmedPores, setDimmedPores] = useState(false);
 	const [poreOpacity, setPoreOpacity] = useState(1);
 	const [particleOpacity, setParticleOpacity] = useState(1);
 	const [userOverrideParticleOpacity, setUserOverrideParticleOpacity] = useState(false);
-	const [poreColor, setPoreColor] = useState(null)
-	const [particleColor, setParticleColor] = useState(null)
+	const [poreColor, setPoreColor] = useState(null);
+	const [particleColor, setParticleColor] = useState(null);
+
+	// const screenshotCategory = selectedCategories[0];
+	const [screenshotCategory, setScreenshotCategory] = useState<number | null>(null);
+	// const meshUrlReady = !!(screenshotCategory != null && domainStore.getActiveMeshUrl(screenshotCategory));
+
 
 	const defaultDimmedOptions = useMemo(() => ({
 		color: '#E7F6E3',
@@ -205,10 +210,10 @@ const Visualization: React.FC = () => {
 		};
 
 		if (currentlySelected?.id === particleId) {
-			addToHistory({ 
-				type: "UNSELECT", 
-				category, 
-				particleId, 
+			addToHistory({
+				type: "UNSELECT",
+				category,
+				particleId,
 				previousState: {
 					material: particleMaterial,
 					visible: particle.visible,
@@ -407,23 +412,26 @@ const Visualization: React.FC = () => {
 		setParticleOpacity(1); // Restore full opacity
 		setUserOverrideParticleOpacity(false); // Allow dimming logic again
 		setDimmedParticles(false); // Disable dim
-		setParticleColor(null); 
+		setParticleColor(null);
 	}
 
 	const handleScreenshotUpload = async (blob: Blob) => {
-		if (!selectedScaffoldGroupId) return;
+		console.log("Visualization - handleScreenshotUpload:", selectedScaffoldGroupId);
+
+		if (!selectedScaffoldGroupId || screenshotCategory == null) return;
 		try {
 			const image: ImageToCreate = {
 				scaffoldGroupId: selectedScaffoldGroupId,
 				scaffoldId: selectedScaffoldId,
 				file: new File([blob], `scaffold-${selectedScaffoldId}.png`, { type: 'image/png' }),
-				category: ImageCategory.Particles,
+				category: screenshotCategory,
 			};
 			await scaffoldGroupStore.uploadImageForScaffoldGroup(selectedScaffoldGroupId, image);
 		} catch (err) {
 			console.error("Thumbnail upload failed", err);
 		} finally {
 			setScaffoldIdForScreenshot(null);
+			setScreenshotCategory(null);
 		}
 	};
 
@@ -449,6 +457,8 @@ const Visualization: React.FC = () => {
 			: undefined;
 
 			if (payload.selectedFile) {
+				// domainStore.clearDomainMesh(payload.category);
+
 				await domainStore.uploadDomainMesh(
 					selectedScaffoldId,
 					payload.selectedFile,
@@ -462,8 +472,12 @@ const Visualization: React.FC = () => {
 				await domainStore.visualizeDomain(selectedScaffoldId, payload.category, true);
 				await domainStore.getDomainMetadata(payload.category, domainStore.getActiveDomain(payload.category)?.id);
 
-				if (payload.category === 0) {
-					setScaffoldIdForScreenshot(selectedScaffoldId); // trigger thumbnail
+				console.log(`PAYLOAD CATEGORY: ${payload.category}`);
+
+				if (payload.category === 0 || payload.category === 1) {
+					console.log(`TRIGGERING SCREENSHOT: ${payload.category}`);
+					setScaffoldIdForScreenshot(selectedScaffoldId);
+					setScreenshotCategory(payload.category);
 				}
 			}
 
@@ -476,6 +490,7 @@ const Visualization: React.FC = () => {
 		}
 	};
 
+	// active category: particles - 0, pores = 1
 	const activeCategory =
 		showParticlesPanelOpen ? 0 :
 		showPoresPanelOpen ? 1 :
@@ -489,7 +504,9 @@ const Visualization: React.FC = () => {
 		<div className="relative w-full h-screen overflow-hidden mt-8 ml-2">
 			<div className="w-full h-full rounded-lg">
 				{!isLoading && meshList.length > 0 && (
-					<CanvasViewer meshes={meshList} />
+					<div className="h-full w-full -mt-16">
+						<CanvasViewer meshes={meshList} />
+					</div>
 				)}
 				{!isLoading && meshList.length === 0 && (
 					<div className="text-gray-600">This mesh does not exist</div>
@@ -540,8 +557,8 @@ const Visualization: React.FC = () => {
 					selectedCategories={selectedCategories}
 					onCategoryChange={setSelectedCategories}
 					domain={particleDomain}
-					canEdit={canEdit}
-					onEditClick={() => setIsModalOpen(true)}
+					// canEdit={canEdit}
+					// onEditClick={() => setIsModalOpen(true)}
 					isLoading={scaffoldGroupStore.isFetchingScaffoldGroup}
 				/>
 
@@ -556,6 +573,8 @@ const Visualization: React.FC = () => {
 							setShowParticlesPanelOpen(false);
 						}
 					}}
+					canEdit={canEdit}
+					onEditClick={() => setIsModalOpen(true)}
 					domain={particleDomain}
 					visible={showParticles} // this controls if particles show in canvas
 					onToggleVisibility={() => {handleToggleShowParticles(!showParticles)}}
@@ -578,6 +597,8 @@ const Visualization: React.FC = () => {
 							setShowPoresPanelOpen(false);
 						}
 					}}
+					canEdit={canEdit}
+					onEditClick={() => setIsModalOpen(true)}
 					domain={poreDomain}
 					visible={showPores}
 					onToggleVisibility={() => {handleToggleShowPores(!showPores)}}
@@ -590,14 +611,16 @@ const Visualization: React.FC = () => {
 				isOpen={isModalOpen}
 				onClose={() => setIsModalOpen(false)}
 				onFormSubmit={handleFormSubmit}
-				domain={particleDomain}
+				domain={activeCategory === 1 ? poreDomain :  particleDomain}
+				selectedCategory={activeCategory}
 				isLoading={isLoading}
 			/>
 
-			{scaffoldIdForScreenshot && particleUrl && (
+			{scaffoldIdForScreenshot && screenshotCategory != null && (
 				<div style={{ opacity: 0, position: 'absolute', width: 512, height: 512, pointerEvents: 'none' }}>
 					<ScreenshotViewer
 						scaffoldId={scaffoldIdForScreenshot}
+						category={screenshotCategory}
 						onScreenshotReady={handleScreenshotUpload}
 					/>
 				</div>

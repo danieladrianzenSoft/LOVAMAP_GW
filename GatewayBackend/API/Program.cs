@@ -75,7 +75,10 @@ builder.Services.AddCors(opt =>
             .AllowAnyHeader()
             .AllowAnyMethod()
             .AllowCredentials()
-            .WithOrigins("http://localhost:3000","http://localhost:5001","http://152.3.103.246:3000")
+            .WithOrigins("http://localhost:3000",
+                "http://localhost:5001",
+                "http://152.3.103.246:3000",
+                "https://lovamap.com")
             .WithExposedHeaders("X-Domain-Id", 
                 "X-Scaffold-Id", 
                 "X-Category", 

@@ -13,8 +13,8 @@ interface Props {
   selectedCategories: number[];
   onCategoryChange: (values: number[]) => void;
   domain: Domain | null;
-  canEdit: boolean;
-  onEditClick: () => void;
+  // canEdit: boolean;
+  // onEditClick: () => void;
   isLoading: boolean;
 }
 
@@ -33,8 +33,8 @@ const InfoPanel: React.FC<Props> = ({
   selectedCategories,
   onCategoryChange,
   domain,
-  canEdit,
-  onEditClick,
+  // canEdit,
+  // onEditClick,
   isLoading,
 }) => {
 
@@ -126,7 +126,7 @@ const InfoPanel: React.FC<Props> = ({
                 <span className="font-semibold">Voxel Size:</span> {domain?.voxelSize ?? "Unknown"}
               </p> */}
 
-              {canEdit && (
+              {/* {canEdit && (
                 <div className="mt-4">
                   <button
                     className="button-outline self-start flex items-center gap-2"
@@ -135,7 +135,7 @@ const InfoPanel: React.FC<Props> = ({
                     Update
                   </button>
                 </div>
-              )}
+              )} */}
             </div>
           ) : isLoading ? (
             <p className="text-sm text-gray-600 italic mt-3">Loading...</p>
