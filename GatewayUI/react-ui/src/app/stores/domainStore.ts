@@ -203,15 +203,20 @@ export default class DomainStore {
 
     fetchMeshForScreenshot = async (
         scaffoldId?: number | null,
-        category: number = 0
+        category?: number | null
     ): Promise<{ blobUrl: string; domain: Domain }> => {
         if (!scaffoldId) {
             throw new Error("Invalid scaffold ID");
         }
 
+        console.log(`[DOMAIN STORE]: fetch mesh for screenshot, scaffoldId: ${scaffoldId} category: ${category}, `)
         try {
             const { file, domain } = await agent.Domains.visualize(scaffoldId, category); // assumes { file: Blob, domain: Domain }
             const blobUrl = URL.createObjectURL(file);
+            console.log(`[DEBUG] Blob size:`, file.size);
+            console.log("Fetched mesh domain:", domain);
+            console.log("Blob size:", file.size);
+            // console.log("Expected meshFilePath:", domain.meshFilePath);
             return { blobUrl, domain };
         } catch (error) {
             console.error("Failed to fetch mesh for screenshot", error);

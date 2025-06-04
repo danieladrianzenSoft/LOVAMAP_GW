@@ -416,8 +416,7 @@ const Visualization: React.FC = () => {
 	}
 
 	const handleScreenshotUpload = async (blob: Blob) => {
-		console.log("Visualization - handleScreenshotUpload:", selectedScaffoldGroupId);
-
+		console.log(`[HANDLESCREESHOTUPLOAD]: selectedScaffoldId: ${selectedScaffoldId}, screenshotCategory: ${screenshotCategory}`)
 		if (!selectedScaffoldGroupId || screenshotCategory == null) return;
 		try {
 			const image: ImageToCreate = {
@@ -432,6 +431,7 @@ const Visualization: React.FC = () => {
 		} finally {
 			setScaffoldIdForScreenshot(null);
 			setScreenshotCategory(null);
+			setIsLoading(false);
 		}
 	};
 
@@ -457,8 +457,6 @@ const Visualization: React.FC = () => {
 			: undefined;
 
 			if (payload.selectedFile) {
-				// domainStore.clearDomainMesh(payload.category);
-
 				await domainStore.uploadDomainMesh(
 					selectedScaffoldId,
 					payload.selectedFile,
@@ -472,9 +470,11 @@ const Visualization: React.FC = () => {
 				await domainStore.visualizeDomain(selectedScaffoldId, payload.category, true);
 				await domainStore.getDomainMetadata(payload.category, domainStore.getActiveDomain(payload.category)?.id);
 
-				console.log(`PAYLOAD CATEGORY: ${payload.category}`);
+				console.log("[Handle Form Submit]:", payload);
 
-				if (payload.category === 0 || payload.category === 1) {
+				const numericCategory = Number(payload.category);
+
+				if (numericCategory === 0 || numericCategory === 1) {
 					console.log(`TRIGGERING SCREENSHOT: ${payload.category}`);
 					setScaffoldIdForScreenshot(selectedScaffoldId);
 					setScreenshotCategory(payload.category);
@@ -486,7 +486,9 @@ const Visualization: React.FC = () => {
 			console.error("Upload failed", error);
 			setError("Upload failed. Please try again.");
 		} finally {
-			setIsLoading(false);
+			if (scaffoldIdForScreenshot == null) {
+				setIsLoading(false);
+			}
 		}
 	};
 
@@ -617,7 +619,7 @@ const Visualization: React.FC = () => {
 			/>
 
 			{scaffoldIdForScreenshot && screenshotCategory != null && (
-				<div style={{ opacity: 0, position: 'absolute', width: 512, height: 512, pointerEvents: 'none' }}>
+				<div style={{ visibility: 'hidden', position: 'absolute', width: 512, height: 512, pointerEvents: 'none', zIndex: -1 }}>
 					<ScreenshotViewer
 						scaffoldId={scaffoldIdForScreenshot}
 						category={screenshotCategory}

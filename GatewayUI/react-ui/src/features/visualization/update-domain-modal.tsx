@@ -44,7 +44,6 @@ const UpdateDomainModal: React.FC<UpdateDomainModalProps> = ({
 			if (domain.category != null) {
 				setCategory(domain.category);
 				updateTitle(domain.category);
-				console.log(domain.category);
 			}
 			if (domain.voxelSize != null) setVoxelSize(domain.voxelSize);
 			if (domain.domainSize) {
@@ -62,7 +61,6 @@ const UpdateDomainModal: React.FC<UpdateDomainModalProps> = ({
 
 	useEffect(() => {
 		if (!domain && selectedCategory != null) {
-			console.log(selectedCategory);
 			setCategory(selectedCategory);
 			updateTitle(selectedCategory);
 		}
