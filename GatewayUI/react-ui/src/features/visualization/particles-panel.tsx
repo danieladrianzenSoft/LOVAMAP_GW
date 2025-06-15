@@ -2,6 +2,7 @@ import { RiResetLeftFill } from "react-icons/ri";
 import Slider from "../../app/common/slider/slider";
 import { Domain } from "../../app/models/domain";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
+import * as THREE from 'three';
 
 interface DomainPanelProps {
 	isOpen: boolean;
@@ -9,7 +10,17 @@ interface DomainPanelProps {
 	domain: Domain | null;
 	visible: boolean;
 	opacity: number;
+	dimmed: boolean;
 	canEdit: boolean;
+	slicingActive: boolean, 
+	sliceXThreshold: number | null, 
+	sliceDomainBounds: {
+		min: THREE.Vector3;
+		max: THREE.Vector3;
+	} | null,
+	setSlicingActive: (value: boolean) => void, 
+	setSliceXThreshold: (value: number) => void,
+	setDimmed: (value: boolean) => void;
 	setOpacity: (value: number) => void;
 	onToggleVisibility: () => void;
 	onResetOverrides: () => void;
@@ -22,7 +33,14 @@ const ParticlesPanel: React.FC<DomainPanelProps> = ({
 	domain,
 	visible,
 	opacity,
+	dimmed,
 	canEdit,
+	slicingActive,
+	sliceXThreshold,
+	sliceDomainBounds,
+	setSlicingActive,
+	setSliceXThreshold,
+	setDimmed,
 	setOpacity,
 	onToggleVisibility,
 	onResetOverrides,
@@ -64,6 +82,49 @@ const ParticlesPanel: React.FC<DomainPanelProps> = ({
 							<RiResetLeftFill /> Reset
 						</button>
 					</div>
+					<div className="flex justify-between items-center mt-3 text-sm text-gray-700">
+						<span className="mr-2">Dim particles</span>
+						<label className="inline-flex items-center cursor-pointer">
+							<input
+								type="checkbox"
+								className="sr-only peer"
+								checked={dimmed}
+								onChange={(e) => {
+									const shouldDim = e.target.checked;
+									setDimmed(shouldDim);
+								}}
+							/>
+							<div className="w-11 h-6 bg-gray-200 rounded-full peer peer-checked:bg-blue-600 relative">
+								<div className="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform peer-checked:translate-x-5"></div>
+							</div>
+						</label>
+					</div>
+
+					<div className="flex justify-between items-center mt-3 text-sm text-gray-700">
+						<span>Slice Particles</span>
+						<label className="inline-flex items-center cursor-pointer">
+							<input
+								type="checkbox"
+								className="sr-only peer"
+								checked={slicingActive}
+								onChange={(e) => setSlicingActive(e.target.checked)}
+							/>
+							<div className="w-11 h-6 bg-gray-200 rounded-full peer peer-checked:bg-blue-600 relative">
+								<div className="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform peer-checked:translate-x-5"></div>
+							</div>
+						</label>
+					</div>
+
+					{ slicingActive && sliceXThreshold != null && (
+						<Slider
+							label="Slice Distance (X)"
+							value={sliceXThreshold}
+							min={sliceDomainBounds?.min.x ?? 0}
+							max={sliceDomainBounds?.max.x ?? 600}
+							step={1}
+							onChange={setSliceXThreshold}
+						/>
+					)}
 
 					<Slider
 						label="Opacity"
@@ -71,7 +132,9 @@ const ParticlesPanel: React.FC<DomainPanelProps> = ({
 						min={0}
 						max={1}
 						step={0.01}
-						onChange={setOpacity}
+						onChange={(value) => {
+							setOpacity(value);
+						}}
 					/>
 				</>
 			) : (

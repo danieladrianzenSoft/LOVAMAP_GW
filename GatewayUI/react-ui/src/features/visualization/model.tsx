@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { useThree, ThreeEvent } from "@react-three/fiber";
+import { useThree, ThreeEvent, Vector3 } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
 import * as THREE from 'three';
 import { observer } from 'mobx-react-lite';
@@ -10,9 +10,17 @@ interface ModelProps {
 	visible: boolean;
 	hiddenIds: Set<string>;
 	selectedEntity: ({ id: string, mesh: THREE.Mesh } | null);
+  	combinedCenter?: THREE.Vector3;
+	// combinedCenter: Vector3 | null;
 
 	// Interactivity
-	onLoad?: (loadedScene: THREE.Object3D, center: THREE.Vector3, size: number) => void;
+	onLoad?: (
+		loadedScene: THREE.Object3D, 
+		center: THREE.Vector3, 
+		size: number, 
+		category: number,
+		bounds: { min: THREE.Vector3; max: THREE.Vector3 }
+	) => void;
 	onEntityClick?: (category: number, id: string, mesh: THREE.Mesh) => void;
 	onEntityRightClick?: (category: number, id: string, mesh: THREE.Mesh) => void;
 	
@@ -25,6 +33,8 @@ interface ModelProps {
 		opacity?: number;                // Default: 0.1
 	};
 	debugMode?: boolean;
+	slicingActive?: boolean;
+  	sliceXThreshold?: number | null;
 }
 
 function createBoundingBoxHelper(object: THREE.Object3D, color: string): THREE.BoxHelper {
@@ -33,10 +43,29 @@ function createBoundingBoxHelper(object: THREE.Object3D, color: string): THREE.B
 	return boxHelper;
 }
 
-const Model: React.FC<ModelProps> = ({url, category, visible, onLoad, hiddenIds, selectedEntity, onEntityClick, onEntityRightClick, color, opacity, dimmed, dimmedOptions, debugMode }) => {
+const Model: React.FC<ModelProps> = ({
+	url, 
+	category, 
+	visible,
+	onLoad, 
+	hiddenIds, 
+	selectedEntity, 
+	combinedCenter,
+	onEntityClick, 
+	onEntityRightClick, 
+	color, 
+	opacity, 
+	dimmed, 
+	dimmedOptions, 
+	debugMode,
+	slicingActive,
+  	sliceXThreshold,
+}) => {
 	const { scene } = useGLTF(url);
 	const { camera } = useThree();
 	const cameraSetRef = useRef(false);
+
+	const shouldSlice = slicingActive && typeof sliceXThreshold === 'number';
 
 	useEffect(() => {
 		if (!scene || cameraSetRef.current) return;
@@ -44,6 +73,9 @@ const Model: React.FC<ModelProps> = ({url, category, visible, onLoad, hiddenIds,
 		const box = new THREE.Box3().setFromObject(scene);
 		const size = box.getSize(new THREE.Vector3())?.length();
 		const center = box.getCenter(new THREE.Vector3());
+
+		const min = box.min.clone();
+  		const max = box.max.clone();
 
 		// scene.position.set(-center.x, -center.y, -center.z);
 
@@ -83,94 +115,85 @@ const Model: React.FC<ModelProps> = ({url, category, visible, onLoad, hiddenIds,
 
 		cameraSetRef.current = true;
 		// setModelLoaded(true);
-		onLoad?.(scene, center, size);				
+		onLoad?.(scene, center, size, category, { min, max });				
 	}, [camera, scene, onLoad, debugMode, category]);
 
 	useEffect(() => {
 		scene.traverse((child) => {
 			if (!(child instanceof THREE.Mesh)) return;
 
-			// console.log("Applying material for:", child.name, {
-			// 	dimmed,
-			// 	selected: selectedEntity?.id === child.name,
-			// 	colorOverride: dimmedOptions?.color,
-			// 	finalColor: (child.material as any)?.color?.getHexString?.(),
-			// });
-
 			const entityId = child.name;
 			child.userData.particleId = entityId;
 
-			// Store original material (only once)
-			if (!child.userData.originalMaterial) {
-				child.userData.originalMaterial = Array.isArray(child.material)
-					? [...child.material]
-					: child.material;
+			// Store original material once
+			if (!child.userData.originalMaterial && child.material) {
+				child.userData.originalMaterial = child.material;
 			}
 
-			// Store original raycast function (only once)
+			// Store raycast function once
 			if (!child.userData.originalRaycast) {
 				child.userData.originalRaycast = child.raycast;
 			}
 
-			// Selection override (highlight)
+			// Handle highlight (selection)
 			if (selectedEntity?.id === entityId) {
 				child.material = new THREE.MeshStandardMaterial({
 					color: "red",
 					emissive: "yellow",
 				});
+			} else {
+				// Clone original material
+				const originalMat = child.userData.originalMaterial as THREE.MeshStandardMaterial;
+				const workingMat = originalMat.clone();
+
+				// Global override (highest priority)
+				if (typeof color === "string") {
+					workingMat.color = new THREE.Color(color);
+					workingMat.vertexColors = false;
+				}
+				if (typeof opacity === "number") {
+					workingMat.transparent = true;
+					workingMat.opacity = opacity;
+				}
+
+				// Dimmed fallback
+				if (color === undefined && dimmed && typeof dimmedOptions?.color === "string") {
+					// console.log(`Applying dimmed color ${dimmedOptions.color} to entity ${entityId}`);
+					workingMat.color = new THREE.Color(dimmedOptions.color);
+					workingMat.vertexColors = false;
+				}
+				if (opacity === undefined && dimmed && typeof dimmedOptions?.opacity === "number") {
+					// console.log(`Applying dimmed opacity ${dimmedOptions.opacity} to entity ${entityId}`);
+					workingMat.transparent = true;
+					workingMat.opacity = dimmedOptions.opacity;
+				}
+
+				child.material = workingMat;
 			}
-			// Dimmed rendering for context-only display
-			else if (dimmed) {
-				child.material = createDimmedMaterial(dimmedOptions, opacity);
-				
-				// const originalMaterial = child.userData.originalMaterial;
 
-				// const colorToUse = dimmedOptions?.color ?? "#E7F6E3";
-				// const opacityToUse =
-				// 	typeof opacity === "number"
-				// 		? opacity
-				// 		: dimmedOptions?.opacity ?? 0.15;
+			// Handle visibility
+			const center = new THREE.Vector3();
+			new THREE.Box3().setFromObject(child).getCenter(center);
 
-				// const currentMat = child.userData.dimmedMaterial;
+			// Adjust to match camera-centered coordinate space
+			const adjustedCenter = combinedCenter
+				? center.clone().sub(combinedCenter)
+				: center;
 
-				// const needsNewMaterial =
-				// 	!currentMat ||
-				// 	currentMat.opacity !== opacityToUse ||
-				// 	currentMat.color.getStyle() !== colorToUse;
-
-				// if (needsNewMaterial) {
-				// 	child.userData.dimmedMaterial = cloneDimmedMaterial(
-				// 		originalMaterial,
-				// 		dimmedOptions,
-				// 		opacity
-				// 	);
-				// }
-
-				// child.material = child.userData.dimmedMaterial;
-
-			}
-			else {
-				const baseMaterial = cloneWithOverrides(
-					child.userData.originalMaterial ?? new THREE.MeshStandardMaterial(),
-					{ color, opacity }
-				);
-				child.material = baseMaterial;
-			}
-			// Restore original material if not selected or dimmed
-			// else if (child.userData.originalMaterial) {
-			// 	child.material = child.userData.originalMaterial;
-			// }
-
-			const isGloballyVisible = visible; // prop passed to <Model>
+			const isGloballyVisible = visible;
 			const isLocallyHidden = hiddenIds.has(entityId);
-			const finalVisible = isGloballyVisible && !isLocallyHidden;
+			let finalVisible = isGloballyVisible && !isLocallyHidden
+
+			if (category === 0) {
+				const shouldSlice = slicingActive && typeof sliceXThreshold === 'number';
+				const isSliceHidden = shouldSlice && adjustedCenter.x > (sliceXThreshold ?? 0);
+				finalVisible = finalVisible && !isSliceHidden;
+			}
 
 			child.visible = finalVisible;
-			child.raycast = finalVisible
-				? child.userData.originalRaycast
-				: () => {};
+			child.raycast = finalVisible ? child.userData.originalRaycast : () => {};
 		});
-	}, [scene, hiddenIds, selectedEntity, dimmed, dimmedOptions, visible, color, opacity]);
+	}, [scene, hiddenIds, selectedEntity, dimmed, dimmedOptions, visible, color, opacity, shouldSlice, sliceXThreshold, combinedCenter, category]);
 
 
 	useEffect(() => {
@@ -191,92 +214,6 @@ const Model: React.FC<ModelProps> = ({url, category, visible, onLoad, hiddenIds,
 		};
 	}, [scene]);
 
-	function cloneDimmedMaterial(
-		original: THREE.Material,
-		options?: { color?: string; opacity?: number },
-		sliderOpacity?: number
-	): THREE.MeshStandardMaterial {
-		const color = options?.color ?? "#E7F6E3";
-		const opacity = typeof sliderOpacity === "number"
-			? sliderOpacity
-			: options?.opacity ?? 0.15;
-
-		let meshMat: THREE.MeshStandardMaterial;
-
-		if (original instanceof THREE.MeshStandardMaterial) {
-			meshMat = original.clone();
-		} else {
-			const fallbackColor = (original as any).color instanceof THREE.Color
-				? (original as any).color.clone()
-				: new THREE.Color("#ffffff");
-
-			meshMat = new THREE.MeshStandardMaterial({
-				color: fallbackColor,
-				opacity: original.opacity,
-				transparent: original.transparent,
-			});
-		}
-
-		// Apply dimming overrides
-		meshMat.transparent = true;
-		meshMat.opacity = opacity;
-		meshMat.color = new THREE.Color(color);
-
-		return meshMat;
-	}
-
-	function createDimmedMaterial(options?: { color?: string; opacity?: number }, sliderOpacity?: number): THREE.MeshStandardMaterial {
-		const color = options?.color ?? "#E7F6E3";
-		const opacity = typeof sliderOpacity === 'number'
-			? sliderOpacity
-			: options?.opacity ?? 0.15;
-
-		const material = new THREE.MeshStandardMaterial({
-			color: new THREE.Color(color),
-			transparent: true,
-			opacity,
-			// depthWrite: false,
-		});
-
-		return material;
-	}
-
-	function cloneWithOverrides(
-		original: THREE.Material,
-		overrides: { color?: string; opacity?: number }
-		): THREE.MeshStandardMaterial {
-		let meshMat: THREE.MeshStandardMaterial;
-
-		// Convert to MeshStandardMaterial if needed
-		if (original instanceof THREE.MeshStandardMaterial) {
-			meshMat = original.clone();
-		} else {
-			// Create a basic fallback clone using whatever values we can
-			const fallbackColor =
-			(original as any).color instanceof THREE.Color
-				? (original as any).color.clone()
-				: new THREE.Color("#ffffff");
-
-			meshMat = new THREE.MeshStandardMaterial({
-			color: fallbackColor,
-			opacity: original.opacity,
-			transparent: original.transparent,
-			});
-		}
-
-		// Apply overrides
-		if (overrides.color) {
-			meshMat.color = new THREE.Color(overrides.color);
-		}
-
-		if (typeof overrides.opacity === "number") {
-			meshMat.transparent = true;
-			meshMat.opacity = overrides.opacity;
-		}
-
-		return meshMat;
-	}
-
 	const handleClick = (event: ThreeEvent<PointerEvent>) => {
 		event.stopPropagation();
 		const mesh = event.object as THREE.Mesh;
@@ -296,6 +233,8 @@ const Model: React.FC<ModelProps> = ({url, category, visible, onLoad, hiddenIds,
 		
 		if (id) onEntityRightClick?.(category, id, mesh);
 	};
+
+	if (!combinedCenter) return null;
 
 	return <primitive object={scene} onClick={handleClick} onContextMenu={handleRightClick} />;
 };

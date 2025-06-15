@@ -41,7 +41,7 @@ const ScreenshotScene: React.FC<ScreenshotSceneProps> = ({ url, category, onScre
 		setReadyForScreenshot(true); // trigger the next render frame to capture
 	};
 
-	// 🔁 Wait until the next frame AFTER readyForScreenshot is true
+	// Wait until the next frame AFTER readyForScreenshot is true
 	useFrame(() => {
 		if (readyForScreenshot && !hasRenderedRef.current) {
 			hasRenderedRef.current = true;

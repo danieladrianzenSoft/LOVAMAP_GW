@@ -59,6 +59,13 @@ const Visualization: React.FC = () => {
 	const [userOverrideParticleOpacity, setUserOverrideParticleOpacity] = useState(false);
 	const [poreColor, setPoreColor] = useState(null);
 	const [particleColor, setParticleColor] = useState(null);
+	const [slicingActive, setSlicingActive] = useState(false);
+	const [sliceXThreshold, setSliceXThreshold] = useState<number | null>(null);
+	// const [sliceHiddenParticleIds, setSliceHiddenParticleIds] = useState<Set<string>>(new Set());
+	const [sliceDomainBounds, setSliceDomainBounds] = useState<{
+		min: THREE.Vector3;
+		max: THREE.Vector3;
+		} | null>(null);
 
 	// const screenshotCategory = selectedCategories[0];
 	const [screenshotCategory, setScreenshotCategory] = useState<number | null>(null);
@@ -67,7 +74,7 @@ const Visualization: React.FC = () => {
 
 	const defaultDimmedOptions = useMemo(() => ({
 		color: '#E7F6E3',
-		opacity: 0.1,
+		opacity: 0.2,
 	}), []);
 
 	const loadDomainAndGroup = useCallback(async () => {
@@ -120,6 +127,18 @@ const Visualization: React.FC = () => {
 	});
 
 	useUndoShortcut(undoLastAction);
+
+	useEffect(() => {
+		console.log(sliceDomainBounds)
+		if (!sliceDomainBounds) return;
+
+		const minX = sliceDomainBounds.min.x;
+		const maxX = sliceDomainBounds.max.x;
+		const midpoint = (minX + maxX) / 2;
+
+		setSliceXThreshold(midpoint);
+		console.log(sliceXThreshold);
+	}, [sliceDomainBounds, sliceXThreshold]);
 
 	useEffect(() => {
 		const category = 1; // Pores
@@ -294,6 +313,8 @@ const Visualization: React.FC = () => {
 			onEntityClick: handleEntityClick,
 			onEntityRightClick: handleEntityRightClick,
 			dimmed: dimmedParticles,
+			slicingActive,
+  			sliceXThreshold: sliceXThreshold ?? 0,
 			opacity: userOverrideParticleOpacity ? particleOpacity : undefined,
 			dimmedOptions: defaultDimmedOptions,
 			debugMode: debugMode
@@ -309,6 +330,8 @@ const Visualization: React.FC = () => {
 			onEntityClick: handleEntityClick,
 			onEntityRightClick: handleEntityRightClick,
 			dimmed: dimmedPores,
+			slicingActive,
+  			sliceXThreshold: sliceXThreshold ?? 0,
 			opacity: poreOpacity,
 			dimmedOptions: defaultDimmedOptions,
 			debugMode: debugMode
@@ -507,7 +530,7 @@ const Visualization: React.FC = () => {
 			<div className="w-full h-full rounded-lg">
 				{!isLoading && meshList.length > 0 && (
 					<div className="h-full w-full -mt-16">
-						<CanvasViewer meshes={meshList} />
+						<CanvasViewer meshes={meshList} onSliceBoundsComputed={setSliceDomainBounds} />
 					</div>
 				)}
 				{!isLoading && meshList.length === 0 && (
@@ -575,9 +598,21 @@ const Visualization: React.FC = () => {
 							setShowParticlesPanelOpen(false);
 						}
 					}}
+					sliceDomainBounds={sliceDomainBounds}
 					canEdit={canEdit}
 					onEditClick={() => setIsModalOpen(true)}
 					domain={particleDomain}
+					dimmed={dimmedParticles}
+					setDimmed={(value: boolean) => {
+						if (value) {
+							setParticleOpacity(defaultDimmedOptions.opacity);
+							setUserOverrideParticleOpacity(false);
+						} else {
+							setParticleOpacity(1);
+							setUserOverrideParticleOpacity(false);
+						}
+						setDimmedParticles(value);
+					}}
 					visible={showParticles} // this controls if particles show in canvas
 					onToggleVisibility={() => {handleToggleShowParticles(!showParticles)}}
 					opacity={particleOpacity}
@@ -585,6 +620,10 @@ const Visualization: React.FC = () => {
 						setParticleOpacity(value);
 						setUserOverrideParticleOpacity(true);
 					}}
+					slicingActive={slicingActive}
+					setSlicingActive={setSlicingActive}
+					sliceXThreshold={sliceXThreshold}
+					setSliceXThreshold={setSliceXThreshold}
 					onResetOverrides={handleResetOverrides}
 				/>
 
