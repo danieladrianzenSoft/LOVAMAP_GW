@@ -13,9 +13,9 @@ interface Props {
   selectedCategories: number[];
   onCategoryChange: (values: number[]) => void;
   domain: Domain | null;
-  // canEdit: boolean;
-  // onEditClick: () => void;
   isLoading: boolean;
+  theme?: 'Default' | 'Metallic',
+  setTheme?: (theme: 'Default' | 'Metallic') => void;
 }
 
 // const domainCategories = [
@@ -35,6 +35,8 @@ const InfoPanel: React.FC<Props> = ({
   domain,
   // canEdit,
   // onEditClick,
+  theme,
+  setTheme,
   isLoading,
 }) => {
 
@@ -95,15 +97,18 @@ const InfoPanel: React.FC<Props> = ({
                 </select>
               </div>
 
-              {/* <div className="mt-2">
-                <CategorySelector
-                  name="Domain Category: "
-                  categories={domainCategories}
-                  selected={selectedCategories}
-                  onChange={onCategoryChange}
-                  multiSelect={false}
-                />
-              </div> */}
+              <div className="flex justify-between items-center mt-3 text-sm text-gray-700">
+                <label htmlFor="themeSelect" className="mr-2">Theme</label>
+                <select
+                  id="themeSelect"
+                  value={theme}
+                  onChange={(e) => setTheme?.(e.target.value as 'Default' | 'Metallic')}
+                  className="border border-gray-300 rounded px-2 py-1 text-sm"
+                >
+                  <option value="Default">Default</option>
+                  <option value="Metallic">Metallic</option>
+                </select>
+              </div>
 
               {selectedCategories[0] === 1 && domain != null &&(
                 <div className="flex flex-end -mt-3 justify-end">

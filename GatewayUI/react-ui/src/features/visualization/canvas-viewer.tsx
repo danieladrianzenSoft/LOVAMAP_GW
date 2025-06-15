@@ -27,10 +27,11 @@ interface DomainMeshProps {
 
 interface CanvasViewerProps {
   meshes: DomainMeshProps[];
+  theme?: 'Default' | 'Metallic';
   onSliceBoundsComputed?: (bounds: { min: THREE.Vector3; max: THREE.Vector3 }) => void;
 }
 
-const CanvasViewer: React.FC<CanvasViewerProps> = ({ meshes, onSliceBoundsComputed }) => {
+const CanvasViewer: React.FC<CanvasViewerProps> = ({ meshes, theme, onSliceBoundsComputed }) => {
   const [centers, setCenters] = useState<THREE.Vector3[]>([]);
   const [combinedCenter, setCombinedCenter] = useState<THREE.Vector3 | null>(null);
   const [particleCenters, setParticleCenters] = useState<THREE.Vector3[]>([]);
@@ -83,6 +84,11 @@ const CanvasViewer: React.FC<CanvasViewerProps> = ({ meshes, onSliceBoundsComput
     hasSetCamera.current = true;
   }, []);
 
+  const hasMetallicTheme = useMemo(
+    () => theme === 'Metallic',
+    [theme]
+  );
+
   return (
     <>
       {isLoading && <div className="text-gray-600">Loading mesh...</div>}
@@ -95,8 +101,19 @@ const CanvasViewer: React.FC<CanvasViewerProps> = ({ meshes, onSliceBoundsComput
         }}
       >
         <color attach="background" args={["white"]} />
-        <ambientLight intensity={0.2} />
-        <directionalLight castShadow position={[5, 5, 5]} intensity={0.2} />
+        <ambientLight intensity={0.25} />
+        {hasMetallicTheme ? (
+            <directionalLight
+              position={[10, 20, 0]}
+              intensity={1.2}
+              castShadow
+              color="white"
+            />
+          ) : (
+            <directionalLight castShadow position={[5, 5, 5]} intensity={0.2} />
+          )
+        }
+
         <spotLight
           position={[0, 15, 10]}
           angle={0.3}
@@ -104,7 +121,9 @@ const CanvasViewer: React.FC<CanvasViewerProps> = ({ meshes, onSliceBoundsComput
           intensity={0.8}
           castShadow
         />
-        <Environment preset="lobby" background={false} />
+        {/* <Environment preset="lobby" background={false} /> */}
+        {!hasMetallicTheme && <Environment preset="lobby" background={false} />}
+        {/* {theme !== 'Metallic' && <Environment preset="studio" background={false} />} */}
         <Bounds>
           {meshes.map((meshProps, idx) => (
             <group 
@@ -130,6 +149,7 @@ const CanvasViewer: React.FC<CanvasViewerProps> = ({ meshes, onSliceBoundsComput
                 onLoad={handleModelLoad}
                 slicingActive={meshProps.slicingActive}
                 sliceXThreshold={meshProps.sliceXThreshold}
+                theme={theme}
               />
             </group>
           ))}

@@ -10,6 +10,7 @@ import { openPreviewInNewTab } from '../../app/common/new-tab-preview/new-tab-pr
 import { PoreInfo } from '../../app/models/poreInfo';
 import { HistogramPlot } from '../plotting/histogram-plot';
 import PlotSelector from '../../app/common/plot-selector/plot-selector';
+import History from "../../app/helpers/History";
 
 interface ScaffoldGroupDetailsProps {
     scaffoldGroup: ScaffoldGroup;
@@ -68,6 +69,10 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 			setIsLoading(false);
 		}
 	}, [descriptorStore]);
+
+	const navigateToDataVisualization = ((scaffoldGroupId: number) => {
+		History.push(`/data/${scaffoldGroupId.toString()}`);
+	})
 
 	useEffect(() => {
 		if (isVisible && scaffoldGroup.id) {
@@ -268,8 +273,9 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 										key: 'more',
 										label: 'More...',
 										component: (
-											<div className="text-sm text-gray-400 italic mt-4">Coming soon...</div>
-										)
+											<div className="text-sm text-gray-400 italic mt-4" >Redirecting...</div>
+										),
+										onClick: () => {navigateToDataVisualization(scaffoldGroup.id)}
 									}
 								]}
 							/>

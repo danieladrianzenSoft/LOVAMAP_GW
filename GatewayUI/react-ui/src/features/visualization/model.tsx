@@ -11,7 +11,6 @@ interface ModelProps {
 	hiddenIds: Set<string>;
 	selectedEntity: ({ id: string, mesh: THREE.Mesh } | null);
   	combinedCenter?: THREE.Vector3;
-	// combinedCenter: Vector3 | null;
 
 	// Interactivity
 	onLoad?: (
@@ -35,6 +34,7 @@ interface ModelProps {
 	debugMode?: boolean;
 	slicingActive?: boolean;
   	sliceXThreshold?: number | null;
+	theme?: 'Default' | 'Metallic';
 }
 
 function createBoundingBoxHelper(object: THREE.Object3D, color: string): THREE.BoxHelper {
@@ -60,6 +60,7 @@ const Model: React.FC<ModelProps> = ({
 	debugMode,
 	slicingActive,
   	sliceXThreshold,
+	theme
 }) => {
 	const { scene } = useGLTF(url);
 	const { camera } = useThree();
@@ -144,11 +145,35 @@ const Model: React.FC<ModelProps> = ({
 			} else {
 				// Clone original material
 				const originalMat = child.userData.originalMaterial as THREE.MeshStandardMaterial;
-				const workingMat = originalMat.clone();
+
+				let workingMat: THREE.Material;
+
+				const runtimeColor = (child.material as any)?.color;
+				const originalColor = runtimeColor instanceof THREE.Color
+					? runtimeColor.clone()
+					: new THREE.Color(0xC0C0C0);
+
+				if (theme === 'Metallic') {
+					workingMat = new THREE.MeshPhongMaterial({
+						color: originalColor,
+						shininess: 35,              // Intensity of specular highlights
+						specular: new THREE.Color('#fffaed'),
+						vertexColors: true
+					});
+					(workingMat as any).flatShading = true;
+				} else {
+					workingMat = (originalMat as THREE.Material).clone();
+				}
 
 				// Global override (highest priority)
 				if (typeof color === "string") {
-					workingMat.color = new THREE.Color(color);
+					if (
+						(workingMat as any).color &&
+						typeof color === "string"
+					) {
+						(workingMat as THREE.MeshPhongMaterial | THREE.MeshStandardMaterial).color = new THREE.Color(color);
+						(workingMat as THREE.MeshPhongMaterial | THREE.MeshStandardMaterial).vertexColors = false;
+					}
 					workingMat.vertexColors = false;
 				}
 				if (typeof opacity === "number") {
@@ -158,8 +183,15 @@ const Model: React.FC<ModelProps> = ({
 
 				// Dimmed fallback
 				if (color === undefined && dimmed && typeof dimmedOptions?.color === "string") {
-					// console.log(`Applying dimmed color ${dimmedOptions.color} to entity ${entityId}`);
-					workingMat.color = new THREE.Color(dimmedOptions.color);
+					if (
+						(workingMat as any).color &&
+						color === undefined &&
+						dimmed &&
+						typeof dimmedOptions?.color === "string"
+					) {
+						(workingMat as THREE.MeshPhongMaterial | THREE.MeshStandardMaterial).color = new THREE.Color(dimmedOptions.color);
+						(workingMat as THREE.MeshPhongMaterial | THREE.MeshStandardMaterial).vertexColors = false;
+					}
 					workingMat.vertexColors = false;
 				}
 				if (opacity === undefined && dimmed && typeof dimmedOptions?.opacity === "number") {
@@ -193,7 +225,7 @@ const Model: React.FC<ModelProps> = ({
 			child.visible = finalVisible;
 			child.raycast = finalVisible ? child.userData.originalRaycast : () => {};
 		});
-	}, [scene, hiddenIds, selectedEntity, dimmed, dimmedOptions, visible, color, opacity, shouldSlice, sliceXThreshold, combinedCenter, category]);
+	}, [scene, hiddenIds, selectedEntity, dimmed, dimmedOptions, visible, color, opacity, shouldSlice, sliceXThreshold, combinedCenter, category, slicingActive, theme]);
 
 
 	useEffect(() => {

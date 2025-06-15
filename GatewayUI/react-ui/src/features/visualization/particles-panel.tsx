@@ -18,6 +18,7 @@ interface DomainPanelProps {
 		min: THREE.Vector3;
 		max: THREE.Vector3;
 	} | null,
+	// theme?: 'Default' | 'Metallic',
 	setSlicingActive: (value: boolean) => void, 
 	setSliceXThreshold: (value: number) => void,
 	setDimmed: (value: boolean) => void;
@@ -25,6 +26,7 @@ interface DomainPanelProps {
 	onToggleVisibility: () => void;
 	onResetOverrides: () => void;
 	onEditClick: () => void;
+	// setTheme?: (theme: 'Default' | 'Metallic') => void;
 }
 
 const ParticlesPanel: React.FC<DomainPanelProps> = ({
@@ -38,13 +40,15 @@ const ParticlesPanel: React.FC<DomainPanelProps> = ({
 	slicingActive,
 	sliceXThreshold,
 	sliceDomainBounds,
+	// theme,
 	setSlicingActive,
 	setSliceXThreshold,
 	setDimmed,
 	setOpacity,
 	onToggleVisibility,
 	onResetOverrides,
-	onEditClick
+	onEditClick,
+	// setTheme
 }) => {
 	return (
 		<div className="bg-white bg-opacity-80 shadow-lg rounded-lg p-4 w-64 mt-2">
@@ -82,9 +86,11 @@ const ParticlesPanel: React.FC<DomainPanelProps> = ({
 							<RiResetLeftFill /> Reset
 						</button>
 					</div>
+		
+
 					<div className="flex justify-between items-center mt-3 text-sm text-gray-700">
 						<span className="mr-2">Dim particles</span>
-						<label className="inline-flex items-center cursor-pointer">
+						<label className="inline-flex items-center cursor-pointer relative w-11 h-6">
 							<input
 								type="checkbox"
 								className="sr-only peer"
@@ -94,24 +100,28 @@ const ParticlesPanel: React.FC<DomainPanelProps> = ({
 									setDimmed(shouldDim);
 								}}
 							/>
-							<div className="w-11 h-6 bg-gray-200 rounded-full peer peer-checked:bg-blue-600 relative">
-								<div className="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform peer-checked:translate-x-5"></div>
-							</div>
+							<div className="w-full h-full bg-gray-200 rounded-full peer-checked:bg-blue-600 transition-colors" />
+  							<div className="absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform transform peer-checked:translate-x-5" />
+							{/* <div className="w-11 h-6 bg-gray-200 rounded-full peer peer-checked:bg-blue-600 relative transition-colors">
+								<div className="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform transform peer-checked:translate-x-5" />
+							</div> */}
+							{/* <div className="relative w-12 h-6 bg-gray-300 rounded-full peer-checked:bg-blue-600 transition-colors">
+								<div className="absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full transition-transform transform peer-checked:translate-x-6" />
+							</div> */}
 						</label>
 					</div>
 
 					<div className="flex justify-between items-center mt-3 text-sm text-gray-700">
 						<span>Slice Particles</span>
-						<label className="inline-flex items-center cursor-pointer">
+						<label className="inline-flex items-center cursor-pointer relative w-11 h-6">
 							<input
 								type="checkbox"
 								className="sr-only peer"
 								checked={slicingActive}
 								onChange={(e) => setSlicingActive(e.target.checked)}
 							/>
-							<div className="w-11 h-6 bg-gray-200 rounded-full peer peer-checked:bg-blue-600 relative">
-								<div className="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform peer-checked:translate-x-5"></div>
-							</div>
+							<div className="w-full h-full bg-gray-200 rounded-full peer-checked:bg-blue-600 transition-colors" />
+  							<div className="absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform transform peer-checked:translate-x-5" />
 						</label>
 					</div>
 

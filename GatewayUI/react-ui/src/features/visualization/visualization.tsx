@@ -53,6 +53,7 @@ const Visualization: React.FC = () => {
 	const poreUrl = domainStore.getActiveMeshUrl(1);
 
 	const [dimmedParticles, setDimmedParticles] = useState(false);
+	const [theme, setTheme] = useState<'Default' | 'Metallic'>('Default');
 	const [dimmedPores, setDimmedPores] = useState(false);
 	const [poreOpacity, setPoreOpacity] = useState(1);
 	const [particleOpacity, setParticleOpacity] = useState(1);
@@ -528,7 +529,7 @@ const Visualization: React.FC = () => {
 			<div className="w-full h-full rounded-lg">
 				{!isLoading && meshList.length > 0 && (
 					<div className="h-full w-full -mt-16">
-						<CanvasViewer meshes={meshList} onSliceBoundsComputed={setSliceDomainBounds} />
+						<CanvasViewer meshes={meshList} onSliceBoundsComputed={setSliceDomainBounds} theme={theme} />
 					</div>
 				)}
 				{!isLoading && meshList.length === 0 && (
@@ -582,6 +583,8 @@ const Visualization: React.FC = () => {
 					domain={particleDomain}
 					// canEdit={canEdit}
 					// onEditClick={() => setIsModalOpen(true)}
+					theme={theme}
+  					setTheme={setTheme}
 					isLoading={scaffoldGroupStore.isFetchingScaffoldGroup}
 				/>
 

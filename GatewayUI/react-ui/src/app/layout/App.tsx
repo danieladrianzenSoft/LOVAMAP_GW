@@ -85,6 +85,7 @@ const MainLayout: React.FC = observer(() => {
           <Route path="/learn" element={<LearnScreen />} />
           <Route path="/explore" element={<ExploreScreen />} />
           <Route path="/data" element={<ExploreData />} />
+          <Route path="/data/:scaffoldGroupId" element={<ExploreData />} />
           <Route path="/experiments" element={<ProtectedRoute element={<CreateExperiments />} />} />
           <Route path="/uploads" element={<ProtectedRoute element={<ScaffoldGroupUploads />} />} />
           <Route path="/jobs" element={<ProtectedRoute element={<RunJob />} />} />

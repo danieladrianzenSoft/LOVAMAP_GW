@@ -4,6 +4,7 @@ export interface PlotOption {
 	key: string;
 	label: string;
 	component: React.ReactNode;
+	onClick?: () => void;
 }
 
 interface PlotSelectorProps {
@@ -17,6 +18,14 @@ const PlotSelector: React.FC<PlotSelectorProps> = ({ plots, initialKey, heightCl
 
 	const selectedPlot = plots.find(p => p.key === selectedKey);
 
+	const handleClick = (plot: PlotOption) => {
+		if (plot.onClick) {
+			plot.onClick(); // Parent handles it
+		} else {
+			setSelectedKey(plot.key); // Default behavior
+		}
+	};
+
 	return (
 		<div className="w-full mb-4">
 			{/* Toggle Controls */}
@@ -24,7 +33,7 @@ const PlotSelector: React.FC<PlotSelectorProps> = ({ plots, initialKey, heightCl
 				{plots.map((plot) => (
 					<button
 						key={plot.key}
-						onClick={() => setSelectedKey(plot.key)}
+						onClick={() => handleClick(plot)}
 						className={`px-2 py-1 rounded-full text-xs font-semibold border ${
 							selectedKey === plot.key
 								? 'bg-blue-600 text-white'
