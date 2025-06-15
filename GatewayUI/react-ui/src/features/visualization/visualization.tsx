@@ -129,16 +129,14 @@ const Visualization: React.FC = () => {
 	useUndoShortcut(undoLastAction);
 
 	useEffect(() => {
-		console.log(sliceDomainBounds)
-		if (!sliceDomainBounds) return;
-
-		const minX = sliceDomainBounds.min.x;
-		const maxX = sliceDomainBounds.max.x;
-		const midpoint = (minX + maxX) / 2;
-
-		setSliceXThreshold(midpoint);
-		console.log(sliceXThreshold);
+		if (sliceDomainBounds && sliceXThreshold === null) {
+			const minX = sliceDomainBounds.min.x;
+			const maxX = sliceDomainBounds.max.x;
+			const midpoint = (minX + maxX) / 2;
+			setSliceXThreshold(midpoint);
+		}
 	}, [sliceDomainBounds, sliceXThreshold]);
+
 
 	useEffect(() => {
 		const category = 1; // Pores
