@@ -427,6 +427,7 @@ const Visualization: React.FC = () => {
 		setShowPoresPanelOpen(false);
 		setShowParticles(true);
 		setShowPores(false);
+		setSlicingActive(false);
 		clearHistory();
 	};
 
@@ -435,6 +436,7 @@ const Visualization: React.FC = () => {
 		setUserOverrideParticleOpacity(false); // Allow dimming logic again
 		setDimmedParticles(false); // Disable dim
 		setParticleColor(null);
+		setSlicingActive(false);
 	}
 
 	const handleScreenshotUpload = async (blob: Blob) => {

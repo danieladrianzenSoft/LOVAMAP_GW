@@ -26,14 +26,16 @@ const SideBarMain: React.FC = () => {
 			setActiveTab(2);
 		} else if (location.pathname === '/learn') {
 			setActiveTab(3);
-		} else if (location.pathname === '/experiments') {
+		} else if (location.pathname === '/descriptor-calculator') {
 			setActiveTab(4);
-		} else if (location.pathname === '/jobs') {
+		} else if (location.pathname === '/experiments') {
 			setActiveTab(5);
-		} else if (location.pathname === '/uploads') {
+		} else if (location.pathname === '/jobs') {
 			setActiveTab(6);
-		} else if (location.pathname.startsWith('/admin')) {
+		} else if (location.pathname === '/uploads') {
 			setActiveTab(7);
+		} else if (location.pathname.startsWith('/admin')) {
+			setActiveTab(8);
 		} else {
 			setActiveTab(0);
 		}
@@ -85,6 +87,13 @@ const SideBarMain: React.FC = () => {
 							{({ selected }) => (
 								<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
 								<p>Learn</p>
+								</div>
+							)}
+							</Tab>
+							<Tab as={NavLink} to='/descriptor-calculator' onClick={() => commonStore.setSidebarOpen(false)} className="focus:outline-none">
+							{({ selected }) => (
+								<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
+								<p>Calculate</p>
 								</div>
 							)}
 							</Tab>

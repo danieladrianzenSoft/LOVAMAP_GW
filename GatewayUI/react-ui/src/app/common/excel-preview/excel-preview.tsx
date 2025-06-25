@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import * as XLSX from 'xlsx';
+import AcknowledgementModal from '../../../features/acknowledgement/acknowledgement-modal';
 
 interface ExcelPreviewProps<T> {
   generateExcel: (data: T) => { file: XLSX.WorkBook, filename: string }; // Function to generate Excel file and filename
@@ -16,6 +17,7 @@ const ExcelPreview = <T extends {}>({ generateExcel, data, handleDownload, headi
   const [error, setError] = useState<string | null>(null);
   const [workbook, setWorkbook] = useState<XLSX.WorkBook | null>(null);
   const [filename, setFilename] = useState<string>(''); // Track the filename for download
+  const [showAcknowledgement, setShowAcknowledgement] = useState(false);
   const resolvedHeadingRows = useMemo(() => headingRows ?? [0], [headingRows]);
   const resolvedNumRows = numRows ?? 100;
 
@@ -54,6 +56,17 @@ const ExcelPreview = <T extends {}>({ generateExcel, data, handleDownload, headi
       setLoading(false);
     }
   }, [data, generateExcel, resolvedHeadingRows, resolvedNumRows]);
+
+  const handleDownloadClick = () => {
+    setShowAcknowledgement(true);
+  };
+
+  const handleConfirmAcknowledgement = () => {
+    setShowAcknowledgement(false);
+    if (workbook && filename) {
+      handleDownload(workbook, filename);
+    }
+  };
 
   const formatCellValue = (cell: any) => {
     // Only parse if it's a clean number (no GUIDs or mixed strings)
@@ -102,10 +115,11 @@ const ExcelPreview = <T extends {}>({ generateExcel, data, handleDownload, headi
       <div className="fixed top-0 left-0 right-0 bg-white shadow z-10 flex justify-between items-center px-4 py-2 border-b">
         <div className="text-sm font-medium text-gray-700">
           {filename}
-          <span className="text-gray-500 italic"> – Replicate 1 (showing first {resolvedNumRows} rows)</span>
+          <span className="text-gray-500 italic"> - Replicate 1 (showing first {resolvedNumRows} rows)</span>
         </div>
         <button
-          onClick={() => workbook && filename && handleDownload(workbook, filename)}
+          // onClick={() => workbook && filename && handleDownload(workbook, filename)}
+          onClick={handleDownloadClick}
           className="px-4 py-2 rounded transition bg-blue-600 text-white hover:bg-blue-700 text-sm"
         >
           Download
@@ -164,6 +178,12 @@ const ExcelPreview = <T extends {}>({ generateExcel, data, handleDownload, headi
           ))}
         </div>
       )}
+
+      <AcknowledgementModal
+        isOpen={showAcknowledgement}
+        onClose={() => setShowAcknowledgement(false)}
+        onConfirm={handleConfirmAcknowledgement}
+      />
     </div>
   );
 };

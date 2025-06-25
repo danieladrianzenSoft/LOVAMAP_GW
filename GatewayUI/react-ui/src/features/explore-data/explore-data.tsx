@@ -14,6 +14,7 @@ import { SearchResultsDropdown } from "../../app/common/ai-search-bar/search-res
 import { SidebarScaffoldGroups } from "./sidebar-scaffold-groups";
 import { ViolinPlot } from "../plotting/violin-plot";
 import { Sidebar } from "../../app/common/sidebar/sidebar";
+import DescriptorCalculatorModal from "../descriptors/descriptor-calculator-modal";
 
 export const ExploreData: React.FC = observer(() => {
 	const { commonStore, scaffoldGroupStore } = useStore();
@@ -25,7 +26,9 @@ export const ExploreData: React.FC = observer(() => {
 	const [searchResults, setSearchResults] = useState<ScaffoldGroup[]>([]);
 	const [searching, setSearching] = useState(false);
 	const [isSidebarOpen, setSidebarOpen] = useState(false);
-
+	const [showDescriptorModal, setShowDescriptorModal] = useState(false);
+	const [useLogScale, setUseLogScale] = useState(false);
+	
 	const [showDropdown, setShowDropdown] = useState(false);
 	const searchContainerRef = useRef<HTMLDivElement>(null);
 	
@@ -140,7 +143,7 @@ export const ExploreData: React.FC = observer(() => {
 		<div className="flex mx-auto py-8 px-2">
 			{/* Main dashboard area */}
 			<div className="flex-1 space-y-12 pr-2">
-				<div className="text-3xl text-gray-700 font-bold mb-2">Data</div>
+				<div className="text-3xl text-gray-700 font-bold mb-2">Descriptor data</div>
 
 				<div className="mb-0 mt-0 mr-2 relative" ref={searchContainerRef}>
 					<AISearchBar onSearch={runSearch} onClear={clearFilters} onClick={() => setShowDropdown(true)}/>
@@ -158,6 +161,31 @@ export const ExploreData: React.FC = observer(() => {
 						/>
 					)}
 				</div>
+
+				{scaffoldGroups.length >= 3 && 
+					<div className="flex justify-end mr-2 items-center mt-3 text-sm text-gray-700">
+						<span className="mr-2">Use Log Scale</span>
+						<label className="inline-flex items-center cursor-pointer relative w-11 h-6">
+							<input
+								type="checkbox"
+								className="sr-only peer"
+								checked={useLogScale}
+								onChange={() => setUseLogScale(prev => !prev)}
+							/>
+							<div className="w-full h-full bg-gray-200 rounded-full peer-checked:bg-blue-600 transition-colors" />
+							<div className="absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform transform peer-checked:translate-x-5" />
+						</label>
+				</div>
+				}
+				{/* FIGURE OUT WHERE TO PLACE THIS */}
+				{/* <div className="flex justify-between items-center mb-2 mr-2">
+					<button
+						onClick={() => setShowDescriptorModal(true)}
+						className="bg-indigo-600 text-white text-sm px-3 py-1.5 rounded-md hover:bg-indigo-700"
+					>
+						Descriptor Estimator
+					</button>
+				</div> */}
 
 				{sections.map((section) => (
 					<div key={section.title}>
@@ -178,6 +206,7 @@ export const ExploreData: React.FC = observer(() => {
 													xlabel={xlabel}
 													isNormalized={true}
 													ylabel="%"
+													useLogScale={false}
 												/>
 											) : (
 												<ViolinPlot
@@ -185,9 +214,11 @@ export const ExploreData: React.FC = observer(() => {
 													title={label}
 													interactive={false}
 													showHoverInfo={true}
-													xlabel={xlabel}
-													ylabel="%"
+													ylabel={xlabel}
 													ylim={[0, null]}
+													hideTickLabels={true}
+													useLogScale={useLogScale}
+
 												/>
 											)
 										) : (
@@ -214,7 +245,11 @@ export const ExploreData: React.FC = observer(() => {
 					scaffoldGroups={scaffoldGroups}
 					onRemove={handleRemoveGroup}
 				/>
-			</Sidebar>			
+			</Sidebar>	
+			<DescriptorCalculatorModal
+				isOpen={showDescriptorModal}
+				onClose={() => setShowDescriptorModal(false)}
+			/>		
 		</div>
 	);
 });

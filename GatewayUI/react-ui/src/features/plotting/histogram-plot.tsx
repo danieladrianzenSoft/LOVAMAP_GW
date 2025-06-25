@@ -19,13 +19,14 @@ interface HistogramPlotProps {
 	showHoverInfo?: boolean;
 	isNormalized?: boolean;
 	showGrid?: boolean;
+	useLogScale?: boolean;
 }
 
 export const HistogramPlot: React.FC<HistogramPlotProps> = ({ 
 		data, title, xlabel, ylabel, horizontalYLabel,
 		colors, interactive, hideYLabels, showHoverInfo,
 		titleFontSize, labelFontSize, tickFontSize,
-		tickDecimalPlaces, isNormalized, showGrid
+		tickDecimalPlaces, isNormalized, showGrid, useLogScale
 	}) => {
 	
 	const seriesArray: number[][] = Array.isArray(data[0])
@@ -33,13 +34,24 @@ export const HistogramPlot: React.FC<HistogramPlotProps> = ({
 		: [data as number[]];
 
 	const allValues = seriesArray.flat();
-	const min = Math.min(...allValues);
-	const max = Math.max(...allValues);
+	const rawMin = Math.min(...allValues);
+	const rawMax = Math.max(...allValues);
+
+	const min = useLogScale ? Math.max(rawMin, 0.001) : rawMin;
+	const max = rawMax;
+
 	const median = allValues.sort((a, b) => a - b)[Math.floor(allValues.length / 2)];
 	const mean = allValues.reduce((sum, x) => sum + x, 0) / allValues.length;
 	const std = Math.sqrt(allValues.reduce((sum, x) => sum + Math.pow(x - mean, 2), 0) / allValues.length);
-	const xMin = Math.floor(min / 5) * 5 - 10 < 0 ? 0 : Math.floor(min / 5) * 5 - 10;
-	const xMax = Math.ceil(max / 5) * 5 + 10;
+
+	const xMin = useLogScale
+		? Math.pow(10, Math.floor(Math.log10(min)))
+		: Math.floor(min / 5) * 5 - 10 < 0 ? 0 : Math.floor(min / 5) * 5 - 10;
+
+		const xMax = useLogScale
+		? Math.pow(10, Math.ceil(Math.log10(max)))
+		: Math.ceil(max / 5) * 5 + 10;
+
 	const minBinSize = 1;
 	const isClustered = std < 0.05 * Math.abs(median);
 
@@ -85,6 +97,7 @@ export const HistogramPlot: React.FC<HistogramPlotProps> = ({
 						color: "#4B5563"
 					},
 				},
+				type: useLogScale ? 'log' : 'linear',
 				tickfont: { size: tickFontSize || 12 },
 				tickvals: [xMin, median, xMax],
 				ticktext: [xMin.toFixed(tickDecimalPlaces || 0), median.toFixed(tickDecimalPlaces || 0), xMax.toFixed(tickDecimalPlaces || 0)],
@@ -144,7 +157,7 @@ export const HistogramPlot: React.FC<HistogramPlotProps> = ({
 		}}
 		// Pass Plotly instance
 		useResizeHandler
-		revision={data.length} // re-render if data changes
+		revision={`${data.length}-${useLogScale}-${data.length}`} // re-render if data changes
 		plotly={PlotlyLoader}
 		/>
 	);

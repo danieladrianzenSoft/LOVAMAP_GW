@@ -24,6 +24,7 @@ import ConfirmEmailPage from '../../features/user/confirm-email';
 import EmailNotConfirmed from '../../features/user/email-not-confirmed';
 import SettingsScreen from '../../features/settings-screen/settings-screen';
 import AdminUtilities from '../../features/admin/admin-utilities';
+import DescriptorCalculator from '../../features/descriptors/descriptor-calculator';
 import { ExploreData } from '../../features/explore-data/explore-data';
 // import SideBarMain from '../../features/sidebar-main/sidebar-main';
 
@@ -86,6 +87,7 @@ const MainLayout: React.FC = observer(() => {
           <Route path="/explore" element={<ExploreScreen />} />
           <Route path="/data" element={<ExploreData />} />
           <Route path="/data/:scaffoldGroupId" element={<ExploreData />} />
+          <Route path="/descriptor-calculator" element={<DescriptorCalculator />} />
           <Route path="/experiments" element={<ProtectedRoute element={<CreateExperiments />} />} />
           <Route path="/uploads" element={<ProtectedRoute element={<ScaffoldGroupUploads />} />} />
           <Route path="/jobs" element={<ProtectedRoute element={<RunJob />} />} />

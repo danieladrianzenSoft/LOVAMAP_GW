@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
-import { displayNameMap, GroupedDescriptorTypes } from "../../app/models/descriptorType";
+import { DescriptorType, displayNameMap, GroupedDescriptorTypes } from "../../app/models/descriptorType";
 import ReactMarkdown from "react-markdown";
 import rehypeSanitize from "rehype-sanitize";
 import { useDescriptorTypes } from "../../app/common/hooks/useDescriptorTypes";
@@ -26,6 +26,13 @@ const LearnScreen = () => {
     }, [descriptorTypes]);
 
     const categoryOrder = ["Global", "Pore", "Other"];
+
+    const getLabelWithUnit = (descriptor?: DescriptorType): string => {
+        if (!descriptor) return "";
+        return descriptor.unit
+            ? `${descriptor.tableLabel} (${descriptor.unit})`
+            : descriptor.tableLabel;
+    };
 
     return (
         <div className="container mx-auto py-8 px-2">
@@ -71,7 +78,7 @@ const LearnScreen = () => {
                                 .map((descriptor, index) => (
                                 <tr key={index} className="border-t border-gray-300 last:border-b">
                                     <td className="px-4 py-2 border-l border-gray-300 whitespace-normal" style={{ width: "15%" }}>
-                                        <div className="max-w-[150px]">{descriptor.tableLabel}</div>
+                                        <div className="max-w-[150px]">{getLabelWithUnit(descriptor)}</div>
                                     </td>
                                     <td className="px-4 py-2" style={{ width: "25%" }}>
                                         <div className="w-full">

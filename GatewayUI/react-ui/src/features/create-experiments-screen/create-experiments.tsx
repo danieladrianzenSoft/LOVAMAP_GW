@@ -16,6 +16,7 @@ import { useScaffoldGroupFiltering } from "../../app/common/hooks/useScaffoldGro
 import AISearchBar from "../../app/common/ai-search-bar/ai-seach-bar";
 import { SearchContextSummary } from "../../app/common/ai-search-bar/search-context-summary";
 import { Sidebar } from "../../app/common/sidebar/sidebar";
+import AcknowledgementModal from "../acknowledgement/acknowledgement-modal";
 
 type OptionKey = 'excelFileOption' | 'sheetOption' | 'columnOption' | 'stackedColumnOption';
 
@@ -36,6 +37,7 @@ const CreateExperiments = () => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
     const [isSidebarVisible, setSidebarVisible] = useState(false);
+    const [showAcknowledgement, setShowAcknowledgement] = useState(false);
 
     const maxNumFiles = 2;
     const numSheets = 4;
@@ -95,6 +97,15 @@ const CreateExperiments = () => {
         setSelectedScaffoldGroups(selectedScaffoldGroups.filter(group => group.id !== scaffoldGroupId));
     };
 
+    const handleDownloadClick = () => {
+        setShowAcknowledgement(true);
+    };
+
+    const handleConfirmAcknowledgement = () => {
+        setShowAcknowledgement(false);
+        handleGetExperiment();
+    };
+
     const handleGetExperiment = async () => {
         if (selectedScaffoldGroups.length === 0) {
             setError('You must first select the scaffold groups you want to download');
@@ -112,6 +123,7 @@ const CreateExperiments = () => {
             selectedDescriptorTypes.map(dt => dt.id),
             replicatesByGroup
           );
+          console.log(scaffoldGroups);
           if (scaffoldGroups) {
             downloadExperimentsAsExcel(scaffoldGroups, selectedDescriptorTypes, options);
           }
@@ -366,7 +378,7 @@ const CreateExperiments = () => {
                                 <div className="flex justify-end space-x-1 w-full md:w-auto">
                                     <button className="button-outline whitespace-nowrap" onClick={() => setExperimentStage(2)}>Back</button>
                                     {/* <button className="button-outline" onClick={() => handleGetExperiment()}>Generate Output</button> */}
-                                    <button className="button-outline flex items-center gap-2 whitespace-nowrap" onClick={() => handleGetExperiment()}>
+                                    <button className="button-outline flex items-center gap-2 whitespace-nowrap" onClick={() => handleDownloadClick()}>
                                         Download Data
                                         {isLoading && <FaSpinner className="animate-spin text-current text-[1em]" />}
                                     </button>
@@ -463,6 +475,11 @@ const CreateExperiments = () => {
                     }}
                 />
             </Sidebar>
+            <AcknowledgementModal
+                isOpen={showAcknowledgement}
+                onClose={() => setShowAcknowledgement(false)}
+                onConfirm={handleConfirmAcknowledgement}
+            />
         </div>        
     );
 };
