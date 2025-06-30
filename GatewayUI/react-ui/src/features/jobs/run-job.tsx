@@ -64,7 +64,26 @@ const RunJob: React.FC = () => {
 					onUploadError={handleUploadError}
 				/> 
 			) : ( 
-				<div className="text-gray-500">Coming Soon...</div>
+				<div>
+					<div className='text-xl text-gray-700 font-bold inline mt-12'>Run online - 
+						<p className='text-gray-400 ml-16'>coming soon...</p>
+					</div>
+
+					<div className='mt-12'>
+						<p>
+							In the mean time, for inquiries including simulations of specific scaffold configurations 
+							or LOVAMAP experimental dataset analysis, feel free to {" "}
+							<a
+								href="mailto:admin@lovamap.com"
+								className="text-blue-600 hover:underline"
+							>
+								contact us. {" "}
+							</a>
+							The legacy MATLAB version of LOVAMAP will also soon be publically accessible via GitHub.
+						</p>
+					</div>
+
+				</div>
 			)}
 		</div>
 	);
