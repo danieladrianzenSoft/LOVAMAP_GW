@@ -6,37 +6,82 @@ import { Scaffold } from '../../models/scaffold';
 
 const headingCharacterLength = 30;
 
-export function downloadScaffoldGroupAsExcel(scaffoldGroup: ScaffoldGroup) {
-    const wb = XLSX.utils.book_new();
+export function triggerDownload(wb: XLSX.WorkBook, filename: string) {
+    XLSX.writeFile(wb, filename);
+}
 
-    // General Info and Input Group Info combined
-    const generalInfo = [
-        ["ID", scaffoldGroup.id],
-        ["Name", scaffoldGroup.name],
-        ["Simulated", scaffoldGroup.isSimulated.toString().toLowerCase()],
-        ["Number of Replicates", scaffoldGroup.numReplicates],
-        [], // Adding an empty row for spacing
-        ["Scaffold Inputs"],
-        ["Container Shape", scaffoldGroup.inputs.containerShape ?? 'n/a'],
-        ["Container Size", scaffoldGroup.inputs.containerSize ?? 'n/a'],
-        ["Packing Configuration", scaffoldGroup.inputs.packingConfiguration.toString().toLowerCase()],
-        [], // Another empty row for spacing
-        ["Particle Properties"]
+export function createGeneralInfoWorksheet(
+  scaffoldGroups: ScaffoldGroup[],
+  key?: number | null
+): { worksheet: XLSX.WorkSheet; headingRows: number[] } {
+  const generalInfoData: any[][] = [];
+  const headingRows: number[] = [];
+  let currentRow = 0;
+
+  scaffoldGroups.forEach((scaffoldGroup, index) => {
+    const startRow = currentRow;
+
+    const scaffoldGroupInfo = [
+      ["Key", `Scaffold Group ${key != null ? key + 1 : index + 1}`],
+      ["ID", scaffoldGroup.id],
+      ["Name", scaffoldGroup.name],
+      ["Simulated", scaffoldGroup.isSimulated.toString().toLowerCase()],
+      ["Number of Replicates", scaffoldGroup.numReplicates],
+      [],
+      ["Scaffold Inputs"],
+      ["Container Shape", scaffoldGroup.inputs.containerShape ?? 'n/a'],
+      ["Container Size", scaffoldGroup.inputs.containerSize ?? 'n/a'],
+      ["Packing Configuration", scaffoldGroup.inputs.packingConfiguration.toString().toLowerCase()],
+      [],
+      ["Particle Properties"]
     ];
 
-    // Particle Properties Header and Data
-    const particlesHeader = ["Shape", "Stiffness", "Dispersity", "Size Distribution Type", "Mean Size", "Standard Deviation Size", "Proportion"];
+    scaffoldGroupInfo.forEach(row => {
+      generalInfoData.push(row);
+      currentRow++;
+    });
+
+    headingRows.push(startRow);       // "Key"
+    headingRows.push(startRow + 6);   // "Scaffold Inputs"
+    headingRows.push(startRow + 11);  // "Particle Properties"
+
+    const particlesHeader = [
+      "Shape", "Stiffness", "Dispersity", "Size Distribution Type", "Mean Size",
+      "Standard Deviation Size", "Proportion"
+    ];
+
+    generalInfoData.push(particlesHeader);
+    headingRows.push(currentRow++);
+    
     const particlesData = scaffoldGroup.inputs.particles.map(p => [
-        p.shape, p.stiffness, p.dispersity, p.sizeDistributionType, p.meanSize, p.standardDeviationSize, p.proportion
+      p.shape, p.stiffness, p.dispersity, p.sizeDistributionType,
+      p.meanSize, p.standardDeviationSize, p.proportion
     ]);
 
-    // Append header and data to generalInfo
-    generalInfo.push(particlesHeader);
-    generalInfo.push(...particlesData); // Spread operator to add each particle info row
+    particlesData.forEach(row => {
+      generalInfoData.push(row);
+      currentRow++;
+    });
 
-    // Convert array of arrays into a worksheet
-    const ws = XLSX.utils.aoa_to_sheet(generalInfo);
-    XLSX.utils.book_append_sheet(wb, ws, 'General Info');
+    generalInfoData.push([]);
+    generalInfoData.push([]);
+    currentRow += 2;
+  });
+
+  return {
+    worksheet: XLSX.utils.aoa_to_sheet(generalInfoData),
+    headingRows: Array.from(new Set(headingRows))
+  };
+}
+
+export function downloadScaffoldGroupAsExcel(scaffoldGroup: ScaffoldGroup) {
+    const wb = XLSX.utils.book_new();
+    const headingRowsBySheet: Record<string, number[]> = {};
+
+    // General Info
+    const { worksheet: generalInfoWs, headingRows } = createGeneralInfoWorksheet([scaffoldGroup]);
+    XLSX.utils.book_append_sheet(wb, generalInfoWs, 'General Info');
+    headingRowsBySheet['General Info'] = headingRows;
 
     scaffoldGroup.scaffolds.forEach(scaffold => {
         const ws = XLSX.utils.aoa_to_sheet([]);
@@ -69,52 +114,13 @@ export function downloadScaffoldGroupAsExcel(scaffoldGroup: ScaffoldGroup) {
 
         const sheetName = `Replicate ${scaffold.replicateNumber}`;
         XLSX.utils.book_append_sheet(wb, ws, sheetName);
+        headingRowsBySheet[sheetName] = [0, 4];
 
     });
 
     // XLSX.writeFile(wb, `${scaffoldGroup.name.replace(/\s+/g, '_').slice(0,headingCharacterLength)}.xlsx`);
     const filename = `${scaffoldGroup.name.replace(/\s+/g, '_').slice(0,headingCharacterLength)}.xlsx`;
-    return {file: wb, filename: filename};
-}
-
-function writeSingleReplicateSheetLikeDownload(
-    ws: XLSX.WorkSheet,
-    scaffoldGroup: ScaffoldGroup,
-    replicateIndex: number
-): void {
-    const scaffold = scaffoldGroup.scaffolds[replicateIndex];
-    if (!scaffold) return;
-
-    // === Global Descriptors ===
-    const globalHeaders = scaffold.globalDescriptors.map(desc =>
-        `${desc.label}${desc.unit ? ' (' + desc.unit + ')' : ''}`
-    );
-    const globalValues = scaffold.globalDescriptors.map(desc => desc.values);
-    XLSX.utils.sheet_add_aoa(ws, [["Global Descriptors"]], { origin: { r: 0, c: 0 } });
-    XLSX.utils.sheet_add_aoa(ws, [globalHeaders], { origin: { r: 1, c: 0 } });
-    XLSX.utils.sheet_add_aoa(ws, [globalValues], { origin: { r: 2, c: 0 } });
-
-    let currentRow = 4;
-
-    // === Other Descriptors ===
-    let colStart = 0;
-    if (scaffold.otherDescriptors.length > 0) {
-        const { data, maxCol } = layoutDescriptors(scaffold.otherDescriptors, false);
-        XLSX.utils.sheet_add_aoa(ws, [["Other Descriptors"]], { origin: { r: currentRow, c: 0 } });
-        XLSX.utils.sheet_add_aoa(ws, data, { origin: { r: currentRow + 1, c: 0 } });
-        colStart = maxCol;
-    }
-
-    // === Pore Descriptors ===
-    if (scaffold.poreDescriptors.length > 0) {
-        const { data } = layoutDescriptors(scaffold.poreDescriptors, true);
-        XLSX.utils.sheet_add_aoa(ws, [["Pore Descriptors"]], { origin: { r: currentRow, c: colStart } });
-        XLSX.utils.sheet_add_aoa(ws, data, { origin: { r: currentRow + 1, c: colStart } });
-    }
-}
-
-export function triggerDownload(wb: XLSX.WorkBook, filename: string) {
-    XLSX.writeFile(wb, filename);
+    return {file: wb, filename: filename, headingRowsBySheet};
 }
 
 export function downloadExperimentsAsExcel(
@@ -125,40 +131,11 @@ export function downloadExperimentsAsExcel(
         sheetOption: string;
         columnOption: string;
         stackedColumnOption: string;
-    }
-) {
-    const createGeneralInfoWorksheet = (scaffoldGroups: ScaffoldGroup[], key?: number | null) => {
-        const generalInfoData: any[][] = [];
-        scaffoldGroups.forEach((scaffoldGroup, index) => {
-            const scaffoldGroupInfo = [
-                ["Key", `Scaffold Group ${key != null ? key + 1 : index + 1}`],
-                ["ID", scaffoldGroup.id],
-                ["Name", scaffoldGroup.name],
-                ["Simulated", scaffoldGroup.isSimulated.toString().toLowerCase()],
-                ["Number of Replicates", scaffoldGroup.numReplicates],
-                [],
-                ["Scaffold Inputs"],
-                ["Container Shape", scaffoldGroup.inputs.containerShape ?? 'n/a'],
-                ["Container Size", scaffoldGroup.inputs.containerSize ?? 'n/a'],
-                ["Packing Configuration", scaffoldGroup.inputs.packingConfiguration.toString().toLowerCase()],
-                [],
-                ["Particle Properties"]
-            ];
+    },
+    shouldReturnWorkbook: boolean = false
+): { files: { file: XLSX.WorkBook; filename: string; headingRowsBySheet?: Record<string, number[]>; }[] } | void {
 
-            const particlesHeader = ["Shape", "Stiffness", "Dispersity", "Size Distribution Type", "Mean Size", "Standard Deviation Size", "Proportion"];
-            const particlesData = scaffoldGroup.inputs.particles.map(p => [
-                p.shape, p.stiffness, p.dispersity, p.sizeDistributionType, p.meanSize, p.standardDeviationSize, p.proportion
-            ]);
-
-            scaffoldGroupInfo.push(particlesHeader);
-            scaffoldGroupInfo.push(...particlesData);
-            scaffoldGroupInfo.push([], []); // Add empty rows for spacing between scaffold groups
-
-            generalInfoData.push(...scaffoldGroupInfo);
-        });
-
-        return XLSX.utils.aoa_to_sheet(generalInfoData);
-    };
+    const generatedFiles: { file: XLSX.WorkBook; filename: string; headingRowsBySheet?: Record<string, number[]>; }[] = [];
 
     const addDataToWorksheet = (ws: XLSX.WorkSheet, data: any[][], startRow: number, startCol: number) => {
         XLSX.utils.sheet_add_aoa(ws, data, { origin: { r: startRow, c: startCol } });
@@ -188,9 +165,10 @@ export function downloadExperimentsAsExcel(
         descriptors: DescriptorType[],
         entityLabel: string,
         replicateIndex?: number
-    ) => {
+    ): { worksheet: XLSX.WorkSheet; headingRows: number[] } => {
         const ws = XLSX.utils.aoa_to_sheet([]);
         let currentRow = 0;
+        const headingRows: number[] = [];
 
         scaffoldGroup.scaffolds.forEach((scaffold, scaffoldIndex) => {
             descriptors.forEach(descriptor => {
@@ -199,26 +177,31 @@ export function downloadExperimentsAsExcel(
                 if (descriptorData.length > 0) {
                     const label = `${descriptor.label}${descriptor.unit ? ' (' + descriptor.unit + ')' : ''}`;
                     const header = [entityLabel, label, 'PoreId'];
+
+                    // === Track header row
+                    headingRows.push(currentRow);
+
                     addDataToWorksheet(ws, [header], currentRow, 0);
                     currentRow++;
 
                     descriptorData.forEach(desc => {
-                        const pairs: string[] = typeof desc.values === 'string'
-                            ? desc.values.split(';').map((pair: string) => pair.trim())
-                            : [];
+                    const pairs: string[] = typeof desc.values === 'string'
+                        ? desc.values.split(';').map((pair: string) => pair.trim())
+                        : [];
 
-                        pairs.forEach(pair => {
-                            const [idPart, valuePart] = pair.split(',').map(s => s.trim());
-                            if (idPart && valuePart) {
-                                const labelVal = replicateIndex !== undefined
-                                    ? `Replicate ${replicateIndex + 1}`
-                                    : `Scaffold ${scaffoldIndex + 1}`;
+                    pairs.forEach(pair => {
+                        const [idPart, valuePart] = pair.split(',').map(s => s.trim());
+                        if (idPart && valuePart) {
+                        const labelVal = replicateIndex !== undefined
+                            ? `Replicate ${replicateIndex + 1}`
+                            : `Scaffold ${scaffoldIndex + 1}`;
 
-                                const row = [labelVal, valuePart, idPart];
-                                addDataToWorksheet(ws, [row], currentRow, 0);
-                                currentRow++;
-                            }
-                        });
+                        const row = [labelVal, valuePart, idPart];
+                        addDataToWorksheet(ws, [row], currentRow, 0);
+                        currentRow++;
+                        }
+                    });
+
                     });
 
                     currentRow++; // spacing between descriptors
@@ -226,7 +209,7 @@ export function downloadExperimentsAsExcel(
             });
         });
 
-        return ws;
+        return { worksheet: ws, headingRows: Array.from(new Set(headingRows)) };
     };
 
     const createDescriptorWorksheetWithColumns = (
@@ -235,44 +218,55 @@ export function downloadExperimentsAsExcel(
         entityLabel: string,
         columnOption: string,
         replicateIndex?: number
-    ) => {
+    ): { worksheet: XLSX.WorkSheet; headingRows: number[] } => {
         const ws = XLSX.utils.aoa_to_sheet([]);
         let currentRow = 0;
+        const headingRows: number[] = [];
 
         scaffoldGroup.scaffolds.forEach((scaffold, scaffoldIndex) => {
             const globalDescriptors = scaffold.globalDescriptors.filter(d => descriptors.some(desc => desc.id === d.descriptorTypeId));
             const poreDescriptors = scaffold.poreDescriptors.filter(d => descriptors.some(desc => desc.id === d.descriptorTypeId));
             const otherDescriptors = scaffold.otherDescriptors.filter(d => descriptors.some(desc => desc.id === d.descriptorTypeId));
 
+            // === Global Descriptors ===
             if (globalDescriptors.length > 0) {
                 const globalHeaders = globalDescriptors.map(desc => `${desc.label}${desc.unit ? ' (' + desc.unit + ')' : ''}`);
                 const globalValues = globalDescriptors.map(desc => desc.values);
+
+                headingRows.push(currentRow);
                 addDataToWorksheet(ws, [["Global Descriptors"]], currentRow, 0);
                 addDataToWorksheet(ws, [globalHeaders], currentRow + 1, 0);
                 addDataToWorksheet(ws, [globalValues], currentRow + 2, 0);
-                currentRow += 4; // Move to next section
+                currentRow += 4;
             }
 
-            let colStart = 0
+            let colStart = 0;
 
+            // === Other Descriptors ===
             if (otherDescriptors.length > 0) {
                 const { data, maxCol } = layoutDescriptors(otherDescriptors, false);
+
                 addDataToWorksheet(ws, [["Other Descriptors"]], currentRow, 0);
                 addDataToWorksheet(ws, data, currentRow + 1, 0);
-                // currentRow += data.length + 1; // Move to next section
-                colStart = maxCol
+                headingRows.push(currentRow);
+                // headingRows.push(currentRow + 1); // ✅ Row with descriptor headers
+                colStart = maxCol;
             }
 
+            // === Pore Descriptors ===
             if (poreDescriptors.length > 0) {
-                const includePoreId = columnOption === 'Descriptors'; // Only show PoreId in this case
+                const includePoreId = columnOption === 'Descriptors';
                 const { data, maxCol } = layoutDescriptors(poreDescriptors, includePoreId);
+
                 addDataToWorksheet(ws, [["Pore Descriptors"]], currentRow, colStart);
                 addDataToWorksheet(ws, data, currentRow + 1, colStart);
+                headingRows.push(currentRow);
+                // headingRows.push(currentRow + 1); // ✅ Row with descriptor headers
                 colStart += maxCol;
             }
         });
 
-        return ws;
+        return { worksheet: ws, headingRows: Array.from(new Set(headingRows)) };
     };
 
     const createWorkbook = (
@@ -282,53 +276,57 @@ export function downloadExperimentsAsExcel(
         columnOption: string,
         fileName: string
     ) => {
+        const headingRowsBySheet: Record<string, number[]> = {};
         scaffoldGroups.forEach((scaffoldGroup, groupIndex) => {
             const wb = XLSX.utils.book_new();
 
             // Add General Info worksheet
-            const generalInfoWs = createGeneralInfoWorksheet([scaffoldGroup], groupIndex);
-            XLSX.utils.book_append_sheet(wb, generalInfoWs, 'General Info');
+            const { worksheet: generalInfoWs, headingRows: generalHeadings } = createGeneralInfoWorksheet([scaffoldGroup], groupIndex);
+            const generalSheetName = 'General Info';
+            XLSX.utils.book_append_sheet(wb, generalInfoWs, generalSheetName);
+            headingRowsBySheet[generalSheetName] = generalHeadings;
 
             if (sheetOption === 'Descriptors') {
                 descriptors.forEach(descriptor => {
-                    const ws = createDescriptorWorksheet(scaffoldGroup, [descriptor], 'Scaffold Group');
-                    XLSX.utils.book_append_sheet(wb, ws, `${descriptor.label.slice(0,headingCharacterLength)}`);
+                    const sheetName = descriptor.label.slice(0, headingCharacterLength);
+                    const { worksheet: ws, headingRows } = createDescriptorWorksheet(scaffoldGroup, [descriptor], 'Scaffold Group');
+                    headingRowsBySheet[sheetName] = headingRows;
+                    XLSX.utils.book_append_sheet(wb, ws, sheetName);
                 });
             } else if (sheetOption === 'Scaffold Replicates') {
                 scaffoldGroup.scaffolds.forEach((_, replicateIndex) => {
+                    const sheetName = `Replicate ${replicateIndex + 1}`;
+                    const singleGroup = { ...scaffoldGroup, scaffolds: [scaffoldGroup.scaffolds[replicateIndex]] };
+
+                    let wsResult;
                     if (columnOption === 'Descriptors') {
-                        // const ws = createDescriptorWorksheetWithColumns(scaffoldGroup, descriptors, 'Replicate', replicateIndex);
-                        const ws = createDescriptorWorksheetWithColumns(
-                            { ...scaffoldGroup, scaffolds: [scaffoldGroup.scaffolds[replicateIndex]] },
-                            descriptors,
-                            'Replicate',
-                            columnOption,
-                            replicateIndex
-                        );
-                        XLSX.utils.book_append_sheet(wb, ws, `Replicate ${replicateIndex + 1}`);
+                        wsResult = createDescriptorWorksheetWithColumns(singleGroup, descriptors, 'Replicate', columnOption, replicateIndex);
                     } else {
-                        // const ws = createDescriptorWorksheet(scaffoldGroup, descriptors, 'Replicate', replicateIndex);
-                        const ws = createDescriptorWorksheet(
-                            { ...scaffoldGroup, scaffolds: [scaffoldGroup.scaffolds[replicateIndex]] },
-                            descriptors,
-                            'Replicate',
-                            replicateIndex
-                        );
-                        XLSX.utils.book_append_sheet(wb, ws, `Replicate ${replicateIndex + 1}`);
+                        wsResult = createDescriptorWorksheet(singleGroup, descriptors, 'Replicate', replicateIndex);
                     }
+                    headingRowsBySheet[sheetName] = wsResult.headingRows;
+                    XLSX.utils.book_append_sheet(wb, wsResult.worksheet, sheetName);
                 });
             } else {
+                const sheetName = 'Data';
+                let wsResult;
                 if (columnOption === 'Descriptors') {
-                    const ws = createDescriptorWorksheetWithColumns(scaffoldGroup, descriptors, 'Scaffold Group', columnOption);
-                    XLSX.utils.book_append_sheet(wb, ws, 'Data');
+                    wsResult = createDescriptorWorksheetWithColumns(scaffoldGroup, descriptors, 'Scaffold Group', columnOption);
                 } else {
-                    const ws = createDescriptorWorksheet(scaffoldGroup, descriptors, 'Data');
-                    XLSX.utils.book_append_sheet(wb, ws, 'Data');
+                    wsResult = createDescriptorWorksheet(scaffoldGroup, descriptors, 'Data');
                 }
+                headingRowsBySheet[sheetName] = wsResult.headingRows;
+                XLSX.utils.book_append_sheet(wb, wsResult.worksheet, sheetName);
             }
 
             // Save the workbook
-            XLSX.writeFile(wb, `${fileName}_ScaffoldGroup${groupIndex + 1}.xlsx`);
+            const filename = `${fileName}_ScaffoldGroup${groupIndex + 1}.xlsx`;
+            if (shouldReturnWorkbook) {
+                generatedFiles.push({ file: wb, filename, headingRowsBySheet });
+            } else {
+                triggerDownload(wb, filename);
+            }
+            // XLSX.writeFile(wb, `${fileName}_ScaffoldGroup${groupIndex + 1}.xlsx`);
         });
     };
 
@@ -344,10 +342,13 @@ export function downloadExperimentsAsExcel(
         }
     ) => {
         const wb = XLSX.utils.book_new();
+        const headingRowsBySheet: Record<string, number[]> = {};
     
         // Add a single general info worksheet that covers all scaffold groups
-        const generalInfoWs = createGeneralInfoWorksheet(scaffoldGroups);
-        XLSX.utils.book_append_sheet(wb, generalInfoWs, 'General Info');
+        const generalSheetName = 'General Info';
+        const { worksheet: generalInfoWs, headingRows: generalHeadings } = createGeneralInfoWorksheet(scaffoldGroups);
+        XLSX.utils.book_append_sheet(wb, generalInfoWs, generalSheetName);
+        headingRowsBySheet[generalSheetName] = generalHeadings;
     
         if (
             options.columnOption === 'Scaffold Groups' &&
@@ -356,134 +357,153 @@ export function downloadExperimentsAsExcel(
             options.stackedColumnOption === 'True'
         ) {
             descriptors.forEach(descriptor => {
-            const ws = XLSX.utils.aoa_to_sheet([]);
-            const headers = ['Replicate', ...scaffoldGroups.map(g => `Scaffold Group ${g.id}`)];
-            XLSX.utils.sheet_add_aoa(ws, [headers], { origin: { r: 0, c: 0 } });
+                const ws = XLSX.utils.aoa_to_sheet([]);
+                const headers = ['Replicate', ...scaffoldGroups.map(g => `Scaffold Group ${g.id}`)];
+                XLSX.utils.sheet_add_aoa(ws, [headers], { origin: { r: 0, c: 0 } });
 
-            let currentRow = 1;
-            const maxReplicates = Math.max(...scaffoldGroups.map(g => g.scaffolds.length));
+                const sheetName = descriptor.label.slice(0, 31);
+                headingRowsBySheet[sheetName] = [0]; // Header is only row 0 (columns)
 
-            for (let replicateIndex = 0; replicateIndex < maxReplicates; replicateIndex++) {
-                // Determine the number of rows to write based on the longest descriptor
-                const rows: any[][] = [];
+                let currentRow = 1;
+                const maxReplicates = Math.max(...scaffoldGroups.map(g => g.scaffolds.length));
 
-                // First column = replicate
-                let maxDepth = 0;
+                for (let replicateIndex = 0; replicateIndex < maxReplicates; replicateIndex++) {
+                    // Determine the number of rows to write based on the longest descriptor
+                    const rows: any[][] = [];
 
-                scaffoldGroups.forEach((group, colIndex) => {
-                    const scaffold = group.scaffolds[replicateIndex];
-                    if (!scaffold) return;
+                    // First column = replicate
+                    let maxDepth = 0;
 
-                    const descriptorData = getDescriptorData(scaffold, descriptor.id, descriptor.category);
-                    let values: string[] = [];
+                    scaffoldGroups.forEach((group, colIndex) => {
+                        const scaffold = group.scaffolds[replicateIndex];
+                        if (!scaffold) return;
 
-                    if (descriptorData.length > 0 && typeof descriptorData[0].values === 'string') {
-                    const first = descriptorData[0].values.split(';')[0];
-                    const isIdVal = first.includes(',') && /^[^,]+,[^,]+$/.test(first.trim());
+                        const descriptorData = getDescriptorData(scaffold, descriptor.id, descriptor.category);
+                        let values: string[] = [];
 
-                    if (isIdVal) {
-                        values = descriptorData[0].values
-                        .split(';')
-                        .map((p: string) => p.trim())
-                        .map((p: string) => p.split(',')[1]?.trim() ?? '');
-                    } else {
-                        values = descriptorData[0].values.split(',').map((s: string) => s.trim());
-                    }
-                    }
+                        if (descriptorData.length > 0 && typeof descriptorData[0].values === 'string') {
+                            const first = descriptorData[0].values.split(';')[0];
+                            const isIdVal = first.includes(',') && /^[^,]+,[^,]+$/.test(first.trim());
 
-                    maxDepth = Math.max(maxDepth, values.length);
+                            if (isIdVal) {
+                                values = descriptorData[0].values
+                                .split(';')
+                                .map((p: string) => p.trim())
+                                .map((p: string) => p.split(',')[1]?.trim() ?? '');
+                            } else {
+                                values = descriptorData[0].values.split(',').map((s: string) => s.trim());
+                            }
+                        }
 
-                    values.forEach((val, i) => {
-                    if (!rows[i]) rows[i] = new Array(scaffoldGroups.length + 1).fill('');
-                        rows[i][colIndex + 1] = val; // +1 for replicate column
+                        maxDepth = Math.max(maxDepth, values.length);
+
+                        values.forEach((val, i) => {
+                        if (!rows[i]) rows[i] = new Array(scaffoldGroups.length + 1).fill('');
+                            rows[i][colIndex + 1] = val; // +1 for replicate column
+                        });
                     });
-                });
 
-                // Prepend replicate number
-                rows.forEach(r => r[0] = replicateIndex + 1);
-                XLSX.utils.sheet_add_aoa(ws, rows, { origin: { r: currentRow, c: 0 } });
-                currentRow += rows.length;
+                    // Prepend replicate number
+                    rows.forEach(r => r[0] = replicateIndex + 1);
+                    XLSX.utils.sheet_add_aoa(ws, rows, { origin: { r: currentRow, c: 0 } });
+                    currentRow += rows.length;
                 }
 
-                XLSX.utils.book_append_sheet(wb, ws, descriptor.label.slice(0, 31));
+                // XLSX.utils.book_append_sheet(wb, ws, descriptor.label.slice(0, 31));
+                XLSX.utils.book_append_sheet(wb, ws, sheetName);
             });
 
-            XLSX.writeFile(wb, `${fileName}_Stacked.xlsx`);
-            return;
+            // const filename = `${fileName}_Stacked.xlsx`;
+            // if (shouldReturnWorkbook) {
+            //     generatedFiles.push({ file: wb, filename });
+            // } else {
+            //     triggerDownload(wb, filename);
+            // }
         } else if (
             options.columnOption === 'Descriptors' &&
             options.sheetOption === 'Scaffold Groups' &&
             options.excelFileOption === 'Scaffold Replicates' &&
             options.stackedColumnOption === 'True'
-            ) {
-                console.log("[DEBUG] TRIGGERING STACKED SCAFFOLD GROUP LAYOUT LIKE downloadScaffoldGroupAsExcel");
-
-                scaffoldGroups.forEach((scaffoldGroup) => {
-                    const ws = XLSX.utils.aoa_to_sheet([]);
-                    writeStackedGroupSheetLikeDownload(ws, scaffoldGroup); // This is your adapted layout
-                    const name = `Scaffold Group ${scaffoldGroup.id}`.slice(0, 31);
-                    XLSX.utils.book_append_sheet(wb, ws, name);
-                });
-            }        
-        else {
-            console.log("[DEBUG] TRIGGERING NON-STACKED SCAFFOLD GROUPS")
+        ) {
+            scaffoldGroups.forEach((scaffoldGroup) => {
+                const name = `Scaffold Group ${scaffoldGroup.id}`.slice(0, 31);
+                const { worksheet: ws, headingRows } = writeStackedGroupSheetLikeDownload(scaffoldGroup);
+                XLSX.utils.book_append_sheet(wb, ws, name);
+                headingRowsBySheet[name] = headingRows;
+            });
+        } else {
             // Original logic for other cases
             scaffoldGroups.forEach((scaffoldGroup) => {
                 const ws = XLSX.utils.aoa_to_sheet([]);
-                
-                // Add a header row: 'Replicate', followed by each descriptor's label
-                const tableHeaders = ['Replicate', ...descriptors.map(desc => `${desc.label}${desc.unit ? ' (' + desc.unit + ')' : ''}`)];
-                XLSX.utils.sheet_add_aoa(ws, [tableHeaders], { origin: { r: 0, c: 0 } });
-                
-                let currentRow = 1; // Start adding data from the first row below headers
-        
-                scaffoldGroup.scaffolds.forEach((scaffold, replicateIndex) => {
-                    const rowData: any[][] = [];
-        
-                    // Add 'Replicate' column data
-                    const replicateColumn = `${replicateIndex + 1}`;
-        
-                    descriptors.forEach((descriptor, descriptorIndex) => {
-                        const descriptorData = getDescriptorData(scaffold, descriptor.id, descriptor.category);
-                        const valueRows: string[] = [];
 
-                        if (descriptorData.length > 0 && typeof descriptorData[0].values === 'string') {
-                            const pairs = descriptorData[0].values.split(';').map((pair: string) => pair.trim());
-                            for (const pair of pairs) {
-                                const parts = pair.split(',').map((s: string) => s.trim());
-                                if (parts.length === 2) {
-                                    const [, value] = parts;
-                                    if (value) valueRows.push(value);
-                                }
+                const sheetName = `Scaffold Group ${scaffoldGroup.id}`;
+                const headingRows: number[] = [];
+
+                // === Add a header row
+                const tableHeaders = ['Replicate', ...descriptors.map(desc => `${desc.label}${desc.unit ? ' (' + desc.unit + ')' : ''}`)];
+                const headerRowIndex = 0;
+                XLSX.utils.sheet_add_aoa(ws, [tableHeaders], { origin: { r: headerRowIndex, c: 0 } });
+                headingRows.push(headerRowIndex);
+
+                let currentRow = 1;
+
+                scaffoldGroup.scaffolds.forEach((scaffold, replicateIndex) => {
+                const rowData: any[][] = [];
+                const replicateColumn = `${replicateIndex + 1}`;
+
+                descriptors.forEach((descriptor, descriptorIndex) => {
+                    const descriptorData = getDescriptorData(scaffold, descriptor.id, descriptor.category);
+                    const valueRows: string[] = [];
+
+                    if (descriptorData.length > 0 && typeof descriptorData[0].values === 'string') {
+                    const pairs = descriptorData[0].values.split(';').map((pair: string) => pair.trim());
+                        for (const pair of pairs) {
+                            const parts = pair.split(',').map((s: string) => s.trim());
+                            if (parts.length === 2) {
+                                const [, value] = parts;
+                                if (value) valueRows.push(value);
                             }
                         }
+                    }
 
-                        valueRows.forEach((value: string, valueIndex: number) => {
-                            if (!rowData[valueIndex]) {
-                                rowData[valueIndex] = [replicateColumn];
-                            }
-                            rowData[valueIndex][descriptorIndex + 1] = value;
-                        });
+                    valueRows.forEach((value: string, valueIndex: number) => {
+                        if (!rowData[valueIndex]) {
+                            rowData[valueIndex] = [replicateColumn];
+                        }
+                        rowData[valueIndex][descriptorIndex + 1] = value;
                     });
-        
-                    // Add each row to the worksheet
-                    rowData.forEach((row, rowIndex) => {
-                        XLSX.utils.sheet_add_aoa(ws, [row], { origin: { r: currentRow + rowIndex, c: 0 } });
-                    });
-        
-                    currentRow += rowData.length; // Move the currentRow pointer for the next set of data
                 });
-        
-                // Add the worksheet to the workbook with a name based on the scaffold group ID
-                XLSX.utils.book_append_sheet(wb, ws, `Scaffold Group ${scaffoldGroup.id}`);
+
+                // Add each row to the worksheet
+                rowData.forEach((row, rowIndex) => {
+                    XLSX.utils.sheet_add_aoa(ws, [row], { origin: { r: currentRow + rowIndex, c: 0 } });
+                });
+
+                currentRow += rowData.length;
+                });
+
+                XLSX.utils.book_append_sheet(wb, ws, sheetName);
+                headingRowsBySheet[sheetName] = headingRows;
             });
         }
     
         // Save the workbook as a single file
-        XLSX.writeFile(wb, `${fileName}_Replicates.xlsx`);
+        const filename = `${fileName}_Replicates.xlsx`;
+        if (shouldReturnWorkbook) {
+            generatedFiles.push({ file: wb, filename, headingRowsBySheet });
+        } else {
+            triggerDownload(wb, filename);
+        }
+        return;
     };
 
-    function writeStackedGroupSheetLikeDownload(ws: XLSX.WorkSheet, scaffoldGroup: ScaffoldGroup): void {
+    function writeStackedGroupSheetLikeDownload(scaffoldGroup: ScaffoldGroup): {
+        worksheet: XLSX.WorkSheet;
+        headingRows: number[];
+    } {
+        const ws = XLSX.utils.aoa_to_sheet([]);
+        const headingRows: number[] = [];
+
         let currentRow = 0;
 
         // === GLOBAL DESCRIPTORS ===
@@ -498,14 +518,16 @@ export function downloadExperimentsAsExcel(
                 ...scaffold.globalDescriptors.map(desc => desc.values)
             ]);
 
+            headingRows.push(currentRow); // Row with actual column headings
             XLSX.utils.sheet_add_aoa(ws, [['Global Descriptors']], { origin: { r: currentRow++, c: 0 } });
-            XLSX.utils.sheet_add_aoa(ws, [headers], { origin: { r: currentRow++, c: 0 } });
+            XLSX.utils.sheet_add_aoa(ws, [headers], { origin: { r: currentRow, c: 0 } });
+            currentRow++;
             XLSX.utils.sheet_add_aoa(ws, rows, { origin: { r: currentRow, c: 0 } });
             currentRow += rows.length + 1;
         }
 
         // === STACKED OTHER + PORE DESCRIPTORS ===
-        scaffoldGroup.scaffolds.forEach((scaffold, index) => {
+        scaffoldGroup.scaffolds.forEach(scaffold => {
             const startRow = currentRow;
 
             // Other Descriptors
@@ -513,14 +535,15 @@ export function downloadExperimentsAsExcel(
             if (scaffold.otherDescriptors.length > 0) {
                 const { data, maxCol } = layoutDescriptors(scaffold.otherDescriptors, false);
                 if (data.length > 1) {
-                    // Insert 'Replicate' column as first column
                     data[0].unshift('Replicate');
                     for (let r = 1; r < data.length; r++) {
                         data[r].unshift(scaffold.replicateNumber);
                     }
 
-                    XLSX.utils.sheet_add_aoa(ws, [[`Other Descriptors`]], { origin: { r: currentRow++, c: 0 } });
+                    headingRows.push(currentRow);
+                    XLSX.utils.sheet_add_aoa(ws, [['Other Descriptors']], { origin: { r: currentRow++, c: 0 } });
                     XLSX.utils.sheet_add_aoa(ws, data, { origin: { r: currentRow, c: 0 } });
+                    // headingRows.push(currentRow); // Row with actual headers
                     currentRow += data.length + 1;
                     colStart = maxCol + 1;
                 }
@@ -530,168 +553,23 @@ export function downloadExperimentsAsExcel(
             if (scaffold.poreDescriptors.length > 0) {
                 const { data } = layoutDescriptors(scaffold.poreDescriptors, true);
                 if (data.length > 1) {
-                    // Insert 'Replicate' column as first column
                     data[0].unshift('Replicate');
                     for (let r = 1; r < data.length; r++) {
                         data[r].unshift(scaffold.replicateNumber);
                     }
 
-                    XLSX.utils.sheet_add_aoa(ws, [[`Pore Descriptors`]], { origin: { r: startRow, c: colStart } });
+                    headingRows.push(currentRow);
+                    XLSX.utils.sheet_add_aoa(ws, [['Pore Descriptors']], { origin: { r: startRow, c: colStart } });
                     XLSX.utils.sheet_add_aoa(ws, data, { origin: { r: startRow + 1, c: colStart } });
+                    // headingRows.push(startRow + 1); // Row with actual headers
                     currentRow = Math.max(currentRow, startRow + 1 + data.length + 1);
                 }
             }
 
             currentRow++;
         });
-    }
 
-    function writeStackedScaffoldGroupSheet(
-        ws: XLSX.WorkSheet,
-        scaffoldGroup: ScaffoldGroup,
-        descriptors: DescriptorType[],
-        startRow: number = 0
-    ): number {
-        let currentRow = startRow;
-
-        const globalTypes = descriptors.filter(d => d.category === 'global');
-        const otherTypes = descriptors.filter(d => d.category === 'other');
-        const poreTypes = descriptors.filter(d => d.category === 'pore');
-
-        // --- GLOBAL DESCRIPTORS ---
-        if (globalTypes.length > 0) {
-            const headers = ['Replicate', ...globalTypes.map(d => `${d.label}${d.unit ? ` (${d.unit})` : ''}`)];
-            const rows: any[][] = [];
-
-            scaffoldGroup.scaffolds.forEach((scaffold, replicateIndex) => {
-                const row: (string | number)[] = [replicateIndex + 1];
-                globalTypes.forEach(d => {
-                    const data = getDescriptorData(scaffold, d.id, d.category);
-                    row.push(data.length > 0 ? data[0].values : '');
-                });
-                rows.push(row);
-            });
-
-            addDataToWorksheet(ws, [['Global Descriptors']], currentRow++, 0);
-            addDataToWorksheet(ws, [headers], currentRow++, 0);
-            rows.forEach(row => addDataToWorksheet(ws, [row], currentRow++, 0));
-            currentRow++;
-        }
-
-        // --- OTHER + PORE DESCRIPTORS ---
-        const otherHeaders = ['Replicate', ...otherTypes.map(d => `${d.label}${d.unit ? ` (${d.unit})` : ''}`)];
-        const poreHeaders = [...poreTypes.map(d => `${d.label}${d.unit ? ` (${d.unit})` : ''}`), 'PoreId'];
-
-        const otherRows: any[][] = [];
-        const poreRows: any[][] = [];
-
-        scaffoldGroup.scaffolds.forEach((scaffold, replicateIndex) => {
-            const rep = replicateIndex + 1;
-
-            // Other descriptors
-            const otherRow: (string | number)[] = [rep];
-            otherTypes.forEach(d => {
-                const data = getDescriptorData(scaffold, d.id, d.category);
-                otherRow.push(data.length > 0 ? data[0].values : '');
-            });
-            otherRows.push(otherRow);
-
-            // Pore descriptors
-            const poreMatrix: Record<string, string[]> = {};
-            let poreIds: string[] = [];
-
-            poreTypes.forEach(d => {
-                const data = getDescriptorData(scaffold, d.id, d.category);
-                if (data.length > 0 && typeof data[0].values === 'string') {
-                    const pairs = data[0].values.split(';').map((pair: string) => pair.trim());
-                    pairs.forEach((pair: string, idx: number) => {
-                        const [id, value] = pair.split(',').map((s: string) => s.trim());
-                        if (!poreMatrix[d.label]) poreMatrix[d.label] = [];
-                        poreMatrix[d.label][idx] = value;
-                        if (!poreIds[idx]) poreIds[idx] = id;
-                    });
-                }
-            });
-
-            poreIds.forEach((poreId, idx) => {
-                const row: (string | number)[] = [rep];
-                poreTypes.forEach(d => {
-                    row.push(poreMatrix[d.label]?.[idx] ?? '');
-                });
-                row.push(poreId);
-                poreRows.push(row);
-            });
-        });
-
-        // --- Write Other Descriptors ---
-        if (otherTypes.length > 0) {
-            addDataToWorksheet(ws, [['Other Descriptors']], currentRow++, 0);
-            addDataToWorksheet(ws, [otherHeaders], currentRow++, 0);
-            otherRows.forEach(row => addDataToWorksheet(ws, [row], currentRow++, 0));
-            currentRow++;
-        }
-
-        // --- Write Pore Descriptors ---
-        if (poreTypes.length > 0) {
-            addDataToWorksheet(ws, [['Pore Descriptors']], currentRow++, 0);
-            addDataToWorksheet(ws, [poreHeaders], currentRow++, 0);
-            poreRows.forEach(row => addDataToWorksheet(ws, [row], currentRow++, 0));
-        }
-
-        return currentRow;
-    }
-
-    function writeStackedScaffoldGroupDescriptorSheet(
-        ws: XLSX.WorkSheet,
-        scaffoldGroup: ScaffoldGroup
-    ): void {
-        let currentRow = 0;
-
-        // === GLOBAL DESCRIPTORS ===
-        const globalDescriptors = scaffoldGroup.scaffolds[0]?.globalDescriptors ?? [];
-        if (globalDescriptors.length > 0) {
-            const headers = ['Replicate', ...globalDescriptors.map(desc =>
-                `${desc.label}${desc.unit ? ` (${desc.unit})` : ''}`
-            )];
-
-            const data = scaffoldGroup.scaffolds.map((scaffold, index) => {
-                return [
-                    scaffold.replicateNumber,
-                    ...scaffold.globalDescriptors.map(desc => desc.values)
-                ];
-            });
-
-            XLSX.utils.sheet_add_aoa(ws, [['Global Descriptors']], { origin: { r: currentRow++, c: 0 } });
-            XLSX.utils.sheet_add_aoa(ws, [headers], { origin: { r: currentRow++, c: 0 } });
-            XLSX.utils.sheet_add_aoa(ws, data, { origin: { r: currentRow, c: 0 } });
-            currentRow += data.length + 1;
-        }
-
-        // === OTHER AND PORE DESCRIPTORS STACKED BY REPLICATE ===
-        scaffoldGroup.scaffolds.forEach((scaffold, replicateIndex) => {
-            const startRow = currentRow;
-
-            // Other Descriptors
-            let colStart = 0;
-            if (scaffold.otherDescriptors.length > 0) {
-                const { data, maxCol } = layoutDescriptors(scaffold.otherDescriptors, false);
-                XLSX.utils.sheet_add_aoa(ws, [[`Other Descriptors (Replicate ${scaffold.replicateNumber})`]], { origin: { r: currentRow++, c: 0 } });
-                XLSX.utils.sheet_add_aoa(ws, data, { origin: { r: currentRow, c: 0 } });
-                currentRow += data.length + 1;
-                colStart = maxCol;
-            }
-
-            // Pore Descriptors
-            if (scaffold.poreDescriptors.length > 0) {
-                const { data } = layoutDescriptors(scaffold.poreDescriptors, true);
-                XLSX.utils.sheet_add_aoa(ws, [[`Pore Descriptors (Replicate ${scaffold.replicateNumber})`]], { origin: { r: startRow, c: colStart } });
-                XLSX.utils.sheet_add_aoa(ws, data, { origin: { r: startRow + 1, c: colStart } });
-
-                currentRow = Math.max(currentRow, startRow + 1 + data.length + 1);
-            }
-
-            currentRow += 1; // extra space
-        });
+        return { worksheet: ws, headingRows: Array.from(new Set(headingRows)) };
     }
 
     const createFilePerDescriptor = (
@@ -706,10 +584,12 @@ export function downloadExperimentsAsExcel(
     ) => {
         descriptors.forEach(descriptor => {
             const wb = XLSX.utils.book_new();
+            const headingRowsBySheet: Record<string, number[]> = {};
     
             // Add General Info worksheet
-            const generalInfoWs = createGeneralInfoWorksheet(scaffoldGroups);
+            const { worksheet: generalInfoWs, headingRows: generalHeadings } = createGeneralInfoWorksheet(scaffoldGroups);
             XLSX.utils.book_append_sheet(wb, generalInfoWs, 'General Info');
+            headingRowsBySheet['General Info'] = generalHeadings;
     
             // Check the structure based on options
             if (options.columnOption === 'Scaffold Replicates' && options.sheetOption === 'Scaffold Groups') {
@@ -719,7 +599,9 @@ export function downloadExperimentsAsExcel(
                     const replicateHeaders = scaffoldGroup.scaffolds.map((_, replicateIndex) => `Replicate ${replicateIndex + 1}`);
     
                     // Add header row with replicate labels
+                    const sheetName = `Scaffold Group ${scaffoldGroup.id}`;
                     XLSX.utils.sheet_add_aoa(ws, [replicateHeaders], { origin: { r: 0, c: 0 } });
+                    headingRowsBySheet[sheetName] = [0]; // Header row is always at row 0
     
                     let maxRows = 0; // Track the maximum number of rows needed
     
@@ -754,7 +636,7 @@ export function downloadExperimentsAsExcel(
                     });
     
                     // Label the sheet with the scaffold group ID
-                    XLSX.utils.book_append_sheet(wb, ws, `Scaffold Group ${scaffoldGroup.id}`);
+                    XLSX.utils.book_append_sheet(wb, ws, sheetName);
                 });
             } else {
                 // Original case: columns are scaffold groups, sheets are replicates
@@ -764,7 +646,9 @@ export function downloadExperimentsAsExcel(
                     const scaffoldGroupIds = scaffoldGroups.map(group => `Scaffold Group ${group.id}`);
     
                     // Add header row with scaffold group IDs
+                    const sheetName = `Replicate ${replicateIndex + 1}`;
                     XLSX.utils.sheet_add_aoa(ws, [scaffoldGroupIds], { origin: { r: 0, c: 0 } });
+                    headingRowsBySheet[sheetName] = [0];
     
                     let currentRow = 1; // Initialize currentRow to start after the header row
                     scaffoldGroups.forEach((scaffoldGroup, colIndex) => {
@@ -803,12 +687,19 @@ export function downloadExperimentsAsExcel(
                     });
     
                     // Label the sheet with the replicate number
-                    XLSX.utils.book_append_sheet(wb, ws, `Replicate ${replicateIndex + 1}`);
+                    // XLSX.utils.book_append_sheet(wb, ws, `Replicate ${replicateIndex + 1}`);
+                    XLSX.utils.book_append_sheet(wb, ws, sheetName);
                 }
             }
     
             // Save the workbook
-            XLSX.writeFile(wb, `${fileName}_${descriptor.name.slice(0, headingCharacterLength)}.xlsx`);
+            const filename = `${fileName}_${descriptor.name.slice(0, headingCharacterLength)}.xlsx`;
+            if (shouldReturnWorkbook) {
+                generatedFiles.push({ file: wb, filename, headingRowsBySheet });
+            } else {
+                triggerDownload(wb, filename);
+            }
+            return;
         });
     };
 
@@ -827,10 +718,13 @@ export function downloadExperimentsAsExcel(
         // Create a file for each replicate
         for (let replicateIndex = 0; replicateIndex < maxReplicates; replicateIndex++) {
             const wb = XLSX.utils.book_new();
+            const headingRowsBySheet: Record<string, number[]> = {};
     
-            // Add General Info worksheet
-            const generalInfoWs = createGeneralInfoWorksheet(scaffoldGroups);
-            XLSX.utils.book_append_sheet(wb, generalInfoWs, 'General Info');
+            // === General Info
+            const sheetName = 'General Info';
+            const { worksheet: generalInfoWs, headingRows: generalHeadings } = createGeneralInfoWorksheet(scaffoldGroups);
+            XLSX.utils.book_append_sheet(wb, generalInfoWs, sheetName);
+            headingRowsBySheet[sheetName] = generalHeadings;
     
             // Check if columns are scaffold groups or descriptors
             if (options.columnOption === 'Scaffold Groups' && options.sheetOption === 'Descriptors') {
@@ -839,9 +733,10 @@ export function downloadExperimentsAsExcel(
                     const ws = XLSX.utils.aoa_to_sheet([]);
                     
                     // Add header row with scaffold group IDs
-                    const tableHeaders = [...scaffoldGroups.map(group => `Scaffold Group ${group.id}`)];
+                    const tableHeaders = [...scaffoldGroups.map(group => `Scaffold Group ID ${group.id}`)];
                     XLSX.utils.sheet_add_aoa(ws, [tableHeaders], { origin: { r: 0, c: 0 } });
-    
+                    headingRowsBySheet[descriptor.label.slice(0, headingCharacterLength)] = [0];
+
                     let currentRow = 1; // Start adding data from row 1
     
                     // Add descriptor values for the current replicate
@@ -860,8 +755,8 @@ export function downloadExperimentsAsExcel(
                                 if (isIdValue) {
                                     // Pore descriptor: id,value
                                     raw.split(';').forEach((pair: string) => {
-                                    const [, value] = pair.split(',').map(s => s.trim());
-                                    if (value) valueRows.push(value);
+                                        const [, value] = pair.split(',').map(s => s.trim());
+                                        if (value) valueRows.push(value);
                                     });
                                 } else {
                                     // Global or other: comma-separated values
@@ -884,18 +779,28 @@ export function downloadExperimentsAsExcel(
                     });
     
                     // Add the worksheet to the workbook with the name of the descriptor
-                    XLSX.utils.book_append_sheet(wb, ws, `${descriptor.label.slice(0, headingCharacterLength)}`);
+                    const sheetName = `${descriptor.label.slice(0, headingCharacterLength)}`;
+                    XLSX.utils.book_append_sheet(wb, ws, sheetName);
+                    // XLSX.utils.book_append_sheet(wb, ws, `${descriptor.label.slice(0, headingCharacterLength)}`);
                 });
             } else if (options.columnOption === 'Descriptors' && options.sheetOption === 'Scaffold Groups') {
                 scaffoldGroups.forEach(scaffoldGroup => {
                     const ws = XLSX.utils.aoa_to_sheet([]);
-                    writeSingleReplicateSheetLikeDownload(ws, scaffoldGroup, replicateIndex);
-                    XLSX.utils.book_append_sheet(wb, ws, `Scaffold Group ${scaffoldGroup.id}`);
+                    const headingRows = writeSingleReplicateSheetLikeDownload(ws, scaffoldGroup, replicateIndex);
+                    const sheetName = `Scaffold Group ${scaffoldGroup.id}`;
+                    XLSX.utils.book_append_sheet(wb, ws, sheetName);
+                    headingRowsBySheet[sheetName] = headingRows;
                 });
             }
     
-            // Save the workbook with a filename indicating the replicate number
-            XLSX.writeFile(wb, `${fileName}_Replicate${replicateIndex + 1}.xlsx`);
+            // Save the workbook with a filename indicating the replicate number          
+            const filename = `${fileName}_Replicate${replicateIndex + 1}.xlsx`;
+            if (shouldReturnWorkbook) {
+                // generatedFiles.push({ file: wb, filename });
+                generatedFiles.push({ file: wb, filename, headingRowsBySheet });
+            } else {
+                triggerDownload(wb, filename);
+            }
         }
     };
 
@@ -906,10 +811,13 @@ export function downloadExperimentsAsExcel(
     ) => {
         scaffoldGroups.forEach(scaffoldGroup => {
             const wb = XLSX.utils.book_new();
+            const headingRowsBySheet: Record<string, number[]> = {};
     
             // Add General Info worksheet
-            const generalInfoWs = createGeneralInfoWorksheet([scaffoldGroup]);
-            XLSX.utils.book_append_sheet(wb, generalInfoWs, 'General Info');
+            const { worksheet: generalInfoWs, headingRows: generalHeadings } = createGeneralInfoWorksheet([scaffoldGroup]);
+            const generalSheetName = 'General Info';
+            XLSX.utils.book_append_sheet(wb, generalInfoWs, generalSheetName);
+            headingRowsBySheet[generalSheetName] = generalHeadings;
     
             descriptors.forEach(descriptor => {
                 const ws = XLSX.utils.aoa_to_sheet([]);
@@ -953,11 +861,19 @@ export function downloadExperimentsAsExcel(
                 });
     
                 // Add the worksheet to the workbook with the name of the descriptor
-                XLSX.utils.book_append_sheet(wb, ws, `${descriptor.label.slice(0, headingCharacterLength)}`);
+                // XLSX.utils.book_append_sheet(wb, ws, `${descriptor.label.slice(0, headingCharacterLength)}`);
+                const sheetName = descriptor.label.slice(0, headingCharacterLength);
+                headingRowsBySheet[sheetName] = [0]; // Always row 0 for descriptor sheet headers
+                XLSX.utils.book_append_sheet(wb, ws, sheetName);
             });
     
             // Save the workbook with a filename indicating the scaffold group
-            XLSX.writeFile(wb, `${fileName}_ScaffoldGroup${scaffoldGroup.id}.xlsx`);
+            const filename = `${fileName}_ScaffoldGroup${scaffoldGroup.id}.xlsx`;
+            if (shouldReturnWorkbook) {
+                generatedFiles.push({ file: wb, filename, headingRowsBySheet });
+            } else {
+                triggerDownload(wb, filename);
+            }
         });
     };
 
@@ -998,6 +914,63 @@ export function downloadExperimentsAsExcel(
         // Fallback to creating a standard workbook
         createWorkbook(selectedScaffoldGroups, selectedDescriptorTypes, options.sheetOption, options.columnOption, 'Experiment');
     }
+
+    if (shouldReturnWorkbook) {
+        return { files: generatedFiles };
+    }
+}
+
+function writeSingleReplicateSheetLikeDownload(
+  ws: XLSX.WorkSheet,
+  scaffoldGroup: ScaffoldGroup,
+  replicateIndex: number
+): number[] {
+    const scaffold = scaffoldGroup.scaffolds[replicateIndex];
+    if (!scaffold) return [];
+
+    const headingRows: number[] = [];
+    let currentRow = 0;
+
+    // === Global Descriptors ===
+    const globalHeaders = scaffold.globalDescriptors.map(desc =>
+        `${desc.label}${desc.unit ? ' (' + desc.unit + ')' : ''}`
+    );
+    const globalValues = scaffold.globalDescriptors.map(desc => desc.values);
+
+    headingRows.push(currentRow); // row with column headers
+    XLSX.utils.sheet_add_aoa(ws, [["Global Descriptors"]], { origin: { r: currentRow++, c: 0 } });
+    XLSX.utils.sheet_add_aoa(ws, [globalHeaders], { origin: { r: currentRow, c: 0 } });
+    currentRow++;
+    XLSX.utils.sheet_add_aoa(ws, [globalValues], { origin: { r: currentRow++, c: 0 } });
+
+    let descriptorRowStart = currentRow;
+    let otherHeight = 0;
+    let poreHeight = 0;
+    let colStart = 0;
+
+    // === Other Descriptors ===
+    if (scaffold.otherDescriptors.length > 0) {
+        const { data, maxCol } = layoutDescriptors(scaffold.otherDescriptors, false);
+        headingRows.push(descriptorRowStart); // data[0] is the header row
+        XLSX.utils.sheet_add_aoa(ws, [["Other Descriptors"]], { origin: { r: descriptorRowStart, c: 0 } });
+        XLSX.utils.sheet_add_aoa(ws, data, { origin: { r: descriptorRowStart + 1, c: 0 } });
+        otherHeight = data.length + 1; // +1 for title row
+        colStart = maxCol;
+    }
+
+    // === Pore Descriptors ===
+    if (scaffold.poreDescriptors.length > 0) {
+        const { data } = layoutDescriptors(scaffold.poreDescriptors, true);
+        headingRows.push(descriptorRowStart); // data[0] is the header row
+        XLSX.utils.sheet_add_aoa(ws, [["Pore Descriptors"]], { origin: { r: descriptorRowStart, c: colStart } });
+        XLSX.utils.sheet_add_aoa(ws, data, { origin: { r: descriptorRowStart + 1, c: colStart } });
+        poreHeight = data.length + 1;
+    }
+
+    // === Advance to the taller of the two blocks
+    currentRow = descriptorRowStart + Math.max(otherHeight, poreHeight);
+
+    return Array.from(new Set(headingRows));
 }
 
 function layoutDescriptors(descriptors: Descriptor[], includePoreId: boolean): { data: any[][], maxCol: number } {
@@ -1052,7 +1025,6 @@ function layoutDescriptors(descriptors: Descriptor[], includePoreId: boolean): {
 
     return { data: [headers, ...rows], maxCol };
 }
-
 
 
 

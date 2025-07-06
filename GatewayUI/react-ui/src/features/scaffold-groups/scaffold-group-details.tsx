@@ -40,13 +40,20 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 			});
 	
 			if (downloadedData) {
+				const excelResult = downloadScaffoldGroupAsExcel(downloadedData);
 				openPreviewInNewTab(
-					downloadedData,
-					downloadScaffoldGroupAsExcel,
+					excelResult,    // { file, filename, headingRowsBySheet }
 					triggerDownload,
-					[0, 4],
+					[excelResult],  // optional allFiles dropdown (you can omit or include this)
 					100
 				);
+				// openPreviewInNewTab(
+				// 	downloadedData,
+				// 	downloadScaffoldGroupAsExcel,
+				// 	triggerDownload,
+				// 	[0, 4],
+				// 	100
+				// );
 			}
 		} catch (error) {
 			console.error("Error downloading data:", error);

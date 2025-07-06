@@ -2,44 +2,114 @@ import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import * as XLSX from 'xlsx';
 import AcknowledgementModal from '../../../features/acknowledgement/acknowledgement-modal';
 
-interface ExcelPreviewProps<T> {
-  generateExcel: (data: T) => { file: XLSX.WorkBook, filename: string }; // Function to generate Excel file and filename
-  handleDownload: (workbook: XLSX.WorkBook, filename: string) => void; // Function to handle downloading the Excel file
-  data: T; // Data to be passed to generateExcel
-  size?: string; // Optional size for the preview box
+// interface ExcelPreviewProps<T> {
+//   generateExcel: (data: T) => { file: XLSX.WorkBook, filename: string };
+//   handleDownload: (workbook: XLSX.WorkBook, filename: string) => void;
+//   data: T;
+//   size?: string;
+//   headingRows?: number[];
+//   numRows?: number;
+// }
+// interface ExcelPreviewProps {
+//   data: {
+//     file: XLSX.WorkBook;
+//     filename: string;
+//     headingRowsBySheet?: Record<string, number[]>;
+//   },
+//   generateExcel: () => { file: XLSX.WorkBook; filename: string };
+//   handleDownload: (workbook: XLSX.WorkBook, filename: string) => void;
+//   size?: string;
+//   headingRows?: number[];
+//   numRows?: number;
+// }
+
+interface ExcelPreviewProps {
+  data: {
+    file: XLSX.WorkBook;
+    filename: string;
+    headingRowsBySheet?: Record<string, number[]>;
+  };
+  handleDownload: (workbook: XLSX.WorkBook, filename: string) => void;
+  allFiles?: {
+    file: XLSX.WorkBook;
+    filename: string;
+    headingRowsBySheet?: Record<string, number[]>;
+  }[];
+  fileIndex?: number;
+  onFileChange?: (index: number) => void;
+  size?: string;
   headingRows?: number[];
   numRows?: number;
 }
 
-const ExcelPreview = <T extends {}>({ generateExcel, data, handleDownload, headingRows, numRows }: ExcelPreviewProps<T>) => {
-  const [excelData, setExcelData] = useState<any[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
-  const [workbook, setWorkbook] = useState<XLSX.WorkBook | null>(null);
-  const [filename, setFilename] = useState<string>(''); // Track the filename for download
-  const [showAcknowledgement, setShowAcknowledgement] = useState(false);
-  const resolvedHeadingRows = useMemo(() => headingRows ?? [0], [headingRows]);
-  const resolvedNumRows = numRows ?? 100;
 
-  // Function to generate Excel and preview data
+const ExcelPreview = ({
+  data,
+  handleDownload,
+  allFiles,
+  fileIndex,
+  onFileChange,
+  headingRows,
+  numRows = 100
+}: ExcelPreviewProps) => {
+  const [excelData, setExcelData] = useState<any[][]>([]);
+  const [workbook, setWorkbook] = useState<XLSX.WorkBook | null>(null);
+  const [filename, setFilename] = useState<string>('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [showAcknowledgement, setShowAcknowledgement] = useState(false);
+  const [selectedSheetIndex, setSelectedSheetIndex] = useState(0);
+
+  const resolvedHeadingRows = useMemo(() => {
+    if (!workbook) return [0]; // fallback if workbook hasn't been set yet
+
+    const sheetName = workbook.SheetNames[selectedSheetIndex] ?? '';
+    const headings = (
+      headingRows ??
+      data.headingRowsBySheet?.[sheetName] ??
+      [0]
+    );
+
+    return headings;
+  }, [workbook, selectedSheetIndex, headingRows, data.headingRowsBySheet]);
+
+
+  // Identify default sheet index (e.g., first non-"General Info")
+  const getDefaultSheetIndex = (wb: XLSX.WorkBook): number => {
+    const idx = wb.SheetNames.findIndex(name => !/general info/i.test(name));
+    return idx !== -1 ? idx : 0;
+  };
+
   const previewExcel = useCallback(() => {
     setLoading(true);
     setError(null);
     try {
-      // Generate the workbook and preview data using the passed generateExcel function
-      const { file, filename } = generateExcel(data);
-      setWorkbook(file); // Store the workbook for download
-      setFilename(filename); // Store the filename for download
-      // const previewData = XLSX.utils.sheet_to_json(file.Sheets[file.SheetNames[1]], { header: 1 }); // Preview the first sheet
-      // setExcelData(previewData.slice(0, 100)); // Show only the first 5 rows for preview
-      const rawData: any[][] = XLSX.utils.sheet_to_json(file.Sheets[file.SheetNames[1]], { header: 1 });
+      const { file, filename } = data;
+      setWorkbook(file);
+      setFilename(filename);
 
-      // Normalize rows to match header length
+      const sheet = file.Sheets[file.SheetNames[selectedSheetIndex]];
+      const rawData: any[][] = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+
+      const headerSet = new Set(resolvedHeadingRows);
+      const guaranteedRows = new Set<number>();
+
+      resolvedHeadingRows.forEach(row => {
+        guaranteedRows.add(row);
+        if (row + 1 < rawData.length) guaranteedRows.add(row + 1);
+      });
+
+      const rowIndicesToShow: number[] = [];
+
+      for (let i = 0; i < rawData.length && rowIndicesToShow.length < numRows; i++) {
+        if (guaranteedRows.has(i) || rowIndicesToShow.length < numRows) {
+          rowIndicesToShow.push(i);
+        }
+      }
+
       const numCols = rawData.reduce((max, row) => Math.max(max, row.length), 0);
-
-      const maxHeadingRow = Math.max(...resolvedHeadingRows);
-      const sliceLimit = Math.max(resolvedNumRows, maxHeadingRow + 1);
-      const normalizedData = rawData.slice(0, sliceLimit).map(row => {
+      const normalizedData = rowIndicesToShow.map(rowIndex => {
+        const row = rawData[rowIndex] ?? [];
         const padded = Array(numCols).fill('');
         row.forEach((cell: any, i: number) => {
           padded[i] = cell;
@@ -47,87 +117,116 @@ const ExcelPreview = <T extends {}>({ generateExcel, data, handleDownload, headi
         return padded;
       });
 
-      setExcelData(normalizedData); // Show only the first 5 rows for preview
-
-
+      setExcelData(normalizedData);
       setLoading(false);
     } catch (err) {
+      console.error('Preview error:', err);
       setError('Error creating or reading Excel file');
       setLoading(false);
     }
-  }, [data, generateExcel, resolvedHeadingRows, resolvedNumRows]);
+  }, [data, numRows, resolvedHeadingRows, selectedSheetIndex]);
 
-  const handleDownloadClick = () => {
-    setShowAcknowledgement(true);
-  };
-
+  const handleDownloadClick = () => setShowAcknowledgement(true);
   const handleConfirmAcknowledgement = () => {
     setShowAcknowledgement(false);
-    if (workbook && filename) {
+
+    if (allFiles && allFiles.length > 1) {
+      allFiles.forEach(({ file, filename }) => {
+        handleDownload(file, filename);
+      });
+    } else if (workbook && filename) {
       handleDownload(workbook, filename);
     }
   };
 
   const formatCellValue = (cell: any) => {
-    // Only parse if it's a clean number (no GUIDs or mixed strings)
     if (typeof cell === 'string' && !/^\s*-?\d+(\.\d+)?\s*$/.test(cell)) {
       return cell;
     }
-  
     const parsed = Number(cell);
     if (isNaN(parsed)) return cell;
-  
     if (Number.isInteger(parsed)) return parsed;
-  
-    // Use exponential notation for very small or large numbers
     if (Math.abs(parsed) < 1e-4 || Math.abs(parsed) >= 1e+6) {
-      return parsed.toExponential(3); // 4 sig figs = 1 digit before decimal + 3 after
+      return parsed.toExponential(3);
     }
-  
-    // Otherwise use regular precision (4 sig figs) and trim trailing .0
-    const formatted = Number(parsed.toPrecision(4));
-    return formatted;
+    return Number(parsed.toPrecision(4));
   };
-
-  // Generate the preview when the component mounts or when data changes
-  useEffect(() => {
-    previewExcel();
-  }, [data, previewExcel]);
 
   const tableSections = useMemo(() => {
     const sections: { headerRow: any[]; bodyRows: any[][] }[] = [];
-  
     for (let i = 0; i < resolvedHeadingRows.length; i++) {
       const start = resolvedHeadingRows[i];
       const end = resolvedHeadingRows[i + 1] ?? excelData.length;
-  
       const headerRow = excelData[start] ?? [];
       const bodyRows = excelData.slice(start + 1, end);
       sections.push({ headerRow, bodyRows });
     }
-  
     return sections;
   }, [excelData, resolvedHeadingRows]);
-  
+
+  // On mount or when data changes
+  useEffect(() => {
+    // const { file } = generateExcel(data);
+    const { file, } = data;
+    const defaultIndex = getDefaultSheetIndex(file);
+    setSelectedSheetIndex(defaultIndex);
+    setWorkbook(file);
+    setFilename(file.Props?.Title || 'Preview.xlsx');
+  }, [data]);
+
+  // When selected sheet changes or workbook is ready
+  useEffect(() => {
+    if (workbook) {
+      previewExcel();
+    }
+  }, [selectedSheetIndex, workbook, previewExcel]);
+
   return (
     <div className="relative w-full h-full">
       {/* Fixed Header Bar */}
       <div className="fixed top-0 left-0 right-0 bg-white shadow z-10 flex justify-between items-center px-4 py-2 border-b">
-        <div className="text-sm font-medium text-gray-700">
-          {filename}
-          <span className="text-gray-500 italic"> - Replicate 1 (showing first {resolvedNumRows} rows)</span>
+        <div className="text-sm font-medium text-gray-700 flex items-center gap-3">
+          <span>{filename}</span>
+          {workbook && workbook.SheetNames.length > 1 && (
+            <select
+              value={selectedSheetIndex}
+              onChange={(e) => setSelectedSheetIndex(Number(e.target.value))}
+              className="text-sm border rounded px-2 py-1"
+            >
+              {workbook.SheetNames.map((name, idx) => (
+                <option key={name} value={idx}>{name}</option>
+              ))}
+            </select>
+          )}
+          {allFiles && allFiles?.length > 1 && (
+            <select
+              value={fileIndex}
+              onChange={(e) => onFileChange?.(Number(e.target.value))}
+              className="text-sm border rounded px-2 py-1"
+            >
+              {allFiles.map((f, idx) => (
+                <option key={idx} value={idx}>
+                  {f.filename}
+                </option>
+              ))}
+            </select>
+          )}
+
+          <span className="text-gray-500 italic">
+            – Showing first {numRows} rows
+          </span>
         </div>
         <button
-          // onClick={() => workbook && filename && handleDownload(workbook, filename)}
           onClick={handleDownloadClick}
           className="px-4 py-2 rounded transition bg-blue-600 text-white hover:bg-blue-700 text-sm"
         >
           Download
         </button>
       </div>
-  
+
+      {/* Loading State */}
       {loading && (
-        <div className="flex flex-col items-center justify-center h-[80vh] text-gray-600 text-sm">
+        <div className="flex flex-col items-center justify-center h-[80vh] text-gray-600 text-sm mt-20">
           <svg className="animate-spin h-5 w-5 text-blue-600 mb-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
             <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
@@ -136,8 +235,9 @@ const ExcelPreview = <T extends {}>({ generateExcel, data, handleDownload, headi
         </div>
       )}
 
+      {/* Error State */}
       {error && (
-        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-20" role="alert">
           <strong className="font-bold">Error: </strong>
           <span className="block sm:inline">{error}</span>
           <button
@@ -150,8 +250,9 @@ const ExcelPreview = <T extends {}>({ generateExcel, data, handleDownload, headi
         </div>
       )}
 
+      {/* Table Preview */}
       {!loading && !error && excelData.length > 0 && (
-        <div className="bg-white shadow-md p-2 overflow-auto space-y-8 mt-14">
+        <div className="bg-white shadow-md p-2 overflow-auto space-y-8 mt-20">
           {tableSections.map((section, sectionIndex) => (
             <table key={sectionIndex} className="text-xs table-auto w-full border">
               <thead>

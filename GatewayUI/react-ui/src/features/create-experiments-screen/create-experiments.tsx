@@ -8,7 +8,7 @@ import { ScaffoldGroup } from "../../app/models/scaffoldGroup";
 import DescriptorFilters from "../descriptors/descriptor-filters";
 import { DescriptorType } from "../../app/models/descriptorType";
 import { FaSpinner } from 'react-icons/fa';
-import { downloadExperimentsAsExcel } from '../../app/common/excel-generator/excel-generator';
+import { downloadExperimentsAsExcel, triggerDownload } from '../../app/common/excel-generator/excel-generator';
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import ExperimentSidebar from "./experiment-sidebar";
 import ScaffoldGroupsFilterResults from "../scaffold-groups/scaffold-group-filter-results";
@@ -17,6 +17,7 @@ import AISearchBar from "../../app/common/ai-search-bar/ai-seach-bar";
 import { SearchContextSummary } from "../../app/common/ai-search-bar/search-context-summary";
 import { Sidebar } from "../../app/common/sidebar/sidebar";
 import AcknowledgementModal from "../acknowledgement/acknowledgement-modal";
+import { openPreviewInNewTab } from "../../app/common/new-tab-preview/new-tab-preview";
 
 type OptionKey = 'excelFileOption' | 'sheetOption' | 'columnOption' | 'stackedColumnOption';
 
@@ -97,13 +98,80 @@ const CreateExperiments = () => {
         setSelectedScaffoldGroups(selectedScaffoldGroups.filter(group => group.id !== scaffoldGroupId));
     };
 
-    const handleDownloadClick = () => {
-        setShowAcknowledgement(true);
-    };
+    // const handleDownloadClick = () => {
+    //     setShowAcknowledgement(true);
+    // };
 
     const handleConfirmAcknowledgement = () => {
         setShowAcknowledgement(false);
         handleGetExperiment();
+    };
+
+    // const generatePreviewWorkbook = (data: {
+    //     scaffoldGroups: ScaffoldGroup[];
+    //     selectedDescriptorTypes: DescriptorType[];
+    //     options: any;
+    // }): { file: XLSX.WorkBook; filename: string } => {
+    //     const { scaffoldGroups, selectedDescriptorTypes, options } = data;
+    //     const result = downloadExperimentsAsExcel(scaffoldGroups, selectedDescriptorTypes, options, true);
+
+    //     if (!result || !result.files || result.files.length === 0) {
+    //         throw new Error("No workbook files returned for preview.");
+    //     }
+
+    //     // Return only the first file for preview
+    //     return result.files[0];
+    // };
+
+    const handlePreviewClick = async () => {
+        setError(null);
+
+        if (selectedScaffoldGroups.length === 0) {
+            setError("You must first select the scaffold groups you want to preview");
+            return;
+        }
+
+        if (selectedDescriptorTypes.length === 0) {
+            setError("You must first select the descriptors you want to preview");
+            return;
+        }
+
+        setIsLoading(true);
+
+        try {
+            const scaffoldGroups = await getDetailedScaffoldGroupsForExperiment(
+                selectedScaffoldGroups.map((sg) => sg.id),
+                selectedDescriptorTypes.map((dt) => dt.id),
+                replicatesByGroup
+            );
+
+            if (scaffoldGroups) {
+                const result = downloadExperimentsAsExcel(scaffoldGroups, selectedDescriptorTypes, options, true);
+
+                if (result && result.files.length > 0) {
+                    const [firstFile] = result.files;
+                    const { file, filename, headingRowsBySheet } = firstFile;
+
+                    // Determine the first sheet name
+                    const firstSheetName = file.SheetNames[0];
+                    const headingRows = headingRowsBySheet?.[firstSheetName] ?? [0]; // fallback to [0]
+
+                    openPreviewInNewTab(
+                        firstFile,         // includes file, filename, headingRowsBySheet
+                        triggerDownload,
+                        result.files,
+                        100
+                    );
+                } else {
+                    setError("Preview failed: no files were generated.");
+                }
+            }
+        } catch (err) {
+            console.error("Preview failed:", err);
+            setError("Something went wrong while generating the preview.");
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     const handleGetExperiment = async () => {
@@ -123,7 +191,7 @@ const CreateExperiments = () => {
             selectedDescriptorTypes.map(dt => dt.id),
             replicatesByGroup
           );
-          console.log(scaffoldGroups);
+        //   console.log(scaffoldGroups);
           if (scaffoldGroups) {
             downloadExperimentsAsExcel(scaffoldGroups, selectedDescriptorTypes, options);
           }
@@ -133,9 +201,9 @@ const CreateExperiments = () => {
         } finally {
           setIsLoading(false);
         }
-      };
+    };
 
-      const handleOptionChange = (optionName: OptionKey, value: string) => {
+    const handleOptionChange = (optionName: OptionKey, value: string) => {
         let newOptions = { ...options, [optionName]: value };
         
         // All available options
@@ -377,9 +445,12 @@ const CreateExperiments = () => {
                                 <p className="text-xl mb-2 md:mb-4 w-full">3. Design your output layout</p>
                                 <div className="flex justify-end space-x-1 w-full md:w-auto">
                                     <button className="button-outline whitespace-nowrap" onClick={() => setExperimentStage(2)}>Back</button>
-                                    {/* <button className="button-outline" onClick={() => handleGetExperiment()}>Generate Output</button> */}
-                                    <button className="button-outline flex items-center gap-2 whitespace-nowrap" onClick={() => handleDownloadClick()}>
+                                    {/* <button className="button-outline flex items-center gap-2 whitespace-nowrap" onClick={() => handleDownloadClick()}>
                                         Download Data
+                                        {isLoading && <FaSpinner className="animate-spin text-current text-[1em]" />}
+                                    </button> */}
+                                    <button className="button-outline flex items-center gap-2 whitespace-nowrap" onClick={handlePreviewClick}>
+                                        Preview Data
                                         {isLoading && <FaSpinner className="animate-spin text-current text-[1em]" />}
                                     </button>
                                 </div>
