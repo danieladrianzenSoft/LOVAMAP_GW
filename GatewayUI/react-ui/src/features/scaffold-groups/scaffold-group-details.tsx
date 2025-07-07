@@ -7,10 +7,11 @@ import { useStore } from '../../app/stores/store';
 import { observer } from 'mobx-react-lite';
 import { FaSpinner } from 'react-icons/fa';
 import { openPreviewInNewTab } from '../../app/common/new-tab-preview/new-tab-preview';
-import { PoreInfo } from '../../app/models/poreInfo';
+import { PoreInfoForScaffold } from '../../app/models/poreInfo';
 import { HistogramPlot } from '../plotting/histogram-plot';
 import PlotSelector from '../../app/common/plot-selector/plot-selector';
 import History from "../../app/helpers/History";
+import { PORE_DESCRIPTOR_MAP } from '../../constants/pore-descriptors';
 
 interface ScaffoldGroupDetailsProps {
     scaffoldGroup: ScaffoldGroup;
@@ -30,7 +31,17 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
     const {scaffoldGroupStore, descriptorStore} = useStore();
 	const {getDetailedScaffoldGroupById, navigateToVisualization} = scaffoldGroupStore;
 	const [isLoading, setIsLoading] = useState<boolean>(false);
-	const [poreInfo, setPoreInfo] = useState<PoreInfo>();
+	const [poreInfo, setPoreInfo] = useState<PoreInfoForScaffold>();
+
+	const descriptorValueMap = useMemo(() => {
+		if (!poreInfo) return {};
+
+		const map: Record<number, number[]> = {};
+		for (const d of poreInfo.descriptors) {
+			map[d.descriptorTypeId] = d.values ?? [];
+		}
+		return map;
+	}, [poreInfo]);
 
 	const download = useCallback(async (values: any, setErrors: Function) => {
 		setIsLoading(true);
@@ -47,13 +58,6 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 					[excelResult],  // optional allFiles dropdown (you can omit or include this)
 					100
 				);
-				// openPreviewInNewTab(
-				// 	downloadedData,
-				// 	downloadScaffoldGroupAsExcel,
-				// 	triggerDownload,
-				// 	[0, 4],
-				// 	100
-				// );
 			}
 		} catch (error) {
 			console.error("Error downloading data:", error);
@@ -66,9 +70,10 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 	const getPoreInfo = useCallback(async (scaffoldGroupId: number) => {
 		setIsLoading(true);
 		try {
-			const poreInfo = await descriptorStore.getPoreInfo(scaffoldGroupId);
-			if (poreInfo) {
-				setPoreInfo(poreInfo);
+			const groupData = await descriptorStore.getPoreInfoForScaffoldGroup(scaffoldGroupId);
+			if (groupData?.scaffolds?.length) {
+			// If you only want the first scaffold’s data:
+				setPoreInfo(groupData.scaffolds[0]); // a PoreInfoScaffoldDto
 			}
 		} catch (error) {
 			console.error(error);
@@ -87,59 +92,6 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 		}
 		// Only refetch if scaffoldGroup.id or visibility changes
 	}, [isVisible, scaffoldGroup.id, getPoreInfo]);
-	
-	const poreVolumeValues = useMemo(() => {
-		if (!poreInfo?.poreVolume) return [];
-		try {
-			const parsed = typeof poreInfo.poreVolume === 'string'
-				? JSON.parse(poreInfo.poreVolume)
-				: poreInfo.poreVolume;
-			return parsed.map((item: any) => item.value);
-		} catch (e) {
-			console.error("Failed to parse poreVolume", e);
-			return [];
-		}
-	}, [poreInfo]);
-
-	const poreAspectRatioValues = useMemo(() => {
-		if (!poreInfo?.poreAspectRatio) return [];
-		try {
-			const parsed = typeof poreInfo.poreAspectRatio === 'string'
-				? JSON.parse(poreInfo.poreAspectRatio)
-				: poreInfo.poreAspectRatio;
-			return parsed.map((item: any) => item.value);
-		} catch (e) {
-			console.error("Failed to parse poreAspectRatio", e);
-			return [];
-		}
-	}, [poreInfo]);
-
-	const poreSurfaceAreaValues = useMemo(() => {
-		if (!poreInfo?.poreSurfaceArea) return [];
-		try {
-			const parsed = typeof poreInfo.poreSurfaceArea === 'string'
-				? JSON.parse(poreInfo.poreSurfaceArea)
-				: poreInfo.poreSurfaceArea;
-			return parsed.map((item: any) => item.value);
-		} catch (e) {
-			console.error("Failed to parse poreSurfaceArea", e);
-			return [];
-		}
-	}, [poreInfo]);
-
-	const poreLongestLengthValues = useMemo(() => {
-		if (!poreInfo?.poreLongestLength) return [];
-		try {
-			const parsed = typeof poreInfo.poreLongestLength === 'string'
-				? JSON.parse(poreInfo.poreLongestLength)
-				: poreInfo.poreLongestLength;
-			return parsed.map((item: any) => item.value);
-		} catch (e) {
-			console.error("Failed to parse poreLongestLength", e);
-			return [];
-		}
-	}, [poreInfo]);
-	
 	
 	const maxHeight = isVisible ? "500px" : "0px";
 
@@ -213,90 +165,65 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 
 						<div className="flex flex-col items-center mt-8">
 							<p className="mt-0 -mb-5">Interior Pore Descriptors</p>
-							<PlotSelector
-								initialKey="volume"
-								plots={[
-									{
-										key: 'volume',
-										label: 'Volume',
-										component: poreVolumeValues.length > 0 ? (
-											<HistogramPlot
-												data={poreVolumeValues}
-												xlabel="Pore Volume"
-												hideYLabels
-												showHoverInfo={true}
-												interactive={false}
-											/>
+							{Object.keys(descriptorValueMap).length > 0 && (
+								<PlotSelector
+									initialKey="volume"
+									plots={[
+									...PORE_DESCRIPTOR_MAP.filter(d => d.showInDetails).map(d => ({
+										key: d.key,
+										label: d.label,
+										component: descriptorValueMap[d.typeId]?.length > 0 ? (
+										<HistogramPlot
+											data={descriptorValueMap[d.typeId]}
+											xlabel={d.xlabel}
+											hideYLabels
+											showHoverInfo={true}
+											interactive={false}
+										/>
 										) : (
-											<div className="text-sm text-gray-400 mt-4">No data for Pore Volume</div>
+										<div className="text-sm text-gray-400 mt-4">No data for {d.label}</div>
 										)
-									},
-									{
-										key: 'surfaceArea',
-										label: 'Surface Area',
-										component: poreSurfaceAreaValues.length > 0 ? (
-											<HistogramPlot
-												data={poreSurfaceAreaValues}
-												xlabel="Pore Surface Area"
-												hideYLabels
-												showHoverInfo={true}
-												interactive={false}
-											/>
-										) : (
-											<div className="text-sm text-gray-400 mt-4">No data for Surface Area</div>
-										)
-									},
-									{
-										key: 'aspect',
-										label: 'Aspect Ratio',
-										component: poreAspectRatioValues.length > 0 ? (
-											<HistogramPlot
-												data={poreAspectRatioValues}
-												xlabel="Pore Aspect Ratio"
-												hideYLabels
-												showHoverInfo={true}
-												interactive={false}
-											/>
-										) : (
-											<div className="text-sm text-gray-400 mt-4">No data for Aspect Ratio</div>
-										)
-									},
-									{
-										key: 'longestLength',
-										label: 'Longest Length',
-										component: poreLongestLengthValues.length > 0 ? (
-											<HistogramPlot
-												data={poreLongestLengthValues}
-												xlabel="Pore Longest Length"
-												hideYLabels
-												showHoverInfo={true}
-												interactive={false}
-											/>
-										) : (
-											<div className="text-sm text-gray-400 mt-4">No data for Longest Length</div>
-										)
-									},
+									})),
 									{
 										key: 'more',
 										label: 'More...',
 										component: (
-											<div className="text-sm text-gray-400 italic mt-4" >Redirecting...</div>
+										<div className="text-sm text-gray-400 italic mt-4">Redirecting...</div>
 										),
-										onClick: () => {navigateToDataVisualization(scaffoldGroup.id)}
+										onClick: () => navigateToDataVisualization(scaffoldGroup.id)
 									}
+									]}
+								/>
+							)}
+							{/* <PlotSelector
+								initialKey="volume"
+								plots={[
+								...PORE_DESCRIPTOR_MAP.filter(d => d.showInDetails).map(d => ({
+									key: d.key,
+									label: d.label,
+									component: descriptorValueMap[d.typeId]?.length > 0 ? (
+									<HistogramPlot
+										data={descriptorValueMap[d.typeId]}
+										xlabel={d.xlabel}
+										hideYLabels
+										showHoverInfo={true}
+										interactive={false}
+									/>
+									) : (
+									<div className="text-sm text-gray-400 mt-4">No data for {d.label}</div>
+									)
+								})),
+								{
+									key: 'more',
+									label: 'More...',
+									component: (
+									<div className="text-sm text-gray-400 italic mt-4">Redirecting...</div>
+									),
+									onClick: () => { navigateToDataVisualization(scaffoldGroup.id); }
+								}
 								]}
-							/>
+							/> */}
 						</div>
-
-						{/* <button
-							className={`mt-4 px-4 py-2 rounded transition ${
-									"bg-blue-600 text-white hover:bg-blue-700"
-							}`}
-							onClick={() => navigateToVisualization(scaffoldGroup)}
-						>
-							Interact
-						</button> */}
-						
 					</div>
 					<div className="flex-1 p-4 w-full">
 						<div className="flex flex-wrap gap-x-1 gap-y-1 mb-4">

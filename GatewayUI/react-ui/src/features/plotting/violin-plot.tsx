@@ -149,7 +149,8 @@ export const ViolinPlot: React.FC<ViolinPlotProps> = ({
 			}}
 			useResizeHandler
 			// revision={data.reduce((sum, g) => sum + g.length, 0)} // update on data change
-			revision={`${data.length}-${useLogScale}`}
+			// revision={`${data.length}-${useLogScale}`}
+			revision={data.length + (useLogScale ? 1000 : 0)}
 			plotly={PlotlyLoader}
 		/>
 	);

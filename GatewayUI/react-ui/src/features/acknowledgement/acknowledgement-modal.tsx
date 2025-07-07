@@ -24,14 +24,14 @@ const AcknowledgementModal: React.FC<AcknowledgementModalProps> = ({
 				</div>
 
 				<div className="text-sm text-gray-600 mb-4 leading-relaxed">
-					We're glad you're using LOVAMAP and its associated data. If you include this data in your work, please cite the following publication:
+					We're glad you're using LOVAMAP and its associated data and visualizations. If you include our data/images in your work, we kindly ask that you cite our publication:
 
 					<br /><br />
 					<strong>
 						Riley, L., Cheng, P., & Segura, T. <i>Identification and analysis of 3D pores in packed particulate materials.</i> Nat Comput Sci <b>3</b>, 975-992 (2023). https://doi.org/10.1038/s43588-023-00551-x
 					</strong>
 					<br /><br />
-					Additionally, we kindly ask that you acknowledge Duke University's Materials in Medicine Center in your manuscript.
+					Additionally, please acknowledge Duke University's Materials in Medicine Center in your manuscript.
 
 					<br /><br />
 					Thank you for supporting open science.

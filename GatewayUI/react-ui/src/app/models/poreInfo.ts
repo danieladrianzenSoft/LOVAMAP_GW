@@ -1,3 +1,5 @@
+import { Descriptor, DescriptorValue } from "./descriptor";
+
 export interface PoreInfo {
 	scaffoldGroupId: number;
 	scaffoldId: number;
@@ -7,15 +9,13 @@ export interface PoreInfo {
 	poreLongestLength: string;
 }
 
+export interface PoreInfoForScaffold {
+  scaffoldId: number;
+  descriptors: DescriptorValue[];
+}
+
 export interface PoreInfoForScaffoldGroup {
   scaffoldGroupId: number;
   scaffolds: PoreInfoForScaffold[];
-}
-
-export interface PoreInfoForScaffold {
-    scaffoldId: number;
-    poreVolume?: number[];
-    poreSurfaceArea?: number[];
-    poreLongestLength?: number[];
-    poreAspectRatio?: number[];
+  descriptorTypes: Descriptor[];
 }

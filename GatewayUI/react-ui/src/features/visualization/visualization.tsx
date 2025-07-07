@@ -11,10 +11,11 @@ import SelectedPanel from './selected-panel';
 import * as THREE from 'three';
 import UpdateDomainModal from './update-domain-modal';
 import ScreenshotViewer from './screenshot-viewer';
-import { ImageCategory, ImageToCreate } from '../../app/models/image';
+import { ImageToCreate } from '../../app/models/image';
 import PoresPanel from './pores-panel';
 import ParticlesPanel from './particles-panel';
 import { useUndoManager } from '../../app/common/hooks/useUndoManager';
+import AcknowledgementModal from '../acknowledgement/acknowledgement-modal';
 
 const Visualization: React.FC = () => {
 	// Store access
@@ -34,6 +35,7 @@ const Visualization: React.FC = () => {
 	// const [showHelp, setShowHelp] = useState(false);
 	const [, setError] = useState<string | null>(null);
 	const [isLoading, setIsLoading] = useState(false);
+	const [showAcknowledgement, setShowAcknowledgement] = useState(false);
 	const currentlyLoadingScaffoldIdRef = useRef<number | null>(null);
 
   	const [showParticlesPanelOpen, setShowParticlesPanelOpen] = useState(true);
@@ -44,6 +46,7 @@ const Visualization: React.FC = () => {
 	const [areEdgePoresHidden, setAreEdgePoresHidden] = useState(false);
 	const [dimAppliedOnce, setDimAppliedOnce] = useState(false);
 
+	const canvasRef = useRef<HTMLCanvasElement | null>(null);
 	const resolvedScaffoldId = params.scaffoldId ? parseInt(params.scaffoldId, 10) : null;
 	const canEdit = userStore.user?.roles?.includes("administrator") ?? false;
 
@@ -54,12 +57,12 @@ const Visualization: React.FC = () => {
 
 	const [dimmedParticles, setDimmedParticles] = useState(false);
 	const [theme, setTheme] = useState<'Default' | 'Metallic'>('Default');
-	const [dimmedPores, setDimmedPores] = useState(false);
-	const [poreOpacity, setPoreOpacity] = useState(1);
+	const [dimmedPores, ] = useState(false);
+	const [poreOpacity, ] = useState(1);
 	const [particleOpacity, setParticleOpacity] = useState(1);
 	const [userOverrideParticleOpacity, setUserOverrideParticleOpacity] = useState(false);
-	const [poreColor, setPoreColor] = useState(null);
-	const [particleColor, setParticleColor] = useState(null);
+	// const [poreColor, setPoreColor] = useState(null);
+	const [, setParticleColor] = useState(null);
 	const [slicingActive, setSlicingActive] = useState(false);
 	const [sliceXThreshold, setSliceXThreshold] = useState<number | null>(null);
 	// const [sliceHiddenParticleIds, setSliceHiddenParticleIds] = useState<Set<string>>(new Set());
@@ -68,10 +71,7 @@ const Visualization: React.FC = () => {
 		max: THREE.Vector3;
 		} | null>(null);
 
-	// const screenshotCategory = selectedCategories[0];
 	const [screenshotCategory, setScreenshotCategory] = useState<number | null>(null);
-	// const meshUrlReady = !!(screenshotCategory != null && domainStore.getActiveMeshUrl(screenshotCategory));
-
 
 	const defaultDimmedOptions = useMemo(() => ({
 		color: '#E7F6E3',
@@ -440,7 +440,6 @@ const Visualization: React.FC = () => {
 	}
 
 	const handleScreenshotUpload = async (blob: Blob) => {
-		console.log(`[HANDLESCREESHOTUPLOAD]: selectedScaffoldId: ${selectedScaffoldId}, screenshotCategory: ${screenshotCategory}`)
 		if (!selectedScaffoldGroupId || screenshotCategory == null) return;
 		try {
 			const image: ImageToCreate = {
@@ -516,6 +515,25 @@ const Visualization: React.FC = () => {
 		}
 	};
 
+	const handleManualScreenshot = () => setShowAcknowledgement(true);
+
+	const handleConfirmAcknowledgement = () => {
+		const canvas = canvasRef.current;
+		if (canvas) {
+			canvas.toBlob((blob) => {
+				if (!blob) return;
+	
+				const url = URL.createObjectURL(blob);
+				const link = document.createElement("a");
+				link.href = url;
+				link.download = `scaffold-${selectedScaffoldId}.png`;
+				link.click();
+				URL.revokeObjectURL(url);
+			}, "image/png");
+		}
+		setShowAcknowledgement(false);
+	};
+
 	// active category: particles - 0, pores = 1
 	const activeCategory =
 		showParticlesPanelOpen ? 0 :
@@ -531,7 +549,12 @@ const Visualization: React.FC = () => {
 			<div className="w-full h-full rounded-lg">
 				{!isLoading && meshList.length > 0 && (
 					<div className="h-full w-full -mt-16">
-						<CanvasViewer meshes={meshList} onSliceBoundsComputed={setSliceDomainBounds} theme={theme} />
+						<CanvasViewer 
+							meshes={meshList} 
+							onSliceBoundsComputed={setSliceDomainBounds} 
+							onCanvasCreated={(el) => canvasRef.current = el}
+							theme={theme} 
+						/>
 					</div>
 				)}
 				{!isLoading && meshList.length === 0 && (
@@ -583,6 +606,7 @@ const Visualization: React.FC = () => {
 					selectedCategories={selectedCategories}
 					onCategoryChange={setSelectedCategories}
 					domain={particleDomain}
+					onScreenshot={handleManualScreenshot}
 					// canEdit={canEdit}
 					// onEditClick={() => setIsModalOpen(true)}
 					theme={theme}
@@ -669,6 +693,12 @@ const Visualization: React.FC = () => {
 					/>
 				</div>
 			)}
+
+			<AcknowledgementModal
+				isOpen={showAcknowledgement}
+				onClose={() => setShowAcknowledgement(false)}
+				onConfirm={handleConfirmAcknowledgement}
+			/>
 		</div>
 	);
 };

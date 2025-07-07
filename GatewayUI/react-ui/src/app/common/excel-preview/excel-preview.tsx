@@ -91,7 +91,7 @@ const ExcelPreview = ({
       const sheet = file.Sheets[file.SheetNames[selectedSheetIndex]];
       const rawData: any[][] = XLSX.utils.sheet_to_json(sheet, { header: 1 });
 
-      const headerSet = new Set(resolvedHeadingRows);
+      // const headerSet = new Set(resolvedHeadingRows);
       const guaranteedRows = new Set<number>();
 
       resolvedHeadingRows.forEach(row => {

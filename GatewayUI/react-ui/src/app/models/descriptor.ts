@@ -11,3 +11,8 @@ export interface DescriptorToCreate {
     value: number | null;
     values: number[] | null;
 }
+
+export interface DescriptorValue {
+  descriptorTypeId: number;
+  values: number[];
+}

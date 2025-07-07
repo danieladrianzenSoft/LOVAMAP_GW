@@ -29,18 +29,19 @@ interface CanvasViewerProps {
   meshes: DomainMeshProps[];
   theme?: 'Default' | 'Metallic';
   onSliceBoundsComputed?: (bounds: { min: THREE.Vector3; max: THREE.Vector3 }) => void;
+  onCanvasCreated?: (canvas: HTMLCanvasElement) => void;
 }
 
-const CanvasViewer: React.FC<CanvasViewerProps> = ({ meshes, theme, onSliceBoundsComputed }) => {
-  const [centers, setCenters] = useState<THREE.Vector3[]>([]);
-  const [combinedCenter, setCombinedCenter] = useState<THREE.Vector3 | null>(null);
-  const [particleCenters, setParticleCenters] = useState<THREE.Vector3[]>([]);
+const CanvasViewer: React.FC<CanvasViewerProps> = ({ meshes, theme, onSliceBoundsComputed, onCanvasCreated }) => {
+  // const [centers, setCenters] = useState<THREE.Vector3[]>([]);
+  const [combinedCenter, ] = useState<THREE.Vector3 | null>(null);
+  const [, setParticleCenters] = useState<THREE.Vector3[]>([]);
   const [particleBounds, setParticleBounds] = useState<{ min: THREE.Vector3; max: THREE.Vector3 } | null>(null);
   const { active } = useProgress();
   const isLoading = active;
 
   const controlsRef = useRef<any>(null);
-  const hasSetCamera = useRef(false); // ✅ only allow camera to be set once
+  const hasSetCamera = useRef(false);
 
   useEffect(() => {
     if (!particleBounds || !onSliceBoundsComputed) return;
@@ -51,11 +52,11 @@ const CanvasViewer: React.FC<CanvasViewerProps> = ({ meshes, theme, onSliceBound
     onSliceBoundsComputed({ min, max });
   }, [particleBounds, onSliceBoundsComputed]);
 
-  const globalOffset = useMemo(() => {
-    return particleCenters.length
-      ? particleCenters.reduce((acc, c) => acc.clone().add(c), new THREE.Vector3()).divideScalar(particleCenters.length)
-      : new THREE.Vector3();
-  }, [particleCenters]);
+  // const globalOffset = useMemo(() => {
+  //   return particleCenters.length
+  //     ? particleCenters.reduce((acc, c) => acc.clone().add(c), new THREE.Vector3()).divideScalar(particleCenters.length)
+  //     : new THREE.Vector3();
+  // }, [particleCenters]);
 
   const handleModelLoad = useCallback((scene: THREE.Object3D, center: THREE.Vector3, size: number, category: number, bounds: { min: THREE.Vector3; max: THREE.Vector3 }) => {
     if (!controlsRef.current) return;
@@ -95,9 +96,13 @@ const CanvasViewer: React.FC<CanvasViewerProps> = ({ meshes, theme, onSliceBound
       <Canvas
         shadows
         gl={{
+          preserveDrawingBuffer: true,
           toneMapping: ACESFilmicToneMapping,
           toneMappingExposure: 1.2,
           shadowMapType: PCFSoftShadowMap,
+        }}
+        onCreated={({ gl }) => {
+          onCanvasCreated?.(gl.domElement);
         }}
       >
         <color attach="background" args={["white"]} />

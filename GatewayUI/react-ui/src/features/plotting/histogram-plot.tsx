@@ -157,7 +157,7 @@ export const HistogramPlot: React.FC<HistogramPlotProps> = ({
 		}}
 		// Pass Plotly instance
 		useResizeHandler
-		revision={`${data.length}-${useLogScale}-${data.length}`} // re-render if data changes
+		revision={data.length + (useLogScale ? 1000 : 0)} // re-render if data changes
 		plotly={PlotlyLoader}
 		/>
 	);

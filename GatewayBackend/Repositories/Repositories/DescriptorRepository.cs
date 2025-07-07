@@ -298,42 +298,48 @@ namespace Repositories.Repositories
 
 			var descriptors = await _context.PoreDescriptors
 				.AsNoTracking()
-				.Include(pd => pd.Scaffold)
-				.Where(pd => pd.Scaffold.ScaffoldGroupId == scaffoldGroupId && descriptorTypeIds.Contains(pd.DescriptorTypeId))
-				.Select(pd => new
-				{
+				.Include(pd => pd.DescriptorType)
+				.Where(pd => pd.Scaffold.ScaffoldGroupId == scaffoldGroupId &&
+							descriptorTypeIds.Contains(pd.DescriptorTypeId))
+				.Select(pd => new {
+					pd.ScaffoldId,
 					pd.DescriptorTypeId,
 					pd.Values,
-					pd.ScaffoldId
+					pd.DescriptorType.Label,
+					pd.DescriptorType.Unit,
+					pd.DescriptorType.Category,
+					pd.DescriptorType.Name
 				})
 				.ToListAsync();
 
 			if (!descriptors.Any()) return null;
 
+			// group by scaffold
 			var grouped = descriptors
 				.GroupBy(d => d.ScaffoldId)
-				.Select(g =>
-				{
-					var poreVolume = g.FirstOrDefault(d => d.DescriptorTypeId == 22)?.Values;
-					var poreSurfaceArea = g.FirstOrDefault(d => d.DescriptorTypeId == 23)?.Values;
-					var poreLongestLength = g.FirstOrDefault(d => d.DescriptorTypeId == 25)?.Values;
-					var poreAspectRatio = g.FirstOrDefault(d => d.DescriptorTypeId == 27)?.Values;
+				.Select(g => new PoreInfoScaffoldDto {
+					ScaffoldId = g.Key,
+					Descriptors = g.Select(d => new DescriptorValueDto {
+						DescriptorTypeId = d.DescriptorTypeId,
+						Values = ParseDoubleListFromObjectArray(d.Values) ?? []
+					}).ToList()
+				}).ToList();
 
-					return new PoreInfoScaffoldDto
-					{
-						ScaffoldId = g.Key,
-						PoreVolume = ParseDoubleListFromObjectArray(poreVolume),
-						PoreSurfaceArea = ParseDoubleListFromObjectArray(poreSurfaceArea),
-						PoreLongestLength = ParseDoubleListFromObjectArray(poreLongestLength),
-						PoreAspectRatio = ParseDoubleListFromObjectArray(poreAspectRatio)
-					};
-				})
-				.ToList();
+			// deduplicate descriptor metadata
+			var descriptorTypes = descriptors
+				.GroupBy(d => d.DescriptorTypeId)
+				.Select(g => new DescriptorTypeDto {
+					Id = g.Key,
+					Label = g.First().Label,
+					Unit = g.First().Unit,
+					Category = g.First().Category,
+					Name = g.First().Name
+				}).ToList();
 
-			return new PoreInfoScaffoldGroupDto
-			{
+			return new PoreInfoScaffoldGroupDto {
 				ScaffoldGroupId = scaffoldGroupId,
-				Scaffolds = grouped
+				Scaffolds = grouped,
+				DescriptorTypes = descriptorTypes
 			};
 		}
 		

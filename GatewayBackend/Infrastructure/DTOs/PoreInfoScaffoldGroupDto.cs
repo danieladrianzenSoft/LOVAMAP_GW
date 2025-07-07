@@ -7,5 +7,6 @@ namespace Infrastructure.DTOs
 	{
 		public int ScaffoldGroupId { get; set; }
 		public List<PoreInfoScaffoldDto> Scaffolds { get; set; } = [];
+		public List<DescriptorTypeDto> DescriptorTypes { get; set; } = [];
 	}
 }

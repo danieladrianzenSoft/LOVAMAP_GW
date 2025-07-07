@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export interface PlotOption {
 	key: string;
@@ -15,6 +15,13 @@ interface PlotSelectorProps {
 
 const PlotSelector: React.FC<PlotSelectorProps> = ({ plots, initialKey, heightClass = 'h-48' }) => {
 	const [selectedKey, setSelectedKey] = useState(initialKey ?? plots[0]?.key);
+
+	useEffect(() => {
+		// Reset selection when plots or initialKey changes
+		if (!selectedKey || !plots.find(p => p.key === selectedKey)) {
+			setSelectedKey(initialKey ?? plots[0]?.key);
+		}
+	}, [plots, initialKey, selectedKey]);
 
 	const selectedPlot = plots.find(p => p.key === selectedKey);
 
@@ -47,7 +54,7 @@ const PlotSelector: React.FC<PlotSelectorProps> = ({ plots, initialKey, heightCl
 
 			{/* Plot */}
 			<div className={`w-full ${heightClass}`}>
-				{selectedPlot?.component ?? <div className="text-gray-400">No plot available</div>}
+				{selectedPlot?.component ?? <div className="text-gray-400 p-2">No plot available</div>}
 			</div>
 		</div>
 	);

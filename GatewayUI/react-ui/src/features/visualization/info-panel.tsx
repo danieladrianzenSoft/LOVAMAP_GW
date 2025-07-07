@@ -3,6 +3,7 @@ import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import Tag from "../../app/common/tag/tag";
 import { ScaffoldGroup } from "../../app/models/scaffoldGroup";
 import { Domain } from  "../../app/models/domain";
+import { FaCamera } from "react-icons/fa";
 
 interface Props {
   isOpen: boolean;
@@ -16,6 +17,7 @@ interface Props {
   isLoading: boolean;
   theme?: 'Default' | 'Metallic',
   setTheme?: (theme: 'Default' | 'Metallic') => void;
+  onScreenshot?: () => void;
 }
 
 // const domainCategories = [
@@ -32,6 +34,7 @@ const InfoPanel: React.FC<Props> = ({
   onScaffoldChange,
   selectedCategories,
   onCategoryChange,
+  onScreenshot,
   domain,
   // canEdit,
   // onEditClick,
@@ -43,14 +46,29 @@ const InfoPanel: React.FC<Props> = ({
   return (
     <div className="bg-white bg-opacity-80 shadow-lg rounded-lg p-4 w-64">
       <div
-        className={`flex justify-between items-center cursor-pointer transition-all duration-300 ${
+        className={`flex justify-between items-center transition-all duration-300 ${
           isOpen ? "border-b border-gray-300 pb-2" : "pb-0"
         }`}
         onClick={toggleOpen}
       >
-        <h2 className="text-sm font-semibold text-gray-800">Scaffold Info</h2>
+        <div className="flex items-center gap-2">
+          <h2 className="text-sm font-semibold text-gray-800">Scaffold Info</h2>
+          {onScreenshot && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                onScreenshot();
+              }}
+              title="Take Screenshot"
+              className="text-gray-400 hover:text-blue-500 transition"
+            >
+              <FaCamera className="text-base" />
+            </button>
+          )}
+        </div>
         {isOpen ? <FiChevronUp /> : <FiChevronDown />}
       </div>
+
 
       <div
         className={`overflow-hidden ${

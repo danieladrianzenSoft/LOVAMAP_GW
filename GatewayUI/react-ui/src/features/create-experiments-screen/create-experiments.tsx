@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../../app/stores/store";
-// import ScaffoldGroupDetails from "../scaffold-groups/scaffold-group-details";
 import ScaffoldGroupFilters from "../scaffold-groups/scaffold-group-filter";
-// import ScaffoldGroupCard from "../scaffold-groups/scaffold-group-card";
 import { ScaffoldGroup } from "../../app/models/scaffoldGroup";
 import DescriptorFilters from "../descriptors/descriptor-filters";
 import { DescriptorType } from "../../app/models/descriptorType";
@@ -150,11 +148,11 @@ const CreateExperiments = () => {
 
                 if (result && result.files.length > 0) {
                     const [firstFile] = result.files;
-                    const { file, filename, headingRowsBySheet } = firstFile;
+                    // const { file, filename, headingRowsBySheet } = firstFile;
 
                     // Determine the first sheet name
-                    const firstSheetName = file.SheetNames[0];
-                    const headingRows = headingRowsBySheet?.[firstSheetName] ?? [0]; // fallback to [0]
+                    // const firstSheetName = file.SheetNames[0];
+                    // const headingRows = headingRowsBySheet?.[firstSheetName] ?? [0]; // fallback to [0]
 
                     openPreviewInNewTab(
                         firstFile,         // includes file, filename, headingRowsBySheet

@@ -1,10 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../../app/stores/store";
 import { HistogramPlot } from '../plotting/histogram-plot';
 import { useParams } from "react-router-dom";
 import { ScaffoldGroupData } from "../../app/models/scaffoldGroupData";
-import { PoreInfoForScaffold } from "../../app/models/poreInfo";
 import React from "react";
 import AISearchBar from "../../app/common/ai-search-bar/ai-seach-bar";
 import toast from "react-hot-toast";
@@ -15,6 +14,10 @@ import { SidebarScaffoldGroups } from "./sidebar-scaffold-groups";
 import { ViolinPlot } from "../plotting/violin-plot";
 import { Sidebar } from "../../app/common/sidebar/sidebar";
 import DescriptorCalculatorModal from "../descriptors/descriptor-calculator-modal";
+import { downloadExperimentsAsExcel, triggerDownload } from '../../app/common/excel-generator/excel-generator';
+import { openPreviewInNewTab } from "../../app/common/new-tab-preview/new-tab-preview";
+import { DescriptorType } from "../../app/models/descriptorType";
+import { PORE_DESCRIPTOR_MAP } from "../../constants/pore-descriptors";
 
 export const ExploreData: React.FC = observer(() => {
 	const { commonStore, scaffoldGroupStore } = useStore();
@@ -44,23 +47,6 @@ export const ExploreData: React.FC = observer(() => {
 		setSearchResults(scaffoldGroupStore.segmentedScaffoldGroups.exact || []);
 		setSearching(false);
 	};
-
-	const sections = [
-	{
-		title: "Interior Pore Size",
-		plots: [
-		{ key: "poreVolume", label: "Pore Volume", xlabel: "pL" },
-		{ key: "poreSurfaceArea", label: "Pore Surface Area", xlabel: "μm²/1000" }
-		]
-	},
-	{
-		title: "Interior Pore Shape",
-		plots: [
-		{ key: "poreLongestLength", label: "Longest Length", xlabel: "μm" },
-		{ key: "poreAspectRatio", label: "Aspect Ratio", xlabel: "" }
-		]
-	}
-	] as const;
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -95,6 +81,71 @@ export const ExploreData: React.FC = observer(() => {
 		};
 	}, []);
 
+	const handlePreviewDownloadClick = () => {
+		if (scaffoldGroups.length === 0) return;
+
+		const selectedScaffoldGroups = scaffoldGroups.map(g => ({
+			...g.scaffoldGroup,
+			scaffolds: g.poreDescriptors.map((p, idx) => ({
+				id: p.scaffoldId,
+				replicateNumber: idx + 1,
+				globalDescriptors: [],
+				otherDescriptors: [],
+				poreDescriptors: p.descriptors.map(d => {
+				const meta = PORE_DESCRIPTOR_MAP.find(m => m.typeId === d.descriptorTypeId);
+				return {
+					descriptorTypeId: d.descriptorTypeId,
+					label: meta?.label ?? '',
+					name: meta?.label ?? '',
+					unit: meta?.xlabel ?? '',
+					values: d.values.join(','), // must be string for Excel generator
+				};
+				})
+			}))
+		}));
+
+
+		const selectedDescriptorTypes: DescriptorType[] = PORE_DESCRIPTOR_MAP.map(desc => ({
+			id: desc.typeId,
+			name: desc.label,
+			label: desc.label,
+			unit: desc.xlabel,
+			description: '',
+			imageUrl: '',
+			tableLabel: desc.label,
+			category: 'pore',
+			dataType: 'numeric',
+			publication: ''
+		}));
+
+		const options = {
+			columnOption: 'Scaffold Groups',
+			sheetOption: 'Descriptors',
+			excelFileOption: 'Scaffold Replicates',
+			stackedColumnOption: 'True'
+		};
+
+		const result = downloadExperimentsAsExcel(
+			selectedScaffoldGroups,
+			selectedDescriptorTypes,
+			options,
+			true
+		);
+
+		if (result && result?.files?.length > 0) {
+			const [firstFile] = result.files;
+			openPreviewInNewTab(firstFile, triggerDownload, result.files, 100);
+		}
+	};
+
+	const groupDescriptorsBySection = useMemo(() => {
+		return PORE_DESCRIPTOR_MAP.filter(d => d.showInExplore).reduce((acc, item) => {
+			if (!acc[item.section]) acc[item.section] = [];
+			acc[item.section].push(item);
+			return acc;
+		}, {} as Record<string, typeof PORE_DESCRIPTOR_MAP>);
+	}, []);
+
 	const handleAddOverlayGroup = async (id: number) => {
 		const alreadyExists = scaffoldGroups.some(group => group.scaffoldGroup.id === id);
 		if (alreadyExists) {
@@ -109,6 +160,10 @@ export const ExploreData: React.FC = observer(() => {
 		setLoadingGroupId(null);
 		setShowDropdown(false);
 	};
+
+	const handleReorderGroup = (scaffoldGroups: ScaffoldGroupData[]) => {
+		setScaffoldGroups(scaffoldGroups);
+	}
 
 	const handleRemoveGroup = (groupId: number) => {
 		setScaffoldGroups(prev => prev.filter(g => g.scaffoldGroup.id !== groupId));
@@ -133,17 +188,22 @@ export const ExploreData: React.FC = observer(() => {
 	if (loading) return <p className="mt-8 ml-4 text-gray-500">Loading data...</p>;
 	if (!scaffoldGroups) return <p className="mt-8 ml-4 text-red-500">Failed to load data</p>;
 	
-	const combine = (key: keyof PoreInfoForScaffold): number[][] => {
-		return scaffoldGroups.map(group =>
-			group.poreDescriptors.flatMap(descriptor => descriptor[key] || [])
-		);
-	};
-
 	return (
 		<div className="flex mx-auto py-8 px-2">
 			{/* Main dashboard area */}
 			<div className="flex-1 space-y-12 pr-2">
-				<div className="text-3xl text-gray-700 font-bold mb-2">Descriptor data</div>
+				{/* Section Header: Title + View Data */}
+				<div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
+					<h2 className="text-3xl text-gray-700 font-bold">Descriptor Data</h2>
+					{scaffoldGroups.length > 0 && (
+						<button
+						onClick={handlePreviewDownloadClick}
+						className="bg-blue-600 hover:bg-blue-700 text-white text-sm px-4 py-2 rounded-md shadow mt-2 sm:mt-0"
+						>
+						View Data
+						</button>
+					)}
+				</div>
 
 				<div className="mb-0 mt-0 mr-2 relative" ref={searchContainerRef}>
 					<AISearchBar onSearch={runSearch} onClear={clearFilters} onClick={() => setShowDropdown(true)}/>
@@ -161,6 +221,17 @@ export const ExploreData: React.FC = observer(() => {
 						/>
 					)}
 				</div>
+
+				{/* {scaffoldGroups.length > 0 && (
+					<div className="flex justify-end mt-0 mb-0 mr-2">
+						<button
+						onClick={handlePreviewDownloadClick}
+						className="bg-blue-600 hover:bg-blue-700 text-white text-sm px-4 py-2 rounded-md shadow"
+						>
+							View Data
+						</button>
+					</div>
+				)} */}
 
 				{scaffoldGroups.length >= 3 && 
 					<div className="flex justify-end mr-2 items-center mt-3 text-sm text-gray-700">
@@ -187,43 +258,48 @@ export const ExploreData: React.FC = observer(() => {
 					</button>
 				</div> */}
 
-				{sections.map((section) => (
-					<div key={section.title}>
-						<h3 className="text-xl font-semibold text-gray-600 mb-4 mt-0">{section.title}</h3>
+
+				{Object.entries(groupDescriptorsBySection).map(([sectionTitle, descriptors]) => (
+					<div key={sectionTitle}>
+						<h3 className="text-xl font-semibold text-gray-600 mb-4 mt-0">{sectionTitle}</h3>
 						<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-							{section.plots.map(({ key, label, xlabel }) => {
-								const data = combine(key);
+							{descriptors.map(({ typeId, label, xlabel, key }) => {
+								const data = scaffoldGroups.map(group =>
+									group.poreDescriptors.flatMap(scaffold =>
+									scaffold.descriptors.find(d => d.descriptorTypeId === typeId)?.values ?? []
+									)
+								);
+
 								return (
 									<div key={key} className="bg-white rounded-xl p-2 relative min-h-[300px]">
-										{data.length > 0 ? (
-											data.length <= 2 ? (
-												<HistogramPlot
-													data={data}
-													title={label}
-													interactive={false}
-													showHoverInfo={true}
-													hideYLabels={false}
-													xlabel={xlabel}
-													isNormalized={true}
-													ylabel="%"
-													useLogScale={false}
-												/>
-											) : (
-												<ViolinPlot
-													data={data}
-													title={label}
-													interactive={false}
-													showHoverInfo={true}
-													ylabel={xlabel}
-													ylim={[0, null]}
-													hideTickLabels={true}
-													useLogScale={useLogScale}
-
-												/>
-											)
+									{data.length > 0 ? (
+										data.length <= 2 ? (
+										<HistogramPlot
+											data={data}
+											title={label}
+											interactive={false}
+											showHoverInfo={true}
+											hideYLabels={false}
+											xlabel={xlabel}
+											isNormalized={true}
+											ylabel="%"
+											useLogScale={false}
+										/>
 										) : (
-											<p className="text-sm text-gray-400 italic">No data for {label}</p>
-										)}
+										<ViolinPlot
+											data={data}
+											title={label}
+											interactive={false}
+											showHoverInfo={true}
+											ylabel={xlabel}
+											ylim={[0, null]}
+											hideTickLabels={true}
+											useLogScale={useLogScale}
+										/>
+										)
+									) : (
+										<p className="text-sm text-gray-400 italic">No data for {label}</p>
+									)}
 									</div>
 								);
 							})}
@@ -243,6 +319,7 @@ export const ExploreData: React.FC = observer(() => {
 				>
 				<SidebarScaffoldGroups
 					scaffoldGroups={scaffoldGroups}
+					onReorder={handleReorderGroup}
 					onRemove={handleRemoveGroup}
 				/>
 			</Sidebar>	
