@@ -3,6 +3,7 @@ GatewayUI/react-ui/build
 GatewayUI/react-ui/dist
 GatewayBackend/API/bin/
 GatewayBackend/API/obj/
+GatewayBackend/Data/Domains/
 .env
 .vscode
 .git

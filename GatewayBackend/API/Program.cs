@@ -16,6 +16,7 @@ using Infrastructure.Helpers;
 using Infrastructure.IHelpers;
 using Infrastructure;
 using System.Security.Claims;
+using Data.SeedingStrategies;
 
 var builder = WebApplication.CreateBuilder(args);
 

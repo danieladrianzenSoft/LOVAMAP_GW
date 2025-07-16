@@ -14,7 +14,8 @@ using Repositories.Repositories;
 using Services.IServices;
 
 namespace Services.Services
-{	public class AISearchService : IAISearchService
+{
+	public class AISearchService : IAISearchService
 	{
 		private readonly DataContext _context;
 		private readonly HttpClient _httpClient;
@@ -24,11 +25,11 @@ namespace Services.Services
 		private readonly IAISearchRepository _aiSearchRepository;
 		private readonly ILogger<AISearchService> _logger;
 
-		public AISearchService(DataContext context, 
+		public AISearchService(DataContext context,
 			IConfiguration configuration,
 			IScaffoldGroupService scaffoldGroupService,
 			ITagService tagService,
-			IAISearchRepository aiSearchRepository, 
+			IAISearchRepository aiSearchRepository,
 			ILogger<AISearchService> logger)
 		{
 			_context = context;
@@ -41,7 +42,7 @@ namespace Services.Services
 			{
 				BaseAddress = new Uri("https://api.openai.com/v1/")
 			};
-			
+
 			var apiKey = _configuration["OpenAIApiKey"];
 
 			_httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {apiKey}");
@@ -52,14 +53,16 @@ namespace Services.Services
 			try
 			{
 				var (succeededSearch, errorMessageSearch, scaffoldFilter) = await SearchScaffoldGroup(searchPrompt);
-			
-				if (!succeededSearch || scaffoldFilter == null) {
+
+				if (!succeededSearch || scaffoldFilter == null)
+				{
 					return (false, errorMessageSearch, null);
 				}
 
 				var (succeeded, errorMessage, scaffoldGroups) = await _scaffoldGroupService.GetFilteredScaffoldGroups(scaffoldFilter, userId);
 
-				if (!succeeded) {
+				if (!succeeded)
+				{
 					return (false, errorMessage, null);
 				}
 
@@ -70,7 +73,8 @@ namespace Services.Services
 				var responsePayload = new AIScaffoldSearchResponse
 				{
 					ScaffoldGroups = summarizedGroups ?? Enumerable.Empty<ScaffoldGroupSummaryDto>(),
-					SelectedTags = selectedTags.Select(t => new TagForFilterDto{
+					SelectedTags = selectedTags.Select(t => new TagForFilterDto
+					{
 						Id = t.Id,
 						Name = t.Name,
 						ReferenceProperty = t.ReferenceProperty
@@ -83,11 +87,11 @@ namespace Services.Services
 			}
 			catch (Exception ex)
 			{
-				
+
 				_logger.LogError(ex, "AISearchService.SearchScaffoldGroup failed.");
 				return (false, ex.Message, null);
 			}
-			
+
 
 
 		}
