@@ -14,7 +14,7 @@ using System.Globalization;
 
 namespace Services.Services
 {
-	public class SeedingService
+	public class SeedingService: ISeedingService
 	{
 		private readonly IScaffoldGroupService _scaffoldGroupService;
 		private readonly IRoleService _roleService;
@@ -26,7 +26,7 @@ namespace Services.Services
 		private readonly DataContext _context;
 		private readonly ILogger<SeedingService> _logger;
 		private readonly JsonSerializerOptions _jsonSerializerOptions;
-
+		private readonly IEnumerable<IDescriptorValueGenerator> _generators;
 
 		public SeedingService(
 			IScaffoldGroupService scaffoldGroupService,
@@ -35,6 +35,7 @@ namespace Services.Services
 			IUserService userService,
 			IDescriptorService descriptorService,
 			IPublicationService publicationService,
+			IEnumerable<IDescriptorValueGenerator>generators,
 			IConfiguration configuration,
 			DataContext context,
 			ILogger<SeedingService> logger)
@@ -46,6 +47,7 @@ namespace Services.Services
 			_descriptorService = descriptorService;
 			_publicationService = publicationService;
 			_configuration = configuration;
+			_generators = generators;
 			_context = context;
 			_logger = logger;
 
@@ -55,8 +57,8 @@ namespace Services.Services
 			};
 		}
 
-		// private static readonly string baseUrl = "../Data/SeedData/";
-		private static readonly string baseUrl = Path.Combine(Directory.GetCurrentDirectory(), "Data", "SeedData");
+		private static readonly string baseUrl = "../Data/SeedData/";
+		// private static readonly string baseUrl = Path.Combine(Directory.GetCurrentDirectory(), "Data", "SeedData");
 
 		public async Task SeedAllAsync()
 		{
@@ -167,6 +169,121 @@ namespace Services.Services
 			}
 		}
 
+		public async Task<List<int>> GetEligibleScaffoldIdsForDescriptorSeeding(string descriptorName)
+		{
+			var descriptorType = await _context.DescriptorTypes
+				.AsNoTracking()
+				.FirstOrDefaultAsync(dt => dt.Name == descriptorName);
+
+			if (descriptorType == null)
+				throw new Exception($"DescriptorType '{descriptorName}' not found.");
+
+			IQueryable<int> alreadySeededScaffoldIds;
+
+			switch (descriptorType.Category.ToLower())
+			{
+				case "global":
+					alreadySeededScaffoldIds = _context.GlobalDescriptors
+						.AsNoTracking()
+						.Where(gd => gd.DescriptorTypeId == descriptorType.Id)
+						.Select(gd => gd.ScaffoldId);
+					break;
+
+				case "pore":
+					alreadySeededScaffoldIds = _context.PoreDescriptors
+						.AsNoTracking()
+						.Where(pd => pd.DescriptorTypeId == descriptorType.Id)
+						.Select(pd => pd.ScaffoldId);
+					break;
+
+				case "other":
+					alreadySeededScaffoldIds = _context.OtherDescriptors
+						.AsNoTracking()
+						.Where(od => od.DescriptorTypeId == descriptorType.Id)
+						.Select(od => od.ScaffoldId);
+					break;
+
+				default:
+					throw new Exception($"Unknown descriptor category: {descriptorType.Category}");
+			}
+
+			var allScaffoldIds = _context.Scaffolds
+				.AsNoTracking()
+				.Select(s => s.Id);
+
+			// Use Except to get scaffolds missing the descriptor
+			var eligibleIds = await allScaffoldIds
+				.Except(alreadySeededScaffoldIds)
+				.ToListAsync();
+
+			return eligibleIds;
+		}
+
+		public async Task<DescriptorSeedResultDto> SeedDescriptorAsync(string descriptorName, List<int> scaffoldIds)
+		{
+			var result = new DescriptorSeedResultDto();
+
+			var generator = _generators.FirstOrDefault(g => g.DescriptorName == descriptorName);
+			if (generator == null)
+				throw new Exception($"No generator registered for '{descriptorName}'");
+
+			var descriptorType = await _context.DescriptorTypes
+				.FirstOrDefaultAsync(dt => dt.Name == descriptorName);
+
+			if (descriptorType == null)
+				throw new Exception($"DescriptorType '{descriptorName}' not found.");
+
+			var seedDataObjects = generator.PreloadSeedData(scaffoldIds, _context);
+
+			var globalDescriptors = new List<GlobalDescriptor>();
+			var poreDescriptors = new List<PoreDescriptor>();
+			var otherDescriptors = new List<OtherDescriptor>();
+
+			foreach (var seedData in seedDataObjects)
+			{
+				var scaffoldId = (int)seedData.GetType().GetProperty("ScaffoldId")?.GetValue(seedData)!;
+
+				result.Attempted++;
+
+				try
+				{
+					var descriptor = generator.GenerateDescriptor(seedData, descriptorType);
+					if (descriptor == null)
+					{
+						result.FailedScaffoldIds.Add(scaffoldId);
+						continue;
+					}
+
+					switch (generator.Category.ToLowerInvariant())
+					{
+						case "global":
+							globalDescriptors.Add((GlobalDescriptor)descriptor);
+							break;
+						case "pore":
+							poreDescriptors.Add((PoreDescriptor)descriptor);
+							break;
+						case "other":
+							otherDescriptors.Add((OtherDescriptor)descriptor);
+							break;
+					}
+
+					result.Succeeded++;
+				}
+				catch (Exception ex)
+				{
+					_logger.LogWarning(ex, $"Failed to seed descriptor '{descriptorName}' for scaffold {scaffoldId}");
+					result.FailedScaffoldIds.Add(scaffoldId);
+				}
+			}
+
+			// Add everything in bulk
+			_context.GlobalDescriptors.AddRange(globalDescriptors);
+			_context.PoreDescriptors.AddRange(poreDescriptors);
+			_context.OtherDescriptors.AddRange(otherDescriptors);
+			await _context.SaveChangesAsync();
+			return result;
+		}
+
 		private async Task SeedTagsAsync()
 		{
 			if (await _context.Tags.AnyAsync() == false)
@@ -174,12 +291,13 @@ namespace Services.Services
 				var path = Path.Combine(baseUrl, "Tags.json");
 				var tagData = File.ReadAllText(path);
 				var tags = JsonSerializer.Deserialize<List<TagToSeedDto>>(tagData, _jsonSerializerOptions);
-				if (tags == null) {
+				if (tags == null)
+				{
 					throw new ApplicationException("Failed to deserialize tags");
 				}
 				await _tagService.SeedTags(tags);
 			}
-			
+
 		}
 
 		private async Task SeedScaffoldGroupsAsync()

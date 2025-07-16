@@ -16,3 +16,9 @@ export interface DescriptorValue {
   descriptorTypeId: number;
   values: number[];
 }
+
+export interface DescriptorSeedResult {
+  attempted: number;
+  succeeded: number;
+  failedScaffoldIds: number[];
+}

@@ -1,10 +1,15 @@
 
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json;
 
 namespace Data.Models
 {
 	public class OtherDescriptor
 	{
+
+		[Key]
+		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public int Id { get; set; }
 		public Guid? JobId { get; set; }
 		public Job? Job { get; set; }

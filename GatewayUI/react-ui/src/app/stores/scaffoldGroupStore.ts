@@ -167,9 +167,14 @@ export default class ScaffoldGroupStore {
 		}
 	};
 
-	getDataForVisualization = async (scaffoldGroupId: number): Promise<ScaffoldGroupData | null> => {
+	getDataForVisualization = async (scaffoldGroupId: number, descriptorTypeIds: number[]): Promise<ScaffoldGroupData | null> => {
 		try {
-			const apiResponse = await agent.ScaffoldGroups.getDataForVisualization(scaffoldGroupId);
+			let queryParams = '';
+			if (descriptorTypeIds.length > 0) {
+				queryParams += descriptorTypeIds.map(id => `descriptorTypeIds=${id}`).join('&');
+			}
+			if (queryParams !== '') queryParams = '?' + queryParams;
+			const apiResponse = await agent.ScaffoldGroups.getDataForVisualization(scaffoldGroupId, queryParams);
 			return apiResponse.data;
 		} catch (error) {
 			console.error("Failed to scaffold group data:", error);
@@ -177,9 +182,14 @@ export default class ScaffoldGroupStore {
 		return null;
 	}
 
-	getDataForVisualizationRandom = async (): Promise<ScaffoldGroupData | null> => {
+	getDataForVisualizationRandom = async (descriptorTypeIds: number[]): Promise<ScaffoldGroupData | null> => {
 		try {
-			const apiResponse = await agent.ScaffoldGroups.getDataForVisualizationRandom();
+			let queryParams = '';
+			if (descriptorTypeIds.length > 0) {
+				queryParams += descriptorTypeIds.map(id => `descriptorTypeIds=${id}`).join('&');
+			}
+			if (queryParams !== '') queryParams = '?' + queryParams;
+			const apiResponse = await agent.ScaffoldGroups.getDataForVisualizationRandom(queryParams);
 			return apiResponse.data;
 		} catch (error) {
 			console.error("Failed to fetch scaffold group data:", error);

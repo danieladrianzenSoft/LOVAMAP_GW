@@ -16,6 +16,7 @@ import { DomainMetadata } from "../models/domainMetadata";
 import { AiScaffoldGroupSearch } from "../models/aiScaffoldGroupSearch";
 import { BatchOperationResult } from "../models/batchOperationResult";
 import { ScaffoldGroupData } from "../models/scaffoldGroupData";
+import { DescriptorSeedResult } from "../models/descriptor";
 
 axios.defaults.baseURL = environment.baseUrl;
 
@@ -63,6 +64,11 @@ const Resources = {
     getDescriptorTypes: () => requests.get<ApiResponse<DescriptorType[]>>('/resources/descriptorTypes')
 }
 
+const Seed = {
+    getEligibleScaffoldIdsForDescriptorSeeding: (descriptorName: string) => requests.get<ApiResponse<number[]>>('/seed/descriptors?name=' + descriptorName),
+    seedDescriptors: (body: any) => requests.post<ApiResponse<DescriptorSeedResult>>('/seed/descriptors', body)
+}
+
 const Users = {
 	getCurrent: () => requests.get<ApiResponse<User>>('/users/getCurrentUser'),
 	login: (user: UserLogin) => requests.post<ApiResponse<User>>('/auth/login', user),
@@ -83,8 +89,8 @@ const ScaffoldGroups = {
     getGroupSummaryByScaffoldId: (id: number) => requests.get<ApiResponse<ScaffoldGroup>>('/scaffoldgroups/scaffold/' + id + '/summary'),
 	getDetailed: (id: number) => requests.get<ApiResponse<ScaffoldGroup>>('/scaffoldGroups/' + id),
     getDetailedForExperiment: (queryParams: string) => requests.get<ApiResponse<ScaffoldGroup[]>>('/scaffoldgroups/detailed' + queryParams),
-    getDataForVisualization: (scaffoldGroupId: number) => requests.get<ApiResponse<ScaffoldGroupData>>(`/scaffoldgroups/data/${scaffoldGroupId}`),
-    getDataForVisualizationRandom: () => requests.get<ApiResponse<ScaffoldGroupData>>(`/scaffoldgroups/data/random/`),
+    getDataForVisualization: (scaffoldGroupId: number, queryParams: string) => requests.get<ApiResponse<ScaffoldGroupData>>(`/scaffoldgroups/data/${scaffoldGroupId}` + queryParams),
+    getDataForVisualizationRandom: (queryParams: string) => requests.get<ApiResponse<ScaffoldGroupData>>(`/scaffoldgroups/data/random/` + queryParams),
     uploadScaffoldGroup: (scaffoldGroup: ScaffoldGroupToCreate) => requests.post<ApiResponse<ScaffoldGroup>>('/scaffoldgroups/create', scaffoldGroup),
     uploadScaffoldGroupBatch: (scaffoldGroups: ScaffoldGroupToCreate[]) => requests.post<ApiResponse<ScaffoldGroup[]>>('/scaffoldgroups/createBatch', scaffoldGroups),
     resetNameAndComments: (scaffoldGroupIds: {scaffoldGroupIds: number[]}) => requests.post<ApiResponse<BatchOperationResult>>('scaffoldGroups/reset-names', scaffoldGroupIds),
@@ -113,9 +119,10 @@ const ScaffoldGroups = {
 }
 
 const Descriptors = {
+    getAllDescriptorTypes: () => requests.get<ApiResponse<DescriptorType[]>>('/descriptors'),
     getPoreInfo: (scaffoldGroupId: number) => requests.get<ApiResponse<PoreInfo>>(`/descriptors/${scaffoldGroupId}`),
-    getPoreInfoForScaffoldGroup: (scaffoldGroupId: number) => requests.get<ApiResponse<PoreInfoForScaffoldGroup>>(`/descriptors/data/${scaffoldGroupId}`),
-    getPoreInfoForRandomScaffoldGroup: () => requests.get<ApiResponse<PoreInfoForScaffoldGroup>>(`/descriptors/data/random/`),
+    getPoreInfoForScaffoldGroup: (scaffoldGroupId: number, queryParams: string) => requests.get<ApiResponse<PoreInfoForScaffoldGroup>>(`/descriptors/data/${scaffoldGroupId}`+ queryParams),
+    getPoreInfoForRandomScaffoldGroup: (queryParams: string) => requests.get<ApiResponse<PoreInfoForScaffoldGroup>>(`/descriptors/data/random/`+ queryParams),
 
 }
 
@@ -181,6 +188,7 @@ const Jobs = {
 
 const agent = {
 	Resources,
+    Seed,
 	Users,
 	ScaffoldGroups,
     Descriptors,

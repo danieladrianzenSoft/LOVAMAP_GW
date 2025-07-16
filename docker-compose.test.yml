@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  test_db:
+    image: postgres:17
+    container_name: lovamap_test_db
+    restart: always
+    env_file:
+      - .env.test
+    ports:
+      - "5433:5432"  # PORT 5433 - Avoid conflict with prod
+    volumes:
+      - postgres_data_test:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+    labels:
+      - env=test
+
+volumes:
+  postgres_data_test:

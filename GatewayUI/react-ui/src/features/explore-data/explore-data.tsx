@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../../app/stores/store";
 import { HistogramPlot } from '../plotting/histogram-plot';
@@ -17,13 +17,16 @@ import DescriptorCalculatorModal from "../descriptors/descriptor-calculator-moda
 import { downloadExperimentsAsExcel, triggerDownload } from '../../app/common/excel-generator/excel-generator';
 import { openPreviewInNewTab } from "../../app/common/new-tab-preview/new-tab-preview";
 import { DescriptorType } from "../../app/models/descriptorType";
-import { PORE_DESCRIPTOR_MAP } from "../../constants/pore-descriptors";
+import { PORE_DESCRIPTOR_MAP, PoreDescriptorUIConfig } from "../../constants/pore-descriptors";
+import { useDescriptorTypes } from "../../app/common/hooks/useDescriptorTypes";
 
 export const ExploreData: React.FC = observer(() => {
 	const { commonStore, scaffoldGroupStore } = useStore();
+	const { descriptorTypes } = useDescriptorTypes();
+
 	const isLoggedIn = commonStore.isLoggedIn;
 
-	const [loading, setLoading] = useState(true);
+	const [isLoading, setIsLoading] = useState(true);
 	const [loadingGroupId, setLoadingGroupId] = useState<number | null>(null);
 	const [scaffoldGroups, setScaffoldGroups] = useState<ScaffoldGroupData[]>([]);
 	const [searchResults, setSearchResults] = useState<ScaffoldGroup[]>([]);
@@ -48,22 +51,55 @@ export const ExploreData: React.FC = observer(() => {
 		setSearching(false);
 	};
 
+	const getScaffoldGroupData = useCallback(async (descriptorTypeIds: number[]) => {
+		setIsLoading(true);
+
+		const data = resolvedScaffoldGroupId !== null
+			? await scaffoldGroupStore.getDataForVisualization(resolvedScaffoldGroupId, descriptorTypeIds)
+			: await scaffoldGroupStore.getDataForVisualizationRandom(descriptorTypeIds);
+
+		if (data) {
+			setScaffoldGroups([data]);
+		}
+		setIsLoading(false);	
+	}, [resolvedScaffoldGroupId, scaffoldGroupStore]);
+
+	const detailedDescriptors = useMemo(() => {
+		const byName = new Map(descriptorTypes.map(d => [d.name, d]));
+
+		return PORE_DESCRIPTOR_MAP
+			.filter(cfg => cfg.showInExplore)
+			.map(cfg => {
+				const descriptor = byName.get(cfg.key);
+				if (!descriptor) return null; // warning: might want to log missing ones
+				return {
+					...cfg,
+					descriptor,
+				};
+			})
+			.filter(Boolean) as Array<PoreDescriptorUIConfig & { descriptor: DescriptorType }>;
+	}, [descriptorTypes]);
+
+	const detailDescriptorTypeIds = useMemo(() => {
+		return detailedDescriptors.map(d => d.descriptor.id);
+	}, [detailedDescriptors]);
+
+	const groupedDescriptorsBySection = useMemo(() => {
+		return detailedDescriptors.reduce((acc, entry) => {
+			const section = entry.section || entry.descriptor.category || 'Other';
+			if (!acc[section]) acc[section] = [];
+			acc[section].push(entry);
+			return acc;
+		}, {} as Record<string, typeof detailedDescriptors>);
+	}, [detailedDescriptors]);
+
 	useEffect(() => {
 		const fetchData = async () => {
-			setLoading(true);
-
-			const data = resolvedScaffoldGroupId !== null
-				? await scaffoldGroupStore.getDataForVisualization(resolvedScaffoldGroupId)
-				: await scaffoldGroupStore.getDataForVisualizationRandom();
-
-			if (data) {
-				setScaffoldGroups([data]);
-			}
-			setLoading(false);
+			getScaffoldGroupData(detailDescriptorTypeIds);
 		};
 
 		fetchData();
-	}, [scaffoldGroupStore, resolvedScaffoldGroupId]);
+	}, [scaffoldGroupStore, resolvedScaffoldGroupId, getScaffoldGroupData, detailDescriptorTypeIds]);
 
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
@@ -84,6 +120,9 @@ export const ExploreData: React.FC = observer(() => {
 	const handlePreviewDownloadClick = () => {
 		if (scaffoldGroups.length === 0) return;
 
+		const descriptorById = new Map(descriptorTypes.map(d => [d.id, d]));
+
+		// Build scaffold data
 		const selectedScaffoldGroups = scaffoldGroups.map(g => ({
 			...g.scaffoldGroup,
 			scaffolds: g.poreDescriptors.map((p, idx) => ({
@@ -92,37 +131,34 @@ export const ExploreData: React.FC = observer(() => {
 				globalDescriptors: [],
 				otherDescriptors: [],
 				poreDescriptors: p.descriptors.map(d => {
-				const meta = PORE_DESCRIPTOR_MAP.find(m => m.typeId === d.descriptorTypeId);
-				return {
-					descriptorTypeId: d.descriptorTypeId,
-					label: meta?.label ?? '',
-					name: meta?.label ?? '',
-					unit: meta?.xlabel ?? '',
-					values: d.values.join(','), // must be string for Excel generator
-				};
+					const meta = descriptorById.get(d.descriptorTypeId);
+					return {
+						descriptorTypeId: d.descriptorTypeId,
+						label: meta?.label ?? '',
+						name: meta?.name ?? '',
+						unit: meta?.unit ?? '',
+						values: d.values.join(','), // Excel-friendly
+					};
 				})
 			}))
 		}));
 
+		// Determine which descriptor types to include in Excel
+		const uiConfigMap = new Map(PORE_DESCRIPTOR_MAP.map(cfg => [cfg.key, cfg]));
 
-		const selectedDescriptorTypes: DescriptorType[] = PORE_DESCRIPTOR_MAP.map(desc => ({
-			id: desc.typeId,
-			name: desc.label,
-			label: desc.label,
-			unit: desc.xlabel,
-			description: '',
-			imageUrl: '',
-			tableLabel: desc.label,
-			category: 'pore',
-			dataType: 'numeric',
-			publication: ''
-		}));
+		const selectedDescriptorTypes: DescriptorType[] = descriptorTypes
+			.filter(d => uiConfigMap.has(d.name) && uiConfigMap.get(d.name)?.showInExplore)
+			.map(d => ({
+				...d,
+				tableLabel: d.label || d.name,
+				category: 'pore', // fallback or leave as-is if backend returns this
+			}));
 
 		const options = {
 			columnOption: 'Scaffold Groups',
 			sheetOption: 'Descriptors',
 			excelFileOption: 'Scaffold Replicates',
-			stackedColumnOption: 'True'
+			stackedColumnOption: 'True',
 		};
 
 		const result = downloadExperimentsAsExcel(
@@ -138,22 +174,22 @@ export const ExploreData: React.FC = observer(() => {
 		}
 	};
 
-	const groupDescriptorsBySection = useMemo(() => {
-		return PORE_DESCRIPTOR_MAP.filter(d => d.showInExplore).reduce((acc, item) => {
-			if (!acc[item.section]) acc[item.section] = [];
-			acc[item.section].push(item);
-			return acc;
-		}, {} as Record<string, typeof PORE_DESCRIPTOR_MAP>);
-	}, []);
+	// const groupDescriptorsBySection = useMemo(() => {
+	// 	return PORE_DESCRIPTOR_MAP.filter(d => d.showInExplore).reduce((acc, item) => {
+	// 		if (!acc[item.section]) acc[item.section] = [];
+	// 		acc[item.section].push(item);
+	// 		return acc;
+	// 	}, {} as Record<string, typeof PORE_DESCRIPTOR_MAP>);
+	// }, []);
 
-	const handleAddOverlayGroup = async (id: number) => {
+	const handleAddOverlayGroup = async (id: number, descriptorTypeIds: number[]) => {
 		const alreadyExists = scaffoldGroups.some(group => group.scaffoldGroup.id === id);
 		if (alreadyExists) {
 			toast.error("Scaffold group already added.");
 			return;
 		}
 		setLoadingGroupId(id);
-		const data = await scaffoldGroupStore.getDataForVisualization(id);
+		const data = await scaffoldGroupStore.getDataForVisualization(id, descriptorTypeIds);
 		if (data) {
 			setScaffoldGroups(prev => [...prev, data]);
 		}
@@ -185,7 +221,7 @@ export const ExploreData: React.FC = observer(() => {
 		setSearchResults([]);
 	};
 
-	if (loading) return <p className="mt-8 ml-4 text-gray-500">Loading data...</p>;
+	if (isLoading) return <p className="mt-8 ml-4 text-gray-500">Loading data...</p>;
 	if (!scaffoldGroups) return <p className="mt-8 ml-4 text-red-500">Failed to load data</p>;
 	
 	return (
@@ -195,7 +231,7 @@ export const ExploreData: React.FC = observer(() => {
 				{/* Section Header: Title + View Data */}
 				<div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
 					<h2 className="text-3xl text-gray-700 font-bold">Descriptor Data</h2>
-					{scaffoldGroups.length > 0 && (
+					{scaffoldGroups.length > 0 && !isLoading && (
 						<button
 						onClick={handlePreviewDownloadClick}
 						className="bg-blue-600 hover:bg-blue-700 text-white text-sm px-4 py-2 rounded-md shadow mt-2 sm:mt-0"
@@ -212,7 +248,7 @@ export const ExploreData: React.FC = observer(() => {
 							results={searchResults}
 							isLoading={searching}
 							onSelect={(id) => {
-								handleAddOverlayGroup(id);
+								handleAddOverlayGroup(id, detailDescriptorTypeIds);
 								setAiSearchUsed(false);
 							}}
 							selectedParticleSizeIds={selectedParticleSizeIds}
@@ -221,17 +257,6 @@ export const ExploreData: React.FC = observer(() => {
 						/>
 					)}
 				</div>
-
-				{/* {scaffoldGroups.length > 0 && (
-					<div className="flex justify-end mt-0 mb-0 mr-2">
-						<button
-						onClick={handlePreviewDownloadClick}
-						className="bg-blue-600 hover:bg-blue-700 text-white text-sm px-4 py-2 rounded-md shadow"
-						>
-							View Data
-						</button>
-					</div>
-				)} */}
 
 				{scaffoldGroups.length >= 3 && 
 					<div className="flex justify-end mr-2 items-center mt-3 text-sm text-gray-700">
@@ -259,14 +284,14 @@ export const ExploreData: React.FC = observer(() => {
 				</div> */}
 
 
-				{Object.entries(groupDescriptorsBySection).map(([sectionTitle, descriptors]) => (
+				{!isLoading && Object.entries(groupedDescriptorsBySection).map(([sectionTitle, descriptors]) => (
 					<div key={sectionTitle}>
 						<h3 className="text-xl font-semibold text-gray-600 mb-4 mt-0">{sectionTitle}</h3>
 						<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-							{descriptors.map(({ typeId, label, xlabel, key }) => {
+							{descriptors.map(({ descriptor, key }) => {
 								const data = scaffoldGroups.map(group =>
 									group.poreDescriptors.flatMap(scaffold =>
-									scaffold.descriptors.find(d => d.descriptorTypeId === typeId)?.values ?? []
+									scaffold.descriptors.find(d => d.descriptorTypeId === descriptor.id)?.values ?? []
 									)
 								);
 
@@ -276,11 +301,11 @@ export const ExploreData: React.FC = observer(() => {
 										data.length <= 2 ? (
 										<HistogramPlot
 											data={data}
-											title={label}
+											title={descriptor.label}
 											interactive={false}
 											showHoverInfo={true}
 											hideYLabels={false}
-											xlabel={xlabel}
+											xlabel={descriptor.unit || ''}
 											isNormalized={true}
 											ylabel="%"
 											useLogScale={false}
@@ -288,17 +313,17 @@ export const ExploreData: React.FC = observer(() => {
 										) : (
 										<ViolinPlot
 											data={data}
-											title={label}
+											title={descriptor.label}
 											interactive={false}
 											showHoverInfo={true}
-											ylabel={xlabel}
+											ylabel={descriptor.unit || ''}
 											ylim={[0, null]}
 											hideTickLabels={true}
 											useLogScale={useLogScale}
 										/>
 										)
 									) : (
-										<p className="text-sm text-gray-400 italic">No data for {label}</p>
+										<p className="text-sm text-gray-400 italic">No data for {descriptor.label}</p>
 									)}
 									</div>
 								);

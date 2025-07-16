@@ -31,6 +31,20 @@ namespace Services.Services
 			_logger = logger;
 		}
 
+		public async Task<DescriptorType?> GetDescriptorByName(string descriptorName)
+		{
+			try
+			{
+				var descriptor = await _descriptorRepository.GetDescriptorByName(descriptorName);
+				return descriptor;
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, "Unknown error getting descriptorType");
+				return null;
+			}
+		}
+
 		public async Task CreateDescriptorType(DescriptorTypeToCreateDto descriptorToCreate)
 		{
 			try
@@ -113,11 +127,11 @@ namespace Services.Services
 
 		}
 		
-		public async Task<(bool Succeeded, string ErrorMessage, PoreInfoScaffoldGroupDto? poreInfo)> GetPoreInfoScaffoldGroup(int scaffoldGroupId)
+		public async Task<(bool Succeeded, string ErrorMessage, PoreInfoScaffoldGroupDto? poreInfo)> GetPoreDescriptorInfoScaffoldGroup(int scaffoldGroupId, List<int> descriptorTypeIds)
 		{
 			try
 			{
-				var poreInfoGroup = await _descriptorRepository.GetPoreInfoForScaffoldGroup(scaffoldGroupId);
+				var poreInfoGroup = await _descriptorRepository.GetPoreDescriptorInfoForScaffoldGroup(scaffoldGroupId, descriptorTypeIds);
 				if (poreInfoGroup == null) return (false, "NotFound", null);
 
 				return (true, "", poreInfoGroup);

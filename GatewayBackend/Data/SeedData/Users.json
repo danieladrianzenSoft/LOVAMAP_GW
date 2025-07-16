@@ -1,6 +1,7 @@
 [
 	{
 		"UserName": "admin@lovamap.com",
-		"Email": "admin@lovamap.com"
+		"Email": "admin@lovamap.com",
+		"Password": "Pa$$w0rd"
 	}
 ]

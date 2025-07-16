@@ -244,14 +244,14 @@ namespace Services.Services
 			}
 		}
 		
-		public async Task<(bool Succeeded, string ErrorMessage, ScaffoldGroupDataDto? Result)> GetDataForVisualization(int scaffoldGroupId, string? userId)
+		public async Task<(bool Succeeded, string ErrorMessage, ScaffoldGroupDataDto? Result)> GetDataForVisualization(int scaffoldGroupId, string? userId,  List<int> descriptorTypeIds)
 		{
 			try
 			{
 				var summary = await _scaffoldGroupRepository.GetSummary(scaffoldGroupId);
 				if (summary == null) return (false, "Scaffold group not found", null);
 
-				var (poreInfoSucceeded, poreInfoErrorMesssage, poreData) = await _descriptorService.GetPoreInfoScaffoldGroup(scaffoldGroupId);
+				var (poreInfoSucceeded, poreInfoErrorMesssage, poreData) = await _descriptorService.GetPoreDescriptorInfoScaffoldGroup(scaffoldGroupId, descriptorTypeIds);
 				if (!poreInfoSucceeded || poreData == null) return (false, poreInfoErrorMesssage, null);
 
 				if (string.IsNullOrEmpty(userId))

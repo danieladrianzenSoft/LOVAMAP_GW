@@ -32,6 +32,22 @@ public class DescriptorsController : ControllerBase
 	}
 
 	[AllowAnonymous]
+	[HttpGet]
+    public async Task<IActionResult> GetAllDescriptors()
+    {
+        try
+        {
+			var descriptors = await _descriptorService.GetAllDescriptorTypes();
+            return Ok(new ApiResponse<ICollection<DescriptorTypeDto>>(200, "Descriptors obtained successfully", descriptors));
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Failed to get descriptors types");
+        	return StatusCode(500, new ApiResponse<string>(500, "An error occurred while getting descriptor types"));
+        }
+    }   
+
+	[AllowAnonymous]
 	[HttpGet("{scaffoldGroupId}")]
 	public async Task<IActionResult> GetPoreInfo(int scaffoldGroupId)
 	{
@@ -55,11 +71,11 @@ public class DescriptorsController : ControllerBase
 
 	[AllowAnonymous]
 	[HttpGet("data/{scaffoldGroupId}")]
-	public async Task<IActionResult> GetDataScaffoldGroup(int scaffoldGroupId)
+	public async Task<IActionResult> GetDescriptorDataScaffoldGroup(int scaffoldGroupId, [FromQuery] List<int> descriptorTypeIds)
 	{
 		try
 		{
-			var (succeeded, errorMessage, poreInfo) = await _descriptorService.GetPoreInfoScaffoldGroup(scaffoldGroupId);
+			var (succeeded, errorMessage, poreInfo) = await _descriptorService.GetPoreDescriptorInfoScaffoldGroup(scaffoldGroupId, descriptorTypeIds);
 
 			if (!succeeded)
 			{
@@ -77,13 +93,13 @@ public class DescriptorsController : ControllerBase
 	
 	[AllowAnonymous]
 	[HttpGet("data/random")]
-    public async Task<IActionResult> GetDataRandomScaffoldGroup()
+    public async Task<IActionResult> GetDescriptorDataRandomScaffoldGroup([FromQuery] List<int> descriptorTypeIds)
     {
 		try
 		{
 			var randomId = await _scaffoldGroupService.GetRandomScaffoldGroupId();
 
-			var (succeeded, errorMessage, poreInfo) = await _descriptorService.GetPoreInfoScaffoldGroup(randomId);
+			var (succeeded, errorMessage, poreInfo) = await _descriptorService.GetPoreDescriptorInfoScaffoldGroup(randomId, descriptorTypeIds);
 
 			if (!succeeded) {
 				return NotFound(new ApiResponse<string>(404, errorMessage));

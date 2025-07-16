@@ -11,7 +11,9 @@ import { PoreInfoForScaffold } from '../../app/models/poreInfo';
 import { HistogramPlot } from '../plotting/histogram-plot';
 import PlotSelector from '../../app/common/plot-selector/plot-selector';
 import History from "../../app/helpers/History";
-import { PORE_DESCRIPTOR_MAP } from '../../constants/pore-descriptors';
+import { PORE_DESCRIPTOR_MAP, PoreDescriptorUIConfig } from '../../constants/pore-descriptors';
+import { DescriptorType } from '../../app/models/descriptorType';
+import { useDescriptorTypes } from '../../app/common/hooks/useDescriptorTypes';
 
 interface ScaffoldGroupDetailsProps {
     scaffoldGroup: ScaffoldGroup;
@@ -29,6 +31,8 @@ const categoryOrder: { [key: string]: number } = {
 
 const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGroup, isVisible, toggleDetails }) => {
     const {scaffoldGroupStore, descriptorStore} = useStore();
+	const { descriptorTypes } = useDescriptorTypes();
+	
 	const {getDetailedScaffoldGroupById, navigateToVisualization} = scaffoldGroupStore;
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const [poreInfo, setPoreInfo] = useState<PoreInfoForScaffold>();
@@ -42,6 +46,23 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 		}
 		return map;
 	}, [poreInfo]);
+
+	const detailedDescriptors = useMemo(() => {
+		const descriptorByName = new Map(descriptorTypes.map(d => [d.name, d]));
+
+		return PORE_DESCRIPTOR_MAP
+			.filter(cfg => cfg.showInDetails)
+			.map(cfg => {
+				const descriptor = descriptorByName.get(cfg.key);
+				if (!descriptor) return null;
+				return { ...cfg, descriptor };
+			})
+			.filter(Boolean) as Array<PoreDescriptorUIConfig & { descriptor: DescriptorType }>;
+	}, [descriptorTypes]);
+
+	const detailDescriptorTypeIds = useMemo(() => {
+		return detailedDescriptors.map(d => d.descriptor.id);
+	}, [detailedDescriptors]);
 
 	const download = useCallback(async (values: any, setErrors: Function) => {
 		setIsLoading(true);
@@ -67,10 +88,10 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 		}
 	}, [getDetailedScaffoldGroupById]);
 
-	const getPoreInfo = useCallback(async (scaffoldGroupId: number) => {
+	const getPoreInfo = useCallback(async (scaffoldGroupId: number, descriptorTypeIds: number[]) => {
 		setIsLoading(true);
 		try {
-			const groupData = await descriptorStore.getPoreInfoForScaffoldGroup(scaffoldGroupId);
+			const groupData = await descriptorStore.getPoreInfoForScaffoldGroup(scaffoldGroupId, descriptorTypeIds);
 			if (groupData?.scaffolds?.length) {
 			// If you only want the first scaffold’s data:
 				setPoreInfo(groupData.scaffolds[0]); // a PoreInfoScaffoldDto
@@ -87,11 +108,11 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 	})
 
 	useEffect(() => {
-		if (isVisible && scaffoldGroup.id) {
-			getPoreInfo(scaffoldGroup.id);
+		if (isVisible && scaffoldGroup.id && detailDescriptorTypeIds.length > 0) {
+			getPoreInfo(scaffoldGroup.id, detailDescriptorTypeIds);
 		}
 		// Only refetch if scaffoldGroup.id or visibility changes
-	}, [isVisible, scaffoldGroup.id, getPoreInfo]);
+	}, [isVisible, scaffoldGroup.id, detailDescriptorTypeIds, getPoreInfo]);
 	
 	const maxHeight = isVisible ? "500px" : "0px";
 
@@ -167,31 +188,31 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 							<p className="mt-0 -mb-5">Interior Pore Descriptors</p>
 							{Object.keys(descriptorValueMap).length > 0 && (
 								<PlotSelector
-									initialKey="volume"
+									initialKey="Volume"
 									plots={[
-									...PORE_DESCRIPTOR_MAP.filter(d => d.showInDetails).map(d => ({
-										key: d.key,
-										label: d.label,
-										component: descriptorValueMap[d.typeId]?.length > 0 ? (
-										<HistogramPlot
-											data={descriptorValueMap[d.typeId]}
-											xlabel={d.xlabel}
-											hideYLabels
-											showHoverInfo={true}
-											interactive={false}
-										/>
-										) : (
-										<div className="text-sm text-gray-400 mt-4">No data for {d.label}</div>
-										)
-									})),
-									{
-										key: 'more',
-										label: 'More...',
-										component: (
-										<div className="text-sm text-gray-400 italic mt-4">Redirecting...</div>
-										),
-										onClick: () => navigateToDataVisualization(scaffoldGroup.id)
-									}
+										...detailedDescriptors.map(({ key, descriptor }) => ({
+											key,
+											label: descriptor.label,
+											component: descriptorValueMap[descriptor.id]?.length > 0 ? (
+												<HistogramPlot
+													data={descriptorValueMap[descriptor.id]}
+													xlabel={descriptor.unit || ''}
+													hideYLabels
+													showHoverInfo={true}
+													interactive={false}
+												/>
+											) : (
+												<div className="text-sm text-gray-400 mt-4">No data for {descriptor.label}</div>
+											)
+										})),
+										{
+											key: 'more',
+											label: 'More...',
+											component: (
+												<div className="text-sm text-gray-400 italic mt-4">Redirecting...</div>
+											),
+											onClick: () => navigateToDataVisualization(scaffoldGroup.id)
+										}
 									]}
 								/>
 							)}

@@ -2,13 +2,53 @@ import { makeAutoObservable } from "mobx";
 import agent from "../api/agent";
 import { PoreInfo, PoreInfoForScaffoldGroup } from "../models/poreInfo";
 import { runInAction } from "mobx";
+import { DescriptorType } from "../models/descriptorType";
 
 export default class DescriptorStore {
+	descriptorTypes: DescriptorType[] = [];
+	isFetchingDescriptors: boolean = false;
 	poreInfoCache: Map<number, PoreInfo> = new Map();
 	
 	constructor() {
 		makeAutoObservable(this)
 	}
+
+	getDescriptorTypes = async (forceRefresh = false): Promise<DescriptorType[]> => {
+		if (!forceRefresh && this.descriptorTypes.length > 0) {
+			return this.descriptorTypes;
+		}
+
+		this.isFetchingDescriptors = true;
+
+		try {
+			const response = await agent.Descriptors.getAllDescriptorTypes();
+			const fetched = response.data || [];
+
+			runInAction(() => {
+				this.descriptorTypes = fetched;
+			});
+
+			return fetched;
+		} catch (error) {
+			console.error("Failed to fetch descriptor types", error);
+			runInAction(() => {
+				this.descriptorTypes = [];
+			});
+			return [];
+		} finally {
+			runInAction(() => {
+				this.isFetchingDescriptors = false;
+			});
+		}
+	};
+
+	getDescriptorByTypeId = (id: number): DescriptorType | undefined => {
+		return this.descriptorTypes.find((d) => d.id === id);
+	};
+
+	clearDescriptorCache = () => {
+		this.descriptorTypes = [];
+	};
 
 	getPoreInfo = async (scaffoldGroupId: number): Promise<PoreInfo | null> => {
 		if (this.poreInfoCache.has(scaffoldGroupId)) {
@@ -41,9 +81,14 @@ export default class DescriptorStore {
 		this.poreInfoCache.clear();
 	};
 
-	getPoreInfoForScaffoldGroup = async (scaffoldGroupId: number): Promise<PoreInfoForScaffoldGroup | null> => {
+	getPoreInfoForScaffoldGroup = async (scaffoldGroupId: number, descriptorTypeIds: number[]): Promise<PoreInfoForScaffoldGroup | null> => {
 		try {
-			const apiResponse = await agent.Descriptors.getPoreInfoForScaffoldGroup(scaffoldGroupId);
+			let queryParams = '';
+			if (descriptorTypeIds.length > 0) {
+				queryParams += descriptorTypeIds.map(id => `descriptorTypeIds=${id}`).join('&');
+			}
+			if (queryParams !== '') queryParams = '?' + queryParams;
+			const apiResponse = await agent.Descriptors.getPoreInfoForScaffoldGroup(scaffoldGroupId, queryParams);
 			return apiResponse.data;
 		} catch (error) {
 			console.error("Failed to fetch pore info:", error);
@@ -51,15 +96,18 @@ export default class DescriptorStore {
 		return null;
 	}
 
-	getPoreInfoForRandomScaffoldGroup = async (): Promise<PoreInfoForScaffoldGroup | null> => {
+	getPoreInfoForRandomScaffoldGroup = async (descriptorTypeIds: number[]): Promise<PoreInfoForScaffoldGroup | null> => {
 		try {
-			const apiResponse = await agent.Descriptors.getPoreInfoForRandomScaffoldGroup();
+			let queryParams = '';
+			if (descriptorTypeIds.length > 0) {
+				queryParams += descriptorTypeIds.map(id => `descriptorTypeIds=${id}`).join('&');
+			}
+			if (queryParams !== '') queryParams = '?' + queryParams;
+			const apiResponse = await agent.Descriptors.getPoreInfoForRandomScaffoldGroup(queryParams);
 			return apiResponse.data;
 		} catch (error) {
 			console.error("Failed to fetch pore info:", error);
 		}
 		return null;
 	}
-
-
 }

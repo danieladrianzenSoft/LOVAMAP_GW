@@ -100,7 +100,7 @@ export const HistogramPlot: React.FC<HistogramPlotProps> = ({
 				type: useLogScale ? 'log' : 'linear',
 				tickfont: { size: tickFontSize || 12 },
 				tickvals: [xMin, median, xMax],
-				ticktext: [xMin.toFixed(tickDecimalPlaces || 0), median.toFixed(tickDecimalPlaces || 0), xMax.toFixed(tickDecimalPlaces || 0)],
+				ticktext: [xMin?.toFixed(tickDecimalPlaces || 0), median?.toFixed(tickDecimalPlaces || 0), xMax?.toFixed(tickDecimalPlaces || 0)],
 				range: [xMin, xMax],
 				automargin: true,
 				showgrid: shouldShowGrid,

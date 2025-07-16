@@ -1,6 +1,7 @@
 import AdminBatchThumbnailGenerator from "./admin-batch-thumbnail-generator";
 import AdminBatchImageCleanup from "./admin-batch-image-cleanup";
 import AdminTitleResetter from "./admin-title-resetter";
+import AdminBatchDescriptorSeeder from "./admin-batch-descriptor-seeder";
 
 const AdminUtilities: React.FC = () => {
 	return (
@@ -10,6 +11,7 @@ const AdminUtilities: React.FC = () => {
 				<AdminBatchThumbnailGenerator />
 				<AdminBatchImageCleanup />
 				<AdminTitleResetter />
+				<AdminBatchDescriptorSeeder />
 			</div>
 		</div>
 	);

@@ -285,13 +285,13 @@ public class ScaffoldGroupsController : ControllerBase
 
 	[AllowAnonymous]
 	[HttpGet("data/{scaffoldGroupId}")]
-	public async Task<IActionResult> GetDataForVisualization(int scaffoldGroupId)
+	public async Task<IActionResult> GetDataForVisualization(int scaffoldGroupId, [FromQuery] List<int> descriptorTypeIds)
 	{
 		try
 		{
 			var currentUserId = _userService.GetCurrentUserId();
 
-			var (succeeded, errorMessage, data) = await _scaffoldGroupService.GetDataForVisualization(scaffoldGroupId, currentUserId);
+			var (succeeded, errorMessage, data) = await _scaffoldGroupService.GetDataForVisualization(scaffoldGroupId, currentUserId, descriptorTypeIds);
 
 			if (!succeeded)
 			{
@@ -309,7 +309,7 @@ public class ScaffoldGroupsController : ControllerBase
 	
 	[AllowAnonymous]
 	[HttpGet("data/random")]
-    public async Task<IActionResult> GetDataForVisualizationRandomScaffoldGroup()
+    public async Task<IActionResult> GetDataForVisualizationRandomScaffoldGroup([FromQuery] List<int> descriptorTypeIds)
     {
 		try
 		{
@@ -317,14 +317,14 @@ public class ScaffoldGroupsController : ControllerBase
 
 			var randomId = await _scaffoldGroupService.GetRandomScaffoldGroupId();
 
-			var (succeeded, errorMessage, data) = await _scaffoldGroupService.GetDataForVisualization(randomId, currentUserId);
+			var (succeeded, errorMessage, data) = await _scaffoldGroupService.GetDataForVisualization(randomId, currentUserId, descriptorTypeIds);
 
 			if (!succeeded)
 			{
 				return NotFound(new ApiResponse<string>(404, errorMessage));
 			}
 
-			return Ok(new ApiResponse<ScaffoldGroupDataDto>(200, "", data));
+		return Ok(new ApiResponse<ScaffoldGroupDataDto>(200, "", data));
 		}
 		catch (Exception ex)
 		{

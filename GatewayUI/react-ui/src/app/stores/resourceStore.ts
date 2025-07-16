@@ -25,14 +25,6 @@ export default class ResourceStore {
 		}
 	}
 
-	// getDescriptorTypes = async () => {
-	// 	try {
-	// 		const response = await agent.Resources.getDescriptorTypes();
-	// 		return response.data;
-	// 	} catch (error) {
-	// 		console.error(error)
-	// 	}
-	// }
 	getDescriptorTypes = async () => {
         if (this.descriptorTypes.length > 0) {
             // If cached, return the cached descriptorTypes

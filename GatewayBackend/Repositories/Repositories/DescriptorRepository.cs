@@ -292,13 +292,13 @@ namespace Repositories.Repositories
 			};
 		}
 
-		public async Task<PoreInfoScaffoldGroupDto?> GetPoreInfoForScaffoldGroup(int scaffoldGroupId)
+		public async Task<PoreInfoScaffoldGroupDto?> GetPoreDescriptorInfoForScaffoldGroup(int scaffoldGroupId, List<int> descriptorTypeIds)
 		{
-			var descriptorTypeIds = new List<int> { 22, 23, 25, 27 };
+			// var descriptorTypeIds = new List<int> { 22, 23, 25, 27 };
 
 			var descriptors = await _context.PoreDescriptors
 				.AsNoTracking()
-				.Include(pd => pd.DescriptorType)
+				.Include(pd => pd.DescriptorType) 
 				.Where(pd => pd.Scaffold.ScaffoldGroupId == scaffoldGroupId &&
 							descriptorTypeIds.Contains(pd.DescriptorTypeId))
 				.Select(pd => new {
