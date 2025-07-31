@@ -17,6 +17,7 @@ import { AiScaffoldGroupSearch } from "../models/aiScaffoldGroupSearch";
 import { BatchOperationResult } from "../models/batchOperationResult";
 import { ScaffoldGroupData } from "../models/scaffoldGroupData";
 import { DescriptorSeedResult } from "../models/descriptor";
+import { Publication } from "../models/publication";
 
 axios.defaults.baseURL = environment.baseUrl;
 
@@ -186,6 +187,10 @@ const Jobs = {
     },
 }
 
+const Publications = {
+    getAll: async () => requests.get<ApiResponse<Publication[]>>(`/publications`),
+}
+
 const agent = {
 	Resources,
     Seed,
@@ -193,7 +198,8 @@ const agent = {
 	ScaffoldGroups,
     Descriptors,
     Domains,
-    Jobs
+    Jobs,
+    Publications
 }
 
 export default agent;

@@ -12,6 +12,14 @@ interface SidebarScaffoldGroupPanelProps {
 	onRemove?: (groupId: number) => void;
 }
 
+const categoryOrder: { [key: string]: number } = {
+	Particles: 0,
+    ExteriorPores: 1,
+    InteriorPores: 2,
+    ParticleSizeDistribution: 3,
+    Other: 4
+};
+
 export const SidebarScaffoldGroupPanel: React.FC<SidebarScaffoldGroupPanelProps> = ({ groupData, index, numPlots, onRemove }) => {
 	const [isOpen, setIsOpen] = useState(true);
 	const toggleOpen = () => setIsOpen(prev => !prev);
@@ -28,29 +36,36 @@ export const SidebarScaffoldGroupPanel: React.FC<SidebarScaffoldGroupPanelProps>
 			<div className="flex justify-between items-start">
 				{/* Group name and tags */}
 				<div className="flex-1">
-					<div className="flex items-center w-full">
-						{onRemove && (
-							<button
-									className="bg-gray-200 text-gray-600 p-1.5 rounded-full mr-2 text-xs hover:shadow-md hover:text-red-600"
-									onClick={(e) => {
-									e.stopPropagation();
-									onRemove(groupData.scaffoldGroup.id);
-								}}
-								title="Remove scaffold group"
-							>
-								<FaTimes size={10} />
-							</button>
-						)}
-						<h2 className="text-sm font-semibold text-gray-800 break-words">
-							<span
-								className="inline-block w-3 h-3 rounded-sm mr-2 align-middle"
-								style={{
-								backgroundColor: getPlotColor(index, numPlots),
-								flexShrink: 0,
-								}}
-							/>
-							{groupData.scaffoldGroup.name}
-						</h2>
+					<div className="w-full">
+						<div className="flex items-center">
+							{onRemove && (
+								<button
+										className="bg-gray-200 text-gray-600 p-1.5 rounded-full mr-2 text-xs hover:shadow-md hover:text-red-600"
+										onClick={(e) => {
+										e.stopPropagation();
+										onRemove(groupData.scaffoldGroup.id);
+									}}
+									title="Remove scaffold group"
+								>
+									<FaTimes size={10} />
+								</button>
+							)}
+							<h2 className="text-sm font-bold text-gray-800 break-words">
+								<span
+									className="inline-block w-3 h-3 rounded-sm mr-2 align-middle"
+									style={{
+									backgroundColor: getPlotColor(index, numPlots),
+									flexShrink: 0,
+									}}
+								/>
+								{`Scaffold Group ${index + 1}`}
+							</h2>
+						</div>
+						<div className="mt-1">
+							<h2 className="text-sm font-semibold text-gray-700 break-words">
+								{groupData.scaffoldGroup.name}
+							</h2>
+						</div>
 					</div>
 					<div className="flex flex-wrap gap-1 mt-2">
 						{groupData.scaffoldGroup.tags.map((tag, index) => (
@@ -66,6 +81,41 @@ export const SidebarScaffoldGroupPanel: React.FC<SidebarScaffoldGroupPanelProps>
 			isOpen ? "max-h-[1000px] opacity-100 mt-1" : "max-h-0 opacity-0"
 			}`}
 		>
+			{groupData.scaffoldGroup.images.length > 0 ? (
+				<div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+					{groupData.scaffoldGroup.images
+						.slice() // Create a copy to avoid mutating the original array
+						.sort((a, b) => {
+							// Use categoryOrder mapping, defaulting to 999 if category is unrecognized
+							const orderA = categoryOrder[a.category] ?? 999;
+							const orderB = categoryOrder[b.category] ?? 999;
+							return orderA - orderB;
+						})
+						.map((image, index) => (
+							<div key={index} className="flex flex-col items-center">
+							<div
+								className="relative w-full h-36 group overflow-hidden rounded-lg transition-shadow duration-300"
+							>
+								{/* Top-centered category label */}
+								<p className="absolute left-1/2 top-2 transform -translate-x-1/2 bg-white bg-opacity-70 text-sm text-gray-700 px-2 py-0.5 rounded z-10">
+									{image.category}
+								</p>
+
+								{/* Image */}
+								<img 
+									src={image.url} 
+									alt={image.category} 
+									className="w-full h-full object-cover transition-transform duration-300"
+								/>
+							</div>
+						</div>
+					))}
+				</div>
+			) : (
+				<>
+					<p className="text-sm text-gray-500 italic">No figures added</p>
+				</>
+			)}
 			<table className="w-full text-sm text-left text-gray-500">
 				<tbody>
 					<tr>

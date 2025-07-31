@@ -7,6 +7,7 @@ import DomainStore from "./domainStore";
 import JobStore from "./jobStore";
 import DescriptorStore from "./descriptorStore";
 import SeedStore from "./seedStore";
+import PublicationStore from "./publicationStore";
 
 interface Store {
 	commonStore: CommonStore,
@@ -16,7 +17,8 @@ interface Store {
 	scaffoldGroupStore: ScaffoldGroupStore,
 	descriptorStore: DescriptorStore,
 	domainStore: DomainStore,
-	jobStore: JobStore
+	jobStore: JobStore,
+	publicationStore: PublicationStore
 }
 
 export const store: Store = {
@@ -28,6 +30,7 @@ export const store: Store = {
 	descriptorStore: new DescriptorStore(),
 	domainStore: new DomainStore(),
 	jobStore: new JobStore(),
+	publicationStore: new PublicationStore()
 }
 
 export const StoreContext = createContext(store);

@@ -17,8 +17,9 @@ import DescriptorCalculatorModal from "../descriptors/descriptor-calculator-moda
 import { downloadExperimentsAsExcel, triggerDownload } from '../../app/common/excel-generator/excel-generator';
 import { openPreviewInNewTab } from "../../app/common/new-tab-preview/new-tab-preview";
 import { DescriptorType } from "../../app/models/descriptorType";
-import { PORE_DESCRIPTOR_MAP, PoreDescriptorUIConfig } from "../../constants/pore-descriptors";
+import { PORE_DESCRIPTOR_MAP } from "../../constants/pore-descriptors";
 import { useDescriptorTypes } from "../../app/common/hooks/useDescriptorTypes";
+import { DescriptorSelector } from "../descriptors/descriptor-selector";
 
 export const ExploreData: React.FC = observer(() => {
 	const { commonStore, scaffoldGroupStore } = useStore();
@@ -34,6 +35,7 @@ export const ExploreData: React.FC = observer(() => {
 	const [isSidebarOpen, setSidebarOpen] = useState(false);
 	const [showDescriptorModal, setShowDescriptorModal] = useState(false);
 	const [useLogScale, setUseLogScale] = useState(false);
+	const [selectedDescriptorTypes, setSelectedDescriptorTypes] = useState<DescriptorType[]>([]);
 	
 	const [showDropdown, setShowDropdown] = useState(false);
 	const searchContainerRef = useRef<HTMLDivElement>(null);
@@ -43,6 +45,8 @@ export const ExploreData: React.FC = observer(() => {
 		params.scaffoldGroupId ? parseInt(params.scaffoldGroupId, 10) : null
 	);
 
+	const isInitialLoad = useRef(true);
+
 	const runSearch = async (query: string) => {
 		setSearching(true);
 		setShowDropdown(true);
@@ -51,55 +55,107 @@ export const ExploreData: React.FC = observer(() => {
 		setSearching(false);
 	};
 
-	const getScaffoldGroupData = useCallback(async (descriptorTypeIds: number[]) => {
+	// const getScaffoldGroupData = useCallback(async (descriptorTypeIds: number[]) => {
+	// 	setIsLoading(true);
+
+	// 	const data = resolvedScaffoldGroupId !== null
+	// 		? await scaffoldGroupStore.getDataForVisualization(resolvedScaffoldGroupId, descriptorTypeIds)
+	// 		: await scaffoldGroupStore.getDataForVisualizationRandom(descriptorTypeIds);
+
+	// 	if (data) {
+	// 		setScaffoldGroups([data]);
+	// 	}
+	// 	setIsLoading(false);	
+	// }, [resolvedScaffoldGroupId, scaffoldGroupStore]);
+
+	const updateAllScaffoldGroupsWithDescriptors = useCallback(async (descriptorTypeIds: number[]) => {
+		if (scaffoldGroups.length === 0) return;
+
 		setIsLoading(true);
 
-		const data = resolvedScaffoldGroupId !== null
-			? await scaffoldGroupStore.getDataForVisualization(resolvedScaffoldGroupId, descriptorTypeIds)
-			: await scaffoldGroupStore.getDataForVisualizationRandom(descriptorTypeIds);
+		const updated = await Promise.all(
+			scaffoldGroups.map(group =>
+				scaffoldGroupStore.getDataForVisualization(group.scaffoldGroup.id, descriptorTypeIds)
+			)
+		);
 
-		if (data) {
-			setScaffoldGroups([data]);
-		}
-		setIsLoading(false);	
-	}, [resolvedScaffoldGroupId, scaffoldGroupStore]);
+		const validResults = updated.filter(Boolean) as ScaffoldGroupData[];
+		setScaffoldGroups(validResults);
 
-	const detailedDescriptors = useMemo(() => {
-		const byName = new Map(descriptorTypes.map(d => [d.name, d]));
+		setIsLoading(false);
+	}, [scaffoldGroups, scaffoldGroupStore]);
 
-		return PORE_DESCRIPTOR_MAP
-			.filter(cfg => cfg.showInExplore)
-			.map(cfg => {
-				const descriptor = byName.get(cfg.key);
-				if (!descriptor) return null; // warning: might want to log missing ones
-				return {
-					...cfg,
-					descriptor,
-				};
-			})
-			.filter(Boolean) as Array<PoreDescriptorUIConfig & { descriptor: DescriptorType }>;
-	}, [descriptorTypes]);
+	// const getAllScaffoldGroupData = useCallback(async (groupIds: number[], descriptorTypeIds: number[]) => {
+	// 	setIsLoading(true);
+
+	// 	const results = await Promise.all(
+	// 		groupIds.map(id => scaffoldGroupStore.getDataForVisualization(id, descriptorTypeIds))
+	// 	);
+
+	// 	const validResults = results.filter(Boolean) as ScaffoldGroupData[];
+	// 	setScaffoldGroups(validResults);
+
+	// 	setIsLoading(false);
+	// }, [scaffoldGroupStore]);
 
 	const detailDescriptorTypeIds = useMemo(() => {
-		return detailedDescriptors.map(d => d.descriptor.id);
-	}, [detailedDescriptors]);
+		return selectedDescriptorTypes.map(d => d.id);
+	}, [selectedDescriptorTypes]);
 
 	const groupedDescriptorsBySection = useMemo(() => {
-		return detailedDescriptors.reduce((acc, entry) => {
-			const section = entry.section || entry.descriptor.category || 'Other';
+		return selectedDescriptorTypes.reduce((acc, descriptor) => {
+			const section = descriptor.subCategory || descriptor.category || 'Other';
 			if (!acc[section]) acc[section] = [];
-			acc[section].push(entry);
+			acc[section].push({ descriptor, key: descriptor.name });
 			return acc;
-		}, {} as Record<string, typeof detailedDescriptors>);
-	}, [detailedDescriptors]);
+		}, {} as Record<string, Array<{ descriptor: DescriptorType; key: string }>>);
+	}, [selectedDescriptorTypes]);
 
 	useEffect(() => {
-		const fetchData = async () => {
-			getScaffoldGroupData(detailDescriptorTypeIds);
+		if (!isInitialLoad.current || selectedDescriptorTypes.length === 0) return;
+
+		isInitialLoad.current = false;
+
+		const descriptorIds = selectedDescriptorTypes.map(d => d.id);
+
+		const loadInitial = async () => {
+			setIsLoading(true);
+
+			const data = resolvedScaffoldGroupId !== null
+				? await scaffoldGroupStore.getDataForVisualization(resolvedScaffoldGroupId, descriptorIds)
+				: await scaffoldGroupStore.getDataForVisualizationRandom(descriptorIds);
+
+			if (data) {
+				setScaffoldGroups([data]);
+			}
+
+			setIsLoading(false);
 		};
 
-		fetchData();
-	}, [scaffoldGroupStore, resolvedScaffoldGroupId, getScaffoldGroupData, detailDescriptorTypeIds]);
+		loadInitial();
+	}, [resolvedScaffoldGroupId, scaffoldGroupStore, selectedDescriptorTypes]);
+	
+	useEffect(() => {
+		if (isInitialLoad.current) return;
+		if (selectedDescriptorTypes.length === 0 || scaffoldGroups.length === 0) return;
+
+		const descriptorTypeIds = selectedDescriptorTypes.map(d => d.id);
+		updateAllScaffoldGroupsWithDescriptors(descriptorTypeIds);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [selectedDescriptorTypes]);
+
+
+	useEffect(() => {
+		if (descriptorTypes.length > 0) {
+			const byName = new Map(descriptorTypes.map(d => [d.name, d]));
+			const defaults = PORE_DESCRIPTOR_MAP
+			.filter(cfg => cfg.showInExplore)
+			.map(cfg => byName.get(cfg.key))
+			.filter(Boolean) as DescriptorType[];
+
+			setSelectedDescriptorTypes(defaults);
+		}
+	}, [descriptorTypes]);
 
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
@@ -174,14 +230,6 @@ export const ExploreData: React.FC = observer(() => {
 		}
 	};
 
-	// const groupDescriptorsBySection = useMemo(() => {
-	// 	return PORE_DESCRIPTOR_MAP.filter(d => d.showInExplore).reduce((acc, item) => {
-	// 		if (!acc[item.section]) acc[item.section] = [];
-	// 		acc[item.section].push(item);
-	// 		return acc;
-	// 	}, {} as Record<string, typeof PORE_DESCRIPTOR_MAP>);
-	// }, []);
-
 	const handleAddOverlayGroup = async (id: number, descriptorTypeIds: number[]) => {
 		const alreadyExists = scaffoldGroups.some(group => group.scaffoldGroup.id === id);
 		if (alreadyExists) {
@@ -227,22 +275,33 @@ export const ExploreData: React.FC = observer(() => {
 	return (
 		<div className="flex mx-auto py-8 px-2">
 			{/* Main dashboard area */}
-			<div className="flex-1 space-y-12 pr-2">
+			<div className="container pr-2">
 				{/* Section Header: Title + View Data */}
-				<div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
+				<div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8">
 					<h2 className="text-3xl text-gray-700 font-bold">Descriptor Data</h2>
 					{scaffoldGroups.length > 0 && !isLoading && (
 						<button
-						onClick={handlePreviewDownloadClick}
-						className="bg-blue-600 hover:bg-blue-700 text-white text-sm px-4 py-2 rounded-md shadow mt-2 sm:mt-0"
+							onClick={handlePreviewDownloadClick}
+							className="bg-blue-600 hover:bg-blue-700 text-white text-sm px-4 py-2 rounded-md shadow mt-2 sm:mt-0"
 						>
-						View Data
+							View Data
 						</button>
 					)}
 				</div>
 
-				<div className="mb-0 mt-0 mr-2 relative" ref={searchContainerRef}>
-					<AISearchBar onSearch={runSearch} onClear={clearFilters} onClick={() => setShowDropdown(true)}/>
+				<div className="mb-2">
+					<p className="font-semibold">
+						Visualize and download pore descriptor data that characterize your scaffolds of interest
+					</p>
+					<p>
+						Use the search bar below to find and select scaffold groups. 
+						Then select the interior pore descriptors you would like to visualize. We've initialized 
+						the plots with a random scaffold group as an example.
+					</p>
+				</div>
+
+				<div className="mb-8 mt-0 mr-2 relative" ref={searchContainerRef}>
+					<AISearchBar onSearch={runSearch} onClear={clearFilters} onClick={() => {setShowDropdown(true)}}/>
 					{showDropdown && (
 						<SearchResultsDropdown
 							results={searchResults}
@@ -258,7 +317,26 @@ export const ExploreData: React.FC = observer(() => {
 					)}
 				</div>
 
-				{scaffoldGroups.length >= 3 && 
+				{/* <ScaffoldGroupFilters 
+					setIsLoading={setIsLoading} 
+					condensed={true} 
+					allFiltersVisible={false}
+					selectedParticleSizeIds={selectedParticleSizeIds}
+					setSelectedParticleSizeIds={setSelectedParticleSizeIds}
+					selectedTags={selectedTags}
+					setSelectedTags={setSelectedTags}
+				/> */}
+
+				<div className="w-full">
+					<DescriptorSelector
+						descriptorTypes={descriptorTypes.filter(d => d.category === 'Pore')}
+						selectedDescriptorTypes={selectedDescriptorTypes}
+						onChange={setSelectedDescriptorTypes}
+					/>
+				</div>
+				
+
+				{scaffoldGroups.length >= 4 && 
 					<div className="flex justify-end mr-2 items-center mt-3 text-sm text-gray-700">
 						<span className="mr-2">Use Log Scale</span>
 						<label className="inline-flex items-center cursor-pointer relative w-11 h-6">
@@ -298,7 +376,7 @@ export const ExploreData: React.FC = observer(() => {
 								return (
 									<div key={key} className="bg-white rounded-xl p-2 relative min-h-[300px]">
 									{data.length > 0 ? (
-										data.length <= 2 ? (
+										data.length <= 3 ? (
 										<HistogramPlot
 											data={data}
 											title={descriptor.label}

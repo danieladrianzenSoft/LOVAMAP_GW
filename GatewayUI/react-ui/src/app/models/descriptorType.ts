@@ -6,6 +6,7 @@ export interface DescriptorType {
     label: string;
     tableLabel: string;
 	category: string;
+    subCategory: string;
     unit: string;
     dataType: string;
     publication: string;

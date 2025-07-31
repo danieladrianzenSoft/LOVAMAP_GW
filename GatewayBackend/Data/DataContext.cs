@@ -154,13 +154,25 @@ public partial class DataContext : IdentityDbContext<User, Role, string>
             .HasForeignKey(d => d.ProducedByJobId)
             .OnDelete(DeleteBehavior.SetNull);
 
-		// Configure Publication to Experiment relationship
-        builder.Entity<Publication>()
-            .HasMany(p => p.ScaffoldGroups)
-            .WithOne(g => g.Publication)
-            .HasForeignKey(g => g.PublicationId)
-            .OnDelete(DeleteBehavior.SetNull);  // Set to null if the Publication is deleted
-        
+        // Configure Publication to Experiment relationship
+        builder.Entity<ScaffoldGroupPublication>()
+            .HasKey(sgp => new { sgp.ScaffoldGroupId, sgp.PublicationId });
+
+        builder.Entity<ScaffoldGroupPublication>()
+            .HasOne(sgp => sgp.ScaffoldGroup)
+            .WithMany(sg => sg.ScaffoldGroupPublications)
+            .HasForeignKey(sgp => sgp.ScaffoldGroupId);
+
+        builder.Entity<ScaffoldGroupPublication>()
+            .HasOne(sgp => sgp.Publication)
+            .WithMany(p => p.ScaffoldGroupPublications)
+            .HasForeignKey(sgp => sgp.PublicationId);
+        // builder.Entity<Publication>()
+        //     .HasMany(p => p.ScaffoldGroups)
+        //     .WithOne(g => g.Publication)
+        //     .HasForeignKey(g => g.PublicationId)
+        //     .OnDelete(DeleteBehavior.SetNull);  // Set to null if the Publication is deleted
+
         builder.Entity<Publication>()
             .HasMany(p => p.DescriptorTypes)
             .WithOne(d => d.Publication)

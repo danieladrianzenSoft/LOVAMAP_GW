@@ -63,7 +63,7 @@ export const HistogramPlot: React.FC<HistogramPlotProps> = ({
 	const plotData = seriesArray.map((series, i) => ({
 		type: "histogram",
 		x: series,
-		opacity: 0.8,
+		opacity: 0.6,
 		name: `Group ${i + 1}`,
 		marker: {
 			color: plotColors[i],
@@ -80,6 +80,7 @@ export const HistogramPlot: React.FC<HistogramPlotProps> = ({
 		data={plotData}
 		layout={{
 			autosize: true,
+			barmode: "overlay",
 			hovermode: showHoverInfo === false ? false : "closest",
 			dragmode: showHoverInfo === false ? false : "zoom", // or "pan"
 			title: { 

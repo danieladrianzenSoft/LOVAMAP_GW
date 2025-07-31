@@ -4,7 +4,7 @@ import { useStore } from "../../app/stores/store";
 import { GroupedTags, Tag, displayNameMap } from "../../app/models/tag";
 import MultiSelectDropdown from "../../app/common/form/multiselect-dropdown";
 import { FaCaretDown } from "react-icons/fa";
-import TextTooltip from "../../app/common/tooltip/tooltip";
+// import TextTooltip from "../../app/common/tooltip/tooltip";
 // import AISearchBar from "../../app/common/ai-search-bar/ai-seach-bar";
 
 interface ScaffoldGroupFiltersProps {
@@ -33,7 +33,7 @@ const ScaffoldGroupFilters: React.FC<ScaffoldGroupFiltersProps> = ({
 	// const isLoggedIn = commonStore.isLoggedIn;
 	const [groupedTags, setGroupedTags] = useState<GroupedTags>({});
     const [particleSizes, setParticleSizes] = useState<{id: number, label: string}[]>([]);
-    const [otherFiltersVisible, setOtherFiltersVisible] = useState<boolean>(false);
+    // const [otherFiltersVisible, setOtherFiltersVisible] = useState<boolean>(false);
     const [filtersVisible, setFiltersVisible] = useState<boolean>(allFiltersVisible);
 
 	useEffect(() => {
@@ -96,92 +96,204 @@ const ScaffoldGroupFilters: React.FC<ScaffoldGroupFiltersProps> = ({
         }
     };
 
-	return (
-        <div className="mx-auto mb-4">
-            {condensed ? (
-                <div>
-                    <div className="flex items-center text-left cursor-pointer hover:underline" onClick={() => setFiltersVisible(!filtersVisible)}>
-                        <p className="ml-1 mr-1 text-gray-700">Filters</p>
-                        <div className={`transition-transform duration-300 transform ${filtersVisible ? 'rotate-0' : 'rotate-[-90deg]'}`}>
-                            <FaCaretDown />
-                        </div>
+    const PARTICLE_ROW_LIMIT = 10;
+
+    const particleSizeHead = particleSizes.slice(0, PARTICLE_ROW_LIMIT);
+    const particleSizeTail = particleSizes.slice(PARTICLE_ROW_LIMIT);
+
+    const tagDropdowns: { key: string; items: any[]; rowCount: number }[] = Object.entries(groupedTags).map(
+        ([key, tags]) => ({
+            key,
+            items: tags,
+            rowCount: tags.length || 1,
+        })
+    );
+
+    const fillColumns = (
+        components: { key: string; items: any[]; rowCount: number }[],
+        rowLimit: number
+    ) => {
+        const columns: { key: string; items: any[] }[][] = [];
+        let currentColumn: { key: string; items: any[] }[] = [];
+        let currentRowCount = 0;
+
+        for (const comp of components) {
+            if (currentRowCount + comp.rowCount > rowLimit) {
+            columns.push(currentColumn);
+            currentColumn = [comp];
+            currentRowCount = comp.rowCount;
+            } else {
+            currentColumn.push(comp);
+            currentRowCount += comp.rowCount;
+            }
+        }
+
+        if (currentColumn.length > 0) {
+            columns.push(currentColumn);
+        }
+
+        return columns;
+    };
+
+    const tagColumns = fillColumns(tagDropdowns, PARTICLE_ROW_LIMIT);
+
+    return (
+        <div className="mx-auto mb-4 relative">
+            <div>
+                <div
+                    className="flex items-center text-left cursor-pointer hover:underline"
+                    onClick={() => setFiltersVisible(!filtersVisible)}
+                >
+                    <p className="ml-1 mr-1 text-gray-700">Filters</p>
+                    <div className={`transition-transform duration-300 transform ${filtersVisible ? 'rotate-0' : 'rotate-[-90deg]'}`}>
+                        <FaCaretDown />
                     </div>
-                    {filtersVisible && (
-                        <div className="mt-4 flex flex-wrap">
-                            <div className="flex flex-col w-full md:w-1/3">
-                                <div className="p-2">
-                                    <MultiSelectDropdown
-                                        groupName={
-                                            <TextTooltip
-                                                label="PARTICLE DIAMETER"
-                                                tooltipText="Diameter (in micrometers) of a sphere with equivalent volume to the average particle volume"
-                                            />
-                                        }
-                                        items={particleSizes}
-                                        selectedItemIds={selectedParticleSizeIds}
-                                        renderItem={item => item.label}
-                                        onItemSelect={handleParticleSizeSelect}
-                                    />
-                                </div>
-                            </div>
-                            <div className="flex flex-col w-full md:w-2/3 md:flex-wrap">
-                                {Object.entries(groupedTags).map(([key, tags]) => (
-                                    <div key={key} className="w-full md:w-1/2 p-2 mb-4">
+                </div>
+
+                {filtersVisible && (
+                    <div className="absolute left-0 w-full z-20 bg-white border-b rounded shadow-lg">
+                        <div className="mx-auto max-w-screen-xl p-6 pl-12">
+                            <div className="grid grid-cols-[repeat(auto-fit,_minmax(200px,_1fr))] gap-6 text-left">
+                                {/* Particle Diameter: head */}
+                                <MultiSelectDropdown
+                                    groupName="PARTICLE DIAMETER"
+                                    items={particleSizeHead}
+                                    selectedItemIds={selectedParticleSizeIds}
+                                    renderItem={item => item.label}
+                                    onItemSelect={handleParticleSizeSelect}
+                                    className="text-left"
+                                />
+
+                                {/* Particle Diameter: tail (second column) */}
+                                {particleSizeTail.length > 0 && (
+                                    <div className="mt-6">
                                         <MultiSelectDropdown
-                                            groupName={displayNameMap[key] || key}
-                                            items={tags}
-                                            selectedItemIds={selectedTags[key]?.map(tag => tag.id) || []}
-                                            renderItem={(tag) => tag.name}
-                                            onItemSelect={(tag) => handleSelectTag(key, tag)}
+                                            groupName=""
+                                            items={particleSizeTail}
+                                            selectedItemIds={selectedParticleSizeIds}
+                                            renderItem={item => item.label}
+                                            onItemSelect={handleParticleSizeSelect}
+                                            className="text-left"
                                         />
+                                    </div>
+
+                                )}
+
+                                {/* Dynamically packed groupedTags */}
+                                {tagColumns.map((column, columnIndex) => (
+                                    <div key={`column-${columnIndex}`} className="flex flex-col gap-6">
+                                        {column.map(group => (
+                                            <MultiSelectDropdown
+                                            key={group.key}
+                                            groupName={displayNameMap[group.key] || group.key}
+                                            items={group.items}
+                                            selectedItemIds={selectedTags[group.key]?.map(tag => tag.id) || []}
+                                            renderItem={tag => tag.name}
+                                            onItemSelect={tag => handleSelectTag(group.key, tag)}
+                                            className="text-left"
+                                            />
+                                        ))}
                                     </div>
                                 ))}
                             </div>
                         </div>
+                    </div>
                     )}
-                </div>
-            ) : (
-                <>
-                    <div className="flex flex-wrap text-center"> 
-                        {Object.entries(groupedTags).map(([key, tags]) => (
-                            <div key={key} className="w-full sm:w-1/2 lg:w-1/3 p-2">
-                                <MultiSelectDropdown
-                                    groupName={displayNameMap[key] || key}
-                                    items={tags}
-                                    selectedItemIds={selectedTags[key]?.map(tag => tag.id) || []}
-                                    renderItem={(tag) => tag.name}
-                                    onItemSelect={(tag) => handleSelectTag(key, tag)}
-                                />
-                            </div>
-                        ))}
-                    </div>
-                    <div className="container mx-auto">
-                        <div className="flex items-center text-left cursor-pointer hover:underline" onClick={() => setOtherFiltersVisible(!otherFiltersVisible)}>
-                            <p className="mr-1 text-gray-700">Other filters</p>
-                            <div className={`transition-transform duration-300 transform ${otherFiltersVisible ? 'rotate-0' : 'rotate-[-90deg]'}`}>
-                                <FaCaretDown />
-                            </div>
-                        </div>
-                        <div className="mt-4">
-                            {otherFiltersVisible && 
-                                <div className="flex flex-wrap text-center">
-                                    <div className="w-full sm:w-1/2 lg:w-1/3 p-2">
-                                        <MultiSelectDropdown
-                                            groupName="PARTICLE DIAMETER"
-                                            items={particleSizes}
-                                            selectedItemIds={selectedParticleSizeIds}
-                                            renderItem={item => item.label}
-                                            onItemSelect={handleParticleSizeSelect}
-                                        />
-                                    </div>
-                                </div>
-                            }
-                        </div>
-                    </div>
-                </>    
-            )}
+            </div>
         </div>
     );
 }
 
 export default observer(ScaffoldGroupFilters)
+
+    
+
+// 	return (
+//         <div className="mx-auto mb-4">
+//             {condensed ? (
+//                 <div>
+//                     <div className="flex items-center text-left cursor-pointer hover:underline" onClick={() => setFiltersVisible(!filtersVisible)}>
+//                         <p className="ml-1 mr-1 text-gray-700">Filters</p>
+//                         <div className={`transition-transform duration-300 transform ${filtersVisible ? 'rotate-0' : 'rotate-[-90deg]'}`}>
+//                             <FaCaretDown />
+//                         </div>
+//                     </div>
+//                     {filtersVisible && (
+//                         <div className="mt-4 flex flex-wrap">
+//                             <div className="flex flex-col w-full md:w-1/3">
+//                                 <div className="p-2">
+//                                     <MultiSelectDropdown
+//                                         groupName={
+//                                             <TextTooltip
+//                                                 label="PARTICLE DIAMETER"
+//                                                 tooltipText="Diameter (in micrometers) of a sphere with equivalent volume to the average particle volume"
+//                                             />
+//                                         }
+//                                         items={particleSizes}
+//                                         selectedItemIds={selectedParticleSizeIds}
+//                                         renderItem={item => item.label}
+//                                         onItemSelect={handleParticleSizeSelect}
+//                                     />
+//                                 </div>
+//                             </div>
+//                             <div className="flex flex-col w-full md:w-2/3 md:flex-wrap">
+//                                 {Object.entries(groupedTags).map(([key, tags]) => (
+//                                     <div key={key} className="w-full md:w-1/2 p-2 mb-4">
+//                                         <MultiSelectDropdown
+//                                             groupName={displayNameMap[key] || key}
+//                                             items={tags}
+//                                             selectedItemIds={selectedTags[key]?.map(tag => tag.id) || []}
+//                                             renderItem={(tag) => tag.name}
+//                                             onItemSelect={(tag) => handleSelectTag(key, tag)}
+//                                         />
+//                                     </div>
+//                                 ))}
+//                             </div>
+//                         </div>
+//                     )}
+//                 </div>
+//             ) : (
+//                 <>
+//                     <div className="flex flex-wrap text-center"> 
+//                         {Object.entries(groupedTags).map(([key, tags]) => (
+//                             <div key={key} className="w-full sm:w-1/2 lg:w-1/3 p-2">
+//                                 <MultiSelectDropdown
+//                                     groupName={displayNameMap[key] || key}
+//                                     items={tags}
+//                                     selectedItemIds={selectedTags[key]?.map(tag => tag.id) || []}
+//                                     renderItem={(tag) => tag.name}
+//                                     onItemSelect={(tag) => handleSelectTag(key, tag)}
+//                                 />
+//                             </div>
+//                         ))}
+//                     </div>
+//                     <div className="container mx-auto">
+//                         <div className="flex items-center text-left cursor-pointer hover:underline" onClick={() => setOtherFiltersVisible(!otherFiltersVisible)}>
+//                             <p className="mr-1 text-gray-700">Other filters</p>
+//                             <div className={`transition-transform duration-300 transform ${otherFiltersVisible ? 'rotate-0' : 'rotate-[-90deg]'}`}>
+//                                 <FaCaretDown />
+//                             </div>
+//                         </div>
+//                         <div className="mt-4">
+//                             {otherFiltersVisible && 
+//                                 <div className="flex flex-wrap text-center">
+//                                     <div className="w-full sm:w-1/2 lg:w-1/3 p-2">
+//                                         <MultiSelectDropdown
+//                                             groupName="PARTICLE DIAMETER"
+//                                             items={particleSizes}
+//                                             selectedItemIds={selectedParticleSizeIds}
+//                                             renderItem={item => item.label}
+//                                             onItemSelect={handleParticleSizeSelect}
+//                                         />
+//                                     </div>
+//                                 </div>
+//                             }
+//                         </div>
+//                     </div>
+//                 </>    
+//             )}
+//         </div>
+//     );
+// }
+
+// export default observer(ScaffoldGroupFilters)

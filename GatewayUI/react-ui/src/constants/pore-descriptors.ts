@@ -6,10 +6,11 @@ export interface PoreDescriptorUIConfig {
 }
 
 export const PORE_DESCRIPTOR_MAP: PoreDescriptorUIConfig[] = [
-	{ key: 'Volume', showInExplore: true, showInDetails: true, section: 'Interior Pore Size' },
-	{ key: 'SA', showInExplore: true, showInDetails: true, section: 'Interior Pore Size' },
-	{ key: 'LongestLength', showInExplore: true, showInDetails: true, section: 'Interior Pore Shape' },
-	{ key: 'AspectRatio', showInExplore: true, showInDetails: true, section: 'Interior Pore Shape' },
+	{ key: 'Volume', showInExplore: true, showInDetails: true },
+	{ key: 'SA', showInExplore: true, showInDetails: true },
+	{ key: 'LongestLength', showInExplore: true, showInDetails: true },
+	{ key: 'AspectRatio', showInExplore: true, showInDetails: true },
 	// { key: 'NumSurroundingPores', showInExplore: false, showInDetails: true, section: 'Interior Pore Shape' },
-	// { key: 'AvgInternalDiam', showInExplore: true, showInDetails: false, section: 'Interior Pore Shape' },
+	{ key: 'LargestDoorDiam', showInExplore: true, showInDetails: false },
+	{ key: 'SmallestDoorDiam', showInExplore: true, showInDetails: false },
 ];

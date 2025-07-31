@@ -9,6 +9,7 @@ namespace Infrastructure.DTOs
 		public string Label { get; set; } = null!;
 		public string TableLabel { get; set; } = null!;
 		public string Category { get; set; } = null!;
+		public string? SubCategory { get; set; } = null;
 		public string? Unit { get; set; }
 		public string DataType { get; set; } = null!;
 		public string? Publication { get; set; }

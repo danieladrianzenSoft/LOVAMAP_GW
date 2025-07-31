@@ -17,10 +17,10 @@ namespace API.Controllers;
 [Authorize]
 public class JobsController : ControllerBase
 {
-    private readonly ILogger<AuthController> _logger;
+    private readonly ILogger<JobsController> _logger;
     private readonly ILovamapCoreJobService _jobService;
 
-    public JobsController(ILogger<AuthController> logger, ILovamapCoreJobService jobService)
+    public JobsController(ILogger<JobsController> logger, ILovamapCoreJobService jobService)
     {
         _logger = logger;
         _jobService = jobService;

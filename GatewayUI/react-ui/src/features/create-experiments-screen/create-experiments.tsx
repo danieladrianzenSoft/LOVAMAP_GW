@@ -391,7 +391,7 @@ const CreateExperiments = () => {
                             <ScaffoldGroupFilters 
                                 setIsLoading={setIsLoading} 
                                 condensed={true} 
-                                allFiltersVisible={true}
+                                allFiltersVisible={false}
                                 selectedParticleSizeIds={selectedParticleSizeIds}
                                 setSelectedParticleSizeIds={setSelectedParticleSizeIds}
                                 selectedTags={selectedTags}

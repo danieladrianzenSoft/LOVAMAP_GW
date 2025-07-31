@@ -552,6 +552,7 @@ namespace Services.Services
                 TableLabel = descriptorType.TableLabel,
                 Label = descriptorType.Label,
                 Category = descriptorType.Category,
+                SubCategory = descriptorType.SubCategory,
                 Unit = descriptorType.Unit,
                 DataType = descriptorType.DataType,
                 Publication = descriptorType.PublicationId != null ? (descriptorType.Publication?.Journal + ", doi: " + descriptorType.Publication?.Doi) : null,

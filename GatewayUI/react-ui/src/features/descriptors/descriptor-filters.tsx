@@ -9,15 +9,20 @@ import DescriptorTypeInfo from "./descriptor-type-info";
 interface DescriptorFiltersProps {
 	onSelect: (descriptorType: DescriptorType) => void;
 	selectedDescriptorTypes: DescriptorType[];
+	categories?: string[];
 }
 
-const DescriptorFilters: React.FC<DescriptorFiltersProps> = ({onSelect, selectedDescriptorTypes}) => {
+const DescriptorFilters: React.FC<DescriptorFiltersProps> = ({onSelect, selectedDescriptorTypes, categories}) => {
 	const { descriptorTypes } = useDescriptorTypes(); // Use the hook
 	const [groupedDescriptorTypes, setGroupedDescriptorTypes] = useState<GroupedDescriptorTypes>({});
 
 	useEffect(() => {
         if (descriptorTypes.length > 0) {
-            const groups = descriptorTypes.reduce<GroupedDescriptorTypes>((acc, descriptorType) => {
+			const filtered = categories
+				? descriptorTypes.filter(d => categories.includes(d.category))
+				: descriptorTypes;
+
+            const groups = filtered.reduce<GroupedDescriptorTypes>((acc, descriptorType) => {
                 const groupKey = descriptorType.category;
                 if (displayNameMap[groupKey]) {
                     acc[groupKey] = acc[groupKey] || [];
@@ -27,7 +32,7 @@ const DescriptorFilters: React.FC<DescriptorFiltersProps> = ({onSelect, selected
             }, {});
             setGroupedDescriptorTypes(groups);
         }
-    }, [descriptorTypes]);
+    }, [categories, descriptorTypes]);
 
 	const handleSelectDescriptorType = (groupKey: string, descriptorType: DescriptorType) => {
         onSelect(descriptorType);

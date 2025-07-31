@@ -618,9 +618,6 @@ namespace Data.Migrations
                     b.Property<string>("OriginalFileName")
                         .HasColumnType("text");
 
-                    b.Property<int?>("PublicationId")
-                        .HasColumnType("integer");
-
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
@@ -629,11 +626,24 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PublicationId");
-
                     b.HasIndex("UploaderId");
 
                     b.ToTable("ScaffoldGroups");
+                });
+
+            modelBuilder.Entity("Data.Models.ScaffoldGroupPublication", b =>
+                {
+                    b.Property<int>("ScaffoldGroupId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("PublicationId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("ScaffoldGroupId", "PublicationId");
+
+                    b.HasIndex("PublicationId");
+
+                    b.ToTable("ScaffoldGroupPublication");
                 });
 
             modelBuilder.Entity("Data.Models.ScaffoldTag", b =>
@@ -1104,19 +1114,31 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Data.Models.ScaffoldGroup", b =>
                 {
-                    b.HasOne("Data.Models.Publication", "Publication")
-                        .WithMany("ScaffoldGroups")
-                        .HasForeignKey("PublicationId")
-                        .OnDelete(DeleteBehavior.SetNull);
-
                     b.HasOne("Data.Models.User", "Uploader")
                         .WithMany("ScaffoldGroups")
                         .HasForeignKey("UploaderId")
                         .OnDelete(DeleteBehavior.SetNull);
 
+                    b.Navigation("Uploader");
+                });
+
+            modelBuilder.Entity("Data.Models.ScaffoldGroupPublication", b =>
+                {
+                    b.HasOne("Data.Models.Publication", "Publication")
+                        .WithMany("ScaffoldGroupPublications")
+                        .HasForeignKey("PublicationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Data.Models.ScaffoldGroup", "ScaffoldGroup")
+                        .WithMany("ScaffoldGroupPublications")
+                        .HasForeignKey("ScaffoldGroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Publication");
 
-                    b.Navigation("Uploader");
+                    b.Navigation("ScaffoldGroup");
                 });
 
             modelBuilder.Entity("Data.Models.ScaffoldTag", b =>
@@ -1232,7 +1254,7 @@ namespace Data.Migrations
                 {
                     b.Navigation("DescriptorTypes");
 
-                    b.Navigation("ScaffoldGroups");
+                    b.Navigation("ScaffoldGroupPublications");
                 });
 
             modelBuilder.Entity("Data.Models.Scaffold", b =>
@@ -1260,6 +1282,8 @@ namespace Data.Migrations
 
                     b.Navigation("InputGroup")
                         .IsRequired();
+
+                    b.Navigation("ScaffoldGroupPublications");
 
                     b.Navigation("Scaffolds");
                 });

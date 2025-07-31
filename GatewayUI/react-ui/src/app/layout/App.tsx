@@ -17,7 +17,6 @@ import Visualization from '../../features/visualization/visualization';
 import History from '../helpers/History';
 import RunJob from '../../features/jobs/run-job';
 import ScreenshotViewer from '../../features/visualization/screenshot-viewer';
-// import AdminBatchThumbnailGenerator from '../../features/admin/admin-batch-thumbnail-generator';
 import ResetPasswordForm from '../../features/user/reset-password';
 import ForgotPasswordForm from '../../features/user/forgot-password';
 import ConfirmEmailPage from '../../features/user/confirm-email';
@@ -26,7 +25,7 @@ import SettingsScreen from '../../features/settings-screen/settings-screen';
 import AdminUtilities from '../../features/admin/admin-utilities';
 import DescriptorCalculator from '../../features/descriptors/descriptor-calculator';
 import { ExploreData } from '../../features/explore-data/explore-data';
-// import SideBarMain from '../../features/sidebar-main/sidebar-main';
+import Publications from '../../features/publications/publications';
 
 const App: React.FC = () => {
   const { commonStore, userStore } = useStore();
@@ -88,6 +87,7 @@ const MainLayout: React.FC = observer(() => {
           <Route path="/data" element={<ExploreData />} />
           <Route path="/data/:scaffoldGroupId" element={<ExploreData />} />
           <Route path="/descriptor-calculator" element={<DescriptorCalculator />} />
+          <Route path="/publications" element={<Publications />} />
           <Route path="/experiments" element={<ProtectedRoute element={<CreateExperiments />} />} />
           <Route path="/uploads" element={<ProtectedRoute element={<ScaffoldGroupUploads />} />} />
           <Route path="/jobs" element={<ProtectedRoute element={<RunJob />} />} />

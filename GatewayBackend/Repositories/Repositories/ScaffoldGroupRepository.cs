@@ -77,7 +77,7 @@ namespace Repositories.Repositories
 					.Include(sg => sg.Scaffolds)
 						.ThenInclude(s => s.Images)
 					.Include(sg => sg.Images)
-					.FirstOrDefaultAsync();		
+					.FirstOrDefaultAsync();
 		}
 
 		public async Task<ScaffoldGroupSummaryDto?> GetSummary(int id)
@@ -147,14 +147,14 @@ namespace Repositories.Repositories
 					: new InputGroupBaseDto(),
 				ScaffoldIds = scaffoldIds,
 				ScaffoldIdsWithDomains = scaffoldIdsWithDomainsLookup
-			};	
+			};
 		}
 
 		public async Task<List<int>> GetScaffoldIdsForScaffoldGroup(int scaffoldGroupId)
 		{
 			var scaffoldIds = await _context.Scaffolds
 				.Where(s => s.ScaffoldGroupId == scaffoldGroupId) // Only fetch IDs for relevant groups
-				.Select (s => s.Id)
+				.Select(s => s.Id)
 				.ToListAsync();
 
 			return scaffoldIds;
@@ -196,7 +196,7 @@ namespace Repositories.Repositories
 
 			var scaffoldIds = await _context.Scaffolds
 				.Where(s => s.ScaffoldGroupId == scaffoldGroup.Id) // Only fetch IDs for relevant groups
-				.Select (s => s.Id)
+				.Select(s => s.Id)
 				.ToListAsync();
 
 			var scaffoldIdsWithDomainsLookup = await (
@@ -228,24 +228,24 @@ namespace Repositories.Repositories
 					: new InputGroupBaseDto(),
 				ScaffoldIds = scaffoldIds,
 				ScaffoldIdsWithDomains = scaffoldIdsWithDomainsLookup
-			};	
+			};
 		}
 
-		public async Task<ICollection<Image>> GetScaffoldGroupImages(int scaffoldGroupId) 
+		public async Task<ICollection<Image>> GetScaffoldGroupImages(int scaffoldGroupId)
 		{
 			var scaffoldGroupImages = await (from im in _context.Images
-				join sg in _context.ScaffoldGroups on im.ScaffoldGroupId equals sg.Id
-				where sg.Id == scaffoldGroupId
-				select im)
+											 join sg in _context.ScaffoldGroups on im.ScaffoldGroupId equals sg.Id
+											 where sg.Id == scaffoldGroupId
+											 select im)
 				.ToListAsync();
-			 
+
 			return scaffoldGroupImages;
 		}
 
 		public async Task<ICollection<ScaffoldGroupSummaryDto>?> GetFilteredScaffoldGroupSummaries(ScaffoldFilter filter, string currentUserId)
 		{
 			var query = _context.ScaffoldGroups.AsNoTracking();
-			
+
 			// Apply primary filters
 			query = ApplyFilters(query, filter, currentUserId);
 
@@ -257,14 +257,14 @@ namespace Repositories.Repositories
 			query = ApplyJoins(query, matchingInputGroupIds, tagIds);
 
 			var scaffoldGroups = await (from sg in query
-                            join ig in _context.InputGroups on sg.Id equals ig.ScaffoldGroupId into igJoin
-                            from ig in igJoin.DefaultIfEmpty()
-                            select new
-                            {
-                                ScaffoldGroup = sg,
-                                InputGroup = ig
-                            }).ToListAsync();
-			
+										join ig in _context.InputGroups on sg.Id equals ig.ScaffoldGroupId into igJoin
+										from ig in igJoin.DefaultIfEmpty()
+										select new
+										{
+											ScaffoldGroup = sg,
+											InputGroup = ig
+										}).ToListAsync();
+
 			var inputGroupIds = scaffoldGroups
 				.Where(sg => sg.InputGroup != null)
 				.Select(sg => sg.InputGroup.Id)
@@ -327,13 +327,13 @@ namespace Repositories.Repositories
 					ContainerShape = sg.InputGroup.ContainerShape,
 					ContainerSize = sg.InputGroup.ContainerSize,
 					PackingConfiguration = sg.InputGroup.PackingConfiguration.ToString(),
-					Particles = particleGroupsLookup.ContainsKey(sg.InputGroup.Id) 
-						? particleGroupsLookup[sg.InputGroup.Id] 
+					Particles = particleGroupsLookup.ContainsKey(sg.InputGroup.Id)
+						? particleGroupsLookup[sg.InputGroup.Id]
 						: new List<ParticlePropertyBaseDto>(),
 					SizeDistribution = sg.InputGroup.SizeDistribution
 				} : new InputGroupBaseDto(),
 				ScaffoldIds = scaffoldIdsLookup.ContainsKey(sg.ScaffoldGroup.Id)
-					? scaffoldIdsLookup[sg.ScaffoldGroup.Id] 
+					? scaffoldIdsLookup[sg.ScaffoldGroup.Id]
 					: new List<int>(),
 				ScaffoldIdsWithDomains = scaffoldIdsLookup.ContainsKey(sg.ScaffoldGroup.Id)
 					? scaffoldIdsLookup[sg.ScaffoldGroup.Id].Where(sid => scaffoldIdsWithDomainsLookup.Contains(sid)).ToList()
@@ -387,10 +387,10 @@ namespace Repositories.Repositories
 				}
 
 				var inputGroupIds = await query.Where(predicate)
-                                        .Select(ppg => ppg.InputGroupId)
-                                        .Distinct()
-                                        .ToListAsync();
-				
+										.Select(ppg => ppg.InputGroupId)
+										.Distinct()
+										.ToListAsync();
+
 				return inputGroupIds;
 			}
 
@@ -402,24 +402,24 @@ namespace Repositories.Repositories
 			if (matchingInputGroupIds.Count > 0 || tagIds.Count > 0)
 			{
 				query = from sg in query
-					join ig in _context.InputGroups on sg.Id equals ig.ScaffoldGroupId into igJoin
-        			from ig in igJoin.DefaultIfEmpty()
+						join ig in _context.InputGroups on sg.Id equals ig.ScaffoldGroupId into igJoin
+						from ig in igJoin.DefaultIfEmpty()
 
-					join ppg in _context.ParticlePropertyGroups on sg.InputGroup.Id equals ppg.InputGroupId into ppgJoin
-					from ppg in ppgJoin.DefaultIfEmpty()
+						join ppg in _context.ParticlePropertyGroups on sg.InputGroup.Id equals ppg.InputGroupId into ppgJoin
+						from ppg in ppgJoin.DefaultIfEmpty()
 
-					join s in _context.Scaffolds on sg.Id equals s.ScaffoldGroupId into sJoin
-					from s in sJoin.DefaultIfEmpty()
+						join s in _context.Scaffolds on sg.Id equals s.ScaffoldGroupId into sJoin
+						from s in sJoin.DefaultIfEmpty()
 
-					join st in _context.ScaffoldTags on s.Id equals st.ScaffoldId into stJoin
-					from st in stJoin.DefaultIfEmpty()
+						join st in _context.ScaffoldTags on s.Id equals st.ScaffoldId into stJoin
+						from st in stJoin.DefaultIfEmpty()
 
-					where (!matchingInputGroupIds.Any() || matchingInputGroupIds.Contains(ig.Id))
-						&& (tagIds.Count == 0 || st != null && tagIds.Contains(st.TagId))
+						where (!matchingInputGroupIds.Any() || matchingInputGroupIds.Contains(ig.Id))
+							&& (tagIds.Count == 0 || st != null && tagIds.Contains(st.TagId))
 
-					group new { sg, ppg, st } by sg into grouped
-					orderby grouped.Count(g => g.ppg != null) + grouped.Count(g => g.st != null) descending
-					select grouped.Key;
+						group new { sg, ppg, st } by sg into grouped
+						orderby grouped.Count(g => g.ppg != null) + grouped.Count(g => g.st != null) descending
+						select grouped.Key;
 			}
 
 			var sql = query.ToQueryString();
@@ -429,9 +429,9 @@ namespace Repositories.Repositories
 
 		public async Task<ICollection<ScaffoldGroup>?> GetFilteredScaffoldGroupsByRelevance_v1(ScaffoldFilter filter, string currentUserId)
 		{
-			
+
 			var query = _context.ScaffoldGroups.AsNoTracking();
-			
+
 			// Filter by uploader based on visibility and user context
 			if (!string.IsNullOrEmpty(filter.UserId))
 			{
@@ -471,7 +471,7 @@ namespace Repositories.Repositories
 						.Distinct()
 						.ToListAsync();
 				}
-				
+
 				// Apply combined filters if they exist
 				if (filter.ParticleSizes?.Count > 0 || filter.TagIds?.Count > 0)
 				{
@@ -510,7 +510,7 @@ namespace Repositories.Repositories
 			return scaffoldGroups;
 
 			//////////////////
-			
+
 		}
 
 		public async Task<ICollection<ScaffoldGroup>?> GetFilteredScaffoldGroups(ScaffoldFilter filter, string currentUserId)
@@ -543,7 +543,7 @@ namespace Repositories.Repositories
 
 			var scaffoldGroups = await query
 				.Include(sg => sg.InputGroup)
-					.ThenInclude (ig => ig != null ? ig.ParticlePropertyGroups : null)
+					.ThenInclude(ig => ig != null ? ig.ParticlePropertyGroups : null)
 				.Include(sg => sg.Scaffolds)
 					.ThenInclude(s => s.ScaffoldTags)
 						.ThenInclude(st => st.Tag)
