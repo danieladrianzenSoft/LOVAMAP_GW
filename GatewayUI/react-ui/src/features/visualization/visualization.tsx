@@ -515,11 +515,11 @@ const Visualization: React.FC = () => {
 		setHasAutoHiddenEdgePores(false);
 		autoHiddenForDomainRef.current = null; 	
 		// Reset panel open state or any visibility flags if needed
-		setShowParticlesPanelOpen(true);
-		setShowPoresPanelOpen(false);
+		// setShowParticlesPanelOpen(false);
+		// setShowPoresPanelOpen(true);
 		setShowParticles(true);
-		setShowPores(false);
-		setSlicingActive(false);
+		setShowPores(true);
+		// setSlicingActive(true);
 		clearHistory();
 	};
 
