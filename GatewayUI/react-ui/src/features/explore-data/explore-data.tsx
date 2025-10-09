@@ -294,9 +294,8 @@ export const ExploreData: React.FC = observer(() => {
 						Visualize and download pore descriptor data that characterize your scaffolds of interest
 					</p>
 					<p>
-						Use the search bar below to find and select scaffold groups. 
-						Then select the interior pore descriptors you would like to visualize. We've initialized 
-						the plots with a random scaffold group as an example.
+						Use the search bar below to find and select scaffold groups one by one, which will populate to the right. 
+						Our plots will automatically compare data from each scaffold group selected.
 					</p>
 				</div>
 

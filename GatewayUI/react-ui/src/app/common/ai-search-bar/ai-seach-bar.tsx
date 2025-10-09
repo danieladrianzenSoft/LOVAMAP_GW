@@ -12,7 +12,7 @@ const AISearchBar: React.FC<AISearchBarProps> = ({
 	onSearch,
 	onClear,
 	onClick,
-	placeholder = "Describe the scaffold groups you want to find",
+	placeholder = "Describe the scaffold groups you want to find, e.g., monodisperse soft spheres that are 100 µm in diameter",	
 	buttonLabel = "Search"
 }) => {
 	const [input, setInput] = useState("");

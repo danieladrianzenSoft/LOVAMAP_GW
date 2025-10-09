@@ -11,8 +11,9 @@ namespace Infrastructure.DTOs
 		public IFormFile? CsvFile { get; set; }
 		public IFormFile? DatFile { get; set; }
 		public IFormFile? JsonFile { get; set; }
-		public string? JobId { get; set; }
-    	public string? Dx { get; set; }
+		public Guid? JobId { get; set; }
+		public string? Dx { get; set; }
+		public string? CreatorId { get; set; }
 	}
 }
 

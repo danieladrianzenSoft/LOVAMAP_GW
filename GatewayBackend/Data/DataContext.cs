@@ -90,6 +90,13 @@ public partial class DataContext : IdentityDbContext<User, Role, string>
             .HasForeignKey<Scaffold>(s => s.LatestJobId)
             .OnDelete(DeleteBehavior.Cascade);
 
+        // Job to user one-to-many relationship
+        builder.Entity<Job>()
+            .HasOne(j => j.Creator)
+            .WithMany(u => u.JobsCreated)
+            .HasForeignKey(u => u.CreatorId)
+            .OnDelete(DeleteBehavior.Cascade);
+
         // Descriptors to job relationship
         builder.Entity<GlobalDescriptor>().HasIndex(d => d.JobId);
 

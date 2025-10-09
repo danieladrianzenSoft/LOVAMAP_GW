@@ -16,13 +16,26 @@ interface ScaffoldGroupCardProps {
 }
 const ScaffoldGroupCard: React.FC<ScaffoldGroupCardProps> = ({ scaffoldGroup, isVisible, isSelectable=false, isSelected=false, toggleDetails, onSelect }) => {
     return (
-        <div className={`flex flex-col h-full cursor-pointer bg-white rounded-lg p-4 m-2 border-gray-100 border-2 hover:shadow-md text-gray-700 ${isVisible ? 'shadow-md' :''}`} onClick={toggleDetails}>
+        <div className={`relative flex flex-col h-full cursor-pointer bg-white rounded-lg p-4 m-2 border-gray-100 border-2 text-gray-700 
+            hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] transition-all duration-100 ease-out 
+            ${isVisible ? 'shadow-md' :''}`} onClick={toggleDetails}
+            aria-expanded={isVisible}
+        >
             <div className="w-full">
-                {/* Name and Caret Icon Row */}
-                <div className="flex items-center">
-                    <p className="mr-3">{scaffoldGroup.name}</p>
-                    <div className={`transition-transform duration-300 transform ml-auto ${isVisible ? 'rotate-0' : 'rotate-[-90deg]'}`}>
-                        <FaCaretDown />
+                {/* Optional overlay to make it visually grayer and slightly disabled */}
+                {isVisible && (
+                    <div
+                    aria-hidden="true"
+                    className="absolute inset-0 rounded-lg bg-white/60 z-0 transition-opacity duration-200"
+                    />
+                )}
+                <div className="w-full relative z-10">
+                    {/* Name and Caret Icon Row */}
+                    <div className="flex items-center">
+                        <p className="mr-3">{scaffoldGroup.name}</p>
+                        <div className={`transition-transform duration-300 transform ml-auto ${isVisible ? 'rotate-0' : 'rotate-[-90deg]'}`}>
+                            <FaCaretDown />
+                        </div>
                     </div>
                 </div>
 
@@ -75,7 +88,7 @@ const ScaffoldGroupCard: React.FC<ScaffoldGroupCardProps> = ({ scaffoldGroup, is
                     }
                 })()}
             </div>
-            <div className="mt-auto pt-4 flex justify-end">
+            <div className="mt-auto pt-4 flex justify-end z-10">
                 {isSelectable && onSelect && (
                     <button
                         className={`button-outline border-none shadow-custom ${isSelected ? 'bg-red-50 hover:bg-red-100' : ''}`}

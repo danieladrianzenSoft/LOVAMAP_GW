@@ -71,8 +71,8 @@ const RunJob: React.FC = () => {
 
 					<div className='mt-12'>
 						<p>
-							In the mean time, for inquiries including simulations of specific scaffold configurations 
-							or LOVAMAP experimental dataset analysis, feel free to {" "}
+							In the meantime, for inquiries including simulations of specific scaffold configurations 
+							or LOVAMAP experimental dataset analysis, {" "}
 							<a
 								href="mailto:admin@lovamap.com"
 								className="text-blue-600 hover:underline"

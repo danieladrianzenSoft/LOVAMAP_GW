@@ -134,6 +134,7 @@ const DescriptorCalculatorModal: React.FC<DescriptorCalculatorModalProps> = ({
 					  	<div className="flex items-center space-x-2">
 							<DescriptorTypeInfo
 								label={descriptorMap?.NumIntPores?.label}
+								// label={'HELLO'}
 								imageUrl={descriptorMap?.NumIntPores?.imageUrl}
 								tableLabel={descriptorMap?.NumIntPores?.tableLabel}
 								description={descriptorMap?.NumIntPores?.description}

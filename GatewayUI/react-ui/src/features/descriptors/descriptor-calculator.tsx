@@ -113,13 +113,16 @@ const DescriptorCalculator: React.FC = () => {
 			<div className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-3 text-sm text-gray-700">
 				{/* Row 1: NumIntPores */}
 				<DescriptorTypeInfo
-					label={descriptorMap?.NumIntPores?.label}
+					// label={descriptorMap?.NumIntPores?.label}
+					label="# Interior 3D Pores (pL⁻¹)"
 					imageUrl={descriptorMap?.NumIntPores?.imageUrl}
 					tableLabel={
 					descriptorMap?.NumIntPores
 						? `${descriptorMap.NumIntPores.tableLabel}${descriptorMap.NumIntPores.unit ? ` (${descriptorMap.NumIntPores.unit})` : ""}`
+						// ? `${descriptorMap.NumIntPores.tableLabel}(${'pL^-1'})`
 						: ""
 					}
+					// tableLabel={'HELLO'}
 					description={descriptorMap?.NumIntPores?.description}
 				/>
 				<span>{totalPores.toPrecision(3)}</span>

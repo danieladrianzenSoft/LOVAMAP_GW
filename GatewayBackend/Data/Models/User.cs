@@ -8,6 +8,8 @@ namespace Data.Models
 		public ICollection<ScaffoldGroup> ScaffoldGroups { get; set; } = [];
 		public virtual ICollection<Download> Downloads { get; set; } = [];
 		public virtual ICollection<Image> UploadedImages { get; set; } = [];
+		public virtual ICollection<Job> JobsCreated { get; set; } = [];
+
 
 	}
 }

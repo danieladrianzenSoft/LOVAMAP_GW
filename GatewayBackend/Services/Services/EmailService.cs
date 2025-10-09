@@ -56,6 +56,13 @@ namespace Services.Services
 				var responseBody = await response.Content.ReadAsStringAsync();
 				_logger.LogInformation("MailerSend Response: {StatusCode} - {Body}", response.StatusCode, responseBody);
 
+				// try to get x-message-id header specifically
+				if (response.Headers.TryGetValues("x-message-id", out var vals))
+				{
+					var messageId = string.Join(",", vals);
+					_logger.LogInformation("MailerSend x-message-id: {MessageId}", messageId);
+				}
+
 				if (!response.IsSuccessStatusCode)
 				{
 					return (false, $"MailerSend API returned {response.StatusCode}: {responseBody}");

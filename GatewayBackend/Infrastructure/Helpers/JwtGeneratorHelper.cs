@@ -12,7 +12,7 @@ using Data.Models;
 using Infrastructure.IHelpers;
 
 namespace Infrastructure.Helpers
-{	
+{
 	public class JwtGeneratorHelper : IJwtGeneratorHelper
 	{
 		private readonly IConfiguration _config;
@@ -25,7 +25,7 @@ namespace Infrastructure.Helpers
 			_config = config;
 			_userManager = userManager;
 			var jwtKey = _config["Jwt:Key"] ?? throw new ArgumentNullException("Jwt:Key", "JWT Key is not configured in app settings");
-       		_key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey));
+			_key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey));
 		}
 
 		public async Task<string> GenerateJwtToken(User user)
@@ -40,27 +40,55 @@ namespace Infrastructure.Helpers
 				claims.Add(new Claim(ClaimTypes.Email, user.Email));
 			}
 
-            var roles = await _userManager.GetRolesAsync(user);
+			var roles = await _userManager.GetRolesAsync(user);
 
 			roles.ToList().ForEach(role => claims.Add(new Claim(ClaimTypes.Role, role)));
 
-            var creds = new SigningCredentials(_key, SecurityAlgorithms.HmacSha512Signature);
-            //HmacSha512Signature is the largest level of encryption.
+			var creds = new SigningCredentials(_key, SecurityAlgorithms.HmacSha512Signature);
+			//HmacSha512Signature is the largest level of encryption.
 
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.UtcNow.AddMinutes(60), 
-                SigningCredentials = creds,
-                Issuer = _config["Jwt:Issuer"],
+			var tokenDescriptor = new SecurityTokenDescriptor
+			{
+				Subject = new ClaimsIdentity(claims),
+				Expires = DateTime.UtcNow.AddMinutes(60),
+				SigningCredentials = creds,
+				Issuer = _config["Jwt:Issuer"],
 				Audience = _config["Jwt:Issuer"]
-            };
+			};
 
-            var tokenHandler = new JwtSecurityTokenHandler();
+			var tokenHandler = new JwtSecurityTokenHandler();
 
-            var token = tokenHandler.CreateToken(tokenDescriptor);
+			var token = tokenHandler.CreateToken(tokenDescriptor);
 
-            return tokenHandler.WriteToken(token);
+			return tokenHandler.WriteToken(token);
+		}
+		
+		public string GenerateUploadJwt(string jobId, string? userId = null, int expiryMinutes = 60)
+		{
+			var claims = new List<Claim>
+			{
+				new Claim("jobId", jobId),
+				new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+				new Claim(JwtRegisteredClaimNames.Sub, "lovamap-gw-upload")
+			};
+
+			if (!string.IsNullOrEmpty(userId))
+				claims.Add(new Claim(ClaimTypes.NameIdentifier, userId));
+
+			var creds = new SigningCredentials(_key, SecurityAlgorithms.HmacSha512Signature);
+
+			var tokenDescriptor = new SecurityTokenDescriptor
+			{
+				Subject = new ClaimsIdentity(claims),
+				Expires = DateTime.UtcNow.AddMinutes(expiryMinutes),
+				SigningCredentials = creds,
+				Issuer = _config["Jwt:Issuer"],
+				Audience = _config["Jwt:Issuer"]
+			};
+
+			var handler = new JwtSecurityTokenHandler();
+			var token = handler.CreateToken(tokenDescriptor);
+			return handler.WriteToken(token);
 		}
 	}
 }

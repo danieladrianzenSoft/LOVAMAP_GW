@@ -63,7 +63,7 @@ const LearnScreen = () => {
                     <p>
                         To generate particle scaffolds of various shapes and configurations, we used SideFX Houdini,
                         an industry-standard physics simulation software. This involves creating particles of desired 
-                        shapes, sizes, and random orientations, and using Houdini's rigid-body solver to simulate how 
+                        shapes, sizes, and random orientations and using Houdini's rigid-body solver to simulate how 
                         they fall, collide, and settle into a container of a prescribed shape and size. 
                         For non-rigid particles, we use Houdini's native finite element physics solver after imposing 
                         the particles' Lamé parameters. To reduce computational expense, we use the last
@@ -85,9 +85,9 @@ const LearnScreen = () => {
                 <div className="text-3xl text-gray-700 font-bold mb-12">Descriptors</div>    
                 <div className="mb-12">
                     <p>
-                        Descriptors are the output of LOVAMAP, and provide a quantitative way of characterizing,
-                        analyzing, and comparing granular material scaffolds. Check the table below for a summary of 
-                        all the descriptors that LOVAMAP can output.
+                        Descriptors are the output of LOVAMAP, and they provide a quantitative way of characterizing,
+                        analyzing, and comparing granular materials. Check the table below for a summary of 
+                        all the descriptors that LOVAMAP outputs.
                         For more details, see <a
                             href="https://doi.org/10.1038/s43588-023-00551-x"
                             target="_blank"

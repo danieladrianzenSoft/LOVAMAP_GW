@@ -127,7 +127,7 @@ const ParticlesPanel: React.FC<DomainPanelProps> = ({
 
 					{ slicingActive && sliceXThreshold != null && (
 						<Slider
-							label="Slice Distance (X)"
+							label="Slice Distance (µm)"
 							value={sliceXThreshold}
 							min={sliceDomainBounds?.min.x ?? 0}
 							max={sliceDomainBounds?.max.x ?? 600}

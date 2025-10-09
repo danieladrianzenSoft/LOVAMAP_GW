@@ -30,7 +30,9 @@ const Visualization: React.FC = () => {
 
 	const [hiddenByCategory, setHiddenByCategory] = useState<Record<number, Set<string>>>({ 0: new Set(), 1: new Set() });
 	const [selectedByCategory, setSelectedByCategory] = useState<Record<number, { id: string, mesh: THREE.Mesh } | null>>({ 0: null, 1: null });
-	const [isPanelOpen, setIsPanelOpen] = useState(true);
+	const [isPanelOpen, setIsPanelOpen] = useState(false);
+	const [isHiddenPanelOpen, setIsHiddenPanelOpen] = useState(false);
+
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	// const [showHelp, setShowHelp] = useState(false);
 	const [, setError] = useState<string | null>(null);
@@ -38,8 +40,8 @@ const Visualization: React.FC = () => {
 	const [showAcknowledgement, setShowAcknowledgement] = useState(false);
 	const currentlyLoadingScaffoldIdRef = useRef<number | null>(null);
 
-  	const [showParticlesPanelOpen, setShowParticlesPanelOpen] = useState(true);
-	const [showPoresPanelOpen, setShowPoresPanelOpen] = useState(false);
+  	const [showParticlesPanelOpen, setShowParticlesPanelOpen] = useState(false);
+	const [showPoresPanelOpen, setShowPoresPanelOpen] = useState(true);
 	const [showParticles, setShowParticles] = useState(true);
 	const [showPores, setShowPores] = useState(false);
   	const [hasAutoHiddenEdgePores, setHasAutoHiddenEdgePores] = useState(false);
@@ -74,8 +76,9 @@ const Visualization: React.FC = () => {
 	const [screenshotCategory, setScreenshotCategory] = useState<number | null>(null);
 
 	const defaultDimmedOptions = useMemo(() => ({
-		color: '#E7F6E3',
+		color: '#E7F6E3', 
 		opacity: 0.2,
+		// #c6c9c5
 	}), []);
 
 	const loadDomainAndGroup = useCallback(async () => {
@@ -564,7 +567,16 @@ const Visualization: React.FC = () => {
 
 			{activeCategory != null && isActiveCategoryVisible && (
 				<div className="absolute top-0 left-0 z-20 space-y-1 ml-2">
+					<SelectedPanel
+						selectedDomainEntity={activeSelected}
+						domainCategory={activeCategory}
+						onUnselect={() => setSelectedByCategory(prev => ({ ...prev, [activeCategory]: null }))}
+						domainMetadata={activeMetadata}
+						scaffoldGroup={scaffoldGroupStore.selectedScaffoldGroup}
+					/>
 					<HiddenPanel
+						isOpen={isHiddenPanelOpen}
+						toggleOpen={() => setIsHiddenPanelOpen(!isHiddenPanelOpen)}
 						category={activeCategory}
 						hiddenIds={activeHidden}
 						onShowAll={() => {
@@ -579,13 +591,6 @@ const Visualization: React.FC = () => {
 							});
 						}}
 						onToggleVisibility={(id) => toggleVisibility(id, activeCategory)}
-					/>
-					<SelectedPanel
-						selectedDomainEntity={activeSelected}
-						domainCategory={activeCategory}
-						onUnselect={() => setSelectedByCategory(prev => ({ ...prev, [activeCategory]: null }))}
-						domainMetadata={activeMetadata}
-						scaffoldGroup={scaffoldGroupStore.selectedScaffoldGroup}
 					/>
 				</div>
 			)}

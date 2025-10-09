@@ -21,7 +21,7 @@ const categoryOrder: { [key: string]: number } = {
 };
 
 export const SidebarScaffoldGroupPanel: React.FC<SidebarScaffoldGroupPanelProps> = ({ groupData, index, numPlots, onRemove }) => {
-	const [isOpen, setIsOpen] = useState(true);
+	const [isOpen, setIsOpen] = useState(false);
 	const toggleOpen = () => setIsOpen(prev => !prev);
 
 	return (

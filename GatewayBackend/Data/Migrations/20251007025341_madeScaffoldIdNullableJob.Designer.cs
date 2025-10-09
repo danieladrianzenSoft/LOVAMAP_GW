@@ -4,6 +4,7 @@ using System.Text.Json;
 using Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -12,9 +13,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20251007025341_madeScaffoldIdNullableJob")]
+    partial class madeScaffoldIdNullableJob
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -337,15 +340,6 @@ namespace Data.Migrations
                     b.Property<DateTime?>("CompletedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int?>("CoreJobId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("CreatorId")
-                        .HasColumnType("text");
-
-                    b.Property<string>("ErrorMessage")
-                        .HasColumnType("text");
-
                     b.Property<string>("FinalHeartbeatMessage")
                         .HasColumnType("text");
 
@@ -355,21 +349,13 @@ namespace Data.Migrations
                     b.Property<string>("LovamapCoreVersion")
                         .HasColumnType("text");
 
-                    b.Property<int>("RetryCount")
-                        .HasColumnType("integer");
-
                     b.Property<int?>("ScaffoldId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("Status")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("SubmittedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CreatorId");
 
                     b.HasIndex("InputDomainId")
                         .IsUnique();
@@ -1012,11 +998,6 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Data.Models.Job", b =>
                 {
-                    b.HasOne("Data.Models.User", "Creator")
-                        .WithMany("JobsCreated")
-                        .HasForeignKey("CreatorId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("Data.Models.Domain", "InputDomain")
                         .WithOne("InputToJob")
                         .HasForeignKey("Data.Models.Job", "InputDomainId")
@@ -1026,8 +1007,6 @@ namespace Data.Migrations
                         .WithMany("Jobs")
                         .HasForeignKey("ScaffoldId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.Navigation("Creator");
 
                     b.Navigation("InputDomain");
 
@@ -1318,8 +1297,6 @@ namespace Data.Migrations
             modelBuilder.Entity("Data.Models.User", b =>
                 {
                     b.Navigation("Downloads");
-
-                    b.Navigation("JobsCreated");
 
                     b.Navigation("ScaffoldGroups");
 

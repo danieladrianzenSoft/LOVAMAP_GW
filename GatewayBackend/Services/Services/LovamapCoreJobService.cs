@@ -5,6 +5,7 @@ using CloudinaryDotNet.Actions;
 using Data;
 using Data.Models;
 using Infrastructure.DTOs;
+using Infrastructure.IHelpers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -17,12 +18,26 @@ namespace Services.Services
 	{
 		private readonly IHttpClientFactory _httpClientFactory;
 		private readonly IConfiguration _configuration;
+		private readonly IJwtGeneratorHelper _jwtGeneratorHelper;
+		private readonly ILovamapCoreJobRepository _jobRepository;
+		private readonly DataContext _context;
+		private readonly IModelMapper _modelMapper;
     	private readonly ILogger<LovamapCoreJobService> _logger;
 
-		public LovamapCoreJobService(IHttpClientFactory httpClientFactory, IConfiguration configuration, ILogger<LovamapCoreJobService> logger)
+		public LovamapCoreJobService(IHttpClientFactory httpClientFactory,
+			IJwtGeneratorHelper jwtGeneratorHelper,
+			IConfiguration configuration,
+			ILovamapCoreJobRepository jobRepository,
+			IModelMapper modelMapper,
+			DataContext context,
+			ILogger<LovamapCoreJobService> logger)
 		{
 			_httpClientFactory = httpClientFactory;
 			_configuration = configuration;
+			_jwtGeneratorHelper = jwtGeneratorHelper;
+			_jobRepository = jobRepository;
+			_modelMapper = modelMapper;
+			_context = context;
 			_logger = logger;
 		}
 
@@ -87,36 +102,41 @@ namespace Services.Services
 		// }
 
 		public async Task<(bool Succeeded, string? ErrorMessage, Job? Job)> SubmitJob(
-			IFormFile? csvFile, IFormFile? datFile, string? jobId, string? dx)
+			JobSubmissionDto dto)
 		{
 			var client = _httpClientFactory.CreateClient();
 			var lovamapCoreUrl = _configuration["LOVAMAP_CORE:URL"];
 			var requestUrl = lovamapCoreUrl + "/jobs";
-
 			using var form = new MultipartFormDataContent();
 
-			if (csvFile != null)
+			if (dto.CsvFile != null)
 			{
-				var csvStream = csvFile.OpenReadStream();
+				var csvStream = dto.CsvFile.OpenReadStream();
 				var csvContent = new StreamContent(csvStream);
 				csvContent.Headers.ContentType = new MediaTypeHeaderValue("text/csv");
-				form.Add(csvContent, "file", csvFile.FileName);
+				form.Add(csvContent, "file", dto.CsvFile.FileName);
 			}
 
-			if (datFile != null)
+			if (dto.DatFile != null)
 			{
-				var datStream = datFile.OpenReadStream();
+				var datStream = dto.DatFile.OpenReadStream();
 				var datContent = new StreamContent(datStream);
 				datContent.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
-				form.Add(datContent, "file", datFile.FileName);
+				form.Add(datContent, "file", dto.DatFile.FileName);
 			}
 
-			// Add jobId and dxValue
-			if (!string.IsNullOrWhiteSpace(jobId))
-				form.Add(new StringContent(jobId), "jobId");
+			var job = _modelMapper.MapToJob(dto);
+			_jobRepository.Add(job);
+			await _context.SaveChangesAsync();
 
-			if (!string.IsNullOrWhiteSpace(dx))
-				form.Add(new StringContent(dx), "dx");
+			var uploadToken = _jwtGeneratorHelper.GenerateUploadJwt(job.Id.ToString(), job.CreatorId);
+			var uploadUrl = _configuration["Frontend:URL"] + $"/api/jobs/{job.Id}/upload";
+
+			// Add form parameters: jobId, dxValue, uploadUrl and token
+			form.Add(new StringContent(job.Id.ToString()), "jobId");
+			form.Add(new StringContent(string.IsNullOrWhiteSpace(dto.Dx) ? "1" : dto.Dx), "dx");
+			form.Add(new StringContent(uploadUrl), "uploadUrl");
+    		form.Add(new StringContent(uploadToken), "uploadToken");
 
 			try
 			{
@@ -128,12 +148,12 @@ namespace Services.Services
 
 					try
 					{
-						var job = JsonSerializer.Deserialize<Job>(responseContent, new JsonSerializerOptions
+						var jobReturned = JsonSerializer.Deserialize<Job>(responseContent, new JsonSerializerOptions
 						{
 							PropertyNameCaseInsensitive = true
 						});
 
-						return (true, null, job);
+						return (true, null, jobReturned);
 					}
 					catch (Exception ex)
 					{
@@ -157,7 +177,7 @@ namespace Services.Services
 			catch (Exception ex)
 			{
 				_logger.LogError(ex, "Unexpected error communicating with Lovamap Core.");
-        		return (false, "Unexpected error communicating with Lovamap Core.", null);
+				return (false, "Unexpected error communicating with Lovamap Core.", null);
 			}
 		}
 	}

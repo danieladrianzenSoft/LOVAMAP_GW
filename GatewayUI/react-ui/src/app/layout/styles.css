@@ -225,6 +225,9 @@
     @apply bg-white border border-gray-300 text-gray-700 py-2 px-4 rounded cursor-pointer
     hover:bg-gray-100 focus:outline-none;
   }
+  .scaffold-details {
+    scroll-margin-top: 40px; /* adjust to your header height + padding */
+  }
   .custom-slider::-webkit-slider-thumb {
     appearance: none;
     height: 12px;

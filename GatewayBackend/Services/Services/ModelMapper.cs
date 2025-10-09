@@ -17,8 +17,8 @@ namespace Services.Services
 
         public ModelMapper(
             IScaffoldGroupMetadataService metadataService,
-            IDescriptorRepository descriptorRepository, 
-            ITagRepository tagRepository, 
+            IDescriptorRepository descriptorRepository,
+            ITagRepository tagRepository,
             IUserAuthHelper userAuthHelper)
         {
             _metadataService = metadataService;
@@ -32,11 +32,11 @@ namespace Services.Services
             var role = new Role
             {
                 Name = dto.Name,
-                
+
             };
             return role;
         }
-		public User MapToUser(UserToCreateDto dto)
+        public User MapToUser(UserToCreateDto dto)
         {
             var user = new User
             {
@@ -163,7 +163,7 @@ namespace Services.Services
                 MinSize = dto.MinSize,
                 StandardDeviationSize = dto.StandardDeviationSize,
                 Proportion = dto.Proportion,
-            };  
+            };
         }
 
         public Tag MapToTag(TagToCreateDto dto)
@@ -197,7 +197,7 @@ namespace Services.Services
                 {
                     tag = await _tagRepository.GetTagById(dto.TagId.Value);
                 }
-                
+
                 // If no tag found by ID, try by name or create a new one
                 if (tag == null && !string.IsNullOrEmpty(dto.Name))
                 {
@@ -287,7 +287,7 @@ namespace Services.Services
             {
                 throw;
             }
-            
+
         }
         public async Task<PoreDescriptor> MapToPoreDescriptor(PoreDescriptorToCreateDto dto)
         {
@@ -308,10 +308,10 @@ namespace Services.Services
             }
             catch (Exception)
             {
-                
+
                 throw;
             }
-        
+
         }
         public async Task<OtherDescriptor> MapToOtherDescriptor(OtherDescriptorToCreateDto dto)
         {
@@ -334,7 +334,7 @@ namespace Services.Services
             {
                 throw;
             }
-            
+
         }
 
         public async Task<AuthenticatedUserDto> MapToAuthenticatedUserDto(User user, string token)
@@ -344,7 +344,7 @@ namespace Services.Services
             if (user.Email == null)
                 throw new InvalidOperationException("User email cannot be null");
 
-            return new AuthenticatedUserDto 
+            return new AuthenticatedUserDto
             {
                 Id = user.Id,
                 Email = user.Email,
@@ -383,7 +383,7 @@ namespace Services.Services
 
             var imagesToReturn = images.Select(MapImageToDto).ToList();
 
-            return new ScaffoldGroupSummaryDto 
+            return new ScaffoldGroupSummaryDto
             {
                 Id = scaffoldGroup.Id,
                 Name = scaffoldGroup.Name,
@@ -392,7 +392,7 @@ namespace Services.Services
                 Tags = tags,
                 NumReplicates = scaffoldGroup.Scaffolds?.Count ?? 0,
                 Images = imagesToReturn,
-                Inputs = new InputGroupBaseDto 
+                Inputs = new InputGroupBaseDto
                 {
                     ContainerShape = scaffoldGroup.InputGroup?.ContainerShape,
                     PackingConfiguration = scaffoldGroup.InputGroup?.PackingConfiguration != null
@@ -416,10 +416,10 @@ namespace Services.Services
             var particles = scaffoldGroup.InputGroup?.ParticlePropertyGroups
                     .Select(ppg => MapToScaffoldPropertyGroupBase(ppg))
                     .ToList();
-            
+
             var imagesToReturn = images.Select(MapImageToDto).ToList();
 
-        // Group descriptors by ScaffoldId
+            // Group descriptors by ScaffoldId
             // var globalDescriptorGroups = globalDescriptors.GroupBy(gd => gd.ScaffoldId);
             // var poreDescriptorGroups = poreDescriptors.GroupBy(pd => pd.ScaffoldId);
             // var otherDescriptorGroups = otherDescriptors.GroupBy(od => od.ScaffoldId);
@@ -446,7 +446,7 @@ namespace Services.Services
             // var poreDescriptorDtos = poreDescriptors.Select(pd => MapPoreDescriptorToDto(pd)).ToList();
             // var otherDescriptorDtos = otherDescriptors.Select(od => MapOtherDescriptorToDto(od)).ToList();
 
-            return new ScaffoldGroupDetailedDto 
+            return new ScaffoldGroupDetailedDto
             {
                 Id = scaffoldGroup.Id,
                 Name = scaffoldGroup.Name,
@@ -455,7 +455,7 @@ namespace Services.Services
                 NumReplicates = scaffoldGroup.Scaffolds?.Count ?? 0,
                 Comments = scaffoldGroup.Comments,
                 Images = imagesToReturn,
-                Inputs = new InputGroupBaseDto 
+                Inputs = new InputGroupBaseDto
                 {
                     ContainerShape = scaffoldGroup.InputGroup?.ContainerShape,
                     PackingConfiguration = scaffoldGroup.InputGroup?.PackingConfiguration != null
@@ -467,10 +467,10 @@ namespace Services.Services
                 Scaffolds = scaffoldDtos,
             };
         }
-        
+
         public ParticlePropertyBaseDto MapToScaffoldPropertyGroupBase(ParticlePropertyGroup particlePropertyGroup)
         {
-            return new ParticlePropertyBaseDto 
+            return new ParticlePropertyBaseDto
             {
                 Shape = particlePropertyGroup?.Shape,
                 Stiffness = particlePropertyGroup?.Stiffness,
@@ -559,7 +559,7 @@ namespace Services.Services
                 Description = descriptorType.Description,
                 ImageUrl = descriptorType.ImageUrl,
             };
-        } 
+        }
 
         public Image MapToImage(ImageForCreationDto imageToCreate, string uploaderId)
         {
@@ -596,6 +596,16 @@ namespace Services.Services
         //     }
         // }
 
-        
+        public Job MapToJob(JobSubmissionDto dto)
+        {
+            return new Job
+            {
+                Id = dto.JobId ?? Guid.NewGuid(),
+                CreatorId = dto.CreatorId,
+                SubmittedAt = DateTime.UtcNow
+            };
+        }
+
+
     }
 }

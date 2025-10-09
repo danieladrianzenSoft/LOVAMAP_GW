@@ -100,6 +100,7 @@ builder.Services.AddScoped<IImageRepository, ImageRepository>();
 builder.Services.AddScoped<IPublicationRepository, PublicationRepository>();
 builder.Services.AddScoped<IDomainRepository, DomainRepository>();
 builder.Services.AddScoped<IAISearchRepository, AISearchRepository>();
+builder.Services.AddScoped<ILovamapCoreJobRepository, LovamapCoreJobRepository>();
 
 // Add helpers
 builder.Services.AddScoped<IUserAuthHelper, UserAuthHelper>();

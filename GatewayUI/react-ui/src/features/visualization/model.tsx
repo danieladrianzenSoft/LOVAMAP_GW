@@ -1,3 +1,273 @@
+// ModelArrayBuffer.tsx
+// import React, { useEffect, useMemo, useRef, useState } from "react";
+// import * as THREE from "three";
+// import { GLTF, GLTFLoader } from "three-stdlib"; // or 'three/examples/jsm/loaders/GLTFLoader' depending on setup
+// import { clone } from "three/examples/jsm/utils/SkeletonUtils";
+// import { ThreeEvent } from "@react-three/fiber";
+
+// interface ModelProps {
+//   buffer: ArrayBuffer | null;
+//   url?: string | null;
+//   category: number;
+//   visible: boolean;
+//   hiddenIds: Set<string>;
+//   selectedEntity: ({ id: string; mesh: THREE.Mesh } | null);
+//   combinedCenter?: THREE.Vector3;
+//   onLoad?: (
+//     loadedScene: THREE.Object3D,
+//     center: THREE.Vector3,
+//     size: number,
+//     category: number,
+//     bounds: { min: THREE.Vector3; max: THREE.Vector3 }
+//   ) => void;
+//   onEntityClick?: (category: number, id: string, mesh: THREE.Mesh) => void;
+//   onEntityRightClick?: (category: number, id: string, mesh: THREE.Mesh) => void;
+//   color?: string;
+//   opacity?: number;
+//   dimmed?: boolean;
+//   dimmedOptions?: { color?: string; opacity?: number };
+//   debugMode?: boolean;
+//   slicingActive?: boolean;
+//   sliceXThreshold?: number | null;
+//   theme?: "Default" | "Metallic";
+// }
+
+// function disposeObject3D(obj: THREE.Object3D) {
+//   obj.traverse((child: any) => {
+//     if (child.geometry) {
+//       try { child.geometry.dispose(); } catch {}
+//     }
+//     if (child.material) {
+//       const mats = Array.isArray(child.material) ? child.material : [child.material];
+//       mats.forEach((m: any) => {
+//         // dispose textures referenced in material
+//         for (const key in m) {
+//           const value = m[key];
+//           if (value && value.isTexture) {
+//             try { value.dispose(); } catch {}
+//           }
+//         }
+//         try { m.dispose(); } catch {}
+//       });
+//     }
+//   });
+// }
+
+// const ModelArrayBuffer: React.FC<ModelProps> = ({
+//   buffer,
+//   category,
+//   visible,
+//   hiddenIds,
+//   selectedEntity,
+//   combinedCenter,
+//   onLoad,
+//   onEntityClick,
+//   onEntityRightClick,
+//   color,
+//   opacity,
+//   dimmed,
+//   dimmedOptions,
+//   debugMode,
+//   slicingActive,
+//   sliceXThreshold,
+//   theme,
+// }) => {
+//   const [gltfScene, setGltfScene] = useState<THREE.Object3D | null>(null);
+//   const loaderRef = useRef<GLTFLoader | null>(null);
+//   const parsedRef = useRef<GLTF | null>(null);
+//   const cameraSetRef = useRef(false);
+
+//   useEffect(() => {
+//     if (!buffer) {
+//       // nothing to load
+//       setGltfScene(null);
+//       parsedRef.current = null;
+//       return;
+//     }
+
+//     loaderRef.current = new GLTFLoader();
+
+//     let cancelled = false;
+//     (async () => {
+//       try {
+//         // parse arrayBuffer to GLTF (no network, no object URL)
+//         const gltf = await new Promise<GLTF>((resolve, reject) => {
+//           loaderRef.current!.parse(buffer, "", (result) => resolve(result), (err) => reject(err));
+//         });
+//         if (cancelled) {
+//           // immediate dispose parsed gltf if we loaded after cancellation
+//           // gltf.scene traversal disposal below will handle it
+//           return;
+//         }
+
+//         // clone to own the tree (so we can safely dispose it on unmount)
+//         const cloned = clone(gltf.scene);
+//         parsedRef.current = gltf; // keep reference if needed
+//         setGltfScene(cloned);
+
+//       } catch (err) {
+//         console.error("GLB parse/load failed", err);
+//       }
+//     })();
+
+//     return () => {
+//       cancelled = true;
+//       // we don't dispose here — the cleanup below handles the last created scene
+//     };
+//   }, [buffer]);
+
+//   // run on first scene ready — sizing / camera adjustments and notify parent
+//   useEffect(() => {
+//     if (!gltfScene) return;
+//     const box = new THREE.Box3().setFromObject(gltfScene);
+//     const size = box.getSize(new THREE.Vector3()).length();
+//     const center = box.getCenter(new THREE.Vector3());
+//     const min = box.min.clone();
+//     const max = box.max.clone();
+//     onLoad?.(gltfScene, center, size, category, { min, max });
+//   }, [gltfScene, onLoad, category]);
+
+//   // apply per-mesh material/visibility changes
+//   useEffect(() => {
+//     if (!gltfScene) return;
+
+//     gltfScene.traverse((child: any) => {
+//       if (!(child instanceof THREE.Mesh)) return;
+//       const entityId = child.name;
+//       child.userData.particleId = entityId;
+
+//       // cache originalMaterial on this clone
+//       if (!child.userData.originalMaterial && child.material) {
+//         child.userData.originalMaterial = child.material;
+//       }
+
+//       // create one workingMaterial per child (if not exist)
+//       if (!child.userData.workingMaterial) {
+//         try {
+//           child.userData.workingMaterial = Array.isArray(child.userData.originalMaterial)
+//             ? child.userData.originalMaterial.map((m:any) => m.clone())
+//             : (child.userData.originalMaterial as THREE.Material).clone();
+//         } catch {
+//           child.userData.workingMaterial = new THREE.MeshStandardMaterial();
+//         }
+//       }
+
+//       let workingMat = child.userData.workingMaterial;
+//       if (Array.isArray(workingMat)) workingMat = workingMat[0];
+
+//       if (selectedEntity?.id === entityId) {
+//         if (!child.userData.highlightMaterial) {
+//           child.userData.highlightMaterial = new THREE.MeshStandardMaterial({ color: "red", emissive: "yellow" });
+//         }
+//         child.material = child.userData.highlightMaterial;
+//       } else {
+//         const mat = workingMat as any;
+//         if (typeof color === "string" && mat.color) {
+//           mat.color = new THREE.Color(color);
+//           mat.vertexColors = false;
+//         }
+//         if (typeof opacity === "number") {
+//           mat.transparent = true;
+//           mat.opacity = opacity;
+//         } else if (opacity === undefined && dimmed && typeof dimmedOptions?.opacity === "number") {
+//           mat.transparent = true;
+//           mat.opacity = dimmedOptions.opacity;
+//         } else {
+//           mat.transparent = false;
+//           mat.opacity = 1;
+//         }
+
+//         if (theme === "Metallic") {
+//           if (!child.userData.metallicMaterial) {
+//             child.userData.metallicMaterial = new THREE.MeshPhongMaterial({
+//               color: mat.color ? mat.color.clone() : new THREE.Color(0xc0c0c0),
+//               shininess: 35,
+//               specular: new THREE.Color('#fffaed'),
+//             });
+//           }
+//           child.material = child.userData.metallicMaterial;
+//         } else {
+//           child.material = mat;
+//         }
+//       }
+
+//       // visibility
+//       const center = new THREE.Vector3();
+//       new THREE.Box3().setFromObject(child).getCenter(center);
+//       const adjustedCenter = combinedCenter ? center.clone().sub(combinedCenter) : center;
+
+//       let finalVisible = !!visible && !hiddenIds.has(entityId);
+//       if (category === 0 && slicingActive && typeof sliceXThreshold === "number") {
+//         const isSliceHidden = adjustedCenter.x > (sliceXThreshold ?? 0);
+//         finalVisible = finalVisible && !isSliceHidden;
+//       }
+//       child.visible = finalVisible;
+//       child.raycast = finalVisible ? (child.userData.originalRaycast || child.raycast) : () => {};
+//     });
+//   }, [gltfScene, hiddenIds, selectedEntity, dimmed, dimmedOptions, visible, color, opacity, slicingActive, sliceXThreshold, combinedCenter, category, theme]);
+
+//   // cleanup: dispose cloned scene materials/geometries we created
+//   useEffect(() => {
+//     return () => {
+//       if (gltfScene) {
+//         // dispose userData-created materials
+//         gltfScene.traverse((child: any) => {
+//           if (child.userData) {
+//             if (child.userData.workingMaterial) {
+//               const wm = child.userData.workingMaterial;
+//               const arr = Array.isArray(wm) ? wm : [wm];
+//               arr.forEach((m:any) => {
+//                 for (const key in m) {
+//                   const value = m[key];
+//                   if (value && value.isTexture) {
+//                     try { value.dispose(); } catch {}
+//                   }
+//                 }
+//                 try { m.dispose(); } catch {}
+//               });
+//             }
+//             if (child.userData.highlightMaterial) {
+//               try { child.userData.highlightMaterial.dispose(); } catch {}
+//             }
+//             if (child.userData.metallicMaterial) {
+//               try { child.userData.metallicMaterial.dispose(); } catch {}
+//             }
+//           }
+//         });
+//         // finally dispose geometries & any materials left
+//         disposeObject3D(gltfScene);
+//       }
+//       // also free parsedRef GLTF if any (not necessary for ArrayBuffer)
+//       if (parsedRef.current) {
+//         // parsedRef.current = null; // allow GC
+//       }
+//     };
+//   }, [gltfScene]);
+
+//   // click handlers
+//   const handleClick = (event: ThreeEvent<PointerEvent>) => {
+//     event.stopPropagation();
+//     const mesh = event.object as THREE.Mesh;
+//     if (!mesh) return;
+//     const id = mesh.userData.particleId;
+//     if (id) onEntityClick?.(category, id, mesh);
+//   };
+
+//   const handleRightClick = (event: ThreeEvent<PointerEvent>) => {
+//     event.stopPropagation();
+//     event.nativeEvent.preventDefault();
+//     const mesh = event.object as THREE.Mesh;
+//     if (!mesh) return;
+//     const id = mesh.userData.particleId;
+//     if (id) onEntityRightClick?.(category, id, mesh);
+//   };
+
+//   if (!gltfScene) return null;
+//   return <primitive object={gltfScene} onClick={handleClick} onContextMenu={handleRightClick} />;
+// };
+
+// export default ModelArrayBuffer;
+
 import React, { useEffect, useRef } from 'react';
 import { useThree, ThreeEvent, Vector3 } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";

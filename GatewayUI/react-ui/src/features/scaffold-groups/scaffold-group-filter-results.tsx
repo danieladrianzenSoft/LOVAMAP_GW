@@ -58,6 +58,16 @@ const ScaffoldGroupsFilterResults: React.FC<ScaffoldGroupsFilterResultsProps> = 
 		return () => window.removeEventListener('resize', handleResize);
 	}, [largeScreenColumns]);
 
+	useEffect(() => {
+		if (!visibleDetails) return;
+
+		const id = `scaffold-details-${visibleDetails}`;
+		const el = document.getElementById(id);
+		if (el) {
+			el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+		}
+	}, [visibleDetails]);
+
 	const renderCards = (groups: ScaffoldGroup[]) => {
 		const columns = numberOfColumns;
 	
@@ -101,7 +111,7 @@ const ScaffoldGroupsFilterResults: React.FC<ScaffoldGroupsFilterResultsProps> = 
 							</div>
 	
 							{detailGroup && (
-								<div className="w-full">
+								<div className="w-full scaffold-details" id={`scaffold-details-${detailGroup.id}`}>
 									<ScaffoldGroupDetails
 										scaffoldGroup={detailGroup}
 										isVisible={true}

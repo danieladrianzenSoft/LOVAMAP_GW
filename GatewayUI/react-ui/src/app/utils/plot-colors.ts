@@ -9,11 +9,11 @@ export const PLOT_COLORS = [
 	"#EC4899", // pink
 ];
 
-const DEFAULT_LIGHT_GREY = "rgba(220, 220, 220, 0.8)";
+// const DEFAULT_LIGHT_GREY = "rgba(220, 220, 220, 0.8)";
 const DEFAULT_DARK_GREY = "rgba(160, 160, 160, 0.8)";
 
 export const getPlotColor = (index: number, total: number): string => {
-  if (total === 1) return DEFAULT_LIGHT_GREY;
+  if (total === 1) return DEFAULT_DARK_GREY;
   if (index === 0) return DEFAULT_DARK_GREY;
   return PLOT_COLORS[(index - 1) % PLOT_COLORS.length];
 };

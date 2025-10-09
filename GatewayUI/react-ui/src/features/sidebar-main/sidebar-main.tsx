@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Tab, TabList, TabGroup } from '@headlessui/react'
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, matchPath } from 'react-router-dom';
 import { useStore } from '../../app/stores/store';
 import { observer } from 'mobx-react-lite';
 import logo from '../../../src/LOVAMAP_logo.png';
@@ -18,25 +18,27 @@ const SideBarMain: React.FC = () => {
 	};
 
 	useEffect(() => {
-		if (location.pathname === '/' || location.pathname.startsWith('/visualize')) {
+		const p = location.pathname;
+
+		if (p === '/' || matchPath('/visualize/*', p)) {
 			setActiveTab(0);
-		} else if (location.pathname === '/explore') {
+		} else if (matchPath('/explore/*', p)) {
 			setActiveTab(1);
-		} else if (location.pathname === '/data') {
+		} else if (matchPath('/data/*', p)) {
 			setActiveTab(2);
-		} else if (location.pathname === '/learn') {
+		} else if (matchPath('/learn/*', p)) {
 			setActiveTab(3);
-		} else if (location.pathname === '/descriptor-calculator') {
+		} else if (matchPath('/descriptor-calculator/*', p)) {
 			setActiveTab(4);
-		} else if (location.pathname === '/experiments') {
+		} else if (matchPath('/experiments/*', p)) {
 			setActiveTab(5);
-		} else if (location.pathname === '/jobs') {
+		} else if (matchPath('/jobs/*', p)) {
 			setActiveTab(6);
-		} else if (location.pathname === '/publications') {
+		} else if (matchPath('/publications/*', p)) {
 			setActiveTab(7);
-		} else if (location.pathname === '/uploads') {
+		} else if (matchPath('/uploads', p)) {
 			setActiveTab(8);
-		} else if (location.pathname.startsWith('/admin')) {
+		} else if (matchPath('/admin/*', p)) {
 			setActiveTab(9);
 		} else {
 			setActiveTab(0);
@@ -57,7 +59,7 @@ const SideBarMain: React.FC = () => {
 					md:translate-x-0
 				`}
 			>
-				<div className='flex flex-col justify-between h-full p-0 m-0'>
+				<div className='flex flex-col justify-between h-full p-2 m-0'>
 					<TabGroup vertical selectedIndex={activeTab} onChange={setActiveTab}>
 						<TabList className="flex flex-col">
 							<NavLink to="/" onClick={() => commonStore.setSidebarOpen(false)}>
@@ -102,7 +104,7 @@ const SideBarMain: React.FC = () => {
 							<Tab as={NavLink} to='/experiments' onClick={() => commonStore.setSidebarOpen(false)} className="focus:outline-none">
 							{({ selected }) => (
 								<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
-								<p>Customize downloads</p>
+								<p>Download Data</p>
 								</div>
 							)}
 							</Tab>

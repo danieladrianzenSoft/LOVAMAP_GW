@@ -24,6 +24,7 @@ namespace Services.IServices
 		Task<PoreDescriptor> MapToPoreDescriptor(PoreDescriptorToCreateDto dto);
 		Task<OtherDescriptor> MapToOtherDescriptor(OtherDescriptorToCreateDto dto);
 		Image MapToImage(ImageForCreationDto dto, string uploaderId);
+		Job MapToJob(JobSubmissionDto dto);
 
 		// Maps to DTOs
 		Task<AuthenticatedUserDto> MapToAuthenticatedUserDto(User user, string token);
