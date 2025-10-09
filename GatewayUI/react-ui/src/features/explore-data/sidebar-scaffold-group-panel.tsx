@@ -177,7 +177,8 @@ export const SidebarScaffoldGroupPanel: React.FC<SidebarScaffoldGroupPanelProps>
 					</tr>
 					
 					{showMore && (
-						<div className="mt-4">
+						<>
+							<div className="mt-4"></div>
 							<tr>
 								<td className="font-medium text-gray-900 align-top w-28">Id:</td>
 								<td>{groupData.scaffoldGroup.id}</td>
@@ -190,7 +191,7 @@ export const SidebarScaffoldGroupPanel: React.FC<SidebarScaffoldGroupPanelProps>
 							<td className="font-medium text-gray-900 align-top">Container:</td>
 								<td>{groupData.scaffoldGroup.inputs?.containerShape ?? "n/a"}</td>
 							</tr>
-						</div>
+						</>
 					)}
 				</tbody>
 			</table>
