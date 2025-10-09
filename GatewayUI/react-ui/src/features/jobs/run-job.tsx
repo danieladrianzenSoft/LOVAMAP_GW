@@ -7,7 +7,7 @@ import { Job } from '../../app/models/job';
 // import { FaSpinner, FaPlus, FaStar, FaRegStar, FaTimes } from 'react-icons/fa';
 
 const RunJob: React.FC = () => {
-	const [isLoading, setIsLoading] = useState<boolean>(true);
+	const [, setIsLoading] = useState<boolean>(true);
 	const { jobStore } = useStore();
 	const { submitJob } = jobStore;
 	

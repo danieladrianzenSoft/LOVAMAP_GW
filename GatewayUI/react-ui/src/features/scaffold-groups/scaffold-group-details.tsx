@@ -36,6 +36,7 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 	const {getDetailedScaffoldGroupById, navigateToVisualization} = scaffoldGroupStore;
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const [poreInfo, setPoreInfo] = useState<PoreInfoForScaffold>();
+	const [showMore, setShowMore] = useState(false);
 
 	const descriptorValueMap = useMemo(() => {
 		if (!poreInfo) return {};
@@ -255,10 +256,6 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 						<table className="w-full text-sm text-left text-gray-500">
 							<tbody>
 								<tr>
-									<td className="font-medium text-gray-900 align-top w-32">Id:</td>
-									<td>{scaffoldGroup.id}</td>
-								</tr>
-								<tr>
 									<td className="font-medium text-gray-900 align-top w-32">Simulated:</td>
 									<td>{scaffoldGroup.isSimulated ? 'yes' : 'no'}</td>
 								</tr>
@@ -310,41 +307,67 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 									</td>
 								</tr>
 								<tr>
-									<td className="w-32 font-medium text-gray-900 align-top">Replicates:</td>
+									<td></td>
 									<td>
-										<Formik
-											initialValues={{scaffoldGroup:scaffoldGroup.id, replicates: 1 }}
-											enableReinitialize={true}
-											onSubmit={(values, {setErrors}) => download(values, setErrors)}
-										>
-											{formik => (
-												<form onSubmit={formik.handleSubmit}>
-													<div className='flex flex-col'>
-														<div className='flex items-center space-x-2'>
-															{/* <TextInput
-																type="number"
-																name="replicates"
-																placeholder={'1'}
-																errors={formik.errors}
-																touched={formik.touched}
-																min={1}
-																max={scaffoldGroup.numReplicates}
-																step={1}
-																className="p-1 text-sm w-12 appearance-none"
-															/>
-															<p className="text-sm ml-2 my-auto mb-5">{` of ${scaffoldGroup.numReplicates}`}</p> */}
-															<p>{scaffoldGroup.numReplicates}</p>
-														</div>
-														<button type="submit" className="button-outline self-start flex items-center gap-2 mt-2">
-															Preview Data
-															{isLoading && <FaSpinner className="animate-spin text-current text-[1em]" />}
-														</button>
-													</div>							
-												</form>
-											)}
-										</Formik>	
+										<button type="button" className="button-outline self-start flex items-center gap-2 mt-2">
+											Preview Data
+											{isLoading && <FaSpinner className="animate-spin text-current text-[1em]" />}
+										</button>
 									</td>
 								</tr>
+								<tr>
+									<td>
+										<div className="flex justify-start items-start pb-2 mt-2">
+											<button
+												className="text-blue-600 hover:text-blue-800 text-xs"
+												onClick={() => setShowMore(!showMore)}
+											>
+												{`${showMore ? 'Hide' : 'Show more'}`}
+											</button>
+										</div>
+									</td>
+									<td></td>
+								</tr>
+								{showMore && (
+									<>
+										<tr>
+											<td className="font-medium text-gray-900 align-top w-32">Id:</td>
+											<td>{scaffoldGroup.id}</td>
+										</tr>
+										<tr>
+											<td className="w-32 font-medium text-gray-900 align-top">Replicates:</td>
+											<td>
+												<Formik
+													initialValues={{scaffoldGroup:scaffoldGroup.id, replicates: 1 }}
+													enableReinitialize={true}
+													onSubmit={(values, {setErrors}) => download(values, setErrors)}
+												>
+													{formik => (
+														<form onSubmit={formik.handleSubmit}>
+															<div className='flex flex-col'>
+																<div className='flex items-center space-x-2'>
+																	{/* <TextInput
+																		type="number"
+																		name="replicates"
+																		placeholder={'1'}
+																		errors={formik.errors}
+																		touched={formik.touched}
+																		min={1}
+																		max={scaffoldGroup.numReplicates}
+																		step={1}
+																		className="p-1 text-sm w-12 appearance-none"
+																	/>
+																	<p className="text-sm ml-2 my-auto mb-5">{` of ${scaffoldGroup.numReplicates}`}</p> */}
+																	<p>{scaffoldGroup.numReplicates}</p>
+																</div>
+															</div>							
+														</form>
+													)}
+												</Formik>	
+											</td>
+										</tr>
+									</>
+								)}
 							</tbody>
 						</table>
 					</div>

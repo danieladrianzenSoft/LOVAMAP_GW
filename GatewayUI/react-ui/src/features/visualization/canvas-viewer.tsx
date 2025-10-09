@@ -39,9 +39,9 @@ const CanvasViewer: React.FC<CanvasViewerProps> = ({ meshes, theme, onSliceBound
   const [particleBounds, setParticleBounds] = useState<{ min: THREE.Vector3; max: THREE.Vector3 } | null>(null);
   const { active } = useProgress();
   const isLoaderActive = active;
-  const [loadingCount, setLoadingCount] = useState(0);
-  const incrementLoading = useCallback(() => setLoadingCount(c => c + 1), []);
-  const decrementLoading = useCallback(() => setLoadingCount(c => Math.max(0, c - 1)), []);
+  const [loadingCount, ] = useState(0);
+  // const incrementLoading = useCallback(() => setLoadingCount(c => c + 1), []);
+  // const decrementLoading = useCallback(() => setLoadingCount(c => Math.max(0, c - 1)), []);
 
   const controlsRef = useRef<any>(null);
   const hasSetCamera = useRef(false);

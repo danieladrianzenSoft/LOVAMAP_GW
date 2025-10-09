@@ -407,71 +407,147 @@ const Model: React.FC<ModelProps> = ({
 			}
 
 			// Handle highlight (selection)
+			// Use originalMaterial if present; fall back to runtime child.material
+			const originalMatFromUserData = child.userData.originalMaterial;
+			let originalMat: THREE.Material | null = null;
+
+			if (Array.isArray(originalMatFromUserData)) {
+			// if original stored as array, use first element for color decisions
+				originalMat = (originalMatFromUserData[0] as THREE.Material) ?? null;
+			} else if (originalMatFromUserData) {
+				originalMat = originalMatFromUserData as THREE.Material;
+			} else if (child.material) {
+				originalMat = Array.isArray(child.material) ? (child.material[0] as THREE.Material) : (child.material as THREE.Material);
+			}
+
+			// Now do selection / unselection
 			if (selectedEntity?.id === entityId) {
-				child.material = new THREE.MeshStandardMaterial({
-					color: "red",
-					emissive: "yellow",
-				});
+				// Create a highlight material cloned from original to preserve originalMaterial
+				const highlightMat = originalMat ? (originalMat.clone() as THREE.MeshStandardMaterial) : new THREE.MeshStandardMaterial();
+				// Apply highlight colours / emissive but keep other properties cloned
+				if ((highlightMat as any).color) (highlightMat as any).color = new THREE.Color('red');
+				(highlightMat as any).emissive = new THREE.Color('yellow');
+				highlightMat.transparent = originalMat?.transparent ?? false;
+				child.material = highlightMat;
 			} else {
-				// Clone original material
-				const originalMat = child.userData.originalMaterial as THREE.MeshStandardMaterial;
-
+				// Use the saved original material clone (always clone before applying overrides)
 				let workingMat: THREE.Material;
+				if (originalMat) {
+					workingMat = originalMat.clone();
+				} else {
+					// ultimate fallback - clone current material
+					workingMat = Array.isArray(child.material) ? (child.material[0] as THREE.Material).clone() : (child.material as THREE.Material).clone();
+				}
 
-				const runtimeColor = (child.material as any)?.color;
-				const originalColor = runtimeColor instanceof THREE.Color
-					? runtimeColor.clone()
+				// Compute a reliable originalColor from original material (not runtime material)
+				const originalColor =
+					(originalMat && (originalMat as any).color instanceof THREE.Color)
+					? (originalMat as any).color.clone()
 					: new THREE.Color(0xC0C0C0);
 
 				if (theme === 'Metallic') {
-					workingMat = new THREE.MeshPhongMaterial({
-						color: originalColor,
-						shininess: 35,              // Intensity of specular highlights
-						specular: new THREE.Color('#fffaed'),
-						vertexColors: true
+					// create a metallic variant while using originalColor
+					const metallic = new THREE.MeshPhongMaterial({
+					color: originalColor,
+					shininess: 35,
+					specular: new THREE.Color('#fffaed'),
+					vertexColors: (workingMat as any).vertexColors ?? false
 					});
-					(workingMat as any).flatShading = true;
-				} else {
-					workingMat = (originalMat as THREE.Material).clone();
+					(metallic as any).flatShading = true;
+					// copy transparency/opacity from workingMat (so user opacity remains)
+					metallic.transparent = (workingMat as any).transparent ?? false;
+					metallic.opacity = (workingMat as any).opacity ?? 1;
+					workingMat.dispose?.(); // free the temporary clone if any
+					workingMat = metallic;
 				}
 
 				// Global override (highest priority)
-				if (typeof color === "string") {
-					if (
-						(workingMat as any).color &&
-						typeof color === "string"
-					) {
-						(workingMat as THREE.MeshPhongMaterial | THREE.MeshStandardMaterial).color = new THREE.Color(color);
-						(workingMat as THREE.MeshPhongMaterial | THREE.MeshStandardMaterial).vertexColors = false;
+				if (typeof color === 'string') {
+					if ((workingMat as any).color) (workingMat as any).color = new THREE.Color(color);
+					(workingMat as any).vertexColors = false;
+				} else {
+					// dimmed fallback uses dimmedOptions color
+					if (dimmed && typeof dimmedOptions?.color === 'string' && (workingMat as any).color) {
+					(workingMat as any).color = new THREE.Color(dimmedOptions.color);
+					(workingMat as any).vertexColors = false;
 					}
-					workingMat.vertexColors = false;
-				}
-				if (typeof opacity === "number") {
-					workingMat.transparent = true;
-					workingMat.opacity = opacity;
 				}
 
-				// Dimmed fallback
-				if (color === undefined && dimmed && typeof dimmedOptions?.color === "string") {
-					if (
-						(workingMat as any).color &&
-						color === undefined &&
-						dimmed &&
-						typeof dimmedOptions?.color === "string"
-					) {
-						(workingMat as THREE.MeshPhongMaterial | THREE.MeshStandardMaterial).color = new THREE.Color(dimmedOptions.color);
-						(workingMat as THREE.MeshPhongMaterial | THREE.MeshStandardMaterial).vertexColors = false;
-					}
-					workingMat.vertexColors = false;
-				}
-				if (opacity === undefined && dimmed && typeof dimmedOptions?.opacity === "number") {
-					// console.log(`Applying dimmed opacity ${dimmedOptions.opacity} to entity ${entityId}`);
-					workingMat.transparent = true;
-					workingMat.opacity = dimmedOptions.opacity;
+				if (typeof opacity === 'number') {
+					(workingMat as any).transparent = true;
+					(workingMat as any).opacity = opacity;
+				} else if (opacity === undefined && dimmed && typeof dimmedOptions?.opacity === 'number') {
+					(workingMat as any).transparent = true;
+					(workingMat as any).opacity = dimmedOptions.opacity;
 				}
 
 				child.material = workingMat;
 			}
+			// if (selectedEntity?.id === entityId) {
+			// 	child.material = new THREE.MeshStandardMaterial({
+			// 		color: "red",
+			// 		emissive: "yellow",
+			// 	});
+			// } else {
+			// 	// Clone original material
+			// 	const originalMat = child.userData.originalMaterial as THREE.MeshStandardMaterial;
+
+			// 	let workingMat: THREE.Material;
+
+			// 	const runtimeColor = (child.material as any)?.color;
+			// 	const originalColor = runtimeColor instanceof THREE.Color
+			// 		? runtimeColor.clone()
+			// 		: new THREE.Color(0xC0C0C0);
+
+			// 	if (theme === 'Metallic') {
+			// 		workingMat = new THREE.MeshPhongMaterial({
+			// 			color: originalColor,
+			// 			shininess: 35,              // Intensity of specular highlights
+			// 			specular: new THREE.Color('#fffaed'),
+			// 			vertexColors: true
+			// 		});
+			// 		(workingMat as any).flatShading = true;
+			// 	} else {
+			// 		workingMat = (originalMat as THREE.Material).clone();
+			// 	}
+
+			// 	// Global override (highest priority)
+			// 	if (typeof color === "string") {
+			// 		if (
+			// 			(workingMat as any).color &&
+			// 			typeof color === "string"
+			// 		) {
+			// 			(workingMat as THREE.MeshPhongMaterial | THREE.MeshStandardMaterial).color = new THREE.Color(color);
+			// 			(workingMat as THREE.MeshPhongMaterial | THREE.MeshStandardMaterial).vertexColors = false;
+			// 		}
+			// 		workingMat.vertexColors = false;
+			// 	}
+			// 	if (typeof opacity === "number") {
+			// 		workingMat.transparent = true;
+			// 		workingMat.opacity = opacity;
+			// 	}
+
+			// 	// Dimmed fallback
+			// 	if (color === undefined && dimmed && typeof dimmedOptions?.color === "string") {
+			// 		if (
+			// 			(workingMat as any).color &&
+			// 			color === undefined &&
+			// 			dimmed &&
+			// 			typeof dimmedOptions?.color === "string"
+			// 		) {
+			// 			(workingMat as THREE.MeshPhongMaterial | THREE.MeshStandardMaterial).color = new THREE.Color(dimmedOptions.color);
+			// 			(workingMat as THREE.MeshPhongMaterial | THREE.MeshStandardMaterial).vertexColors = false;
+			// 		}
+			// 		workingMat.vertexColors = false;
+			// 	}
+			// 	if (opacity === undefined && dimmed && typeof dimmedOptions?.opacity === "number") {
+			// 		// console.log(`Applying dimmed opacity ${dimmedOptions.opacity} to entity ${entityId}`);
+			// 		workingMat.transparent = true;
+			// 		workingMat.opacity = dimmedOptions.opacity;
+			// 	}
+
+			// 	child.material = workingMat;
+			// }
 
 			// Handle visibility
 			const center = new THREE.Vector3();

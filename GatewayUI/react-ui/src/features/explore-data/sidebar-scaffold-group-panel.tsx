@@ -23,6 +23,7 @@ const categoryOrder: { [key: string]: number } = {
 export const SidebarScaffoldGroupPanel: React.FC<SidebarScaffoldGroupPanelProps> = ({ groupData, index, numPlots, onRemove }) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const toggleOpen = () => setIsOpen(prev => !prev);
+	const [showMore, setShowMore] = useState(false);
 
 	return (
 		<div className="bg-white bg-opacity-80 rounded-lg shadow mb-4 w-ful hover:shadow-lg">
@@ -119,16 +120,8 @@ export const SidebarScaffoldGroupPanel: React.FC<SidebarScaffoldGroupPanelProps>
 			<table className="w-full text-sm text-left text-gray-500">
 				<tbody>
 					<tr>
-						<td className="font-medium text-gray-900 align-top w-28">Id:</td>
-						<td>{groupData.scaffoldGroup.id}</td>
-					</tr>
-					<tr>
 						<td className="font-medium text-gray-900 align-top">Simulated:</td>
 						<td>{groupData.scaffoldGroup.isSimulated ? "yes" : "no"}</td>
-					</tr>
-					<tr>
-						<td className="font-medium text-gray-900 align-top">Shape:</td>
-						<td>{groupData.scaffoldGroup.inputs?.containerShape ?? "n/a"}</td>
 					</tr>
 					<tr>
 						<td className="font-medium text-gray-900 align-top">Packing:</td>
@@ -170,9 +163,35 @@ export const SidebarScaffoldGroupPanel: React.FC<SidebarScaffoldGroupPanelProps>
 						</td>
 					</tr>
 					<tr>
-						<td className="font-medium text-gray-900 align-top">Replicates:</td>
-						<td>{groupData.scaffoldGroup.numReplicates}</td>
+						<td>
+							<div className="flex justify-start items-start mt-4">
+								<button
+									className="text-blue-600 hover:text-blue-800 text-xs"
+									onClick={() => setShowMore(!showMore)}
+								>
+									{`${showMore ? 'Hide' : 'Show more'}`}
+								</button>
+							</div>
+						</td>
+						<td></td>
 					</tr>
+					
+					{showMore && (
+						<div className="mt-4">
+							<tr>
+								<td className="font-medium text-gray-900 align-top w-28">Id:</td>
+								<td>{groupData.scaffoldGroup.id}</td>
+							</tr>
+							<tr>
+								<td className="font-medium text-gray-900 align-top">Replicates:</td>
+								<td>{groupData.scaffoldGroup.numReplicates}</td>
+							</tr>
+							<tr>
+							<td className="font-medium text-gray-900 align-top">Container:</td>
+								<td>{groupData.scaffoldGroup.inputs?.containerShape ?? "n/a"}</td>
+							</tr>
+						</div>
+					)}
 				</tbody>
 			</table>
 		</div>

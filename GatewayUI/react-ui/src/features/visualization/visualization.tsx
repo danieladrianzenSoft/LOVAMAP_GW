@@ -659,15 +659,15 @@ const Visualization: React.FC = () => {
 				)}
 			</div>
 
-			{activeCategory != null && isActiveCategoryVisible && (
-				<div className="absolute top-0 left-0 z-20 space-y-1 ml-2">
-					<SelectedPanel
-						selectedDomainEntity={activeSelected}
-						domainCategory={activeCategory}
-						onUnselect={() => setSelectedByCategory(prev => ({ ...prev, [activeCategory]: null }))}
-						domainMetadata={activeMetadata}
-						scaffoldGroup={scaffoldGroupStore.selectedScaffoldGroup}
-					/>
+			<div className="absolute top-0 left-0 z-20 space-y-1 ml-2">
+				<SelectedPanel
+					selectedDomainEntity={activeSelected}
+					domainCategory={activeCategory}
+					onUnselect={() => setSelectedByCategory(prev => ({ ...prev, [activeCategory]: null }))}
+					domainMetadata={activeMetadata}
+					scaffoldGroup={scaffoldGroupStore.selectedScaffoldGroup}
+				/>
+				{activeCategory != null && isActiveCategoryVisible && (
 					<HiddenPanel
 						isOpen={isHiddenPanelOpen}
 						toggleOpen={() => setIsHiddenPanelOpen(!isHiddenPanelOpen)}
@@ -686,9 +686,8 @@ const Visualization: React.FC = () => {
 						}}
 						onToggleVisibility={(id) => toggleVisibility(id, activeCategory)}
 					/>
-				</div>
-			)}
-
+				)}
+			</div>
 			<div className="absolute top-0 right-0 z-20 space-y-1 mr-2">
 				<div className="mt-2 flex w-full">
 					<button className="button-primary items-center content-center w-full" onClick={() => History.push('/explore')}>
