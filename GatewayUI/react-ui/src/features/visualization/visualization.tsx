@@ -43,10 +43,10 @@ const Visualization: React.FC = () => {
   	const [showParticlesPanelOpen, setShowParticlesPanelOpen] = useState(false);
 	const [showPoresPanelOpen, setShowPoresPanelOpen] = useState(true);
 	const [showParticles, setShowParticles] = useState(true);
-	const [showPores, setShowPores] = useState(false);
+	const [showPores, setShowPores] = useState(true);
   	const [hasAutoHiddenEdgePores, setHasAutoHiddenEdgePores] = useState(false);
 	const [areEdgePoresHidden, setAreEdgePoresHidden] = useState(false);
-	const [dimAppliedOnce, setDimAppliedOnce] = useState(false);
+	const [dimAppliedOnce, setDimAppliedOnce] = useState(true);
 
 	const canvasRef = useRef<HTMLCanvasElement | null>(null);
 	const resolvedScaffoldId = params.scaffoldId ? parseInt(params.scaffoldId, 10) : null;
@@ -57,16 +57,18 @@ const Visualization: React.FC = () => {
 	const particleUrl = domainStore.getActiveMeshUrl(0);
 	const poreUrl = domainStore.getActiveMeshUrl(1);
 
-	const [dimmedParticles, setDimmedParticles] = useState(false);
-	const [theme, setTheme] = useState<'Default' | 'Metallic'>('Default');
+	// const [dimmedParticles, setDimmedParticles] = useState(true);
+	const [colorfulParticles, setColorfulParticles] = useState(false); // default false => uniform color
+	const dimmedParticles = !colorfulParticles;
+	const [theme, setTheme] = useState<'Metallic' | 'Sunset'>('Metallic');
 	const [dimmedPores, ] = useState(false);
 	const [poreOpacity, ] = useState(1);
 	const [particleOpacity, setParticleOpacity] = useState(1);
 	const [userOverrideParticleOpacity, setUserOverrideParticleOpacity] = useState(false);
 	// const [poreColor, setPoreColor] = useState(null);
 	const [, setParticleColor] = useState(null);
-	const [slicingActive, setSlicingActive] = useState(false);
-	const [sliceXThreshold, setSliceXThreshold] = useState<number | null>(null);
+	const [slicingActive, setSlicingActive] = useState(true);
+	const [sliceXThreshold, setSliceXThreshold] = useState<number | null>(300);
 	// const [sliceHiddenParticleIds, setSliceHiddenParticleIds] = useState<Set<string>>(new Set());
 	const [sliceDomainBounds, setSliceDomainBounds] = useState<{
 		min: THREE.Vector3;
@@ -74,21 +76,40 @@ const Visualization: React.FC = () => {
 		} | null>(null);
 
 	const [screenshotCategory, setScreenshotCategory] = useState<number | null>(null);
+	const autoHiddenForDomainRef = useRef<number | string | null>(null);
+	const hasAttemptedLoadRef = useRef(false);
+	const isBusy = isLoading || domainStore.isFetchingDomain || scaffoldGroupStore.isFetchingScaffoldGroup;
+
+	// small helper - compare two Sets of strings for equality
+	const setsEqual = (a?: Set<string>, b?: Set<string>) => {
+		if (a === b) return true;
+		if (!a || !b) return false;
+		if (a.size !== b.size) return false;
+
+		let equal = true;
+		a.forEach(v => {
+			if (!b.has(v)) equal = false;
+		});
+
+		return equal;
+	};
 
 	const defaultDimmedOptions = useMemo(() => ({
 		color: '#E7F6E3', 
-		opacity: 0.2,
+		opacity: 1,
 		// #c6c9c5
 	}), []);
 
 	const loadDomainAndGroup = useCallback(async () => {
-		const category = selectedCategories[0];
+		hasAttemptedLoadRef.current = true;
+		setIsLoading(true);
+		// const category = selectedCategories[0];
 		let scaffoldId = selectedScaffoldId ?? resolvedScaffoldId;
 
 		setHasAutoHiddenEdgePores(false);
 
 		try {
-			const actualId = await domainStore.visualizeDomain(scaffoldId, category);
+			const actualId = await domainStore.visualizeDomain(scaffoldId, 0);
 			if (actualId != null) {
 				scaffoldId = actualId;
 				setSelectedScaffoldId(actualId);
@@ -108,13 +129,25 @@ const Visualization: React.FC = () => {
 				scaffoldGroupStore.loadGroupForScaffoldId(scaffoldId),
 				domainStore.getDomainMetadata(0, domainStore.getActiveDomain(0)?.id)
 			]);
-			if (group) {
-				setSelectedScaffoldGroupId(group.id);
-			}
+			if (group) setSelectedScaffoldGroupId(group.id);
+
+			await Promise.all([
+				domainStore.visualizeDomain(scaffoldId, 0).catch(err => {
+					console.warn("Failed to visualize particles (0):", err);
+				}),
+				domainStore.visualizeDomain(scaffoldId, 1).catch(err => {
+					console.warn("Failed to visualize pores (1):", err);
+				})
+			]);
+
+			await domainStore.getDomainMetadata(1, domainStore.getActiveDomain(1)?.id);
+			
 		} catch (error) {
-		console.warn("Failed to load scaffold group", error);
+			console.warn("Failed to load scaffold group", error);
+		} finally {
+			setIsLoading(false);
 		}
-	}, [selectedCategories, selectedScaffoldId, resolvedScaffoldId, domainStore, scaffoldGroupStore]);
+	}, [selectedScaffoldId, resolvedScaffoldId, domainStore, scaffoldGroupStore]);
 
 	const {
 		addToHistory,
@@ -141,29 +174,85 @@ const Visualization: React.FC = () => {
 		}
 	}, [sliceDomainBounds, sliceXThreshold]);
 
+	const poresMetadata = domainStore.getActiveMetadata(1)?.metadata;
+	const poresDomainId = domainStore.getActiveDomain(1)?.id;
 
 	useEffect(() => {
-		const category = 1; // Pores
+		const category = 1; // pores
 		const metadata = domainStore.getActiveMetadata(category);
+		const domain = domainStore.getActiveDomain(category);
 
-		if (showPores && metadata && !hasAutoHiddenEdgePores) {
-			const edgeHidden = new Set<string>();
+		// debug: show when the effect runs and what metadata/domain we saw
+		// remove or lower verbosity later
+		console.debug("[auto-hide effect] showPores:", showPores, "domainId:", domain?.id ?? domain?.scaffoldId, "metadataLoaded:", !!metadata);
 
-			Object.entries(metadata.metadata).forEach(([id, meta]) => {
-				if (typeof meta === "object" && meta && "edge" in meta && (meta as any).edge === 1) {
-					edgeHidden.add(id);
-				}
-			});
-
-			setHiddenByCategory(prev => ({
-				...prev,
-				[category]: edgeHidden,
-			}));
-
-			setAreEdgePoresHidden(true);
-			setHasAutoHiddenEdgePores(true);
+		if (!showPores || !metadata) {
+			// nothing to do yet
+			return;
 		}
-	}, [showPores, domainStore, hasAutoHiddenEdgePores]);
+
+		// stable key for this domain's metadata
+		const domainKey = (domain && (domain.id ?? domain.scaffoldId)) ?? JSON.stringify(metadata?.metadata ?? {});
+
+		if (autoHiddenForDomainRef.current === domainKey) {
+			console.debug("[auto-hide effect] already applied for domainKey:", domainKey);
+			return;
+		}
+
+		// build set of edge ids
+		const edgeHidden = new Set<string>();
+		Object.entries(metadata.metadata || {}).forEach(([id, meta]) => {
+			if (typeof meta === "object" && meta && "edge" in meta && (meta as any).edge === 1) {
+			edgeHidden.add(id);
+			}
+		});
+
+		console.debug("[auto-hide effect] computed edgeHidden size:", edgeHidden.size);
+
+		setHiddenByCategory(prev => {
+			const prevSet = prev[category] ?? new Set<string>();
+
+			if (setsEqual(prevSet, edgeHidden)) {
+				// no visible change but mark that we've applied it for this domain
+				autoHiddenForDomainRef.current = domainKey;
+				setAreEdgePoresHidden(edgeHidden.size > 0);
+				setHasAutoHiddenEdgePores(true);
+				return prev;
+			}
+
+			const next = { ...prev, [category]: new Set(edgeHidden) };
+			autoHiddenForDomainRef.current = domainKey;
+			setAreEdgePoresHidden(edgeHidden.size > 0);
+			setHasAutoHiddenEdgePores(true);
+			return next;
+		});
+		// dependencies: metadata identity and domain id — NOT the whole store object
+	}, [showPores, poresMetadata, poresDomainId, domainStore]);
+
+
+
+	// useEffect(() => {
+	// 	const category = 1; // Pores
+	// 	const metadata = domainStore.getActiveMetadata(category);
+
+	// 	if (showPores && metadata && !hasAutoHiddenEdgePores) {
+	// 		const edgeHidden = new Set<string>();
+
+	// 		Object.entries(metadata.metadata).forEach(([id, meta]) => {
+	// 			if (typeof meta === "object" && meta && "edge" in meta && (meta as any).edge === 1) {
+	// 				edgeHidden.add(id);
+	// 			}
+	// 		});
+
+	// 		setHiddenByCategory(prev => ({
+	// 			...prev,
+	// 			[category]: edgeHidden,
+	// 		}));
+
+	// 		setAreEdgePoresHidden(true);
+	// 		setHasAutoHiddenEdgePores(true);
+	// 	}
+	// }, [showPores, domainStore, hasAutoHiddenEdgePores]);
 
 	const ensureDomainLoaded = useCallback(
 		async (category: number) => {
@@ -185,21 +274,21 @@ const Visualization: React.FC = () => {
 		loadDomainAndGroup();
 	}, [selectedCategories, loadDomainAndGroup]);
 
-	useEffect(() => {
-		const shouldDimParticles = showParticles && showPores;
+	// useEffect(() => {
+	// 	const shouldDimParticles = showParticles && showPores;
 
-		if (shouldDimParticles && !dimAppliedOnce) {
-			setDimmedParticles(true);
-			setParticleOpacity(defaultDimmedOptions.opacity);
-			setUserOverrideParticleOpacity(false);
-			setDimAppliedOnce(true); // mark as done
-		}
-	}, [showParticles, showPores, dimAppliedOnce, defaultDimmedOptions]);
+	// 	if (shouldDimParticles && !dimAppliedOnce) {
+	// 		setDimmedParticles(true);
+	// 		setParticleOpacity(defaultDimmedOptions.opacity);
+	// 		setUserOverrideParticleOpacity(false);
+	// 		setDimAppliedOnce(true); // mark as done
+	// 	}
+	// }, [showParticles, showPores, dimAppliedOnce, defaultDimmedOptions]);
 
 	useEffect(() => {
 		return () => {
-		domainStore.clearDomainMesh(0);
-		domainStore.clearDomainMesh(1);
+			domainStore.clearDomainMesh(0);
+			domainStore.clearDomainMesh(1);
 		};
 	}, [domainStore]);
 
@@ -424,7 +513,7 @@ const Visualization: React.FC = () => {
 		setHiddenByCategory({ 0: new Set(), 1: new Set() });
 		setScaffoldIdForScreenshot(null);
 		setHasAutoHiddenEdgePores(false);
-
+		autoHiddenForDomainRef.current = null; 	
 		// Reset panel open state or any visibility flags if needed
 		setShowParticlesPanelOpen(true);
 		setShowPoresPanelOpen(false);
@@ -437,7 +526,7 @@ const Visualization: React.FC = () => {
 	const handleResetOverrides = () => {
 		setParticleOpacity(1); // Restore full opacity
 		setUserOverrideParticleOpacity(false); // Allow dimming logic again
-		setDimmedParticles(false); // Disable dim
+		setColorfulParticles(false); // Disable dim
 		setParticleColor(null);
 		setSlicingActive(false);
 	}
@@ -550,7 +639,12 @@ const Visualization: React.FC = () => {
 	return (
 		<div className="relative w-full h-screen overflow-hidden mt-8 ml-2">
 			<div className="w-full h-full rounded-lg">
-				{!isLoading && meshList.length > 0 && (
+				{isBusy && (
+					<div className="h-full w-full -mt-16 flex items-center justify-center">
+						<div className="text-gray-600">Loading mesh...</div>
+					</div>
+				)}
+				{!isBusy && meshList.length > 0 && (
 					<div className="h-full w-full -mt-16">
 						<CanvasViewer 
 							meshes={meshList} 
@@ -560,7 +654,7 @@ const Visualization: React.FC = () => {
 						/>
 					</div>
 				)}
-				{!isLoading && meshList.length === 0 && (
+				{!isBusy && meshList.length === 0 && hasAttemptedLoadRef.current && (
 					<div className="text-gray-600">This mesh does not exist</div>
 				)}
 			</div>
@@ -634,17 +728,8 @@ const Visualization: React.FC = () => {
 					canEdit={canEdit}
 					onEditClick={() => setIsModalOpen(true)}
 					domain={particleDomain}
-					dimmed={dimmedParticles}
-					setDimmed={(value: boolean) => {
-						if (value) {
-							setParticleOpacity(defaultDimmedOptions.opacity);
-							setUserOverrideParticleOpacity(false);
-						} else {
-							setParticleOpacity(1);
-							setUserOverrideParticleOpacity(false);
-						}
-						setDimmedParticles(value);
-					}}
+					colorful={colorfulParticles}
+					setColorful={setColorfulParticles}
 					visible={showParticles} // this controls if particles show in canvas
 					onToggleVisibility={() => {handleToggleShowParticles(!showParticles)}}
 					opacity={particleOpacity}

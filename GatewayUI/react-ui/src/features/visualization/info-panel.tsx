@@ -15,8 +15,8 @@ interface Props {
   onCategoryChange: (values: number[]) => void;
   domain: Domain | null;
   isLoading: boolean;
-  theme?: 'Default' | 'Metallic',
-  setTheme?: (theme: 'Default' | 'Metallic') => void;
+  theme?: 'Metallic' | 'Sunset',
+  setTheme?: (theme: 'Metallic' | 'Sunset') => void;
   onScreenshot?: () => void;
 }
 
@@ -120,11 +120,11 @@ const InfoPanel: React.FC<Props> = ({
                 <select
                   id="themeSelect"
                   value={theme}
-                  onChange={(e) => setTheme?.(e.target.value as 'Default' | 'Metallic')}
+                  onChange={(e) => setTheme?.(e.target.value as 'Metallic' | 'Sunset')}
                   className="border border-gray-300 rounded px-2 py-1 text-sm"
                 >
-                  <option value="Default">Default</option>
                   <option value="Metallic">Metallic</option>
+                  <option value="Sunset">Sunset</option>
                 </select>
               </div>
 

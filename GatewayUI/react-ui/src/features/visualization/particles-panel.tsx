@@ -10,7 +10,8 @@ interface DomainPanelProps {
 	domain: Domain | null;
 	visible: boolean;
 	opacity: number;
-	dimmed: boolean;
+	// dimmed: boolean;
+	colorful: boolean;
 	canEdit: boolean;
 	slicingActive: boolean, 
 	sliceXThreshold: number | null, 
@@ -21,7 +22,8 @@ interface DomainPanelProps {
 	// theme?: 'Default' | 'Metallic',
 	setSlicingActive: (value: boolean) => void, 
 	setSliceXThreshold: (value: number) => void,
-	setDimmed: (value: boolean) => void;
+	// setDimmed: (value: boolean) => void;
+	setColorful: (value: boolean) => void;
 	setOpacity: (value: number) => void;
 	onToggleVisibility: () => void;
 	onResetOverrides: () => void;
@@ -35,7 +37,8 @@ const ParticlesPanel: React.FC<DomainPanelProps> = ({
 	domain,
 	visible,
 	opacity,
-	dimmed,
+	// dimmed,
+	colorful,
 	canEdit,
 	slicingActive,
 	sliceXThreshold,
@@ -43,7 +46,8 @@ const ParticlesPanel: React.FC<DomainPanelProps> = ({
 	// theme,
 	setSlicingActive,
 	setSliceXThreshold,
-	setDimmed,
+	// setDimmed,
+	setColorful,
 	setOpacity,
 	onToggleVisibility,
 	onResetOverrides,
@@ -89,15 +93,15 @@ const ParticlesPanel: React.FC<DomainPanelProps> = ({
 		
 
 					<div className="flex justify-between items-center mt-3 text-sm text-gray-700">
-						<span className="mr-2">Dim particles</span>
+						<span className="mr-2">Colorful particles</span>
 						<label className="inline-flex items-center cursor-pointer relative w-11 h-6">
 							<input
 								type="checkbox"
 								className="sr-only peer"
-								checked={dimmed}
+								checked={colorful}
 								onChange={(e) => {
-									const shouldDim = e.target.checked;
-									setDimmed(shouldDim);
+									const nextColorful = e.target.checked;
+									setColorful(nextColorful);
 								}}
 							/>
 							<div className="w-full h-full bg-gray-200 rounded-full peer-checked:bg-blue-600 transition-colors" />

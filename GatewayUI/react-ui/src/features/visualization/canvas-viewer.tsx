@@ -27,7 +27,7 @@ interface DomainMeshProps {
 
 interface CanvasViewerProps {
   meshes: DomainMeshProps[];
-  theme?: 'Default' | 'Metallic';
+  theme?: 'Metallic' | 'Sunset';
   onSliceBoundsComputed?: (bounds: { min: THREE.Vector3; max: THREE.Vector3 }) => void;
   onCanvasCreated?: (canvas: HTMLCanvasElement) => void;
 }
@@ -38,7 +38,10 @@ const CanvasViewer: React.FC<CanvasViewerProps> = ({ meshes, theme, onSliceBound
   const [, setParticleCenters] = useState<THREE.Vector3[]>([]);
   const [particleBounds, setParticleBounds] = useState<{ min: THREE.Vector3; max: THREE.Vector3 } | null>(null);
   const { active } = useProgress();
-  const isLoading = active;
+  const isLoaderActive = active;
+  const [loadingCount, setLoadingCount] = useState(0);
+  const incrementLoading = useCallback(() => setLoadingCount(c => c + 1), []);
+  const decrementLoading = useCallback(() => setLoadingCount(c => Math.max(0, c - 1)), []);
 
   const controlsRef = useRef<any>(null);
   const hasSetCamera = useRef(false);
@@ -90,9 +93,24 @@ const CanvasViewer: React.FC<CanvasViewerProps> = ({ meshes, theme, onSliceBound
     [theme]
   );
 
+  const isRendering = isLoaderActive || loadingCount > 0;
+
   return (
     <>
-      {isLoading && <div className="text-gray-600">Loading mesh...</div>}
+      {/* {isLoading && <div className="text-gray-600">Loading mesh...</div>} */}
+      {isRendering && (
+        <div className="absolute inset-0 z-40 flex items-center justify-center pointer-events-none">
+          <div className="rounded-md bg-white bg-opacity-90 p-3 shadow">
+            <div className="flex items-center gap-2">
+              <svg className="animate-spin h-5 w-5 text-gray-600" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none"></circle>
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+              </svg>
+              <div className="text-gray-700 text-sm">Rendering…</div>
+            </div>
+          </div>
+        </div>
+      )}
       <Canvas
         shadows
         gl={{

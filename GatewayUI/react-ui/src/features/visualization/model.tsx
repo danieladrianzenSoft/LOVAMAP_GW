@@ -304,7 +304,7 @@ interface ModelProps {
 	debugMode?: boolean;
 	slicingActive?: boolean;
   	sliceXThreshold?: number | null;
-	theme?: 'Default' | 'Metallic';
+	theme?: 'Metallic' | 'Sunset';
 }
 
 function createBoundingBoxHelper(object: THREE.Object3D, color: string): THREE.BoxHelper {
