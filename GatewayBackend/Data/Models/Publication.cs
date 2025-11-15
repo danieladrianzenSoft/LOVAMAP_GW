@@ -13,5 +13,6 @@ namespace Data.Models
 		public string? Citation { get; set; }
 		public virtual ICollection<DescriptorType> DescriptorTypes { get; set; } = [];
 		public virtual ICollection<ScaffoldGroupPublication> ScaffoldGroupPublications { get; set; } = [];
+		public virtual ICollection<PublicationDataset> PublicationDatasets { get; set; } = [];
 	}
 }

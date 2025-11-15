@@ -7,15 +7,21 @@ import History from "../helpers/History";
 import { ScaffoldWithMissingThumbnail } from "../models/scaffold";
 import { BatchOperationResult } from "../models/batchOperationResult";
 import { ScaffoldGroupData } from "../models/scaffoldGroupData";
+import { InputGroup } from "../models/inputGroup";
+import { ScaffoldGroupFilter } from "../models/scaffoldGroupFilter";
 
 export default class ScaffoldGroupStore {
 	scaffoldGroups: ScaffoldGroup[] = [];
 	uploadedScaffoldGroups: ScaffoldGroup[] = [];
+	uploadProgress: number | null = null;
 	selectedScaffoldGroup: ScaffoldGroup | null = null;
 	defaultScaffoldGroupId: number = 55;
 
 	selectedTagNames: string[] = [];
 	selectedParticleSizeIds: number[] = [];
+	selectedPublicationDatasetId: number | null = null;
+	selectedPublicationId: number | null = null;
+	restrictToPublicationDataset: boolean = false;
 	isFetchingScaffoldGroup: boolean = false;
 	groupedSelectedTags: { [key: string]: Tag[] } = {};
 
@@ -79,7 +85,6 @@ export default class ScaffoldGroupStore {
 				// If not in memory, fetch from server
 				// foundGroup = await this.getScaffoldGroupSummary(scaffoldId);
 				foundGroup = await this.getScaffoldGroupSummaryByScaffoldId(scaffoldId);
-
 			}
 	
 			if (foundGroup) {
@@ -238,6 +243,32 @@ export default class ScaffoldGroupStore {
 		}
 	}
 
+	uploadScaffoldGroupBatchStreamed = async (
+		scaffoldGroupsToCreate: ScaffoldGroupToCreate[],
+		onProgress?: (pct: number) => void
+	) => {
+		try {
+			const apiResponse = await agent.ScaffoldGroups.uploadScaffoldGroupBatchStreamed(
+				scaffoldGroupsToCreate,
+				onProgress
+			);
+			const scaffoldGroups = apiResponse.data ?? [];
+
+			scaffoldGroups.sort(
+				(a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+			);
+
+			runInAction(() => {
+				this.uploadedScaffoldGroups = [...scaffoldGroups, ...this.uploadedScaffoldGroups];
+			});
+
+			return scaffoldGroups;
+		} catch (err) {
+			console.error("Failed to create scaffold group (streamed):", err);
+			return null;
+		}
+	};
+
 	uploadScaffoldGroupBatch = async (scaffoldGroupsToCreate: ScaffoldGroupToCreate[]) => {
 		try {
 			const apiResponse = await agent.ScaffoldGroups.uploadScaffoldGroupBatch(scaffoldGroupsToCreate);
@@ -254,6 +285,19 @@ export default class ScaffoldGroupStore {
 			return null;
 		}
 	}
+
+	uploadScaffoldGroupBatchSmart = async (scaffoldGroupsToCreate: ScaffoldGroupToCreate[]) => {
+		const estimatedBytes = new Blob([JSON.stringify(scaffoldGroupsToCreate)]).size;
+		const STREAM_THRESHOLD = 25_000_000; // 25MB; tune against your limits
+
+		if (estimatedBytes < STREAM_THRESHOLD) {
+		// Use your existing non-streamed method
+		return await this.uploadScaffoldGroupBatch(scaffoldGroupsToCreate);
+		} else {
+		// Use streamed method
+		return await this.uploadScaffoldGroupBatchStreamed(scaffoldGroupsToCreate);
+		}
+	};
 
 	removeUploadedScaffoldGroup = (id: number) => {
 		this.uploadedScaffoldGroups = this.uploadedScaffoldGroups.filter(group => group.id !== id);
@@ -327,11 +371,12 @@ export default class ScaffoldGroupStore {
 		}
 	}
 
-	getPublicScaffoldGroups = async (selectedTags?: Tag[] | null, sizeIds?: number[] | null) => {
+	// getPublicScaffoldGroups = async (selectedTags?: Tag[] | null, sizeIds?: number[] | null) => {
+	getPublicScaffoldGroups = async (filter: ScaffoldGroupFilter) => {
 		try {
-			const tagIds = selectedTags?.map(tag => tag.id) || [];
-			this.selectedTagNames = selectedTags?.map(tag => tag.name) || [];
-			this.selectedParticleSizeIds = sizeIds || [];
+			const tagIds = filter.selectedTags?.map(tag => tag.id) || [];
+			this.selectedTagNames = filter.selectedTags?.map(tag => tag.name) || [];
+			this.selectedParticleSizeIds = filter.sizeIds || [];
 
 			let queryParams = '';
 			if (tagIds.length > 0) {
@@ -340,6 +385,18 @@ export default class ScaffoldGroupStore {
 			if (this.selectedParticleSizeIds.length > 0) {
 				if (queryParams !== '') queryParams += '&';
 				queryParams += this.selectedParticleSizeIds.map(id => `particleSizes=${id}`).join('&');
+			}
+			if (filter.publicationId) {
+				if (queryParams !== '') queryParams += '&';
+				queryParams += `publicationId=${filter.publicationId}`;
+			}
+			if (filter.publicationDatasetId) {
+				if (queryParams !== '') queryParams += '&';
+				queryParams += `publicationDatasetId=${filter.publicationDatasetId}`;
+			}
+			if (filter.restrictToPublicationDataset) {
+				if (queryParams !== '') queryParams += '&';
+				queryParams += `restrictToPublicationDataset=${filter.restrictToPublicationDataset}`;
 			}
 			if (queryParams !== '') queryParams = '?' + queryParams;
 
@@ -353,11 +410,12 @@ export default class ScaffoldGroupStore {
 		}
 	};
 
-	getSummarizedScaffoldGroups = async (selectedTags?: Tag[], sizeIds?: number[]) => {
+	// getSummarizedScaffoldGroups = async (selectedTags?: Tag[], sizeIds?: number[]) => {
+	getSummarizedScaffoldGroups = async (filter: ScaffoldGroupFilter) => {
 		try {
-			const tagIds = selectedTags?.map(tag => tag.id) || [];
-			this.selectedTagNames = selectedTags?.map(tag => tag.name) || [];
-			this.selectedParticleSizeIds = sizeIds || [];
+			const tagIds = filter.selectedTags?.map(tag => tag.id) || [];
+			this.selectedTagNames = filter.selectedTags?.map(tag => tag.name) || [];
+			this.selectedParticleSizeIds = filter.sizeIds || [];
 
 			let queryParams = '';
 			if (tagIds.length > 0) {
@@ -367,12 +425,36 @@ export default class ScaffoldGroupStore {
 				if (queryParams !== '') queryParams += '&';
 				queryParams += this.selectedParticleSizeIds.map(id => `particleSizes=${id}`).join('&');
 			}
+			if (filter.publicationId) {
+				if (queryParams !== '') queryParams += '&';
+				queryParams += `publicationId=${filter.publicationId}`;
+			}
+			if (filter.publicationDatasetId) {
+				if (queryParams !== '') queryParams += '&';
+				queryParams += `publicationDatasetId=${filter.publicationDatasetId}`;
+			}
+			if (filter.restrictToPublicationDataset) {
+				if (queryParams !== '') queryParams += '&';
+				queryParams += `restrictToPublicationDataset=${filter.restrictToPublicationDataset}`;
+			}
 			if (queryParams !== '') queryParams = '?' + queryParams;
 
 			const response = await agent.ScaffoldGroups.getSummarized(queryParams);
 			runInAction(() => {
 				this.scaffoldGroups = response.data;
 			});
+			return response.data;
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
+	getScaffoldGroupMatches = async (group: InputGroup) => {
+		try {
+			const response = await agent.ScaffoldGroups.getScaffoldGroupMatches(group);
+			// runInAction(() => {
+			// 	console.log(response);
+			// });
 			return response.data;
 		} catch (error) {
 			console.error(error);

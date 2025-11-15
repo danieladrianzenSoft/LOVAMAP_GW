@@ -98,14 +98,20 @@ builder.Services.AddScoped<IDownloadRepository, DownloadRepository>();
 builder.Services.AddScoped<ITagRepository, TagRepository>();
 builder.Services.AddScoped<IImageRepository, ImageRepository>();
 builder.Services.AddScoped<IPublicationRepository, PublicationRepository>();
+builder.Services.AddScoped<IPublicationDatasetRepository, PublicationDatasetRepository>();
 builder.Services.AddScoped<IDomainRepository, DomainRepository>();
 builder.Services.AddScoped<IAISearchRepository, AISearchRepository>();
 builder.Services.AddScoped<ILovamapCoreJobRepository, LovamapCoreJobRepository>();
 
 // Add helpers
+builder.Services.AddMemoryCache();
 builder.Services.AddScoped<IUserAuthHelper, UserAuthHelper>();
 builder.Services.AddScoped<IJwtGeneratorHelper, JwtGeneratorHelper>();
 builder.Services.AddScoped<IUserContextHelper, UserContextHelper>();
+builder.Services.AddSingleton<ICoreTokenProvider, CoreTokenProvider>();
+builder.Services.AddTransient<CoreClientAuthHandler>();
+builder.Services.AddHttpClient<ICoreApiClient, CoreApiClient>()
+    .AddHttpMessageHandler<CoreClientAuthHandler>();
 
 var domainDataPath = builder.Configuration["DomainSettings:DataPath"]
                  ?? Environment.GetEnvironmentVariable("DOMAIN_DATA_PATH")
@@ -126,6 +132,7 @@ builder.Services.AddScoped<ITagService, TagService>();
 builder.Services.AddScoped<IScaffoldGroupService, ScaffoldGroupService>();
 builder.Services.AddScoped<IImageService, ImageService>();
 builder.Services.AddScoped<IPublicationService, PublicationService>();
+builder.Services.AddScoped<IPublicationDatasetService, PublicationDatasetService>();
 builder.Services.AddScoped<IDomainService, DomainService>();
 builder.Services.AddScoped<IModelMapper, ModelMapper>();
 builder.Services.AddScoped<ILovamapCoreJobService, LovamapCoreJobService>();
@@ -168,7 +175,10 @@ using (var scope = scopeFactory.CreateScope())
     await seedingService.SeedAllAsync();
 }
 
-app.UseHttpsRedirection();
+if (!app.Environment.IsDevelopment())
+{
+    app.UseHttpsRedirection();
+}
 
 app.UseDefaultFiles(); // Serves `index.html` by default
 app.UseStaticFiles();  // Serves files from the `wwwroot` directory

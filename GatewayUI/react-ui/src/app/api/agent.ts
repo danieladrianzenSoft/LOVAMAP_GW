@@ -1,10 +1,10 @@
-import axios, { AxiosError, AxiosResponse } from "axios";
+import axios, { AxiosError, AxiosProgressEvent, AxiosResponse } from "axios";
 import History from "../helpers/History";
 import { store } from "../stores/store";
 import { User, UserChangePassword, UserConfirmEmail, UserLogin, UserRegister, UserResetPassword } from "../models/user";
 import { ApiResponse } from "../models/apiResponse";
 import { Tag } from "../models/tag";
-import { ScaffoldGroup, ScaffoldGroupToCreate } from "../models/scaffoldGroup";
+import { ScaffoldGroup, ScaffoldGroupMatch, ScaffoldGroupToCreate } from "../models/scaffoldGroup";
 import { DescriptorType } from "../models/descriptorType";
 import { Image, ImageCategory, ImageToCreate, ImageToUpdate } from "../models/image";
 import environment from "../environments/environment"
@@ -18,6 +18,7 @@ import { BatchOperationResult } from "../models/batchOperationResult";
 import { ScaffoldGroupData } from "../models/scaffoldGroupData";
 import { DescriptorSeedResult } from "../models/descriptor";
 import { Publication } from "../models/publication";
+import { InputGroup } from "../models/inputGroup";
 
 axios.defaults.baseURL = environment.baseUrl;
 
@@ -58,6 +59,17 @@ const requests = {
 	post: <T> (url: string, body: {}) => axios.post<T>(url, body).then(responseBody),
 	put: <T> (url: string, body: {}) => axios.put<T>(url, body).then(responseBody),
 	del: <T> (url: string) => axios.delete<T>(url).then(responseBody),
+    postForm: <T>(
+        url: string,
+        form: FormData,
+        onUploadProgress?: (e: AxiosProgressEvent) => void
+    ) =>
+        axios
+        .post<T>(url, form, {
+            headers: { "Content-Type": "multipart/form-data" },
+            onUploadProgress,
+        })
+        .then(responseBody),
 }
 
 const Resources = {
@@ -92,8 +104,30 @@ const ScaffoldGroups = {
     getDetailedForExperiment: (queryParams: string) => requests.get<ApiResponse<ScaffoldGroup[]>>('/scaffoldgroups/detailed' + queryParams),
     getDataForVisualization: (scaffoldGroupId: number, queryParams: string) => requests.get<ApiResponse<ScaffoldGroupData>>(`/scaffoldgroups/data/${scaffoldGroupId}` + queryParams),
     getDataForVisualizationRandom: (queryParams: string) => requests.get<ApiResponse<ScaffoldGroupData>>(`/scaffoldgroups/data/random/` + queryParams),
+    getScaffoldGroupMatches: (inputGroupForMatch: InputGroup) => requests.post<ApiResponse<ScaffoldGroupMatch[]>>(`/scaffoldgroups/matches`, inputGroupForMatch),
     uploadScaffoldGroup: (scaffoldGroup: ScaffoldGroupToCreate) => requests.post<ApiResponse<ScaffoldGroup>>('/scaffoldgroups/create', scaffoldGroup),
     uploadScaffoldGroupBatch: (scaffoldGroups: ScaffoldGroupToCreate[]) => requests.post<ApiResponse<ScaffoldGroup[]>>('/scaffoldgroups/createBatch', scaffoldGroups),
+    uploadScaffoldGroupBatchStreamed: (
+        scaffoldGroups: any[],
+        onProgressPct?: (pct: number) => void
+    ) => {
+        const blob = new Blob([JSON.stringify(scaffoldGroups)], {
+        type: "application/json",
+        });
+        const form = new FormData();
+        form.append("batch", blob, "scaffold-batch.json");
+
+        return requests.postForm<ApiResponse<ScaffoldGroup[]>>("/scaffoldgroups/createBatchUpload",form,
+            (evt) => {
+                const total = evt.total ?? 0;
+                if (onProgressPct && total > 0) {
+                    onProgressPct(Math.round((evt.loaded / total) * 100));
+                } else if (onProgressPct && typeof evt.progress === "number") {
+                    onProgressPct(Math.round(evt.progress * 100));
+                }
+            }
+        );
+    },
     resetNameAndComments: (scaffoldGroupIds: {scaffoldGroupIds: number[]}) => requests.post<ApiResponse<BatchOperationResult>>('scaffoldGroups/reset-names', scaffoldGroupIds),
     getUploadedScaffoldGroups: () => requests.get<ApiResponse<ScaffoldGroup[]>>('/users/me/scaffoldgroups'),
     delete: (id: number) => requests.del<ApiResponse<string>>('scaffoldgroups/' + id),
@@ -188,6 +222,7 @@ const Jobs = {
 }
 
 const Publications = {
+    getById: async (publicationId: number) => requests.get<ApiResponse<Publication>>(`/publications/${publicationId}`),
     getAll: async () => requests.get<ApiResponse<Publication[]>>(`/publications`),
 }
 

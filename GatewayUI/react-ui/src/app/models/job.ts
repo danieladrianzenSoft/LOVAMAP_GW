@@ -5,4 +5,5 @@ export interface Job {
 	jsonFile: File | null;
 	jobId: string;
 	dx: number;
+	scaffoldGroupId: number;
 }

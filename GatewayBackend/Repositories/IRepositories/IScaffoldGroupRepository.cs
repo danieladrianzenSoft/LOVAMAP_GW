@@ -12,6 +12,7 @@ namespace Repositories.IRepositories
 		public void Delete(ScaffoldGroup scaffoldGroup);
 		Task<ScaffoldGroup?> Get(int id);
 		Task<List<int>> GetAllIds();
+		Task<HashSet<int>> GetExistingScaffoldIdsAsync(IEnumerable<int> scaffoldIds);
 		Task<int> GetRandomScaffoldGroupId();
 		Task<List<ScaffoldGroup>> GetWithInputDataByIds(List<int> ids);
 		Task<ScaffoldGroupSummaryDto?> GetSummary(int id);

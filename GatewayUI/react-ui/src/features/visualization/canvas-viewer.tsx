@@ -114,7 +114,7 @@ const CanvasViewer: React.FC<CanvasViewerProps> = ({ meshes, theme, onSliceBound
       <Canvas
         shadows
         gl={{
-          preserveDrawingBuffer: true,
+          // preserveDrawingBuffer: true,
           toneMapping: ACESFilmicToneMapping,
           toneMappingExposure: 1.2,
           shadowMapType: PCFSoftShadowMap,

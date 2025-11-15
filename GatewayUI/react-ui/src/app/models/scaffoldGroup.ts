@@ -24,3 +24,11 @@ export interface ScaffoldGroupToCreate {
     inputGroup: InputGroupToCreate;
     scaffolds: ScaffoldToCreate[];
 }
+
+export interface ScaffoldGroupMatch {
+    scaffoldGroupId: number;
+    name: string;
+    matchScore: number;
+    differences: any;
+    details: ScaffoldGroup;
+}

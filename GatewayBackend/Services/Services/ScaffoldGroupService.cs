@@ -11,6 +11,8 @@ using Services.IServices;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using CloudinaryDotNet;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Services.Services
 {	public class ScaffoldGroupService : IScaffoldGroupService
@@ -114,6 +116,75 @@ namespace Services.Services
 			catch (Exception ex)
 			{
 				_logger.LogError(ex, "Failed to create scaffold groups");
+				return (false, "UnexpectedError", null);
+			}
+		}
+
+		public async Task<(bool Succeeded, string ErrorMessage, IEnumerable<ScaffoldGroupBaseDto>? CreatedScaffoldGroups)>
+			CreateScaffoldGroupsFromJsonStream(
+				Stream jsonStream,
+				string userId,
+				int batchSize = 50,
+				CancellationToken ct = default)
+		{
+			try
+			{
+				var opts = new JsonSerializerOptions
+				{
+					PropertyNameCaseInsensitive = true,
+					DefaultBufferSize = 1 << 20, // 1MB buffer; tune as needed
+					NumberHandling = JsonNumberHandling.AllowReadingFromString
+				};
+
+				var createdAll = new List<ScaffoldGroupBaseDto>(capacity: batchSize * 2);
+				var buffer = new List<ScaffoldGroupToCreateDto>(capacity: batchSize);
+
+				// Expecting a top-level JSON array of ScaffoldGroupToCreateDto
+				await foreach (var dto in JsonSerializer.DeserializeAsyncEnumerable<ScaffoldGroupToCreateDto>(jsonStream, opts, ct))
+				{
+					ct.ThrowIfCancellationRequested();
+					if (dto is null) continue; // can occur between tokens/whitespace
+
+					buffer.Add(dto);
+
+					if (buffer.Count >= batchSize)
+					{
+						var (ok, err, createdBatch) = await CreateScaffoldGroups(buffer, userId);
+						if (!ok)
+							return (false, err, null);
+
+						if (createdBatch != null)
+							createdAll.AddRange(createdBatch);
+
+						buffer.Clear();
+					}
+				}
+
+				// flush remaining
+				if (buffer.Count > 0)
+				{
+					var (ok, err, createdBatch) = await CreateScaffoldGroups(buffer, userId);
+					if (!ok)
+						return (false, err, null);
+
+					if (createdBatch != null)
+						createdAll.AddRange(createdBatch);
+				}
+
+				return (true, string.Empty, createdAll);
+			}
+			catch (JsonException jex)
+			{
+				_logger.LogError(jex, "Invalid JSON in streamed scaffold group upload");
+				return (false, "InvalidJson", null);
+			}
+			catch (OperationCanceledException)
+			{
+				return (false, "Canceled", null);
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, "Failed to create scaffold groups from streamed JSON");
 				return (false, "UnexpectedError", null);
 			}
 		}
@@ -305,12 +376,12 @@ namespace Services.Services
 				// Fetch scaffold groups with necessary fields
 				var scaffoldGroups = await _scaffoldGroupRepository.GetFilteredScaffoldGroupSummaries(filter, userId);
 
-				if (scaffoldGroups == null || !scaffoldGroups.Any())
-				{
-					return (false, "NotFound", null);
-				}
+				// if (scaffoldGroups == null || !scaffoldGroups.Any())
+				// {
+				// 	return (false, "NotFound", null);
+				// }
 
-				return await GetCompleteScaffoldGroupsFromSummaries(scaffoldGroups, userId, isDetailed, filter);
+				return await GetCompleteScaffoldGroupsFromSummaries(scaffoldGroups ?? [], userId, isDetailed, filter);
 
 			}
 			catch (Exception ex)
@@ -491,10 +562,195 @@ namespace Services.Services
 			}
 			catch (Exception ex)
 			{
-				
+
 				_logger.LogError(ex, "Error getting thumbnails");
 				return [];
 			}
+		}
+
+		public async Task<(bool Succeeded, string ErrorMessage, List<ScaffoldGroupMatch>? scaffoldGroupMatches)> FindPotentialMatches(
+			InputGroupForMatchRequest request,
+			string userId,
+			int topN = 5)
+		{
+			try
+			{
+				// For experimental scaffolds, return empty - always create new
+				if (!request.IsSimulated)
+					return (true, "", new List<ScaffoldGroupMatch>());
+
+				// Build filter from request
+				var filter = new ScaffoldFilter
+				{
+					UserId = userId,
+					ParticleSizes = request.Particles
+						.Select(p => (int)p.MeanSize)
+						.Distinct()
+						.ToList()
+				};
+
+				// Get potential candidates
+				var candidates = await _scaffoldGroupRepository.GetFilteredScaffoldGroupSummaries(filter, userId);
+
+				if (candidates == null) return (true, "No matches found", new List<ScaffoldGroupMatch>());
+
+				// Score each candidate
+				var matches = candidates
+					.Select(sg => new ScaffoldGroupMatch
+					{
+						ScaffoldGroupId = sg.Id,
+						Name = sg.Name ?? "N/A",
+						MatchScore = CalculateMatchScore(request, sg, out var differences),
+						Differences = differences,
+						Details = sg
+					})
+					.Where(m => m.MatchScore >= 70) // Threshold for "good enough"
+					.OrderByDescending(m => m.MatchScore)
+					.Take(topN)
+					.ToList();
+
+				return (true, "", matches);
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, "Failed to get candidate matches");
+        		return (false, "UnexpectedError", null);
+			}
+			
+		}
+
+		private double CalculateMatchScore(
+			InputGroupForMatchRequest request,
+			ScaffoldGroupSummaryDto candidate,
+			out Dictionary<string, string> differences)
+		{
+			differences = new Dictionary<string, string>();
+			double score = 100.0;
+
+			// Container shape (critical - major penalty)
+			if (candidate?.Inputs?.ContainerShape != request.ContainerShape)
+			{
+				score -= 30;
+				differences["ContainerShape"] = $"{candidate?.Inputs?.ContainerShape ?? "None"} vs {request.ContainerShape ?? "None"}";
+			}
+
+			// Container size (allow small tolerance)
+			if (candidate?.Inputs?.ContainerSize.HasValue == true && request.ContainerSize.HasValue)
+			{
+				var sizeDiff = Math.Abs(candidate.Inputs.ContainerSize.Value - request.ContainerSize.Value);
+				if (sizeDiff > 0.01)
+				{
+					score -= Math.Min(20, sizeDiff * 10);
+					differences["ContainerSize"] = $"{candidate.Inputs.ContainerSize} vs {request.ContainerSize}";
+				}
+			}
+			else if (candidate?.Inputs?.ContainerSize.HasValue != request.ContainerSize.HasValue)
+			{
+				// One has a value, the other doesn't
+				score -= 15;
+				differences["ContainerSize"] = $"{candidate?.Inputs?.ContainerSize?.ToString() ?? "Not specified"} vs {request.ContainerSize?.ToString() ?? "Not specified"}";
+			}
+
+			// Packing configuration
+			var candidatePackingConfig = candidate?.Inputs?.PackingConfiguration?.ToString();
+			if (candidatePackingConfig != request.PackingConfiguration)
+			{
+				score -= 20;
+				differences["PackingConfiguration"] = $"{candidatePackingConfig ?? "None"} vs {request.PackingConfiguration ?? "None"}";
+			}
+
+			// Compare particles (this gets more complex)
+			score -= CompareParticleProperties(request.Particles, candidate?.Inputs?.Particles ?? new List<ParticlePropertyBaseDto>(), differences);
+
+			return Math.Max(0, score);
+		}
+		
+		private double CompareParticleProperties(
+			IEnumerable<ParticlePropertyGroupToCreateDto> requestParticles,
+			IEnumerable<ParticlePropertyBaseDto> candidateParticles,
+			Dictionary<string, string> differences)
+		{
+			double penalty = 0.0;
+
+			var candidateParticlesList = candidateParticles.ToList();
+			var requestedParticlesList = requestParticles.ToList();
+
+			// Check if particle counts match
+			if (requestedParticlesList.Count != candidateParticlesList.Count)
+			{
+				penalty += 15;
+				differences["ParticleCount"] = $"{candidateParticlesList.Count} particle types vs {requestedParticlesList.Count} particle types";
+				// If counts differ significantly, return early with heavy penalty
+				if (Math.Abs(requestedParticlesList.Count - candidateParticlesList.Count) > 1)
+					return penalty + 20;
+			}
+
+			// Sort both lists by MeanSize for consistent comparison
+			var sortedRequest = requestParticles.OrderBy(p => p.MeanSize).ToList();
+			var sortedCandidate = candidateParticlesList.OrderBy(p => p.MeanSize).ToList();
+
+			// Compare each particle type
+			int comparisonCount = Math.Min(sortedRequest.Count, sortedCandidate.Count);
+			for (int i = 0; i < comparisonCount; i++)
+			{
+				var reqParticle = sortedRequest[i];
+				var candParticle = sortedCandidate[i];
+
+				// Shape comparison (critical)
+				if (reqParticle.Shape != candParticle.Shape)
+				{
+					penalty += 10;
+					differences[$"Particle{i + 1}_Shape"] = $"{candParticle.Shape} vs {reqParticle.Shape}";
+				}
+
+				// Stiffness comparison
+				if (reqParticle.Stiffness != candParticle.Stiffness)
+				{
+					penalty += 5;
+					differences[$"Particle{i + 1}_Stiffness"] = $"{candParticle.Stiffness} vs {reqParticle.Stiffness}";
+				}
+
+				// Dispersity comparison
+				if (reqParticle.Dispersity != candParticle.Dispersity)
+				{
+					penalty += 5;
+					differences[$"Particle{i + 1}_Dispersity"] = $"{candParticle.Dispersity} vs {reqParticle.Dispersity}";
+				}
+
+				// Mean size comparison (allow small tolerance)
+				var sizeDiff = Math.Abs(reqParticle.MeanSize - candParticle.MeanSize);
+				if (sizeDiff > 1.0) // More than 1 unit difference
+				{
+					penalty += Math.Min(8, sizeDiff * 0.5);
+					differences[$"Particle{i + 1}_MeanSize"] = $"{candParticle.MeanSize:F2} vs {reqParticle.MeanSize:F2}";
+				}
+
+				// Standard deviation comparison (if both specified)
+				if (reqParticle.StandardDeviationSize > 0 && candParticle.StandardDeviationSize.HasValue)
+				{
+					var stdDevDiff = Math.Abs(reqParticle.StandardDeviationSize - candParticle.StandardDeviationSize.Value);
+					if (stdDevDiff > 0.5)
+					{
+						penalty += Math.Min(5, stdDevDiff);
+						differences[$"Particle{i + 1}_StdDev"] = $"{candParticle.StandardDeviationSize:F2} vs {reqParticle.StandardDeviationSize:F2}";
+					}
+				}
+
+				if (reqParticle.Proportion > 0 && candParticle.Proportion.HasValue)
+				{
+					// Proportion comparison
+					var propDiff = Math.Abs(reqParticle.Proportion - candParticle.Proportion.Value);
+					if (propDiff > 0.05) // More than 5% difference
+					{
+						penalty += Math.Min(5, propDiff * 20);
+						differences[$"Particle{i + 1}_Proportion"] = $"{candParticle.Proportion:P0} vs {reqParticle.Proportion:P0}";
+					}
+				}
+
+				
+			}
+
+			return penalty;
 		}
 
 

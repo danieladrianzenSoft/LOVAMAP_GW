@@ -15,6 +15,11 @@ public partial class DataContext : IdentityDbContext<User, Role, string>
     public DbSet<Domain> Domains { get; set; }
     public DbSet<Job> Jobs { get; set; }
 	public DbSet<Publication> Publications { get; set; }
+    public DbSet<PublicationDataset> PublicationDatasets { get; set; }
+    public DbSet<PublicationDatasetVersion> PublicationDatasetsVersions { get; set; }
+    public DbSet<PublicationDatasetScaffold> PublicationDatasetScaffolds { get; set; }
+    public DbSet<PublicationDatasetDescriptorRule> PublicationDatasetDescriptorRules { get; set; }
+    public DbSet<PublicationDatasetFrozenDescriptor> PublicationDatasetFrozenDescriptors { get; set; }
 	public DbSet<InputGroup> InputGroups { get; set; }
     public DbSet<ParticlePropertyGroup> ParticlePropertyGroups { get; set; }
     public DbSet<DescriptorType> DescriptorTypes { get; set; }
@@ -40,7 +45,11 @@ public partial class DataContext : IdentityDbContext<User, Role, string>
 		builder.Entity<IdentityUserClaim<string>>().ToTable("UserClaims");
 		builder.Entity<IdentityUserLogin<string>>().ToTable("UserLogins");
 		builder.Entity<IdentityRoleClaim<string>>().ToTable("RoleClaims");
-		builder.Entity<IdentityUserToken<string>>().ToTable("UserTokens");
+        builder.Entity<IdentityUserToken<string>>().ToTable("UserTokens");
+        
+        builder.Entity<ScaffoldGroup>()
+            .Property(x => x.Id)
+            .ValueGeneratedOnAdd();
 
 		// User to ScaffoldGroups relationship
         builder.Entity<User>()
@@ -89,6 +98,20 @@ public partial class DataContext : IdentityDbContext<User, Role, string>
             .WithOne()
             .HasForeignKey<Scaffold>(s => s.LatestJobId)
             .OnDelete(DeleteBehavior.Cascade);
+        
+        // Scaffold to User relationship
+        builder.Entity<Scaffold>()
+            .HasOne(g => g.Uploader) // Each Experiment has one Uploader
+            .WithMany(u => u.Scaffolds) // A User has many Experiments
+            .HasForeignKey(g => g.UploaderId) // ForeignKey in Experiment pointing to User
+            .OnDelete(DeleteBehavior.SetNull); // Set ForeignKey to null on User deletion
+        
+        // Scaffold Group to User relationship
+        builder.Entity<ScaffoldGroup>()
+            .HasOne(g => g.Uploader) // Each Experiment has one Uploader
+            .WithMany(u => u.ScaffoldGroups) // A User has many Experiments
+            .HasForeignKey(g => g.UploaderId) // ForeignKey in Experiment pointing to User
+            .OnDelete(DeleteBehavior.SetNull); // Set ForeignKey to null on User deletion
 
         // Job to user one-to-many relationship
         builder.Entity<Job>()
@@ -174,6 +197,7 @@ public partial class DataContext : IdentityDbContext<User, Role, string>
             .HasOne(sgp => sgp.Publication)
             .WithMany(p => p.ScaffoldGroupPublications)
             .HasForeignKey(sgp => sgp.PublicationId);
+       
         // builder.Entity<Publication>()
         //     .HasMany(p => p.ScaffoldGroups)
         //     .WithOne(g => g.Publication)
@@ -185,6 +209,85 @@ public partial class DataContext : IdentityDbContext<User, Role, string>
             .WithOne(d => d.Publication)
             .HasForeignKey(p => p.PublicationId)
             .OnDelete(DeleteBehavior.SetNull);
+
+        // --- PublicationDataset ---
+        builder.Entity<PublicationDataset>(b =>
+        {
+            b.HasKey(x => x.Id);
+
+            b.Property(x => x.Name)
+                .HasMaxLength(128)
+                .IsRequired();
+
+            b.HasOne(x => x.Publication)
+                .WithMany(p => p.PublicationDatasets)
+                .HasForeignKey(x => x.PublicationId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            b.HasIndex(x => new { x.PublicationId, x.Name });
+        });
+
+        builder.Entity<PublicationDatasetVersion>(b =>
+        {
+            b.HasKey(x => x.Id);
+
+            b.HasOne(x => x.PublicationDataset)
+                .WithMany(d => d.PublicationDatasetVersions)
+                .HasForeignKey(x => x.PublicationDatasetId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            b.HasIndex(x => new { x.PublicationDatasetId, x.Version }).IsUnique();
+        });
+
+
+        // --- PublicationDatasetScaffold (composite PK) ---
+        builder.Entity<PublicationDatasetScaffold>(b =>
+        {
+            b.HasKey(x => new { x.PublicationDatasetId, x.ScaffoldId });
+
+            b.HasOne(x => x.PublicationDataset)
+                .WithMany(d => d.PublicationDatasetScaffolds)
+                .HasForeignKey(x => x.PublicationDatasetId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            b.HasOne(x => x.Scaffold)
+                .WithMany(s => s.PublicationDatasetScaffolds)
+                .HasForeignKey(x => x.ScaffoldId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // Reverse lookups: "which datasets include this scaffold?"
+            b.HasIndex(x => x.ScaffoldId);
+        });
+
+        // --- PublicationDatasetDescriptorRule (Dataset ↔ DescriptorType + Job selection) ---
+        builder.Entity<PublicationDatasetDescriptorRule>(b =>
+        {
+            b.HasKey(x => new { x.PublicationDatasetId, x.DescriptorTypeId });
+
+            b.HasOne(x => x.PublicationDataset)
+                .WithMany(d => d.PublicationDatasetDescriptorRules)
+                .HasForeignKey(x => x.PublicationDatasetId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            b.HasOne(x => x.DescriptorType)
+                .WithMany(d => d.PublicationDatasetDescriptorRules)
+                .HasForeignKey(x => x.DescriptorTypeId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            b.Property(x => x.JobMode).IsRequired();
+
+            b.HasIndex(x => x.DescriptorTypeId);
+        });
+
+        builder.Entity<PublicationDatasetFrozenDescriptor>(b =>
+        {
+            b.HasKey(x => new { x.PublicationDatasetVersionId, x.ScaffoldId, x.DescriptorTypeId });
+
+            b.HasOne(x => x.PublicationDatasetVersion)
+                .WithMany(v => v.PublicationDatasetFrozenDescriptors)
+                .HasForeignKey(x => x.PublicationDatasetVersionId)
+                .OnDelete(DeleteBehavior.Cascade);
+        });
 		
 		// One-to-One relationship between ScaffoldGroup and InputGroup          
         builder.Entity<ScaffoldGroup>()

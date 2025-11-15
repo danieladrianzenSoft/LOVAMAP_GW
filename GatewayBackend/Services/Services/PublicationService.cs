@@ -39,7 +39,20 @@ namespace Services.Services
 			{
 				_logger.LogError(ex, "Error saving publication");
 			}
+		}
 
+		public async Task<(bool Succeeded, string ErrorMessage, PublicationSummaryDto? publication)> GetPublicationSummaryByIdAsync(int publicationId)
+		{
+			try
+			{
+				var publication = await _publicationRepository.GetPublicationSummaryByIdAsync(publicationId);
+				return (true, "", publication);
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, "Error getting publication summary");
+				return (false, ex.Message, null);
+			}
 		}
 
 		public async Task<(bool Succeeded, string ErrorMessage, IEnumerable<PublicationSummaryDto>? publications)> GetAllPublicationSummaries()

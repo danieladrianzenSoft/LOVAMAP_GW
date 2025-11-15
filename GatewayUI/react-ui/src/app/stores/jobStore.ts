@@ -20,7 +20,7 @@ export default class JobStore {
 			})
 			return response.data;
         } catch (error) {
-            console.error('Error uploading image for scaffold group:', error);
+            console.error('Error uploading file for scaffold group:', error);
 			return null;
         }
     };

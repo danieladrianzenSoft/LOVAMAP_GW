@@ -21,6 +21,7 @@ namespace Data.Models
     	public virtual ICollection<PoreDescriptor> PoreDescriptors { get; set; } = new List<PoreDescriptor>();
    	 	public virtual ICollection<OtherDescriptor> OtherDescriptors { get; set; } = new List<OtherDescriptor>();
 		public virtual ICollection<DescriptorTypeDownload> DescriptorTypeDownloads { get; set; } = new List<DescriptorTypeDownload>();
+		public virtual ICollection<PublicationDatasetDescriptorRule> PublicationDatasetDescriptorRules { get; set; } = [];
 
 	}
 }

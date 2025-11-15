@@ -25,6 +25,7 @@ namespace Services.IServices
 		Task<OtherDescriptor> MapToOtherDescriptor(OtherDescriptorToCreateDto dto);
 		Image MapToImage(ImageForCreationDto dto, string uploaderId);
 		Job MapToJob(JobSubmissionDto dto);
+		Job MapToJob(CoreJobDto core);
 
 		// Maps to DTOs
 		Task<AuthenticatedUserDto> MapToAuthenticatedUserDto(User user, string token);
@@ -34,6 +35,8 @@ namespace Services.IServices
 		ScaffoldGroupSummaryDto MapToScaffoldGroupSummaryDto(ScaffoldGroup scaffoldGroup, IEnumerable<Image> images, IEnumerable<string> tags, string userId);
 		ScaffoldGroupDetailedDto MapToScaffoldGroupDetailedDto(ScaffoldGroup scaffoldGroup, IEnumerable<Scaffold> scaffolds, IEnumerable<Image> images, string userId);
 		ImageToShowDto MapImageToDto(Image image);
+		PublicationDatasetDescriptorRule MapToPublicationDatasetDescriptorRule(PublicationDatasetDescriptorRuleDto descriptorRuleDto, int datasetId);
+		PublicationDatasetDto MapToPublicationDatasetDto(PublicationDataset dataset);
 
 	}
 }

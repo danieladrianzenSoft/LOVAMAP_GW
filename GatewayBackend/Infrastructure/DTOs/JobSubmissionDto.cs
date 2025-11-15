@@ -14,6 +14,7 @@ namespace Infrastructure.DTOs
 		public Guid? JobId { get; set; }
 		public string? Dx { get; set; }
 		public string? CreatorId { get; set; }
+		public int ScaffoldGroupId { get; set; }
 	}
 }
 

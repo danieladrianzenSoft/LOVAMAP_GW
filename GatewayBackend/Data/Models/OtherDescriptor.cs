@@ -17,6 +17,7 @@ namespace Data.Models
 		public Scaffold Scaffold { get; set; } = null!;
 		public int DescriptorTypeId { get; set; }
 		public DescriptorType DescriptorType { get; set; } = null!;
+		public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 		public JsonDocument Values { get; set; } = null!;
 	}
 }

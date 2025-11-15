@@ -24,9 +24,16 @@ namespace Infrastructure.DTOs
 
 		[FromQuery(Name = "numReplicatesByGroup")]
 		public Dictionary<int, int>? NumReplicatesByGroup { get; set; }
+
+		[FromQuery(Name = "publicationId")]
+		public int? PublicationId { get; set; }          // show ALL scaffolds used by any dataset in this publication
+
+		[FromQuery(Name = "publicationDatasetId")]
+		public int? PublicationDatasetId { get; set; }   // show ONLY scaffolds in this dataset
 		
-		// [FromQuery(Name = "descriptors")]
-    	// public ICollection<string>? Descriptors { get; set; }
+		[FromQuery(Name = "restrictToPublicationDataset")]
+		public bool RestrictToPublicationDataset { get; set; } = false; // guardrail
+		
 
 	}
 }

@@ -23,6 +23,7 @@ export const useDescriptorTypes = () => {
 			}
 		};
 		fetchData();
+		console.log(descriptorTypes);
 	}, [descriptorStore]);
 
     return { descriptorTypes, loading, error };

@@ -5,7 +5,7 @@ import { useStore } from '../../app/stores/store';
 import toast from "react-hot-toast";
 import { FaSpinner, FaPlus, FaStar, FaRegStar, FaTimes } from 'react-icons/fa';
 import { Image, ImageCategory, ImageToCreate, ImageToUpdate } from '../../app/models/image';
-import { ScaffoldGroup } from '../../app/models/scaffoldGroup';
+import { ScaffoldGroup, ScaffoldGroupToCreate } from '../../app/models/scaffoldGroup';
 import { useDescriptorTypes } from '../../app/common/hooks/useDescriptorTypes';
 import { processExcelFile } from '../../app/common/excel-processor/excel-processor';
 import { RiDeleteBin5Fill } from "react-icons/ri";
@@ -21,6 +21,7 @@ const ScaffoldGroupUploads: React.FC = () => {
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false); // Track modal state
     const [isUploadVisible, setIsUploadVisible] = useState<boolean>(false); // Track visibility of UploadFile
     const [showConfirmDelete, setShowConfirmDelete] = useState(false);
+    const [uploadPct, setUploadPct] = useState<number | null>(null);
 
     useEffect(() => {
         const fetchUploadedScaffoldGroups = async () => {
@@ -55,37 +56,90 @@ const ScaffoldGroupUploads: React.FC = () => {
         }
     }
 
+    // const handleUploadSubmitFile = async (files: File[]) => {
+    //     try {
+    //         // Handle Excel files
+    //         const excelFiles = files.filter(file => file.name.endsWith(".xlsx") || file.name.endsWith(".xls"));
+    //         if (excelFiles.length > 0) {
+    //             if (!descriptorTypes || descriptorTypes.length === 0) {
+    //                 alert("Descriptor types are not available. Cannot process Excel files.");
+    //                 return;
+    //             }
+    //             await Promise.all(
+    //                 excelFiles.map(async (file) => {
+    //                     const outputJson =  await processExcelFile(file, descriptorTypes); // Use descriptorTypes
+    //                     const fileName = `${file.name.replace(/\.[^/.]+$/, "")}_output.json`; // Generate file name
+    //                     triggerJsonDownload(outputJson, fileName);
+    //                 })
+    //             );
+    //         }
+
+    //         // Handle JSON uploads
+    //         const jsonFiles = files.filter(file => file.type === 'application/json');
+            
+    //         if (jsonFiles.length > 0) {
+    //             const parsedJson = await Promise.all(jsonFiles.map(file => file.text().then(JSON.parse)));
+    //             const combinedJson = parsedJson.flat();
+    //             await scaffoldGroupStore.uploadScaffoldGroupBatch(combinedJson);
+    //         }
+    //     } catch (error) {
+    //         console.error(error);
+    //         toast.error('Failed to upload files.');
+    //     }
+    // }
+
     const handleUploadSubmitFile = async (files: File[]) => {
         try {
-            // Handle Excel files
-            const excelFiles = files.filter(file => file.name.endsWith(".xlsx") || file.name.endsWith(".xls"));
-            if (excelFiles.length > 0) {
-                if (!descriptorTypes || descriptorTypes.length === 0) {
-                    alert("Descriptor types are not available. Cannot process Excel files.");
-                    return;
-                }
-                await Promise.all(
-                    excelFiles.map(async (file) => {
-                        const outputJson =  await processExcelFile(file, descriptorTypes); // Use descriptorTypes
-                        const fileName = `${file.name.replace(/\.[^/.]+$/, "")}_output.json`; // Generate file name
-                        triggerJsonDownload(outputJson, fileName);
-                    })
-                );
+        // 1) Excel files → convert, let user download JSON (unchanged)
+        const excelFiles = files.filter(f => f.name.endsWith(".xlsx") || f.name.endsWith(".xls"));
+        if (excelFiles.length > 0) {
+            if (!descriptorTypes?.length) {
+                alert("Descriptor types are not available. Cannot process Excel files.");
+                return;
+            }
+            await Promise.all(
+                excelFiles.map(async (file) => {
+                    const outputJson = await processExcelFile(file, descriptorTypes);
+                    const fileName = `${file.name.replace(/\.[^/.]+$/, "")}_output.json`;
+                    triggerJsonDownload(outputJson, fileName);
+                })
+            );
+        }
+
+        // 2) JSON files → parse and combine
+        const jsonFiles = files.filter(f => f.type === "application/json");
+        if (jsonFiles.length > 0) {
+            const parsedJsonArrays = await Promise.all(
+                jsonFiles.map(f => f.text().then(JSON.parse))
+            );
+            const combinedJson: ScaffoldGroupToCreate[] = parsedJsonArrays.flat();
+
+            // (A) Always stream with progress:
+            setUploadPct(0);
+            const result = await scaffoldGroupStore.uploadScaffoldGroupBatchStreamed(
+                combinedJson,
+                (pct) => setUploadPct(pct)
+            );
+            setUploadPct(null);
+
+            if (!result) {
+                toast.error("Failed to upload scaffold groups.");
+            } else {
+                toast.success(`Uploaded ${result.length} scaffold group(s).`);
             }
 
-            // Handle JSON uploads
-            const jsonFiles = files.filter(file => file.type === 'application/json');
-            
-            if (jsonFiles.length > 0) {
-                const parsedJson = await Promise.all(jsonFiles.map(file => file.text().then(JSON.parse)));
-                const combinedJson = parsedJson.flat();
-                await scaffoldGroupStore.uploadScaffoldGroupBatch(combinedJson);
-            }
-        } catch (error) {
-            console.error(error);
-            toast.error('Failed to upload files.');
+            // --- OR ---
+
+            // (B) If you prefer to auto-pick streamed vs JSON (no progress callback),
+            // just call your smart method:
+            // const result = await scaffoldGroupStore.uploadScaffoldGroupBatchSmart(combinedJson);
         }
-    }
+        } catch (err) {
+            console.error(err);
+            setUploadPct(null);
+            toast.error("Failed to upload files.");
+        }
+    };
 
     const handleUploadSubmitImage = async (files: File[], category?: string) => {
         try {
@@ -180,6 +234,15 @@ const ScaffoldGroupUploads: React.FC = () => {
     return (
         <div className={`container mx-auto py-8 px-2`}>
             <div className="text-3xl text-gray-700 font-bold mb-12">Uploaded scaffolds</div>
+            {uploadPct !== null && (
+                <div className="mt-3 w-full rounded">
+                    <div
+                        className="h-2 rounded bg-blue-500 transition-all"
+                        style={{ width: `${uploadPct}%` }}
+                    />
+                    <div className="text-xs mt-1 text-gray-600">{uploadPct}%</div>
+                </div>
+            )}
             <UploadFile
                 acceptedFileTypes={{ 
                     'application/json': ['.json'],

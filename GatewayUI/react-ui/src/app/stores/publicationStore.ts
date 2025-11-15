@@ -7,6 +7,16 @@ export default class PublicationStore {
 		makeAutoObservable(this)
 	}
 
+	getPublication = async(publicationId: number): Promise<Publication | null> => {
+		try {
+			const apiRepsonse = await agent.Publications.getById(publicationId)
+			return apiRepsonse.data;
+		} catch (error) {
+			console.error(`Error fetching publication ${publicationId}`, error);
+			return null;
+		}
+	}
+
 	getPublications = async(): Promise<Publication[]> => {
 		try {
 			const apiResponse = await agent.Publications.getAll();

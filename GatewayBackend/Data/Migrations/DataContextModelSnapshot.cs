@@ -222,6 +222,9 @@ namespace Data.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<int>("DescriptorTypeId")
                         .HasColumnType("integer");
 
@@ -387,6 +390,9 @@ namespace Data.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<int>("DescriptorTypeId")
                         .HasColumnType("integer");
 
@@ -472,6 +478,9 @@ namespace Data.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<int>("DescriptorTypeId")
                         .HasColumnType("integer");
 
@@ -534,6 +543,130 @@ namespace Data.Migrations
                     b.ToTable("Publications");
                 });
 
+            modelBuilder.Entity("Data.Models.PublicationDataset", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)");
+
+                    b.Property<int>("PublicationId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PublicationId", "Name");
+
+                    b.ToTable("PublicationDatasets");
+                });
+
+            modelBuilder.Entity("Data.Models.PublicationDatasetDescriptorRule", b =>
+                {
+                    b.Property<int>("PublicationDatasetId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("DescriptorTypeId")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid?>("JobId")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("JobMode")
+                        .HasColumnType("integer");
+
+                    b.HasKey("PublicationDatasetId", "DescriptorTypeId");
+
+                    b.HasIndex("DescriptorTypeId");
+
+                    b.ToTable("PublicationDatasetDescriptorRules");
+                });
+
+            modelBuilder.Entity("Data.Models.PublicationDatasetFrozenDescriptor", b =>
+                {
+                    b.Property<int>("PublicationDatasetVersionId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("ScaffoldId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("DescriptorTypeId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("GlobalDescriptorId")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid?>("JobId")
+                        .HasColumnType("uuid");
+
+                    b.Property<int?>("OtherDescriptorId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("PoreDescriptorId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("PublicationDatasetVersionId", "ScaffoldId", "DescriptorTypeId");
+
+                    b.ToTable("PublicationDatasetFrozenDescriptors");
+                });
+
+            modelBuilder.Entity("Data.Models.PublicationDatasetScaffold", b =>
+                {
+                    b.Property<int>("PublicationDatasetId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("ScaffoldId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("PublicationDatasetId", "ScaffoldId");
+
+                    b.HasIndex("ScaffoldId");
+
+                    b.ToTable("PublicationDatasetScaffolds");
+                });
+
+            modelBuilder.Entity("Data.Models.PublicationDatasetVersion", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ExportPath")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ExportSha256")
+                        .HasColumnType("text");
+
+                    b.Property<int>("PublicationDatasetId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Version")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PublicationDatasetId", "Version")
+                        .IsUnique();
+
+                    b.ToTable("PublicationDatasetsVersions");
+                });
+
             modelBuilder.Entity("Data.Models.Role", b =>
                 {
                     b.Property<string>("Id")
@@ -571,6 +704,12 @@ namespace Data.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Comments")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<Guid?>("LatestJobId")
                         .HasColumnType("uuid");
 
@@ -580,12 +719,17 @@ namespace Data.Migrations
                     b.Property<int>("ScaffoldGroupId")
                         .HasColumnType("integer");
 
+                    b.Property<string>("UploaderId")
+                        .HasColumnType("text");
+
                     b.HasKey("Id");
 
                     b.HasIndex("LatestJobId")
                         .IsUnique();
 
                     b.HasIndex("ScaffoldGroupId");
+
+                    b.HasIndex("UploaderId");
 
                     b.ToTable("Scaffolds");
                 });
@@ -1097,6 +1241,77 @@ namespace Data.Migrations
                     b.Navigation("Scaffold");
                 });
 
+            modelBuilder.Entity("Data.Models.PublicationDataset", b =>
+                {
+                    b.HasOne("Data.Models.Publication", "Publication")
+                        .WithMany("PublicationDatasets")
+                        .HasForeignKey("PublicationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Publication");
+                });
+
+            modelBuilder.Entity("Data.Models.PublicationDatasetDescriptorRule", b =>
+                {
+                    b.HasOne("Data.Models.DescriptorType", "DescriptorType")
+                        .WithMany("PublicationDatasetDescriptorRules")
+                        .HasForeignKey("DescriptorTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Data.Models.PublicationDataset", "PublicationDataset")
+                        .WithMany("PublicationDatasetDescriptorRules")
+                        .HasForeignKey("PublicationDatasetId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("DescriptorType");
+
+                    b.Navigation("PublicationDataset");
+                });
+
+            modelBuilder.Entity("Data.Models.PublicationDatasetFrozenDescriptor", b =>
+                {
+                    b.HasOne("Data.Models.PublicationDatasetVersion", "PublicationDatasetVersion")
+                        .WithMany("PublicationDatasetFrozenDescriptors")
+                        .HasForeignKey("PublicationDatasetVersionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("PublicationDatasetVersion");
+                });
+
+            modelBuilder.Entity("Data.Models.PublicationDatasetScaffold", b =>
+                {
+                    b.HasOne("Data.Models.PublicationDataset", "PublicationDataset")
+                        .WithMany("PublicationDatasetScaffolds")
+                        .HasForeignKey("PublicationDatasetId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Data.Models.Scaffold", "Scaffold")
+                        .WithMany("PublicationDatasetScaffolds")
+                        .HasForeignKey("ScaffoldId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("PublicationDataset");
+
+                    b.Navigation("Scaffold");
+                });
+
+            modelBuilder.Entity("Data.Models.PublicationDatasetVersion", b =>
+                {
+                    b.HasOne("Data.Models.PublicationDataset", "PublicationDataset")
+                        .WithMany("PublicationDatasetVersions")
+                        .HasForeignKey("PublicationDatasetId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("PublicationDataset");
+                });
+
             modelBuilder.Entity("Data.Models.Scaffold", b =>
                 {
                     b.HasOne("Data.Models.Job", "LatestJob")
@@ -1110,9 +1325,16 @@ namespace Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Data.Models.User", "Uploader")
+                        .WithMany("Scaffolds")
+                        .HasForeignKey("UploaderId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
                     b.Navigation("LatestJob");
 
                     b.Navigation("ScaffoldGroup");
+
+                    b.Navigation("Uploader");
                 });
 
             modelBuilder.Entity("Data.Models.ScaffoldDownload", b =>
@@ -1242,6 +1464,8 @@ namespace Data.Migrations
                     b.Navigation("OtherDescriptors");
 
                     b.Navigation("PoreDescriptors");
+
+                    b.Navigation("PublicationDatasetDescriptorRules");
                 });
 
             modelBuilder.Entity("Data.Models.Domain", b =>
@@ -1276,7 +1500,23 @@ namespace Data.Migrations
                 {
                     b.Navigation("DescriptorTypes");
 
+                    b.Navigation("PublicationDatasets");
+
                     b.Navigation("ScaffoldGroupPublications");
+                });
+
+            modelBuilder.Entity("Data.Models.PublicationDataset", b =>
+                {
+                    b.Navigation("PublicationDatasetDescriptorRules");
+
+                    b.Navigation("PublicationDatasetScaffolds");
+
+                    b.Navigation("PublicationDatasetVersions");
+                });
+
+            modelBuilder.Entity("Data.Models.PublicationDatasetVersion", b =>
+                {
+                    b.Navigation("PublicationDatasetFrozenDescriptors");
                 });
 
             modelBuilder.Entity("Data.Models.Scaffold", b =>
@@ -1292,6 +1532,8 @@ namespace Data.Migrations
                     b.Navigation("OtherDescriptors");
 
                     b.Navigation("PoreDescriptors");
+
+                    b.Navigation("PublicationDatasetScaffolds");
 
                     b.Navigation("ScaffoldDownloads");
 
@@ -1322,6 +1564,8 @@ namespace Data.Migrations
                     b.Navigation("JobsCreated");
 
                     b.Navigation("ScaffoldGroups");
+
+                    b.Navigation("Scaffolds");
 
                     b.Navigation("UploadedImages");
                 });

@@ -44,9 +44,9 @@ const Visualization: React.FC = () => {
 	const [showPoresPanelOpen, setShowPoresPanelOpen] = useState(true);
 	const [showParticles, setShowParticles] = useState(true);
 	const [showPores, setShowPores] = useState(true);
-  	const [hasAutoHiddenEdgePores, setHasAutoHiddenEdgePores] = useState(false);
+  	const [, setHasAutoHiddenEdgePores] = useState(false);
 	const [areEdgePoresHidden, setAreEdgePoresHidden] = useState(false);
-	const [dimAppliedOnce, setDimAppliedOnce] = useState(true);
+	// const [dimAppliedOnce, setDimAppliedOnce] = useState(true);
 
 	const canvasRef = useRef<HTMLCanvasElement | null>(null);
 	const resolvedScaffoldId = params.scaffoldId ? parseInt(params.scaffoldId, 10) : null;
@@ -646,7 +646,7 @@ const Visualization: React.FC = () => {
 				)}
 				{!isBusy && meshList.length > 0 && (
 					<div className="h-full w-full -mt-16">
-						<CanvasViewer 
+						<CanvasViewer
 							meshes={meshList} 
 							onSliceBoundsComputed={setSliceDomainBounds} 
 							onCanvasCreated={(el) => canvasRef.current = el}
@@ -782,6 +782,27 @@ const Visualization: React.FC = () => {
 					/>
 				</div>
 			)}
+
+			{/* {scaffoldIdForScreenshot && screenshotCategory != null && (
+				<div
+					style={{
+					position: 'fixed',
+					bottom: 0,
+					right: 0,
+					width: 384,
+					height: 384,
+					pointerEvents: 'auto',
+					opacity: 1,  // invisible but still laid out & rendered
+					zIndex: 1000,
+					}}
+				>
+					<ScreenshotViewer
+						scaffoldId={scaffoldIdForScreenshot}
+						category={screenshotCategory}
+						onScreenshotReady={handleScreenshotUpload}
+					/>
+				</div>
+			)} */}
 
 			<AcknowledgementModal
 				isOpen={showAcknowledgement}

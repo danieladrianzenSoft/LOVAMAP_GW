@@ -1,5 +1,5 @@
-import React, { Suspense, useEffect, useRef, useState } from "react";
-import { Canvas, invalidate, useFrame, useThree } from "@react-three/fiber";
+import React, { Suspense, useEffect, useMemo, useRef, useState } from "react";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Environment, useGLTF } from "@react-three/drei";
 import Model from './model';
 import { useParams, useSearchParams } from 'react-router-dom';
@@ -8,163 +8,144 @@ import { observer } from "mobx-react-lite";
 import * as THREE from "three";
 import { useStore } from "../../app/stores/store";
 
-
 interface ScreenshotSceneProps {
-	url: string;
-	category: number;
-	onScreenshotReady?: (blob: Blob) => void;
+  url: string;
+  category: number;
+  onScreenshotReady?: (blob: Blob) => void;
+  // we'll use this in section 2:
+  theme?: 'Metallic' | 'Sunset';
 }
 
-const ScreenshotScene: React.FC<ScreenshotSceneProps> = ({ url, category, onScreenshotReady }) => {
-	const { camera, scene, gl } = useThree();
-	const [readyForScreenshot, setReadyForScreenshot] = useState(false);
-	const [hasRendered, setHasRendered] = useState(false); // state used to trigger useEffect
-	const hasRenderedRef = useRef(false);
-	const hasCapturedRef = useRef(false); // prevent double capture
+const ScreenshotScene: React.FC<ScreenshotSceneProps> = ({
+  url,
+  category,
+  onScreenshotReady,
+  theme,
+}) => {
+  const { camera, scene, gl } = useThree();
+  const [readyForScreenshot, setReadyForScreenshot] = useState(false);
+  const hasCapturedRef = useRef(false);
+  const framesSinceReadyRef = useRef(0);
 
-	const handleModelLoad = (loadedObject: THREE.Object3D) => {
-		const box = new THREE.Box3().setFromObject(loadedObject);
-		const size = box.getSize(new THREE.Vector3()).length();
-		const center = box.getCenter(new THREE.Vector3());
+  const [combinedCenter] = useState(() => new THREE.Vector3(0, 0, 0))
 
-		scene.position.set(-center.x, -center.y, -center.z);
+  const handleModelLoad = (loadedObject: THREE.Object3D) => {
+    const box = new THREE.Box3().setFromObject(loadedObject);
+    const sizeVec = box.getSize(new THREE.Vector3());
+    const size = sizeVec.length();
+    const center = box.getCenter(new THREE.Vector3());
 
-		const isoDistance = Math.max(2, size * 0.7);
-		camera.position.set(isoDistance, isoDistance * 0.6, isoDistance);
-		camera.lookAt(new THREE.Vector3(0, 0, 0));
+    // Center the model
+    scene.position.set(-center.x, -center.y, -center.z);
+	const direction = new THREE.Vector3(0.9, 0.5, 0.8).normalize();
+	const distance = size * 0.6;
+	const newPosition = direction.multiplyScalar(distance).add(center);
 
-		camera.near = Math.max(0.1, size / 10);
-		camera.far = size * 10;
-		camera.updateProjectionMatrix();
-		invalidate();
+    // Simple isometric camera framing
+    // const isoDistance = Math.max(2, size * 0.7);
+    // camera.position.set(isoDistance, isoDistance * 0.6, isoDistance);
+	camera.position.copy(newPosition);
+    camera.lookAt(new THREE.Vector3(0, 0, 0));
 
-		setReadyForScreenshot(true); // trigger the next render frame to capture
-	};
+    camera.near = Math.max(0.1, size / 10);
+    camera.far = size * 10;
+    camera.updateProjectionMatrix();
 
-	// Wait until the next frame AFTER readyForScreenshot is true
-	useFrame(() => {
-		if (readyForScreenshot && !hasRenderedRef.current) {
-			hasRenderedRef.current = true;
-			setHasRendered(true); // triggers useEffect
-		}
-	});
+    // Flag that we’re ready to wait a couple frames then capture
+    framesSinceReadyRef.current = 0;
+    setReadyForScreenshot(true);
+  };
+  
 
-	// In useEffect — perform the screenshot
-	// Wait 50ms AFTER render pass to capture canvas
-	useEffect(() => {
-		if (hasRendered && !hasCapturedRef.current) {
-			const timeout = setTimeout(() => {
-				hasCapturedRef.current = true;
-				gl.domElement.toBlob((blob) => {
-					if (blob && onScreenshotReady) {
-						console.log("📸 Screenshot captured after render+timeout");
-						onScreenshotReady(blob);
-					} else {
-						console.warn("❌ Failed to capture screenshot");
-					}
-				}, "image/png");
-			}, 50);
+  // Wait for a couple of render frames after `readyForScreenshot`
+  // so the model + lighting are guaranteed to be on screen
+  useFrame(() => {
+    if (!readyForScreenshot || hasCapturedRef.current) return;
 
-			return () => clearTimeout(timeout);
-		}
-	}, [gl.domElement, hasRendered, onScreenshotReady]);
+    framesSinceReadyRef.current += 1;
 
-	useEffect(() => {
-		useGLTF.clear(url);
-		scene.clear();
-	}, [url, scene]);
+    // 2–3 frames is usually enough; bump to 5 if you want to be ultra-safe
+    if (framesSinceReadyRef.current >= 2) {
+      hasCapturedRef.current = true;
 
-	return (
-		<>
-			<ambientLight intensity={0.5} />
-			<directionalLight position={[5, 5, 5]} intensity={0.8} />
-			<Environment preset="lobby" />
-			<Model
-				key={`model-${category}-${url}`}
-				url={url}
-				visible={true}
-				category={category}
-				selectedEntity={null}
-				hiddenIds={new Set()}
-				onLoad={handleModelLoad}
-			/>
-		</>
+      gl.domElement.toBlob((blob) => {
+        if (!blob || !onScreenshotReady) {
+          if (!blob) console.warn('❌ Failed to capture screenshot: no blob');
+          return;
+        }
+        console.log('📸 Screenshot captured after render frames');
+        onScreenshotReady(blob);
+      }, 'image/png');
+    }
+  });
+
+  // Clean up GLTF cache when this specific URL is no longer used
+  useEffect(() => {
+    return () => {
+      // Remove only this GLTF from the cache, DO NOT clear the scene manually
+      try {
+        useGLTF.clear(url);
+      } catch {
+        // ignore if already cleared
+      }
+    };
+  }, [url]);
+
+  const hasMetallicTheme = useMemo(
+	  () => theme === 'Metallic',
+	  [theme]
 	);
+  
+  return (
+    <>
+      <color attach="background" args={["white"]} />
+
+        <ambientLight intensity={0.25} />
+		{hasMetallicTheme ? (
+			<directionalLight
+				position={[10, 20, 0]}
+				intensity={1.2}
+				castShadow
+				color="white"
+				/>
+			) : (
+				<directionalLight castShadow position={[5, 5, 5]} intensity={0.2} />
+			)
+		}
+
+        <spotLight
+          position={[0, 15, 10]}
+          angle={0.3}
+          penumbra={0.8}
+          intensity={0.8}
+          castShadow
+        />
+		{!hasMetallicTheme && <Environment preset="lobby" background={false} />}
+		
+		<Model
+			key={`model-${category}-${url}`}
+			url={url}
+			visible={true}
+			category={category}
+			selectedEntity={null}
+			hiddenIds={new Set()}
+			onLoad={handleModelLoad}
+			combinedCenter={combinedCenter ?? new THREE.Vector3()}
+			// theme will be wired up below
+			theme={theme}
+		/>
+    </>
+  );
 };
-
-// const ScreenshotScene: React.FC<ScreenshotSceneProps> = ({ url, category, canvasRef, onScreenshotReady }) => {
-// 	const { camera, scene } = useThree();
-// 	const cameraSetRef = useRef(false);
-
-// 	const handleModelLoad = (loadedObject: THREE.Object3D) => {
-// 		console.log(`✅ Model loaded: Category: ${category}`);
-
-// 		const box = new THREE.Box3().setFromObject(loadedObject);
-// 		const size = box.getSize(new THREE.Vector3()).length();
-// 		const center = box.getCenter(new THREE.Vector3());
-
-// 		scene.position.set(-center.x, -center.y, -center.z);
-
-// 		const isoDistance = Math.max(2, size * 0.7);
-// 		camera.position.set(isoDistance, isoDistance * 0.6, isoDistance);
-// 		camera.lookAt(new THREE.Vector3(0, 0, 0));
-
-// 		camera.near = Math.max(0.1, size / 10);
-// 		camera.far = size * 10;
-// 		camera.updateProjectionMatrix();
-
-// 		cameraSetRef.current = true;
-
-// 		requestAnimationFrame(() => {
-// 			requestAnimationFrame(() => {
-// 				const canvas = canvasRef.current;
-// 				if (canvas) {
-// 					canvas.toBlob((blob) => {
-// 						if (blob && onScreenshotReady) {
-// 							console.log("📸 Screenshot captured!");
-// 							onScreenshotReady(blob);
-// 						} else {
-// 							console.warn("❌ Failed to capture screenshot");
-// 						}
-// 					}, "image/png");
-// 				}
-// 			});
-// 		});
-// 	};
-
-// 	useEffect(() => {
-// 		useGLTF.clear(url); // flush GLTF cache for this blob URL
-// 	}, [url]);
-
-// 	useEffect(() => {
-// 		scene.clear();
-// 	}, [scene]);
-
-// 	return (
-// 		<>
-// 			<ambientLight intensity={0.5} />
-// 			<directionalLight position={[5, 5, 5]} intensity={0.8} />
-// 			<Environment preset="lobby" />
-// 			<Model
-// 				key={`model-${category}-${url}`}
-// 				url={url}
-// 				visible={true}
-// 				category={category}
-// 				selectedEntity={null}
-// 				hiddenIds={new Set()}
-// 				onLoad={handleModelLoad}
-// 			/>
-// 		</>
-// 	);
-// };
 
 interface ScreenshotViewerProps {
 	scaffoldId?: number;
 	category?: number;
 	onScreenshotReady?: (blob: Blob) => void;
+	theme?: 'Metallic' | 'Sunset';
 }
 
-const ScreenshotViewer: React.FC<ScreenshotViewerProps> = ({ scaffoldId: propId, category: propCategory, onScreenshotReady }) => {
+const ScreenshotViewer: React.FC<ScreenshotViewerProps> = ({ scaffoldId: propId, category: propCategory, onScreenshotReady, theme='Sunset' }) => {
 	const { scaffoldId: paramId } = useParams<{ scaffoldId: string }>();
 	const [searchParams] = useSearchParams();
 	const { domainStore } = useStore();
@@ -175,34 +156,35 @@ const ScreenshotViewer: React.FC<ScreenshotViewerProps> = ({ scaffoldId: propId,
 	const resolvedCategory = propCategory ?? categoryFromQuery;
 	const isRouteMode = !propId;
 	const canvasRef = useRef<HTMLCanvasElement>(null);
-	const hasFetched = useRef(false);
+	
+	// const hasFetched = useRef(false);
 
 	useEffect(() => {
-		if (!resolvedId || hasFetched.current) return;
-    	hasFetched.current = true;
+		if (!resolvedId) return;
 
 		let activeUrl: string | null = null;
+		let cancelled = false;
 
-		const loadMesh = async () => {
+		(async () => {
 			try {
-				const { blobUrl } = await domainStore.fetchMeshForScreenshot(resolvedId, resolvedCategory);
-				activeUrl = blobUrl;
-				setLocalMeshUrl(blobUrl);
-				console.log(resolvedCategory);
+			const { blobUrl } = await domainStore.fetchMeshForScreenshot(resolvedId, resolvedCategory);
+			if (cancelled) return;
+			activeUrl = blobUrl;
+			setLocalMeshUrl(blobUrl);
 			} catch (e) {
-				console.error("Failed to load mesh for screenshot:", e);
+			console.error("Failed to load mesh for screenshot:", e);
 			}
-		};
-
-		loadMesh();
+		})();
 
 		return () => {
+			cancelled = true;
 			if (activeUrl) {
-				URL.revokeObjectURL(activeUrl);
+			URL.revokeObjectURL(activeUrl);
+			try {
 				useGLTF.clear(activeUrl);
+			} catch { /* ignore */ }
 			}
 			setLocalMeshUrl(null);
-			hasFetched.current = false;
 		};
 	}, [resolvedId, resolvedCategory, domainStore]);
 
@@ -245,7 +227,7 @@ const ScreenshotViewer: React.FC<ScreenshotViewerProps> = ({ scaffoldId: propId,
 			>
 				{/* <ScreenshotScene url={domainMeshUrl} onScreenshotReady={onScreenshotReady} /> */}
 				<Suspense fallback={null}>
-					<ScreenshotScene url={localMeshUrl} category={resolvedCategory} onScreenshotReady={onScreenshotReady}/>
+					<ScreenshotScene url={localMeshUrl} category={resolvedCategory} onScreenshotReady={onScreenshotReady} theme={theme}/>
 				</Suspense>
 			</Canvas>
 
@@ -265,3 +247,4 @@ const ScreenshotViewer: React.FC<ScreenshotViewerProps> = ({ scaffoldId: propId,
 };
 
 export default observer(ScreenshotViewer);
+

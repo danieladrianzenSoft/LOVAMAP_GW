@@ -27,6 +27,34 @@ namespace Repositories.Repositories
 			_context.Publications.Add(publication);
 		}
 
+		public async Task<PublicationSummaryDto?> GetPublicationSummaryByIdAsync(int publicationId)
+		{
+			return await _context.Publications.AsNoTracking()
+				.Where(p => p.Id == publicationId)
+				.Select(pub => new PublicationSummaryDto
+					{
+						Id = pub.Id,
+						Title = pub.Title,
+						Authors = pub.Authors,
+						Journal = pub.Journal,
+						Doi = pub.Doi,
+						PublishedAt = pub.PublishedAt,
+						ScaffoldGroupIds = pub.ScaffoldGroupPublications
+							.Select(sgp => sgp.ScaffoldGroupId)
+							.ToList(),
+						DescriptorTypeIds = pub.DescriptorTypes
+							.Select(dt => dt.Id)
+							.ToList(),
+						Citation = pub.Citation
+					})
+				.FirstOrDefaultAsync();
+		}
+
+		public async Task<bool> ExistsAsync(int publicationId)
+		{
+			return await _context.Publications.AsNoTracking().AnyAsync(p => p.Id == publicationId);
+		}
+
 		public async Task<List<PublicationSummaryDto>> GetAllPublicationSummariesAsync()
 		{
 			return await _context.Publications

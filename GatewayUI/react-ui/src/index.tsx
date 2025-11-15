@@ -8,10 +8,12 @@ import reportWebVitals from './reportWebVitals';
 const rootElement = document.getElementById('root');
 if (rootElement) {
   const root = ReactDOM.createRoot(rootElement);
+  const app = <App />;
+
   root.render(
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+    process.env.NODE_ENV === 'development'
+      ? <React.StrictMode>{app}</React.StrictMode>
+      : app
   );
 }
 

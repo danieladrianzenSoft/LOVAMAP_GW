@@ -9,6 +9,7 @@ namespace Repositories.IRepositories
 	{
 		bool HasChanges();
 		void Add(DescriptorType descriptor);
+		Task<HashSet<int>> GetExistingIdsAsync(IEnumerable<int> descriptorTypeIds);
 		Task<DescriptorType?> GetDescriptorById(int id);
 		Task<DescriptorType?> GetDescriptorByName(string name);
 		Task<ICollection<DescriptorType>> GetAllDescriptorTypes();

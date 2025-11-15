@@ -8,12 +8,12 @@ const DescriptorCalculator: React.FC = () => {
   const [delta, setDelta] = useState<number>(100);
   const [phi, setPhi] = useState<number>(0.5);
   const [sigma, setSigma] = useState<number>(0);
-  const [particleCount, setParticleCount] = useState<number>(12);
+//   const [particleCount, setParticleCount] = useState<number>(12);
 
   const descriptorMap = useMemo(() => {
     return Object.fromEntries(
       descriptorTypes
-        .filter((d) => d.name === "NumIntPores" || d.name === "Volume")
+        .filter((d) => d.name === "NumIntPores" || d.name === "Volume" || d.name === "LongestLength" || d.name === "AvgInternalDiam" || d.name === "LargestEnclosedSphereDiam")
         .map((d) => [d.name, d])
     );
   }, [descriptorTypes]);
@@ -23,6 +23,9 @@ const DescriptorCalculator: React.FC = () => {
   const totalPores = 0.405 * Math.exp(-0.0452 * xTotal);
   const xMedian = (delta + Math.sqrt(sigma)) * Math.sqrt(phi);
   const medianPoreVolume = 0.0234 * xMedian ** 2 - 0.595 * xMedian;
+  const medianLongestLength = 1.32 * delta * Math.sqrt(phi);
+  const medianAvgInternalDiameter = 0.45 * delta * Math.sqrt(phi);
+  const medianLargestEnclosedSphere = 0.49 * delta * Math.sqrt(phi);
 //   const A = 0.0563 * Math.exp(0.0369 * delta);
 //   const B = 2.38 * Math.exp(0.0316 * delta);
 //   const C = -10.4 * Math.exp(0.0309 * delta);
@@ -37,10 +40,10 @@ const DescriptorCalculator: React.FC = () => {
 			particle diameter, void volume fraction, and the standard deviation of particle size. These relationships hold
 			irrespective of particle shape and stiffness (
 			<a
-			href="https://doi.org/10.1038/s43588-023-00551-x"
-			target="_blank"
-			rel="noopener noreferrer"
-			className="text-blue-600 hover:underline"
+				href="https://doi.org/10.1038/s43588-023-00551-x"
+				target="_blank"
+				rel="noopener noreferrer"
+				className="text-blue-600 hover:underline"
 			>
 			Riley et al., 2023
 			</a>
@@ -139,6 +142,45 @@ const DescriptorCalculator: React.FC = () => {
 					description={descriptorMap?.Volume?.description}
 				/>
 				<span>{medianPoreVolume.toPrecision(3)}</span>
+
+				{/* Row 3: LongestLength */}
+				<DescriptorTypeInfo
+					label="Median Longest Length (µm)"
+					imageUrl={descriptorMap?.LongestLength?.imageUrl}
+					tableLabel={
+					descriptorMap?.LongestLength
+						? `${descriptorMap.LongestLength.tableLabel}${descriptorMap.LongestLength.unit ? ` (${descriptorMap.LongestLength.unit})` : ""}`
+						: ""
+					}
+					description={descriptorMap?.LongestLength?.description}
+				/>
+				<span>{medianLongestLength.toPrecision(3)}</span>
+
+				{/* Row 4: Median average internal diameter */}
+				<DescriptorTypeInfo
+					label="Median Avg Internal Diameter (µm)"
+					imageUrl={descriptorMap?.AvgInternalDiam?.imageUrl}
+					tableLabel={
+					descriptorMap?.LongestLength
+						? `${descriptorMap.AvgInternalDiam.tableLabel}${descriptorMap.AvgInternalDiam.unit ? ` (${descriptorMap.AvgInternalDiam.unit})` : ""}`
+						: ""
+					}
+					description={descriptorMap?.AvgInternalDiam?.description}
+				/>
+				<span>{medianAvgInternalDiameter.toPrecision(3)}</span>
+
+				{/* Row 4: Median average internal diameter */}
+				<DescriptorTypeInfo
+					label="Median Largest Enclosed Sphere Diameter (µm)"
+					imageUrl={descriptorMap?.LargestEnclosedSphereDiam?.imageUrl}
+					tableLabel={
+					descriptorMap?.LargestEnclosedSphereDiam
+						? `${descriptorMap.LargestEnclosedSphereDiam.tableLabel}${descriptorMap.LargestEnclosedSphereDiam.unit ? ` (${descriptorMap.LargestEnclosedSphereDiam.unit})` : ""}`
+						: ""
+					}
+					description={descriptorMap?.LargestEnclosedSphereDiam?.description}
+				/>
+				<span>{medianLargestEnclosedSphere.toPrecision(3)}</span>
 			</div>
       	</div>
     </div>

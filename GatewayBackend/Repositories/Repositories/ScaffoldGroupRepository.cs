@@ -45,6 +45,17 @@ namespace Repositories.Repositories
 			return await _context.ScaffoldGroups.Select(sg => sg.Id).ToListAsync();
 		}
 
+		public async Task<HashSet<int>> GetExistingScaffoldIdsAsync(IEnumerable<int> scaffoldIds)
+		{
+			var ids = scaffoldIds?.Distinct().ToArray() ?? Array.Empty<int>();
+			if (ids.Length == 0) return new HashSet<int>();
+			var existing = await _context.Scaffolds.AsNoTracking()
+				.Where(s => ids.Contains(s.Id))
+				.Select(s => s.Id)
+				.ToListAsync();
+			return existing.ToHashSet();
+		}
+
 		public async Task<int> GetRandomScaffoldGroupId()
 		{
 			return await _context.ScaffoldGroups
@@ -244,6 +255,21 @@ namespace Repositories.Repositories
 
 		public async Task<ICollection<ScaffoldGroupSummaryDto>?> GetFilteredScaffoldGroupSummaries(ScaffoldFilter filter, string currentUserId)
 		{
+			var pubGroupIds = await ResolvePublicationGroupIdsAsync(filter);
+			var scopeRequested = filter.RestrictToPublicationDataset &&
+                         (filter.PublicationDatasetId.HasValue || filter.PublicationId.HasValue);
+
+			if (scopeRequested && pubGroupIds is { Count: 0 })
+				return new List<ScaffoldGroupSummaryDto>();
+
+			if (pubGroupIds is not null)
+			{
+				if (filter.ScaffoldGroupIds?.Count > 0)
+					filter.ScaffoldGroupIds = filter.ScaffoldGroupIds.Intersect(pubGroupIds).ToList();
+				else
+					filter.ScaffoldGroupIds = pubGroupIds.ToList();
+			}
+
 			var query = _context.ScaffoldGroups.AsNoTracking();
 
 			// Apply primary filters
@@ -425,6 +451,61 @@ namespace Repositories.Repositories
 			var sql = query.ToQueryString();
 
 			return query;
+		}
+
+		private async Task<HashSet<int>?> ResolvePublicationGroupIdsAsync(ScaffoldFilter filter)
+		{
+			if (!filter.RestrictToPublicationDataset) return null;
+
+			if (filter.PublicationDatasetId.HasValue)
+			{
+				var dsId = filter.PublicationDatasetId.Value;
+
+				var scaffoldIds = await _context.PublicationDatasetScaffolds
+					.Where(x => x.PublicationDatasetId == dsId)
+					.Select(x => x.ScaffoldId)
+					.ToListAsync();
+
+				if (scaffoldIds.Count == 0) return new HashSet<int>(); // return empty set → no results
+
+				var groupIds = await _context.Scaffolds
+					.Where(s => scaffoldIds.Contains(s.Id))
+					.Select(s => s.ScaffoldGroupId)
+					.Distinct()
+					.ToListAsync();
+
+				return groupIds.ToHashSet();
+			}
+
+			if (filter.PublicationId.HasValue)
+			{
+				var pubId = filter.PublicationId.Value;
+
+				var dsIds = await _context.PublicationDatasets
+					.Where(d => d.PublicationId == pubId)
+					.Select(d => d.Id)
+					.ToListAsync();
+
+				if (dsIds.Count == 0) return new HashSet<int>();
+
+				var scaffoldIds = await _context.PublicationDatasetScaffolds
+					.Where(x => dsIds.Contains(x.PublicationDatasetId))
+					.Select(x => x.ScaffoldId)
+					.Distinct()
+					.ToListAsync();
+
+				if (scaffoldIds.Count == 0) return new HashSet<int>();
+
+				var groupIds = await _context.Scaffolds
+					.Where(s => scaffoldIds.Contains(s.Id))
+					.Select(s => s.ScaffoldGroupId)
+					.Distinct()
+					.ToListAsync();
+
+				return groupIds.ToHashSet();
+			}
+
+			return null; // no publication scoping requested
 		}
 
 		public async Task<ICollection<ScaffoldGroup>?> GetFilteredScaffoldGroupsByRelevance_v1(ScaffoldFilter filter, string currentUserId)

@@ -58,17 +58,18 @@ public class ScaffoldGroupsController : ControllerBase
     }
 
 	[HttpDelete("{id}")]
-    public async Task<IActionResult> Delete(int id)
-    {
+	public async Task<IActionResult> Delete(int id)
+	{
 		try
 		{
-            var currentUserId = _userService.GetCurrentUserId();
+			var currentUserId = _userService.GetCurrentUserId();
 
 			if (currentUserId == null) return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
 
 			var (succeeded, errorMessage) = await _scaffoldGroupService.DeleteScaffoldGroup(id, currentUserId);
 
-			if (!succeeded) {
+			if (!succeeded)
+			{
 				return BadRequest(new ApiResponse<string>(400, errorMessage));
 			}
 
@@ -77,32 +78,63 @@ public class ScaffoldGroupsController : ControllerBase
 		catch (Exception ex)
 		{
 			_logger.LogError(ex, "Failed to delete the scaffold group");
-        	return StatusCode(500, new ApiResponse<string>(500, "An error occurred while deleting the scaffold group"));
+			return StatusCode(500, new ApiResponse<string>(500, "An error occurred while deleting the scaffold group"));
 		}
-    }
+	}
 
-	[HttpPost("createBatch")]
-    public async Task<IActionResult> CreateBatch(IEnumerable<ScaffoldGroupToCreateDto> scaffoldGroupsToCreate)
+	// [HttpPost("createBatch")]
+    // public async Task<IActionResult> CreateBatch(IEnumerable<ScaffoldGroupToCreateDto> scaffoldGroupsToCreate)
+    // {
+	// 	try
+	// 	{
+    //         var currentUserId = _userService.GetCurrentUserId();
+
+	// 		if (currentUserId == null) return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
+
+	// 		var (succeeded, errorMessage, scaffoldGroups) = await _scaffoldGroupService.CreateScaffoldGroups(scaffoldGroupsToCreate, currentUserId);
+
+	// 		if (!succeeded) {
+	// 			return BadRequest(new ApiResponse<string>(400, errorMessage));
+	// 		}
+
+	// 		return Ok(new ApiResponse<IEnumerable<ScaffoldGroupBaseDto>>(201, "Scaffold groups created", scaffoldGroups?.OrderByDescending(sg => sg.CreatedAt)));
+	// 	}
+	// 	catch (Exception ex)
+	// 	{
+	// 		_logger.LogError(ex, "Failed to create the scaffold groups in batch");
+    //     	return StatusCode(500, new ApiResponse<string>(500, "An error occurred while creating the scaffold groups in batch"));
+	// 	}
+    // }
+	[HttpPost("createBatchUpload")]
+    [RequestSizeLimit(200_000_000)] // optional: or [DisableRequestSizeLimit]
+    public async Task<IActionResult> CreateBatchUpload([FromForm] IFormFile batch, CancellationToken ct)
     {
-		try
-		{
+        if (batch is null || batch.Length == 0)
+            return BadRequest(new ApiResponse<string>(400, "No file uploaded"));
+
+        try
+        {
             var currentUserId = _userService.GetCurrentUserId();
+            if (currentUserId == null)
+                return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
 
-			if (currentUserId == null) return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
+            await using var stream = batch.OpenReadStream(); // stream the file
 
-			var (succeeded, errorMessage, scaffoldGroups) = await _scaffoldGroupService.CreateScaffoldGroups(scaffoldGroupsToCreate, currentUserId);
+            var (succeeded, errorMessage, created) =
+                await _scaffoldGroupService.CreateScaffoldGroupsFromJsonStream(stream, currentUserId, ct: ct);
 
-			if (!succeeded) {
-				return BadRequest(new ApiResponse<string>(400, errorMessage));
-			}
+            if (!succeeded)
+                return BadRequest(new ApiResponse<string>(400, errorMessage));
 
-			return Ok(new ApiResponse<IEnumerable<ScaffoldGroupBaseDto>>(201, "Scaffold groups created", scaffoldGroups?.OrderByDescending(sg => sg.CreatedAt)));
-		}
-		catch (Exception ex)
-		{
-			_logger.LogError(ex, "Failed to create the scaffold groups in batch");
-        	return StatusCode(500, new ApiResponse<string>(500, "An error occurred while creating the scaffold groups in batch"));
-		}
+            // Match your existing response shape
+            var ordered = created?.OrderByDescending(sg => sg.CreatedAt) ?? Enumerable.Empty<ScaffoldGroupBaseDto>();
+            return Ok(new ApiResponse<IEnumerable<ScaffoldGroupBaseDto>>(201, "Scaffold groups created", ordered));
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Failed to create scaffold groups from streamed upload");
+            return StatusCode(500, new ApiResponse<string>(500, "An error occurred while creating the scaffold groups"));
+        }
     }
 
 	[AllowAnonymous]
@@ -258,17 +290,18 @@ public class ScaffoldGroupsController : ControllerBase
 
 
 	[HttpGet("detailed")]
-    public async Task<IActionResult> GeDetailedScaffoldGroups([FromQuery] ScaffoldFilter filter)
-    {
+	public async Task<IActionResult> GeDetailedScaffoldGroups([FromQuery] ScaffoldFilter filter)
+	{
 		try
 		{
-            var currentUserId = _userService.GetCurrentUserId();
+			var currentUserId = _userService.GetCurrentUserId();
 
 			if (currentUserId == null) return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
 
 			var (succeeded, errorMessage, scaffoldGroups) = await _scaffoldGroupService.GetFilteredScaffoldGroups(filter, currentUserId, true);
 
-			if (!succeeded) {
+			if (!succeeded)
+			{
 				return NotFound(new ApiResponse<string>(404, errorMessage));
 			}
 
@@ -279,9 +312,34 @@ public class ScaffoldGroupsController : ControllerBase
 		catch (Exception ex)
 		{
 			_logger.LogError(ex, "Failed to get the scaffold groups");
-        	return StatusCode(500, new ApiResponse<string>(500, "An error occurred while getting the scaffold groups"));
+			return StatusCode(500, new ApiResponse<string>(500, "An error occurred while getting the scaffold groups"));
 		}
-    }
+	}
+	
+	[HttpPost("matches")]
+	public async Task<IActionResult> FindBestScaffoldGroupMatches([FromBody] InputGroupForMatchRequest matchRequest)
+	{
+		try
+		{
+			var currentUserId = _userService.GetCurrentUserId();
+
+			if (currentUserId == null) return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
+
+			var (succeeded, errorMessage, scaffoldGroups) = await _scaffoldGroupService.FindPotentialMatches(matchRequest, currentUserId, 5);
+
+			if (!succeeded)
+			{
+				return NotFound(new ApiResponse<string>(404, errorMessage));
+			}
+
+			return Ok(new ApiResponse<IEnumerable<ScaffoldGroupMatch>>(200, "", scaffoldGroups));
+		}
+		catch (Exception ex)
+		{
+			_logger.LogError(ex, "Failed to get the scaffold groups");
+			return StatusCode(500, new ApiResponse<string>(500, "An error occurred while getting the scaffold groups"));
+		}
+	}
 
 	[AllowAnonymous]
 	[HttpGet("data/{scaffoldGroupId}")]

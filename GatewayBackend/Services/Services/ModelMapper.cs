@@ -606,6 +606,48 @@ namespace Services.Services
             };
         }
 
+        public Job MapToJob(CoreJobDto core)
+        {
+            var job = new Job
+            {
+                Id = TryParseGuid(core.JobId) ? Guid.Parse(core.JobId!) : Guid.NewGuid(),
+                CoreJobId = core.Id,
+                Status = (JobStatus)core.Status,  // ensure enum alignment or map appropriately
+                SubmittedAt = core.SubmittedAt,
+                CompletedAt = core.CompletedAt,
+                ErrorMessage = core.ErrorMessage,
+                RetryCount = core.RetryCount
+                // fill other gateway properties as needed (CreatorId, LovamapCoreVersion, etc.)
+            };
 
+            return job;
+        }
+
+        public PublicationDatasetDescriptorRule MapToPublicationDatasetDescriptorRule(PublicationDatasetDescriptorRuleDto descriptorRuleDto, int datasetId)
+        {
+            var descriptorRule = new PublicationDatasetDescriptorRule
+            {
+                PublicationDatasetId = datasetId,
+                DescriptorTypeId = descriptorRuleDto.DescriptorTypeId,
+                JobMode = descriptorRuleDto.JobMode,
+                JobId = descriptorRuleDto.JobId
+            };
+            return descriptorRule;
+        }
+        
+        public PublicationDatasetDto MapToPublicationDatasetDto(PublicationDataset dataset)
+		{
+            var dto = new PublicationDatasetDto
+            {
+                Id = dataset.Id,
+                PublicationId = dataset.PublicationId,
+                Name = dataset.Name,
+                ScaffoldCount = dataset.PublicationDatasetScaffolds.Count,
+                RuleCount = dataset.PublicationDatasetDescriptorRules?.Count ?? 0
+            };
+            return dto;
+		}
+
+        private bool TryParseGuid(string? s) => !string.IsNullOrEmpty(s) && Guid.TryParse(s, out _);
     }
 }
