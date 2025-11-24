@@ -164,7 +164,7 @@ const Descriptors = {
 const Domains = {
     visualize: async (scaffoldId?: number | null, category?: number | null) => {
         const id = scaffoldId ?? -1
-        const response = await axios.get(`/domains/${id}`, {
+        const response = await axios.get(`/domains/visualize/${id}`, {
             params: {
                 category: category ?? 0  // Default to 0 (Particles) if not provided
             },
@@ -200,22 +200,22 @@ const Domains = {
 }
 
 const Jobs = {
-    submitJob: async (job: Job, dx: number) => {
+    submitJob: async (job: Job) => {
         const formData = new FormData();
         if (job.csvFile) {
-            formData.append('csvFile', job.csvFile);
+            formData.append('CsvFile', job.csvFile);
         }
         else if (job.datFile) {
-            formData.append('datFile', job.datFile);
+            formData.append('DatFile', job.datFile);
         }
         else if (job.jsonFile) {
-            formData.append('jsonFile', job.jsonFile);
+            formData.append('JsonFile', job.jsonFile);
         }
-        formData.append('dx', dx.toString());
+        if (job.dx != null) {
+            formData.append("Dx", job.dx.toString());
+        }
 
-        const response =  await axios.post<ApiResponse<Job>>(`/jobs/submit-job`, formData, {
-            headers: { 'Content-Type': 'multipart/form-data' },
-        });
+        const response =  await axios.post<ApiResponse<Job>>(`/jobs/submit-job`, formData);
 
         return response.data;
     },

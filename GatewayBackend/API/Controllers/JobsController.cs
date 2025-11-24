@@ -60,7 +60,7 @@ public class JobsController : ControllerBase
 			// 	error = "Lovamap Core returned an error",
 			// 	details = content
 			// });
-			return BadRequest(new ApiResponse<string>(400, $"Lovamp Error - {errorMessage}"));
+			return BadRequest(new ApiResponse<string>(400, $"Lovamap Error - {errorMessage}"));
 		}
 
 		return StatusCode(503, new ApiResponse<string>(503, "Lovamap Core did not respond"));

@@ -17,6 +17,7 @@ using Infrastructure.IHelpers;
 using Infrastructure;
 using System.Security.Claims;
 using Data.SeedingStrategies;
+using Microsoft.AspNetCore.Http.Features;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -88,6 +89,21 @@ builder.Services.AddCors(opt =>
                 "X-Domain-Size", 
                 "X-Original-Filename");
     });
+});
+
+builder.WebHost.ConfigureKestrel(options =>
+{
+    // e.g., allow up to 100 MB
+    options.Limits.MaxRequestBodySize = 150_000_000; // 100 * 1024 * 1024
+});
+
+builder.Services.Configure<FormOptions>(options =>
+{
+    // 100 MB again – keep this in sync with Kestrel for sanity
+    options.MultipartBodyLengthLimit = 150_000_000;
+    // optionally:
+    // options.ValueLengthLimit = int.MaxValue;
+    // options.BufferBody = true;
 });
 
 // Add repository service registrations

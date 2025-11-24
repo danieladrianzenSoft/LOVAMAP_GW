@@ -11,10 +11,9 @@ export default class JobStore {
 
 	submitJob = async (
         job: Job,
-        dx: number = 1
     ): Promise<Job | null> => {
         try {
-            const response = await agent.Jobs.submitJob(job, dx);
+            const response = await agent.Jobs.submitJob(job);
 			runInAction(() => {
 				console.log(response.data);
 			})

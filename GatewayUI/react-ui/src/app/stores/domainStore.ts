@@ -209,17 +209,46 @@ export default class DomainStore {
             throw new Error("Invalid scaffold ID");
         }
 
-        console.log(`[DOMAIN STORE]: fetch mesh for screenshot, scaffoldId: ${scaffoldId} category: ${category}, `)
+        console.log(`[DOMAIN STORE] → fetchMeshForScreenshot | scaffoldId=${scaffoldId} | category=${category}`);
+
         try {
-            const { file, domain } = await agent.Domains.visualize(scaffoldId, category); // assumes { file: Blob, domain: Domain }
+            // Call backend
+            const result = await agent.Domains.visualize(scaffoldId, category); 
+            const { file, domain } = result; // assumes { file: Blob, domain: Domain }
+
+            // --- DIAGNOSTIC LOGGING ---------------------------------------
+            console.log(`✔ visualize() completed. Blob info:`);
+            console.log(`   • blob size = ${file.size}`);
+            console.log(`   • blob type = ${file.type}`);
+            console.log(`   • domain =`, domain);
+
+            // Backend sometimes returns JSON-error instead of mesh
+            if (file.type.includes("application/json") || file.size < 500) {
+                try {
+                    const text = await file.text();
+                    console.warn(`WARNING: Expected GLB/DRACO mesh but received JSON instead.\n → Backend error response:`,text);
+                } catch {
+                    console.warn(`WARNING: Blob looks like JSON error (size=${file.size}), but text parsing failed.`);
+                }
+            }
+
             const blobUrl = URL.createObjectURL(file);
-            console.log(`[DEBUG] Blob size:`, file.size);
-            console.log("Fetched mesh domain:", domain);
-            console.log("Blob size:", file.size);
-            // console.log("Expected meshFilePath:", domain.meshFilePath);
             return { blobUrl, domain };
-        } catch (error) {
-            console.error("Failed to fetch mesh for screenshot", error);
+
+        } catch (error: any) {
+            console.error(`ERROR: fetchMeshForScreenshot FAILED`);
+            console.error(`→ Raw error:`, error);
+
+            // If it's a fetch error containing a response body, extract it
+            if (error?.response) {
+                try {
+                    const body = await error.response.text();
+                    console.error(`→ Backend responded with:`, body);
+                } catch {
+                    console.error(`→ Could not parse backend response body`);
+                }
+            }
+
             throw error;
         }
     };
@@ -310,6 +339,13 @@ export default class DomainStore {
             if (domainSize) formData.append("DomainSize", domainSize);
             if (metadataFile) formData.append("MetadataFile", metadataFile);
 
+            console.log(`[uploadDomainMesh] Scaffold Id: ${scaffoldId.toString()}`);
+            console.log(`[uploadDomainMesh] Category: ${category.toString()}`);
+            console.log("[uploadDomainMesh] FormData dump:");
+            formData.forEach((value, key) => {
+                console.log("   ", key, "=>", value);
+            });
+
             const response = await agent.Domains.createDomain(formData);
 
             if (response.statusCode === 201) {
@@ -320,6 +356,7 @@ export default class DomainStore {
             }
         } catch (error) {
             console.error("Failed to upload domain mesh", error);
+            throw error;
         }
     };
 }

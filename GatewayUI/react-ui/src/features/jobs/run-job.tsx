@@ -55,11 +55,11 @@ const RunJob: React.FC = () => {
 		}
 	}
 	
-	const handleSubmitJob = async (files: File[]) => {
+	const handleSubmitJob = async (file: File) => {
 		try {
 			// Handle CSV files
 			// const csvFiles = files.filter(file => file.name.endsWith(".csv"));
-			if (!files || files.length === 0) {
+			if (!file) {
 				toast.error("Please select a file first.");
 				return;
 			}
@@ -70,22 +70,31 @@ const RunJob: React.FC = () => {
 
 			setIsLoading(true);
 
-			const file = files[0];
-
-			if (file.name.endsWith(".csv")) {
-				const job: Job = {
-					csvFile: file,
-					datFile: null,
-					jsonFile: null,
-					jobId: crypto.randomUUID(),  // or any unique ID
-					dx: preparedInputGroup.dx ?? 2,
-					scaffoldGroupId: selectedScaffoldGroupId ?? 0
-				};
-				const dx = 1;
-				const jobResponse =  await submitJob(job, dx); // Use descriptorTypes
-				console.log(job)
-				console.log(jobResponse);
+			const fileName = file.name.toLowerCase();
+			const fileType = fileName.endsWith(".csv")
+				? "csv"
+				: fileName.endsWith(".dat")
+				? "dat"
+				: fileName.endsWith(".json")
+				? "json"
+				: null;
+			
+			if (!fileType) {
+				toast.error("File type must be .csv, .dat or .json");
+				return;
 			}
+
+			const job: Job = {
+				csvFile: fileType === 'csv' ? file : null,
+				datFile: fileType === 'dat' ? file : null,
+				jsonFile: fileType === 'json' ? file : null,
+				jobId: crypto.randomUUID(),  // or any unique ID
+				dx: preparedInputGroup.dx ?? 2,
+				scaffoldGroupId: selectedScaffoldGroupId ?? 0
+			};
+			const jobResponse =  await submitJob(job); // Use descriptorTypes
+			console.log(job)
+			console.log(jobResponse);
 			setJobSubmissionStage(4);
 		} catch (error) {
 			console.error(error);
@@ -152,19 +161,6 @@ const RunJob: React.FC = () => {
 					</div>
 					
 				)}
-				
-				{/* {isAdmin && (
-					<UploadFile
-						acceptedFileTypes={{ 
-							'application/json': ['.json'],
-							'text/csv': ['.csv'],
-							'application/octet-stream': ['.dat']
-						}}
-						onUploadSubmit={handleUploadSubmitFile}
-						onUploadError={handleUploadError}
-					/> 
-				)} */}
-
 			</div>
 		</div>
 	);

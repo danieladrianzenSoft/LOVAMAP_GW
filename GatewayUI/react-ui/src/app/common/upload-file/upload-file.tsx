@@ -9,10 +9,11 @@ interface UploadFileProps {
 	onUploadSuccess?: (response: any) => void;
 	onUploadError?: (error: any) => void;
 	isUploadDisabled?: boolean;
+	uploadButtonLabel?: string;
 	extraData?: Record<string, any>;
 }
 
-const UploadFile: React.FC<UploadFileProps> = ({ acceptedFileTypes, onUploadSubmit, onUploadError, isUploadDisabled, extraData }) => {
+const UploadFile: React.FC<UploadFileProps> = ({ acceptedFileTypes, onUploadSubmit, onUploadError, isUploadDisabled, uploadButtonLabel = "Upload File", extraData }) => {
 	const [files, setFiles] = useState<File[]>([]);
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -101,7 +102,7 @@ const UploadFile: React.FC<UploadFileProps> = ({ acceptedFileTypes, onUploadSubm
 				className="button-outline flex items-center justify-center space-x-2"
 				disabled={isLoading || isUploadDisabled} // Disable button when loading
 			>
-				Upload File
+				{uploadButtonLabel ?? "Upload File"}
 				{isLoading && (
 					<FaSpinner className="animate-spin ml-2" size={20} />
 				)}

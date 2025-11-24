@@ -563,6 +563,7 @@ const Visualization: React.FC = () => {
 		e.preventDefault();
 
 		if (selectedScaffoldId === null) return;
+		let triggerScreenshot = false;
 
 		try {
 			setIsLoading(true);
@@ -571,29 +572,29 @@ const Visualization: React.FC = () => {
 			? `[${payload.domainSize.join(",")}]`
 			: undefined;
 
-			if (payload.selectedFile) {
-				await domainStore.uploadDomainMesh(
-					selectedScaffoldId,
-					payload.selectedFile,
-					payload.category,
-					payload.voxelSize || undefined,
-					formattedDomainSize,
-					payload.metadataFile
-				);
+			if (!payload.selectedFile) throw new Error("No mesh ile selected.")
 
-				// Refresh that domain after upload
-				await domainStore.visualizeDomain(selectedScaffoldId, payload.category, true);
-				await domainStore.getDomainMetadata(payload.category, domainStore.getActiveDomain(payload.category)?.id);
+			await domainStore.uploadDomainMesh(
+				selectedScaffoldId,
+				payload.selectedFile,
+				payload.category,
+				payload.voxelSize || undefined,
+				formattedDomainSize,
+				payload.metadataFile
+			);
 
-				console.log("[Handle Form Submit]:", payload);
+			await domainStore.visualizeDomain(selectedScaffoldId, payload.category, true);
+			await domainStore.getDomainMetadata(payload.category, domainStore.getActiveDomain(payload.category)?.id);
 
-				const numericCategory = Number(payload.category);
+			console.log("[Handle Form Submit]:", payload);
 
-				if (numericCategory === 0 || numericCategory === 1) {
-					console.log(`TRIGGERING SCREENSHOT: ${payload.category}`);
-					setScaffoldIdForScreenshot(selectedScaffoldId);
-					setScreenshotCategory(payload.category);
-				}
+			const numericCategory = Number(payload.category);
+
+			if (numericCategory === 0 || numericCategory === 1) {
+				console.log(`TRIGGERING SCREENSHOT: ${payload.category}`);
+				triggerScreenshot = true;
+				setScaffoldIdForScreenshot(selectedScaffoldId);
+				setScreenshotCategory(payload.category);
 			}
 
 			setIsModalOpen(false); // close modal
@@ -601,7 +602,8 @@ const Visualization: React.FC = () => {
 			console.error("Upload failed", error);
 			setError("Upload failed. Please try again.");
 		} finally {
-			if (scaffoldIdForScreenshot == null) {
+			// Refresh that domain after upload
+			if (!triggerScreenshot) {
 				setIsLoading(false);
 			}
 		}
@@ -782,27 +784,6 @@ const Visualization: React.FC = () => {
 					/>
 				</div>
 			)}
-
-			{/* {scaffoldIdForScreenshot && screenshotCategory != null && (
-				<div
-					style={{
-					position: 'fixed',
-					bottom: 0,
-					right: 0,
-					width: 384,
-					height: 384,
-					pointerEvents: 'auto',
-					opacity: 1,  // invisible but still laid out & rendered
-					zIndex: 1000,
-					}}
-				>
-					<ScreenshotViewer
-						scaffoldId={scaffoldIdForScreenshot}
-						category={screenshotCategory}
-						onScreenshotReady={handleScreenshotUpload}
-					/>
-				</div>
-			)} */}
 
 			<AcknowledgementModal
 				isOpen={showAcknowledgement}

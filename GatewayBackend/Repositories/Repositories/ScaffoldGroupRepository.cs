@@ -374,17 +374,18 @@ namespace Repositories.Repositories
 
 		private IQueryable<ScaffoldGroup> ApplyFilters(IQueryable<ScaffoldGroup> query, ScaffoldFilter filter, string currentUserId)
 		{
-			// Filter by uploader based on visibility and user context
-			if (!string.IsNullOrEmpty(filter.UserId))
-			{
-				query = filter.UserId == currentUserId
-					? query.Where(sg => sg.UploaderId == filter.UserId)
-					: query.Where(sg => sg.UploaderId == filter.UserId && sg.IsPublic);
-			}
-			else
-			{
-				query = query.Where(sg => sg.UploaderId == currentUserId || sg.IsPublic);
-			}
+			// Filter by uploader based on visibility (IsPublic) and user context
+			// if (!string.IsNullOrEmpty(filter.UserId))
+			// {
+			// 	query = filter.UserId == currentUserId
+			// 		? query.Where(sg => sg.UploaderId == filter.UserId)
+			// 		: query.Where(sg => sg.UploaderId == filter.UserId && sg.IsPublic);
+			// }
+			// else
+			// {
+			// 	query = query.Where(sg => sg.UploaderId == currentUserId || sg.IsPublic);
+			// }
+			query = query.Where(sg => sg.IsPublic);
 
 			// Filter by scaffold group IDs if provided
 			if (filter.ScaffoldGroupIds?.Count > 0)

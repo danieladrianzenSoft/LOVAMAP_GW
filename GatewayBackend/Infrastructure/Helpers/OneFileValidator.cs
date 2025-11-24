@@ -11,7 +11,7 @@ namespace Infrastructure.Helpers
 			{
 				var hasCsv = request.CsvFile != null;
 				var hasDat = request.DatFile != null;
-				var hasJson = request.DatFile != null;
+				var hasJson = request.JsonFile != null;
  
 				var total = new[] { hasCsv, hasDat, hasJson }.Count(x => x);
 

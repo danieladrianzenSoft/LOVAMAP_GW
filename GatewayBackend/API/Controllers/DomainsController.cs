@@ -49,7 +49,7 @@ public class DomainsController : ControllerBase
     }
 
 	[AllowAnonymous]
-	[HttpGet("{scaffoldId}")]
+	[HttpGet("visualize/{scaffoldId:int}")]
     public async Task<IActionResult> Visualize(int scaffoldId, [FromQuery] DomainCategory? category = null)
     {
         try
@@ -95,7 +95,7 @@ public class DomainsController : ControllerBase
     }
 
 	[AllowAnonymous]
-	[HttpGet("{domainId}/metadata")]
+	[HttpGet("{domainId:int}/metadata")]
 	public async Task<IActionResult> GetDomainMetadata(int domainId)
 	{
 		try
@@ -118,7 +118,7 @@ public class DomainsController : ControllerBase
 		}
 	}
 
-	[HttpPost("{domainId}/metadata")]
+	[HttpPost("{domainId:int}/metadata")]
     public async Task<IActionResult> UpdateDomainMetadata([FromForm] DomainMetadataToUpdateDto dto)
     {
         try
@@ -138,7 +138,7 @@ public class DomainsController : ControllerBase
 		}
     }
 
-	[HttpDelete("{domainId}")]
+	[HttpDelete("{domainId:int}")]
     public async Task<IActionResult> DeleteDomain(int domainId)
     {
         try
