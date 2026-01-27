@@ -10,6 +10,7 @@ using System.Text.Json;
 using System.Text;
 using System.Net.Http.Headers;
 using System.Security.Cryptography;
+using Infrastructure.IHelpers;
 
 namespace API.Controllers;
 
@@ -22,13 +23,15 @@ public class JobsController : ControllerBase
 	private readonly ILovamapCoreJobService _jobService;
 	private readonly IConfiguration _configuration;
 	private readonly IUserService _userService;
+	private readonly IUserAuthHelper _userAuthHelper;
 
-	public JobsController(ILogger<JobsController> logger, ILovamapCoreJobService jobService, IConfiguration configuration, IUserService userService)
+	public JobsController(ILogger<JobsController> logger, ILovamapCoreJobService jobService, IConfiguration configuration, IUserService userService, IUserAuthHelper userAuthHelper)
 	{
 		_logger = logger;
 		_jobService = jobService;
 		_configuration = configuration;
 		_userService = userService;
+		_userAuthHelper = userAuthHelper;
 	}
 
 	[HttpPost("submit-job")]
@@ -70,28 +73,37 @@ public class JobsController : ControllerBase
 	[HttpPut("{jobId}/upload")]
 	public async Task<IActionResult> UploadResult([FromRoute] string jobId, CancellationToken cancellationToken)
 	{
-		// 1) Quick sanity check: token jobId vs route (simple, required)
+		// 1) Sanity check: token jobId vs route
 		var tokenJobId = User.FindFirst("jobId")?.Value;
 		if (string.IsNullOrEmpty(tokenJobId) || tokenJobId != jobId)
 		{
-			_logger.LogWarning("Upload rejected: token jobId does not match route (token:{TokenJobId}, route:{RouteJobId})", tokenJobId, jobId);
+			_logger.LogWarning("Upload rejected: token jobId mismatch (token:{TokenJobId}, route:{RouteJobId})", tokenJobId, jobId);
 			return Forbid();
 		}
 
-		var resultsDir = _configuration["RESULTS_PATH"] ?? Path.Combine(AppContext.BaseDirectory, "results");
+		if (!Guid.TryParse(jobId, out var jobGuid))
+		{
+			_logger.LogWarning("UploadResult: jobId {JobId} is not a valid GUID", jobId);
+			return BadRequest(new { error = "Invalid jobId" });
+		}
+
+		// var resultsDir = _configuration["OutputPaths:JobResults"]
+        //          ?? Environment.GetEnvironmentVariable("JOB_RESULTS_PATH")
+        //          ?? "Data/JobResults";
+		var resultsDir = _jobService.GetJobResultsDir();
+
 		Directory.CreateDirectory(resultsDir);
 
-		// Temporary file (unique)
-		var tmpPath = Path.Combine(resultsDir, $"{jobId}.{Guid.NewGuid():N}.json.tmp");
-		var finalPath = Path.Combine(resultsDir, $"{jobId}.json");
+		// Temp path: extension is just .tmp because we don't yet know the format
+		var tmpPath = Path.Combine(resultsDir, $"{jobId}.{Guid.NewGuid():N}.tmp");
+
+		string? computedHex = null;
 
 		try
 		{
-			// 2) Stream request body to tmp file while incrementally hashing (no full buffering)
 			const int bufferSize = 80 * 1024; // 80 KB
 			var buffer = new byte[bufferSize];
 
-			// Use IncrementalHash to compute SHA256 on the fly
 			using var incrementalHash = IncrementalHash.CreateHash(HashAlgorithmName.SHA256);
 
 			await using (var fs = System.IO.File.Create(tmpPath))
@@ -103,24 +115,20 @@ public class JobsController : ControllerBase
 					var read = await requestStream.ReadAsync(buffer.AsMemory(0, buffer.Length), cancellationToken);
 					if (read == 0) break;
 
-					// write chunk to file
 					await fs.WriteAsync(buffer.AsMemory(0, read), cancellationToken);
-
-					// update hash with same bytes
 					incrementalHash.AppendData(buffer, 0, read);
 				}
 
 				await fs.FlushAsync(cancellationToken);
 			}
 
-			// Get computed digest hex
+			// Compute hash
 			var computedBytes = incrementalHash.GetHashAndReset();
-			var computedHex = Convert.ToHexString(computedBytes).ToLowerInvariant();
+			computedHex = Convert.ToHexString(computedBytes).ToLowerInvariant();
 
-			// 3) Optional: verify Digest header if the client provided one
+			// Optional Digest header verification
 			if (Request.Headers.TryGetValue("Digest", out var digestHeader))
 			{
-				// Accept forms like "sha256=<hex>" or just "<hex>"
 				var provided = digestHeader.ToString()
 					.Replace("sha256=", "", StringComparison.OrdinalIgnoreCase)
 					.Replace("sha-256=", "", StringComparison.OrdinalIgnoreCase)
@@ -129,18 +137,33 @@ public class JobsController : ControllerBase
 
 				if (!string.Equals(provided, computedHex, StringComparison.OrdinalIgnoreCase))
 				{
-					_logger.LogWarning("Digest mismatch for job {JobId}: provided={Provided}, computed={Computed}", jobId, provided, computedHex);
+					_logger.LogWarning("Digest mismatch for job {JobId}: provided={Provided}, computed={Computed}",
+						jobId, provided, computedHex);
+
 					System.IO.File.Delete(tmpPath);
 					return BadRequest(new { error = "Digest mismatch", provided, computed = computedHex });
 				}
 			}
 
-			// 4) Rename temp -> final (atomic move on most OS)
-			if (System.IO.File.Exists(finalPath)) System.IO.File.Delete(finalPath);
-			System.IO.File.Move(tmpPath, finalPath);
+			// Delegate format detection + conversion + job update to the service
+			var contentType = Request.ContentType; // may be null
+			var (succeeded, errorMessage, finalPath) = await _jobService.UploadJobResultAsync(
+				jobGuid,
+				tmpPath,
+				computedHex,
+				contentType,
+				cancellationToken
+			);
 
-			// 5) Return success with verification info so you can inspect
-			_logger.LogInformation("Stored result for job {JobId} at {Path} (sha256={Digest})", jobId, finalPath, computedHex);
+			if (!succeeded)
+			{
+				_logger.LogWarning("Processing uploaded result failed for job {JobId}: {Error}", jobId, errorMessage);
+				return BadRequest(new { jobId, error = errorMessage });
+			}
+
+			_logger.LogInformation("Stored result for job {JobId} at {Path} (sha256={Digest})",
+				jobId, finalPath, computedHex);
+
 			return Ok(new { jobId, path = finalPath, sha256 = computedHex, stored = true });
 		}
 		catch (OperationCanceledException)
@@ -157,4 +180,60 @@ public class JobsController : ControllerBase
 		}
 	}
 
+	[Authorize]
+	[HttpGet("{jobId}/result")]
+	public async Task<IActionResult> DownloadJobResult([FromRoute] string jobId, CancellationToken ct)
+	{
+		if (!Guid.TryParse(jobId, out var jobGuid))
+			return BadRequest(new { error = "Invalid jobId" });
+
+		var currentUserId = _userService.GetCurrentUserId();
+		if (currentUserId == null) return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
+		var isAdmin = await _userAuthHelper.IsInRole(currentUserId, "administrator");
+		var job = await _jobService.GetByIdAsync(jobGuid);
+
+		if (job == null)
+			return NotFound(new ApiResponse<string>(404, "Job not found"));
+
+		if (job.CreatorId != currentUserId && !isAdmin) return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
+
+		var (succeeded, errorMessage, file) =
+			await _jobService.GetJobResultFileAsync(jobGuid);
+
+		if (!succeeded)
+			return NotFound(new { jobId, error = errorMessage });
+
+		// Stream it to avoid loading into memory
+		var stream = System.IO.File.OpenRead(file!.FullPath);
+		return File(stream, file.ContentType, file.DownloadFileName);
+	}
+
+	[HttpGet("{jobId}")]
+    public async Task<IActionResult> GetJob(Guid jobId)
+    {
+        var job = await _jobService.GetByIdAsync(jobId);
+        if (job == null) return NotFound();
+
+        return Ok(job);
+    }
+
+	[HttpGet("me")]
+	public async Task<IActionResult> GetJobsSubmittedByUser()
+	{
+		try
+		{
+			var currentUserId = _userService.GetCurrentUserId();
+
+			if (currentUserId == null) return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
+
+			var jobs = await _jobService.GetJobsByCreatorIdAsync(currentUserId);
+
+			return Ok(new ApiResponse<IEnumerable<JobToReturnDto>>(200, "", jobs));
+		}
+		catch (Exception ex)
+		{
+			_logger.LogError(ex, "Failed to get the user's jobs");
+        	return StatusCode(500, new ApiResponse<string>(500, "An error occurred while getting the user's jobs"));
+		}
+	}
 }

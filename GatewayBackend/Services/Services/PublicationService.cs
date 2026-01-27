@@ -55,11 +55,11 @@ namespace Services.Services
 			}
 		}
 
-		public async Task<(bool Succeeded, string ErrorMessage, IEnumerable<PublicationSummaryDto>? publications)> GetAllPublicationSummaries()
+		public async Task<(bool Succeeded, string ErrorMessage, IEnumerable<PublicationSummaryDto>? publications)> GetPublicationSummaries(PublicationFilter filter)
 		{
 			try
 			{
-				var publications = await _publicationRepository.GetAllPublicationSummariesAsync();
+				var publications = await _publicationRepository.GetPublicationSummariesAsync(filter);
 				return (true, "", publications);
 			}
 			catch (Exception ex)

@@ -4,103 +4,6 @@ import { Domain } from "../models/domain";
 import { runInAction } from "mobx";
 import { DomainMetadata } from "../models/domainMetadata";
 
-// getDomainMetadata = async(category:number, domainId?: number): Promise<any> => {
-//         if (!domainId) return;
-//         if (this.domainMetadataCache.has(domainId)) {
-//             runInAction(() => {
-//                 const metadata = this.domainMetadataCache.get(domainId);
-//                 if (metadata) {
-//                     this.domainMetadata = metadata;
-//                     console.log(metadata);
-//                 }
-//             });
-//             return this.domainMetadata
-//         }
-
-//         try {
-//             const response = await agent.Domains.getDomainMetadata(domainId);
-//             runInAction(() => {
-//                 if (response.data) {
-//                     this.updateDomainMetadataCache(domainId, response.data);
-//                     this.activeDomainMetadata[category] = response.data;
-//                     this.domainMetadata = response.data;
-//                 }
-//             });
-//             return response.data;
-//         } catch (error) {
-//             console.error(error);
-//             runInAction(() => {
-//                 this.domainMetadata = null;
-//             });
-//         }
-//     }
-
-// visualizeDomain = async (
-//         scaffoldId?: number | null, 
-//         category: number = 0,
-//         forceRefresh: boolean = false
-//     ): Promise<number | undefined> => {
-//         try {
-//             this.isFetchingDomain = true;
-    
-//             // If scaffoldId is defined, attempt to load from cache
-//             if (scaffoldId != null) {
-//                 const key = this.getDomainCacheKey(scaffoldId, category);
-//                 if (!forceRefresh && this.domainCache.has(key)) {
-//                     const cached = this.domainCache.get(key)!;
-//                     runInAction(() => {
-//                         if (this.domainMeshUrl) {
-//                             URL.revokeObjectURL(this.domainMeshUrl);
-//                             this.domainMeshUrl = null;
-//                         }
-//                         this.domainMesh = cached.mesh;
-//                         this.domainMeshUrl = URL.createObjectURL(cached.mesh);
-//                         this.domain = cached.domain;
-//                         this.isFetchingDomain = false;
-//                     });
-//                     return cached.domain.scaffoldId;
-//                 }
-//             }
-    
-//             // Fetch from API (supports null scaffoldId → random)
-//             const { file, domain } = await agent.Domains.visualize(scaffoldId, category);
-    
-//             const resolvedKey = this.getDomainCacheKey(domain.scaffoldId!, category);
-    
-//             runInAction(() => {
-//                 this.updateDomainCache(resolvedKey, {mesh: file, domain: domain})
-
-//                 if (this.domainMeshUrl) {
-//                     URL.revokeObjectURL(this.domainMeshUrl);
-//                     this.domainMeshUrl = null;
-//                 }
-    
-//                 this.domainMesh = file;
-//                 this.domainMeshUrl = URL.createObjectURL(file);
-//                 this.domain = domain;
-//                 this.isFetchingDomain = false;
-//             });
-    
-//             return domain.scaffoldId;
-    
-//         } catch (error) {
-//             runInAction(() => {
-//                 this.clearDomainMesh();
-//             });
-//             return undefined;
-//         }
-//     };
-
-// clearDomainMesh = () => {
-//     if (this.domainMeshUrl) {
-//         URL.revokeObjectURL(this.domainMeshUrl);
-//         this.domainMeshUrl = null;
-//     }
-//     this.domainMesh = null;
-//     this.domain = null;
-//     this.isFetchingDomain = false;
-// };
-
 export default class DomainStore {
 	domainMesh: Blob | null = null; // Store .glb file
     domain: Domain | null = null; // Store domain
@@ -166,6 +69,8 @@ export default class DomainStore {
                     return cached.domain.scaffoldId;
                 }
             }
+
+            if (scaffoldId == null) { scaffoldId = 0; }
 
             // Fetch from API
             const { file, domain } = await agent.Domains.visualize(scaffoldId, category);

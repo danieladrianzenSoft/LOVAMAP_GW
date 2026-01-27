@@ -54,7 +54,7 @@ public class DomainsController : ControllerBase
     {
         try
 		{
-			if (scaffoldId == -1)
+			if (scaffoldId == 0)
 			{
 				var randomId = await _domainService.GetRandomScaffoldIdForDomainAsync();
 				if (randomId == null)
@@ -65,7 +65,11 @@ public class DomainsController : ControllerBase
 
 			var resolvedCategory = category ?? DomainCategory.Particles;
 
+			// Console.WriteLine($"Visualizing domain for ScaffoldId: {scaffoldId}, Category: {resolvedCategory}");
+
 			var (succeeded, errorMessage, mesh, domainMetadata) = await _domainService.GetDomain(scaffoldId, resolvedCategory);
+
+			// Console.WriteLine($"GetDomain returned: Succeeded={succeeded}, ErrorMessage={errorMessage}, Mesh={(mesh != null ? "Has Data" : "Null")}, DomainMetadata={(domainMetadata != null ? "Has Data" : "Null")}");
 
 			if (!succeeded && (mesh == null || domainMetadata == null))  {
 				return NotFound(new ApiResponse<string>(404, errorMessage));

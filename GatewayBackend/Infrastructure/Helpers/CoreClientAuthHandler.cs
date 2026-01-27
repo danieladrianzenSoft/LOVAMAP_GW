@@ -5,6 +5,8 @@ namespace Infrastructure.Helpers
 	public sealed class CoreClientAuthHandler : DelegatingHandler
 	{
 		private readonly ICoreTokenProvider _tokenProvider;
+		private static readonly HttpRequestOptionsKey<bool> SkipCoreAuthKey =
+        	new HttpRequestOptionsKey<bool>("SkipCoreAuth");
 
 		public CoreClientAuthHandler(ICoreTokenProvider tokenProvider)
 		{
@@ -13,6 +15,11 @@ namespace Infrastructure.Helpers
 
 		protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken ct)
 		{
+			if (request.Options.TryGetValue(SkipCoreAuthKey, out var skipAuth) && skipAuth)
+			{
+				return await base.SendAsync(request, ct);
+			}
+
 			// 1st attempt with cached/active token
 			var token = await _tokenProvider.GetAccessTokenAsync(ct);
 			request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);

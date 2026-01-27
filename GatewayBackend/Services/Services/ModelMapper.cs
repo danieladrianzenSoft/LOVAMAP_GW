@@ -623,6 +623,39 @@ namespace Services.Services
             return job;
         }
 
+        public CoreJobDto MapToCoreJobDto(Job job)
+        {
+            var coreJobDto = new CoreJobDto
+            {
+                Id = job.CoreJobId ?? 0,
+                JobId = job.Id.ToString(),
+                Status = (int)job.Status,  // ensure enum alignment or map appropriately
+                SubmittedAt = job.SubmittedAt,
+                CompletedAt = job.CompletedAt,
+                ErrorMessage = job.ErrorMessage,
+                RetryCount = job.RetryCount
+                // fill other core properties as needed
+            };
+
+            return coreJobDto;
+        }
+
+        public JobToReturnDto MapToJobToReturnDto(Job job)
+        {
+            var coreJobDto = new JobToReturnDto
+            {
+                Id = job.Id.ToString(),
+                Status = job.Status.ToString(),  // ensure enum alignment or map appropriately
+                SubmittedAt = job.SubmittedAt,
+                CompletedAt = job.CompletedAt,
+                ErrorMessage = job.ErrorMessage,
+                HasResults = job.Status == JobStatus.Completed && (job.ResultFilePath != null || job.ResultHash != null)
+                // fill other core properties as needed
+            };
+
+            return coreJobDto;
+        }
+
         public PublicationDatasetDescriptorRule MapToPublicationDatasetDescriptorRule(PublicationDatasetDescriptorRuleDto descriptorRuleDto, int datasetId)
         {
             var descriptorRule = new PublicationDatasetDescriptorRule

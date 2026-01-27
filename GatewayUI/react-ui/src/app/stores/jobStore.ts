@@ -1,9 +1,9 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import agent from "../api/agent";
-import { Job } from "../models/job";
+import { Job, JobForList } from "../models/job";
 
 export default class JobStore {
-	jobsRan: Job[] = [];
+	jobsRan: JobForList[] = [];
 
 	constructor() {
 		makeAutoObservable(this)
@@ -24,4 +24,26 @@ export default class JobStore {
         }
     };
 
+	getUserJobs = async (): Promise<JobForList[] | null> => {
+		try {
+			const response = await agent.Jobs.getUserJobs();
+			runInAction(() => {
+				this.jobsRan = response.data;
+			})
+			return response.data;
+		} catch (error) {
+			console.error('Error fetching user jobs:', error);
+			return null;
+		}
+	}
+
+	getJobResult = async (jobId: string): Promise<Blob | null> => {
+		try {
+			const data = await agent.Jobs.getJobResult(jobId);
+			return data;
+		} catch (error) {
+			console.error('Error fetching job result:', error);
+			return null;
+		}
+	}
 }

@@ -9,6 +9,6 @@ namespace Services.IServices
 	{
 		Task CreatePublication(PublicationToCreateDto publicationToCreate);
 		Task<(bool Succeeded, string ErrorMessage, PublicationSummaryDto? publication)> GetPublicationSummaryByIdAsync(int publicationId);
-		Task<(bool Succeeded, string ErrorMessage, IEnumerable<PublicationSummaryDto>? publications)> GetAllPublicationSummaries();
+		Task<(bool Succeeded, string ErrorMessage, IEnumerable<PublicationSummaryDto>? publications)> GetPublicationSummaries(PublicationFilter filter);
 	}
 }

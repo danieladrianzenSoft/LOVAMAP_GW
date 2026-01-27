@@ -8,6 +8,7 @@ namespace Services.IServices
 	public interface IPublicationDatasetService
 	{
 		Task<(bool Succeeded, string ErrorMessage, PublicationDatasetDto? publicationDatasetDto)> CreatePublicationDatasetAsync(PublicationDatasetForCreationDto datasetForCreationDto);
+		Task<(bool Succeeded, string ErrorMessage, PublicationDatasetDto? publicationDatasetDto, bool? isNew)>UpsertPublicationDatasetAsync(PublicationDatasetForCreationDto datasetForUpsertDto);
 		Task<(bool Succeeded, string ErrorMessage, PublicationDatasetDto? PublicationDataset)> GetPublicationDatasetByIdAsync(int datasetId);
 	}
 }

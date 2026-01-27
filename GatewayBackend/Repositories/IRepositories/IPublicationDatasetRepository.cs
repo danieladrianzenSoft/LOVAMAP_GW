@@ -9,7 +9,10 @@ namespace Repositories.IRepositories
 	{
 		bool HasChanges();
 		void Add(PublicationDataset publicationDataset);
+		void DeleteScaffolds(long publicationDatasetId);
+		void DeleteDescriptorRules(long publicationDatasetId);
 		Task<bool> PublicationDatasetNameExistsAsync(int publicationId, string name);
+		Task<PublicationDataset?> GetPublicationDatasetByNameAsync(int publicationId, string name);
 		Task AddPublicationDatasetScaffolds(int datasetId, IEnumerable<int> scaffoldIds);
 		Task AddPublicationDatasetDescriptorRules(int datasetId, IEnumerable<PublicationDatasetDescriptorRule> rules);
 		Task<PublicationDatasetDto?> GetPublicationDatasetByIdAsync(int datasetId);

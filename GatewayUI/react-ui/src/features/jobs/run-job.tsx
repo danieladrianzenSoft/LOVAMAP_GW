@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { observer } from 'mobx-react-lite';
-import UploadFile from '../../app/common/upload-file/upload-file';
 import { useStore } from '../../app/stores/store';
 import toast from "react-hot-toast";
 import { Job } from '../../app/models/job';
@@ -11,7 +10,11 @@ import MatchPicker from './match-picker';
 import JobForm from './job-form';
 // import { FaSpinner, FaPlus, FaStar, FaRegStar, FaTimes } from 'react-icons/fa';
 
-const RunJob: React.FC = () => {
+interface RunJobProps {
+  onJobSubmitted?: () => void; // optional, for flexibility
+}
+
+const RunJob: React.FC<RunJobProps> = ({ onJobSubmitted }) => {
 	const [isLoading, setIsLoading] = useState<boolean>(true);
 	const { jobStore, userStore } = useStore();
 	const { submitJob } = jobStore;
@@ -20,8 +23,6 @@ const RunJob: React.FC = () => {
 	const [preparedJob, setPreparedJob] = useState<Job | null>(null);
 	const [selectedScaffoldGroupId, setSelectedScaffoldGroupId] = useState<number | null>(null);
 	const [status, setStatus] = useState<string | null>(null);
-	const [showJobForm, setShowJobForm] = useState(false);
-	const [isSubmitting, setIsSubmitting] = useState(false);
 	const [jobSubmissionStage, setJobSubmissionStage] = useState(1);
 	
 
@@ -95,7 +96,10 @@ const RunJob: React.FC = () => {
 			const jobResponse =  await submitJob(job); // Use descriptorTypes
 			console.log(job)
 			console.log(jobResponse);
-			setJobSubmissionStage(4);
+			// setJobSubmissionStage(4);
+			toast.success('Job submitted successfully');
+
+			if (onJobSubmitted) onJobSubmitted();
 		} catch (error) {
 			console.error(error);
 			toast.error('Failed to upload files.');
@@ -112,24 +116,6 @@ const RunJob: React.FC = () => {
 		<div className={`container mx-auto py-8 px-2`}>
 			<div className="text-3xl text-gray-700 font-bold mb-12">Run LOVAMAP</div>
 			<div>
-				<div className='text-xl text-gray-700 font-bold inline mt-12'>Run online - 
-					<p className='text-gray-400 ml-16'>coming soon...</p>
-				</div>
-
-				<div className='mt-12'>
-					<p>
-						In the meantime, for inquiries including simulations of specific scaffold configurations 
-						or LOVAMAP experimental dataset analysis, {" "}
-						<a
-							href="mailto:admin@lovamap.com"
-							className="text-blue-600 hover:underline"
-						>
-							contact us. {" "}
-						</a>
-						The legacy MATLAB version of LOVAMAP will also soon be publically accessible via GitHub.
-					</p>
-				</div>
-				
 				{isAdmin && (
 					<div className="p-8">
 						{jobSubmissionStage === 1 && (
@@ -153,11 +139,11 @@ const RunJob: React.FC = () => {
 								onBack={handleGoBack}
 							/>
 						)}
-						{jobSubmissionStage === 4 && (
+						{/* {jobSubmissionStage === 4 && (
 							<div>
 								Job submitted successfully.
 							</div>
-						)}
+						)} */}
 					</div>
 					
 				)}

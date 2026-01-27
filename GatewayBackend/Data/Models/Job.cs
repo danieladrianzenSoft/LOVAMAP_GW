@@ -14,6 +14,8 @@ namespace Data.Models
 		public JobStatus Status { get; set; } = 0;
 		public DateTime SubmittedAt { get; set; }
 		public DateTime? CompletedAt { get; set; }
+		public string? ResultFilePath { get; set; }
+		public string? ResultHash { get; set; }
 		public string? CreatorId { get; set; }
 		public User? Creator { get; set; }
 		public string? LovamapCoreVersion { get; set; }

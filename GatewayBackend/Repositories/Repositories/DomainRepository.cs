@@ -59,7 +59,7 @@ namespace Repositories.Repositories
 		public async Task<int?> GetRandomDomainIdWithMeshAsync()
 		{
 			var domain = await _context.Domains
-				.Where(d => d.MeshFilePath != null)
+				.Where(d => d.MeshFilePath != null && d.Category == DomainCategory.Particles)
 				.OrderBy(d => Guid.NewGuid())
 				.Select(d => d.ScaffoldId)
 				.FirstOrDefaultAsync();

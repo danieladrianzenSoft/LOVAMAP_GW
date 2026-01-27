@@ -358,6 +358,12 @@ namespace Data.Migrations
                     b.Property<string>("LovamapCoreVersion")
                         .HasColumnType("text");
 
+                    b.Property<string>("ResultFilePath")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ResultHash")
+                        .HasColumnType("text");
+
                     b.Property<int>("RetryCount")
                         .HasColumnType("integer");
 
@@ -538,7 +544,12 @@ namespace Data.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("UploaderId")
+                        .HasColumnType("text");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UploaderId");
 
                     b.ToTable("Publications");
                 });
@@ -1241,6 +1252,16 @@ namespace Data.Migrations
                     b.Navigation("Scaffold");
                 });
 
+            modelBuilder.Entity("Data.Models.Publication", b =>
+                {
+                    b.HasOne("Data.Models.User", "Uploader")
+                        .WithMany("PublicationsUploaded")
+                        .HasForeignKey("UploaderId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.Navigation("Uploader");
+                });
+
             modelBuilder.Entity("Data.Models.PublicationDataset", b =>
                 {
                     b.HasOne("Data.Models.Publication", "Publication")
@@ -1562,6 +1583,8 @@ namespace Data.Migrations
                     b.Navigation("Downloads");
 
                     b.Navigation("JobsCreated");
+
+                    b.Navigation("PublicationsUploaded");
 
                     b.Navigation("ScaffoldGroups");
 

@@ -11,6 +11,6 @@ namespace Repositories.IRepositories
 		void Add(Publication publication);
 		Task<PublicationSummaryDto?> GetPublicationSummaryByIdAsync(int publicationId);
 		Task<bool> ExistsAsync(int publicationId);
-		Task<List<PublicationSummaryDto>> GetAllPublicationSummariesAsync();
+		Task<List<PublicationSummaryDto>> GetPublicationSummariesAsync(PublicationFilter filter);
 	}
 }

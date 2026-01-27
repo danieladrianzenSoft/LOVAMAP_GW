@@ -7,3 +7,18 @@ export interface Job {
 	dx: number;
 	scaffoldGroupId: number;
 }
+
+export interface JobForList {
+	id: string;
+	submittedAt: string;
+	status: string;
+}
+
+export interface JobDetailed {
+	id: string;
+	submittedAt: string;
+	completedAt?: string | null;
+	status: string;
+	hasResults: boolean;
+	fileName?: string | null;
+}

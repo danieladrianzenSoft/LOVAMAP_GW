@@ -37,6 +37,8 @@ namespace Services.IServices
 		ImageToShowDto MapImageToDto(Image image);
 		PublicationDatasetDescriptorRule MapToPublicationDatasetDescriptorRule(PublicationDatasetDescriptorRuleDto descriptorRuleDto, int datasetId);
 		PublicationDatasetDto MapToPublicationDatasetDto(PublicationDataset dataset);
+		JobToReturnDto MapToJobToReturnDto(Job job);
+		CoreJobDto MapToCoreJobDto(Job job);
 
 	}
 }

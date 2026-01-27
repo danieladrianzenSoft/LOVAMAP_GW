@@ -1,0 +1,3 @@
+[submodule "GatewayBackend/extern/lovamap-proto"]
+	path = GatewayBackend/extern/lovamap-proto
+	url = https://github.com/seguralab/lovamap-proto.git
