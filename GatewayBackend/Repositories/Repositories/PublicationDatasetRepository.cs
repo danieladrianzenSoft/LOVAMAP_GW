@@ -24,6 +24,20 @@ namespace Repositories.Repositories
 			_context.PublicationDatasets.Add(publicationDataset);
 		}
 
+		public void DeleteScaffolds(long publicationDatasetId)
+		{
+			var scaffolds = _context.PublicationDatasetScaffolds
+				.Where(s => s.PublicationDatasetId == publicationDatasetId);
+			_context.PublicationDatasetScaffolds.RemoveRange(scaffolds);
+		}
+
+		public void DeleteDescriptorRules(long publicationDatasetId)
+		{
+			var rules = _context.PublicationDatasetDescriptorRules
+				.Where(r => r.PublicationDatasetId == publicationDatasetId);
+			_context.PublicationDatasetDescriptorRules.RemoveRange(rules);
+		}
+
 		public bool HasChanges()
 		{
 			return _context.ChangeTracker.HasChanges();
@@ -33,6 +47,15 @@ namespace Repositories.Repositories
 		{
 			return await _context.PublicationDatasets.AsNoTracking()
 				.AnyAsync(d => d.PublicationId == publicationId && d.Name == name);
+		}
+
+		public async Task<PublicationDataset?> GetPublicationDatasetByNameAsync(int publicationId, string name)
+		{
+			return await _context.PublicationDatasets
+				.Where(d => d.PublicationId == publicationId && d.Name == name)
+				.Include(d => d.PublicationDatasetScaffolds)
+				.Include(d => d.PublicationDatasetDescriptorRules)
+				.FirstOrDefaultAsync();
 		}
 
 		public async Task AddPublicationDatasetScaffolds(int datasetId, IEnumerable<int> scaffoldIds)

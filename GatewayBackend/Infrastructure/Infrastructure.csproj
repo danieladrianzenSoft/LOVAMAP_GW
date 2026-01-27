@@ -7,12 +7,17 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj" />
+    <Protobuf Include="..\extern\lovamap-proto\schemas\Descriptors.proto"
+      ProtoRoot="..\extern\lovamap-proto\schemas"
+      GrpcServices="None" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.3" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.5.1" />
+    <PackageReference Include="Google.Protobuf" Version="3.33.1" />
+    <PackageReference Include="Grpc.Tools" Version="2.76.0" />
   </ItemGroup>
 
 </Project>

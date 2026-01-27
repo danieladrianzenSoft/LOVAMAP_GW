@@ -32,7 +32,7 @@ const SideBarMain: React.FC = () => {
 			setActiveTab(4);
 		} else if (matchPath('/experiments/*', p)) {
 			setActiveTab(5);
-		} else if (matchPath('/jobs/*', p)) {
+		} else if (matchPath('/jobs/*', p) || matchPath('/run', p)) {
 			setActiveTab(6);
 		} else if (matchPath('/publications/*', p)) {
 			setActiveTab(7);
@@ -108,7 +108,7 @@ const SideBarMain: React.FC = () => {
 								</div>
 							)}
 							</Tab>
-							<Tab as={NavLink} to='/jobs' onClick={() => commonStore.setSidebarOpen(false)} className="focus:outline-none">
+							<Tab as={NavLink} to='/run' onClick={() => commonStore.setSidebarOpen(false)} className="focus:outline-none">
 							{({ selected }) => (
 								<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
 								<p>Run LOVAMAP</p>

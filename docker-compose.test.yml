@@ -23,5 +23,28 @@ services:
     labels:
       - env=test
 
+  test_fuseki:
+    image: stain/jena-fuseki
+    container_name: lovamap_test_fuseki
+    restart: always
+    ports:
+      - "127.0.0.1:3031:3030"
+    environment:
+      - ADMIN_PASSWORD=${FUSEKI_ADMIN_PASSWORD}
+    volumes:
+      - fuseki_data_test:/fuseki
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:3030/$$/ping > /dev/null || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+    labels:
+      - env=test
+
 volumes:
   postgres_data_test:
+  fuseki_data_test:

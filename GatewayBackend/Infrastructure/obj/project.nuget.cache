@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "dkxUzgn7M0iI0zQIiVBvfzjiNhtWs8msdYSoYOgpskyl6eT8co2nZfzDHhpS487y1wlLdwXNfA2MdMBS+CTmDw==",
+  "dgSpecHash": "hk9C3Lp345XNxIiXACFbBcPp4y3BlwgAAFL7mY8jETfaRJfG658p+UKaDtoGR+y/lJcXMeCgpYujJh3wF9T/eQ==",
   "success": true,
   "projectFilePath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Infrastructure/Infrastructure.csproj",
   "expectedPackageFiles": [
+    "/Users/dzen/.nuget/packages/google.protobuf/3.33.1/google.protobuf.3.33.1.nupkg.sha512",
+    "/Users/dzen/.nuget/packages/grpc.tools/2.76.0/grpc.tools.2.76.0.nupkg.sha512",
     "/Users/dzen/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/Users/dzen/.nuget/packages/microsoft.aspnetcore.authentication/2.2.0/microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "/Users/dzen/.nuget/packages/microsoft.aspnetcore.authentication.abstractions/2.2.0/microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",

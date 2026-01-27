@@ -5,6 +5,8 @@ namespace Data.Models
 	{
 		public int Id { get; set; }
 		public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+		public string? UploaderId { get; set; }
+		public User? Uploader { get; set; }
 		public string Title { get; set; } = null!;
 		public string Authors { get; set; } = null!;
 		public string Journal { get; set; } = null!;

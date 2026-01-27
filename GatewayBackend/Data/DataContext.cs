@@ -210,6 +210,12 @@ public partial class DataContext : IdentityDbContext<User, Role, string>
             .HasForeignKey(p => p.PublicationId)
             .OnDelete(DeleteBehavior.SetNull);
 
+        builder.Entity<Publication>()
+            .HasOne(p => p.Uploader)
+            .WithMany(d => d.PublicationsUploaded)
+            .HasForeignKey(p => p.UploaderId)
+            .OnDelete(DeleteBehavior.Cascade);
+
         // --- PublicationDataset ---
         builder.Entity<PublicationDataset>(b =>
         {

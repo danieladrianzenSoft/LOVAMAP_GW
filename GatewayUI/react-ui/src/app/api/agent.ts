@@ -9,7 +9,7 @@ import { DescriptorType } from "../models/descriptorType";
 import { Image, ImageCategory, ImageToCreate, ImageToUpdate } from "../models/image";
 import environment from "../environments/environment"
 import { Domain } from "../models/domain";
-import { Job } from "../models/job";
+import { Job, JobForList } from "../models/job";
 import { ScaffoldWithMissingThumbnail } from "../models/scaffold";
 import { PoreInfo, PoreInfoForScaffoldGroup } from "../models/poreInfo";
 import { DomainMetadata } from "../models/domainMetadata";
@@ -129,7 +129,7 @@ const ScaffoldGroups = {
         );
     },
     resetNameAndComments: (scaffoldGroupIds: {scaffoldGroupIds: number[]}) => requests.post<ApiResponse<BatchOperationResult>>('scaffoldGroups/reset-names', scaffoldGroupIds),
-    getUploadedScaffoldGroups: () => requests.get<ApiResponse<ScaffoldGroup[]>>('/users/me/scaffoldgroups'),
+    getUploadedScaffoldGroups: () => requests.get<ApiResponse<ScaffoldGroup[]>>('scaffoldgroups/me'),
     delete: (id: number) => requests.del<ApiResponse<string>>('scaffoldgroups/' + id),
     uploadScaffoldGroupImage: async (scaffoldGroupId: number, image: ImageToCreate) => {
         const formData = new FormData();
@@ -219,6 +219,13 @@ const Jobs = {
 
         return response.data;
     },
+    getUserJobs: async () => requests.get<ApiResponse<JobForList[]>>('/jobs/me'),
+    getJobResult: async (jobId: string) => {
+        const response = await axios.get(`/jobs/${jobId}/result`, {
+            responseType: 'blob'
+        });
+        return response.data;
+    }
 }
 
 const Publications = {

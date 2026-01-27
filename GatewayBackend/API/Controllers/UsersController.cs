@@ -53,34 +53,6 @@ public class UsersController : ControllerBase
         }
     }
 
-    [HttpGet("me/scaffoldgroups")]
-    public async Task<IActionResult> GetUploadedScaffoldGroups()
-    {
-		try
-		{
-            var currentUserId = _userService.GetCurrentUserId();
-
-			if (currentUserId == null) return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
-
-   			var filter = new ScaffoldFilter { UserId = currentUserId };
-
-			var (succeeded, errorMessage, scaffoldGroups) = await _scaffoldGroupService.GetFilteredScaffoldGroups(filter, currentUserId);
-
-			if (!succeeded) {
-				return NotFound(new ApiResponse<string>(404, errorMessage));
-			}
-
-			var summarizedGroups = scaffoldGroups?.OfType<ScaffoldGroupSummaryDto>();
-
-			return Ok(new ApiResponse<IEnumerable<ScaffoldGroupSummaryDto>>(200, "", summarizedGroups));
-		}
-		catch (Exception ex)
-		{
-			_logger.LogError(ex, "Failed to get the uploaded scaffold groups");
-        	return StatusCode(500, new ApiResponse<string>(500, "An error occurred while getting the uploaded scaffold grous"));
-		}
-    }
-
     [HttpPost("test-send-email")]
     public async Task<IActionResult> TestSendEmail([FromQuery] string toEmail)
     {

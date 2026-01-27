@@ -55,9 +55,23 @@ namespace Repositories.Repositories
 			return await _context.Publications.AsNoTracking().AnyAsync(p => p.Id == publicationId);
 		}
 
-		public async Task<List<PublicationSummaryDto>> GetAllPublicationSummariesAsync()
+		public async Task<List<PublicationSummaryDto>> GetPublicationSummariesAsync(PublicationFilter filter)
 		{
-			return await _context.Publications
+			var publications = _context.Publications.AsQueryable();
+			
+			if (!string.IsNullOrEmpty(filter.UserId))
+			{
+				publications = publications.Where(p => p.UploaderId == filter.UserId);
+			}
+			if (!string.IsNullOrEmpty(filter.Search))
+			{
+				publications = publications.Where(p => p.Title.Contains(filter.Search) ||
+													  p.Authors.Contains(filter.Search) ||
+													  p.Journal.Contains(filter.Search) ||
+													  p.Doi.Contains(filter.Search));
+			}
+
+			return await publications.OrderByDescending(p => p.CreatedAt)
 				.Select(pub => new PublicationSummaryDto
 				{
 					Id = pub.Id,

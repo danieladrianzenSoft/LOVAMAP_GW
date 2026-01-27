@@ -128,6 +128,7 @@ builder.Services.AddSingleton<ICoreTokenProvider, CoreTokenProvider>();
 builder.Services.AddTransient<CoreClientAuthHandler>();
 builder.Services.AddHttpClient<ICoreApiClient, CoreApiClient>()
     .AddHttpMessageHandler<CoreClientAuthHandler>();
+builder.Services.AddScoped<IDescriptorProtobufCodec, DescriptorProtobufCodec>();
 
 var domainDataPath = builder.Configuration["DomainSettings:DataPath"]
                  ?? Environment.GetEnvironmentVariable("DOMAIN_DATA_PATH")

@@ -12,25 +12,37 @@ namespace API.Controllers;
 public class PublicationsController : ControllerBase
 {
 	private readonly ILogger<PublicationsController> _logger;
+	private readonly IUserService _userService;
 	private readonly IPublicationService _publicationService;
 	private readonly IPublicationDatasetService _datasetService;
 
 
 	public PublicationsController(ILogger<PublicationsController> logger,
+		IUserService userService,
 		IPublicationService publicationService, IPublicationDatasetService datasetService)
 	{
 		_logger = logger;
+		_userService = userService;
 		_datasetService = datasetService;
 		_publicationService = publicationService;
 	}
 
 	[AllowAnonymous]
 	[HttpGet]
-	public async Task<IActionResult> GetAllPublications()
+	public async Task<IActionResult> GetPublications(PublicationFilter filter)
 	{
 		try
 		{
-			var (succeeded, errorMessage, publications) = await _publicationService.GetAllPublicationSummaries();
+			if (filter.IsMine.HasValue && filter.IsMine.Value == true)
+			{
+				var currentUserId = _userService.GetCurrentUserId();
+				if (currentUserId == null)
+					return Unauthorized(new ApiResponse<string>(401, "User not authenticated"));
+				
+				filter.UserId = currentUserId;
+			}
+			
+			var (succeeded, errorMessage, publications) = await _publicationService.GetPublicationSummaries(filter);
 
 			if (!succeeded)
 			{
@@ -86,6 +98,31 @@ public class PublicationsController : ControllerBase
 			return BadRequest(new ApiResponse<string>(400, errorMessage));
 
 		return Ok(new ApiResponse<PublicationDatasetDto>(201, "Publication dataset created", result));
+	}
+
+	[HttpPut("{publicationId:int}/datasets")]
+	public async Task<IActionResult> UpsertPublicationDataset(
+		int publicationId,
+		[FromBody] PublicationDatasetForCreationDto dto)
+	{
+		if (dto is null) return BadRequest("Body required.");
+		if (publicationId != dto.PublicationId)
+			return BadRequest("Path publicationId does not match body PublicationId.");
+
+		var (succeeded, message, publicationDataset, isNew) = 
+			await _datasetService.UpsertPublicationDatasetAsync(dto);
+
+		if (!succeeded)
+			return BadRequest(new ApiResponse<string>(400, message));
+
+		// 201 if it was created, 200 if updated – not strictly required, but nice.
+		var statusCode = isNew == true ? 201 : 200;
+		var messageToReturn = isNew == true ? "Publication dataset created" : "Publication dataset updated";
+
+		return StatusCode(
+			statusCode,
+			new ApiResponse<PublicationDatasetDto>(statusCode, messageToReturn, publicationDataset)
+		);
 	}
 
 	[HttpGet("datasets/{datasetId:int}")]

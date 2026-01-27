@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "5H6M5a94LN299YbOlmfKsS4tPm1YIZFYCKQnChcsprO5cb7edkXiw13zI4llWZlIyJOLmDxTbTbTWtei5j5Lgg==",
+  "dgSpecHash": "POe6VDX87xMvIsc1P/qdR1t4vpmIcYEGke02oa33FVsAa6ymh9JfNX6QdiYVJnzD4zWjzSZviZvdJD7B1djgog==",
   "success": true,
   "projectFilePath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/API.csproj",
   "expectedPackageFiles": [
     "/Users/dzen/.nuget/packages/cloudinarydotnet/1.26.2/cloudinarydotnet.1.26.2.nupkg.sha512",
+    "/Users/dzen/.nuget/packages/google.protobuf/3.33.1/google.protobuf.3.33.1.nupkg.sha512",
+    "/Users/dzen/.nuget/packages/grpc.tools/2.76.0/grpc.tools.2.76.0.nupkg.sha512",
     "/Users/dzen/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/Users/dzen/.nuget/packages/miconvexhull/1.1.19.1019/miconvexhull.1.1.19.1019.nupkg.sha512",
     "/Users/dzen/.nuget/packages/microsoft.aspnetcore.authentication/2.2.0/microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",

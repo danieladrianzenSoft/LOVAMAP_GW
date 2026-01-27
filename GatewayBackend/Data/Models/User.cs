@@ -10,6 +10,7 @@ namespace Data.Models
 		public virtual ICollection<Download> Downloads { get; set; } = [];
 		public virtual ICollection<Image> UploadedImages { get; set; } = [];
 		public virtual ICollection<Job> JobsCreated { get; set; } = [];
+		public virtual ICollection<Publication> PublicationsUploaded { get; set; } = [];
 
 
 	}

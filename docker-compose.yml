@@ -27,6 +27,7 @@ services:
       - "5001:8080"
     volumes:
       - ./GatewayBackend/Data/Domains:/app/Data/Domains
+      - ./GatewayBackend/Data/JobResults:/app/Data/JobResults
     depends_on:
       db:
         condition: service_healthy

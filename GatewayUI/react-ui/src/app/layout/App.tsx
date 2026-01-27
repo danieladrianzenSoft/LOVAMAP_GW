@@ -15,7 +15,6 @@ import { observer } from 'mobx-react-lite';
 import ScaffoldGroupUploads from '../../features/scaffold-groups/scaffold-group-uploads';
 import Visualization from '../../features/visualization/visualization';
 import History from '../helpers/History';
-import RunJob from '../../features/jobs/run-job';
 import ScreenshotViewer from '../../features/visualization/screenshot-viewer';
 import ResetPasswordForm from '../../features/user/reset-password';
 import ForgotPasswordForm from '../../features/user/forgot-password';
@@ -26,6 +25,8 @@ import AdminUtilities from '../../features/admin/admin-utilities';
 import DescriptorCalculator from '../../features/descriptors/descriptor-calculator';
 import { ExploreData } from '../../features/explore-data/explore-data';
 import Publications from '../../features/publications/publications';
+import JobsMain from '../../features/jobs/jobs-main';
+import JobList from '../../features/jobs/job-list';
 
 const App: React.FC = () => {
   const { commonStore, userStore } = useStore();
@@ -90,7 +91,8 @@ const MainLayout: React.FC = observer(() => {
           <Route path="/publications" element={<Publications />} />
           <Route path="/experiments" element={<ProtectedRoute element={<CreateExperiments />} />} />
           <Route path="/uploads" element={<ProtectedRoute element={<ScaffoldGroupUploads />} />} />
-          <Route path="/jobs" element={<ProtectedRoute element={<RunJob />} />} />
+          <Route path="/run" element={<JobsMain />} />
+          <Route path="/jobs" element={<ProtectedRoute element={<JobList />} />}  />
           <Route path="/screenshots/:scaffoldId" element={<ProtectedRoute requiredRole="administrator" element={<ScreenshotViewer />} />} />
           <Route path="/admin" element={<ProtectedRoute requiredRole="administrator" element={<AdminUtilities />} />}/>
           <Route path="/settings" element={<ProtectedRoute element={<SettingsScreen />} />}/>

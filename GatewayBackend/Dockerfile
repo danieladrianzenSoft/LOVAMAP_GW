@@ -9,6 +9,7 @@ COPY Data/Data.csproj ./Data/
 COPY Infrastructure/Infrastructure.csproj ./Infrastructure/
 COPY Repositories/Repositories.csproj ./Repositories/
 COPY Services/Services.csproj ./Services/
+COPY extern/lovamap-proto ./extern/lovamap-proto/
 
 # Restore dependencies
 RUN dotnet restore

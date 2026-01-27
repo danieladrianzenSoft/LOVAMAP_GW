@@ -262,3 +262,4 @@
 /Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/bin/Debug/net8.0/SharpGLTF.Runtime.dll
 /Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/bin/Debug/net8.0/SharpGLTF.Toolkit.dll
 /Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/bin/Debug/net8.0/MIConvexHull.dll
+/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/bin/Debug/net8.0/Google.Protobuf.dll
