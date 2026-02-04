@@ -62,4 +62,20 @@ public class SeedController : ControllerBase
 			return BadRequest(ex.Message);
 		}
 	}
+
+	[Authorize(Roles = "administrator")]
+	[HttpPost("rdf")]
+	public async Task<IActionResult> SeedRdf()
+	{
+		try
+		{
+			var result = await _seedingService.SeedRdfAsync(HttpContext.RequestAborted);
+			return Ok(new ApiResponse<string>(200, "RDF seed loaded successfully.", result));
+		}
+		catch (Exception ex)
+		{
+			_logger.LogError(ex, "Error seeding RDF data");
+			return BadRequest(new ApiResponse<string>(400, ex.Message));
+		}
+	}
 }

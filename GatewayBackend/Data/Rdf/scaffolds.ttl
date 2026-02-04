@@ -1,0 +1,21 @@
+@prefix ex: <https://lovamap.com/ontology#> .
+@prefix s:  <https://lovamap.com/scaffold/> .
+
+s:1 a ex:Scaffold ;
+    ex:particleShape "spherical" ;
+    ex:particleSizeUm 100 ;
+    ex:voidVolumeFraction 0.42 ;
+    ex:bioMeasurementX 1.23 .
+
+s:2 a ex:Scaffold ;
+    ex:particleShape "spherical" ;
+    ex:particleSizeUm 100 ;
+    ex:voidVolumeFraction 0.37 ;
+    ex:bioMeasurementX 1.01 .
+
+s:3 a ex:Scaffold ;
+    ex:particleShape "irregular" ;
+    ex:particleSizeUm 150 ;
+    ex:voidVolumeFraction 0.51 ;
+    ex:bioMeasurementX 0.87 ;
+    ex:bioMeasurementY 0.44 .

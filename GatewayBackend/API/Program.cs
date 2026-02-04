@@ -118,6 +118,8 @@ builder.Services.AddScoped<IPublicationDatasetRepository, PublicationDatasetRepo
 builder.Services.AddScoped<IDomainRepository, DomainRepository>();
 builder.Services.AddScoped<IAISearchRepository, AISearchRepository>();
 builder.Services.AddScoped<ILovamapCoreJobRepository, LovamapCoreJobRepository>();
+builder.Services.AddScoped<IRdfRepository, RdfRepository>();
+builder.Services.AddScoped<IRdfScaffoldRepository, RdfScaffoldRepository>();
 
 // Add helpers
 builder.Services.AddMemoryCache();
@@ -129,6 +131,8 @@ builder.Services.AddTransient<CoreClientAuthHandler>();
 builder.Services.AddHttpClient<ICoreApiClient, CoreApiClient>()
     .AddHttpMessageHandler<CoreClientAuthHandler>();
 builder.Services.AddScoped<IDescriptorProtobufCodec, DescriptorProtobufCodec>();
+builder.Services.Configure<FusekiOptions>(builder.Configuration.GetSection("Fuseki"));
+builder.Services.AddHttpClient<IFusekiClient, FusekiClient>();
 
 var domainDataPath = builder.Configuration["DomainSettings:DataPath"]
                  ?? Environment.GetEnvironmentVariable("DOMAIN_DATA_PATH")
@@ -156,6 +160,7 @@ builder.Services.AddScoped<ILovamapCoreJobService, LovamapCoreJobService>();
 builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<IAISearchService, AISearchService>();
 builder.Services.AddScoped<IScaffoldGroupMetadataService, ScaffoldGroupMetadataService>();
+builder.Services.AddScoped<IRdfScaffoldService, RdfScaffoldService>();
 builder.Services.AddScoped<IDescriptorValueGenerator, ParticleAspectRatioGenerator>();
 builder.Services.AddScoped<ISeedingService, SeedingService>();
 builder.Services.AddScoped<SeedingService>();

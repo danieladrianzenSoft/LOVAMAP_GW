@@ -11,5 +11,6 @@ namespace Services.IServices
 		// Task<DescriptorSeedResultDto> SeedDescriptorAsync(string descriptorName);
 		Task<List<int>> GetEligibleScaffoldIdsForDescriptorSeeding(string descriptorName);
 		Task<DescriptorSeedResultDto> SeedDescriptorAsync(string descriptorName, List<int> scaffoldIds);
+		Task<string> SeedRdfAsync(CancellationToken ct = default);
 	}
 }
