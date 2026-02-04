@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Data.Models;
 using System.Globalization;
 using Data.SeedingStrategies;
+using Infrastructure.IHelpers;
 
 namespace Services.Services
 {
@@ -24,6 +25,7 @@ namespace Services.Services
 		private readonly IConfiguration _configuration;
 		private readonly IDescriptorService _descriptorService;
 		private readonly IPublicationService _publicationService;
+		private readonly IFusekiClient _fusekiClient;
 		private readonly DataContext _context;
 		private readonly ILogger<SeedingService> _logger;
 		private readonly JsonSerializerOptions _jsonSerializerOptions;
@@ -36,6 +38,7 @@ namespace Services.Services
 			IUserService userService,
 			IDescriptorService descriptorService,
 			IPublicationService publicationService,
+			IFusekiClient fusekiClient,
 			IEnumerable<IDescriptorValueGenerator>generators,
 			IConfiguration configuration,
 			DataContext context,
@@ -47,6 +50,7 @@ namespace Services.Services
 			_userService = userService;
 			_descriptorService = descriptorService;
 			_publicationService = publicationService;
+			_fusekiClient = fusekiClient;
 			_configuration = configuration;
 			_generators = generators;
 			_context = context;
@@ -59,6 +63,7 @@ namespace Services.Services
 		}
 
 		private static readonly string baseUrl = "../Data/SeedData/";
+		private static readonly string rdfBaseUrl = "../Data/Rdf/";
 		// private static readonly string baseUrl = Path.Combine(Directory.GetCurrentDirectory(), "Data", "SeedData");
 
 		public async Task SeedAllAsync()
@@ -283,6 +288,18 @@ namespace Services.Services
 			_context.OtherDescriptors.AddRange(otherDescriptors);
 			await _context.SaveChangesAsync();
 			return result;
+		}
+
+		public async Task<string> SeedRdfAsync(CancellationToken ct = default)
+		{
+			var path = Path.Combine(rdfBaseUrl, "scaffolds.ttl");
+			if (!File.Exists(path))
+			{
+				throw new FileNotFoundException($"RDF seed file not found at '{path}'.");
+			}
+
+			var turtle = await File.ReadAllTextAsync(path, ct);
+			return await _fusekiClient.UploadTurtleAsync(turtle, ct);
 		}
 
 		private async Task SeedTagsAsync()
