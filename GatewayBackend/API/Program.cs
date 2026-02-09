@@ -35,10 +35,12 @@ builder.Services.AddIdentity<User, Role>()
     .AddEntityFrameworkStores<DataContext>()
     .AddDefaultTokenProviders();
 
+
 builder.Services.Configure<IdentityOptions>(options =>
 {
-    options.SignIn.RequireConfirmedEmail = true;
+    options.SignIn.RequireConfirmedEmail = false;
 });
+
 
 if (string.IsNullOrEmpty(jwtIssuer) || string.IsNullOrEmpty(jwtKey))
 {

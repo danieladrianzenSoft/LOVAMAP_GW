@@ -2476,19 +2476,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/dzen/.nuget/packages/": {}
+    "/Users/chachaen/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Data/Data.csproj",
+      "projectUniqueName": "/Users/chachaen/Desktop/LOVAMAP_GW/GatewayBackend/Data/Data.csproj",
       "projectName": "Data",
-      "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Data/Data.csproj",
-      "packagesPath": "/Users/dzen/.nuget/packages/",
-      "outputPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Data/obj/",
+      "projectPath": "/Users/chachaen/Desktop/LOVAMAP_GW/GatewayBackend/Data/Data.csproj",
+      "packagesPath": "/Users/chachaen/.nuget/packages/",
+      "outputPath": "/Users/chachaen/Desktop/LOVAMAP_GW/GatewayBackend/Data/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/dzen/.nuget/NuGet/NuGet.Config"
+        "/Users/chachaen/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -2511,7 +2511,8 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      }
+      },
+      "SdkAnalysisLevel": "10.0.100"
     },
     "frameworks": {
       "net8.0": {
@@ -2554,7 +2555,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.200/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.102/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

@@ -4,6 +4,10 @@ import { useGLTF } from "@react-three/drei";
 import * as THREE from 'three';
 import { observer } from 'mobx-react-lite';
 
+// JX
+const FORCE_GREY = new THREE.Color('#9e9e9e');
+
+
 interface ModelProps {
 	url: string;
 	category: number;
@@ -160,59 +164,94 @@ const Model: React.FC<ModelProps> = ({
 				highlightMat.transparent = originalMat?.transparent ?? false;
 				child.material = highlightMat;
 			} else {
-				// Use the saved original material clone (always clone before applying overrides)
-				let workingMat: THREE.Material;
-				if (originalMat) {
-					workingMat = originalMat.clone();
-				} else {
-					// ultimate fallback - clone current material
-					workingMat = Array.isArray(child.material) ? (child.material[0] as THREE.Material).clone() : (child.material as THREE.Material).clone();
-				}
+			// 	// Use the saved original material clone (always clone before applying overrides)
+			// 	let workingMat: THREE.Material;
+			// 	if (originalMat) {
+			// 		workingMat = originalMat.clone();
+			// 	} else {
+			// 		// ultimate fallback - clone current material
+			// 		workingMat = Array.isArray(child.material) ? (child.material[0] as THREE.Material).clone() : (child.material as THREE.Material).clone();
+			// 	}
 
-				// Compute a reliable originalColor from original material (not runtime material)
-				const originalColor =
-					(originalMat && (originalMat as any).color instanceof THREE.Color)
-					? (originalMat as any).color.clone()
-					: new THREE.Color(0xC0C0C0);
+			// 	// Compute a reliable originalColor from original material (not runtime material)
+			// 	const originalColor =
+			// 		(originalMat && (originalMat as any).color instanceof THREE.Color)
+			// 		? (originalMat as any).color.clone()
+			// 		: new THREE.Color(0xC0C0C0);
 
-				if (theme === 'Metallic') {
-					// create a metallic variant while using originalColor
-					const metallic = new THREE.MeshPhongMaterial({
-					color: originalColor,
-					shininess: 35,
-					specular: new THREE.Color('#fffaed'),
-					vertexColors: (workingMat as any).vertexColors ?? false
-					});
-					(metallic as any).flatShading = true;
-					// copy transparency/opacity from workingMat (so user opacity remains)
-					metallic.transparent = (workingMat as any).transparent ?? false;
-					metallic.opacity = (workingMat as any).opacity ?? 1;
-					workingMat.dispose?.(); // free the temporary clone if any
-					workingMat = metallic;
-				}
+			// 	if (theme === 'Metallic') {
+			// 		// create a metallic variant while using originalColor
+			// 		const metallic = new THREE.MeshPhongMaterial({
+			// 		color: originalColor,
+			// 		shininess: 35,
+			// 		specular: new THREE.Color('#fffaed'),
+			// 		vertexColors: (workingMat as any).vertexColors ?? false
+			// 		});
+			// 		(metallic as any).flatShading = true;
+			// 		// copy transparency/opacity from workingMat (so user opacity remains)
+			// 		metallic.transparent = (workingMat as any).transparent ?? false;
+			// 		metallic.opacity = (workingMat as any).opacity ?? 1;
+			// 		workingMat.dispose?.(); // free the temporary clone if any
+			// 		workingMat = metallic;
+			// 	}
 
-				// Global override (highest priority)
-				if (typeof color === 'string') {
-					if ((workingMat as any).color) (workingMat as any).color = new THREE.Color(color);
-					(workingMat as any).vertexColors = false;
-				} else {
-					// dimmed fallback uses dimmedOptions color
-					if (dimmed && typeof dimmedOptions?.color === 'string' && (workingMat as any).color) {
-					(workingMat as any).color = new THREE.Color(dimmedOptions.color);
-					(workingMat as any).vertexColors = false;
-					}
-				}
+			// 	// Global override (highest priority)
+			// 	if (typeof color === 'string') {
+			// 		if ((workingMat as any).color) (workingMat as any).color = new THREE.Color(color);
+			// 		(workingMat as any).vertexColors = false;
+			// 	} else {
+			// 		// dimmed fallback uses dimmedOptions color
+			// 		if (dimmed && typeof dimmedOptions?.color === 'string' && (workingMat as any).color) {
+			// 		(workingMat as any).color = new THREE.Color(dimmedOptions.color);
+			// 		(workingMat as any).vertexColors = false;
+			// 		}
+			// 	}
 
-				if (typeof opacity === 'number') {
-					(workingMat as any).transparent = true;
-					(workingMat as any).opacity = opacity;
-				} else if (opacity === undefined && dimmed && typeof dimmedOptions?.opacity === 'number') {
-					(workingMat as any).transparent = true;
-					(workingMat as any).opacity = dimmedOptions.opacity;
-				}
+			// 	if (typeof opacity === 'number') {
+			// 		(workingMat as any).transparent = true;
+			// 		(workingMat as any).opacity = opacity;
+			// 	} else if (opacity === undefined && dimmed && typeof dimmedOptions?.opacity === 'number') {
+			// 		(workingMat as any).transparent = true;
+			// 		(workingMat as any).opacity = dimmedOptions.opacity;
+			// 	}
 
-				child.material = workingMat;
+			// 	child.material = workingMat;
+			// }
+
+			// JX 
+			let workingMat: THREE.Material;
+			if (originalMat) {
+				workingMat = originalMat.clone();
+			} else {
+				workingMat = Array.isArray(child.material)
+					? (child.material[0] as THREE.Material).clone()
+					: (child.material as THREE.Material).clone();
 			}
+
+
+			if ((workingMat as any).color instanceof THREE.Color) {
+				(workingMat as any).color = new THREE.Color('#9e9e9e');
+			}
+
+
+			(workingMat as any).vertexColors = false;
+
+		
+			if (typeof opacity === 'number') {
+				(workingMat as any).transparent = true;
+				(workingMat as any).opacity = opacity;
+			} else if (
+				opacity === undefined &&
+				dimmed &&
+				typeof dimmedOptions?.opacity === 'number'
+			) {
+				(workingMat as any).transparent = true;
+				(workingMat as any).opacity = dimmedOptions.opacity;
+			}
+
+
+			child.material = workingMat;
+		}
 
 			// Handle visibility
 			const center = new THREE.Vector3();
