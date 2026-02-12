@@ -28,7 +28,7 @@ services:
     container_name: lovamap_test_fuseki
     restart: always
     ports:
-      - "127.0.0.1:3031:3030"
+      - "3031:3030"
     environment:
       - ADMIN_PASSWORD=${FUSEKI_ADMIN_PASSWORD}
     volumes:
