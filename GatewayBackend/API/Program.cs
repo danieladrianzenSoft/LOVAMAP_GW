@@ -134,7 +134,7 @@ builder.Services.AddScoped<IDescriptorProtobufCodec, DescriptorProtobufCodec>();
 builder.Services.Configure<FusekiOptions>(builder.Configuration.GetSection("Fuseki"));
 builder.Services.AddHttpClient<IFusekiClient, FusekiClient>();
 
-var domainDataPath = builder.Configuration["DomainSettings:DataPath"]
+var domainDataPath = builder.Configuration["OutputPaths:Domains"]
                  ?? Environment.GetEnvironmentVariable("DOMAIN_DATA_PATH")
                  ?? "Data/Domains";
 

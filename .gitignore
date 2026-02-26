@@ -9,7 +9,27 @@ GatewayUI/react-ui/node_modules
 .env
 .env.production
 .env.test
+.env.preproduction
 *.glb
 *.gltf
 *.stl
 *.vscode/
+
+# .NET build artifacts
+**/bin/
+**/obj/
+**/Debug/
+**/Release/
+
+# Rider / VS / VSCode
+.vs/
+.idea/
+.vscode/
+
+# NuGet
+*.nupkg
+*.snupkg
+packages/
+
+# Logs
+*.log

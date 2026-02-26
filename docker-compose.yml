@@ -10,7 +10,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - lovamap_gw_postgres_data:/var/lib/postgresql/data
       - ./backups:/backups
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
@@ -26,8 +26,9 @@ services:
     ports:
       - "5001:8080"
     volumes:
-      - ./GatewayBackend/Data/Domains:/app/Data/Domains
-      - ./GatewayBackend/Data/JobResults:/app/Data/JobResults
+      - /srv/lovamap-shared-data/lovamap-gw/production/Domains:/app/Data/Domains
+      - /srv/lovamap-shared-data/lovamap-gw/production/JobResults:/app/Data/JobResults
+
     depends_on:
       db:
         condition: service_healthy
@@ -90,4 +91,5 @@ services:
       - ./certbot/www:/var/www/certbot
 
 volumes:
-  postgres_data:
+  lovamap_gw_postgres_data:
+    external: true
