@@ -6,6 +6,9 @@ GatewayBackend/API/obj/
 GatewayBackend/Data/Domains/
 GatewayBackend/Data/JobResults/
 GatewayUI/react-ui/node_modules
+certbot/
+test-data/
+
 .env
 .env.production
 .env.test
@@ -33,3 +36,7 @@ packages/
 
 # Logs
 *.log
+
+# macOS Finder metadata
+.DS_Store
+**/.DS_Store
