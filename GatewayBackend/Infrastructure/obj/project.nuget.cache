@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "O686P/UUDE72N2tV+UddB1N6s31ew3fNPv6Y37E0dPnXCPaEtR5ypOpRIcubRJ9Fv3t26ELq042RNyEaTf4RMA==",
+  "dgSpecHash": "/iH44pmW3pb49zpcGmq9D5nKM/0jfGOjeG2uZnDzSgf3dB2Toe2W3gx30VHA3bQo7gLltZ/p7V51A3wPr+7mXw==",
   "success": true,
-  "projectFilePath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Infrastructure/Infrastructure.csproj",
+  "projectFilePath": "/Users/dzen/Documents/LOVAMAP/Repos/LOVAMAP_GW/GatewayBackend/Infrastructure/Infrastructure.csproj",
   "expectedPackageFiles": [
     "/Users/dzen/.nuget/packages/anglesharp/1.4.0/anglesharp.1.4.0.nupkg.sha512",
     "/Users/dzen/.nuget/packages/dotnetrdf/3.5.0/dotnetrdf.3.5.0.nupkg.sha512",

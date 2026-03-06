@@ -53,6 +53,8 @@ const ExploreScreen = () => {
 		// publicationDatasetId,
 		restrictToPublicationDataset,
 		isPublicationScoped,
+		isSimulated,
+		setIsSimulated,
 	} = useScaffoldGroupFiltering(isLoggedIn, setIsLoading, initialScope);
 
 	useEffect(() => {
@@ -76,6 +78,7 @@ const ExploreScreen = () => {
 	const clearFilters = () => {
 		setSelectedTags({});
 		setSelectedParticleSizeIds([]);
+		setIsSimulated(null);
 		setAiSearchUsed(false);
 	};
 
@@ -101,14 +104,16 @@ const ExploreScreen = () => {
 						<AISearchBar onSearch={loadAIResults} onClear={clearFilters}/>
 						<SearchContextSummary aiSearchUsed={aiSearchUsed} selectedTagNames={selectedTagNames} selectedParticleSizeIds={selectedParticleSizeIds}/>
 					</div>
-					<ScaffoldGroupFilters 
-						setIsLoading={setIsLoading} 
-						condensed={true} 
+					<ScaffoldGroupFilters
+						setIsLoading={setIsLoading}
+						condensed={true}
 						allFiltersVisible={false}
 						selectedParticleSizeIds={selectedParticleSizeIds}
 						setSelectedParticleSizeIds={setSelectedParticleSizeIds}
 						selectedTags={selectedTags}
 						setSelectedTags={setSelectedTags}
+						isSimulated={isSimulated}
+						setIsSimulated={setIsSimulated}
 					/>
 				</>
 			}

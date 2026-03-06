@@ -41,12 +41,7 @@ axios.interceptors.response.use(response => {
 
     switch (status) {
         case 401:
-            store.userStore.logout();
-            if (window.location.pathname.startsWith("/login")) {
-                break;
-            }
-            const currentPath = window.location.pathname + window.location.search;
-            History.push(`/login?redirect=${encodeURIComponent(currentPath)}`);
+            store.userStore.clearSession();
             break;
     }
     return Promise.reject(responseData);

@@ -391,6 +391,7 @@ namespace Services.Services
                 IsSimulated = scaffoldGroup.IsSimulated,
                 Tags = tags,
                 NumReplicates = scaffoldGroup.Scaffolds?.Count ?? 0,
+                ScaffoldIds = scaffoldGroup.Scaffolds?.Select(s => s.Id).ToList() ?? [],
                 Images = imagesToReturn,
                 Inputs = new InputGroupBaseDto
                 {

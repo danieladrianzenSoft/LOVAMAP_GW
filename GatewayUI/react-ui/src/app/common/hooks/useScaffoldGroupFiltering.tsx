@@ -22,6 +22,8 @@ export const useScaffoldGroupFiltering = (isLoggedIn: boolean, setIsLoading: (lo
 	const [restrictToPublicationDataset, setRestrictToPublicationDataset] =
 		useState<boolean>(!!initialScope?.restrictToPublicationDataset);
 
+	const [isSimulated, setIsSimulated] = useState<boolean | null>(null);
+
 	const [aiSearchUsed, setAiSearchUsed] = useState(false);
 
 	const isPublicationScoped =
@@ -41,6 +43,7 @@ export const useScaffoldGroupFiltering = (isLoggedIn: boolean, setIsLoading: (lo
 						publicationId: publicationId ?? undefined,
 						publicationDatasetId: publicationDatasetId ?? undefined,
 						restrictToPublicationDataset,
+						isSimulated,
 					}
 
 					if (isLoggedIn) {
@@ -60,7 +63,8 @@ export const useScaffoldGroupFiltering = (isLoggedIn: boolean, setIsLoading: (lo
 				const filter: ScaffoldGroupFilter = {
 					selectedTags: allSelectedTags,
 					sizeIds: selectedParticleSizeIds,
-					restrictToPublicationDataset: false
+					restrictToPublicationDataset: false,
+					isSimulated,
 				}
 
 				if (isLoggedIn) {
@@ -78,15 +82,16 @@ export const useScaffoldGroupFiltering = (isLoggedIn: boolean, setIsLoading: (lo
 		fetchScaffoldGroups();
 		return () => { cancelled = true; };
 	}, [
-		selectedTags, 
-		selectedParticleSizeIds, 
-		isLoggedIn, 
-		setIsLoading, 
-		scaffoldGroupStore, 
-		isPublicationScoped, 
-		publicationId, 
-		publicationDatasetId, 
-		restrictToPublicationDataset
+		selectedTags,
+		selectedParticleSizeIds,
+		isLoggedIn,
+		setIsLoading,
+		scaffoldGroupStore,
+		isPublicationScoped,
+		publicationId,
+		publicationDatasetId,
+		restrictToPublicationDataset,
+		isSimulated
 	]);
 
 	// Optional: Expose helper to remove a tag
@@ -145,5 +150,7 @@ export const useScaffoldGroupFiltering = (isLoggedIn: boolean, setIsLoading: (lo
 		restrictToPublicationDataset,
 		setRestrictToPublicationDataset,
 		isPublicationScoped,
+		isSimulated,
+		setIsSimulated,
 	};
 }

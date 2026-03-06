@@ -22,6 +22,7 @@ import ConfirmEmailPage from '../../features/user/confirm-email';
 import EmailNotConfirmed from '../../features/user/email-not-confirmed';
 import SettingsScreen from '../../features/settings-screen/settings-screen';
 import AdminUtilities from '../../features/admin/admin-utilities';
+import BulkUploadPage from '../../features/bulk-upload/bulk-upload-page';
 import DescriptorCalculator from '../../features/descriptors/descriptor-calculator';
 import { ExploreData } from '../../features/explore-data/explore-data';
 import Publications from '../../features/publications/publications';
@@ -95,6 +96,7 @@ const MainLayout: React.FC = observer(() => {
           <Route path="/jobs" element={<ProtectedRoute element={<JobList />} />}  />
           <Route path="/screenshots/:scaffoldId" element={<ProtectedRoute requiredRole="administrator" element={<ScreenshotViewer />} />} />
           <Route path="/admin" element={<ProtectedRoute requiredRole="administrator" element={<AdminUtilities />} />}/>
+          <Route path="/bulk-upload" element={<ProtectedRoute requiredRole="administrator" element={<BulkUploadPage />} />}/>
           <Route path="/settings" element={<ProtectedRoute element={<SettingsScreen />} />}/>
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
@@ -112,7 +114,7 @@ const ProtectedRoute = observer(({ element, requiredRole }: { element: JSX.Eleme
   useEffect(() => {
     if (!isLoggedIn) {
       const redirectPath = encodeURIComponent(location.pathname);
-      History.push(`/login?redirect=${redirectPath}`);
+      History.replace(`/login?redirect=${redirectPath}`);
     }
   }, [isLoggedIn, location.pathname]);
 

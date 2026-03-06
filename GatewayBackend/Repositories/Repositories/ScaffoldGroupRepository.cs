@@ -387,6 +387,12 @@ namespace Repositories.Repositories
 			// }
 			query = query.Where(sg => sg.IsPublic);
 
+			// Filter by simulated vs experimental
+			if (filter.IsSimulated.HasValue)
+			{
+				query = query.Where(sg => sg.IsSimulated == filter.IsSimulated.Value);
+			}
+
 			// Filter by scaffold group IDs if provided
 			if (filter.ScaffoldGroupIds?.Count > 0)
 			{

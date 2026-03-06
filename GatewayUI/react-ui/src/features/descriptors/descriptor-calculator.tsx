@@ -12,7 +12,7 @@ const DescriptorCalculator: React.FC = () => {
   const [delta, setDelta] = useState<number>(100);
   const [phi, setPhi] = useState<number>(0.5);
   const [sigma, setSigma] = useState<number>(0);
-  const [expandedDescriptor, setExpandedDescriptor] = useState<string | null>("NumIntPores");
+  const [expandedDescriptor, setExpandedDescriptor] = useState<string | null>(null);
 //   const [particleCount, setParticleCount] = useState<number>(12);
 
   const descriptorMap = useMemo(() => {

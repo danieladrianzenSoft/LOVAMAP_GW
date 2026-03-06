@@ -16,16 +16,20 @@ interface ScaffoldGroupFiltersProps {
 	setSelectedTags: React.Dispatch<React.SetStateAction<{ [key: string]: Tag[] }>>;
 	selectedParticleSizeIds: number[];
 	setSelectedParticleSizeIds: React.Dispatch<React.SetStateAction<number[]>>;
+	isSimulated: boolean | null;
+	setIsSimulated: React.Dispatch<React.SetStateAction<boolean | null>>;
 }
 
-const ScaffoldGroupFilters: React.FC<ScaffoldGroupFiltersProps> = ({ 
-    condensed = false, 
-    allFiltersVisible = false, 
-    setIsLoading, 
+const ScaffoldGroupFilters: React.FC<ScaffoldGroupFiltersProps> = ({
+    condensed = false,
+    allFiltersVisible = false,
+    setIsLoading,
     selectedTags = {},
     setSelectedTags,
     selectedParticleSizeIds = [],
-    setSelectedParticleSizeIds
+    setSelectedParticleSizeIds,
+    isSimulated,
+    setIsSimulated
 }) => {
 	// const {resourceStore, scaffoldGroupStore, commonStore} = useStore();
     const {resourceStore} = useStore();
@@ -169,7 +173,45 @@ const ScaffoldGroupFilters: React.FC<ScaffoldGroupFiltersProps> = ({
                 {filtersVisible && (
                     <div className="absolute left-0 w-full z-20 bg-white border-b rounded shadow-lg">
                         <div className="mx-auto max-w-screen-xl p-6 pl-12">
-                            <div className="grid grid-cols-[repeat(auto-fit,_minmax(200px,_1fr))] gap-6 text-left">
+                            <div className="text-left mb-6">
+                                <h3 className="text-gray-700 font-bold mb-3">DATA SOURCE</h3>
+                                <div className="flex gap-2">
+                                    {([
+                                        { label: "Simulated", simulated: true },
+                                        { label: "Experimental", simulated: false },
+                                    ]).map(opt => {
+                                        const isActive = isSimulated === null || isSimulated === opt.simulated;
+                                        return (
+                                            <button
+                                                key={opt.label}
+                                                onClick={() => {
+                                                    if (isActive) {
+                                                        // Deselecting this one
+                                                        if (isSimulated === null) {
+                                                            // Both are on → turn this off, keep only the other
+                                                            setIsSimulated(!opt.simulated);
+                                                        } else {
+                                                            // Only this one is on → can't have neither, activate the other
+                                                            setIsSimulated(!opt.simulated);
+                                                        }
+                                                    } else {
+                                                        // Selecting a deselected one → both are now on
+                                                        setIsSimulated(null);
+                                                    }
+                                                }}
+                                                className={`px-2 py-0.5 text-xs rounded-full border transition-colors ${
+                                                    isActive
+                                                        ? "bg-gray-700 text-white border-gray-700"
+                                                        : "bg-white text-gray-600 border-gray-300 hover:border-gray-500"
+                                                }`}
+                                            >
+                                                {opt.label}
+                                            </button>
+                                        );
+                                    })}
+                                </div>
+                            </div>
+                        <div className="grid grid-cols-[repeat(auto-fit,_minmax(200px,_1fr))] gap-6 text-left">
                                 {/* Particle Diameter: head */}
                                 <MultiSelectDropdown
                                     groupName="PARTICLE DIAMETER"

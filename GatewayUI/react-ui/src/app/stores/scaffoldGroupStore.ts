@@ -398,6 +398,10 @@ export default class ScaffoldGroupStore {
 				if (queryParams !== '') queryParams += '&';
 				queryParams += `restrictToPublicationDataset=${filter.restrictToPublicationDataset}`;
 			}
+			if (filter.isSimulated != null) {
+				if (queryParams !== '') queryParams += '&';
+				queryParams += `isSimulated=${filter.isSimulated}`;
+			}
 			if (queryParams !== '') queryParams = '?' + queryParams;
 
 			const response = await agent.ScaffoldGroups.getPublic(queryParams);
@@ -436,6 +440,10 @@ export default class ScaffoldGroupStore {
 			if (filter.restrictToPublicationDataset) {
 				if (queryParams !== '') queryParams += '&';
 				queryParams += `restrictToPublicationDataset=${filter.restrictToPublicationDataset}`;
+			}
+			if (filter.isSimulated != null) {
+				if (queryParams !== '') queryParams += '&';
+				queryParams += `isSimulated=${filter.isSimulated}`;
 			}
 			if (queryParams !== '') queryParams = '?' + queryParams;
 

@@ -28,6 +28,8 @@ test-data/
 .vs/
 .idea/
 .vscode/
+.claude/
+.codex/
 
 # NuGet
 *.nupkg

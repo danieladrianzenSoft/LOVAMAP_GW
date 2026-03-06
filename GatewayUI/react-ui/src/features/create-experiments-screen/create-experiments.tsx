@@ -16,6 +16,7 @@ import { SearchContextSummary } from "../../app/common/ai-search-bar/search-cont
 import { Sidebar } from "../../app/common/sidebar/sidebar";
 import AcknowledgementModal from "../acknowledgement/acknowledgement-modal";
 import { openPreviewInNewTab } from "../../app/common/new-tab-preview/new-tab-preview";
+import Stepper from "../../app/common/stepper/stepper";
 
 type OptionKey = 'excelFileOption' | 'sheetOption' | 'columnOption' | 'stackedColumnOption';
 
@@ -60,11 +61,14 @@ const CreateExperiments = () => {
         loadAIResults,
         aiSearchUsed,
         setAiSearchUsed,
+        isSimulated,
+        setIsSimulated,
     } = useScaffoldGroupFiltering(true, setIsLoading);
 
     const clearFilters = () => {
 		setSelectedTags({});
 		setSelectedParticleSizeIds([]);
+        setIsSimulated(null);
         setAiSearchUsed(false);
 	};
 
@@ -75,6 +79,19 @@ const CreateExperiments = () => {
                 return prev.filter(descriptor => descriptor.id !== descriptorType.id);
             } else {
                 return [...prev, descriptorType];
+            }
+        });
+    };
+
+    const handleBulkSelectDescriptorTypes = (types: DescriptorType[], select: boolean) => {
+        setError(null);
+        setSelectedDescriptorTypes(prev => {
+            if (select) {
+                const existingIds = new Set(prev.map(d => d.id));
+                return [...prev, ...types.filter(t => !existingIds.has(t.id))];
+            } else {
+                const idsToRemove = new Set(types.map(t => t.id));
+                return prev.filter(d => !idsToRemove.has(d.id));
             }
         });
     };
@@ -372,7 +389,8 @@ const CreateExperiments = () => {
     return (
         <div className="flex mx-auto py-8 px-2">
             <div className="flex-1 space-y-12 pr-4">
-                <div className="text-3xl text-gray-700 font-bold mb-12">Customize downloads</div>                        
+                <div className="text-3xl text-gray-700 font-bold mb-12">Customize downloads</div>
+                <Stepper steps={["Scaffold Groups", "Descriptors", "Layout"]} currentStep={experimentStage - 1} />
                 <div className="flex h-full w-full">
                     {experimentStage === 1 && 
                         <div className="w-full mb-12">
@@ -388,14 +406,16 @@ const CreateExperiments = () => {
                                 <SearchContextSummary aiSearchUsed={aiSearchUsed} selectedTagNames={selectedTagNames} selectedParticleSizeIds={selectedParticleSizeIds}/>
                             </div>
 
-                            <ScaffoldGroupFilters 
-                                setIsLoading={setIsLoading} 
-                                condensed={true} 
+                            <ScaffoldGroupFilters
+                                setIsLoading={setIsLoading}
+                                condensed={true}
                                 allFiltersVisible={false}
                                 selectedParticleSizeIds={selectedParticleSizeIds}
                                 setSelectedParticleSizeIds={setSelectedParticleSizeIds}
                                 selectedTags={selectedTags}
                                 setSelectedTags={setSelectedTags}
+                                isSimulated={isSimulated}
+                                setIsSimulated={setIsSimulated}
                             />
 
                             {isLoading ? (
@@ -431,9 +451,10 @@ const CreateExperiments = () => {
                                     <button className="button-outline whitespace-nowrap" onClick={() => setExperimentStage(3)}>Next</button>
                                 </div>
                             </div>
-                            <DescriptorFilters 
+                            <DescriptorFilters
                                 selectedDescriptorTypes={selectedDescriptorTypes}
                                 onSelect={handleSelectDescriptorType}
+                                onBulkSelect={handleBulkSelectDescriptorTypes}
                             />
                         </div>
                     }

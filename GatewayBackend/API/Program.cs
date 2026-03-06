@@ -131,6 +131,7 @@ builder.Services.AddTransient<CoreClientAuthHandler>();
 builder.Services.AddHttpClient<ICoreApiClient, CoreApiClient>()
     .AddHttpMessageHandler<CoreClientAuthHandler>();
 builder.Services.AddScoped<IDescriptorProtobufCodec, DescriptorProtobufCodec>();
+builder.Services.AddScoped<IDatabaseMaintenanceHelper, DatabaseMaintenanceHelper>();
 builder.Services.Configure<FusekiOptions>(builder.Configuration.GetSection("Fuseki"));
 builder.Services.AddHttpClient<IFusekiClient, FusekiClient>();
 
@@ -187,6 +188,9 @@ using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<DataContext>();
     db.Database.Migrate();
+
+    var dbMaintenance = scope.ServiceProvider.GetRequiredService<IDatabaseMaintenanceHelper>();
+    await dbMaintenance.FixIdentitySequencesAsync();
 }
 
 // Seeding data

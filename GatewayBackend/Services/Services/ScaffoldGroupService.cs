@@ -69,7 +69,8 @@ namespace Services.Services
 		{
 			try
 			{
-				var createdScaffoldGroups = new List<ScaffoldGroupBaseDto>();
+				var pendingGroups = new List<(ScaffoldGroup group, List<string> tagNames, string uploaderId)>();
+
 				foreach (var dto in scaffoldGroupsToCreate)
 				{
 					var isAdmin = false;
@@ -106,11 +107,17 @@ namespace Services.Services
 					}
 
 					_scaffoldGroupRepository.Add(scaffoldGroup);
-					var scaffoldGroupToReturn = _modelMapper.MapToScaffoldGroupSummaryDto(scaffoldGroup, [], tagNames, userId ?? scaffoldGroup.UploaderId!);
-					createdScaffoldGroups.Add(scaffoldGroupToReturn);
+					pendingGroups.Add((scaffoldGroup, tagNames, userId ?? scaffoldGroup.UploaderId!));
 				}
 
+				// SaveChanges FIRST so entity IDs are populated
 				await _context.SaveChangesAsync();
+
+				// Now map to DTOs — IDs are available
+				var createdScaffoldGroups = pendingGroups.Select(entry =>
+					_modelMapper.MapToScaffoldGroupSummaryDto(entry.group, [], entry.tagNames, entry.uploaderId)
+				).Cast<ScaffoldGroupBaseDto>().ToList();
+
 				return (true, "", createdScaffoldGroups);
 			}
 			catch (Exception ex)
