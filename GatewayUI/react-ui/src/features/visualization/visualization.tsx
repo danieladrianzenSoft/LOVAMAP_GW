@@ -94,6 +94,17 @@ const Visualization: React.FC = () => {
 		return equal;
 	};
 
+		//JX 3/10; veirfy descriptor 53
+				useEffect(() => {
+  if (scaffoldGroupStore.selectedScaffoldGroup) {
+    console.log(
+      "ScaffoldGroup RAW:",
+      JSON.parse(JSON.stringify(scaffoldGroupStore.selectedScaffoldGroup))
+    );
+  }
+}, [scaffoldGroupStore.selectedScaffoldGroup]);
+
+
 	const defaultDimmedOptions = useMemo(() => ({
 		color: '#E7F6E3', 
 		opacity: 1,
@@ -105,6 +116,12 @@ const Visualization: React.FC = () => {
 		setIsLoading(true);
 		// const category = selectedCategories[0];
 		let scaffoldId = selectedScaffoldId ?? resolvedScaffoldId;
+	
+		if (!scaffoldId) {
+			console.warn("No scaffoldId provided, skipping load.");
+			setIsLoading(false);
+			return;
+		}
 
 		setHasAutoHiddenEdgePores(false);
 
@@ -125,12 +142,25 @@ const Visualization: React.FC = () => {
 		currentlyLoadingScaffoldIdRef.current = scaffoldId;
 
 		try {
-			const [group] = await Promise.all([
-				scaffoldGroupStore.loadGroupForScaffoldId(scaffoldId),
-				domainStore.getDomainMetadata(0, domainStore.getActiveDomain(0)?.id)
-			]);
-			if (group) setSelectedScaffoldGroupId(group.id);
+				const [group] = await Promise.all([
+  scaffoldGroupStore.loadGroupForScaffoldId(scaffoldId),
+  domainStore.getDomainMetadata(0, domainStore.getActiveDomain(0)?.id)
+]);
 
+if (group) {
+  setSelectedScaffoldGroupId(group.id);
+
+
+  await scaffoldGroupStore.loadDiameterForScaffoldGroup(group.id);
+}
+
+
+
+
+	if (group) {
+	setSelectedScaffoldGroupId(group.id);
+	await scaffoldGroupStore.loadDiameterForScaffoldGroup(group.id);
+	}
 			await Promise.all([
 				domainStore.visualizeDomain(scaffoldId, 0).catch(err => {
 					console.warn("Failed to visualize particles (0):", err);
@@ -284,6 +314,9 @@ const Visualization: React.FC = () => {
 	// 		setDimAppliedOnce(true); // mark as done
 	// 	}
 	// }, [showParticles, showPores, dimAppliedOnce, defaultDimmedOptions]);
+	useEffect(() => {
+  console.log("Diameter values:", scaffoldGroupStore.diameterValues.length);
+}, [scaffoldGroupStore.diameterValues]);
 
 	useEffect(() => {
 		return () => {

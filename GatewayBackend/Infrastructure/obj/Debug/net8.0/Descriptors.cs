@@ -69,7 +69,7 @@ namespace Lovamap {
             "YXAuRG91YmxlQXJyYXkSJAoGT3BlblNBGBsgASgLMhQubG92YW1hcC5Eb3Vi",
             "bGVBcnJheRInCgl4Q2VudHJvaWQYHCABKAsyFC5sb3ZhbWFwLkRvdWJsZUFy",
             "cmF5EicKCXlDZW50cm9pZBgdIAEoCzIULmxvdmFtYXAuRG91YmxlQXJyYXkS",
-            "JwoJekNlbnRyb2lkGB4gASgLMhQubG92YW1hcC5Eb3VibGVBcnJheSLUCAoQ",
+            "JwoJekNlbnRyb2lkGB4gASgLMhQubG92YW1hcC5Eb3VibGVBcnJheSLYCQoQ",
             "T3RoZXJEZXNjcmlwdG9ycxIqCgxQYXJ0aWNsZURpYW0YASABKAsyFC5sb3Zh",
             "bWFwLkRvdWJsZUFycmF5EigKDVBhcnRpY2xlQ29vcmQYAiABKAsyES5sb3Zh",
             "bWFwLkludEFycmF5EisKEFRvdWNoaW5nUGFydGljbGUYAyABKAsyES5sb3Zh",
@@ -94,12 +94,15 @@ namespace Lovamap {
             "MBgUIAEoCzIULmxvdmFtYXAuRG91YmxlQXJyYXkSKgoMUmVnaW9uc1ZvbDEw",
             "GBUgASgLMhQubG92YW1hcC5Eb3VibGVBcnJheRIqCgxSZWdpb25zVm9sMzAY",
             "FiABKAsyFC5sb3ZhbWFwLkRvdWJsZUFycmF5EioKDFJlZ2lvbnNWb2w2MBgX",
-            "IAEoCzIULmxvdmFtYXAuRG91YmxlQXJyYXkizAEKC0Rlc2NyaXB0b3JzEg0K",
-            "BWpvYklkGAEgASgJEg8KB3ZlcnNpb24YAiABKAkSNQoRZ2xvYmFsRGVzY3Jp",
-            "cHRvcnMYAyABKAsyGi5sb3ZhbWFwLkdsb2JhbERlc2NyaXB0b3JzEjEKD3Bv",
-            "cmVEZXNjcmlwdG9ycxgEIAEoCzIYLmxvdmFtYXAuUG9yZURlc2NyaXB0b3Jz",
-            "EjMKEG90aGVyRGVzY3JpcHRvcnMYBSABKAsyGS5sb3ZhbWFwLk90aGVyRGVz",
-            "Y3JpcHRvcnNiBnByb3RvMw=="));
+            "IAEoCzIULmxvdmFtYXAuRG91YmxlQXJyYXkSKgoMeFBhcnRpY2xlQ09NGBgg",
+            "ASgLMhQubG92YW1hcC5Eb3VibGVBcnJheRIqCgx5UGFydGljbGVDT00YGSAB",
+            "KAsyFC5sb3ZhbWFwLkRvdWJsZUFycmF5EioKDHpQYXJ0aWNsZUNPTRgaIAEo",
+            "CzIULmxvdmFtYXAuRG91YmxlQXJyYXkizAEKC0Rlc2NyaXB0b3JzEg0KBWpv",
+            "YklkGAEgASgJEg8KB3ZlcnNpb24YAiABKAkSNQoRZ2xvYmFsRGVzY3JpcHRv",
+            "cnMYAyABKAsyGi5sb3ZhbWFwLkdsb2JhbERlc2NyaXB0b3JzEjEKD3BvcmVE",
+            "ZXNjcmlwdG9ycxgEIAEoCzIYLmxvdmFtYXAuUG9yZURlc2NyaXB0b3JzEjMK",
+            "EG90aGVyRGVzY3JpcHRvcnMYBSABKAsyGS5sb3ZhbWFwLk90aGVyRGVzY3Jp",
+            "cHRvcnNiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -107,7 +110,7 @@ namespace Lovamap {
             new pbr::GeneratedClrTypeInfo(typeof(global::Lovamap.DoubleArray), global::Lovamap.DoubleArray.Parser, new[]{ "Values" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Lovamap.GlobalDescriptors), global::Lovamap.GlobalDescriptors.Parser, new[]{ "Dx", "NumVoxels", "NumParticles", "NumParticleContacts", "VFF", "ParticlePackingFraction", "AvgVoidAreaFraction", "VFFIntPores", "NumTotalPores", "NumIntPores", "NumIntPoresdivParticlesSurrIntPores", "NumExitDoors", "NumIntDoors", "NumIntPaths", "ParticleAdjacencyMatrixEigenvalue", "PeakAdjacencyMatrixEigenvalue", "PoreAdjacencyMatrixEigenvalue", "MaxNumPeaksAmongSurfacePores", "LigandHotspotsVolFrac", "MaxNumEquidistantParticles" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Lovamap.PoreDescriptors), global::Lovamap.PoreDescriptors.Parser, new[]{ "Volume", "SA", "CharacteristicLength", "LongestLength", "AvgInternalDiam", "AspectRatio", "NumHallways", "NumCrawlSpaces", "NumConnectedPores", "NumSurroundingPores", "NumParticleEdges", "NormalizedNeighbors", "MeanLocalThickness", "NumPeaks", "NumSurrParticles", "LargestEnclosedSphereDiam", "LargestDoorDiam", "SmallestDoorDiam", "EllipsoidAxis1Length", "EllipsoidAxis2Length", "EllipsoidAxis3Length", "EllipsoidClassification", "IsotropyAnisotropy", "LigandConcentration", "AccessibleLigand", "ParticleSA", "OpenSA", "XCentroid", "YCentroid", "ZCentroid" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Lovamap.OtherDescriptors), global::Lovamap.OtherDescriptors.Parser, new[]{ "ParticleDiam", "ParticleCoord", "TouchingParticle", "ExitDoorDiam", "IntDoorDiam", "CrawlSpaceWidth", "PathLength", "TortuositybyLength", "TortuositybyVol", "NumIntPoresPath", "NumExtPoresPath", "NumParticlesEnclosingIntPath", "NumParticlesEnclosingExitPath", "NumBottlenecksTotal", "AvgBottleneckDiamTotal", "NumBottlenecksDoors", "AvgBottleneckDiamDoors", "SurfaceLigandConc", "SurfaceAccessibleLigand", "RegionsVol0", "RegionsVol10", "RegionsVol30", "RegionsVol60" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Lovamap.OtherDescriptors), global::Lovamap.OtherDescriptors.Parser, new[]{ "ParticleDiam", "ParticleCoord", "TouchingParticle", "ExitDoorDiam", "IntDoorDiam", "CrawlSpaceWidth", "PathLength", "TortuositybyLength", "TortuositybyVol", "NumIntPoresPath", "NumExtPoresPath", "NumParticlesEnclosingIntPath", "NumParticlesEnclosingExitPath", "NumBottlenecksTotal", "AvgBottleneckDiamTotal", "NumBottlenecksDoors", "AvgBottleneckDiamDoors", "SurfaceLigandConc", "SurfaceAccessibleLigand", "RegionsVol0", "RegionsVol10", "RegionsVol30", "RegionsVol60", "XParticleCOM", "YParticleCOM", "ZParticleCOM" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Lovamap.Descriptors), global::Lovamap.Descriptors.Parser, new[]{ "JobId", "Version", "GlobalDescriptors", "PoreDescriptors", "OtherDescriptors" }, null, null, null, null)
           }));
     }
@@ -2999,6 +3002,9 @@ namespace Lovamap {
       regionsVol10_ = other.regionsVol10_ != null ? other.regionsVol10_.Clone() : null;
       regionsVol30_ = other.regionsVol30_ != null ? other.regionsVol30_.Clone() : null;
       regionsVol60_ = other.regionsVol60_ != null ? other.regionsVol60_.Clone() : null;
+      xParticleCOM_ = other.xParticleCOM_ != null ? other.xParticleCOM_.Clone() : null;
+      yParticleCOM_ = other.yParticleCOM_ != null ? other.yParticleCOM_.Clone() : null;
+      zParticleCOM_ = other.zParticleCOM_ != null ? other.zParticleCOM_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -3284,6 +3290,42 @@ namespace Lovamap {
       }
     }
 
+    /// <summary>Field number for the "xParticleCOM" field.</summary>
+    public const int XParticleCOMFieldNumber = 24;
+    private global::Lovamap.DoubleArray xParticleCOM_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Lovamap.DoubleArray XParticleCOM {
+      get { return xParticleCOM_; }
+      set {
+        xParticleCOM_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "yParticleCOM" field.</summary>
+    public const int YParticleCOMFieldNumber = 25;
+    private global::Lovamap.DoubleArray yParticleCOM_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Lovamap.DoubleArray YParticleCOM {
+      get { return yParticleCOM_; }
+      set {
+        yParticleCOM_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "zParticleCOM" field.</summary>
+    public const int ZParticleCOMFieldNumber = 26;
+    private global::Lovamap.DoubleArray zParticleCOM_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Lovamap.DoubleArray ZParticleCOM {
+      get { return zParticleCOM_; }
+      set {
+        zParticleCOM_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -3322,6 +3364,9 @@ namespace Lovamap {
       if (!object.Equals(RegionsVol10, other.RegionsVol10)) return false;
       if (!object.Equals(RegionsVol30, other.RegionsVol30)) return false;
       if (!object.Equals(RegionsVol60, other.RegionsVol60)) return false;
+      if (!object.Equals(XParticleCOM, other.XParticleCOM)) return false;
+      if (!object.Equals(YParticleCOM, other.YParticleCOM)) return false;
+      if (!object.Equals(ZParticleCOM, other.ZParticleCOM)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -3352,6 +3397,9 @@ namespace Lovamap {
       if (regionsVol10_ != null) hash ^= RegionsVol10.GetHashCode();
       if (regionsVol30_ != null) hash ^= RegionsVol30.GetHashCode();
       if (regionsVol60_ != null) hash ^= RegionsVol60.GetHashCode();
+      if (xParticleCOM_ != null) hash ^= XParticleCOM.GetHashCode();
+      if (yParticleCOM_ != null) hash ^= YParticleCOM.GetHashCode();
+      if (zParticleCOM_ != null) hash ^= ZParticleCOM.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -3462,6 +3510,18 @@ namespace Lovamap {
         output.WriteRawTag(186, 1);
         output.WriteMessage(RegionsVol60);
       }
+      if (xParticleCOM_ != null) {
+        output.WriteRawTag(194, 1);
+        output.WriteMessage(XParticleCOM);
+      }
+      if (yParticleCOM_ != null) {
+        output.WriteRawTag(202, 1);
+        output.WriteMessage(YParticleCOM);
+      }
+      if (zParticleCOM_ != null) {
+        output.WriteRawTag(210, 1);
+        output.WriteMessage(ZParticleCOM);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -3564,6 +3624,18 @@ namespace Lovamap {
         output.WriteRawTag(186, 1);
         output.WriteMessage(RegionsVol60);
       }
+      if (xParticleCOM_ != null) {
+        output.WriteRawTag(194, 1);
+        output.WriteMessage(XParticleCOM);
+      }
+      if (yParticleCOM_ != null) {
+        output.WriteRawTag(202, 1);
+        output.WriteMessage(YParticleCOM);
+      }
+      if (zParticleCOM_ != null) {
+        output.WriteRawTag(210, 1);
+        output.WriteMessage(ZParticleCOM);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -3642,6 +3714,15 @@ namespace Lovamap {
       }
       if (regionsVol60_ != null) {
         size += 2 + pb::CodedOutputStream.ComputeMessageSize(RegionsVol60);
+      }
+      if (xParticleCOM_ != null) {
+        size += 2 + pb::CodedOutputStream.ComputeMessageSize(XParticleCOM);
+      }
+      if (yParticleCOM_ != null) {
+        size += 2 + pb::CodedOutputStream.ComputeMessageSize(YParticleCOM);
+      }
+      if (zParticleCOM_ != null) {
+        size += 2 + pb::CodedOutputStream.ComputeMessageSize(ZParticleCOM);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -3792,6 +3873,24 @@ namespace Lovamap {
           RegionsVol60 = new global::Lovamap.DoubleArray();
         }
         RegionsVol60.MergeFrom(other.RegionsVol60);
+      }
+      if (other.xParticleCOM_ != null) {
+        if (xParticleCOM_ == null) {
+          XParticleCOM = new global::Lovamap.DoubleArray();
+        }
+        XParticleCOM.MergeFrom(other.XParticleCOM);
+      }
+      if (other.yParticleCOM_ != null) {
+        if (yParticleCOM_ == null) {
+          YParticleCOM = new global::Lovamap.DoubleArray();
+        }
+        YParticleCOM.MergeFrom(other.YParticleCOM);
+      }
+      if (other.zParticleCOM_ != null) {
+        if (zParticleCOM_ == null) {
+          ZParticleCOM = new global::Lovamap.DoubleArray();
+        }
+        ZParticleCOM.MergeFrom(other.ZParticleCOM);
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -3973,6 +4072,27 @@ namespace Lovamap {
             input.ReadMessage(RegionsVol60);
             break;
           }
+          case 194: {
+            if (xParticleCOM_ == null) {
+              XParticleCOM = new global::Lovamap.DoubleArray();
+            }
+            input.ReadMessage(XParticleCOM);
+            break;
+          }
+          case 202: {
+            if (yParticleCOM_ == null) {
+              YParticleCOM = new global::Lovamap.DoubleArray();
+            }
+            input.ReadMessage(YParticleCOM);
+            break;
+          }
+          case 210: {
+            if (zParticleCOM_ == null) {
+              ZParticleCOM = new global::Lovamap.DoubleArray();
+            }
+            input.ReadMessage(ZParticleCOM);
+            break;
+          }
         }
       }
     #endif
@@ -4151,6 +4271,27 @@ namespace Lovamap {
               RegionsVol60 = new global::Lovamap.DoubleArray();
             }
             input.ReadMessage(RegionsVol60);
+            break;
+          }
+          case 194: {
+            if (xParticleCOM_ == null) {
+              XParticleCOM = new global::Lovamap.DoubleArray();
+            }
+            input.ReadMessage(XParticleCOM);
+            break;
+          }
+          case 202: {
+            if (yParticleCOM_ == null) {
+              YParticleCOM = new global::Lovamap.DoubleArray();
+            }
+            input.ReadMessage(YParticleCOM);
+            break;
+          }
+          case 210: {
+            if (zParticleCOM_ == null) {
+              ZParticleCOM = new global::Lovamap.DoubleArray();
+            }
+            input.ReadMessage(ZParticleCOM);
             break;
           }
         }

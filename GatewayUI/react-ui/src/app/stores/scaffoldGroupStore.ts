@@ -14,6 +14,9 @@ export default class ScaffoldGroupStore {
 	scaffoldGroups: ScaffoldGroup[] = [];
 	uploadedScaffoldGroups: ScaffoldGroup[] = [];
 	uploadProgress: number | null = null;
+	//JX: 3/10
+	diameterValues: number[] = [];
+
 	selectedScaffoldGroup: ScaffoldGroup | null = null;
 	defaultScaffoldGroupId: number = 55;
 
@@ -520,6 +523,51 @@ export default class ScaffoldGroupStore {
 			console.error(error);
 		}
 	}
+	//JX: 3/10 add diameter
+	loadDiameterForScaffoldGroup = async (scaffoldGroupId: number) => {
+  try {
+    const response = await agent.ScaffoldGroups.getDetailedForExperiment(
+      `?scaffoldGroupIds=${scaffoldGroupId}&descriptorIds=53`
+    );
+
+    const groups: any[] = response.data;
+
+    if (!groups || groups.length === 0) return;
+
+    const scaffold = groups[0]?.scaffolds?.[0];
+
+    const descriptor = scaffold?.otherDescriptors?.find(
+      (d: any) => d.name === "ParticleDiam"
+    );
+
+    if (!descriptor?.values) {
+      console.log("Descriptor found but no values");
+      return;
+    }
+
+
+    const valuesArray = descriptor.values
+      .split(',')
+      .map((v: string) => parseFloat(v));
+
+    runInAction(() => {
+      this.diameterValues = valuesArray;
+    });
+
+    console.log("Loaded diameter values:", this.diameterValues.length);
+
+  } catch (error) {
+    console.error("Failed to load diameter descriptor:", error);
+  }
+};
+
+
+
+
+
+
+
+
 
 	updateImage = async(scaffoldGroupId: number, image: ImageToUpdate) => {
 		try {

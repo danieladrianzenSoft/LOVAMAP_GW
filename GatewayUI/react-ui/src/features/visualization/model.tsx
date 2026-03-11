@@ -4,6 +4,46 @@ import { useGLTF } from "@react-three/drei";
 import * as THREE from 'three';
 import { observer } from 'mobx-react-lite';
 
+//JX: 3/10 colormap
+const beadColorJS = (diam: number): THREE.Color => {
+
+  const bins: Record<number, [number, number, number]> = {
+    40:  [235, 236, 246],
+    50:  [245, 246, 232],
+    60:  [246, 234, 224],
+    70:  [218, 234, 245],
+    80:  [238, 231, 246],
+    90:  [254, 236, 240],
+    100: [231, 246, 227],
+    110: [238, 231, 231],
+    120: [233, 253, 248],
+    130: [230, 234, 250],
+    140: [254, 249, 233],
+    150: [225, 253, 224],
+    160: [253, 237, 248],
+    170: [255, 233, 209],
+    180: [219, 231, 240],
+    190: [237, 232, 223],
+    200: [240, 240, 240],
+  };
+
+  // MATLAB: diam = round(diam / 10) * 10;
+  const rounded = Math.round(diam / 10) * 10;
+
+  let key = rounded;
+
+  if (rounded <= 40) key = 40;
+  if (rounded >= 200) key = 200;
+
+  const rgb = bins[key] ?? bins[100];
+
+  return new THREE.Color(
+    rgb[0] / 255,
+    rgb[1] / 255,
+    rgb[2] / 255
+  );
+};
+
 interface ModelProps {
 	url: string;
 	category: number;

@@ -289,41 +289,50 @@ public class ScaffoldGroupsController : ControllerBase
     }
 
 
-	[HttpGet("detailed")]
-	public async Task<IActionResult> GeDetailedScaffoldGroups([FromQuery] ScaffoldFilter filter)
-	{
-		try
-		{
-			var currentUserId = _userService.GetCurrentUserId();
+	[AllowAnonymous]
+[HttpGet("detailed")]
+public async Task<IActionResult> GeDetailedScaffoldGroups([FromQuery] ScaffoldFilter filter)
+{
+    try
+    {
+        // Skip user check for local debugging
+        var currentUserId = _userService.GetCurrentUserId() ?? "debug-user";
 
-			if (currentUserId == null) return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
+        var (succeeded, errorMessage, scaffoldGroups) =
+            await _scaffoldGroupService.GetFilteredScaffoldGroups(filter, currentUserId, true);
 
-			var (succeeded, errorMessage, scaffoldGroups) = await _scaffoldGroupService.GetFilteredScaffoldGroups(filter, currentUserId, true);
+        if (!succeeded)
+        {
+            return NotFound(new ApiResponse<string>(404, errorMessage));
+        }
 
-			if (!succeeded)
-			{
-				return NotFound(new ApiResponse<string>(404, errorMessage));
-			}
+        var detailedGroups = scaffoldGroups?.OfType<ScaffoldGroupDetailedDto>();
 
-			var detailedGroups = scaffoldGroups?.OfType<ScaffoldGroupDetailedDto>();
-
-			return Ok(new ApiResponse<IEnumerable<ScaffoldGroupDetailedDto>>(200, "", detailedGroups));
-		}
-		catch (Exception ex)
-		{
-			_logger.LogError(ex, "Failed to get the scaffold groups");
-			return StatusCode(500, new ApiResponse<string>(500, "An error occurred while getting the scaffold groups"));
-		}
-	}
+        return Ok(new ApiResponse<IEnumerable<ScaffoldGroupDetailedDto>>(200, "", detailedGroups));
+    }
+    catch (Exception ex)
+    {
+        _logger.LogError(ex, "Failed to get the scaffold groups");
+        return StatusCode(500, new ApiResponse<string>(500, "An error occurred while getting the scaffold groups"));
+    }
+}
 
 	[HttpGet("me")]
     public async Task<IActionResult> GetUploadedScaffoldGroups()
     {
 		try
 		{
-            var currentUserId = _userService.GetCurrentUserId();
+            // var currentUserId = _userService.GetCurrentUserId();
 
-			if (currentUserId == null) return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
+			// if (currentUserId == null) return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
+			// JX: 3/10
+			var currentUserId = _userService.GetCurrentUserId();
+
+
+			if (currentUserId == null)
+			{
+				currentUserId = "debug-user";
+			}
 
    			var filter = new ScaffoldFilter { UserId = currentUserId };
 

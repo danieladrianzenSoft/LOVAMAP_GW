@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/API.csproj": {}
+    "/Users/chachaen/Desktop/LOVAMAP_GW/GatewayBackend/API/API.csproj": {}
   },
   "projects": {
-    "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/API.csproj": {
+    "/Users/chachaen/Desktop/LOVAMAP_GW/GatewayBackend/API/API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/API.csproj",
+        "projectUniqueName": "/Users/chachaen/Desktop/LOVAMAP_GW/GatewayBackend/API/API.csproj",
         "projectName": "API",
-        "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/API.csproj",
-        "packagesPath": "/Users/dzen/.nuget/packages/",
-        "outputPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/API/obj/",
+        "projectPath": "/Users/chachaen/Desktop/LOVAMAP_GW/GatewayBackend/API/API.csproj",
+        "packagesPath": "/Users/chachaen/.nuget/packages/",
+        "outputPath": "/Users/chachaen/Desktop/LOVAMAP_GW/GatewayBackend/API/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/dzen/.nuget/NuGet/NuGet.Config"
+          "/Users/chachaen/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -26,17 +26,17 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Data/Data.csproj": {
-                "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Data/Data.csproj"
+              "/Users/chachaen/Desktop/LOVAMAP_GW/GatewayBackend/Data/Data.csproj": {
+                "projectPath": "/Users/chachaen/Desktop/LOVAMAP_GW/GatewayBackend/Data/Data.csproj"
               },
-              "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Infrastructure/Infrastructure.csproj": {
-                "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Infrastructure/Infrastructure.csproj"
+              "/Users/chachaen/Desktop/LOVAMAP_GW/GatewayBackend/Infrastructure/Infrastructure.csproj": {
+                "projectPath": "/Users/chachaen/Desktop/LOVAMAP_GW/GatewayBackend/Infrastructure/Infrastructure.csproj"
               },
-              "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Repositories/Repositories.csproj": {
-                "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Repositories/Repositories.csproj"
+              "/Users/chachaen/Desktop/LOVAMAP_GW/GatewayBackend/Repositories/Repositories.csproj": {
+                "projectPath": "/Users/chachaen/Desktop/LOVAMAP_GW/GatewayBackend/Repositories/Repositories.csproj"
               },
-              "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Services/Services.csproj": {
-                "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Services/Services.csproj"
+              "/Users/chachaen/Desktop/LOVAMAP_GW/GatewayBackend/Services/Services.csproj": {
+                "projectPath": "/Users/chachaen/Desktop/LOVAMAP_GW/GatewayBackend/Services/Services.csproj"
               }
             }
           }
@@ -50,7 +50,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "10.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -116,21 +117,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.102/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Data/Data.csproj": {
+    "/Users/chachaen/Desktop/LOVAMAP_GW/GatewayBackend/Data/Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Data/Data.csproj",
+        "projectUniqueName": "/Users/chachaen/Desktop/LOVAMAP_GW/GatewayBackend/Data/Data.csproj",
         "projectName": "Data",
-        "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Data/Data.csproj",
-        "packagesPath": "/Users/dzen/.nuget/packages/",
-        "outputPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Data/obj/",
+        "projectPath": "/Users/chachaen/Desktop/LOVAMAP_GW/GatewayBackend/Data/Data.csproj",
+        "packagesPath": "/Users/chachaen/.nuget/packages/",
+        "outputPath": "/Users/chachaen/Desktop/LOVAMAP_GW/GatewayBackend/Data/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/dzen/.nuget/NuGet/NuGet.Config"
+          "/Users/chachaen/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -153,7 +154,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "10.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -196,21 +198,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.102/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Infrastructure/Infrastructure.csproj": {
+    "/Users/chachaen/Desktop/LOVAMAP_GW/GatewayBackend/Infrastructure/Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Infrastructure/Infrastructure.csproj",
+        "projectUniqueName": "/Users/chachaen/Desktop/LOVAMAP_GW/GatewayBackend/Infrastructure/Infrastructure.csproj",
         "projectName": "Infrastructure",
-        "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Infrastructure/Infrastructure.csproj",
-        "packagesPath": "/Users/dzen/.nuget/packages/",
-        "outputPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Infrastructure/obj/",
+        "projectPath": "/Users/chachaen/Desktop/LOVAMAP_GW/GatewayBackend/Infrastructure/Infrastructure.csproj",
+        "packagesPath": "/Users/chachaen/.nuget/packages/",
+        "outputPath": "/Users/chachaen/Desktop/LOVAMAP_GW/GatewayBackend/Infrastructure/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/dzen/.nuget/NuGet/NuGet.Config"
+          "/Users/chachaen/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -222,8 +224,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Data/Data.csproj": {
-                "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Data/Data.csproj"
+              "/Users/chachaen/Desktop/LOVAMAP_GW/GatewayBackend/Data/Data.csproj": {
+                "projectPath": "/Users/chachaen/Desktop/LOVAMAP_GW/GatewayBackend/Data/Data.csproj"
               }
             }
           }
@@ -237,7 +239,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "10.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -288,21 +291,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.102/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Repositories/Repositories.csproj": {
+    "/Users/chachaen/Desktop/LOVAMAP_GW/GatewayBackend/Repositories/Repositories.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Repositories/Repositories.csproj",
+        "projectUniqueName": "/Users/chachaen/Desktop/LOVAMAP_GW/GatewayBackend/Repositories/Repositories.csproj",
         "projectName": "Repositories",
-        "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Repositories/Repositories.csproj",
-        "packagesPath": "/Users/dzen/.nuget/packages/",
-        "outputPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Repositories/obj/",
+        "projectPath": "/Users/chachaen/Desktop/LOVAMAP_GW/GatewayBackend/Repositories/Repositories.csproj",
+        "packagesPath": "/Users/chachaen/.nuget/packages/",
+        "outputPath": "/Users/chachaen/Desktop/LOVAMAP_GW/GatewayBackend/Repositories/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/dzen/.nuget/NuGet/NuGet.Config"
+          "/Users/chachaen/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -314,11 +317,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Data/Data.csproj": {
-                "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Data/Data.csproj"
+              "/Users/chachaen/Desktop/LOVAMAP_GW/GatewayBackend/Data/Data.csproj": {
+                "projectPath": "/Users/chachaen/Desktop/LOVAMAP_GW/GatewayBackend/Data/Data.csproj"
               },
-              "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Infrastructure/Infrastructure.csproj": {
-                "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Infrastructure/Infrastructure.csproj"
+              "/Users/chachaen/Desktop/LOVAMAP_GW/GatewayBackend/Infrastructure/Infrastructure.csproj": {
+                "projectPath": "/Users/chachaen/Desktop/LOVAMAP_GW/GatewayBackend/Infrastructure/Infrastructure.csproj"
               }
             }
           }
@@ -332,7 +335,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "10.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -367,21 +371,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.102/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Services/Services.csproj": {
+    "/Users/chachaen/Desktop/LOVAMAP_GW/GatewayBackend/Services/Services.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Services/Services.csproj",
+        "projectUniqueName": "/Users/chachaen/Desktop/LOVAMAP_GW/GatewayBackend/Services/Services.csproj",
         "projectName": "Services",
-        "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Services/Services.csproj",
-        "packagesPath": "/Users/dzen/.nuget/packages/",
-        "outputPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Services/obj/",
+        "projectPath": "/Users/chachaen/Desktop/LOVAMAP_GW/GatewayBackend/Services/Services.csproj",
+        "packagesPath": "/Users/chachaen/.nuget/packages/",
+        "outputPath": "/Users/chachaen/Desktop/LOVAMAP_GW/GatewayBackend/Services/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/dzen/.nuget/NuGet/NuGet.Config"
+          "/Users/chachaen/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -393,14 +397,14 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Data/Data.csproj": {
-                "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Data/Data.csproj"
+              "/Users/chachaen/Desktop/LOVAMAP_GW/GatewayBackend/Data/Data.csproj": {
+                "projectPath": "/Users/chachaen/Desktop/LOVAMAP_GW/GatewayBackend/Data/Data.csproj"
               },
-              "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Infrastructure/Infrastructure.csproj": {
-                "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Infrastructure/Infrastructure.csproj"
+              "/Users/chachaen/Desktop/LOVAMAP_GW/GatewayBackend/Infrastructure/Infrastructure.csproj": {
+                "projectPath": "/Users/chachaen/Desktop/LOVAMAP_GW/GatewayBackend/Infrastructure/Infrastructure.csproj"
               },
-              "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Repositories/Repositories.csproj": {
-                "projectPath": "/Users/dzen/Documents/LOVAMAP/LOVAMAP_GW/GatewayBackend/Repositories/Repositories.csproj"
+              "/Users/chachaen/Desktop/LOVAMAP_GW/GatewayBackend/Repositories/Repositories.csproj": {
+                "projectPath": "/Users/chachaen/Desktop/LOVAMAP_GW/GatewayBackend/Repositories/Repositories.csproj"
               }
             }
           }
@@ -414,7 +418,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "10.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -457,7 +462,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.102/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

@@ -1,71 +1,91 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { Bounds, Environment, OrbitControls, useProgress } from "@react-three/drei";
-import { ACESFilmicToneMapping, PCFSoftShadowMap} from "three";
+import { PCFSoftShadowMap } from "three";
 import * as THREE from "three";
-import Model from "./model"; // assuming this stays in the same folder
+import Model from "./model";
 
 interface DomainMeshProps {
   url: string;
-  category: number; // 0 = particles, 1 = pores
+  category: number;
   visible: boolean;
   hiddenIds: Set<string>;
   selectedEntity: { id: string; mesh: THREE.Mesh } | null;
   onEntityClick: (category: number, id: string, mesh: THREE.Mesh) => void;
   onEntityRightClick: (category: number, id: string, mesh: THREE.Mesh) => void;
-  opacity?: number;                     // Independent opacity control
-	color?: string;                       // Independent base color (optional)
-	dimmed?: boolean;                     // Whether to apply dimming override
+  opacity?: number;
+  color?: string;
+  dimmed?: boolean;
   slicingActive?: boolean;
   sliceXThreshold?: number | null;
-	dimmedOptions?: {
-		color?: string;                   // Default: '#f2f3f4'
-		opacity?: number;                // Default: 0.1
-	};
+  dimmedOptions?: {
+    color?: string;
+    opacity?: number;
+  };
   debugMode?: boolean;
 }
 
 interface CanvasViewerProps {
   meshes: DomainMeshProps[];
-  theme?: 'Metallic' | 'Sunset';
+  theme?: "Metallic" | "Sunset";
   onSliceBoundsComputed?: (bounds: { min: THREE.Vector3; max: THREE.Vector3 }) => void;
   onCanvasCreated?: (canvas: HTMLCanvasElement) => void;
 }
 
-const CanvasViewer: React.FC<CanvasViewerProps> = ({ meshes, theme, onSliceBoundsComputed, onCanvasCreated }) => {
-  // const [centers, setCenters] = useState<THREE.Vector3[]>([]);
-  const [combinedCenter, ] = useState<THREE.Vector3 | null>(null);
+const CamLight: React.FC = () => {
+  const lightRef = useRef<THREE.DirectionalLight>(null);
+
+  useFrame(({ camera }) => {
+    if (lightRef.current) {
+      lightRef.current.position.copy(camera.position);
+    }
+  });
+
+  return (
+    <directionalLight
+      ref={lightRef}
+      intensity={1}
+      castShadow
+      color="white"
+    />
+  );
+};
+
+const CanvasViewer: React.FC<CanvasViewerProps> = ({
+  meshes,
+  theme,
+  onSliceBoundsComputed,
+  onCanvasCreated
+}) => {
+
+  const [combinedCenter] = useState<THREE.Vector3 | null>(null);
   const [, setParticleCenters] = useState<THREE.Vector3[]>([]);
-  const [particleBounds, setParticleBounds] = useState<{ min: THREE.Vector3; max: THREE.Vector3 } | null>(null);
+  const [particleBounds, setParticleBounds] =
+    useState<{ min: THREE.Vector3; max: THREE.Vector3 } | null>(null);
+
   const { active } = useProgress();
   const isLoaderActive = active;
-  const [loadingCount, ] = useState(0);
-  // const incrementLoading = useCallback(() => setLoadingCount(c => c + 1), []);
-  // const decrementLoading = useCallback(() => setLoadingCount(c => Math.max(0, c - 1)), []);
 
   const controlsRef = useRef<any>(null);
   const hasSetCamera = useRef(false);
 
-  useEffect(() => {
-    if (!particleBounds || !onSliceBoundsComputed) return;
+  const hasMetallicTheme = useMemo(
+    () => theme === "Metallic",
+    [theme]
+  );
 
-    const min = particleBounds.min.clone();
-    const max = particleBounds.max.clone();
+  const handleModelLoad = useCallback((
+    scene: THREE.Object3D,
+    center: THREE.Vector3,
+    size: number,
+    category: number,
+    bounds: { min: THREE.Vector3; max: THREE.Vector3 }
+  ) => {
 
-    onSliceBoundsComputed({ min, max });
-  }, [particleBounds, onSliceBoundsComputed]);
-
-  // const globalOffset = useMemo(() => {
-  //   return particleCenters.length
-  //     ? particleCenters.reduce((acc, c) => acc.clone().add(c), new THREE.Vector3()).divideScalar(particleCenters.length)
-  //     : new THREE.Vector3();
-  // }, [particleCenters]);
-
-  const handleModelLoad = useCallback((scene: THREE.Object3D, center: THREE.Vector3, size: number, category: number, bounds: { min: THREE.Vector3; max: THREE.Vector3 }) => {
     if (!controlsRef.current) return;
 
     if (category === 0 && bounds) {
-      setParticleCenters([center]); // optional, still useful for camera
+      setParticleCenters([center]);
       setParticleBounds(bounds);
     }
 
@@ -86,98 +106,70 @@ const CanvasViewer: React.FC<CanvasViewerProps> = ({ meshes, theme, onSliceBound
     controlsRef.current.update();
 
     hasSetCamera.current = true;
+
   }, []);
-
-  const hasMetallicTheme = useMemo(
-    () => theme === 'Metallic',
-    [theme]
-  );
-
-  const isRendering = isLoaderActive || loadingCount > 0;
 
   return (
     <>
-      {/* {isLoading && <div className="text-gray-600">Loading mesh...</div>} */}
-      {isRendering && (
+      {isLoaderActive && (
         <div className="absolute inset-0 z-40 flex items-center justify-center pointer-events-none">
           <div className="rounded-md bg-white bg-opacity-90 p-3 shadow">
-            <div className="flex items-center gap-2">
-              <svg className="animate-spin h-5 w-5 text-gray-600" viewBox="0 0 24 24">
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none"></circle>
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
-              </svg>
-              <div className="text-gray-700 text-sm">Rendering…</div>
-            </div>
+            <div className="text-gray-700 text-sm">Rendering…</div>
           </div>
         </div>
       )}
+
       <Canvas
         shadows
         gl={{
-          // preserveDrawingBuffer: true,
-          toneMapping: ACESFilmicToneMapping,
-          toneMappingExposure: 1.2,
-          shadowMapType: PCFSoftShadowMap,
+          toneMapping: THREE.NoToneMapping,   // MATLAB-like
         }}
         onCreated={({ gl }) => {
+          gl.shadowMap.enabled = true;
+          gl.shadowMap.type = PCFSoftShadowMap;
           onCanvasCreated?.(gl.domElement);
         }}
       >
         <color attach="background" args={["white"]} />
-        <ambientLight intensity={0.25} />
-        {hasMetallicTheme ? (
-            <directionalLight
-              position={[10, 20, 0]}
-              intensity={1.2}
-              castShadow
-              color="white"
-            />
-          ) : (
-            <directionalLight castShadow position={[5, 5, 5]} intensity={0.2} />
-          )
-        }
 
-        <spotLight
-          position={[0, 15, 10]}
-          angle={0.3}
-          penumbra={0.8}
-          intensity={0.8}
-          castShadow
-        />
-        {/* <Environment preset="lobby" background={false} /> */}
-        {!hasMetallicTheme && <Environment preset="lobby" background={false} />}
-        {/* {theme !== 'Metallic' && <Environment preset="studio" background={false} />} */}
+        {/* MATLAB-like lighting */}
+        <ambientLight intensity={0.3} />
+
+        {hasMetallicTheme ? (
+          <>
+            <CamLight />  {/* camlight simulation */}
+          </>
+        ) : (
+          <>
+            <directionalLight
+              position={[5, 5, 5]}
+              intensity={0.6}
+              castShadow
+            />
+            <Environment preset="lobby" background={false} />
+          </>
+        )}
+
         <Bounds>
           {meshes.map((meshProps, idx) => (
-            <group 
-              key={meshProps.url ?? idx}
-              // position={centers[idx] ? centers[idx].clone().sub(globalOffset) : [0, 0, 0]}
-            >
-              {meshProps.debugMode && <axesHelper args={[100]} />}
+            <group key={meshProps.url ?? idx}>
               <Model
                 key={idx}
-                url={meshProps.url}
-                category={meshProps.category}
-                visible={meshProps.visible}
-                hiddenIds={meshProps.hiddenIds}
-                selectedEntity={meshProps.selectedEntity}
+                {...meshProps}
                 combinedCenter={combinedCenter ?? new THREE.Vector3()}
-                onEntityClick={meshProps.onEntityClick}
-                onEntityRightClick={meshProps.onEntityRightClick}
-                opacity={meshProps.opacity}
-                color={meshProps.color}
-                dimmed={meshProps.dimmed ?? false}
-                dimmedOptions={meshProps.dimmedOptions}
-                debugMode={meshProps.debugMode}
                 onLoad={handleModelLoad}
-                slicingActive={meshProps.slicingActive}
-                sliceXThreshold={meshProps.sliceXThreshold}
                 theme={theme}
               />
             </group>
           ))}
         </Bounds>
-        <OrbitControls ref={controlsRef} enableDamping dampingFactor={0.1}/>
+
+        <OrbitControls
+          ref={controlsRef}
+          enableDamping
+          dampingFactor={0.1}
+        />
+
       </Canvas>
     </>
   );
