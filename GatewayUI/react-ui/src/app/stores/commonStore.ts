@@ -5,6 +5,7 @@ export default class CommonStore {
 	appLoaded = false;
 	activeTab = 0;
 	isSidebarOpen = false;
+	darkMode: boolean = window.localStorage.getItem('darkMode') === 'true';
 
 	constructor() {
 		makeAutoObservable(this);
@@ -17,6 +18,18 @@ export default class CommonStore {
 					window.localStorage.removeItem('accessToken')
 				}
 			}
+		)
+		reaction(
+			() => this.darkMode,
+			dark => {
+				window.localStorage.setItem('darkMode', String(dark));
+				if (dark) {
+					document.documentElement.classList.add('dark');
+				} else {
+					document.documentElement.classList.remove('dark');
+				}
+			},
+			{ fireImmediately: true }
 		)
 	}
 
@@ -45,5 +58,13 @@ export default class CommonStore {
 
 	setAppLoaded = () => {
 		this.appLoaded = true;
+	}
+
+	toggleDarkMode = () => {
+		this.darkMode = !this.darkMode;
+	}
+
+	setDarkMode = (value: boolean) => {
+		this.darkMode = value;
 	}
 }

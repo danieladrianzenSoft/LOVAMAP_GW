@@ -9,6 +9,7 @@ import DescriptorStore from "./descriptorStore";
 import SeedStore from "./seedStore";
 import PublicationStore from "./publicationStore";
 import BulkUploadStore from "./bulkUploadStore";
+import DashboardStore from "./dashboardStore";
 
 interface Store {
 	commonStore: CommonStore,
@@ -20,7 +21,8 @@ interface Store {
 	domainStore: DomainStore,
 	jobStore: JobStore,
 	publicationStore: PublicationStore,
-	bulkUploadStore: BulkUploadStore
+	bulkUploadStore: BulkUploadStore,
+	dashboardStore: DashboardStore
 }
 
 export const store: Store = {
@@ -33,7 +35,8 @@ export const store: Store = {
 	domainStore: new DomainStore(),
 	jobStore: new JobStore(),
 	publicationStore: new PublicationStore(),
-	bulkUploadStore: new BulkUploadStore()
+	bulkUploadStore: new BulkUploadStore(),
+	dashboardStore: new DashboardStore()
 }
 
 export const StoreContext = createContext(store);

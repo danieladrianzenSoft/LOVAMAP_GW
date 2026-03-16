@@ -9,12 +9,12 @@ const SideBarMain: React.FC = () => {
 	const {commonStore, userStore } = useStore();
 	const {setActiveTab, activeTab} = commonStore;
 	const location = useLocation();
-	
+
 	const isAdmin = userStore.user?.roles?.includes("administrator") ?? false;
 
 	const handleVisualizationClick = () => {
 		setActiveTab(0); // Set active tab before navigating
-		commonStore.setSidebarOpen(false); 
+		commonStore.setSidebarOpen(false);
 	};
 
 	useEffect(() => {
@@ -36,10 +36,12 @@ const SideBarMain: React.FC = () => {
 			setActiveTab(6);
 		} else if (matchPath('/publications/*', p)) {
 			setActiveTab(7);
-		} else if (matchPath('/uploads', p)) {
+		} else if (matchPath('/dashboard/*', p) || matchPath('/dashboard', p)) {
 			setActiveTab(8);
-		} else if (matchPath('/admin/*', p)) {
+		} else if (matchPath('/uploads', p)) {
 			setActiveTab(9);
+		} else if (matchPath('/admin/*', p)) {
+			setActiveTab(10);
 		} else {
 			setActiveTab(0);
 		}
@@ -129,6 +131,13 @@ const SideBarMain: React.FC = () => {
 										<span className="px-3 text-sm text-gray-300 whitespace-nowrap">Admin</span>
 										<hr className="flex-grow border-t border-gray-300" />
 									</div>
+									<Tab as={NavLink} to='/dashboard' onClick={() => commonStore.setSidebarOpen(false)} className="focus:outline-none">
+										{({ selected }) => (
+										<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
+											<p>Dashboard</p>
+										</div>
+										)}
+									</Tab>
 									<Tab as={NavLink} to='/uploads' onClick={() => commonStore.setSidebarOpen(false)} className="focus:outline-none">
 										{({ selected }) => (
 										<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>

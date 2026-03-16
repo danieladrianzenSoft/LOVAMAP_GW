@@ -140,6 +140,55 @@ namespace Repositories.Repositories
 			return ParseAllScaffoldsResults(json);
 		}
 
+		public async Task<RdfGraphDto> GetGraphAsync(int? limit = null, CancellationToken ct = default)
+		{
+			var limitClause = limit.HasValue ? $"LIMIT {limit.Value}" : string.Empty;
+			var sparql = $@"
+				SELECT ?s ?p ?o WHERE {{
+					?s ?p ?o .
+				}}
+				{limitClause}";
+
+			var json = await _client.QueryAsync(sparql, ct);
+			return ParseGraphResults(json);
+		}
+
+		public async Task<RdfOntologySummaryDto> GetOntologySummaryAsync(CancellationToken ct = default)
+		{
+			var summary = new RdfOntologySummaryDto();
+
+			var classSparql = @"
+				SELECT ?class (COUNT(?instance) AS ?count) WHERE {
+					?instance a ?class .
+				} GROUP BY ?class";
+
+			var propertySparql = @"
+				SELECT ?property (COUNT(*) AS ?usageCount) (SAMPLE(DATATYPE(?o)) AS ?datatype) WHERE {
+					?s ?property ?o .
+					FILTER(?property != <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>)
+				} GROUP BY ?property";
+
+			var countSparql = @"
+				SELECT (COUNT(*) AS ?tripleCount) WHERE { ?s ?p ?o . }";
+
+			var instanceCountSparql = @"
+				SELECT (COUNT(DISTINCT ?s) AS ?instanceCount) WHERE {
+					?s a ?class .
+				}";
+
+			var classJson = await _client.QueryAsync(classSparql, ct);
+			var propertyJson = await _client.QueryAsync(propertySparql, ct);
+			var countJson = await _client.QueryAsync(countSparql, ct);
+			var instanceCountJson = await _client.QueryAsync(instanceCountSparql, ct);
+
+			summary.Classes = ParseClassSummary(classJson);
+			summary.Properties = await ParsePropertySummary(propertyJson, ct);
+			summary.TotalTriples = ParseSingleCount(countJson, "tripleCount");
+			summary.TotalInstances = ParseSingleCount(instanceCountJson, "instanceCount");
+
+			return summary;
+		}
+
 		private static string BuildScaffoldQueryFiltered(IDictionary<string, string>? filters)
 		{
 			var filterTriples = BuildFilterTriples(filters);
@@ -389,6 +438,374 @@ namespace Repositories.Repositories
 		private static string FormatDecimal(decimal value)
 		{
 			return value.ToString("0.#############################", CultureInfo.InvariantCulture);
+		}
+
+		private static RdfGraphDto ParseGraphResults(string json)
+		{
+			var graph = new RdfGraphDto();
+			if (string.IsNullOrWhiteSpace(json))
+			{
+				return graph;
+			}
+
+			using var doc = JsonDocument.Parse(json);
+			if (!doc.RootElement.TryGetProperty("results", out var resultsElement) ||
+				!resultsElement.TryGetProperty("bindings", out var bindingsElement) ||
+				bindingsElement.ValueKind != JsonValueKind.Array)
+			{
+				return graph;
+			}
+
+			var nodeMap = new Dictionary<string, RdfGraphNodeDto>(StringComparer.Ordinal);
+			var edgeSet = new HashSet<string>(StringComparer.Ordinal);
+			var subjectTypes = new Dictionary<string, string>(StringComparer.Ordinal);
+
+			const string rdfType = "http://www.w3.org/1999/02/22-rdf-syntax-ns#type";
+
+			// First pass: collect rdf:type info
+			foreach (var binding in bindingsElement.EnumerateArray())
+			{
+				var (sVal, _, _) = GetBindingInfo(binding, "s");
+				var (pVal, _, _) = GetBindingInfo(binding, "p");
+				var (oVal, _, _) = GetBindingInfo(binding, "o");
+
+				if (string.IsNullOrEmpty(sVal) || string.IsNullOrEmpty(pVal))
+				{
+					continue;
+				}
+
+				if (pVal == rdfType && !string.IsNullOrEmpty(oVal))
+				{
+					subjectTypes[sVal] = oVal;
+				}
+			}
+
+			// Second pass: build nodes and edges
+			foreach (var binding in bindingsElement.EnumerateArray())
+			{
+				var (sVal, sType, _) = GetBindingInfo(binding, "s");
+				var (pVal, _, _) = GetBindingInfo(binding, "p");
+				var (oVal, oType, oDatatype) = GetBindingInfo(binding, "o");
+
+				if (string.IsNullOrEmpty(sVal) || string.IsNullOrEmpty(pVal) || string.IsNullOrEmpty(oVal))
+				{
+					continue;
+				}
+
+				// Ensure subject node exists
+				if (!nodeMap.ContainsKey(sVal))
+				{
+					var subjectLabel = BuildNodeLabel(sVal, subjectTypes);
+					nodeMap[sVal] = new RdfGraphNodeDto
+					{
+						Id = sVal,
+						Label = subjectLabel,
+						Type = "instance",
+						Group = subjectTypes.TryGetValue(sVal, out var typeUri) ? ExtractLocalName(typeUri) : null
+					};
+				}
+
+				if (pVal == rdfType)
+				{
+					// Class node
+					if (!nodeMap.ContainsKey(oVal))
+					{
+						nodeMap[oVal] = new RdfGraphNodeDto
+						{
+							Id = oVal,
+							Label = ExtractLocalName(oVal),
+							Type = "class"
+						};
+					}
+
+					AddEdge(graph, edgeSet, sVal, oVal, "rdf:type");
+				}
+				else if (oType == "uri" || oType == "bnode")
+				{
+					// URI or blank node object → separate node + edge
+					if (!nodeMap.ContainsKey(oVal))
+					{
+						var objLabel = BuildNodeLabel(oVal, subjectTypes);
+						nodeMap[oVal] = new RdfGraphNodeDto
+						{
+							Id = oVal,
+							Label = objLabel,
+							Type = "instance",
+							Group = subjectTypes.TryGetValue(oVal, out var objType) ? ExtractLocalName(objType) : null
+						};
+					}
+
+					AddEdge(graph, edgeSet, sVal, oVal, ExtractLocalName(pVal));
+				}
+				else
+				{
+					// Literal object
+					if (IsNumericDatatype(oDatatype))
+					{
+						// Numeric → property on subject node
+						var propName = ExtractLocalName(pVal);
+						nodeMap[sVal].Properties[propName] = ParseNumericValue(oVal);
+					}
+					else
+					{
+						// String/other → shared literal node + edge
+						var predLabel = ExtractLocalName(pVal);
+						var literalNodeId = $"literal:{predLabel}:{oVal}";
+
+						if (!nodeMap.ContainsKey(literalNodeId))
+						{
+							nodeMap[literalNodeId] = new RdfGraphNodeDto
+							{
+								Id = literalNodeId,
+								Label = oVal,
+								Type = "literal",
+								Group = predLabel
+							};
+						}
+
+						AddEdge(graph, edgeSet, sVal, literalNodeId, predLabel);
+					}
+				}
+			}
+
+			graph.Nodes = nodeMap.Values.ToList();
+			return graph;
+		}
+
+		private static (string value, string type, string? datatype) GetBindingInfo(JsonElement binding, string key)
+		{
+			if (!binding.TryGetProperty(key, out var element))
+			{
+				return (string.Empty, string.Empty, null);
+			}
+
+			var value = element.TryGetProperty("value", out var v) ? v.GetString() ?? string.Empty : string.Empty;
+			var type = element.TryGetProperty("type", out var t) ? t.GetString() ?? string.Empty : string.Empty;
+			string? datatype = element.TryGetProperty("datatype", out var d) ? d.GetString() : null;
+
+			return (value, type, datatype);
+		}
+
+		private static string ExtractLocalName(string uri)
+		{
+			var hashIndex = uri.LastIndexOf('#');
+			if (hashIndex >= 0 && hashIndex < uri.Length - 1)
+			{
+				return uri[(hashIndex + 1)..];
+			}
+
+			var slashIndex = uri.LastIndexOf('/');
+			if (slashIndex >= 0 && slashIndex < uri.Length - 1)
+			{
+				return uri[(slashIndex + 1)..];
+			}
+
+			return uri;
+		}
+
+		private static string BuildNodeLabel(string uri, Dictionary<string, string> subjectTypes)
+		{
+			var localName = ExtractLocalName(uri);
+			if (subjectTypes.TryGetValue(uri, out var typeUri))
+			{
+				var typeName = ExtractLocalName(typeUri);
+				return $"{typeName} {localName}";
+			}
+
+			return localName;
+		}
+
+		private static bool IsNumericDatatype(string? datatype)
+		{
+			if (string.IsNullOrEmpty(datatype))
+			{
+				return false;
+			}
+
+			return datatype == "http://www.w3.org/2001/XMLSchema#integer" ||
+				   datatype == "http://www.w3.org/2001/XMLSchema#decimal" ||
+				   datatype == "http://www.w3.org/2001/XMLSchema#double" ||
+				   datatype == "http://www.w3.org/2001/XMLSchema#float" ||
+				   datatype == "http://www.w3.org/2001/XMLSchema#int" ||
+				   datatype == "http://www.w3.org/2001/XMLSchema#long" ||
+				   datatype == "http://www.w3.org/2001/XMLSchema#short";
+		}
+
+		private static object? ParseNumericValue(string value)
+		{
+			if (decimal.TryParse(value, NumberStyles.Any, CultureInfo.InvariantCulture, out var dec))
+			{
+				return dec;
+			}
+
+			return value;
+		}
+
+		private static void AddEdge(RdfGraphDto graph, HashSet<string> edgeSet, string source, string target, string label)
+		{
+			var key = $"{source}|{label}|{target}";
+			if (edgeSet.Add(key))
+			{
+				graph.Edges.Add(new RdfGraphEdgeDto
+				{
+					Source = source,
+					Target = target,
+					Label = label
+				});
+			}
+		}
+
+		private static List<RdfClassSummaryDto> ParseClassSummary(string json)
+		{
+			var classes = new List<RdfClassSummaryDto>();
+			if (string.IsNullOrWhiteSpace(json))
+			{
+				return classes;
+			}
+
+			using var doc = JsonDocument.Parse(json);
+			if (!doc.RootElement.TryGetProperty("results", out var resultsElement) ||
+				!resultsElement.TryGetProperty("bindings", out var bindingsElement) ||
+				bindingsElement.ValueKind != JsonValueKind.Array)
+			{
+				return classes;
+			}
+
+			foreach (var binding in bindingsElement.EnumerateArray())
+			{
+				if (!TryGetValue(binding, "class", out var classUri))
+				{
+					continue;
+				}
+
+				var count = 0;
+				if (TryGetValue(binding, "count", out var countStr))
+				{
+					int.TryParse(countStr, NumberStyles.Any, CultureInfo.InvariantCulture, out count);
+				}
+
+				classes.Add(new RdfClassSummaryDto
+				{
+					Uri = classUri,
+					Label = ExtractLocalName(classUri),
+					InstanceCount = count
+				});
+			}
+
+			return classes;
+		}
+
+		private async Task<List<RdfPropertySummaryDto>> ParsePropertySummary(string json, CancellationToken ct)
+		{
+			var properties = new List<RdfPropertySummaryDto>();
+			if (string.IsNullOrWhiteSpace(json))
+			{
+				return properties;
+			}
+
+			using var doc = JsonDocument.Parse(json);
+			if (!doc.RootElement.TryGetProperty("results", out var resultsElement) ||
+				!resultsElement.TryGetProperty("bindings", out var bindingsElement) ||
+				bindingsElement.ValueKind != JsonValueKind.Array)
+			{
+				return properties;
+			}
+
+			foreach (var binding in bindingsElement.EnumerateArray())
+			{
+				if (!TryGetValue(binding, "property", out var propertyUri))
+				{
+					continue;
+				}
+
+				var usageCount = 0;
+				if (TryGetValue(binding, "usageCount", out var countStr))
+				{
+					int.TryParse(countStr, NumberStyles.Any, CultureInfo.InvariantCulture, out usageCount);
+				}
+
+				TryGetValue(binding, "datatype", out var datatype);
+
+				var distinctValues = new List<string>();
+				if (!IsNumericDatatype(datatype))
+				{
+					distinctValues = await GetDistinctValuesForProperty(propertyUri, ct);
+				}
+
+				properties.Add(new RdfPropertySummaryDto
+				{
+					Uri = propertyUri,
+					Label = ExtractLocalName(propertyUri),
+					UsageCount = usageCount,
+					Datatype = datatype,
+					DistinctValues = distinctValues
+				});
+			}
+
+			return properties;
+		}
+
+		private async Task<List<string>> GetDistinctValuesForProperty(string propertyUri, CancellationToken ct)
+		{
+			var sparql = $@"
+				SELECT DISTINCT ?value WHERE {{
+					?s <{propertyUri}> ?value .
+					FILTER(isLiteral(?value))
+				}}
+				LIMIT 50";
+
+			var json = await _client.QueryAsync(sparql, ct);
+			var values = new List<string>();
+
+			if (string.IsNullOrWhiteSpace(json))
+			{
+				return values;
+			}
+
+			using var doc = JsonDocument.Parse(json);
+			if (!doc.RootElement.TryGetProperty("results", out var resultsElement) ||
+				!resultsElement.TryGetProperty("bindings", out var bindingsElement) ||
+				bindingsElement.ValueKind != JsonValueKind.Array)
+			{
+				return values;
+			}
+
+			foreach (var binding in bindingsElement.EnumerateArray())
+			{
+				if (TryGetValue(binding, "value", out var value))
+				{
+					values.Add(value);
+				}
+			}
+
+			return values;
+		}
+
+		private static int ParseSingleCount(string json, string variableName)
+		{
+			if (string.IsNullOrWhiteSpace(json))
+			{
+				return 0;
+			}
+
+			using var doc = JsonDocument.Parse(json);
+			if (!doc.RootElement.TryGetProperty("results", out var resultsElement) ||
+				!resultsElement.TryGetProperty("bindings", out var bindingsElement) ||
+				bindingsElement.ValueKind != JsonValueKind.Array)
+			{
+				return 0;
+			}
+
+			foreach (var binding in bindingsElement.EnumerateArray())
+			{
+				if (TryGetValue(binding, variableName, out var countStr) &&
+					int.TryParse(countStr, NumberStyles.Any, CultureInfo.InvariantCulture, out var count))
+				{
+					return count;
+				}
+			}
+
+			return 0;
 		}
 	}
 }

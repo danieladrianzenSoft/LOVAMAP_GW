@@ -54,5 +54,18 @@ namespace Services.Services
 		{
 			return _repository.GetAllScaffoldsAsync(ct);
 		}
+
+		public Task<Infrastructure.DTOs.RdfGraphDto> GetGraphAsync(
+			int? limit = null,
+			CancellationToken ct = default)
+		{
+			return _repository.GetGraphAsync(limit, ct);
+		}
+
+		public Task<Infrastructure.DTOs.RdfOntologySummaryDto> GetOntologySummaryAsync(
+			CancellationToken ct = default)
+		{
+			return _repository.GetOntologySummaryAsync(ct);
+		}
 	}
 }

@@ -120,6 +120,7 @@ builder.Services.AddScoped<IAISearchRepository, AISearchRepository>();
 builder.Services.AddScoped<ILovamapCoreJobRepository, LovamapCoreJobRepository>();
 builder.Services.AddScoped<IRdfRepository, RdfRepository>();
 builder.Services.AddScoped<IRdfScaffoldRepository, RdfScaffoldRepository>();
+builder.Services.AddScoped<IAnalyticsRepository, AnalyticsRepository>();
 
 // Add helpers
 builder.Services.AddMemoryCache();
@@ -162,6 +163,7 @@ builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<IAISearchService, AISearchService>();
 builder.Services.AddScoped<IScaffoldGroupMetadataService, ScaffoldGroupMetadataService>();
 builder.Services.AddScoped<IRdfScaffoldService, RdfScaffoldService>();
+builder.Services.AddScoped<IAnalyticsService, AnalyticsService>();
 builder.Services.AddScoped<IDescriptorValueGenerator, ParticleAspectRatioGenerator>();
 builder.Services.AddScoped<ISeedingService, SeedingService>();
 builder.Services.AddScoped<SeedingService>();

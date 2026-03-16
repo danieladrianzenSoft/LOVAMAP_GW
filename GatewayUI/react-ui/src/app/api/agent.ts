@@ -19,6 +19,8 @@ import { ScaffoldGroupData } from "../models/scaffoldGroupData";
 import { DescriptorSeedResult } from "../models/descriptor";
 import { Publication } from "../models/publication";
 import { InputGroup } from "../models/inputGroup";
+import { RdfGraph, RdfOntologySummary } from "../models/rdfGraph";
+import { DashboardAnalytics } from "../models/dashboardAnalytics";
 
 axios.defaults.baseURL = environment.baseUrl;
 
@@ -228,6 +230,18 @@ const Publications = {
     getAll: async () => requests.get<ApiResponse<Publication[]>>(`/publications`),
 }
 
+const Analytics = {
+	getDashboardAnalytics: () => requests.get<ApiResponse<DashboardAnalytics>>('/analytics/dashboard'),
+}
+
+const RdfVisualization = {
+	getGraph: (limit?: number) => {
+		const params = limit ? `?limit=${limit}` : '';
+		return requests.get<RdfGraph>(`/RDFVisualization/graph${params}`);
+	},
+	getGraphSummary: () => requests.get<RdfOntologySummary>('/RDFVisualization/graph/summary'),
+}
+
 const agent = {
 	Resources,
     Seed,
@@ -236,7 +250,9 @@ const agent = {
     Descriptors,
     Domains,
     Jobs,
-    Publications
+    Publications,
+	RdfVisualization,
+	Analytics
 }
 
 export default agent;
