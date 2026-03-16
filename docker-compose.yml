@@ -17,6 +17,28 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+  
+  fuseki:
+    image: stain/jena-fuseki
+    container_name: lovamap_fuseki
+    restart: always
+    ports:
+      - "3031:3030"
+    environment:
+      - ADMIN_PASSWORD=${FUSEKI_ADMIN_PASSWORD}
+    volumes:
+      - lovamap_gw_fuseki_data:/fuseki
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:3030/$$/ping > /dev/null || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+    labels:
+      - env=test
 
   backend:
     build: 
@@ -92,4 +114,6 @@ services:
 
 volumes:
   lovamap_gw_postgres_data:
+    external: true
+  lovamap_gw_fuseki_data:
     external: true
