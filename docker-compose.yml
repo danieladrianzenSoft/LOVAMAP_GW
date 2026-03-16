@@ -23,7 +23,7 @@ services:
     container_name: lovamap_fuseki
     restart: always
     ports:
-      - "3031:3030"
+      - "3032:3030"
     environment:
       - ADMIN_PASSWORD=${FUSEKI_ADMIN_PASSWORD}
     volumes:
@@ -38,7 +38,7 @@ services:
         limits:
           memory: 1G
     labels:
-      - env=test
+      - env=production
 
   backend:
     build: 
@@ -116,4 +116,3 @@ volumes:
   lovamap_gw_postgres_data:
     external: true
   lovamap_gw_fuseki_data:
-    external: true
