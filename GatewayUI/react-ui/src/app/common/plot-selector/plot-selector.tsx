@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import PillGroup from '../pill-group/pill-group';
 
 export interface PlotOption {
 	key: string;
@@ -25,32 +26,24 @@ const PlotSelector: React.FC<PlotSelectorProps> = ({ plots, initialKey, heightCl
 
 	const selectedPlot = plots.find(p => p.key === selectedKey);
 
-	const handleClick = (plot: PlotOption) => {
-		if (plot.onClick) {
-			plot.onClick(); // Parent handles it
+	const handleChange = (key: string) => {
+		const plot = plots.find(p => p.key === key);
+		if (plot?.onClick) {
+			plot.onClick();
 		} else {
-			setSelectedKey(plot.key); // Default behavior
+			setSelectedKey(key);
 		}
 	};
 
 	return (
 		<div className="w-full mb-4">
 			{/* Toggle Controls */}
-			<div className="flex space-x-2 mt-8 mb-0">
-				{plots.map((plot) => (
-					<button
-						key={plot.key}
-						onClick={() => handleClick(plot)}
-						className={`px-2 py-1 rounded-full text-xs font-semibold border ${
-							selectedKey === plot.key
-								? 'bg-blue-600 text-white'
-								: 'bg-white text-gray-700 border-gray-300 hover:bg-gray-100'
-						}`}
-					>
-						{plot.label}
-					</button>
-				))}
-			</div>
+			<PillGroup
+				options={plots.map(p => ({ key: p.key, label: p.label }))}
+				selectedKey={selectedKey}
+				onChange={handleChange}
+				className="mt-8 mb-0"
+			/>
 
 			{/* Plot */}
 			<div className={`w-full ${heightClass}`}>

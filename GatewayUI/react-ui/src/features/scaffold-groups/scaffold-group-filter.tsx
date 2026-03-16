@@ -3,6 +3,7 @@ import React, { useEffect, useState, useRef, useCallback } from "react";
 import { useStore } from "../../app/stores/store";
 import { GroupedTags, Tag, displayNameMap } from "../../app/models/tag";
 import MultiSelectDropdown from "../../app/common/form/multiselect-dropdown";
+import PillGroup from "../../app/common/pill-group/pill-group";
 import { FaCaretDown } from "react-icons/fa";
 import { useOnClickOutside } from "../../app/common/hooks/useOnClickOutside";
 // import TextTooltip from "../../app/common/tooltip/tooltip";
@@ -175,41 +176,15 @@ const ScaffoldGroupFilters: React.FC<ScaffoldGroupFiltersProps> = ({
                         <div className="mx-auto max-w-screen-xl p-6 pl-12">
                             <div className="text-left mb-6">
                                 <h3 className="text-gray-700 font-bold mb-3">DATA SOURCE</h3>
-                                <div className="flex gap-2">
-                                    {([
-                                        { label: "Simulated", simulated: true },
-                                        { label: "Experimental", simulated: false },
-                                    ]).map(opt => {
-                                        const isActive = isSimulated === null || isSimulated === opt.simulated;
-                                        return (
-                                            <button
-                                                key={opt.label}
-                                                onClick={() => {
-                                                    if (isActive) {
-                                                        // Deselecting this one
-                                                        if (isSimulated === null) {
-                                                            // Both are on → turn this off, keep only the other
-                                                            setIsSimulated(!opt.simulated);
-                                                        } else {
-                                                            // Only this one is on → can't have neither, activate the other
-                                                            setIsSimulated(!opt.simulated);
-                                                        }
-                                                    } else {
-                                                        // Selecting a deselected one → both are now on
-                                                        setIsSimulated(null);
-                                                    }
-                                                }}
-                                                className={`px-2 py-0.5 text-xs rounded-full border transition-colors ${
-                                                    isActive
-                                                        ? "bg-gray-700 text-white border-gray-700"
-                                                        : "bg-white text-gray-600 border-gray-300 hover:border-gray-500"
-                                                }`}
-                                            >
-                                                {opt.label}
-                                            </button>
-                                        );
-                                    })}
-                                </div>
+                                <PillGroup
+                                    options={[
+                                        { key: "all", label: "All" },
+                                        { key: "simulated", label: "Simulated" },
+                                        { key: "real", label: "Real" },
+                                    ]}
+                                    selectedKey={isSimulated === null ? "all" : isSimulated ? "simulated" : "real"}
+                                    onChange={(key) => setIsSimulated(key === "all" ? null : key === "simulated" ? true : false)}
+                                />
                             </div>
                         <div className="grid grid-cols-[repeat(auto-fit,_minmax(200px,_1fr))] gap-6 text-left">
                                 {/* Particle Diameter: head */}
