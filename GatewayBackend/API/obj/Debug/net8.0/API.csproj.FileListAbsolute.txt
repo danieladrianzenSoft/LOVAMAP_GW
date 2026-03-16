@@ -317,7 +317,6 @@
 /Users/dzen/Documents/LOVAMAP/Repos/LOVAMAP_GW/GatewayBackend/API/bin/Debug/net8.0/dotNetRdf.Shacl.dll
 /Users/dzen/Documents/LOVAMAP/Repos/LOVAMAP_GW/GatewayBackend/API/bin/Debug/net8.0/dotNetRdf.Skos.dll
 /Users/dzen/Documents/LOVAMAP/Repos/LOVAMAP_GW/GatewayBackend/API/bin/Debug/net8.0/dotNetRdf.Writing.HtmlSchema.dll
-/Users/dzen/Documents/LOVAMAP/Repos/LOVAMAP_GW/GatewayBackend/API/bin/Debug/net8.0/Google.Protobuf.dll
 /Users/dzen/Documents/LOVAMAP/Repos/LOVAMAP_GW/GatewayBackend/API/bin/Debug/net8.0/HtmlAgilityPack.dll
 /Users/dzen/Documents/LOVAMAP/Repos/LOVAMAP_GW/GatewayBackend/API/bin/Debug/net8.0/Humanizer.dll
 /Users/dzen/Documents/LOVAMAP/Repos/LOVAMAP_GW/GatewayBackend/API/bin/Debug/net8.0/J2N.dll

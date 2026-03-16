@@ -18,6 +18,7 @@ interface Props {
   theme?: 'Metallic' | 'Sunset',
   setTheme?: (theme: 'Metallic' | 'Sunset') => void;
   onScreenshot?: () => void;
+  className?: string;
 }
 
 // const domainCategories = [
@@ -41,12 +42,13 @@ const InfoPanel: React.FC<Props> = ({
   theme,
   setTheme,
   isLoading,
+  className,
 }) => {
 
   const [showMore, setShowMore] = useState(false);
 
   return (
-    <div className="bg-white bg-opacity-80 shadow-lg rounded-lg p-4 w-64">
+    <div className={className ?? "bg-white bg-opacity-80 shadow-lg rounded-lg p-4 w-64"}>
       <div
         className={`flex justify-between items-center transition-all duration-300 cursor-pointer ${
           isOpen ? "border-b border-gray-300 pb-2" : "pb-0"

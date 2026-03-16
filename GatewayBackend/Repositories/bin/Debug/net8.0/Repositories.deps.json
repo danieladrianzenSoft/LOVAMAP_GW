@@ -191,15 +191,6 @@
           }
         }
       },
-      "Google.Protobuf/3.33.1": {
-        "runtime": {
-          "lib/net5.0/Google.Protobuf.dll": {
-            "assemblyVersion": "3.33.1.0",
-            "fileVersion": "3.33.1.0"
-          }
-        }
-      },
-      "Grpc.Tools/2.76.0": {},
       "HtmlAgilityPack/1.12.4": {
         "runtime": {
           "lib/net7.0/HtmlAgilityPack.dll": {
@@ -1625,8 +1616,6 @@
       "Infrastructure/1.0.0": {
         "dependencies": {
           "Data": "1.0.0",
-          "Google.Protobuf": "3.33.1",
-          "Grpc.Tools": "2.76.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.3",
           "Microsoft.AspNetCore.Identity": "2.2.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.3",
@@ -1742,20 +1731,6 @@
       "sha512": "sha512-CSoE5JuMpGsmiF7Zj7rNfu0a74Exozv6l4btXXgjGp81YpBoZs+wmcJUWMPO8ad0iEs9X8XSJs8Munt46Ga6Nw==",
       "path": "dotnetrdf.writing.htmlschema/3.5.0",
       "hashPath": "dotnetrdf.writing.htmlschema.3.5.0.nupkg.sha512"
-    },
-    "Google.Protobuf/3.33.1": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-RztiFmX9aOWDwfhxFzx/nS4fjs4DX7ZC7/XBEBl56k15lPGBftvbSwZkeo1mMCJHrNp1kK5iQYrFXB4MqCmBCA==",
-      "path": "google.protobuf/3.33.1",
-      "hashPath": "google.protobuf.3.33.1.nupkg.sha512"
-    },
-    "Grpc.Tools/2.76.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-goRzYZVMgQtyLvkWdgTnPycg49hlNxnMkqGGgR3l7nCOm0bUh0YeAneiJ9JFk3XLgF4suQUdETYkl2Mg/TBr0w==",
-      "path": "grpc.tools/2.76.0",
-      "hashPath": "grpc.tools.2.76.0.nupkg.sha512"
     },
     "HtmlAgilityPack/1.12.4": {
       "type": "package",

@@ -19,6 +19,5 @@
     <PkgMicrosoft_CodeAnalysis_Analyzers Condition=" '$(PkgMicrosoft_CodeAnalysis_Analyzers)' == '' ">/Users/dzen/.nuget/packages/microsoft.codeanalysis.analyzers/3.3.3</PkgMicrosoft_CodeAnalysis_Analyzers>
     <PkgMicrosoft_EntityFrameworkCore_Tools Condition=" '$(PkgMicrosoft_EntityFrameworkCore_Tools)' == '' ">/Users/dzen/.nuget/packages/microsoft.entityframeworkcore.tools/8.0.3</PkgMicrosoft_EntityFrameworkCore_Tools>
     <PkgLucene_Net Condition=" '$(PkgLucene_Net)' == '' ">/Users/dzen/.nuget/packages/lucene.net/4.8.0-beta00017</PkgLucene_Net>
-    <PkgGrpc_Tools Condition=" '$(PkgGrpc_Tools)' == '' ">/Users/dzen/.nuget/packages/grpc.tools/2.76.0</PkgGrpc_Tools>
   </PropertyGroup>
 </Project>

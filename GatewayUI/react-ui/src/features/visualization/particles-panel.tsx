@@ -28,6 +28,7 @@ interface DomainPanelProps {
 	onToggleVisibility: () => void;
 	onResetOverrides: () => void;
 	onEditClick: () => void;
+	className?: string;
 	// setTheme?: (theme: 'Default' | 'Metallic') => void;
 }
 
@@ -52,10 +53,11 @@ const ParticlesPanel: React.FC<DomainPanelProps> = ({
 	onToggleVisibility,
 	onResetOverrides,
 	onEditClick,
+	className,
 	// setTheme
 }) => {
 	return (
-		<div className="bg-white bg-opacity-80 shadow-lg rounded-lg p-4 w-64 mt-2">
+		<div className={className ?? "bg-white bg-opacity-80 shadow-lg rounded-lg p-4 w-64 mt-2"}>
 		<div
 			className={`flex justify-between items-center cursor-pointer transition-all duration-300 ${
 			isOpen ? "border-b border-gray-300 pb-2" : "pb-0"

@@ -8,6 +8,7 @@ interface Props {
   hiddenIds: Set<string>;
   onShowAll: () => void;
   onToggleVisibility: (particleId: string) => void;
+  className?: string;
 }
 
 const HiddenPanel: React.FC<Props> = ({
@@ -17,11 +18,12 @@ const HiddenPanel: React.FC<Props> = ({
   hiddenIds,
   onShowAll,
   onToggleVisibility,
+  className,
 }) => {
   if (hiddenIds.size === 0) return null;
 
   return (
-    <div className="mt-2 bg-white bg-opacity-80 shadow-lg rounded-lg p-4 w-64">
+    <div className={className ?? "mt-2 bg-white bg-opacity-80 shadow-lg rounded-lg p-4 w-64"}>
       <div
         className={`flex justify-between items-center transition-all duration-300 ${
           isOpen ? "border-b border-gray-300 pb-2" : "pb-0"

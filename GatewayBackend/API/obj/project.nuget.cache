@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Zw2jmXDbPlnbIH8WrUwzoSjrqTgesPWnYWbi8mM9zYLf9GHYlqHT+cBFmWR71Xf0EyBEGI8CxzgZeEGoYoD6Mw==",
+  "dgSpecHash": "HDo7SkLUFK/8lrWZo+Ok5GAIaXNTgBrIRMHf75OzWIOeJs7fo6JPXetEnlImqGw6jX6dKqhHESRK1qysa/k1pQ==",
   "success": true,
   "projectFilePath": "/Users/dzen/Documents/LOVAMAP/Repos/LOVAMAP_GW/GatewayBackend/API/API.csproj",
   "expectedPackageFiles": [
@@ -19,8 +19,6 @@
     "/Users/dzen/.nuget/packages/dotnetrdf.shacl/3.5.0/dotnetrdf.shacl.3.5.0.nupkg.sha512",
     "/Users/dzen/.nuget/packages/dotnetrdf.skos/3.5.0/dotnetrdf.skos.3.5.0.nupkg.sha512",
     "/Users/dzen/.nuget/packages/dotnetrdf.writing.htmlschema/3.5.0/dotnetrdf.writing.htmlschema.3.5.0.nupkg.sha512",
-    "/Users/dzen/.nuget/packages/google.protobuf/3.33.1/google.protobuf.3.33.1.nupkg.sha512",
-    "/Users/dzen/.nuget/packages/grpc.tools/2.76.0/grpc.tools.2.76.0.nupkg.sha512",
     "/Users/dzen/.nuget/packages/htmlagilitypack/1.12.4/htmlagilitypack.1.12.4.nupkg.sha512",
     "/Users/dzen/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/Users/dzen/.nuget/packages/j2n/2.1.0/j2n.2.1.0.nupkg.sha512",

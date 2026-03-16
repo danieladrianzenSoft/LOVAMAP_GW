@@ -259,25 +259,6 @@
           }
         }
       },
-      "Google.Protobuf/3.33.1": {
-        "type": "package",
-        "compile": {
-          "lib/net5.0/Google.Protobuf.dll": {
-            "related": ".pdb;.xml"
-          }
-        },
-        "runtime": {
-          "lib/net5.0/Google.Protobuf.dll": {
-            "related": ".pdb;.xml"
-          }
-        }
-      },
-      "Grpc.Tools/2.76.0": {
-        "type": "package",
-        "build": {
-          "build/_._": {}
-        }
-      },
       "HtmlAgilityPack/1.12.4": {
         "type": "package",
         "compile": {
@@ -3107,8 +3088,6 @@
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "Data": "1.0.0",
-          "Google.Protobuf": "3.33.1",
-          "Grpc.Tools": "2.76.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.3",
           "Microsoft.AspNetCore.Identity": "2.2.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.3",
@@ -3375,78 +3354,6 @@
         "icon.png",
         "lib/netstandard2.0/dotNetRdf.Writing.HtmlSchema.dll",
         "lib/netstandard2.0/dotNetRdf.Writing.HtmlSchema.xml"
-      ]
-    },
-    "Google.Protobuf/3.33.1": {
-      "sha512": "RztiFmX9aOWDwfhxFzx/nS4fjs4DX7ZC7/XBEBl56k15lPGBftvbSwZkeo1mMCJHrNp1kK5iQYrFXB4MqCmBCA==",
-      "type": "package",
-      "path": "google.protobuf/3.33.1",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "google.protobuf.3.33.1.nupkg.sha512",
-        "google.protobuf.nuspec",
-        "lib/net45/Google.Protobuf.dll",
-        "lib/net45/Google.Protobuf.pdb",
-        "lib/net45/Google.Protobuf.xml",
-        "lib/net5.0/Google.Protobuf.dll",
-        "lib/net5.0/Google.Protobuf.pdb",
-        "lib/net5.0/Google.Protobuf.xml",
-        "lib/netstandard1.1/Google.Protobuf.dll",
-        "lib/netstandard1.1/Google.Protobuf.pdb",
-        "lib/netstandard1.1/Google.Protobuf.xml",
-        "lib/netstandard2.0/Google.Protobuf.dll",
-        "lib/netstandard2.0/Google.Protobuf.pdb",
-        "lib/netstandard2.0/Google.Protobuf.xml"
-      ]
-    },
-    "Grpc.Tools/2.76.0": {
-      "sha512": "goRzYZVMgQtyLvkWdgTnPycg49hlNxnMkqGGgR3l7nCOm0bUh0YeAneiJ9JFk3XLgF4suQUdETYkl2Mg/TBr0w==",
-      "type": "package",
-      "path": "grpc.tools/2.76.0",
-      "hasTools": true,
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "README.md",
-        "build/Grpc.Tools.props",
-        "build/Grpc.Tools.targets",
-        "build/_grpc/Grpc.CSharp.xml",
-        "build/_grpc/_Grpc.Tools.props",
-        "build/_grpc/_Grpc.Tools.targets",
-        "build/_protobuf/Google.Protobuf.Tools.props",
-        "build/_protobuf/Google.Protobuf.Tools.targets",
-        "build/_protobuf/Protobuf.CSharp.xml",
-        "build/_protobuf/net45/Protobuf.MSBuild.dll",
-        "build/_protobuf/net45/Protobuf.MSBuild.pdb",
-        "build/_protobuf/netstandard1.3/Protobuf.MSBuild.dll",
-        "build/_protobuf/netstandard1.3/Protobuf.MSBuild.pdb",
-        "build/native/include/google/protobuf/any.proto",
-        "build/native/include/google/protobuf/api.proto",
-        "build/native/include/google/protobuf/descriptor.proto",
-        "build/native/include/google/protobuf/duration.proto",
-        "build/native/include/google/protobuf/empty.proto",
-        "build/native/include/google/protobuf/field_mask.proto",
-        "build/native/include/google/protobuf/source_context.proto",
-        "build/native/include/google/protobuf/struct.proto",
-        "build/native/include/google/protobuf/timestamp.proto",
-        "build/native/include/google/protobuf/type.proto",
-        "build/native/include/google/protobuf/wrappers.proto",
-        "grpc.tools.2.76.0.nupkg.sha512",
-        "grpc.tools.nuspec",
-        "packageIcon.png",
-        "tools/linux_arm64/grpc_csharp_plugin",
-        "tools/linux_arm64/protoc",
-        "tools/linux_x64/grpc_csharp_plugin",
-        "tools/linux_x64/protoc",
-        "tools/linux_x86/grpc_csharp_plugin",
-        "tools/linux_x86/protoc",
-        "tools/macosx_x64/grpc_csharp_plugin",
-        "tools/macosx_x64/protoc",
-        "tools/windows_x64/grpc_csharp_plugin.exe",
-        "tools/windows_x64/protoc.exe",
-        "tools/windows_x86/grpc_csharp_plugin.exe",
-        "tools/windows_x86/protoc.exe"
       ]
     },
     "HtmlAgilityPack/1.12.4": {

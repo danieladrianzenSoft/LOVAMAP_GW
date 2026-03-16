@@ -127,14 +127,6 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
-            "Google.Protobuf": {
-              "target": "Package",
-              "version": "[3.33.1, )"
-            },
-            "Grpc.Tools": {
-              "target": "Package",
-              "version": "[2.76.0, )"
-            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[8.0.3, )"

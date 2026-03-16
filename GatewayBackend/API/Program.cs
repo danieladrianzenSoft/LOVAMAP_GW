@@ -131,7 +131,6 @@ builder.Services.AddSingleton<ICoreTokenProvider, CoreTokenProvider>();
 builder.Services.AddTransient<CoreClientAuthHandler>();
 builder.Services.AddHttpClient<ICoreApiClient, CoreApiClient>()
     .AddHttpMessageHandler<CoreClientAuthHandler>();
-builder.Services.AddScoped<IDescriptorProtobufCodec, DescriptorProtobufCodec>();
 builder.Services.AddScoped<IDatabaseMaintenanceHelper, DatabaseMaintenanceHelper>();
 builder.Services.Configure<FusekiOptions>(builder.Configuration.GetSection("Fuseki"));
 builder.Services.AddHttpClient<IFusekiClient, FusekiClient>();

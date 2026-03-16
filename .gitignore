@@ -42,3 +42,6 @@ packages/
 # macOS Finder metadata
 .DS_Store
 **/.DS_Store
+
+# Removed submodule directory
+GatewayBackend/extern/
