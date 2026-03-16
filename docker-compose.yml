@@ -116,3 +116,4 @@ volumes:
   lovamap_gw_postgres_data:
     external: true
   lovamap_gw_fuseki_data:
+    external: true
