@@ -1,0 +1,11 @@
+{
+  "publicationId": 4,
+  "name": "Main",
+  "scaffoldIds": [
+    476,477,478,478,480,481,482,483,484
+  ],
+  "descriptorRules": [
+    { "descriptorTypeId": 4,  "jobMode": 3 },
+    { "descriptorTypeId": 21,  "jobMode": 3 }
+  ]
+}
