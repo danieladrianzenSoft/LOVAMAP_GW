@@ -149,12 +149,13 @@ namespace Repositories.Repositories
 				NumReplicates = numReplicates,
 				Inputs = scaffoldGroup.InputGroup != null
 					? new InputGroupBaseDto
-					{
-						ContainerShape = scaffoldGroup.InputGroup.ContainerShape,
-						ContainerSize = scaffoldGroup.InputGroup.ContainerSize,
-						PackingConfiguration = scaffoldGroup.InputGroup.PackingConfiguration.ToString(),
-						Particles = particleProperties
-					}
+						{
+							ContainerShape = scaffoldGroup.InputGroup.ContainerShape,
+							ContainerSize = scaffoldGroup.InputGroup.ContainerSize,
+							ContainerDimensions = scaffoldGroup.InputGroup.ContainerDimensions,
+							PackingConfiguration = scaffoldGroup.InputGroup.PackingConfiguration.ToString(),
+							Particles = particleProperties
+						}
 					: new InputGroupBaseDto(),
 				ScaffoldIds = scaffoldIds,
 				ScaffoldIdsWithDomains = scaffoldIdsWithDomainsLookup
@@ -165,6 +166,7 @@ namespace Repositories.Repositories
 		{
 			var scaffoldIds = await _context.Scaffolds
 				.Where(s => s.ScaffoldGroupId == scaffoldGroupId) // Only fetch IDs for relevant groups
+				.OrderBy(s => s.ReplicateNumber)
 				.Select(s => s.Id)
 				.ToListAsync();
 
@@ -207,6 +209,7 @@ namespace Repositories.Repositories
 
 			var scaffoldIds = await _context.Scaffolds
 				.Where(s => s.ScaffoldGroupId == scaffoldGroup.Id) // Only fetch IDs for relevant groups
+				.OrderBy(s => s.ReplicateNumber)
 				.Select(s => s.Id)
 				.ToListAsync();
 
@@ -229,12 +232,13 @@ namespace Repositories.Repositories
 				NumReplicates = numReplicates,
 				Inputs = scaffoldGroup.InputGroup != null
 					? new InputGroupBaseDto
-					{
-						ContainerShape = scaffoldGroup.InputGroup.ContainerShape,
-						ContainerSize = scaffoldGroup.InputGroup.ContainerSize,
-						PackingConfiguration = scaffoldGroup.InputGroup.PackingConfiguration.ToString(),
-						Particles = particleProperties,
-						SizeDistribution = scaffoldGroup.InputGroup.SizeDistribution,
+						{
+							ContainerShape = scaffoldGroup.InputGroup.ContainerShape,
+							ContainerSize = scaffoldGroup.InputGroup.ContainerSize,
+							ContainerDimensions = scaffoldGroup.InputGroup.ContainerDimensions,
+							PackingConfiguration = scaffoldGroup.InputGroup.PackingConfiguration.ToString(),
+							Particles = particleProperties,
+							SizeDistribution = scaffoldGroup.InputGroup.SizeDistribution,
 					}
 					: new InputGroupBaseDto(),
 				ScaffoldIds = scaffoldIds,
@@ -349,12 +353,13 @@ namespace Repositories.Repositories
 				IsPublic = sg.ScaffoldGroup.IsPublic,
 				NumReplicates = scaffoldCounts.ContainsKey(sg.ScaffoldGroup.Id) ? scaffoldCounts[sg.ScaffoldGroup.Id] : 0,
 				Inputs = sg.InputGroup != null ? new InputGroupBaseDto
-				{
-					ContainerShape = sg.InputGroup.ContainerShape,
-					ContainerSize = sg.InputGroup.ContainerSize,
-					PackingConfiguration = sg.InputGroup.PackingConfiguration.ToString(),
-					Particles = particleGroupsLookup.ContainsKey(sg.InputGroup.Id)
-						? particleGroupsLookup[sg.InputGroup.Id]
+					{
+						ContainerShape = sg.InputGroup.ContainerShape,
+						ContainerSize = sg.InputGroup.ContainerSize,
+						ContainerDimensions = sg.InputGroup.ContainerDimensions,
+						PackingConfiguration = sg.InputGroup.PackingConfiguration.ToString(),
+						Particles = particleGroupsLookup.ContainsKey(sg.InputGroup.Id)
+							? particleGroupsLookup[sg.InputGroup.Id]
 						: new List<ParticlePropertyBaseDto>(),
 					SizeDistribution = sg.InputGroup.SizeDistribution
 				} : new InputGroupBaseDto(),

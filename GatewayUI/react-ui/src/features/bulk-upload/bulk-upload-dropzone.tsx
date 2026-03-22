@@ -52,6 +52,10 @@ const BulkUploadDropzone: React.FC = () => {
         Drop all your files at once: descriptor (.json / .xlsx), domain meshes (.glb),
         and metadata (.json with _metadata suffix).
       </p>
+      <div className="mb-4 rounded border bg-gray-50 px-3 py-2 text-xs text-gray-600">
+        Descriptor rule: use one descriptor file if that file contains multiple scaffolds.
+        Use multiple descriptor files only when each descriptor file contains exactly one scaffold.
+      </div>
 
       <div className="flex items-center gap-4 mb-4">
         <label className="block">

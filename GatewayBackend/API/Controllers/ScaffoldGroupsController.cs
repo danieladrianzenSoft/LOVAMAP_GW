@@ -57,6 +57,70 @@ public class ScaffoldGroupsController : ControllerBase
 		}
     }
 
+    [HttpPost("{scaffoldGroupId}/scaffolds")]
+    public async Task<IActionResult> AppendScaffolds(int scaffoldGroupId, ScaffoldGroupToCreateDto scaffoldsToAppend)
+    {
+		try
+		{
+            var currentUserId = _userService.GetCurrentUserId();
+
+			if (currentUserId == null) return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
+
+			var (succeeded, errorMessage, scaffoldGroup) =
+				await _scaffoldGroupService.AppendScaffoldsToGroup(scaffoldGroupId, scaffoldsToAppend, currentUserId);
+
+			if (!succeeded)
+			{
+				if (errorMessage == "Unauthorized")
+					return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
+
+				if (errorMessage == "ScaffoldGroupNotFound")
+					return NotFound(new ApiResponse<string>(404, "Scaffold group not found"));
+
+				return BadRequest(new ApiResponse<string>(400, errorMessage));
+			}
+
+			return Ok(new ApiResponse<ScaffoldGroupSummaryDto>(200, "Scaffolds appended", scaffoldGroup));
+		}
+		catch (Exception ex)
+		{
+			_logger.LogError(ex, "Failed to append scaffolds to scaffold group {ScaffoldGroupId}", scaffoldGroupId);
+        	return StatusCode(500, new ApiResponse<string>(500, "An error occurred while appending scaffolds to the scaffold group"));
+		}
+    }
+
+	[HttpDelete("scaffolds/{scaffoldId}")]
+	public async Task<IActionResult> DeleteScaffold(int scaffoldId)
+	{
+		try
+		{
+			var currentUserId = _userService.GetCurrentUserId();
+
+			if (currentUserId == null) return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
+
+			var (succeeded, errorMessage, scaffoldGroup) =
+				await _scaffoldGroupService.DeleteScaffold(scaffoldId, currentUserId);
+
+			if (!succeeded)
+			{
+				if (errorMessage == "Unauthorized")
+					return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
+
+				if (errorMessage == "ScaffoldNotFound")
+					return NotFound(new ApiResponse<string>(404, "Scaffold not found"));
+
+				return BadRequest(new ApiResponse<string>(400, errorMessage));
+			}
+
+			return Ok(new ApiResponse<ScaffoldGroupSummaryDto>(200, "Scaffold deleted", scaffoldGroup));
+		}
+		catch (Exception ex)
+		{
+			_logger.LogError(ex, "Failed to delete scaffold {ScaffoldId}", scaffoldId);
+			return StatusCode(500, new ApiResponse<string>(500, "An error occurred while deleting the scaffold"));
+		}
+	}
+
 	[HttpDelete("{id}")]
 	public async Task<IActionResult> Delete(int id)
 	{

@@ -5,7 +5,6 @@ import {
   ClassifiedFile,
   DomainUploadItem,
   DomainUploadStatus,
-  FileRole,
   ScaffoldSlot,
   ScreenshotQueueItem,
   TargetMode,
@@ -20,7 +19,7 @@ export default class BulkUploadStore {
   step: BulkUploadStep = BulkUploadStep.Drop;
 
   // Classification result
-  descriptorFile: ClassifiedFile | null = null;
+  descriptorFiles: ClassifiedFile[] = [];
   slots: ScaffoldSlot[] = [];
   unassignedFiles: ClassifiedFile[] = [];
 
@@ -35,6 +34,7 @@ export default class BulkUploadStore {
   groupUploadProgress: number = 0;
   isUploading: boolean = false;
   createdGroups: ScaffoldGroup[] = [];
+  appendedScaffoldIds: number[] = [];
 
   // Screenshot queue
   screenshotQueue: ScreenshotQueueItem[] = [];
@@ -59,7 +59,7 @@ export default class BulkUploadStore {
     const result: ClassificationResult = await classifyAndGroup(files);
 
     runInAction(() => {
-      this.descriptorFile = result.descriptorFile;
+      this.descriptorFiles = result.descriptorFiles;
       this.slots = result.slots;
       this.unassignedFiles = result.unassignedFiles;
     });
@@ -110,6 +110,8 @@ export default class BulkUploadStore {
     this.slots.push({
       key: "manual",
       index: nextIndex,
+      segmentIndex: null,
+      descriptorFile: null,
       particleMesh: null,
       poreMesh: null,
       particleMetadata: null,
@@ -131,21 +133,18 @@ export default class BulkUploadStore {
     this.slots = this.slots.filter((_, i) => i !== slotIndex);
   };
 
-  removeDescriptor = () => {
-    if (this.descriptorFile) {
-      this.unassignedFiles.push(this.descriptorFile);
-      this.descriptorFile = null;
-    }
+  removeDescriptorFromSlot = (slotIndex: number) => {
+    const slot = this.slots[slotIndex];
+    if (!slot) return;
+    slot.descriptorFile = null;
   };
 
-  setDescriptorFromUnassigned = (unassignedIndex: number) => {
-    const file = this.unassignedFiles[unassignedIndex];
-    if (!file) return;
-    if (this.descriptorFile) {
-      this.unassignedFiles.push(this.descriptorFile);
-    }
-    this.descriptorFile = file;
-    this.unassignedFiles = this.unassignedFiles.filter((_, i) => i !== unassignedIndex);
+  assignDescriptorToSlot = (slotIndex: number, descriptorIndex: number) => {
+    const slot = this.slots[slotIndex];
+    const descriptorFile = this.availableDescriptorFiles[descriptorIndex];
+    if (!slot || !descriptorFile) return;
+
+    slot.descriptorFile = descriptorFile;
   };
 
   setParsedDescriptorJson = (json: any) => {
@@ -170,19 +169,22 @@ export default class BulkUploadStore {
 
   buildDomainQueue = (scaffoldIds: number[]) => {
     const queue: DomainUploadItem[] = [];
+    const uploadableSlots = this.slots.filter((slot) => slot.particleMesh || slot.poreMesh);
 
     console.log(`[buildDomainQueue] scaffoldIds (${scaffoldIds.length}):`, scaffoldIds);
-    console.log(`[buildDomainQueue] slots (${this.slots.length}):`, this.slots.map((s, i) => ({
+    console.log(`[buildDomainQueue] uploadable slots (${uploadableSlots.length}):`, uploadableSlots.map((s, i) => ({
       idx: i,
       key: s.key,
       index: s.index,
+      segmentIndex: s.segmentIndex,
+      descriptor: s.descriptorFile?.file.name ?? null,
       hasParticleMesh: !!s.particleMesh,
       hasPoreMesh: !!s.poreMesh,
       hasParticleMeta: !!s.particleMetadata,
       hasPoreMeta: !!s.poreMetadata,
     })));
 
-    this.slots.forEach((slot, idx) => {
+    uploadableSlots.forEach((slot, idx) => {
       const scaffoldId = scaffoldIds[idx];
       if (!scaffoldId) {
         console.warn(`[buildDomainQueue] Slot ${idx} (index=${slot.index}) has no matching scaffoldId — skipping`);
@@ -213,10 +215,6 @@ export default class BulkUploadStore {
           metadataFile: slot.poreMetadata?.file ?? null,
           status: DomainUploadStatus.Pending,
         });
-      }
-
-      if (!slot.particleMesh && !slot.poreMesh) {
-        console.warn(`[buildDomainQueue] Slot ${idx} (index=${slot.index}) has no mesh files assigned`);
       }
     });
 
@@ -261,6 +259,7 @@ export default class BulkUploadStore {
 
         runInAction(() => {
           this.createdGroups = batchResponse;
+          this.appendedScaffoldIds = [];
         });
 
         scaffoldIds = batchResponse.flatMap((g) => g.scaffoldIds ?? []);
@@ -281,7 +280,43 @@ export default class BulkUploadStore {
           this.createdGroups = [group];
         });
 
-        scaffoldIds = group.scaffoldIds;
+        const uploadableSlots = this.slots.filter((slot) => slot.particleMesh || slot.poreMesh);
+
+        if (this.parsedDescriptorJson) {
+          if (Array.isArray(this.parsedDescriptorJson)) {
+            throw new Error("Appending to an existing scaffold group expects a single compatible descriptor payload.");
+          }
+
+          const appendPayload = this.parsedDescriptorJson;
+
+          const appendCount = appendPayload?.scaffolds?.length ?? 0;
+          if (appendCount <= 0) {
+            throw new Error("Descriptor payload did not contain any scaffolds to append.");
+          }
+
+          const updatedGroup = await scaffoldGroupStore.appendScaffoldsToGroup(group.id, appendPayload);
+          if (!updatedGroup) {
+            throw new Error("Failed to append scaffolds to existing scaffold group.");
+          }
+
+          runInAction(() => {
+            this.createdGroups = [updatedGroup];
+            this.appendedScaffoldIds = updatedGroup.scaffoldIds.slice(-appendCount);
+          });
+
+          if (appendCount !== uploadableSlots.length) {
+            console.warn(
+              `[runUploadPipeline] Appended ${appendCount} scaffold(s) but detected ${uploadableSlots.length} mesh-backed slot(s). Mapping will use appended scaffold order.`
+            );
+          }
+
+          scaffoldIds = updatedGroup.scaffoldIds.slice(-appendCount);
+        } else {
+          runInAction(() => {
+            this.appendedScaffoldIds = [];
+          });
+          scaffoldIds = group.scaffoldIds;
+        }
       }
 
       // Phase B: Upload domains sequentially
@@ -413,6 +448,24 @@ export default class BulkUploadStore {
     let deleted = 0;
     let failed = 0;
 
+    if (this.targetMode === TargetMode.AddToExisting) {
+      for (const scaffoldId of this.appendedScaffoldIds) {
+        try {
+          const deletedScaffoldGroup = await scaffoldGroupStore.deleteScaffold(scaffoldId);
+          if (!deletedScaffoldGroup) {
+            throw new Error("Delete scaffold request failed");
+          }
+          deleted++;
+          console.log(`[undoUpload] Deleted appended scaffold ${scaffoldId}`);
+        } catch (error) {
+          console.error(`[undoUpload] Failed to delete scaffold ${scaffoldId}:`, error);
+          failed++;
+        }
+      }
+
+      return { deleted, failed };
+    }
+
     for (const group of this.createdGroups) {
       try {
         await scaffoldGroupStore.deleteScaffoldGroup(group.id);
@@ -432,7 +485,7 @@ export default class BulkUploadStore {
 
   reset = () => {
     this.step = BulkUploadStep.Drop;
-    this.descriptorFile = null;
+    this.descriptorFiles = [];
     this.slots = [];
     this.unassignedFiles = [];
     this.targetMode = TargetMode.CreateNew;
@@ -443,6 +496,7 @@ export default class BulkUploadStore {
     this.groupUploadProgress = 0;
     this.isUploading = false;
     this.createdGroups = [];
+    this.appendedScaffoldIds = [];
     this.screenshotQueue = [];
     this.screenshotProgress = 0;
     this.parsedDescriptorJson = null;
@@ -456,6 +510,19 @@ export default class BulkUploadStore {
 
   get slotsWithMeshes() {
     return this.slots.filter((s) => s.particleMesh || s.poreMesh).length;
+  }
+
+  get slotsWithAssignedDescriptors() {
+    return this.slots.filter((s) => s.descriptorFile).length;
+  }
+
+  get slotsWithMeshesNeedingDescriptors() {
+    return this.slots.filter((s) => (s.particleMesh || s.poreMesh) && !s.descriptorFile).length;
+  }
+
+  get availableDescriptorFiles() {
+    const assigned = new Set(this.slots.map((slot) => slot.descriptorFile).filter(Boolean));
+    return this.descriptorFiles.filter((file) => !assigned.has(file));
   }
 
   get successfulDomainUploads() {

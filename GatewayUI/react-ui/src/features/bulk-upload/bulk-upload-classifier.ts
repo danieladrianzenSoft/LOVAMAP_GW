@@ -12,18 +12,19 @@ export function classifyFile(file: File): ClassifiedFile {
   const name = file.name;
   const ext = name.split(".").pop()?.toLowerCase() ?? "";
   const stem = name.replace(/\.[^.]+$/, ""); // filename without extension
+  const lowerName = name.toLowerCase();
 
   // 1. Excel
   if (ext === "xlsx" || ext === "xls") {
-    return { file, role: FileRole.Excel, scaffoldKey: null, scaffoldIndex: null };
+    return { file, role: FileRole.Excel, scaffoldKey: null, scaffoldIndex: null, segmentIndex: null };
   }
 
   // 2-3. GLB files
   if (ext === "glb") {
     const hasAt = name.includes("@");
-    const role = hasAt ? FileRole.PoreMesh : FileRole.ParticleMesh;
-    const { key, index } = extractScaffoldInfo(stem, hasAt);
-    return { file, role, scaffoldKey: key, scaffoldIndex: index };
+    const role = inferDomainRole(lowerName, hasAt, FileRole.ParticleMesh, FileRole.PoreMesh);
+    const { key, index, segmentIndex } = extractScaffoldInfo(stem, hasAt);
+    return { file, role, scaffoldKey: key, scaffoldIndex: index, segmentIndex };
   }
 
   // 4-6. JSON files
@@ -32,17 +33,32 @@ export function classifyFile(file: File): ClassifiedFile {
     const hasAt = name.includes("@");
 
     if (hasMetadata) {
-      const role = hasAt ? FileRole.PoreMetadata : FileRole.ParticleMetadata;
+      const role = inferDomainRole(lowerName, hasAt, FileRole.ParticleMetadata, FileRole.PoreMetadata);
       const cleanStem = stem.replace(/_metadata$/i, "");
-      const { key, index } = extractScaffoldInfo(cleanStem, hasAt);
-      return { file, role, scaffoldKey: key, scaffoldIndex: index };
+      const { key, index, segmentIndex } = extractScaffoldInfo(cleanStem, hasAt);
+      return { file, role, scaffoldKey: key, scaffoldIndex: index, segmentIndex };
     }
 
     // Non-metadata JSON — try to detect descriptor
-    return { file, role: FileRole.Unknown, scaffoldKey: null, scaffoldIndex: null };
+    return { file, role: FileRole.Unknown, scaffoldKey: null, scaffoldIndex: null, segmentIndex: null };
   }
 
-  return { file, role: FileRole.Unknown, scaffoldKey: null, scaffoldIndex: null };
+  return { file, role: FileRole.Unknown, scaffoldKey: null, scaffoldIndex: null, segmentIndex: null };
+}
+
+function inferDomainRole<T extends FileRole>(
+  lowerName: string,
+  hasAt: boolean,
+  particleRole: T,
+  poreRole: T
+): T {
+  const hasParticleWord = lowerName.includes("particle");
+  const hasPoreWord = lowerName.includes("pore");
+
+  if (hasParticleWord && !hasPoreWord) return particleRole;
+  if (hasPoreWord && !hasParticleWord) return poreRole;
+
+  return hasAt ? poreRole : particleRole;
 }
 
 /**
@@ -59,34 +75,63 @@ export function classifyFile(file: File): ClassifiedFile {
 function extractScaffoldInfo(
   stem: string,
   hasAt: boolean
-): { key: string; index: number | null } {
+): { key: string; index: number | null; segmentIndex: number | null } {
   // The part we parse depends on whether there's an @ (pore identifier)
   const subject = hasAt ? stem.split("@")[0] : stem;
+  const normalizedSubject = normalizeDescriptorStem(subject);
+
+  // Pattern 0: explicit scaffold label before segment suffix
+  const segmentMatch = normalizedSubject.match(/^(.+?)_(\d+)_segment_(\d+)$/i);
+  if (segmentMatch) {
+    return {
+      key: normalizeKey(segmentMatch[1]),
+      index: parseInt(segmentMatch[2], 10),
+      segmentIndex: parseInt(segmentMatch[3], 10),
+    };
+  }
 
   // Pattern 1: pure numeric suffix  e.g. "groupName_3"
-  const pureMatch = subject.match(/^(.+?)_(\d+)$/);
+  const pureMatch = normalizedSubject.match(/^(.+?)_(\d+)$/);
   if (pureMatch) {
-    return { key: normalizeKey(pureMatch[1]), index: parseInt(pureMatch[2], 10) };
+    return {
+      key: normalizeKey(pureMatch[1]),
+      index: parseInt(pureMatch[2], 10),
+      segmentIndex: null,
+    };
   }
 
   // Pattern 2: alpha-prefixed numeric suffix  e.g. "groupName_v1", "groupName_rep3", "groupName_V02"
-  const prefixedMatch = subject.match(/^(.+?)_[a-zA-Z]+(\d+)$/);
+  const prefixedMatch = normalizedSubject.match(/^(.+?)_[a-zA-Z]+(\d+)$/);
   if (prefixedMatch) {
-    return { key: normalizeKey(prefixedMatch[1]), index: parseInt(prefixedMatch[2], 10) };
+    return {
+      key: normalizeKey(prefixedMatch[1]),
+      index: parseInt(prefixedMatch[2], 10),
+      segmentIndex: null,
+    };
   }
 
   // Pattern 3: last underscore-separated segment that contains digits anywhere
-  const segments = subject.split("_");
+  const segments = normalizedSubject.split("_");
   if (segments.length >= 2) {
     const lastSeg = segments[segments.length - 1];
     const digits = lastSeg.match(/(\d+)/);
     if (digits) {
       const key = segments.slice(0, -1).join("_");
-      return { key: normalizeKey(key), index: parseInt(digits[1], 10) };
+      return {
+        key: normalizeKey(key),
+        index: parseInt(digits[1], 10),
+        segmentIndex: null,
+      };
     }
   }
 
-  return { key: normalizeKey(stem), index: null };
+  return { key: normalizeKey(normalizedSubject), index: null, segmentIndex: null };
+}
+
+function normalizeDescriptorStem(raw: string): string {
+  return raw
+    .replace(/^stats_/i, "")
+    .replace(/_output$/i, "");
 }
 
 /**
@@ -123,14 +168,22 @@ export async function classifyAndGroup(files: File[]): Promise<ClassificationRes
   const classified = files.map(classifyFile);
 
   // Step 2: resolve Unknown JSONs — check if they're descriptors
-  let descriptorFile: ClassifiedFile | null = null;
+  const descriptorFiles: ClassifiedFile[] = [];
   const resolvedFiles: ClassifiedFile[] = [];
 
   for (const cf of classified) {
     if (cf.role === FileRole.Unknown && cf.file.name.endsWith(".json")) {
       const isDescriptor = await detectDescriptorJson(cf.file);
-      if (isDescriptor && !descriptorFile) {
-        resolvedFiles.push({ ...cf, role: FileRole.Descriptor });
+      if (isDescriptor) {
+        const stem = cf.file.name.replace(/\.[^.]+$/, "");
+        const { key, index, segmentIndex } = extractScaffoldInfo(stem, false);
+        resolvedFiles.push({
+          ...cf,
+          role: FileRole.Descriptor,
+          scaffoldKey: key,
+          scaffoldIndex: index,
+          segmentIndex,
+        });
         continue;
       }
     }
@@ -143,18 +196,9 @@ export async function classifyAndGroup(files: File[]): Promise<ClassificationRes
 
   for (const cf of resolvedFiles) {
     if (cf.role === FileRole.Descriptor) {
-      if (!descriptorFile) {
-        descriptorFile = cf;
-      } else {
-        unassignedFiles.push(cf);
-      }
+      descriptorFiles.push(cf);
     } else if (cf.role === FileRole.Excel) {
-      // Excel becomes the descriptor if no JSON descriptor exists
-      if (!descriptorFile) {
-        descriptorFile = cf;
-      } else {
-        unassignedFiles.push(cf);
-      }
+      descriptorFiles.push(cf);
     } else if (cf.role === FileRole.Unknown) {
       unassignedFiles.push(cf);
     } else if (cf.scaffoldKey !== null && cf.scaffoldIndex !== null) {
@@ -168,12 +212,14 @@ export async function classifyAndGroup(files: File[]): Promise<ClassificationRes
   const slotMap = new Map<string, ScaffoldSlot>();
 
   for (const cf of domainFiles) {
-    const slotId = `${cf.scaffoldKey}__${cf.scaffoldIndex}`;
+    const slotId = `${cf.scaffoldKey}__${cf.scaffoldIndex}__${cf.segmentIndex ?? "none"}`;
 
     if (!slotMap.has(slotId)) {
       slotMap.set(slotId, {
         key: cf.scaffoldKey!,
         index: cf.scaffoldIndex!,
+        segmentIndex: cf.segmentIndex,
+        descriptorFile: null,
         particleMesh: null,
         poreMesh: null,
         particleMetadata: null,
@@ -197,9 +243,45 @@ export async function classifyAndGroup(files: File[]): Promise<ClassificationRes
   }
 
   // Sort slots by index
-  const slots = Array.from(slotMap.values()).sort((a, b) => a.index - b.index);
+  const slots = Array.from(slotMap.values()).sort((a, b) => {
+    if (a.key !== b.key) return a.key.localeCompare(b.key);
+    if (a.index !== b.index) return a.index - b.index;
+    return (a.segmentIndex ?? 0) - (b.segmentIndex ?? 0);
+  });
 
-  return { descriptorFile, slots, unassignedFiles };
+  autoAssignDescriptors(slots, descriptorFiles);
+
+  return { descriptorFiles, slots, unassignedFiles };
+}
+
+function autoAssignDescriptors(slots: ScaffoldSlot[], descriptorFiles: ClassifiedFile[]) {
+  for (const descriptorFile of descriptorFiles) {
+    if (descriptorFile.scaffoldKey === null || descriptorFile.scaffoldIndex === null) continue;
+
+    const exactMatches = slots.filter(
+      (slot) =>
+        !slot.descriptorFile &&
+        slot.key === descriptorFile.scaffoldKey &&
+        slot.index === descriptorFile.scaffoldIndex &&
+        (descriptorFile.segmentIndex == null || slot.segmentIndex === descriptorFile.segmentIndex)
+    );
+
+    if (exactMatches.length === 1) {
+      exactMatches[0].descriptorFile = descriptorFile;
+      continue;
+    }
+
+    const relaxedMatches = slots.filter(
+      (slot) =>
+        !slot.descriptorFile &&
+        slot.key === descriptorFile.scaffoldKey &&
+        slot.index === descriptorFile.scaffoldIndex
+    );
+
+    if (relaxedMatches.length === 1) {
+      relaxedMatches[0].descriptorFile = descriptorFile;
+    }
+  }
 }
 
 function roleToSlotField(

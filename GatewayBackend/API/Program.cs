@@ -18,6 +18,7 @@ using Infrastructure;
 using System.Security.Claims;
 using Data.SeedingStrategies;
 using Microsoft.AspNetCore.Http.Features;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -65,7 +66,10 @@ builder.Services.AddAuthentication(cfg => {
 
 builder.Services.AddAuthorization();
 builder.Services.AddHttpContextAccessor();
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.NumberHandling = JsonNumberHandling.AllowReadingFromString;
+});
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

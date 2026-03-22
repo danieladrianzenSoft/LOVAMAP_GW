@@ -13,11 +13,14 @@ export interface ClassifiedFile {
   role: FileRole;
   scaffoldKey: string | null;   // normalized group key (null for descriptors / unknown)
   scaffoldIndex: number | null; // numeric index extracted from filename
+  segmentIndex: number | null;
 }
 
 export interface ScaffoldSlot {
   key: string;
   index: number;
+  segmentIndex: number | null;
+  descriptorFile: ClassifiedFile | null;
   particleMesh: ClassifiedFile | null;
   poreMesh: ClassifiedFile | null;
   particleMetadata: ClassifiedFile | null;
@@ -25,7 +28,7 @@ export interface ScaffoldSlot {
 }
 
 export interface ClassificationResult {
-  descriptorFile: ClassifiedFile | null;
+  descriptorFiles: ClassifiedFile[];
   slots: ScaffoldSlot[];
   unassignedFiles: ClassifiedFile[];
 }

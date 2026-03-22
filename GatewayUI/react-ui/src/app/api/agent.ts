@@ -103,6 +103,10 @@ const ScaffoldGroups = {
     getDataForVisualizationRandom: (queryParams: string) => requests.get<ApiResponse<ScaffoldGroupData>>(`/scaffoldgroups/data/random/` + queryParams),
     getScaffoldGroupMatches: (inputGroupForMatch: InputGroup) => requests.post<ApiResponse<ScaffoldGroupMatch[]>>(`/scaffoldgroups/matches`, inputGroupForMatch),
     uploadScaffoldGroup: (scaffoldGroup: ScaffoldGroupToCreate) => requests.post<ApiResponse<ScaffoldGroup>>('/scaffoldgroups/create', scaffoldGroup),
+    appendScaffoldsToGroup: (scaffoldGroupId: number, scaffoldGroup: ScaffoldGroupToCreate) =>
+        requests.post<ApiResponse<ScaffoldGroup>>(`/scaffoldgroups/${scaffoldGroupId}/scaffolds`, scaffoldGroup),
+    deleteScaffold: (scaffoldId: number) =>
+        requests.del<ApiResponse<ScaffoldGroup>>(`/scaffoldgroups/scaffolds/${scaffoldId}`),
     uploadScaffoldGroupBatch: (scaffoldGroups: ScaffoldGroupToCreate[]) => requests.post<ApiResponse<ScaffoldGroup[]>>('/scaffoldgroups/createBatch', scaffoldGroups),
     uploadScaffoldGroupBatchStreamed: (
         scaffoldGroups: any[],

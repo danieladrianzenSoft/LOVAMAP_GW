@@ -3,9 +3,13 @@ import { observer } from "mobx-react-lite";
 import { useStore } from "../../app/stores/store";
 import { BulkUploadStep, FileRole, ScaffoldSlot } from "./bulk-upload-types";
 
-type SlotField = "particleMesh" | "poreMesh" | "particleMetadata" | "poreMetadata";
+type SlotField = "descriptorFile" | "particleMesh" | "poreMesh" | "particleMetadata" | "poreMetadata";
+type DragSource =
+  | { kind: "descriptor"; descriptorIndex: number }
+  | { kind: "unassigned"; unassignedIndex: number };
 
 const SLOT_COLUMNS: { field: SlotField; label: string; acceptRoles: FileRole[] }[] = [
+  { field: "descriptorFile", label: "Descriptor", acceptRoles: [FileRole.Descriptor, FileRole.Excel] },
   { field: "particleMesh", label: "Particle Mesh", acceptRoles: [FileRole.ParticleMesh] },
   { field: "poreMesh", label: "Pore Mesh", acceptRoles: [FileRole.PoreMesh] },
   { field: "particleMetadata", label: "Particle Meta", acceptRoles: [FileRole.ParticleMetadata] },
@@ -14,54 +18,73 @@ const SLOT_COLUMNS: { field: SlotField; label: string; acceptRoles: FileRole[] }
 
 const BulkUploadReview: React.FC = () => {
   const { bulkUploadStore } = useStore();
-  const { slots, unassignedFiles, descriptorFile } = bulkUploadStore;
+  const { slots, unassignedFiles, availableDescriptorFiles, descriptorFiles } = bulkUploadStore;
   const [expandedUnassigned, setExpandedUnassigned] = useState(true);
-  const [dragSource, setDragSource] = useState<{ unassignedIndex: number } | null>(null);
-
-  const handleDragStart = (unassignedIndex: number) => {
-    setDragSource({ unassignedIndex });
-  };
+  const [dragSource, setDragSource] = useState<DragSource | null>(null);
 
   const handleDrop = (slotIndex: number, field: SlotField) => {
     if (!dragSource) return;
-    bulkUploadStore.assignToSlot(slotIndex, field, dragSource.unassignedIndex);
+
+    if (field === "descriptorFile" && dragSource.kind === "descriptor") {
+      bulkUploadStore.assignDescriptorToSlot(slotIndex, dragSource.descriptorIndex);
+    }
+
+    if (field !== "descriptorFile" && dragSource.kind === "unassigned") {
+      bulkUploadStore.assignToSlot(slotIndex, field, dragSource.unassignedIndex);
+    }
+
     setDragSource(null);
   };
 
   const canContinue = slots.some((s) => s.particleMesh || s.poreMesh);
 
   return (
-    <div className="max-w-5xl mx-auto">
+    <div className="max-w-6xl mx-auto">
       <h2 className="text-xl font-semibold mb-4">Step 2: Review & Organize</h2>
 
-      {/* Descriptor file */}
       <div className="mb-4 p-3 bg-gray-50 rounded border">
-        <div className="flex items-center justify-between">
-          <div>
-            <span className="text-sm font-medium text-gray-700">Descriptors: </span>
-            {descriptorFile ? (
-              <span className="text-sm text-green-700" title={descriptorFile.file.name}>{descriptorFile.file.name}</span>
-            ) : (
-              <span className="text-sm text-yellow-600">None detected</span>
-            )}
-          </div>
-          {descriptorFile && (
-            <button
-              onClick={() => bulkUploadStore.removeDescriptor()}
-              className="text-xs text-red-500 hover:text-red-700"
-            >
-              Remove
-            </button>
+        <div className="text-sm text-gray-700">
+          Detected <strong>{descriptorFiles.length}</strong> descriptor
+          {descriptorFiles.length !== 1 ? "s" : ""}. Suggested matches were applied where the
+          filename pattern lined up with a mesh slot.
+        </div>
+        <div className="text-xs text-gray-500 mt-1">
+          Rule: one descriptor file may contain many scaffolds. If you upload multiple descriptor files,
+          each descriptor file must represent exactly one scaffold. Drag a descriptor into the Descriptor
+          column to correct any mismatches.
+        </div>
+      </div>
+
+      <div className="mb-6">
+        <h3 className="text-sm font-medium mb-2">
+          Available Descriptors ({availableDescriptorFiles.length})
+        </h3>
+        <div className="border rounded p-2 min-h-[52px]">
+          {availableDescriptorFiles.length > 0 ? (
+            <div className="flex flex-wrap gap-2">
+              {availableDescriptorFiles.map((cf, i) => (
+                <div
+                  key={`${cf.file.name}-${i}`}
+                  draggable
+                  onDragStart={() => setDragSource({ kind: "descriptor", descriptorIndex: i })}
+                  className="px-2 py-1 border rounded bg-white text-xs cursor-grab hover:bg-gray-50"
+                  title={cf.file.name}
+                >
+                  {cf.file.name}
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p className="text-xs text-gray-400">All detected descriptors are assigned.</p>
           )}
         </div>
       </div>
 
-      {/* Scaffold slots table */}
       <div className="overflow-x-auto mb-4">
         <table className="w-full text-sm border-collapse">
           <thead>
             <tr className="bg-gray-100">
-              <th className="border p-2 text-left">#</th>
+              <th className="border p-2 text-left">Slot</th>
               {SLOT_COLUMNS.map((col) => (
                 <th key={col.field} className="border p-2 text-left">
                   {col.label}
@@ -72,17 +95,29 @@ const BulkUploadReview: React.FC = () => {
           </thead>
           <tbody>
             {slots.map((slot, slotIdx) => (
-              <tr key={`${slot.key}-${slot.index}`} className="hover:bg-gray-50">
-                <td className="border p-2 font-mono text-xs">{slot.index}</td>
+              <tr key={`${slot.key}-${slot.index}-${slot.segmentIndex ?? "none"}`} className="hover:bg-gray-50">
+                <td className="border p-2 text-xs">
+                  <div className="font-mono">{slot.index}</div>
+                  <div className="text-gray-400 truncate max-w-[180px]" title={slot.key}>
+                    {slot.key}
+                    {slot.segmentIndex !== null ? ` | segment ${slot.segmentIndex}` : ""}
+                  </div>
+                </td>
                 {SLOT_COLUMNS.map((col) => (
                   <SlotCell
                     key={col.field}
                     slot={slot}
                     slotIndex={slotIdx}
                     field={col.field}
-                    onRemove={() => bulkUploadStore.removeFromSlot(slotIdx, col.field)}
+                    dragSource={dragSource}
+                    onRemove={() => {
+                      if (col.field === "descriptorFile") {
+                        bulkUploadStore.removeDescriptorFromSlot(slotIdx);
+                      } else {
+                        bulkUploadStore.removeFromSlot(slotIdx, col.field);
+                      }
+                    }}
                     onDrop={() => handleDrop(slotIdx, col.field)}
-                    isDragging={dragSource !== null}
                   />
                 ))}
                 <td className="border p-2 text-center">
@@ -112,7 +147,6 @@ const BulkUploadReview: React.FC = () => {
         + Add Scaffold Slot
       </button>
 
-      {/* Unassigned files */}
       <div className="mb-6">
         <button
           onClick={() => setExpandedUnassigned(!expandedUnassigned)}
@@ -126,7 +160,7 @@ const BulkUploadReview: React.FC = () => {
               <div
                 key={`${cf.file.name}-${i}`}
                 draggable
-                onDragStart={() => handleDragStart(i)}
+                onDragStart={() => setDragSource({ kind: "unassigned", unassignedIndex: i })}
                 className="flex items-center justify-between py-1 px-2 text-sm hover:bg-gray-100 cursor-grab rounded"
               >
                 <span className="truncate mr-2" title={cf.file.name}>{cf.file.name}</span>
@@ -136,15 +170,16 @@ const BulkUploadReview: React.FC = () => {
           </div>
         )}
         {expandedUnassigned && unassignedFiles.length === 0 && (
-          <p className="text-xs text-gray-400 mt-1">All files assigned.</p>
+          <p className="text-xs text-gray-400 mt-1">All non-descriptor files assigned.</p>
         )}
       </div>
 
-      {/* Summary */}
       <div className="text-sm text-gray-600 mb-4">
         {slots.length} scaffold slot{slots.length !== 1 ? "s" : ""} detected,{" "}
         {bulkUploadStore.slotsWithMeshes} with meshes,{" "}
-        {unassignedFiles.length} unassigned file{unassignedFiles.length !== 1 ? "s" : ""}
+        {bulkUploadStore.slotsWithAssignedDescriptors} with descriptors,{" "}
+        {bulkUploadStore.slotsWithMeshesNeedingDescriptors} mesh slot
+        {bulkUploadStore.slotsWithMeshesNeedingDescriptors !== 1 ? "s" : ""} still missing descriptors
       </div>
 
       <div className="flex gap-3 justify-end items-stretch">
@@ -170,24 +205,30 @@ const SlotCell: React.FC<{
   slot: ScaffoldSlot;
   slotIndex: number;
   field: SlotField;
+  dragSource: DragSource | null;
   onRemove: () => void;
   onDrop: () => void;
-  isDragging: boolean;
-}> = ({ slot, field, onRemove, onDrop, isDragging }) => {
+}> = ({ slot, field, dragSource, onRemove, onDrop }) => {
   const file = slot[field];
   const [dragOver, setDragOver] = useState(false);
 
+  const acceptsDescriptor = field === "descriptorFile" && dragSource?.kind === "descriptor";
+  const acceptsUnassigned = field !== "descriptorFile" && dragSource?.kind === "unassigned";
+  const canAcceptDrop = acceptsDescriptor || acceptsUnassigned;
+
   return (
     <td
-      className={`border p-2 ${dragOver ? "bg-blue-50" : ""} ${
-        isDragging && !file ? "bg-gray-50" : ""
+      className={`border p-2 ${dragOver && canAcceptDrop ? "bg-blue-50" : ""} ${
+        canAcceptDrop && !file ? "bg-gray-50" : ""
       }`}
       onDragOver={(e) => {
+        if (!canAcceptDrop) return;
         e.preventDefault();
         setDragOver(true);
       }}
       onDragLeave={() => setDragOver(false)}
       onDrop={(e) => {
+        if (!canAcceptDrop) return;
         e.preventDefault();
         setDragOver(false);
         onDrop();
@@ -195,7 +236,7 @@ const SlotCell: React.FC<{
     >
       {file ? (
         <div className="relative group flex items-center gap-1">
-          <span className="truncate text-xs max-w-[140px]">
+          <span className="truncate text-xs max-w-[150px]" title={file.file.name}>
             {file.file.name}
           </span>
           <button
@@ -205,14 +246,13 @@ const SlotCell: React.FC<{
           >
             &#10005;
           </button>
-          {/* Hover tooltip */}
-          <div className="absolute left-0 bottom-full mb-1 hidden group-hover:block bg-gray-900 text-white text-xs rounded px-2 py-1 whitespace-nowrap z-50 pointer-events-none">
+          <div className="absolute right-0 bottom-full mb-1 hidden group-hover:block w-max max-w-[220px] rounded bg-gray-900 px-2 py-1 text-xs text-white whitespace-normal break-words shadow-lg z-[9999] pointer-events-none">
             {file.file.name}
           </div>
         </div>
       ) : (
         <span className="text-xs text-gray-300">
-          {isDragging ? "Drop here" : "\u2014"}
+          {canAcceptDrop ? "Drop here" : "\u2014"}
         </span>
       )}
     </td>
