@@ -4,6 +4,46 @@ import { useGLTF } from "@react-three/drei";
 import * as THREE from 'three';
 import { observer } from 'mobx-react-lite';
 
+//JX: 3/10 colormap
+const beadColorJS = (diam: number): THREE.Color => {
+
+  const bins: Record<number, [number, number, number]> = {
+    40:  [235, 236, 246],
+    50:  [245, 246, 232],
+    60:  [246, 234, 224],
+    70:  [218, 234, 245],
+    80:  [238, 231, 246],
+    90:  [254, 236, 240],
+    100: [231, 246, 227],
+    110: [238, 231, 231],
+    120: [233, 253, 248],
+    130: [230, 234, 250],
+    140: [254, 249, 233],
+    150: [225, 253, 224],
+    160: [253, 237, 248],
+    170: [255, 233, 209],
+    180: [219, 231, 240],
+    190: [237, 232, 223],
+    200: [240, 240, 240],
+  };
+
+  // MATLAB: diam = round(diam / 10) * 10;
+  const rounded = Math.round(diam / 10) * 10;
+
+  let key = rounded;
+
+  if (rounded <= 40) key = 40;
+  if (rounded >= 200) key = 200;
+
+  const rgb = bins[key] ?? bins[100];
+
+  return new THREE.Color(
+    rgb[0] / 255,
+    rgb[1] / 255,
+    rgb[2] / 255
+  );
+};
+
 interface ModelProps {
 	url: string;
 	category: number;
@@ -120,123 +160,126 @@ const Model: React.FC<ModelProps> = ({
 	}, [camera, scene, onLoad, debugMode, category]);
 
 	useEffect(() => {
-		scene.traverse((child) => {
-			if (!(child instanceof THREE.Mesh)) return;
+	scene.traverse((child) => {
+		if (!(child instanceof THREE.Mesh)) return;
 
-			const entityId = child.name;
-			child.userData.particleId = entityId;
+		const entityId = child.name;
+		child.userData.particleId = entityId;
 
-			// Store original material once
-			if (!child.userData.originalMaterial && child.material) {
-				child.userData.originalMaterial = child.material;
-			}
+		if (!child.userData.originalMaterial && child.material) {
+			child.userData.originalMaterial = child.material;
+		}
 
-			// Store raycast function once
-			if (!child.userData.originalRaycast) {
-				child.userData.originalRaycast = child.raycast;
-			}
+		if (!child.userData.originalRaycast) {
+			child.userData.originalRaycast = child.raycast;
+		}
 
-			// Handle highlight (selection)
-			// Use originalMaterial if present; fall back to runtime child.material
-			const originalMatFromUserData = child.userData.originalMaterial;
-			let originalMat: THREE.Material | null = null;
+		const originalMatFromUserData = child.userData.originalMaterial;
+		let originalMat: THREE.Material | null = null;
 
-			if (Array.isArray(originalMatFromUserData)) {
-			// if original stored as array, use first element for color decisions
-				originalMat = (originalMatFromUserData[0] as THREE.Material) ?? null;
-			} else if (originalMatFromUserData) {
-				originalMat = originalMatFromUserData as THREE.Material;
-			} else if (child.material) {
-				originalMat = Array.isArray(child.material) ? (child.material[0] as THREE.Material) : (child.material as THREE.Material);
-			}
+		if (Array.isArray(originalMatFromUserData)) {
+			originalMat = (originalMatFromUserData[0] as THREE.Material) ?? null;
+		} else if (originalMatFromUserData) {
+			originalMat = originalMatFromUserData as THREE.Material;
+		} else if (child.material) {
+			originalMat = Array.isArray(child.material)
+				? (child.material[0] as THREE.Material)
+				: (child.material as THREE.Material);
+		}
 
-			// Now do selection / unselection
-			if (selectedEntity?.id === entityId) {
-				// Create a highlight material cloned from original to preserve originalMaterial
-				const highlightMat = originalMat ? (originalMat.clone() as THREE.MeshStandardMaterial) : new THREE.MeshStandardMaterial();
-				// Apply highlight colours / emissive but keep other properties cloned
-				if ((highlightMat as any).color) (highlightMat as any).color = new THREE.Color('red');
-				(highlightMat as any).emissive = new THREE.Color('yellow');
-				highlightMat.transparent = originalMat?.transparent ?? false;
-				child.material = highlightMat;
+		if (selectedEntity?.id === entityId) {
+			const highlightMat = originalMat
+				? (originalMat.clone() as THREE.MeshStandardMaterial)
+				: new THREE.MeshStandardMaterial();
+
+			if ((highlightMat as any).color) (highlightMat as any).color = new THREE.Color('red');
+			(highlightMat as any).emissive = new THREE.Color('yellow');
+			highlightMat.transparent = originalMat?.transparent ?? false;
+
+			child.material = highlightMat;
+		} else {
+			let workingMat: THREE.Material;
+
+			if (originalMat) {
+				workingMat = originalMat.clone();
 			} else {
-				// Use the saved original material clone (always clone before applying overrides)
-				let workingMat: THREE.Material;
-				if (originalMat) {
-					workingMat = originalMat.clone();
-				} else {
-					// ultimate fallback - clone current material
-					workingMat = Array.isArray(child.material) ? (child.material[0] as THREE.Material).clone() : (child.material as THREE.Material).clone();
-				}
+				workingMat = Array.isArray(child.material)
+					? (child.material[0] as THREE.Material).clone()
+					: (child.material as THREE.Material).clone();
+			}
 
-				// Compute a reliable originalColor from original material (not runtime material)
-				const originalColor =
-					(originalMat && (originalMat as any).color instanceof THREE.Color)
+			const originalColor =
+				(originalMat && (originalMat as any).color instanceof THREE.Color)
 					? (originalMat as any).color.clone()
 					: new THREE.Color(0xC0C0C0);
 
-				if (theme === 'Metallic') {
-					// create a metallic variant while using originalColor
-					const metallic = new THREE.MeshPhongMaterial({
+			if (theme === 'Metallic') {
+				const metallic = new THREE.MeshPhongMaterial({
 					color: originalColor,
 					shininess: 35,
 					specular: new THREE.Color('#fffaed'),
 					vertexColors: (workingMat as any).vertexColors ?? false
-					});
-					(metallic as any).flatShading = true;
-					// copy transparency/opacity from workingMat (so user opacity remains)
-					metallic.transparent = (workingMat as any).transparent ?? false;
-					metallic.opacity = (workingMat as any).opacity ?? 1;
-					workingMat.dispose?.(); // free the temporary clone if any
-					workingMat = metallic;
-				}
+				});
 
-				// Global override (highest priority)
-				if (typeof color === 'string') {
-					if ((workingMat as any).color) (workingMat as any).color = new THREE.Color(color);
-					(workingMat as any).vertexColors = false;
-				} else {
-					// dimmed fallback uses dimmedOptions color
-					if (dimmed && typeof dimmedOptions?.color === 'string' && (workingMat as any).color) {
+				(metallic as any).flatShading = true;
+				metallic.transparent = (workingMat as any).transparent ?? false;
+				metallic.opacity = (workingMat as any).opacity ?? 1;
+
+				workingMat.dispose?.();
+				workingMat = metallic;
+			}
+
+			if (typeof color === 'string') {
+				if ((workingMat as any).color) (workingMat as any).color = new THREE.Color(color);
+				(workingMat as any).vertexColors = false;
+			} else {
+				if (dimmed && typeof dimmedOptions?.color === 'string' && (workingMat as any).color) {
 					(workingMat as any).color = new THREE.Color(dimmedOptions.color);
 					(workingMat as any).vertexColors = false;
-					}
 				}
-
-				if (typeof opacity === 'number') {
-					(workingMat as any).transparent = true;
-					(workingMat as any).opacity = opacity;
-				} else if (opacity === undefined && dimmed && typeof dimmedOptions?.opacity === 'number') {
-					(workingMat as any).transparent = true;
-					(workingMat as any).opacity = dimmedOptions.opacity;
-				}
-
-				child.material = workingMat;
 			}
 
-			// Handle visibility
-			const center = new THREE.Vector3();
-			new THREE.Box3().setFromObject(child).getCenter(center);
-
-			// Adjust to match camera-centered coordinate space
-			const adjustedCenter = combinedCenter
-				? center.clone().sub(combinedCenter)
-				: center;
-
-			const isGloballyVisible = visible;
-			const isLocallyHidden = hiddenIds.has(entityId);
-			let finalVisible = isGloballyVisible && !isLocallyHidden
-
-			if (category === 0) {
-				const shouldSlice = slicingActive && typeof sliceXThreshold === 'number';
-				const isSliceHidden = shouldSlice && adjustedCenter.x > (sliceXThreshold ?? 0);
-				finalVisible = finalVisible && !isSliceHidden;
+			if (typeof opacity === 'number') {
+				(workingMat as any).transparent = true;
+				(workingMat as any).opacity = opacity;
+			} else if (opacity === undefined && dimmed && typeof dimmedOptions?.opacity === 'number') {
+				(workingMat as any).transparent = true;
+				(workingMat as any).opacity = dimmedOptions.opacity;
 			}
 
-			child.visible = finalVisible;
-			child.raycast = finalVisible ? child.userData.originalRaycast : () => {};
-		});
-	}, [scene, hiddenIds, selectedEntity, dimmed, dimmedOptions, visible, color, opacity, shouldSlice, sliceXThreshold, combinedCenter, category, slicingActive, theme]);
+			child.material = workingMat;
+		}
+
+		const center = new THREE.Vector3();
+		new THREE.Box3().setFromObject(child).getCenter(center);
+
+		const isGloballyVisible = visible;
+		const isLocallyHidden = hiddenIds.has(entityId);
+
+		let finalVisible = isGloballyVisible && !isLocallyHidden;
+
+		if (category === 0 && slicingActive && typeof sliceXThreshold === 'number') {
+    const isSliceHidden = center.x > sliceXThreshold;
+    finalVisible = finalVisible && !isSliceHidden;
+}
+
+		child.visible = finalVisible;
+		child.raycast = finalVisible ? child.userData.originalRaycast : () => {};
+	});
+}, [
+	scene,
+	hiddenIds,
+	selectedEntity,
+	dimmed,
+	dimmedOptions,
+	visible,
+	color,
+	opacity,
+	sliceXThreshold,
+	category,
+	slicingActive,
+	theme
+]);
 
 
 	useEffect(() => {
