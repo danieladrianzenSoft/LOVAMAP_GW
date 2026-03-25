@@ -1,0 +1,13 @@
+{
+  "publicationId": 5,
+  "name": "Supplementary",
+  "scaffoldIds": [
+    470, 471, 472, 473, 474, 475
+  ],
+  "descriptorRules": [
+    { "descriptorTypeId": 4,  "jobMode": 3 },
+    { "descriptorTypeId": 21, "jobMode": 3 },
+    { "descriptorTypeId": 26, "jobMode": 3 },
+    { "descriptorTypeId": 27, "jobMode": 3 }
+  ]
+}

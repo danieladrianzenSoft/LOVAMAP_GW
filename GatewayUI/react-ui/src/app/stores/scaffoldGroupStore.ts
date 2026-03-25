@@ -246,6 +246,54 @@ export default class ScaffoldGroupStore {
 		}
 	}
 
+	appendScaffoldsToGroup = async (scaffoldGroupId: number, scaffoldGroupToCreate: ScaffoldGroupToCreate) => {
+		try {
+			const apiResponse = await agent.ScaffoldGroups.appendScaffoldsToGroup(scaffoldGroupId, scaffoldGroupToCreate);
+			const scaffoldGroup = apiResponse.data;
+
+			runInAction(() => {
+				this.uploadedScaffoldGroups = this.uploadedScaffoldGroups.map((group) =>
+					group.id === scaffoldGroup.id ? scaffoldGroup : group
+				);
+				this.scaffoldGroups = this.scaffoldGroups.map((group) =>
+					group.id === scaffoldGroup.id ? scaffoldGroup : group
+				);
+				if (this.selectedScaffoldGroup?.id === scaffoldGroup.id) {
+					this.selectedScaffoldGroup = scaffoldGroup;
+				}
+			});
+
+			return scaffoldGroup;
+		} catch (error) {
+			console.error("Failed to append scaffolds to scaffold group:", error);
+			return null;
+		}
+	}
+
+	deleteScaffold = async (scaffoldId: number) => {
+		try {
+			const apiResponse = await agent.ScaffoldGroups.deleteScaffold(scaffoldId);
+			const scaffoldGroup = apiResponse.data;
+
+			runInAction(() => {
+				this.uploadedScaffoldGroups = this.uploadedScaffoldGroups.map((group) =>
+					group.id === scaffoldGroup.id ? scaffoldGroup : group
+				);
+				this.scaffoldGroups = this.scaffoldGroups.map((group) =>
+					group.id === scaffoldGroup.id ? scaffoldGroup : group
+				);
+				if (this.selectedScaffoldGroup?.id === scaffoldGroup.id) {
+					this.selectedScaffoldGroup = scaffoldGroup;
+				}
+			});
+
+			return scaffoldGroup;
+		} catch (error) {
+			console.error("Failed to delete scaffold:", error);
+			return null;
+		}
+	}
+
 	uploadScaffoldGroupBatchStreamed = async (
 		scaffoldGroupsToCreate: ScaffoldGroupToCreate[],
 		onProgress?: (pct: number) => void
@@ -401,6 +449,10 @@ export default class ScaffoldGroupStore {
 				if (queryParams !== '') queryParams += '&';
 				queryParams += `restrictToPublicationDataset=${filter.restrictToPublicationDataset}`;
 			}
+			if (filter.isSimulated != null) {
+				if (queryParams !== '') queryParams += '&';
+				queryParams += `isSimulated=${filter.isSimulated}`;
+			}
 			if (queryParams !== '') queryParams = '?' + queryParams;
 
 			const response = await agent.ScaffoldGroups.getPublic(queryParams);
@@ -439,6 +491,10 @@ export default class ScaffoldGroupStore {
 			if (filter.restrictToPublicationDataset) {
 				if (queryParams !== '') queryParams += '&';
 				queryParams += `restrictToPublicationDataset=${filter.restrictToPublicationDataset}`;
+			}
+			if (filter.isSimulated != null) {
+				if (queryParams !== '') queryParams += '&';
+				queryParams += `isSimulated=${filter.isSimulated}`;
 			}
 			if (queryParams !== '') queryParams = '?' + queryParams;
 

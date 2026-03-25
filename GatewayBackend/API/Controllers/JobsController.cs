@@ -1,15 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Threading.Tasks;
 using Infrastructure.DTOs;
 using Services.IServices;
 using API.Models;
 using Data.Models;
 using Microsoft.AspNetCore.Authorization;
-using System.Text.Json;
-using System.Text;
-using System.Net.Http.Headers;
-using System.Security.Cryptography;
 using Infrastructure.IHelpers;
 
 namespace API.Controllers;
@@ -71,7 +65,7 @@ public class JobsController : ControllerBase
 	
 	[Authorize]
 	[HttpPut("{jobId}/upload")]
-	public async Task<IActionResult> UploadResult([FromRoute] string jobId, CancellationToken cancellationToken)
+	public async Task<IActionResult> UploadResult([FromRoute] string jobId, [FromBody] JobResultUploadDto body)
 	{
 		// 1) Sanity check: token jobId vs route
 		var tokenJobId = User.FindFirst("jobId")?.Value;
@@ -87,97 +81,24 @@ public class JobsController : ControllerBase
 			return BadRequest(new { error = "Invalid jobId" });
 		}
 
-		// var resultsDir = _configuration["OutputPaths:JobResults"]
-        //          ?? Environment.GetEnvironmentVariable("JOB_RESULTS_PATH")
-        //          ?? "Data/JobResults";
-		var resultsDir = _jobService.GetJobResultsDir();
+		if (string.IsNullOrWhiteSpace(body.ResultPath))
+			return BadRequest(new { error = "resultPath is required" });
 
-		Directory.CreateDirectory(resultsDir);
+		var (succeeded, errorMessage) = await _jobService.UploadJobResultAsync(
+			jobGuid,
+			body.ResultPath,
+			body.Sha256
+		);
 
-		// Temp path: extension is just .tmp because we don't yet know the format
-		var tmpPath = Path.Combine(resultsDir, $"{jobId}.{Guid.NewGuid():N}.tmp");
-
-		string? computedHex = null;
-
-		try
+		if (!succeeded)
 		{
-			const int bufferSize = 80 * 1024; // 80 KB
-			var buffer = new byte[bufferSize];
-
-			using var incrementalHash = IncrementalHash.CreateHash(HashAlgorithmName.SHA256);
-
-			await using (var fs = System.IO.File.Create(tmpPath))
-			{
-				var requestStream = Request.Body;
-
-				while (true)
-				{
-					var read = await requestStream.ReadAsync(buffer.AsMemory(0, buffer.Length), cancellationToken);
-					if (read == 0) break;
-
-					await fs.WriteAsync(buffer.AsMemory(0, read), cancellationToken);
-					incrementalHash.AppendData(buffer, 0, read);
-				}
-
-				await fs.FlushAsync(cancellationToken);
-			}
-
-			// Compute hash
-			var computedBytes = incrementalHash.GetHashAndReset();
-			computedHex = Convert.ToHexString(computedBytes).ToLowerInvariant();
-
-			// Optional Digest header verification
-			if (Request.Headers.TryGetValue("Digest", out var digestHeader))
-			{
-				var provided = digestHeader.ToString()
-					.Replace("sha256=", "", StringComparison.OrdinalIgnoreCase)
-					.Replace("sha-256=", "", StringComparison.OrdinalIgnoreCase)
-					.Trim()
-					.ToLowerInvariant();
-
-				if (!string.Equals(provided, computedHex, StringComparison.OrdinalIgnoreCase))
-				{
-					_logger.LogWarning("Digest mismatch for job {JobId}: provided={Provided}, computed={Computed}",
-						jobId, provided, computedHex);
-
-					System.IO.File.Delete(tmpPath);
-					return BadRequest(new { error = "Digest mismatch", provided, computed = computedHex });
-				}
-			}
-
-			// Delegate format detection + conversion + job update to the service
-			var contentType = Request.ContentType; // may be null
-			var (succeeded, errorMessage, finalPath) = await _jobService.UploadJobResultAsync(
-				jobGuid,
-				tmpPath,
-				computedHex,
-				contentType,
-				cancellationToken
-			);
-
-			if (!succeeded)
-			{
-				_logger.LogWarning("Processing uploaded result failed for job {JobId}: {Error}", jobId, errorMessage);
-				return BadRequest(new { jobId, error = errorMessage });
-			}
-
-			_logger.LogInformation("Stored result for job {JobId} at {Path} (sha256={Digest})",
-				jobId, finalPath, computedHex);
-
-			return Ok(new { jobId, path = finalPath, sha256 = computedHex, stored = true });
+			_logger.LogWarning("Failed to store result path for job {JobId}: {Error}", jobId, errorMessage);
+			return BadRequest(new { jobId, error = errorMessage });
 		}
-		catch (OperationCanceledException)
-		{
-			_logger.LogWarning("Upload cancelled for {JobId}", jobId);
-			if (System.IO.File.Exists(tmpPath)) System.IO.File.Delete(tmpPath);
-			return StatusCode(499); // client closed request
-		}
-		catch (Exception ex)
-		{
-			_logger.LogError(ex, "Failed to store result for job {JobId}", jobId);
-			if (System.IO.File.Exists(tmpPath)) System.IO.File.Delete(tmpPath);
-			return StatusCode(500, "Failed to store result");
-		}
+
+		_logger.LogInformation("Stored result path for job {JobId}: {Path}", jobId, body.ResultPath);
+
+		return Ok(new { jobId, path = body.ResultPath, stored = true });
 	}
 
 	[Authorize]

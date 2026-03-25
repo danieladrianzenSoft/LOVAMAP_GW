@@ -8,6 +8,7 @@ namespace Infrastructure.DTOs
 		// public int? NumVoxels { get; set; }
 		public string? ContainerShape { get; set; }
 		public int? ContainerSize { get; set; }
+		public string? ContainerDimensions { get; set; }
 		// public bool? IsAnisotropic { get; set; }
 		public string PackingConfiguration { get; set; } = "";
 		public IEnumerable<ParticlePropertyBaseDto> Particles { get; set; } = [];

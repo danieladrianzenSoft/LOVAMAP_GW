@@ -195,11 +195,14 @@ export default class UserStore {
 		}
 	}
 
+	clearSession = () => {
+		store.commonStore.setToken(null);
+		this.user = null;
+	}
+
 	logout = () => {
 		store.commonStore.setActiveTab(0);
-		store.commonStore.setToken(null);
-		window.localStorage.removeItem('accessToken');
-		this.user = null;
+		this.clearSession();
 		history.push('/');
 	}
 }

@@ -28,6 +28,8 @@ test-data/
 .vs/
 .idea/
 .vscode/
+.claude/
+.codex/
 
 # NuGet
 *.nupkg
@@ -40,3 +42,6 @@ packages/
 # macOS Finder metadata
 .DS_Store
 **/.DS_Store
+
+# Removed submodule directory
+GatewayBackend/extern/

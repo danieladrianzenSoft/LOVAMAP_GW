@@ -308,6 +308,9 @@ namespace Data.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("ContainerDimensions")
+                        .HasColumnType("text");
+
                     b.Property<string>("ContainerShape")
                         .HasColumnType("text");
 

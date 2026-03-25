@@ -1,5 +1,7 @@
 
+using Infrastructure.Helpers;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Infrastructure.DTOs
 {
@@ -10,10 +12,12 @@ namespace Infrastructure.DTOs
 		public string? Friction { get; set; }
 		public string? Dispersity { get; set; }	
 		public string? SizeDistributionType { get; set; }
+		[JsonConverter(typeof(PlaceholderTolerantDoubleConverter))]
 		public double MeanSize { get; set; } 
 		public double MedianSize { get; set; } 
 		public double MaxSize { get; set; } 
 		public double MinSize { get; set; } 
+		[JsonConverter(typeof(PlaceholderTolerantDoubleConverter))]
 		public double StandardDeviationSize { get; set; }
 		public double Proportion { get; set; } = 1;
 

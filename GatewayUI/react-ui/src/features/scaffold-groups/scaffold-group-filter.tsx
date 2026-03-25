@@ -3,6 +3,7 @@ import React, { useEffect, useState, useRef, useCallback } from "react";
 import { useStore } from "../../app/stores/store";
 import { GroupedTags, Tag, displayNameMap } from "../../app/models/tag";
 import MultiSelectDropdown from "../../app/common/form/multiselect-dropdown";
+import PillGroup from "../../app/common/pill-group/pill-group";
 import { FaCaretDown } from "react-icons/fa";
 import { useOnClickOutside } from "../../app/common/hooks/useOnClickOutside";
 // import TextTooltip from "../../app/common/tooltip/tooltip";
@@ -16,16 +17,20 @@ interface ScaffoldGroupFiltersProps {
 	setSelectedTags: React.Dispatch<React.SetStateAction<{ [key: string]: Tag[] }>>;
 	selectedParticleSizeIds: number[];
 	setSelectedParticleSizeIds: React.Dispatch<React.SetStateAction<number[]>>;
+	isSimulated: boolean | null;
+	setIsSimulated: React.Dispatch<React.SetStateAction<boolean | null>>;
 }
 
-const ScaffoldGroupFilters: React.FC<ScaffoldGroupFiltersProps> = ({ 
-    condensed = false, 
-    allFiltersVisible = false, 
-    setIsLoading, 
+const ScaffoldGroupFilters: React.FC<ScaffoldGroupFiltersProps> = ({
+    condensed = false,
+    allFiltersVisible = false,
+    setIsLoading,
     selectedTags = {},
     setSelectedTags,
     selectedParticleSizeIds = [],
-    setSelectedParticleSizeIds
+    setSelectedParticleSizeIds,
+    isSimulated,
+    setIsSimulated
 }) => {
 	// const {resourceStore, scaffoldGroupStore, commonStore} = useStore();
     const {resourceStore} = useStore();
@@ -169,7 +174,19 @@ const ScaffoldGroupFilters: React.FC<ScaffoldGroupFiltersProps> = ({
                 {filtersVisible && (
                     <div className="absolute left-0 w-full z-20 bg-white border-b rounded shadow-lg">
                         <div className="mx-auto max-w-screen-xl p-6 pl-12">
-                            <div className="grid grid-cols-[repeat(auto-fit,_minmax(200px,_1fr))] gap-6 text-left">
+                            <div className="text-left mb-6">
+                                <h3 className="text-gray-700 font-bold mb-3">DATA SOURCE</h3>
+                                <PillGroup
+                                    options={[
+                                        { key: "all", label: "All" },
+                                        { key: "simulated", label: "Simulated" },
+                                        { key: "real", label: "Real" },
+                                    ]}
+                                    selectedKey={isSimulated === null ? "all" : isSimulated ? "simulated" : "real"}
+                                    onChange={(key) => setIsSimulated(key === "all" ? null : key === "simulated" ? true : false)}
+                                />
+                            </div>
+                        <div className="grid grid-cols-[repeat(auto-fit,_minmax(200px,_1fr))] gap-6 text-left">
                                 {/* Particle Diameter: head */}
                                 <MultiSelectDropdown
                                     groupName="PARTICLE DIAMETER"

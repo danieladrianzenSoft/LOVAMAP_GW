@@ -14,5 +14,7 @@ namespace Services.IServices
 		Task DeleteScaffoldAsync(int scaffoldId, CancellationToken ct = default);
 		Task<string> GetAllScaffoldsRawAsync(CancellationToken ct = default);
 		Task<List<Infrastructure.DTOs.RdfScaffoldAllDto>> GetAllScaffoldsAsync(CancellationToken ct = default);
+		Task<Infrastructure.DTOs.RdfGraphDto> GetGraphAsync(int? limit = null, CancellationToken ct = default);
+		Task<Infrastructure.DTOs.RdfOntologySummaryDto> GetOntologySummaryAsync(CancellationToken ct = default);
 	}
 }

@@ -8,11 +8,12 @@ import DescriptorTypeInfo from "./descriptor-type-info";
 
 interface DescriptorFiltersProps {
 	onSelect: (descriptorType: DescriptorType) => void;
+	onBulkSelect?: (descriptorTypes: DescriptorType[], select: boolean) => void;
 	selectedDescriptorTypes: DescriptorType[];
 	categories?: string[];
 }
 
-const DescriptorFilters: React.FC<DescriptorFiltersProps> = ({onSelect, selectedDescriptorTypes, categories}) => {
+const DescriptorFilters: React.FC<DescriptorFiltersProps> = ({onSelect, onBulkSelect, selectedDescriptorTypes, categories}) => {
 	const { descriptorTypes } = useDescriptorTypes(); // Use the hook
 	const [groupedDescriptorTypes, setGroupedDescriptorTypes] = useState<GroupedDescriptorTypes>({});
 
@@ -42,36 +43,47 @@ const DescriptorFilters: React.FC<DescriptorFiltersProps> = ({onSelect, selected
         <div className="container mx-auto">
 			<>
 				<div className="container mx-auto">
-					{/* <div className="flex items-center text-left cursor-pointer hover:underline" onClick={() => setFiltersVisible(!filtersVisible)}>
-						<p className="mr-1 ml-5 text-gray-700">Filters</p>
-						<div className={`transition-transform duration-300 transform ${filtersVisible ? 'rotate-0' : 'rotate-[-90deg]'}`}>
-							<FaCaretDown />
-						</div>
-					</div>
-					{filtersVisible && ( */}
-						<div className="flex flex-wrap text-center"> 
-							{Object.entries(groupedDescriptorTypes).map(([key, descriptorTypes]) => (
-								<div key={key} className="w-full sm:w-1/2 md:w-1/3 p-2">
-									<MultiSelectDropdown
-										groupName={displayNameMap[key] || key}
-										items={descriptorTypes}
-										selectedItemIds={selectedDescriptorTypes.map(descriptorType => descriptorType.id)}
-										renderItem={(descriptorType) => (
-											<DescriptorTypeInfo
-												label={descriptorType.label}
-												tableLabel={descriptorType.tableLabel}
-												imageUrl={descriptorType.imageUrl}
-												description={descriptorType.description}
-											/>
+						<div className="flex flex-wrap text-center">
+							{Object.entries(groupedDescriptorTypes).map(([key, descriptorTypes]) => {
+								const selectedIds = selectedDescriptorTypes.map(d => d.id);
+								const allSelected = descriptorTypes.every(d => selectedIds.includes(d.id));
+
+								const groupHeading = (
+									<span className="flex items-baseline gap-2">
+										{displayNameMap[key] || key}
+										{onBulkSelect && (
+											<span
+												onClick={(e) => { e.stopPropagation(); onBulkSelect(descriptorTypes, !allSelected); }}
+												className="text-xs font-normal text-blue-500 hover:text-blue-700 cursor-pointer transition-colors"
+											>
+												({allSelected ? "deselect all" : "select all"})
+											</span>
 										)}
-										onItemSelect={(descriptorType) => handleSelectDescriptorType(key, descriptorType)}
-									/>
-								</div>
-							))}
+									</span>
+								);
+
+								return (
+									<div key={key} className="w-full sm:w-1/2 md:w-1/3 p-2">
+										<MultiSelectDropdown
+											groupName={groupHeading}
+											items={descriptorTypes}
+											selectedItemIds={selectedIds}
+											renderItem={(descriptorType) => (
+												<DescriptorTypeInfo
+													label={descriptorType.label}
+													tableLabel={descriptorType.tableLabel}
+													imageUrl={descriptorType.imageUrl}
+													description={descriptorType.description}
+												/>
+											)}
+											onItemSelect={(descriptorType) => handleSelectDescriptorType(key, descriptorType)}
+										/>
+									</div>
+								);
+							})}
 						</div>
-					{/* )} */}
 				</div>
-			</>    
+			</>
         </div>
     );
 }

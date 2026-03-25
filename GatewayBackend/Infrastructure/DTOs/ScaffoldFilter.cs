@@ -33,7 +33,9 @@ namespace Infrastructure.DTOs
 		
 		[FromQuery(Name = "restrictToPublicationDataset")]
 		public bool RestrictToPublicationDataset { get; set; } = false; // guardrail
-		
+
+		[FromQuery(Name = "isSimulated")]
+		public bool? IsSimulated { get; set; }
 
 	}
 }

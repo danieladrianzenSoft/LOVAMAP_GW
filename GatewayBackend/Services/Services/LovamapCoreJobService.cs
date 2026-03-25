@@ -1,8 +1,6 @@
 using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
-using CloudinaryDotNet;
-using CloudinaryDotNet.Actions;
 using Data;
 using Data.Models;
 using Infrastructure.DTOs;
@@ -23,7 +21,6 @@ namespace Services.Services
 		private readonly IJwtGeneratorHelper _jwtGeneratorHelper;
 		private readonly ILovamapCoreJobRepository _jobRepository;
 		private readonly ICoreApiClient _coreApiClient;
-		private readonly IDescriptorProtobufCodec _descriptorProtobufCodec;
 		private readonly DataContext _context;
 		private readonly IModelMapper _modelMapper;
     	private readonly ILogger<LovamapCoreJobService> _logger;
@@ -33,7 +30,6 @@ namespace Services.Services
 			IJwtGeneratorHelper jwtGeneratorHelper,
 			IConfiguration configuration,
 			ILovamapCoreJobRepository jobRepository,
-			IDescriptorProtobufCodec descriptorProtobufCodec,
 			IModelMapper modelMapper,
 			DataContext context,
 			ICoreApiClient coreApiClient,
@@ -44,7 +40,6 @@ namespace Services.Services
 			_configuration = configuration;
 			_jwtGeneratorHelper = jwtGeneratorHelper;
 			_jobRepository = jobRepository;
-			_descriptorProtobufCodec = descriptorProtobufCodec;
 			_modelMapper = modelMapper;
 			_coreApiClient = coreApiClient;
 			_env = env;
@@ -154,110 +149,76 @@ namespace Services.Services
 			return (true, null, mapped);
 		}
 
-		public async Task<(bool Succeeeded, string? ErrorMEessage, string? FinalPath)> UploadJobResultAsync(
+		public async Task<(bool Succeeded, string? ErrorMessage)> UploadJobResultAsync(
 			Guid jobId,
-			string tempFilePath,
-			string sha256,
-			string? contentType,
-			CancellationToken cancellationToken = default)
+			string resultFilePath,
+			string? sha256)
 		{
 			try
 			{
-				var resultsDir = GetJobResultsDir();
-				Directory.CreateDirectory(resultsDir);
+				var (succeeded, errorMessage, _) =
+					await MarkJobCompletedAsync(jobId, resultFilePath, sha256 ?? "");
 
-				var finalPath = Path.Combine(resultsDir, $"{jobId}.json");
+				if (!succeeded)
+					return (false, errorMessage);
 
-				// Read whole temp file into memory. Descriptor files should be reasonably small;
-				// if they ever get huge we can optimize this later.
-				var bytes = await File.ReadAllBytesAsync(tempFilePath, cancellationToken);
-
-				var isJson = IsProbablyJson(bytes, contentType);
-
-				if (isJson)
-				{
-					// Input is already JSON → just write to finalPath
-					await File.WriteAllBytesAsync(finalPath, bytes, cancellationToken);
-				}
-				else
-				{
-					// Assume protobuf-encoded Descriptors → convert to JSON
-					string json;
-					try
-					{
-						json = _descriptorProtobufCodec.ProtobufToJson(bytes, compact: true);
-					}
-					catch (Exception ex)
-					{
-						_logger.LogError(ex, "Failed to parse protobuf result for job {JobId}", jobId);
-						return (
-							false,
-							null,
-							"Uploaded result is not valid protobuf (Descriptors)"
-						);
-					}
-
-					await File.WriteAllTextAsync(finalPath, json, Encoding.UTF8, cancellationToken);
-				}
-
-				// No longer needed
-				File.Delete(tempFilePath);
-
-				// Reuse your existing logic to mark job complete
-				var (markedCompletionSuccess, errorMessage, job) =
-					await MarkJobCompletedAsync(jobId, $"{jobId}.json", sha256);
-
-				if (markedCompletionSuccess) // adapt to your actual enum/type
-				{
-					return (false, errorMessage, null);
-				}
-
-				return (true, null, finalPath);
+				return (true, null);
 			}
 			catch (Exception ex)
 			{
-				_logger.LogError(ex, "Error processing uploaded result for job {JobId}", jobId);
-				return (false, null, "Internal error while processing job result");
+				_logger.LogError(ex, "Error storing result path for job {JobId}", jobId);
+				return (false, "Internal error while storing job result path");
 			}
 		}
 
 		public async Task<(bool Succeeded, string? ErrorMessage, JobResultFile? File)>
 			GetJobResultFileAsync(Guid jobId)
 		{
-			// You likely want a repository method for this lookup
 			var job = await _jobRepository.GetJobByIdAsync(jobId);
 			if (job == null) return (false, "Job not found", null);
 
 			if (string.IsNullOrWhiteSpace(job.ResultFilePath))
 				return (false, "Job has no result file", null);
 
-			var fullPath = job.ResultFilePath;
+			// Resolve the stored path — it may be absolute (shared drive) or relative
+			var storedPath = job.ResultFilePath;
+			var fullFile = Path.IsPathRooted(storedPath)
+				? storedPath
+				: Path.GetFullPath(Path.Combine(GetJobResultsDir(), storedPath));
 
-			// Security hardening: ensure it’s inside your results directory
-			var resultsDir = GetJobResultsDir();
-			var fullRoot = Path.GetFullPath(resultsDir);
-			var fullFile = Path.GetFullPath(Path.Combine(resultsDir, job.ResultFilePath));
-
-			Console.WriteLine($"[DEBUG] resultsRoot: {fullRoot}, fullFile: {fullFile}");
-
-			if (!fullFile.StartsWith(fullRoot, StringComparison.OrdinalIgnoreCase))
-				return (false, "Invalid result file path", null);
-
-			if (!System.IO.File.Exists(fullFile))
-				return (false, "Result file not found on disk", null);
-
-			// For now your stored results are JSON
-			var contentType = "application/json";
 			var downloadName = $"job_{jobId}_results.json";
+			var contentType = "application/json";
 
-			var result = new JobResultFile
+			// If the file exists locally (prod / Docker shared volume), serve from disk
+			if (System.IO.File.Exists(fullFile))
 			{
-				FullPath = fullFile,
+				return (true, null, new JobResultFile
+				{
+					FullPath = fullFile,
+					DownloadFileName = downloadName,
+					ContentType = contentType
+				});
+			}
+
+			// Fallback: file not on disk (local dev against remote core) → fetch from core
+			_logger.LogInformation("Result file not found locally for job {JobId}, fetching from core", jobId);
+
+			var (fetchSucceeded, fetchError, resultBytes) =
+				await FetchRawResultFromCoreAsync(jobId.ToString());
+
+			if (!fetchSucceeded || resultBytes == null || resultBytes.Length == 0)
+				return (false, fetchError ?? "Result file not found locally and could not be fetched from core", null);
+
+			// Write to a temp file so the controller can stream it
+			var tempPath = Path.Combine(Path.GetTempPath(), $"job_{jobId}_{Guid.NewGuid():N}.json");
+			await System.IO.File.WriteAllBytesAsync(tempPath, resultBytes);
+
+			return (true, null, new JobResultFile
+			{
+				FullPath = tempPath,
 				DownloadFileName = downloadName,
 				ContentType = contentType
-			};
-
-			return (true, null, result);
+			});
 		}
 
 		public async Task<Job?> GetByIdAsync(Guid jobId)
@@ -319,39 +280,6 @@ namespace Services.Services
 				_logger.LogError(ex, "Error fetching raw result from lovamap_core for job {JobId}", jobId);
 				return (false, "Error connecting to lovamap_core or reading result.", null);
 			}
-		}
-
-		private static bool IsProbablyJson(byte[] bytes, string? contentType)
-		{
-			// 1) If content-type says JSON, trust it
-			if (!string.IsNullOrWhiteSpace(contentType))
-			{
-				if (contentType.Contains("application/json", StringComparison.OrdinalIgnoreCase) ||
-					contentType.Contains("text/json", StringComparison.OrdinalIgnoreCase))
-				{
-					return true;
-				}
-
-				// If it explicitly says protobuf, treat as protobuf
-				if (contentType.Contains("application/x-protobuf", StringComparison.OrdinalIgnoreCase) ||
-					contentType.Contains("application/vnd.google.protobuf", StringComparison.OrdinalIgnoreCase))
-				{
-					return false;
-				}
-			}
-
-			// 2) Heuristic fallback: check first non-whitespace char
-			// JSON should start with '{' or '['
-			for (int i = 0; i < bytes.Length; i++)
-			{
-				var ch = (char)bytes[i];
-				if (char.IsWhiteSpace(ch)) continue;
-				return ch == '{' || ch == '[';
-			}
-
-			// Empty or no non-whitespace → treat as protobuf (or invalid);
-			// we'll let the protobuf parser decide.
-			return false;
 		}
 
 		public string GetJobResultsDir()

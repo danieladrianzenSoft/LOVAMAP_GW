@@ -123,6 +123,7 @@ namespace Services.Services
             return new Scaffold
             {
                 ReplicateNumber = replicateNumber,
+                Comments = dto.Comments,
                 ScaffoldTags = [],
                 GlobalDescriptors = globalDescriptors,
                 PoreDescriptors = poreDescriptors,
@@ -136,6 +137,7 @@ namespace Services.Services
             {
                 ContainerShape = dto.ContainerShape,
                 ContainerSize = dto.ContainerSize,
+                ContainerDimensions = dto.ContainerDimensions,
                 PackingConfiguration = _metadataService.ParsePackingConfiguration(dto.PackingConfiguration), // Map int to enum
                 ParticlePropertyGroups = dto.ParticlePropertyGroups.Select(ppg => MapToParticlePropertyGroup(ppg)).ToList(),
                 SizeDistribution = dto.SizeDistribution
@@ -391,10 +393,13 @@ namespace Services.Services
                 IsSimulated = scaffoldGroup.IsSimulated,
                 Tags = tags,
                 NumReplicates = scaffoldGroup.Scaffolds?.Count ?? 0,
+                ScaffoldIds = scaffoldGroup.Scaffolds?.Select(s => s.Id).ToList() ?? [],
                 Images = imagesToReturn,
                 Inputs = new InputGroupBaseDto
                 {
                     ContainerShape = scaffoldGroup.InputGroup?.ContainerShape,
+                    ContainerSize = scaffoldGroup.InputGroup?.ContainerSize,
+                    ContainerDimensions = scaffoldGroup.InputGroup?.ContainerDimensions,
                     PackingConfiguration = scaffoldGroup.InputGroup?.PackingConfiguration != null
                         ? scaffoldGroup.InputGroup.PackingConfiguration.ToString()
                         : "unknown",
@@ -458,6 +463,8 @@ namespace Services.Services
                 Inputs = new InputGroupBaseDto
                 {
                     ContainerShape = scaffoldGroup.InputGroup?.ContainerShape,
+                    ContainerSize = scaffoldGroup.InputGroup?.ContainerSize,
+                    ContainerDimensions = scaffoldGroup.InputGroup?.ContainerDimensions,
                     PackingConfiguration = scaffoldGroup.InputGroup?.PackingConfiguration != null
                         ? scaffoldGroup.InputGroup.PackingConfiguration.ToString()
                         : "unknown",

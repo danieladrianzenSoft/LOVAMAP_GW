@@ -16,6 +16,10 @@ import PoresPanel from './pores-panel';
 import ParticlesPanel from './particles-panel';
 import { useUndoManager } from '../../app/common/hooks/useUndoManager';
 import AcknowledgementModal from '../acknowledgement/acknowledgement-modal';
+import { useMediaQuery } from '../../app/common/hooks/useMediaQuery';
+import MobileToolbar, { MobileTab } from './mobile-toolbar';
+import BottomSheet from './bottom-sheet';
+import MobileFloatingChips from './mobile-floating-chips';
 
 const Visualization: React.FC = () => {
 	// Store access
@@ -79,6 +83,9 @@ const Visualization: React.FC = () => {
 	const autoHiddenForDomainRef = useRef<number | string | null>(null);
 	const hasAttemptedLoadRef = useRef(false);
 	const isBusy = isLoading || domainStore.isFetchingDomain || scaffoldGroupStore.isFetchingScaffoldGroup;
+
+	const isMobile = useMediaQuery('(max-width: 767px)');
+	const [activeMobileTab, setActiveMobileTab] = useState<MobileTab>(null);
 
 	// small helper - compare two Sets of strings for equality
 	const setsEqual = (a?: Set<string>, b?: Set<string>) => {
@@ -642,6 +649,15 @@ if (group) {
 		}
 	};
 
+	const handleMobileTabChange = async (tab: MobileTab) => {
+		if (tab === 'particles') {
+			await ensureDomainLoaded(0);
+		} else if (tab === 'pores') {
+			await ensureDomainLoaded(1);
+		}
+		setActiveMobileTab(tab);
+	};
+
 	const handleManualScreenshot = () => setShowAcknowledgement(true);
 
 	const handleConfirmAcknowledgement = () => {
@@ -672,7 +688,7 @@ if (group) {
 	const isActiveCategoryVisible = activeCategory === 0 ? showParticles : activeCategory === 1 ? showPores : false;
 
 	return (
-		<div className="relative w-full h-screen overflow-hidden mt-8 ml-2">
+		<div className={`relative w-full h-screen overflow-hidden mt-8 ${isMobile ? 'ml-0 pb-14' : 'ml-2'}`}>
 			<div className="w-full h-full rounded-lg">
 				{isBusy && (
 					<div className="h-full w-full -mt-16 flex items-center justify-center">
@@ -682,10 +698,10 @@ if (group) {
 				{!isBusy && meshList.length > 0 && (
 					<div className="h-full w-full -mt-16">
 						<CanvasViewer
-							meshes={meshList} 
-							onSliceBoundsComputed={setSliceDomainBounds} 
+							meshes={meshList}
+							onSliceBoundsComputed={setSliceDomainBounds}
 							onCanvasCreated={(el) => canvasRef.current = el}
-							theme={theme} 
+							theme={theme}
 						/>
 					</div>
 				)}
@@ -694,23 +710,129 @@ if (group) {
 				)}
 			</div>
 
-			<div className="absolute top-0 left-0 z-20 space-y-1 ml-2">
-				<SelectedPanel
-					selectedDomainEntity={activeSelected}
-					domainCategory={activeCategory}
-					onUnselect={() => setSelectedByCategory(prev => ({ ...prev, [activeCategory]: null }))}
-					domainMetadata={activeMetadata}
-					scaffoldGroup={scaffoldGroupStore.selectedScaffoldGroup}
-				/>
-				{activeCategory != null && isActiveCategoryVisible && (
-					<HiddenPanel
-						isOpen={isHiddenPanelOpen}
-						toggleOpen={() => setIsHiddenPanelOpen(!isHiddenPanelOpen)}
-						category={activeCategory}
+			{/* Desktop panels — unchanged */}
+			{!isMobile && (
+				<>
+					<div className="absolute top-0 left-0 z-20 space-y-1 ml-2">
+						<SelectedPanel
+							selectedDomainEntity={activeSelected}
+							domainCategory={activeCategory}
+							onUnselect={() => setSelectedByCategory(prev => ({ ...prev, [activeCategory]: null }))}
+							domainMetadata={activeMetadata}
+							scaffoldGroup={scaffoldGroupStore.selectedScaffoldGroup}
+						/>
+						{activeCategory != null && isActiveCategoryVisible && (
+							<HiddenPanel
+								isOpen={isHiddenPanelOpen}
+								toggleOpen={() => setIsHiddenPanelOpen(!isHiddenPanelOpen)}
+								category={activeCategory}
+								hiddenIds={activeHidden}
+								onShowAll={() => {
+									setHiddenByCategory((prev) => {
+										const prevHidden = new Set(prev[activeCategory]);
+										addToHistory({
+											type: 'SHOW_ALL',
+											category: activeCategory,
+											previousState: { hiddenIds: prevHidden },
+										});
+										return { ...prev, [activeCategory]: new Set() };
+									});
+								}}
+								onToggleVisibility={(id) => toggleVisibility(id, activeCategory)}
+							/>
+						)}
+					</div>
+					<div className="absolute top-0 right-0 z-20 space-y-1 mr-2">
+						<div className="mt-2 flex w-full">
+							<button className="button-primary items-center content-center w-full" onClick={() => History.push('/explore')}>
+								Explore More
+							</button>
+						</div>
+
+						<InfoPanel
+							isOpen={isPanelOpen}
+							toggleOpen={() => setIsPanelOpen(!isPanelOpen)}
+							scaffoldGroup={scaffoldGroupStore.selectedScaffoldGroup}
+							selectedScaffoldId={selectedScaffoldId}
+							onScaffoldChange={handleScaffoldChange}
+							selectedCategories={selectedCategories}
+							onCategoryChange={setSelectedCategories}
+							domain={particleDomain}
+							onScreenshot={handleManualScreenshot}
+							theme={theme}
+							setTheme={setTheme}
+							isLoading={scaffoldGroupStore.isFetchingScaffoldGroup}
+						/>
+
+						<ParticlesPanel
+							isOpen={showParticlesPanelOpen}
+							togglePanelOpen={async () => {
+								if (!showParticlesPanelOpen) {
+									await ensureDomainLoaded(0);
+									setShowParticlesPanelOpen(true);
+									setShowPoresPanelOpen(false);
+								} else {
+									setShowParticlesPanelOpen(false);
+								}
+							}}
+							sliceDomainBounds={sliceDomainBounds}
+							canEdit={canEdit}
+							onEditClick={() => setIsModalOpen(true)}
+							domain={particleDomain}
+							colorful={colorfulParticles}
+							setColorful={setColorfulParticles}
+							visible={showParticles}
+							onToggleVisibility={() => {handleToggleShowParticles(!showParticles)}}
+							opacity={particleOpacity}
+							setOpacity={(value: number) => {
+								setParticleOpacity(value);
+								setUserOverrideParticleOpacity(true);
+							}}
+							slicingActive={slicingActive}
+							setSlicingActive={setSlicingActive}
+							sliceXThreshold={sliceXThreshold}
+							setSliceXThreshold={setSliceXThreshold}
+							onResetOverrides={handleResetOverrides}
+						/>
+
+						<PoresPanel
+							isOpen={showPoresPanelOpen}
+							togglePanelOpen={async () => {
+								if (!showPoresPanelOpen) {
+									await ensureDomainLoaded(1);
+									setShowPoresPanelOpen(true);
+									setShowParticlesPanelOpen(false);
+								} else {
+									setShowPoresPanelOpen(false);
+								}
+							}}
+							canEdit={canEdit}
+							onEditClick={() => setIsModalOpen(true)}
+							domain={poreDomain}
+							visible={showPores}
+							onToggleVisibility={() => {handleToggleShowPores(!showPores)}}
+							areEdgePoresHidden={areEdgePoresHidden}
+							onToggleHideEdgePores={handleToggleHideEdgePores}
+						/>
+					</div>
+				</>
+			)}
+
+			{/* Mobile layout */}
+			{isMobile && (
+				<>
+					<MobileFloatingChips
+						activeCategory={activeCategory}
+						selectedEntity={activeSelected}
+						onUnselect={() => setSelectedByCategory(prev => ({ ...prev, [activeCategory]: null }))}
+						domainMetadata={activeMetadata}
+						scaffoldGroup={scaffoldGroupStore.selectedScaffoldGroup}
 						hiddenIds={activeHidden}
+						isHiddenPanelOpen={isHiddenPanelOpen}
+						toggleHiddenPanel={() => setIsHiddenPanelOpen(!isHiddenPanelOpen)}
 						onShowAll={() => {
 							setHiddenByCategory((prev) => {
-								const prevHidden = new Set(prev[activeCategory]); // capture what WAS hidden
+								const prevHidden = new Set(prev[activeCategory]);
 								addToHistory({
 									type: 'SHOW_ALL',
 									category: activeCategory,
@@ -720,84 +842,83 @@ if (group) {
 							});
 						}}
 						onToggleVisibility={(id) => toggleVisibility(id, activeCategory)}
+						isActiveCategoryVisible={isActiveCategoryVisible}
 					/>
-				)}
-			</div>
-			<div className="absolute top-0 right-0 z-20 space-y-1 mr-2">
-				<div className="mt-2 flex w-full">
-					<button className="button-primary items-center content-center w-full" onClick={() => History.push('/explore')}>
-						Explore More
-					</button>
-				</div>
 
-				<InfoPanel
-					isOpen={isPanelOpen}
-					toggleOpen={() => setIsPanelOpen(!isPanelOpen)}
-					scaffoldGroup={scaffoldGroupStore.selectedScaffoldGroup}
-					selectedScaffoldId={selectedScaffoldId}
-					onScaffoldChange={handleScaffoldChange}
-					selectedCategories={selectedCategories}
-					onCategoryChange={setSelectedCategories}
-					domain={particleDomain}
-					onScreenshot={handleManualScreenshot}
-					// canEdit={canEdit}
-					// onEditClick={() => setIsModalOpen(true)}
-					theme={theme}
-  					setTheme={setTheme}
-					isLoading={scaffoldGroupStore.isFetchingScaffoldGroup}
-				/>
+					<BottomSheet
+						isOpen={activeMobileTab === 'info'}
+						onClose={() => setActiveMobileTab(null)}
+					>
+						<InfoPanel
+							isOpen={true}
+							toggleOpen={() => {}}
+							scaffoldGroup={scaffoldGroupStore.selectedScaffoldGroup}
+							selectedScaffoldId={selectedScaffoldId}
+							onScaffoldChange={handleScaffoldChange}
+							selectedCategories={selectedCategories}
+							onCategoryChange={setSelectedCategories}
+							domain={particleDomain}
+							onScreenshot={handleManualScreenshot}
+							theme={theme}
+							setTheme={setTheme}
+							isLoading={scaffoldGroupStore.isFetchingScaffoldGroup}
+							className="w-full bg-transparent shadow-none p-0"
+						/>
+					</BottomSheet>
 
-				<ParticlesPanel
-					isOpen={showParticlesPanelOpen}
-					togglePanelOpen={async () => {
-						if (!showParticlesPanelOpen) {
-							await ensureDomainLoaded(0); // Particles = category 0
-							setShowParticlesPanelOpen(true);
-							setShowPoresPanelOpen(false); // mutually exclusive
-						} else {
-							setShowParticlesPanelOpen(false);
-						}
-					}}
-					sliceDomainBounds={sliceDomainBounds}
-					canEdit={canEdit}
-					onEditClick={() => setIsModalOpen(true)}
-					domain={particleDomain}
-					colorful={colorfulParticles}
-					setColorful={setColorfulParticles}
-					visible={showParticles} // this controls if particles show in canvas
-					onToggleVisibility={() => {handleToggleShowParticles(!showParticles)}}
-					opacity={particleOpacity}
-		  			setOpacity={(value: number) => {
-						setParticleOpacity(value);
-						setUserOverrideParticleOpacity(true);
-					}}
-					slicingActive={slicingActive}
-					setSlicingActive={setSlicingActive}
-					sliceXThreshold={sliceXThreshold}
-					setSliceXThreshold={setSliceXThreshold}
-					onResetOverrides={handleResetOverrides}
-				/>
+					<BottomSheet
+						isOpen={activeMobileTab === 'particles'}
+						onClose={() => setActiveMobileTab(null)}
+					>
+						<ParticlesPanel
+							isOpen={true}
+							togglePanelOpen={() => {}}
+							sliceDomainBounds={sliceDomainBounds}
+							canEdit={canEdit}
+							onEditClick={() => setIsModalOpen(true)}
+							domain={particleDomain}
+							colorful={colorfulParticles}
+							setColorful={setColorfulParticles}
+							visible={showParticles}
+							onToggleVisibility={() => {handleToggleShowParticles(!showParticles)}}
+							opacity={particleOpacity}
+							setOpacity={(value: number) => {
+								setParticleOpacity(value);
+								setUserOverrideParticleOpacity(true);
+							}}
+							slicingActive={slicingActive}
+							setSlicingActive={setSlicingActive}
+							sliceXThreshold={sliceXThreshold}
+							setSliceXThreshold={setSliceXThreshold}
+							onResetOverrides={handleResetOverrides}
+							className="w-full bg-transparent shadow-none p-0"
+						/>
+					</BottomSheet>
 
-				<PoresPanel
-					isOpen={showPoresPanelOpen}
-					togglePanelOpen={async () => {
-						if (!showPoresPanelOpen) {
-							await ensureDomainLoaded(1); // Pores = category 1
-							setShowPoresPanelOpen(true);
-							setShowParticlesPanelOpen(false); // mutually exclusive
-						} else {
-							setShowPoresPanelOpen(false);
-						}
-					}}
-					canEdit={canEdit}
-					onEditClick={() => setIsModalOpen(true)}
-					domain={poreDomain}
-					visible={showPores}
-					onToggleVisibility={() => {handleToggleShowPores(!showPores)}}
-					areEdgePoresHidden={areEdgePoresHidden}
-					onToggleHideEdgePores={handleToggleHideEdgePores}
-				/>
-			</div>
+					<BottomSheet
+						isOpen={activeMobileTab === 'pores'}
+						onClose={() => setActiveMobileTab(null)}
+					>
+						<PoresPanel
+							isOpen={true}
+							togglePanelOpen={() => {}}
+							canEdit={canEdit}
+							onEditClick={() => setIsModalOpen(true)}
+							domain={poreDomain}
+							visible={showPores}
+							onToggleVisibility={() => {handleToggleShowPores(!showPores)}}
+							areEdgePoresHidden={areEdgePoresHidden}
+							onToggleHideEdgePores={handleToggleHideEdgePores}
+							className="w-full bg-transparent shadow-none p-0"
+						/>
+					</BottomSheet>
+
+					<MobileToolbar
+						activeTab={activeMobileTab}
+						onTabChange={handleMobileTabChange}
+					/>
+				</>
+			)}
 
 			<UpdateDomainModal
 				isOpen={isModalOpen}

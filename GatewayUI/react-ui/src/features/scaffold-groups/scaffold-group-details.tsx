@@ -309,7 +309,7 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 								<tr>
 									<td></td>
 									<td>
-										<button type="button" className="button-outline self-start flex items-center gap-2 mt-2">
+										<button type="button" className="button-outline self-start flex items-center gap-2 mt-2" onClick={() => download({ scaffoldGroup: scaffoldGroup.id }, () => {})}>
 											Preview Data
 											{isLoading && <FaSpinner className="animate-spin text-current text-[1em]" />}
 										</button>

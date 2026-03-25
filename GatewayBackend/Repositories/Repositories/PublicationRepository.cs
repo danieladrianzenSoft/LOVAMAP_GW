@@ -71,7 +71,7 @@ namespace Repositories.Repositories
 													  p.Doi.Contains(filter.Search));
 			}
 
-			return await publications.OrderByDescending(p => p.CreatedAt)
+			return await publications.OrderByDescending(p => p.PublishedAt)
 				.Select(pub => new PublicationSummaryDto
 				{
 					Id = pub.Id,

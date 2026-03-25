@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/static/css/main.a14fdcfd.css",
-    "main.js": "/static/js/main.e617a27c.js",
+    "main.css": "/static/css/main.0a640824.css",
+    "main.js": "/static/js/main.378a952a.js",
     "static/js/453.910a7fd8.chunk.js": "/static/js/453.910a7fd8.chunk.js",
     "static/media/LOVAMAP_logo.png": "/static/media/LOVAMAP_logo.224b74fa5e9206853d17.png",
     "index.html": "/index.html",
-    "main.a14fdcfd.css.map": "/static/css/main.a14fdcfd.css.map",
-    "main.e617a27c.js.map": "/static/js/main.e617a27c.js.map",
+    "main.0a640824.css.map": "/static/css/main.0a640824.css.map",
+    "main.378a952a.js.map": "/static/js/main.378a952a.js.map",
     "453.910a7fd8.chunk.js.map": "/static/js/453.910a7fd8.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a14fdcfd.css",
-    "static/js/main.e617a27c.js"
+    "static/css/main.0a640824.css",
+    "static/js/main.378a952a.js"
   ]
 }

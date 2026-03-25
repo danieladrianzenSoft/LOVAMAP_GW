@@ -10,6 +10,7 @@ namespace Data.Models
 		public ScaffoldGroup ScaffoldGroup { get; set; } = null!;
 		public string? ContainerShape { get; set; }
 		public int? ContainerSize { get; set; }
+		public string? ContainerDimensions { get; set; }
 		public PackingConfiguration PackingConfiguration { get; set; } = 0;
 		public JsonDocument? SizeDistribution { get; set; } 
 		public ICollection<ParticlePropertyGroup> ParticlePropertyGroups { get; set; } = new List<ParticlePropertyGroup>();

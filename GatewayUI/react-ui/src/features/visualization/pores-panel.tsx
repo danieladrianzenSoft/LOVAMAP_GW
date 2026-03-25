@@ -9,8 +9,9 @@ interface DomainPanelProps {
 	canEdit: boolean;
 	onToggleVisibility: () => void;
 	onToggleHideEdgePores?: (hide: boolean) => void;
-	areEdgePoresHidden?: boolean; 
+	areEdgePoresHidden?: boolean;
 	onEditClick: () => void;
+	className?: string;
 }
 
 const PoresPanel: React.FC<DomainPanelProps> = ({
@@ -22,10 +23,11 @@ const PoresPanel: React.FC<DomainPanelProps> = ({
   onToggleVisibility,
   onToggleHideEdgePores,
   areEdgePoresHidden,
-  onEditClick
+  onEditClick,
+  className,
 }) => {
   return (
-    <div className="bg-white bg-opacity-80 shadow-lg rounded-lg p-4 w-64 mt-2">
+    <div className={className ?? "bg-white bg-opacity-80 shadow-lg rounded-lg p-4 w-64 mt-2"}>
       <div
         className={`flex justify-between items-center cursor-pointer transition-all duration-300 ${
           isOpen ? "border-b border-gray-300 pb-2" : "pb-0"

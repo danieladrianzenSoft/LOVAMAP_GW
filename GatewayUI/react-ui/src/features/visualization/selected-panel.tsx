@@ -10,6 +10,7 @@ interface Props {
   domainCategory: number;
   domainMetadata?: DomainMetadata | null;
   scaffoldGroup?: ScaffoldGroup | null;
+  className?: string;
 }
 
 const SelectedPanel: React.FC<Props> = ({
@@ -17,7 +18,8 @@ const SelectedPanel: React.FC<Props> = ({
   onUnselect,
   domainMetadata,
   scaffoldGroup,
-  domainCategory
+  domainCategory,
+  className,
 }) => {
 
   const title = `Selected ${domainCategory === 0 ? "Particle" : "Pore"}`;
@@ -49,7 +51,7 @@ const SelectedPanel: React.FC<Props> = ({
   // }, [selectedDomainEntity, domainMetadata, particleIndex, particleDiameter, poreMetadata, domainEntityId]);
 
   return (
-    <div className="mt-2 bg-white bg-opacity-80 shadow-lg rounded-lg p-4 w-64 transition-all duration-300">
+    <div className={className ?? "mt-2 bg-white bg-opacity-80 shadow-lg rounded-lg p-4 w-64 transition-all duration-300"}>
       <div className="flex justify-between items-center cursor-pointer border-b border-gray-300 pb-2">
         <h2 className="text-sm font-semibold text-gray-800">{`${title}`}</h2>
         <button

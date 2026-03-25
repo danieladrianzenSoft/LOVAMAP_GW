@@ -19,6 +19,8 @@ import { ScaffoldGroupData } from "../models/scaffoldGroupData";
 import { DescriptorSeedResult } from "../models/descriptor";
 import { Publication } from "../models/publication";
 import { InputGroup } from "../models/inputGroup";
+import { RdfGraph, RdfOntologySummary } from "../models/rdfGraph";
+import { DashboardAnalytics } from "../models/dashboardAnalytics";
 
 axios.defaults.baseURL = environment.baseUrl;
 
@@ -41,12 +43,7 @@ axios.interceptors.response.use(response => {
 
     switch (status) {
         case 401:
-            store.userStore.logout();
-            if (window.location.pathname.startsWith("/login")) {
-                break;
-            }
-            const currentPath = window.location.pathname + window.location.search;
-            History.push(`/login?redirect=${encodeURIComponent(currentPath)}`);
+            store.userStore.clearSession();
             break;
     }
     return Promise.reject(responseData);
@@ -106,6 +103,10 @@ const ScaffoldGroups = {
     getDataForVisualizationRandom: (queryParams: string) => requests.get<ApiResponse<ScaffoldGroupData>>(`/scaffoldgroups/data/random/` + queryParams),
     getScaffoldGroupMatches: (inputGroupForMatch: InputGroup) => requests.post<ApiResponse<ScaffoldGroupMatch[]>>(`/scaffoldgroups/matches`, inputGroupForMatch),
     uploadScaffoldGroup: (scaffoldGroup: ScaffoldGroupToCreate) => requests.post<ApiResponse<ScaffoldGroup>>('/scaffoldgroups/create', scaffoldGroup),
+    appendScaffoldsToGroup: (scaffoldGroupId: number, scaffoldGroup: ScaffoldGroupToCreate) =>
+        requests.post<ApiResponse<ScaffoldGroup>>(`/scaffoldgroups/${scaffoldGroupId}/scaffolds`, scaffoldGroup),
+    deleteScaffold: (scaffoldId: number) =>
+        requests.del<ApiResponse<ScaffoldGroup>>(`/scaffoldgroups/scaffolds/${scaffoldId}`),
     uploadScaffoldGroupBatch: (scaffoldGroups: ScaffoldGroupToCreate[]) => requests.post<ApiResponse<ScaffoldGroup[]>>('/scaffoldgroups/createBatch', scaffoldGroups),
     uploadScaffoldGroupBatchStreamed: (
         scaffoldGroups: any[],
@@ -233,6 +234,18 @@ const Publications = {
     getAll: async () => requests.get<ApiResponse<Publication[]>>(`/publications`),
 }
 
+const Analytics = {
+	getDashboardAnalytics: () => requests.get<ApiResponse<DashboardAnalytics>>('/analytics/dashboard'),
+}
+
+const RdfVisualization = {
+	getGraph: (limit?: number) => {
+		const params = limit ? `?limit=${limit}` : '';
+		return requests.get<RdfGraph>(`/RDFVisualization/graph${params}`);
+	},
+	getGraphSummary: () => requests.get<RdfOntologySummary>('/RDFVisualization/graph/summary'),
+}
+
 const agent = {
 	Resources,
     Seed,
@@ -241,7 +254,9 @@ const agent = {
     Descriptors,
     Domains,
     Jobs,
-    Publications
+    Publications,
+	RdfVisualization,
+	Analytics
 }
 
 export default agent;

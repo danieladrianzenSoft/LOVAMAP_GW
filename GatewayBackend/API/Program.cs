@@ -18,6 +18,7 @@ using Infrastructure;
 using System.Security.Claims;
 using Data.SeedingStrategies;
 using Microsoft.AspNetCore.Http.Features;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -65,7 +66,10 @@ builder.Services.AddAuthentication(cfg => {
 
 builder.Services.AddAuthorization();
 builder.Services.AddHttpContextAccessor();
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.NumberHandling = JsonNumberHandling.AllowReadingFromString;
+});
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -120,6 +124,7 @@ builder.Services.AddScoped<IAISearchRepository, AISearchRepository>();
 builder.Services.AddScoped<ILovamapCoreJobRepository, LovamapCoreJobRepository>();
 builder.Services.AddScoped<IRdfRepository, RdfRepository>();
 builder.Services.AddScoped<IRdfScaffoldRepository, RdfScaffoldRepository>();
+builder.Services.AddScoped<IAnalyticsRepository, AnalyticsRepository>();
 
 // Add helpers
 builder.Services.AddMemoryCache();
@@ -130,7 +135,7 @@ builder.Services.AddSingleton<ICoreTokenProvider, CoreTokenProvider>();
 builder.Services.AddTransient<CoreClientAuthHandler>();
 builder.Services.AddHttpClient<ICoreApiClient, CoreApiClient>()
     .AddHttpMessageHandler<CoreClientAuthHandler>();
-builder.Services.AddScoped<IDescriptorProtobufCodec, DescriptorProtobufCodec>();
+builder.Services.AddScoped<IDatabaseMaintenanceHelper, DatabaseMaintenanceHelper>();
 builder.Services.Configure<FusekiOptions>(builder.Configuration.GetSection("Fuseki"));
 builder.Services.AddHttpClient<IFusekiClient, FusekiClient>();
 
@@ -161,6 +166,7 @@ builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<IAISearchService, AISearchService>();
 builder.Services.AddScoped<IScaffoldGroupMetadataService, ScaffoldGroupMetadataService>();
 builder.Services.AddScoped<IRdfScaffoldService, RdfScaffoldService>();
+builder.Services.AddScoped<IAnalyticsService, AnalyticsService>();
 builder.Services.AddScoped<IDescriptorValueGenerator, ParticleAspectRatioGenerator>();
 builder.Services.AddScoped<ISeedingService, SeedingService>();
 builder.Services.AddScoped<SeedingService>();
@@ -187,6 +193,9 @@ using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<DataContext>();
     db.Database.Migrate();
+
+    var dbMaintenance = scope.ServiceProvider.GetRequiredService<IDatabaseMaintenanceHelper>();
+    await dbMaintenance.FixIdentitySequencesAsync();
 }
 
 // Seeding data

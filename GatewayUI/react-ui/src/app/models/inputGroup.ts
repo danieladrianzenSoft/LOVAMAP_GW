@@ -2,7 +2,8 @@ import { ParticlePropertyGroup } from "./particlePropertyGroup";
 
 export interface InputGroup {
     containerShape: string;
-    containerSize: number;
+    containerSize: number | null;
+    containerDimensions?: string | null;
     packingConfiguration: string;
     particles: ParticlePropertyGroup[];
     sizeDistribution: number[];
@@ -12,14 +13,15 @@ export interface InputGroup {
 
 export interface InputGroupToCreate {
     containerShape: string;
-    containerSize: number;
+    containerSize: number | null;
+    containerDimensions?: string | null;
     packingConfiguration: string;
     particlePropertyGroups: ParticlePropertyGroup[];
 }
 
 export interface InputGroupForMatch {
     containerShape: string;
-    containerSize: number;
+    containerSize: number | null;
     packingConfiguration: string;
     Particles: ParticlePropertyGroup[];
 }
