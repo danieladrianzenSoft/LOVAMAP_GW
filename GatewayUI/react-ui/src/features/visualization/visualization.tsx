@@ -71,7 +71,7 @@ const Visualization: React.FC = () => {
 	// const [poreColor, setPoreColor] = useState(null);
 	const [, setParticleColor] = useState(null);
 	const [slicingActive, setSlicingActive] = useState(true);
-	const [sliceXThreshold, setSliceXThreshold] = useState<number | null>(300);
+	const [sliceXThreshold, setSliceXThreshold] = useState<number | null>(null);
 	// const [sliceHiddenParticleIds, setSliceHiddenParticleIds] = useState<Set<string>>(new Set());
 	const [sliceDomainBounds, setSliceDomainBounds] = useState<{
 		min: THREE.Vector3;
@@ -420,7 +420,7 @@ const Visualization: React.FC = () => {
 			onEntityRightClick: handleEntityRightClick,
 			dimmed: dimmedParticles,
 			slicingActive,
-  			sliceXThreshold: sliceXThreshold ?? 0,
+  			sliceXThreshold: sliceXThreshold,
 			opacity: userOverrideParticleOpacity ? particleOpacity : undefined,
 			dimmedOptions: defaultDimmedOptions,
 			debugMode: debugMode,
@@ -438,8 +438,7 @@ const Visualization: React.FC = () => {
 			onEntityClick: handleEntityClick,
 			onEntityRightClick: handleEntityRightClick,
 			dimmed: dimmedPores,
-			slicingActive,
-  			sliceXThreshold: sliceXThreshold ?? 0,
+			// Pores do NOT participate in slicing – omit slicingActive and sliceXThreshold
 			opacity: poreOpacity,
 			dimmedOptions: defaultDimmedOptions,
 			debugMode: debugMode
@@ -530,7 +529,10 @@ const Visualization: React.FC = () => {
 		setHiddenByCategory({ 0: new Set(), 1: new Set() });
 		setScaffoldIdForScreenshot(null);
 		setHasAutoHiddenEdgePores(false);
-		autoHiddenForDomainRef.current = null; 	
+		autoHiddenForDomainRef.current = null;
+		// Reset slice state so new scaffold computes fresh bounds/midpoint
+		setSliceDomainBounds(null);
+		setSliceXThreshold(null);
 		// Reset panel open state or any visibility flags if needed
 		// setShowParticlesPanelOpen(false);
 		// setShowPoresPanelOpen(true);
