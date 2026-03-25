@@ -110,13 +110,7 @@ const Visualization: React.FC = () => {
 	const loadDomainAndGroup = useCallback(async () => {
 		hasAttemptedLoadRef.current = true;
 		setIsLoading(true);
-		let scaffoldId = selectedScaffoldIdRef.current ?? resolvedScaffoldId;
-
-		if (!scaffoldId) {
-			console.warn("No scaffoldId provided, skipping load.");
-			setIsLoading(false);
-			return;
-		}
+		let scaffoldId = selectedScaffoldIdRef.current ?? resolvedScaffoldId ?? 0;
 
 		setHasAutoHiddenEdgePores(false);
 
@@ -124,6 +118,10 @@ const Visualization: React.FC = () => {
 			const actualId = await domainStore.visualizeDomain(scaffoldId, 0);
 			if (actualId != null) {
 				scaffoldId = actualId;
+			}
+			if (!scaffoldId) {
+				setIsLoading(false);
+				return;
 			}
 			selectedScaffoldIdRef.current = scaffoldId;
 			setSelectedScaffoldId(scaffoldId);
@@ -136,6 +134,7 @@ const Visualization: React.FC = () => {
 		currentlyLoadingScaffoldIdRef.current = scaffoldId;
 
 		try {
+			const particleDomainId = domainStore.getActiveDomain(0)?.id;
 			await Promise.all([
 				// Branch 1: scaffold group → diameter
 				scaffoldGroupStore.loadGroupForScaffoldId(scaffoldId).then(async (group) => {
@@ -145,10 +144,11 @@ const Visualization: React.FC = () => {
 					}
 				}),
 				// Branch 2: particles metadata
-				domainStore.getDomainMetadata(0, domainStore.getActiveDomain(0)?.id),
+				domainStore.getDomainMetadata(0, particleDomainId),
 				// Branch 3: pores mesh → pores metadata
 				domainStore.visualizeDomain(scaffoldId, 1).then(async () => {
-					await domainStore.getDomainMetadata(1, domainStore.getActiveDomain(1)?.id);
+					const poreDomainId = domainStore.getActiveDomain(1)?.id;
+					await domainStore.getDomainMetadata(1, poreDomainId);
 				}).catch(err => {
 					console.warn("Failed to load pores:", err);
 				})

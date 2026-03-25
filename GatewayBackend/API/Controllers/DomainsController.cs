@@ -107,7 +107,7 @@ public class DomainsController : ControllerBase
 			var (succeeded, errorMessage, domainMetadata) = await _domainService.GetDomainMetadata(domainId);
 
 			if (!succeeded || domainMetadata == null) {
-				return BadRequest(new ApiResponse<string>(400, errorMessage));
+				return NotFound(new ApiResponse<string>(404, errorMessage));
 			}
 
 			var json = domainMetadata.RootElement;
