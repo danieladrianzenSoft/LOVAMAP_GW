@@ -1,7 +1,6 @@
 
 using System;
 using System.Linq;
-using System.Numerics;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Data;
@@ -11,12 +10,6 @@ using Microsoft.Extensions.Logging;
 using Repositories.IRepositories;
 using Services.IServices;
 using Infrastructure.IHelpers;
-using SharpGLTF.Schema2;
-using SharpGLTF.Geometry;
-using SharpGLTF.Geometry.VertexTypes;
-using SharpGLTF.Materials;
-using SharpGLTF.Scenes;
-using MIConvexHull;
 using System.Collections.Concurrent;
 using Microsoft.AspNetCore.Http;
 

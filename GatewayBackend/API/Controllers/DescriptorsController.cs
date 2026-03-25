@@ -92,6 +92,28 @@ public class DescriptorsController : ControllerBase
 	}
 	
 	[AllowAnonymous]
+	[HttpGet("diameter/{scaffoldGroupId}")]
+	public async Task<IActionResult> GetParticleDiameter(int scaffoldGroupId)
+	{
+		try
+		{
+			var (succeeded, errorMessage, result) = await _descriptorService.GetParticleDiameter(scaffoldGroupId);
+
+			if (!succeeded)
+			{
+				return NotFound(new ApiResponse<string>(404, errorMessage));
+			}
+
+			return Ok(new ApiResponse<ParticleDiameterDto>(200, "", result));
+		}
+		catch (Exception ex)
+		{
+			_logger.LogError(ex, "Failed to get particle diameter");
+			return StatusCode(500, new ApiResponse<string>(500, "An error occurred while getting particle diameter"));
+		}
+	}
+
+	[AllowAnonymous]
 	[HttpGet("data/random")]
     public async Task<IActionResult> GetDescriptorDataRandomScaffoldGroup([FromQuery] List<int> descriptorTypeIds)
     {

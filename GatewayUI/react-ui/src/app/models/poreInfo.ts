@@ -19,3 +19,9 @@ export interface PoreInfoForScaffoldGroup {
   scaffolds: PoreInfoForScaffold[];
   descriptorTypes: Descriptor[];
 }
+
+export interface ParticleDiameter {
+  scaffoldGroupId: number;
+  scaffoldId: number;
+  values: number[];
+}

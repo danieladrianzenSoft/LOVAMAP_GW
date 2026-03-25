@@ -143,6 +143,22 @@ namespace Services.Services
 			}
 		}
 
+		public async Task<(bool Succeeded, string ErrorMessage, ParticleDiameterDto? Result)> GetParticleDiameter(int scaffoldGroupId)
+		{
+			try
+			{
+				var result = await _descriptorRepository.GetParticleDiameterForScaffoldGroup(scaffoldGroupId);
+				if (result == null) return (false, "NotFound", null);
+
+				return (true, "", result);
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, "Failed to get particle diameter");
+				return (false, "UnexpectedError", null);
+			}
+		}
+
 		// public async Task<(Dictionary<int, List<ScaffoldBaseDto>>, Dictionary<int, List<DescriptorDto>>, Dictionary<int, List<DescriptorDto>>, Dictionary<int, List<DescriptorDto>>)>
 		// 	GetScaffoldsAndDescriptorsFromScaffoldGroupIds(IEnumerable<int> scaffoldGroupIds)
 		// {

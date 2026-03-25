@@ -43,6 +43,7 @@ const Visualization: React.FC = () => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [showAcknowledgement, setShowAcknowledgement] = useState(false);
 	const currentlyLoadingScaffoldIdRef = useRef<number | null>(null);
+	const selectedScaffoldIdRef = useRef<number | null>(null);
 
   	const [showParticlesPanelOpen, setShowParticlesPanelOpen] = useState(false);
 	const [showPoresPanelOpen, setShowPoresPanelOpen] = useState(true);
@@ -109,9 +110,8 @@ const Visualization: React.FC = () => {
 	const loadDomainAndGroup = useCallback(async () => {
 		hasAttemptedLoadRef.current = true;
 		setIsLoading(true);
-		// const category = selectedCategories[0];
-		let scaffoldId = selectedScaffoldId ?? resolvedScaffoldId;
-	
+		let scaffoldId = selectedScaffoldIdRef.current ?? resolvedScaffoldId;
+
 		if (!scaffoldId) {
 			console.warn("No scaffoldId provided, skipping load.");
 			setIsLoading(false);
@@ -124,10 +124,9 @@ const Visualization: React.FC = () => {
 			const actualId = await domainStore.visualizeDomain(scaffoldId, 0);
 			if (actualId != null) {
 				scaffoldId = actualId;
-				setSelectedScaffoldId(actualId);
-			} else {
-				setSelectedScaffoldId(scaffoldId);
 			}
+			selectedScaffoldIdRef.current = scaffoldId;
+			setSelectedScaffoldId(scaffoldId);
 		} catch (error) {
 			console.error(error);
 			return;
@@ -137,32 +136,30 @@ const Visualization: React.FC = () => {
 		currentlyLoadingScaffoldIdRef.current = scaffoldId;
 
 		try {
-			const [group] = await Promise.all([
-				scaffoldGroupStore.loadGroupForScaffoldId(scaffoldId),
-				domainStore.getDomainMetadata(0, domainStore.getActiveDomain(0)?.id)
-			]);
-			if (group) {
-				setSelectedScaffoldGroupId(group.id);
-				await scaffoldGroupStore.loadDiameterForScaffoldGroup(group.id);
-			}
-
 			await Promise.all([
-				domainStore.visualizeDomain(scaffoldId, 0).catch(err => {
-					console.warn("Failed to visualize particles (0):", err);
+				// Branch 1: scaffold group → diameter
+				scaffoldGroupStore.loadGroupForScaffoldId(scaffoldId).then(async (group) => {
+					if (group) {
+						setSelectedScaffoldGroupId(group.id);
+						await scaffoldGroupStore.loadDiameterForScaffoldGroup(group.id);
+					}
 				}),
-				domainStore.visualizeDomain(scaffoldId, 1).catch(err => {
-					console.warn("Failed to visualize pores (1):", err);
+				// Branch 2: particles metadata
+				domainStore.getDomainMetadata(0, domainStore.getActiveDomain(0)?.id),
+				// Branch 3: pores mesh → pores metadata
+				domainStore.visualizeDomain(scaffoldId, 1).then(async () => {
+					await domainStore.getDomainMetadata(1, domainStore.getActiveDomain(1)?.id);
+				}).catch(err => {
+					console.warn("Failed to load pores:", err);
 				})
 			]);
 
-			await domainStore.getDomainMetadata(1, domainStore.getActiveDomain(1)?.id);
-			
 		} catch (error) {
 			console.warn("Failed to load scaffold group", error);
 		} finally {
 			setIsLoading(false);
 		}
-	}, [selectedScaffoldId, resolvedScaffoldId, domainStore, scaffoldGroupStore]);
+	}, [resolvedScaffoldId, domainStore, scaffoldGroupStore]);
 
 	const {
 		addToHistory,
@@ -274,7 +271,7 @@ const Visualization: React.FC = () => {
 			const existing = domainStore.getActiveDomain(category);
 			if (existing) return;
 
-			const scaffoldId = selectedScaffoldId ?? resolvedScaffoldId;
+			const scaffoldId = selectedScaffoldIdRef.current ?? resolvedScaffoldId;
 			if (!scaffoldId) return;
 
 			const loadedId = await domainStore.visualizeDomain(scaffoldId, category);
@@ -282,7 +279,7 @@ const Visualization: React.FC = () => {
 			await domainStore.getDomainMetadata(category, domainStore.getActiveDomain(category)?.id);
 			}
 		},
-		[domainStore, selectedScaffoldId, resolvedScaffoldId]
+		[domainStore, resolvedScaffoldId]
 	);
 
 	useEffect(() => {
@@ -522,6 +519,7 @@ const Visualization: React.FC = () => {
 		domainStore.clearDomainMesh(1);
 
 		// Reset local state
+		selectedScaffoldIdRef.current = newScaffoldId;
 		setSelectedScaffoldId(newScaffoldId);
 		setSelectedByCategory((prev) => ({
 		...Object.fromEntries(Object.keys(prev).map((key) => [key, null]))

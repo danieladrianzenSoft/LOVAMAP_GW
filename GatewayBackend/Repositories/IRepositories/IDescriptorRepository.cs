@@ -19,7 +19,7 @@ namespace Repositories.IRepositories
 		Task<List<ScaffoldBaseDto>> GetScaffoldsWithDescriptorsFromScaffoldIds(List<int> scaffoldIds, ScaffoldFilter? filter);
 		Task<PoreInfoDto?> GetPoreInfo(int scaffoldId);
 		Task<PoreInfoScaffoldGroupDto?> GetPoreDescriptorInfoForScaffoldGroup(int scaffoldGroupId, List<int> descriptorTypeIds);
-
+		Task<ParticleDiameterDto?> GetParticleDiameterForScaffoldGroup(int scaffoldGroupId);
 
 	}
 }

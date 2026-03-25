@@ -11,7 +11,7 @@ import environment from "../environments/environment"
 import { Domain } from "../models/domain";
 import { Job, JobForList } from "../models/job";
 import { ScaffoldWithMissingThumbnail } from "../models/scaffold";
-import { PoreInfo, PoreInfoForScaffoldGroup } from "../models/poreInfo";
+import { ParticleDiameter, PoreInfo, PoreInfoForScaffoldGroup } from "../models/poreInfo";
 import { DomainMetadata } from "../models/domainMetadata";
 import { AiScaffoldGroupSearch } from "../models/aiScaffoldGroupSearch";
 import { BatchOperationResult } from "../models/batchOperationResult";
@@ -159,7 +159,7 @@ const Descriptors = {
     getPoreInfo: (scaffoldGroupId: number) => requests.get<ApiResponse<PoreInfo>>(`/descriptors/${scaffoldGroupId}`),
     getPoreInfoForScaffoldGroup: (scaffoldGroupId: number, queryParams: string) => requests.get<ApiResponse<PoreInfoForScaffoldGroup>>(`/descriptors/data/${scaffoldGroupId}`+ queryParams),
     getPoreInfoForRandomScaffoldGroup: (queryParams: string) => requests.get<ApiResponse<PoreInfoForScaffoldGroup>>(`/descriptors/data/random/`+ queryParams),
-
+    getParticleDiameter: (scaffoldGroupId: number) => requests.get<ApiResponse<ParticleDiameter>>(`/descriptors/diameter/${scaffoldGroupId}`),
 }
 
 const Domains = {
