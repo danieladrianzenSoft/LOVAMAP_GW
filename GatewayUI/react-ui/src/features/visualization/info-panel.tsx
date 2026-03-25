@@ -15,8 +15,6 @@ interface Props {
   onCategoryChange: (values: number[]) => void;
   domain: Domain | null;
   isLoading: boolean;
-  theme?: 'Metallic' | 'Sunset',
-  setTheme?: (theme: 'Metallic' | 'Sunset') => void;
   onScreenshot?: () => void;
   className?: string;
 }
@@ -39,8 +37,6 @@ const InfoPanel: React.FC<Props> = ({
   domain,
   // canEdit,
   // onEditClick,
-  theme,
-  setTheme,
   isLoading,
   className,
 }) => {
@@ -101,15 +97,18 @@ const InfoPanel: React.FC<Props> = ({
               </p>
 
               <div className="flex justify-between items-center mt-3 text-sm text-gray-700">
-                <label htmlFor="themeSelect" className="mr-2 font-semibold">Theme</label>
+                <label htmlFor="replicateSelect" className="mr-2 font-semibold">Replicate</label>
                 <select
-                  id="themeSelect"
-                  value={theme}
-                  onChange={(e) => setTheme?.(e.target.value as 'Metallic' | 'Sunset')}
+                  id="replicateSelect"
+                  value={selectedScaffoldId ?? ""}
+                  onChange={onScaffoldChange}
                   className="border border-gray-300 rounded px-2 py-1 text-sm"
                 >
-                  <option value="Metallic">Metallic</option>
-                  <option value="Sunset">Sunset</option>
+                  {scaffoldGroup.scaffoldIds.map((id) => (
+                    <option key={id} value={id}>
+                      {id}
+                    </option>
+                  ))}
                 </select>
               </div>
 
@@ -127,20 +126,6 @@ const InfoPanel: React.FC<Props> = ({
                   <p className="mt-4">
                     <span className="font-semibold">ID:</span> {scaffoldGroup.id ?? "Unknown"}
                   </p>
-                  <div className="mt-2">
-                    <label className="block text-sm font-semibold text-gray-800">Replicate ID:</label>
-                    <select
-                      className="mt-1 block w-full border bg-opacity-80 border-gray-300 rounded-md p-1 text-gray-700 focus:ring focus:ring-blue-300"
-                      value={selectedScaffoldId ?? ""}
-                      onChange={onScaffoldChange}
-                    >
-                      {scaffoldGroup.scaffoldIds.map((id) => (
-                        <option key={id} value={id}>
-                          {id}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
                 </div>
               )}
 

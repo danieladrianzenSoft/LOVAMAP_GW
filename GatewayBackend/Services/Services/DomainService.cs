@@ -57,35 +57,9 @@ namespace Services.Services
 					return (false, "Domain not found", null, null);
 				}
 
-				var domainsFolder = Path.Combine(
-					Directory.GetCurrentDirectory(),
-					"Data",
-					"Domains"
-				);
-
-			
-				var pattern = $"{scaffoldId}_*.glb";
-
-				var matchingFiles = Directory.GetFiles(domainsFolder, pattern);
-
-				if (matchingFiles.Length == 0)
-				{
-					Console.WriteLine("NO MATCHING FILE FOUND");
-					return (false, "Mesh file not found", null, null);
-				}
-
-		
-				var filePath = matchingFiles[0];
-
-				Console.WriteLine("Auto matched file: " + filePath);
-				Console.WriteLine("Using DB Path: " + filePath);
-
-				Console.WriteLine($"Looking for file at: {filePath}");
-				Console.WriteLine("Current Directory: " + Directory.GetCurrentDirectory());
-
+				var filePath = domain.MeshFilePath;
 				if (!File.Exists(filePath))
 				{
-					Console.WriteLine("FILE DOES NOT EXIST");
 					return (false, "Mesh file not found", null, null);
 				}
 

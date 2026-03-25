@@ -64,7 +64,6 @@ const Visualization: React.FC = () => {
 	// const [dimmedParticles, setDimmedParticles] = useState(true);
 	const [colorfulParticles, setColorfulParticles] = useState(false); // default false => uniform color
 	const dimmedParticles = !colorfulParticles;
-	const [theme, setTheme] = useState<'Metallic' | 'Sunset'>('Metallic');
 	const [dimmedPores, ] = useState(false);
 	const [poreOpacity, ] = useState(1);
 	const [particleOpacity, setParticleOpacity] = useState(1);
@@ -100,17 +99,6 @@ const Visualization: React.FC = () => {
 
 		return equal;
 	};
-
-		//JX 3/10; veirfy descriptor 53
-				useEffect(() => {
-  if (scaffoldGroupStore.selectedScaffoldGroup) {
-    console.log(
-      "ScaffoldGroup RAW:",
-      JSON.parse(JSON.stringify(scaffoldGroupStore.selectedScaffoldGroup))
-    );
-  }
-}, [scaffoldGroupStore.selectedScaffoldGroup]);
-
 
 	const defaultDimmedOptions = useMemo(() => ({
 		color: '#E7F6E3', 
@@ -149,25 +137,15 @@ const Visualization: React.FC = () => {
 		currentlyLoadingScaffoldIdRef.current = scaffoldId;
 
 		try {
-				const [group] = await Promise.all([
-  scaffoldGroupStore.loadGroupForScaffoldId(scaffoldId),
-  domainStore.getDomainMetadata(0, domainStore.getActiveDomain(0)?.id)
-]);
+			const [group] = await Promise.all([
+				scaffoldGroupStore.loadGroupForScaffoldId(scaffoldId),
+				domainStore.getDomainMetadata(0, domainStore.getActiveDomain(0)?.id)
+			]);
+			if (group) {
+				setSelectedScaffoldGroupId(group.id);
+				await scaffoldGroupStore.loadDiameterForScaffoldGroup(group.id);
+			}
 
-if (group) {
-  setSelectedScaffoldGroupId(group.id);
-
-
-  await scaffoldGroupStore.loadDiameterForScaffoldGroup(group.id);
-}
-
-
-
-
-	if (group) {
-	setSelectedScaffoldGroupId(group.id);
-	await scaffoldGroupStore.loadDiameterForScaffoldGroup(group.id);
-	}
 			await Promise.all([
 				domainStore.visualizeDomain(scaffoldId, 0).catch(err => {
 					console.warn("Failed to visualize particles (0):", err);
@@ -321,9 +299,6 @@ if (group) {
 	// 		setDimAppliedOnce(true); // mark as done
 	// 	}
 	// }, [showParticles, showPores, dimAppliedOnce, defaultDimmedOptions]);
-	useEffect(() => {
-  console.log("Diameter values:", scaffoldGroupStore.diameterValues.length);
-}, [scaffoldGroupStore.diameterValues]);
 
 	useEffect(() => {
 		return () => {
@@ -448,7 +423,9 @@ if (group) {
   			sliceXThreshold: sliceXThreshold ?? 0,
 			opacity: userOverrideParticleOpacity ? particleOpacity : undefined,
 			dimmedOptions: defaultDimmedOptions,
-			debugMode: debugMode
+			debugMode: debugMode,
+			diameterValues: scaffoldGroupStore.diameterValues,
+			idToIndex: domainStore.getActiveMetadata(0)?.id_to_index,
 		});
 	}
 	if (poreUrl) {
@@ -701,7 +678,6 @@ if (group) {
 							meshes={meshList}
 							onSliceBoundsComputed={setSliceDomainBounds}
 							onCanvasCreated={(el) => canvasRef.current = el}
-							theme={theme}
 						/>
 					</div>
 				)}
@@ -759,8 +735,6 @@ if (group) {
 							onCategoryChange={setSelectedCategories}
 							domain={particleDomain}
 							onScreenshot={handleManualScreenshot}
-							theme={theme}
-							setTheme={setTheme}
 							isLoading={scaffoldGroupStore.isFetchingScaffoldGroup}
 						/>
 
@@ -859,8 +833,6 @@ if (group) {
 							onCategoryChange={setSelectedCategories}
 							domain={particleDomain}
 							onScreenshot={handleManualScreenshot}
-							theme={theme}
-							setTheme={setTheme}
 							isLoading={scaffoldGroupStore.isFetchingScaffoldGroup}
 							className="w-full bg-transparent shadow-none p-0"
 						/>

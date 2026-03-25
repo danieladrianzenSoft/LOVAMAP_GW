@@ -74,7 +74,8 @@ interface ModelProps {
 	debugMode?: boolean;
 	slicingActive?: boolean;
   	sliceXThreshold?: number | null;
-	theme?: 'Metallic' | 'Sunset';
+	diameterValues?: number[];
+	idToIndex?: Record<string, number>;
 }
 
 function createBoundingBoxHelper(object: THREE.Object3D, color: string): THREE.BoxHelper {
@@ -100,7 +101,8 @@ const Model: React.FC<ModelProps> = ({
 	debugMode,
 	slicingActive,
   	sliceXThreshold,
-	theme
+	diameterValues,
+	idToIndex,
 }) => {
 	const { scene } = useGLTF(url);
 	const { camera } = useThree();
@@ -215,19 +217,36 @@ const Model: React.FC<ModelProps> = ({
 					? (originalMat as any).color.clone()
 					: new THREE.Color(0xC0C0C0);
 
-				if (theme === 'Metallic') {
-					// create a metallic variant while using originalColor
+				{
+					// Metallic material — determine color and whether to preserve vertex colors
+					let metallicColor = originalColor;
+					let useVertexColors = (workingMat as any).vertexColors ?? false;
+
+					// For particles with colorful OFF (dimmed=true): apply diameter colormap
+					if (category === 0 && dimmed && diameterValues && diameterValues.length > 0) {
+						const particleIndex = idToIndex?.[entityId];
+						if (particleIndex !== undefined && particleIndex < diameterValues.length) {
+							metallicColor = beadColorJS(diameterValues[particleIndex]);
+						} else {
+							// Out of range or unmapped — fall back to current default
+							metallicColor = new THREE.Color(dimmedOptions?.color ?? '#E7F6E3');
+							if (particleIndex !== undefined) {
+								console.warn(`[Diameter color] Particle index ${particleIndex} (entity "${entityId}") out of range (diameterValues length: ${diameterValues.length})`);
+							}
+						}
+						useVertexColors = false;
+					}
+
 					const metallic = new THREE.MeshPhongMaterial({
-					color: originalColor,
-					shininess: 35,
-					specular: new THREE.Color('#fffaed'),
-					vertexColors: (workingMat as any).vertexColors ?? false
+					color: metallicColor,
+					shininess: 28,
+					specular: new THREE.Color('#b3b3ad'),
+					vertexColors: useVertexColors,
 					});
 					(metallic as any).flatShading = true;
-					// copy transparency/opacity from workingMat (so user opacity remains)
 					metallic.transparent = (workingMat as any).transparent ?? false;
 					metallic.opacity = (workingMat as any).opacity ?? 1;
-					workingMat.dispose?.(); // free the temporary clone if any
+					workingMat.dispose?.();
 					workingMat = metallic;
 				}
 
@@ -235,11 +254,11 @@ const Model: React.FC<ModelProps> = ({
 				if (typeof color === 'string') {
 					if ((workingMat as any).color) (workingMat as any).color = new THREE.Color(color);
 					(workingMat as any).vertexColors = false;
-				} else {
-					// dimmed fallback uses dimmedOptions color
-					if (dimmed && typeof dimmedOptions?.color === 'string' && (workingMat as any).color) {
-					(workingMat as any).color = new THREE.Color(dimmedOptions.color);
-					(workingMat as any).vertexColors = false;
+				} else if (dimmed && typeof dimmedOptions?.color === 'string' && (workingMat as any).color) {
+					// Skip dimmed color override for particles when diameter data is active
+					if (!(category === 0 && diameterValues && diameterValues.length > 0)) {
+						(workingMat as any).color = new THREE.Color(dimmedOptions.color);
+						(workingMat as any).vertexColors = false;
 					}
 				}
 
@@ -276,7 +295,7 @@ const Model: React.FC<ModelProps> = ({
 			child.visible = finalVisible;
 			child.raycast = finalVisible ? child.userData.originalRaycast : () => {};
 		});
-	}, [scene, hiddenIds, selectedEntity, dimmed, dimmedOptions, visible, color, opacity, shouldSlice, sliceXThreshold, combinedCenter, category, slicingActive, theme]);
+	}, [scene, hiddenIds, selectedEntity, dimmed, dimmedOptions, visible, color, opacity, shouldSlice, sliceXThreshold, combinedCenter, category, slicingActive, diameterValues, idToIndex]);
 
 
 	useEffect(() => {
