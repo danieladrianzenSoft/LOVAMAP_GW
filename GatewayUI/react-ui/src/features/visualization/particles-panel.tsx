@@ -73,26 +73,28 @@ const ParticlesPanel: React.FC<DomainPanelProps> = ({
 			}`}>
 			{domain ? (
 				<>
-					<div className="mt-3 text-sm text-gray-700">
+					<div className="flex justify-start">
 						<button
-							className="text-blue-600 hover:text-blue-800 text-xs"
-							onClick={(e) => {
-								e.stopPropagation();
-								onToggleVisibility();
-								}}
-							>
-							{visible ? "Hide particles" : "Show particles"}
-						</button>
-					</div>
-					<div className="flex justify-end">
-						<button
-							className="button-tag flex items-center gap-2 mt-1 mb-0"
+							className="button-tag flex items-center gap-2 mt-2 mb-0"
 							onClick={() => {onResetOverrides()}}
 						>
 							<RiResetLeftFill /> Reset
 						</button>
 					</div>
 		
+					<div className="flex justify-between items-center mt-3 text-sm text-gray-700">
+						<span>Show particles</span>
+						<label className="inline-flex items-center cursor-pointer relative w-11 h-6">
+							<input
+								type="checkbox"
+								className="sr-only peer"
+								checked={visible}
+								onChange={() => onToggleVisibility()}
+							/>
+							<div className="w-full h-full bg-gray-200 rounded-full peer-checked:bg-link-100 transition-colors" />
+							<div className="absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform transform peer-checked:translate-x-5" />
+						</label>
+					</div>
 
 					<div className="flex justify-between items-center mt-3 text-sm text-gray-700">
 						<span className="mr-2">Colorful particles</span>
@@ -106,14 +108,8 @@ const ParticlesPanel: React.FC<DomainPanelProps> = ({
 									setColorful(nextColorful);
 								}}
 							/>
-							<div className="w-full h-full bg-gray-200 rounded-full peer-checked:bg-blue-600 transition-colors" />
+							<div className="w-full h-full bg-gray-200 rounded-full peer-checked:bg-link-100 transition-colors" />
   							<div className="absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform transform peer-checked:translate-x-5" />
-							{/* <div className="w-11 h-6 bg-gray-200 rounded-full peer peer-checked:bg-blue-600 relative transition-colors">
-								<div className="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform transform peer-checked:translate-x-5" />
-							</div> */}
-							{/* <div className="relative w-12 h-6 bg-gray-300 rounded-full peer-checked:bg-blue-600 transition-colors">
-								<div className="absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full transition-transform transform peer-checked:translate-x-6" />
-							</div> */}
 						</label>
 					</div>
 
@@ -126,7 +122,7 @@ const ParticlesPanel: React.FC<DomainPanelProps> = ({
 								checked={slicingActive}
 								onChange={(e) => setSlicingActive(e.target.checked)}
 							/>
-							<div className="w-full h-full bg-gray-200 rounded-full peer-checked:bg-blue-600 transition-colors" />
+							<div className="w-full h-full bg-gray-200 rounded-full peer-checked:bg-link-100 transition-colors" />
   							<div className="absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform transform peer-checked:translate-x-5" />
 						</label>
 					</div>

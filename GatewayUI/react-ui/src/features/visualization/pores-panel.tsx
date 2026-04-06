@@ -1,5 +1,5 @@
 import { Domain } from "../../app/models/domain";
-import { FiChevronDown, FiChevronUp } from "react-icons/fi";
+import { FiChevronDown, FiChevronUp, FiShuffle } from "react-icons/fi";
 
 interface DomainPanelProps {
 	isOpen: boolean;
@@ -12,6 +12,7 @@ interface DomainPanelProps {
 	areEdgePoresHidden?: boolean;
 	onEditClick: () => void;
 	className?: string;
+	onRefreshColors?: () => void;
 }
 
 const PoresPanel: React.FC<DomainPanelProps> = ({
@@ -25,6 +26,7 @@ const PoresPanel: React.FC<DomainPanelProps> = ({
   areEdgePoresHidden,
   onEditClick,
   className,
+  onRefreshColors,
 }) => {
   return (
     <div className={className ?? "bg-white bg-opacity-80 shadow-lg rounded-lg p-4 w-64 mt-2"}>
@@ -42,34 +44,51 @@ const PoresPanel: React.FC<DomainPanelProps> = ({
           isOpen ? "max-h-102 opacity-100" : "max-h-0 opacity-0"
         }`}>
 			{domain ? (
-			<div className="mt-3 text-sm text-gray-700">
-				<div>
-					<button
-						className="text-blue-600 hover:text-blue-800 text-xs"
-						onClick={(e) => {
-							e.stopPropagation();
-							onToggleVisibility();
-							}}
-						>
-						{visible ? "Hide pores" : "Show pores"}
-					</button>
+			<>
+				<div className="flex justify-between items-center mt-3 text-sm text-gray-700">
+					<span>Show pores</span>
+					<label className="inline-flex items-center cursor-pointer relative w-11 h-6">
+						<input
+							type="checkbox"
+							className="sr-only peer"
+							checked={visible}
+							onChange={() => onToggleVisibility()}
+						/>
+						<div className="w-full h-full bg-gray-200 rounded-full peer-checked:bg-link-100 transition-colors" />
+						<div className="absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform transform peer-checked:translate-x-5" />
+					</label>
 				</div>
-				{visible && 
-					<div>
+
+				{onToggleHideEdgePores && (
+					<div className={`flex justify-between items-center mt-3 text-sm ${visible ? 'text-gray-700' : 'text-gray-400'}`}>
+						<span>Show edge pores</span>
+						<label className={`inline-flex items-center relative w-11 h-6 ${visible ? 'cursor-pointer' : 'cursor-not-allowed'}`}>
+							<input
+								type="checkbox"
+								className="sr-only peer"
+								checked={!areEdgePoresHidden}
+								disabled={!visible}
+								onChange={(e) => onToggleHideEdgePores(!e.target.checked)}
+							/>
+							<div className="w-full h-full bg-gray-200 rounded-full peer-checked:bg-link-100 peer-disabled:opacity-50 transition-colors" />
+							<div className="absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform transform peer-checked:translate-x-5" />
+						</label>
+					</div>
+				)}
+
+				{onRefreshColors && (
+					<div className="flex justify-start">
 						<button
-							className="text-blue-600 hover:text-blue-800 text-xs"
-							onClick={() => {
-								onToggleHideEdgePores?.(!areEdgePoresHidden);
-							}}
+							className="button-tag flex items-center gap-2 mt-3 mb-0 disabled:opacity-50 disabled:cursor-not-allowed"
+							onClick={onRefreshColors}
+							disabled={!visible}
+							title={visible ? "Randomize colors" : "Show pores to randomize colors"}
 						>
-							{areEdgePoresHidden ? "Show edge pores" : "Hide edge pores"}
+							<FiShuffle /> Randomize colors
 						</button>
 					</div>
-				}
-				{/* <p className="mt-2">
-				<span className="font-semibold">Voxel Size:</span> {domain.voxelSize ?? "Unknown"}
-				</p> */}
-			</div>
+				)}
+			</>
 			) : (
 				<p className="mt-2 text-sm italic text-gray-500">Non-existent domain</p>
 			)}

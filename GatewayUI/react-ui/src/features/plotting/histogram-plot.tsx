@@ -20,13 +20,14 @@ interface HistogramPlotProps {
 	isNormalized?: boolean;
 	showGrid?: boolean;
 	useLogScale?: boolean;
+	showMedian?: boolean;
 }
 
 export const HistogramPlot: React.FC<HistogramPlotProps> = ({ 
 		data, title, xlabel, ylabel, horizontalYLabel,
 		colors, interactive, hideYLabels, showHoverInfo,
 		titleFontSize, labelFontSize, tickFontSize,
-		tickDecimalPlaces, isNormalized, showGrid, useLogScale
+		tickDecimalPlaces, isNormalized, showGrid, useLogScale, showMedian
 	}) => {
 	
 	const seriesArray: number[][] = Array.isArray(data[0])
@@ -44,13 +45,23 @@ export const HistogramPlot: React.FC<HistogramPlotProps> = ({
 	const mean = allValues.reduce((sum, x) => sum + x, 0) / allValues.length;
 	const std = Math.sqrt(allValues.reduce((sum, x) => sum + Math.pow(x - mean, 2), 0) / allValues.length);
 
-	const xMin = useLogScale
-		? Math.pow(10, Math.floor(Math.log10(min)))
-		: Math.floor(min / 5) * 5 - 10 < 0 ? 0 : Math.floor(min / 5) * 5 - 10;
+	const range = max - min;
+	const isDelta = range < 0.01 * Math.abs(max || 1);
 
-		const xMax = useLogScale
-		? Math.pow(10, Math.ceil(Math.log10(max)))
-		: Math.ceil(max / 5) * 5 + 10;
+	let xMin: number, xMax: number;
+	if (useLogScale) {
+		xMin = Math.pow(10, Math.floor(Math.log10(min)));
+		xMax = Math.pow(10, Math.ceil(Math.log10(max)));
+	} else if (isDelta) {
+		xMin = Math.max(0, Math.floor(min / 5) * 5 - 10);
+		xMax = Math.ceil(max / 5) * 5 + 10;
+	} else {
+		const padding = range * 0.02;
+		xMin = Math.max(0, min - padding);
+		xMax = max + padding;
+	}
+
+	const middle = (xMin + xMax) / 2;
 
 	const minBinSize = 1;
 	const isClustered = std < 0.05 * Math.abs(median);
@@ -83,9 +94,11 @@ export const HistogramPlot: React.FC<HistogramPlotProps> = ({
 			barmode: "overlay",
 			hovermode: showHoverInfo === false ? false : "closest",
 			dragmode: showHoverInfo === false ? false : "zoom", // or "pan"
-			title: { 
-				text: title || "" ,
-				font: { 
+			title: {
+				text: showMedian
+					? `${title || ""}<br><span style="font-size:${(titleFontSize || 16) - 4}px;color:#9CA3AF">Median: ${median?.toFixed(tickDecimalPlaces ?? 2)}</span>`
+					: (title || ""),
+				font: {
 					size: titleFontSize || 16 ,
 					color: "#4B5563"
 				},
@@ -100,8 +113,8 @@ export const HistogramPlot: React.FC<HistogramPlotProps> = ({
 				},
 				type: useLogScale ? 'log' : 'linear',
 				tickfont: { size: tickFontSize || 12 },
-				tickvals: [xMin, median, xMax],
-				ticktext: [xMin?.toFixed(tickDecimalPlaces || 0), median?.toFixed(tickDecimalPlaces || 0), xMax?.toFixed(tickDecimalPlaces || 0)],
+				tickvals: [xMin, middle, xMax],
+				ticktext: [xMin?.toFixed(tickDecimalPlaces || 0), middle?.toFixed(tickDecimalPlaces || 0), xMax?.toFixed(tickDecimalPlaces || 0)],
 				range: [xMin, xMax],
 				automargin: true,
 				showgrid: shouldShowGrid,
@@ -139,7 +152,12 @@ export const HistogramPlot: React.FC<HistogramPlotProps> = ({
 				]
 				: [],
 			bargap: 0.05,
-			margin: { t: 40, r: 20, l: 50, b: 50 },
+			margin: {
+				t: showMedian ? 60 : 40,
+				r: 20,
+				l: hideYLabels && !ylabel && !horizontalYLabel ? 20 : 50,
+				b: 50,
+			},
 		}}
 		config={{
 			responsive: true,

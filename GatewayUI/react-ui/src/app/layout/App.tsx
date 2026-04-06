@@ -14,6 +14,7 @@ import SideBarMain from '../../features/sidebar-main/sidebar-main';
 import { observer } from 'mobx-react-lite';
 import ScaffoldGroupUploads from '../../features/scaffold-groups/scaffold-group-uploads';
 import Visualization from '../../features/visualization/visualization';
+import TestVisualization from '../../features/visualization/test-visualization';
 import History from '../helpers/History';
 import ScreenshotViewer from '../../features/visualization/screenshot-viewer';
 import ResetPasswordForm from '../../features/user/reset-password';
@@ -29,6 +30,8 @@ import Publications from '../../features/publications/publications';
 import JobsMain from '../../features/jobs/jobs-main';
 import JobList from '../../features/jobs/job-list';
 import Dashboard from '../../features/dashboard/Dashboard';
+import { isWhiteBackgroundRoute } from '../helpers/routeTheme';
+import ScaffoldGroupPreviewPage from '../../features/scaffold-groups/scaffold-group-preview-page';
 
 const App: React.FC = () => {
   const { commonStore, userStore } = useStore();
@@ -66,7 +69,8 @@ const App: React.FC = () => {
         <Route path="/confirm-email" element={<ConfirmEmailPage />} />
         <Route path="/email-not-confirmed" element={<EmailNotConfirmed />} />
         <Route path="/reset-password" element={<ResetPasswordForm />} />
-        <Route path="/forgot-password" element={<ForgotPasswordForm />} />  
+        <Route path="/forgot-password" element={<ForgotPasswordForm />} />
+        <Route path="/preview/scaffold-group/:id" element={<ScaffoldGroupPreviewPage />} />
         <Route path="/*" element={<MainLayout />} />
       </Routes>
     </HistoryRouter>
@@ -75,16 +79,21 @@ const App: React.FC = () => {
 
 const MainLayout: React.FC = observer(() => {
   // const [isSidebarOpen, setSidebarOpen] = useState(false);
+  const location = useLocation();
+  const contentBgClass = isWhiteBackgroundRoute(location.pathname)
+    ? 'bg-white'
+    : 'bg-secondary-50';
 
   return (
     <div className="main-layout">
       <TopNavigation />
       <SideBarMain />
-      <div className="content">
+      <div className={`content ${contentBgClass}`}>
         <Routes>
           <Route path="/" element={<Visualization />} />
           <Route path="/visualize" element={<Visualization />} />
           <Route path="/visualize/:scaffoldId" element={<Visualization />} />
+          <Route path="/test-visualization" element={<TestVisualization />} />
           <Route path="/learn" element={<LearnScreen />} />
           <Route path="/explore" element={<ExploreScreen />} />
           <Route path="/data" element={<ExploreData />} />

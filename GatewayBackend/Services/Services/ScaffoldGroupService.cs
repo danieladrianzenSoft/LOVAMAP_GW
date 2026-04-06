@@ -945,6 +945,66 @@ namespace Services.Services
 			}
 		}
 
+		public async Task<ThumbnailResetPreviewDto> GetThumbnailResetPreview(ImageCategory imageCategory)
+		{
+			try
+			{
+				var thumbnails = await _imageService.GetThumbnailsWithScaffoldGroupByCategory(imageCategory);
+				var scaffoldGroupsWithMesh = await _scaffoldGroupRepository.GetScaffoldGroupIdsWithMeshForCategory(imageCategory);
+
+				var meshSet = scaffoldGroupsWithMesh.ToHashSet();
+				var thumbnailGroupIds = thumbnails.Select(t => t.ScaffoldGroupId).Distinct().ToList();
+				var orphanedIds = thumbnailGroupIds.Where(id => !meshSet.Contains(id)).Distinct().ToList();
+
+				return new ThumbnailResetPreviewDto
+				{
+					ImageIdsToDelete = thumbnails.Select(t => t.ImageId).ToList(),
+					ScaffoldsWithMeshIds = scaffoldGroupsWithMesh,
+					OrphanedScaffoldIds = orphanedIds
+				};
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, "Error computing thumbnail reset preview");
+				return new ThumbnailResetPreviewDto();
+			}
+		}
+
+		public async Task<(bool Succeeded, string ErrorMessage, ScaffoldGroupBaseDto? scaffoldGroup)> GetScaffoldGroupPreview(int id, int maxReplicates = 3)
+		{
+			try
+			{
+				var scaffoldGroup = await _scaffoldGroupRepository.GetSummary(id);
+
+				if (scaffoldGroup == null)
+				{
+					return (false, "NotFound", null);
+				}
+				if (!scaffoldGroup.IsPublic)
+				{
+					return (false, "Unauthorized", null);
+				}
+
+				// Limit to first N replicates
+				scaffoldGroup.ScaffoldIds = scaffoldGroup.ScaffoldIds.Take(maxReplicates).ToList();
+
+				var (succeeded, errorMessage, completeScaffoldGroups) =
+					await GetCompleteScaffoldGroupsFromSummaries([scaffoldGroup], "0", isDetailed: true, filter: null);
+
+				if (!succeeded || completeScaffoldGroups == null)
+				{
+					return (false, errorMessage, null);
+				}
+
+				return (true, "", completeScaffoldGroups.First());
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, "Failed to get scaffold group preview {id}", id);
+				return (false, "UnexpectedError", null);
+			}
+		}
+
 		public async Task<(bool Succeeded, string ErrorMessage, List<ScaffoldGroupMatch>? scaffoldGroupMatches)> FindPotentialMatches(
 			InputGroupForMatchRequest request,
 			string userId,

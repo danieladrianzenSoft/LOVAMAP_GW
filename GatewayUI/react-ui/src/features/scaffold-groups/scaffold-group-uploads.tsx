@@ -3,12 +3,14 @@ import { observer } from 'mobx-react-lite';
 import UploadFile from '../../app/common/upload-file/upload-file';
 import { useStore } from '../../app/stores/store';
 import toast from "react-hot-toast";
-import { FaSpinner, FaPlus, FaStar, FaRegStar, FaTimes } from 'react-icons/fa';
+import { FaPlus, FaStar, FaRegStar, FaTimes } from 'react-icons/fa';
+import LoadingSpinner from '../../app/common/loading-spinner/loading-spinner';
 import { Image, ImageCategory, ImageToCreate, ImageToUpdate } from '../../app/models/image';
 import { ScaffoldGroup, ScaffoldGroupToCreate } from '../../app/models/scaffoldGroup';
 import { useDescriptorTypes } from '../../app/common/hooks/useDescriptorTypes';
 import { processExcelFile } from '../../app/common/excel-processor/excel-processor';
 import { RiDeleteBin5Fill } from "react-icons/ri";
+import DataTable, { DataTableColumn } from '../../app/common/data-table/data-table';
 
 const ScaffoldGroupUploads: React.FC = () => {
     const { descriptorTypes} = useDescriptorTypes();
@@ -231,8 +233,36 @@ const ScaffoldGroupUploads: React.FC = () => {
         setIsUploadVisible(!isUploadVisible); // Toggle upload section visibility
     };
 
+    const uploadColumns: DataTableColumn<ScaffoldGroup>[] = [
+        {
+            header: 'Id',
+            render: (group) => group.id,
+            cellClassName: 'max-w-[50px] ellipsis',
+        },
+        {
+            header: 'Name',
+            render: (group) => group.name,
+            cellClassName: 'max-w-[300px] ellipsis',
+        },
+        {
+            header: 'Tags',
+            render: (group) => group.tags?.join(', '),
+            cellClassName: 'max-w-[300px] ellipsis',
+        },
+        {
+            header: 'Images',
+            render: (group) => group.images.length,
+            cellClassName: 'whitespace-nowrap',
+        },
+        {
+            header: 'Date Added',
+            render: (group) => new Date(group.createdAt).toLocaleString(),
+            cellClassName: 'whitespace-nowrap',
+        },
+    ];
+
     return (
-        <div className={`container mx-auto py-8 px-2`}>
+        <div className={`container mx-auto py-8 px-6`}>
             <div className="text-3xl text-gray-700 font-bold mb-12">Uploaded scaffolds</div>
             {uploadPct !== null && (
                 <div className="mt-3 w-full rounded">
@@ -252,41 +282,15 @@ const ScaffoldGroupUploads: React.FC = () => {
                 onUploadError={handleUploadError}
             />
             {isLoading ? (
-                <div className="flex justify-center items-center py-8">
-                    <FaSpinner className="animate-spin" size={40} />
-                </div>
+                <LoadingSpinner />
             ) : (
                 <div className="flex">
-                    <div className="w-full overflow-x-auto">
-                        <table className="min-w-full divide-y divide-gray-200 text-sm">
-                            <thead className="bg-gray-50">
-                                <tr>
-                                    <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Id</th>
-                                    <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                                    <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tags</th>
-                                    <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Images</th>
-                                    <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date Added</th>
-                                </tr>
-                            </thead>
-                            <tbody className="bg-white divide-y divide-gray-200">
-                                {uploadedScaffoldGroups.map((group, index) => (
-                                    <tr
-                                        key={index}
-                                        onClick={() => handleRowClick(group)}
-                                        className="cursor-pointer hover:bg-gray-100"
-                                    >
-                                        <td className="px-4 py-2 max-w-[50px] ellipsis text-sm text-gray-700">{group.id}</td>
-                                        <td className="px-4 py-2 max-w-[300px] ellipsis text-sm text-gray-700">{group.name}</td>
-                                        <td className="px-4 py-2 max-w-[300px] ellipsis text-sm text-gray-700">{group.tags?.join(', ')}</td>
-                                        <td className="px-4 py-2 whitespace-nowrap text-sm text-gray-700">{group.images.length}</td>
-                                        <td className="px-4 py-2 whitespace-nowrap text-sm text-gray-700">
-                                            {new Date(group.createdAt).toLocaleString()}
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
+                    <DataTable
+                        data={uploadedScaffoldGroups}
+                        columns={uploadColumns}
+                        onRowClick={(group) => handleRowClick(group)}
+                        rowKey={(group) => group.id}
+                    />
                 </div>
             )}
 

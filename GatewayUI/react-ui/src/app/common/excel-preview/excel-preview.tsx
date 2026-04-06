@@ -40,6 +40,8 @@ interface ExcelPreviewProps {
   size?: string;
   headingRows?: number[];
   numRows?: number;
+  isAnonymous?: boolean;
+  onLoginRedirect?: () => void;
 }
 
 
@@ -50,7 +52,9 @@ const ExcelPreview = ({
   fileIndex,
   onFileChange,
   headingRows,
-  numRows = 100
+  numRows = 100,
+  isAnonymous = false,
+  onLoginRedirect
 }: ExcelPreviewProps) => {
   const [excelData, setExcelData] = useState<any[][]>([]);
   const [workbook, setWorkbook] = useState<XLSX.WorkBook | null>(null);
@@ -126,7 +130,13 @@ const ExcelPreview = ({
     }
   }, [data, numRows, resolvedHeadingRows, selectedSheetIndex]);
 
-  const handleDownloadClick = () => setShowAcknowledgement(true);
+  const handleDownloadClick = () => {
+    if (isAnonymous && onLoginRedirect) {
+      onLoginRedirect();
+      return;
+    }
+    setShowAcknowledgement(true);
+  };
   const handleConfirmAcknowledgement = () => {
     setShowAcknowledgement(false);
 
@@ -213,14 +223,17 @@ const ExcelPreview = ({
           )}
 
           <span className="text-gray-500 italic">
-            – Showing first {numRows} rows
+            – Showing first {numRows} rows{isAnonymous ? ' (limited preview)' : ''}
           </span>
         </div>
         <button
           onClick={handleDownloadClick}
-          className="px-4 py-2 rounded transition bg-blue-600 text-white hover:bg-blue-700 text-sm"
+          className="inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none text-white"
+          style={{ backgroundColor: '#444b5a' }}
+          onMouseEnter={e => (e.currentTarget.style.backgroundColor = '#363c48')}
+          onMouseLeave={e => (e.currentTarget.style.backgroundColor = '#444b5a')}
         >
-          Download
+          {isAnonymous ? 'Login to Download' : 'Download'}
         </button>
       </div>
 

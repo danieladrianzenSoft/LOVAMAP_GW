@@ -645,27 +645,73 @@ namespace Repositories.Repositories
 			return scaffoldGroups;
 		}
 
+		public async Task<List<int>> GetScaffoldGroupIdsWithMeshForCategory(ImageCategory imageCategory)
+		{
+			var domainCategory = CategoryMapper.ToDomainCategory(imageCategory);
+			if (domainCategory == null) return new List<int>();
+
+			if (CategoryMapper.RequiresBothDomains(imageCategory))
+			{
+				// HalfHalf: scaffold must have BOTH a particle mesh AND a pore mesh
+				var ids = await (
+					from s in _context.Scaffolds
+					where _context.Domains.Any(d => d.ScaffoldId == s.Id && d.Category == DomainCategory.Particles && d.MeshFilePath != null)
+					   && _context.Domains.Any(d => d.ScaffoldId == s.Id && d.Category == DomainCategory.Pores && d.MeshFilePath != null)
+					select s.ScaffoldGroupId
+				).Distinct().ToListAsync();
+				return ids;
+			}
+
+			var result = await (
+				from s in _context.Scaffolds
+				join d in _context.Domains on s.Id equals d.ScaffoldId
+				where d.Category == domainCategory && d.MeshFilePath != null
+				select s.ScaffoldGroupId
+			).Distinct().ToListAsync();
+
+			return result;
+		}
+
 		public async Task<List<ScaffoldMissingThumbnailInfoDto>> GetScaffoldsMissingThumbnailsByCategory(ImageCategory imageCategory = ImageCategory.Particles)
 		{
 			var domainCategory = CategoryMapper.ToDomainCategory(imageCategory);
 			if (domainCategory == null) return new List<ScaffoldMissingThumbnailInfoDto>();
 
-			var scaffolds = await (
-				from s in _context.Scaffolds
-				join d in _context.Domains on s.Id equals d.ScaffoldId
-				where d.Category == domainCategory && d.MeshFilePath != null
-				where !_context.Images.Any(img =>
-					img.ScaffoldGroupId == s.ScaffoldGroupId &&
-					img.IsThumbnail &&
-					img.Category == imageCategory)
-				select new ScaffoldMissingThumbnailInfoDto
-				{
-					ScaffoldId = s.Id,
-					ScaffoldGroupId = s.ScaffoldGroupId
-				}
-			).Distinct().ToListAsync();
+			IQueryable<ScaffoldMissingThumbnailInfoDto> query;
 
-			return scaffolds;
+			if (CategoryMapper.RequiresBothDomains(imageCategory))
+			{
+				// HalfHalf: scaffold must have BOTH particle and pore meshes
+				query = from s in _context.Scaffolds
+					where _context.Domains.Any(d => d.ScaffoldId == s.Id && d.Category == DomainCategory.Particles && d.MeshFilePath != null)
+					   && _context.Domains.Any(d => d.ScaffoldId == s.Id && d.Category == DomainCategory.Pores && d.MeshFilePath != null)
+					where !_context.Images.Any(img =>
+						img.ScaffoldGroupId == s.ScaffoldGroupId &&
+						img.IsThumbnail &&
+						img.Category == imageCategory)
+					select new ScaffoldMissingThumbnailInfoDto
+					{
+						ScaffoldId = s.Id,
+						ScaffoldGroupId = s.ScaffoldGroupId
+					};
+			}
+			else
+			{
+				query = from s in _context.Scaffolds
+					join d in _context.Domains on s.Id equals d.ScaffoldId
+					where d.Category == domainCategory && d.MeshFilePath != null
+					where !_context.Images.Any(img =>
+						img.ScaffoldGroupId == s.ScaffoldGroupId &&
+						img.IsThumbnail &&
+						img.Category == imageCategory)
+					select new ScaffoldMissingThumbnailInfoDto
+					{
+						ScaffoldId = s.Id,
+						ScaffoldGroupId = s.ScaffoldGroupId
+					};
+			}
+
+			return await query.Distinct().ToListAsync();
 		}
 
 	}

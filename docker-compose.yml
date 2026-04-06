@@ -119,12 +119,9 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    env_file:
-      - .env
-    entrypoint: >
-      sh -c "PGPASSWORD=$$POSTGRES_PASSWORD psql -h db -U $$POSTGRES_USER -tc
-      \"SELECT 1 FROM pg_database WHERE datname = 'umami'\" | grep -q 1 ||
-      PGPASSWORD=$$POSTGRES_PASSWORD psql -h db -U $$POSTGRES_USER -c \"CREATE DATABASE umami\""
+    environment:
+      PGPASSWORD: ${POSTGRES_PASSWORD}
+    entrypoint: ["sh", "-c", "psql -h db -U ${POSTGRES_USER} -c 'CREATE DATABASE umami' || true"]
     restart: "no"
 
   umami:
@@ -134,7 +131,6 @@ services:
     restart: always
     environment:
       DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/umami
-      BASE_PATH: /umami
       APP_SECRET: ${UMAMI_APP_SECRET}
     depends_on:
       db:
@@ -142,7 +138,7 @@ services:
       umami-db-init:
         condition: service_completed_successfully
     healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/umami/api/heartbeat"]
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/api/heartbeat"]
       interval: 30s
       timeout: 5s
       retries: 3

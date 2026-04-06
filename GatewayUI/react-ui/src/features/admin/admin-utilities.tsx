@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import AdminBatchThumbnailGenerator from "./admin-batch-thumbnail-generator";
-import AdminBatchImageCleanup from "./admin-batch-image-cleanup";
+import AdminThumbnailReset from "./admin-thumbnail-reset";
 import AdminTitleResetter from "./admin-title-resetter";
 import AdminBatchDescriptorSeeder from "./admin-batch-descriptor-seeder";
 
@@ -8,8 +7,8 @@ const AdminUtilities: React.FC = () => {
 	const navigate = useNavigate();
 
 	return (
-		<div className="container mx-auto mt-10 px-4 lg:px-8">
-			<h1 className="text-2xl font-bold mb-6">Admin Utilities</h1>
+		<div className="container mx-auto py-8 px-6">
+			<h1 className="text-3xl text-gray-700 font-bold mb-12">Admin Utilities</h1>
 			<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 				<div className="border rounded-lg p-6 bg-white shadow flex flex-col justify-between">
 					<div>
@@ -26,8 +25,22 @@ const AdminUtilities: React.FC = () => {
 						Open Bulk Upload
 					</button>
 				</div>
-				<AdminBatchThumbnailGenerator />
-				<AdminBatchImageCleanup />
+				<div className="border rounded-lg p-6 bg-white shadow flex flex-col justify-between">
+					<div>
+						<h2 className="text-lg font-semibold mb-2">Test Viewer</h2>
+						<p className="text-sm text-gray-600 mb-4">
+							Preview local GLB/metadata files without uploading to the database.
+							Drop meshes to iterate on the full scene offline.
+						</p>
+					</div>
+					<button
+						onClick={() => navigate("/test-visualization")}
+						className="button-primary"
+					>
+						Open Test Viewer
+					</button>
+				</div>
+				<AdminThumbnailReset />
 				<AdminTitleResetter />
 				<AdminBatchDescriptorSeeder />
 			</div>

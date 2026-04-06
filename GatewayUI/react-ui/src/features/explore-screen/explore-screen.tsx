@@ -2,10 +2,11 @@ import React, {useEffect, useMemo, useState } from "react";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../../app/stores/store";
 import ScaffoldGroupFilters from "../scaffold-groups/scaffold-group-filter";
-import { FaSpinner } from 'react-icons/fa';
 import ScaffoldGroupsFilterResults from "../scaffold-groups/scaffold-group-filter-results";
+import LoadingSpinner from '../../app/common/loading-spinner/loading-spinner';
 import { useScaffoldGroupFiltering } from "../../app/common/hooks/useScaffoldGroupFiltering";
 import AISearchBar from "../../app/common/ai-search-bar/ai-seach-bar";
+import { DEFAULT_CATEGORY } from "../../app/common/ai-search-bar/search-categories";
 import { SearchContextSummary } from "../../app/common/ai-search-bar/search-context-summary";
 import { useSearchParams } from "react-router-dom";
 import { Publication } from "../../app/models/publication";
@@ -55,6 +56,8 @@ const ExploreScreen = () => {
 		isPublicationScoped,
 		isSimulated,
 		setIsSimulated,
+		searchCategory,
+		setSearchCategory,
 	} = useScaffoldGroupFiltering(isLoggedIn, setIsLoading, initialScope);
 
 	useEffect(() => {
@@ -80,48 +83,52 @@ const ExploreScreen = () => {
 		setSelectedParticleSizeIds([]);
 		setIsSimulated(null);
 		setAiSearchUsed(false);
+		setSearchCategory(DEFAULT_CATEGORY);
 	};
 
 	return (
-		<div className="container mx-auto py-8 px-4 sm:px-6 lg:px-8">
-			<div className="mb-12">
-				<div className="text-3xl text-gray-700 font-bold">
-					{/* Explore {isLoggedIn ? "scaffolds" : "public scaffolds"} */}
-					{isPublicationScoped
-						? `Data from Publication`
-						: `Explore ${isLoggedIn ? "scaffolds" : "public scaffolds"}`}
-				</div>
-				{isPublicationScoped && publication && 
-					<div className="text-xl text-gray-400">
-						<ReactMarkdown>{publication.citation}</ReactMarkdown>
-					</div>
-				}
+		<div className="container mx-auto py-8 px-6">
+			<div className="text-3xl text-gray-700 font-bold mb-12">
+				{/* Explore {isLoggedIn ? "scaffolds" : "public scaffolds"} */}
+				{isPublicationScoped
+					? `Data from Publication`
+					: `Explore ${isLoggedIn ? "scaffolds" : "public scaffolds"}`}
 			</div>
+			{isPublicationScoped && publication &&
+				<div className="text-xl text-gray-400 -mt-8 mb-12">
+					<ReactMarkdown>{publication.citation}</ReactMarkdown>
+				</div>
+			}
 			
 			{isPublicationScoped === false && 
 				<>
 					<div className="mb-4">
-						<AISearchBar onSearch={loadAIResults} onClear={clearFilters}/>
+						<AISearchBar
+							onSearch={loadAIResults}
+							onClear={clearFilters}
+							category={searchCategory}
+							onCategoryChange={setSearchCategory}
+						/>
 						<SearchContextSummary aiSearchUsed={aiSearchUsed} selectedTagNames={selectedTagNames} selectedParticleSizeIds={selectedParticleSizeIds}/>
 					</div>
-					<ScaffoldGroupFilters
-						setIsLoading={setIsLoading}
-						condensed={true}
-						allFiltersVisible={false}
-						selectedParticleSizeIds={selectedParticleSizeIds}
-						setSelectedParticleSizeIds={setSelectedParticleSizeIds}
-						selectedTags={selectedTags}
-						setSelectedTags={setSelectedTags}
-						isSimulated={isSimulated}
-						setIsSimulated={setIsSimulated}
-					/>
+					<div className="mb-4">
+						<ScaffoldGroupFilters
+							setIsLoading={setIsLoading}
+							condensed={true}
+							allFiltersVisible={false}
+							selectedParticleSizeIds={selectedParticleSizeIds}
+							setSelectedParticleSizeIds={setSelectedParticleSizeIds}
+							selectedTags={selectedTags}
+							setSelectedTags={setSelectedTags}
+							isSimulated={isSimulated}
+							setIsSimulated={setIsSimulated}
+						/>
+					</div>
 				</>
 			}
 			
 			{isLoading ? (
-				<div className="flex justify-center items-center py-8">
-					<FaSpinner className="animate-spin" size={40} />
-				</div>
+				<LoadingSpinner />
 			) : (
 				<>
 					<ScaffoldGroupsFilterResults
@@ -133,7 +140,7 @@ const ExploreScreen = () => {
 						selectedTagNames={selectedTagNames}
 						selectedParticleSizeIds={selectedParticleSizeIds}
 						onRemoveTag={removeFilterTag}
-						largeScreenColumns={3}
+						largeScreenColumns={4}
 					/>
 				</>
 			)}

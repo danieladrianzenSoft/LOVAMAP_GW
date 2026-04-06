@@ -141,8 +141,8 @@ export default function TextInput(props: Props) {
         className={`
           peer w-full px-3 ${paddingClass} text border 
           rounded-md outline-none transition-all leading-[1.25rem]
-          ${hasError ? "border-red-500" : "border-gray-300"} focus:border-blue-600
-          focus:ring-0 focus:border-blue-600 
+          ${hasError ? "border-error-100" : "border-secondary-200"} focus:border-secondary-600
+          focus:ring-0
           ${props.className || ""}
         `}
       />
@@ -151,8 +151,8 @@ export default function TextInput(props: Props) {
         htmlFor={props.name}
         className={`
           absolute left-2.5 px-1 text-sm bg-white transition-all duration-200 pointer-events-none
-          ${hasValue ? "top-[-0.6rem] text-sm text-blue-600" : "top-3 text-base"}
-          text-gray-400 peer-focus:top-[-0.6rem] peer-focus:text-sm peer-focus:text-blue-600
+          ${hasValue ? "top-[-0.6rem] text-sm text-primary-600" : "top-3 text-base"}
+          text-secondary-400 peer-focus:top-[-0.6rem] peer-focus:text-sm peer-focus:text-primary-600
         `}
       >
         {props.label}

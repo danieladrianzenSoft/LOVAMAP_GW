@@ -15,7 +15,7 @@ const JobsMain: React.FC = () => {
 	}
 
 	return (
-		<div className={`container mx-auto py-8 px-2`}>
+		<div className={`container mx-auto py-8 px-6`}>
 			<div className="text-3xl text-gray-700 font-bold mb-12">Run LOVAMAP</div>
 
 			{/* Always visible (public content) */}

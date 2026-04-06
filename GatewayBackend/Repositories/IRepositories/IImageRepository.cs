@@ -15,6 +15,7 @@ namespace Repositories.IRepositories
 		
 		// Task<List<int>> GetAllImageIds();
 		Task<List<int>> GetImageIdsForDeletion(ImageCategory? category = null, bool includeThumbnails = false);
+		Task<List<(int ImageId, int ScaffoldGroupId)>> GetThumbnailsWithScaffoldGroupByCategory(ImageCategory category);
 		Task<Dictionary<int, IEnumerable<ImageToShowDto>>> GetAllImagesForScaffoldGroups(IEnumerable<int> scaffoldGroupIds);
 		Task<bool> HasThumbnailInCategory(int scaffoldGroupId, ImageCategory category);
 		Task<int> GetNumThumbnails(int scaffoldGroupId);

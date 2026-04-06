@@ -9,6 +9,7 @@ import { BatchOperationResult } from "../models/batchOperationResult";
 import { ScaffoldGroupData } from "../models/scaffoldGroupData";
 import { InputGroup } from "../models/inputGroup";
 import { ScaffoldGroupFilter } from "../models/scaffoldGroupFilter";
+import { ThumbnailResetPreview } from "../models/thumbnailResetPreview";
 
 export default class ScaffoldGroupStore {
 	scaffoldGroups: ScaffoldGroup[] = [];
@@ -165,13 +166,19 @@ export default class ScaffoldGroupStore {
 		try {
 			const apiResponse = await agent.ScaffoldGroups.getDetailed(data.scaffoldGroupId);
 			const scaffoldGroup = apiResponse.data;
-			// runInAction(() => {
-			// 	console.log("Data set in state:", scaffoldGroup);
-			// 	// Here you might set this data to some observable state if needed
-			// });
-			return scaffoldGroup; 
+			return scaffoldGroup;
 		} catch (error) {
 			console.error("Failed to fetch detailed scaffold group:", error);
+		}
+	};
+
+	getPreviewScaffoldGroupById = async (scaffoldGroupId: number) => {
+		try {
+			const apiResponse = await agent.ScaffoldGroups.getPreview(scaffoldGroupId);
+			return apiResponse.data;
+		} catch (error) {
+			console.error("Failed to fetch preview scaffold group:", error);
+			return null;
 		}
 	};
 
@@ -367,27 +374,6 @@ export default class ScaffoldGroupStore {
         }
     };
 
-	getImageIdsForDeletion = async (category?: number | null, includeThumbnails?: boolean ): Promise<number[]> => {
-		try {
-			let queryParams = ''
-			if (category !== null && category !== undefined){
-				queryParams += `category=${category.toString()}`;
-			} 
-			if (includeThumbnails !== null && includeThumbnails !== undefined)
-			{
-				if (queryParams !== '') queryParams += '&';
-				queryParams += `includeThumbnails=${includeThumbnails.toString()}`;
-			}
-			if (queryParams !== '') queryParams = '?' + queryParams;
-
-			const response = await agent.ScaffoldGroups.getImageIdsForDeletion(queryParams);
-			return response.data;
-		} catch (error) {
-			console.error("Error fetching deletable image IDs:", error);
-			return [];
-		}
-	};
-
 	deleteImages = async (ids: number[]): Promise<BatchOperationResult | null> => {
 		try {
 			const idsToDelete: {imageIds: number[]} = {imageIds: ids};
@@ -399,9 +385,16 @@ export default class ScaffoldGroupStore {
 		}
 	};
 
-	searchScaffoldGroups = async (searchPrompt: string) => {
+	searchScaffoldGroups = async (
+		searchPrompt: string,
+		preFilter?: { isSimulated?: boolean; shapeTagNames?: string[] }
+	) => {
 		try {
-			const response = await agent.ScaffoldGroups.search(searchPrompt);
+			const response = await agent.ScaffoldGroups.search({
+				prompt: searchPrompt,
+				isSimulated: preFilter?.isSimulated,
+				shapeTagNames: preFilter?.shapeTagNames,
+			});
 			runInAction(() => {
 				this.scaffoldGroups = response.data.scaffoldGroups;
 	
@@ -619,13 +612,23 @@ export default class ScaffoldGroupStore {
 		}
 	}
 
-	getScaffoldsWithMissingThumbnails = async(): Promise<ScaffoldWithMissingThumbnail[]> => {
+	getScaffoldsWithMissingThumbnails = async(category?: number | null): Promise<ScaffoldWithMissingThumbnail[]> => {
 		try {
-			const response = await agent.ScaffoldGroups.getScaffoldsWithMissingThumbnails()
+			const response = await agent.ScaffoldGroups.getScaffoldsWithMissingThumbnails(category)
 			return response.data ?? [];
 		} catch (error) {
 			console.error(error);
 			return [];
+		}
+	}
+
+	getThumbnailResetPreview = async (category: number): Promise<ThumbnailResetPreview | null> => {
+		try {
+			const response = await agent.ScaffoldGroups.getThumbnailResetPreview(category);
+			return response.data;
+		} catch (error) {
+			console.error("Error fetching thumbnail reset preview:", error);
+			return null;
 		}
 	}
 

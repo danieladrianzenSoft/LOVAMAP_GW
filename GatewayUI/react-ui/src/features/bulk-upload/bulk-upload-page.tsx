@@ -16,9 +16,9 @@ const BulkUploadPage: React.FC = () => {
   const { step } = bulkUploadStore;
 
   return (
-    <div className="container mx-auto mt-10 px-4 lg:px-8 pb-20">
-      <div className="flex items-center justify-between mb-8">
-        <h1 className="text-2xl font-bold">Bulk Upload</h1>
+    <div className="container mx-auto py-8 px-6 pb-20">
+      <div className="flex items-center justify-between mb-12">
+        <h1 className="text-3xl text-gray-700 font-bold">Bulk Upload</h1>
         {step !== BulkUploadStep.Drop && (
           <button
             onClick={() => bulkUploadStore.reset()}

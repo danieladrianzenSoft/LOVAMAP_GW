@@ -54,7 +54,7 @@ const DescriptorFilters: React.FC<DescriptorFiltersProps> = ({onSelect, onBulkSe
 										{onBulkSelect && (
 											<span
 												onClick={(e) => { e.stopPropagation(); onBulkSelect(descriptorTypes, !allSelected); }}
-												className="text-xs font-normal text-blue-500 hover:text-blue-700 cursor-pointer transition-colors"
+												className="button-link"
 											>
 												({allSelected ? "deselect all" : "select all"})
 											</span>

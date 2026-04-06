@@ -1,0 +1,48 @@
+/*
+ * Design tokens: button variants
+ *
+ * Usage:
+ *   <button className="button-primary">Save</button>
+ *   <button className="button-outline w-32">Cancel</button>
+ */
+
+.button-base {
+	@apply inline-flex items-center justify-center
+	       px-4 py-2 text-sm font-medium
+	       rounded-md transition-colors
+	       disabled:opacity-50 disabled:cursor-not-allowed
+	       focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-1
+	       focus-visible:ring-primary-400;
+}
+
+.button-primary {
+	@apply button-base bg-primary-700 text-white
+	       hover:bg-primary-800 active:bg-primary-800;
+}
+
+.button-secondary {
+	@apply button-base bg-link-300 text-white
+	       hover:bg-link-400 active:bg-link-400;
+}
+
+.button-outline {
+	@apply button-base bg-transparent border border-primary-700
+	       text-primary-600 hover:bg-primary-50 active:bg-primary-100;
+}
+
+.button-muted {
+	@apply button-base bg-secondary-100 text-secondary-700
+	       hover:bg-secondary-200 active:bg-secondary-300;
+}
+
+.button-link {
+	@apply text-sm bg-transparent px-0 py-0 text-link-100
+	       hover:text-link-200 active:text-link-200
+		   font-medium cursor-pointer;
+}
+
+.button-link-dark {
+	@apply text-sm bg-transparent px-0 py-0 text-link-200
+	       hover:text-link-300 active:text-link-300
+		   font-medium;
+}

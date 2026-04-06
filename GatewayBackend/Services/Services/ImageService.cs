@@ -165,8 +165,7 @@ namespace Services.Services
 
 					if (result.Result != "ok")
 					{
-						_logger.LogInformation($"Cloudinary delete result for image {image.Id}: {result.Result}");
-						return (false, "Cloudinary_Delete_Failed");
+						_logger.LogWarning($"Cloudinary delete for image {image.Id} (publicId={image.PublicId}) returned '{result.Result}'; proceeding with DB delete anyway.");
 					}
 				}
 
@@ -263,6 +262,19 @@ namespace Services.Services
 			{
 				_logger.LogError(ex, "Error retrieving image IDs for deletion");
 				return new List<int>();
+			}
+		}
+
+		public async Task<List<(int ImageId, int ScaffoldGroupId)>> GetThumbnailsWithScaffoldGroupByCategory(ImageCategory category)
+		{
+			try
+			{
+				return await _imageRepository.GetThumbnailsWithScaffoldGroupByCategory(category);
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, "Error retrieving thumbnails with scaffold group by category");
+				return new List<(int, int)>();
 			}
 		}
 

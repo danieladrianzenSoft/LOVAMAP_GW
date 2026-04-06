@@ -23,7 +23,7 @@ const ExperimentSidebar = ({
 	onReplicatesChange: (groupId: number, numReplicates: number) => void;
   }) => {
 	return (
-	<div className="w-full h-full p-4 bg-gray-100">
+	<div className="w-full h-full p-4 bg-secondary-100">
 		{showTitle && <h2 className="text-lg font-bold text-gray-700 mb-6">Data to download</h2>}
 		
 		
@@ -49,7 +49,7 @@ const ExperimentSidebar = ({
 				<li key={d.id} className="my-4">
 					<div className="flex items-center">
 					<button
-						className="bg-gray-300 text-gray-700 p-2 rounded-full mr-2 text-xs hover:shadow-md"
+						className="bg-secondary-200 text-gray-700 p-2 rounded-full mr-2 text-xs hover:shadow-md"
 						onClick={() => handleUnselectDescriptorType(d.id)}
 					>
 						<FaTimes />
@@ -73,7 +73,7 @@ const ExperimentSidebar = ({
 						<li key={group.id} className="my-4">
 							<div className="flex items-center">
 								<button
-								className="bg-gray-300 text-gray-700 p-2 rounded-full mr-2 text-xs hover:shadow-md"
+								className="bg-secondary-200 text-gray-700 p-2 rounded-full mr-2 text-xs hover:shadow-md"
 								onClick={() => handleUnselectScaffoldGroup(group.id)}
 								>
 								<FaTimes />

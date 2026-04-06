@@ -48,15 +48,32 @@ namespace Services.Services
 			_httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {apiKey}");
 		}
 
-		public async Task<(bool Succeeded, string ErrorMessage, AIScaffoldSearchResponse? searchResponse)> RunSearchScaffoldGroupPipeline(string searchPrompt, string userId)
+		public async Task<(bool Succeeded, string ErrorMessage, AIScaffoldSearchResponse? searchResponse)> RunSearchScaffoldGroupPipeline(string searchPrompt, string userId, bool? isSimulated = null, List<string>? shapeTagNames = null)
 		{
 			try
 			{
-				var (succeededSearch, errorMessageSearch, scaffoldFilter) = await SearchScaffoldGroup(searchPrompt);
+				var (succeededSearch, errorMessageSearch, scaffoldFilter) = await SearchScaffoldGroup(searchPrompt, shapeTagNames, isSimulated);
 
 				if (!succeededSearch || scaffoldFilter == null)
 				{
 					return (false, errorMessageSearch, null);
+				}
+
+				// Merge pre-filter (user's scoping wins over GPT output)
+				if (isSimulated.HasValue)
+				{
+					scaffoldFilter.IsSimulated = isSimulated.Value;
+				}
+
+				if (shapeTagNames != null && shapeTagNames.Count > 0)
+				{
+					var existingNames = scaffoldFilter.TagNames ?? new List<string>();
+					var mergedNames = existingNames
+						.Concat(shapeTagNames)
+						.GroupBy(n => n.ToLowerInvariant())
+						.Select(g => g.First())
+						.ToList();
+					scaffoldFilter.TagNames = mergedNames;
 				}
 
 				var (succeeded, errorMessage, scaffoldGroups) = await _scaffoldGroupService.GetFilteredScaffoldGroups(scaffoldFilter, userId);
@@ -96,7 +113,7 @@ namespace Services.Services
 
 		}
 
-		public async Task<(bool Succeeded, string ErrorMessage, ScaffoldFilter? scaffoldFilter)> SearchScaffoldGroup(string searchPrompt)
+		public async Task<(bool Succeeded, string ErrorMessage, ScaffoldFilter? scaffoldFilter)> SearchScaffoldGroup(string searchPrompt, List<string>? shapeTagNames = null, bool? isSimulated = null)
 		{
 			try
 			{
@@ -105,29 +122,48 @@ namespace Services.Services
 				var validTagNames = validTags.Select(t => t.Name);
 				var tagListStr = string.Join(", ", validTagNames.Select(t => $"\"{t}\""));
 
+				var preScopedNotes = new List<string>();
+				if (shapeTagNames != null && shapeTagNames.Count > 0)
+				{
+					var scoped = string.Join(", ", shapeTagNames.Select(n => $"\"{n}\""));
+					preScopedNotes.Add($"The user has already scoped the search to the following shape(s): [{scoped}]. Do not duplicate or contradict this shape scoping in TagNames.");
+				}
+				if (isSimulated.HasValue)
+				{
+					var scopedKind = isSimulated.Value ? "simulated (computer-generated)" : "real (experimental/physical)";
+					preScopedNotes.Add($"The user has already scoped the search to {scopedKind} scaffolds. Do not set IsSimulated; leave it null.");
+				}
+				string preScopedNote = preScopedNotes.Count > 0
+					? "\n\t\t\t\t\tNotes:\n\t\t\t\t\t- " + string.Join("\n\t\t\t\t\t- ", preScopedNotes) + "\n"
+					: "";
+
 				// Step 2: Construct the prompt
 				string prompt = @$"
 					You are an assistant for a materials science platform, where users can filter and search for a specific type
-					of granular material 'scaffold group'.
+					of granular material 'scaffold group'.{preScopedNote}
 
 					Your job is to convert the text input into the following C# object structure, in JSON format:
 
 					ScaffoldFilter {{
 						ICollection<int>? ParticleSizes,
-						ICollection<string>? TagNames
+						ICollection<string>? TagNames,
+						bool? IsSimulated
 					}}
 
 					Instructions:
 					- Use only the following valid tag names (case-insensitive): [{tagListStr}]
-					- There should be no text or characters before or after the object, as I will be parsing it as is. 
+					- There should be no text or characters before or after the object, as I will be parsing it as is.
 					- You are allowed to **interpret synonyms or related words** in the user input. For example, if a user says 'cylindrical', you may map that to 'rods' if 'rods' is in the valid tag list.
 					- If a word in the user's input clearly corresponds to one of the valid tags in meaning (even if not exact wording), use it.
 					- If no valid tags are mentioned or matched, set TagNames to null.
 					- If particle sizes are mentioned (e.g., '200 microns', '300 um', etc.), assume what is provided is the particle diameter and extract those integers into ParticleSizes.
-					- If particle sizes are given with specific reference to it being the radius, multiply the provided value by 2 to get the diameter and add that into ParticleSizes. 
+					- If particle sizes are given with specific reference to it being the radius, multiply the provided value by 2 to get the diameter and add that into ParticleSizes.
 					- If the user provides a volume (e.g., 'volume of 5000 µm³'), convert it into diameter using the formula d = 2 * ((3 * V) / (4π))^(1/3), round the computed diameter to the nearest integer, and include it in ParticleSizes.
 					- If no reference to size is provided, set ParticleSizes to null.
 					- If particle sizes are mentioned but in the context of volume (e.g., '500um3', specific mention of volume), calculate the diameter assuming a spherical particle and add that integer into ParticleSizes.
+					- Set IsSimulated=false when the user uses words like 'real', 'experimental', 'actual', 'physical', 'lab', 'fabricated', 'microscopy', 'imaging', 'confocal' or otherwise indicates the scaffold was physically made/measured.
+					- Set IsSimulated=true when the user uses words like 'simulated', 'synthetic', 'in silico', 'computational', 'virtual', 'generated', or otherwise indicates the scaffold was computer-generated.
+					- If the user's input gives no indication either way about whether the scaffold is real or simulated, set IsSimulated to null.
 					- Return only the JSON object. Do not include comments or explanations.
 
 					If the user's input mentions a known tag, include it in TagNames. If not, set TagNames to null. 

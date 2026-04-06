@@ -3,13 +3,6 @@ import React from "react";
 import ExcelPreview from '../excel-preview/excel-preview';
 import * as XLSX from 'xlsx';
 
-// export const openPreviewInNewTab = <T extends {}>(
-//   data: T,
-//   generateExcel: (data: T) => { file: XLSX.WorkBook; filename: string },
-//   handleDownload: (workbook: XLSX.WorkBook, filename: string) => void,
-//   headingRows?: number[],
-//   numRows: number = 100
-// ) => {
 export const openPreviewInNewTab = (
   data: {
     file: XLSX.WorkBook;

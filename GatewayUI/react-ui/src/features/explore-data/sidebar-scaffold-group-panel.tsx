@@ -41,7 +41,7 @@ export const SidebarScaffoldGroupPanel: React.FC<SidebarScaffoldGroupPanelProps>
 						<div className="flex items-center">
 							{onRemove && (
 								<button
-										className="bg-gray-200 text-gray-600 p-1.5 rounded-full mr-2 text-xs hover:shadow-md hover:text-red-600"
+										className="bg-secondary-200 text-gray-600 p-1.5 rounded-full mr-2 text-xs hover:shadow-md hover:text-red-600"
 										onClick={(e) => {
 										e.stopPropagation();
 										onRemove(groupData.scaffoldGroup.id);
@@ -166,7 +166,7 @@ export const SidebarScaffoldGroupPanel: React.FC<SidebarScaffoldGroupPanelProps>
 						<td>
 							<div className="flex justify-start items-start mt-4">
 								<button
-									className="text-blue-600 hover:text-blue-800 text-xs"
+									className="button-link"
 									onClick={() => setShowMore(!showMore)}
 								>
 									{`${showMore ? 'Hide' : 'Show more'}`}

@@ -46,7 +46,7 @@ const HiddenPanel: React.FC<Props> = ({
         <div className="mt-2 text-sm text-gray-700 max-h-40 overflow-y-auto">
           <div className="flex justify-end items-end pb-2">
             <button
-              className="text-blue-600 hover:text-blue-800 text-xs"
+              className="button-link"
               onClick={onShowAll}
             >
               Show all
@@ -57,10 +57,10 @@ const HiddenPanel: React.FC<Props> = ({
               <li key={entityId} className="flex justify-between items-center">
                 <span>{`${category === 0 ? "particle " : "pore "}`}{entityId.split('-')[0]}</span>
                 <button
-                  className="text-blue-600 hover:text-blue-800 text-xs"
+                  className="button-link"
                   onClick={() => onToggleVisibility(entityId)}
                 >
-                  Show
+                  show
                 </button>
               </li>
             ))}

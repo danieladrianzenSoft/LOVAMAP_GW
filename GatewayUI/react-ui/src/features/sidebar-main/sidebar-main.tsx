@@ -62,7 +62,7 @@ const SideBarMain: React.FC = () => {
 				className={`
 					sidebar
 					${commonStore.isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}
-					md:translate-x-0
+					${commonStore.isSidebarCollapsed ? 'md:hidden' : 'md:translate-x-0'}
 				`}
 			>
 				<div className='flex flex-col justify-between h-full p-2 m-0'>

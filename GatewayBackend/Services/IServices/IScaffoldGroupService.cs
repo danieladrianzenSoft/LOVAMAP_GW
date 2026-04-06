@@ -30,7 +30,9 @@ namespace Services.IServices
 		Task<(bool Succeeded, string ErrorMessage, ICollection<ImageToShowDto>? scaffoldGroupImages)> GetScaffoldGroupImages(int scaffoldGroupId);
 		Task<(bool Succeeded, string ErrorMessage, ScaffoldGroupSummaryDto? updatedScaffoldGroup)> UpdateScaffoldGroupImage(string userId, int scaffoldGroupId, ImageToUpdateDto image);
 		Task<List<ScaffoldMissingThumbnailInfoDto>> GetScaffoldsMissingThumbnailsByCategory(ImageCategory imageCategory = ImageCategory.Particles);
+		Task<ThumbnailResetPreviewDto> GetThumbnailResetPreview(ImageCategory imageCategory);
 		Task<(bool Succeeded, string ErrorMessage, List<ScaffoldGroupMatch>? scaffoldGroupMatches)> FindPotentialMatches(InputGroupForMatchRequest request, string userId, int topN = 5);
+		Task<(bool Succeeded, string ErrorMessage, ScaffoldGroupBaseDto? scaffoldGroup)> GetScaffoldGroupPreview(int id, int maxReplicates = 3);
 
 	}
 }

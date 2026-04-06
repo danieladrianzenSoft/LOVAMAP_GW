@@ -21,6 +21,7 @@ import { Publication } from "../models/publication";
 import { InputGroup } from "../models/inputGroup";
 import { RdfGraph, RdfOntologySummary } from "../models/rdfGraph";
 import { DashboardAnalytics } from "../models/dashboardAnalytics";
+import { ThumbnailResetPreview } from "../models/thumbnailResetPreview";
 
 axios.defaults.baseURL = environment.baseUrl;
 
@@ -95,9 +96,11 @@ const ScaffoldGroups = {
 	getSummarized: (queryParams: string) => requests.get<ApiResponse<ScaffoldGroup[]>>('/scaffoldgroups' + queryParams),
 	getPublic: (queryParams: string) => requests.get<ApiResponse<ScaffoldGroup[]>>('/scaffoldgroups/public' + queryParams),
     getSummary: (id: number) => requests.get<ApiResponse<ScaffoldGroup>>('/scaffoldgroups/' + id + '/summary'),
-    search: (prompt: string) => requests.post<ApiResponse<AiScaffoldGroupSearch>>('/scaffoldgroups/search', {"prompt": prompt}),
+    search: (payload: { prompt: string; isSimulated?: boolean; shapeTagNames?: string[] }) =>
+        requests.post<ApiResponse<AiScaffoldGroupSearch>>('/scaffoldgroups/search', payload),
     getGroupSummaryByScaffoldId: (id: number) => requests.get<ApiResponse<ScaffoldGroup>>('/scaffoldgroups/scaffold/' + id + '/summary'),
 	getDetailed: (id: number) => requests.get<ApiResponse<ScaffoldGroup>>('/scaffoldGroups/' + id),
+    getPreview: (id: number) => requests.get<ApiResponse<ScaffoldGroup>>('/scaffoldGroups/' + id + '/preview'),
     getDetailedForExperiment: (queryParams: string) => requests.get<ApiResponse<ScaffoldGroup[]>>('/scaffoldgroups/detailed' + queryParams),
     getDataForVisualization: (scaffoldGroupId: number, queryParams: string) => requests.get<ApiResponse<ScaffoldGroupData>>(`/scaffoldgroups/data/${scaffoldGroupId}` + queryParams),
     getDataForVisualizationRandom: (queryParams: string) => requests.get<ApiResponse<ScaffoldGroupData>>(`/scaffoldgroups/data/random/` + queryParams),
@@ -147,11 +150,17 @@ const ScaffoldGroups = {
 
         return response.data;
     },
-    getImageIdsForDeletion: (queryParams: string) => requests.get<ApiResponse<number[]>>('/scaffoldgroups/images/ids-for-deletion' + queryParams),
     updateImage: (scaffoldGroupId: number, image: ImageToUpdate) => requests.put<ApiResponse<ScaffoldGroup>>(`/scaffoldgroups/${scaffoldGroupId}/images/${image.id}`, image),
     deleteImage: (scaffoldGroupId: number, imageId: number) => requests.del<ApiResponse<ScaffoldGroup>>(`/scaffoldgroups/${scaffoldGroupId}/images/${imageId}`),
     deleteImages: (imageIds: {imageIds: number[]}) => requests.post<ApiResponse<BatchOperationResult>>('/scaffoldgroups/images/batch-delete', imageIds),
-    getScaffoldsWithMissingThumbnails: () => requests.get<ApiResponse<ScaffoldWithMissingThumbnail[]>>(`/scaffoldgroups/images/missing-thumbnails`)
+    getScaffoldsWithMissingThumbnails: (category?: number | null) => {
+        const query = category !== null && category !== undefined ? `?category=${ImageCategory[category]}` : '';
+        return requests.get<ApiResponse<ScaffoldWithMissingThumbnail[]>>(`/scaffoldgroups/images/missing-thumbnails${query}`);
+    },
+    getThumbnailResetPreview: (category: number) =>
+        requests.get<ApiResponse<ThumbnailResetPreview>>(
+            `/scaffoldgroups/images/thumbnail-reset-preview?category=${ImageCategory[category]}`
+        )
 }
 
 const Descriptors = {

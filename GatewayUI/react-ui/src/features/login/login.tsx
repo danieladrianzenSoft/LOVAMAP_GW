@@ -45,7 +45,7 @@ const LoginPage: React.FC = () => {
 
 	return (
 		<>
-			<div className="gradient-form bg-gray-200 h-screen w-full">
+			<div className="gradient-form bg-secondary-50 h-screen w-full">
 				<div className="justify-center py-12 px-6 h-full">
 					<div className="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
 						<div className="xl:w-4/12">
@@ -81,7 +81,7 @@ const LoginPage: React.FC = () => {
 																}
 														/>
 														<div className="text-center pt-1 mb-12 pb-1"> 
-															<button className="button-primary flex items-center justify-center space-x-2"
+															<button className="button-primary flex items-center justify-center space-x-2 w-full mb-2"
 																type="submit"
 																disabled={isSubmitting}
 																>
@@ -90,7 +90,7 @@ const LoginPage: React.FC = () => {
 																	<FaSpinner className="animate-spin ml-2" size={20} />
 																)}
 															</button>
-															<a className="text-gray-500" href={'/forgot-password'}>
+															<a className="button-link" href={'/forgot-password'}>
 																Forgot password?
 															</a>
 														</div>

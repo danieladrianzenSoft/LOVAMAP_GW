@@ -55,7 +55,7 @@ const SelectedPanel: React.FC<Props> = ({
       <div className="flex justify-between items-center cursor-pointer border-b border-gray-300 pb-2">
         <h2 className="text-sm font-semibold text-gray-800">{`${title}`}</h2>
         <button
-          className="text-blue-600 hover:text-blue-800 text-xs"
+          className="button-link"
           onClick={() => { if (selectedDomainEntity) onUnselect(); }}
           disabled={!selectedDomainEntity}
         >
@@ -96,7 +96,7 @@ const SelectedPanel: React.FC<Props> = ({
                 </div>
                 <div className="flex justify-start items-start pb-2 mt-2">
                   <button
-                    className="text-blue-600 hover:text-blue-800 text-xs"
+                    className="button-link"
                     onClick={() => setShowMore(!showMore)}
                   >
                     {`${showMore ? 'Hide' : 'Show more'}`}

@@ -6,6 +6,7 @@ export interface PlotOption {
 	label: string;
 	component: React.ReactNode;
 	onClick?: () => void;
+	itemClassName?: string;
 }
 
 interface PlotSelectorProps {
@@ -39,7 +40,7 @@ const PlotSelector: React.FC<PlotSelectorProps> = ({ plots, initialKey, heightCl
 		<div className="w-full mb-4">
 			{/* Toggle Controls */}
 			<PillGroup
-				options={plots.map(p => ({ key: p.key, label: p.label }))}
+				options={plots.map(p => ({ key: p.key, label: p.label, itemClassName: p.itemClassName }))}
 				selectedKey={selectedKey}
 				onChange={handleChange}
 				className="mt-8 mb-0"

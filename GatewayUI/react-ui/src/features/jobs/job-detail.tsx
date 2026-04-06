@@ -64,7 +64,7 @@ const JobDetail: React.FC<Props> = ({ job, onBack, formatDate, onDownloadResults
             value={
               job.hasResults === true ? (
                 <>
-                  <span className="inline-flex px-2 py-0.5 rounded-full bg-green-50 text-green-700 text-xs font-medium">
+                  <span className="inline-flex px-2 py-0.5 rounded-full bg-green-50 text-link-200 text-xs font-medium mb-2">
                     Yes
                   </span>
                   {canDownload && (

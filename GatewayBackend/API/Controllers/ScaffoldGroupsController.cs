@@ -265,6 +265,33 @@ public class ScaffoldGroupsController : ControllerBase
 		}
     }
 
+	[AllowAnonymous]
+	[HttpGet("{id}/preview")]
+	public async Task<IActionResult> GetScaffoldGroupPreview(int id)
+	{
+		try
+		{
+			var (succeeded, errorMessage, scaffoldGroup) = await _scaffoldGroupService.GetScaffoldGroupPreview(id);
+
+			if (!succeeded || scaffoldGroup == null)
+			{
+				if (errorMessage == "Unauthorized")
+					return Unauthorized(new ApiResponse<string>(401, "This scaffold group is not public"));
+
+				return NotFound(new ApiResponse<string>(404, errorMessage));
+			}
+
+			var detailedScaffoldGroup = scaffoldGroup as ScaffoldGroupDetailedDto;
+
+			return Ok(new ApiResponse<ScaffoldGroupDetailedDto>(200, "", detailedScaffoldGroup));
+		}
+		catch (Exception ex)
+		{
+			_logger.LogError(ex, "Failed to get the scaffold group preview");
+			return StatusCode(500, new ApiResponse<string>(500, "An error occurred while getting the scaffold group preview"));
+		}
+	}
+
 	[HttpGet]
     public async Task<IActionResult> GetSummarizedScaffoldGroups([FromQuery] ScaffoldFilter filter)
     {
@@ -305,7 +332,11 @@ public class ScaffoldGroupsController : ControllerBase
 				userId = adminUserId;
 			}
 
-			var (success, errorMessage, searchResult) = await _aiSearchService.RunSearchScaffoldGroupPipeline(searchRequest.Prompt, userId);
+			var (success, errorMessage, searchResult) = await _aiSearchService.RunSearchScaffoldGroupPipeline(
+				searchRequest.Prompt,
+				userId,
+				searchRequest.IsSimulated,
+				searchRequest.ShapeTagNames);
 
 			if (!success || searchResult == null) return BadRequest(new ApiResponse<string>(400, errorMessage));
 
@@ -561,6 +592,23 @@ public class ScaffoldGroupsController : ControllerBase
 		{
 			_logger.LogError(ex, "Failed to get scaffolds with missing thumbnails");
         	return StatusCode(500, new ApiResponse<string>(500, "An error occurred while getting scaffolds with missing thumbnails"));
+		}
+	}
+
+	[Authorize(Roles = "administrator")]
+	[HttpGet("images/thumbnail-reset-preview")]
+	public async Task<IActionResult> GetThumbnailResetPreview([FromQuery] ImageCategory? category = null)
+	{
+		try
+		{
+			var preview = await _scaffoldGroupService.GetThumbnailResetPreview(category ?? ImageCategory.Particles);
+
+			return Ok(new ApiResponse<ThumbnailResetPreviewDto>(200, "", preview));
+		}
+		catch (Exception ex)
+		{
+			_logger.LogError(ex, "Failed to get thumbnail reset preview");
+			return StatusCode(500, new ApiResponse<string>(500, "An error occurred while getting the thumbnail reset preview"));
 		}
 	}
 

@@ -8,8 +8,8 @@ const SettingsScreen = () => {
   const { commonStore } = useStore();
 
   return (
-    <div className="container mx-auto py-8 px-4 sm:px-6 lg:px-8">
-      <div className="text-3xl text-gray-700 font-bold mb-6">Account Settings</div>
+    <div className="container mx-auto py-8 px-6">
+      <div className="text-3xl text-gray-700 font-bold mb-12">Account Settings</div>
 
       <div className="bg-white rounded-xl shadow p-6 max-w-xl mb-6">
         <h2 className="text-xl font-semibold text-gray-800 mb-2">Security</h2>

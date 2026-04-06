@@ -29,6 +29,6 @@ export enum ImageCategory {
     Particles = 0,
     ExteriorPores = 1,
     InteriorPores = 2,
-    ParticleSizeDistribution = 3,
+    HalfHalf = 3,
     Other = 4
 }

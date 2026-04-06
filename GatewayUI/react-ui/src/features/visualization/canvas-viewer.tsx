@@ -4,6 +4,7 @@ import { Bounds, OrbitControls, useProgress } from "@react-three/drei";
 import { PCFSoftShadowMap} from "three";
 import * as THREE from "three";
 import Model from "./model";
+import { CANVAS_CAMERA_PROPS, applyCameraFraming } from "./camera-config";
 
 interface DomainMeshProps {
   url: string;
@@ -25,6 +26,8 @@ interface DomainMeshProps {
   debugMode?: boolean;
   diameterValues?: number[];
   idToIndex?: Record<string, number>;
+  colorOverrideMap?: Record<string, string> | null;
+  onEntityIdsLoaded?: (ids: string[]) => void;
 }
 
 interface CanvasViewerProps {
@@ -83,16 +86,7 @@ const CanvasViewer: React.FC<CanvasViewerProps> = ({ meshes, onSliceBoundsComput
 
     if (hasSetCamera.current) return;
 
-    const direction = new THREE.Vector3(0.9, 0.5, 0.8).normalize();
-    const distance = size * 0.8;
-    const newPosition = direction.multiplyScalar(distance).add(center);
-
-    const camera = controlsRef.current.object;
-    camera.position.copy(newPosition);
-    camera.lookAt(center);
-    camera.near = size / 10;
-    camera.far = size * 10;
-    camera.updateProjectionMatrix();
+    applyCameraFraming(controlsRef.current.object, center, size);
 
     controlsRef.current.target.copy(center);
     controlsRef.current.update();
@@ -119,6 +113,7 @@ const CanvasViewer: React.FC<CanvasViewerProps> = ({ meshes, onSliceBoundsComput
       )}
       <Canvas
         shadows
+        camera={CANVAS_CAMERA_PROPS}
         gl={{
           preserveDrawingBuffer: true,
           toneMapping: THREE.NoToneMapping,   // JX: MATLAB-like
@@ -162,6 +157,8 @@ const CanvasViewer: React.FC<CanvasViewerProps> = ({ meshes, onSliceBoundsComput
                 sliceXThreshold={meshProps.sliceXThreshold}
                 diameterValues={meshProps.diameterValues}
                 idToIndex={meshProps.idToIndex}
+                colorOverrideMap={meshProps.colorOverrideMap}
+                onEntityIdsLoaded={meshProps.onEntityIdsLoaded}
               />
             </group>
           ))}

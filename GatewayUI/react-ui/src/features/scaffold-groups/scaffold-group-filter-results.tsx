@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ScaffoldGroup } from '../../app/models/scaffoldGroup';
 import ScaffoldGroupCard from "./scaffold-group-card"; // adjust path if different
 import ScaffoldGroupDetails from "./scaffold-group-details";
@@ -38,6 +38,7 @@ const ScaffoldGroupsFilterResults: React.FC<ScaffoldGroupsFilterResultsProps> = 
 }) => {
 	const totalFilters = selectedTagNames.length + selectedParticleSizeIds.length;
 	const [numberOfColumns, setNumberOfColumns] = useState(3);
+	const containerRef = useRef<HTMLDivElement>(null);
 	// const {scaffoldGroupStore} = useStore();
 
 	// const handleRemoveTag = ((tag: string) => {
@@ -46,22 +47,28 @@ const ScaffoldGroupsFilterResults: React.FC<ScaffoldGroupsFilterResultsProps> = 
 	// })
 
 	useEffect(() => {
-		const handleResize = () => {
-			const width = window.innerWidth;
-			if (width < 640) setNumberOfColumns(1);
-			else if (width < 1024) setNumberOfColumns(2);
+		const el = containerRef.current;
+		if (!el) return;
+
+		const updateCols = (width: number) => {
+			if (width < 560) setNumberOfColumns(1);
+			else if (width < 860) setNumberOfColumns(Math.min(2, largeScreenColumns));
+			else if (width < 1140) setNumberOfColumns(Math.min(3, largeScreenColumns));
 			else setNumberOfColumns(largeScreenColumns);
 		};
 
-		handleResize(); // set initial value
-		window.addEventListener('resize', handleResize);
-		return () => window.removeEventListener('resize', handleResize);
+		updateCols(el.getBoundingClientRect().width);
+		const ro = new ResizeObserver((entries) => {
+			updateCols(entries[0].contentRect.width);
+		});
+		ro.observe(el);
+		return () => ro.disconnect();
 	}, [largeScreenColumns]);
 
 	useEffect(() => {
 		if (!visibleDetails) return;
 
-		const id = `scaffold-details-${visibleDetails}`;
+		const id = `scaffold-card-${visibleDetails}`;
 		const el = document.getElementById(id);
 		if (el) {
 			el.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -77,20 +84,28 @@ const ScaffoldGroupsFilterResults: React.FC<ScaffoldGroupsFilterResultsProps> = 
 		}
 	
 		return (
-			<div className="space-y-2">
+			<div>
 				{rows.map((row, index) => {
 					const detailGroup = row.find(sg => sg.id === visibleDetails);
-	
+					const detailColumnIndex = detailGroup ? row.indexOf(detailGroup) : -1;
+					const squareTopLeft = detailColumnIndex === 0;
+					const squareTopRight = detailColumnIndex === row.length - 1;
+
 					return (
 						<React.Fragment key={index}>
 							<div className={`flex flex-wrap gap-0`}>
-								{row.map(scaffoldGroup => {
+								{row.map((scaffoldGroup, columnIndex) => {
 									const isSelected = selectedScaffoldGroups?.some(group => group.id === scaffoldGroup.id) ?? false;
-									
+
+									const isDetailOpen = visibleDetails === scaffoldGroup.id;
+									const hasLeftNeighbor = columnIndex > 0;
+									const hasRightNeighbor = columnIndex < row.length - 1;
 									return (
 										<div
-											className={`w-full sm:w-1/2 ${largeScreenColumns === 3 ? "lg:w-1/3" : "lg:w-1/2"}`}
+											className="relative p-1.5"
+											style={{ width: `${100 / numberOfColumns}%` }}
 											key={scaffoldGroup.id}
+											id={`scaffold-card-${scaffoldGroup.id}`}
 										>
 											<ScaffoldGroupCard
 												scaffoldGroup={scaffoldGroup}
@@ -103,19 +118,47 @@ const ScaffoldGroupsFilterResults: React.FC<ScaffoldGroupsFilterResultsProps> = 
 														? onUnselect?.(scaffoldGroup.id)
 														: onSelect?.(scaffoldGroup)
 												}
+												columns={numberOfColumns}
 											/>
+											{isDetailOpen && (
+												<>
+													{/* Center bridge: fills the vertical gap beneath the card */}
+													<div
+														aria-hidden="true"
+														className="absolute left-1.5 right-1.5 -bottom-2.5 h-4 bg-white z-10 pointer-events-none"
+													/>
+													{/* Left concave bezel: curves outward-and-down from card's bottom-left into details */}
+													{hasLeftNeighbor && (
+														<div
+															aria-hidden="true"
+															className="absolute -left-2.5 -bottom-2.5 w-4 h-4 z-10 pointer-events-none"
+															style={{ background: 'radial-gradient(circle 16px at 0% 0%, transparent 16px, white 16px)' }}
+														/>
+													)}
+													{/* Right concave bezel: mirror on card's bottom-right */}
+													{hasRightNeighbor && (
+														<div
+															aria-hidden="true"
+															className="absolute -right-2.5 -bottom-2.5 w-4 h-4 z-10 pointer-events-none"
+															style={{ background: 'radial-gradient(circle 16px at 100% 0%, transparent 16px, white 16px)' }}
+														/>
+													)}
+												</>
+											)}
 										</div>
-										
+
 									);
 								})}
 							</div>
-	
+
 							{detailGroup && (
-								<div className="w-full scaffold-details" id={`scaffold-details-${detailGroup.id}`}>
+								<div className="w-full p-1.5 mt-1 scaffold-details" id={`scaffold-details-${detailGroup.id}`}>
 									<ScaffoldGroupDetails
 										scaffoldGroup={detailGroup}
 										isVisible={true}
 										toggleDetails={() => toggleDetails(detailGroup.id)}
+										squareTopLeft={squareTopLeft}
+										squareTopRight={squareTopRight}
 									/>
 								</div>
 							)}
@@ -127,7 +170,7 @@ const ScaffoldGroupsFilterResults: React.FC<ScaffoldGroupsFilterResultsProps> = 
 	};
 	
 	return (
-		<div className="col-span-3 px-3 space-y-12">
+		<div ref={containerRef} className="col-span-3 space-y-12">
 			{totalFilters === 0 && renderCards(scaffoldGroups)}
 
 			{totalFilters >= 1 && (

@@ -3,6 +3,7 @@ import { useThree, ThreeEvent, Vector3 } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
 import * as THREE from 'three';
 import { observer } from 'mobx-react-lite';
+import { applyCameraFraming } from './camera-config';
 
 //JX: 3/10 colormap
 const beadColorJS = (diam: number): THREE.Color => {
@@ -76,6 +77,8 @@ interface ModelProps {
   	sliceXThreshold?: number | null;
 	diameterValues?: number[];
 	idToIndex?: Record<string, number>;
+	colorOverrideMap?: Record<string, string> | null;
+	onEntityIdsLoaded?: (ids: string[]) => void;
 }
 
 function createBoundingBoxHelper(object: THREE.Object3D, color: string): THREE.BoxHelper {
@@ -103,6 +106,8 @@ const Model: React.FC<ModelProps> = ({
   	sliceXThreshold,
 	diameterValues,
 	idToIndex,
+	colorOverrideMap,
+	onEntityIdsLoaded,
 }) => {
 	const { scene } = useGLTF(url);
 	const { camera } = useThree();
@@ -143,23 +148,20 @@ const Model: React.FC<ModelProps> = ({
 			);
 		}
 
-		// Direction vector from which to view the mesh
-		const direction = new THREE.Vector3(0.9, 0.5, 0.8).normalize(); // Equal X and Y, some upward Z
-		const distance = size * 1; // Pull back a bit more than size
-
-		camera.position.copy(direction.clone().multiplyScalar(distance).add(center));
-		camera.lookAt(center);
-
-		// camera.near = Math.max(0.1, size / 10);
-		// camera.far = size * 10;
-		camera.near = size / 10;
-    	camera.far = size * 10;
-		camera.updateProjectionMatrix();
+		applyCameraFraming(camera, center, size);
 
 		cameraSetRef.current = true;
 		// setModelLoaded(true);
-		onLoad?.(scene, center, size, category, { min, max });				
-	}, [camera, scene, onLoad, debugMode, category]);
+		onLoad?.(scene, center, size, category, { min, max });
+
+		if (onEntityIdsLoaded) {
+			const ids: string[] = [];
+			scene.traverse(child => {
+				if (child instanceof THREE.Mesh) ids.push(child.name);
+			});
+			onEntityIdsLoaded(ids);
+		}
+	}, [camera, scene, onLoad, debugMode, category, onEntityIdsLoaded]);
 
 	useEffect(() => {
 		scene.traverse((child) => {
@@ -217,13 +219,19 @@ const Model: React.FC<ModelProps> = ({
 					? (originalMat as any).color.clone()
 					: new THREE.Color(0xC0C0C0);
 
+				const testColorHex = colorOverrideMap ? colorOverrideMap[entityId] : undefined;
+
 				{
 					// Metallic material — determine color and whether to preserve vertex colors
 					let metallicColor = originalColor;
 					let useVertexColors = (workingMat as any).vertexColors ?? false;
 
-					// For particles with colorful OFF (dimmed=true): apply diameter colormap
-					if (category === 0 && dimmed && diameterValues && diameterValues.length > 0) {
+					if (testColorHex) {
+						// Admin test color override wins over baked-in vertex colors.
+						metallicColor = new THREE.Color(testColorHex);
+						useVertexColors = false;
+					} else if (category === 0 && dimmed && diameterValues && diameterValues.length > 0) {
+						// For particles with colorful OFF (dimmed=true): apply diameter colormap
 						const particleIndex = idToIndex?.[entityId];
 						if (particleIndex !== undefined && particleIndex < diameterValues.length) {
 							metallicColor = beadColorJS(diameterValues[particleIndex]);
@@ -250,15 +258,17 @@ const Model: React.FC<ModelProps> = ({
 					workingMat = metallic;
 				}
 
-				// Global override (highest priority)
-				if (typeof color === 'string') {
-					if ((workingMat as any).color) (workingMat as any).color = new THREE.Color(color);
-					(workingMat as any).vertexColors = false;
-				} else if (dimmed && typeof dimmedOptions?.color === 'string' && (workingMat as any).color) {
-					// Skip dimmed color override for particles when diameter data is active
-					if (!(category === 0 && diameterValues && diameterValues.length > 0)) {
-						(workingMat as any).color = new THREE.Color(dimmedOptions.color);
+				// Global override (highest priority) — skipped when a test color is active
+				if (!testColorHex) {
+					if (typeof color === 'string') {
+						if ((workingMat as any).color) (workingMat as any).color = new THREE.Color(color);
 						(workingMat as any).vertexColors = false;
+					} else if (dimmed && typeof dimmedOptions?.color === 'string' && (workingMat as any).color) {
+						// Skip dimmed color override for particles when diameter data is active
+						if (!(category === 0 && diameterValues && diameterValues.length > 0)) {
+							(workingMat as any).color = new THREE.Color(dimmedOptions.color);
+							(workingMat as any).vertexColors = false;
+						}
 					}
 				}
 
@@ -295,7 +305,7 @@ const Model: React.FC<ModelProps> = ({
 			child.visible = finalVisible;
 			child.raycast = finalVisible ? child.userData.originalRaycast : () => {};
 		});
-	}, [scene, hiddenIds, selectedEntity, dimmed, dimmedOptions, visible, color, opacity, shouldSlice, sliceXThreshold, combinedCenter, category, slicingActive, diameterValues, idToIndex]);
+	}, [scene, hiddenIds, selectedEntity, dimmed, dimmedOptions, visible, color, opacity, shouldSlice, sliceXThreshold, combinedCenter, category, slicingActive, diameterValues, idToIndex, colorOverrideMap]);
 
 
 	useEffect(() => {

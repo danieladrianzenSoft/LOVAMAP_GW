@@ -5,6 +5,7 @@ export default class CommonStore {
 	appLoaded = false;
 	activeTab = 0;
 	isSidebarOpen = false;
+	isSidebarCollapsed = false;
 	darkMode: boolean = window.localStorage.getItem('darkMode') === 'true';
 
 	constructor() {
@@ -42,6 +43,8 @@ export default class CommonStore {
 	}
 
 	setSidebarOpen = (value: boolean) => { this.isSidebarOpen = value };
+
+	setSidebarCollapsed = (value: boolean) => { this.isSidebarCollapsed = value };
 
 	setToken = (accessToken: string | null) => {
 		if (accessToken) {

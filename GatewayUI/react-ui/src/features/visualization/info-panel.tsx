@@ -114,7 +114,7 @@ const InfoPanel: React.FC<Props> = ({
 
               <div className="flex justify-start items-start mt-4">
                 <button
-                  className="text-blue-600 hover:text-blue-800 text-xs"
+                  className="button-link"
                   onClick={() => setShowMore(!showMore)}
                 >
                   {`${showMore ? 'Hide' : 'Show more'}`}

@@ -27,7 +27,7 @@ const Slider: React.FC<SliderProps> = ({
 			step={step}
 			value={value}
 			onChange={(e) => onChange(parseFloat(e.target.value))}
-			className="custom-slider w-full h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-500"
+			className="custom-slider w-full h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-link-100"
 		/>
 		</div>
 	);

@@ -26,7 +26,32 @@
     -->
     <title>LOVAMAP</title>
     <!-- Umami Analytics (production only - script won't load in dev since Umami isn't running) -->
-    <script defer src="/umami/script.js" data-website-id="REPLACE_WITH_WEBSITE_ID"></script>
+    <script defer src="https://analytics.lovamap.com/script.js" data-website-id="1e82a057-4331-4504-96d4-f1a763469566"></script>
+    <!--
+      Suppress Three.js GLTF loader errors for revoked blob URLs.
+      Must run before webpack-dev-server's overlay listener is registered
+      (which happens when bundle.js loads) so we can stopImmediatePropagation.
+    -->
+    <script>
+      (function () {
+        function isBlobLoadError(msg) {
+          return typeof msg === 'string' && msg.indexOf('Could not load blob:') !== -1;
+        }
+        window.addEventListener('error', function (e) {
+          if (isBlobLoadError(e.message) || isBlobLoadError(e.error && e.error.message)) {
+            e.stopImmediatePropagation();
+            e.preventDefault();
+          }
+        });
+        window.addEventListener('unhandledrejection', function (e) {
+          var msg = (e.reason && e.reason.message) || String(e.reason);
+          if (isBlobLoadError(msg)) {
+            e.stopImmediatePropagation();
+            e.preventDefault();
+          }
+        });
+      })();
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

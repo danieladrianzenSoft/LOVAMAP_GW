@@ -6,6 +6,7 @@ import { JobForList } from '../../app/models/job';
 import { formatDate } from '../../app/utils/format-date';
 import JobDetail from './job-detail';
 import { FaSpinner } from 'react-icons/fa';
+import DataTable, { DataTableColumn } from '../../app/common/data-table/data-table';
 
 const JobList: React.FC = () => {
 	const { jobStore, userStore } = useStore();
@@ -69,6 +70,13 @@ const JobList: React.FC = () => {
 		await fetchJobs();
 	}
 
+	const jobColumns: DataTableColumn<JobForList>[] = [
+		{ header: '#', render: (_job, index) => index + 1 },
+		{ header: 'Id', render: (job) => job.id },
+		{ header: 'Date', render: (job) => formatDate(job.submittedAt) },
+		{ header: 'Status', render: (job) => job.status },
+	];
+
 	if (isLoading) {
 		return (
 			<>
@@ -80,7 +88,7 @@ const JobList: React.FC = () => {
 	}
 
 	return (
-		<div className={`container mx-auto py-8 px-2`}>
+		<div className={`container mx-auto py-8 px-6`}>
 			<div className="text-3xl text-gray-700 font-bold mb-12">Jobs</div>
 			{selectedJob && !showRunJob ? (
 				<JobDetail
@@ -93,36 +101,18 @@ const JobList: React.FC = () => {
 				<>
 					{!showRunJob ? (
 						<>
-							<div className="mt-2 flex w-full justify-end">
+							<div className="mb-2 flex w-full justify-end">
 								<button className="button-primary items-center content-center w-36" onClick={() => setShowRunJob(true)}>
 									Submit Job
 								</button>
 							</div>
 							<div className="flex">
-								<div className="w-full overflow-x-auto">
-									<table className="min-w-full divide-y divide-gray-200 text-sm">
-										<thead className="bg-gray-50">
-											<tr>
-												<th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">#</th>
-												<th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Id</th>
-												<th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-												<th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-											</tr>
-										</thead>
-										<tbody className="bg-white divide-y divide-gray-200">
-											{jobs?.map((job, index) => (
-												<tr key={job.id} className="hover:bg-gray-50 hover:cursor-pointer"
-													onClick={() => setSelectedJob(job)}
-												>
-													<td className="px-4 py-4 text-sm text-gray-700">{index + 1}</td>
-													<td className="px-4 py-4"> {job.id}</td>
-													<td className="px-4 py-4">{formatDate(job.submittedAt)}</td>
-													<td className="px-4 py-4">{job.status}</td>
-												</tr>
-											))}
-										</tbody>
-									</table>
-								</div>
+								<DataTable
+									data={jobs ?? []}
+									columns={jobColumns}
+									onRowClick={(job) => setSelectedJob(job)}
+									rowKey={(job) => job.id}
+								/>
 							</div>
 						</>
 					) : (

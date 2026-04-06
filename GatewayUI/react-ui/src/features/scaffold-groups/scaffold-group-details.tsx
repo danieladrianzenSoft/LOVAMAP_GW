@@ -1,12 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { ScaffoldGroup } from '../../app/models/scaffoldGroup';
-import Tag from '../../app/common/tag/tag';
-import { Formik } from 'formik';
-import { downloadScaffoldGroupAsExcel, triggerDownload } from '../../app/common/excel-generator/excel-generator';
 import { useStore } from '../../app/stores/store';
 import { observer } from 'mobx-react-lite';
-import { FaSpinner } from 'react-icons/fa';
-import { openPreviewInNewTab } from '../../app/common/new-tab-preview/new-tab-preview';
 import { PoreInfoForScaffold } from '../../app/models/poreInfo';
 import { HistogramPlot } from '../plotting/histogram-plot';
 import PlotSelector from '../../app/common/plot-selector/plot-selector';
@@ -19,21 +14,21 @@ interface ScaffoldGroupDetailsProps {
     scaffoldGroup: ScaffoldGroup;
     isVisible: boolean;
     toggleDetails: () => void;
+    squareTopLeft?: boolean;
+    squareTopRight?: boolean;
 }
 
-const categoryOrder: { [key: string]: number } = {
-	Particles: 0,
-    ExteriorPores: 1,
-    InteriorPores: 2,
-    ParticleSizeDistribution: 3,
-    Other: 4
-};
+const domainCategories = [
+	{ key: 'Particles', label: 'Particles' },
+	{ key: 'ExteriorPores', label: 'Edge Pores' },
+	{ key: 'InteriorPores', label: 'Interior Pores' },
+];
 
-const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGroup, isVisible, toggleDetails }) => {
+const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGroup, isVisible, toggleDetails, squareTopLeft = false, squareTopRight = false }) => {
     const {scaffoldGroupStore, descriptorStore} = useStore();
 	const { descriptorTypes } = useDescriptorTypes();
-	
-	const {getDetailedScaffoldGroupById, navigateToVisualization} = scaffoldGroupStore;
+
+	const {navigateToVisualization} = scaffoldGroupStore;
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const [poreInfo, setPoreInfo] = useState<PoreInfoForScaffold>();
 	const [showMore, setShowMore] = useState(false);
@@ -65,37 +60,20 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 		return detailedDescriptors.map(d => d.descriptor.id);
 	}, [detailedDescriptors]);
 
-	const download = useCallback(async (values: any, setErrors: Function) => {
-		setIsLoading(true);
-		try {
-			const downloadedData = await getDetailedScaffoldGroupById({
-				scaffoldGroupId: values.scaffoldGroup
-			});
-	
-			if (downloadedData) {
-				const excelResult = downloadScaffoldGroupAsExcel(downloadedData);
-				openPreviewInNewTab(
-					excelResult,    // { file, filename, headingRowsBySheet }
-					triggerDownload,
-					[excelResult],  // optional allFiles dropdown (you can omit or include this)
-					100
-				);
-			}
-		} catch (error) {
-			console.error("Error downloading data:", error);
-			setErrors({ submit: "Failed to download data. Please try again." });
-		} finally {
-			setIsLoading(false);
-		}
-	}, [getDetailedScaffoldGroupById]);
+	const openPreview = useCallback(() => {
+		window.open(`/preview/scaffold-group/${scaffoldGroup.id}`, '_blank');
+	}, [scaffoldGroup.id]);
+
+	const navigateToCustomExperiment = useCallback(() => {
+		History.push(`/experiments?scaffoldGroupId=${scaffoldGroup.id}`);
+	}, [scaffoldGroup.id]);
 
 	const getPoreInfo = useCallback(async (scaffoldGroupId: number, descriptorTypeIds: number[]) => {
 		setIsLoading(true);
 		try {
 			const groupData = await descriptorStore.getPoreInfoForScaffoldGroup(scaffoldGroupId, descriptorTypeIds);
 			if (groupData?.scaffolds?.length) {
-			// If you only want the first scaffold’s data:
-				setPoreInfo(groupData.scaffolds[0]); // a PoreInfoScaffoldDto
+				setPoreInfo(groupData.scaffolds[0]);
 			}
 		} catch (error) {
 			console.error(error);
@@ -112,271 +90,245 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 		if (isVisible && scaffoldGroup.id && detailDescriptorTypeIds.length > 0) {
 			getPoreInfo(scaffoldGroup.id, detailDescriptorTypeIds);
 		}
-		// Only refetch if scaffoldGroup.id or visibility changes
 	}, [isVisible, scaffoldGroup.id, detailDescriptorTypeIds, getPoreInfo]);
-	
-	const maxHeight = isVisible ? "500px" : "0px";
+
+	// Build a map of category -> image for the domain images row
+	const imageByCategory = useMemo(() => {
+		const map: Record<string, typeof scaffoldGroup.images[0]> = {};
+		for (const img of scaffoldGroup.images) {
+			if (!map[img.category]) {
+				map[img.category] = img;
+			}
+		}
+		return map;
+	}, [scaffoldGroup.images]);
+
+	// Get the first particle for metadata display
+	const firstParticle = scaffoldGroup.inputs?.particles?.[0];
 
     return (
-        <div className="pl-4">
-            {/* <div className="flex items-center cursor-pointer" onClick={toggleDetails}>
-                {isVisible ? <FaCaretRight className="transition-transform duration-300" /> : <FaCaretDown className="transition-transform duration-300" />}
-            </div> */}
-			<div className={`${isVisible ? 'block' : 'hidden'} bg-white p-4 rounded-md`}>
-				<div className="flex flex-col lg:flex-row justify-center items-start gap-4">
-					<div className="flex-1 p-4 w-full">
-						{/* Container for figures */}
-						{scaffoldGroup.images.length > 0 ? (
-							<div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-								{scaffoldGroup.images
-									.slice() // Create a copy to avoid mutating the original array
-									.sort((a, b) => {
-										// Use categoryOrder mapping, defaulting to 999 if category is unrecognized
-										const orderA = categoryOrder[a.category] ?? 999;
-										const orderB = categoryOrder[b.category] ?? 999;
-										return orderA - orderB;
-									})
-									.map((image, index) => (
-										<div key={index} className="flex flex-col items-center">
-										<div
-											className="relative w-full h-64 group overflow-hidden rounded-lg transition-shadow duration-300 hover:shadow-lg hover:scale-[1.01] cursor-pointer"
-											onClick={() => navigateToVisualization(scaffoldGroup)}
-										>
-											{/* Top-centered category label */}
-											<p className="absolute left-1/2 top-2 transform -translate-x-1/2 bg-white bg-opacity-70 text-sm text-gray-700 px-2 py-0.5 rounded z-10">
-												{image.category}
-											</p>
+        <div>
+			<div className={`${isVisible ? 'block' : 'hidden'} bg-white p-6 rounded-2xl shadow-md ${squareTopLeft ? 'rounded-tl-none' : ''} ${squareTopRight ? 'rounded-tr-none' : ''}`}>
 
-											{/* Image */}
-											<img 
-												src={image.url} 
-												alt={image.category} 
-												className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-											/>
-
-											{/* Interact Button (visible on hover) */}
-											<div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-0 group-hover:bg-opacity-30 transition duration-300">
-												<button
-													className="opacity-0 group-hover:opacity-100 text-white bg-blue-600 hover:bg-blue-700 text-sm px-4 py-1 rounded shadow transition duration-200"
-													onClick={(e) => {
-														e.stopPropagation(); // prevent click from bubbling
-														navigateToVisualization(scaffoldGroup);
-													}}
-												>
-													Interact
-												</button>
-											</div>
+				{/* ===== TOP: Domain Images Row ===== */}
+				<div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+					{domainCategories.map(({ key, label }) => {
+						const image = imageByCategory[key];
+						return (
+							<div key={key} className="flex flex-col items-center">
+								<p className="text-sm font-medium text-gray-700 mb-2">{label}</p>
+								<div className="relative w-full aspect-square overflow-hidden rounded-lg bg-gray-100">
+									{image ? (
+										<img
+											src={image.url}
+											alt={label}
+											className="w-full h-full object-cover scale-[1.4]"
+										/>
+									) : (
+										<div className="w-full h-full flex items-center justify-center text-gray-400 text-sm">
+											No image
 										</div>
-									</div>
-								))}
-                        	</div>
-						) : (
-							<>
-								<p className="text-sm text-gray-500 italic">No figures added</p>
+									)}
+								</div>
+							</div>
+						);
+					})}
+
+					{/* 4th card: interact card */}
+					<div className="flex flex-col items-center">
+						<p className="text-sm font-medium text-gray-700 mb-2">&nbsp;</p>
+						<div
+							className="relative w-full aspect-square overflow-hidden rounded-lg bg-gray-100 cursor-pointer group transition-shadow hover:shadow-lg hover:scale-[1.01]"
+							onClick={() => navigateToVisualization(scaffoldGroup)}
+						>
+							{imageByCategory['HalfHalf'] ? (
+								<img
+									src={imageByCategory['HalfHalf'].url}
+									alt="Scaffold overview"
+									className="w-full h-full object-cover scale-[1.4]"
+								/>
+							) : (
+								<div className="w-full h-full flex items-center justify-center text-gray-400 text-sm">
+									No image
+								</div>
+							)}
+							{/* INTERACT label - more noticeable on hover */}
+							<div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-0 group-hover:bg-opacity-30 transition duration-300">
 								<button
-									className="button-tag"
+									className="button-muted opacity-80"
 									onClick={(e) => {
 										e.stopPropagation(); // prevent click from bubbling
 										navigateToVisualization(scaffoldGroup);
 									}}
 								>
-									Go to Visualization
+									INTERACT
 								</button>
-							</>
-						)}
-
-						<div className="flex flex-col items-center mt-8">
-							<p className="mt-0 -mb-5">Interior Pore Descriptors</p>
-							{Object.keys(descriptorValueMap).length > 0 && (
-								<PlotSelector
-									initialKey="Volume"
-									plots={[
-										...detailedDescriptors.map(({ key, descriptor }) => ({
-											key,
-											label: descriptor.label,
-											component: descriptorValueMap[descriptor.id]?.length > 0 ? (
-												<HistogramPlot
-													data={descriptorValueMap[descriptor.id]}
-													xlabel={descriptor.unit || ''}
-													hideYLabels
-													showHoverInfo={true}
-													interactive={false}
-												/>
-											) : (
-												<div className="text-sm text-gray-400 mt-4">No data for {descriptor.label}</div>
-											)
-										})),
-										{
-											key: 'more',
-											label: 'More...',
-											component: (
-												<div className="text-sm text-gray-400 italic mt-4">Redirecting...</div>
-											),
-											onClick: () => navigateToDataVisualization(scaffoldGroup.id)
-										}
-									]}
-								/>
-							)}
-							{/* <PlotSelector
-								initialKey="volume"
-								plots={[
-								...PORE_DESCRIPTOR_MAP.filter(d => d.showInDetails).map(d => ({
-									key: d.key,
-									label: d.label,
-									component: descriptorValueMap[d.typeId]?.length > 0 ? (
-									<HistogramPlot
-										data={descriptorValueMap[d.typeId]}
-										xlabel={d.xlabel}
-										hideYLabels
-										showHoverInfo={true}
-										interactive={false}
-									/>
-									) : (
-									<div className="text-sm text-gray-400 mt-4">No data for {d.label}</div>
-									)
-								})),
-								{
-									key: 'more',
-									label: 'More...',
-									component: (
-									<div className="text-sm text-gray-400 italic mt-4">Redirecting...</div>
-									),
-									onClick: () => { navigateToDataVisualization(scaffoldGroup.id); }
-								}
-								]}
-							/> */}
+							</div>
+							{/* <div className="absolute inset-0 flex items-center justify-center">
+								<span className="button-muted">
+									INTERACT
+								</span>
+							</div> */}
 						</div>
 					</div>
-					<div className="flex-1 p-4 w-full">
-						<div className="flex flex-wrap gap-x-1 gap-y-1 mb-4">
-							{scaffoldGroup.tags.map((tag, index) => (
-								<Tag key={index} text={tag} />
-							))}
-						</div>
-						<table className="w-full text-sm text-left text-gray-500">
+				</div>
+
+				{/* ===== BOTTOM: metadata + descriptors side-by-side, download wraps below ===== */}
+				<div className="flex flex-wrap gap-6">
+
+					{/* --- Column 1: Scaffold Metadata --- */}
+					<div className="min-w-[200px] flex-1">
+						<h3 className="text-lg font-bold text-gray-900 mb-3">Scaffold Metadata</h3>
+						<table className="w-full text-sm text-left text-gray-600">
 							<tbody>
 								<tr>
-									<td className="font-medium text-gray-900 align-top w-32">Simulated:</td>
-									<td>{scaffoldGroup.isSimulated ? 'yes' : 'no'}</td>
+									<td className="font-medium text-gray-500 py-0.5 pr-3 align-top whitespace-nowrap">Source:</td>
+									<td className="py-0.5">{scaffoldGroup.isSimulated ? 'simulated' : 'experimental'}</td>
 								</tr>
-								<tr>
-									<td className="font-medium text-gray-900 align-top w-32">Container Shape:</td>
-									<td>{scaffoldGroup.inputs?.containerShape ?? 'n/a'}</td>
-								</tr>
-								{/* <tr>
-									<td className="font-medium text-gray-900 align-top w-32">Container Size:</td>
-									<td>{scaffoldGroup.inputs?.containerSize ?? 'n/a'}</td>
-								</tr> */}
-								<tr>
-									<td className="font-medium text-gray-900 align-top">Packing Configuration:</td>
-									<td>{scaffoldGroup.inputs?.packingConfiguration ?? 'unknown'}</td>
-								</tr>
-								<tr>
-									<td className="w-32 align-top font-medium text-gray-900">Particles:</td>
-									<td>
-										<table className="w-full text-sm text-left text-gray-500">
-											<tbody>
-											{ 
-												scaffoldGroup.inputs?.particles?.map((particle, index, array) => (
-													<React.Fragment key={index}>
-														<tr>
-															<td className="font-bold" colSpan={2}>{(particle.proportion*100).toPrecision(3)}% {particle.meanSize.toPrecision(3)}μm diameter {particle.shape}</td>
-															<td></td>
-														</tr>
-														<tr>
-															<td className="lg:w-5"></td>
-															<td className="text-gray-500">stiffness: {particle.stiffness}</td>
-														</tr>
-														<tr>
-															<td></td>
-															<td className="text-gray-500">dispersity: {particle.dispersity}</td>
-														</tr>
-														<tr>
-															<td></td>
-															<td className="text-gray-500">size distribution: {particle.sizeDistributionType}</td>
-														</tr>
-														<tr>
-															<td></td>
-															<td className="text-gray-500">standard deviation of diameter: {particle.standardDeviationSize.toPrecision(3)} μm</td>
-														</tr>
-													</React.Fragment>
-												))
-											}
-											</tbody>
-										</table>
-									</td>
-								</tr>
-								<tr>
-									<td></td>
-									<td>
-										<button type="button" className="button-outline self-start flex items-center gap-2 mt-2" onClick={() => download({ scaffoldGroup: scaffoldGroup.id }, () => {})}>
-											Preview Data
-											{isLoading && <FaSpinner className="animate-spin text-current text-[1em]" />}
-										</button>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<div className="flex justify-start items-start pb-2 mt-2">
-											<button
-												className="text-blue-600 hover:text-blue-800 text-xs"
-												onClick={() => setShowMore(!showMore)}
-											>
-												{`${showMore ? 'Hide' : 'Show more'}`}
-											</button>
-										</div>
-									</td>
-									<td></td>
-								</tr>
-								{showMore && (
+								{firstParticle && (
 									<>
 										<tr>
-											<td className="font-medium text-gray-900 align-top w-32">Id:</td>
-											<td>{scaffoldGroup.id}</td>
+											<td className="font-medium text-gray-500 py-0.5 pr-3 align-top" colSpan={2}>Particles:</td>
 										</tr>
 										<tr>
-											<td className="w-32 font-medium text-gray-900 align-top">Replicates:</td>
-											<td>
-												<Formik
-													initialValues={{scaffoldGroup:scaffoldGroup.id, replicates: 1 }}
-													enableReinitialize={true}
-													onSubmit={(values, {setErrors}) => download(values, setErrors)}
-												>
-													{formik => (
-														<form onSubmit={formik.handleSubmit}>
-															<div className='flex flex-col'>
-																<div className='flex items-center space-x-2'>
-																	{/* <TextInput
-																		type="number"
-																		name="replicates"
-																		placeholder={'1'}
-																		errors={formik.errors}
-																		touched={formik.touched}
-																		min={1}
-																		max={scaffoldGroup.numReplicates}
-																		step={1}
-																		className="p-1 text-sm w-12 appearance-none"
-																	/>
-																	<p className="text-sm ml-2 my-auto mb-5">{` of ${scaffoldGroup.numReplicates}`}</p> */}
-																	<p>{scaffoldGroup.numReplicates}</p>
-																</div>
-															</div>							
-														</form>
-													)}
-												</Formik>	
-											</td>
+											<td className="font-medium text-gray-400 py-0.5 pr-3 pl-4 align-top whitespace-nowrap">Shape:</td>
+											<td className="py-0.5">{firstParticle.shape}</td>
+										</tr>
+										<tr>
+											<td className="font-medium text-gray-400 py-0.5 pr-3 pl-4 align-top whitespace-nowrap">Size:</td>
+											<td className="py-0.5">{firstParticle.meanSize?.toPrecision(3)}&#956;m diameter</td>
+										</tr>
+										<tr>
+											<td className="font-medium text-gray-400 py-0.5 pr-3 pl-4 align-top whitespace-nowrap">Composition:</td>
+											<td className="py-0.5">{firstParticle.dispersity?.toLowerCase()}</td>
+										</tr>
+										<tr>
+											<td className="font-medium text-gray-400 py-0.5 pr-3 pl-4 align-top whitespace-nowrap">Configuration:</td>
+											<td className="py-0.5">{scaffoldGroup.inputs?.packingConfiguration?.toLowerCase() ?? 'unknown'}</td>
+										</tr>
+										<tr>
+											<td className="font-medium text-gray-400 py-0.5 pr-3 pl-4 align-top whitespace-nowrap">Size distribution:</td>
+											<td className="py-0.5">{firstParticle.sizeDistributionType?.toLowerCase() === 'delta' ? 'delta (spike)' : firstParticle.sizeDistributionType}</td>
+										</tr>
+										<tr>
+											<td className="font-medium text-gray-400 py-0.5 pr-3 pl-4 align-top whitespace-nowrap">Stiffness:</td>
+											<td className="py-0.5">{firstParticle.stiffness}</td>
+										</tr>
+										<tr>
+											<td className="font-medium text-gray-400 py-0.5 pr-3 pl-4 align-top whitespace-nowrap">Friction:</td>
+											<td className="py-0.5">{firstParticle.friction}</td>
 										</tr>
 									</>
 								)}
+								<tr>
+									<td className="font-medium text-gray-500 py-0.5 pr-3 align-top whitespace-nowrap">Container:</td>
+									<td className="py-0.5">{scaffoldGroup.inputs?.containerShape ?? 'n/a'}</td>
+								</tr>
 							</tbody>
 						</table>
+
+						<button
+							className="button-link mt-3"
+							onClick={() => setShowMore(!showMore)}
+						>
+							{showMore ? 'Hide' : 'Show more'}
+						</button>
+
+						{showMore && (
+							<table className="w-full text-sm text-left text-gray-600 mt-2">
+								<tbody>
+									<tr>
+										<td className="font-medium text-gray-500 py-0.5 pr-3 align-top whitespace-nowrap">Id:</td>
+										<td className="py-0.5">{scaffoldGroup.id}</td>
+									</tr>
+									<tr>
+										<td className="font-medium text-gray-500 py-0.5 pr-3 align-top whitespace-nowrap">Replicates:</td>
+										<td className="py-0.5">{scaffoldGroup.numReplicates}</td>
+									</tr>
+									{scaffoldGroup.inputs?.particles && scaffoldGroup.inputs.particles.length > 1 && (
+										<tr>
+											<td className="font-medium text-gray-500 py-0.5 pr-3 align-top whitespace-nowrap" colSpan={2}>
+												Additional particle groups:
+											</td>
+										</tr>
+									)}
+									{scaffoldGroup.inputs?.particles?.slice(1).map((particle, index) => (
+										<React.Fragment key={index}>
+											<tr>
+												<td className="font-medium text-gray-400 py-0.5 pr-3 pl-4 align-top" colSpan={2}>
+													{(particle.proportion * 100).toPrecision(3)}% {particle.meanSize.toPrecision(3)}&#956;m {particle.shape}
+												</td>
+											</tr>
+										</React.Fragment>
+									))}
+								</tbody>
+							</table>
+						)}
 					</div>
-					{/* Conditionally show the preview if data is fetched */}
+
+					{/* --- Column 2: Interior Pore Descriptor Data --- */}
+					<div className="min-w-[340px] flex-[2]">
+						<h3 className="text-lg font-bold text-gray-900 mb-3">Interior Pore Descriptor Data</h3>
+						{Object.keys(descriptorValueMap).length > 0 ? (
+							<PlotSelector
+								initialKey="Volume"
+								plots={[
+									...detailedDescriptors.map(({ key, descriptor }) => ({
+										key,
+										label: descriptor.label,
+										itemClassName:
+											key === 'AspectRatio' ? 'hidden xl:inline-flex' :
+											key === 'LongestLength' ? 'hidden lg:inline-flex' :
+											undefined,
+										component: descriptorValueMap[descriptor.id]?.length > 0 ? (
+											<HistogramPlot
+												data={descriptorValueMap[descriptor.id]}
+												xlabel={descriptor.unit || ''}
+												hideYLabels
+												showHoverInfo={true}
+												interactive={false}
+											/>
+										) : (
+											<div className="text-sm text-gray-400 mt-4">No data for {descriptor.label}</div>
+										)
+									})),
+									{
+										key: 'more',
+										label: 'More...',
+										component: (
+											<div className="text-sm text-gray-400 italic mt-4">Redirecting...</div>
+										),
+										onClick: () => navigateToDataVisualization(scaffoldGroup.id)
+									}
+								]}
+							/>
+						) : (
+							<p className="text-sm text-gray-400 italic">No descriptor data available</p>
+						)}
+					</div>
+
+					{/* --- Column 3: Download Data --- */}
+					<div className="w-full lg:w-40 flex-shrink-0">
+						<h3 className="text-lg font-bold text-gray-900 mb-3">Download Data</h3>
+						<div className="flex flex-col gap-3 mt-4">
+							<button
+								type="button"
+								onClick={openPreview}
+								className="button-base bg-secondary-200 hover:bg-secondary-100"
+							>
+								COMPREHENSIVE
+							</button>
+							<button
+								type="button"
+								onClick={navigateToCustomExperiment}
+								className="button-secondary"
+							>
+								CUSTOM
+							</button>
+						</div>
+					</div>
 				</div>
 			</div>
-            <div style={{ maxHeight: maxHeight, transition: 'max-height 0.5s ease-in-out', overflow: 'hidden' }}>
-                
-            </div>
         </div>
     );
 };

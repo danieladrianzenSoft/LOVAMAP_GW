@@ -81,7 +81,7 @@ const RdfVisualization: React.FC<RdfVisualizationProps> = ({ height = 500 }) => 
 			{/* Legend + details row */}
 			<div className="grid grid-cols-1 md:grid-cols-2 gap-3">
 				{/* Legend */}
-				<div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-4">
+				<div className="bg-white dark:bg-gray-800 rounded-lg p-4">
 					<h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Legend</h4>
 					<div className="flex flex-wrap gap-4 text-xs text-gray-600 dark:text-gray-400">
 						<span className="flex items-center gap-1.5">
@@ -103,7 +103,7 @@ const RdfVisualization: React.FC<RdfVisualizationProps> = ({ height = 500 }) => 
 				</div>
 
 				{/* Selected node details */}
-				<div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-4">
+				<div className="bg-white dark:bg-gray-800 rounded-lg p-4">
 					<h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Node Details</h4>
 					{selectedNode ? (
 						<div className="text-xs text-gray-600 dark:text-gray-400 space-y-1">
@@ -133,7 +133,7 @@ const RdfVisualization: React.FC<RdfVisualizationProps> = ({ height = 500 }) => 
 			{summary && (
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-3">
 					{summary.classes.length > 0 && (
-						<div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-4">
+						<div className="bg-white dark:bg-gray-800 rounded-lg p-4">
 							<h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Classes</h4>
 							<table className="w-full text-xs text-gray-600 dark:text-gray-400">
 								<thead>
@@ -155,7 +155,7 @@ const RdfVisualization: React.FC<RdfVisualizationProps> = ({ height = 500 }) => 
 					)}
 
 					{summary.properties.length > 0 && (
-						<div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-4">
+						<div className="bg-white dark:bg-gray-800 rounded-lg p-4">
 							<h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Properties</h4>
 							<table className="w-full text-xs text-gray-600 dark:text-gray-400">
 								<thead>
@@ -182,7 +182,7 @@ const RdfVisualization: React.FC<RdfVisualizationProps> = ({ height = 500 }) => 
 };
 
 const StatCard: React.FC<{ label: string; value: number }> = ({ label, value }) => (
-	<div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-3 text-center">
+	<div className="bg-white dark:bg-gray-800 rounded-lg p-3 text-center">
 		<p className="text-2xl font-bold text-gray-800 dark:text-white">{value}</p>
 		<p className="text-xs text-gray-500 dark:text-gray-400">{label}</p>
 	</div>

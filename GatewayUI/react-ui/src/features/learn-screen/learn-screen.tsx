@@ -35,7 +35,7 @@ const LearnScreen = () => {
     };
 
     return (
-        <div className="container mx-auto py-8 px-2">
+        <div className="container mx-auto py-8 px-6">
             <div>
                 <div className="text-3xl text-gray-700 font-bold mb-12">Generating Simulated Scaffolds</div>                        
                 <div className="flex flex-wrap justify-center gap-4">
@@ -72,7 +72,7 @@ const LearnScreen = () => {
                             href="https://doi.org/10.1038/s43588-023-00551-x"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-blue-600 hover:underline"
+                            className="text-link-100 hover:underline"
                         >
                         Riley et al., 2023.
                         </a>
@@ -92,7 +92,7 @@ const LearnScreen = () => {
                             href="https://doi.org/10.1038/s43588-023-00551-x"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-blue-600 hover:underline"
+                            className="text-link-100 hover:underline"
                         >
                         Riley et al., 2023.
                         </a>
@@ -104,7 +104,7 @@ const LearnScreen = () => {
                         <button
                             key={category}
                             className={`px-4 py-2 font-semibold text-gray-700 border-b-4 ${
-                                activeTab === category ? "border-blue-500" : "border-transparent"
+                                activeTab === category ? "border-link-100" : "border-transparent"
                             }`}
                             onClick={() => setActiveTab(category)}
                         >
@@ -143,14 +143,14 @@ const LearnScreen = () => {
                                             <div className="max-w-[150px]">{getLabelWithUnit(descriptor)}</div>
                                         </td>
                                         <td className="px-4 py-2" style={{ width: "25%" }}>
-                                            <div className="w-full">
+                                            {descriptor.imageUrl ? <div className="w-full">
                                                 <img
                                                     src={descriptor.imageUrl}
                                                     alt={descriptor.tableLabel}
                                                     className="w-full h-auto object-contain"
                                                     style={{ maxWidth: "100%", display: "block" }}
                                                 />
-                                            </div>
+                                            </div> : <p>-</p>}
                                         </td>
                                         <td className="px-4 py-2" style={{ width: "40%" }}>
                                             <ReactMarkdown

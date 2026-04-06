@@ -1,0 +1,57 @@
+/*
+ * Design tokens: color palette
+ *
+ * Usage:
+ *   - Raw CSS:        color: var(--color-primary-600);
+ *   - Tailwind class: text-primary-600, bg-secondary-50, border-primary-200, ...
+ *
+ * Tailwind's built-in palettes (blue-*, green-*, red-*, gray-*, etc.) are still
+ * available. Only define custom scales here; don't shadow the built-ins unless
+ * you intentionally want to replace them.
+ */
+
+:root {
+	/* -------------------------------------------------------------
+	 * Primary — brand accent (currently blue)
+	 * ------------------------------------------------------------- */
+	--color-primary-50:  #f9fafa;
+	--color-primary-100: #f0f1f2;
+	--color-primary-200: #dddfe1;
+	--color-primary-300: #c3c5ca;
+	--color-primary-400: #a2a5ad;
+	--color-primary-500: #7c818c;
+	--color-primary-600: #606673;
+	--color-primary-700: #444b5a;
+	--color-primary-800: #363c48;
+	--color-primary-900: #22262d;
+
+	/* -------------------------------------------------------------
+	 * Secondary — warm neutrals (page surfaces, muted text)
+	 * The `#F7F5F4` page background lives here as secondary-50.
+	 * ------------------------------------------------------------- */
+	--color-secondary-50:  #f7f5f4;
+	--color-secondary-100: #ebe9e3;
+	--color-secondary-200: #d9d6cd;
+	--color-secondary-300: #bfbbb0;
+	--color-secondary-400: #9a958a;
+	--color-secondary-500: #75716a;
+	--color-secondary-600: #5a5752;
+	--color-secondary-700: #403e3a;
+	--color-secondary-800: #2a2927;
+	--color-secondary-900: #171715;
+
+	/* -------------------------------------------------------------
+	 * Error — muted rose (validation, destructive accents)
+	 * ------------------------------------------------------------- */
+	--color-error-50:  #e8d4d5;
+	--color-error-100: #d3adae;
+	--color-error-200: #a96062;
+
+	--color-link-50:  #b8e0da;
+	/* --color-link-100: #67a599; */
+	--color-link-100: #48a999;
+	--color-link-200: #32766b;
+	--color-link-300: #224f47;
+	--color-link-400: #173630;
+	--color-link-500: #0c1d1a;
+}

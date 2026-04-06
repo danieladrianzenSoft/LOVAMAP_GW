@@ -10,7 +10,7 @@ import Plotly from "../../app/helpers/PlotlyLoader";
 const DescriptorCalculator: React.FC = () => {
   const { descriptorTypes } = useDescriptorTypes();
   const [delta, setDelta] = useState<number>(100);
-  const [phi, setPhi] = useState<number>(0.5);
+  const [phi, setPhi] = useState<number>(0.64);
   const [sigma, setSigma] = useState<number>(0);
   const [expandedDescriptor, setExpandedDescriptor] = useState<string | null>(null);
 //   const [particleCount, setParticleCount] = useState<number>(12);
@@ -150,8 +150,8 @@ const DescriptorCalculator: React.FC = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
-		<h1 className="text-2xl font-bold text-gray-800 mb-4">Calculate descriptors for your scaffold</h1>
+    <div className="container mx-auto py-8 px-6">
+		<h1 className="text-3xl text-gray-700 font-bold mb-12">Calculate descriptors for your scaffold</h1>
 
 		<p className="text-sm text-gray-600 mb-6 leading-relaxed">
 			We've identified strong correlations between certain scaffold descriptors and properties such as mean
@@ -161,7 +161,7 @@ const DescriptorCalculator: React.FC = () => {
 				href="https://doi.org/10.1038/s43588-023-00551-x"
 				target="_blank"
 				rel="noopener noreferrer"
-				className="text-blue-600 hover:underline"
+				className="text-link-100 hover:underline"
 			>
 			Riley et al., 2023
 			</a>{", "}
@@ -169,13 +169,14 @@ const DescriptorCalculator: React.FC = () => {
 				href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12324226/"
 				target="_blank"
 				rel="noopener noreferrer"
-				className="text-blue-600 hover:underline"
+				className="text-link-100 hover:underline"
 			>
 			Riley et al., 2025
 			</a>
 			). Use this calculator to estimate descriptor values for your specific scaffold configuration.
 		</p>
 
+		<div className="max-w-4xl mx-auto mt-16">
 		<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
 			{/* Inputs */}
 			<div>
@@ -197,8 +198,8 @@ const DescriptorCalculator: React.FC = () => {
 			<div>
 				<label className="block text-sm font-medium text-gray-700">
 					<TextTooltip
-					label="Void Volume Fraction, φ"
-					tooltipText="Void volume fraction is 1 minus particle packing fraction."
+						label="Void Volume Fraction, φ"
+						tooltipText="Void volume fraction is 1 minus particle packing fraction."
 					/>
 				</label>
 				<input
@@ -269,7 +270,7 @@ const DescriptorCalculator: React.FC = () => {
 								type="button"
 								onClick={() => onDescriptorClick(row.key)}
 								className={`w-full text-left px-2 py-2 transition-colors rounded-md ${
-									isExpanded ? "bg-gray-50" : "bg-white hover:bg-gray-50"
+									isExpanded ? "bg-secondary-100" : "bg-secondary-100 hover:bg-secondary-200"
 								}`}
 								aria-expanded={isExpanded}
 							>
@@ -340,7 +341,7 @@ const DescriptorCalculator: React.FC = () => {
 														href={row.sourceUrl}
 														target="_blank"
 														rel="noopener noreferrer"
-														className="text-blue-600 hover:underline"
+														className="text-link-100 hover:underline"
 													>
 														{row.sourceLabel}
 													</a>
@@ -423,6 +424,7 @@ const DescriptorCalculator: React.FC = () => {
 				})}
 			</div>
       	</div>
+		</div>
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
+import { useSearchParams } from "react-router-dom";
 import { useStore } from "../../app/stores/store";
 import ScaffoldGroupFilters from "../scaffold-groups/scaffold-group-filter";
 import { ScaffoldGroup } from "../../app/models/scaffoldGroup";
@@ -7,11 +8,13 @@ import DescriptorFilters from "../descriptors/descriptor-filters";
 import { DescriptorType } from "../../app/models/descriptorType";
 import { FaSpinner } from 'react-icons/fa';
 import { downloadExperimentsAsExcel, triggerDownload } from '../../app/common/excel-generator/excel-generator';
+import LoadingSpinner from '../../app/common/loading-spinner/loading-spinner';
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import ExperimentSidebar from "./experiment-sidebar";
 import ScaffoldGroupsFilterResults from "../scaffold-groups/scaffold-group-filter-results";
 import { useScaffoldGroupFiltering } from "../../app/common/hooks/useScaffoldGroupFiltering";
 import AISearchBar from "../../app/common/ai-search-bar/ai-seach-bar";
+import { DEFAULT_CATEGORY } from "../../app/common/ai-search-bar/search-categories";
 import { SearchContextSummary } from "../../app/common/ai-search-bar/search-context-summary";
 import { Sidebar } from "../../app/common/sidebar/sidebar";
 import AcknowledgementModal from "../acknowledgement/acknowledgement-modal";
@@ -27,6 +30,7 @@ const CreateExperiments = () => {
 		segmentedScaffoldGroups: { exact, related },
         getDetailedScaffoldGroupsForExperiment,
     } = scaffoldGroupStore;
+    const [searchParams, setSearchParams] = useSearchParams();
     const [visibleDetails, setVisibleDetails] = useState<number | null>(null);
     const [numberOfColumns, setNumberOfColumns] = useState(3);
     const [selectedScaffoldGroups, setSelectedScaffoldGroups] = useState<ScaffoldGroup[]>([]);
@@ -63,13 +67,43 @@ const CreateExperiments = () => {
         setAiSearchUsed,
         isSimulated,
         setIsSimulated,
+        searchCategory,
+        setSearchCategory,
     } = useScaffoldGroupFiltering(true, setIsLoading);
+
+    // Pre-select scaffold group from URL query param (e.g. /experiments?scaffoldGroupId=123)
+    useEffect(() => {
+        const scaffoldGroupIdParam = searchParams.get('scaffoldGroupId');
+        if (!scaffoldGroupIdParam) return;
+
+        const scaffoldGroupId = parseInt(scaffoldGroupIdParam);
+        if (isNaN(scaffoldGroupId)) return;
+
+        // Clear the param so it doesn't re-trigger
+        searchParams.delete('scaffoldGroupId');
+        setSearchParams(searchParams, { replace: true });
+
+        const preselect = async () => {
+            try {
+                const group = await scaffoldGroupStore.getDetailedScaffoldGroupById({ scaffoldGroupId });
+                if (group) {
+                    setSelectedScaffoldGroups(prev =>
+                        prev.some(g => g.id === group.id) ? prev : [...prev, group]
+                    );
+                }
+            } catch (err) {
+                console.error('Failed to pre-select scaffold group:', err);
+            }
+        };
+        preselect();
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     const clearFilters = () => {
 		setSelectedTags({});
 		setSelectedParticleSizeIds([]);
         setIsSimulated(null);
         setAiSearchUsed(false);
+        setSearchCategory(DEFAULT_CATEGORY);
 	};
 
     const handleSelectDescriptorType = (descriptorType: DescriptorType) => {
@@ -337,26 +371,26 @@ const CreateExperiments = () => {
         const tableRows = getTablePlaceholderData(rowOption, "rowOption")
     
         return (
-            <table className="table-auto w-full text-xs">
+            <table className="table-auto w-full text-xs bg-white">
                 <thead>
                     <tr>
                         {replicatesAlongRows &&
-                            <th className="border py-1">{rowOption}</th>
+                            <th className="border py-1 border-secondary-200">{rowOption}</th>
                         }
                         {tableHeaders.map((header, index) => (
                             // columnOption === "Scaffold Replicates" ? 
                             //     <th key={index} className="border py-1">{"Replicate " + header}</th>
                             //     :
-                            <th key={index} className="border py-1">{header}</th>
+                            <th key={index} className="border py-1 border-secondary-200">{header}</th>
                         ))}
                     </tr>
                 </thead>
                 <tbody>
                     {tableRows.map((row, rowIndex) => (
                         <tr key={rowIndex}>
-                            {replicatesAlongRows && <td className="border py-1 italic text-gray-300">{row}</td>}
+                            {replicatesAlongRows && <td className="border border-secondary-200 py-1 italic text-gray-300">{row}</td>}
                             {tableHeaders.map((_, colIndex) => (
-                                <td key={colIndex} className={`py-1 italic text-gray-300 ${colIndex === numRows - 1 ? "border-b-0" : "border"}`}>data</td>
+                                <td key={colIndex} className={`py-1 italic text-secondary-300 ${colIndex === numRows - 1 ? "border-b-0" : "border border-secondary-200"}`}>data</td>
                             ))}
                         </tr>
                     ))}
@@ -368,12 +402,12 @@ const CreateExperiments = () => {
     const renderSheetOptionsTable = (sheetOption: string) => {
         const tableFooters = getTablePlaceholderData(sheetOption, "sheetOption");        
         return (
-            <div className="bg-gray-100 h-2 -mt-1 mb-12">
+            <div className="h-2 -mt-1 mb-12">
                 <table className="table-auto w-full my-0 text-xs text-gray-500 border-collapse">
                     <thead>
                         <tr>
                             {tableFooters.map((footer, index) => (
-                                <th key={index} className={`py-1 border border-gray-300  ${index === 0 ? 'rounded-bl-md rounded-br-md shadow-md bg-white border-gray-300' : index<3 ? 'bg-gray-100 border-b-0' : "bg-gray-100 border border-b-0 border-r-0 min-w-32 border-t-1 border-gray-300"}`}>
+                                <th key={index} className={`py-1 border border-secondary-300  ${index === 0 ? 'rounded-bl-md rounded-br-md shadow-md bg-white border-secondary-300' : index<3 ? 'bg-secondary-100 border-b-0' : "bg-secondary-100 border border-b-0 border-r-0 min-w-32 border-t-1 border-secondary-300"}`}>
                                     {index<3 ? footer : ""}
                                 </th>
                             ))}
@@ -387,7 +421,7 @@ const CreateExperiments = () => {
 
 
     return (
-        <div className="flex mx-auto py-8 px-2">
+        <div className="flex mx-auto py-8 px-6">
             <div className="flex-1 space-y-12 pr-4">
                 <div className="text-3xl text-gray-700 font-bold mb-12">Customize downloads</div>
                 <Stepper steps={["Scaffold Groups", "Descriptors", "Layout"]} currentStep={experimentStage - 1} />
@@ -402,26 +436,31 @@ const CreateExperiments = () => {
                             </div>
 
                             <div className="md:flex-row mb-4">
-                                <AISearchBar onSearch={loadAIResults} onClear={clearFilters}/>
+                                <AISearchBar
+                                    onSearch={loadAIResults}
+                                    onClear={clearFilters}
+                                    category={searchCategory}
+                                    onCategoryChange={setSearchCategory}
+                                />
                                 <SearchContextSummary aiSearchUsed={aiSearchUsed} selectedTagNames={selectedTagNames} selectedParticleSizeIds={selectedParticleSizeIds}/>
                             </div>
 
-                            <ScaffoldGroupFilters
-                                setIsLoading={setIsLoading}
-                                condensed={true}
-                                allFiltersVisible={false}
-                                selectedParticleSizeIds={selectedParticleSizeIds}
-                                setSelectedParticleSizeIds={setSelectedParticleSizeIds}
-                                selectedTags={selectedTags}
-                                setSelectedTags={setSelectedTags}
-                                isSimulated={isSimulated}
-                                setIsSimulated={setIsSimulated}
-                            />
+                            <div className="mb-2">
+                                <ScaffoldGroupFilters
+                                    setIsLoading={setIsLoading}
+                                    condensed={true}
+                                    allFiltersVisible={false}
+                                    selectedParticleSizeIds={selectedParticleSizeIds}
+                                    setSelectedParticleSizeIds={setSelectedParticleSizeIds}
+                                    selectedTags={selectedTags}
+                                    setSelectedTags={setSelectedTags}
+                                    isSimulated={isSimulated}
+                                    setIsSimulated={setIsSimulated}
+                                />
+                            </div>
 
                             {isLoading ? (
-                                <div className="flex justify-center items-center py-8">
-                                    <FaSpinner className="animate-spin" size={40} />
-                                </div>
+                                <LoadingSpinner />
                             ) : (
                                 <>
                                     <ScaffoldGroupsFilterResults
@@ -436,7 +475,7 @@ const CreateExperiments = () => {
                                         selectedTagNames={selectedTagNames}
                                         selectedParticleSizeIds={selectedParticleSizeIds}
                                         onRemoveTag={removeFilterTag}
-                                        largeScreenColumns={2}
+                                        largeScreenColumns={3}
                                     />
                                 </>
                             )}
@@ -547,7 +586,7 @@ const CreateExperiments = () => {
                 onOpen={() => setSidebarVisible(true)}
                 title="Download Summary"
                 toggleButtonLabel="Download Summary"
-                className="w-1/4 shrink-0 bg-gray-100 p-0"
+                className="w-1/4 shrink-0 bg-secondary-100 p-0 rounded-xl"
                 >
                 <ExperimentSidebar
                     experimentStage={experimentStage}

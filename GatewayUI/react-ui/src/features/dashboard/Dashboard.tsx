@@ -6,12 +6,13 @@ import { DonutChart } from "../plotting/donut-chart";
 import { BarChart } from "../plotting/bar-chart";
 import { AreaChart } from "../plotting/area-chart";
 import RdfVisualization from "../rdf-visualization/RdfVisualization";
+import LoadingSpinner from '../../app/common/loading-spinner/loading-spinner';
 
 type DataFilter = "all" | "simulated" | "real";
 type TransferMode = "uploads" | "downloads";
 
 const StatCard: React.FC<{ label: string; value: number | string; subtitle?: string }> = ({ label, value, subtitle }) => (
-	<div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-4 flex flex-col items-center justify-center">
+	<div className="bg-white dark:bg-gray-800 rounded-lg p-4 flex flex-col items-center justify-center">
 		<span className="text-2xl font-bold text-gray-800 dark:text-white">{value}</span>
 		<span className="text-xs text-gray-500 dark:text-gray-400 mt-1">{label}</span>
 		{subtitle && <span className="text-[10px] text-gray-400 dark:text-gray-500 mt-0.5">{subtitle}</span>}
@@ -21,7 +22,7 @@ const StatCard: React.FC<{ label: string; value: number | string; subtitle?: str
 const ChartCard: React.FC<{ title?: string; children: React.ReactNode; className?: string }> = ({
 	title, children, className = ""
 }) => (
-	<div className={`bg-gray-50 dark:bg-gray-800 rounded-lg p-4 flex flex-col ${className}`}>
+	<div className={`bg-white dark:bg-gray-800 rounded-lg p-4 flex flex-col ${className}`}>
 		{title && <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">{title}</h3>}
 		<div className="flex-1 min-h-0">{children}</div>
 	</div>
@@ -33,7 +34,7 @@ const Pill: React.FC<{ label: string; active: boolean; onClick: () => void }> = 
 		className={`px-3 py-1 text-xs rounded-full transition-colors ${
 			active
 				? "bg-blue-600 text-white"
-				: "bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
+				: "bg-white dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-secondary-100 dark:hover:bg-gray-600"
 		}`}
 	>
 		{label}
@@ -85,17 +86,15 @@ const Dashboard: React.FC = observer(() => {
 
 	if (loading && !analytics) {
 		return (
-			<div className="container mx-auto py-8 px-2">
-				<div className="flex items-center justify-center h-64">
-					<div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500" />
-				</div>
+			<div className="container mx-auto py-8 px-6">
+				<LoadingSpinner className="h-64" />
 			</div>
 		);
 	}
 
 	if (error && !analytics) {
 		return (
-			<div className="container mx-auto py-8 px-2">
+			<div className="container mx-auto py-8 px-6">
 				<div className="bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-lg p-4">
 					{error}
 				</div>
@@ -109,10 +108,10 @@ const Dashboard: React.FC = observer(() => {
 		key === PACKING_KEY ? "Packing Configuration" : key.charAt(0).toUpperCase() + key.slice(1);
 
 	return (
-		<div className="container mx-auto py-8 px-2 space-y-8">
+		<div className="container mx-auto py-8 px-6 space-y-8">
 			{/* Header */}
-			<div className="flex items-center justify-between">
-				<h1 className="text-3xl font-bold text-gray-800 dark:text-white">Dashboard</h1>
+			<div className="flex items-center justify-between mb-12">
+				<h1 className="text-3xl text-gray-700 font-bold dark:text-white">Dashboard</h1>
 				{/* <button
 					onClick={() => dashboardStore.refreshAnalytics()}
 					disabled={loading}
@@ -150,7 +149,7 @@ const Dashboard: React.FC = observer(() => {
 
 					{/* Distribution donut (left) + Particle size bar chart (right) */}
 					<div className="grid grid-cols-1 md:grid-cols-2 md:grid-rows-[minmax(20rem,auto)] gap-4">
-						<div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-4 flex flex-col">
+						<div className="bg-white dark:bg-gray-800 rounded-lg p-4 flex flex-col">
 							<div className="flex flex-wrap items-center justify-between gap-2 mb-2">
 								<h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300">Scaffold Groups by Category</h3>
 								<div className="flex items-center gap-2">
@@ -231,7 +230,7 @@ const Dashboard: React.FC = observer(() => {
 				)}
 
 				{/* Data transfer over time */}
-				<div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-4">
+				<div className="bg-white dark:bg-gray-800 rounded-lg p-4">
 					<div className="flex items-center gap-3 mb-2">
 						<h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300">Data Transfer</h3>
 						<div className="flex items-center gap-1.5">

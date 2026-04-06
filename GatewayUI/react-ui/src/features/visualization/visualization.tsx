@@ -20,10 +20,18 @@ import { useMediaQuery } from '../../app/common/hooks/useMediaQuery';
 import MobileToolbar, { MobileTab } from './mobile-toolbar';
 import BottomSheet from './bottom-sheet';
 import MobileFloatingChips from './mobile-floating-chips';
+import { buildPoreColorMap } from './testing/pore-color-testing';
+import AISearchBar from '../../app/common/ai-search-bar/ai-seach-bar';
+import { DEFAULT_CATEGORY, SearchCategory, categoryToPreFilter } from '../../app/common/ai-search-bar/search-categories';
+import { SearchResultsDropdown } from '../../app/common/ai-search-bar/search-results-dropdown';
+import { ScaffoldGroup } from '../../app/models/scaffoldGroup';
+import toast from 'react-hot-toast';
+import { FaCamera } from 'react-icons/fa';
+import LoadingSpinner from '../../app/common/loading-spinner/loading-spinner';
 
 const Visualization: React.FC = () => {
 	// Store access
-	const { domainStore, userStore, scaffoldGroupStore } = useStore();
+	const { domainStore, userStore, scaffoldGroupStore, resourceStore } = useStore();
 	const params = useParams<{ scaffoldId?: string }>();
 
 	// State
@@ -79,6 +87,10 @@ const Visualization: React.FC = () => {
 		max: THREE.Vector3;
 		} | null>(null);
 
+	// 0 = show baked-in pore colors from the GLB. > 0 = override with a
+	// shuffled TS colormap (seed = this counter). Bump via the Randomize button.
+	const [poreColorSeed, setPoreColorSeed] = useState(0);
+
 	const [screenshotCategory, setScreenshotCategory] = useState<number | null>(null);
 	const autoHiddenForDomainRef = useRef<number | string | null>(null);
 	const hasAttemptedLoadRef = useRef(false);
@@ -86,6 +98,14 @@ const Visualization: React.FC = () => {
 
 	const isMobile = useMediaQuery('(max-width: 767px)');
 	const [activeMobileTab, setActiveMobileTab] = useState<MobileTab>(null);
+
+	// AI search state
+	const [searchResults, setSearchResults] = useState<ScaffoldGroup[]>([]);
+	const [searching, setSearching] = useState(false);
+	const [showSearchDropdown, setShowSearchDropdown] = useState(false);
+	const [searchSelectionLoadingId, setSearchSelectionLoadingId] = useState<number | null>(null);
+	const [searchCategory, setSearchCategory] = useState<SearchCategory>(DEFAULT_CATEGORY);
+	const searchContainerRef = useRef<HTMLDivElement>(null);
 
 	// small helper - compare two Sets of strings for equality
 	const setsEqual = (a?: Set<string>, b?: Set<string>) => {
@@ -188,6 +208,14 @@ const Visualization: React.FC = () => {
 
 	const poresMetadata = domainStore.getActiveMetadata(1)?.metadata;
 	const poresDomainId = domainStore.getActiveDomain(1)?.id;
+
+	const poreColorOverrideMap = useMemo(() => {
+		if (poreColorSeed === 0) return null;
+		const meta = domainStore.getActiveMetadata(1);
+		if (!meta?.ids) return null;
+		return buildPoreColorMap(meta.ids, undefined, { shuffleSeed: poreColorSeed });
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [poreColorSeed, poresMetadata, poresDomainId]);
 
 	useEffect(() => {
 		const category = 1; // pores
@@ -438,7 +466,8 @@ const Visualization: React.FC = () => {
 			// Pores do NOT participate in slicing – omit slicingActive and sliceXThreshold
 			opacity: poreOpacity,
 			dimmedOptions: defaultDimmedOptions,
-			debugMode: debugMode
+			debugMode: debugMode,
+			colorOverrideMap: poreColorOverrideMap
 		});
 	}
 
@@ -511,9 +540,9 @@ const Visualization: React.FC = () => {
 		setUserOverrideParticleOpacity(false);
 	};
 
-	const handleScaffoldChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-		const newScaffoldId = parseInt(e.target.value, 10);
-
+	// Core reset+load for switching the viewer to a new scaffold id. Shared
+	// by the InfoPanel dropdown and the AI search bar selection.
+	const switchToScaffold = useCallback(async (newScaffoldId: number) => {
 		// Clear all existing domain state
 		domainStore.clearDomainMesh(0);
 		domainStore.clearDomainMesh(1);
@@ -531,14 +560,95 @@ const Visualization: React.FC = () => {
 		// Reset slice state so new scaffold computes fresh bounds/midpoint
 		setSliceDomainBounds(null);
 		setSliceXThreshold(null);
-		// Reset panel open state or any visibility flags if needed
-		// setShowParticlesPanelOpen(false);
-		// setShowPoresPanelOpen(true);
 		setShowParticles(true);
 		setShowPores(true);
-		// setSlicingActive(true);
+		setPoreColorSeed(0);
 		clearHistory();
+
+		await loadDomainAndGroup();
+	}, [domainStore, clearHistory, loadDomainAndGroup]);
+
+	const handleScaffoldChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+		const newScaffoldId = parseInt(e.target.value, 10);
+		switchToScaffold(newScaffoldId);
 	};
+
+	const runSearch = async (query: string) => {
+		setSearching(true);
+		setShowSearchDropdown(true);
+		const pre = categoryToPreFilter(searchCategory);
+		await scaffoldGroupStore.searchScaffoldGroups(query, {
+			isSimulated: pre.isSimulated,
+			shapeTagNames: pre.shapeTagName ? [pre.shapeTagName] : undefined,
+		});
+		setSearchResults(scaffoldGroupStore.segmentedScaffoldGroups.exact || []);
+		setSearching(false);
+	};
+
+	const loadCategoryResults = async (cat: SearchCategory) => {
+		if (cat.key === 'all') {
+			setSearchResults([]);
+			setShowSearchDropdown(false);
+			return;
+		}
+		setSearching(true);
+		setShowSearchDropdown(true);
+		const pre = categoryToPreFilter(cat);
+		let tagsForFilter;
+		if (pre.shapeTagName) {
+			const tags = await resourceStore.getAutogeneratedTags();
+			const match = tags?.find(
+				t => t.referenceProperty === 'shape' && t.name.toLowerCase() === pre.shapeTagName!.toLowerCase()
+			);
+			if (match) tagsForFilter = [match];
+		}
+		// TODO: paginate when scaffold groups > ~200
+		const groups = await scaffoldGroupStore.getPublicScaffoldGroups({
+			restrictToPublicationDataset: false,
+			isSimulated: pre.isSimulated ?? null,
+			selectedTags: tagsForFilter,
+		});
+		setSearchResults(groups || []);
+		setSearching(false);
+	};
+
+	const handleCategoryChange = async (cat: SearchCategory, currentInput: string) => {
+		setSearchCategory(cat);
+		if (currentInput.trim().length > 0) return;
+		await loadCategoryResults(cat);
+	};
+
+	const handleSelectFromSearch = async (groupId: number) => {
+		const group = searchResults.find(g => g.id === groupId);
+		if (!group) return;
+		const targetScaffoldId =
+			group.scaffoldIdsWithDomains?.[0] || group.scaffoldIds?.[0];
+		if (!targetScaffoldId) {
+			toast.error('This scaffold group has no viewable mesh.');
+			return;
+		}
+		setSearchSelectionLoadingId(groupId);
+		try {
+			scaffoldGroupStore.setSelectedScaffoldGroup(group);
+			await switchToScaffold(targetScaffoldId);
+		} finally {
+			setSearchSelectionLoadingId(null);
+			setShowSearchDropdown(false);
+		}
+	};
+
+	useEffect(() => {
+		const handleClickOutside = (event: MouseEvent) => {
+			if (
+				searchContainerRef.current &&
+				!searchContainerRef.current.contains(event.target as Node)
+			) {
+				setShowSearchDropdown(false);
+			}
+		};
+		document.addEventListener('mousedown', handleClickOutside);
+		return () => document.removeEventListener('mousedown', handleClickOutside);
+	}, []);
 
 	const handleResetOverrides = () => {
 		setParticleOpacity(1); // Restore full opacity
@@ -654,6 +764,8 @@ const Visualization: React.FC = () => {
 		setShowAcknowledgement(false);
 	};
 
+	const meshMissing = !isBusy && meshList.length === 0 && hasAttemptedLoadRef.current;
+
 	// active category: particles - 0, pores = 1
 	const activeCategory =
 		showParticlesPanelOpen ? 0 :
@@ -665,31 +777,85 @@ const Visualization: React.FC = () => {
 	const isActiveCategoryVisible = activeCategory === 0 ? showParticles : activeCategory === 1 ? showPores : false;
 
 	return (
-		<div className={`relative w-full h-screen overflow-hidden mt-8 ${isMobile ? 'ml-0 pb-14' : 'ml-2'}`}>
-			<div className="w-full h-full rounded-lg">
-				{isBusy && (
-					<div className="h-full w-full -mt-16 flex items-center justify-center">
-						<div className="text-gray-600">Loading mesh...</div>
-					</div>
-				)}
-				{!isBusy && meshList.length > 0 && (
-					<div className="h-full w-full -mt-16">
-						<CanvasViewer
-							meshes={meshList}
-							onSliceBoundsComputed={setSliceDomainBounds}
-							onCanvasCreated={(el) => canvasRef.current = el}
+		<div className={`relative w-full h-[calc(100vh-4rem)] mt-8 -mb-8 overflow-hidden flex flex-col ${isMobile ? 'ml-0 pb-14' : 'ml-2'}`}>
+			{/* Header: title, subtitle, search */}
+			<div className="flex-shrink-0 px-2 pb-2 md:pb-4">
+				<h1 className="text-xl md:text-3xl font-bold text-gray-900 leading-tight">
+					LOVAMAP playground
+				</h1>
+				<p className="text-sm md:text-base text-gray-700 mt-1 py-2">
+					Rotate, select, hide, slice, zoom and get the details about the particle scaffolds and pores in our library
+				</p>
+				<div
+					ref={searchContainerRef}
+					className="relative w-full md:max-w-[32rem] mt-2 md:mt-3 pb-2"
+				>
+					<AISearchBar
+						onSearch={runSearch}
+						onClear={() => loadCategoryResults(searchCategory)}
+						onClick={() => {
+							if (searchResults.length > 0) setShowSearchDropdown(true);
+						}}
+						category={searchCategory}
+						onCategoryChange={handleCategoryChange}
+					/>
+					{showSearchDropdown && (
+						<SearchResultsDropdown
+							results={searchResults}
+							isLoading={searching}
+							onSelect={handleSelectFromSearch}
+							loadingSelection={searchSelectionLoadingId}
 						/>
-					</div>
-				)}
-				{!isBusy && meshList.length === 0 && hasAttemptedLoadRef.current && (
-					<div className="text-gray-600">This mesh does not exist</div>
-				)}
+					)}
+				</div>
 			</div>
 
+			{/* Canvas area with floating panels */}
+			<div className="relative flex-1 min-h-0 w-full overflow-hidden">
+				<div className="absolute left-0 right-0 -top-[10%] h-[110%] rounded-lg">
+					{isBusy && (
+						<div className="h-full w-full flex items-center justify-center">
+							<LoadingSpinner text="Loading mesh..." />
+						</div>
+					)}
+					{!isBusy && meshList.length > 0 && (
+						<div className="h-full w-full">
+							<CanvasViewer
+								meshes={meshList}
+								onSliceBoundsComputed={setSliceDomainBounds}
+								onCanvasCreated={(el) => canvasRef.current = el}
+							/>
+						</div>
+					)}
+					{meshMissing && (
+						<div className="h-full w-full flex flex-col items-center justify-center gap-3">
+							<div className="text-gray-700 text-base md:text-lg">This mesh does not exist</div>
+							<button
+								className="button-outline"
+								onClick={() => History.push('/explore')}
+							>
+								Browse Scaffolds
+							</button>
+						</div>
+					)}
+				</div>
+
+			{/* Floating screenshot button (desktop only) */}
+			{!isMobile && !meshMissing && (
+				<button
+					onClick={handleManualScreenshot}
+					title="Take a screenshot"
+					className="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 bg-white shadow-lg rounded-full px-4 py-2 flex items-center gap-2 hover:shadow-xl transition"
+				>
+					<span className="text-sm font-medium text-gray-800">Take a screenshot</span>
+					<FaCamera className="text-gray-600" />
+				</button>
+			)}
+
 			{/* Desktop panels — unchanged */}
-			{!isMobile && (
+			{!isMobile && !meshMissing && (
 				<>
-					<div className="absolute top-0 left-0 z-20 space-y-1 ml-2">
+					<div className="absolute top-[5%] left-0 z-20 space-y-1 ml-2">
 						<SelectedPanel
 							selectedDomainEntity={activeSelected}
 							domainCategory={activeCategory}
@@ -718,12 +884,10 @@ const Visualization: React.FC = () => {
 							/>
 						)}
 					</div>
-					<div className="absolute top-0 right-0 z-20 space-y-1 mr-2">
-						<div className="mt-2 flex w-full">
-							<button className="button-primary items-center content-center w-full" onClick={() => History.push('/explore')}>
-								Explore More
-							</button>
-						</div>
+					<div className="absolute top-[5%] right-0 z-20 space-y-1 mr-2">
+						<button className="button-primary items-center content-center w-full mb-2" onClick={() => History.push('/explore')}>
+							Explore More
+						</button>
 
 						<InfoPanel
 							isOpen={isPanelOpen}
@@ -734,7 +898,6 @@ const Visualization: React.FC = () => {
 							selectedCategories={selectedCategories}
 							onCategoryChange={setSelectedCategories}
 							domain={particleDomain}
-							onScreenshot={handleManualScreenshot}
 							isLoading={scaffoldGroupStore.isFetchingScaffoldGroup}
 						/>
 
@@ -787,14 +950,18 @@ const Visualization: React.FC = () => {
 							onToggleVisibility={() => {handleToggleShowPores(!showPores)}}
 							areEdgePoresHidden={areEdgePoresHidden}
 							onToggleHideEdgePores={handleToggleHideEdgePores}
+							onRefreshColors={() => setPoreColorSeed(s => s + 1)}
 						/>
 					</div>
 				</>
 			)}
+			</div>
+			{/* /canvas area */}
 
 			{/* Mobile layout */}
 			{isMobile && (
 				<>
+					{!meshMissing && (
 					<MobileFloatingChips
 						activeCategory={activeCategory}
 						selectedEntity={activeSelected}
@@ -818,6 +985,7 @@ const Visualization: React.FC = () => {
 						onToggleVisibility={(id) => toggleVisibility(id, activeCategory)}
 						isActiveCategoryVisible={isActiveCategoryVisible}
 					/>
+					)}
 
 					<BottomSheet
 						isOpen={activeMobileTab === 'info'}
@@ -881,6 +1049,7 @@ const Visualization: React.FC = () => {
 							onToggleVisibility={() => {handleToggleShowPores(!showPores)}}
 							areEdgePoresHidden={areEdgePoresHidden}
 							onToggleHideEdgePores={handleToggleHideEdgePores}
+							onRefreshColors={() => setPoreColorSeed(s => s + 1)}
 							className="w-full bg-transparent shadow-none p-0"
 						/>
 					</BottomSheet>

@@ -7,9 +7,9 @@ namespace Services.IServices
 {
 	public interface IAISearchService
 	{
-		Task<(bool Succeeded, string ErrorMessage, AIScaffoldSearchResponse? searchResponse)> RunSearchScaffoldGroupPipeline(string searchPrompt, string userId);
+		Task<(bool Succeeded, string ErrorMessage, AIScaffoldSearchResponse? searchResponse)> RunSearchScaffoldGroupPipeline(string searchPrompt, string userId, bool? isSimulated = null, List<string>? shapeTagNames = null);
 
-		Task<(bool Succeeded, string ErrorMessage, ScaffoldFilter? scaffoldFilter)> SearchScaffoldGroup(string searchPrompt);
+		Task<(bool Succeeded, string ErrorMessage, ScaffoldFilter? scaffoldFilter)> SearchScaffoldGroup(string searchPrompt, List<string>? shapeTagNames = null, bool? isSimulated = null);
 		
 	}
 }

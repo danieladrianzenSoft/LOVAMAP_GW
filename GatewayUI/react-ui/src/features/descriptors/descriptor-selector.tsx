@@ -65,7 +65,7 @@ export const DescriptorSelector: React.FC<DescriptorSelectorProps> = ({
 	}, []);
 
 	return (
-		<div className="relative mb-6 w-full" ref={containerRef}>
+		<div className="relative w-full rounded-xl" ref={containerRef}>
 			{/* Toggle Button */}
 			<div
 				className="flex items-center text-left cursor-pointer hover:underline"
@@ -77,11 +77,11 @@ export const DescriptorSelector: React.FC<DescriptorSelectorProps> = ({
 
 			{/* Dropdown Panel */}
 			{dropdownVisible && (
-				<div className="absolute mt-2 left-0 w-full bg-white border-b border-gray-300 rounded shadow-md z-50 p-4 max-h-[400px] overflow-y-auto">
+				<div className="absolute mt-2 left-0 w-full bg-white border-b border-gray-300 rounded-xl shadow-md z-50 p-4 max-h-[400px] overflow-y-auto">
 				{Object.entries(groupedBySubcategory).map(([section, descriptors]) => (
 					<div key={section} className="mb-4">
 					<h4 className="text-sm font-semibold text-gray-600 mb-2">{section}</h4>
-					<div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+					<div className="grid grid-flow-col grid-cols-2 gap-x-2 gap-y-1 max-w-[49rem]" style={{ gridTemplateRows: `repeat(${Math.ceil(descriptors.length / 2)}, auto)` }}>
 						{descriptors.map(descriptor => {
 						const checked = selectedDescriptorTypes.some(d => d.id === descriptor.id);
 						return (
@@ -90,7 +90,7 @@ export const DescriptorSelector: React.FC<DescriptorSelectorProps> = ({
 								type="checkbox"
 								checked={checked}
 								onChange={() => handleToggle(descriptor)}
-								className="accent-blue-600"
+								className="accent-link-50"
 							/>
 							<span className="text-sm text-gray-700">{descriptor.label || descriptor.name}</span>
 							</label>

@@ -47,7 +47,7 @@ export const SidebarScaffoldGroups: React.FC<SidebarScaffoldGroupsProps> = ({ sc
         items={scaffoldGroups.map(g => g.scaffoldGroup.id.toString())}
         strategy={verticalListSortingStrategy}
       >
-        <div className="w-full h-full p-4 bg-gray-100">
+        <div className="w-full h-full p-4 bg-secondary-100">
           {scaffoldGroups.map((groupData, index) => (
               <DraggableSidebarItem key={groupData.scaffoldGroup.id} id={groupData.scaffoldGroup.id.toString()}>
                 <SidebarScaffoldGroupPanel
