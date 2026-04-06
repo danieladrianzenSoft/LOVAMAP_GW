@@ -83,6 +83,40 @@ public class PublicationsController : ControllerBase
 	}
 
 
+	[Authorize(Roles = "administrator")]
+	[HttpDelete("{publicationId:int}")]
+	public async Task<IActionResult> DeletePublication(int publicationId)
+	{
+		try
+		{
+			var (succeeded, errorMessage) = await _publicationService.DeletePublication(publicationId);
+			if (!succeeded) return NotFound(new ApiResponse<string>(404, errorMessage));
+			return Ok(new ApiResponse<string>(200, "Publication deleted successfully."));
+		}
+		catch (Exception ex)
+		{
+			_logger.LogError(ex, "Failed to delete publication");
+			return StatusCode(500, new ApiResponse<string>(500, "An error occurred while deleting the publication"));
+		}
+	}
+
+	[Authorize(Roles = "administrator")]
+	[HttpPost]
+	public async Task<IActionResult> CreatePublication([FromBody] PublicationToCreateDto dto)
+	{
+		if (dto is null) return BadRequest(new ApiResponse<string>(400, "Body required."));
+		try
+		{
+			await _publicationService.CreatePublication(dto);
+			return Ok(new ApiResponse<string>(201, "Publication created successfully."));
+		}
+		catch (Exception ex)
+		{
+			_logger.LogError(ex, "Failed to create publication");
+			return StatusCode(500, new ApiResponse<string>(500, "An error occurred while creating the publication"));
+		}
+	}
+
 	[HttpPost("{publicationId:int}/datasets")]
 	public async Task<IActionResult> CreatePublicationDataset(
 		int publicationId,

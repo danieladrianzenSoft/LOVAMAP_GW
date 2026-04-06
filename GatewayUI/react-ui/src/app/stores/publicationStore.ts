@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx";
-import { Publication } from "../models/publication";
+import { Publication, PublicationToCreate } from "../models/publication";
 import agent from "../api/agent";
 
 export default class PublicationStore {
@@ -20,11 +20,43 @@ export default class PublicationStore {
 	getPublications = async(): Promise<Publication[]> => {
 		try {
 			const apiResponse = await agent.Publications.getAll();
-			console.log(apiResponse);
 			return apiResponse.data;
 		} catch (error) {
 			console.error("Error fetching publications", error);
 			return [];
+		}
+	}
+
+	createPublication = async(data: PublicationToCreate): Promise<{ success: boolean; error?: string }> => {
+		try {
+			await agent.Publications.create(data);
+			return { success: true };
+		} catch (error: any) {
+			const msg = error?.response?.data?.message || "Failed to create publication.";
+			console.error("Error creating publication", error);
+			return { success: false, error: msg };
+		}
+	}
+
+	createDataset = async(publicationId: number, scaffoldIds: number[]): Promise<{ success: boolean; error?: string }> => {
+		try {
+			await agent.Publications.createDataset(publicationId, { name: "Main", scaffoldIds });
+			return { success: true };
+		} catch (error: any) {
+			const msg = error?.response?.data?.message || "Failed to create dataset.";
+			console.error("Error creating dataset", error);
+			return { success: false, error: msg };
+		}
+	}
+
+	deletePublication = async(publicationId: number): Promise<{ success: boolean; error?: string }> => {
+		try {
+			await agent.Publications.delete(publicationId);
+			return { success: true };
+		} catch (error: any) {
+			const msg = error?.response?.data?.message || "Failed to delete publication.";
+			console.error("Error deleting publication", error);
+			return { success: false, error: msg };
 		}
 	}
 }

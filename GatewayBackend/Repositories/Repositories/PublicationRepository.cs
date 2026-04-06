@@ -18,6 +18,15 @@ namespace Repositories.Repositories
 			_context = context;
 		}
 
+		public async Task<bool> DeleteAsync(int publicationId)
+		{
+			var publication = await _context.Publications.FindAsync(publicationId);
+			if (publication == null) return false;
+			_context.Publications.Remove(publication);
+			await _context.SaveChangesAsync();
+			return true;
+		}
+
 		public bool HasChanges()
 		{
 			return _context.ChangeTracker.HasChanges();
