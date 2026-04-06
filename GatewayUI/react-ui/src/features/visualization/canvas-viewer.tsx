@@ -1,9 +1,9 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Canvas } from "@react-three/fiber";
-import { Bounds, Environment, OrbitControls, useProgress } from "@react-three/drei";
-import { ACESFilmicToneMapping, PCFSoftShadowMap} from "three";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { Bounds, OrbitControls, useProgress } from "@react-three/drei";
+import { PCFSoftShadowMap} from "three";
 import * as THREE from "three";
-import Model from "./model"; // assuming this stays in the same folder
+import Model from "./model";
 
 interface DomainMeshProps {
   url: string;
@@ -23,25 +23,43 @@ interface DomainMeshProps {
 		opacity?: number;                // Default: 0.1
 	};
   debugMode?: boolean;
+  diameterValues?: number[];
+  idToIndex?: Record<string, number>;
 }
 
 interface CanvasViewerProps {
   meshes: DomainMeshProps[];
-  theme?: 'Metallic' | 'Sunset';
   onSliceBoundsComputed?: (bounds: { min: THREE.Vector3; max: THREE.Vector3 }) => void;
   onCanvasCreated?: (canvas: HTMLCanvasElement) => void;
 }
 
-const CanvasViewer: React.FC<CanvasViewerProps> = ({ meshes, theme, onSliceBoundsComputed, onCanvasCreated }) => {
-  // const [centers, setCenters] = useState<THREE.Vector3[]>([]);
+// JX: camera-following directional light for MATLAB-like lighting
+const CamLight: React.FC = () => {
+  const lightRef = useRef<THREE.DirectionalLight>(null);
+
+  useFrame(({ camera }) => {
+    if (lightRef.current) {
+      lightRef.current.position.copy(camera.position);
+    }
+  });
+
+  return (
+    <directionalLight
+      ref={lightRef}
+      intensity={1}
+      castShadow
+      color="white"
+    />
+  );
+};
+
+const CanvasViewer: React.FC<CanvasViewerProps> = ({ meshes, onSliceBoundsComputed, onCanvasCreated }) => {
   const [combinedCenter, ] = useState<THREE.Vector3 | null>(null);
   const [, setParticleCenters] = useState<THREE.Vector3[]>([]);
   const [particleBounds, setParticleBounds] = useState<{ min: THREE.Vector3; max: THREE.Vector3 } | null>(null);
   const { active } = useProgress();
   const isLoaderActive = active;
   const [loadingCount, ] = useState(0);
-  // const incrementLoading = useCallback(() => setLoadingCount(c => c + 1), []);
-  // const decrementLoading = useCallback(() => setLoadingCount(c => Math.max(0, c - 1)), []);
 
   const controlsRef = useRef<any>(null);
   const hasSetCamera = useRef(false);
@@ -55,17 +73,11 @@ const CanvasViewer: React.FC<CanvasViewerProps> = ({ meshes, theme, onSliceBound
     onSliceBoundsComputed({ min, max });
   }, [particleBounds, onSliceBoundsComputed]);
 
-  // const globalOffset = useMemo(() => {
-  //   return particleCenters.length
-  //     ? particleCenters.reduce((acc, c) => acc.clone().add(c), new THREE.Vector3()).divideScalar(particleCenters.length)
-  //     : new THREE.Vector3();
-  // }, [particleCenters]);
-
   const handleModelLoad = useCallback((scene: THREE.Object3D, center: THREE.Vector3, size: number, category: number, bounds: { min: THREE.Vector3; max: THREE.Vector3 }) => {
     if (!controlsRef.current) return;
 
     if (category === 0 && bounds) {
-      setParticleCenters([center]); // optional, still useful for camera
+      setParticleCenters([center]);
       setParticleBounds(bounds);
     }
 
@@ -88,16 +100,10 @@ const CanvasViewer: React.FC<CanvasViewerProps> = ({ meshes, theme, onSliceBound
     hasSetCamera.current = true;
   }, []);
 
-  const hasMetallicTheme = useMemo(
-    () => theme === 'Metallic',
-    [theme]
-  );
-
   const isRendering = isLoaderActive || loadingCount > 0;
 
   return (
     <>
-      {/* {isLoading && <div className="text-gray-600">Loading mesh...</div>} */}
       {isRendering && (
         <div className="absolute inset-0 z-40 flex items-center justify-center pointer-events-none">
           <div className="rounded-md bg-white bg-opacity-90 p-3 shadow">
@@ -114,44 +120,26 @@ const CanvasViewer: React.FC<CanvasViewerProps> = ({ meshes, theme, onSliceBound
       <Canvas
         shadows
         gl={{
-          // preserveDrawingBuffer: true,
-          toneMapping: ACESFilmicToneMapping,
-          toneMappingExposure: 1.2,
+          preserveDrawingBuffer: true,
+          toneMapping: THREE.NoToneMapping,   // JX: MATLAB-like
           shadowMapType: PCFSoftShadowMap,
         }}
         onCreated={({ gl }) => {
+          gl.shadowMap.enabled = true;
+          gl.shadowMap.type = PCFSoftShadowMap;
           onCanvasCreated?.(gl.domElement);
         }}
       >
         <color attach="background" args={["white"]} />
-        <ambientLight intensity={0.25} />
-        {hasMetallicTheme ? (
-            <directionalLight
-              position={[10, 20, 0]}
-              intensity={1.2}
-              castShadow
-              color="white"
-            />
-          ) : (
-            <directionalLight castShadow position={[5, 5, 5]} intensity={0.2} />
-          )
-        }
 
-        <spotLight
-          position={[0, 15, 10]}
-          angle={0.3}
-          penumbra={0.8}
-          intensity={0.8}
-          castShadow
-        />
-        {/* <Environment preset="lobby" background={false} /> */}
-        {!hasMetallicTheme && <Environment preset="lobby" background={false} />}
-        {/* {theme !== 'Metallic' && <Environment preset="studio" background={false} />} */}
+        {/* JX: MATLAB-like lighting */}
+        <ambientLight intensity={0.3} />
+        <CamLight />
+
         <Bounds>
           {meshes.map((meshProps, idx) => (
-            <group 
+            <group
               key={meshProps.url ?? idx}
-              // position={centers[idx] ? centers[idx].clone().sub(globalOffset) : [0, 0, 0]}
             >
               {meshProps.debugMode && <axesHelper args={[100]} />}
               <Model
@@ -172,7 +160,8 @@ const CanvasViewer: React.FC<CanvasViewerProps> = ({ meshes, theme, onSliceBound
                 onLoad={handleModelLoad}
                 slicingActive={meshProps.slicingActive}
                 sliceXThreshold={meshProps.sliceXThreshold}
-                theme={theme}
+                diameterValues={meshProps.diameterValues}
+                idToIndex={meshProps.idToIndex}
               />
             </group>
           ))}

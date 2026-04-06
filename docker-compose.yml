@@ -112,6 +112,41 @@ services:
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot
 
+  umami-db-init:
+    image: postgres:17
+    container_name: umami_db_init
+    profiles: ["production"]
+    depends_on:
+      db:
+        condition: service_healthy
+    env_file:
+      - .env
+    entrypoint: >
+      sh -c "PGPASSWORD=$$POSTGRES_PASSWORD psql -h db -U $$POSTGRES_USER -tc
+      \"SELECT 1 FROM pg_database WHERE datname = 'umami'\" | grep -q 1 ||
+      PGPASSWORD=$$POSTGRES_PASSWORD psql -h db -U $$POSTGRES_USER -c \"CREATE DATABASE umami\""
+    restart: "no"
+
+  umami:
+    image: ghcr.io/umami-software/umami:postgresql-latest
+    container_name: lovamap_umami
+    profiles: ["production"]
+    restart: always
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/umami
+      BASE_PATH: /umami
+      APP_SECRET: ${UMAMI_APP_SECRET}
+    depends_on:
+      db:
+        condition: service_healthy
+      umami-db-init:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/umami/api/heartbeat"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
 volumes:
   lovamap_gw_postgres_data:
     external: true

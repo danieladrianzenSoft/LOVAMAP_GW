@@ -14,6 +14,9 @@ export default class ScaffoldGroupStore {
 	scaffoldGroups: ScaffoldGroup[] = [];
 	uploadedScaffoldGroups: ScaffoldGroup[] = [];
 	uploadProgress: number | null = null;
+	//JX: 3/10
+	diameterValues: number[] = [];
+
 	selectedScaffoldGroup: ScaffoldGroup | null = null;
 	defaultScaffoldGroupId: number = 55;
 
@@ -576,6 +579,27 @@ export default class ScaffoldGroupStore {
 			console.error(error);
 		}
 	}
+	loadDiameterForScaffoldGroup = async (scaffoldGroupId: number) => {
+		try {
+			const response = await agent.Descriptors.getParticleDiameter(scaffoldGroupId);
+
+			if (!response.succeeded || !response.data) return;
+
+			runInAction(() => {
+				this.diameterValues = response.data.values;
+			});
+		} catch (error) {
+			console.error("Failed to load diameter descriptor:", error);
+		}
+	};
+
+
+
+
+
+
+
+
 
 	updateImage = async(scaffoldGroupId: number, image: ImageToUpdate) => {
 		try {

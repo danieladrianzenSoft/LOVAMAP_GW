@@ -5,15 +5,19 @@ import { useStore } from '../../app/stores/store';
 import { observer } from 'mobx-react-lite';
 import logo from '../../../src/LOVAMAP_logo.png';
 
+type TabRenderProps = {
+	selected: boolean;
+};
+
 const SideBarMain: React.FC = () => {
-	const {commonStore, userStore } = useStore();
-	const {setActiveTab, activeTab} = commonStore;
+	const { commonStore, userStore } = useStore();
+	const { setActiveTab, activeTab } = commonStore;
 	const location = useLocation();
 
 	const isAdmin = userStore.user?.roles?.includes("administrator") ?? false;
 
 	const handleVisualizationClick = () => {
-		setActiveTab(0); // Set active tab before navigating
+		setActiveTab(0);
 		commonStore.setSidebarOpen(false);
 	};
 
@@ -49,11 +53,11 @@ const SideBarMain: React.FC = () => {
 
 	return (
 		<>
-			{/* Backdrop for mobile */}
 			<div
 				className={`fixed inset-0 bg-black bg-opacity-40 z-40 md:hidden transition-opacity duration-300 ${commonStore.isSidebarOpen ? 'block' : 'hidden'}`}
 				onClick={() => commonStore.setSidebarOpen(false)}
-			></div>
+			/>
+
 			<div
 				className={`
 					sidebar
@@ -64,66 +68,75 @@ const SideBarMain: React.FC = () => {
 				<div className='flex flex-col justify-between h-full p-2 m-0'>
 					<TabGroup vertical selectedIndex={activeTab} onChange={setActiveTab}>
 						<TabList className="flex flex-col">
+
 							<NavLink to="/" onClick={() => commonStore.setSidebarOpen(false)}>
 								<img className="mx-auto w-40 my-4" src={logo} alt="logo" />
 							</NavLink>
 
 							<Tab as={NavLink} to='/visualize' onClick={handleVisualizationClick} className="focus:outline-none">
-							{({ selected }) => (
-								<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
-								<p>Interact</p>
-								</div>
-							)}
+								{({ selected }: TabRenderProps) => (
+									<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
+										<p>Interact</p>
+									</div>
+								)}
 							</Tab>
+
 							<Tab as={NavLink} to='/explore' onClick={() => commonStore.setSidebarOpen(false)} className="focus:outline-none">
-							{({ selected }) => (
-								<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
-								<p>Explore scaffolds</p>
-								</div>
-							)}
+								{({ selected }: TabRenderProps) => (
+									<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
+										<p>Explore scaffolds</p>
+									</div>
+								)}
 							</Tab>
+
 							<Tab as={NavLink} to='/data' onClick={() => commonStore.setSidebarOpen(false)} className="focus:outline-none">
-							{({ selected }) => (
-								<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
-								<p>Explore data</p>
-								</div>
-							)}
+								{({ selected }: TabRenderProps) => (
+									<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
+										<p>Explore data</p>
+									</div>
+								)}
 							</Tab>
+
 							<Tab as={NavLink} to='/learn' onClick={() => commonStore.setSidebarOpen(false)} className="focus:outline-none">
-							{({ selected }) => (
-								<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
-								<p>Learn</p>
-								</div>
-							)}
+								{({ selected }: TabRenderProps) => (
+									<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
+										<p>Learn</p>
+									</div>
+								)}
 							</Tab>
+
 							<Tab as={NavLink} to='/descriptor-calculator' onClick={() => commonStore.setSidebarOpen(false)} className="focus:outline-none">
-							{({ selected }) => (
-								<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
-								<p>Calculate</p>
-								</div>
-							)}
+								{({ selected }: TabRenderProps) => (
+									<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
+										<p>Calculate</p>
+									</div>
+								)}
 							</Tab>
+
 							<Tab as={NavLink} to='/experiments' onClick={() => commonStore.setSidebarOpen(false)} className="focus:outline-none">
-							{({ selected }) => (
-								<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
-								<p>Download Data</p>
-								</div>
-							)}
+								{({ selected }: TabRenderProps) => (
+									<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
+										<p>Download Data</p>
+									</div>
+								)}
 							</Tab>
+
 							<Tab as={NavLink} to='/run' onClick={() => commonStore.setSidebarOpen(false)} className="focus:outline-none">
-							{({ selected }) => (
-								<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
-								<p>Run LOVAMAP</p>
-								</div>
-							)}
+								{({ selected }: TabRenderProps) => (
+									<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
+										<p>Run LOVAMAP</p>
+									</div>
+								)}
 							</Tab>
+
 							<Tab as={NavLink} to='/publications' onClick={() => commonStore.setSidebarOpen(false)} className="focus:outline-none">
-							{({ selected }) => (
-								<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
-								<p>Publications</p>
-								</div>
-							)}
+								{({ selected }: TabRenderProps) => (
+									<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
+										<p>Publications</p>
+									</div>
+								)}
 							</Tab>
+
 							{isAdmin && (
 								<>
 									<div className="flex items-center justify-center w-full my-4 pl-2 pr-2 italic">
@@ -139,24 +152,26 @@ const SideBarMain: React.FC = () => {
 										)}
 									</Tab>
 									<Tab as={NavLink} to='/uploads' onClick={() => commonStore.setSidebarOpen(false)} className="focus:outline-none">
-										{({ selected }) => (
-										<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
-											<p>Upload Scaffolds</p>
-										</div>
+										{({ selected }: TabRenderProps) => (
+											<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
+												<p>Upload Scaffolds</p>
+											</div>
 										)}
 									</Tab>
+
 									<Tab as={NavLink} to='/admin' onClick={() => commonStore.setSidebarOpen(false)} className="focus:outline-none">
-										{({ selected }) => (
-										<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
-											<p>Utilities</p>
-										</div>
+										{({ selected }: TabRenderProps) => (
+											<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
+												<p>Utilities</p>
+											</div>
 										)}
 									</Tab>
 								</>
-
 							)}
+
 						</TabList>
 					</TabGroup>
+
 					<div className="shrink-0 text-center mb-6">
 						<p className="text-xs font-semibold tracking-wide text-gray-500 leading-tight mb-2 px-2">
 							Materials in<br />Medicine Center
@@ -173,4 +188,4 @@ const SideBarMain: React.FC = () => {
 	)
 }
 
-export default observer(SideBarMain)
+export default observer(SideBarMain);

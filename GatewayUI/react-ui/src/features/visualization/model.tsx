@@ -74,7 +74,8 @@ interface ModelProps {
 	debugMode?: boolean;
 	slicingActive?: boolean;
   	sliceXThreshold?: number | null;
-	theme?: 'Metallic' | 'Sunset';
+	diameterValues?: number[];
+	idToIndex?: Record<string, number>;
 }
 
 function createBoundingBoxHelper(object: THREE.Object3D, color: string): THREE.BoxHelper {
@@ -100,7 +101,8 @@ const Model: React.FC<ModelProps> = ({
 	debugMode,
 	slicingActive,
   	sliceXThreshold,
-	theme
+	diameterValues,
+	idToIndex,
 }) => {
 	const { scene } = useGLTF(url);
 	const { camera } = useThree();
@@ -160,126 +162,140 @@ const Model: React.FC<ModelProps> = ({
 	}, [camera, scene, onLoad, debugMode, category]);
 
 	useEffect(() => {
-	scene.traverse((child) => {
-		if (!(child instanceof THREE.Mesh)) return;
+		scene.traverse((child) => {
+			if (!(child instanceof THREE.Mesh)) return;
 
-		const entityId = child.name;
-		child.userData.particleId = entityId;
+			const entityId = child.name;
+			child.userData.particleId = entityId;
 
-		if (!child.userData.originalMaterial && child.material) {
-			child.userData.originalMaterial = child.material;
-		}
-
-		if (!child.userData.originalRaycast) {
-			child.userData.originalRaycast = child.raycast;
-		}
-
-		const originalMatFromUserData = child.userData.originalMaterial;
-		let originalMat: THREE.Material | null = null;
-
-		if (Array.isArray(originalMatFromUserData)) {
-			originalMat = (originalMatFromUserData[0] as THREE.Material) ?? null;
-		} else if (originalMatFromUserData) {
-			originalMat = originalMatFromUserData as THREE.Material;
-		} else if (child.material) {
-			originalMat = Array.isArray(child.material)
-				? (child.material[0] as THREE.Material)
-				: (child.material as THREE.Material);
-		}
-
-		if (selectedEntity?.id === entityId) {
-			const highlightMat = originalMat
-				? (originalMat.clone() as THREE.MeshStandardMaterial)
-				: new THREE.MeshStandardMaterial();
-
-			if ((highlightMat as any).color) (highlightMat as any).color = new THREE.Color('red');
-			(highlightMat as any).emissive = new THREE.Color('yellow');
-			highlightMat.transparent = originalMat?.transparent ?? false;
-
-			child.material = highlightMat;
-		} else {
-			let workingMat: THREE.Material;
-
-			if (originalMat) {
-				workingMat = originalMat.clone();
-			} else {
-				workingMat = Array.isArray(child.material)
-					? (child.material[0] as THREE.Material).clone()
-					: (child.material as THREE.Material).clone();
+			// Store original material once
+			if (!child.userData.originalMaterial && child.material) {
+				child.userData.originalMaterial = child.material;
 			}
 
-			const originalColor =
-				(originalMat && (originalMat as any).color instanceof THREE.Color)
+			// Store raycast function once
+			if (!child.userData.originalRaycast) {
+				child.userData.originalRaycast = child.raycast;
+			}
+
+			// Handle highlight (selection)
+			// Use originalMaterial if present; fall back to runtime child.material
+			const originalMatFromUserData = child.userData.originalMaterial;
+			let originalMat: THREE.Material | null = null;
+
+			if (Array.isArray(originalMatFromUserData)) {
+			// if original stored as array, use first element for color decisions
+				originalMat = (originalMatFromUserData[0] as THREE.Material) ?? null;
+			} else if (originalMatFromUserData) {
+				originalMat = originalMatFromUserData as THREE.Material;
+			} else if (child.material) {
+				originalMat = Array.isArray(child.material) ? (child.material[0] as THREE.Material) : (child.material as THREE.Material);
+			}
+
+			// Now do selection / unselection
+			if (selectedEntity?.id === entityId) {
+				// Create a highlight material cloned from original to preserve originalMaterial
+				const highlightMat = originalMat ? (originalMat.clone() as THREE.MeshStandardMaterial) : new THREE.MeshStandardMaterial();
+				// Apply highlight colours / emissive but keep other properties cloned
+				if ((highlightMat as any).color) (highlightMat as any).color = new THREE.Color('red');
+				(highlightMat as any).emissive = new THREE.Color('yellow');
+				highlightMat.transparent = originalMat?.transparent ?? false;
+				child.material = highlightMat;
+			} else {
+				// Use the saved original material clone (always clone before applying overrides)
+				let workingMat: THREE.Material;
+				if (originalMat) {
+					workingMat = originalMat.clone();
+				} else {
+					// ultimate fallback - clone current material
+					workingMat = Array.isArray(child.material) ? (child.material[0] as THREE.Material).clone() : (child.material as THREE.Material).clone();
+				}
+
+				// Compute a reliable originalColor from original material (not runtime material)
+				const originalColor =
+					(originalMat && (originalMat as any).color instanceof THREE.Color)
 					? (originalMat as any).color.clone()
 					: new THREE.Color(0xC0C0C0);
 
-			if (theme === 'Metallic') {
-				const metallic = new THREE.MeshPhongMaterial({
-					color: originalColor,
-					shininess: 35,
-					specular: new THREE.Color('#fffaed'),
-					vertexColors: (workingMat as any).vertexColors ?? false
-				});
+				{
+					// Metallic material — determine color and whether to preserve vertex colors
+					let metallicColor = originalColor;
+					let useVertexColors = (workingMat as any).vertexColors ?? false;
 
-				(metallic as any).flatShading = true;
-				metallic.transparent = (workingMat as any).transparent ?? false;
-				metallic.opacity = (workingMat as any).opacity ?? 1;
+					// For particles with colorful OFF (dimmed=true): apply diameter colormap
+					if (category === 0 && dimmed && diameterValues && diameterValues.length > 0) {
+						const particleIndex = idToIndex?.[entityId];
+						if (particleIndex !== undefined && particleIndex < diameterValues.length) {
+							metallicColor = beadColorJS(diameterValues[particleIndex]);
+						} else {
+							// Out of range or unmapped — fall back to current default
+							metallicColor = new THREE.Color(dimmedOptions?.color ?? '#E7F6E3');
+							if (particleIndex !== undefined) {
+								console.warn(`[Diameter color] Particle index ${particleIndex} (entity "${entityId}") out of range (diameterValues length: ${diameterValues.length})`);
+							}
+						}
+						useVertexColors = false;
+					}
 
-				workingMat.dispose?.();
-				workingMat = metallic;
-			}
-
-			if (typeof color === 'string') {
-				if ((workingMat as any).color) (workingMat as any).color = new THREE.Color(color);
-				(workingMat as any).vertexColors = false;
-			} else {
-				if (dimmed && typeof dimmedOptions?.color === 'string' && (workingMat as any).color) {
-					(workingMat as any).color = new THREE.Color(dimmedOptions.color);
-					(workingMat as any).vertexColors = false;
+					const metallic = new THREE.MeshPhongMaterial({
+					color: metallicColor,
+					shininess: 28,
+					specular: new THREE.Color('#b3b3ad'),
+					vertexColors: useVertexColors,
+					});
+					(metallic as any).flatShading = true;
+					metallic.transparent = (workingMat as any).transparent ?? false;
+					metallic.opacity = (workingMat as any).opacity ?? 1;
+					workingMat.dispose?.();
+					workingMat = metallic;
 				}
+
+				// Global override (highest priority)
+				if (typeof color === 'string') {
+					if ((workingMat as any).color) (workingMat as any).color = new THREE.Color(color);
+					(workingMat as any).vertexColors = false;
+				} else if (dimmed && typeof dimmedOptions?.color === 'string' && (workingMat as any).color) {
+					// Skip dimmed color override for particles when diameter data is active
+					if (!(category === 0 && diameterValues && diameterValues.length > 0)) {
+						(workingMat as any).color = new THREE.Color(dimmedOptions.color);
+						(workingMat as any).vertexColors = false;
+					}
+				}
+
+				if (typeof opacity === 'number') {
+					(workingMat as any).transparent = true;
+					(workingMat as any).opacity = opacity;
+				} else if (opacity === undefined && dimmed && typeof dimmedOptions?.opacity === 'number') {
+					(workingMat as any).transparent = true;
+					(workingMat as any).opacity = dimmedOptions.opacity;
+				}
+
+				child.material = workingMat;
 			}
 
-			if (typeof opacity === 'number') {
-				(workingMat as any).transparent = true;
-				(workingMat as any).opacity = opacity;
-			} else if (opacity === undefined && dimmed && typeof dimmedOptions?.opacity === 'number') {
-				(workingMat as any).transparent = true;
-				(workingMat as any).opacity = dimmedOptions.opacity;
+			// Handle visibility
+			const center = new THREE.Vector3();
+			new THREE.Box3().setFromObject(child).getCenter(center);
+
+			// Adjust to match camera-centered coordinate space
+			const adjustedCenter = combinedCenter
+				? center.clone().sub(combinedCenter)
+				: center;
+
+			const isGloballyVisible = visible;
+			const isLocallyHidden = hiddenIds.has(entityId);
+			let finalVisible = isGloballyVisible && !isLocallyHidden
+
+			if (category === 0) {
+				const shouldSlice = slicingActive && typeof sliceXThreshold === 'number';
+				const isSliceHidden = shouldSlice && adjustedCenter.x > (sliceXThreshold ?? 0);
+				finalVisible = finalVisible && !isSliceHidden;
 			}
 
-			child.material = workingMat;
-		}
-
-		const center = new THREE.Vector3();
-		new THREE.Box3().setFromObject(child).getCenter(center);
-
-		const isGloballyVisible = visible;
-		const isLocallyHidden = hiddenIds.has(entityId);
-
-		let finalVisible = isGloballyVisible && !isLocallyHidden;
-
-		if (category === 0 && slicingActive && typeof sliceXThreshold === 'number') {
-    const isSliceHidden = center.x > sliceXThreshold;
-    finalVisible = finalVisible && !isSliceHidden;
-}
-
-		child.visible = finalVisible;
-		child.raycast = finalVisible ? child.userData.originalRaycast : () => {};
-	});
-}, [
-	scene,
-	hiddenIds,
-	selectedEntity,
-	dimmed,
-	dimmedOptions,
-	visible,
-	color,
-	opacity,
-	sliceXThreshold,
-	category,
-	slicingActive,
-	theme
-]);
+			child.visible = finalVisible;
+			child.raycast = finalVisible ? child.userData.originalRaycast : () => {};
+		});
+	}, [scene, hiddenIds, selectedEntity, dimmed, dimmedOptions, visible, color, opacity, shouldSlice, sliceXThreshold, combinedCenter, category, slicingActive, diameterValues, idToIndex]);
 
 
 	useEffect(() => {

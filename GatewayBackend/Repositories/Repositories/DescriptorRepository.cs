@@ -356,6 +356,31 @@ namespace Repositories.Repositories
 			};
 		}
 		
+		public async Task<ParticleDiameterDto?> GetParticleDiameterForScaffoldGroup(int scaffoldGroupId)
+		{
+			var descriptor = await _context.OtherDescriptors
+				.AsNoTracking()
+				.Where(od => od.Scaffold.ScaffoldGroupId == scaffoldGroupId
+					&& od.DescriptorType.Name == "ParticleDiam")
+				.Select(od => new
+				{
+					od.ScaffoldId,
+					od.Values
+				})
+				.FirstOrDefaultAsync();
+
+			if (descriptor == null) return null;
+
+			var values = ParseDoubleList(descriptor.Values);
+
+			return new ParticleDiameterDto
+			{
+				ScaffoldGroupId = scaffoldGroupId,
+				ScaffoldId = descriptor.ScaffoldId,
+				Values = values ?? new List<double>()
+			};
+		}
+
 		private List<double>? ParseDoubleListFromObjectArray(JsonDocument? doc)
 		{
 			if (doc == null) return null;
@@ -371,6 +396,29 @@ namespace Repositories.Repositories
 			catch (Exception ex)
 			{
 				Console.WriteLine("Failed to parse object-array JSON: " + ex.Message);
+				return null;
+			}
+		}
+
+		private List<double>? ParseDoubleList(JsonDocument? doc)
+		{
+			if (doc == null) return null;
+
+			try
+			{
+				var first = doc.RootElement.EnumerateArray().FirstOrDefault();
+				if (first.ValueKind == JsonValueKind.Number)
+				{
+					return doc.RootElement
+						.EnumerateArray()
+						.Select(e => e.GetDouble())
+						.ToList();
+				}
+				return ParseDoubleListFromObjectArray(doc);
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine("Failed to parse JSON values: " + ex.Message);
 				return null;
 			}
 		}
