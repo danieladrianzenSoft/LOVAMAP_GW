@@ -186,7 +186,13 @@ const AdminThumbnailReset: React.FC = () => {
 		// its Canvas/GLTF resources release before the next one starts.
 		setCurrentRegenItem(null);
 		if (nextItem) {
-			setTimeout(() => setCurrentRegenItem(nextItem), 150);
+			// HalfHalf loads 2 meshes per item — use a longer gap so the
+			// browser can reclaim WebGL contexts and ArrayBuffers before
+			// the next item starts.
+			const isHeavy =
+				currentCategory === ImageCategory.HalfHalf ||
+				nextItem.category === ImageCategory.HalfHalf;
+			setTimeout(() => setCurrentRegenItem(nextItem), isHeavy ? 2000 : 150);
 		} else {
 			setPhase("done");
 			setIsRunning(false);

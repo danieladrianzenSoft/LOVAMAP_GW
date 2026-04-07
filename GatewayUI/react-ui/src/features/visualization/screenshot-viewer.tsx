@@ -117,14 +117,32 @@ const ScreenshotScene: React.FC<ScreenshotSceneProps> = ({
     }
   }, [readyForScreenshot]);
 
-  // Wait for render frames after fully ready, then capture
+  // Wait for render frames after fully ready, then capture.
+  // useFrame runs BEFORE R3F's own gl.render(), so toBlob() would
+  // normally capture the previous frame.  We force an explicit render
+  // right before capture to guarantee the framebuffer is fresh.
   useFrame(() => {
     if (!readyForScreenshot || hasCapturedRef.current) return;
     framesSinceReadyRef.current += 1;
 
-    // 10 frames gives Model's visibility useEffect time to apply slicing + hidden IDs
-    if (framesSinceReadyRef.current >= 10) {
+    // 20 frames gives Model's visibility useEffect time to apply
+    // slicing + hidden IDs, and the GPU time to compile shaders and
+    // upload geometry — especially for small meshes that load fast.
+    if (framesSinceReadyRef.current >= 20) {
       hasCapturedRef.current = true;
+
+      // Guard against WebGL context loss (can happen under memory pressure
+      // during batch processing).
+      if (gl.getContext().isContextLost()) {
+        console.warn('WebGL context lost — skipping screenshot capture');
+        onScreenshotReady?.(new Blob());  // empty blob signals failure
+        return;
+      }
+
+      // Force a fresh render so the framebuffer has the latest state
+      // (useFrame fires before R3F's own render pass).
+      gl.render(scene, camera);
+
       gl.domElement.toBlob((blob) => {
         if (!blob || !onScreenshotReady) {
           if (!blob) console.warn('Failed to capture screenshot: no blob');
