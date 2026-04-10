@@ -131,7 +131,7 @@ const BulkUploadPipeline: React.FC = () => {
           {(emptyQueue || allFailed) && (
             <button
               onClick={() => bulkUploadStore.setStep(BulkUploadStep.Review)}
-              className="button-outline w-32 !py-2.5 !mb-3"
+              className="button-outline w-32 mb-3"
             >
               Back to Review
             </button>
@@ -139,7 +139,7 @@ const BulkUploadPipeline: React.FC = () => {
           <button
             onClick={() => bulkUploadStore.setStep(BulkUploadStep.Screenshots)}
             disabled={successfulDomainUploads === 0}
-            className="button-primary w-44"
+            className="button-primary w-44 mb-3"
           >
             {successfulDomainUploads > 0 ? "Continue to Screenshots" : "No Uploads to Screenshot"}
           </button>

@@ -580,11 +580,11 @@ public class ScaffoldGroupsController : ControllerBase
 
 	[Authorize(Roles = "administrator")]
 	[HttpGet("images/missing-thumbnails")]
-	public async Task<IActionResult> GetScaffoldsWithMissingThumbnails([FromQuery] ImageCategory? category = null)
+	public async Task<IActionResult> GetScaffoldsWithMissingThumbnails([FromQuery] ImageCategory? category = null, [FromQuery] int? scaffoldGroupId = null)
 	{
 		try
 		{
-			var scaffolds = await _scaffoldGroupService.GetScaffoldsMissingThumbnailsByCategory(category ?? ImageCategory.Particles);
+			var scaffolds = await _scaffoldGroupService.GetScaffoldsMissingThumbnailsByCategory(category ?? ImageCategory.Particles, scaffoldGroupId);
 
 			return Ok(new ApiResponse<List<ScaffoldMissingThumbnailInfoDto>>(200, "", scaffolds));
 		}
@@ -597,11 +597,11 @@ public class ScaffoldGroupsController : ControllerBase
 
 	[Authorize(Roles = "administrator")]
 	[HttpGet("images/thumbnail-reset-preview")]
-	public async Task<IActionResult> GetThumbnailResetPreview([FromQuery] ImageCategory? category = null)
+	public async Task<IActionResult> GetThumbnailResetPreview([FromQuery] ImageCategory? category = null, [FromQuery] int? scaffoldGroupId = null)
 	{
 		try
 		{
-			var preview = await _scaffoldGroupService.GetThumbnailResetPreview(category ?? ImageCategory.Particles);
+			var preview = await _scaffoldGroupService.GetThumbnailResetPreview(category ?? ImageCategory.Particles, scaffoldGroupId);
 
 			return Ok(new ApiResponse<ThumbnailResetPreviewDto>(200, "", preview));
 		}

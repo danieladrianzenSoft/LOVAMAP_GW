@@ -381,7 +381,13 @@ export default class BulkUploadStore {
 
   buildScreenshotQueue = () => {
     const items: ScreenshotQueueItem[] = [];
-    const seen = new Set<string>();
+
+    // Per scaffold, track which domain meshes uploaded successfully so we
+    // can derive the right set of thumbnail categories to render.
+    const perScaffold = new Map<
+      number,
+      { hasParticleMesh: boolean; hasPoreMesh: boolean; groupId: number }
+    >();
 
     for (const item of this.domainQueue) {
       if (item.status !== DomainUploadStatus.Success) continue;
@@ -389,20 +395,51 @@ export default class BulkUploadStore {
       const groupId = this.createdGroups.find((g) =>
         g.scaffoldIds.includes(item.scaffoldId)
       )?.id;
-
       if (!groupId) continue;
 
-      const key = `${item.scaffoldId}-${item.category}`;
-      if (seen.has(key)) continue;
-      seen.add(key);
-
-      items.push({
-        scaffoldId: item.scaffoldId,
-        scaffoldGroupId: groupId,
-        category: item.category,
-        status: DomainUploadStatus.Pending,
-      });
+      const entry =
+        perScaffold.get(item.scaffoldId) ?? {
+          hasParticleMesh: false,
+          hasPoreMesh: false,
+          groupId,
+        };
+      if (item.category === 0) entry.hasParticleMesh = true;
+      if (item.category === 1) entry.hasPoreMesh = true;
+      perScaffold.set(item.scaffoldId, entry);
     }
+
+    perScaffold.forEach((info, scaffoldId) => {
+      if (info.hasParticleMesh) {
+        items.push({
+          scaffoldId,
+          scaffoldGroupId: info.groupId,
+          category: ImageCategory.Particles,
+          status: DomainUploadStatus.Pending,
+        });
+      }
+      if (info.hasPoreMesh) {
+        items.push({
+          scaffoldId,
+          scaffoldGroupId: info.groupId,
+          category: ImageCategory.ExteriorPores,
+          status: DomainUploadStatus.Pending,
+        });
+        items.push({
+          scaffoldId,
+          scaffoldGroupId: info.groupId,
+          category: ImageCategory.InteriorPores,
+          status: DomainUploadStatus.Pending,
+        });
+      }
+      if (info.hasParticleMesh && info.hasPoreMesh) {
+        items.push({
+          scaffoldId,
+          scaffoldGroupId: info.groupId,
+          category: ImageCategory.HalfHalf,
+          status: DomainUploadStatus.Pending,
+        });
+      }
+    });
 
     this.screenshotQueue = items;
   };
@@ -414,15 +451,11 @@ export default class BulkUploadStore {
     const { scaffoldGroupStore } = store;
 
     try {
-      const imageCategory = item.category === 0
-        ? ImageCategory.Particles
-        : ImageCategory.ExteriorPores;
-
       const image: ImageToCreate = {
         scaffoldGroupId: item.scaffoldGroupId,
         scaffoldId: item.scaffoldId,
         file: new File([blob], `scaffold-${item.scaffoldId}-cat${item.category}.png`, { type: "image/png" }),
-        category: imageCategory,
+        category: item.category as ImageCategory,
       };
 
       await scaffoldGroupStore.uploadImageForScaffoldGroup(item.scaffoldGroupId, image);
@@ -437,8 +470,22 @@ export default class BulkUploadStore {
       console.error(`Screenshot upload failed for scaffold ${item.scaffoldId}:`, error);
       runInAction(() => {
         item.status = DomainUploadStatus.Failed;
+        this.screenshotProgress = Math.round(
+          ((queueIndex + 1) / this.screenshotQueue.length) * 100
+        );
       });
     }
+  };
+
+  markScreenshotFailed = (queueIndex: number) => {
+    const item = this.screenshotQueue[queueIndex];
+    if (!item) return;
+    runInAction(() => {
+      item.status = DomainUploadStatus.Failed;
+      this.screenshotProgress = Math.round(
+        ((queueIndex + 1) / this.screenshotQueue.length) * 100
+      );
+    });
   };
 
   // --- Undo ---

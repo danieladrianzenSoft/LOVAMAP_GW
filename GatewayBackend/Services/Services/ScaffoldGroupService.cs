@@ -930,11 +930,11 @@ namespace Services.Services
 			}
 		}
 
-		public async Task<List<ScaffoldMissingThumbnailInfoDto>> GetScaffoldsMissingThumbnailsByCategory(ImageCategory imageCategory = ImageCategory.Particles)
+		public async Task<List<ScaffoldMissingThumbnailInfoDto>> GetScaffoldsMissingThumbnailsByCategory(ImageCategory imageCategory = ImageCategory.Particles, int? scaffoldGroupId = null)
 		{
 			try
 			{
-				var scaffolds = await _scaffoldGroupRepository.GetScaffoldsMissingThumbnailsByCategory(imageCategory);
+				var scaffolds = await _scaffoldGroupRepository.GetScaffoldsMissingThumbnailsByCategory(imageCategory, scaffoldGroupId);
 				return scaffolds;
 			}
 			catch (Exception ex)
@@ -945,12 +945,12 @@ namespace Services.Services
 			}
 		}
 
-		public async Task<ThumbnailResetPreviewDto> GetThumbnailResetPreview(ImageCategory imageCategory)
+		public async Task<ThumbnailResetPreviewDto> GetThumbnailResetPreview(ImageCategory imageCategory, int? scaffoldGroupId = null)
 		{
 			try
 			{
-				var thumbnails = await _imageService.GetThumbnailsWithScaffoldGroupByCategory(imageCategory);
-				var scaffoldGroupsWithMesh = await _scaffoldGroupRepository.GetScaffoldGroupIdsWithMeshForCategory(imageCategory);
+				var thumbnails = await _imageService.GetThumbnailsWithScaffoldGroupByCategory(imageCategory, scaffoldGroupId);
+				var scaffoldGroupsWithMesh = await _scaffoldGroupRepository.GetScaffoldGroupIdsWithMeshForCategory(imageCategory, scaffoldGroupId);
 
 				var meshSet = scaffoldGroupsWithMesh.ToHashSet();
 				var thumbnailGroupIds = thumbnails.Select(t => t.ScaffoldGroupId).Distinct().ToList();

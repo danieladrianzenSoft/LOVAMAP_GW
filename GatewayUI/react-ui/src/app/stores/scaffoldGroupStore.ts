@@ -612,9 +612,9 @@ export default class ScaffoldGroupStore {
 		}
 	}
 
-	getScaffoldsWithMissingThumbnails = async(category?: number | null): Promise<ScaffoldWithMissingThumbnail[]> => {
+	getScaffoldsWithMissingThumbnails = async(category?: number | null, scaffoldGroupId?: number | null): Promise<ScaffoldWithMissingThumbnail[]> => {
 		try {
-			const response = await agent.ScaffoldGroups.getScaffoldsWithMissingThumbnails(category)
+			const response = await agent.ScaffoldGroups.getScaffoldsWithMissingThumbnails(category, scaffoldGroupId)
 			return response.data ?? [];
 		} catch (error) {
 			console.error(error);
@@ -622,9 +622,9 @@ export default class ScaffoldGroupStore {
 		}
 	}
 
-	getThumbnailResetPreview = async (category: number): Promise<ThumbnailResetPreview | null> => {
+	getThumbnailResetPreview = async (category: number, scaffoldGroupId?: number | null): Promise<ThumbnailResetPreview | null> => {
 		try {
-			const response = await agent.ScaffoldGroups.getThumbnailResetPreview(category);
+			const response = await agent.ScaffoldGroups.getThumbnailResetPreview(category, scaffoldGroupId);
 			return response.data;
 		} catch (error) {
 			console.error("Error fetching thumbnail reset preview:", error);

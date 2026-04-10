@@ -265,11 +265,11 @@ namespace Services.Services
 			}
 		}
 
-		public async Task<List<(int ImageId, int ScaffoldGroupId)>> GetThumbnailsWithScaffoldGroupByCategory(ImageCategory category)
+		public async Task<List<(int ImageId, int ScaffoldGroupId)>> GetThumbnailsWithScaffoldGroupByCategory(ImageCategory category, int? scaffoldGroupId = null)
 		{
 			try
 			{
-				return await _imageRepository.GetThumbnailsWithScaffoldGroupByCategory(category);
+				return await _imageRepository.GetThumbnailsWithScaffoldGroupByCategory(category, scaffoldGroupId);
 			}
 			catch (Exception ex)
 			{

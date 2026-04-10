@@ -29,6 +29,12 @@ const AdminThumbnailReset: React.FC = () => {
 
 	const [category, setCategory] = useState<number>(ALL_CATEGORIES);
 	const [actionMode, setActionMode] = useState<"reset" | "deleteOnly">("reset");
+	const [scaffoldGroupIdInput, setScaffoldGroupIdInput] = useState<string>("");
+	const parsedScaffoldGroupId = parseInt(scaffoldGroupIdInput, 10);
+	const scaffoldGroupId: number | null =
+		scaffoldGroupIdInput.trim() === "" || Number.isNaN(parsedScaffoldGroupId)
+			? null
+			: parsedScaffoldGroupId;
 
 	// Suppress CRA's full-screen error overlay for blob-URL fetch failures.
 	// These are harmless: Three.js's GLTF loader throws when a blob URL is
@@ -89,11 +95,11 @@ const AdminThumbnailReset: React.FC = () => {
 		setPhase("idle");
 
 		const cats = category === ALL_CATEGORIES ? RESETTABLE_CATEGORIES : [category as ImageCategory];
-		const results = await Promise.all(cats.map((c) => scaffoldGroupStore.getThumbnailResetPreview(c)));
+		const results = await Promise.all(cats.map((c) => scaffoldGroupStore.getThumbnailResetPreview(c, scaffoldGroupId)));
 		const valid = results.filter((r): r is ThumbnailResetPreview => r != null);
 		setPreview(mergePreviews(valid));
 		setLoadingPreview(false);
-	}, [category, scaffoldGroupStore]);
+	}, [category, scaffoldGroupId, scaffoldGroupStore]);
 
 	useEffect(() => {
 		loadPreview();
@@ -154,7 +160,7 @@ const AdminThumbnailReset: React.FC = () => {
 		const cats = categoriesForSelection();
 		const perCategoryQueues = await Promise.all(
 			cats.map(async (c) => {
-				const items = await scaffoldGroupStore.getScaffoldsWithMissingThumbnails(c);
+				const items = await scaffoldGroupStore.getScaffoldsWithMissingThumbnails(c, scaffoldGroupId);
 				return items.map<RegenItem>((item) => ({ ...item, category: c }));
 			})
 		);
@@ -286,6 +292,19 @@ const AdminThumbnailReset: React.FC = () => {
 						<option value="reset">Reset (Delete + Regenerate)</option>
 						<option value="deleteOnly">Delete Only</option>
 					</select>
+				</div>
+
+				<div className="mb-4">
+					<label className="block text-sm font-medium text-gray-700">Scaffold Group ID (optional)</label>
+					<input
+						type="number"
+						className="mt-1 block w-full p-2 border rounded-md"
+						value={scaffoldGroupIdInput}
+						onChange={(e) => setScaffoldGroupIdInput(e.target.value)}
+						disabled={isRunning}
+						placeholder="e.g. 123"
+					/>
+					<p className="mt-1 text-xs text-gray-500">Leave blank to apply to all scaffold groups</p>
 				</div>
 
 				{loadingPreview && (

@@ -153,14 +153,20 @@ const ScaffoldGroups = {
     updateImage: (scaffoldGroupId: number, image: ImageToUpdate) => requests.put<ApiResponse<ScaffoldGroup>>(`/scaffoldgroups/${scaffoldGroupId}/images/${image.id}`, image),
     deleteImage: (scaffoldGroupId: number, imageId: number) => requests.del<ApiResponse<ScaffoldGroup>>(`/scaffoldgroups/${scaffoldGroupId}/images/${imageId}`),
     deleteImages: (imageIds: {imageIds: number[]}) => requests.post<ApiResponse<BatchOperationResult>>('/scaffoldgroups/images/batch-delete', imageIds),
-    getScaffoldsWithMissingThumbnails: (category?: number | null) => {
-        const query = category !== null && category !== undefined ? `?category=${ImageCategory[category]}` : '';
+    getScaffoldsWithMissingThumbnails: (category?: number | null, scaffoldGroupId?: number | null) => {
+        const params: string[] = [];
+        if (category !== null && category !== undefined) params.push(`category=${ImageCategory[category]}`);
+        if (scaffoldGroupId !== null && scaffoldGroupId !== undefined) params.push(`scaffoldGroupId=${scaffoldGroupId}`);
+        const query = params.length > 0 ? `?${params.join('&')}` : '';
         return requests.get<ApiResponse<ScaffoldWithMissingThumbnail[]>>(`/scaffoldgroups/images/missing-thumbnails${query}`);
     },
-    getThumbnailResetPreview: (category: number) =>
-        requests.get<ApiResponse<ThumbnailResetPreview>>(
-            `/scaffoldgroups/images/thumbnail-reset-preview?category=${ImageCategory[category]}`
-        )
+    getThumbnailResetPreview: (category: number, scaffoldGroupId?: number | null) => {
+        const params = [`category=${ImageCategory[category]}`];
+        if (scaffoldGroupId !== null && scaffoldGroupId !== undefined) params.push(`scaffoldGroupId=${scaffoldGroupId}`);
+        return requests.get<ApiResponse<ThumbnailResetPreview>>(
+            `/scaffoldgroups/images/thumbnail-reset-preview?${params.join('&')}`
+        );
+    }
 }
 
 const Descriptors = {

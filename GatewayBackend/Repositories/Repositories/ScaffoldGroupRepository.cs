@@ -645,7 +645,7 @@ namespace Repositories.Repositories
 			return scaffoldGroups;
 		}
 
-		public async Task<List<int>> GetScaffoldGroupIdsWithMeshForCategory(ImageCategory imageCategory)
+		public async Task<List<int>> GetScaffoldGroupIdsWithMeshForCategory(ImageCategory imageCategory, int? scaffoldGroupId = null)
 		{
 			var domainCategory = CategoryMapper.ToDomainCategory(imageCategory);
 			if (domainCategory == null) return new List<int>();
@@ -657,6 +657,7 @@ namespace Repositories.Repositories
 					from s in _context.Scaffolds
 					where _context.Domains.Any(d => d.ScaffoldId == s.Id && d.Category == DomainCategory.Particles && d.MeshFilePath != null)
 					   && _context.Domains.Any(d => d.ScaffoldId == s.Id && d.Category == DomainCategory.Pores && d.MeshFilePath != null)
+					   && (!scaffoldGroupId.HasValue || s.ScaffoldGroupId == scaffoldGroupId.Value)
 					select s.ScaffoldGroupId
 				).Distinct().ToListAsync();
 				return ids;
@@ -666,13 +667,14 @@ namespace Repositories.Repositories
 				from s in _context.Scaffolds
 				join d in _context.Domains on s.Id equals d.ScaffoldId
 				where d.Category == domainCategory && d.MeshFilePath != null
+				   && (!scaffoldGroupId.HasValue || s.ScaffoldGroupId == scaffoldGroupId.Value)
 				select s.ScaffoldGroupId
 			).Distinct().ToListAsync();
 
 			return result;
 		}
 
-		public async Task<List<ScaffoldMissingThumbnailInfoDto>> GetScaffoldsMissingThumbnailsByCategory(ImageCategory imageCategory = ImageCategory.Particles)
+		public async Task<List<ScaffoldMissingThumbnailInfoDto>> GetScaffoldsMissingThumbnailsByCategory(ImageCategory imageCategory = ImageCategory.Particles, int? scaffoldGroupId = null)
 		{
 			var domainCategory = CategoryMapper.ToDomainCategory(imageCategory);
 			if (domainCategory == null) return new List<ScaffoldMissingThumbnailInfoDto>();
@@ -685,6 +687,7 @@ namespace Repositories.Repositories
 				query = from s in _context.Scaffolds
 					where _context.Domains.Any(d => d.ScaffoldId == s.Id && d.Category == DomainCategory.Particles && d.MeshFilePath != null)
 					   && _context.Domains.Any(d => d.ScaffoldId == s.Id && d.Category == DomainCategory.Pores && d.MeshFilePath != null)
+					   && (!scaffoldGroupId.HasValue || s.ScaffoldGroupId == scaffoldGroupId.Value)
 					where !_context.Images.Any(img =>
 						img.ScaffoldGroupId == s.ScaffoldGroupId &&
 						img.IsThumbnail &&
@@ -700,6 +703,7 @@ namespace Repositories.Repositories
 				query = from s in _context.Scaffolds
 					join d in _context.Domains on s.Id equals d.ScaffoldId
 					where d.Category == domainCategory && d.MeshFilePath != null
+					   && (!scaffoldGroupId.HasValue || s.ScaffoldGroupId == scaffoldGroupId.Value)
 					where !_context.Images.Any(img =>
 						img.ScaffoldGroupId == s.ScaffoldGroupId &&
 						img.IsThumbnail &&

@@ -1,10 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../../app/stores/store";
 import ScreenshotViewer from "../visualization/screenshot-viewer";
-import { DomainUploadStatus } from "./bulk-upload-types";
+import { DomainUploadStatus, ScreenshotQueueItem } from "./bulk-upload-types";
+import { ImageCategory } from "../../app/models/image";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+
+const categoryLabel = (cat: number): string => {
+  switch (cat) {
+    case ImageCategory.Particles: return "Particles";
+    case ImageCategory.ExteriorPores: return "Exterior Pores";
+    case ImageCategory.InteriorPores: return "Interior Pores";
+    case ImageCategory.HalfHalf: return "Half-Half";
+    case ImageCategory.Other: return "Other";
+    default: return `Category ${cat}`;
+  }
+};
 
 const BulkUploadScreenshotQueue: React.FC = () => {
   const { bulkUploadStore } = useStore();
@@ -12,34 +24,91 @@ const BulkUploadScreenshotQueue: React.FC = () => {
   const navigate = useNavigate();
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentItem, setCurrentItem] = useState<ScreenshotQueueItem | null>(null);
   const [isRunning, setIsRunning] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
   const [isUndoing, setIsUndoing] = useState(false);
   const [undone, setUndone] = useState(false);
 
-  const currentItem = isRunning ? screenshotQueue[currentIndex] ?? null : null;
+  // Suppress CRA's full-screen error overlay for blob-URL fetch failures.
+  // These are harmless: Three.js's GLTF loader throws when a blob URL is
+  // revoked while an in-flight fetch is still queued (especially under
+  // React StrictMode which double-invokes effects). The screenshot
+  // pipeline is unaffected.
+  useEffect(() => {
+    const suppressError = (event: ErrorEvent) => {
+      const msg = event.message || event.error?.message || '';
+      if (msg.includes('Could not load blob:') || msg.includes('[object Object]')) {
+        event.preventDefault();
+      }
+    };
+    const suppressRejection = (event: PromiseRejectionEvent) => {
+      const msg = event.reason?.message || String(event.reason);
+      if (msg.includes('Could not load blob:') || msg.includes('Failed to fetch')) {
+        event.preventDefault();
+      }
+    };
+    window.addEventListener('error', suppressError);
+    window.addEventListener('unhandledrejection', suppressRejection);
+    return () => {
+      window.removeEventListener('error', suppressError);
+      window.removeEventListener('unhandledrejection', suppressRejection);
+    };
+  }, []);
 
   const handleStart = () => {
     if (screenshotQueue.length === 0) return;
     setIsRunning(true);
     setCurrentIndex(0);
+    setCurrentItem(screenshotQueue[0]);
   };
 
   const handleSkip = () => {
     setIsComplete(true);
     setIsRunning(false);
+    setCurrentItem(null);
   };
 
-  const handleScreenshotReady = async (blob: Blob) => {
-    await bulkUploadStore.handleScreenshotReady(blob, currentIndex);
-
+  const advance = (currentCategory: number) => {
     const nextIndex = currentIndex + 1;
+    // Clear current item first so the old ScreenshotViewer unmounts and
+    // its Canvas/GLTF resources release before the next one starts.
+    setCurrentItem(null);
+
     if (nextIndex < screenshotQueue.length) {
-      setCurrentIndex(nextIndex);
+      const nextItem = screenshotQueue[nextIndex];
+      // HalfHalf loads 2 meshes per item — use a longer gap so the
+      // browser can reclaim WebGL contexts and ArrayBuffers before
+      // the next item starts.
+      const isHeavy =
+        currentCategory === ImageCategory.HalfHalf ||
+        nextItem.category === ImageCategory.HalfHalf;
+      setTimeout(() => {
+        setCurrentIndex(nextIndex);
+        setCurrentItem(nextItem);
+      }, isHeavy ? 2000 : 150);
     } else {
       setIsRunning(false);
       setIsComplete(true);
     }
+  };
+
+  const handleScreenshotReady = async (blob: Blob) => {
+    if (!currentItem) return;
+    const cat = currentItem.category;
+    await bulkUploadStore.handleScreenshotReady(blob, currentIndex);
+    advance(cat);
+  };
+
+  const handleScreenshotError = (error: unknown) => {
+    if (!currentItem) return;
+    const cat = currentItem.category;
+    console.warn(
+      `Skipping screenshot for scaffold ${currentItem.scaffoldId} (category ${cat}): mesh/metadata unavailable`,
+      error
+    );
+    bulkUploadStore.markScreenshotFailed(currentIndex);
+    advance(cat);
   };
 
   const handleDone = () => {
@@ -89,7 +158,8 @@ const BulkUploadScreenshotQueue: React.FC = () => {
         <>
           <p className="text-sm text-gray-600 mb-4">
             {screenshotQueue.length} screenshot{screenshotQueue.length !== 1 ? "s" : ""} to
-            generate. Each domain (particles and pores) will be rendered and uploaded as a thumbnail.
+            generate. Each scaffold's particles, exterior pores, interior pores, and half-half
+            views will be rendered and uploaded as thumbnails.
           </p>
 
           {/* Progress */}
@@ -120,7 +190,7 @@ const BulkUploadScreenshotQueue: React.FC = () => {
                 }`}
               >
                 <span>
-                  Scaffold {item.scaffoldId} — {item.category === 0 ? "Particles" : "Pores"}
+                  Scaffold {item.scaffoldId} — {categoryLabel(item.category)}
                 </span>
                 <span className="text-xs">
                   {item.status === DomainUploadStatus.Success && (
@@ -153,6 +223,7 @@ const BulkUploadScreenshotQueue: React.FC = () => {
                 scaffoldId={currentItem.scaffoldId}
                 category={currentItem.category}
                 onScreenshotReady={handleScreenshotReady}
+                onError={handleScreenshotError}
               />
             </div>
           )}
@@ -161,10 +232,10 @@ const BulkUploadScreenshotQueue: React.FC = () => {
           <div className="flex gap-3 items-stretch">
             {!isRunning && !isComplete && (
               <>
-                <button onClick={handleStart} className="button-primary !w-auto">
+                <button onClick={handleStart} className="button-primary py-2.5 mb-3 w-auto">
                   Start Screenshots
                 </button>
-                <button onClick={handleSkip} className="button-outline !py-2.5 !mb-3">
+                <button onClick={handleSkip} className="button-outline py-2.5 mb-3">
                   Skip
                 </button>
               </>

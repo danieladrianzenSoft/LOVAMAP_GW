@@ -324,7 +324,7 @@ const BulkUploadTargetSelector: React.FC = () => {
       <div className="flex gap-3 justify-end items-stretch">
         <button
           onClick={() => bulkUploadStore.setStep(BulkUploadStep.Review)}
-          className="button-outline w-32 !py-2.5 !mb-3"
+          className="button-outline w-32 py-2.5 mb-3"
         >
           Back
         </button>
@@ -335,7 +335,7 @@ const BulkUploadTargetSelector: React.FC = () => {
             (targetMode === TargetMode.AddToExisting &&
               (!selectedExistingGroupId || (descriptorFiles.length > 0 && (!parsedDescriptorJson || isParsingDescriptor))))
           }
-          className="button-primary w-32"
+          className="button-primary w-32 py-2.5 mb-3"
         >
           Start Upload
         </button>

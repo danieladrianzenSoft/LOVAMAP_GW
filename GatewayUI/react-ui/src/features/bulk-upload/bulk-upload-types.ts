@@ -67,6 +67,7 @@ export interface DomainUploadItem {
 export interface ScreenshotQueueItem {
   scaffoldId: number;
   scaffoldGroupId: number;
+  // ImageCategory value (0=Particles, 1=ExteriorPores, 2=InteriorPores, 3=HalfHalf, 4=Other)
   category: number;
   status: DomainUploadStatus;
 }
