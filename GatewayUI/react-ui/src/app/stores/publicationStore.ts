@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx";
-import { Publication, PublicationToCreate } from "../models/publication";
+import { Publication, PublicationToCreate, DescriptorRuleToCreate } from "../models/publication";
 import agent from "../api/agent";
 
 export default class PublicationStore {
@@ -38,13 +38,35 @@ export default class PublicationStore {
 		}
 	}
 
-	createDataset = async(publicationId: number, scaffoldIds: number[]): Promise<{ success: boolean; error?: string }> => {
+	updatePublication = async(publicationId: number, data: PublicationToCreate): Promise<{ success: boolean; error?: string }> => {
 		try {
-			await agent.Publications.createDataset(publicationId, { name: "Main", scaffoldIds });
+			await agent.Publications.update(publicationId, data);
+			return { success: true };
+		} catch (error: any) {
+			const msg = error?.response?.data?.message || "Failed to update publication.";
+			console.error("Error updating publication", error);
+			return { success: false, error: msg };
+		}
+	}
+
+	createDataset = async(publicationId: number, scaffoldIds: number[], descriptorRules: DescriptorRuleToCreate[]): Promise<{ success: boolean; error?: string }> => {
+		try {
+			await agent.Publications.createDataset(publicationId, { name: "Main", scaffoldIds, descriptorRules });
 			return { success: true };
 		} catch (error: any) {
 			const msg = error?.response?.data?.message || "Failed to create dataset.";
 			console.error("Error creating dataset", error);
+			return { success: false, error: msg };
+		}
+	}
+
+	upsertDataset = async(publicationId: number, scaffoldIds: number[], descriptorRules: DescriptorRuleToCreate[]): Promise<{ success: boolean; error?: string }> => {
+		try {
+			await agent.Publications.upsertDataset(publicationId, { name: "Main", scaffoldIds, descriptorRules });
+			return { success: true };
+		} catch (error: any) {
+			const msg = error?.response?.data?.message || "Failed to update dataset.";
+			console.error("Error updating dataset", error);
 			return { success: false, error: msg };
 		}
 	}

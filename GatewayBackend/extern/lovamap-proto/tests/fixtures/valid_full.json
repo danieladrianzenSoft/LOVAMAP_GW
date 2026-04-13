@@ -1,0 +1,45 @@
+{
+  "jobId": "test-job-full",
+  "version": "2.0.0",
+  "globalDescriptors": {
+    "Dx": 1.5,
+    "NumVoxels": 1000,
+    "NumParticles": 50,
+    "NumParticleContacts": 25,
+    "VFF": 0.75,
+    "ParticlePackingFraction": 0.65,
+    "AvgVoidAreaFraction": 0.35,
+    "VFFIntPores": 0.25,
+    "NumTotalPores": 10,
+    "NumIntPores": 5,
+    "NumIntPoresdivParticlesSurrIntPores": 0.5,
+    "NumExitDoors": 2,
+    "NumIntDoors": 3,
+    "NumIntPaths": 4,
+    "ParticleAdjacencyMatrixEigenvalue": 0.95,
+    "PeakAdjacencyMatrixEigenvalue": 0.85,
+    "PoreAdjacencyMatrixEigenvalue": 0.75,
+    "MaxNumPeaksAmongSurfacePores": 8,
+    "LigandHotspotsVolFrac": 0.12,
+    "MaxNumEquidistantParticles": 6
+  },
+  "poreDescriptors": {
+    "Volume": {
+      "values": [1.0, 2.0, 3.0]
+    },
+    "SA": {
+      "values": [10.0, 20.0, 30.0]
+    },
+    "CharacteristicLength": {
+      "values": [0.5, 1.0, 1.5]
+    }
+  },
+  "otherDescriptors": {
+    "ParticleDiam": {
+      "values": [5.0, 6.0, 7.0]
+    },
+    "ParticleCoord": {
+      "values": [4, 5, 6]
+    }
+  }
+}

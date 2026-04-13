@@ -42,6 +42,29 @@ namespace Services.Services
 			}
 		}
 
+		public async Task<(bool Succeeded, string ErrorMessage)> UpdatePublication(int publicationId, PublicationToCreateDto publicationToUpdate)
+		{
+			try
+			{
+				var publication = await _context.Publications.FindAsync(publicationId);
+				if (publication == null) return (false, $"Publication {publicationId} not found.");
+				publicationToUpdate.PublishedAt = DateTime.SpecifyKind(publicationToUpdate.PublishedAt, DateTimeKind.Utc);
+				publication.Title = publicationToUpdate.Title;
+				publication.Authors = publicationToUpdate.Authors;
+				publication.Journal = publicationToUpdate.Journal;
+				publication.PublishedAt = publicationToUpdate.PublishedAt;
+				publication.Doi = publicationToUpdate.Doi;
+				publication.Citation = publicationToUpdate.Citation;
+				await _context.SaveChangesAsync();
+				return (true, "");
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, "Error updating publication");
+				return (false, ex.Message);
+			}
+		}
+
 		public async Task<(bool Succeeded, string ErrorMessage)> DeletePublication(int publicationId)
 		{
 			try

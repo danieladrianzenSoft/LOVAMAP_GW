@@ -132,7 +132,7 @@ const ExploreScreen = () => {
 			.flatMap(g => g.scaffoldIds);
 		setIsSaving(true);
 		setDatasetError(null);
-		const { success, error } = await publicationStore.createDataset(publicationId, scaffoldIds);
+		const { success, error } = await publicationStore.createDataset(publicationId, scaffoldIds, []);
 		setIsSaving(false);
 		if (!success) { setDatasetError(error ?? 'Unknown error.'); return; }
 		setShowDatasetModal(false);

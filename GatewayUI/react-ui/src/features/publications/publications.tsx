@@ -2,54 +2,80 @@ import React, { useEffect, useRef, useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import { useStore } from '../../app/stores/store';
 import { FaSpinner } from 'react-icons/fa';
-import { Publication, PublicationToCreate } from '../../app/models/publication';
+import { Publication, PublicationToCreate, DescriptorRuleToCreate } from '../../app/models/publication';
 import { ScaffoldGroup } from '../../app/models/scaffoldGroup';
+import { DescriptorType } from '../../app/models/descriptorType';
 import History from "../../app/helpers/History";
-import { MdOutlineRemoveRedEye, MdDeleteOutline } from "react-icons/md";
+import { MdOutlineRemoveRedEye, MdDeleteOutline, MdEditNote } from "react-icons/md";
 
-// ─── types ─────────────────────────────────────────────────────────────────
+// ─── JobSelectionMode enum (mirrors backend) ─────────────────────────────────
+const JOB_MODES = [
+	{ value: 0, label: 'Latest for scaffold' },
+	{ value: 1, label: 'Specific job' },
+	{ value: 2, label: 'Latest regardless of job' },
+	{ value: 3, label: 'Legacy (no job only)' },
+];
 
-type ModalStep = 'none' | 'addPublication' | 'confirmDataset' | 'addDataset';
+// ─── types ───────────────────────────────────────────────────────────────────
+type ModalStep = 'none' | 'addPublication' | 'confirmDataset' | 'addDataset' | 'addDescriptorRules';
 
 const emptyForm: PublicationToCreate = {
 	title: '', authors: '', journal: '', publishedAt: '', doi: '', citation: null,
 };
 
-// ─── component ──────────────────────────────────────────────────────────────
+interface DescriptorRuleState {
+	enabled: boolean;
+	jobMode: number;
+	jobId: string;
+}
 
+// ─── component ───────────────────────────────────────────────────────────────
 const Publications: React.FC = () => {
-	const { publicationStore, userStore, scaffoldGroupStore } = useStore();
-	const { getPublications, createPublication, createDataset, deletePublication } = publicationStore;
+	const { publicationStore, userStore, scaffoldGroupStore, descriptorStore, jobStore } = useStore();
+	const { getPublications, createPublication, updatePublication, createDataset, upsertDataset, deletePublication } = publicationStore;
 
+	// list
 	const [isLoading, setIsLoading] = useState(true);
 	const [publications, setPublications] = useState<Publication[]>([]);
+
+	// modal flow
 	const [step, setStep] = useState<ModalStep>('none');
+	const [editingPubId, setEditingPubId] = useState<number | null>(null); // null = create, number = edit
 	const [form, setForm] = useState<PublicationToCreate>(emptyForm);
 	const [formError, setFormError] = useState<string | null>(null);
 	const [isSubmitting, setIsSubmitting] = useState(false);
 	const newPubIdRef = useRef<number | null>(null);
+	const isEditingDataset = useRef(false); // true = upsert, false = create
 
+	// scaffold picker
 	const [scaffoldSearch, setScaffoldSearch] = useState('');
 	const [allScaffolds, setAllScaffolds] = useState<ScaffoldGroup[]>([]);
 	const [scaffoldsLoading, setScaffoldsLoading] = useState(false);
 	const [selectedGroupIds, setSelectedGroupIds] = useState<Set<number>>(new Set());
 	const [datasetError, setDatasetError] = useState<string | null>(null);
 
+	// descriptor rules
+	const [descriptorTypes, setDescriptorTypes] = useState<DescriptorType[]>([]);
+	const [descriptorRules, setDescriptorRules] = useState<Record<number, DescriptorRuleState>>({});
+	const [jobs, setJobs] = useState<{ id: string; label: string }[]>([]);
+	const [descriptorError, setDescriptorError] = useState<string | null>(null);
+
+	// delete confirm
 	const [confirmDeleteId, setConfirmDeleteId] = useState<number | null>(null);
 	const [isDeleting, setIsDeleting] = useState(false);
 
 	const isAdmin = userStore.user?.roles?.includes('administrator') ?? false;
 
+	// ── fetch list ──────────────────────────────────────────────────────────
 	const refreshPublications = async () => {
 		setIsLoading(true);
 		const results = await getPublications();
 		setPublications(results);
 		setIsLoading(false);
 	};
-
 	useEffect(() => { refreshPublications(); }, []); // eslint-disable-line
 
-	// debounced scaffold search
+	// ── scaffold search (debounced) ─────────────────────────────────────────
 	useEffect(() => {
 		if (step !== 'addDataset') return;
 		const handler = setTimeout(async () => {
@@ -71,8 +97,52 @@ const Publications: React.FC = () => {
 		return () => clearTimeout(handler);
 	}, [scaffoldSearch, step]); // eslint-disable-line
 
+	// ── load descriptor types + jobs when entering descriptor rules step ────
+	useEffect(() => {
+		if (step !== 'addDescriptorRules') return;
+		const load = async () => {
+			const types = await descriptorStore.getDescriptorTypes();
+			setDescriptorTypes(types);
+			// init rules state: all disabled by default
+			const initial: Record<number, DescriptorRuleState> = {};
+			types.forEach(t => {
+				initial[t.id] = descriptorRules[t.id] ?? { enabled: false, jobMode: 0, jobId: '' };
+			});
+			setDescriptorRules(initial);
+
+			// load jobs for dropdown
+			const jobList = await jobStore.getUserJobs();
+			setJobs((jobList ?? []).map(j => ({
+				id: j.id,
+				label: `Job ${j.id.slice(0, 8)}... (${j.status} ${new Date(j.submittedAt).toLocaleDateString()})`,
+			})));
+		};
+		load();
+	}, [step]); // eslint-disable-line
+
+	// ── handlers ────────────────────────────────────────────────────────────
+
+	// open Add Publication
 	const openAddPublication = () => {
-		setForm(emptyForm); setFormError(null); newPubIdRef.current = null;
+		setEditingPubId(null);
+		setForm(emptyForm);
+		setFormError(null);
+		newPubIdRef.current = null;
+		setStep('addPublication');
+	};
+
+	// open Edit Publication (click on row)
+	const openEditPublication = (pub: Publication) => {
+		setEditingPubId(pub.id);
+		setForm({
+			title: pub.title,
+			authors: pub.authors,
+			journal: pub.journal,
+			publishedAt: new Date(pub.publishedAt).toISOString().split('T')[0],
+			doi: pub.doi,
+			citation: pub.citation,
+		});
+		setFormError(null);
 		setStep('addPublication');
 	};
 
@@ -82,22 +152,40 @@ const Publications: React.FC = () => {
 	};
 
 	const handleSavePublication = async () => {
-		if (!form.title.trim() || !form.authors.trim() || !form.journal.trim() || !form.doi.trim() || !form.publishedAt) {
+		if (!form.title?.trim() || !form.authors?.trim() || !form.journal?.trim() || !form.doi?.trim() || !form.publishedAt) {
 			setFormError('Please fill in all required fields.'); return;
 		}
 		setIsSubmitting(true); setFormError(null);
-		const { success, error } = await createPublication(form);
-		setIsSubmitting(false);
-		if (!success) { setFormError(error ?? 'Unknown error.'); return; }
-		const results = await getPublications();
-		setPublications(results);
-		newPubIdRef.current = results.find(p => p.title === form.title)?.id ?? null;
-		setStep('confirmDataset');
+
+		if (editingPubId !== null) {
+			// Edit mode
+			const { success, error } = await updatePublication(editingPubId, form);
+			setIsSubmitting(false);
+			if (!success) { setFormError(error ?? 'Unknown error.'); return; }
+			await refreshPublications();
+			setStep('none');
+		} else {
+			// Create mode
+			const { success, error } = await createPublication(form);
+			setIsSubmitting(false);
+			if (!success) { setFormError(error ?? 'Unknown error.'); return; }
+			const results = await getPublications();
+			setPublications(results);
+			newPubIdRef.current = results.find(p => p.title === form.title)?.id ?? null;
+			setStep('confirmDataset');
+		}
 	};
 
-	const handleOpenDataset = () => {
-		setSelectedGroupIds(new Set()); setScaffoldSearch('');
-		setDatasetError(null); setAllScaffolds([]);
+	// open dataset modal (create new)
+	const handleOpenDataset = (pubId?: number, editMode = false) => {
+		if (pubId) newPubIdRef.current = pubId;
+		isEditingDataset.current = editMode;
+		setSelectedGroupIds(new Set());
+		setScaffoldSearch('');
+		setDatasetError(null);
+		setAllScaffolds([]);
+		setDescriptorRules({});
+		setDescriptorError(null);
 		setStep('addDataset');
 	};
 
@@ -109,18 +197,59 @@ const Publications: React.FC = () => {
 		});
 	};
 
-	const handleSaveDataset = async () => {
+	// scaffold → descriptor rules
+	const handleNextToDescriptorRules = () => {
 		if (selectedGroupIds.size === 0) { setDatasetError('Please select at least one scaffold group.'); return; }
+		setDatasetError(null);
+		setDescriptorError(null);
+		setStep('addDescriptorRules');
+	};
+
+	const toggleDescriptorRule = (typeId: number) => {
+		setDescriptorRules(prev => ({
+			...prev,
+			[typeId]: { ...prev[typeId], enabled: !prev[typeId]?.enabled },
+		}));
+	};
+
+	const updateRuleField = (typeId: number, field: 'jobMode' | 'jobId', value: any) => {
+		setDescriptorRules(prev => ({
+			...prev,
+			[typeId]: { ...prev[typeId], [field]: value },
+		}));
+	};
+
+	const handleSaveDataset = async () => {
 		const pubId = newPubIdRef.current;
-		if (!pubId) { setDatasetError('Publication ID missing.'); return; }
+		if (!pubId) { setDescriptorError('Publication ID missing.'); return; }
+
+		// validate: if SpecificJob selected, jobId must be filled
+		for (const [idStr, rule] of Object.entries(descriptorRules)) {
+			if (rule.enabled && rule.jobMode === 1 && !rule.jobId) {
+				setDescriptorError(`Please select a job for the descriptor that uses "Specific job" mode.`);
+				return;
+			}
+		}
+
 		const scaffoldIds = allScaffolds
 			.filter(g => selectedGroupIds.has(g.id))
 			.flatMap(g => g.scaffoldIds);
-		setIsSubmitting(true); setDatasetError(null);
-		const { success, error } = await createDataset(pubId, scaffoldIds);
+
+		const rules: DescriptorRuleToCreate[] = Object.entries(descriptorRules)
+			.filter(([, r]) => r.enabled)
+			.map(([idStr, r]) => ({
+				descriptorTypeId: Number(idStr),
+				jobMode: r.jobMode,
+				jobId: r.jobMode === 1 ? r.jobId : null,
+			}));
+
+		setIsSubmitting(true); setDescriptorError(null);
+		const fn = isEditingDataset.current ? upsertDataset : createDataset;
+		const { success, error } = await fn(pubId, scaffoldIds, rules);
 		setIsSubmitting(false);
-		if (!success) { setDatasetError(error ?? 'Unknown error.'); return; }
+		if (!success) { setDescriptorError(error ?? 'Unknown error.'); return; }
 		setStep('none');
+		await refreshPublications();
 	};
 
 	const handleConfirmDelete = async () => {
@@ -137,6 +266,7 @@ const Publications: React.FC = () => {
 		History.push(`/explore?publicationId=${pubId}&restrictToPublicationDataset=true`);
 	};
 
+	// ── render ───────────────────────────────────────────────────────────────
 	return (
 		<div className="container mx-auto py-8 px-2">
 			<div className="text-3xl text-gray-700 font-bold mb-12">Publications</div>
@@ -162,16 +292,16 @@ const Publications: React.FC = () => {
 							</thead>
 							<tbody className="bg-white divide-y divide-gray-200">
 								{publications?.map((pub, index) => (
-									<tr key={pub.id} className="hover:bg-gray-50">
+									<tr key={pub.id} className={`hover:bg-gray-50 ${isAdmin ? 'cursor-pointer' : ''}`}>
 										<td className="px-4 py-4 text-sm text-gray-700">{index + 1}</td>
-										<td className="px-4 py-4">
+										<td className="px-4 py-4" onClick={() => isAdmin && openEditPublication(pub)}>
 											<div className="font-semibold text-gray-800">{pub.title}</div>
 											<div className="text-xs text-gray-500 mt-1">{pub.authors}</div>
 											<div className="text-xs text-gray-500">{pub.journal}</div>
 											<div className="text-xs text-gray-400">{new Date(pub.publishedAt).toLocaleDateString()}</div>
 										</td>
 										<td className="px-4 py-4 text-sm text-blue-600 break-all">
-											<a href={`https://doi.org/${pub.doi}`} target="_blank" rel="noopener noreferrer" className="hover:underline">{pub.doi}</a>
+											<a href={`https://doi.org/${pub.doi}`} target="_blank" rel="noopener noreferrer" className="hover:underline" onClick={e => e.stopPropagation()}>{pub.doi}</a>
 										</td>
 										<td className="px-4 py-4">
 											<div className="flex items-center gap-3">
@@ -179,9 +309,17 @@ const Publications: React.FC = () => {
 													<MdOutlineRemoveRedEye />
 												</button>
 												{isAdmin && (
-													<button className="text-xl text-gray-400 hover:text-red-500" onClick={() => setConfirmDeleteId(pub.id)} title="Delete Publication">
-														<MdDeleteOutline />
-													</button>
+													<>
+														<button className="text-xl text-gray-500 hover:text-blue-600" onClick={() => openEditPublication(pub)} title="Edit Publication">
+															<MdEditNote />
+														</button>
+														<button className="text-xs text-gray-500 hover:text-blue-600 border border-gray-300 hover:border-blue-400 rounded px-2 py-1" onClick={() => handleOpenDataset(pub.id, true)} title="Edit Dataset">
+															± Dataset
+														</button>
+														<button className="text-xl text-gray-400 hover:text-red-500" onClick={() => setConfirmDeleteId(pub.id)} title="Delete Publication">
+															<MdDeleteOutline />
+														</button>
+													</>
 												)}
 											</div>
 										</td>
@@ -193,18 +331,14 @@ const Publications: React.FC = () => {
 				</>
 			)}
 
-			{/* Confirm Delete Modal */}
+			{/* Confirm Delete */}
 			{confirmDeleteId !== null && (
 				<Overlay>
 					<ModalBox title="Delete Publication">
-						<p className="text-sm text-gray-600">Are you sure you want to delete this publication? This will also remove all associated datasets and scaffold links.</p>
+						<p className="text-sm text-gray-600">Are you sure? This will also remove all associated datasets and scaffold links.</p>
 						<ModalFooter>
 							<CancelBtn onClick={() => setConfirmDeleteId(null)} disabled={isDeleting} />
-							<button
-								className="px-4 py-2 text-sm rounded bg-red-500 hover:bg-red-600 text-white flex items-center gap-2"
-								onClick={handleConfirmDelete}
-								disabled={isDeleting}
-							>
+							<button className="px-4 py-2 text-sm rounded bg-red-500 hover:bg-red-600 text-white flex items-center gap-2" onClick={handleConfirmDelete} disabled={isDeleting}>
 								{isDeleting && <FaSpinner className="animate-spin" size={13} />}
 								{isDeleting ? 'Deleting...' : 'Delete'}
 							</button>
@@ -213,10 +347,10 @@ const Publications: React.FC = () => {
 				</Overlay>
 			)}
 
-			{/* Modal 1 — Add Publication */}
+			{/* Modal 1 — Add / Edit Publication */}
 			{step === 'addPublication' && (
 				<Overlay>
-					<ModalBox title="Add Publication">
+					<ModalBox title={editingPubId !== null ? 'Edit Publication' : 'Add Publication'}>
 						<div className="space-y-3">
 							<Field label="Title" required><input name="title" value={form.title} onChange={handleFormChange} className={inputCls} placeholder="Publication title" /></Field>
 							<Field label="Authors" required><input name="authors" value={form.authors} onChange={handleFormChange} className={inputCls} placeholder="e.g. Smith J, Lee K, et al." /></Field>
@@ -228,7 +362,7 @@ const Publications: React.FC = () => {
 						{formError && <p className="mt-3 text-sm text-red-500">{formError}</p>}
 						<ModalFooter>
 							<CancelBtn onClick={() => setStep('none')} disabled={isSubmitting} />
-							<SaveBtn onClick={handleSavePublication} loading={isSubmitting} />
+							<SaveBtn onClick={handleSavePublication} loading={isSubmitting} label={editingPubId !== null ? 'Update' : 'Save'} />
 						</ModalFooter>
 					</ModalBox>
 				</Overlay>
@@ -241,16 +375,16 @@ const Publications: React.FC = () => {
 						<p className="text-sm text-gray-600 mb-2">Would you like to link scaffold groups to this publication now?</p>
 						<ModalFooter>
 							<button className="px-4 py-2 text-sm rounded border border-gray-300 text-gray-600 hover:bg-gray-50" onClick={() => setStep('none')}>Skip for now</button>
-							<button className="button-primary px-4 py-2 text-sm w-auto mb-0" onClick={handleOpenDataset}>Yes, add now</button>
+							<button className="button-primary px-4 py-2 text-sm w-auto mb-0" onClick={() => handleOpenDataset()}>Yes, add now</button>
 						</ModalFooter>
 					</ModalBox>
 				</Overlay>
 			)}
 
-			{/* Modal 3 — Pick scaffold groups */}
+			{/* Modal 3 — Scaffold picker */}
 			{step === 'addDataset' && (
 				<Overlay>
-					<ModalBox title="Link Scaffold Groups" wide>
+					<ModalBox title={isEditingDataset.current ? 'Edit Dataset — Select Scaffolds' : 'Link Scaffold Groups'} wide>
 						<input value={scaffoldSearch} onChange={e => setScaffoldSearch(e.target.value)} className={`${inputCls} mb-3`} placeholder="Search by name or tag..." />
 
 						{selectedGroupIds.size > 0 && (
@@ -263,17 +397,14 @@ const Publications: React.FC = () => {
 							</div>
 						)}
 
-						<div className="border border-gray-200 rounded overflow-y-auto max-h-72">
+						<div className="border border-gray-200 rounded overflow-y-auto max-h-64">
 							{scaffoldsLoading ? (
 								<div className="flex justify-center py-6"><FaSpinner className="animate-spin" size={24} /></div>
 							) : allScaffolds.length === 0 ? (
 								<p className="text-sm text-gray-400 text-center py-6">No scaffold groups found.</p>
 							) : (
 								allScaffolds.map(g => (
-									<div key={g.id}
-										className={`flex items-center gap-3 px-4 py-3 cursor-pointer hover:bg-gray-50 border-b border-gray-100 last:border-0 ${selectedGroupIds.has(g.id) ? 'bg-blue-50' : ''}`}
-										onClick={() => toggleGroup(g.id)}
-									>
+									<div key={g.id} className={`flex items-center gap-3 px-4 py-3 cursor-pointer hover:bg-gray-50 border-b border-gray-100 last:border-0 ${selectedGroupIds.has(g.id) ? 'bg-blue-50' : ''}`} onClick={() => toggleGroup(g.id)}>
 										<input type="checkbox" readOnly checked={selectedGroupIds.has(g.id)} className="accent-blue-600 w-4 h-4 shrink-0" />
 										<div>
 											<div className="text-sm font-medium text-gray-800">{g.name || `Group ${g.id}`}</div>
@@ -291,7 +422,71 @@ const Publications: React.FC = () => {
 						{datasetError && <p className="mt-2 text-sm text-red-500">{datasetError}</p>}
 						<ModalFooter>
 							<CancelBtn onClick={() => setStep('none')} disabled={isSubmitting} />
-							<SaveBtn onClick={handleSaveDataset} loading={isSubmitting} label="Link Scaffolds" />
+							<SaveBtn onClick={handleNextToDescriptorRules} label="Next →" />
+						</ModalFooter>
+					</ModalBox>
+				</Overlay>
+			)}
+
+			{/* Modal 4 — Descriptor Rules */}
+			{step === 'addDescriptorRules' && (
+				<Overlay>
+					<ModalBox title="Select Descriptor Rules" wide>
+						<p className="text-xs text-gray-400 mb-3">For each descriptor type, choose whether to include it and how to select which job's results to use.</p>
+
+						<div className="border border-gray-200 rounded overflow-y-auto max-h-80">
+							{descriptorTypes.length === 0 ? (
+								<div className="flex justify-center py-6"><FaSpinner className="animate-spin" size={24} /></div>
+							) : (
+								descriptorTypes.map(dt => {
+									const rule = descriptorRules[dt.id] ?? { enabled: false, jobMode: 0, jobId: '' };
+									return (
+										<div key={dt.id} className={`px-4 py-3 border-b border-gray-100 last:border-0 ${rule.enabled ? 'bg-blue-50' : ''}`}>
+											<div className="flex items-center gap-3">
+												<input type="checkbox" checked={rule.enabled} onChange={() => toggleDescriptorRule(dt.id)} className="accent-blue-600 w-4 h-4 shrink-0" />
+												<div className="flex-1">
+													<div className="text-sm font-medium text-gray-800">{dt.label || dt.name}</div>
+													<div className="text-xs text-gray-400">{dt.category}{dt.subCategory ? ` · ${dt.subCategory}` : ''}{dt.unit ? ` · ${dt.unit}` : ''}</div>
+												</div>
+											</div>
+											{rule.enabled && (
+												<div className="mt-2 ml-7 space-y-2">
+													<div>
+														<label className="text-xs text-gray-500 mb-1 block">Job selection mode</label>
+														<select
+															value={rule.jobMode}
+															onChange={e => updateRuleField(dt.id, 'jobMode', Number(e.target.value))}
+															className={`${inputCls} text-xs py-1`}
+														>
+															{JOB_MODES.map(m => <option key={m.value} value={m.value}>{m.label}</option>)}
+														</select>
+													</div>
+													{rule.jobMode === 1 && (
+														<div>
+															<label className="text-xs text-gray-500 mb-1 block">Select job <span className="text-red-400">*</span></label>
+															<select
+																value={rule.jobId}
+																onChange={e => updateRuleField(dt.id, 'jobId', e.target.value)}
+																className={`${inputCls} text-xs py-1`}
+															>
+																<option value="">-- select a job --</option>
+																{jobs.map(j => <option key={j.id} value={j.id}>{j.label}</option>)}
+															</select>
+														</div>
+													)}
+												</div>
+											)}
+										</div>
+									);
+								})
+							)}
+						</div>
+
+						<p className="text-xs text-gray-400 mt-2">{Object.values(descriptorRules).filter(r => r.enabled).length} descriptor{Object.values(descriptorRules).filter(r => r.enabled).length !== 1 ? 's' : ''} selected</p>
+						{descriptorError && <p className="mt-2 text-sm text-red-500">{descriptorError}</p>}
+						<ModalFooter>
+							<button className="px-4 py-2 text-sm rounded border border-gray-300 text-gray-600 hover:bg-gray-50" onClick={() => setStep('addDataset')}>← Back</button>
+							<SaveBtn onClick={handleSaveDataset} loading={isSubmitting} label="Save Dataset" />
 						</ModalFooter>
 					</ModalBox>
 				</Overlay>
@@ -302,7 +497,7 @@ const Publications: React.FC = () => {
 
 export default observer(Publications);
 
-// ─── shared UI ──────────────────────────────────────────────────────────────
+// ─── shared UI ───────────────────────────────────────────────────────────────
 
 const inputCls = "w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300";
 

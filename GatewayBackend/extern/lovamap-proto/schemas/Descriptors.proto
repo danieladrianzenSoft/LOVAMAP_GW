@@ -1,0 +1,103 @@
+syntax = "proto3";
+package lovamap;
+
+message IntArray {
+    repeated int64 values = 1;
+}
+
+message DoubleArray {
+    repeated double values = 1;
+}
+
+message GlobalDescriptors {
+    double Dx = 1;
+    int64 NumVoxels = 2;
+    int64 NumParticles = 3;
+    int64 NumParticleContacts = 4;
+    double VFF = 5;
+    double ParticlePackingFraction = 6;
+    double AvgVoidAreaFraction = 7;
+    double VFFIntPores = 8;
+    int64 NumTotalPores = 9;
+    int64 NumIntPores = 10;
+    double NumIntPoresdivParticlesSurrIntPores = 11;
+    int64 NumExitDoors = 12;
+    int64 NumIntDoors = 13;
+    int64 NumIntPaths = 14;
+    double ParticleAdjacencyMatrixEigenvalue = 15;
+    double PeakAdjacencyMatrixEigenvalue = 16;
+    double PoreAdjacencyMatrixEigenvalue = 17;
+    int64 MaxNumPeaksAmongSurfacePores = 18;
+    double LigandHotspotsVolFrac = 19;
+    int64 MaxNumEquidistantParticles = 20;
+}
+
+message PoreDescriptors {
+    DoubleArray Volume = 1;
+    DoubleArray SA = 2;
+    DoubleArray CharacteristicLength = 3;
+    DoubleArray LongestLength = 4;
+    DoubleArray AvgInternalDiam = 5;
+    DoubleArray AspectRatio = 6;
+    IntArray NumHallways = 7;
+    IntArray NumCrawlSpaces = 8;
+    IntArray NumConnectedPores = 9;
+    IntArray NumSurroundingPores = 10;
+    IntArray NumParticleEdges = 11;
+    DoubleArray NormalizedNeighbors = 12; // What is this?
+    DoubleArray MeanLocalThickness = 13;
+    IntArray NumPeaks = 14;
+    IntArray NumSurrParticles = 15;
+    DoubleArray LargestEnclosedSphereDiam = 16;
+    DoubleArray LargestDoorDiam = 17;
+    DoubleArray SmallestDoorDiam = 18;
+    DoubleArray EllipsoidAxis1Length = 19;
+    DoubleArray EllipsoidAxis2Length = 20;
+    DoubleArray EllipsoidAxis3Length = 21;
+    DoubleArray EllipsoidClassification = 22; // What is this?
+    DoubleArray IsotropyAnisotropy = 23;
+    DoubleArray LigandConcentration = 24;
+    DoubleArray AccessibleLigand = 25;
+    DoubleArray ParticleSA = 26;
+    DoubleArray OpenSA = 27;
+    DoubleArray xCentroid = 28;
+    DoubleArray yCentroid = 29;
+    DoubleArray zCentroid = 30;
+}
+
+message OtherDescriptors {
+    DoubleArray ParticleDiam = 1;
+    IntArray ParticleCoord = 2;
+    IntArray TouchingParticle = 3;
+    DoubleArray ExitDoorDiam = 4;
+    DoubleArray IntDoorDiam = 5;
+    DoubleArray CrawlSpaceWidth = 6;
+    DoubleArray PathLength = 7;
+    DoubleArray TortuositybyLength = 8;
+    DoubleArray TortuositybyVol = 9;
+    IntArray NumIntPoresPath = 10;
+    IntArray NumExtPoresPath = 11;
+    IntArray NumParticlesEnclosingIntPath = 12;
+    IntArray NumParticlesEnclosingExitPath = 13;
+    IntArray NumBottlenecksTotal = 14;
+    DoubleArray AvgBottleneckDiamTotal = 15;
+    IntArray NumBottlenecksDoors = 16;
+    DoubleArray AvgBottleneckDiamDoors = 17;
+    DoubleArray SurfaceLigandConc = 18;
+    DoubleArray SurfaceAccessibleLigand = 19;
+    DoubleArray RegionsVol0 = 20;
+    DoubleArray RegionsVol10 = 21;
+    DoubleArray RegionsVol30 = 22;
+    DoubleArray RegionsVol60 = 23;
+    DoubleArray xParticleCOM = 24;
+    DoubleArray yParticleCOM = 25;
+    DoubleArray zParticleCOM = 26;
+}
+
+message Descriptors {
+    string jobId = 1;
+    string version = 2;
+    GlobalDescriptors globalDescriptors = 3;
+    PoreDescriptors poreDescriptors = 4;
+    OtherDescriptors otherDescriptors = 5;
+}

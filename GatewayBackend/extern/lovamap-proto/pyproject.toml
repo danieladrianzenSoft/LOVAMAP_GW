@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lovamap-proto-tools"
+version = "0.2.0"
+description = "Tools for working with lovamap protobuf files"
+readme = "README.md"
+requires-python = ">=3.8"
+authors = [
+    {name = "Peter Cheng"}
+]
+dependencies = [
+    "protobuf>=3.20.0",
+]
+
+[project.scripts]
+lvmp-pb2json = "lovamap_proto.pb2json:main"
+lvmp-json2pb = "lovamap_proto.json2pb:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["lovamap_proto*"]
+
+[dependency-groups]
+dev = [
+    "grpcio-tools>=1.50.0",
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "ruff>=0.1.0",
+]

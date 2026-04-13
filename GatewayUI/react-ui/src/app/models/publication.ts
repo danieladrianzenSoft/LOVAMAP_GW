@@ -18,3 +18,9 @@ export interface PublicationToCreate {
 	doi: string;
 	citation: string | null;
 }
+
+export interface DescriptorRuleToCreate {
+	descriptorTypeId: number;
+	jobMode: number;
+	jobId: string | null;
+}

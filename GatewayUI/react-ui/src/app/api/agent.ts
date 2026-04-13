@@ -17,7 +17,7 @@ import { AiScaffoldGroupSearch } from "../models/aiScaffoldGroupSearch";
 import { BatchOperationResult } from "../models/batchOperationResult";
 import { ScaffoldGroupData } from "../models/scaffoldGroupData";
 import { DescriptorSeedResult } from "../models/descriptor";
-import { Publication, PublicationToCreate } from "../models/publication";
+import { Publication, PublicationToCreate, DescriptorRuleToCreate } from "../models/publication";
 import { InputGroup } from "../models/inputGroup";
 import { RdfGraph, RdfOntologySummary } from "../models/rdfGraph";
 import { DashboardAnalytics } from "../models/dashboardAnalytics";
@@ -233,9 +233,13 @@ const Publications = {
     getById: async (publicationId: number) => requests.get<ApiResponse<Publication>>(`/publications/${publicationId}`),
     getAll: async () => requests.get<ApiResponse<Publication[]>>(`/publications`),
     create: async (data: PublicationToCreate) => requests.post<ApiResponse<string>>(`/publications`, data),
-    createDataset: async (publicationId: number, data: { name: string; scaffoldIds: number[] }) =>
-        requests.post<ApiResponse<string>>(`/publications/${publicationId}/datasets`, { ...data, publicationId }),
+    update: async (publicationId: number, data: PublicationToCreate) => requests.put<ApiResponse<string>>(`/publications/${publicationId}`, data),
     delete: async (publicationId: number) => requests.del<ApiResponse<string>>(`/publications/${publicationId}`),
+    createDataset: async (publicationId: number, data: { name: string; scaffoldIds: number[]; descriptorRules: DescriptorRuleToCreate[] }) =>
+        requests.post<ApiResponse<string>>(`/publications/${publicationId}/datasets`, { ...data, publicationId }),
+    upsertDataset: async (publicationId: number, data: { name: string; scaffoldIds: number[]; descriptorRules: DescriptorRuleToCreate[] }) =>
+        requests.put<ApiResponse<string>>(`/publications/${publicationId}/datasets`, { ...data, publicationId }),
+    getDataset: async (datasetId: number) => requests.get<ApiResponse<any>>(`/publications/datasets/${datasetId}`),
 }
 
 const Analytics = {

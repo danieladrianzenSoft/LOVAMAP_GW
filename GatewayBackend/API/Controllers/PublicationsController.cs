@@ -84,6 +84,24 @@ public class PublicationsController : ControllerBase
 
 
 	[Authorize(Roles = "administrator")]
+	[HttpPut("{publicationId:int}")]
+	public async Task<IActionResult> UpdatePublication(int publicationId, [FromBody] PublicationToCreateDto dto)
+	{
+		if (dto is null) return BadRequest(new ApiResponse<string>(400, "Body required."));
+		try
+		{
+			var (succeeded, errorMessage) = await _publicationService.UpdatePublication(publicationId, dto);
+			if (!succeeded) return NotFound(new ApiResponse<string>(404, errorMessage));
+			return Ok(new ApiResponse<string>(200, "Publication updated successfully."));
+		}
+		catch (Exception ex)
+		{
+			_logger.LogError(ex, "Failed to update publication");
+			return StatusCode(500, new ApiResponse<string>(500, "An error occurred while updating the publication"));
+		}
+	}
+
+	[Authorize(Roles = "administrator")]
 	[HttpDelete("{publicationId:int}")]
 	public async Task<IActionResult> DeletePublication(int publicationId)
 	{
