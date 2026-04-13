@@ -221,6 +221,7 @@ const Jobs = {
         return response.data;
     },
     getUserJobs: async () => requests.get<ApiResponse<JobForList[]>>('/jobs/me'),
+    getAllJobs: async () => requests.get<ApiResponse<JobForList[]>>('/jobs/all'),
     getJobResult: async (jobId: string) => {
         const response = await axios.get(`/jobs/${jobId}/result`, {
             responseType: 'blob'

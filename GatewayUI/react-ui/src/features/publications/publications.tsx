@@ -40,12 +40,14 @@ const Publications: React.FC = () => {
 
 	// modal flow
 	const [step, setStep] = useState<ModalStep>('none');
-	const [editingPubId, setEditingPubId] = useState<number | null>(null); // null = create, number = edit
+	// 4/13 JacklynX changed - null = create mode, number = edit mode for publication
+	const [editingPubId, setEditingPubId] = useState<number | null>(null);
 	const [form, setForm] = useState<PublicationToCreate>(emptyForm);
 	const [formError, setFormError] = useState<string | null>(null);
 	const [isSubmitting, setIsSubmitting] = useState(false);
 	const newPubIdRef = useRef<number | null>(null);
-	const isEditingDataset = useRef(false); // true = upsert, false = create
+	// 4/13 JacklynX changed - true = upsert existing dataset, false = create new
+	const isEditingDataset = useRef(false);
 
 	// scaffold picker
 	const [scaffoldSearch, setScaffoldSearch] = useState('');
@@ -111,11 +113,13 @@ const Publications: React.FC = () => {
 			setDescriptorRules(initial);
 
 			// load jobs for dropdown
-			const jobList = await jobStore.getUserJobs();
-			setJobs((jobList ?? []).map(j => ({
-				id: j.id,
-				label: `Job ${j.id.slice(0, 8)}... (${j.status} ${new Date(j.submittedAt).toLocaleDateString()})`,
-			})));
+			const jobList = await jobStore.getAllJobs();
+			setJobs((jobList ?? [])
+				.filter(j => j.status === 'Completed')
+				.map(j => ({
+					id: j.id,
+					label: `${j.id.slice(0, 8)}... · ${new Date(j.submittedAt).toLocaleDateString()} · ${j.status}`,
+				})));
 		};
 		load();
 	}, [step]); // eslint-disable-line
@@ -131,7 +135,7 @@ const Publications: React.FC = () => {
 		setStep('addPublication');
 	};
 
-	// open Edit Publication (click on row)
+	// 4/13 JacklynX changed - open Edit Publication modal pre-filled with existing data
 	const openEditPublication = (pub: Publication) => {
 		setEditingPubId(pub.id);
 		setForm({
@@ -176,7 +180,7 @@ const Publications: React.FC = () => {
 		}
 	};
 
-	// open dataset modal (create new)
+	// 4/13 JacklynX changed - open dataset modal; editMode=true calls upsert to edit existing dataset
 	const handleOpenDataset = (pubId?: number, editMode = false) => {
 		if (pubId) newPubIdRef.current = pubId;
 		isEditingDataset.current = editMode;

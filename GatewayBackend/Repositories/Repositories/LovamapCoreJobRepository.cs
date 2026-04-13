@@ -37,6 +37,12 @@ namespace Repositories.Repositories
 			return await _context.Jobs.Where(j => j.CreatorId == creatorId).OrderByDescending(j => j.SubmittedAt).ToListAsync();
 		}
 
+		// 4/13 JacklynX changed - get all jobs for admin use
+		public async Task<IEnumerable<Job>> GetAllJobsAsync()
+		{
+			return await _context.Jobs.OrderByDescending(j => j.SubmittedAt).ToListAsync();
+		}
+
 		public async Task<Job?> MarkJobCompletedAsync(Guid jobId, string resultFilePath, string sha256)
 		{
 			var job = await _context.Jobs.FindAsync(jobId);

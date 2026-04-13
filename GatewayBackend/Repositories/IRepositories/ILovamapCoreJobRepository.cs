@@ -11,6 +11,7 @@ namespace Repositories.IRepositories
 		void Add(Job job);
 		Task<Job?> GetJobByIdAsync(Guid jobId);
 		Task<IEnumerable<Job>> GetJobsByCreatorIdAsync(string creatorId);
+		Task<IEnumerable<Job>> GetAllJobsAsync();
 		Task<Job?> MarkJobCompletedAsync(Guid jobId, string resultFilePath, string sha256);
 	}
 }
