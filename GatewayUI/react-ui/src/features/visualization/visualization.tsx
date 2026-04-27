@@ -673,7 +673,7 @@ const Visualization: React.FC = () => {
 					</div>
 				)}
 				{!isBusy && meshList.length > 0 && (
-					<div className="h-full w-full -mt-16">
+					<div className="relative h-full w-full -mt-16">
 						<CanvasViewer
 							meshes={meshList}
 							onSliceBoundsComputed={setSliceDomainBounds}

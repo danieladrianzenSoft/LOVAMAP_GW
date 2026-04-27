@@ -18,15 +18,6 @@ namespace Repositories.Repositories
 			_context = context;
 		}
 
-		public async Task<bool> DeleteAsync(int publicationId)
-		{
-			var publication = await _context.Publications.FindAsync(publicationId);
-			if (publication == null) return false;
-			_context.Publications.Remove(publication);
-			await _context.SaveChangesAsync();
-			return true;
-		}
-
 		public bool HasChanges()
 		{
 			return _context.ChangeTracker.HasChanges();
@@ -48,8 +39,11 @@ namespace Repositories.Repositories
 						Journal = pub.Journal,
 						Doi = pub.Doi,
 						PublishedAt = pub.PublishedAt,
-						ScaffoldGroupIds = pub.ScaffoldGroupPublications
-							.Select(sgp => sgp.ScaffoldGroupId)
+						// 4/27 JacklynX changed - get scaffold group IDs via dataset chain
+						ScaffoldGroupIds = pub.PublicationDatasets
+							.SelectMany(ds => ds.PublicationDatasetScaffolds)
+							.Select(pds => pds.Scaffold.ScaffoldGroupId)
+							.Distinct()
 							.ToList(),
 						DescriptorTypeIds = pub.DescriptorTypes
 							.Select(dt => dt.Id)
@@ -89,8 +83,10 @@ namespace Repositories.Repositories
 					Journal = pub.Journal,
 					Doi = pub.Doi,
 					PublishedAt = pub.PublishedAt,
-					ScaffoldGroupIds = pub.ScaffoldGroupPublications
-						.Select(sgp => sgp.ScaffoldGroupId)
+					ScaffoldGroupIds = pub.PublicationDatasets
+						.SelectMany(ds => ds.PublicationDatasetScaffolds)
+						.Select(pds => pds.Scaffold.ScaffoldGroupId)
+						.Distinct()
 						.ToList(),
 					DescriptorTypeIds = pub.DescriptorTypes
 						.Select(dt => dt.Id)

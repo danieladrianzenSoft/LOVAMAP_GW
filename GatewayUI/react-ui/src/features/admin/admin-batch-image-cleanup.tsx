@@ -6,7 +6,6 @@ import { BatchOperationResult } from "../../app/models/batchOperationResult";
 const AdminBatchImageCleanup: React.FC = () => {
 	const { scaffoldGroupStore } = useStore();
 	const [category, setCategory] = useState<number | null>(null);
-	const [includeThumbnails, setIncludeThumbnails] = useState(false);
 	const [imageCount, setImageCount] = useState<number | null>(null);
 	const [deleteOperationResult, setDeleteOperationResult] = useState<BatchOperationResult | null>(null);
 	const [isRunning, setIsRunning] = useState(false);
@@ -16,7 +15,9 @@ const AdminBatchImageCleanup: React.FC = () => {
 
 	const previewDeletableImages = useCallback(async () => {
 		const loadIds = async () => {
-			const ids = await scaffoldGroupStore.getImageIdsForDeletion(category, includeThumbnails);
+			// 4/13 JacklynX changed - getImageIdsForDeletion removed, use getScaffoldsWithMissingThumbnails
+			const scaffolds = await scaffoldGroupStore.getScaffoldsWithMissingThumbnails(category, null);
+			const ids = scaffolds?.map(s => s.scaffoldId) ?? [];
 			setImageCount(ids?.length ?? 0);
 
 			const batches: number[][] = [];
@@ -27,11 +28,11 @@ const AdminBatchImageCleanup: React.FC = () => {
 			setCompletedBatches(0);
 		}
 		loadIds();
-	}, [category, includeThumbnails, scaffoldGroupStore]);
+	}, [category, scaffoldGroupStore]);
 
 	useEffect(() => {
 		previewDeletableImages();
-	}, [category, includeThumbnails, previewDeletableImages]);
+	}, [category, previewDeletableImages]);
 
 	const handleDelete = async () => {
 		if (!deletionQueue.length) return;
@@ -91,17 +92,6 @@ const AdminBatchImageCleanup: React.FC = () => {
 						<option value="3">ParticleSizeDistribution</option>
 						<option value="4">Other</option>
 					</select>
-				</div>
-
-				<div className="mb-4">
-					<label className="flex items-center space-x-2">
-						<input
-							type="checkbox"
-							checked={includeThumbnails}
-							onChange={(e) => setIncludeThumbnails(e.target.checked)}
-						/>
-						<span>Include Thumbnails</span>
-					</label>
 				</div>
 
 				{imageCount !== null && (

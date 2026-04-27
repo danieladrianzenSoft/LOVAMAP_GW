@@ -5,6 +5,8 @@ import { FaSpinner } from 'react-icons/fa';
 import { Publication, PublicationToCreate, DescriptorRuleToCreate } from '../../app/models/publication';
 import { ScaffoldGroup } from '../../app/models/scaffoldGroup';
 import { DescriptorType } from '../../app/models/descriptorType';
+import LoadingSpinner from '../../app/common/loading-spinner/loading-spinner';
+import DataTable, { DataTableColumn } from '../../app/common/data-table/data-table';
 import History from "../../app/helpers/History";
 import { MdOutlineRemoveRedEye, MdDeleteOutline, MdEditNote } from "react-icons/md";
 
@@ -59,6 +61,7 @@ const Publications: React.FC = () => {
 	// descriptor rules
 	const [descriptorTypes, setDescriptorTypes] = useState<DescriptorType[]>([]);
 	const [descriptorRules, setDescriptorRules] = useState<Record<number, DescriptorRuleState>>({});
+	const [defaultJobMode, setDefaultJobMode] = useState<number>(0);
 	const [jobs, setJobs] = useState<{ id: string; label: string }[]>([]);
 	const [descriptorError, setDescriptorError] = useState<string | null>(null);
 
@@ -68,7 +71,7 @@ const Publications: React.FC = () => {
 
 	const isAdmin = userStore.user?.roles?.includes('administrator') ?? false;
 
-	// ── fetch list ──────────────────────────────────────────────────────────
+	// ── fetch list ─────────────────────────────────────────────────────────
 	const refreshPublications = async () => {
 		setIsLoading(true);
 		const results = await getPublications();
@@ -77,7 +80,7 @@ const Publications: React.FC = () => {
 	};
 	useEffect(() => { refreshPublications(); }, []); // eslint-disable-line
 
-	// ── scaffold search (debounced) ─────────────────────────────────────────
+	// ── scaffold search (debounced) ────────────────────────────────────────
 	useEffect(() => {
 		if (step !== 'addDataset') return;
 		const handler = setTimeout(async () => {
@@ -99,20 +102,17 @@ const Publications: React.FC = () => {
 		return () => clearTimeout(handler);
 	}, [scaffoldSearch, step]); // eslint-disable-line
 
-	// ── load descriptor types + jobs when entering descriptor rules step ────
+	// ── load descriptor types + jobs when entering descriptor rules step ───
 	useEffect(() => {
 		if (step !== 'addDescriptorRules') return;
 		const load = async () => {
 			const types = await descriptorStore.getDescriptorTypes();
 			setDescriptorTypes(types);
-			// init rules state: all disabled by default
 			const initial: Record<number, DescriptorRuleState> = {};
 			types.forEach(t => {
 				initial[t.id] = descriptorRules[t.id] ?? { enabled: false, jobMode: 0, jobId: '' };
 			});
 			setDescriptorRules(initial);
-
-			// load jobs for dropdown
 			const jobList = await jobStore.getAllJobs();
 			setJobs((jobList ?? [])
 				.filter(j => j.status === 'Completed')
@@ -124,9 +124,8 @@ const Publications: React.FC = () => {
 		load();
 	}, [step]); // eslint-disable-line
 
-	// ── handlers ────────────────────────────────────────────────────────────
+	// ── handlers ──────────────────────────────────────────────────────────
 
-	// open Add Publication
 	const openAddPublication = () => {
 		setEditingPubId(null);
 		setForm(emptyForm);
@@ -160,16 +159,13 @@ const Publications: React.FC = () => {
 			setFormError('Please fill in all required fields.'); return;
 		}
 		setIsSubmitting(true); setFormError(null);
-
 		if (editingPubId !== null) {
-			// Edit mode
 			const { success, error } = await updatePublication(editingPubId, form);
 			setIsSubmitting(false);
 			if (!success) { setFormError(error ?? 'Unknown error.'); return; }
 			await refreshPublications();
 			setStep('none');
 		} else {
-			// Create mode
 			const { success, error } = await createPublication(form);
 			setIsSubmitting(false);
 			if (!success) { setFormError(error ?? 'Unknown error.'); return; }
@@ -181,10 +177,15 @@ const Publications: React.FC = () => {
 	};
 
 	// 4/13 JacklynX changed - open dataset modal; editMode=true calls upsert to edit existing dataset
-	const handleOpenDataset = (pubId?: number, editMode = false) => {
+	const handleOpenDataset = (pubId?: number, editMode = false, pub?: Publication) => {
 		if (pubId) newPubIdRef.current = pubId;
 		isEditingDataset.current = editMode;
-		setSelectedGroupIds(new Set());
+		// 4/27 JacklynX changed - preselect already-linked scaffold groups when editing
+		if (editMode && pub?.scaffoldGroupIds?.length) {
+			setSelectedGroupIds(new Set(pub.scaffoldGroupIds));
+		} else {
+			setSelectedGroupIds(new Set());
+		}
 		setScaffoldSearch('');
 		setDatasetError(null);
 		setAllScaffolds([]);
@@ -201,7 +202,41 @@ const Publications: React.FC = () => {
 		});
 	};
 
-	// scaffold → descriptor rules
+	// 4/27 JacklynX changed - select all scaffold groups
+	const handleSelectAllScaffolds = () => {
+		if (selectedGroupIds.size === allScaffolds.length) {
+			setSelectedGroupIds(new Set());
+		} else {
+			setSelectedGroupIds(new Set(allScaffolds.map(g => g.id)));
+		}
+	};
+
+	// 4/27 JacklynX changed - select all descriptor types
+	const handleSelectAllDescriptors = () => {
+		const allEnabled = descriptorTypes.every(dt => descriptorRules[dt.id]?.enabled);
+		setDescriptorRules(prev => {
+			const next = { ...prev };
+			descriptorTypes.forEach(dt => {
+				next[dt.id] = { ...next[dt.id], enabled: !allEnabled };
+			});
+			return next;
+		});
+	};
+
+	// 4/27 JacklynX changed - apply default job mode to all enabled descriptors
+	const handleApplyDefaultJobMode = (mode: number) => {
+		setDefaultJobMode(mode);
+		setDescriptorRules(prev => {
+			const next = { ...prev };
+			descriptorTypes.forEach(dt => {
+				if (next[dt.id]?.enabled) {
+					next[dt.id] = { ...next[dt.id], jobMode: mode, jobId: '' };
+				}
+			});
+			return next;
+		});
+	};
+
 	const handleNextToDescriptorRules = () => {
 		if (selectedGroupIds.size === 0) { setDatasetError('Please select at least one scaffold group.'); return; }
 		setDatasetError(null);
@@ -226,19 +261,15 @@ const Publications: React.FC = () => {
 	const handleSaveDataset = async () => {
 		const pubId = newPubIdRef.current;
 		if (!pubId) { setDescriptorError('Publication ID missing.'); return; }
-
-		// validate: if SpecificJob selected, jobId must be filled
 		for (const [idStr, rule] of Object.entries(descriptorRules)) {
 			if (rule.enabled && rule.jobMode === 1 && !rule.jobId) {
 				setDescriptorError(`Please select a job for the descriptor that uses "Specific job" mode.`);
 				return;
 			}
 		}
-
 		const scaffoldIds = allScaffolds
 			.filter(g => selectedGroupIds.has(g.id))
 			.flatMap(g => g.scaffoldIds);
-
 		const rules: DescriptorRuleToCreate[] = Object.entries(descriptorRules)
 			.filter(([, r]) => r.enabled)
 			.map(([idStr, r]) => ({
@@ -246,7 +277,6 @@ const Publications: React.FC = () => {
 				jobMode: r.jobMode,
 				jobId: r.jobMode === 1 ? r.jobId : null,
 			}));
-
 		setIsSubmitting(true); setDescriptorError(null);
 		const fn = isEditingDataset.current ? upsertDataset : createDataset;
 		const { success, error } = await fn(pubId, scaffoldIds, rules);
@@ -270,67 +300,78 @@ const Publications: React.FC = () => {
 		History.push(`/explore?publicationId=${pubId}&restrictToPublicationDataset=true`);
 	};
 
-	// ── render ───────────────────────────────────────────────────────────────
+	// ── DataTable columns (professor's style) ─────────────────────────────
+	const columns: DataTableColumn<Publication>[] = [
+		{
+			header: '#',
+			render: (_pub, index) => index + 1,
+		},
+		{
+			header: 'Publication',
+			render: (pub) => (
+				<div className={isAdmin ? 'cursor-pointer' : ''} onClick={() => isAdmin && openEditPublication(pub)}>
+					<div className="font-semibold text-gray-800">{pub.title}</div>
+					<div className="text-xs text-gray-500 mt-1">{pub.authors}</div>
+					<div className="text-xs text-gray-500">{pub.journal}</div>
+					<div className="text-xs text-gray-400">{new Date(pub.publishedAt).toLocaleDateString()}</div>
+				</div>
+			),
+			cellClassName: '!text-gray-800',
+		},
+		{
+			header: 'DOI',
+			render: (pub) => (
+				<a href={`https://doi.org/${pub.doi}`} target="_blank" rel="noopener noreferrer" className="hover:underline">
+					{pub.doi}
+				</a>
+			),
+			cellClassName: '!text-link-100 break-all',
+		},
+		{
+			header: '',
+			render: (pub) => (
+				<div className="flex items-center gap-3">
+					<button className="text-xl text-gray-600 hover:text-link-200" onClick={() => handleViewInExplore(pub.id)} title="View in Explore">
+						<MdOutlineRemoveRedEye />
+					</button>
+					{isAdmin && (
+						<>
+							<button className="text-xl text-gray-500 hover:text-blue-600" onClick={() => openEditPublication(pub)} title="Edit Publication">
+								<MdEditNote />
+							</button>
+							<button className="text-xs text-gray-500 hover:text-blue-600 border border-gray-300 hover:border-blue-400 rounded px-2 py-1" onClick={() => handleOpenDataset(pub.id, true, pub)} title="Edit Dataset">
+								± Dataset
+							</button>
+							<button className="text-xl text-gray-400 hover:text-red-500" onClick={() => setConfirmDeleteId(pub.id)} title="Delete Publication">
+								<MdDeleteOutline />
+							</button>
+						</>
+					)}
+				</div>
+			),
+		},
+	];
+
+	// ── render ────────────────────────────────────────────────────────────
 	return (
-		<div className="container mx-auto py-8 px-2">
+		<div className="container mx-auto py-8 px-6">
 			<div className="text-3xl text-gray-700 font-bold mb-12">Publications</div>
 
 			{isLoading ? (
-				<div className="flex justify-center items-center py-8"><FaSpinner className="animate-spin" size={40} /></div>
+				<LoadingSpinner />
 			) : (
 				<>
 					{isAdmin && (
-						<div className="flex justify-end mb-4">
-							<button className="button-primary w-24" onClick={openAddPublication}>Add</button>
+						<div className="flex justify-end">
+							<button className="button-primary items-center content-center w-24 mb-2" onClick={openAddPublication}>Add</button>
 						</div>
 					)}
-					<div className="w-full overflow-x-auto">
-						<table className="min-w-full divide-y divide-gray-200 text-sm">
-							<thead className="bg-gray-50">
-								<tr>
-									<th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">#</th>
-									<th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Publication</th>
-									<th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">DOI</th>
-									<th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"></th>
-								</tr>
-							</thead>
-							<tbody className="bg-white divide-y divide-gray-200">
-								{publications?.map((pub, index) => (
-									<tr key={pub.id} className={`hover:bg-gray-50 ${isAdmin ? 'cursor-pointer' : ''}`}>
-										<td className="px-4 py-4 text-sm text-gray-700">{index + 1}</td>
-										<td className="px-4 py-4" onClick={() => isAdmin && openEditPublication(pub)}>
-											<div className="font-semibold text-gray-800">{pub.title}</div>
-											<div className="text-xs text-gray-500 mt-1">{pub.authors}</div>
-											<div className="text-xs text-gray-500">{pub.journal}</div>
-											<div className="text-xs text-gray-400">{new Date(pub.publishedAt).toLocaleDateString()}</div>
-										</td>
-										<td className="px-4 py-4 text-sm text-blue-600 break-all">
-											<a href={`https://doi.org/${pub.doi}`} target="_blank" rel="noopener noreferrer" className="hover:underline" onClick={e => e.stopPropagation()}>{pub.doi}</a>
-										</td>
-										<td className="px-4 py-4">
-											<div className="flex items-center gap-3">
-												<button className="text-xl text-gray-600 hover:text-blue-600" onClick={() => handleViewInExplore(pub.id)} title="View in Explore">
-													<MdOutlineRemoveRedEye />
-												</button>
-												{isAdmin && (
-													<>
-														<button className="text-xl text-gray-500 hover:text-blue-600" onClick={() => openEditPublication(pub)} title="Edit Publication">
-															<MdEditNote />
-														</button>
-														<button className="text-xs text-gray-500 hover:text-blue-600 border border-gray-300 hover:border-blue-400 rounded px-2 py-1" onClick={() => handleOpenDataset(pub.id, true)} title="Edit Dataset">
-															± Dataset
-														</button>
-														<button className="text-xl text-gray-400 hover:text-red-500" onClick={() => setConfirmDeleteId(pub.id)} title="Delete Publication">
-															<MdDeleteOutline />
-														</button>
-													</>
-												)}
-											</div>
-										</td>
-									</tr>
-								))}
-							</tbody>
-						</table>
+					<div className="flex">
+						<DataTable
+							data={publications ?? []}
+							columns={columns}
+							rowKey={(pub) => pub.id}
+						/>
 					</div>
 				</>
 			)}
@@ -389,8 +430,20 @@ const Publications: React.FC = () => {
 			{step === 'addDataset' && (
 				<Overlay>
 					<ModalBox title={isEditingDataset.current ? 'Edit Dataset — Select Scaffolds' : 'Link Scaffold Groups'} wide>
-						<input value={scaffoldSearch} onChange={e => setScaffoldSearch(e.target.value)} className={`${inputCls} mb-3`} placeholder="Search by name or tag..." />
+						<input value={scaffoldSearch} onChange={e => setScaffoldSearch(e.target.value)} className={`${inputCls} mb-2`} placeholder="Search by name or tag..." />
 
+						{/* 4/27 JacklynX changed - select all button */}
+						{allScaffolds.length > 0 && (
+							<div className="flex items-center justify-between mb-2">
+								<button
+									className="text-xs text-blue-600 hover:underline"
+									onClick={handleSelectAllScaffolds}
+								>
+									{selectedGroupIds.size === allScaffolds.length ? 'Deselect All' : 'Select All'}
+								</button>
+								<span className="text-xs text-gray-400">{allScaffolds.length} groups total</span>
+							</div>
+						)}
 						{selectedGroupIds.size > 0 && (
 							<div className="flex flex-wrap gap-1 mb-3">
 								{allScaffolds.filter(g => selectedGroupIds.has(g.id)).map(g => (
@@ -400,8 +453,7 @@ const Publications: React.FC = () => {
 								))}
 							</div>
 						)}
-
-						<div className="border border-gray-200 rounded overflow-y-auto max-h-64">
+						<div className="border border-gray-200 rounded overflow-y-auto max-h-96">
 							{scaffoldsLoading ? (
 								<div className="flex justify-center py-6"><FaSpinner className="animate-spin" size={24} /></div>
 							) : allScaffolds.length === 0 ? (
@@ -421,7 +473,6 @@ const Publications: React.FC = () => {
 								))
 							)}
 						</div>
-
 						<p className="text-xs text-gray-400 mt-2">{selectedGroupIds.size} group{selectedGroupIds.size !== 1 ? 's' : ''} selected</p>
 						{datasetError && <p className="mt-2 text-sm text-red-500">{datasetError}</p>}
 						<ModalFooter>
@@ -438,7 +489,26 @@ const Publications: React.FC = () => {
 					<ModalBox title="Select Descriptor Rules" wide>
 						<p className="text-xs text-gray-400 mb-3">For each descriptor type, choose whether to include it and how to select which job's results to use.</p>
 
-						<div className="border border-gray-200 rounded overflow-y-auto max-h-80">
+						{/* 4/27 JacklynX changed - select all + default job mode */}
+						<div className="flex items-center gap-4 mb-3 p-3 bg-gray-50 rounded border border-gray-200">
+							<button
+								className="text-xs text-blue-600 hover:underline shrink-0"
+								onClick={handleSelectAllDescriptors}
+							>
+								{descriptorTypes.length > 0 && descriptorTypes.every(dt => descriptorRules[dt.id]?.enabled) ? 'Deselect All' : 'Select All'}
+							</button>
+							<div className="flex items-center gap-2 flex-1">
+								<label className="text-xs text-gray-500 shrink-0">Default job mode:</label>
+								<select
+									value={defaultJobMode}
+									onChange={e => handleApplyDefaultJobMode(Number(e.target.value))}
+									className="flex-1 border border-gray-300 rounded px-2 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-blue-300"
+								>
+									{JOB_MODES.map(m => <option key={m.value} value={m.value}>{m.label}</option>)}
+								</select>
+							</div>
+						</div>
+						<div className="border border-gray-200 rounded overflow-y-auto max-h-96">
 							{descriptorTypes.length === 0 ? (
 								<div className="flex justify-center py-6"><FaSpinner className="animate-spin" size={24} /></div>
 							) : (
@@ -457,22 +527,14 @@ const Publications: React.FC = () => {
 												<div className="mt-2 ml-7 space-y-2">
 													<div>
 														<label className="text-xs text-gray-500 mb-1 block">Job selection mode</label>
-														<select
-															value={rule.jobMode}
-															onChange={e => updateRuleField(dt.id, 'jobMode', Number(e.target.value))}
-															className={`${inputCls} text-xs py-1`}
-														>
+														<select value={rule.jobMode} onChange={e => updateRuleField(dt.id, 'jobMode', Number(e.target.value))} className={`${inputCls} text-xs py-1`}>
 															{JOB_MODES.map(m => <option key={m.value} value={m.value}>{m.label}</option>)}
 														</select>
 													</div>
 													{rule.jobMode === 1 && (
 														<div>
 															<label className="text-xs text-gray-500 mb-1 block">Select job <span className="text-red-400">*</span></label>
-															<select
-																value={rule.jobId}
-																onChange={e => updateRuleField(dt.id, 'jobId', e.target.value)}
-																className={`${inputCls} text-xs py-1`}
-															>
+															<select value={rule.jobId} onChange={e => updateRuleField(dt.id, 'jobId', e.target.value)} className={`${inputCls} text-xs py-1`}>
 																<option value="">-- select a job --</option>
 																{jobs.map(j => <option key={j.id} value={j.id}>{j.label}</option>)}
 															</select>
@@ -485,7 +547,6 @@ const Publications: React.FC = () => {
 								})
 							)}
 						</div>
-
 						<p className="text-xs text-gray-400 mt-2">{Object.values(descriptorRules).filter(r => r.enabled).length} descriptor{Object.values(descriptorRules).filter(r => r.enabled).length !== 1 ? 's' : ''} selected</p>
 						{descriptorError && <p className="mt-2 text-sm text-red-500">{descriptorError}</p>}
 						<ModalFooter>
@@ -510,7 +571,7 @@ const Overlay: React.FC<{ children: React.ReactNode }> = ({ children }) => (
 );
 
 const ModalBox: React.FC<{ title: string; wide?: boolean; children: React.ReactNode }> = ({ title, wide, children }) => (
-	<div className={`bg-white rounded-lg shadow-xl mx-4 p-6 w-full ${wide ? 'max-w-xl' : 'max-w-lg'}`}>
+	<div className={`bg-white rounded-lg shadow-xl mx-4 p-6 w-full overflow-y-auto max-h-screen ${wide ? 'max-w-2xl' : 'max-w-lg'}`}>
 		<div className="text-xl font-bold text-gray-700 mb-4">{title}</div>
 		{children}
 	</div>
