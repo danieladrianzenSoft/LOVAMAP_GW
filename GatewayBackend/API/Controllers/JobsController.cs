@@ -138,6 +138,23 @@ public class JobsController : ControllerBase
         return Ok(job);
     }
 
+	// 4/13 JacklynX changed - get all jobs for admin to select specific job in dataset descriptor rules
+	[Authorize(Roles = "administrator")]
+	[HttpGet("all")]
+	public async Task<IActionResult> GetAllJobs()
+	{
+		try
+		{
+			var jobs = await _jobService.GetAllJobsAsync();
+			return Ok(new ApiResponse<IEnumerable<JobToReturnDto>>(200, "", jobs));
+		}
+		catch (Exception ex)
+		{
+			_logger.LogError(ex, "Failed to get all jobs");
+			return StatusCode(500, new ApiResponse<string>(500, "An error occurred while getting all jobs"));
+		}
+	}
+
 	[HttpGet("me")]
 	public async Task<IActionResult> GetJobsSubmittedByUser()
 	{

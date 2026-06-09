@@ -233,6 +233,14 @@ namespace Services.Services
 			return jobToReturn;
 		}
 
+		// 4/13 JacklynX changed - get all jobs for admin use in dataset descriptor rules
+		public async Task<IEnumerable<JobToReturnDto>> GetAllJobsAsync()
+		{
+			var jobs = await _jobRepository.GetAllJobsAsync();
+			var jobToReturn = jobs.Select(_modelMapper.MapToJobToReturnDto).ToList();
+			return jobToReturn;
+		}
+
 		public async Task<(bool Succeeded, string? ErrorMessage, Job? Job)> MarkJobCompletedAsync(Guid jobId, string resultFilePath, string sha256)
 		{
 			try

@@ -30,6 +30,7 @@ namespace Services.Services
 		{
 			try
 			{
+				publicationToCreate.PublishedAt = DateTime.SpecifyKind(publicationToCreate.PublishedAt, DateTimeKind.Utc);
 				var publication = _modelMapper.MapToPublication(publicationToCreate);
 				_publicationRepository.Add(publication);
 

@@ -1,0 +1,11 @@
+{
+  "name": "lovamap-proto",
+  "version": "0.0.1",
+  "dependencies": [
+    {
+      "name": "protobuf",
+      "version>=": "5.29.0"
+    }
+  ],
+  "builtin-baseline": "17ff26d0566ba0fa05e35c9209e92664adb304e3"
+}

@@ -9,3 +9,18 @@ export interface Publication {
 	scaffoldGroupIds: number[];
 	descriptorTypeIds: number[];
 }
+
+export interface PublicationToCreate {
+	title: string;
+	authors: string;
+	journal: string;
+	publishedAt: string;
+	doi: string;
+	citation: string | null;
+}
+
+export interface DescriptorRuleToCreate {
+	descriptorTypeId: number;
+	jobMode: number;
+	jobId: string | null;
+}

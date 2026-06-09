@@ -24,18 +24,20 @@ namespace Repositories.Repositories
 			_context.PublicationDatasets.Add(publicationDataset);
 		}
 
-		public void DeleteScaffolds(long publicationDatasetId)
+		public async Task DeleteScaffolds(long publicationDatasetId)
 		{
-			var scaffolds = _context.PublicationDatasetScaffolds
-				.Where(s => s.PublicationDatasetId == publicationDatasetId);
-			_context.PublicationDatasetScaffolds.RemoveRange(scaffolds);
+			// 4/13 JacklynX changed - use ExecuteDeleteAsync to avoid EF tracking conflict with included entities
+			await _context.PublicationDatasetScaffolds
+				.Where(s => s.PublicationDatasetId == publicationDatasetId)
+				.ExecuteDeleteAsync();
 		}
 
-		public void DeleteDescriptorRules(long publicationDatasetId)
+		public async Task DeleteDescriptorRules(long publicationDatasetId)
 		{
-			var rules = _context.PublicationDatasetDescriptorRules
-				.Where(r => r.PublicationDatasetId == publicationDatasetId);
-			_context.PublicationDatasetDescriptorRules.RemoveRange(rules);
+			// 4/13 JacklynX changed - use ExecuteDeleteAsync to avoid EF tracking conflict with included entities
+			await _context.PublicationDatasetDescriptorRules
+				.Where(r => r.PublicationDatasetId == publicationDatasetId)
+				.ExecuteDeleteAsync();
 		}
 
 		public bool HasChanges()
@@ -53,8 +55,6 @@ namespace Repositories.Repositories
 		{
 			return await _context.PublicationDatasets
 				.Where(d => d.PublicationId == publicationId && d.Name == name)
-				.Include(d => d.PublicationDatasetScaffolds)
-				.Include(d => d.PublicationDatasetDescriptorRules)
 				.FirstOrDefaultAsync();
 		}
 

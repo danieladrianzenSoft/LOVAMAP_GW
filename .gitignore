@@ -44,4 +44,4 @@ packages/
 **/.DS_Store
 
 # Removed submodule directory
-GatewayBackend/extern/
+GatewayBackend/extern/.DS_Store

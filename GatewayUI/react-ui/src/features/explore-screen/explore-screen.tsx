@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../../app/stores/store";
 import ScaffoldGroupFilters from "../scaffold-groups/scaffold-group-filter";
@@ -11,6 +11,7 @@ import { SearchContextSummary } from "../../app/common/ai-search-bar/search-cont
 import { useSearchParams } from "react-router-dom";
 import { Publication } from "../../app/models/publication";
 import ReactMarkdown from "react-markdown";
+import LoadingSpinner from '../../app/common/loading-spinner/loading-spinner';
 
 const ExploreScreen = () => {
 	const { commonStore, scaffoldGroupStore, publicationStore } = useStore();
@@ -18,10 +19,12 @@ const ExploreScreen = () => {
 	const {
 		scaffoldGroups,
 		segmentedScaffoldGroups: { exact, related }
-	} = scaffoldGroupStore
+	} = scaffoldGroupStore;
 	const [visibleDetails, setVisibleDetails] = useState<number | null>(null);
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const [publication, setPublication] = useState<Publication | null>(null);
+
+
 
 	const toggleDetails = (id: number) => {
 		setVisibleDetails(prev => (prev === id ? null : id));
@@ -51,7 +54,6 @@ const ExploreScreen = () => {
 		aiSearchUsed,
 		setAiSearchUsed,
 		publicationId,
-		// publicationDatasetId,
 		restrictToPublicationDataset,
 		isPublicationScoped,
 		isSimulated,
@@ -64,19 +66,20 @@ const ExploreScreen = () => {
 		const fetchPublication = async () => {
 			setIsLoading(true);
 			try {
-				if (restrictToPublicationDataset && publicationId)
-				{
+				if (restrictToPublicationDataset && publicationId) {
 					const publication = await publicationStore.getPublication(publicationId);
 					setPublication(publication);
 				}
 			} catch (error) {
 				console.error("Error fetching publication:", error);
 			} finally {
-				setIsLoading(false)
+				setIsLoading(false);
 			}
-		}
+		};
 		fetchPublication();
-	}, [publicationId, publicationStore, restrictToPublicationDataset])
+	}, [publicationId, publicationStore, restrictToPublicationDataset]);
+
+
 
 	const clearFilters = () => {
 		setSelectedTags({});
@@ -85,6 +88,7 @@ const ExploreScreen = () => {
 		setAiSearchUsed(false);
 		setSearchCategory(DEFAULT_CATEGORY);
 	};
+
 
 	return (
 		<div className="container mx-auto py-8 px-6">
@@ -126,7 +130,7 @@ const ExploreScreen = () => {
 					</div>
 				</>
 			}
-			
+
 			{isLoading ? (
 				<LoadingSpinner />
 			) : (
@@ -144,9 +148,9 @@ const ExploreScreen = () => {
 					/>
 				</>
 			)}
+
 		</div>
 	);
 };
 
 export default observer(ExploreScreen);
-

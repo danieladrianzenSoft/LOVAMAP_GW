@@ -37,6 +37,17 @@ export default class JobStore {
 		}
 	}
 
+	// 4/13 JacklynX changed - get all jobs for admin use in dataset descriptor rules
+	getAllJobs = async (): Promise<JobForList[] | null> => {
+		try {
+			const response = await agent.Jobs.getAllJobs();
+			return response.data;
+		} catch (error) {
+			console.error('Error fetching all jobs:', error);
+			return null;
+		}
+	}
+
 	getJobResult = async (jobId: string): Promise<Blob | null> => {
 		try {
 			const data = await agent.Jobs.getJobResult(jobId);

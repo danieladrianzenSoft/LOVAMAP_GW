@@ -173,7 +173,7 @@ namespace Services.Services
 				// 6) Replace scaffolds for this dataset with the new set
 				// Clear old ones only if we had an existing dataset
 				if (!createdNew)
-					_publicationDatasetRepository.DeleteScaffolds(dataset.Id);
+					await _publicationDatasetRepository.DeleteScaffolds(dataset.Id);
 
 				if (existingScaffoldIds.Count > 0)
 				{
@@ -182,7 +182,7 @@ namespace Services.Services
 
 				// 7) Replace descriptor rules for this dataset
 				if (!createdNew)
-					_publicationDatasetRepository.DeleteDescriptorRules(dataset.Id);
+					await _publicationDatasetRepository.DeleteDescriptorRules(dataset.Id);
 
 				if ((datasetForUpsertDto.DescriptorRules?.Count ?? 0) > 0)
 				{
