@@ -11,7 +11,6 @@ import { SearchContextSummary } from "../../app/common/ai-search-bar/search-cont
 import { useSearchParams } from "react-router-dom";
 import { Publication } from "../../app/models/publication";
 import ReactMarkdown from "react-markdown";
-import LoadingSpinner from '../../app/common/loading-spinner/loading-spinner';
 
 const ExploreScreen = () => {
 	const { commonStore, scaffoldGroupStore, publicationStore } = useStore();

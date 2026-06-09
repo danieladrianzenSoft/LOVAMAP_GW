@@ -1,9 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import { useStore } from '../../app/stores/store';
-import { Publication } from '../../app/models/publication';
+import { Publication, PublicationToCreate, DescriptorRuleToCreate } from '../../app/models/publication';
+import { ScaffoldGroup } from '../../app/models/scaffoldGroup';
+import { DescriptorType } from '../../app/models/descriptorType';
 import LoadingSpinner from '../../app/common/loading-spinner/loading-spinner';
 import History from "../../app/helpers/History";
+import { FaSpinner } from "react-icons/fa";
 import { MdOutlineCloudDownload, MdOutlineRemoveRedEye } from "react-icons/md";
 import DataTable, { DataTableColumn } from '../../app/common/data-table/data-table';
 
@@ -377,7 +380,7 @@ const Publications: React.FC = () => {
 								Add
 							</button>
 						</div>
-					)}
+					}
 					<div className="flex">
 						<DataTable
 							data={publications ?? []}
