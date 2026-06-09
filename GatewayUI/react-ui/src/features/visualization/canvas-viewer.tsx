@@ -76,8 +76,10 @@ const AxesIndicator: React.FC<AxesIndicatorProps> = ({ controlsRef }) => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
     const size = 80;
-    canvas.width = size;
-    canvas.height = size;
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = size * dpr;
+    canvas.height = size * dpr;
+    ctx.scale(dpr, dpr);
 
     const axes = [
       { dir: new THREE.Vector3(1, 0, 0), color: '#e74c3c', label: 'X' },
@@ -97,15 +99,6 @@ const AxesIndicator: React.FC<AxesIndicatorProps> = ({ controlsRef }) => {
         const v = dir.clone().applyQuaternion(camera.quaternion.clone().invert());
         return { x: cx + v.x * len, y: cy - v.y * len, color, label, z: v.z };
       }).sort((a, b) => a.z - b.z); // back to front
-
-      // Draw background circle
-      ctx.beginPath();
-      ctx.arc(cx, cy, size / 2 - 2, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(255,255,255,0.85)';
-      ctx.fill();
-      ctx.strokeStyle = '#d1d5db';
-      ctx.lineWidth = 1;
-      ctx.stroke();
 
       // Draw axes back to front
       projected.forEach(({ x, y, color, label }) => {
@@ -157,86 +150,72 @@ interface CameraControlPanelProps {
 }
 
 const CameraControlPanel: React.FC<CameraControlPanelProps> = ({ controlsRef, livePos }) => {
-  const [inputs, setInputs] = useState({ x: '0', y: '0', z: '0' });
-  const [open, setOpen] = useState(false);
-
-  // Sync inputs from live camera position when not editing
+  const [editingAxis, setEditingAxis] = useState<'x' | 'y' | 'z' | null>(null);
+  const [editValue, setEditValue] = useState('');
   const editingRef = useRef(false);
-  useEffect(() => {
-    if (!editingRef.current) {
-      setInputs({
-        x: livePos.x.toString(),
-        y: livePos.y.toString(),
-        z: livePos.z.toString(),
-      });
-    }
-  }, [livePos]);
 
-  const handleChange = (axis: 'x' | 'y' | 'z', val: string) => {
-    editingRef.current = true;
-    setInputs(prev => ({ ...prev, [axis]: val }));
-  };
-
-  const handleApply = () => {
+  const applyEdit = useCallback((axis: 'x' | 'y' | 'z', val: string) => {
     if (!controlsRef.current) return;
-    const x = parseFloat(inputs.x);
-    const y = parseFloat(inputs.y);
-    const z = parseFloat(inputs.z);
-    if (isNaN(x) || isNaN(y) || isNaN(z)) return;
+    const n = parseFloat(val);
+    if (isNaN(n)) return;
     const camera = controlsRef.current.object;
-    camera.position.set(x, y, z);
+    const pos = camera.position.clone();
+    pos[axis] = n;
+    camera.position.copy(pos);
     camera.updateProjectionMatrix();
     controlsRef.current.update();
+  }, [controlsRef]);
+
+  const handleBlur = (axis: 'x' | 'y' | 'z') => {
+    applyEdit(axis, editValue);
+    setEditingAxis(null);
     editingRef.current = false;
   };
 
-  const handleBlur = () => { editingRef.current = false; };
-  const handleKeyDown = (e: React.KeyboardEvent) => { if (e.key === 'Enter') { handleApply(); editingRef.current = false; } };
+  const handleKeyDown = (e: React.KeyboardEvent, axis: 'x' | 'y' | 'z') => {
+    if (e.key === 'Enter') { applyEdit(axis, editValue); setEditingAxis(null); editingRef.current = false; }
+    if (e.key === 'Escape') { setEditingAxis(null); editingRef.current = false; }
+  };
+
+  const startEdit = (axis: 'x' | 'y' | 'z') => {
+    editingRef.current = true;
+    setEditValue(livePos[axis].toString());
+    setEditingAxis(axis);
+  };
 
   return (
     <div
-      className="absolute bottom-4 left-4 z-30 select-none"
+      className="absolute bottom-4 z-10 select-none left-8 md:left-8 max-md:right-6 max-md:left-auto flex flex-col items-center"
       onMouseDown={e => e.stopPropagation()}
     >
-      {/* Always-visible axes indicator */}
-      <div className="cursor-pointer" onClick={() => setOpen(o => !o)} title="Toggle camera XYZ inputs">
-        <AxesIndicator controlsRef={controlsRef} />
-      </div>
-
-      {/* Expandable coordinate inputs */}
-      {open && (
-        <div
-          className="mt-1 bg-white bg-opacity-95 border border-gray-200 rounded shadow-lg p-3 w-48"
-          onMouseDown={e => e.stopPropagation()}
-        >
-          <div className="text-xs font-medium text-gray-600 mb-2">Camera Position</div>
-          <div className="space-y-1.5">
-            {(['x', 'y', 'z'] as const).map(axis => (
-              <div key={axis} className="flex items-center gap-2">
-                <span className="text-xs font-mono font-bold w-3 uppercase" style={{
-                  color: axis === 'x' ? '#e74c3c' : axis === 'y' ? '#2ecc71' : '#3498db'
-                }}>{axis}</span>
-                <input
-                  type="number"
-                  value={inputs[axis]}
-                  onChange={e => handleChange(axis, e.target.value)}
-                  onKeyDown={handleKeyDown}
-                  onFocus={() => { editingRef.current = true; }}
-                  onBlur={handleBlur}
-                  className="flex-1 border border-gray-300 rounded px-2 py-1 text-xs font-mono focus:outline-none focus:ring-1 focus:ring-blue-300"
-                />
-              </div>
-            ))}
+      <AxesIndicator controlsRef={controlsRef} />
+      <div
+        className="flex gap-1 mt-0.5 font-mono leading-none text-gray-400"
+        style={{ fontSize: '10px' }}
+      >
+        {(['x', 'y', 'z'] as const).map(axis => (
+          <div key={axis} className="flex flex-col items-center tabular-nums">
+            <span className="uppercase">{axis}</span>
+            {editingAxis === axis ? (
+              <input
+                autoFocus
+                type="number"
+                value={editValue}
+                onChange={e => setEditValue(e.target.value)}
+                onBlur={() => handleBlur(axis)}
+                onKeyDown={e => handleKeyDown(e, axis)}
+                className="w-10 bg-transparent border-b border-gray-300 font-mono text-gray-500 text-center outline-none px-0 py-0 appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                style={{ fontSize: '10px' }}
+              />
+            ) : (
+              <span
+                className="cursor-text hover:text-gray-500 transition-colors"
+                onClick={() => startEdit(axis)}
+              >{Math.abs(livePos[axis]) >= 100 ? Math.round(livePos[axis]) : livePos[axis].toFixed(1)}</span>
+            )}
           </div>
-          <button
-            onClick={handleApply}
-            className="mt-2 w-full bg-blue-500 hover:bg-blue-600 text-white text-xs rounded py-1"
-          >
-            Apply
-          </button>
-          <p className="mt-1 text-xs text-gray-400 leading-tight">Click axes to toggle · Enter to apply</p>
-        </div>
-      )}
+        ))}
+      </div>
     </div>
   );
 };

@@ -95,6 +95,13 @@ namespace Repositories.Repositories
 				.ToListAsync();
 		}
 
+		public async Task<bool> DeleteAsync(int publicationId)
+		{
+			var publication = await _context.Publications.FindAsync(publicationId);
+			if (publication == null) return false;
+			_context.Publications.Remove(publication);
+			return await _context.SaveChangesAsync() > 0;
+		}
 
 	}
 }

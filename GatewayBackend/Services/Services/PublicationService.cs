@@ -68,5 +68,36 @@ namespace Services.Services
 				return (false, ex.Message, null);
 			}
 		}
+
+		public async Task<(bool Succeeded, string ErrorMessage)> UpdatePublication(int publicationId, PublicationToCreateDto publicationToUpdate)
+		{
+			try
+			{
+				var exists = await _publicationRepository.ExistsAsync(publicationId);
+				if (!exists) return (false, "Publication not found.");
+				// TODO: implement update logic
+				return (false, "Update not yet implemented.");
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, "Error updating publication");
+				return (false, ex.Message);
+			}
+		}
+
+		public async Task<(bool Succeeded, string ErrorMessage)> DeletePublication(int publicationId)
+		{
+			try
+			{
+				var deleted = await _publicationRepository.DeleteAsync(publicationId);
+				if (!deleted) return (false, "Publication not found.");
+				return (true, "");
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, "Error deleting publication");
+				return (false, ex.Message);
+			}
+		}
 	}
 }
