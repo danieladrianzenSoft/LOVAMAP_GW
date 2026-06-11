@@ -29,6 +29,7 @@ import { ExploreData } from '../../features/explore-data/explore-data';
 import Publications from '../../features/publications/publications';
 import JobsMain from '../../features/jobs/jobs-main';
 import JobList from '../../features/jobs/job-list';
+import RunSegmentation from '../../features/jobs/run-segmentation';
 import Dashboard from '../../features/dashboard/Dashboard';
 import { isWhiteBackgroundRoute } from '../helpers/routeTheme';
 import ScaffoldGroupPreviewPage from '../../features/scaffold-groups/scaffold-group-preview-page';
@@ -103,7 +104,8 @@ const MainLayout: React.FC = observer(() => {
           <Route path="/experiments" element={<ProtectedRoute element={<CreateExperiments />} />} />
           <Route path="/uploads" element={<ProtectedRoute element={<ScaffoldGroupUploads />} />} />
           <Route path="/run" element={<JobsMain />} />
-          <Route path="/jobs" element={<ProtectedRoute element={<JobList />} />}  />
+          <Route path="/jobs/*" element={<ProtectedRoute element={<JobList />} />}  />
+          <Route path="/segment" element={<ProtectedRoute element={<RunSegmentation />} />} />
           <Route path="/screenshots/:scaffoldId" element={<ProtectedRoute requiredRole="administrator" element={<ScreenshotViewer />} />} />
           <Route path="/admin" element={<ProtectedRoute requiredRole="administrator" element={<AdminUtilities />} />}/>
           <Route path="/bulk-upload" element={<ProtectedRoute requiredRole="administrator" element={<BulkUploadPage />} />}/>

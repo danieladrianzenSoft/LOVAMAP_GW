@@ -43,6 +43,13 @@ namespace Repositories.Repositories
 			return await _context.Jobs.OrderByDescending(j => j.SubmittedAt).ToListAsync();
 		}
 
+		public async Task<IEnumerable<Job>> GetActiveJobsAsync()
+		{
+			return await _context.Jobs
+				.Where(j => j.Status == JobStatus.Pending || j.Status == JobStatus.Running)
+				.ToListAsync();
+		}
+
 		public async Task<Job?> MarkJobCompletedAsync(Guid jobId, string resultFilePath, string sha256)
 		{
 			var job = await _context.Jobs.FindAsync(jobId);
@@ -52,6 +59,19 @@ namespace Repositories.Repositories
 			job.CompletedAt = DateTime.UtcNow;
 			job.ResultFilePath = resultFilePath;
 			job.ResultHash = sha256;
+
+			return job;
+		}
+
+		public async Task<Job?> UpdateJobFromCoreAsync(Guid jobId, JobStatus status, string? resultPath, string? errorMessage, DateTime? completedAt)
+		{
+			var job = await _context.Jobs.FindAsync(jobId);
+			if (job == null) return null;
+
+			job.Status = status;
+			job.ResultFilePath = resultPath ?? job.ResultFilePath;
+			job.ErrorMessage = errorMessage ?? job.ErrorMessage;
+			job.CompletedAt = completedAt ?? job.CompletedAt;
 
 			return job;
 		}

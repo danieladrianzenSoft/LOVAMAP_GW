@@ -9,7 +9,7 @@ import { DescriptorType } from "../models/descriptorType";
 import { Image, ImageCategory, ImageToCreate, ImageToUpdate } from "../models/image";
 import environment from "../environments/environment"
 import { Domain } from "../models/domain";
-import { Job, JobForList } from "../models/job";
+import { Job, JobForList, LovamapFromSourceJob, MeshJob, SegmentationJob } from "../models/job";
 import { ScaffoldWithMissingThumbnail } from "../models/scaffold";
 import { ParticleDiameter, PoreInfo, PoreInfoForScaffoldGroup } from "../models/poreInfo";
 import { DomainMetadata } from "../models/domainMetadata";
@@ -235,10 +235,46 @@ const Jobs = {
 
         return response.data;
     },
+    submitSegmentationJob: async (job: SegmentationJob) => {
+        const formData = new FormData();
+        formData.append('TifFile', job.tifFile);
+        formData.append('FluorescentLabel', job.fluorescentLabel.toString());
+        formData.append('RadiusUm', job.radiusUm.toString());
+        if (job.dx != null) formData.append('Dx', job.dx.toString());
+        if (job.dy != null) formData.append('Dy', job.dy.toString());
+        if (job.dz != null) formData.append('Dz', job.dz.toString());
+
+        const response = await axios.post<ApiResponse<any>>(
+            `/jobs/submit-segmentation-job`, formData
+        );
+        return response.data;
+    },
+    submitMeshJob: async (job: MeshJob) => {
+        const formData = new FormData();
+        formData.append('File', job.file);
+        formData.append('MeshWorkflow', job.meshWorkflow);
+
+        const response = await axios.post<ApiResponse<any>>(
+            `/jobs/submit-mesh-job`, formData
+        );
+        return response.data;
+    },
+    submitLovamapFromSource: async (job: LovamapFromSourceJob) => {
+        const response = await axios.post<ApiResponse<any>>(
+            `/jobs/submit-lovamap-from-source`, job
+        );
+        return response.data;
+    },
     getUserJobs: async () => requests.get<ApiResponse<JobForList[]>>('/jobs/me'),
     getAllJobs: async () => requests.get<ApiResponse<JobForList[]>>('/jobs/all'),
     getJobResult: async (jobId: string) => {
         const response = await axios.get(`/jobs/${jobId}/result`, {
+            responseType: 'blob'
+        });
+        return response.data;
+    },
+    getJobMesh: async (jobId: string) => {
+        const response = await axios.get(`/jobs/${jobId}/mesh`, {
             responseType: 'blob'
         });
         return response.data;

@@ -122,7 +122,7 @@ export const ScaffoldGroupDetailsForm: React.FC<Props> = ({ initial, onMatchesFo
 
 
   return (
-    <div className="p-4 bg-white rounded">
+    <div className="rounded-xl border border-gray-200 bg-white shadow-sm p-6">
 		{/* <h3 className="text-lg font-semibold mb-8">1. Select your scaffold's properties</h3> */}
 		<Formik
 			initialValues={initialValues}

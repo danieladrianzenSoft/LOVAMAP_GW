@@ -12,6 +12,8 @@ export interface JobForList {
 	id: string;
 	submittedAt: string;
 	status: string;
+	jobType?: string;
+	sourceJobId?: string;
 }
 
 export interface JobDetailed {
@@ -21,4 +23,26 @@ export interface JobDetailed {
 	status: string;
 	hasResults: boolean;
 	fileName?: string | null;
+	jobType?: string;
+	sourceJobId?: string;
+}
+
+export interface SegmentationJob {
+	tifFile: File;
+	fluorescentLabel: number; // 0 or 1
+	radiusUm: number;
+	dx?: number;
+	dy?: number;
+	dz?: number;
+}
+
+export interface MeshJob {
+	file: File;
+	meshWorkflow: 'mesh_generation' | 'unite_meshes';
+}
+
+export interface LovamapFromSourceJob {
+	sourceJobId: string;
+	dx?: string;
+	generateMesh?: boolean;
 }

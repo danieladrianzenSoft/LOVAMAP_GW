@@ -11,6 +11,7 @@
     <ProjectReference Include="..\Repositories\Repositories.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="BitMiracle.LibTiff.NET" Version="2.4.660" />
     <PackageReference Include="CloudinaryDotNet" Version="1.26.2" />
     <PackageReference Include="SixLabors.ImageSharp" Version="3.1.5" />
   </ItemGroup>

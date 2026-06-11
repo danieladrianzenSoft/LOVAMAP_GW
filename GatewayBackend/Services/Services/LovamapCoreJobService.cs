@@ -25,6 +25,7 @@ namespace Services.Services
 		private readonly IModelMapper _modelMapper;
     	private readonly ILogger<LovamapCoreJobService> _logger;
 		private readonly IHostEnvironment _env;
+		private readonly ITifValidationService _tifValidationService;
 
 		public LovamapCoreJobService(IHttpClientFactory httpClientFactory,
 			IJwtGeneratorHelper jwtGeneratorHelper,
@@ -34,7 +35,8 @@ namespace Services.Services
 			DataContext context,
 			ICoreApiClient coreApiClient,
 			IHostEnvironment env,
-			ILogger<LovamapCoreJobService> logger)
+			ILogger<LovamapCoreJobService> logger,
+			ITifValidationService tifValidationService)
 		{
 			_httpClientFactory = httpClientFactory;
 			_configuration = configuration;
@@ -45,6 +47,7 @@ namespace Services.Services
 			_env = env;
 			_context = context;
 			_logger = logger;
+			_tifValidationService = tifValidationService;
 		}
 
 		public async Task<(bool Succeeded, string? ErrorMessage, Job? Job)> SubmitJob(JobSubmissionDto dto)
@@ -241,6 +244,113 @@ namespace Services.Services
 			return jobToReturn;
 		}
 
+		public async Task<IEnumerable<Job>> GetActiveJobsAsync()
+		{
+			return await _jobRepository.GetActiveJobsAsync();
+		}
+
+		public async Task<(bool StatusChanged, Job? Job)> SyncJobStatusAsync(Guid jobId)
+		{
+			var job = await _jobRepository.GetJobByIdAsync(jobId);
+			if (job == null) return (false, null);
+
+			HttpResponseMessage response;
+			try
+			{
+				response = await _coreApiClient.GetJobStatusAsync(jobId.ToString());
+			}
+			catch (Exception ex)
+			{
+				_logger.LogWarning(ex, "Failed to fetch status from Core for job {JobId}", jobId);
+				return (false, job);
+			}
+
+			if (!response.IsSuccessStatusCode)
+			{
+				_logger.LogWarning("Core returned {Status} when polling job {JobId}", response.StatusCode, jobId);
+
+				// 404 means Core doesn't have this job yet (or it was lost).
+				// Tolerate up to 10 consecutive 404s before marking as failed,
+				// since Core may still be initializing the job.
+				if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+				{
+					job.RetryCount++;
+					if (job.RetryCount >= 10)
+					{
+						await _jobRepository.UpdateJobFromCoreAsync(
+							jobId,
+							JobStatus.Failed,
+							null,
+							"Job not found on processing server after multiple attempts.",
+							DateTime.UtcNow);
+						await _context.SaveChangesAsync();
+						_logger.LogInformation("Job {JobId} marked as Failed — not found on Core after {Retries} polls", jobId, job.RetryCount);
+						return (true, job);
+					}
+
+					await _context.SaveChangesAsync();
+					_logger.LogDebug("Job {JobId} not found on Core (attempt {Attempt}/10)", jobId, job.RetryCount);
+					return (false, job);
+				}
+
+				return (false, job);
+			}
+
+			var body = await response.Content.ReadAsStringAsync();
+			CoreJobDto? coreJob;
+			try
+			{
+				coreJob = JsonSerializer.Deserialize<CoreJobDto>(body, new JsonSerializerOptions
+				{
+					PropertyNameCaseInsensitive = true
+				});
+			}
+			catch (Exception ex)
+			{
+				_logger.LogWarning(ex, "Failed to deserialize Core status for job {JobId}", jobId);
+				return (false, job);
+			}
+
+			if (coreJob == null) return (false, job);
+
+			// Reset retry count on successful poll
+			if (job.RetryCount > 0)
+			{
+				job.RetryCount = 0;
+				await _context.SaveChangesAsync();
+			}
+
+			var coreStatus = (JobStatus)coreJob.Status;
+			_logger.LogDebug("Job {JobId}: Core status int={CoreStatusInt} enum={CoreStatus}, GW status={GwStatus}",
+				jobId, coreJob.Status, coreStatus, job.Status);
+			if (coreStatus == job.Status) return (false, job);
+
+			var oldStatus = job.Status;
+			await _jobRepository.UpdateJobFromCoreAsync(
+				jobId,
+				coreStatus,
+				coreJob.ResultPath,
+				coreJob.ErrorMessage,
+				coreJob.CompletedAt);
+			await _context.SaveChangesAsync();
+
+			_logger.LogInformation("Job {JobId} transitioned from {OldStatus} to {NewStatus}", jobId, oldStatus, coreStatus);
+			return (true, job);
+		}
+
+		public async Task<Job?> TimeoutJobAsync(Guid jobId)
+		{
+			var job = await _jobRepository.UpdateJobFromCoreAsync(
+				jobId,
+				JobStatus.Failed,
+				null,
+				"Job timed out — no status update received from processing server.",
+				DateTime.UtcNow);
+			if (job != null)
+				await _context.SaveChangesAsync();
+			return job;
+		}
+
 		public async Task<(bool Succeeded, string? ErrorMessage, Job? Job)> MarkJobCompletedAsync(Guid jobId, string resultFilePath, string sha256)
 		{
 			try
@@ -290,6 +400,38 @@ namespace Services.Services
 			}
 		}
 
+		public async Task<(bool Succeeded, string? ErrorMessage, byte[]? MeshBytes)>
+			FetchJobMeshFromCoreAsync(string jobId, CancellationToken cancellationToken = default)
+		{
+			try
+			{
+				var response = await _coreApiClient.GetJobMeshAsync(jobId, cancellationToken);
+
+				if (!response.IsSuccessStatusCode)
+				{
+					var msg = $"lovamap_core returned {response.StatusCode} for mesh of job {jobId}";
+					_logger.LogWarning("FetchJobMeshFromCoreAsync: {Message}", msg);
+					return (false, msg, null);
+				}
+
+				var bytes = await response.Content.ReadAsByteArrayAsync(cancellationToken);
+
+				if (bytes == null || bytes.Length == 0)
+				{
+					var msg = $"Empty mesh for job {jobId} from lovamap_core.";
+					_logger.LogWarning("FetchJobMeshFromCoreAsync: {Message}", msg);
+					return (false, msg, null);
+				}
+
+				return (true, null, bytes);
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, "Error fetching mesh from lovamap_core for job {JobId}", jobId);
+				return (false, "Error connecting to lovamap_core or reading mesh.", null);
+			}
+		}
+
 		public string GetJobResultsDir()
 		{
 			var configured =
@@ -308,6 +450,286 @@ namespace Services.Services
 			return Path.GetFullPath(Path.Combine(gatewayBackendRoot, configured));
 		}
 
+
+		public async Task<(bool Succeeded, string? ErrorMessage, Job? Job)> SubmitSegmentationJob(SegmentationJobSubmissionDto dto)
+		{
+			// 1) Validate the TIF file
+			var validation = await _tifValidationService.ValidateAsync(dto.TifFile);
+			if (!validation.IsValid)
+			{
+				var errorMsg = string.Join("; ", validation.Errors);
+				_logger.LogWarning("TIF validation failed: {Errors}", errorMsg);
+				return (false, errorMsg, null);
+			}
+
+			// 2) Create local GW job record
+			var job = new Job
+			{
+				Id = Guid.NewGuid(),
+				JobType = JobType.ParticleSegmentation,
+				CreatorId = dto.CreatorId,
+				SubmittedAt = DateTime.UtcNow,
+				Status = JobStatus.Pending
+			};
+			_jobRepository.Add(job);
+			await _context.SaveChangesAsync();
+
+			// 3) Prepare upload token + URL for Core callback
+			var uploadToken = _jwtGeneratorHelper.GenerateUploadJwt(job.Id.ToString(), job.CreatorId);
+			var uploadUrl = _configuration["LOVAMAP_GW:URL"] + $"/jobs/{job.Id}/upload";
+
+			// 4) Build multipart form for Core
+			using var form = new MultipartFormDataContent();
+
+			var s = dto.TifFile.OpenReadStream();
+			var fileContent = new StreamContent(s);
+			fileContent.Headers.ContentType = new MediaTypeHeaderValue("image/tiff");
+			form.Add(fileContent, "file", dto.TifFile.FileName);
+
+			form.Add(new StringContent(job.Id.ToString()), "jobId");
+			form.Add(new StringContent("ParticleSegmentation"), "jobType");
+			form.Add(new StringContent(dto.FluorescentLabel), "fluorescentLabel");
+			form.Add(new StringContent(dto.RadiusUm), "radiusUm");
+			form.Add(new StringContent(uploadUrl), "uploadUrl");
+			form.Add(new StringContent(uploadToken), "uploadToken");
+
+			// Use DTO values if provided, otherwise use extracted metadata
+			var dx = dto.Dx ?? validation.Dx?.ToString(System.Globalization.CultureInfo.InvariantCulture);
+			var dy = dto.Dy ?? validation.Dy?.ToString(System.Globalization.CultureInfo.InvariantCulture);
+			var dz = dto.Dz ?? validation.Dz?.ToString(System.Globalization.CultureInfo.InvariantCulture);
+
+			if (!string.IsNullOrWhiteSpace(dx)) form.Add(new StringContent(dx), "dx");
+			if (!string.IsNullOrWhiteSpace(dy)) form.Add(new StringContent(dy), "dy");
+			if (!string.IsNullOrWhiteSpace(dz)) form.Add(new StringContent(dz), "dz");
+
+			// 5) Call Core
+			HttpResponseMessage response;
+			try
+			{
+				response = await _coreApiClient.SubmitJobAsync(form);
+			}
+			catch (HttpRequestException ex)
+			{
+				_logger.LogError(ex, "Lovamap Core unreachable for segmentation job.");
+				return (false, "Lovamap Core could not be reached", null);
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, "Unexpected error submitting segmentation job to Core.");
+				return (false, "Unexpected error communicating with Lovamap Core.", null);
+			}
+
+			var body = await response.Content.ReadAsStringAsync();
+
+			if (!response.IsSuccessStatusCode)
+			{
+				_logger.LogWarning("Core returned {Status} for segmentation job: {Body}", response.StatusCode, body);
+				return (false, $"Lovamap Core returned {response.StatusCode}: {body}", null);
+			}
+
+			// 6) Parse response
+			CoreJobDto? coreJob;
+			try
+			{
+				coreJob = JsonSerializer.Deserialize<CoreJobDto>(body, new JsonSerializerOptions
+				{
+					PropertyNameCaseInsensitive = true
+				});
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, "Failed to deserialize Core segmentation job response.");
+				return (false, "Failed to deserialize Core Job.", null);
+			}
+
+			if (coreJob is null)
+				return (false, "Lovamap Core returned empty body.", null);
+
+			var mapped = _modelMapper.MapToJob(coreJob);
+			mapped.JobType = JobType.ParticleSegmentation;
+			return (true, null, mapped);
+		}
+
+		public async Task<(bool Succeeded, string? ErrorMessage, Job? Job)> SubmitMeshJob(MeshJobSubmissionDto dto)
+		{
+			// 1) Validate workflow value
+			var validWorkflows = new[] { "mesh_generation", "unite_meshes" };
+			if (!validWorkflows.Contains(dto.MeshWorkflow))
+				return (false, $"Invalid mesh workflow '{dto.MeshWorkflow}'. Must be 'mesh_generation' or 'unite_meshes'.", null);
+
+			// 2) Validate file extension
+			var ext = Path.GetExtension(dto.File.FileName).ToLowerInvariant();
+			var validExtensions = new[] { ".json", ".csv", ".dat" };
+			if (!validExtensions.Contains(ext))
+				return (false, $"Invalid file type '{ext}'. Accepted: .json, .csv, .dat.", null);
+
+			// 3) Create local GW job record
+			var job = new Job
+			{
+				Id = Guid.NewGuid(),
+				JobType = JobType.MeshProcessing,
+				CreatorId = dto.CreatorId,
+				SubmittedAt = DateTime.UtcNow,
+				Status = JobStatus.Pending
+			};
+			_jobRepository.Add(job);
+			await _context.SaveChangesAsync();
+
+			// 4) Prepare upload token + URL for Core callback
+			var uploadToken = _jwtGeneratorHelper.GenerateUploadJwt(job.Id.ToString(), job.CreatorId);
+			var uploadUrl = _configuration["LOVAMAP_GW:URL"] + $"/jobs/{job.Id}/upload";
+
+			// 5) Build multipart form for Core
+			using var form = new MultipartFormDataContent();
+
+			var s = dto.File.OpenReadStream();
+			var fileContent = new StreamContent(s);
+			fileContent.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
+			form.Add(fileContent, "file", dto.File.FileName);
+
+			form.Add(new StringContent(job.Id.ToString()), "jobId");
+			form.Add(new StringContent("MeshProcessing"), "jobType");
+			form.Add(new StringContent(dto.MeshWorkflow), "meshWorkflow");
+			form.Add(new StringContent(uploadUrl), "uploadUrl");
+			form.Add(new StringContent(uploadToken), "uploadToken");
+
+			// 6) Call Core
+			HttpResponseMessage response;
+			try
+			{
+				response = await _coreApiClient.SubmitJobAsync(form);
+			}
+			catch (HttpRequestException ex)
+			{
+				_logger.LogError(ex, "Lovamap Core unreachable for mesh job.");
+				return (false, "Lovamap Core could not be reached", null);
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, "Unexpected error submitting mesh job to Core.");
+				return (false, "Unexpected error communicating with Lovamap Core.", null);
+			}
+
+			var body = await response.Content.ReadAsStringAsync();
+
+			if (!response.IsSuccessStatusCode)
+			{
+				_logger.LogWarning("Core returned {Status} for mesh job: {Body}", response.StatusCode, body);
+				return (false, $"Lovamap Core returned {response.StatusCode}: {body}", null);
+			}
+
+			// 7) Parse response
+			CoreJobDto? coreJob;
+			try
+			{
+				coreJob = JsonSerializer.Deserialize<CoreJobDto>(body, new JsonSerializerOptions
+				{
+					PropertyNameCaseInsensitive = true
+				});
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, "Failed to deserialize Core mesh job response.");
+				return (false, "Failed to deserialize Core Job.", null);
+			}
+
+			if (coreJob is null)
+				return (false, "Lovamap Core returned empty body.", null);
+
+			var mapped = _modelMapper.MapToJob(coreJob);
+			mapped.JobType = JobType.MeshProcessing;
+			return (true, null, mapped);
+		}
+
+		public async Task<(bool Succeeded, string? ErrorMessage, Job? Job)> SubmitLovamapFromSourceJob(LovamapFromSourceJobDto dto)
+		{
+			// 1) Look up the source job
+			var sourceJob = await _jobRepository.GetJobByIdAsync(dto.SourceJobId);
+			if (sourceJob == null)
+				return (false, "Source job not found.", null);
+
+			// 2) Validate: must be completed ParticleSegmentation
+			if (sourceJob.Status != JobStatus.Completed)
+				return (false, "Source job is not completed.", null);
+
+			if (sourceJob.JobType != JobType.ParticleSegmentation)
+				return (false, "Source job is not a ParticleSegmentation job.", null);
+
+			// 3) Create new GW job record
+			var job = new Job
+			{
+				Id = Guid.NewGuid(),
+				JobType = JobType.Lovamap,
+				CreatorId = dto.CreatorId,
+				SubmittedAt = DateTime.UtcNow,
+				Status = JobStatus.Pending,
+				SourceJobId = dto.SourceJobId.ToString()
+			};
+			_jobRepository.Add(job);
+			await _context.SaveChangesAsync();
+
+			// 4) Prepare upload token + URL for Core callback
+			var uploadToken = _jwtGeneratorHelper.GenerateUploadJwt(job.Id.ToString(), job.CreatorId);
+			var uploadUrl = _configuration["LOVAMAP_GW:URL"] + $"/jobs/{job.Id}/upload";
+
+			// 5) Build multipart form for Core (no file — Core resolves from sourceJobId)
+			using var form = new MultipartFormDataContent();
+			form.Add(new StringContent(job.Id.ToString()), "jobId");
+			form.Add(new StringContent("Lovamap"), "jobType");
+			form.Add(new StringContent(dto.SourceJobId.ToString()), "sourceJobId");
+			form.Add(new StringContent(string.IsNullOrWhiteSpace(dto.Dx) ? "1" : dto.Dx), "dx");
+			form.Add(new StringContent(dto.GenerateMesh.ToString().ToLower()), "generateMesh");
+			form.Add(new StringContent(uploadUrl), "uploadUrl");
+			form.Add(new StringContent(uploadToken), "uploadToken");
+
+			// 6) Call Core
+			HttpResponseMessage response;
+			try
+			{
+				response = await _coreApiClient.SubmitJobAsync(form);
+			}
+			catch (HttpRequestException ex)
+			{
+				_logger.LogError(ex, "Lovamap Core unreachable for lovamap-from-source job.");
+				return (false, "Lovamap Core could not be reached", null);
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, "Unexpected error submitting lovamap-from-source job to Core.");
+				return (false, "Unexpected error communicating with Lovamap Core.", null);
+			}
+
+			var body = await response.Content.ReadAsStringAsync();
+
+			if (!response.IsSuccessStatusCode)
+			{
+				_logger.LogWarning("Core returned {Status} for lovamap-from-source job: {Body}", response.StatusCode, body);
+				return (false, $"Lovamap Core returned {response.StatusCode}: {body}", null);
+			}
+
+			// 7) Parse response
+			CoreJobDto? coreJob;
+			try
+			{
+				coreJob = JsonSerializer.Deserialize<CoreJobDto>(body, new JsonSerializerOptions
+				{
+					PropertyNameCaseInsensitive = true
+				});
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, "Failed to deserialize Core lovamap-from-source job response.");
+				return (false, "Failed to deserialize Core Job.", null);
+			}
+
+			if (coreJob is null)
+				return (false, "Lovamap Core returned empty body.", null);
+
+			var mapped = _modelMapper.MapToJob(coreJob);
+			mapped.JobType = JobType.Lovamap;
+			mapped.SourceJobId = dto.SourceJobId.ToString();
+			return (true, null, mapped);
+		}
 
 		// public async Task<(bool Succeeded, string? ErrorMessage, Job? Job)> SubmitJob(
 		// 	JobSubmissionDto dto)

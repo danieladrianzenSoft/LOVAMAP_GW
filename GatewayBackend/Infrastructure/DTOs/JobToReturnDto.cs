@@ -14,7 +14,8 @@ namespace Infrastructure.DTOs
 		public DateTime? CompletedAt { get; set; }
 		public bool HasResults { get; set; }
 		public string? ErrorMessage { get; set; }
-		// add any other fields Core returns that you care about
+		public string? JobType { get; set; }
+		public string? SourceJobId { get; set; }
 	}
 }
 

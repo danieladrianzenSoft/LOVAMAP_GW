@@ -656,8 +656,9 @@ namespace Services.Services
                 SubmittedAt = job.SubmittedAt,
                 CompletedAt = job.CompletedAt,
                 ErrorMessage = job.ErrorMessage,
-                HasResults = job.Status == JobStatus.Completed && (job.ResultFilePath != null || job.ResultHash != null)
-                // fill other core properties as needed
+                HasResults = job.Status == JobStatus.Completed && (job.ResultFilePath != null || job.ResultHash != null),
+                JobType = job.JobType.ToString(),
+                SourceJobId = job.SourceJobId
             };
 
             return coreJobDto;

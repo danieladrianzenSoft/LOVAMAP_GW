@@ -52,7 +52,7 @@ export const JobForm: React.FC<Props> = ({ onUploadSubmit, onUploadError, onBack
   const submitDisabled = isSubmitting || !selectedFile;
 
   return (
-    <div className="p-4 bg-white rounded">
+    <div className="rounded-xl border border-gray-200 bg-white shadow-sm p-6">
       <div className="flex flex-col md:flex-row md:justify-between md:items-center">
         <h3 className="text-lg mb-2 md:mb-4 w-full font-semibold">
           3. Upload your 3D geometry as a .csv, .dat or .json file and verify that it looks as expected

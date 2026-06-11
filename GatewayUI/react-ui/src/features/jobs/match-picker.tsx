@@ -20,7 +20,7 @@ export const MatchPicker: React.FC<Props> = ({ matches = [], onNext, onBack }) =
 	const isNextDisabled = selectedScaffoldGroupId === null;
 		
 	return (
-		<div className="p-4 bg-white rounded">
+		<div className="rounded-xl border border-gray-200 bg-white shadow-sm p-6">
 			{/* <h4 className="text-lg font-semibold mb-3">2. Select a matching scaffold group, or create a new one</h4> */}
 			<div className="flex flex-col md:flex-row md:justify-between md:items-center">
 				{/* <p className="text-xl mb-2 md:mb-4 w-full">1. Select your scaffold's properties</p> */}

@@ -16,7 +16,7 @@ namespace Infrastructure.DTOs
 		public string? ResultPath { get; set; }
 		public int RetryCount { get; set; }
 		public string? ErrorMessage { get; set; }
-		// add any other fields Core returns that you care about
+		public string? SourceJobId { get; set; }
 	}
 }
 

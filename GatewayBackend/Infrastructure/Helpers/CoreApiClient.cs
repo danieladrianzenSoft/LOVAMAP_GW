@@ -28,6 +28,16 @@ namespace Infrastructure.Helpers
 			return _http.PostAsync("jobs", form, ct);
 		}
 
+		public Task<HttpResponseMessage> GetJobStatusAsync(string jobId, CancellationToken ct = default)
+		{
+			return _http.GetAsync($"jobs/by-jobid/{jobId}", ct);
+		}
+
+		public Task<HttpResponseMessage> GetJobMeshAsync(string jobId, CancellationToken ct = default)
+		{
+			return _http.GetAsync($"jobs/{jobId}/mesh", ct);
+		}
+
 		public Task<HttpResponseMessage> GetJobRawResultAsync(string jobId, CancellationToken ct = default)
 		{
 			// Adjust this path to match whatever endpoint you add on lovamap_core

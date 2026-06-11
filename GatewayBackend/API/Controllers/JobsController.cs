@@ -48,21 +48,118 @@ public class JobsController : ControllerBase
 			return Ok(new ApiResponse<Job>(201, "Job submitted", job));
 		}
 
-		else if (job != null)
+		// Core connectivity errors → 503
+		if (!string.IsNullOrEmpty(errorMessage) && errorMessage.Contains("could not be reached"))
 		{
-			// Lovamap Core returned an error → propagate their status and message
-			// var content = await response.Content.ReadAsStringAsync();
-			// return StatusCode((int)response.StatusCode, new
-			// {
-			// 	error = "Lovamap Core returned an error",
-			// 	details = content
-			// });
+			return StatusCode(503, new ApiResponse<string>(503, errorMessage));
+		}
+
+		if (!string.IsNullOrEmpty(errorMessage))
+		{
 			return BadRequest(new ApiResponse<string>(400, $"Lovamap Error - {errorMessage}"));
 		}
 
 		return StatusCode(503, new ApiResponse<string>(503, "Lovamap Core did not respond"));
 	}
-	
+
+	[HttpPost("submit-segmentation-job")]
+	public async Task<IActionResult> SubmitSegmentationJob([FromForm] SegmentationJobSubmissionDto dto)
+	{
+		var currentUserId = _userService.GetCurrentUserId();
+
+		if (!ModelState.IsValid)
+		{
+			return BadRequest(new ApiResponse<string>(400, "Model state not valid"));
+		}
+
+		dto.CreatorId = currentUserId;
+
+		var (succeeded, errorMessage, job) = await _jobService.SubmitSegmentationJob(dto);
+
+		if (succeeded && job != null)
+		{
+			return Ok(new ApiResponse<Job>(201, "Segmentation job submitted", job));
+		}
+
+		// Core connectivity errors → 503
+		if (!string.IsNullOrEmpty(errorMessage) && errorMessage.Contains("could not be reached"))
+		{
+			return StatusCode(503, new ApiResponse<string>(503, errorMessage));
+		}
+
+		// Validation errors (bad TIF, etc.) → 400
+		if (!string.IsNullOrEmpty(errorMessage))
+		{
+			return BadRequest(new ApiResponse<string>(400, errorMessage));
+		}
+
+		return StatusCode(503, new ApiResponse<string>(503, "Lovamap Core did not respond"));
+	}
+
+	[HttpPost("submit-mesh-job")]
+	public async Task<IActionResult> SubmitMeshJob([FromForm] MeshJobSubmissionDto dto)
+	{
+		var currentUserId = _userService.GetCurrentUserId();
+
+		if (!ModelState.IsValid)
+		{
+			return BadRequest(new ApiResponse<string>(400, "Model state not valid"));
+		}
+
+		dto.CreatorId = currentUserId;
+
+		var (succeeded, errorMessage, job) = await _jobService.SubmitMeshJob(dto);
+
+		if (succeeded && job != null)
+		{
+			return Ok(new ApiResponse<Job>(201, "Mesh job submitted", job));
+		}
+
+		if (!string.IsNullOrEmpty(errorMessage) && errorMessage.Contains("could not be reached"))
+		{
+			return StatusCode(503, new ApiResponse<string>(503, errorMessage));
+		}
+
+		if (!string.IsNullOrEmpty(errorMessage))
+		{
+			return BadRequest(new ApiResponse<string>(400, errorMessage));
+		}
+
+		return StatusCode(503, new ApiResponse<string>(503, "Lovamap Core did not respond"));
+	}
+
+	[HttpPost("submit-lovamap-from-source")]
+	public async Task<IActionResult> SubmitLovamapFromSource([FromBody] LovamapFromSourceJobDto dto)
+	{
+		var currentUserId = _userService.GetCurrentUserId();
+
+		if (!ModelState.IsValid)
+		{
+			return BadRequest(new ApiResponse<string>(400, "Model state not valid"));
+		}
+
+		dto.CreatorId = currentUserId;
+
+		var (succeeded, errorMessage, job) = await _jobService.SubmitLovamapFromSourceJob(dto);
+
+		if (succeeded && job != null)
+		{
+			return Ok(new ApiResponse<Job>(201, "Lovamap job submitted from source", job));
+		}
+
+		if (!string.IsNullOrEmpty(errorMessage) && errorMessage.Contains("could not be reached"))
+		{
+			return StatusCode(503, new ApiResponse<string>(503, errorMessage));
+		}
+
+		if (!string.IsNullOrEmpty(errorMessage))
+		{
+			return BadRequest(new ApiResponse<string>(400, errorMessage));
+		}
+
+		return StatusCode(503, new ApiResponse<string>(503, "Lovamap Core did not respond"));
+	}
+
 	[Authorize]
 	[HttpPut("{jobId}/upload")]
 	public async Task<IActionResult> UploadResult([FromRoute] string jobId, [FromBody] JobResultUploadDto body)
@@ -127,6 +224,33 @@ public class JobsController : ControllerBase
 		// Stream it to avoid loading into memory
 		var stream = System.IO.File.OpenRead(file!.FullPath);
 		return File(stream, file.ContentType, file.DownloadFileName);
+	}
+
+	[Authorize]
+	[HttpGet("{jobId}/mesh")]
+	public async Task<IActionResult> DownloadJobMesh([FromRoute] string jobId, CancellationToken ct)
+	{
+		if (!Guid.TryParse(jobId, out var jobGuid))
+			return BadRequest(new { error = "Invalid jobId" });
+
+		var currentUserId = _userService.GetCurrentUserId();
+		if (currentUserId == null) return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
+		var isAdmin = await _userAuthHelper.IsInRole(currentUserId, "administrator");
+		var job = await _jobService.GetByIdAsync(jobGuid);
+
+		if (job == null)
+			return NotFound(new ApiResponse<string>(404, "Job not found"));
+
+		if (job.CreatorId != currentUserId && !isAdmin)
+			return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
+
+		var (succeeded, errorMessage, meshBytes) =
+			await _jobService.FetchJobMeshFromCoreAsync(jobId, ct);
+
+		if (!succeeded || meshBytes == null)
+			return NotFound(new { jobId, error = errorMessage });
+
+		return File(meshBytes, "model/gltf-binary", $"job_{jobId}_mesh.glb");
 	}
 
 	[HttpGet("{jobId}")]

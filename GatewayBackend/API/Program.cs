@@ -19,6 +19,8 @@ using System.Security.Claims;
 using Data.SeedingStrategies;
 using Microsoft.AspNetCore.Http.Features;
 using System.Text.Json.Serialization;
+using API.Hubs;
+using API.BackgroundServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -61,6 +63,21 @@ builder.Services.AddAuthentication(cfg => {
             ValidAudience = jwtIssuer,
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey)),
             RoleClaimType = ClaimTypes.Role
+        };
+
+        // Allow SignalR to receive the JWT via query string
+        options.Events = new JwtBearerEvents
+        {
+            OnMessageReceived = context =>
+            {
+                var accessToken = context.Request.Query["access_token"];
+                var path = context.HttpContext.Request.Path;
+                if (!string.IsNullOrEmpty(accessToken) && path.StartsWithSegments("/hubs"))
+                {
+                    context.Token = accessToken;
+                }
+                return Task.CompletedTask;
+            }
         };
     });
 
@@ -162,6 +179,7 @@ builder.Services.AddScoped<IPublicationDatasetService, PublicationDatasetService
 builder.Services.AddScoped<IDomainService, DomainService>();
 builder.Services.AddScoped<IModelMapper, ModelMapper>();
 builder.Services.AddScoped<ILovamapCoreJobService, LovamapCoreJobService>();
+builder.Services.AddScoped<ITifValidationService, TifValidationService>();
 builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<IAISearchService, AISearchService>();
 builder.Services.AddScoped<IScaffoldGroupMetadataService, ScaffoldGroupMetadataService>();
@@ -170,6 +188,10 @@ builder.Services.AddScoped<IAnalyticsService, AnalyticsService>();
 builder.Services.AddScoped<IDescriptorValueGenerator, ParticleAspectRatioGenerator>();
 builder.Services.AddScoped<ISeedingService, SeedingService>();
 builder.Services.AddScoped<SeedingService>();
+
+// SignalR + job status polling
+builder.Services.AddSignalR();
+builder.Services.AddHostedService<JobStatusPollingService>();
 
 // Other services
 builder.Services.AddHttpClient();
@@ -219,6 +241,7 @@ app.UseAuthorization();
 
 app.MapFallbackToFile("index.html");
 
+app.MapHub<JobStatusHub>("/hubs/job-status");
 app.MapControllers();
 
 app.Run();
