@@ -9,7 +9,7 @@ import { DescriptorType } from "../models/descriptorType";
 import { Image, ImageCategory, ImageToCreate, ImageToUpdate } from "../models/image";
 import environment from "../environments/environment"
 import { Domain } from "../models/domain";
-import { Job, JobForList, LovamapFromSourceJob, MeshJob, SegmentationJob } from "../models/job";
+import { Job, JobForList, LovamapFromSourceJob, MeshJob, MeshStatusResponse, SaveLovamapResultRequest, SegmentationJob } from "../models/job";
 import { ScaffoldWithMissingThumbnail } from "../models/scaffold";
 import { ParticleDiameter, PoreInfo, PoreInfoForScaffoldGroup } from "../models/poreInfo";
 import { DomainMetadata } from "../models/domainMetadata";
@@ -278,7 +278,17 @@ const Jobs = {
             responseType: 'blob'
         });
         return response.data;
-    }
+    },
+    getJobParticleMesh: async (jobId: string) => {
+        const response = await axios.get(`/jobs/${jobId}/particle-mesh`, {
+            responseType: 'blob'
+        });
+        return response.data;
+    },
+    saveJobAsScaffold: (jobId: string, data: SaveLovamapResultRequest) =>
+        requests.post<ApiResponse<{ scaffoldGroupId: number; scaffoldId: number }>>(`/jobs/${jobId}/save-scaffold`, data),
+    getMeshStatus: (jobId: string) =>
+        requests.get<ApiResponse<MeshStatusResponse>>(`/jobs/${jobId}/mesh-status`),
 }
 
 const Publications = {

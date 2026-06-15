@@ -14,6 +14,8 @@ export interface JobForList {
 	status: string;
 	jobType?: string;
 	sourceJobId?: string;
+	scaffoldGroupId?: number;
+	scaffoldId?: number;
 }
 
 export interface JobDetailed {
@@ -25,6 +27,8 @@ export interface JobDetailed {
 	fileName?: string | null;
 	jobType?: string;
 	sourceJobId?: string;
+	scaffoldGroupId?: number;
+	scaffoldId?: number;
 }
 
 export interface SegmentationJob {
@@ -45,4 +49,19 @@ export interface LovamapFromSourceJob {
 	sourceJobId: string;
 	dx?: string;
 	generateMesh?: boolean;
+}
+
+export interface MeshStatusResponse {
+	poreMeshStatus: string | null;
+	particleMeshStatus: string | null;
+}
+
+export interface SaveLovamapResultRequest {
+	scaffoldGroupId?: number | null;
+	shape: string;
+	stiffness: string;
+	dispersity: string;
+	packingConfiguration: string;
+	containerShape: string;
+	containerDimensions?: string;
 }

@@ -2,7 +2,7 @@ import { useStore } from '../../app/stores/store';
 import { observer } from "mobx-react-lite";
 import { useCallback, useEffect, useState } from "react";
 import { Routes, Route, useNavigate, useParams } from "react-router-dom";
-import RunJob from "./run-job";
+import RunLovamap from "./run-lovamap";
 import RunSegmentation from "./run-segmentation";
 import RunMesh from "./run-mesh";
 import { JobForList } from '../../app/models/job';
@@ -21,26 +21,35 @@ const formatJobType = (jobType?: string): string => {
 	}
 };
 
+const BetaBadge: React.FC = () => (
+	<span className="ml-1.5 inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-semibold uppercase tracking-wide bg-amber-100 text-amber-700 leading-none align-middle">
+		Beta
+	</span>
+);
+
 const jobTypeCards = [
-	{
-		mode: 'lovamap' as const,
-		title: 'LOVAMAP Analysis',
-		description: 'Run pore network analysis on particle data. Accepts .dat files (spherical coordinates) or .json files (voxelized data).',
-	},
 	{
 		mode: 'segmentation' as const,
 		title: 'Particle Segmentation',
 		description: 'Segment microscope .tif images into voxelized particle data (.json) and a 3D mesh for visualization. The output is ready for direct use in a LOVAMAP analysis job.',
+		beta: false,
+	},
+	{
+		mode: 'lovamap' as const,
+		title: 'LOVAMAP Analysis',
+		description: 'Run pore network analysis on particle data. Accepts .dat files (spherical coordinates) or .json files (voxelized data).',
+		beta: true,
 	},
 	{
 		mode: 'mesh' as const,
 		title: 'Mesh Generation',
 		description: 'Transform voxelized .json data or .dat files into 3D meshes for visualization. Accepts the same .json format output by particle segmentation and used as input for LOVAMAP analysis.',
+		beta: false,
 	},
 ];
 
 /* ── Sub-view: Page header with optional back arrow ── */
-const PageHeader: React.FC<{ title: string; backTo?: string }> = ({ title, backTo }) => {
+const PageHeader: React.FC<{ title: React.ReactNode; backTo?: string }> = ({ title, backTo }) => {
 	const navigate = useNavigate();
 	return (
 		<h1 className="text-3xl text-gray-700 font-bold mb-8 flex items-center gap-3">
@@ -121,7 +130,7 @@ const JobTypeGrid: React.FC = () => {
 						<div className="w-full h-24 bg-gray-100 rounded-lg mb-4 flex items-center justify-center text-gray-400 text-sm">
 							{card.title}
 						</div>
-						<h3 className="text-lg font-semibold text-gray-800 mb-2">{card.title}</h3>
+						<h3 className="text-lg font-semibold text-gray-800 mb-2">{card.title}{card.beta && <BetaBadge />}</h3>
 						<p className="text-sm text-gray-500">{card.description}</p>
 					</button>
 				))}
@@ -133,8 +142,8 @@ const JobTypeGrid: React.FC = () => {
 /* ── Sub-view wrappers for each form ── */
 const LovamapFormView: React.FC<{ onSubmitted: () => void }> = ({ onSubmitted }) => (
 	<>
-		<PageHeader title="LOVAMAP Analysis" backTo="/jobs/new" />
-		<RunJob onJobSubmitted={onSubmitted} />
+		<PageHeader title={<>LOVAMAP Analysis<BetaBadge /></>} backTo="/jobs/new" />
+		<RunLovamap onJobSubmitted={onSubmitted} />
 	</>
 );
 

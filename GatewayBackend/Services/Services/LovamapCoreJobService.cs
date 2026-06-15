@@ -11,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Repositories.IRepositories;
+using Microsoft.EntityFrameworkCore;
 using Services.IServices;
 
 namespace Services.Services
@@ -26,6 +27,8 @@ namespace Services.Services
     	private readonly ILogger<LovamapCoreJobService> _logger;
 		private readonly IHostEnvironment _env;
 		private readonly ITifValidationService _tifValidationService;
+		private readonly IScaffoldGroupService _scaffoldGroupService;
+		private readonly IDomainFileService _domainFileService;
 
 		public LovamapCoreJobService(IHttpClientFactory httpClientFactory,
 			IJwtGeneratorHelper jwtGeneratorHelper,
@@ -36,7 +39,9 @@ namespace Services.Services
 			ICoreApiClient coreApiClient,
 			IHostEnvironment env,
 			ILogger<LovamapCoreJobService> logger,
-			ITifValidationService tifValidationService)
+			ITifValidationService tifValidationService,
+			IScaffoldGroupService scaffoldGroupService,
+			IDomainFileService domainFileService)
 		{
 			_httpClientFactory = httpClientFactory;
 			_configuration = configuration;
@@ -48,6 +53,8 @@ namespace Services.Services
 			_context = context;
 			_logger = logger;
 			_tifValidationService = tifValidationService;
+			_scaffoldGroupService = scaffoldGroupService;
+			_domainFileService = domainFileService;
 		}
 
 		public async Task<(bool Succeeded, string? ErrorMessage, Job? Job)> SubmitJob(JobSubmissionDto dto)
@@ -55,12 +62,14 @@ namespace Services.Services
 			// 0) Enforce exactly one file (Core reads only a single "file")
 			var hasCsv = dto.CsvFile is not null;
 			var hasDat = dto.DatFile is not null;
+			var hasJson = dto.JsonFile is not null;
 
-			if (!hasCsv && !hasDat)
+			var fileCount = (hasCsv ? 1 : 0) + (hasDat ? 1 : 0) + (hasJson ? 1 : 0);
+			if (fileCount == 0)
 				return (false, "No file supplied.", null);
 
-			if (hasCsv && hasDat)
-				return (false, "Provide either CSV or DAT, not both.", null);
+			if (fileCount > 1)
+				return (false, "Provide exactly one file (CSV, DAT, or JSON).", null);
 
 			// 1) Create and save the local GW job to get job.Id (you wanted this)
 			var job = _modelMapper.MapToJob(dto);
@@ -83,12 +92,19 @@ namespace Services.Services
 				content.Headers.ContentType = new MediaTypeHeaderValue("text/csv");
 				form.Add(content, "file", dto.CsvFile.FileName);
 			}
-			else
+			else if (hasDat)
 			{
 				var s = dto.DatFile!.OpenReadStream();
 				var content = new StreamContent(s);
 				content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
 				form.Add(content, "file", dto.DatFile.FileName);
+			}
+			else if (hasJson)
+			{
+				var s = dto.JsonFile!.OpenReadStream();
+				var content = new StreamContent(s);
+				content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+				form.Add(content, "file", dto.JsonFile.FileName);
 			}
 
 			// 4) Required fields that Core expects
@@ -96,6 +112,8 @@ namespace Services.Services
 			form.Add(new StringContent(string.IsNullOrWhiteSpace(dto.Dx) ? "1" : dto.Dx), "dx");
 			form.Add(new StringContent(uploadUrl), "uploadUrl");
 			form.Add(new StringContent(uploadToken), "uploadToken");
+			form.Add(new StringContent("true"), "generateMesh");
+			form.Add(new StringContent("true"), "generateParticleMesh");
 
 			// 5) Call Core via the typed client (auth injected by CoreClientAuthHandler)
 			HttpResponseMessage response;
@@ -432,6 +450,25 @@ namespace Services.Services
 			}
 		}
 
+		public async Task<(bool Succeeded, string? ErrorMessage, byte[]? MeshBytes)>
+			FetchJobParticleMeshFromCoreAsync(Guid jobId, CancellationToken cancellationToken = default)
+		{
+			var job = await _jobRepository.GetJobByIdAsync(jobId);
+			if (job == null)
+				return (false, "Job not found.", null);
+
+			// Chained from ParticleSegmentation: Core resolves mesh-gen from the source job
+			string meshId;
+			if (!string.IsNullOrEmpty(job.SourceJobId))
+				meshId = job.SourceJobId;
+			else if (job.JobType == JobType.Lovamap)
+				meshId = job.Id.ToString() + "-mesh-gen";
+			else
+				return (false, "Job does not have a particle mesh.", null);
+
+			return await FetchJobMeshFromCoreAsync(meshId, cancellationToken);
+		}
+
 		public string GetJobResultsDir()
 		{
 			var configured =
@@ -729,6 +766,314 @@ namespace Services.Services
 			mapped.JobType = JobType.Lovamap;
 			mapped.SourceJobId = dto.SourceJobId.ToString();
 			return (true, null, mapped);
+		}
+
+		public async Task<(bool Succeeded, string? ErrorMessage, int? ScaffoldGroupId, int? ScaffoldId)> SaveResultAsScaffoldAsync(
+			Guid jobId, SaveLovamapResultDto dto, string userId, bool isAdmin)
+		{
+			// 1) Fetch and validate job
+			var job = await _jobRepository.GetJobByIdAsync(jobId);
+			if (job == null)
+				return (false, "Job not found.", null, null);
+
+			if (job.Status != JobStatus.Completed)
+				return (false, "Job is not completed.", null, null);
+
+			if (job.CreatorId != userId && !isAdmin)
+				return (false, "Unauthorized.", null, null);
+
+			// 2) Load result JSON
+			var (fileOk, fileError, resultFile) = await GetJobResultFileAsync(jobId);
+			if (!fileOk || resultFile == null)
+				return (false, fileError ?? "Could not load job results.", null, null);
+
+			JsonDocument resultsJson;
+			try
+			{
+				var jsonBytes = await System.IO.File.ReadAllBytesAsync(resultFile.FullPath);
+				resultsJson = JsonDocument.Parse(jsonBytes);
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, "Failed to parse result JSON for job {JobId}", jobId);
+				return (false, "Failed to parse job result JSON.", null, null);
+			}
+
+			// 3) Map result to scaffold DTO
+			var scaffoldDto = LovamapResultMapper.MapResultToScaffold(resultsJson);
+			var (meanSize, stdDev) = LovamapResultMapper.GetParticleDiameterStats(resultsJson);
+
+			// 4) Build ScaffoldGroupToCreateDto
+			var particleGroup = new ParticlePropertyGroupToCreateDto
+			{
+				Shape = dto.Shape,
+				Stiffness = dto.Stiffness,
+				Dispersity = dto.Dispersity,
+				MeanSize = meanSize,
+				StandardDeviationSize = stdDev,
+				Proportion = 1
+			};
+
+			var inputGroup = new InputGroupToCreateDto
+			{
+				ContainerShape = dto.ContainerShape,
+				ContainerDimensions = dto.ContainerDimensions,
+				PackingConfiguration = dto.PackingConfiguration,
+				ParticlePropertyGroups = new List<ParticlePropertyGroupToCreateDto> { particleGroup }
+			};
+
+			var sgDto = new ScaffoldGroupToCreateDto
+			{
+				IsSimulated = true,
+				InputGroup = inputGroup,
+				Scaffolds = new List<ScaffoldToCreateDto> { scaffoldDto }
+			};
+
+			int scaffoldGroupId;
+
+			if (dto.ScaffoldGroupId == null)
+			{
+				// 5a) Create new group
+				var (created, createError, createdGroup) =
+					await _scaffoldGroupService.CreateScaffoldGroup(sgDto, userId);
+
+				if (!created || createdGroup == null)
+					return (false, createError ?? "Failed to create scaffold group.", null, null);
+
+				scaffoldGroupId = createdGroup.Id;
+
+				// Mark new group as private
+				var groupEntity = await _context.ScaffoldGroups.FindAsync(scaffoldGroupId);
+				if (groupEntity != null)
+				{
+					groupEntity.IsPublic = false;
+					groupEntity.OriginalFileName = $"LOVAMAP Job {jobId}";
+				}
+			}
+			else
+			{
+				// 5b) Append to existing group
+				scaffoldGroupId = dto.ScaffoldGroupId.Value;
+
+				var (appended, appendError, _) =
+					await _scaffoldGroupService.AppendScaffoldsToGroup(scaffoldGroupId, sgDto, userId);
+
+				if (!appended)
+					return (false, appendError ?? "Failed to append scaffold to group.", null, null);
+
+				// Update the group's InputGroup particle properties
+				var groupEntity = await _context.ScaffoldGroups
+					.Include(g => g.InputGroup)
+						.ThenInclude(ig => ig.ParticlePropertyGroups)
+					.FirstOrDefaultAsync(g => g.Id == scaffoldGroupId);
+
+				if (groupEntity?.InputGroup != null)
+				{
+					var ppg = groupEntity.InputGroup.ParticlePropertyGroups.FirstOrDefault();
+					if (ppg != null)
+					{
+						ppg.Shape = dto.Shape;
+						ppg.Stiffness = dto.Stiffness;
+						ppg.Dispersity = dto.Dispersity;
+						ppg.MeanSize = meanSize;
+						ppg.StandardDeviationSize = stdDev;
+					}
+				}
+			}
+
+			// 6) Link job ↔ scaffold
+			var scaffold = await _context.Scaffolds
+				.Where(s => s.ScaffoldGroupId == scaffoldGroupId)
+				.OrderByDescending(s => s.Id)
+				.FirstOrDefaultAsync();
+
+			if (scaffold != null)
+			{
+				scaffold.LatestJobId = jobId;
+				job.ScaffoldId = scaffold.Id;
+			}
+
+			await _context.SaveChangesAsync();
+
+			// 7) Auto-create domain entities from job meshes
+			if (scaffold != null)
+			{
+				await CreateDomainsFromJobMeshesAsync(job, scaffold.Id, resultsJson);
+			}
+
+			return (true, null, scaffoldGroupId, scaffold?.Id);
+		}
+
+		public async Task<MeshStatusDto> GetMeshJobStatusesAsync(Guid jobId)
+		{
+			var job = await _jobRepository.GetJobByIdAsync(jobId);
+			if (job == null)
+				return new MeshStatusDto();
+
+			var result = new MeshStatusDto();
+
+			// Fetch children of the lovamap job (pore mesh-unite, and possibly mesh-gen for standalone)
+			var lovamapChildren = await FetchChildJobsFromCoreAsync(jobId.ToString());
+
+			if (lovamapChildren == null)
+			{
+				// Core is unreachable — report as unavailable
+				result.PoreMeshStatus = "Unavailable";
+				result.ParticleMeshStatus = "Unavailable";
+				return result;
+			}
+
+			// Pore mesh: child whose jobId contains "mesh-unite"
+			var poreMeshChild = lovamapChildren.FirstOrDefault(c =>
+				c.JobId != null && c.JobId.Contains("mesh-unite"));
+			result.PoreMeshStatus = poreMeshChild != null
+				? ((JobStatus)poreMeshChild.Status).ToString()
+				: null;
+
+			// Particle mesh: depends on whether this is a chained or standalone job
+			if (!string.IsNullOrEmpty(job.SourceJobId))
+			{
+				// Chained from segmentation — particle mesh is a child of the source job
+				var sourceChildren = await FetchChildJobsFromCoreAsync(job.SourceJobId);
+				if (sourceChildren == null)
+				{
+					result.ParticleMeshStatus = "Unavailable";
+				}
+				else
+				{
+					var particleMeshChild = sourceChildren.FirstOrDefault(c =>
+						c.JobId != null && c.JobId.Contains("mesh-gen"));
+					result.ParticleMeshStatus = particleMeshChild != null
+						? ((JobStatus)particleMeshChild.Status).ToString()
+						: null;
+				}
+			}
+			else
+			{
+				// Standalone — particle mesh is a child of the lovamap job itself
+				var particleMeshChild = lovamapChildren.FirstOrDefault(c =>
+					c.JobId != null && c.JobId.Contains("mesh-gen"));
+				result.ParticleMeshStatus = particleMeshChild != null
+					? ((JobStatus)particleMeshChild.Status).ToString()
+					: null;
+			}
+
+			return result;
+		}
+
+		private async Task<List<CoreJobDto>?> FetchChildJobsFromCoreAsync(string parentJobId)
+		{
+			try
+			{
+				var response = await _coreApiClient.GetJobChildrenAsync(parentJobId);
+
+				if (!response.IsSuccessStatusCode)
+				{
+					_logger.LogWarning("Core returned {Status} for children of job {JobId}", response.StatusCode, parentJobId);
+					return response.StatusCode == System.Net.HttpStatusCode.NotFound
+						? new List<CoreJobDto>()
+						: null;
+				}
+
+				var body = await response.Content.ReadAsStringAsync();
+				var children = JsonSerializer.Deserialize<List<CoreJobDto>>(body, new JsonSerializerOptions
+				{
+					PropertyNameCaseInsensitive = true
+				});
+
+				return children ?? new List<CoreJobDto>();
+			}
+			catch (HttpRequestException ex)
+			{
+				_logger.LogWarning(ex, "Core unreachable when fetching children for job {JobId}", parentJobId);
+				return null; // Core is down
+			}
+			catch (Exception ex)
+			{
+				_logger.LogWarning(ex, "Failed to fetch children for job {JobId}", parentJobId);
+				return null;
+			}
+		}
+
+		private async Task CreateDomainsFromJobMeshesAsync(Job job, int scaffoldId, JsonDocument resultsJson)
+		{
+			// Pore mesh: fetch from Core using the LOVAMAP job ID
+			try
+			{
+				var (poreOk, _, poreMeshBytes) = await FetchJobMeshFromCoreAsync(job.Id.ToString());
+				if (poreOk && poreMeshBytes != null && poreMeshBytes.Length > 0)
+				{
+					var filePath = await _domainFileService.SaveGLBFile(poreMeshBytes, scaffoldId);
+					var poreDomain = new Domain
+					{
+						ScaffoldId = scaffoldId,
+						Category = DomainCategory.Pores,
+						MeshFilePath = filePath,
+						DomainSize = "N/A",
+						CreatedAt = DateTime.UtcNow,
+						OriginalFileName = $"job_{job.Id}_pore_mesh.glb",
+						Metadata = LovamapResultMapper.BuildPoreDomainMetadata(resultsJson),
+					};
+					_context.Domains.Add(poreDomain);
+					_logger.LogInformation("Created Pores domain for scaffold {ScaffoldId} from job {JobId}", scaffoldId, job.Id);
+				}
+				else
+				{
+					_logger.LogWarning("Could not fetch pore mesh for job {JobId} — skipping Pores domain", job.Id);
+				}
+			}
+			catch (Exception ex)
+			{
+				_logger.LogWarning(ex, "Failed to create Pores domain for scaffold {ScaffoldId}", scaffoldId);
+			}
+
+			// Particle mesh: from source ParticleSegmentation job or standalone Lovamap auto-gen
+			string? particleMeshId = null;
+			if (!string.IsNullOrEmpty(job.SourceJobId))
+				particleMeshId = job.SourceJobId;
+			else if (job.JobType == JobType.Lovamap)
+				particleMeshId = job.Id.ToString() + "-mesh-gen";
+
+			if (particleMeshId != null)
+			{
+				try
+				{
+					var (particleOk, _, particleMeshBytes) = await FetchJobMeshFromCoreAsync(particleMeshId);
+					if (particleOk && particleMeshBytes != null && particleMeshBytes.Length > 0)
+					{
+						var filePath = await _domainFileService.SaveGLBFile(particleMeshBytes, scaffoldId);
+						var particleDomain = new Domain
+						{
+							ScaffoldId = scaffoldId,
+							Category = DomainCategory.Particles,
+							MeshFilePath = filePath,
+							DomainSize = "N/A",
+							CreatedAt = DateTime.UtcNow,
+							OriginalFileName = $"job_{job.Id}_particle_mesh.glb",
+							Metadata = LovamapResultMapper.BuildParticleDomainMetadata(resultsJson),
+						};
+						_context.Domains.Add(particleDomain);
+						_logger.LogInformation("Created Particles domain for scaffold {ScaffoldId} from mesh {MeshId}", scaffoldId, particleMeshId);
+					}
+					else
+					{
+						_logger.LogWarning("Could not fetch particle mesh {MeshId} — skipping Particles domain", particleMeshId);
+					}
+				}
+				catch (Exception ex)
+				{
+					_logger.LogWarning(ex, "Failed to create Particles domain for scaffold {ScaffoldId}", scaffoldId);
+				}
+			}
+
+			try
+			{
+				await _context.SaveChangesAsync();
+			}
+			catch (Exception ex)
+			{
+				_logger.LogWarning(ex, "Failed to persist domain entities for scaffold {ScaffoldId}", scaffoldId);
+			}
 		}
 
 		// public async Task<(bool Succeeded, string? ErrorMessage, Job? Job)> SubmitJob(

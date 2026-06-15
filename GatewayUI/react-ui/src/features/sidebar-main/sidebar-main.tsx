@@ -40,9 +40,9 @@ const SideBarMain: React.FC = () => {
 			setActiveTab(6);
 		} else if (matchPath('/publications/*', p)) {
 			setActiveTab(7);
-		} else if (matchPath('/dashboard/*', p) || matchPath('/dashboard', p)) {
+		} else if (matchPath('/my-scaffolds', p)) {
 			setActiveTab(8);
-		} else if (matchPath('/uploads', p)) {
+		} else if (matchPath('/dashboard/*', p) || matchPath('/dashboard', p)) {
 			setActiveTab(9);
 		} else if (matchPath('/admin/*', p)) {
 			setActiveTab(10);
@@ -137,6 +137,16 @@ const SideBarMain: React.FC = () => {
 								)}
 							</Tab>
 
+							{userStore.isLoggedIn && (
+								<Tab as={NavLink} to='/my-scaffolds' onClick={() => commonStore.setSidebarOpen(false)} className="focus:outline-none">
+									{({ selected }: TabRenderProps) => (
+										<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
+											<p>My Scaffolds</p>
+										</div>
+									)}
+								</Tab>
+							)}
+
 							{isAdmin && (
 								<>
 									<div className="flex items-center justify-center w-full my-4 pl-2 pr-2 italic">
@@ -149,13 +159,6 @@ const SideBarMain: React.FC = () => {
 										<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
 											<p>Dashboard</p>
 										</div>
-										)}
-									</Tab>
-									<Tab as={NavLink} to='/uploads' onClick={() => commonStore.setSidebarOpen(false)} className="focus:outline-none">
-										{({ selected }: TabRenderProps) => (
-											<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
-												<p>Upload Scaffolds</p>
-											</div>
 										)}
 									</Tab>
 

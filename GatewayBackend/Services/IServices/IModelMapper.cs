@@ -20,9 +20,9 @@ namespace Services.IServices
 		Tag MapToTag(TagToSeedDto dto);
 		Task<ScaffoldTag> MapToScaffoldTag(ScaffoldTagToCreateDto dto);
 		DescriptorType MapToDescriptorType(DescriptorTypeToCreateDto dto);
-		Task<GlobalDescriptor> MapToGlobalDescriptor(GlobalDescriptorToCreateDto dto);
-		Task<PoreDescriptor> MapToPoreDescriptor(PoreDescriptorToCreateDto dto);
-		Task<OtherDescriptor> MapToOtherDescriptor(OtherDescriptorToCreateDto dto);
+		Task<GlobalDescriptor?> MapToGlobalDescriptor(GlobalDescriptorToCreateDto dto);
+		Task<PoreDescriptor?> MapToPoreDescriptor(PoreDescriptorToCreateDto dto);
+		Task<OtherDescriptor?> MapToOtherDescriptor(OtherDescriptorToCreateDto dto);
 		Image MapToImage(ImageForCreationDto dto, string uploaderId);
 		Job MapToJob(JobSubmissionDto dto);
 		Job MapToJob(CoreJobDto core);

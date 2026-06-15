@@ -5,6 +5,7 @@ using Services.IServices;
 using Infrastructure.Helpers;
 using Infrastructure.IHelpers;
 using System.Text.Json;
+using Microsoft.Extensions.Logging;
 
 namespace Services.Services
 {
@@ -14,17 +15,20 @@ namespace Services.Services
         private readonly IDescriptorRepository _descriptorRepository;
         private readonly ITagRepository _tagRepository;
         private readonly IUserAuthHelper _userAuthHelper;
+        private readonly ILogger<ModelMapper> _logger;
 
         public ModelMapper(
             IScaffoldGroupMetadataService metadataService,
             IDescriptorRepository descriptorRepository,
             ITagRepository tagRepository,
-            IUserAuthHelper userAuthHelper)
+            IUserAuthHelper userAuthHelper,
+            ILogger<ModelMapper> logger)
         {
             _metadataService = metadataService;
             _descriptorRepository = descriptorRepository;
             _tagRepository = tagRepository;
             _userAuthHelper = userAuthHelper;
+            _logger = logger;
         }
 
         public Role MapToRole(RoleToCreateDto dto)
@@ -105,19 +109,22 @@ namespace Services.Services
             var globalDescriptors = new List<GlobalDescriptor>();
             foreach (var gd in dto.GlobalDescriptors)
             {
-                globalDescriptors.Add(await MapToGlobalDescriptor(gd));  // Await immediately
+                var mapped = await MapToGlobalDescriptor(gd);
+                if (mapped != null) globalDescriptors.Add(mapped);
             }
 
             var poreDescriptors = new List<PoreDescriptor>();
             foreach (var pd in dto.PoreDescriptors)
             {
-                poreDescriptors.Add(await MapToPoreDescriptor(pd));  // Await immediately
+                var mapped = await MapToPoreDescriptor(pd);
+                if (mapped != null) poreDescriptors.Add(mapped);
             }
 
             var otherDescriptors = new List<OtherDescriptor>();
             foreach (var od in dto.OtherDescriptors)
             {
-                otherDescriptors.Add(await MapToOtherDescriptor(od));  // Await immediately
+                var mapped = await MapToOtherDescriptor(od);
+                if (mapped != null) otherDescriptors.Add(mapped);
             }
 
             return new Scaffold
@@ -253,90 +260,70 @@ namespace Services.Services
             };
         }
 
-        public async Task<GlobalDescriptor> MapToGlobalDescriptor(GlobalDescriptorToCreateDto dto)
+        public async Task<GlobalDescriptor?> MapToGlobalDescriptor(GlobalDescriptorToCreateDto dto)
         {
-            try
+            var descriptorType = await _descriptorRepository.GetDescriptorByName(dto.Name);
+            if (descriptorType == null)
             {
-                // Fetch the DescriptorType based on the Name provided.
-                var descriptorType = await _descriptorRepository.GetDescriptorByName(dto.Name) ?? throw new ArgumentException($"Descriptor {dto.Name} not found");
-
-                // Create the GlobalDescriptor and map the values accordingly.
-                var globalDescriptor = new GlobalDescriptor
-                {
-                    DescriptorTypeId = descriptorType.Id,
-                    DescriptorType = descriptorType
-                };
-
-                // Determine how to map the value based on the DataType.
-                switch (descriptorType.DataType.ToLower())
-                {
-                    case "string":
-                        globalDescriptor.ValueString = dto.Value.ToString();
-                        break;
-                    case "int":
-                        globalDescriptor.ValueInt = (int)dto.Value;
-                        break;
-                    case "double":
-                        globalDescriptor.ValueDouble = dto.Value;
-                        break;
-                    default:
-                        throw new InvalidOperationException("Unsupported DataType for Descriptor");
-                }
-
-                return globalDescriptor;
-            }
-            catch (Exception)
-            {
-                throw;
+                _logger.LogWarning("Skipping unknown global descriptor '{Name}' — no matching DescriptorType in DB", dto.Name);
+                return null;
             }
 
+            var globalDescriptor = new GlobalDescriptor
+            {
+                DescriptorTypeId = descriptorType.Id,
+                DescriptorType = descriptorType
+            };
+
+            switch (descriptorType.DataType.ToLower())
+            {
+                case "string":
+                    globalDescriptor.ValueString = dto.Value.ToString();
+                    break;
+                case "int":
+                    globalDescriptor.ValueInt = (int)dto.Value;
+                    break;
+                case "double":
+                    globalDescriptor.ValueDouble = dto.Value;
+                    break;
+                default:
+                    _logger.LogWarning("Unsupported DataType '{DataType}' for descriptor '{Name}' — skipping", descriptorType.DataType, dto.Name);
+                    return null;
+            }
+
+            return globalDescriptor;
         }
-        public async Task<PoreDescriptor> MapToPoreDescriptor(PoreDescriptorToCreateDto dto)
+        public async Task<PoreDescriptor?> MapToPoreDescriptor(PoreDescriptorToCreateDto dto)
         {
-            try
+            var descriptorType = await _descriptorRepository.GetDescriptorByName(dto.Name);
+            if (descriptorType == null)
             {
-                // Fetch the DescriptorType based on the name provided
-                var descriptorType = await _descriptorRepository.GetDescriptorByName(dto.Name) ?? throw new KeyNotFoundException($"Descriptor {dto.Name} not found");
-
-                // Create the PoreDescriptor object
-                var poreDescriptor = new PoreDescriptor
-                {
-                    DescriptorTypeId = descriptorType.Id,
-                    DescriptorType = descriptorType,
-                    Values = dto.Values
-                };
-
-                return poreDescriptor;
-            }
-            catch (Exception)
-            {
-
-                throw;
+                _logger.LogWarning("Skipping unknown pore descriptor '{Name}' — no matching DescriptorType in DB", dto.Name);
+                return null;
             }
 
+            return new PoreDescriptor
+            {
+                DescriptorTypeId = descriptorType.Id,
+                DescriptorType = descriptorType,
+                Values = dto.Values
+            };
         }
-        public async Task<OtherDescriptor> MapToOtherDescriptor(OtherDescriptorToCreateDto dto)
+        public async Task<OtherDescriptor?> MapToOtherDescriptor(OtherDescriptorToCreateDto dto)
         {
-            try
+            var descriptorType = await _descriptorRepository.GetDescriptorByName(dto.Name);
+            if (descriptorType == null)
             {
-                // Fetch the DescriptorType based on the name provided
-                var descriptorType = await _descriptorRepository.GetDescriptorByName(dto.Name) ?? throw new KeyNotFoundException($"Descriptor {dto.Name} not found");
-
-                // Create the PoreDescriptor object
-                var otherDescriptor = new OtherDescriptor
-                {
-                    DescriptorTypeId = descriptorType.Id,
-                    DescriptorType = descriptorType,
-                    Values = dto.Values
-                };
-
-                return otherDescriptor;
-            }
-            catch (Exception)
-            {
-                throw;
+                _logger.LogWarning("Skipping unknown other descriptor '{Name}' — no matching DescriptorType in DB", dto.Name);
+                return null;
             }
 
+            return new OtherDescriptor
+            {
+                DescriptorTypeId = descriptorType.Id,
+                DescriptorType = descriptorType,
+                Values = dto.Values
+            };
         }
 
         public async Task<AuthenticatedUserDto> MapToAuthenticatedUserDto(User user, string token)
@@ -658,7 +645,9 @@ namespace Services.Services
                 ErrorMessage = job.ErrorMessage,
                 HasResults = job.Status == JobStatus.Completed && (job.ResultFilePath != null || job.ResultHash != null),
                 JobType = job.JobType.ToString(),
-                SourceJobId = job.SourceJobId
+                SourceJobId = job.SourceJobId,
+                ScaffoldGroupId = job.Scaffold?.ScaffoldGroupId,
+                ScaffoldId = job.ScaffoldId
             };
 
             return coreJobDto;

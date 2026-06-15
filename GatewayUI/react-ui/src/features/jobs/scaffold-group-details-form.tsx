@@ -133,7 +133,7 @@ export const ScaffoldGroupDetailsForm: React.FC<Props> = ({ initial, onMatchesFo
 			<Form className="space-y-4" onSubmit={handleSubmit}>
 				 <div className="flex flex-col md:flex-row md:justify-between md:items-center">
 					{/* <p className="text-xl mb-2 md:mb-4 w-full">1. Select your scaffold's properties</p> */}
-					<h3 className="text-lg mb-2 md:mb-4 w-full font-semibold">1. Select your scaffold's properties</h3>
+					<h3 className="text-lg mb-2 md:mb-4 w-full font-semibold">1. Tell us about your scaffold</h3>
 					<div className="flex justify-end space-x-1 w-full md:w-auto">
 						<button type="submit" className="button-outline" disabled={isSubmitting}>{isSubmitting ? "Searching..." : "Next"}</button>
 					</div>
@@ -180,33 +180,29 @@ export const ScaffoldGroupDetailsForm: React.FC<Props> = ({ initial, onMatchesFo
 
 					</label>
 
-					<label className="flex gap-x-2 text-sm items-center mb-2">
-						<input
-								type="checkbox"
-								name="isSimulated"
-								checked={values.isSimulated}
-								onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFieldValue("isSimulated", e.target.checked)}
-								className="w-5 accent-blue-600 cursor-pointer"
-							/>
-							<span className="text-sm text-gray-700">Simulated</span>
-						{/* <Field
-							type="checkbox"
-							name="isSimulated"
-							checked={values.isSimulated}
-							onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFieldValue("isSimulated", e.target.checked)}
-							className="w-5 accent-blue-600 cursor-pointer"
-						/>
-						<span className="select-none">Is Scaffold Simulated?</span>
-						<label key={descriptor.id} className="flex items-center space-x-2 cursor-pointer">
+					<fieldset className="flex flex-col text-sm mb-2">
+						<span className="text-sm text-gray-700 mb-1">How was your scaffold created?</span>
+						<label className="flex items-center gap-x-2 cursor-pointer">
 							<input
-								type="checkbox"
-								checked={checked}
-								onChange={() => handleToggle(descriptor)}
+								type="radio"
+								name="isSimulated"
+								checked={values.isSimulated === true}
+								onChange={() => setFieldValue("isSimulated", true)}
 								className="accent-blue-600"
 							/>
-							<span className="text-sm text-gray-700">{descriptor.label || descriptor.name}</span>
-							</label> */}
-					</label>
+							<span className="text-sm text-gray-700">Computer simulation</span>
+						</label>
+						<label className="flex items-center gap-x-2 cursor-pointer">
+							<input
+								type="radio"
+								name="isSimulated"
+								checked={values.isSimulated === false}
+								onChange={() => setFieldValue("isSimulated", false)}
+								className="accent-blue-600"
+							/>
+							<span className="text-sm text-gray-700">Experimental image</span>
+						</label>
+					</fieldset>
 				</div>
 				<div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-2 gap-y-2">
 					{values.isSimulated === true && (

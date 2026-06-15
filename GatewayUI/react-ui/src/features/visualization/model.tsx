@@ -81,6 +81,17 @@ interface ModelProps {
 	onEntityIdsLoaded?: (ids: string[]) => void;
 }
 
+/**
+ * Normalizes GLB mesh names to canonical numeric IDs.
+ * Core mesh names like "pore549glb_GLTF" → "549", "particle12glb_GLTF" → "12".
+ * Already-numeric names like "549" pass through unchanged.
+ */
+const normalizeEntityId = (meshName: string): string => {
+	const match = meshName.match(/^(?:pore|particle)(\d+)/i);
+	if (match) return match[1];
+	return meshName;
+};
+
 function createBoundingBoxHelper(object: THREE.Object3D, color: string): THREE.BoxHelper {
 	const boxHelper = new THREE.BoxHelper(object, color);
 	boxHelper.name = 'BoundingBoxHelper';
@@ -157,7 +168,7 @@ const Model: React.FC<ModelProps> = ({
 		if (onEntityIdsLoaded) {
 			const ids: string[] = [];
 			scene.traverse(child => {
-				if (child instanceof THREE.Mesh) ids.push(child.name);
+				if (child instanceof THREE.Mesh) ids.push(normalizeEntityId(child.name));
 			});
 			onEntityIdsLoaded(ids);
 		}
@@ -167,7 +178,7 @@ const Model: React.FC<ModelProps> = ({
 		scene.traverse((child) => {
 			if (!(child instanceof THREE.Mesh)) return;
 
-			const entityId = child.name;
+			const entityId = normalizeEntityId(child.name);
 			child.userData.particleId = entityId;
 
 			// Store original material once

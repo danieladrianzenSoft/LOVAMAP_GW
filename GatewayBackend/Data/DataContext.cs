@@ -90,7 +90,7 @@ public partial class DataContext : IdentityDbContext<User, Role, string>
             .HasOne(j => j.Scaffold)
             .WithMany(s => s.Jobs)
             .HasForeignKey(j => j.ScaffoldId)
-            .OnDelete(DeleteBehavior.Cascade);
+            .OnDelete(DeleteBehavior.SetNull);
 
         // Scaffold to latest job one-to-one relationship
         builder.Entity<Scaffold>()
@@ -175,7 +175,7 @@ public partial class DataContext : IdentityDbContext<User, Role, string>
             .HasOne(d => d.InputToJob)
             .WithOne(j => j.InputDomain)
             .HasForeignKey<Job>(d => d.InputDomainId)
-			.OnDelete(DeleteBehavior.Cascade);
+			.OnDelete(DeleteBehavior.SetNull);
 
         // Output domain to Job one-to-many relationship
         builder.Entity<Domain>()

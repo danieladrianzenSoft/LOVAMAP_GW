@@ -40,15 +40,20 @@ const SelectedPanel: React.FC<Props> = ({
   const poreMetadata =
     domainEntityId && domainMetadata?.metadata ? domainMetadata.metadata[domainEntityId] : undefined;
 
-  // useEffect(() => {
-  //   if (selectedDomainEntity) {
-  //     console.log("🔎 domainMetadata:", toJS(domainMetadata));
-  //     console.log("🔎 Selected ID:", domainEntityId);
-  //     console.log("🔎 ParticleIndex:", particleIndex);
-  //     console.log("🔎 ParticleDiameter:", particleDiameter);
-  //     console.log("🔎 PoreMetadata:", poreMetadata);
-  //   }
-  // }, [selectedDomainEntity, domainMetadata, particleIndex, particleDiameter, poreMetadata, domainEntityId]);
+  useEffect(() => {
+    if (selectedDomainEntity) {
+      console.log("🔎 domainCategory:", domainCategory);
+      console.log("🔎 domainMetadata:", toJS(domainMetadata));
+      console.log("🔎 Selected ID:", domainEntityId);
+      console.log("🔎 ParticleIndex:", particleIndex);
+      console.log("🔎 ParticleDiameter:", particleDiameter);
+      console.log("🔎 PoreMetadata:", poreMetadata);
+      if (domainMetadata?.metadata) {
+        const keys = Object.keys(domainMetadata.metadata).slice(0, 5);
+        console.log("🔎 First 5 metadata keys:", keys);
+      }
+    }
+  }, [selectedDomainEntity, domainMetadata, domainCategory, particleIndex, particleDiameter, poreMetadata, domainEntityId]);
 
   return (
     <div className={className ?? "mt-2 bg-white bg-opacity-80 shadow-lg rounded-lg p-4 w-64 transition-all duration-300"}>

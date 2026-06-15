@@ -16,6 +16,8 @@ namespace Infrastructure.DTOs
 		public string? ErrorMessage { get; set; }
 		public string? JobType { get; set; }
 		public string? SourceJobId { get; set; }
+		public int? ScaffoldGroupId { get; set; }
+		public int? ScaffoldId { get; set; }
 	}
 }
 

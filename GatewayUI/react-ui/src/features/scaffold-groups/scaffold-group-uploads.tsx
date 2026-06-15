@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { observer } from 'mobx-react-lite';
+import { useNavigate } from 'react-router-dom';
 import UploadFile from '../../app/common/upload-file/upload-file';
 import { useStore } from '../../app/stores/store';
 import toast from "react-hot-toast";
@@ -14,16 +15,22 @@ import DataTable, { DataTableColumn } from '../../app/common/data-table/data-tab
 
 const ScaffoldGroupUploads: React.FC = () => {
     const { descriptorTypes} = useDescriptorTypes();
-    const { scaffoldGroupStore } = useStore();
-    const { getUploadedScaffoldGroups, uploadedScaffoldGroups = [], 
+    const { scaffoldGroupStore, userStore } = useStore();
+    const { getUploadedScaffoldGroups, uploadedScaffoldGroups = [],
         updateImage, navigateToVisualization, deleteScaffoldGroup } = scaffoldGroupStore;
+
+    const navigate = useNavigate();
+    const isAdmin = userStore.user?.roles?.includes("administrator") ?? false;
 
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [selectedGroup, setSelectedGroup] = useState<ScaffoldGroup | null>(null); // Track selected group
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false); // Track modal state
-    const [isUploadVisible, setIsUploadVisible] = useState<boolean>(false); // Track visibility of UploadFile
+    const [isUploadVisible, setIsUploadVisible] = useState<boolean>(false); // Track visibility of UploadFile (modal images)
     const [showConfirmDelete, setShowConfirmDelete] = useState(false);
     const [uploadPct, setUploadPct] = useState<number | null>(null);
+    const [showAddMenu, setShowAddMenu] = useState(false);
+    const [showFileUpload, setShowFileUpload] = useState(false);
+    const addMenuRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const fetchUploadedScaffoldGroups = async () => {
@@ -33,6 +40,17 @@ const ScaffoldGroupUploads: React.FC = () => {
         };
         fetchUploadedScaffoldGroups();
     }, [getUploadedScaffoldGroups]);
+
+    // Close dropdown when clicking outside
+    useEffect(() => {
+        const handleClickOutside = (e: MouseEvent) => {
+            if (addMenuRef.current && !addMenuRef.current.contains(e.target as Node)) {
+                setShowAddMenu(false);
+            }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
 
     // Utility function to trigger JSON download
     const triggerJsonDownload = (jsonObject: any, fileName: string) => {
@@ -57,38 +75,6 @@ const ScaffoldGroupUploads: React.FC = () => {
             console.error(error);
         }
     }
-
-    // const handleUploadSubmitFile = async (files: File[]) => {
-    //     try {
-    //         // Handle Excel files
-    //         const excelFiles = files.filter(file => file.name.endsWith(".xlsx") || file.name.endsWith(".xls"));
-    //         if (excelFiles.length > 0) {
-    //             if (!descriptorTypes || descriptorTypes.length === 0) {
-    //                 alert("Descriptor types are not available. Cannot process Excel files.");
-    //                 return;
-    //             }
-    //             await Promise.all(
-    //                 excelFiles.map(async (file) => {
-    //                     const outputJson =  await processExcelFile(file, descriptorTypes); // Use descriptorTypes
-    //                     const fileName = `${file.name.replace(/\.[^/.]+$/, "")}_output.json`; // Generate file name
-    //                     triggerJsonDownload(outputJson, fileName);
-    //                 })
-    //             );
-    //         }
-
-    //         // Handle JSON uploads
-    //         const jsonFiles = files.filter(file => file.type === 'application/json');
-            
-    //         if (jsonFiles.length > 0) {
-    //             const parsedJson = await Promise.all(jsonFiles.map(file => file.text().then(JSON.parse)));
-    //             const combinedJson = parsedJson.flat();
-    //             await scaffoldGroupStore.uploadScaffoldGroupBatch(combinedJson);
-    //         }
-    //     } catch (error) {
-    //         console.error(error);
-    //         toast.error('Failed to upload files.');
-    //     }
-    // }
 
     const handleUploadSubmitFile = async (files: File[]) => {
         try {
@@ -129,12 +115,6 @@ const ScaffoldGroupUploads: React.FC = () => {
             } else {
                 toast.success(`Uploaded ${result.length} scaffold group(s).`);
             }
-
-            // --- OR ---
-
-            // (B) If you prefer to auto-pick streamed vs JSON (no progress callback),
-            // just call your smart method:
-            // const result = await scaffoldGroupStore.uploadScaffoldGroupBatchSmart(combinedJson);
         }
         } catch (err) {
             console.error(err);
@@ -164,7 +144,6 @@ const ScaffoldGroupUploads: React.FC = () => {
                         if (addedImage != null) {
                             console.log(addedImage)
                             selectedGroup.images.push(addedImage);
-                            // toast.success('Image uploaded successfully!');
                             console.log(addedImage);
                         }
                     })
@@ -191,7 +170,6 @@ const ScaffoldGroupUploads: React.FC = () => {
                 setSelectedGroup(updatedScaffoldGroup);
                 await getUploadedScaffoldGroups(); // Refresh the scaffold group data
             }
-            // toast.success('Image updated successfully!');
         } catch (error) {
             console.error(error);
             toast.error('Failed to update image.');
@@ -202,11 +180,10 @@ const ScaffoldGroupUploads: React.FC = () => {
         if (selectedGroup == null) return;
         try {
             const result = await scaffoldGroupStore.deleteImage(selectedGroup.id, imageId);
-            
+
             // Update selectedGroup with the updated scaffold group data
             if (result) {
                 selectedGroup.images = selectedGroup.images?.filter((image:Image) => image.id !== imageId);
-                // toast.success('Image deleted successfully!');
             }
         } catch (error) {
             console.error(error);
@@ -263,7 +240,41 @@ const ScaffoldGroupUploads: React.FC = () => {
 
     return (
         <div className={`container mx-auto py-8 px-6`}>
-            <div className="text-3xl text-gray-700 font-bold mb-12">Uploaded scaffolds</div>
+            <div className="flex items-center justify-between mb-12">
+                <div className="text-3xl text-gray-700 font-bold">My Scaffolds</div>
+                <div className="relative" ref={addMenuRef}>
+                    <button
+                        onClick={() => isAdmin ? setShowAddMenu(prev => !prev) : navigate('/jobs/new')}
+                        className="button-outline flex items-center gap-2 cursor-pointer"
+                    >
+                        <FaPlus size={12} />
+                        {isAdmin ? 'Add New' : 'Run LOVAMAP'}
+                    </button>
+                    {isAdmin && showAddMenu && (
+                        <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
+                            <button
+                                onClick={() => {
+                                    setShowFileUpload(prev => !prev);
+                                    setShowAddMenu(false);
+                                }}
+                                className="w-full text-left px-4 py-3 hover:bg-gray-50 text-sm text-gray-700 cursor-pointer rounded-t-lg"
+                            >
+                                Upload File
+                            </button>
+                            <button
+                                onClick={() => {
+                                    setShowAddMenu(false);
+                                    navigate('/jobs/new');
+                                }}
+                                className="w-full text-left px-4 py-3 hover:bg-gray-50 text-sm text-gray-700 cursor-pointer border-t border-gray-100 rounded-b-lg"
+                            >
+                                Run LOVAMAP
+                            </button>
+                        </div>
+                    )}
+                </div>
+            </div>
+
             {uploadPct !== null && (
                 <div className="mt-3 w-full rounded">
                     <div
@@ -273,14 +284,29 @@ const ScaffoldGroupUploads: React.FC = () => {
                     <div className="text-xs mt-1 text-gray-600">{uploadPct}%</div>
                 </div>
             )}
-            <UploadFile
-                acceptedFileTypes={{ 
-                    'application/json': ['.json'],
-                    'application/vnd.ms-excel': [".xls", ".xlsx"],
-                 }}
-                onUploadSubmit={handleUploadSubmitFile}
-                onUploadError={handleUploadError}
-            />
+
+            {showFileUpload && (
+                <div className="mb-6 border border-gray-200 rounded-lg p-4 bg-white">
+                    <div className="flex items-center justify-between mb-3">
+                        <span className="text-sm font-medium text-gray-600">Upload scaffold files</span>
+                        <button
+                            onClick={() => setShowFileUpload(false)}
+                            className="text-gray-400 hover:text-gray-600 cursor-pointer"
+                        >
+                            <FaTimes size={14} />
+                        </button>
+                    </div>
+                    <UploadFile
+                        acceptedFileTypes={{
+                            'application/json': ['.json'],
+                            'application/vnd.ms-excel': [".xls", ".xlsx"],
+                        }}
+                        onUploadSubmit={handleUploadSubmitFile}
+                        onUploadError={handleUploadError}
+                    />
+                </div>
+            )}
+
             {isLoading ? (
                 <LoadingSpinner />
             ) : (

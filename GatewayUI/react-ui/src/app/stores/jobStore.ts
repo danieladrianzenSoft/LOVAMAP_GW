@@ -1,7 +1,7 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import * as signalR from "@microsoft/signalr";
 import agent from "../api/agent";
-import { Job, JobForList, LovamapFromSourceJob, MeshJob, SegmentationJob } from "../models/job";
+import { Job, JobForList, LovamapFromSourceJob, MeshJob, SaveLovamapResultRequest, SegmentationJob } from "../models/job";
 import { store } from "./store";
 import environment from "../environments/environment";
 
@@ -128,6 +128,22 @@ export default class JobStore {
 		}
 	}
 
+	getJobResultAsJson = async (jobId: string): Promise<any | null> => {
+		const blob = await this.getJobResult(jobId);
+		if (!blob) return null;
+		const text = await blob.text();
+		return JSON.parse(text);
+	}
+
+	getMeshStatus = async (jobId: string) => {
+		try {
+			const response = await agent.Jobs.getMeshStatus(jobId);
+			return response.data ?? null;
+		} catch {
+			return null;
+		}
+	}
+
 	getJobMesh = async (jobId: string): Promise<Blob | null> => {
 		try {
 			const data = await agent.Jobs.getJobMesh(jobId);
@@ -135,6 +151,28 @@ export default class JobStore {
 		} catch (error) {
 			console.error('Error fetching job mesh:', error);
 			return null;
+		}
+	}
+
+	getJobParticleMesh = async (jobId: string): Promise<Blob | null> => {
+		try {
+			const data = await agent.Jobs.getJobParticleMesh(jobId);
+			return data;
+		} catch (error) {
+			console.error('Error fetching job particle mesh:', error);
+			return null;
+		}
+	}
+
+	saveJobAsScaffold = async (jobId: string, data: SaveLovamapResultRequest): Promise<{ scaffoldGroupId: number; scaffoldId: number } | null> => {
+		try {
+			const response = await agent.Jobs.saveJobAsScaffold(jobId, data);
+			const d = response.data;
+			if (!d) return null;
+			return { scaffoldGroupId: d.scaffoldGroupId, scaffoldId: d.scaffoldId };
+		} catch (error) {
+			console.error('Error saving job as scaffold:', error);
+			throw error;
 		}
 	}
 }

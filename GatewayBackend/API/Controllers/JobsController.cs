@@ -253,6 +253,33 @@ public class JobsController : ControllerBase
 		return File(meshBytes, "model/gltf-binary", $"job_{jobId}_mesh.glb");
 	}
 
+	[Authorize]
+	[HttpGet("{jobId}/particle-mesh")]
+	public async Task<IActionResult> DownloadJobParticleMesh([FromRoute] string jobId, CancellationToken ct)
+	{
+		if (!Guid.TryParse(jobId, out var jobGuid))
+			return BadRequest(new { error = "Invalid jobId" });
+
+		var currentUserId = _userService.GetCurrentUserId();
+		if (currentUserId == null) return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
+		var isAdmin = await _userAuthHelper.IsInRole(currentUserId, "administrator");
+		var job = await _jobService.GetByIdAsync(jobGuid);
+
+		if (job == null)
+			return NotFound(new ApiResponse<string>(404, "Job not found"));
+
+		if (job.CreatorId != currentUserId && !isAdmin)
+			return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
+
+		var (succeeded, errorMessage, meshBytes) =
+			await _jobService.FetchJobParticleMeshFromCoreAsync(jobGuid, ct);
+
+		if (!succeeded || meshBytes == null)
+			return NotFound(new { jobId, error = errorMessage });
+
+		return File(meshBytes, "model/gltf-binary", $"job_{jobId}_particle_mesh.glb");
+	}
+
 	[HttpGet("{jobId}")]
     public async Task<IActionResult> GetJob(Guid jobId)
     {
@@ -277,6 +304,46 @@ public class JobsController : ControllerBase
 			_logger.LogError(ex, "Failed to get all jobs");
 			return StatusCode(500, new ApiResponse<string>(500, "An error occurred while getting all jobs"));
 		}
+	}
+
+	[HttpPost("{jobId}/save-scaffold")]
+	public async Task<IActionResult> SaveJobAsScaffold([FromRoute] string jobId, [FromBody] SaveLovamapResultDto dto)
+	{
+		if (!Guid.TryParse(jobId, out var jobGuid))
+			return BadRequest(new ApiResponse<string>(400, "Invalid jobId"));
+
+		var currentUserId = _userService.GetCurrentUserId();
+		if (currentUserId == null) return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
+		var isAdmin = await _userAuthHelper.IsInRole(currentUserId, "administrator");
+
+		var (succeeded, errorMessage, scaffoldGroupId, scaffoldId) =
+			await _jobService.SaveResultAsScaffoldAsync(jobGuid, dto, currentUserId, isAdmin);
+
+		if (!succeeded)
+			return BadRequest(new ApiResponse<string>(400, errorMessage ?? "Failed to save scaffold"));
+
+		return Ok(new ApiResponse<object>(200, "Scaffold saved", new { scaffoldGroupId, scaffoldId }));
+	}
+
+	[HttpGet("{jobId}/mesh-status")]
+	public async Task<IActionResult> GetMeshStatus([FromRoute] string jobId)
+	{
+		if (!Guid.TryParse(jobId, out var jobGuid))
+			return BadRequest(new ApiResponse<string>(400, "Invalid jobId"));
+
+		var currentUserId = _userService.GetCurrentUserId();
+		if (currentUserId == null) return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
+		var isAdmin = await _userAuthHelper.IsInRole(currentUserId, "administrator");
+		var job = await _jobService.GetByIdAsync(jobGuid);
+
+		if (job == null)
+			return NotFound(new ApiResponse<string>(404, "Job not found"));
+
+		if (job.CreatorId != currentUserId && !isAdmin)
+			return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
+
+		var status = await _jobService.GetMeshJobStatusesAsync(jobGuid);
+		return Ok(new ApiResponse<object>(200, "", status));
 	}
 
 	[HttpGet("me")]

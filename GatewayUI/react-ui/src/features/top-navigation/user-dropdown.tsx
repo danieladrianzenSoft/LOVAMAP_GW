@@ -35,6 +35,17 @@ const UserDropdown = () => {
 								{({ active }: MenuItemRenderProps) => (
 									<button
 										className="dropdown-menu-item group"
+										onClick={() => History.push("/jobs")}
+									>
+										My Jobs
+									</button>
+								)}
+							</MenuItem>
+
+							<MenuItem>
+								{({ active }: MenuItemRenderProps) => (
+									<button
+										className="dropdown-menu-item group"
 										onClick={() => History.push("/settings")}
 									>
 										Settings

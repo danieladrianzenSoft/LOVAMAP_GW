@@ -34,13 +34,20 @@ namespace Repositories.Repositories
 
 		public async Task<IEnumerable<Job>> GetJobsByCreatorIdAsync(string creatorId)
 		{
-			return await _context.Jobs.Where(j => j.CreatorId == creatorId).OrderByDescending(j => j.SubmittedAt).ToListAsync();
+			return await _context.Jobs
+				.Include(j => j.Scaffold)
+				.Where(j => j.CreatorId == creatorId)
+				.OrderByDescending(j => j.SubmittedAt)
+				.ToListAsync();
 		}
 
 		// 4/13 JacklynX changed - get all jobs for admin use
 		public async Task<IEnumerable<Job>> GetAllJobsAsync()
 		{
-			return await _context.Jobs.OrderByDescending(j => j.SubmittedAt).ToListAsync();
+			return await _context.Jobs
+				.Include(j => j.Scaffold)
+				.OrderByDescending(j => j.SubmittedAt)
+				.ToListAsync();
 		}
 
 		public async Task<IEnumerable<Job>> GetActiveJobsAsync()

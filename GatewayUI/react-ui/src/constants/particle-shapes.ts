@@ -5,4 +5,5 @@ export const PARTICLE_SHAPES = [
 	{ value: "rods", label: "Rods" },
 	{ value: "nuggets", label: "Nuggets" },
 	{ value: "amorphous", label: "Amorphous" },
+	{ value: "other", label: "Other" },
 ];

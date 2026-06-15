@@ -113,7 +113,7 @@ const BulkUploadScreenshotQueue: React.FC = () => {
 
   const handleDone = () => {
     bulkUploadStore.reset();
-    navigate("/uploads");
+    navigate("/my-scaffolds");
   };
 
   const handleUndo = async () => {

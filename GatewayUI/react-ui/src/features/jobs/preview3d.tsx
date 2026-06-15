@@ -17,7 +17,7 @@ type Preview3DProps = {
 const isDatOrCsv = (file: File | null) => {
   if (!file) return false;
   const name = file.name.toLowerCase();
-  return name.endsWith(".dat") || name.endsWith(".csv");
+  return name.endsWith(".dat") || name.endsWith(".csv") || name.endsWith(".txt");
 };
 
 const parseDatOrCsvText = (text: string): Particle[] => {
@@ -54,7 +54,7 @@ export const Preview3D: React.FC<Preview3DProps> = ({ file }) => {
 
       if (!file) return;
       if (!isDatOrCsv(file)) {
-        setError("Preview is currently only available for .dat or .csv files.");
+        setError("Preview is currently only available for .dat, .csv, or .txt files.");
         return;
       }
 
@@ -114,7 +114,7 @@ export const Preview3D: React.FC<Preview3DProps> = ({ file }) => {
 
         {!isLoading && !error && !particleCount && (
           <div className="h-64 flex items-center justify-center text-sm text-gray-400 px-4 text-center">
-            Select a .dat or .csv file to see a 3D preview of your scaffold.
+            Select a .dat, .csv, or .txt file to see a 3D preview of your scaffold.
           </div>
         )}
 

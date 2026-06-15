@@ -26,6 +26,15 @@ namespace Infrastructure.Helpers
 					return string.Join(", ", values);
 				}
 
+				// Check if it's an array of booleans (e.g. IsInterior)
+				if (root.EnumerateArray().All(e => e.ValueKind == JsonValueKind.True || e.ValueKind == JsonValueKind.False))
+				{
+					var values = root.EnumerateArray()
+									.Select(e => e.GetBoolean() ? "1" : "0")
+									.ToList();
+					return string.Join(", ", values);
+				}
+
 				// Check if it's an array of objects with "id" and "value" keys (two-column format)
 				if (root.EnumerateArray().All(e =>
 						e.ValueKind == JsonValueKind.Object &&

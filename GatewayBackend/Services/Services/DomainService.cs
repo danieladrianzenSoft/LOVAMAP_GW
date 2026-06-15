@@ -12,6 +12,7 @@ using Services.IServices;
 using Infrastructure.IHelpers;
 using System.Collections.Concurrent;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 
 namespace Services.Services
 {	
@@ -83,11 +84,28 @@ namespace Services.Services
 		{
 			try
 			{
+				// Fast path: read pre-stored metadata blob
 				var domainMetadata = await _domainRepository.GetDomainMetadataById(domainId);
+				if (domainMetadata != null)
+					return (true, "", domainMetadata);
 
-				if (domainMetadata == null) return (false, "NotFound", null);
+				// Fallback: build metadata from pore descriptors if domain is Pores category
+				var domain = await _domainRepository.GetById(domainId);
+				if (domain == null) return (false, "NotFound", null);
 
-				return (true, "", domainMetadata);
+				if (domain.Category == DomainCategory.Pores)
+				{
+					var built = await BuildPoreMetadataFromDescriptors(domain.ScaffoldId);
+					if (built != null)
+					{
+						// Cache-on-read: persist so subsequent calls use the fast path
+						domain.Metadata = built;
+						await _context.SaveChangesAsync();
+						return (true, "", built);
+					}
+				}
+
+				return (false, "NotFound", null);
 			}
 			catch (Exception ex)
 			{
@@ -252,7 +270,9 @@ namespace Services.Services
 					existingDomain.DomainSize = domainToCreate.DomainSize ?? "N/A";
 					existingDomain.CreatedAt = DateTime.UtcNow;
 					existingDomain.OriginalFileName = originalFileName;
-					existingDomain.Metadata = ParseMetadata(domainToCreate.MetadataFile, domainToCreate.MetadataJson);
+					var newMetadata = ParseMetadata(domainToCreate.MetadataFile, domainToCreate.MetadataJson);
+					if (newMetadata != null)
+						existingDomain.Metadata = newMetadata;
 
 					_domainRepository.Update(existingDomain);
 				}
@@ -301,8 +321,127 @@ namespace Services.Services
 				_logger.LogError(ex, "Failed to process .glb file");
 				return (false, "Error processing .glb file", null);
 			}
-		}		
+		}
 
+		/// <summary>
+		/// Builds pore domain metadata from stored PoreDescriptor records.
+		/// Fallback for domains that don't have a pre-stored metadata blob.
+		/// </summary>
+		private async Task<JsonDocument?> BuildPoreMetadataFromDescriptors(int scaffoldId)
+		{
+			var descriptorNames = new[] { "Volume", "SA", "CharacteristicLength", "AvgInternalDiam", "LargestDoorDiam", "IsInterior" };
+
+			var poreDescriptors = await _context.PoreDescriptors
+				.Include(pd => pd.DescriptorType)
+				.Where(pd => pd.ScaffoldId == scaffoldId && descriptorNames.Contains(pd.DescriptorType.Name))
+				.ToListAsync();
+
+			if (!poreDescriptors.Any()) return null;
+
+			var descriptorMap = poreDescriptors.ToDictionary(pd => pd.DescriptorType.Name, pd => pd.Values);
+
+			// Determine pore count from Volume descriptor (required)
+			if (!descriptorMap.TryGetValue("Volume", out var volumeDoc)) return null;
+
+			var volumes = ExtractDoubleArrayFromDescriptor(volumeDoc);
+			if (volumes == null || volumes.Length == 0) return null;
+
+			var count = volumes.Length;
+			var surfAreas = descriptorMap.TryGetValue("SA", out var saDoc) ? ExtractDoubleArrayFromDescriptor(saDoc) : null;
+			var charLengths = descriptorMap.TryGetValue("CharacteristicLength", out var clDoc) ? ExtractDoubleArrayFromDescriptor(clDoc) : null;
+			var avgDoorDiams = descriptorMap.TryGetValue("AvgInternalDiam", out var adDoc) ? ExtractDoubleArrayFromDescriptor(adDoc) : null;
+			var largestDoorDiams = descriptorMap.TryGetValue("LargestDoorDiam", out var ldDoc) ? ExtractDoubleArrayFromDescriptor(ldDoc) : null;
+			var isInterior = descriptorMap.TryGetValue("IsInterior", out var iiDoc) ? ExtractIntArrayFromDescriptor(iiDoc) : null;
+
+			var ids = new int[count];
+			for (int i = 0; i < count; i++) ids[i] = i;
+
+			var metadata = new Dictionary<string, object>();
+			for (int i = 0; i < count; i++)
+			{
+				var poreData = new Dictionary<string, object>
+				{
+					["volume"] = volumes[i],
+					["surfArea"] = surfAreas != null && i < surfAreas.Length ? surfAreas[i] : 0,
+					["charLength"] = charLengths != null && i < charLengths.Length ? charLengths[i] : 0,
+					["avgDoorDiam"] = avgDoorDiams != null && i < avgDoorDiams.Length ? avgDoorDiams[i] : 0,
+					["largestDoorDiam"] = largestDoorDiams != null && i < largestDoorDiams.Length ? largestDoorDiams[i] : 0,
+					["edge"] = isInterior != null && i < isInterior.Length ? (isInterior[i] != 0 ? 0 : 1) : 1,
+				};
+				metadata[i.ToString()] = poreData;
+			}
+
+			var result = new Dictionary<string, object>
+			{
+				["ids"] = ids,
+				["metadata"] = metadata,
+			};
+
+			var json = JsonSerializer.Serialize(result);
+			return JsonDocument.Parse(json);
+		}
+
+		/// <summary>
+		/// Extracts a double[] from a PoreDescriptor Values JsonDocument.
+		/// Handles both flat arrays [1.2, 3.4] and object arrays [{"value": 1.2}].
+		/// </summary>
+		private static double[]? ExtractDoubleArrayFromDescriptor(JsonDocument doc)
+		{
+			var root = doc.RootElement;
+			if (root.ValueKind != JsonValueKind.Array) return null;
+
+			var count = root.GetArrayLength();
+			if (count == 0) return null;
+
+			var result = new double[count];
+			int i = 0;
+			foreach (var el in root.EnumerateArray())
+			{
+				if (el.ValueKind == JsonValueKind.Number)
+					result[i] = el.GetDouble();
+				else if (el.ValueKind == JsonValueKind.Object && el.TryGetProperty("value", out var valEl))
+					result[i] = valEl.GetDouble();
+				i++;
+			}
+			return result;
+		}
+
+		/// <summary>
+		/// Extracts an int[] from a PoreDescriptor Values JsonDocument.
+		/// Handles both flat arrays [0, 1] and object arrays [{"value": 0}].
+		/// Also handles boolean values (true=1, false=0).
+		/// </summary>
+		private static int[]? ExtractIntArrayFromDescriptor(JsonDocument doc)
+		{
+			var root = doc.RootElement;
+			if (root.ValueKind != JsonValueKind.Array) return null;
+
+			var count = root.GetArrayLength();
+			if (count == 0) return null;
+
+			var result = new int[count];
+			int i = 0;
+			foreach (var el in root.EnumerateArray())
+			{
+				if (el.ValueKind == JsonValueKind.Number)
+					result[i] = el.GetInt32();
+				else if (el.ValueKind == JsonValueKind.True)
+					result[i] = 1;
+				else if (el.ValueKind == JsonValueKind.False)
+					result[i] = 0;
+				else if (el.ValueKind == JsonValueKind.Object && el.TryGetProperty("value", out var valEl))
+				{
+					if (valEl.ValueKind == JsonValueKind.Number)
+						result[i] = valEl.GetInt32();
+					else if (valEl.ValueKind == JsonValueKind.True)
+						result[i] = 1;
+					else if (valEl.ValueKind == JsonValueKind.False)
+						result[i] = 0;
+				}
+				i++;
+			}
+			return result;
+		}
 	}
 
 }

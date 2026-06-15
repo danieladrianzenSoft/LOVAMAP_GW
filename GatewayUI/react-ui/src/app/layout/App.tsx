@@ -102,7 +102,7 @@ const MainLayout: React.FC = observer(() => {
           <Route path="/descriptor-calculator" element={<DescriptorCalculator />} />
           <Route path="/publications" element={<Publications />} />
           <Route path="/experiments" element={<ProtectedRoute element={<CreateExperiments />} />} />
-          <Route path="/uploads" element={<ProtectedRoute element={<ScaffoldGroupUploads />} />} />
+          <Route path="/my-scaffolds" element={<ProtectedRoute element={<ScaffoldGroupUploads />} />} />
           <Route path="/run" element={<JobsMain />} />
           <Route path="/jobs/*" element={<ProtectedRoute element={<JobList />} />}  />
           <Route path="/segment" element={<ProtectedRoute element={<RunSegmentation />} />} />

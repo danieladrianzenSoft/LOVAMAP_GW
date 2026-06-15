@@ -565,6 +565,15 @@
     "description": "(x,y,z) coordinate of the centroid of the pore"
   },
   {
+    "name": "IsInterior",
+    "label": "Is Interior",
+    "tableLabel": "Is interior pore",
+    "category": "Pore",
+    "subCategory": "Location",
+    "dataType": "int",
+    "description": "Whether the pore is an **interior pore** (1) or a **surface/edge pore** (0)"
+  },
+  {
     "name": "ParticleDiam",
     "label": "Particle Diameter",
     "tableLabel": "Particle diameter",

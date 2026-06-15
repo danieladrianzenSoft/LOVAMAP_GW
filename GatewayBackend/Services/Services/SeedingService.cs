@@ -160,17 +160,19 @@ namespace Services.Services
 
 		private async Task SeedDescriptorTypesAsync()
 		{
-			if (await _context.DescriptorTypes.AnyAsync() == false)
+			var path = Path.Combine(baseUrl, "DescriptorTypes.json");
+			var data = File.ReadAllText(path);
+			var descriptorTypes = JsonSerializer.Deserialize<List<DescriptorTypeToCreateDto>>(
+				data, _jsonSerializerOptions)
+				?? throw new ApplicationException("Failed to deserialize descriptors");
+
+			foreach (var dt in descriptorTypes)
 			{
-				var path = Path.Combine(baseUrl, "DescriptorTypes.json");
-				var descriptorTypeData = File.ReadAllText(path);
-				var descriptorTypes = JsonSerializer.Deserialize<List<DescriptorTypeToCreateDto>>(descriptorTypeData, _jsonSerializerOptions);
-				if (descriptorTypes == null) {
-					throw new ApplicationException("Failed to deserialize descriptors");
-				}
-				foreach (var descriptorType in descriptorTypes)
+				var existing = await _descriptorService.GetDescriptorByName(dt.Name);
+				if (existing == null)
 				{
-					await _descriptorService.CreateDescriptorType(descriptorType);
+					_logger.LogInformation("Seeding new DescriptorType: {Name}", dt.Name);
+					await _descriptorService.CreateDescriptorType(dt);
 				}
 			}
 		}
