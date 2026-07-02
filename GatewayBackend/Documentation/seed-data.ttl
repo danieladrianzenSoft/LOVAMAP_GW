@@ -1,0 +1,857 @@
+##############################################################################
+# LOVAMAP RDF Knowledge Base — Seed Data
+# Extracted from three papers from the Segura Lab, Duke University.
+# Follows the ontology defined in RdfStrategy.md.
+##############################################################################
+
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+
+##############################################################################
+# JOURNALS
+##############################################################################
+
+lova:journal/adv-healthc-mater  a  lova:Journal ;
+    dc:title    "Advanced Healthcare Materials" .
+
+lova:journal/adv-mater  a  lova:Journal ;
+    dc:title    "Advanced Materials" .
+
+lova:journal/adv-funct-mater  a  lova:Journal ;
+    dc:title    "Advanced Functional Materials" .
+
+
+##############################################################################
+# AUTHORS
+##############################################################################
+
+lova:author/liu-y  a  lova:Author ;
+    foaf:familyName     "Liu" ;
+    foaf:givenName      "Yining" ;
+    foaf:name           "Yining Liu" ;
+    schema:affiliation  "Department of Biomedical Engineering, Duke University" .
+
+lova:author/suarez-arnedo-a  a  lova:Author ;
+    foaf:familyName     "Suarez-Arnedo" ;
+    foaf:givenName      "Alejandra" ;
+    foaf:name           "Alejandra Suarez-Arnedo" ;
+    schema:affiliation  "Department of Biomedical Engineering, Duke University" .
+
+lova:author/riley-l  a  lova:Author ;
+    foaf:familyName     "Riley" ;
+    foaf:givenName      "Lindsay" ;
+    foaf:name           "Lindsay Riley" ;
+    schema:affiliation  "Department of Biomedical Engineering, Duke University" .
+
+lova:author/miley-t  a  lova:Author ;
+    foaf:familyName     "Miley" ;
+    foaf:givenName      "Tasman" ;
+    foaf:name           "Tasman Miley" ;
+    schema:affiliation  "Department of Biomedical Engineering, Duke University" .
+
+lova:author/xia-j  a  lova:Author ;
+    foaf:familyName     "Xia" ;
+    foaf:givenName      "Jingyi" ;
+    foaf:name           "Jingyi Xia" ;
+    schema:affiliation  "Department of Biomedical Engineering, Duke University" .
+
+lova:author/segura-t  a  lova:Author ;
+    foaf:familyName     "Segura" ;
+    foaf:givenName      "Tatiana" ;
+    foaf:name           "Tatiana Segura" ;
+    schema:affiliation  "Department of Biomedical Engineering, Duke University" .
+
+lova:author/caston-e  a  lova:Author ;
+    foaf:familyName     "Caston" ;
+    foaf:givenName      "Eleanor L. P." ;
+    foaf:name           "Eleanor L. P. Caston" ;
+    schema:affiliation  "Department of Biomedical Engineering, Duke University" .
+
+lova:author/schneider-m  a  lova:Author ;
+    foaf:familyName     "Schneider" ;
+    foaf:givenName      "Michelle" ;
+    foaf:name           "Michelle Schneider" ;
+    schema:affiliation  "Department of Pathology, Duke University School of Medicine" .
+
+lova:author/anderson-a  a  lova:Author ;
+    foaf:familyName     "Anderson" ;
+    foaf:givenName      "Alexa R." ;
+    foaf:name           "Alexa R. Anderson" ;
+    schema:affiliation  "Department of Biomedical Engineering, Duke University" .
+
+lova:author/nguyen-l  a  lova:Author ;
+    foaf:familyName     "Nguyen" ;
+    foaf:givenName      "Long" ;
+    foaf:name           "Long Nguyen" ;
+    schema:affiliation  "Department of Biomedical Engineering, Duke University" .
+
+lova:author/ntekoumes-d  a  lova:Author ;
+    foaf:familyName     "Ntekoumes" ;
+    foaf:givenName      "Dimitris" ;
+    foaf:name           "Dimitris Ntekoumes" ;
+    schema:affiliation  "Department of Chemical and Biomolecular Engineering, Johns Hopkins University" .
+
+lova:author/gerecht-s  a  lova:Author ;
+    foaf:familyName     "Gerecht" ;
+    foaf:givenName      "Sharon" ;
+    foaf:name           "Sharon Gerecht" ;
+    schema:affiliation  "Department of Biomedical Engineering, Duke University" .
+
+
+##############################################################################
+# PAPER 1: Spatial confinement modulates macrophage response in MAP scaffolds
+# nihms-1907779 | DOI: 10.1002/adhm.202300823
+##############################################################################
+
+lova:paper/10.1002-adhm.202300823  a  lova:Paper ;
+    dc:title        "Spatial confinement modulates macrophage response in microporous annealed particle (MAP) scaffolds" ;
+    dc:identifier   "10.1002/adhm.202300823" ;
+    dc:date         "2023"^^xsd:gYear ;
+    schema:isPartOf lova:journal/adv-healthc-mater ;
+    dc:creator      lova:author/liu-y ,
+                    lova:author/suarez-arnedo-a ,
+                    lova:author/riley-l ,
+                    lova:author/miley-t ,
+                    lova:author/xia-j ,
+                    lova:author/segura-t ;
+    lova:paperType      "Research Article" ;
+    lova:focusMaterial  "PEG-based MAP scaffolds with 3 particle sizes (40, 70, 130 μm); effect of spatial confinement on macrophage polarization" ;
+    lova:hasLabData     true .
+
+# --- Materials (Paper 1) ---
+
+lova:material/10.1002-adhm.202300823/map-40um  a  lova:Material ;
+    lova:describedIn            lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label                  "40 μm PEG-VS MAP scaffold (confining)" ;
+    lova:particleShape          "Sphere" ;
+    lova:particleMaterial       "4-arm PEG-VS (20 kDa)" ;
+    lova:particleSizeMin        40.0 ;
+    lova:particleSizeMax        40.0 ;
+    lova:particleSizeUnit       "μm" ;
+    lova:sizeDistribution       "Monodisperse" ;
+    lova:stiffness              "Soft hydrogel" ;
+    lova:crosslinker            "MMP-degradable peptide (L-MMP)" ;
+    lova:surfaceModification    "K-peptide and Q-peptide (for Factor XIII annealing)" ;
+    lova:fabricationMethod      "Microfluidic water-in-oil emulsion" ;
+    lova:packingConfiguration   "Random" ;
+    lova:annealingMethod        "Enzymatic (Factor XIII)" ;
+    lova:reportedPoreSize       "~15 μm (largest enclosed sphere diameter)" ;
+    lova:scaffoldDimensions     "In-well mold" ;
+    lova:hasGeometryProfile     lova:geometry-profile/peg-sphere-40um .
+    # TODO: add lova:scaffoldGroupId once matched to relational DB (exact match supersedes profile)
+
+lova:material/10.1002-adhm.202300823/map-70um  a  lova:Material ;
+    lova:describedIn            lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label                  "70 μm PEG-VS MAP scaffold (intermediate)" ;
+    lova:particleShape          "Sphere" ;
+    lova:particleMaterial       "4-arm PEG-VS (20 kDa)" ;
+    lova:particleSizeMin        70.0 ;
+    lova:particleSizeMax        70.0 ;
+    lova:particleSizeUnit       "μm" ;
+    lova:sizeDistribution       "Monodisperse" ;
+    lova:stiffness              "Soft hydrogel" ;
+    lova:crosslinker            "MMP-degradable peptide (L-MMP)" ;
+    lova:surfaceModification    "K-peptide and Q-peptide (for Factor XIII annealing)" ;
+    lova:fabricationMethod      "Microfluidic water-in-oil emulsion" ;
+    lova:packingConfiguration   "Random" ;
+    lova:annealingMethod        "Enzymatic (Factor XIII)" ;
+    lova:reportedPoreSize       "~25 μm (largest enclosed sphere diameter)" ;
+    lova:hasGeometryProfile     lova:geometry-profile/peg-sphere-70um .
+    # TODO: add lova:scaffoldGroupId once matched to relational DB (exact match supersedes profile)
+
+lova:material/10.1002-adhm.202300823/map-130um  a  lova:Material ;
+    lova:describedIn            lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label                  "130 μm PEG-VS MAP scaffold (unconfining)" ;
+    lova:particleShape          "Sphere" ;
+    lova:particleMaterial       "4-arm PEG-VS (20 kDa)" ;
+    lova:particleSizeMin        130.0 ;
+    lova:particleSizeMax        130.0 ;
+    lova:particleSizeUnit       "μm" ;
+    lova:sizeDistribution       "Monodisperse" ;
+    lova:stiffness              "Soft hydrogel" ;
+    lova:crosslinker            "MMP-degradable peptide (L-MMP)" ;
+    lova:surfaceModification    "K-peptide and Q-peptide (for Factor XIII annealing)" ;
+    lova:fabricationMethod      "Microfluidic water-in-oil emulsion" ;
+    lova:packingConfiguration   "Random" ;
+    lova:annealingMethod        "Enzymatic (Factor XIII)" ;
+    lova:reportedPoreSize       "~45 μm (largest enclosed sphere diameter)" ;
+    lova:hasGeometryProfile     lova:geometry-profile/peg-sphere-130um .
+    # TODO: add lova:scaffoldGroupId once matched to relational DB (exact match supersedes profile)
+
+# --- Experiments (Paper 1) ---
+
+# In vitro macrophage culture with LPS+IFNγ stimulation
+lova:experiment/10.1002-adhm.202300823/invitro-macro-polarization  a  lova:Experiment ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    lova:usedMaterial       lova:material/10.1002-adhm.202300823/map-40um ,
+                            lova:material/10.1002-adhm.202300823/map-70um ,
+                            lova:material/10.1002-adhm.202300823/map-130um ;
+    rdfs:label              "In vitro macrophage M1/M2 polarization in MAP scaffolds" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType     "Macrophage polarization" ;
+    lova:assayOrMethod      "Flow cytometry, qPCR" ;
+    lova:cellType           "BMDM (bone marrow-derived macrophages)" ;
+    lova:cellSource         "Murine bone marrow (C57BL/6J)" ;
+    lova:cultureDuration    "24h (with 6h LPS+IFNγ stimulation)" ;
+    lova:cultureMedium      "Complete RPMI + M-CSF" ;
+    lova:temperature        "37°C" ;
+    lova:atmosphere         "5% CO2" .
+
+# --- Outcomes (Paper 1) ---
+# M1 markers suppressed by confinement (40 μm vs 130 μm)
+
+lova:outcome/10.1002-adhm.202300823/inos-40um-suppressed  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/invitro-macro-polarization ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "iNOS expression reduced in 40 μm (confining) vs 130 μm (unconfining) MAP" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "iNOS MFI (M1 marker)" ;
+    lova:scope              "Bulk/global" ;
+    lova:unit               "MFI" ;
+    lova:comparisonGroup    "130 μm MAP scaffold" ;
+    lova:isSignificant      true .
+
+lova:outcome/10.1002-adhm.202300823/cd86-40um-suppressed  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/invitro-macro-polarization ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "CD86 expression reduced in 40 μm (confining) vs 130 μm (unconfining) MAP" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "CD86 MFI (M1 marker)" ;
+    lova:scope              "Bulk/global" ;
+    lova:unit               "MFI" ;
+    lova:comparisonGroup    "130 μm MAP scaffold" ;
+    lova:isSignificant      true .
+
+lova:outcome/10.1002-adhm.202300823/tnf-gene-40um-suppressed  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/invitro-macro-polarization ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "TNF gene expression reduced in 40 μm vs 130 μm MAP" ;
+    lova:measurementCategory "Gene expression" ;
+    lova:measurementType    "TNF relative expression (qPCR)" ;
+    lova:scope              "Bulk/global" ;
+    lova:unit               "Fold change (2^-ΔΔCt)" ;
+    lova:comparisonGroup    "130 μm MAP scaffold" ;
+    lova:isSignificant      true .
+
+lova:outcome/10.1002-adhm.202300823/il1b-gene-40um-suppressed  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/invitro-macro-polarization ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "IL-1β gene expression reduced in 40 μm vs 130 μm MAP" ;
+    lova:measurementCategory "Gene expression" ;
+    lova:measurementType    "IL-1β relative expression (qPCR)" ;
+    lova:scope              "Bulk/global" ;
+    lova:unit               "Fold change (2^-ΔΔCt)" ;
+    lova:comparisonGroup    "130 μm MAP scaffold" ;
+    lova:isSignificant      true .
+
+lova:outcome/10.1002-adhm.202300823/il6-gene-40um-suppressed  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/invitro-macro-polarization ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "IL-6 gene expression reduced in 40 μm vs 130 μm MAP" ;
+    lova:measurementCategory "Gene expression" ;
+    lova:measurementType    "IL-6 relative expression (qPCR)" ;
+    lova:scope              "Bulk/global" ;
+    lova:unit               "Fold change (2^-ΔΔCt)" ;
+    lova:comparisonGroup    "130 μm MAP scaffold" ;
+    lova:isSignificant      true .
+
+lova:outcome/10.1002-adhm.202300823/arg1-gene-no-diff  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/invitro-macro-polarization ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "Arg1 gene expression not significantly different across MAP sizes" ;
+    lova:measurementCategory "Gene expression" ;
+    lova:measurementType    "Arg1 relative expression (qPCR)" ;
+    lova:scope              "Bulk/global" ;
+    lova:unit               "Fold change (2^-ΔΔCt)" ;
+    lova:isSignificant      false .
+
+lova:outcome/10.1002-adhm.202300823/bmdm-diameter  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/invitro-macro-polarization ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "BMDM diameter in 3D culture ~12 μm" ;
+    lova:measurementCategory "Structural/Imaging" ;
+    lova:measurementType    "Cell diameter" ;
+    lova:value              12.0 ;
+    lova:unit               "μm" ;
+    lova:scope              "Per-cell average" .
+
+
+##############################################################################
+# PAPER 2: Exploring the Role of Spatial Confinement in Immune Cell
+#           Recruitment and Regeneration of Skin Wounds
+# nihms-1965294 | DOI: 10.1002/adma.202304049
+##############################################################################
+
+lova:paper/10.1002-adma.202304049  a  lova:Paper ;
+    dc:title        "Exploring the Role of Spatial Confinement in Immune Cell Recruitment and Regeneration of Skin Wounds" ;
+    dc:identifier   "10.1002/adma.202304049" ;
+    dc:date         "2023"^^xsd:gYear ;
+    schema:isPartOf lova:journal/adv-mater ;
+    dc:creator      lova:author/liu-y ,
+                    lova:author/suarez-arnedo-a ,
+                    lova:author/caston-e ,
+                    lova:author/riley-l ,
+                    lova:author/schneider-m ,
+                    lova:author/segura-t ;
+    lova:paperType      "Research Article" ;
+    lova:focusMaterial  "PEG-based MAP scaffolds with 3 particle sizes (40, 70, 130 μm); in vivo immune response and wound healing" ;
+    lova:hasLabData     true .
+
+# --- Materials (Paper 2) ---
+# Same material system as Paper 1. Each paper gets its own Material nodes.
+# These may share the same scaffoldGroupIds as Paper 1 if the same scaffolds were used,
+# or have different IDs if different batches were fabricated for the in vivo studies.
+
+lova:material/10.1002-adma.202304049/map-40um  a  lova:Material ;
+    lova:describedIn            lova:paper/10.1002-adma.202304049 ;
+    rdfs:label                  "40 μm PEG-VS MAP scaffold (confining)" ;
+    lova:particleShape          "Sphere" ;
+    lova:particleMaterial       "4-arm PEG-VS (20 kDa)" ;
+    lova:particleSizeMin        40.0 ;
+    lova:particleSizeMax        40.0 ;
+    lova:particleSizeUnit       "μm" ;
+    lova:sizeDistribution       "Monodisperse" ;
+    lova:stiffness              "Soft hydrogel" ;
+    lova:crosslinker            "MMP-degradable peptide (L-MMP)" ;
+    lova:fabricationMethod      "Microfluidic water-in-oil emulsion" ;
+    lova:annealingMethod        "Enzymatic (Factor XIII)" ;
+    lova:hasGeometryProfile     lova:geometry-profile/peg-sphere-40um .
+    # TODO: add lova:scaffoldGroupId once matched to relational DB (exact match supersedes profile)
+
+lova:material/10.1002-adma.202304049/map-70um  a  lova:Material ;
+    lova:describedIn            lova:paper/10.1002-adma.202304049 ;
+    rdfs:label                  "70 μm PEG-VS MAP scaffold (intermediate)" ;
+    lova:particleShape          "Sphere" ;
+    lova:particleMaterial       "4-arm PEG-VS (20 kDa)" ;
+    lova:particleSizeMin        70.0 ;
+    lova:particleSizeMax        70.0 ;
+    lova:particleSizeUnit       "μm" ;
+    lova:sizeDistribution       "Monodisperse" ;
+    lova:stiffness              "Soft hydrogel" ;
+    lova:crosslinker            "MMP-degradable peptide (L-MMP)" ;
+    lova:fabricationMethod      "Microfluidic water-in-oil emulsion" ;
+    lova:annealingMethod        "Enzymatic (Factor XIII)" ;
+    lova:hasGeometryProfile     lova:geometry-profile/peg-sphere-70um .
+    # TODO: add lova:scaffoldGroupId once matched to relational DB (exact match supersedes profile)
+
+lova:material/10.1002-adma.202304049/map-130um  a  lova:Material ;
+    lova:describedIn            lova:paper/10.1002-adma.202304049 ;
+    rdfs:label                  "130 μm PEG-VS MAP scaffold (unconfining)" ;
+    lova:particleShape          "Sphere" ;
+    lova:particleMaterial       "4-arm PEG-VS (20 kDa)" ;
+    lova:particleSizeMin        130.0 ;
+    lova:particleSizeMax        130.0 ;
+    lova:particleSizeUnit       "μm" ;
+    lova:sizeDistribution       "Monodisperse" ;
+    lova:stiffness              "Soft hydrogel" ;
+    lova:crosslinker            "MMP-degradable peptide (L-MMP)" ;
+    lova:fabricationMethod      "Microfluidic water-in-oil emulsion" ;
+    lova:annealingMethod        "Enzymatic (Factor XIII)" ;
+    lova:hasGeometryProfile     lova:geometry-profile/peg-sphere-130um .
+    # TODO: add lova:scaffoldGroupId once matched to relational DB (exact match supersedes profile)
+
+# --- Experiments (Paper 2) ---
+
+# Subcutaneous implantation — immune cell profiling
+lova:experiment/10.1002-adma.202304049/subq-immune-profiling  a  lova:Experiment ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    lova:usedMaterial       lova:material/10.1002-adma.202304049/map-40um ,
+                            lova:material/10.1002-adma.202304049/map-70um ,
+                            lova:material/10.1002-adma.202304049/map-130um ;
+    rdfs:label              "Subcutaneous implantation with flow cytometry immune profiling" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType     "Immune cell recruitment (in vivo)" ;
+    lova:assayOrMethod      "Spectral flow cytometry (11-color innate panel, 7-color macrophage panel)" ;
+    lova:cellType           "Host immune cells (neutrophils, monocytes, macrophages, T cells, B cells, NK cells, DCs, eosinophils, basophils)" ;
+    lova:cellSource         "C57BL/6J mice, male" ;
+    lova:cultureDuration    "1, 4, 7, 14, 21 days" ;
+    lova:temperature        "37°C (in vivo)" ;
+    lova:medium             "Subcutaneous dorsal implant" .
+
+# Wound healing study
+lova:experiment/10.1002-adma.202304049/wound-healing  a  lova:Experiment ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    lova:usedMaterial       lova:material/10.1002-adma.202304049/map-40um ,
+                            lova:material/10.1002-adma.202304049/map-70um ,
+                            lova:material/10.1002-adma.202304049/map-130um ;
+    rdfs:label              "Full-thickness skin wound healing in hairless mice" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType     "Wound healing (in vivo)" ;
+    lova:assayOrMethod      "Histology (H&E, Picro-Sirius Red, IHC), ELISA, flow cytometry" ;
+    lova:cellType           "Host tissue cells and immune cells" ;
+    lova:cellSource         "SKH-1 hairless mice, mixed gender" ;
+    lova:cultureDuration    "1, 7, 21 days" ;
+    lova:temperature        "37°C (in vivo)" ;
+    lova:medium             "6 mm full-thickness punch biopsy wound" .
+
+# --- Outcomes (Paper 2) — Subcutaneous model ---
+
+lova:outcome/10.1002-adma.202304049/neutrophil-recruitment-size-dependent  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/subq-immune-profiling ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "Neutrophil recruitment was size-dependent; higher in 130 μm at early time points" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Neutrophil percentage (% of CD45+ cells)" ;
+    lova:unit               "%" ;
+    lova:scope              "Bulk/global" ;
+    lova:timePoint          "Day 1, 4, 7, 14, 21" ;
+    lova:isTimeSeries       true ;
+    lova:sampleSize         5 ;
+    lova:isSignificant      true .
+
+lova:outcome/10.1002-adma.202304049/macrophage-recruitment  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/subq-immune-profiling ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "Macrophage percentage increased over time for all sizes; size-dependent differences observed" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Macrophage percentage (% of CD45+ cells)" ;
+    lova:unit               "%" ;
+    lova:scope              "Bulk/global" ;
+    lova:timePoint          "Day 1, 4, 7, 14, 21" ;
+    lova:isTimeSeries       true ;
+    lova:sampleSize         5 .
+
+# --- Outcomes (Paper 2) — Wound healing model ---
+
+lova:outcome/10.1002-adma.202304049/collagen-130um-mature  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/wound-healing ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "130 μm MAP scaffolds induced mature collagen regeneration at day 21" ;
+    lova:measurementCategory "Structural/Imaging" ;
+    lova:measurementType    "Collagen area percentage (Picro-Sirius Red)" ;
+    lova:unit               "%" ;
+    lova:scope              "Regional (wound bed)" ;
+    lova:timePoint          "Day 21" ;
+    lova:sampleSize         5 ;
+    lova:comparisonGroup    "40 μm and 70 μm MAP scaffolds" ;
+    lova:isSignificant      true .
+
+lova:outcome/10.1002-adma.202304049/collagen-fiber-length  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/wound-healing ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "Average collagen fiber length in wound bed at day 21" ;
+    lova:measurementCategory "Structural/Imaging" ;
+    lova:measurementType    "Average collagen fiber length" ;
+    lova:unit               "μm" ;
+    lova:scope              "Regional (wound bed)" ;
+    lova:timePoint          "Day 21" ;
+    lova:sampleSize         5 .
+
+lova:outcome/10.1002-adma.202304049/cd11b-connective-tissue  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/wound-healing ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "CD11b+ area ratio in connective tissue at day 21" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "CD11b+ area / nucleus area (IHC)" ;
+    lova:unit               "ratio" ;
+    lova:scope              "Regional (connective tissue in wound bed)" ;
+    lova:timePoint          "Day 21" ;
+    lova:sampleSize         5 .
+
+lova:outcome/10.1002-adma.202304049/alpha-sma-connective-tissue  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/wound-healing ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "α-SMA+ area ratio in connective tissue at day 21" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "α-SMA+ area / nucleus area (IHC)" ;
+    lova:unit               "ratio" ;
+    lova:scope              "Regional (connective tissue in wound bed)" ;
+    lova:timePoint          "Day 21" ;
+    lova:sampleSize         5 .
+
+lova:outcome/10.1002-adma.202304049/epidermis-dermis-ratio  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/wound-healing ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "Epidermis-to-dermis thickness ratio at day 21" ;
+    lova:measurementCategory "Structural/Imaging" ;
+    lova:measurementType    "Epidermis/dermis thickness ratio" ;
+    lova:unit               "ratio" ;
+    lova:scope              "Regional (wound cross-section)" ;
+    lova:timePoint          "Day 21" ;
+    lova:sampleSize         5 ;
+    lova:comparisonGroup    "Normal skin baseline" .
+
+lova:outcome/10.1002-adma.202304049/tgfb-elisa  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/wound-healing ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "TGF-β concentration in MAP-treated wounds at day 21" ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType    "TGF-β concentration (ELISA)" ;
+    lova:unit               "pg/mL" ;
+    lova:scope              "Bulk/global (wound lysate)" ;
+    lova:timePoint          "Day 21" ;
+    lova:sampleSize         5 .
+
+lova:outcome/10.1002-adma.202304049/tnf-elisa  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/wound-healing ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "TNF concentration in MAP-treated wounds at day 21" ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType    "TNF concentration (ELISA)" ;
+    lova:unit               "pg/mL" ;
+    lova:scope              "Bulk/global (wound lysate)" ;
+    lova:timePoint          "Day 21" ;
+    lova:sampleSize         5 .
+
+lova:outcome/10.1002-adma.202304049/igg1-biased-70um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/subq-immune-profiling ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "Pro-reparative IgG1-biased Th2 response observed in 70 μm MAP scaffolds" ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType    "Anti-L-MMP IgG subtype ratio (ELISA)" ;
+    lova:unit               "absorbance" ;
+    lova:scope              "Bulk/global (serum)" ;
+    lova:timePoint          "Day 21" ;
+    lova:sampleSize         5 ;
+    lova:isSignificant      true .
+
+lova:outcome/10.1002-adma.202304049/macrophage-phenotype-transition  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/wound-healing ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "130 μm MAP modulated timely transition in pro-regenerative macrophage phenotypes (CD206+, Arg1+)" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "CD206 and Arg1 MFI in macrophages (flow cytometry)" ;
+    lova:unit               "MFI" ;
+    lova:scope              "Bulk/global" ;
+    lova:timePoint          "Day 1, 7, 21" ;
+    lova:isTimeSeries       true ;
+    lova:sampleSize         5 ;
+    lova:isSignificant      true .
+
+lova:outcome/10.1002-adma.202304049/hair-follicle-structures  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/wound-healing ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "Number of hair follicle-like structures in inner 60% of wound bed" ;
+    lova:measurementCategory "Structural/Imaging" ;
+    lova:measurementType    "Hair follicle structure count" ;
+    lova:unit               "count" ;
+    lova:scope              "Regional (inner 60% of wound)" ;
+    lova:timePoint          "Day 21" ;
+    lova:sampleSize         5 .
+
+lova:outcome/10.1002-adma.202304049/collagen-anisotropy  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/wound-healing ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "Collagen alignment/anisotropy measured via FibrilTool" ;
+    lova:measurementCategory "Structural/Imaging" ;
+    lova:measurementType    "Collagen anisotropy (FibrilTool)" ;
+    lova:unit               "anisotropy score (0-1)" ;
+    lova:scope              "Regional (100 μm² ROIs)" ;
+    lova:timePoint          "Day 21" ;
+    lova:sampleSize         5 .
+
+
+##############################################################################
+# PAPER 3: Engineering the microstructure and spatial bioactivity of MAP
+#           scaffolds instructs vasculogenesis
+# nihms-2115180 | DOI: 10.1002/adfm.202400567
+##############################################################################
+
+lova:paper/10.1002-adfm.202400567  a  lova:Paper ;
+    dc:title        "Engineering the microstructure and spatial bioactivity of MAP scaffolds instructs vasculogenesis in vitro and modifies vessel formation in vivo" ;
+    dc:identifier   "10.1002/adfm.202400567" ;
+    dc:date         "2025"^^xsd:gYear ;
+    schema:isPartOf lova:journal/adv-funct-mater ;
+    dc:creator      lova:author/anderson-a ,
+                    lova:author/caston-e ,
+                    lova:author/riley-l ,
+                    lova:author/nguyen-l ,
+                    lova:author/ntekoumes-d ,
+                    lova:author/gerecht-s ,
+                    lova:author/segura-t ;
+    lova:paperType      "Research Article" ;
+    lova:focusMaterial  "PEG-based MAP scaffolds with 2 particle sizes (Small ~65 μm, Large ~165 μm); VEGF spatial patterning for vasculogenesis" ;
+    lova:hasLabData     true .
+
+# --- Materials (Paper 3) ---
+
+lova:material/10.1002-adfm.202400567/map-small  a  lova:Material ;
+    lova:describedIn            lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label                  "Small (~65 μm) PEG-VS MAP scaffold" ;
+    lova:particleShape          "Sphere" ;
+    lova:particleMaterial       "4-arm PEG-VS (20 kDa)" ;
+    lova:particleSizeMin        55.0 ;
+    lova:particleSizeMax        75.0 ;
+    lova:particleSizeUnit       "μm" ;
+    lova:sizeDistribution       "Monodisperse (microfluidic)" ;
+    lova:stiffness              "Soft hydrogel" ;
+    lova:crosslinker            "MMP-degradable peptide" ;
+    lova:fabricationMethod      "Microfluidic water-in-oil emulsion" ;
+    lova:annealingMethod        "Enzymatic (Factor XIII)" ;
+    lova:hasGeometryProfile     lova:geometry-profile/peg-sphere-65um .
+    # TODO: add lova:scaffoldGroupId once matched to relational DB (exact match supersedes profile)
+
+lova:material/10.1002-adfm.202400567/map-large  a  lova:Material ;
+    lova:describedIn            lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label                  "Large (~165 μm) PEG-VS MAP scaffold" ;
+    lova:particleShape          "Sphere" ;
+    lova:particleMaterial       "4-arm PEG-VS (20 kDa)" ;
+    lova:particleSizeMin        155.0 ;
+    lova:particleSizeMax        175.0 ;
+    lova:particleSizeUnit       "μm" ;
+    lova:sizeDistribution       "Monodisperse (microfluidic)" ;
+    lova:stiffness              "Soft hydrogel" ;
+    lova:crosslinker            "MMP-degradable peptide" ;
+    lova:fabricationMethod      "Microfluidic water-in-oil emulsion" ;
+    lova:annealingMethod        "Enzymatic (Factor XIII)" ;
+    lova:hasGeometryProfile     lova:geometry-profile/peg-sphere-165um .
+    # TODO: add lova:scaffoldGroupId once matched to relational DB (exact match supersedes profile)
+
+lova:material/10.1002-adfm.202400567/map-small-vegf-homogeneous  a  lova:Material ;
+    lova:describedIn            lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label                  "Small MAP + homogeneous VEGF" ;
+    lova:particleShape          "Sphere" ;
+    lova:particleMaterial       "4-arm PEG-VS (20 kDa)" ;
+    lova:particleSizeMin        55.0 ;
+    lova:particleSizeMax        75.0 ;
+    lova:particleSizeUnit       "μm" ;
+    lova:stiffness              "Soft hydrogel" ;
+    lova:surfaceModification    "VEGF tethered uniformly via K-peptide or Q-peptide" ;
+    lova:fabricationMethod      "Microfluidic water-in-oil emulsion" ;
+    lova:annealingMethod        "Enzymatic (Factor XIII)" ;
+    lova:hasGeometryProfile     lova:geometry-profile/peg-sphere-65um .
+    # TODO: add lova:scaffoldGroupId once matched to relational DB (exact match supersedes profile)
+    # (same base scaffold group as map-small, different surface modification)
+
+lova:material/10.1002-adfm.202400567/map-large-vegf-homogeneous  a  lova:Material ;
+    lova:describedIn            lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label                  "Large MAP + homogeneous VEGF" ;
+    lova:particleShape          "Sphere" ;
+    lova:particleMaterial       "4-arm PEG-VS (20 kDa)" ;
+    lova:particleSizeMin        155.0 ;
+    lova:particleSizeMax        175.0 ;
+    lova:particleSizeUnit       "μm" ;
+    lova:stiffness              "Soft hydrogel" ;
+    lova:surfaceModification    "VEGF tethered uniformly via K-peptide or Q-peptide" ;
+    lova:fabricationMethod      "Microfluidic water-in-oil emulsion" ;
+    lova:annealingMethod        "Enzymatic (Factor XIII)" ;
+    lova:hasGeometryProfile     lova:geometry-profile/peg-sphere-165um .
+    # TODO: add lova:scaffoldGroupId once matched to relational DB (exact match supersedes profile)
+
+lova:material/10.1002-adfm.202400567/map-large-vegf-heterogeneous  a  lova:Material ;
+    lova:describedIn            lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label                  "Large MAP + heterogeneous VEGF (spatial patterning)" ;
+    lova:particleShape          "Sphere" ;
+    lova:particleMaterial       "4-arm PEG-VS (20 kDa)" ;
+    lova:particleSizeMin        155.0 ;
+    lova:particleSizeMax        175.0 ;
+    lova:particleSizeUnit       "μm" ;
+    lova:stiffness              "Soft hydrogel" ;
+    lova:surfaceModification    "VEGF tethered heterogeneously — VEGF-K and VEGF-Q on separate particle populations" ;
+    lova:fabricationMethod      "Microfluidic water-in-oil emulsion" ;
+    lova:annealingMethod        "Enzymatic (Factor XIII)" ;
+    lova:hasGeometryProfile     lova:geometry-profile/peg-sphere-165um .
+    # TODO: add lova:scaffoldGroupId once matched to relational DB (exact match supersedes profile)
+
+# --- Experiments (Paper 3) ---
+
+lova:experiment/10.1002-adfm.202400567/invitro-vasculogenesis  a  lova:Experiment ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    lova:usedMaterial       lova:material/10.1002-adfm.202400567/map-small ,
+                            lova:material/10.1002-adfm.202400567/map-large ,
+                            lova:material/10.1002-adfm.202400567/map-small-vegf-homogeneous ,
+                            lova:material/10.1002-adfm.202400567/map-large-vegf-homogeneous ,
+                            lova:material/10.1002-adfm.202400567/map-large-vegf-heterogeneous ;
+    rdfs:label              "In vitro vasculogenesis assay with hECFCs in MAP scaffolds" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType     "Vasculogenesis" ;
+    lova:assayOrMethod      "Confocal imaging, vessel network analysis" ;
+    lova:cellType           "hECFC (human endothelial colony forming cells)" ;
+    lova:cellSource         "Human cord blood" ;
+    lova:seedingDensity     "Seeded into MAP void space" ;
+    lova:cultureDuration    "7 days" ;
+    lova:cultureMedium      "EGM-2" ;
+    lova:temperature        "37°C" ;
+    lova:atmosphere         "5% CO2" .
+
+lova:experiment/10.1002-adfm.202400567/invivo-vessel-formation  a  lova:Experiment ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    lova:usedMaterial       lova:material/10.1002-adfm.202400567/map-small ,
+                            lova:material/10.1002-adfm.202400567/map-large ,
+                            lova:material/10.1002-adfm.202400567/map-large-vegf-homogeneous ,
+                            lova:material/10.1002-adfm.202400567/map-large-vegf-heterogeneous ;
+    rdfs:label              "In vivo subcutaneous implantation — vessel formation" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType     "Vessel formation (in vivo)" ;
+    lova:assayOrMethod      "Histology, CD31 immunostaining" ;
+    lova:cellType           "Host endothelial cells" ;
+    lova:cellSource         "Murine (subcutaneous implant)" ;
+    lova:cultureDuration    "14 days" ;
+    lova:temperature        "37°C (in vivo)" .
+
+lova:experiment/10.1002-adfm.202400567/lovamap-characterization  a  lova:Experiment ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    lova:usedMaterial       lova:material/10.1002-adfm.202400567/map-small ,
+                            lova:material/10.1002-adfm.202400567/map-large ;
+    rdfs:label              "LOVAMAP void space characterization of MAP scaffolds" ;
+    lova:experimentCategory "Structural/Imaging" ;
+    lova:experimentType     "3D void space analysis" ;
+    lova:assayOrMethod      "LOVAMAP software" ;
+    lova:equipment          "Confocal microscopy (for 3D image stacks)" .
+
+# --- Outcomes (Paper 3) ---
+
+lova:outcome/10.1002-adfm.202400567/vessel-network-length  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/invitro-vasculogenesis ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "Total vessel network length — greater in large MAP vs small MAP" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Total vessel network length" ;
+    lova:unit               "μm" ;
+    lova:scope              "Bulk/global (per scaffold)" ;
+    lova:timePoint          "Day 7" ;
+    lova:isSignificant      true .
+
+lova:outcome/10.1002-adfm.202400567/vessel-junctions  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/invitro-vasculogenesis ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "Number of vessel junctions — greater in large MAP" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Vessel junction count" ;
+    lova:unit               "count" ;
+    lova:scope              "Bulk/global (per scaffold)" ;
+    lova:timePoint          "Day 7" ;
+    lova:isSignificant      true .
+
+lova:outcome/10.1002-adfm.202400567/vessel-segments  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/invitro-vasculogenesis ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "Number of vessel segments — greater in large MAP" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Vessel segment count" ;
+    lova:unit               "count" ;
+    lova:scope              "Bulk/global (per scaffold)" ;
+    lova:timePoint          "Day 7" ;
+    lova:isSignificant      true .
+
+lova:outcome/10.1002-adfm.202400567/vegf-heterogeneous-best  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/invitro-vasculogenesis ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "Heterogeneous VEGF in large MAP produced the most vessel formation in vitro" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Vessel network formation (qualitative ranking)" ;
+    lova:scope              "Bulk/global" ;
+    lova:timePoint          "Day 7" ;
+    lova:comparisonGroup    "Homogeneous VEGF, no VEGF, small MAP" ;
+    lova:isSignificant      true .
+
+lova:outcome/10.1002-adfm.202400567/invivo-cd31-large-vegf  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/invivo-vessel-formation ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "CD31+ vessel area in subcutaneous implants at day 14" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "CD31+ area (immunostaining)" ;
+    lova:unit               "% area" ;
+    lova:scope              "Regional (implant cross-section)" ;
+    lova:timePoint          "Day 14" ;
+    lova:comparisonGroup    "Small MAP, Large MAP without VEGF" .
+
+lova:outcome/10.1002-adfm.202400567/pore-size-small  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/lovamap-characterization ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "LOVAMAP-measured pore size for small MAP scaffolds" ;
+    lova:measurementCategory "Structural/Imaging" ;
+    lova:measurementType    "Pore diameter (largest inscribed sphere)" ;
+    lova:unit               "μm" ;
+    lova:scope              "Per-pore (distribution)" .
+
+lova:outcome/10.1002-adfm.202400567/pore-size-large  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/lovamap-characterization ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "LOVAMAP-measured pore size for large MAP scaffolds" ;
+    lova:measurementCategory "Structural/Imaging" ;
+    lova:measurementType    "Pore diameter (largest inscribed sphere)" ;
+    lova:unit               "μm" ;
+    lova:scope              "Per-pore (distribution)" .
+
+lova:outcome/10.1002-adfm.202400567/void-volume-fraction  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/lovamap-characterization ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "LOVAMAP-measured void volume fraction for small and large MAP" ;
+    lova:measurementCategory "Structural/Imaging" ;
+    lova:measurementType    "Void volume fraction" ;
+    lova:unit               "fraction (0-1)" ;
+    lova:scope              "Bulk/global" .
+
+
+##############################################################################
+# GEOMETRY PROFILES — Baseline fuzzy links to relational DB
+# These profiles record match criteria derived from each paper's material
+# descriptions. scaffoldGroupIds should be populated by querying the
+# relational DB's ParticlePropertyGroup table using the match criteria.
+# Materials with the same base particle properties share a profile.
+#
+# When exact scaffoldGroupIds are added directly to Material nodes,
+# those supersede the profile's fuzzy matches in downstream queries.
+##############################################################################
+
+# Shared by: Paper 1 map-40um, Paper 2 map-40um
+lova:geometry-profile/peg-sphere-40um  a  lova:GeometryProfile ;
+    rdfs:label              "PEG spherical microgels ~40 μm" ;
+    lova:matchType          "aggregate" ;
+    lova:matchDescription   "Scaffold groups with spherical PEG particles, mean size ~40 μm" ;
+    lova:matchShape         "Sphere" ;
+    lova:matchSizeMin       35.0 ;
+    lova:matchSizeMax       45.0 ;
+    lova:matchMaterial      "PEG" ;
+    lova:scaffoldCount      0 .
+    # TODO: populate lova:scaffoldGroupId by querying relational DB:
+    # SELECT sg.Id FROM ScaffoldGroup sg
+    #   JOIN InputGroup ig ON sg.InputGroupId = ig.Id
+    #   JOIN ParticlePropertyGroup ppg ON ig.ParticlePropertyGroupId = ppg.Id
+    #   WHERE ppg.Shape = 'Sphere' AND ppg.MeanSize BETWEEN 35 AND 45
+
+# Shared by: Paper 1 map-70um, Paper 2 map-70um
+lova:geometry-profile/peg-sphere-70um  a  lova:GeometryProfile ;
+    rdfs:label              "PEG spherical microgels ~70 μm" ;
+    lova:matchType          "aggregate" ;
+    lova:matchDescription   "Scaffold groups with spherical PEG particles, mean size ~70 μm" ;
+    lova:matchShape         "Sphere" ;
+    lova:matchSizeMin       65.0 ;
+    lova:matchSizeMax       75.0 ;
+    lova:matchMaterial      "PEG" ;
+    lova:scaffoldCount      0 .
+    # TODO: populate lova:scaffoldGroupId via same query pattern, MeanSize BETWEEN 65 AND 75
+
+# Shared by: Paper 1 map-130um, Paper 2 map-130um
+lova:geometry-profile/peg-sphere-130um  a  lova:GeometryProfile ;
+    rdfs:label              "PEG spherical microgels ~130 μm" ;
+    lova:matchType          "aggregate" ;
+    lova:matchDescription   "Scaffold groups with spherical PEG particles, mean size ~130 μm" ;
+    lova:matchShape         "Sphere" ;
+    lova:matchSizeMin       125.0 ;
+    lova:matchSizeMax       135.0 ;
+    lova:matchMaterial      "PEG" ;
+    lova:scaffoldCount      0 .
+    # TODO: populate lova:scaffoldGroupId via same query pattern, MeanSize BETWEEN 125 AND 135
+
+# Shared by: Paper 3 map-small, Paper 3 map-small-vegf-homogeneous
+lova:geometry-profile/peg-sphere-65um  a  lova:GeometryProfile ;
+    rdfs:label              "PEG spherical microgels ~65 μm (small MAP)" ;
+    lova:matchType          "aggregate" ;
+    lova:matchDescription   "Scaffold groups with spherical PEG particles, mean size 55-75 μm" ;
+    lova:matchShape         "Sphere" ;
+    lova:matchSizeMin       55.0 ;
+    lova:matchSizeMax       75.0 ;
+    lova:matchMaterial      "PEG" ;
+    lova:scaffoldCount      0 .
+    # TODO: populate lova:scaffoldGroupId via same query pattern, MeanSize BETWEEN 55 AND 75
+
+# Shared by: Paper 3 map-large, Paper 3 map-large-vegf-homogeneous, Paper 3 map-large-vegf-heterogeneous
+lova:geometry-profile/peg-sphere-165um  a  lova:GeometryProfile ;
+    rdfs:label              "PEG spherical microgels ~165 μm (large MAP)" ;
+    lova:matchType          "aggregate" ;
+    lova:matchDescription   "Scaffold groups with spherical PEG particles, mean size 155-175 μm" ;
+    lova:matchShape         "Sphere" ;
+    lova:matchSizeMin       155.0 ;
+    lova:matchSizeMax       175.0 ;
+    lova:matchMaterial      "PEG" ;
+    lova:scaffoldCount      0 .
+    # TODO: populate lova:scaffoldGroupId via same query pattern, MeanSize BETWEEN 155 AND 175

@@ -1,5 +1,7 @@
 
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -441,6 +443,145 @@ namespace Services.Services
 				i++;
 			}
 			return result;
+		}
+
+		public async Task<(bool Succeeded, string ErrorMessage, BatchReplaceResultDto? Result)> BatchReplaceMeshFiles(BatchReplaceRequestDto request)
+		{
+			try
+			{
+				if (!Directory.Exists(request.SourcePath))
+				{
+					return (false, $"Source directory does not exist: {request.SourcePath}", null);
+				}
+
+				var glbFiles = Directory.GetFiles(request.SourcePath, "*.glb");
+				if (glbFiles.Length == 0)
+				{
+					return (false, "No .glb files found in source directory", null);
+				}
+
+				var result = new BatchReplaceResultDto
+				{
+					DryRun = request.DryRun,
+					TotalFilesScanned = glbFiles.Length
+				};
+
+				// Load all domains that have a mesh file and an original filename
+				var domains = await _context.Domains
+					.Where(d => d.MeshFilePath != null && d.OriginalFileName != null)
+					.ToListAsync();
+
+				// Build lookup: normalized original filename -> domain (case-insensitive)
+				var lookup = new Dictionary<string, Domain>(StringComparer.OrdinalIgnoreCase);
+				foreach (var domain in domains)
+				{
+					var normalized = NormalizeFileName(domain.OriginalFileName!);
+					// If multiple domains share the same normalized name, last one wins
+					lookup[normalized] = domain;
+				}
+
+				foreach (var glbFilePath in glbFiles)
+				{
+					var fileName = Path.GetFileName(glbFilePath);
+					var normalizedIncoming = NormalizeFileName(fileName);
+
+					if (!lookup.TryGetValue(normalizedIncoming, out var domain))
+					{
+						result.UnmatchedFiles.Add(fileName);
+						continue;
+					}
+
+					// Check for companion metadata file
+					var baseName = Path.GetFileNameWithoutExtension(glbFilePath);
+					var metadataFilePath = Path.Combine(request.SourcePath, $"{baseName}_metadata.json");
+					var hasMetadata = File.Exists(metadataFilePath);
+
+					var match = new BatchReplaceFileMatchDto
+					{
+						FileName = fileName,
+						DomainId = domain.Id,
+						ScaffoldId = domain.ScaffoldId,
+						Category = domain.Category.ToString(),
+						MatchedOriginalFileName = domain.OriginalFileName!,
+						HasMetadataFile = hasMetadata,
+						Replaced = false
+					};
+
+					if (request.DryRun)
+					{
+						result.Matched.Add(match);
+						continue;
+					}
+
+					// Execute replacement
+					try
+					{
+						var glbBytes = await File.ReadAllBytesAsync(glbFilePath);
+						var newFilePath = await _domainFileService.SaveGLBFile(glbBytes, domain.ScaffoldId);
+						var oldFilePath = domain.MeshFilePath;
+
+						domain.MeshFilePath = newFilePath;
+						domain.CreatedAt = DateTime.UtcNow;
+
+						// Load metadata if companion file exists
+						if (hasMetadata)
+						{
+							var metadataJson = await File.ReadAllTextAsync(metadataFilePath);
+							domain.Metadata = JsonDocument.Parse(metadataJson);
+						}
+
+						// OriginalFileName is NOT updated — preserves matching identity for re-runs
+
+						await _context.SaveChangesAsync();
+
+						// Safe to delete old file after DB commit
+						if (!string.IsNullOrEmpty(oldFilePath) && oldFilePath != newFilePath)
+						{
+							await _domainFileService.DeleteFile(oldFilePath);
+						}
+
+						match.Replaced = true;
+						result.Matched.Add(match);
+
+						_logger.LogInformation(
+							"Replaced mesh for Domain {DomainId} (Scaffold {ScaffoldId}, {Category}): {FileName}",
+							domain.Id, domain.ScaffoldId, domain.Category, fileName);
+					}
+					catch (Exception ex)
+					{
+						var error = $"Failed to replace {fileName} for Domain {domain.Id}: {ex.Message}";
+						_logger.LogError(ex, "Failed to replace mesh for Domain {DomainId}: {FileName}", domain.Id, fileName);
+						result.Errors.Add(error);
+						result.Matched.Add(match);
+					}
+				}
+
+				return (true, "", result);
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, "BatchReplaceMeshFiles failed");
+				return (false, $"Unexpected error: {ex.Message}", null);
+			}
+		}
+
+		/// <summary>
+		/// Strips @timestamp suffix from filenames before the .glb extension.
+		/// e.g. "labeledDomain_foo@20250524T124745.glb" → "labeledDomain_foo.glb"
+		/// Files without @ are returned as-is.
+		/// </summary>
+		private static string NormalizeFileName(string fileName)
+		{
+			var nameWithoutExt = Path.GetFileNameWithoutExtension(fileName);
+			var ext = Path.GetExtension(fileName);
+
+			var atIndex = nameWithoutExt.LastIndexOf('@');
+			if (atIndex > 0)
+			{
+				nameWithoutExt = nameWithoutExt.Substring(0, atIndex);
+			}
+
+			return nameWithoutExt + ext;
 		}
 	}
 

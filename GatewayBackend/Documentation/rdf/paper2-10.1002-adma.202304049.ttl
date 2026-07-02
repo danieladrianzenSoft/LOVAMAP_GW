@@ -1,0 +1,1003 @@
+##############################################################################
+# Paper 2: Exploring the Role of Spatial Confinement in Immune Cell
+#           Recruitment and Regeneration of Skin Wounds
+# nihms-1965294 | DOI: 10.1002/adma.202304049
+# Liu, Suarez-Arnedo, Caston, Riley, Schneider, Segura (2023)
+# Advanced Materials
+#
+# Data sources annotated:
+#   [TEXT]   = exact value from paper text
+#   [FIG-Q]  = exact value printed on figure (e.g. axis label, annotation)
+#   [FIG-E]  = estimated from bar chart (~5-10% error)
+##############################################################################
+
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+
+##############################################################################
+# JOURNAL
+##############################################################################
+
+lova:journal/adv-mater  a  lova:Journal ;
+    dc:title    "Advanced Materials" .
+
+
+##############################################################################
+# AUTHORS
+##############################################################################
+
+lova:author/liu-y  a  lova:Author ;
+    foaf:familyName     "Liu" ;
+    foaf:givenName      "Yining" ;
+    foaf:name           "Yining Liu" ;
+    schema:affiliation  "Department of Biomedical Engineering, Duke University" .
+
+lova:author/suarez-arnedo-a  a  lova:Author ;
+    foaf:familyName     "Suarez-Arnedo" ;
+    foaf:givenName      "Alejandra" ;
+    foaf:name           "Alejandra Suarez-Arnedo" ;
+    schema:affiliation  "Department of Biomedical Engineering, Duke University" .
+
+lova:author/caston-e  a  lova:Author ;
+    foaf:familyName     "Caston" ;
+    foaf:givenName      "Eleanor L. P." ;
+    foaf:name           "Eleanor L. P. Caston" ;
+    schema:affiliation  "Department of Biomedical Engineering, Duke University" .
+
+lova:author/riley-l  a  lova:Author ;
+    foaf:familyName     "Riley" ;
+    foaf:givenName      "Lindsay" ;
+    foaf:name           "Lindsay Riley" ;
+    schema:affiliation  "Department of Biomedical Engineering, Duke University" .
+
+lova:author/schneider-m  a  lova:Author ;
+    foaf:familyName     "Schneider" ;
+    foaf:givenName      "Michelle" ;
+    foaf:name           "Michelle Schneider" ;
+    schema:affiliation  "Department of Pathology, Duke University School of Medicine" .
+
+lova:author/segura-t  a  lova:Author ;
+    foaf:familyName     "Segura" ;
+    foaf:givenName      "Tatiana" ;
+    foaf:name           "Tatiana Segura" ;
+    schema:affiliation  "Department of Biomedical Engineering, Duke University" .
+
+
+##############################################################################
+# GEOMETRY PROFILES
+##############################################################################
+
+lova:geometry-profile/peg-sphere-40um  a  lova:GeometryProfile ;
+    rdfs:label              "PEG spherical microgels ~40 μm" ;
+    lova:matchType          "aggregate" ;
+    lova:matchDescription   "Scaffold groups with spherical PEG particles, mean size ~40 μm" ;
+    lova:matchShape         "Sphere" ;
+    lova:matchSizeMin       35.0 ;
+    lova:matchSizeMax       45.0 ;
+    lova:matchMaterial      "PEG" ;
+    lova:scaffoldCount      0 .
+
+lova:geometry-profile/peg-sphere-70um  a  lova:GeometryProfile ;
+    rdfs:label              "PEG spherical microgels ~70 μm" ;
+    lova:matchType          "aggregate" ;
+    lova:matchDescription   "Scaffold groups with spherical PEG particles, mean size ~70 μm" ;
+    lova:matchShape         "Sphere" ;
+    lova:matchSizeMin       65.0 ;
+    lova:matchSizeMax       75.0 ;
+    lova:matchMaterial      "PEG" ;
+    lova:scaffoldCount      0 .
+
+lova:geometry-profile/peg-sphere-130um  a  lova:GeometryProfile ;
+    rdfs:label              "PEG spherical microgels ~130 μm" ;
+    lova:matchType          "aggregate" ;
+    lova:matchDescription   "Scaffold groups with spherical PEG particles, mean size ~130 μm" ;
+    lova:matchShape         "Sphere" ;
+    lova:matchSizeMin       125.0 ;
+    lova:matchSizeMax       135.0 ;
+    lova:matchMaterial      "PEG" ;
+    lova:scaffoldCount      0 .
+
+
+##############################################################################
+# PAPER
+##############################################################################
+
+lova:paper/10.1002-adma.202304049  a  lova:Paper ;
+    dc:title        "Exploring the Role of Spatial Confinement in Immune Cell Recruitment and Regeneration of Skin Wounds" ;
+    dc:identifier   "10.1002/adma.202304049" ;
+    dc:date         "2023"^^xsd:gYear ;
+    schema:isPartOf lova:journal/adv-mater ;
+    dc:creator      lova:author/liu-y ,
+                    lova:author/suarez-arnedo-a ,
+                    lova:author/caston-e ,
+                    lova:author/riley-l ,
+                    lova:author/schneider-m ,
+                    lova:author/segura-t ;
+    lova:paperType      "Research Article" ;
+    lova:focusMaterial  "PEG-VS MAP scaffolds with 3 particle sizes (40, 70, 130 μm); in vivo immune response (subq + wound healing)" ;
+    lova:hasLabData     true .
+
+
+##############################################################################
+# FABRICATION METHOD
+##############################################################################
+
+lova:fabrication-method/10.1002-adma.202304049/microfluidic-peg-fxiii  a  lova:FabricationMethod ;
+    lova:describedIn          lova:paper/10.1002-adma.202304049 ;
+    rdfs:label                "Microfluidic PEG-VS microgels with Factor XIII annealing" ;
+    lova:chemistry            "Michael-type addition (thiol-ene, base-catalyzed by triethanolamine)" ;
+    lova:manufacturingMethod  "Microfluidic water-in-oil emulsion (4-inlet device for 40/70 μm, 2-inlet for 130 μm)" ;
+    lova:annealingChemistry   "Enzymatic (Factor XIII transglutamination between K and Q peptides)" ;
+    lova:annealingConditions  "37°C, 30 min; FXIIIa 250 U/mL activated by thrombin 200 U/mL (in 200 mM Tris-HCl, 150 mM NaCl, 20 mM CaCl2)" ;
+    lova:monomer              "8-arm PEG-VS (40 kDa, JenKem Technology), 5 wt%" ;
+    lova:crosslinker          "MMP-degradable di-thiol peptide (Ac-GCRDGPQGIWGQDRCG-NH2, GenScript), 0.6 VS:thiol ratio" ;
+    lova:surfactant           "Span 80" ;
+    lova:surfactantCAS        "1338-43-8" ;
+    lova:additionalReagent    "Heavy mineral oil (continuous phase)" ,
+                              "Triethanolamine (0.3 M in precursor; 3% v/v in gelation oil)" ,
+                              "AlexaFluor-647 C2-maleimide (10 μM, for imaging)" ;
+    lova:enzyme               "Factor XIII (FXIIIa)" ;
+    lova:enzymeEC             "EC 2.3.2.13" ;
+    lova:enzymeRole           "Annealing (inter-particle crosslinking via K/Q peptide transglutamination)" ;
+    lova:peptide              "K-peptide (Ac-FKGGERCG-NH2, GenScript, 500 μM)" ,
+                              "Q-peptide (Ac-NQEQVSPLGGERCG-NH2, GenScript, 500 μM)" ,
+                              "RGD (Ac-RGDSPGERCG-NH2, GenScript, 500 μM)" ;
+    lova:peptideRole          "Enzymatic annealing substrate (K)" ,
+                              "Enzymatic annealing substrate (Q)" ,
+                              "Cell adhesion" .
+
+
+##############################################################################
+# MATERIALS
+##############################################################################
+
+lova:material/10.1002-adma.202304049/map-40um  a  lova:Material ;
+    lova:describedIn            lova:paper/10.1002-adma.202304049 ;
+    rdfs:label                  "40 μm PEG-VS MAP scaffold (confining)" ;
+    lova:particleShape          "Sphere" ;
+    lova:particleMaterial       "8-arm PEG-VS (40 kDa)" ;
+    lova:particleSizeMin        40.0 ;
+    lova:particleSizeMax        40.0 ;
+    lova:particleSizeUnit       "μm" ;
+    lova:sizeDistribution       "Monodisperse (microfluidic, 4-inlet device)" ;
+    lova:reportedPoreSize       "Largest enclosed sphere median ~10 μm (simulation); most pores smaller than BMDM diameter" ;
+    lova:stiffness              "Soft hydrogel" ;
+    lova:hasFabricationMethod   lova:fabrication-method/10.1002-adma.202304049/microfluidic-peg-fxiii ;
+    lova:hasGeometryProfile     lova:geometry-profile/peg-sphere-40um .
+
+lova:material/10.1002-adma.202304049/map-70um  a  lova:Material ;
+    lova:describedIn            lova:paper/10.1002-adma.202304049 ;
+    rdfs:label                  "70 μm PEG-VS MAP scaffold (intermediate)" ;
+    lova:particleShape          "Sphere" ;
+    lova:particleMaterial       "8-arm PEG-VS (40 kDa)" ;
+    lova:particleSizeMin        70.0 ;
+    lova:particleSizeMax        70.0 ;
+    lova:particleSizeUnit       "μm" ;
+    lova:sizeDistribution       "Monodisperse (microfluidic, 4-inlet device)" ;
+    lova:reportedPoreSize       "Largest enclosed sphere median ~18 μm (simulation); comparable to BMDM diameter" ;
+    lova:stiffness              "Soft hydrogel" ;
+    lova:hasFabricationMethod   lova:fabrication-method/10.1002-adma.202304049/microfluidic-peg-fxiii ;
+    lova:hasGeometryProfile     lova:geometry-profile/peg-sphere-70um .
+
+lova:material/10.1002-adma.202304049/map-130um  a  lova:Material ;
+    lova:describedIn            lova:paper/10.1002-adma.202304049 ;
+    rdfs:label                  "130 μm PEG-VS MAP scaffold (unconfining)" ;
+    lova:particleShape          "Sphere" ;
+    lova:particleMaterial       "8-arm PEG-VS (40 kDa)" ;
+    lova:particleSizeMin        130.0 ;
+    lova:particleSizeMax        130.0 ;
+    lova:particleSizeUnit       "μm" ;
+    lova:sizeDistribution       "Monodisperse (microfluidic, 2-inlet device)" ;
+    lova:reportedPoreSize       "Largest enclosed sphere median ~25 μm (simulation); much larger than BMDM diameter" ;
+    lova:stiffness              "Soft hydrogel" ;
+    lova:hasFabricationMethod   lova:fabrication-method/10.1002-adma.202304049/microfluidic-peg-fxiii ;
+    lova:hasGeometryProfile     lova:geometry-profile/peg-sphere-130um .
+
+
+##############################################################################
+# EXPERIMENTS
+##############################################################################
+
+# Fig 1: Scaffold characterization (simulation + confocal)
+lova:experiment/10.1002-adma.202304049/scaffold-characterization  a  lova:Experiment ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    lova:usedMaterial       lova:material/10.1002-adma.202304049/map-40um ,
+                            lova:material/10.1002-adma.202304049/map-70um ,
+                            lova:material/10.1002-adma.202304049/map-130um ;
+    rdfs:label              "MAP scaffold void space characterization (Fig 1)" ;
+    lova:experimentCategory "Structural/Imaging" ;
+    lova:experimentType     "3D void space analysis" ;
+    lova:assayOrMethod      "Custom Python simulation (rigid-sphere packing), confocal z-stacks, IMARIS void volume, custom MATLAB size analysis" ;
+    lova:equipment          "Nikon Ti Eclipse (4X, size); confocal (40X, z-stacks 140 μm, 509 slices, 0.275 μm step)" .
+
+# Figs 2, 6: Subcutaneous immune profiling + IgG + T cells
+lova:experiment/10.1002-adma.202304049/subq-immune-profiling  a  lova:Experiment ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    lova:usedMaterial       lova:material/10.1002-adma.202304049/map-40um ,
+                            lova:material/10.1002-adma.202304049/map-70um ,
+                            lova:material/10.1002-adma.202304049/map-130um ;
+    rdfs:label              "Subcutaneous implantation — immune profiling, IgG, T cells (Figs 2, 6)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType     "Immune cell recruitment (in vivo)" ;
+    lova:assayOrMethod      "Spectral flow cytometry (11-color innate panel, 7-color macrophage panel), ELISA (anti-L-MMP IgG), T cell panel (lymph node + spleen)" ;
+    lova:cellType           "Host immune cells (neutrophils, monocytes, macrophages, T cells, B cells, NK cells, DCs, eosinophils, basophils, FcεRI+ cells)" ;
+    lova:cellSource         "C57BL/6J male mice, 7-12 weeks (Jackson Laboratory)" ;
+    lova:cultureDuration    "1, 4, 7, 14, 21 days" ;
+    lova:temperature        "37°C (in vivo)" ;
+    lova:medium             "Subcutaneous dorsal injection (3 × 50 μL per mouse, one each size, 29-gauge)" ;
+    lova:equipment          "Cytek NL-3000 (SpectroFlo, FlowJo v10.8)" ;
+    lova:sampleSize         5 .
+
+# Fig 3: Wound healing — histology, IHC, ELISA
+lova:experiment/10.1002-adma.202304049/wound-healing-histology  a  lova:Experiment ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    lova:usedMaterial       lova:material/10.1002-adma.202304049/map-40um ,
+                            lova:material/10.1002-adma.202304049/map-70um ,
+                            lova:material/10.1002-adma.202304049/map-130um ;
+    rdfs:label              "Wound healing — histology, IHC, and ELISA at day 21 (Fig 3)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType     "Wound healing (in vivo)" ;
+    lova:assayOrMethod      "H&E, Picro-Sirius Red (polarized light), IHC (CD11b, α-SMA), ELISA (TGF-β, TNF), blinded dermatopathologist scoring (12-point), FibrilTool anisotropy" ;
+    lova:cellType           "Host tissue cells and immune cells" ;
+    lova:cellSource         "SKH-1 Elite mice (Charles River), 10-12 weeks, mixed gender" ;
+    lova:cultureDuration    "21 days" ;
+    lova:temperature        "37°C (in vivo)" ;
+    lova:medium             "5 mm full-thickness punch biopsy wound (4 per mouse, splinted with silicone rings)" ;
+    lova:equipment          "ZEISS Axio Scan.Z1" ;
+    lova:sampleSize         5 .
+
+# Figs 4-5: Wound healing — immune and macrophage phenotyping
+lova:experiment/10.1002-adma.202304049/wound-immune-profiling  a  lova:Experiment ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    lova:usedMaterial       lova:material/10.1002-adma.202304049/map-40um ,
+                            lova:material/10.1002-adma.202304049/map-70um ,
+                            lova:material/10.1002-adma.202304049/map-130um ;
+    rdfs:label              "Wound healing — immune and macrophage phenotyping (Figs 4-5)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType     "Immune cell recruitment in wound (in vivo)" ;
+    lova:assayOrMethod      "Spectral flow cytometry (innate panel + macrophage panel), tSNE clustering (7 subpopulations)" ;
+    lova:cellType           "Host immune cells and macrophage subpopulations" ;
+    lova:cellSource         "SKH-1 Elite mice (Charles River), 10-12 weeks, mixed gender" ;
+    lova:cultureDuration    "1, 7, 21 days" ;
+    lova:temperature        "37°C (in vivo)" ;
+    lova:medium             "5 mm full-thickness punch biopsy wound (splinted)" ;
+    lova:equipment          "Cytek NL-3000" ;
+    lova:sampleSize         5 .
+
+
+##############################################################################
+# OUTCOMES — Scaffold characterization (Fig 1) [FIG-E]
+# Simulated void space using rigid-sphere packing model.
+##############################################################################
+
+lova:outcome/10.1002-adma.202304049/pore-diameter-40um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/scaffold-characterization ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "Largest enclosed sphere in 40 μm MAP — median ~10 μm (most pores smaller than BMDM)" ;
+    lova:measurementCategory "Structural/Imaging" ;
+    lova:measurementType    "Largest enclosed sphere diameter (simulated pore size)" ;
+    lova:value              10.0 ;
+    lova:unit               "μm" ;
+    lova:scope              "Per-pore (median)" .
+
+lova:outcome/10.1002-adma.202304049/pore-diameter-70um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/scaffold-characterization ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "Largest enclosed sphere in 70 μm MAP — median ~18 μm (comparable to BMDM)" ;
+    lova:measurementCategory "Structural/Imaging" ;
+    lova:measurementType    "Largest enclosed sphere diameter (simulated pore size)" ;
+    lova:value              18.0 ;
+    lova:unit               "μm" ;
+    lova:scope              "Per-pore (median)" .
+
+lova:outcome/10.1002-adma.202304049/pore-diameter-130um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/scaffold-characterization ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "Largest enclosed sphere in 130 μm MAP — median ~25 μm (much larger than BMDM)" ;
+    lova:measurementCategory "Structural/Imaging" ;
+    lova:measurementType    "Largest enclosed sphere diameter (simulated pore size)" ;
+    lova:value              25.0 ;
+    lova:unit               "μm" ;
+    lova:scope              "Per-pore (median)" .
+
+lova:outcome/10.1002-adma.202304049/entry-door-40um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/scaffold-characterization ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "Entry door diameter in 40 μm MAP — median ~10 μm" ;
+    lova:measurementCategory "Structural/Imaging" ;
+    lova:measurementType    "Entry door diameter (simulated)" ;
+    lova:value              10.0 ;
+    lova:unit               "μm" ;
+    lova:scope              "Per-door (median)" .
+
+lova:outcome/10.1002-adma.202304049/entry-door-70um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/scaffold-characterization ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "Entry door diameter in 70 μm MAP — median ~20 μm" ;
+    lova:measurementCategory "Structural/Imaging" ;
+    lova:measurementType    "Entry door diameter (simulated)" ;
+    lova:value              20.0 ;
+    lova:unit               "μm" ;
+    lova:scope              "Per-door (median)" .
+
+lova:outcome/10.1002-adma.202304049/entry-door-130um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/scaffold-characterization ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "Entry door diameter in 130 μm MAP — median ~40 μm" ;
+    lova:measurementCategory "Structural/Imaging" ;
+    lova:measurementType    "Entry door diameter (simulated)" ;
+    lova:value              40.0 ;
+    lova:unit               "μm" ;
+    lova:scope              "Per-door (median)" .
+
+# TEXT: void volume fraction 23-27% for all sizes, consistent with random sphere packing
+lova:outcome/10.1002-adma.202304049/void-volume-fraction  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/scaffold-characterization ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "Void volume fraction 23-27% for all 3 sizes — consistent with random sphere packing [TEXT]" ;
+    lova:measurementCategory "Structural/Imaging" ;
+    lova:measurementType    "Void volume fraction (IMARIS, confocal z-stacks)" ;
+    lova:value              0.25 ;
+    lova:unit               "fraction (0-1)" ;
+    lova:scope              "Bulk/global" ;
+    lova:isSignificant      false .
+
+
+##############################################################################
+# OUTCOMES — Subcutaneous immune profiling (Fig 2) [FIG-E]
+# C57BL/6J mice, 5 time points, n=5.
+##############################################################################
+
+# Neutrophils — Day 1: 130 μm highest, size-dependent
+lova:outcome/10.1002-adma.202304049/subq-neutrophil-day1-40um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/subq-immune-profiling ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "Neutrophil % at day 1 — 40 μm subq" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Neutrophil % (of CD45+ cells)" ;
+    lova:value              60.0 ;
+    lova:unit               "%" ;
+    lova:scope              "Bulk/global" ;
+    lova:timePoint          "Day 1" ;
+    lova:sampleSize         5 .
+
+lova:outcome/10.1002-adma.202304049/subq-neutrophil-day1-70um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/subq-immune-profiling ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "Neutrophil % at day 1 — 70 μm subq" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Neutrophil % (of CD45+ cells)" ;
+    lova:value              65.0 ;
+    lova:unit               "%" ;
+    lova:scope              "Bulk/global" ;
+    lova:timePoint          "Day 1" ;
+    lova:sampleSize         5 .
+
+lova:outcome/10.1002-adma.202304049/subq-neutrophil-day1-130um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/subq-immune-profiling ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "Neutrophil % at day 1 — 130 μm subq — highest at early time points" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Neutrophil % (of CD45+ cells)" ;
+    lova:value              80.0 ;
+    lova:unit               "%" ;
+    lova:scope              "Bulk/global" ;
+    lova:timePoint          "Day 1" ;
+    lova:sampleSize         5 ;
+    lova:comparisonGroup    "40 μm MAP" ;
+    lova:isSignificant      true .
+
+# Macrophages — Day 14 and 21: 40 μm highest (****)
+lova:outcome/10.1002-adma.202304049/subq-macrophage-day14-40um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/subq-immune-profiling ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "Macrophage % at day 14 — 40 μm subq — highest (****)" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Macrophage % (of CD45+ cells)" ;
+    lova:value              12.0 ;
+    lova:unit               "%" ;
+    lova:scope              "Bulk/global" ;
+    lova:timePoint          "Day 14" ;
+    lova:sampleSize         5 ;
+    lova:comparisonGroup    "70 μm and 130 μm MAP" ;
+    lova:isSignificant      true .
+
+lova:outcome/10.1002-adma.202304049/subq-macrophage-day14-130um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/subq-immune-profiling ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "Macrophage % at day 14 — 130 μm subq — lowest" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Macrophage % (of CD45+ cells)" ;
+    lova:value              5.0 ;
+    lova:unit               "%" ;
+    lova:scope              "Bulk/global" ;
+    lova:timePoint          "Day 14" ;
+    lova:sampleSize         5 .
+
+# Eosinophils — Day 7: 70 μm peak
+lova:outcome/10.1002-adma.202304049/subq-eosinophil-day7  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/subq-immune-profiling ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "Eosinophil % peaked at day 7 in 70 μm MAP — size-dependent (**)" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Eosinophil % (of CD45+ cells)" ;
+    lova:unit               "%" ;
+    lova:scope              "Bulk/global" ;
+    lova:timePoint          "Day 7" ;
+    lova:sampleSize         5 ;
+    lova:isSignificant      true .
+
+# Summary: size-dependent temporal kinetics
+lova:outcome/10.1002-adma.202304049/subq-immune-kinetics-summary  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/subq-immune-profiling ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "Size-dependent immune kinetics: 130 μm → early neutrophils; 40 μm → sustained macrophages; 70 μm → eosinophil peak [TEXT]" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Immune cell recruitment temporal profile (qualitative summary)" ;
+    lova:scope              "Bulk/global" ;
+    lova:timePoint          "Day 1-21" ;
+    lova:isTimeSeries       true ;
+    lova:isSignificant      true .
+
+
+##############################################################################
+# OUTCOMES — IgG and T cell profiling (Fig 6) [FIG-E]
+# Serum and lymphoid organs from subcutaneous model at day 21.
+##############################################################################
+
+# TEXT: "70 μm MAP scaffolds showed an IgG1-biased Th2 response"
+lova:outcome/10.1002-adma.202304049/igg1-70um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/subq-immune-profiling ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "Anti-L-MMP IgG1 highest in 70 μm MAP — pro-reparative Th2-biased response (****)" ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType    "Anti-L-MMP IgG1 (ELISA, absorbance AUC)" ;
+    lova:value              1.5 ;
+    lova:unit               "absorbance (AUC)" ;
+    lova:scope              "Bulk/global (serum)" ;
+    lova:timePoint          "Day 21" ;
+    lova:sampleSize         5 ;
+    lova:comparisonGroup    "40 μm, 130 μm, and untreated" ;
+    lova:isSignificant      true .
+
+lova:outcome/10.1002-adma.202304049/igg-total-70um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/subq-immune-profiling ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "Total anti-L-MMP IgG highest in 70 μm MAP" ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType    "Anti-L-MMP IgG total (ELISA, absorbance AUC)" ;
+    lova:value              1.5 ;
+    lova:unit               "absorbance (AUC)" ;
+    lova:scope              "Bulk/global (serum)" ;
+    lova:timePoint          "Day 21" ;
+    lova:sampleSize         5 .
+
+lova:outcome/10.1002-adma.202304049/igg2b-igg2c-igg3-ns  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/subq-immune-profiling ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "IgG2b, IgG2c, IgG3 subtypes — no significant difference between MAP sizes" ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType    "Anti-L-MMP IgG subtypes (ELISA)" ;
+    lova:unit               "absorbance (AUC)" ;
+    lova:scope              "Bulk/global (serum)" ;
+    lova:timePoint          "Day 21" ;
+    lova:isSignificant      false .
+
+
+##############################################################################
+# OUTCOMES — Wound healing histology (Fig 3) [FIG-E]
+# SKH-1 Elite mice, day 21, n=5.
+# WD = wound dressing only (control).
+##############################################################################
+
+# Collagen — 130 μm significantly more mature collagen (**)
+lova:outcome/10.1002-adma.202304049/collagen-40um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/wound-healing-histology ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "Collagen % (Picro-Sirius Red) at day 21 — 40 μm" ;
+    lova:measurementCategory "Structural/Imaging" ;
+    lova:measurementType    "Collagen area percentage (bright field, Picro-Sirius Red)" ;
+    lova:value              55.0 ;
+    lova:unit               "%" ;
+    lova:scope              "Regional (wound bed)" ;
+    lova:timePoint          "Day 21" ;
+    lova:sampleSize         5 .
+
+lova:outcome/10.1002-adma.202304049/collagen-70um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/wound-healing-histology ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "Collagen % at day 21 — 70 μm" ;
+    lova:measurementCategory "Structural/Imaging" ;
+    lova:measurementType    "Collagen area percentage (bright field, Picro-Sirius Red)" ;
+    lova:value              55.0 ;
+    lova:unit               "%" ;
+    lova:scope              "Regional (wound bed)" ;
+    lova:timePoint          "Day 21" ;
+    lova:sampleSize         5 .
+
+lova:outcome/10.1002-adma.202304049/collagen-130um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/wound-healing-histology ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "Collagen % at day 21 — 130 μm — highest, mature collagen (**)" ;
+    lova:measurementCategory "Structural/Imaging" ;
+    lova:measurementType    "Collagen area percentage (bright field, Picro-Sirius Red)" ;
+    lova:value              75.0 ;
+    lova:unit               "%" ;
+    lova:scope              "Regional (wound bed)" ;
+    lova:timePoint          "Day 21" ;
+    lova:sampleSize         5 ;
+    lova:comparisonGroup    "40 μm, 70 μm MAP scaffolds" ;
+    lova:isSignificant      true .
+
+lova:outcome/10.1002-adma.202304049/collagen-wd  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/wound-healing-histology ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "Collagen % at day 21 — wound dressing only" ;
+    lova:measurementCategory "Structural/Imaging" ;
+    lova:measurementType    "Collagen area percentage (bright field, Picro-Sirius Red)" ;
+    lova:value              50.0 ;
+    lova:unit               "%" ;
+    lova:scope              "Regional (wound bed)" ;
+    lova:timePoint          "Day 21" ;
+    lova:sampleSize         5 .
+
+# Epidermis/dermis ratio
+lova:outcome/10.1002-adma.202304049/epi-derm-ratio-70um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/wound-healing-histology ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "Epidermis/dermis ratio at day 21 — 70 μm — closest to normal skin" ;
+    lova:measurementCategory "Structural/Imaging" ;
+    lova:measurementType    "Epidermis/dermis thickness ratio" ;
+    lova:value              0.07 ;
+    lova:unit               "ratio" ;
+    lova:scope              "Regional (wound cross-section)" ;
+    lova:timePoint          "Day 21" ;
+    lova:sampleSize         5 ;
+    lova:comparisonGroup    "Normal skin baseline (~0.07)" .
+
+lova:outcome/10.1002-adma.202304049/epi-derm-ratio-40um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/wound-healing-histology ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "Epidermis/dermis ratio at day 21 — 40 μm — elevated vs normal" ;
+    lova:measurementCategory "Structural/Imaging" ;
+    lova:measurementType    "Epidermis/dermis thickness ratio" ;
+    lova:value              0.10 ;
+    lova:unit               "ratio" ;
+    lova:scope              "Regional (wound cross-section)" ;
+    lova:timePoint          "Day 21" ;
+    lova:sampleSize         5 .
+
+# CD11b+ — connective tissue
+lova:outcome/10.1002-adma.202304049/cd11b-ct-40um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/wound-healing-histology ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "CD11b+ area in connective tissue — 40 μm — highest inflammation" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "CD11b+ area / nucleus area (IHC, connective tissue)" ;
+    lova:value              30.0 ;
+    lova:unit               "%" ;
+    lova:scope              "Regional (connective tissue in wound bed)" ;
+    lova:timePoint          "Day 21" ;
+    lova:sampleSize         5 .
+
+lova:outcome/10.1002-adma.202304049/cd11b-ct-130um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/wound-healing-histology ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "CD11b+ area in connective tissue — 130 μm — lowest inflammation" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "CD11b+ area / nucleus area (IHC, connective tissue)" ;
+    lova:value              18.0 ;
+    lova:unit               "%" ;
+    lova:scope              "Regional (connective tissue in wound bed)" ;
+    lova:timePoint          "Day 21" ;
+    lova:sampleSize         5 .
+
+# α-SMA — connective tissue
+lova:outcome/10.1002-adma.202304049/sma-ct-40um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/wound-healing-histology ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "α-SMA+ area in connective tissue — 40 μm — highest fibrosis" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "α-SMA+ area / nucleus area (IHC, connective tissue)" ;
+    lova:value              12.0 ;
+    lova:unit               "%" ;
+    lova:scope              "Regional (connective tissue in wound bed)" ;
+    lova:timePoint          "Day 21" ;
+    lova:sampleSize         5 .
+
+lova:outcome/10.1002-adma.202304049/sma-ct-130um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/wound-healing-histology ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "α-SMA+ area in connective tissue — 130 μm — lowest fibrosis" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "α-SMA+ area / nucleus area (IHC, connective tissue)" ;
+    lova:value              6.0 ;
+    lova:unit               "%" ;
+    lova:scope              "Regional (connective tissue in wound bed)" ;
+    lova:timePoint          "Day 21" ;
+    lova:sampleSize         5 .
+
+# TGF-β ELISA
+lova:outcome/10.1002-adma.202304049/tgfb-40um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/wound-healing-histology ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "TGF-β in wound lysate — 40 μm — highest" ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType    "TGF-β concentration (ELISA)" ;
+    lova:value              500.0 ;
+    lova:unit               "pg/mL per μg total protein" ;
+    lova:scope              "Bulk/global (wound lysate)" ;
+    lova:timePoint          "Day 21" ;
+    lova:sampleSize         5 .
+
+lova:outcome/10.1002-adma.202304049/tgfb-70um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/wound-healing-histology ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "TGF-β in wound lysate — 70 μm — lowest" ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType    "TGF-β concentration (ELISA)" ;
+    lova:value              250.0 ;
+    lova:unit               "pg/mL per μg total protein" ;
+    lova:scope              "Bulk/global (wound lysate)" ;
+    lova:timePoint          "Day 21" ;
+    lova:sampleSize         5 .
+
+lova:outcome/10.1002-adma.202304049/tgfb-130um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/wound-healing-histology ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "TGF-β in wound lysate — 130 μm" ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType    "TGF-β concentration (ELISA)" ;
+    lova:value              350.0 ;
+    lova:unit               "pg/mL per μg total protein" ;
+    lova:scope              "Bulk/global (wound lysate)" ;
+    lova:timePoint          "Day 21" ;
+    lova:sampleSize         5 .
+
+# TNF ELISA
+lova:outcome/10.1002-adma.202304049/tnf-40um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/wound-healing-histology ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "TNF in wound lysate — 40 μm" ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType    "TNF concentration (ELISA)" ;
+    lova:value              250.0 ;
+    lova:unit               "pg/mL per μg total protein" ;
+    lova:scope              "Bulk/global (wound lysate)" ;
+    lova:timePoint          "Day 21" ;
+    lova:sampleSize         5 .
+
+lova:outcome/10.1002-adma.202304049/tnf-70um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/wound-healing-histology ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "TNF in wound lysate — 70 μm — lowest" ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType    "TNF concentration (ELISA)" ;
+    lova:value              180.0 ;
+    lova:unit               "pg/mL per μg total protein" ;
+    lova:scope              "Bulk/global (wound lysate)" ;
+    lova:timePoint          "Day 21" ;
+    lova:sampleSize         5 .
+
+lova:outcome/10.1002-adma.202304049/tnf-wd  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/wound-healing-histology ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "TNF in wound lysate — wound dressing — highest" ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType    "TNF concentration (ELISA)" ;
+    lova:value              300.0 ;
+    lova:unit               "pg/mL per μg total protein" ;
+    lova:scope              "Bulk/global (wound lysate)" ;
+    lova:timePoint          "Day 21" ;
+    lova:sampleSize         5 .
+
+# Hair follicle structures — inner 60% of wound
+lova:outcome/10.1002-adma.202304049/hair-follicle-structures  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/wound-healing-histology ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "Hair follicle-like structures in inner 60% of wound bed at day 21 [TEXT]" ;
+    lova:measurementCategory "Structural/Imaging" ;
+    lova:measurementType    "Hair follicle structure count (blinded dermatopathologist)" ;
+    lova:unit               "count" ;
+    lova:scope              "Regional (inner 60% of wound)" ;
+    lova:timePoint          "Day 21" ;
+    lova:sampleSize         5 .
+
+# Collagen anisotropy (FibrilTool)
+lova:outcome/10.1002-adma.202304049/collagen-anisotropy  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/wound-healing-histology ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "Collagen alignment measured via FibrilTool (100 μm² ROIs)" ;
+    lova:measurementCategory "Structural/Imaging" ;
+    lova:measurementType    "Collagen anisotropy (FibrilTool)" ;
+    lova:unit               "anisotropy score (0-1)" ;
+    lova:scope              "Regional (100 μm² ROIs)" ;
+    lova:timePoint          "Day 21" ;
+    lova:sampleSize         5 .
+
+
+##############################################################################
+# OUTCOMES — Wound macrophage phenotyping (Fig 5) [FIG-E]
+# 3 time points (Day 1, 7, 21), 7 tSNE subpopulations, MFI panels.
+##############################################################################
+
+# Macrophage number — Day 1: 40 μm highest (****)
+lova:outcome/10.1002-adma.202304049/wound-mac-number-day1-40um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/wound-immune-profiling ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "Macrophage number at day 1 — 40 μm wound — highest (****)" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Macrophage number (total)" ;
+    lova:value              35000.0 ;
+    lova:unit               "cells" ;
+    lova:scope              "Bulk/global" ;
+    lova:timePoint          "Day 1" ;
+    lova:sampleSize         5 ;
+    lova:comparisonGroup    "70 μm, 130 μm, WD" ;
+    lova:isSignificant      true .
+
+lova:outcome/10.1002-adma.202304049/wound-mac-number-day1-130um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/wound-immune-profiling ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "Macrophage number at day 1 — 130 μm wound" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Macrophage number (total)" ;
+    lova:value              15000.0 ;
+    lova:unit               "cells" ;
+    lova:scope              "Bulk/global" ;
+    lova:timePoint          "Day 1" ;
+    lova:sampleSize         5 .
+
+# Ly6C+ (inflammatory monocyte-derived) macrophage % — Day 7: 130 μm lowest (***)
+lova:outcome/10.1002-adma.202304049/wound-ly6c-day7-40um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/wound-immune-profiling ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "Ly6C+ macrophage % at day 7 — 40 μm wound — still high" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Ly6C+ macrophage percentage (inflammatory, monocyte-derived)" ;
+    lova:value              50.0 ;
+    lova:unit               "%" ;
+    lova:scope              "Bulk/global" ;
+    lova:timePoint          "Day 7" ;
+    lova:sampleSize         5 .
+
+lova:outcome/10.1002-adma.202304049/wound-ly6c-day7-130um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/wound-immune-profiling ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "Ly6C+ macrophage % at day 7 — 130 μm wound — dramatically lower (***)" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Ly6C+ macrophage percentage (inflammatory, monocyte-derived)" ;
+    lova:value              10.0 ;
+    lova:unit               "%" ;
+    lova:scope              "Bulk/global" ;
+    lova:timePoint          "Day 7" ;
+    lova:sampleSize         5 ;
+    lova:comparisonGroup    "40 μm and 70 μm MAP" ;
+    lova:isSignificant      true .
+
+# CD206+ MFI — Day 21: 130 μm highest (****)
+# TEXT: "130 μm MAP modulated timely transition in pro-regenerative macrophage phenotypes"
+lova:outcome/10.1002-adma.202304049/wound-cd206-mfi-day21-130um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/wound-immune-profiling ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "CD206+ MFI at day 21 — 130 μm wound — highest pro-regenerative (****)" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "CD206+ MFI (pro-regenerative macrophage marker)" ;
+    lova:value              120000.0 ;
+    lova:unit               "MFI" ;
+    lova:scope              "Bulk/global" ;
+    lova:timePoint          "Day 21" ;
+    lova:sampleSize         5 ;
+    lova:comparisonGroup    "40 μm MAP (****), WD (**)" ;
+    lova:isSignificant      true .
+
+lova:outcome/10.1002-adma.202304049/wound-cd206-mfi-day21-70um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/wound-immune-profiling ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "CD206+ MFI at day 21 — 70 μm wound" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "CD206+ MFI (pro-regenerative macrophage marker)" ;
+    lova:value              100000.0 ;
+    lova:unit               "MFI" ;
+    lova:scope              "Bulk/global" ;
+    lova:timePoint          "Day 21" ;
+    lova:sampleSize         5 .
+
+lova:outcome/10.1002-adma.202304049/wound-cd206-mfi-day21-40um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/wound-immune-profiling ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "CD206+ MFI at day 21 — 40 μm wound — lower than 130 μm (****)" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "CD206+ MFI (pro-regenerative macrophage marker)" ;
+    lova:value              80000.0 ;
+    lova:unit               "MFI" ;
+    lova:scope              "Bulk/global" ;
+    lova:timePoint          "Day 21" ;
+    lova:sampleSize         5 .
+
+# Arg1+ MFI — Day 1: all sizes high, then decrease over time (****)
+lova:outcome/10.1002-adma.202304049/wound-arg1-mfi-day1  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/wound-immune-profiling ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "Arg1+ MFI highest at day 1 for all sizes — decreases over time (****)" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Arg1+ MFI (pro-regenerative macrophage marker)" ;
+    lova:unit               "MFI" ;
+    lova:scope              "Bulk/global" ;
+    lova:timePoint          "Day 1" ;
+    lova:sampleSize         5 ;
+    lova:isTimeSeries       true ;
+    lova:isSignificant      true .
+
+# CD86+ MFI — decreases over time for all sizes (****)
+lova:outcome/10.1002-adma.202304049/wound-cd86-mfi-timecourse  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/wound-immune-profiling ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "CD86+ MFI (pro-inflammatory) decreases over time for all sizes (****)" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "CD86+ MFI (pro-inflammatory macrophage marker)" ;
+    lova:unit               "MFI" ;
+    lova:scope              "Bulk/global" ;
+    lova:timePoint          "Day 1, 7, 21" ;
+    lova:isTimeSeries       true ;
+    lova:sampleSize         5 ;
+    lova:isSignificant      true .
+
+# iNOS+ MFI — minimal changes, time effect (****)
+lova:outcome/10.1002-adma.202304049/wound-inos-mfi-timecourse  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/wound-immune-profiling ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "iNOS+ MFI (pro-inflammatory) — time effect (****) but minimal size-dependent difference" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "iNOS+ MFI (pro-inflammatory macrophage marker)" ;
+    lova:unit               "MFI" ;
+    lova:scope              "Bulk/global" ;
+    lova:timePoint          "Day 1, 7, 21" ;
+    lova:isTimeSeries       true ;
+    lova:sampleSize         5 ;
+    lova:isSignificant      true .
+
+# CD11c+ MFI — decreases over time (****)
+lova:outcome/10.1002-adma.202304049/wound-cd11c-mfi-timecourse  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/wound-immune-profiling ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "CD11c+ MFI (antigen presenting) decreases over time (****)" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "CD11c+ MFI (antigen presenting)" ;
+    lova:unit               "MFI" ;
+    lova:scope              "Bulk/global" ;
+    lova:timePoint          "Day 1, 7, 21" ;
+    lova:isTimeSeries       true ;
+    lova:sampleSize         5 ;
+    lova:isSignificant      true .
+
+# MHCII+ MFI — decreases over time (****)
+lova:outcome/10.1002-adma.202304049/wound-mhcii-mfi-timecourse  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/wound-immune-profiling ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "MHCII+ MFI (antigen presenting) decreases over time (****)" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "MHCII+ MFI (antigen presenting)" ;
+    lova:unit               "MFI" ;
+    lova:scope              "Bulk/global" ;
+    lova:timePoint          "Day 1, 7, 21" ;
+    lova:isTimeSeries       true ;
+    lova:sampleSize         5 ;
+    lova:isSignificant      true .
+
+# tSNE subpopulation 1 (CD86+ hi) — largest population, **** between sizes at day 1
+lova:outcome/10.1002-adma.202304049/wound-tsne-pop1  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/wound-immune-profiling ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "tSNE Population 1 (CD86+ hi) at day 1 — dominant subpopulation, 70 μm highest ~60% (****)" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Macrophage subpopulation percentage (tSNE cluster 1, CD86+)" ;
+    lova:unit               "% of macrophages" ;
+    lova:scope              "Bulk/global" ;
+    lova:timePoint          "Day 1" ;
+    lova:sampleSize         5 ;
+    lova:isSignificant      true .
+
+
+##############################################################################
+# OUTCOMES — Wound immune profiling summary (Figs 4-5) [TEXT]
+# Key per-size wound healing narratives from the paper.
+##############################################################################
+
+# 40 μm: high inflammation
+lova:outcome/10.1002-adma.202304049/wound-summary-40um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/wound-immune-profiling ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "40 μm wound: high TNF, high TGF-β, more monocytes/LC/macrophages, CD206 hi macrophage response [TEXT]" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Wound healing immune profile (qualitative summary)" ;
+    lova:scope              "Bulk/global" ;
+    lova:timePoint          "Day 1-21" .
+
+# 70 μm: low inflammation, IgG1 Th2 response
+lova:outcome/10.1002-adma.202304049/wound-summary-70um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/wound-immune-profiling ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "70 μm wound: low TNF, low TGF-β, high IgG1 Th2 response — least inflammatory [TEXT]" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Wound healing immune profile (qualitative summary)" ;
+    lova:scope              "Bulk/global" ;
+    lova:timePoint          "Day 1-21" .
+
+# 130 μm: mature collagen, timely macrophage transition
+lova:outcome/10.1002-adma.202304049/wound-summary-130um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/wound-immune-profiling ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "130 μm wound: high TNF initially, Arg1 hi macrophages, mature collagen, low inflammation at resolution, IgG1 response [TEXT]" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Wound healing immune profile (qualitative summary)" ;
+    lova:scope              "Bulk/global" ;
+    lova:timePoint          "Day 1-21" .
+
+
+##############################################################################
+# OUTCOMES — Wound immune cell time series (Fig 4d) [FIG-E]
+# Selected key cell types with significant size-dependent differences.
+##############################################################################
+
+# Neutrophils — Day 1 wound
+lova:outcome/10.1002-adma.202304049/wound-neutrophil-day1  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/wound-immune-profiling ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "Wound neutrophil % at day 1 — all sizes high (~60-80%), ** between sizes" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Neutrophil % (of CD45+ cells, wound)" ;
+    lova:unit               "%" ;
+    lova:scope              "Bulk/global" ;
+    lova:timePoint          "Day 1" ;
+    lova:sampleSize         5 ;
+    lova:isSignificant      true .
+
+# Monocytes — Day 7: 130 μm highest
+lova:outcome/10.1002-adma.202304049/wound-monocyte-day7-130um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/wound-immune-profiling ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "Wound monocyte % at day 7 — 130 μm highest (~35%), **** vs other sizes" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Monocyte % (of CD45+ cells, wound)" ;
+    lova:value              35.0 ;
+    lova:unit               "%" ;
+    lova:scope              "Bulk/global" ;
+    lova:timePoint          "Day 7" ;
+    lova:sampleSize         5 ;
+    lova:comparisonGroup    "40 μm, 70 μm MAP, WD" ;
+    lova:isSignificant      true .
+
+# NK cells — Day 1: 40 μm highest (****)
+lova:outcome/10.1002-adma.202304049/wound-nk-day1-40um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/wound-immune-profiling ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "Wound NK cell % at day 1 — 40 μm highest (~15%), ****" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "NK cell % (of CD45+ cells, wound)" ;
+    lova:value              15.0 ;
+    lova:unit               "%" ;
+    lova:scope              "Bulk/global" ;
+    lova:timePoint          "Day 1" ;
+    lova:sampleSize         5 ;
+    lova:comparisonGroup    "70 μm, 130 μm MAP, WD" ;
+    lova:isSignificant      true .
+
+# Macrophages — wound Day 7: **** between sizes (from Fig 4d)
+lova:outcome/10.1002-adma.202304049/wound-macrophage-day7  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adma.202304049/wound-immune-profiling ;
+    lova:describedIn        lova:paper/10.1002-adma.202304049 ;
+    rdfs:label              "Wound macrophage % at day 7 — size-dependent (****), 130 μm highest ~10%" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Macrophage % (of CD45+ cells, wound)" ;
+    lova:unit               "%" ;
+    lova:scope              "Bulk/global" ;
+    lova:timePoint          "Day 7" ;
+    lova:sampleSize         5 ;
+    lova:isSignificant      true .

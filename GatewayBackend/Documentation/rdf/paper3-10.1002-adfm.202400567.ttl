@@ -1,0 +1,1191 @@
+##############################################################################
+# Paper 3: Engineering the microstructure and spatial bioactivity of MAP
+#           scaffolds instructs vasculogenesis in vitro and modifies vessel
+#           formation in vivo
+# nihms-2115180 | DOI: 10.1002/adfm.202400567
+# Anderson, Caston, Riley, Nguyen, Ntekoumes, Gerecht, Segura (2025)
+# Advanced Functional Materials
+#
+# Data sources annotated:
+#   [TEXT]   = exact value from paper text
+#   [FIG-Q]  = exact value printed on figure (e.g. axis label, annotation)
+#   [FIG-E]  = estimated from bar chart (~5-10% error)
+##############################################################################
+
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+
+##############################################################################
+# JOURNAL
+##############################################################################
+
+lova:journal/adv-funct-mater  a  lova:Journal ;
+    dc:title    "Advanced Functional Materials" .
+
+
+##############################################################################
+# AUTHORS
+##############################################################################
+
+lova:author/anderson-a  a  lova:Author ;
+    foaf:familyName     "Anderson" ;
+    foaf:givenName      "Alexa R." ;
+    foaf:name           "Alexa R. Anderson" ;
+    schema:affiliation  "Department of Biomedical Engineering, Duke University" .
+
+lova:author/caston-e  a  lova:Author ;
+    foaf:familyName     "Caston" ;
+    foaf:givenName      "Eleanor L. P." ;
+    foaf:name           "Eleanor L. P. Caston" ;
+    schema:affiliation  "Department of Biomedical Engineering, Duke University" .
+
+lova:author/riley-l  a  lova:Author ;
+    foaf:familyName     "Riley" ;
+    foaf:givenName      "Lindsay" ;
+    foaf:name           "Lindsay Riley" ;
+    schema:affiliation  "Department of Biomedical Engineering, Duke University" .
+
+lova:author/nguyen-l  a  lova:Author ;
+    foaf:familyName     "Nguyen" ;
+    foaf:givenName      "Long" ;
+    foaf:name           "Long Nguyen" ;
+    schema:affiliation  "Department of Biomedical Engineering, Duke University" .
+
+lova:author/ntekoumes-d  a  lova:Author ;
+    foaf:familyName     "Ntekoumes" ;
+    foaf:givenName      "Dimitris" ;
+    foaf:name           "Dimitris Ntekoumes" ;
+    schema:affiliation  "Department of Chemical and Biomolecular Engineering, Johns Hopkins University" .
+
+lova:author/gerecht-s  a  lova:Author ;
+    foaf:familyName     "Gerecht" ;
+    foaf:givenName      "Sharon" ;
+    foaf:name           "Sharon Gerecht" ;
+    schema:affiliation  "Department of Biomedical Engineering, Duke University" .
+
+lova:author/segura-t  a  lova:Author ;
+    foaf:familyName     "Segura" ;
+    foaf:givenName      "Tatiana" ;
+    foaf:name           "Tatiana Segura" ;
+    schema:affiliation  "Department of Biomedical Engineering, Duke University" .
+
+
+##############################################################################
+# GEOMETRY PROFILES
+##############################################################################
+
+lova:geometry-profile/ha-sphere-50um  a  lova:GeometryProfile ;
+    rdfs:label              "HA spherical microgels ~50 μm" ;
+    lova:matchType          "aggregate" ;
+    lova:matchDescription   "Scaffold groups with spherical HA-NB particles, mean size ~50 μm" ;
+    lova:matchShape         "Sphere" ;
+    lova:matchSizeMin       30.0 ;
+    lova:matchSizeMax       70.0 ;
+    lova:matchMaterial      "HA-NB" ;
+    lova:scaffoldCount      0 .
+
+lova:geometry-profile/ha-sphere-80um  a  lova:GeometryProfile ;
+    rdfs:label              "HA spherical microgels ~80 μm" ;
+    lova:matchType          "aggregate" ;
+    lova:matchDescription   "Scaffold groups with spherical HA-NB particles, mean size ~80 μm" ;
+    lova:matchShape         "Sphere" ;
+    lova:matchSizeMin       60.0 ;
+    lova:matchSizeMax       110.0 ;
+    lova:matchMaterial      "HA-NB" ;
+    lova:scaffoldCount      0 .
+
+lova:geometry-profile/ha-sphere-200um  a  lova:GeometryProfile ;
+    rdfs:label              "HA spherical microgels ~200 μm" ;
+    lova:matchType          "aggregate" ;
+    lova:matchDescription   "Scaffold groups with spherical HA-NB particles, mean size ~200 μm" ;
+    lova:matchShape         "Sphere" ;
+    lova:matchSizeMin       100.0 ;
+    lova:matchSizeMax       300.0 ;
+    lova:matchMaterial      "HA-NB" ;
+    lova:scaffoldCount      0 .
+
+lova:geometry-profile/peg-sphere-65um  a  lova:GeometryProfile ;
+    rdfs:label              "PEG spherical microgels ~65 μm (small MAP)" ;
+    lova:matchType          "aggregate" ;
+    lova:matchDescription   "Scaffold groups with spherical PEG-VS particles, mean size 55-75 μm" ;
+    lova:matchShape         "Sphere" ;
+    lova:matchSizeMin       55.0 ;
+    lova:matchSizeMax       75.0 ;
+    lova:matchMaterial      "PEG" ;
+    lova:scaffoldCount      0 .
+
+lova:geometry-profile/peg-sphere-165um  a  lova:GeometryProfile ;
+    rdfs:label              "PEG spherical microgels ~165 μm (large MAP)" ;
+    lova:matchType          "aggregate" ;
+    lova:matchDescription   "Scaffold groups with spherical PEG-VS particles, mean size 155-175 μm" ;
+    lova:matchShape         "Sphere" ;
+    lova:matchSizeMin       155.0 ;
+    lova:matchSizeMax       175.0 ;
+    lova:matchMaterial      "PEG" ;
+    lova:scaffoldCount      0 .
+
+
+##############################################################################
+# PAPER
+##############################################################################
+
+lova:paper/10.1002-adfm.202400567  a  lova:Paper ;
+    dc:title        "Engineering the microstructure and spatial bioactivity of MAP scaffolds instructs vasculogenesis in vitro and modifies vessel formation in vivo" ;
+    dc:identifier   "10.1002/adfm.202400567" ;
+    dc:date         "2025"^^xsd:gYear ;
+    schema:isPartOf lova:journal/adv-funct-mater ;
+    dc:creator      lova:author/anderson-a ,
+                    lova:author/caston-e ,
+                    lova:author/riley-l ,
+                    lova:author/nguyen-l ,
+                    lova:author/ntekoumes-d ,
+                    lova:author/gerecht-s ,
+                    lova:author/segura-t ;
+    lova:paperType      "Research Article" ;
+    lova:focusMaterial  "HA-NB and PEG-VS MAP scaffolds; spatial heterogeneity of bioactive signals (RGD, heparin-VEGF nanoparticles); VascMAP for vasculogenesis" ;
+    lova:hasLabData     true .
+
+
+##############################################################################
+# FABRICATION METHODS
+##############################################################################
+
+# HA-NB batch emulsion + tetrazine-norbornene annealing
+lova:fabrication-method/10.1002-adfm.202400567/ha-nb-batch-tet  a  lova:FabricationMethod ;
+    lova:describedIn          lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label                "Batch emulsion HA-NB microgels with tetrazine-norbornene annealing" ;
+    lova:chemistry            "Thiol-norbornene photopolymerization (UV-initiated radical thiol-ene)" ;
+    lova:manufacturingMethod  "Batch water-in-oil emulsion (mineral oil + 1% Span 80; size controlled by stir rate)" ;
+    lova:annealingChemistry   "Tetrazine-norbornene inverse electron demand Diels-Alder click reaction" ;
+    lova:annealingConditions  "HA-Tet linker mixed with HA-NB μgels; 37°C for 2 h or 4°C overnight" ;
+    lova:monomer              "Hyaluronic acid norbornene (HA-NB, 3 wt%)" ;
+    lova:crosslinker          "MMP-degradable peptide (Ac-GCRDGPQGIWGQDRCG-NH2, GenScript)" ;
+    lova:initiator            "Irgacure 2959 (0.05 wt%)" ;
+    lova:initiatorCAS         "106797-53-9" ;
+    lova:surfactant           "Span 80" ;
+    lova:surfactantCAS        "1338-43-8" ;
+    lova:additionalReagent    "Heavy mineral oil (continuous phase)" ,
+                              "HA-Tet (tetrazine-modified HA, annealing linker)" ,
+                              "10 mM HEPES buffer (precursor solvent)" ;
+    lova:peptide              "RGD (GCGYGRGDSPG, 1 mM, thiol-norbornene tethered)" ;
+    lova:peptideRole          "Cell adhesion" .
+
+# PEG-VS microfluidic + Factor XIII annealing
+lova:fabrication-method/10.1002-adfm.202400567/microfluidic-peg-fxiii  a  lova:FabricationMethod ;
+    lova:describedIn          lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label                "Microfluidic PEG-VS microgels with Factor XIII annealing" ;
+    lova:chemistry            "Michael-type addition (thiol-ene, base-catalyzed by triethylamine)" ;
+    lova:manufacturingMethod  "Microfluidic water-in-oil emulsion (4-inlet device for small, 2-inlet for large)" ;
+    lova:annealingChemistry   "Enzymatic (Factor XIII transglutamination between K and Q peptides)" ;
+    lova:annealingConditions  "37°C, 30 min; FXIIIa 250 U/mL activated by thrombin 200 U/mL" ;
+    lova:monomer              "8-arm PEG-VS (40 kDa, JenKem Technology)" ;
+    lova:crosslinker          "MMP-degradable peptide (Ac-GCRDGPQGIWGQDRCG-NH2, GenScript)" ;
+    lova:surfactant           "Span 80" ;
+    lova:surfactantCAS        "1338-43-8" ;
+    lova:additionalReagent    "Heavy mineral oil (continuous phase)" ,
+                              "Triethylamine (0.3 M in precursor; 3% v/v in gelation oil)" ;
+    lova:enzyme               "Factor XIII (FXIIIa)" ;
+    lova:enzymeEC             "EC 2.3.2.13" ;
+    lova:enzymeRole           "Annealing (inter-particle crosslinking via K/Q peptide transglutamination)" ;
+    lova:peptide              "K-peptide (Ac-FKGGERCG-NH2, GenScript, 250 μM)" ,
+                              "Q-peptide (Ac-NQEQVSPLGGERCG-NH2, GenScript, 250 μM)" ,
+                              "RGD (Ac-RGDSPGERCG-NH2, GenScript, 1000 μM)" ;
+    lova:peptideRole          "Enzymatic annealing substrate (K)" ,
+                              "Enzymatic annealing substrate (Q)" ,
+                              "Cell adhesion" .
+
+
+##############################################################################
+# MATERIALS — HA-NB microgel scaffolds
+##############################################################################
+
+lova:material/10.1002-adfm.202400567/ha-50um  a  lova:Material ;
+    lova:describedIn            lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label                  "50 μm HA-NB MAP scaffold + RGD" ;
+    lova:particleShape          "Sphere" ;
+    lova:particleMaterial       "HA-NB (hyaluronic acid norbornene)" ;
+    lova:particleSizeMin        30.0 ;
+    lova:particleSizeMax        70.0 ;
+    lova:particleSizeUnit       "μm" ;
+    lova:sizeDistribution       "Polydisperse (batch emulsion, stir-rate controlled)" ;
+    lova:reportedPoreSize       "~10-30 pL pore volume (LOVAMAP rigid-sphere model)" ;
+    lova:stiffness              "Soft hydrogel" ;
+    lova:surfaceModification    "RGD peptide (GCGYGRGDSPG, 1 mM)" ;
+    lova:hasFabricationMethod   lova:fabrication-method/10.1002-adfm.202400567/ha-nb-batch-tet ;
+    lova:hasGeometryProfile     lova:geometry-profile/ha-sphere-50um .
+
+lova:material/10.1002-adfm.202400567/ha-80um  a  lova:Material ;
+    lova:describedIn            lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label                  "80 μm HA-NB MAP scaffold + RGD" ;
+    lova:particleShape          "Sphere" ;
+    lova:particleMaterial       "HA-NB (hyaluronic acid norbornene)" ;
+    lova:particleSizeMin        60.0 ;
+    lova:particleSizeMax        110.0 ;
+    lova:particleSizeUnit       "μm" ;
+    lova:sizeDistribution       "Polydisperse (batch emulsion, stir-rate controlled)" ;
+    lova:reportedPoreSize       "~100-200 pL pore volume (LOVAMAP rigid-sphere model)" ;
+    lova:stiffness              "Soft hydrogel" ;
+    lova:surfaceModification    "RGD peptide (GCGYGRGDSPG, 1 mM)" ;
+    lova:hasFabricationMethod   lova:fabrication-method/10.1002-adfm.202400567/ha-nb-batch-tet ;
+    lova:hasGeometryProfile     lova:geometry-profile/ha-sphere-80um .
+
+lova:material/10.1002-adfm.202400567/ha-200um  a  lova:Material ;
+    lova:describedIn            lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label                  "200 μm HA-NB MAP scaffold + RGD" ;
+    lova:particleShape          "Sphere" ;
+    lova:particleMaterial       "HA-NB (hyaluronic acid norbornene)" ;
+    lova:particleSizeMin        100.0 ;
+    lova:particleSizeMax        300.0 ;
+    lova:particleSizeUnit       "μm" ;
+    lova:sizeDistribution       "Polydisperse (batch emulsion, stir-rate controlled)" ;
+    lova:reportedPoreSize       "~2000-5000 pL pore volume (LOVAMAP rigid-sphere model)" ;
+    lova:stiffness              "Soft hydrogel" ;
+    lova:surfaceModification    "RGD peptide (GCGYGRGDSPG, 1 mM)" ;
+    lova:hasFabricationMethod   lova:fabrication-method/10.1002-adfm.202400567/ha-nb-batch-tet ;
+    lova:hasGeometryProfile     lova:geometry-profile/ha-sphere-200um .
+
+# VascMAP — the paper's novel optimized formulation
+# 50% nH μgels (heparin nanoparticles, no RGD) + 50% RGD μgels (no nH)
+# Spatial heterogeneity: VEGF delivery and cell adhesion on SEPARATE particles
+lova:material/10.1002-adfm.202400567/vascmap  a  lova:Material ;
+    lova:describedIn            lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label                  "VascMAP — 50% nH + 50% RGD HA-NB MAP (~80 μm)" ;
+    lova:particleShape          "Sphere" ;
+    lova:particleMaterial       "HA-NB (hyaluronic acid norbornene)" ;
+    lova:particleSizeMin        60.0 ;
+    lova:particleSizeMax        110.0 ;
+    lova:particleSizeUnit       "μm" ;
+    lova:sizeDistribution       "Polydisperse (batch emulsion, ~80 μm mean)" ;
+    lova:stiffness              "Soft hydrogel" ;
+    lova:surfaceModification    "Heterogeneous: 50% nH μgels (heparin nanoparticles with 200 ng VEGF) + 50% RGD μgels (GCGYGRGDSPG, 1 mM)" ;
+    lova:hasFabricationMethod   lova:fabrication-method/10.1002-adfm.202400567/ha-nb-batch-tet ;
+    lova:hasGeometryProfile     lova:geometry-profile/ha-sphere-80um .
+
+
+##############################################################################
+# MATERIALS — PEG-VS microgel scaffolds
+##############################################################################
+
+lova:material/10.1002-adfm.202400567/peg-small  a  lova:Material ;
+    lova:describedIn            lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label                  "Small (~65 μm) PEG-VS MAP scaffold" ;
+    lova:particleShape          "Sphere" ;
+    lova:particleMaterial       "8-arm PEG-VS (40 kDa)" ;
+    lova:particleSizeMin        55.0 ;
+    lova:particleSizeMax        75.0 ;
+    lova:particleSizeUnit       "μm" ;
+    lova:sizeDistribution       "Monodisperse (microfluidic, 4-inlet device)" ;
+    lova:stiffness              "Soft hydrogel" ;
+    lova:surfaceModification    "RGD (Ac-RGDSPGERCG-NH2, 1000 μM)" ;
+    lova:hasFabricationMethod   lova:fabrication-method/10.1002-adfm.202400567/microfluidic-peg-fxiii ;
+    lova:hasGeometryProfile     lova:geometry-profile/peg-sphere-65um .
+
+lova:material/10.1002-adfm.202400567/peg-large  a  lova:Material ;
+    lova:describedIn            lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label                  "Large (~165 μm) PEG-VS MAP scaffold" ;
+    lova:particleShape          "Sphere" ;
+    lova:particleMaterial       "8-arm PEG-VS (40 kDa)" ;
+    lova:particleSizeMin        155.0 ;
+    lova:particleSizeMax        175.0 ;
+    lova:particleSizeUnit       "μm" ;
+    lova:sizeDistribution       "Monodisperse (microfluidic, 2-inlet device)" ;
+    lova:stiffness              "Soft hydrogel" ;
+    lova:surfaceModification    "RGD (Ac-RGDSPGERCG-NH2, 1000 μM)" ;
+    lova:hasFabricationMethod   lova:fabrication-method/10.1002-adfm.202400567/microfluidic-peg-fxiii ;
+    lova:hasGeometryProfile     lova:geometry-profile/peg-sphere-165um .
+
+
+##############################################################################
+# EXPERIMENTS
+##############################################################################
+
+# Fig 2: hECFC culture in HA MAP scaffolds with varying μgel size
+lova:experiment/10.1002-adfm.202400567/ha-size-vasculogenesis  a  lova:Experiment ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    lova:usedMaterial       lova:material/10.1002-adfm.202400567/ha-50um ,
+                            lova:material/10.1002-adfm.202400567/ha-80um ,
+                            lova:material/10.1002-adfm.202400567/ha-200um ;
+    rdfs:label              "hECFC culture in HA-NB MAP scaffolds — μgel size effect on vasculogenesis (Fig 2)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType     "Vasculogenesis (in vitro)" ;
+    lova:assayOrMethod      "Confocal imaging (MIPs), nuclei counting, cell volume quantification, vacuole counting" ;
+    lova:cellType           "hECFC (human endothelial colony forming cells)" ;
+    lova:cellSource         "Human cord blood" ;
+    lova:cultureDuration    "24 hours" ;
+    lova:cultureMedium      "EGM-2" ;
+    lova:temperature        "37°C" ;
+    lova:atmosphere         "5% CO2" ;
+    lova:sampleSize         3 .
+
+# Fig 3: LOVAMAP computational heterogeneity characterization
+lova:experiment/10.1002-adfm.202400567/lovamap-heterogeneity  a  lova:Experiment ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    lova:usedMaterial       lova:material/10.1002-adfm.202400567/ha-80um ;
+    rdfs:label              "LOVAMAP heterogeneity characterization of mixed μgel populations (Fig 3)" ;
+    lova:experimentCategory "Structural/Imaging" ;
+    lova:experimentType     "3D void space analysis" ;
+    lova:assayOrMethod      "LOVAMAP software — nearest-neighbor distance, subunit composition, spanning pore distance" ;
+    lova:equipment          "Confocal microscopy (3D image stacks)" .
+
+# Figs 4-5: Bioactivity spatial heterogeneity (RGD, nH, nH+RGD)
+lova:experiment/10.1002-adfm.202400567/bioactivity-heterogeneity  a  lova:Experiment ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    lova:usedMaterial       lova:material/10.1002-adfm.202400567/ha-80um ;
+    rdfs:label              "hECFC response to spatially heterogeneous bioactivity in HA MAP (Figs 4-5)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType     "Vasculogenesis (in vitro)" ;
+    lova:assayOrMethod      "Confocal imaging, nuclei colocalization with μgel populations, cell volume" ;
+    lova:cellType           "hECFC (human endothelial colony forming cells)" ;
+    lova:cellSource         "Human cord blood" ;
+    lova:cultureDuration    "24 hours" ;
+    lova:cultureMedium      "EGM-2" ;
+    lova:temperature        "37°C" ;
+    lova:atmosphere         "5% CO2" ;
+    lova:sampleSize         3 .
+
+# Fig 6: VascMAP optimization (72 h culture)
+lova:experiment/10.1002-adfm.202400567/vascmap-optimization  a  lova:Experiment ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    lova:usedMaterial       lova:material/10.1002-adfm.202400567/vascmap ,
+                            lova:material/10.1002-adfm.202400567/ha-80um ;
+    rdfs:label              "VascMAP optimization — hECFC network formation at 72 h (Fig 6)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType     "Vasculogenesis (in vitro)" ;
+    lova:assayOrMethod      "Confocal imaging, vessel network analysis (nuclei, cell volume, total length, branches), collagen IV staining" ;
+    lova:cellType           "hECFC (human endothelial colony forming cells)" ;
+    lova:cellSource         "Human cord blood" ;
+    lova:cultureDuration    "72 hours" ;
+    lova:cultureMedium      "EGM-2" ;
+    lova:temperature        "37°C" ;
+    lova:atmosphere         "5% CO2" ;
+    lova:sampleSize         3 .
+
+# Fig 7: In vivo wound healing
+lova:experiment/10.1002-adfm.202400567/wound-healing  a  lova:Experiment ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    lova:usedMaterial       lova:material/10.1002-adfm.202400567/vascmap ,
+                            lova:material/10.1002-adfm.202400567/ha-200um ,
+                            lova:material/10.1002-adfm.202400567/peg-large ;
+    rdfs:label              "Full-thickness skin wound healing — VascMAP vs Large HA vs Large PEG (Fig 7)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType     "Wound healing (in vivo)" ;
+    lova:assayOrMethod      "Histology (CD31 immunofluorescence, α-SMA IHC, NG2 co-staining)" ;
+    lova:cellType           "Host endothelial and immune cells" ;
+    lova:cellSource         "SKH-1 hairless mice, mixed gender (3M + 3F per group)" ;
+    lova:cultureDuration    "7 and 21 days" ;
+    lova:temperature        "37°C (in vivo)" ;
+    lova:medium             "6 mm full-thickness punch biopsy wound" ;
+    lova:sampleSize         6 .
+
+# Fig 8: In vivo GBM tumor model
+lova:experiment/10.1002-adfm.202400567/gbm-tumor  a  lova:Experiment ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    lova:usedMaterial       lova:material/10.1002-adfm.202400567/vascmap ,
+                            lova:material/10.1002-adfm.202400567/ha-200um ,
+                            lova:material/10.1002-adfm.202400567/peg-large ;
+    rdfs:label              "Intracranial GBM tumor — vessel formation with MAP scaffolds (Fig 8)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType     "Vessel formation in tumor (in vivo)" ;
+    lova:assayOrMethod      "IVIS bioluminescence imaging, CD31 immunofluorescence, vessel network analysis (AngioTool)" ;
+    lova:cellType           "CT2A murine glioma (GFP + firefly luciferase) + host endothelial cells" ;
+    lova:cellSource         "C57BL/6J female mice, 6-12 weeks old (Jackson Labs)" ;
+    lova:cultureDuration    "14 days" ;
+    lova:temperature        "37°C (in vivo)" ;
+    lova:medium             "Intracranial injection at bregma (2 mm lateral, 0.5 mm anterior, 3 mm deep)" ;
+    lova:sampleSize         "5-7" .
+
+
+##############################################################################
+# OUTCOMES — HA μgel size effect on vasculogenesis (Fig 2) [FIG-E]
+# 24 h culture, normalized to t=0.
+##############################################################################
+
+lova:outcome/10.1002-adfm.202400567/nuclei-24h-50um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/ha-size-vasculogenesis ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "hECFC nuclei count at 24 h in 50 μm HA MAP (normalized to t=0)" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Nuclei count (normalized to t=0)" ;
+    lova:value              1.4 ;
+    lova:unit               "fold change" ;
+    lova:scope              "Bulk/global" ;
+    lova:timePoint          "24 h" ;
+    lova:comparisonGroup    "200 μm HA MAP" ;
+    lova:isSignificant      true .
+
+lova:outcome/10.1002-adfm.202400567/nuclei-24h-80um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/ha-size-vasculogenesis ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "hECFC nuclei count at 24 h in 80 μm HA MAP (normalized to t=0)" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Nuclei count (normalized to t=0)" ;
+    lova:value              1.6 ;
+    lova:unit               "fold change" ;
+    lova:scope              "Bulk/global" ;
+    lova:timePoint          "24 h" ;
+    lova:comparisonGroup    "200 μm HA MAP (p=0.0706, trend)" .
+
+lova:outcome/10.1002-adfm.202400567/nuclei-24h-200um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/ha-size-vasculogenesis ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "hECFC nuclei count at 24 h in 200 μm HA MAP — lowest" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Nuclei count (normalized to t=0)" ;
+    lova:value              0.9 ;
+    lova:unit               "fold change" ;
+    lova:scope              "Bulk/global" ;
+    lova:timePoint          "24 h" .
+
+lova:outcome/10.1002-adfm.202400567/cell-volume-24h-50um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/ha-size-vasculogenesis ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "hECFC cell volume at 24 h in 50 μm HA MAP (normalized to t=0)" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Cell volume per VOI (normalized to t=0)" ;
+    lova:value              1.6 ;
+    lova:unit               "fold change" ;
+    lova:scope              "Bulk/global" ;
+    lova:timePoint          "24 h" ;
+    lova:comparisonGroup    "200 μm HA MAP" ;
+    lova:isSignificant      true .
+
+lova:outcome/10.1002-adfm.202400567/cell-volume-24h-80um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/ha-size-vasculogenesis ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "hECFC cell volume at 24 h in 80 μm HA MAP (normalized to t=0)" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Cell volume per VOI (normalized to t=0)" ;
+    lova:value              1.8 ;
+    lova:unit               "fold change" ;
+    lova:scope              "Bulk/global" ;
+    lova:timePoint          "24 h" ;
+    lova:comparisonGroup    "200 μm HA MAP" ;
+    lova:isSignificant      true .
+
+lova:outcome/10.1002-adfm.202400567/cell-volume-24h-200um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/ha-size-vasculogenesis ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "hECFC cell volume at 24 h in 200 μm HA MAP — significantly lower" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Cell volume per VOI (normalized to t=0)" ;
+    lova:value              0.8 ;
+    lova:unit               "fold change" ;
+    lova:scope              "Bulk/global" ;
+    lova:timePoint          "24 h" .
+
+# TEXT: "hECFCs formed more vacuoles, indicative of early vasculogenesis,
+# in 80 μm MAP scaffolds compared to 200 μm scaffolds"
+lova:outcome/10.1002-adfm.202400567/vacuoles-24h-50um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/ha-size-vasculogenesis ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "Vacuoles per FOV at 24 h in 50 μm HA MAP" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Vacuole count per field of view (early vasculogenesis marker)" ;
+    lova:value              10.0 ;
+    lova:unit               "count" ;
+    lova:scope              "Per field of view" ;
+    lova:timePoint          "24 h" .
+
+lova:outcome/10.1002-adfm.202400567/vacuoles-24h-80um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/ha-size-vasculogenesis ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "Vacuoles per FOV at 24 h in 80 μm HA MAP — highest" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Vacuole count per field of view (early vasculogenesis marker)" ;
+    lova:value              18.0 ;
+    lova:unit               "count" ;
+    lova:scope              "Per field of view" ;
+    lova:timePoint          "24 h" ;
+    lova:comparisonGroup    "200 μm HA MAP" ;
+    lova:isSignificant      true .
+
+lova:outcome/10.1002-adfm.202400567/vacuoles-24h-200um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/ha-size-vasculogenesis ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "Vacuoles per FOV at 24 h in 200 μm HA MAP — fewest" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Vacuole count per field of view (early vasculogenesis marker)" ;
+    lova:value              5.0 ;
+    lova:unit               "count" ;
+    lova:scope              "Per field of view" ;
+    lova:timePoint          "24 h" .
+
+
+##############################################################################
+# OUTCOMES — LOVAMAP pore volume characterization (Fig 2F) [FIG-E]
+# Pore volume from computational rigid-sphere analysis.
+##############################################################################
+
+lova:outcome/10.1002-adfm.202400567/pore-volume-50um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/lovamap-heterogeneity ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "LOVAMAP pore volume for 50 μm HA MAP — ~10-30 pL" ;
+    lova:measurementCategory "Structural/Imaging" ;
+    lova:measurementType    "Pore volume (rigid-sphere computational model)" ;
+    lova:value              20.0 ;
+    lova:unit               "pL" ;
+    lova:scope              "Per-pore (median)" .
+
+lova:outcome/10.1002-adfm.202400567/pore-volume-80um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/lovamap-heterogeneity ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "LOVAMAP pore volume for 80 μm HA MAP — ~100-200 pL" ;
+    lova:measurementCategory "Structural/Imaging" ;
+    lova:measurementType    "Pore volume (rigid-sphere computational model)" ;
+    lova:value              150.0 ;
+    lova:unit               "pL" ;
+    lova:scope              "Per-pore (median)" .
+
+lova:outcome/10.1002-adfm.202400567/pore-volume-200um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/lovamap-heterogeneity ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "LOVAMAP pore volume for 200 μm HA MAP — ~2000-5000 pL (wide dist.)" ;
+    lova:measurementCategory "Structural/Imaging" ;
+    lova:measurementType    "Pore volume (rigid-sphere computational model)" ;
+    lova:value              3000.0 ;
+    lova:unit               "pL" ;
+    lova:scope              "Per-pore (median)" .
+
+lova:outcome/10.1002-adfm.202400567/cell-volume-reference  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/lovamap-heterogeneity ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "hECFC body volume ~1 pL — shown as reference vs pore volume [TEXT]" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Cell body volume (reference)" ;
+    lova:value              1.0 ;
+    lova:unit               "pL" ;
+    lova:scope              "Per-cell" .
+
+
+##############################################################################
+# OUTCOMES — Heterogeneity characterization (Fig 3) [FIG-E]
+# LOVAMAP analysis of mixed μgel populations.
+##############################################################################
+
+# TEXT: increasing the proportion of a population decreases the nearest-
+# neighbor distance to the same population
+lova:outcome/10.1002-adfm.202400567/nearest-neighbor-distance  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/lovamap-heterogeneity ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "Distance to nearest μgel of same population decreases with increasing proportion (***)" ;
+    lova:measurementCategory "Structural/Imaging" ;
+    lova:measurementType    "Nearest-neighbor distance to same-population μgel" ;
+    lova:unit               "μm" ;
+    lova:scope              "Per-pore" ;
+    lova:isSignificant      true .
+
+# Fig 3N: spanning pore distance between μgels of same population
+lova:outcome/10.1002-adfm.202400567/spanning-pore-distance  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/lovamap-heterogeneity ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "Spanning pore distance between μgels — shorter in higher-proportion populations [FIG-E]" ;
+    lova:measurementCategory "Structural/Imaging" ;
+    lova:measurementType    "Spanning pore distance between same-population μgels" ;
+    lova:unit               "μm" ;
+    lova:scope              "Per-pore (distribution)" .
+
+
+##############################################################################
+# OUTCOMES — RGD spatial heterogeneity (Fig 4) [FIG-E]
+# 80 μm HA-NB MAP, 24 h culture, varying RGD proportion.
+##############################################################################
+
+# TEXT: "Increasing the proportion of adhesive μgels resulted in
+# increased cell growth" and "cell volume significantly higher in 100% RGD"
+lova:outcome/10.1002-adfm.202400567/rgd-cell-volume-100pct  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/bioactivity-heterogeneity ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "Cell volume at 24 h — 100% RGD significantly higher (****)" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "hECFC cell volume (μm³)" ;
+    lova:value              60000.0 ;
+    lova:unit               "μm³" ;
+    lova:scope              "Bulk/global" ;
+    lova:timePoint          "24 h" ;
+    lova:comparisonGroup    "10% RGD + 90% plain, 50% RGD + 50% plain" ;
+    lova:isSignificant      true .
+
+# TEXT: hECFCs preferentially localized on RGD-modified μgels
+lova:outcome/10.1002-adfm.202400567/rgd-cell-localization  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/bioactivity-heterogeneity ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "hECFCs preferentially localize on RGD-modified μgels at 24 h (****) [TEXT]" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Proportion of nuclei colocalized with RGD μgels" ;
+    lova:unit               "fraction" ;
+    lova:scope              "Bulk/global" ;
+    lova:timePoint          "24 h" ;
+    lova:isSignificant      true .
+
+
+##############################################################################
+# OUTCOMES — nH + RGD heterogeneity (Fig 5) [FIG-E]
+# Heparin nanoparticle (nH) experiments with and without RGD.
+##############################################################################
+
+# TEXT: "When RGD was incorporated into the nH particles (nH+RGD), cells
+# showed enhanced spreading and preferential localization"
+lova:outcome/10.1002-adfm.202400567/nh-rgd-cell-volume  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/bioactivity-heterogeneity ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "50% nH+RGD + 50% RGD showed significantly higher cell volume at 24 h (***)" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "hECFC cell volume (μm³)" ;
+    lova:unit               "μm³" ;
+    lova:scope              "Bulk/global" ;
+    lova:timePoint          "24 h" ;
+    lova:comparisonGroup    "Other nH and nH+RGD mixing ratios" ;
+    lova:isSignificant      true .
+
+# TEXT: "cells preferentially localized on nH+RGD μgels"
+lova:outcome/10.1002-adfm.202400567/nh-rgd-cell-localization  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/bioactivity-heterogeneity ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "hECFCs preferentially localize on nH+RGD μgels at 24 h (***) [TEXT]" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Proportion of nuclei colocalized with nH+RGD μgels" ;
+    lova:unit               "fraction" ;
+    lova:scope              "Bulk/global" ;
+    lova:timePoint          "24 h" ;
+    lova:isSignificant      true .
+
+
+##############################################################################
+# OUTCOMES — VascMAP optimization (Fig 6) [FIG-E]
+# 72 h culture, 80 μm HA-NB MAP.
+# Conditions: A=25%nHRGD+75%RGD, B=50%nHRGD+50%RGD, C=100%nHRGD,
+#             D=100%RGD, E=50%nH+50%RGD (VascMAP)
+# VascMAP (condition E) significantly outperformed all other conditions.
+##############################################################################
+
+lova:outcome/10.1002-adfm.202400567/vascmap-nuclei  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/vascmap-optimization ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "VascMAP (50% nH + 50% RGD) nuclei at 72 h — highest among conditions" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Nuclei count" ;
+    lova:value              75.0 ;
+    lova:unit               "count" ;
+    lova:scope              "Per scaffold" ;
+    lova:timePoint          "72 h" .
+
+lova:outcome/10.1002-adfm.202400567/vascmap-cell-volume  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/vascmap-optimization ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "VascMAP cell volume at 72 h — significantly highest (**)" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Total hECFC volume per VOI" ;
+    lova:value              900000.0 ;
+    lova:unit               "μm³" ;
+    lova:scope              "Per scaffold" ;
+    lova:timePoint          "72 h" ;
+    lova:comparisonGroup    "25%nHRGD+75%RGD, 50%nHRGD+50%RGD, 100%nHRGD, 100%RGD" ;
+    lova:isSignificant      true .
+
+lova:outcome/10.1002-adfm.202400567/vascmap-total-length  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/vascmap-optimization ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "VascMAP total vessel network length at 72 h — significantly highest (**)" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Total vessel network length" ;
+    lova:value              8000.0 ;
+    lova:unit               "μm" ;
+    lova:scope              "Per scaffold" ;
+    lova:timePoint          "72 h" ;
+    lova:comparisonGroup    "Other nH/RGD formulations" ;
+    lova:isSignificant      true .
+
+lova:outcome/10.1002-adfm.202400567/vascmap-branches  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/vascmap-optimization ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "VascMAP vessel branches at 72 h — significantly highest (**)" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Vessel branch count" ;
+    lova:value              100.0 ;
+    lova:unit               "count" ;
+    lova:scope              "Per scaffold" ;
+    lova:timePoint          "72 h" ;
+    lova:comparisonGroup    "Other nH/RGD formulations" ;
+    lova:isSignificant      true .
+
+# 100% RGD (condition D) — baseline comparison
+lova:outcome/10.1002-adfm.202400567/100pct-rgd-total-length  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/vascmap-optimization ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "100% RGD total vessel length at 72 h" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Total vessel network length" ;
+    lova:value              4000.0 ;
+    lova:unit               "μm" ;
+    lova:scope              "Per scaffold" ;
+    lova:timePoint          "72 h" .
+
+# 50% nHRGD + 50% RGD (condition B) — homogeneous VEGF+RGD
+lova:outcome/10.1002-adfm.202400567/50pct-nhrgd-total-length  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/vascmap-optimization ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "50% nHRGD + 50% RGD total vessel length at 72 h" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Total vessel network length" ;
+    lova:value              4500.0 ;
+    lova:unit               "μm" ;
+    lova:scope              "Per scaffold" ;
+    lova:timePoint          "72 h" .
+
+# Collagen IV — all conditions similar
+lova:outcome/10.1002-adfm.202400567/collagen-iv-all-conditions  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/vascmap-optimization ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "Collagen IV positive area — similar across all conditions (~10-25%)" ;
+    lova:measurementCategory "Structural/Imaging" ;
+    lova:measurementType    "% collagen IV positive area" ;
+    lova:unit               "%" ;
+    lova:scope              "Per scaffold" ;
+    lova:timePoint          "72 h" ;
+    lova:isSignificant      false .
+
+# KEY FINDING: Spatial separation of VEGF and RGD on different particles
+# (VascMAP, condition E) outperforms combining both signals on same particles
+# (nHRGD, conditions A-C)
+lova:outcome/10.1002-adfm.202400567/spatial-heterogeneity-key-finding  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/vascmap-optimization ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "Spatially separating VEGF (nH) and adhesion (RGD) on different particles produces best vessel networks [TEXT]" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Vessel network formation (qualitative ranking)" ;
+    lova:scope              "Bulk/global" ;
+    lova:timePoint          "72 h" ;
+    lova:comparisonGroup    "50%nH+50%RGD (separate) vs 50%nHRGD+50%RGD (combined)" ;
+    lova:isSignificant      true .
+
+
+##############################################################################
+# OUTCOMES — In vivo wound healing (Fig 7) [FIG-E]
+# SKH-1 hairless mice, 6 mm punch wound.
+# Groups: VascMAP, Large HA (200 μm), Large PEG (165 μm), Untreated.
+##############################################################################
+
+# CD31+ vessel area — Day 7
+lova:outcome/10.1002-adfm.202400567/wound-cd31-day7-vascmap  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/wound-healing ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "CD31+ area at day 7 — VascMAP" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "% area CD31+ (vessel area)" ;
+    lova:value              3.0 ;
+    lova:unit               "%" ;
+    lova:scope              "Regional (wound cross-section)" ;
+    lova:timePoint          "Day 7" .
+
+lova:outcome/10.1002-adfm.202400567/wound-cd31-day7-large-ha  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/wound-healing ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "CD31+ area at day 7 — Large HA" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "% area CD31+ (vessel area)" ;
+    lova:value              2.5 ;
+    lova:unit               "%" ;
+    lova:scope              "Regional (wound cross-section)" ;
+    lova:timePoint          "Day 7" .
+
+lova:outcome/10.1002-adfm.202400567/wound-cd31-day7-large-peg  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/wound-healing ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "CD31+ area at day 7 — Large PEG" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "% area CD31+ (vessel area)" ;
+    lova:value              3.0 ;
+    lova:unit               "%" ;
+    lova:scope              "Regional (wound cross-section)" ;
+    lova:timePoint          "Day 7" .
+
+lova:outcome/10.1002-adfm.202400567/wound-cd31-day7-untreated  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/wound-healing ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "CD31+ area at day 7 — Untreated" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "% area CD31+ (vessel area)" ;
+    lova:value              2.0 ;
+    lova:unit               "%" ;
+    lova:scope              "Regional (wound cross-section)" ;
+    lova:timePoint          "Day 7" .
+
+# CD31+ vessel area — Day 21
+lova:outcome/10.1002-adfm.202400567/wound-cd31-day21-vascmap  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/wound-healing ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "CD31+ area at day 21 — VascMAP — highest" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "% area CD31+ (vessel area)" ;
+    lova:value              5.0 ;
+    lova:unit               "%" ;
+    lova:scope              "Regional (wound cross-section)" ;
+    lova:timePoint          "Day 21" .
+
+lova:outcome/10.1002-adfm.202400567/wound-cd31-day21-large-ha  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/wound-healing ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "CD31+ area at day 21 — Large HA" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "% area CD31+ (vessel area)" ;
+    lova:value              3.5 ;
+    lova:unit               "%" ;
+    lova:scope              "Regional (wound cross-section)" ;
+    lova:timePoint          "Day 21" .
+
+lova:outcome/10.1002-adfm.202400567/wound-cd31-day21-large-peg  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/wound-healing ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "CD31+ area at day 21 — Large PEG" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "% area CD31+ (vessel area)" ;
+    lova:value              3.0 ;
+    lova:unit               "%" ;
+    lova:scope              "Regional (wound cross-section)" ;
+    lova:timePoint          "Day 21" .
+
+lova:outcome/10.1002-adfm.202400567/wound-cd31-day21-untreated  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/wound-healing ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "CD31+ area at day 21 — Untreated" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "% area CD31+ (vessel area)" ;
+    lova:value              2.5 ;
+    lova:unit               "%" ;
+    lova:scope              "Regional (wound cross-section)" ;
+    lova:timePoint          "Day 21" .
+
+# α-SMA — Day 21 (fibrosis/myofibroblast marker)
+lova:outcome/10.1002-adfm.202400567/wound-sma-day21-healthy  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/wound-healing ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "α-SMA+ area at day 21 — healthy skin baseline" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "α-SMA+ area (% positive, myofibroblast/pericyte marker)" ;
+    lova:value              22.0 ;
+    lova:unit               "%" ;
+    lova:scope              "Regional (wound cross-section)" ;
+    lova:timePoint          "Day 21" .
+
+lova:outcome/10.1002-adfm.202400567/wound-sma-day21-vascmap  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/wound-healing ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "α-SMA+ area at day 21 — VascMAP" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "α-SMA+ area (% positive, myofibroblast/pericyte marker)" ;
+    lova:value              8.0 ;
+    lova:unit               "%" ;
+    lova:scope              "Regional (wound cross-section)" ;
+    lova:timePoint          "Day 21" .
+
+lova:outcome/10.1002-adfm.202400567/wound-sma-day21-large-ha  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/wound-healing ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "α-SMA+ area at day 21 — Large HA" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "α-SMA+ area (% positive, myofibroblast/pericyte marker)" ;
+    lova:value              5.0 ;
+    lova:unit               "%" ;
+    lova:scope              "Regional (wound cross-section)" ;
+    lova:timePoint          "Day 21" .
+
+lova:outcome/10.1002-adfm.202400567/wound-sma-day21-untreated  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/wound-healing ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "α-SMA+ area at day 21 — Untreated" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "α-SMA+ area (% positive, myofibroblast/pericyte marker)" ;
+    lova:value              10.0 ;
+    lova:unit               "%" ;
+    lova:scope              "Regional (wound cross-section)" ;
+    lova:timePoint          "Day 21" ;
+    lova:comparisonGroup    "Healthy skin" ;
+    lova:isSignificant      true .
+
+# CD31+NG2+ mature vessel percentage — Day 21 (KEY FINDING)
+# TEXT: "VascMAP had significantly higher mature vessel percentage (CD31+NG2+)"
+lova:outcome/10.1002-adfm.202400567/wound-cd31-ng2-day21-healthy  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/wound-healing ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "CD31+NG2+ (mature vessels) at day 21 — healthy skin" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "% CD31 overlapping with NG2 (vessel maturity)" ;
+    lova:value              60.0 ;
+    lova:unit               "%" ;
+    lova:scope              "Regional (wound cross-section)" ;
+    lova:timePoint          "Day 21" .
+
+lova:outcome/10.1002-adfm.202400567/wound-cd31-ng2-day21-vascmap  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/wound-healing ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "CD31+NG2+ (mature vessels) at day 21 — VascMAP — closest to healthy (***)" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "% CD31 overlapping with NG2 (vessel maturity)" ;
+    lova:value              50.0 ;
+    lova:unit               "%" ;
+    lova:scope              "Regional (wound cross-section)" ;
+    lova:timePoint          "Day 21" ;
+    lova:comparisonGroup    "Untreated, Large PEG" ;
+    lova:isSignificant      true .
+
+lova:outcome/10.1002-adfm.202400567/wound-cd31-ng2-day21-large-ha  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/wound-healing ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "CD31+NG2+ (mature vessels) at day 21 — Large HA" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "% CD31 overlapping with NG2 (vessel maturity)" ;
+    lova:value              28.0 ;
+    lova:unit               "%" ;
+    lova:scope              "Regional (wound cross-section)" ;
+    lova:timePoint          "Day 21" .
+
+lova:outcome/10.1002-adfm.202400567/wound-cd31-ng2-day21-large-peg  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/wound-healing ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "CD31+NG2+ (mature vessels) at day 21 — Large PEG — similar to untreated" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "% CD31 overlapping with NG2 (vessel maturity)" ;
+    lova:value              15.0 ;
+    lova:unit               "%" ;
+    lova:scope              "Regional (wound cross-section)" ;
+    lova:timePoint          "Day 21" .
+
+lova:outcome/10.1002-adfm.202400567/wound-cd31-ng2-day21-untreated  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/wound-healing ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "CD31+NG2+ (mature vessels) at day 21 — Untreated — lowest" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "% CD31 overlapping with NG2 (vessel maturity)" ;
+    lova:value              15.0 ;
+    lova:unit               "%" ;
+    lova:scope              "Regional (wound cross-section)" ;
+    lova:timePoint          "Day 21" .
+
+
+##############################################################################
+# OUTCOMES — In vivo GBM tumor model (Fig 8) [FIG-E]
+# C57BL/6J mice, CT2A glioma, day 14 brain vasculature.
+# Groups: Healthy brain, Methylcellulose, VascMAP, Large HA, Large PEG.
+##############################################################################
+
+# Total vessel length
+lova:outcome/10.1002-adfm.202400567/gbm-total-length-healthy  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/gbm-tumor ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "Total vessel length — healthy brain (****)" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Total vessel length (CD31 immunofluorescence)" ;
+    lova:value              15000.0 ;
+    lova:unit               "μm" ;
+    lova:scope              "Per field of view" ;
+    lova:timePoint          "Day 14" ;
+    lova:comparisonGroup    "All biomaterial groups" ;
+    lova:isSignificant      true .
+
+lova:outcome/10.1002-adfm.202400567/gbm-total-length-mc  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/gbm-tumor ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "Total vessel length — Methylcellulose control" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Total vessel length (CD31 immunofluorescence)" ;
+    lova:value              8000.0 ;
+    lova:unit               "μm" ;
+    lova:scope              "Per field of view" ;
+    lova:timePoint          "Day 14" .
+
+lova:outcome/10.1002-adfm.202400567/gbm-total-length-vascmap  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/gbm-tumor ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "Total vessel length — VascMAP" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Total vessel length (CD31 immunofluorescence)" ;
+    lova:value              6000.0 ;
+    lova:unit               "μm" ;
+    lova:scope              "Per field of view" ;
+    lova:timePoint          "Day 14" .
+
+lova:outcome/10.1002-adfm.202400567/gbm-total-length-large-ha  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/gbm-tumor ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "Total vessel length — Large HA" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Total vessel length (CD31 immunofluorescence)" ;
+    lova:value              4000.0 ;
+    lova:unit               "μm" ;
+    lova:scope              "Per field of view" ;
+    lova:timePoint          "Day 14" .
+
+lova:outcome/10.1002-adfm.202400567/gbm-total-length-large-peg  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/gbm-tumor ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "Total vessel length — Large PEG" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Total vessel length (CD31 immunofluorescence)" ;
+    lova:value              4500.0 ;
+    lova:unit               "μm" ;
+    lova:scope              "Per field of view" ;
+    lova:timePoint          "Day 14" .
+
+# Number of branches
+lova:outcome/10.1002-adfm.202400567/gbm-branches-healthy  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/gbm-tumor ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "Vessel branches — healthy brain (****)" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Number of vessel branches (CD31)" ;
+    lova:value              130.0 ;
+    lova:unit               "count" ;
+    lova:scope              "Per field of view" ;
+    lova:timePoint          "Day 14" ;
+    lova:comparisonGroup    "All biomaterial groups" ;
+    lova:isSignificant      true .
+
+lova:outcome/10.1002-adfm.202400567/gbm-branches-vascmap  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/gbm-tumor ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "Vessel branches — VascMAP" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Number of vessel branches (CD31)" ;
+    lova:value              70.0 ;
+    lova:unit               "count" ;
+    lova:scope              "Per field of view" ;
+    lova:timePoint          "Day 14" .
+
+lova:outcome/10.1002-adfm.202400567/gbm-branches-large-ha  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/gbm-tumor ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "Vessel branches — Large HA" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Number of vessel branches (CD31)" ;
+    lova:value              35.0 ;
+    lova:unit               "count" ;
+    lova:scope              "Per field of view" ;
+    lova:timePoint          "Day 14" .
+
+lova:outcome/10.1002-adfm.202400567/gbm-branches-large-peg  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/gbm-tumor ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "Vessel branches — Large PEG — fewest" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Number of vessel branches (CD31)" ;
+    lova:value              30.0 ;
+    lova:unit               "count" ;
+    lova:scope              "Per field of view" ;
+    lova:timePoint          "Day 14" .
+
+# Number of segments
+lova:outcome/10.1002-adfm.202400567/gbm-segments-healthy  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/gbm-tumor ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "Vessel segments — healthy brain (*)" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Number of vessel segments (CD31)" ;
+    lova:value              100.0 ;
+    lova:unit               "count" ;
+    lova:scope              "Per field of view" ;
+    lova:timePoint          "Day 14" ;
+    lova:comparisonGroup    "Large HA, Large PEG" ;
+    lova:isSignificant      true .
+
+lova:outcome/10.1002-adfm.202400567/gbm-segments-vascmap  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/gbm-tumor ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "Vessel segments — VascMAP" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Number of vessel segments (CD31)" ;
+    lova:value              50.0 ;
+    lova:unit               "count" ;
+    lova:scope              "Per field of view" ;
+    lova:timePoint          "Day 14" .
+
+# Total mesh area
+lova:outcome/10.1002-adfm.202400567/gbm-mesh-area-healthy  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/gbm-tumor ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "Total mesh area — healthy brain (** vs Large PEG, *** vs Large HA)" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Total vessel mesh area (CD31)" ;
+    lova:value              60000.0 ;
+    lova:unit               "μm²" ;
+    lova:scope              "Per field of view" ;
+    lova:timePoint          "Day 14" ;
+    lova:comparisonGroup    "Large HA, Large PEG" ;
+    lova:isSignificant      true .
+
+lova:outcome/10.1002-adfm.202400567/gbm-mesh-area-vascmap  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/gbm-tumor ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "Total mesh area — VascMAP" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Total vessel mesh area (CD31)" ;
+    lova:value              30000.0 ;
+    lova:unit               "μm²" ;
+    lova:scope              "Per field of view" ;
+    lova:timePoint          "Day 14" .
+
+lova:outcome/10.1002-adfm.202400567/gbm-mesh-area-large-peg  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/gbm-tumor ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "Total mesh area — Large PEG — lowest" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Total vessel mesh area (CD31)" ;
+    lova:value              10000.0 ;
+    lova:unit               "μm²" ;
+    lova:scope              "Per field of view" ;
+    lova:timePoint          "Day 14" .
+
+# Number of meshes
+lova:outcome/10.1002-adfm.202400567/gbm-meshes-healthy  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/gbm-tumor ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "Vessel meshes (closed loops) — healthy brain (****)" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Number of vessel meshes (CD31)" ;
+    lova:value              50.0 ;
+    lova:unit               "count" ;
+    lova:scope              "Per field of view" ;
+    lova:timePoint          "Day 14" ;
+    lova:comparisonGroup    "All biomaterial and tumor groups" ;
+    lova:isSignificant      true .
+
+lova:outcome/10.1002-adfm.202400567/gbm-meshes-vascmap  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/gbm-tumor ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "Vessel meshes — VascMAP" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Number of vessel meshes (CD31)" ;
+    lova:value              20.0 ;
+    lova:unit               "count" ;
+    lova:scope              "Per field of view" ;
+    lova:timePoint          "Day 14" .
+
+lova:outcome/10.1002-adfm.202400567/gbm-meshes-large-peg  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/gbm-tumor ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "Vessel meshes — Large PEG — fewest" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Number of vessel meshes (CD31)" ;
+    lova:value              8.0 ;
+    lova:unit               "count" ;
+    lova:scope              "Per field of view" ;
+    lova:timePoint          "Day 14" .
+
+# KEY FINDING: All biomaterials modified vessel architecture in GBM tumors
+# TEXT: "Healthy brain had significantly more vessel features than all groups"
+# TEXT: "VascMAP and methylcellulose showed vessel metrics closer to healthy
+# than Large HA and Large PEG"
+lova:outcome/10.1002-adfm.202400567/gbm-key-finding  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adfm.202400567/gbm-tumor ;
+    lova:describedIn        lova:paper/10.1002-adfm.202400567 ;
+    rdfs:label              "All MAP scaffolds modified tumor vasculature; healthy brain vasculature significantly denser than all groups [TEXT]" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Vessel network architecture (qualitative summary)" ;
+    lova:scope              "Bulk/global" ;
+    lova:timePoint          "Day 14" ;
+    lova:isSignificant      true .

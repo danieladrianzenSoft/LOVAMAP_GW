@@ -1,0 +1,1057 @@
+##############################################################################
+# Paper 1: Spatial confinement modulates macrophage response in MAP scaffolds
+# nihms-1907779 | DOI: 10.1002/adhm.202300823
+# Liu, Suarez-Arnedo, Riley, Miley, Xia, Segura (2023)
+# Advanced Healthcare Materials
+#
+# Data sources annotated:
+#   [TEXT]   = exact value from paper text
+#   [FIG-Q]  = exact value printed on figure (e.g. quadrant %)
+#   [FIG-E]  = estimated from bar chart (~5-10% error)
+##############################################################################
+
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+
+##############################################################################
+# JOURNAL
+##############################################################################
+
+lova:journal/adv-healthc-mater  a  lova:Journal ;
+    dc:title    "Advanced Healthcare Materials" .
+
+
+##############################################################################
+# AUTHORS
+##############################################################################
+
+lova:author/liu-y  a  lova:Author ;
+    foaf:familyName     "Liu" ;
+    foaf:givenName      "Yining" ;
+    foaf:name           "Yining Liu" ;
+    schema:affiliation  "Department of Biomedical Engineering, Duke University" .
+
+lova:author/suarez-arnedo-a  a  lova:Author ;
+    foaf:familyName     "Suarez-Arnedo" ;
+    foaf:givenName      "Alejandra" ;
+    foaf:name           "Alejandra Suarez-Arnedo" ;
+    schema:affiliation  "Department of Biomedical Engineering, Duke University" .
+
+lova:author/riley-l  a  lova:Author ;
+    foaf:familyName     "Riley" ;
+    foaf:givenName      "Lindsay" ;
+    foaf:name           "Lindsay Riley" ;
+    schema:affiliation  "Department of Biomedical Engineering, Duke University" .
+
+lova:author/miley-t  a  lova:Author ;
+    foaf:familyName     "Miley" ;
+    foaf:givenName      "Tasman" ;
+    foaf:name           "Tasman Miley" ;
+    schema:affiliation  "Department of Biomedical Engineering, Duke University" .
+
+lova:author/xia-j  a  lova:Author ;
+    foaf:familyName     "Xia" ;
+    foaf:givenName      "Jingyi" ;
+    foaf:name           "Jingyi Xia" ;
+    schema:affiliation  "Department of Biomedical Engineering, Duke University" .
+
+lova:author/segura-t  a  lova:Author ;
+    foaf:familyName     "Segura" ;
+    foaf:givenName      "Tatiana" ;
+    foaf:name           "Tatiana Segura" ;
+    schema:affiliation  "Department of Biomedical Engineering, Duke University" .
+
+
+##############################################################################
+# GEOMETRY PROFILES
+##############################################################################
+
+lova:geometry-profile/peg-sphere-40um  a  lova:GeometryProfile ;
+    rdfs:label              "PEG spherical microgels ~40 μm" ;
+    lova:matchType          "aggregate" ;
+    lova:matchDescription   "Scaffold groups with spherical PEG particles, mean size ~40 μm" ;
+    lova:matchShape         "Sphere" ;
+    lova:matchSizeMin       35.0 ;
+    lova:matchSizeMax       45.0 ;
+    lova:matchMaterial      "PEG" ;
+    lova:scaffoldCount      0 .
+    # TODO: populate lova:scaffoldGroupId by querying relational DB
+
+lova:geometry-profile/peg-sphere-70um  a  lova:GeometryProfile ;
+    rdfs:label              "PEG spherical microgels ~70 μm" ;
+    lova:matchType          "aggregate" ;
+    lova:matchDescription   "Scaffold groups with spherical PEG particles, mean size ~70 μm" ;
+    lova:matchShape         "Sphere" ;
+    lova:matchSizeMin       65.0 ;
+    lova:matchSizeMax       75.0 ;
+    lova:matchMaterial      "PEG" ;
+    lova:scaffoldCount      0 .
+
+lova:geometry-profile/peg-sphere-130um  a  lova:GeometryProfile ;
+    rdfs:label              "PEG spherical microgels ~130 μm" ;
+    lova:matchType          "aggregate" ;
+    lova:matchDescription   "Scaffold groups with spherical PEG particles, mean size ~130 μm" ;
+    lova:matchShape         "Sphere" ;
+    lova:matchSizeMin       125.0 ;
+    lova:matchSizeMax       135.0 ;
+    lova:matchMaterial      "PEG" ;
+    lova:scaffoldCount      0 .
+
+
+##############################################################################
+# PAPER
+##############################################################################
+
+lova:paper/10.1002-adhm.202300823  a  lova:Paper ;
+    dc:title        "Spatial confinement modulates macrophage response in microporous annealed particle (MAP) scaffolds" ;
+    dc:identifier   "10.1002/adhm.202300823" ;
+    dc:date         "2023"^^xsd:gYear ;
+    schema:isPartOf lova:journal/adv-healthc-mater ;
+    dc:creator      lova:author/liu-y ,
+                    lova:author/suarez-arnedo-a ,
+                    lova:author/riley-l ,
+                    lova:author/miley-t ,
+                    lova:author/xia-j ,
+                    lova:author/segura-t ;
+    lova:paperType      "Research Article" ;
+    lova:focusMaterial  "PEG-based MAP scaffolds with 3 particle sizes (40, 70, 130 μm); effect of spatial confinement on macrophage polarization" ;
+    lova:hasLabData     true .
+
+
+##############################################################################
+# FABRICATION METHOD
+##############################################################################
+
+lova:fabrication-method/10.1002-adhm.202300823/microfluidic-peg-fxiii  a  lova:FabricationMethod ;
+    lova:describedIn          lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label                "Microfluidic PEG-VS microgels with Factor XIII annealing" ;
+    lova:chemistry            "Michael-type addition (thiol-ene, base-catalyzed by triethylamine)" ;
+    lova:manufacturingMethod  "Microfluidic water-in-oil emulsion (4-inlet device for small/medium, 2-inlet for large)" ;
+    lova:annealingChemistry   "Enzymatic (Factor XIII transglutamination between K and Q peptides)" ;
+    lova:annealingConditions  "37°C, 30 min; FXIIIa 250 U/mL activated by thrombin 200 U/mL" ;
+    lova:monomer              "8-arm PEG-VS (40 kDa, JenKem Technology)" ;
+    lova:crosslinker          "Di-thiol MMP-degradable peptide (Ac-GCRDGPQGIWGQDRCG-NH2, GenScript)" ;
+    lova:surfactant           "Span 80" ;
+    lova:surfactantCAS        "1338-43-8" ;
+    lova:additionalReagent    "Heavy mineral oil (continuous phase)" ,
+                              "Triethylamine (0.3 M in precursor; 3% v/v in gelation oil)" ;
+    lova:enzyme               "Factor XIII (FXIIIa)" ;
+    lova:enzymeEC             "EC 2.3.2.13" ;
+    lova:enzymeRole           "Annealing (inter-particle crosslinking via K/Q peptide transglutamination)" ;
+    lova:peptide              "K-peptide (Ac-FKGGERCG-NH2, GenScript, 500 μM)" ,
+                              "Q-peptide (Ac-NQEQVSPLGGERCG-NH2, GenScript, 500 μM)" ,
+                              "RGD (Ac-RGDSPGERCG-NH2, GenScript, 500 μM)" ;
+    lova:peptideRole          "Enzymatic annealing substrate (K)" ,
+                              "Enzymatic annealing substrate (Q)" ,
+                              "Cell adhesion" .
+
+
+##############################################################################
+# MATERIALS
+##############################################################################
+
+lova:material/10.1002-adhm.202300823/map-40um  a  lova:Material ;
+    lova:describedIn            lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label                  "40 μm PEG-VS MAP scaffold (confining)" ;
+    lova:particleShape          "Sphere" ;
+    lova:particleMaterial       "8-arm PEG-VS (40 kDa)" ;
+    lova:particleSizeMin        40.0 ;
+    lova:particleSizeMax        40.0 ;
+    lova:particleSizeUnit       "μm" ;
+    lova:sizeDistribution       "Monodisperse (microfluidic)" ;
+    lova:stiffness              "Soft hydrogel" ;
+    lova:hasFabricationMethod   lova:fabrication-method/10.1002-adhm.202300823/microfluidic-peg-fxiii ;
+    lova:packingConfiguration   "Random" ;
+    lova:reportedPoreSize       "Median 3D-pore volume 4.2 pL (lab-derived), 3.2 pL (simulated)" ;
+    lova:scaffoldDimensions     "In-well mold" ;
+    lova:hasGeometryProfile     lova:geometry-profile/peg-sphere-40um .
+
+lova:material/10.1002-adhm.202300823/map-70um  a  lova:Material ;
+    lova:describedIn            lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label                  "70 μm PEG-VS MAP scaffold (intermediate)" ;
+    lova:particleShape          "Sphere" ;
+    lova:particleMaterial       "8-arm PEG-VS (40 kDa)" ;
+    lova:particleSizeMin        70.0 ;
+    lova:particleSizeMax        70.0 ;
+    lova:particleSizeUnit       "μm" ;
+    lova:sizeDistribution       "Monodisperse (microfluidic)" ;
+    lova:stiffness              "Soft hydrogel" ;
+    lova:hasFabricationMethod   lova:fabrication-method/10.1002-adhm.202300823/microfluidic-peg-fxiii ;
+    lova:packingConfiguration   "Random" ;
+    lova:reportedPoreSize       "Median 3D-pore volume 11.5 pL (lab-derived), 15.8 pL (simulated)" ;
+    lova:hasGeometryProfile     lova:geometry-profile/peg-sphere-70um .
+
+lova:material/10.1002-adhm.202300823/map-130um  a  lova:Material ;
+    lova:describedIn            lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label                  "130 μm PEG-VS MAP scaffold (unconfining)" ;
+    lova:particleShape          "Sphere" ;
+    lova:particleMaterial       "8-arm PEG-VS (40 kDa)" ;
+    lova:particleSizeMin        130.0 ;
+    lova:particleSizeMax        130.0 ;
+    lova:particleSizeUnit       "μm" ;
+    lova:sizeDistribution       "Monodisperse (microfluidic)" ;
+    lova:stiffness              "Soft hydrogel" ;
+    lova:hasFabricationMethod   lova:fabrication-method/10.1002-adhm.202300823/microfluidic-peg-fxiii ;
+    lova:packingConfiguration   "Random" ;
+    lova:reportedPoreSize       "Median 3D-pore volume 71.8 pL (lab-derived), 96.2 pL (simulated)" ;
+    lova:hasGeometryProfile     lova:geometry-profile/peg-sphere-130um .
+
+
+##############################################################################
+# EXPERIMENTS
+##############################################################################
+
+# --- Exp 1: LOVAMAP void space characterization (Fig 1) ---
+lova:experiment/10.1002-adhm.202300823/lovamap-characterization  a  lova:Experiment ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    lova:usedMaterial       lova:material/10.1002-adhm.202300823/map-40um ,
+                            lova:material/10.1002-adhm.202300823/map-70um ,
+                            lova:material/10.1002-adhm.202300823/map-130um ;
+    rdfs:label              "LOVAMAP 3D void space characterization of MAP scaffolds" ;
+    lova:experimentCategory "Structural/Imaging" ;
+    lova:experimentType     "3D void space analysis" ;
+    lova:assayOrMethod      "LOVAMAP software (confocal z-stack segmentation)" ;
+    lova:equipment          "Confocal microscopy" .
+
+# --- Exp 2: Rheological characterization (Fig 1f) ---
+lova:experiment/10.1002-adhm.202300823/rheology  a  lova:Experiment ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    lova:usedMaterial       lova:material/10.1002-adhm.202300823/map-40um ,
+                            lova:material/10.1002-adhm.202300823/map-70um ,
+                            lova:material/10.1002-adhm.202300823/map-130um ;
+    rdfs:label              "Oscillatory shear rheology of MAP scaffolds" ;
+    lova:experimentCategory "Rheological" ;
+    lova:experimentType     "Oscillatory shear" ;
+    lova:assayOrMethod      "Oscillatory shear rheometry (frequency sweep 0.1-100 rad/s, 1% strain)" ;
+    lova:equipment          "Anton-Paar MCR301" .
+
+# --- Exp 3: In vitro macrophage polarization (Fig 4, 5) ---
+lova:experiment/10.1002-adhm.202300823/invitro-macro-polarization  a  lova:Experiment ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    lova:usedMaterial       lova:material/10.1002-adhm.202300823/map-40um ,
+                            lova:material/10.1002-adhm.202300823/map-70um ,
+                            lova:material/10.1002-adhm.202300823/map-130um ;
+    rdfs:label              "In vitro macrophage M1/M2 polarization in MAP scaffolds" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType     "Macrophage polarization" ;
+    lova:assayOrMethod      "Flow cytometry, qPCR, ELISA" ;
+    lova:cellType           "BMDM (bone marrow-derived macrophages)" ;
+    lova:cellSource         "Murine bone marrow (C57BL/6, mixed gender, 8-12 weeks)" ;
+    lova:seedingDensity     "10,000 cells/μL" ;
+    lova:cultureDuration    "24h cytokine activation (M1: 20 ng/mL LPS + IFN-γ; M2: 20 ng/mL IL-4)" ;
+    lova:cultureMedium      "IMDM + 10% FBS + 15 ng/mL M-CSF (Peprotech)" ;
+    lova:temperature        "37°C" ;
+    lova:atmosphere         "5% CO2" .
+
+# --- Exp 4: 3D cell & nuclear morphology analysis (Fig 2, 3) ---
+lova:experiment/10.1002-adhm.202300823/cell-morphology  a  lova:Experiment ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    lova:usedMaterial       lova:material/10.1002-adhm.202300823/map-40um ,
+                            lova:material/10.1002-adhm.202300823/map-70um ,
+                            lova:material/10.1002-adhm.202300823/map-130um ;
+    rdfs:label              "3D cell and nuclear morphology analysis of BMDMs in MAP scaffolds" ;
+    lova:experimentCategory "Structural/Imaging" ;
+    lova:experimentType     "3D cell morphology analysis" ;
+    lova:assayOrMethod      "Confocal imaging with 3D segmentation (Imaris)" ;
+    lova:cellType           "BMDM (bone marrow-derived macrophages)" ;
+    lova:cellSource         "Murine bone marrow (C57BL/6, mixed gender, 8-12 weeks)" ;
+    lova:cultureDuration    "24h" ;
+    lova:temperature        "37°C" ;
+    lova:atmosphere         "5% CO2" .
+
+# --- Exp 5: Live imaging cell motility (Fig 6) ---
+lova:experiment/10.1002-adhm.202300823/cell-motility  a  lova:Experiment ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    lova:usedMaterial       lova:material/10.1002-adhm.202300823/map-40um ,
+                            lova:material/10.1002-adhm.202300823/map-70um ,
+                            lova:material/10.1002-adhm.202300823/map-130um ;
+    rdfs:label              "Live imaging of BMDM motility in MAP scaffolds" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType     "Cell migration" ;
+    lova:assayOrMethod      "Live confocal imaging (Olympus VivaView FL, 20x air), 3D cell tracking (30 min intervals)" ;
+    lova:cellType           "BMDM (bone marrow-derived macrophages)" ;
+    lova:cellSource         "Murine bone marrow (C57BL/6, mixed gender, 8-12 weeks)" ;
+    lova:seedingDensity     "10,000 cells/μL in 10 μL MAP scaffolds" ;
+    lova:cultureDuration    "27h imaging (activated at 17h with M0/M1/M2 cytokines)" ;
+    lova:temperature        "37°C" ;
+    lova:atmosphere         "5% CO2" .
+
+# --- Exp 6: In vivo subcutaneous implantation (Fig 7) ---
+lova:experiment/10.1002-adhm.202300823/invivo-subq  a  lova:Experiment ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    lova:usedMaterial       lova:material/10.1002-adhm.202300823/map-40um ,
+                            lova:material/10.1002-adhm.202300823/map-70um ,
+                            lova:material/10.1002-adhm.202300823/map-130um ;
+    rdfs:label              "Subcutaneous implantation — macrophage phenotyping at day 7, histology at day 7 and 21" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType     "In vivo macrophage phenotyping" ;
+    lova:assayOrMethod      "Spectral flow cytometry (Cytek NL-3000), IHC" ;
+    lova:cellType           "Host macrophages (F4/80+CD11b+)" ;
+    lova:cellSource         "C57BL/6 mice, male, 7-12 weeks (Jackson Laboratory)" ;
+    lova:cultureDuration    "7 days (flow cytometry); 7 and 21 days (histology)" ;
+    lova:temperature        "37°C (in vivo)" ;
+    lova:medium             "Subcutaneous dorsal implant (3 × 50 μL injections per mouse, one per size)" ;
+    lova:sampleSize         5 .
+
+
+##############################################################################
+# OUTCOMES — LOVAMAP Scaffold Descriptors (Fig 1c,g)
+##############################################################################
+
+# Subunit (pore) volumes [TEXT]
+lova:outcome/10.1002-adhm.202300823/subunit-vol-40um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/lovamap-characterization ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "Median subunit volume for 40 μm MAP" ;
+    lova:measurementCategory "Structural/Imaging" ;
+    lova:measurementType    "Subunit volume (LOVAMAP)" ;
+    lova:value              4.2 ;
+    lova:unit               "pL" ;
+    lova:scope              "Per-pore (median)" .
+
+lova:outcome/10.1002-adhm.202300823/subunit-vol-70um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/lovamap-characterization ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "Median subunit volume for 70 μm MAP" ;
+    lova:measurementCategory "Structural/Imaging" ;
+    lova:measurementType    "Subunit volume (LOVAMAP)" ;
+    lova:value              11.5 ;
+    lova:unit               "pL" ;
+    lova:scope              "Per-pore (median)" .
+
+lova:outcome/10.1002-adhm.202300823/subunit-vol-130um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/lovamap-characterization ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "Median subunit volume for 130 μm MAP" ;
+    lova:measurementCategory "Structural/Imaging" ;
+    lova:measurementType    "Subunit volume (LOVAMAP)" ;
+    lova:value              71.8 ;
+    lova:unit               "pL" ;
+    lova:scope              "Per-pore (median)" .
+
+# Void fraction [FIG-E]
+lova:outcome/10.1002-adhm.202300823/void-fraction-40um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/lovamap-characterization ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "Void fraction for 40 μm MAP" ;
+    lova:measurementCategory "Structural/Imaging" ;
+    lova:measurementType    "Void fraction" ;
+    lova:value              0.26 ;
+    lova:unit               "fraction" ;
+    lova:scope              "Bulk/global" ;
+    lova:isSignificant      false .
+
+lova:outcome/10.1002-adhm.202300823/void-fraction-70um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/lovamap-characterization ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "Void fraction for 70 μm MAP" ;
+    lova:measurementCategory "Structural/Imaging" ;
+    lova:measurementType    "Void fraction" ;
+    lova:value              0.30 ;
+    lova:unit               "fraction" ;
+    lova:scope              "Bulk/global" ;
+    lova:isSignificant      false .
+
+lova:outcome/10.1002-adhm.202300823/void-fraction-130um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/lovamap-characterization ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "Void fraction for 130 μm MAP" ;
+    lova:measurementCategory "Structural/Imaging" ;
+    lova:measurementType    "Void fraction" ;
+    lova:value              0.30 ;
+    lova:unit               "fraction" ;
+    lova:scope              "Bulk/global" ;
+    lova:isSignificant      false .
+
+
+##############################################################################
+# OUTCOMES — Rheology (Fig 1f)
+##############################################################################
+
+lova:outcome/10.1002-adhm.202300823/storage-modulus-40um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/rheology ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "Storage modulus of 40 μm MAP scaffold" ;
+    lova:measurementCategory "Rheological" ;
+    lova:measurementType    "Storage modulus (G')" ;
+    lova:value              550.0 ;
+    lova:unit               "Pa" ;
+    lova:scope              "Bulk/global" ;
+    lova:isSignificant      false .
+
+lova:outcome/10.1002-adhm.202300823/storage-modulus-70um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/rheology ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "Storage modulus of 70 μm MAP scaffold" ;
+    lova:measurementCategory "Rheological" ;
+    lova:measurementType    "Storage modulus (G')" ;
+    lova:value              600.0 ;
+    lova:unit               "Pa" ;
+    lova:scope              "Bulk/global" ;
+    lova:isSignificant      false .
+
+lova:outcome/10.1002-adhm.202300823/storage-modulus-130um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/rheology ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "Storage modulus of 130 μm MAP scaffold" ;
+    lova:measurementCategory "Rheological" ;
+    lova:measurementType    "Storage modulus (G')" ;
+    lova:value              500.0 ;
+    lova:unit               "Pa" ;
+    lova:scope              "Bulk/global" ;
+    lova:isSignificant      false .
+
+
+##############################################################################
+# OUTCOMES — Pro-inflammatory markers (Fig 4a) [FIG-E]
+# TNF & IL-6 secretion (ELISA), CD86 & iNOS MFI (flow cytometry)
+# All normalized as fold change vs 2D M1 control.
+##############################################################################
+
+# TNF secretion
+lova:outcome/10.1002-adhm.202300823/tnf-secretion-40um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/invitro-macro-polarization ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "TNF secretion fold change in 40 μm MAP" ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType    "TNF secretion (ELISA, fold change vs 2D)" ;
+    lova:value              0.45 ;
+    lova:unit               "fold change" ;
+    lova:scope              "Bulk/global" ;
+    lova:comparisonGroup    "2D M1 control = 1.0" ;
+    lova:isSignificant      true .
+
+lova:outcome/10.1002-adhm.202300823/tnf-secretion-70um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/invitro-macro-polarization ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "TNF secretion fold change in 70 μm MAP" ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType    "TNF secretion (ELISA, fold change vs 2D)" ;
+    lova:value              0.55 ;
+    lova:unit               "fold change" ;
+    lova:scope              "Bulk/global" ;
+    lova:comparisonGroup    "2D M1 control = 1.0" ;
+    lova:isSignificant      true .
+
+lova:outcome/10.1002-adhm.202300823/tnf-secretion-130um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/invitro-macro-polarization ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "TNF secretion fold change in 130 μm MAP" ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType    "TNF secretion (ELISA, fold change vs 2D)" ;
+    lova:value              0.80 ;
+    lova:unit               "fold change" ;
+    lova:scope              "Bulk/global" ;
+    lova:comparisonGroup    "2D M1 control = 1.0" ;
+    lova:isSignificant      true .
+
+# IL-6 secretion
+lova:outcome/10.1002-adhm.202300823/il6-secretion-40um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/invitro-macro-polarization ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "IL-6 secretion fold change in 40 μm MAP" ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType    "IL-6 secretion (ELISA, fold change vs 2D)" ;
+    lova:value              0.30 ;
+    lova:unit               "fold change" ;
+    lova:scope              "Bulk/global" ;
+    lova:comparisonGroup    "2D M1 control = 1.0" ;
+    lova:isSignificant      true .
+
+lova:outcome/10.1002-adhm.202300823/il6-secretion-70um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/invitro-macro-polarization ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "IL-6 secretion fold change in 70 μm MAP" ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType    "IL-6 secretion (ELISA, fold change vs 2D)" ;
+    lova:value              0.50 ;
+    lova:unit               "fold change" ;
+    lova:scope              "Bulk/global" ;
+    lova:comparisonGroup    "2D M1 control = 1.0" ;
+    lova:isSignificant      true .
+
+lova:outcome/10.1002-adhm.202300823/il6-secretion-130um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/invitro-macro-polarization ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "IL-6 secretion fold change in 130 μm MAP" ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType    "IL-6 secretion (ELISA, fold change vs 2D)" ;
+    lova:value              0.65 ;
+    lova:unit               "fold change" ;
+    lova:scope              "Bulk/global" ;
+    lova:comparisonGroup    "2D M1 control = 1.0" ;
+    lova:isSignificant      true .
+
+# CD86 MFI
+lova:outcome/10.1002-adhm.202300823/cd86-mfi-40um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/invitro-macro-polarization ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "CD86 MFI fold change in 40 μm MAP" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "CD86 MFI (fold change, pro-inflammatory)" ;
+    lova:value              0.50 ;
+    lova:unit               "fold change MFI" ;
+    lova:scope              "Bulk/global" ;
+    lova:isSignificant      true .
+
+lova:outcome/10.1002-adhm.202300823/cd86-mfi-70um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/invitro-macro-polarization ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "CD86 MFI fold change in 70 μm MAP" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "CD86 MFI (fold change, pro-inflammatory)" ;
+    lova:value              0.55 ;
+    lova:unit               "fold change MFI" ;
+    lova:scope              "Bulk/global" .
+
+lova:outcome/10.1002-adhm.202300823/cd86-mfi-130um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/invitro-macro-polarization ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "CD86 MFI fold change in 130 μm MAP" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "CD86 MFI (fold change, pro-inflammatory)" ;
+    lova:value              0.75 ;
+    lova:unit               "fold change MFI" ;
+    lova:scope              "Bulk/global" .
+
+# iNOS MFI — TEXT: "iNOS expression was significantly higher in 70 μm MAP scaffolds
+# compared to 40 μm MAP scaffolds and 130 μm MAP scaffolds"
+lova:outcome/10.1002-adhm.202300823/inos-mfi-40um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/invitro-macro-polarization ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "iNOS MFI fold change in 40 μm MAP — lowest" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "iNOS MFI (fold change, pro-inflammatory)" ;
+    lova:value              0.35 ;
+    lova:unit               "fold change MFI" ;
+    lova:scope              "Bulk/global" ;
+    lova:comparisonGroup    "70 μm MAP, 130 μm MAP, 2D" ;
+    lova:isSignificant      true .
+
+lova:outcome/10.1002-adhm.202300823/inos-mfi-70um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/invitro-macro-polarization ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "iNOS MFI fold change in 70 μm MAP — highest among MAP sizes" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "iNOS MFI (fold change, pro-inflammatory)" ;
+    lova:value              0.60 ;
+    lova:unit               "fold change MFI" ;
+    lova:scope              "Bulk/global" ;
+    lova:comparisonGroup    "40 μm and 130 μm MAP" ;
+    lova:isSignificant      true .
+
+lova:outcome/10.1002-adhm.202300823/inos-mfi-130um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/invitro-macro-polarization ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "iNOS MFI fold change in 130 μm MAP" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "iNOS MFI (fold change, pro-inflammatory)" ;
+    lova:value              0.50 ;
+    lova:unit               "fold change MFI" ;
+    lova:scope              "Bulk/global" .
+
+
+##############################################################################
+# OUTCOMES — Pro-regenerative markers (Fig 4a,b) [FIG-E]
+##############################################################################
+
+lova:outcome/10.1002-adhm.202300823/cd206-mfi-40um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/invitro-macro-polarization ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "CD206 MFI fold change in 40 μm MAP" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "CD206 MFI (fold change, pro-regenerative)" ;
+    lova:value              1.0 ;
+    lova:unit               "fold change MFI" ;
+    lova:scope              "Bulk/global" .
+
+lova:outcome/10.1002-adhm.202300823/cd206-mfi-70um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/invitro-macro-polarization ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "CD206 MFI fold change in 70 μm MAP — highest pro-regenerative" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "CD206 MFI (fold change, pro-regenerative)" ;
+    lova:value              1.5 ;
+    lova:unit               "fold change MFI" ;
+    lova:scope              "Bulk/global" ;
+    lova:comparisonGroup    "40 μm and 130 μm MAP" ;
+    lova:isSignificant      true .
+
+lova:outcome/10.1002-adhm.202300823/cd206-mfi-130um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/invitro-macro-polarization ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "CD206 MFI fold change in 130 μm MAP" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "CD206 MFI (fold change, pro-regenerative)" ;
+    lova:value              1.0 ;
+    lova:unit               "fold change MFI" ;
+    lova:scope              "Bulk/global" .
+
+lova:outcome/10.1002-adhm.202300823/arg1-mfi-all-sizes  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/invitro-macro-polarization ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "Arg1 MFI fold change — no significant difference across sizes" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Arg1 MFI (fold change, pro-regenerative)" ;
+    lova:value              1.0 ;
+    lova:unit               "fold change MFI" ;
+    lova:scope              "Bulk/global" ;
+    lova:isSignificant      false .
+
+
+##############################################################################
+# OUTCOMES — Antigen-presenting markers (Fig 4c) [FIG-E]
+##############################################################################
+
+lova:outcome/10.1002-adhm.202300823/cd11c-mfi-40um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/invitro-macro-polarization ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "CD11c MFI fold change in 40 μm MAP" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "CD11c MFI (fold change, antigen presenting)" ;
+    lova:value              2.0 ;
+    lova:unit               "fold change MFI" ;
+    lova:scope              "Bulk/global" .
+
+lova:outcome/10.1002-adhm.202300823/cd11c-mfi-70um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/invitro-macro-polarization ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "CD11c MFI fold change in 70 μm MAP" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "CD11c MFI (fold change, antigen presenting)" ;
+    lova:value              1.9 ;
+    lova:unit               "fold change MFI" ;
+    lova:scope              "Bulk/global" .
+
+lova:outcome/10.1002-adhm.202300823/cd11c-mfi-130um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/invitro-macro-polarization ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "CD11c MFI fold change in 130 μm MAP — elevated vs 2D but no diff between MAP sizes" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "CD11c MFI (fold change, antigen presenting)" ;
+    lova:value              1.5 ;
+    lova:unit               "fold change MFI" ;
+    lova:scope              "Bulk/global" .
+
+# MHCII — TEXT: "no difference in MHCII expression between BMDM cultured
+# in the different MAP scaffolds groups" (elevated vs 2D, but NOT between sizes)
+lova:outcome/10.1002-adhm.202300823/mhcii-mfi-all-sizes  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/invitro-macro-polarization ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "MHCII MFI elevated in all MAP sizes vs 2D — no difference between MAP sizes" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "MHCII MFI (fold change, antigen presenting)" ;
+    lova:unit               "fold change MFI" ;
+    lova:scope              "Bulk/global" ;
+    lova:comparisonGroup    "2D cultures (elevated vs 2D, but no difference between 40/70/130 μm MAP)" ;
+    lova:isSignificant      false .
+
+
+##############################################################################
+# OUTCOMES — qPCR gene expression (Fig 4, text)
+# These replace the original qualitative-only outcomes with per-size values.
+# Values are qualitative direction since exact fold changes are hard to read.
+##############################################################################
+
+lova:outcome/10.1002-adhm.202300823/tnf-gene-40um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/invitro-macro-polarization ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "TNF gene expression reduced in 40 μm vs 130 μm MAP" ;
+    lova:measurementCategory "Gene expression" ;
+    lova:measurementType    "TNF relative expression (qPCR)" ;
+    lova:unit               "fold change (2^-ΔΔCt)" ;
+    lova:scope              "Bulk/global" ;
+    lova:comparisonGroup    "130 μm MAP scaffold" ;
+    lova:isSignificant      true .
+
+lova:outcome/10.1002-adhm.202300823/il1b-gene-40um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/invitro-macro-polarization ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "IL-1β gene expression reduced in 40 μm vs 130 μm MAP" ;
+    lova:measurementCategory "Gene expression" ;
+    lova:measurementType    "IL-1β relative expression (qPCR)" ;
+    lova:unit               "fold change (2^-ΔΔCt)" ;
+    lova:scope              "Bulk/global" ;
+    lova:comparisonGroup    "130 μm MAP scaffold" ;
+    lova:isSignificant      true .
+
+lova:outcome/10.1002-adhm.202300823/il6-gene-40um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/invitro-macro-polarization ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "IL-6 gene expression reduced in 40 μm vs 130 μm MAP" ;
+    lova:measurementCategory "Gene expression" ;
+    lova:measurementType    "IL-6 relative expression (qPCR)" ;
+    lova:unit               "fold change (2^-ΔΔCt)" ;
+    lova:scope              "Bulk/global" ;
+    lova:comparisonGroup    "130 μm MAP scaffold" ;
+    lova:isSignificant      true .
+
+lova:outcome/10.1002-adhm.202300823/arg1-gene-all-sizes  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/invitro-macro-polarization ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "Arg1 gene expression not significantly different across MAP sizes" ;
+    lova:measurementCategory "Gene expression" ;
+    lova:measurementType    "Arg1 relative expression (qPCR)" ;
+    lova:unit               "fold change (2^-ΔΔCt)" ;
+    lova:scope              "Bulk/global" ;
+    lova:isSignificant      false .
+
+
+##############################################################################
+# OUTCOMES — Double-positive populations (Fig 5b,d) [FIG-Q]
+# Exact values read from flow cytometry quadrant gate labels.
+##############################################################################
+
+# iNOS vs CD86 quadrant gates (Fig 5b)
+lova:outcome/10.1002-adhm.202300823/inos-cd86-double-pos-40um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/invitro-macro-polarization ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "iNOS+CD86+ double-positive macrophages in 40 μm MAP" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "iNOS+CD86+ (% of macrophages)" ;
+    lova:value              3.05 ;
+    lova:unit               "%" ;
+    lova:scope              "Bulk/global" .
+
+lova:outcome/10.1002-adhm.202300823/inos-cd86-double-pos-70um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/invitro-macro-polarization ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "iNOS+CD86+ double-positive macrophages in 70 μm MAP" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "iNOS+CD86+ (% of macrophages)" ;
+    lova:value              30.6 ;
+    lova:unit               "%" ;
+    lova:scope              "Bulk/global" .
+
+lova:outcome/10.1002-adhm.202300823/inos-cd86-double-pos-130um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/invitro-macro-polarization ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "iNOS+CD86+ double-positive macrophages in 130 μm MAP" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "iNOS+CD86+ (% of macrophages)" ;
+    lova:value              14.0 ;
+    lova:unit               "%" ;
+    lova:scope              "Bulk/global" .
+
+# iNOS-CD86- (unpolarized/quiescent) — key confinement finding
+lova:outcome/10.1002-adhm.202300823/inos-neg-cd86-neg-40um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/invitro-macro-polarization ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "iNOS-CD86- (unpolarized) macrophages in 40 μm MAP — 81% remain quiescent" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "iNOS-CD86- (% of macrophages)" ;
+    lova:value              81.1 ;
+    lova:unit               "%" ;
+    lova:scope              "Bulk/global" .
+
+lova:outcome/10.1002-adhm.202300823/inos-neg-cd86-neg-70um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/invitro-macro-polarization ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "iNOS-CD86- (unpolarized) macrophages in 70 μm MAP" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "iNOS-CD86- (% of macrophages)" ;
+    lova:value              31.8 ;
+    lova:unit               "%" ;
+    lova:scope              "Bulk/global" .
+
+lova:outcome/10.1002-adhm.202300823/inos-neg-cd86-neg-130um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/invitro-macro-polarization ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "iNOS-CD86- (unpolarized) macrophages in 130 μm MAP" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "iNOS-CD86- (% of macrophages)" ;
+    lova:value              45.8 ;
+    lova:unit               "%" ;
+    lova:scope              "Bulk/global" .
+
+# CD206 vs iNOS quadrant gates (Fig 5d) [FIG-Q]
+lova:outcome/10.1002-adhm.202300823/inos-cd206-double-pos-40um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/invitro-macro-polarization ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "iNOS+CD206+ (mixed phenotype) macrophages in 40 μm MAP" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "iNOS+CD206+ (% of macrophages)" ;
+    lova:value              0.34 ;
+    lova:unit               "%" ;
+    lova:scope              "Bulk/global" .
+
+lova:outcome/10.1002-adhm.202300823/inos-cd206-double-pos-70um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/invitro-macro-polarization ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "iNOS+CD206+ (mixed phenotype) macrophages in 70 μm MAP" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "iNOS+CD206+ (% of macrophages)" ;
+    lova:value              0.57 ;
+    lova:unit               "%" ;
+    lova:scope              "Bulk/global" .
+
+lova:outcome/10.1002-adhm.202300823/inos-cd206-double-pos-130um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/invitro-macro-polarization ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "iNOS+CD206+ (mixed phenotype) macrophages in 130 μm MAP — highest" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "iNOS+CD206+ (% of macrophages)" ;
+    lova:value              2.63 ;
+    lova:unit               "%" ;
+    lova:scope              "Bulk/global" ;
+    lova:comparisonGroup    "40 μm MAP" ;
+    lova:isSignificant      true .
+
+
+##############################################################################
+# OUTCOMES — 3D Cell Morphology (Fig 2) [FIG-E]
+##############################################################################
+
+lova:outcome/10.1002-adhm.202300823/cell-surface-area-40um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/cell-morphology ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "BMDM surface area in 40 μm MAP" ;
+    lova:measurementCategory "Structural/Imaging" ;
+    lova:measurementType    "Cell surface area (3D)" ;
+    lova:value              325.0 ;
+    lova:unit               "μm²" ;
+    lova:scope              "Per-cell average" .
+
+lova:outcome/10.1002-adhm.202300823/cell-surface-area-130um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/cell-morphology ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "BMDM surface area in 130 μm MAP — significantly larger" ;
+    lova:measurementCategory "Structural/Imaging" ;
+    lova:measurementType    "Cell surface area (3D)" ;
+    lova:value              500.0 ;
+    lova:unit               "μm²" ;
+    lova:scope              "Per-cell average" ;
+    lova:comparisonGroup    "40 μm and 70 μm MAP" ;
+    lova:isSignificant      true .
+
+lova:outcome/10.1002-adhm.202300823/cell-sphericity-40um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/cell-morphology ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "BMDM sphericity in 40 μm MAP — more elongated in confining pores" ;
+    lova:measurementCategory "Structural/Imaging" ;
+    lova:measurementType    "Cell sphericity (3D)" ;
+    lova:value              0.72 ;
+    lova:unit               "dimensionless (0-1)" ;
+    lova:scope              "Per-cell average" .
+
+lova:outcome/10.1002-adhm.202300823/cell-sphericity-130um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/cell-morphology ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "BMDM sphericity in 130 μm MAP — more rounded in larger pores" ;
+    lova:measurementCategory "Structural/Imaging" ;
+    lova:measurementType    "Cell sphericity (3D)" ;
+    lova:value              0.78 ;
+    lova:unit               "dimensionless (0-1)" ;
+    lova:scope              "Per-cell average" ;
+    lova:comparisonGroup    "40 μm and 70 μm MAP" ;
+    lova:isSignificant      true .
+
+lova:outcome/10.1002-adhm.202300823/cell-ellipticity-prolate-40um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/cell-morphology ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "BMDM prolate ellipticity in 40 μm MAP" ;
+    lova:measurementCategory "Structural/Imaging" ;
+    lova:measurementType    "Cell ellipticity (prolate)" ;
+    lova:value              0.25 ;
+    lova:unit               "dimensionless (0-1)" ;
+    lova:scope              "Per-cell average" .
+
+lova:outcome/10.1002-adhm.202300823/cell-ellipticity-prolate-130um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/cell-morphology ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "BMDM prolate ellipticity in 130 μm MAP — more isotropic" ;
+    lova:measurementCategory "Structural/Imaging" ;
+    lova:measurementType    "Cell ellipticity (prolate)" ;
+    lova:value              0.13 ;
+    lova:unit               "dimensionless (0-1)" ;
+    lova:scope              "Per-cell average" ;
+    lova:comparisonGroup    "40 μm and 70 μm MAP" ;
+    lova:isSignificant      true .
+
+lova:outcome/10.1002-adhm.202300823/bmdm-diameter  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/cell-morphology ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "BMDM diameter in 3D culture ~12 μm" ;
+    lova:measurementCategory "Structural/Imaging" ;
+    lova:measurementType    "Cell diameter" ;
+    lova:value              12.0 ;
+    lova:unit               "μm" ;
+    lova:scope              "Per-cell average" .
+
+
+##############################################################################
+# OUTCOMES — Nuclear Morphology (Fig 3) [FIG-E]
+##############################################################################
+
+lova:outcome/10.1002-adhm.202300823/nuclear-area-40um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/cell-morphology ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "Nuclear surface area in 40 μm MAP" ;
+    lova:measurementCategory "Structural/Imaging" ;
+    lova:measurementType    "Nuclear surface area" ;
+    lova:value              400.0 ;
+    lova:unit               "μm²/nuclei" ;
+    lova:scope              "Per-cell average" .
+
+lova:outcome/10.1002-adhm.202300823/nuclear-area-130um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/cell-morphology ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "Nuclear surface area in 130 μm MAP — larger" ;
+    lova:measurementCategory "Structural/Imaging" ;
+    lova:measurementType    "Nuclear surface area" ;
+    lova:value              500.0 ;
+    lova:unit               "μm²/nuclei" ;
+    lova:scope              "Per-cell average" ;
+    lova:comparisonGroup    "70 μm MAP" ;
+    lova:isSignificant      true .
+
+lova:outcome/10.1002-adhm.202300823/nuclear-roundness-70um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/cell-morphology ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "Nuclear roundness in 70 μm MAP — most round" ;
+    lova:measurementCategory "Structural/Imaging" ;
+    lova:measurementType    "Nuclear roundness" ;
+    lova:value              0.88 ;
+    lova:unit               "dimensionless (0-1)" ;
+    lova:scope              "Per-cell average" ;
+    lova:comparisonGroup    "40 μm and 130 μm MAP" ;
+    lova:isSignificant      true .
+
+
+##############################################################################
+# OUTCOMES — Cell Motility (Fig 6) [FIG-E]
+# M1 condition shows most pronounced size effect.
+##############################################################################
+
+lova:outcome/10.1002-adhm.202300823/velocity-m1-40um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/cell-motility ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "M1 BMDM median velocity in 40 μm MAP" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Median cell velocity" ;
+    lova:value              0.8 ;
+    lova:unit               "μm/min" ;
+    lova:scope              "Per-cell median" .
+
+lova:outcome/10.1002-adhm.202300823/velocity-m1-70um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/cell-motility ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "M1 BMDM median velocity in 70 μm MAP" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Median cell velocity" ;
+    lova:value              0.7 ;
+    lova:unit               "μm/min" ;
+    lova:scope              "Per-cell median" .
+
+lova:outcome/10.1002-adhm.202300823/velocity-m1-130um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/cell-motility ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "M1 BMDM median velocity in 130 μm MAP — unrestricted" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Median cell velocity" ;
+    lova:value              1.2 ;
+    lova:unit               "μm/min" ;
+    lova:scope              "Per-cell median" ;
+    lova:comparisonGroup    "40 μm and 70 μm MAP" ;
+    lova:isSignificant      true .
+
+lova:outcome/10.1002-adhm.202300823/max-distance-m1-40um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/cell-motility ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "M1 BMDM max migration distance in 40 μm MAP" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Max migration distance" ;
+    lova:value              18.0 ;
+    lova:unit               "μm" ;
+    lova:scope              "Per-cell" .
+
+lova:outcome/10.1002-adhm.202300823/max-distance-m1-70um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/cell-motility ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "M1 BMDM max migration distance in 70 μm MAP" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Max migration distance" ;
+    lova:value              15.0 ;
+    lova:unit               "μm" ;
+    lova:scope              "Per-cell" .
+
+lova:outcome/10.1002-adhm.202300823/max-distance-m1-130um  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/cell-motility ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "M1 BMDM max migration distance in 130 μm MAP" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Max migration distance" ;
+    lova:value              30.0 ;
+    lova:unit               "μm" ;
+    lova:scope              "Per-cell" ;
+    lova:comparisonGroup    "40 μm and 70 μm MAP" ;
+    lova:isSignificant      true .
+
+
+##############################################################################
+# OUTCOMES — In Vivo Day 7 (Fig 7) [FIG-E]
+# Subcutaneous implant, macrophage phenotyping by spectral flow cytometry.
+# Flow cytometry performed at Day 7 post-implant.
+# TEXT: "only CD206 showed a statistically significant difference between
+# MAP scaffolds with different microgel sizes"
+##############################################################################
+
+lova:outcome/10.1002-adhm.202300823/invivo-cd206-mfi  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/invivo-subq ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "In vivo CD206+ MFI at day 7 — only marker with significant size-dependence" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "CD206+ MFI (in vivo macrophages)" ;
+    lova:unit               "MFI" ;
+    lova:scope              "Bulk/global" ;
+    lova:timePoint          "Day 7" ;
+    lova:isSignificant      true .
+
+lova:outcome/10.1002-adhm.202300823/invivo-cd86-mfi  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/invivo-subq ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "In vivo CD86+ MFI at day 7 — no significant difference between MAP sizes" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "CD86+ MFI (in vivo macrophages)" ;
+    lova:unit               "MFI" ;
+    lova:scope              "Bulk/global" ;
+    lova:timePoint          "Day 7" ;
+    lova:isSignificant      false .
+
+lova:outcome/10.1002-adhm.202300823/invivo-cd11c-mfi  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/invivo-subq ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "In vivo CD11c+ MFI at day 7 — no significant difference between MAP sizes" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "CD11c+ MFI (in vivo macrophages)" ;
+    lova:unit               "MFI" ;
+    lova:scope              "Bulk/global" ;
+    lova:timePoint          "Day 7" ;
+    lova:isSignificant      false .
+
+lova:outcome/10.1002-adhm.202300823/invivo-mhcii-mfi  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/invivo-subq ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "In vivo MHCII+ MFI at day 7 — no significant difference between MAP sizes" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "MHCII+ MFI (in vivo macrophages)" ;
+    lova:unit               "MFI" ;
+    lova:scope              "Bulk/global" ;
+    lova:timePoint          "Day 7" ;
+    lova:isSignificant      false .
+
+lova:outcome/10.1002-adhm.202300823/invivo-macrophage-pct  a  lova:Outcome ;
+    lova:fromExperiment     lova:experiment/10.1002-adhm.202300823/invivo-subq ;
+    lova:describedIn        lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label              "Macrophage percentage (of CD45+ cells) in vivo at day 7" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType    "Macrophage percentage (% of CD45+ cells)" ;
+    lova:unit               "%" ;
+    lova:scope              "Bulk/global" ;
+    lova:timePoint          "Day 7" .

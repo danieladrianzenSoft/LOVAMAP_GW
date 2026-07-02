@@ -1,51 +1,315 @@
-<h1>LOVAMAP Gateway</h1>
+# LOVAMAP Gateway (LOVAMAP_GW)
 
-<h2>Overview</h2>
+**A web platform for the analysis, storage, and standardization of granular material scaffold data.**
 
-LOVAMAP_GW (LOVAMAP Gateway) is a full-stack web application that provides accessibility to the data (and, coming soon, functionality) of LOVAMAP, a computational tool developed by the Segura Lab at Duke University to analyze granular materials.
+LOVAMAP Gateway is the backend and frontend system powering the LOVAMAP web application — a tool developed by Duke University's Segura Lab to make granular material scaffold analysis accessible to the broader biomaterials research community. Built on .NET 8.0 with a PostgreSQL relational database and an Apache Jena Fuseki RDF knowledge base, it provides a comprehensive API for scaffold data management, computational analysis, and knowledge graph construction.
 
-<h2>Dependencies</h2>
+The system's functionality is organized around three core pillars:
 
-<h3>Backend</h3>
+---
 
-The backend is a web api in .NET 8.0, using Entity Framework (EF) as the ORM interacting with a PosgtgreSQL relational database. Migrations are included for quick database setup. All package dependencies are listed in API/API.csproj.
+## Pillar 1: Granular Material Scaffold Analysis
 
-Addition of appsettings.json and appsettings.Development.json files are needed to run the backend properly. These file should have the following structure: 
+LOVAMAP Gateway integrates with **lovamap_core**, a computational engine that performs structural analysis on granular material scaffolds. The gateway manages the full lifecycle of computational jobs — from submission through execution to result persistence — allowing researchers to analyze scaffold geometry without local software installation.
 
-<pre>
-	<code>
-	{
-		"ConnectionStrings": {
-			"LOVAMAP_DB": {PostgreSQL connection string}
-		},
-		"Jwt": {
-			"Issuer": {Token user},
-			"Key": {512 bit token key}
-		},
-		"AllowedHosts": "*"
-	} 
-	</code>
-</pre>
+### Job Submission & Execution
 
-	
-To initiate, after adding the appsettings files and customizing with a valid database connection string, cd into /GatewayBackend in the terminal and run:
+Users can submit three types of computational jobs:
 
-<pre>
-	<code>
-		dotnet watch run --project API
-	</code>
-</pre>
+| Job Type | Description | Input |
+|---|---|---|
+| **LOVAMAP Analysis** | Computes pore-level and global structural descriptors from scaffold geometry | CSV, DAT, or JSON files describing particle positions and sizes |
+| **Particle Segmentation** | Segments individual particles from fluorescent microscopy images (TIF) | TIF image + pixel spacing (dx, dy, dz) + particle radius estimate |
+| **Mesh Generation** | Produces 3D mesh files (.glb) for visualization of scaffold domains | Binary geometry files |
 
-The browser should automatically open to reveal the swagger profile of the web application backend, usually hosted in https://localhost:44381.
+Jobs can be **chained**: a segmentation job can feed directly into a LOVAMAP analysis job, and mesh generation can be triggered automatically from analysis results. The system tracks job status (Pending, Running, Completed, Failed) and supports asynchronous callbacks from lovamap_core when processing completes.
 
-<h3>Frontend</h3>
-The frontend consists of a React v18.3.1 applciation with Typescript v5.4.5. TailwindCSS is used for styling, MobX for state management, Axios for http requests to the backend, Formik for forms, and Yup for validation. History is used for url navigation and xlsx for generation of custom scaffold descriptor download files. All dependencies and corresponding versions are listed in GatewayUI/react-ui/package.json. To initiate, cd into GatewayUI/react-ui and then run:
+### Computed Descriptors
 
-<pre>
-	<code>
-		npm install
-		npm start
-	</code>
-</pre>
+When a LOVAMAP analysis job completes, it produces three categories of structural descriptors:
 
-Your browser should automatically open a new tab with url http://localhost:3000 running the application.
+- **Global Descriptors** — Scaffold-level scalar metrics (e.g., total porosity, mean pore volume, number of pores). One value per scaffold.
+- **Pore Descriptors** — Per-pore measurements stored as arrays (e.g., individual pore volumes, surface areas, aspect ratios, longest dimensions). One array per scaffold, one value per pore.
+- **Other Descriptors** — Additional computed properties with flexible structure (e.g., connectivity metrics, spatial distributions).
+
+Each descriptor is associated with a **DescriptorType** that defines its name, unit, category, and description — forming a controlled vocabulary of measurable scaffold properties.
+
+### 3D Visualization
+
+The system supports interactive 3D visualization through:
+
+- **Domains**: Segmented 3D regions (particles, pores, or other structures) stored as `.glb` mesh files
+- **Domain categories**: Particles, Pores, and Other — each representing a distinct geometric aspect of the scaffold
+- **Domain metadata**: JSON metadata accompanies each mesh for rendering parameters
+- Meshes can be generated automatically from job results or uploaded manually
+
+### AI-Powered Search
+
+An AI search pipeline allows researchers to query the scaffold database using natural language (e.g., "spherical particles around 100 microns with high porosity"), with optional filters for simulation status and particle shape.
+
+---
+
+## Pillar 2: Comprehensive Data Storage
+
+LOVAMAP uses a **two-database architecture** to capture both the quantitative structural data generated by computational analysis and the qualitative experimental knowledge reported in published literature.
+
+### Relational Database (PostgreSQL) — Scaffold Instance Data
+
+The relational database stores the structural and geometric properties of individual scaffold instances with full provenance tracking.
+
+#### Data Hierarchy
+
+```
+ScaffoldGroup
+ ├── InputGroup (fabrication parameters)
+ │    └── ParticlePropertyGroups (particle shape, size, stiffness, friction, dispersity)
+ ├── Scaffolds (individual replicates)
+ │    ├── Domains (3D segmented regions: particles, pores, other)
+ │    │    └── Mesh files (.glb) + metadata
+ │    ├── GlobalDescriptors (scaffold-level metrics)
+ │    ├── PoreDescriptors (per-pore measurement arrays)
+ │    ├── OtherDescriptors (additional computed properties)
+ │    ├── Jobs (computational analysis history)
+ │    └── Tags (auto-generated classifications)
+ └── Images (scaffold visualizations and thumbnails)
+```
+
+#### What Is Stored
+
+**Fabrication Parameters** (InputGroup):
+- Container shape and dimensions
+- Packing configuration (Isotropic, Anisotropic, Square, Hexagonal)
+- Size distribution parameters
+
+**Particle Properties** (per particle type in a scaffold):
+- Shape (Sphere, Cylinder, Cube, etc.)
+- Stiffness and friction coefficients
+- Dispersity (monodisperse/polydisperse)
+- Size statistics (mean, median, min, max, standard deviation)
+- Proportion (for multi-particle systems)
+
+**Computed Geometry** (Descriptors):
+- Global metrics: porosity, mean pore volume, pore count, etc.
+- Per-pore arrays: individual volumes, surface areas, aspect ratios, longest dimensions
+- Full job provenance: which computation produced each value, when, and with which version of lovamap_core
+
+**3D Geometry** (Domains):
+- Voxel-grid information (voxel size, count, domain dimensions)
+- Binary mesh data (.glb format) for interactive 3D rendering
+- Source tracking (uploaded vs. computed via segmentation)
+- Segmentation version and producing job reference
+
+#### Batch Operations
+
+The system supports large-scale data ingestion:
+- **Batch upload**: JSON file containing multiple scaffold groups (up to 200 MB)
+- **Batch mesh replacement**: Admin tool to replace mesh files across many scaffolds from a staging directory, with dry-run preview
+- **Descriptor seeding**: Bulk computation of descriptor values across eligible scaffolds
+
+### RDF Knowledge Base (Apache Jena Fuseki) — Experimental & Literature Data
+
+The RDF database captures **paper-centric knowledge** — experimental conditions, biological outcomes, and material characterizations as reported in published studies. This complements the relational database by storing the qualitative context that cannot be reduced to per-scaffold numerical values.
+
+#### Why RDF?
+
+Published literature on granular material scaffolds reports experimental outcomes (cell viability, mechanical properties, degradation rates) alongside material descriptions that are often imprecise or variable across studies. RDF's graph-based structure naturally represents these relationships:
+
+- A single paper may describe multiple materials and experiments
+- Materials may share fabrication methods or reagents
+- Experimental outcomes connect to specific materials under specific conditions
+- Relationships between entities can be traversed and queried via SPARQL
+
+#### Ontology Structure
+
+The LOVAMAP ontology (`lova:` namespace) defines these core classes:
+
+| Class | Description | Key Properties |
+|---|---|---|
+| **Paper** | Published research study | Title, DOI, date, authors, paper type, focus material |
+| **Author** | Individual researcher | Name, affiliation |
+| **Journal** | Publication venue | Title, ISSN |
+| **Material** | Granular material system as described in a paper | Particle shape/size/material, packing configuration, reported porosity, scaffold dimensions |
+| **FabricationMethod** | How particles are made and assembled | Chemistry, manufacturing method, annealing conditions, reagents (with CAS numbers), enzymes, peptides |
+| **Experiment** | Experimental protocol | Category, type, assay/method, cell type/source, seeding density, culture duration/medium, environmental conditions |
+| **Outcome** | Measured result from an experiment | Measurement type/category, value, unit, standard deviation, sample size, time point |
+| **GeometryProfile** | Fuzzy-match criteria linking to relational DB | Match type, shape, size range, material, scaffold count |
+
+#### Bridging the Two Databases
+
+Materials in the RDF store link to scaffolds in the relational database through two mechanisms:
+
+1. **Exact match**: `lova:scaffoldGroupId` or `lova:scaffoldId` — direct integer references to relational DB records
+2. **Fuzzy match**: `lova:hasGeometryProfile` — a GeometryProfile node that describes matching criteria (shape, size range, material) for finding corresponding scaffold groups
+
+This bridging enables queries like: *"Show me the biological outcomes reported for scaffolds with geometry similar to scaffold group #42."*
+
+#### Knowledge Graph Visualization
+
+The RDF data is exposed as an interactive knowledge graph via a force-directed graph visualization. Nodes represent classes, instances, and shared literal values; edges represent relationships. This gives researchers a visual map of how papers, materials, experiments, and outcomes interconnect.
+
+---
+
+## Pillar 3: Data Standardization
+
+LOVAMAP establishes standardized structures for how granular material scaffold data should be reported, stored, and published — addressing the lack of consistency in the biomaterials literature.
+
+### Controlled Descriptor Vocabulary
+
+Every computed property in the system is backed by a **DescriptorType** record that defines:
+
+- **Name and label**: Canonical identifier and human-readable name
+- **Category and subcategory**: Classification within the descriptor taxonomy
+- **Unit**: Standard measurement unit
+- **Data type**: Expected value format (scalar, array, JSON object)
+- **Description**: What the descriptor measures and how it should be interpreted
+- **Publication reference**: Optional link to the paper that defined or validated this metric
+
+This vocabulary ensures that when two scaffolds report "pore volume," they mean the same thing, computed the same way.
+
+### Structured Fabrication Metadata
+
+The InputGroup and ParticlePropertyGroup models enforce a **consistent schema** for describing how scaffolds are fabricated:
+
+- Container geometry (shape, size, dimensions)
+- Packing configuration (from a controlled enum)
+- Per-particle-type properties with standardized fields for shape, size distribution, mechanical properties
+- Support for multi-particle systems with proportional composition
+
+This structure ensures that fabrication parameters are recorded in a machine-readable, comparable format — rather than the free-text descriptions common in publications.
+
+### RDF Ontology as a Reporting Schema
+
+The LOVAMAP RDF ontology serves as a **de facto reporting schema** for granular material scaffold studies. By defining standardized classes and properties for:
+
+- **Materials**: What particles are made of, their sizes, shapes, and surface modifications
+- **Fabrication**: Chemistry, reagents (with CAS numbers), manufacturing methods, annealing conditions
+- **Experiments**: Cell types, seeding densities, culture durations, environmental conditions (temperature, pH, atmosphere)
+- **Outcomes**: Measurement types, values with units, standard deviations, sample sizes, time-series data
+
+...the ontology establishes a template for the minimum information that should be reported in any study involving granular material scaffolds. Papers whose data can be fully represented in this schema have reported their methods and results with sufficient detail for reproducibility and cross-study comparison.
+
+### Publication Datasets & Reproducibility
+
+The publication system provides infrastructure for **freezing and versioning** scaffold data tied to specific papers:
+
+- **Publication records** link to research papers (title, authors, journal, DOI)
+- **Publication datasets** define which scaffolds and descriptors are included
+- **Descriptor selection rules** control how values are chosen when multiple jobs have computed the same descriptor:
+  - Latest result for each scaffold
+  - Output from a specific job only
+  - Newest value regardless of job boundaries
+  - Legacy values (pre-job-tracking)
+- **Dataset versions** create immutable, hash-verified snapshots of the data at a point in time
+
+This ensures that published results are **reproducible** — the exact data underlying a publication can be reconstructed from its versioned dataset, even as the live database continues to evolve with new analyses.
+
+### Tagging & Classification
+
+Scaffolds are automatically tagged with classifications (e.g., by particle shape, size range, packing type) to enable consistent filtering and discovery across the database. These auto-generated tags provide a standardized vocabulary for browsing and comparing scaffold groups.
+
+---
+
+## System Architecture Summary
+
+```
+┌─────────────────────────────────────────────────────┐
+│                  LOVAMAP Frontend                    │
+│         (React + 3D Visualization + Graphs)         │
+└──────────────────────┬──────────────────────────────┘
+                       │ REST API
+┌──────────────────────▼──────────────────────────────┐
+│               LOVAMAP Gateway (.NET 8)              │
+│                                                     │
+│  ┌─────────┐  ┌──────────┐  ┌───────────────────┐  │
+│  │  Auth &  │  │ Scaffold │  │ Job Management &  │  │
+│  │  Users   │  │  Groups  │  │ Core Integration  │  │
+│  └─────────┘  └──────────┘  └───────────────────┘  │
+│  ┌─────────┐  ┌──────────┐  ┌───────────────────┐  │
+│  │Descrip- │  │ Domains  │  │  Publications &   │  │
+│  │  tors   │  │ & Meshes │  │    Datasets       │  │
+│  └─────────┘  └──────────┘  └───────────────────┘  │
+│  ┌─────────┐  ┌──────────┐  ┌───────────────────┐  │
+│  │   RDF   │  │Analytics │  │  AI Search &      │  │
+│  │ Service │  │& Seeding │  │  Matching         │  │
+│  └─────────┘  └──────────┘  └───────────────────┘  │
+└───────┬──────────────┬──────────────┬───────────────┘
+        │              │              │
+   ┌────▼────┐   ┌─────▼─────┐  ┌────▼──────────┐
+   │PostgreSQL│   │Apache Jena│  │ lovamap_core  │
+   │(Geometry │   │  Fuseki   │  │(Computational │
+   │& Structure)  │  (RDF/    │  │   Engine)     │
+   │          │   │  SPARQL)  │  │               │
+   └──────────┘   └───────────┘  └───────────────┘
+```
+
+---
+
+## API Overview
+
+| Controller | Pillar | Key Functionality |
+|---|---|---|
+| **Jobs** | Analysis | Submit analysis/segmentation/mesh jobs, track status, download results, save outputs |
+| **ScaffoldGroups** | Storage | CRUD for scaffold groups, batch upload, filtering, AI search, image management |
+| **Descriptors** | Storage + Standardization | Query pore/global descriptors by scaffold, descriptor type taxonomy |
+| **Domains** | Storage + Analysis | Upload/download 3D meshes (.glb), domain metadata, batch replacement |
+| **RDFTest** | Storage | CRUD for RDF scaffold records, SPARQL-powered queries with filters |
+| **RDFVisualization** | Storage + Standardization | Knowledge graph visualization, ontology summary |
+| **Publications** | Standardization | Manage publications and versioned, frozen datasets |
+| **Seed** | Storage + Standardization | Bulk descriptor computation, RDF knowledge base population |
+| **Resources** | Standardization | Expose descriptor types and tags as controlled vocabularies |
+| **Analytics** | Cross-cutting | Dashboard aggregate statistics |
+| **Auth / Users** | Cross-cutting | JWT authentication, user registration, email verification |
+| **Admin** | Cross-cutting | Batch mesh replacement, system maintenance |
+| **Health / Debug** | Cross-cutting | System health checks, admin diagnostics |
+
+---
+
+## Key Technologies
+
+- **.NET 8.0** — Backend API framework
+- **PostgreSQL + Entity Framework Core** — Relational data storage and ORM
+- **Apache Jena Fuseki** — RDF triple store with SPARQL endpoint
+- **lovamap_core** — Computational engine for scaffold analysis (Python)
+- **React 18 + TypeScript** — Frontend application
+- **JWT** — Authentication and role-based authorization
+- **glTF/GLB** — 3D mesh format for scaffold visualization
+- **TailwindCSS** — Frontend styling
+- **MobX** — Frontend state management
+
+---
+
+## Getting Started
+
+### Backend
+
+The backend requires `appsettings.json` and `appsettings.Development.json` with the following structure:
+
+```json
+{
+  "ConnectionStrings": {
+    "LOVAMAP_DB": "<PostgreSQL connection string>"
+  },
+  "Jwt": {
+    "Issuer": "<Token issuer>",
+    "Key": "<512-bit token key>"
+  },
+  "AllowedHosts": "*"
+}
+```
+
+```bash
+cd GatewayBackend
+dotnet watch run --project API
+```
+
+The Swagger UI opens automatically at https://localhost:44381.
+
+### Frontend
+
+```bash
+cd GatewayUI/react-ui
+npm install
+npm start
+```
+
+The application opens at http://localhost:3000.
