@@ -172,7 +172,7 @@ namespace Services.Services
 					- If the user provides a volume (e.g., 'volume of 5000 µm³'), convert it into diameter using the formula d = 2 * ((3 * V) / (4π))^(1/3), round the computed diameter to the nearest integer, and include it in ParticleSizes.
 					- If no reference to size is provided, set ParticleSizes to null.
 					- If particle sizes are mentioned but in the context of volume (e.g., '500um3', specific mention of volume), calculate the diameter assuming a spherical particle and add that integer into ParticleSizes.
-					- Set IsSimulated=false when the user uses words like 'real', 'experimental', 'actual', 'physical', 'lab', 'fabricated', 'microscopy', 'imaging', 'confocal' or otherwise indicates the scaffold was physically made/measured.
+					- Set IsSimulated=false when the user uses words like 'real', 'real data', 'experimental', 'actual', 'physical', 'lab', 'fabricated', 'microscopy', 'imaging', 'confocal', 'non-simulated', 'not simulated' or otherwise indicates the scaffold was physically made/measured. Any negation of 'simulated' (e.g., 'non-simulated', 'not simulated', 'no simulation') should also result in IsSimulated=false.
 					- Set IsSimulated=true when the user uses words like 'simulated', 'synthetic', 'in silico', 'computational', 'virtual', 'generated', or otherwise indicates the scaffold was computer-generated.
 					- If the user's input gives no indication either way about whether the scaffold is real or simulated, set IsSimulated to null.
 					- Return only the JSON object. Do not include comments or explanations.

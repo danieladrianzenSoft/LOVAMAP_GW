@@ -26,6 +26,7 @@ export const useScaffoldGroupFiltering = (isLoggedIn: boolean, setIsLoading: (lo
 	const [isSimulated, setIsSimulated] = useState<boolean | null>(null);
 
 	const [aiSearchUsed, setAiSearchUsed] = useState(false);
+	const skipNextEffectRef = useRef(false);
 
 	const [searchCategory, setSearchCategoryState] = useState<SearchCategory>(DEFAULT_CATEGORY);
 	const shapeTagsCacheRef = useRef<Tag[] | null>(null);
@@ -83,6 +84,10 @@ export const useScaffoldGroupFiltering = (isLoggedIn: boolean, setIsLoading: (lo
 
 	// Trigger filtering whenever tags or particle sizes change
 	useEffect(() => {
+		if (skipNextEffectRef.current) {
+			skipNextEffectRef.current = false;
+			return;
+		}
 		let cancelled = false;
 		const fetchScaffoldGroups = async () => {
 			setIsLoading(true);
@@ -177,6 +182,7 @@ export const useScaffoldGroupFiltering = (isLoggedIn: boolean, setIsLoading: (lo
 				dispersityTagNames: pre.dispersityTagName ? [pre.dispersityTagName] : undefined,
 			};
 			await scaffoldGroupStore.searchScaffoldGroups(prompt, preFilter);
+			skipNextEffectRef.current = true;
 			setSelectedParticleSizeIds(scaffoldGroupStore.selectedParticleSizeIds);
 			setSelectedTags(scaffoldGroupStore.groupedSelectedTags);
 			setAiSearchUsed(true);
