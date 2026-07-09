@@ -70,37 +70,33 @@ lova:author/segura-t  a  lova:Author ;
 
 
 ##############################################################################
-# GEOMETRY PROFILES
+# GEOMETRY PROFILES (per-Material, DOI-scoped)
+# Only divergent match criteria stored — echoes of Material values omitted.
+# matchSizeMin/Max kept — they diverge from the Material's exact reported size
 ##############################################################################
 
-lova:geometry-profile/peg-sphere-40um  a  lova:GeometryProfile ;
-    rdfs:label              "PEG spherical microgels ~40 μm" ;
+lova:geometry-profile/10.1002-adma.202304049/map-40um-profile  a  lova:GeometryProfile ;
+    rdfs:label              "Match record for 40 μm PEG MAP" ;
     lova:matchType          "aggregate" ;
     lova:matchDescription   "Scaffold groups with spherical PEG particles, mean size ~40 μm" ;
-    lova:matchShape         "Sphere" ;
     lova:matchSizeMin       35.0 ;
     lova:matchSizeMax       45.0 ;
-    lova:matchMaterial      "PEG" ;
     lova:scaffoldCount      0 .
 
-lova:geometry-profile/peg-sphere-70um  a  lova:GeometryProfile ;
-    rdfs:label              "PEG spherical microgels ~70 μm" ;
+lova:geometry-profile/10.1002-adma.202304049/map-70um-profile  a  lova:GeometryProfile ;
+    rdfs:label              "Match record for 70 μm PEG MAP" ;
     lova:matchType          "aggregate" ;
     lova:matchDescription   "Scaffold groups with spherical PEG particles, mean size ~70 μm" ;
-    lova:matchShape         "Sphere" ;
     lova:matchSizeMin       65.0 ;
     lova:matchSizeMax       75.0 ;
-    lova:matchMaterial      "PEG" ;
     lova:scaffoldCount      0 .
 
-lova:geometry-profile/peg-sphere-130um  a  lova:GeometryProfile ;
-    rdfs:label              "PEG spherical microgels ~130 μm" ;
+lova:geometry-profile/10.1002-adma.202304049/map-130um-profile  a  lova:GeometryProfile ;
+    rdfs:label              "Match record for 130 μm PEG MAP" ;
     lova:matchType          "aggregate" ;
     lova:matchDescription   "Scaffold groups with spherical PEG particles, mean size ~130 μm" ;
-    lova:matchShape         "Sphere" ;
     lova:matchSizeMin       125.0 ;
     lova:matchSizeMax       135.0 ;
-    lova:matchMaterial      "PEG" ;
     lova:scaffoldCount      0 .
 
 
@@ -167,9 +163,9 @@ lova:material/10.1002-adma.202304049/map-40um  a  lova:Material ;
     lova:particleSizeUnit       "μm" ;
     lova:sizeDistribution       "Monodisperse (microfluidic, 4-inlet device)" ;
     lova:reportedPoreSize       "Largest enclosed sphere median ~10 μm (simulation); most pores smaller than BMDM diameter" ;
-    lova:stiffness              "Soft hydrogel" ;
+    lova:stiffnessQualitative   "Soft hydrogel" ;
     lova:hasFabricationMethod   lova:fabrication-method/10.1002-adma.202304049/microfluidic-peg-fxiii ;
-    lova:hasGeometryProfile     lova:geometry-profile/peg-sphere-40um .
+    lova:hasGeometryProfile     lova:geometry-profile/10.1002-adma.202304049/map-40um-profile .
 
 lova:material/10.1002-adma.202304049/map-70um  a  lova:Material ;
     lova:describedIn            lova:paper/10.1002-adma.202304049 ;
@@ -181,9 +177,9 @@ lova:material/10.1002-adma.202304049/map-70um  a  lova:Material ;
     lova:particleSizeUnit       "μm" ;
     lova:sizeDistribution       "Monodisperse (microfluidic, 4-inlet device)" ;
     lova:reportedPoreSize       "Largest enclosed sphere median ~18 μm (simulation); comparable to BMDM diameter" ;
-    lova:stiffness              "Soft hydrogel" ;
+    lova:stiffnessQualitative   "Soft hydrogel" ;
     lova:hasFabricationMethod   lova:fabrication-method/10.1002-adma.202304049/microfluidic-peg-fxiii ;
-    lova:hasGeometryProfile     lova:geometry-profile/peg-sphere-70um .
+    lova:hasGeometryProfile     lova:geometry-profile/10.1002-adma.202304049/map-70um-profile .
 
 lova:material/10.1002-adma.202304049/map-130um  a  lova:Material ;
     lova:describedIn            lova:paper/10.1002-adma.202304049 ;
@@ -195,9 +191,9 @@ lova:material/10.1002-adma.202304049/map-130um  a  lova:Material ;
     lova:particleSizeUnit       "μm" ;
     lova:sizeDistribution       "Monodisperse (microfluidic, 2-inlet device)" ;
     lova:reportedPoreSize       "Largest enclosed sphere median ~25 μm (simulation); much larger than BMDM diameter" ;
-    lova:stiffness              "Soft hydrogel" ;
+    lova:stiffnessQualitative   "Soft hydrogel" ;
     lova:hasFabricationMethod   lova:fabrication-method/10.1002-adma.202304049/microfluidic-peg-fxiii ;
-    lova:hasGeometryProfile     lova:geometry-profile/peg-sphere-130um .
+    lova:hasGeometryProfile     lova:geometry-profile/10.1002-adma.202304049/map-130um-profile .
 
 
 ##############################################################################

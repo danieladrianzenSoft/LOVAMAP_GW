@@ -7,6 +7,7 @@ export interface ScaffoldGroup {
     name: string;
     comments: string;
     createdAt:  string;
+    isPublic: boolean;
     isSimulated: boolean;
     inputs: InputGroup;
     numReplicates: number;

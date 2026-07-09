@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { observer } from 'mobx-react-lite';
-import OntologyGraph from '../../app/common/ontology-graph/OntologyGraph';
+import OntologyGraph, { getGroupColor } from '../../app/common/ontology-graph/OntologyGraph';
 import agent from '../../app/api/agent';
 import { useStore } from '../../app/stores/store';
 import { RdfGraph, RdfGraphNode, RdfOntologySummary } from '../../app/models/rdfGraph';
@@ -35,6 +35,15 @@ const RdfVisualization: React.FC<RdfVisualizationProps> = ({ height = 500 }) => 
 		};
 		fetchData();
 	}, []);
+
+	const legendGroups = useMemo(() => {
+		if (!graph) return [];
+		const groups = new Set<string>();
+		for (const n of graph.nodes) {
+			if (n.group) groups.add(n.group);
+		}
+		return Array.from(groups).sort();
+	}, [graph]);
 
 	if (loading) {
 		return (
@@ -83,19 +92,13 @@ const RdfVisualization: React.FC<RdfVisualizationProps> = ({ height = 500 }) => 
 				{/* Legend */}
 				<div className="bg-white dark:bg-gray-800 rounded-lg p-4">
 					<h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Legend</h4>
-					<div className="flex flex-wrap gap-4 text-xs text-gray-600 dark:text-gray-400">
-						<span className="flex items-center gap-1.5">
-							<span className="inline-block w-3 h-3 rounded-full bg-indigo-600 dark:bg-indigo-500"></span>
-							Class
-						</span>
-						<span className="flex items-center gap-1.5">
-							<span className="inline-block w-3 h-3 rounded-full bg-blue-600 dark:bg-blue-500"></span>
-							Instance
-						</span>
-						<span className="flex items-center gap-1.5">
-							<span className="inline-block w-3 h-3 rounded-full bg-emerald-600 dark:bg-emerald-500"></span>
-							Literal
-						</span>
+					<div className="flex flex-wrap gap-3 text-xs text-gray-600 dark:text-gray-400">
+						{legendGroups.map(g => (
+							<span key={g} className="flex items-center gap-1.5">
+								<span className="inline-block w-3 h-3 rounded-full" style={{ backgroundColor: getGroupColor(g) }}></span>
+								{g}
+							</span>
+						))}
 					</div>
 					<p className="text-xs text-gray-400 dark:text-gray-500 mt-2">
 						Click a node to zoom in. Scroll to zoom. Drag to pan.

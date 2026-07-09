@@ -40,6 +40,21 @@ const AdminUtilities: React.FC = () => {
 						Open Test Viewer
 					</button>
 				</div>
+				<div className="border rounded-lg p-6 bg-white shadow flex flex-col justify-between">
+					<div>
+						<h2 className="text-lg font-semibold mb-2">RDF Explorer</h2>
+						<p className="text-sm text-gray-600 mb-4">
+							Full-screen knowledge graph viewer. Browse the Fuseki database
+							or drop .ttl files for instant client-side visualization.
+						</p>
+					</div>
+					<button
+						onClick={() => navigate("/rdf-explorer")}
+						className="button-primary"
+					>
+						Open RDF Explorer
+					</button>
+				</div>
 				<AdminThumbnailReset />
 				<AdminTitleResetter />
 				<AdminBatchDescriptorSeeder />

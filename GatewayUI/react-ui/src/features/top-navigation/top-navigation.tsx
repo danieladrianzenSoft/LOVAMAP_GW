@@ -29,6 +29,7 @@ const ROUTE_LABELS: Record<string, string> = {
 	admin: 'Admin',
 	'bulk-upload': 'Bulk Upload',
 	dashboard: 'Dashboard',
+	'rdf-explorer': 'RDF Explorer',
 	settings: 'Settings',
 };
 

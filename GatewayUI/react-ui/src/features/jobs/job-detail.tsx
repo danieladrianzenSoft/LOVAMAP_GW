@@ -86,9 +86,9 @@ const JobDetail: React.FC<Props> = ({ job, onBack, onJobSubmitted, formatDate, o
 
   // Poll mesh child job statuses via the lightweight mesh-status endpoint
   useEffect(() => {
-    if (!showMeshSection || !isLovamap) return;
+    if (!showMeshSection) return;
     let cancelled = false;
-    let poreResolved = false;
+    let poreResolved = isSegmentation; // segmentation has no pore mesh
     let particleResolved = false;
 
     const pollStatus = async () => {
@@ -153,7 +153,7 @@ const JobDetail: React.FC<Props> = ({ job, onBack, onJobSubmitted, formatDate, o
       cancelled = true;
       if (pollTimerRef.current) clearInterval(pollTimerRef.current);
     };
-  }, [showMeshSection, isLovamap, job.id, jobStore]);
+  }, [showMeshSection, isSegmentation, job.id, jobStore]);
 
   // Cleanup blob URLs on unmount
   useEffect(() => {
@@ -538,32 +538,52 @@ const JobDetail: React.FC<Props> = ({ job, onBack, onJobSubmitted, formatDate, o
             <Row
               label="Mesh"
               value={
-                <div>
-                  <div className="flex gap-2 mb-2">
-                    <button
-                      className="button-primary items-center content-center flex gap-1"
-                      onClick={fetchMesh}
-                      disabled={meshLoading}
-                    >
-                      {meshLoading && <FaSpinner className="animate-spin" />}
-                      {showMesh ? 'Viewing' : 'View Mesh'}
-                    </button>
-                    <button
-                      className="button-outline items-center content-center"
-                      onClick={downloadMesh}
-                    >
-                      Download Mesh
-                    </button>
-                  </div>
-                  {meshError && (
-                    <p className="text-sm text-red-500">{meshError}</p>
-                  )}
-                  {showMesh && meshBlobUrl && (
-                    <div className="mt-2">
-                      <JobMeshViewer blobUrl={meshBlobUrl} />
+                particleMeshState === 'checking' ? (
+                  <span className="inline-flex items-center gap-2 text-sm text-gray-400">
+                    <FaSpinner className="animate-spin" /> Checking...
+                  </span>
+                ) : particleMeshState === 'generating' ? (
+                  <span className="inline-flex items-center gap-2 text-sm text-gray-500">
+                    <FaSpinner className="animate-spin" /> Generating mesh...
+                  </span>
+                ) : particleMeshState === 'ready' ? (
+                  <div>
+                    <div className="flex gap-2 mb-2">
+                      <button
+                        className="button-primary items-center content-center flex gap-1"
+                        onClick={fetchMesh}
+                        disabled={meshLoading}
+                      >
+                        {meshLoading && <FaSpinner className="animate-spin" />}
+                        {showMesh ? 'Viewing' : 'View Mesh'}
+                      </button>
+                      <button
+                        className="button-outline items-center content-center"
+                        onClick={downloadMesh}
+                      >
+                        Download Mesh
+                      </button>
                     </div>
-                  )}
-                </div>
+                    {meshError && (
+                      <p className="text-sm text-red-500">{meshError}</p>
+                    )}
+                    {showMesh && meshBlobUrl && (
+                      <div className="mt-2">
+                        <JobMeshViewer blobUrl={meshBlobUrl} />
+                      </div>
+                    )}
+                  </div>
+                ) : particleMeshState === 'failed' || particleMeshState === 'stopped' ? (
+                  <span className="text-sm text-red-500">
+                    Mesh generation {particleMeshState}
+                  </span>
+                ) : particleMeshState === 'unavailable' ? (
+                  <span className="text-sm text-gray-400">
+                    Processing server unavailable
+                  </span>
+                ) : (
+                  <span className="text-sm text-gray-400">Not available</span>
+                )
               }
             />
           )}

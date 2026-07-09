@@ -1,5 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import ForceGraph2D, { ForceGraphMethods } from 'react-force-graph-2d';
+// @ts-ignore — d3-force is a transitive dep of react-force-graph-2d
+import { forceCollide } from 'd3-force';
 import { RdfGraphNode, RdfGraphEdge } from '../../models/rdfGraph';
 
 interface OntologyGraphProps {
@@ -8,66 +10,147 @@ interface OntologyGraphProps {
 	height?: number;
 	darkMode?: boolean;
 	onNodeClick?: (node: RdfGraphNode) => void;
+	onBackgroundClick?: () => void;
+	selectedNodeId?: string;
+	hoveredNodeId?: string;
+	onNodeHover?: (node: RdfGraphNode | null) => void;
+	focusNodeId?: string;
+	focusTrigger?: number;
+	nodeVisibility?: (node: any) => boolean;
+	linkVisibility?: (link: any) => boolean;
+}
+
+const GROUP_COLORS: Record<string, string> = {
+	Paper:              '#e0a458',
+	Author:             '#4fb0a5',
+	Journal:            '#a888d4',
+	Material:           '#e2725b',
+	FabricationMethod:  '#d46aa8',
+	Experiment:         '#5b8def',
+	Outcome:            '#6fbf73',
+	GeometryProfile:    '#8a94a6',
+	BiologicalModel:    '#5b8def',
+};
+
+const FALLBACK_PALETTE = [
+	'#e0a458', '#4fb0a5', '#a888d4', '#e2725b',
+	'#d46aa8', '#5b8def', '#6fbf73', '#8a94a6',
+];
+
+function hashCode(s: string): number {
+	let h = 0;
+	for (let i = 0; i < s.length; i++) {
+		h = ((h << 5) - h + s.charCodeAt(i)) | 0;
+	}
+	return Math.abs(h);
+}
+
+function getGroupColor(group: string | undefined): string {
+	if (!group) return '#8a94a6';
+	return GROUP_COLORS[group] || FALLBACK_PALETTE[hashCode(group) % FALLBACK_PALETTE.length];
 }
 
 const THEME = {
 	light: {
-		bg: '#f9fafb',
-		nodeColors: { class: '#4f46e5', instance: '#2563eb', literal: '#059669' },
-		classBorder: '#3730a3',
-		labelColor: '#374151',
-		edgeColor: 'rgba(107, 114, 128, 0.3)',
+		bg: '#f7f5f4',
+		edgeColor: 'rgba(107, 114, 128, 0.25)',
 		edgeLabelColor: 'rgba(107, 114, 128, 0.7)',
+		labelColor: '#374151',
 	},
 	dark: {
 		bg: '#111827',
-		nodeColors: { class: '#6366f1', instance: '#3b82f6', literal: '#10b981' },
-		classBorder: '#4338ca',
-		labelColor: '#e5e7eb',
-		edgeColor: 'rgba(156, 163, 175, 0.3)',
+		edgeColor: 'rgba(156, 163, 175, 0.25)',
 		edgeLabelColor: 'rgba(156, 163, 175, 0.7)',
+		labelColor: '#e5e7eb',
 	},
 };
 
-// Radius per node type
-const NODE_RADIUS: Record<string, number> = {
-	class: 8,
-	instance: 5,
-	literal: 4,
-};
+const PAPER_RADIUS = 8;
+const NODE_RADIUS = 5;
 
-// nodeVal controls built-in circle size: radius = sqrt(val) * nodeRelSize
-// With nodeRelSize=1, val = radius^2
-const NODE_VAL: Record<string, number> = {
-	class: 64,
-	instance: 25,
-	literal: 16,
-};
+function getNodeRadius(node: any): number {
+	return node.group === 'Paper' ? PAPER_RADIUS : NODE_RADIUS;
+}
+
+// Find the nearest node to graph coordinates within a screen-pixel threshold
+function findNearestNode(
+	nodes: any[],
+	graphX: number,
+	graphY: number,
+	zoom: number,
+): any | null {
+	const threshold = 20 / zoom; // 20 screen pixels converted to graph units
+	let nearest: any = null;
+	let nearestDist = Infinity;
+	for (const n of nodes) {
+		if (typeof n.x !== 'number' || typeof n.y !== 'number') continue;
+		const dx = n.x - graphX;
+		const dy = n.y - graphY;
+		const d = Math.sqrt(dx * dx + dy * dy);
+		if (d < threshold && d < nearestDist) {
+			nearest = n;
+			nearestDist = d;
+		}
+	}
+	return nearest;
+}
 
 const OntologyGraph: React.FC<OntologyGraphProps> = ({
 	nodes,
 	edges,
-	height = 500,
+	height,
 	darkMode = false,
 	onNodeClick,
+	onBackgroundClick,
+	selectedNodeId,
+	hoveredNodeId,
+	onNodeHover,
+	focusNodeId,
+	focusTrigger,
+	nodeVisibility,
+	linkVisibility,
 }) => {
 	const graphRef = useRef<ForceGraphMethods | undefined>();
 	const containerRef = useRef<HTMLDivElement>(null);
 	const [containerWidth, setContainerWidth] = useState<number | undefined>();
+	const [containerHeight, setContainerHeight] = useState<number | undefined>();
 	const theme = darkMode ? THEME.dark : THEME.light;
+
+	// Refs for stable canvas callbacks
+	const hoveredRef = useRef(hoveredNodeId);
+	const selectedRef = useRef(selectedNodeId);
+	const onNodeClickRef = useRef(onNodeClick);
+	const onNodeHoverRef = useRef(onNodeHover);
+	const onBackgroundClickRef = useRef(onBackgroundClick);
+	hoveredRef.current = hoveredNodeId;
+	selectedRef.current = selectedNodeId;
+	onNodeClickRef.current = onNodeClick;
+	onNodeHoverRef.current = onNodeHover;
+	onBackgroundClickRef.current = onBackgroundClick;
 
 	useEffect(() => {
 		const el = containerRef.current;
 		if (!el) return;
-
 		const observer = new ResizeObserver((entries) => {
 			for (const entry of entries) {
 				setContainerWidth(entry.contentRect.width);
+				setContainerHeight(entry.contentRect.height);
 			}
 		});
 		observer.observe(el);
 		return () => observer.disconnect();
 	}, []);
+
+	// Focus on node
+	useEffect(() => {
+		if (!focusNodeId || !graphRef.current) return;
+		const gd = graphRef.current;
+		const nodeObj = (gd as any).graphData?.().nodes?.find((n: any) => n.id === focusNodeId);
+		if (nodeObj && typeof nodeObj.x === 'number') {
+			gd.centerAt(nodeObj.x, nodeObj.y, 400);
+			gd.zoom(3, 400);
+		}
+	}, [focusNodeId, focusTrigger]);
 
 	const graphData = useMemo(() => ({
 		nodes: nodes.map(n => ({ ...n })),
@@ -78,54 +161,129 @@ const OntologyGraph: React.FC<OntologyGraphProps> = ({
 		})),
 	}), [nodes, edges]);
 
+	// Configure forces
+	useEffect(() => {
+		if (!graphRef.current) return;
+		const fg = graphRef.current as any;
+		fg.d3Force('collision', forceCollide().radius(10).strength(0.7));
+		fg.d3Force('charge')?.strength(-30);
+	}, [graphData]);
+
 	const handleEngineStop = useCallback(() => {
 		if (graphRef.current) {
-			graphRef.current.zoomToFit(400, 40);
+			graphRef.current.zoomToFit(400, 80);
 		}
 	}, []);
 
-	const handleNodeClick = useCallback((node: any) => {
-		if (onNodeClick) {
-			onNodeClick(node as RdfGraphNode);
-		}
-		if (graphRef.current) {
-			graphRef.current.centerAt(node.x, node.y, 400);
-			graphRef.current.zoom(3, 400);
-		}
-	}, [onNodeClick]);
+	// ── Manual click & hover detection ──
+	// Bypasses ForceGraph2D's shadow canvas hit detection entirely.
+	// We attach listeners directly to the canvas element and use
+	// screen2GraphCoords + distance checks against all nodes.
+	// The graphData ref gives us access to the live node positions
+	// (d3-force mutates x/y on the original objects).
+	const graphDataRef = useRef(graphData);
+	graphDataRef.current = graphData;
 
-	// Built-in rendering draws the circles + handles hit detection.
-	// "after" mode lets us draw labels and class borders on top.
-	const nodeCanvasObjectAfter = useCallback((node: any, ctx: CanvasRenderingContext2D, globalScale: number) => {
-		const nodeType = node.type || 'instance';
-		const radius = NODE_RADIUS[nodeType] || 5;
+	useEffect(() => {
+		const container = containerRef.current;
+		if (!container) return;
 
-		// Add border ring for class nodes
-		if (nodeType === 'class') {
+		const canvas = container.querySelector('canvas');
+		if (!canvas) return;
+
+		const getGraphCoords = (e: MouseEvent) => {
+			if (!graphRef.current) return null;
+			const rect = canvas.getBoundingClientRect();
+			return (graphRef.current as any).screen2GraphCoords(
+				e.clientX - rect.left,
+				e.clientY - rect.top,
+			);
+		};
+
+		const getZoom = (): number => {
+			if (!graphRef.current) return 1;
+			return (graphRef.current as any).zoom?.() || 1;
+		};
+
+		const handleMouseMove = (e: MouseEvent) => {
+			const coords = getGraphCoords(e);
+			if (!coords) return;
+			const nearest = findNearestNode(graphDataRef.current.nodes, coords.x, coords.y, getZoom());
+			if (nearest) {
+				canvas.style.cursor = 'pointer';
+				if (onNodeHoverRef.current) onNodeHoverRef.current(nearest as RdfGraphNode);
+			} else {
+				canvas.style.cursor = 'default';
+				if (onNodeHoverRef.current) onNodeHoverRef.current(null);
+			}
+		};
+
+		const handleClick = (e: MouseEvent) => {
+			const coords = getGraphCoords(e);
+			if (!coords) return;
+			const nearest = findNearestNode(graphDataRef.current.nodes, coords.x, coords.y, getZoom());
+			if (nearest) {
+				if (onNodeClickRef.current) onNodeClickRef.current(nearest as RdfGraphNode);
+			} else {
+				if (onBackgroundClickRef.current) onBackgroundClickRef.current();
+			}
+		};
+
+		canvas.addEventListener('mousemove', handleMouseMove);
+		canvas.addEventListener('click', handleClick);
+		return () => {
+			canvas.removeEventListener('mousemove', handleMouseMove);
+			canvas.removeEventListener('click', handleClick);
+		};
+	}, [graphData, containerWidth, containerHeight]);
+
+	// Node rendering
+	const nodeCanvasObject = useCallback((node: any, ctx: CanvasRenderingContext2D, globalScale: number) => {
+		const x = node.x as number;
+		const y = node.y as number;
+		if (typeof x !== 'number' || typeof y !== 'number') return;
+
+		const r = getNodeRadius(node);
+		const color = getGroupColor(node.group);
+		const isSelected = node.id === selectedRef.current;
+		const isHovered = node.id === hoveredRef.current;
+
+		if (isSelected) {
 			ctx.beginPath();
-			ctx.arc(node.x, node.y, radius, 0, 2 * Math.PI);
-			ctx.strokeStyle = theme.classBorder;
-			ctx.lineWidth = 1.5;
+			ctx.arc(x, y, r + 2, 0, 2 * Math.PI);
+			ctx.strokeStyle = darkMode ? '#ffffff' : '#1f2937';
+			ctx.lineWidth = 2;
 			ctx.stroke();
 		}
 
-		// Draw label when zoomed in
-		if (globalScale > 1.2) {
-			const label = node.label || node.id;
+		ctx.beginPath();
+		ctx.arc(x, y, r, 0, 2 * Math.PI);
+		ctx.fillStyle = color;
+		ctx.fill();
+
+		const showLabel = node.group === 'Paper' || isHovered || isSelected;
+		if (showLabel && node.label) {
 			const fontSize = Math.max(10 / globalScale, 1.5);
 			ctx.font = `${fontSize}px Sans-Serif`;
 			ctx.textAlign = 'center';
 			ctx.textBaseline = 'top';
 			ctx.fillStyle = theme.labelColor;
-			ctx.fillText(label, node.x, node.y + radius + 2);
+			const maxLen = 30;
+			const label = node.label.length > maxLen ? node.label.substring(0, maxLen) + '...' : node.label;
+			ctx.fillText(label, x, y + r + 1.5);
 		}
-	}, [theme]);
+	}, [darkMode, theme.labelColor]);
 
+	// Link rendering
 	const linkCanvasObject = useCallback((link: any, ctx: CanvasRenderingContext2D, globalScale: number) => {
 		const start = link.source;
 		const end = link.target;
-
 		if (!start || !end || typeof start.x !== 'number') return;
+
+		const srcId = typeof start === 'object' ? start.id : start;
+		const tgtId = typeof end === 'object' ? end.id : end;
+		const isEndpointActive = srcId === hoveredRef.current || tgtId === hoveredRef.current
+			|| srcId === selectedRef.current || tgtId === selectedRef.current;
 
 		ctx.beginPath();
 		ctx.moveTo(start.x, start.y);
@@ -134,7 +292,7 @@ const OntologyGraph: React.FC<OntologyGraphProps> = ({
 		ctx.lineWidth = 0.5;
 		ctx.stroke();
 
-		if (globalScale > 2.5 && link.label) {
+		if (isEndpointActive && link.label) {
 			const midX = (start.x + end.x) / 2;
 			const midY = (start.y + end.y) / 2;
 			const fontSize = Math.max(8 / globalScale, 1.2);
@@ -146,15 +304,12 @@ const OntologyGraph: React.FC<OntologyGraphProps> = ({
 		}
 	}, [theme]);
 
-	const getNodeColor = useCallback((node: any) => {
-		const nodeType = node.type || 'instance';
-		return theme.nodeColors[nodeType as keyof typeof theme.nodeColors] || theme.nodeColors.instance;
-	}, [theme]);
-
-	const getNodeVal = useCallback((node: any) => {
-		const nodeType = node.type || 'instance';
-		return NODE_VAL[nodeType] || 25;
-	}, []);
+	// Force redraw when hover/selection changes
+	useEffect(() => {
+		if (graphRef.current) {
+			(graphRef.current as any).refresh?.();
+		}
+	}, [hoveredNodeId, selectedNodeId]);
 
 	if (nodes.length === 0) {
 		return (
@@ -164,23 +319,25 @@ const OntologyGraph: React.FC<OntologyGraphProps> = ({
 		);
 	}
 
+	const resolvedHeight = containerHeight ?? height ?? 500;
+
 	return (
-		<div ref={containerRef}>
-			{containerWidth && (
+		<div ref={containerRef} className="h-full w-full">
+			{containerWidth && resolvedHeight > 0 && (
 				<ForceGraph2D
 					ref={graphRef}
 					graphData={graphData}
 					width={containerWidth}
-					height={height}
+					height={resolvedHeight}
 					backgroundColor={theme.bg}
-					nodeColor={getNodeColor}
-					nodeVal={getNodeVal}
-					nodeRelSize={1}
-					nodeCanvasObjectMode={() => 'after'}
-					nodeCanvasObject={nodeCanvasObjectAfter}
+					nodeCanvasObject={nodeCanvasObject}
+					nodeCanvasObjectMode={() => 'replace'}
+					nodeVisibility={nodeVisibility}
+					linkVisibility={linkVisibility}
 					linkCanvasObject={linkCanvasObject}
-					onNodeClick={handleNodeClick}
+					linkCanvasObjectMode={() => 'replace'}
 					onEngineStop={handleEngineStop}
+					enableNodeDrag={false}
 					cooldownTicks={100}
 					d3AlphaDecay={0.02}
 					d3VelocityDecay={0.3}
@@ -190,4 +347,5 @@ const OntologyGraph: React.FC<OntologyGraphProps> = ({
 	);
 };
 
+export { GROUP_COLORS, getGroupColor };
 export default OntologyGraph;

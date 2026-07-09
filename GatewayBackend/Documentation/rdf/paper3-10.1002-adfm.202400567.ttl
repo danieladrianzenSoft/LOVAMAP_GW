@@ -77,56 +77,56 @@ lova:author/segura-t  a  lova:Author ;
 
 
 ##############################################################################
-# GEOMETRY PROFILES
+# GEOMETRY PROFILES (per-Material, DOI-scoped)
+# Only divergent match criteria stored — echoes of Material values omitted.
+# matchShape omitted (all Materials have particleShape "Sphere")
+# matchSizeMin/Max omitted for HA materials (polydisperse ranges are identical
+#   to Material's reported range — no tolerance applied)
+# matchSizeMin/Max omitted for PEG materials (same — Material range = match range)
+# matchMaterial kept — Material says full name (e.g. "HA-NB (hyaluronic acid
+#   norbornene)") but match used shorter family key "HA-NB" or "PEG"
 ##############################################################################
 
-lova:geometry-profile/ha-sphere-50um  a  lova:GeometryProfile ;
-    rdfs:label              "HA spherical microgels ~50 μm" ;
+lova:geometry-profile/10.1002-adfm.202400567/ha-50um-profile  a  lova:GeometryProfile ;
+    rdfs:label              "Match record for 50 μm HA-NB MAP" ;
     lova:matchType          "aggregate" ;
     lova:matchDescription   "Scaffold groups with spherical HA-NB particles, mean size ~50 μm" ;
-    lova:matchShape         "Sphere" ;
-    lova:matchSizeMin       30.0 ;
-    lova:matchSizeMax       70.0 ;
     lova:matchMaterial      "HA-NB" ;
     lova:scaffoldCount      0 .
 
-lova:geometry-profile/ha-sphere-80um  a  lova:GeometryProfile ;
-    rdfs:label              "HA spherical microgels ~80 μm" ;
+lova:geometry-profile/10.1002-adfm.202400567/ha-80um-profile  a  lova:GeometryProfile ;
+    rdfs:label              "Match record for 80 μm HA-NB MAP" ;
     lova:matchType          "aggregate" ;
     lova:matchDescription   "Scaffold groups with spherical HA-NB particles, mean size ~80 μm" ;
-    lova:matchShape         "Sphere" ;
-    lova:matchSizeMin       60.0 ;
-    lova:matchSizeMax       110.0 ;
     lova:matchMaterial      "HA-NB" ;
     lova:scaffoldCount      0 .
 
-lova:geometry-profile/ha-sphere-200um  a  lova:GeometryProfile ;
-    rdfs:label              "HA spherical microgels ~200 μm" ;
+lova:geometry-profile/10.1002-adfm.202400567/ha-200um-profile  a  lova:GeometryProfile ;
+    rdfs:label              "Match record for 200 μm HA-NB MAP" ;
     lova:matchType          "aggregate" ;
     lova:matchDescription   "Scaffold groups with spherical HA-NB particles, mean size ~200 μm" ;
-    lova:matchShape         "Sphere" ;
-    lova:matchSizeMin       100.0 ;
-    lova:matchSizeMax       300.0 ;
     lova:matchMaterial      "HA-NB" ;
     lova:scaffoldCount      0 .
 
-lova:geometry-profile/peg-sphere-65um  a  lova:GeometryProfile ;
-    rdfs:label              "PEG spherical microgels ~65 μm (small MAP)" ;
+# VascMAP gets its own profile (was previously shared with ha-80um)
+lova:geometry-profile/10.1002-adfm.202400567/vascmap-profile  a  lova:GeometryProfile ;
+    rdfs:label              "Match record for VascMAP (~80 μm HA-NB)" ;
+    lova:matchType          "aggregate" ;
+    lova:matchDescription   "Scaffold groups with spherical HA-NB particles, mean size ~80 μm (heterogeneous nH+RGD formulation)" ;
+    lova:matchMaterial      "HA-NB" ;
+    lova:scaffoldCount      0 .
+
+lova:geometry-profile/10.1002-adfm.202400567/peg-small-profile  a  lova:GeometryProfile ;
+    rdfs:label              "Match record for small (~65 μm) PEG MAP" ;
     lova:matchType          "aggregate" ;
     lova:matchDescription   "Scaffold groups with spherical PEG-VS particles, mean size 55-75 μm" ;
-    lova:matchShape         "Sphere" ;
-    lova:matchSizeMin       55.0 ;
-    lova:matchSizeMax       75.0 ;
     lova:matchMaterial      "PEG" ;
     lova:scaffoldCount      0 .
 
-lova:geometry-profile/peg-sphere-165um  a  lova:GeometryProfile ;
-    rdfs:label              "PEG spherical microgels ~165 μm (large MAP)" ;
+lova:geometry-profile/10.1002-adfm.202400567/peg-large-profile  a  lova:GeometryProfile ;
+    rdfs:label              "Match record for large (~165 μm) PEG MAP" ;
     lova:matchType          "aggregate" ;
     lova:matchDescription   "Scaffold groups with spherical PEG-VS particles, mean size 155-175 μm" ;
-    lova:matchShape         "Sphere" ;
-    lova:matchSizeMin       155.0 ;
-    lova:matchSizeMax       175.0 ;
     lova:matchMaterial      "PEG" ;
     lova:scaffoldCount      0 .
 
@@ -215,10 +215,10 @@ lova:material/10.1002-adfm.202400567/ha-50um  a  lova:Material ;
     lova:particleSizeUnit       "μm" ;
     lova:sizeDistribution       "Polydisperse (batch emulsion, stir-rate controlled)" ;
     lova:reportedPoreSize       "~10-30 pL pore volume (LOVAMAP rigid-sphere model)" ;
-    lova:stiffness              "Soft hydrogel" ;
+    lova:stiffnessQualitative   "Soft hydrogel" ;
     lova:surfaceModification    "RGD peptide (GCGYGRGDSPG, 1 mM)" ;
     lova:hasFabricationMethod   lova:fabrication-method/10.1002-adfm.202400567/ha-nb-batch-tet ;
-    lova:hasGeometryProfile     lova:geometry-profile/ha-sphere-50um .
+    lova:hasGeometryProfile     lova:geometry-profile/10.1002-adfm.202400567/ha-50um-profile .
 
 lova:material/10.1002-adfm.202400567/ha-80um  a  lova:Material ;
     lova:describedIn            lova:paper/10.1002-adfm.202400567 ;
@@ -230,10 +230,10 @@ lova:material/10.1002-adfm.202400567/ha-80um  a  lova:Material ;
     lova:particleSizeUnit       "μm" ;
     lova:sizeDistribution       "Polydisperse (batch emulsion, stir-rate controlled)" ;
     lova:reportedPoreSize       "~100-200 pL pore volume (LOVAMAP rigid-sphere model)" ;
-    lova:stiffness              "Soft hydrogel" ;
+    lova:stiffnessQualitative   "Soft hydrogel" ;
     lova:surfaceModification    "RGD peptide (GCGYGRGDSPG, 1 mM)" ;
     lova:hasFabricationMethod   lova:fabrication-method/10.1002-adfm.202400567/ha-nb-batch-tet ;
-    lova:hasGeometryProfile     lova:geometry-profile/ha-sphere-80um .
+    lova:hasGeometryProfile     lova:geometry-profile/10.1002-adfm.202400567/ha-80um-profile .
 
 lova:material/10.1002-adfm.202400567/ha-200um  a  lova:Material ;
     lova:describedIn            lova:paper/10.1002-adfm.202400567 ;
@@ -245,10 +245,10 @@ lova:material/10.1002-adfm.202400567/ha-200um  a  lova:Material ;
     lova:particleSizeUnit       "μm" ;
     lova:sizeDistribution       "Polydisperse (batch emulsion, stir-rate controlled)" ;
     lova:reportedPoreSize       "~2000-5000 pL pore volume (LOVAMAP rigid-sphere model)" ;
-    lova:stiffness              "Soft hydrogel" ;
+    lova:stiffnessQualitative   "Soft hydrogel" ;
     lova:surfaceModification    "RGD peptide (GCGYGRGDSPG, 1 mM)" ;
     lova:hasFabricationMethod   lova:fabrication-method/10.1002-adfm.202400567/ha-nb-batch-tet ;
-    lova:hasGeometryProfile     lova:geometry-profile/ha-sphere-200um .
+    lova:hasGeometryProfile     lova:geometry-profile/10.1002-adfm.202400567/ha-200um-profile .
 
 # VascMAP — the paper's novel optimized formulation
 # 50% nH μgels (heparin nanoparticles, no RGD) + 50% RGD μgels (no nH)
@@ -262,10 +262,10 @@ lova:material/10.1002-adfm.202400567/vascmap  a  lova:Material ;
     lova:particleSizeMax        110.0 ;
     lova:particleSizeUnit       "μm" ;
     lova:sizeDistribution       "Polydisperse (batch emulsion, ~80 μm mean)" ;
-    lova:stiffness              "Soft hydrogel" ;
+    lova:stiffnessQualitative   "Soft hydrogel" ;
     lova:surfaceModification    "Heterogeneous: 50% nH μgels (heparin nanoparticles with 200 ng VEGF) + 50% RGD μgels (GCGYGRGDSPG, 1 mM)" ;
     lova:hasFabricationMethod   lova:fabrication-method/10.1002-adfm.202400567/ha-nb-batch-tet ;
-    lova:hasGeometryProfile     lova:geometry-profile/ha-sphere-80um .
+    lova:hasGeometryProfile     lova:geometry-profile/10.1002-adfm.202400567/vascmap-profile .
 
 
 ##############################################################################
@@ -281,10 +281,10 @@ lova:material/10.1002-adfm.202400567/peg-small  a  lova:Material ;
     lova:particleSizeMax        75.0 ;
     lova:particleSizeUnit       "μm" ;
     lova:sizeDistribution       "Monodisperse (microfluidic, 4-inlet device)" ;
-    lova:stiffness              "Soft hydrogel" ;
+    lova:stiffnessQualitative   "Soft hydrogel" ;
     lova:surfaceModification    "RGD (Ac-RGDSPGERCG-NH2, 1000 μM)" ;
     lova:hasFabricationMethod   lova:fabrication-method/10.1002-adfm.202400567/microfluidic-peg-fxiii ;
-    lova:hasGeometryProfile     lova:geometry-profile/peg-sphere-65um .
+    lova:hasGeometryProfile     lova:geometry-profile/10.1002-adfm.202400567/peg-small-profile .
 
 lova:material/10.1002-adfm.202400567/peg-large  a  lova:Material ;
     lova:describedIn            lova:paper/10.1002-adfm.202400567 ;
@@ -295,10 +295,10 @@ lova:material/10.1002-adfm.202400567/peg-large  a  lova:Material ;
     lova:particleSizeMax        175.0 ;
     lova:particleSizeUnit       "μm" ;
     lova:sizeDistribution       "Monodisperse (microfluidic, 2-inlet device)" ;
-    lova:stiffness              "Soft hydrogel" ;
+    lova:stiffnessQualitative   "Soft hydrogel" ;
     lova:surfaceModification    "RGD (Ac-RGDSPGERCG-NH2, 1000 μM)" ;
     lova:hasFabricationMethod   lova:fabrication-method/10.1002-adfm.202400567/microfluidic-peg-fxiii ;
-    lova:hasGeometryProfile     lova:geometry-profile/peg-sphere-165um .
+    lova:hasGeometryProfile     lova:geometry-profile/10.1002-adfm.202400567/peg-large-profile .
 
 
 ##############################################################################

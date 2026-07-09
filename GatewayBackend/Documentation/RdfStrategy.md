@@ -54,7 +54,8 @@ URIs are globally unique identifiers. They follow these conventions:
 | Experiment | `lova:experiment/{doi-slug}/{id}` | `lova:experiment/10.1016-j.biomaterials.2024.122456/exp1` |
 | Outcome | `lova:outcome/{doi-slug}/{id}` | `lova:outcome/10.1016-j.biomaterials.2024.122456/out1` |
 | FabricationMethod | `lova:fabrication-method/{doi-slug}/{id}` | `lova:fabrication-method/10.1002-adhm.202300823/microfluidic-peg-fxiii` |
-| GeometryProfile | `lova:geometry-profile/{slug}` | `lova:geometry-profile/sphere-300-500um-rigid` |
+| GeometryProfile | `lova:geometry-profile/{doi-slug}/{id}` | `lova:geometry-profile/10.1016-j.biomaterials.2024.122456/mat1-profile` |
+| ComparisonResult | `lova:comparison/{doi-slug}/{id}` | `lova:comparison/10.1002-adhm.202300823/tnf-40-vs-130` |
 
 DOI slugs replace `/` with `-` and drop the `https://doi.org/` prefix.
 
@@ -112,9 +113,9 @@ A granular material system as described in a paper. Not a specific scaffold inst
 | `lova:particleSizeMax` | `xsd:double` | Upper bound of size range (μm) | 500 |
 | `lova:particleSizeUnit` | `xsd:string` | Unit of size | "μm", "mm" |
 | `lova:sizeDistribution` | `xsd:string` | Mono/polydisperse, sieve fractions | "Monodisperse", "Polydisperse 100-500μm" |
-| `lova:stiffness` | `xsd:string` | Qualitative or quantitative | "Rigid", "Soft", "~5 kPa" |
-| `lova:crosslinker` | `xsd:string` | Crosslinking agent if applicable | "Irgacure 2959", "CaCl2" |
-| `lova:crosslinkerConcentration` | `xsd:string` | Amount/concentration | "0.5% w/v" |
+| `lova:stiffnessQualitative` | `xsd:string` | Qualitative stiffness category | "Rigid", "Soft hydrogel", "Semi-rigid" |
+| `lova:stiffnessValue` | `xsd:double` | Quantitative stiffness if reported | 5.0 |
+| `lova:stiffnessUnit` | `xsd:string` | Unit for stiffness value | "kPa", "MPa", "GPa" |
 | `lova:surfaceModification` | `xsd:string` | Coatings, functionalization | "RGD-coated", "Fibronectin-adsorbed" |
 
 **Scaffold / Assembly Properties**
@@ -129,11 +130,11 @@ A granular material system as described in a paper. Not a specific scaffold inst
 
 **Relational DB Link** (layered — see [Linking Strategy](#linking-strategy-rdf--relational-db))
 
-Every Material gets a `hasGeometryProfile` as a baseline link. When an exact match is known, `scaffoldGroupId` is added on top. Both can coexist — exact IDs take priority in downstream queries.
+Every Material with any relational DB connection gets a per-Material `GeometryProfile` — an auditable record of how the match was resolved. For exact matches, `scaffoldGroupId` is also placed directly on the Material node for query convenience.
 
 | Property | Type | Description |
 |----------|------|-------------|
-| `lova:hasGeometryProfile` | URI → `lova:GeometryProfile` | **Always present** when any relational DB link exists. Baseline fuzzy link via match criteria. |
+| `lova:hasGeometryProfile` | URI → `lova:GeometryProfile` | **Always present** when any relational DB link exists. Per-Material match record (URI scoped to DOI slug). |
 | `lova:scaffoldGroupId` | `xsd:integer` | Direct link to a ScaffoldGroup in the relational DB. Added when exact match is known (our lab's data). Multi-valued if the material spans multiple groups. Supersedes the GeometryProfile for query purposes. |
 | `lova:scaffoldId` | `xsd:integer` | Direct link to specific Scaffold instances. Optional, only when individual scaffolds are known. Multi-valued. |
 
@@ -282,8 +283,10 @@ A measured result reported in a paper. Each outcome is a single metric from a si
 | Property | Type | Description |
 |----------|------|-------------|
 | `lova:fromExperiment` | URI → `lova:Experiment` | Experiment that produced this outcome |
-| `lova:describedIn` | URI → `lova:Paper` | Source paper (redundant but useful for direct queries) |
+| `lova:describedIn` | URI → `lova:Paper` | Source paper (**intentionally denormalized** — see note below) |
 | `rdfs:label` | `xsd:string` | Human-readable label |
+
+> **Denormalization note:** `describedIn` on Outcome is redundant with the path `Outcome → fromExperiment → Experiment → describedIn → Paper`. We keep it because the most common query pattern is "show me all outcomes from paper X" — the direct link avoids a join through Experiment every time. This is a deliberate tradeoff: we accept the maintenance cost of keeping it in sync (low, since outcomes are always created alongside their experiments) in exchange for simpler, faster queries. This is the same normalization question that applies to GeometryProfile's match criteria — the difference is that `describedIn` is a stable provenance pointer (it never diverges or carries resolution decisions), so the echo is harmless.
 
 **Measurement Identity**
 
@@ -329,32 +332,75 @@ A measured result reported in a paper. Each outcome is a single metric from a si
 
 ### 8. `lova:GeometryProfile`
 
-A **pointer** from the RDF knowledge base to the relational database. It does NOT store descriptor values — those stay in the relational DB where they belong (full distributions, per-pore metrics, per-scaffold data). The GeometryProfile records which scaffold groups match a paper's material description, and how that match was determined.
+A **per-Material match record** that bridges the RDF knowledge base to the relational database. Each Material gets its own GeometryProfile (URI scoped to the paper's DOI slug, e.g. `lova:geometry-profile/10.1002-adhm.202300823/map-40um-profile`). The profile records which scaffold groups match that material's description, how the match was determined, and when — providing an auditable, stable record of how a paper's fuzzy description got resolved to specific scaffold groups.
 
-**Match metadata**
+The profile does NOT store descriptor values — those stay in the relational DB where they belong (full distributions, per-pore metrics, per-scaffold data).
+
+**Identity & Provenance**
 
 | Property | Type | Description |
 |----------|------|-------------|
+| `rdfs:label` | `xsd:string` | Human-readable label |
 | `lova:matchType` | `xsd:string` | `"exact"` (paper used these specific scaffolds) or `"aggregate"` (similar scaffolds found by property matching) |
 | `lova:matchDescription` | `xsd:string` | Human-readable explanation of the match |
+| `lova:matchedAt` | `xsd:date` | When the match was created or last refreshed |
+
+**Matched scaffold references**
+
+| Property | Type | Description |
+|----------|------|-------------|
 | `lova:scaffoldGroupId` | `xsd:integer` | ScaffoldGroup ID(s) from the relational DB. Multi-valued — one triple per group. |
 | `lova:scaffoldId` | `xsd:integer` | Specific Scaffold IDs (exact matches only). Multi-valued. |
 | `lova:scaffoldCount` | `xsd:integer` | Total number of individual scaffolds across the matched groups |
-| `lova:matchedAt` | `xsd:date` | When the match was created or last refreshed |
 
-**Match criteria** (for aggregate matches — records the query used to find matching scaffold groups)
+**Divergent match criteria** (for aggregate matches only)
+
+The profile stores only match criteria that **diverge from** the Material's own properties — these capture the resolution decisions that make the match reproducible and inspectable. Criteria that are pure echoes of the Material (e.g. `matchShape = "Sphere"` when the Material already has `particleShape = "Sphere"`) are omitted as they add no information.
+
+The key principle: **if a criterion differs from the Material's value, that difference is the audit trail and must be stored.** For example, if a Material reports `particleSizeMin 40.0` / `particleSizeMax 40.0` (monodisperse) but the profile matched against a range of 35–45 μm, that ±5 μm tolerance is a decision someone made; storing it is the whole point.
+
+| Property | Type | Description | When to include |
+|----------|------|-------------|-----------------|
+| `lova:matchSizeMin` | `xsd:double` | Min particle size filter used | When it differs from Material's `particleSizeMin` (e.g. tolerance applied) |
+| `lova:matchSizeMax` | `xsd:double` | Max particle size filter used | When it differs from Material's `particleSizeMax` |
+| `lova:matchStiffness` | `xsd:string` | Stiffness filter used | When it involves a bin or category mapping (e.g. "Soft" → "< 10 kPa") |
+| `lova:matchMaterial` | `xsd:string` | Material/polymer filter used | When it involves a family mapping (e.g. Material says "PEG-VS" but match used broader "PEG") |
+| `lova:matchShape` | `xsd:string` | Shape filter used | When it involves synonym resolution (e.g. Material says "Bead" but match used "Sphere") |
+
+These criteria serve two purposes: (1) document **why** these scaffold groups were selected (the specific tolerances and mappings applied), and (2) allow the match to be **re-run** when new scaffold groups are added to the relational DB.
+
+**Why per-Material, not shared?** Earlier versions used shared, DOI-less URIs (e.g. `geometry-profile/peg-sphere-40um`) that multiple papers could reference. This created an ambiguity: whose match criteria and whose `matchedAt` does the profile carry when two papers reference it? Making each profile per-Material eliminates this problem. Cross-paper discovery ("which materials resolved to scaffold group 12?") works via a SPARQL query over `scaffoldGroupId` — which is what you actually want to ask — rather than through shared URIs.
+
+### 9. `lova:ComparisonResult`
+
+A structured comparison between two outcomes from the same paper. Many papers report findings as comparisons — "TNF was significantly lower in 40 μm vs 130 μm MAP" — rather than as isolated measurements. The current `comparisonGroup` string on Outcome captures this loosely, but ComparisonResult makes comparisons first-class and queryable.
+
+**URI pattern:** `lova:comparison/{doi-slug}/{id}` (e.g. `lova:comparison/10.1002-adhm.202300823/tnf-40-vs-130`)
 
 | Property | Type | Description |
 |----------|------|-------------|
-| `lova:matchShape` | `xsd:string` | Particle shape filter used (maps to `ParticlePropertyGroup.Shape`) |
-| `lova:matchSizeMin` | `xsd:double` | Min particle size filter (maps to `ParticlePropertyGroup.MinSize` / `MeanSize`) |
-| `lova:matchSizeMax` | `xsd:double` | Max particle size filter |
-| `lova:matchStiffness` | `xsd:string` | Stiffness filter (maps to `ParticlePropertyGroup.Stiffness`) |
-| `lova:matchMaterial` | `xsd:string` | Material/polymer filter if used |
+| `lova:describedIn` | URI → `lova:Paper` | Source paper |
+| `rdfs:label` | `xsd:string` | Human-readable label, e.g. "TNF lower in 40 μm vs 130 μm MAP" |
+| `lova:outcomeA` | URI → `lova:Outcome` | First outcome in the comparison |
+| `lova:outcomeB` | URI → `lova:Outcome` | Second outcome (typically the comparator/control) |
+| `lova:direction` | `xsd:string` | "higher", "lower", "no difference" — describes outcome A relative to outcome B |
+| `lova:pValue` | `xsd:double` | Statistical significance of the comparison |
+| `lova:isSignificant` | `xsd:boolean` | Whether the paper reports this as statistically significant |
+| `lova:foldChange` | `xsd:double` | Fold change of A relative to B, if reported |
 
-These criteria properties serve two purposes: (1) document why these scaffold groups were selected, and (2) allow the match to be re-run when new scaffold groups are added to the relational DB.
+> **Relationship to `comparisonGroup`:** The existing `comparisonGroup` string on Outcome remains useful as a lightweight annotation (e.g. noting the control group without creating a full ComparisonResult). Use ComparisonResult when the paper reports a specific pairwise statistical comparison with significance. Use `comparisonGroup` for informal context like "compared to TCP" where no pairwise stats are given.
 
-**What the GeometryProfile does NOT store:** Descriptor values (porosity, pore volume, connectivity, etc.). Those are fetched from the relational DB at query time via the scaffold group IDs. This preserves the full richness of per-pore distributions, per-scaffold variation, and all descriptor types — rather than collapsing everything into lossy averages.
+**Example:**
+
+```turtle
+lova:comparison/10.1002-adhm.202300823/tnf-40-vs-130  a  lova:ComparisonResult ;
+    lova:describedIn    lova:paper/10.1002-adhm.202300823 ;
+    rdfs:label          "TNF secretion significantly lower in 40 μm vs 130 μm MAP" ;
+    lova:outcomeA       lova:outcome/10.1002-adhm.202300823/tnf-secretion-40um ;
+    lova:outcomeB       lova:outcome/10.1002-adhm.202300823/tnf-secretion-130um ;
+    lova:direction      "lower" ;
+    lova:isSignificant  true .
+```
 
 ## Relationships Diagram
 
@@ -368,9 +414,9 @@ These criteria properties serve two purposes: (1) document why these scaffold gr
                    lova:describedIn
                             │
                     lova:Material ───hasGeometryProfile───► lova:GeometryProfile
-                            │  │    │                              │
-              hasFabricationMethod  │                        scaffoldGroupIds
-                            │  │    │ scaffoldGroupId              │ (fuzzy)
+                            │  │    │                        (per-Material, DOI-scoped)
+              hasFabricationMethod  │                              │
+                            │  │    │ scaffoldGroupId         scaffoldGroupIds
                lova:FabricationMethod  │ (exact, if known)         │
                 (chemistry,    │       │                           ▼
                  manufacturing,│       │                  ┌─────────────────────┐
@@ -384,6 +430,12 @@ These criteria properties serve two purposes: (1) document why these scaffold gr
                       lova:fromExperiment
                                │
                         lova:Outcome
+                               │
+                      lova:outcomeA / lova:outcomeB
+                               │
+                     lova:ComparisonResult
+                      (direction, pValue,
+                       isSignificant)
 ```
 
 ## Paper Mining Workflow
@@ -396,7 +448,7 @@ For each paper:
 2. **Create Material node(s)** — one per distinct material system in the paper. Many papers study multiple formulations or compare material types. Each gets its own node.
 3. **Create Experiment node(s)** — one per distinct experimental protocol. A paper might run compression tests AND cell viability assays on the same material — those are separate experiments.
 4. **Create Outcome node(s)** — one per reported metric per experiment. If a paper reports Young's modulus, cell viability at day 3, and cell viability at day 7, that's three outcomes.
-5. **Create GeometryProfile** — create or reference a GeometryProfile node with match criteria derived from the material's properties (shape, size range, material). Link it to the Material via `hasGeometryProfile`. This is always done when any relational DB link is possible — even for exact matches.
+5. **Create GeometryProfile** — create a per-Material GeometryProfile node (URI scoped to the paper's DOI slug). Record only divergent match criteria — omit fields that echo the Material verbatim, keep fields where the match logic applied a tolerance, family mapping, or synonym resolution. Link it to the Material via `hasGeometryProfile`. This is always done when any relational DB link is possible — even for exact matches.
 6. **Add exact IDs (if known)** — for papers from our lab where we know which scaffold groups correspond to each material, add `scaffoldGroupId` (and optionally `scaffoldId`) directly on the Material node. These supersede the GeometryProfile's fuzzy matches.
 
 ### What to Extract
@@ -435,15 +487,15 @@ When reading a paper, extract these in order of priority:
 
 The two databases speak different languages. The relational DB knows about `ScaffoldGroup.Id = 12` and `Scaffold.Id = 57`. The RDF store knows about `lova:paper/10.1002-adhm.202300823` and `lova:material/.../map-40um`. The linking strategy defines how to bridge them.
 
-Linking uses a **layered model**: every Material with any relational DB connection gets a **GeometryProfile** (fuzzy baseline). When exact scaffold group IDs are known, they are added **directly on the Material node** as well. Both can coexist — `scaffoldGroupId` on the Material supersedes the GeometryProfile's matched IDs in downstream queries, but the profile remains as documentation of the match criteria and as a fallback. Descriptor values are never duplicated into RDF — they stay in the relational DB and are fetched at query time via scaffold group/scaffold IDs.
+Every Material with any relational DB connection gets a **per-Material GeometryProfile** — an auditable record of how the paper's material description was resolved to specific scaffold groups. For exact matches (our lab's data), `scaffoldGroupId` and `scaffoldId` are also placed **directly on the Material node** for convenience; these supersede the profile's IDs in downstream queries, but the profile remains as provenance. Descriptor values are never duplicated into RDF — they stay in the relational DB and are fetched at query time via scaffold group/scaffold IDs.
 
 ### Shared Identifiers
 
 | Identifier | RDF location | Relational location | Notes |
 |------------|-------------|---------------------|-------|
 | **DOI** | `dc:identifier` on `lova:Paper` | `Publication.Doi` | Shared key for papers. |
-| **ScaffoldGroup ID** | `lova:scaffoldGroupId` on `lova:Material` (exact) or `lova:GeometryProfile` (fuzzy) | `ScaffoldGroup.Id` (int) | The primary cross-DB pointer. |
-| **Scaffold ID** | `lova:scaffoldId` on `lova:Material` | `Scaffold.Id` (int) | Optional, for exact matches only. |
+| **ScaffoldGroup ID** | `lova:scaffoldGroupId` on `lova:Material` (exact) or on `lova:GeometryProfile` (fuzzy) | `ScaffoldGroup.Id` (int) | The primary cross-DB pointer. Each GeometryProfile is scoped to its Material. |
+| **Scaffold ID** | `lova:scaffoldId` on `lova:Material` or `lova:GeometryProfile` | `Scaffold.Id` (int) | Optional, for exact matches. |
 
 ### The Three Link Scenarios
 
@@ -464,7 +516,7 @@ Linking uses a **layered model**: every Material with any relational DB connecti
 
 #### Scenario 1 — Exact Match
 
-A paper from the lab where we know **exactly which scaffold groups and scaffolds** correspond to each material. The exact `scaffoldGroupId` goes directly on the Material node, **in addition to** a GeometryProfile baseline. The exact ID supersedes the profile's fuzzy matches for query purposes, but the profile stays as documentation and fallback.
+A paper from the lab where we know **exactly which scaffold groups and scaffolds** correspond to each material. The exact `scaffoldGroupId` goes directly on the Material node, **in addition to** a per-Material GeometryProfile. The exact ID supersedes the profile for query purposes, but the profile stays as provenance.
 
 ```
  RDF                                          Relational DB
@@ -491,12 +543,14 @@ A paper from the lab where we know **exactly which scaffold groups and scaffolds
             │             │                   └─────────┬───────────────┘
             │             ▼                             │
             │  lova:GeometryProfile          GlobalDescriptor, PoreDescriptor
-            │  ┌────────────────────────┐    ┌─────────────────────────┐
-            │  │ matchShape "Sphere"    │    │ Full distributions      │
-            │  │ matchSizeMin 35.0      │    │ Per-pore metrics        │
-            │  │ matchSizeMax 45.0      │    │ Per-scaffold values     │
-            │  │ (baseline / fallback)  │    │ (queried at runtime)    │
-            │  └────────────────────────┘    └─────────────────────────┘
+            │  (per-Material, DOI-scoped)    ┌─────────────────────────┐
+            │  ┌────────────────────────┐    │ Full distributions      │
+            │  │ matchType "exact"      │    │ Per-pore metrics        │
+            │  │ matchSizeMin 35.0      │    │ Per-scaffold values     │
+            │  │ matchSizeMax 45.0      │    │ (queried at runtime)    │
+            │  │ (divergent criteria    │    └─────────────────────────┘
+            │  │  only — no echoes)     │
+            │  └────────────────────────┘
             │ usedMaterial
             ▼
  lova:Experiment
@@ -524,43 +578,41 @@ lova:paper/10.1002-adhm.202300823
     dc:identifier    "10.1002/adhm.202300823" ;
     lova:hasLabData  true .
 
-# Material has BOTH exact scaffoldGroupId AND a GeometryProfile baseline
+# Material has BOTH exact scaffoldGroupId AND a per-Material GeometryProfile
 lova:material/10.1002-adhm.202300823/map-40um  a  lova:Material ;
     lova:describedIn         lova:paper/10.1002-adhm.202300823 ;
     lova:particleShape       "Sphere" ;
     lova:particleSizeMin     40.0 ;
     lova:particleMaterial    "4-arm PEG-VS (20 kDa)" ;
-    lova:hasGeometryProfile  lova:geometry-profile/peg-sphere-40um ;
+    lova:hasGeometryProfile  lova:geometry-profile/10.1002-adhm.202300823/map-40um-profile ;
     lova:scaffoldGroupId     12 ;       # exact — supersedes profile
     lova:scaffoldId          57 , 58 , 59 .
 
-lova:material/10.1002-adhm.202300823/map-70um  a  lova:Material ;
-    lova:describedIn         lova:paper/10.1002-adhm.202300823 ;
-    lova:particleShape       "Sphere" ;
-    lova:particleSizeMin     70.0 ;
-    lova:particleMaterial    "4-arm PEG-VS (20 kDa)" ;
-    lova:hasGeometryProfile  lova:geometry-profile/peg-sphere-70um ;
-    lova:scaffoldGroupId     15 .       # exact — supersedes profile
-
-lova:material/10.1002-adhm.202300823/map-130um  a  lova:Material ;
-    lova:describedIn         lova:paper/10.1002-adhm.202300823 ;
-    lova:particleShape       "Sphere" ;
-    lova:particleSizeMin     130.0 ;
-    lova:particleMaterial    "4-arm PEG-VS (20 kDa)" ;
-    lova:hasGeometryProfile  lova:geometry-profile/peg-sphere-130um ;
-    lova:scaffoldGroupId     18 .       # exact — supersedes profile
+# Profile stores only divergent criteria — matchSizeMin/Max differ from Material's exact 40.0
+# No matchShape or matchMaterial since those echo the Material's values unchanged
+lova:geometry-profile/10.1002-adhm.202300823/map-40um-profile  a  lova:GeometryProfile ;
+    rdfs:label            "Match record for 40 μm PEG MAP" ;
+    lova:matchType        "exact" ;
+    lova:matchDescription "Lab paper — exact scaffold group known from lab records" ;
+    lova:matchSizeMin     35.0 ;        # diverges from Material's 40.0 — records the ±5 μm tolerance
+    lova:matchSizeMax     45.0 ;        # diverges from Material's 40.0
+    lova:scaffoldGroupId  12 ;
+    lova:scaffoldId       57 , 58 , 59 ;
+    lova:scaffoldCount    3 ;
+    lova:matchedAt        "2025-06-01"^^xsd:date .
 ```
 
 **How it's populated:**
-1. Create a GeometryProfile with match criteria derived from the paper's material description (shape, size range, material). This is the same process as Scenario 2 — every material gets this baseline.
-2. We know this paper is from our lab (`hasLabData = true`)
-3. We know which scaffold groups correspond to which materials (from lab records or the `ScaffoldGroupPublication` join)
-4. We add `scaffoldGroupId` (and optionally `scaffoldId`) directly to each Material node — these supersede the profile's fuzzy matches
-5. The GeometryProfile stays as documentation and fallback — if the exact scaffold group is later deleted or reassigned, the fuzzy match still works
+1. Create a per-Material GeometryProfile (URI scoped to DOI slug + material ID)
+2. Record only divergent match criteria — e.g. the ±5 μm tolerance applied to size. Omit criteria that echo the Material verbatim (shape, material when identical)
+3. We know this paper is from our lab (`hasLabData = true`)
+4. We know which scaffold groups correspond to which materials (from lab records or the `ScaffoldGroupPublication` join)
+5. We add `scaffoldGroupId` (and optionally `scaffoldId`) directly to each Material node — these supersede the profile for query purposes
+6. The GeometryProfile stays as provenance — documenting when and how the match was made
 
 #### Scenario 2 — Fuzzy Match
 
-An external paper studies "spherical PLGA particles, 300-500 μm." We don't have their exact scaffolds, but our relational DB has scaffold groups with similar fabrication properties. We create a **GeometryProfile** that records the match criteria and which scaffold groups matched.
+An external paper studies "spherical PLGA particles, 300-500 μm." We don't have their exact scaffolds, but our relational DB has scaffold groups with similar properties. We create a **per-Material GeometryProfile** that records which scaffold groups matched and what criteria were applied.
 
 ```
  RDF                                          Relational DB
@@ -569,26 +621,27 @@ An external paper studies "spherical PLGA particles, 300-500 μm." We don't have
  lova:Material                                ParticlePropertyGroup (query target)
  ┌──────────────────────────────┐             ┌─────────────────────────┐
  │ particleShape "Sphere"       │             │ Shape = "Sphere"        │
- │ particleSizeMin 300.0        │   match     │ MeanSize = 300-500      │
- │ particleSizeMax 500.0        │   criteria  │ Stiffness = ...         │
- │ particleMaterial "PLGA"      │─ ─ ─ ─ ─ ─▶│                         │
- │                              │             └────────────┬────────────┘
- │ hasGeometryProfile ──────┐   │                          │ matched groups
- └──────────────────────────┼───┘                          ▼
-                            │             ScaffoldGroup
- lova:GeometryProfile       │             ┌─────────────────────────┐
- ┌──────────────────────────┼───┐         │ Id = 22                 │
- │ matchType "aggregate"    │◀──┘  ┌─────▶│ Sphere, 300μm           │
- │                          │      │      ├─────────────────────────┤
- │ matchShape "Sphere"      │      │      │ Id = 31                 │
- │ matchSizeMin 300.0       │      │ ┌───▶│ Sphere, 400μm           │
- │ matchSizeMax 500.0       │      │ │    ├─────────────────────────┤
- │                          │      │ │    │ Id = 45                 │
- │ scaffoldGroupId 22 ──────┼──────┘ │ ┌─▶│ Sphere, 500μm           │
- │ scaffoldGroupId 31 ──────┼────────┘ │  └─────────────────────────┘
- │ scaffoldGroupId 45 ──────┼──────────┘
- │ scaffoldCount 15         │         Descriptors fetched at query time,
- │                          │         NOT stored on the profile
+ │ particleSizeMin 300.0        │             │ MeanSize = 300-500      │
+ │ particleSizeMax 500.0        │             │ Stiffness = ...         │
+ │ particleMaterial "PLGA"      │             └────────────┬────────────┘
+ │                              │                          │ matched groups
+ │ hasGeometryProfile ──────┐   │                          ▼
+ └──────────────────────────┼───┘             ScaffoldGroup
+                            │                 ┌─────────────────────────┐
+ lova:GeometryProfile       │                 │ Id = 22                 │
+ (per-Material, DOI-scoped) │          ┌─────▶│ Sphere, 300μm           │
+ ┌──────────────────────────┼───┐      │      ├─────────────────────────┤
+ │ matchType "aggregate"    │◀──┘      │      │ Id = 31                 │
+ │                          │          │ ┌───▶│ Sphere, 400μm           │
+ │ matchMaterial "PLGA"     │          │ │    ├─────────────────────────┤
+ │ (divergent — Material    │          │ │    │ Id = 45                 │
+ │  says "PLGA", DB might   │          │ │ ┌─▶│ Sphere, 500μm           │
+ │  have broader matches)   │          │ │ │  └─────────────────────────┘
+ │                          │          │ │ │
+ │ scaffoldGroupId 22 ──────┼──────────┘ │ │  Descriptors fetched at query time,
+ │ scaffoldGroupId 31 ──────┼────────────┘ │  NOT stored on the profile
+ │ scaffoldGroupId 45 ──────┼──────────────┘
+ │ scaffoldCount 15         │
  └──────────────────────────┘
 ```
 
@@ -601,14 +654,17 @@ lova:material/10.1234-j.biomaterials.2024.999/mat1  a  lova:Material ;
     lova:particleSizeMin     300.0 ;
     lova:particleSizeMax     500.0 ;
     lova:particleMaterial    "PLGA" ;
-    lova:hasGeometryProfile  lova:geometry-profile/sphere-300-500um .
+    lova:hasGeometryProfile  lova:geometry-profile/10.1234-j.biomaterials.2024.999/mat1-profile .
 
-lova:geometry-profile/sphere-300-500um  a  lova:GeometryProfile ;
+# Per-Material profile — only stores criteria that diverge from the Material
+# matchShape omitted (echoes particleShape "Sphere")
+# matchSizeMin/Max omitted (identical to Material's range — no tolerance applied)
+# matchMaterial included (Material says "PLGA" but match logic may use broader polymer family)
+lova:geometry-profile/10.1234-j.biomaterials.2024.999/mat1-profile  a  lova:GeometryProfile ;
+    rdfs:label            "Match record for PLGA spheres 300-500 μm" ;
     lova:matchType        "aggregate" ;
-    lova:matchDescription "Scaffold groups with spherical particles, mean size 300-500 μm" ;
-    lova:matchShape       "Sphere" ;
-    lova:matchSizeMin     300.0 ;
-    lova:matchSizeMax     500.0 ;
+    lova:matchDescription "Scaffold groups with spherical particles, mean size 300-500 μm, PLGA family" ;
+    lova:matchMaterial    "PLGA" ;
     lova:scaffoldGroupId  22 , 31 , 45 ;
     lova:scaffoldCount    15 ;
     lova:matchedAt        "2025-06-01"^^xsd:date .
@@ -617,20 +673,23 @@ lova:geometry-profile/sphere-300-500um  a  lova:GeometryProfile ;
 **How it's populated:**
 1. From the Material node, extract key properties: shape, size range, material
 2. Query relational DB: `SELECT sg.Id FROM ScaffoldGroup sg JOIN InputGroup ig ... JOIN ParticlePropertyGroup ppg WHERE ppg.Shape = 'Sphere' AND ppg.MeanSize BETWEEN 300 AND 500`
-3. Store the matching scaffold group IDs and the criteria used
-4. Descriptors are **not** copied — they are fetched from the relational DB at query time via the stored scaffold group IDs
+3. Create a per-Material GeometryProfile (URI scoped to the Material's DOI slug)
+4. Store only divergent criteria — omit fields that echo the Material verbatim, keep fields where the match logic applied a tolerance, family mapping, or synonym resolution
+5. Descriptors are **not** copied — they are fetched from the relational DB at query time via the stored scaffold group IDs
 
-**Shared profiles:** Multiple Materials from different papers can point to the same GeometryProfile if they describe similar materials:
+**Cross-paper discovery:** Since profiles are per-Material (not shared), cross-paper queries use `scaffoldGroupId` directly:
 
+```sparql
+# "Which materials from different papers resolved to scaffold group 22?"
+SELECT ?paper ?materialLabel WHERE {
+    ?material lova:hasGeometryProfile ?profile .
+    ?profile  lova:scaffoldGroupId 22 .
+    ?material rdfs:label ?materialLabel ;
+              lova:describedIn ?paper .
+}
 ```
- Paper A (2023) ──▶ Material A (Sphere 300μm PLGA) ──┐
-                                                       │
- Paper B (2024) ──▶ Material B (Sphere 400μm PLGA) ──┼──▶ geometry-profile/sphere-300-500um
-                                                       │
- Paper C (2025) ──▶ Material C (Sphere 350μm PEG)  ──┘
-```
 
-**Staleness:** When new scaffold groups are added to the relational DB, existing GeometryProfiles may need updating. The stored `matchShape`/`matchSizeMin`/`matchSizeMax` criteria can be re-run against the relational DB to find new matches. Update `scaffoldGroupId` list, `scaffoldCount`, and `matchedAt`.
+**Staleness:** When new scaffold groups are added to the relational DB, existing GeometryProfiles may need re-resolution. The profile's stored criteria (plus the Material's own properties) can be used to re-run the match query. Update the profile's `scaffoldGroupId` list, `scaffoldCount`, and `matchedAt`.
 
 #### Scenario 3 — No Match
 
@@ -666,7 +725,7 @@ lova:material/10.5555-example.2024.001/mat1  a  lova:Material ;
     lova:particleSizeMin     50.0 ;
     lova:particleSizeMax     200.0 ;
     lova:particleMaterial    "Chitosan" ;
-    lova:stiffness           "Soft hydrogel" .
+    lova:stiffnessQualitative "Soft hydrogel" .
 
 # Experiments and outcomes still fully captured
 lova:experiment/10.5555-example.2024.001/exp1  a  lova:Experiment ;

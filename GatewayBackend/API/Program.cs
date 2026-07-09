@@ -114,14 +114,14 @@ builder.Services.AddCors(opt =>
 
 builder.WebHost.ConfigureKestrel(options =>
 {
-    // e.g., allow up to 100 MB
-    options.Limits.MaxRequestBodySize = 150_000_000; // 100 * 1024 * 1024
+    // allow up to 250 MB
+    options.Limits.MaxRequestBodySize = 250_000_000;
 });
 
 builder.Services.Configure<FormOptions>(options =>
 {
-    // 100 MB again – keep this in sync with Kestrel for sanity
-    options.MultipartBodyLengthLimit = 150_000_000;
+    // keep this in sync with Kestrel
+    options.MultipartBodyLengthLimit = 250_000_000;
     // optionally:
     // options.ValueLengthLimit = int.MaxValue;
     // options.BufferBody = true;

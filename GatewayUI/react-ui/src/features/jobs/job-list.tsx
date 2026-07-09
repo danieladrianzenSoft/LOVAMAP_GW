@@ -192,7 +192,6 @@ const JobList: React.FC = () => {
 	const { jobStore, userStore } = useStore();
 	const { getUserJobs, getJobResult, startConnection, stopConnection } = jobStore;
 	const [isLoading, setIsLoading] = useState<boolean>(true);
-	const [jobs, setJobs] = useState<JobForList[]>([]);
 	const navigate = useNavigate();
 
 	const isLoggedIn = !!userStore.user;
@@ -200,8 +199,7 @@ const JobList: React.FC = () => {
 	const fetchJobs = useCallback(async () => {
 		if (!isLoggedIn) return;
 		setIsLoading(true);
-		const results = await getUserJobs();
-		setJobs(results ?? []);
+		await getUserJobs();
 		setIsLoading(false);
 	}, [getUserJobs, isLoggedIn]);
 
@@ -240,13 +238,6 @@ const JobList: React.FC = () => {
 		return () => { stopConnection(); };
 	}, [isLoggedIn, startConnection, stopConnection]);
 
-	// Sync local state when jobStore.jobsRan changes (e.g. via SignalR)
-	useEffect(() => {
-		if (jobStore.jobsRan.length > 0) {
-			setJobs(jobStore.jobsRan);
-		}
-	}, [jobStore.jobsRan]);
-
 	const handleJobSubmitted = async () => {
 		await fetchJobs();
 		navigate('/jobs');
@@ -265,12 +256,12 @@ const JobList: React.FC = () => {
 	return (
 		<div className="container mx-auto py-8 px-6">
 			<Routes>
-				<Route index element={<JobTableView jobs={jobs} />} />
+				<Route index element={<JobTableView jobs={jobStore.jobsRan} />} />
 				<Route path="new" element={<JobTypeGrid />} />
 				<Route path="new/lovamap" element={<LovamapFormView onSubmitted={handleJobSubmitted} />} />
 				<Route path="new/segmentation" element={<SegmentationFormView onSubmitted={handleJobSubmitted} />} />
 				<Route path="new/mesh" element={<MeshFormView onSubmitted={handleJobSubmitted} />} />
-				<Route path=":jobId" element={<JobDetailView jobs={jobs} onDownloadResults={downloadJobResults} onJobSubmitted={handleJobSubmitted} />} />
+				<Route path=":jobId" element={<JobDetailView jobs={jobStore.jobsRan} onDownloadResults={downloadJobResults} onJobSubmitted={handleJobSubmitted} />} />
 			</Routes>
 		</div>
 	);

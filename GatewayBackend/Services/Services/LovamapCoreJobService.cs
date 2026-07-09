@@ -488,6 +488,14 @@ namespace Services.Services
 		}
 
 
+		private async Task MarkJobFailedAsync(Job job, string errorMessage)
+		{
+			job.Status = JobStatus.Failed;
+			job.ErrorMessage = errorMessage;
+			job.CompletedAt = DateTime.UtcNow;
+			await _context.SaveChangesAsync();
+		}
+
 		public async Task<(bool Succeeded, string? ErrorMessage, Job? Job)> SubmitSegmentationJob(SegmentationJobSubmissionDto dto)
 		{
 			// 1) Validate the TIF file
@@ -548,11 +556,13 @@ namespace Services.Services
 			catch (HttpRequestException ex)
 			{
 				_logger.LogError(ex, "Lovamap Core unreachable for segmentation job.");
+				await MarkJobFailedAsync(job, "Lovamap Core could not be reached");
 				return (false, "Lovamap Core could not be reached", null);
 			}
 			catch (Exception ex)
 			{
 				_logger.LogError(ex, "Unexpected error submitting segmentation job to Core.");
+				await MarkJobFailedAsync(job, "Unexpected error communicating with Lovamap Core.");
 				return (false, "Unexpected error communicating with Lovamap Core.", null);
 			}
 
@@ -560,8 +570,10 @@ namespace Services.Services
 
 			if (!response.IsSuccessStatusCode)
 			{
+				var errorMsg = $"Lovamap Core returned {response.StatusCode}: {body}";
 				_logger.LogWarning("Core returned {Status} for segmentation job: {Body}", response.StatusCode, body);
-				return (false, $"Lovamap Core returned {response.StatusCode}: {body}", null);
+				await MarkJobFailedAsync(job, errorMsg);
+				return (false, errorMsg, null);
 			}
 
 			// 6) Parse response
@@ -576,11 +588,15 @@ namespace Services.Services
 			catch (Exception ex)
 			{
 				_logger.LogError(ex, "Failed to deserialize Core segmentation job response.");
+				await MarkJobFailedAsync(job, "Failed to deserialize Core Job.");
 				return (false, "Failed to deserialize Core Job.", null);
 			}
 
 			if (coreJob is null)
+			{
+				await MarkJobFailedAsync(job, "Lovamap Core returned empty body.");
 				return (false, "Lovamap Core returned empty body.", null);
+			}
 
 			var mapped = _modelMapper.MapToJob(coreJob);
 			mapped.JobType = JobType.ParticleSegmentation;
@@ -639,11 +655,13 @@ namespace Services.Services
 			catch (HttpRequestException ex)
 			{
 				_logger.LogError(ex, "Lovamap Core unreachable for mesh job.");
+				await MarkJobFailedAsync(job, "Lovamap Core could not be reached");
 				return (false, "Lovamap Core could not be reached", null);
 			}
 			catch (Exception ex)
 			{
 				_logger.LogError(ex, "Unexpected error submitting mesh job to Core.");
+				await MarkJobFailedAsync(job, "Unexpected error communicating with Lovamap Core.");
 				return (false, "Unexpected error communicating with Lovamap Core.", null);
 			}
 
@@ -651,8 +669,10 @@ namespace Services.Services
 
 			if (!response.IsSuccessStatusCode)
 			{
+				var errorMsg = $"Lovamap Core returned {response.StatusCode}: {body}";
 				_logger.LogWarning("Core returned {Status} for mesh job: {Body}", response.StatusCode, body);
-				return (false, $"Lovamap Core returned {response.StatusCode}: {body}", null);
+				await MarkJobFailedAsync(job, errorMsg);
+				return (false, errorMsg, null);
 			}
 
 			// 7) Parse response
@@ -667,11 +687,15 @@ namespace Services.Services
 			catch (Exception ex)
 			{
 				_logger.LogError(ex, "Failed to deserialize Core mesh job response.");
+				await MarkJobFailedAsync(job, "Failed to deserialize Core Job.");
 				return (false, "Failed to deserialize Core Job.", null);
 			}
 
 			if (coreJob is null)
+			{
+				await MarkJobFailedAsync(job, "Lovamap Core returned empty body.");
 				return (false, "Lovamap Core returned empty body.", null);
+			}
 
 			var mapped = _modelMapper.MapToJob(coreJob);
 			mapped.JobType = JobType.MeshProcessing;
@@ -728,11 +752,13 @@ namespace Services.Services
 			catch (HttpRequestException ex)
 			{
 				_logger.LogError(ex, "Lovamap Core unreachable for lovamap-from-source job.");
+				await MarkJobFailedAsync(job, "Lovamap Core could not be reached");
 				return (false, "Lovamap Core could not be reached", null);
 			}
 			catch (Exception ex)
 			{
 				_logger.LogError(ex, "Unexpected error submitting lovamap-from-source job to Core.");
+				await MarkJobFailedAsync(job, "Unexpected error communicating with Lovamap Core.");
 				return (false, "Unexpected error communicating with Lovamap Core.", null);
 			}
 
@@ -740,8 +766,10 @@ namespace Services.Services
 
 			if (!response.IsSuccessStatusCode)
 			{
+				var errorMsg = $"Lovamap Core returned {response.StatusCode}: {body}";
 				_logger.LogWarning("Core returned {Status} for lovamap-from-source job: {Body}", response.StatusCode, body);
-				return (false, $"Lovamap Core returned {response.StatusCode}: {body}", null);
+				await MarkJobFailedAsync(job, errorMsg);
+				return (false, errorMsg, null);
 			}
 
 			// 7) Parse response
@@ -756,11 +784,15 @@ namespace Services.Services
 			catch (Exception ex)
 			{
 				_logger.LogError(ex, "Failed to deserialize Core lovamap-from-source job response.");
+				await MarkJobFailedAsync(job, "Failed to deserialize Core Job.");
 				return (false, "Failed to deserialize Core Job.", null);
 			}
 
 			if (coreJob is null)
+			{
+				await MarkJobFailedAsync(job, "Lovamap Core returned empty body.");
 				return (false, "Lovamap Core returned empty body.", null);
+			}
 
 			var mapped = _modelMapper.MapToJob(coreJob);
 			mapped.JobType = JobType.Lovamap;

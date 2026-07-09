@@ -7,7 +7,7 @@ import { DescriptorType } from '../../app/models/descriptorType';
 import LoadingSpinner from '../../app/common/loading-spinner/loading-spinner';
 import History from "../../app/helpers/History";
 import { FaSpinner } from "react-icons/fa";
-import { MdOutlineCloudDownload, MdOutlineRemoveRedEye } from "react-icons/md";
+import { BsThreeDotsVertical } from "react-icons/bs";
 import DataTable, { DataTableColumn } from '../../app/common/data-table/data-table';
 
 // ─── JobSelectionMode enum (mirrors backend) ─────────────────────────────────
@@ -65,11 +65,26 @@ const Publications: React.FC = () => {
 	const [jobs, setJobs] = useState<{ id: string; label: string }[]>([]);
 	const [descriptorError, setDescriptorError] = useState<string | null>(null);
 
+	// actions dropdown
+	const [actionsOpenId, setActionsOpenId] = useState<number | null>(null);
+	const actionsRef = useRef<HTMLDivElement>(null);
+
 	// delete confirm
 	const [confirmDeleteId, setConfirmDeleteId] = useState<number | null>(null);
 	const [isDeleting, setIsDeleting] = useState(false);
 
 	const isAdmin = userStore.user?.roles?.includes('administrator') ?? false;
+
+	// ── close actions dropdown on outside click ───────────────────────────
+	useEffect(() => {
+		const handleClickOutside = (e: MouseEvent) => {
+			if (actionsRef.current && !actionsRef.current.contains(e.target as Node)) {
+				setActionsOpenId(null);
+			}
+		};
+		document.addEventListener('mousedown', handleClickOutside);
+		return () => document.removeEventListener('mousedown', handleClickOutside);
+	}, []);
 
 	// ── fetch list ─────────────────────────────────────────────────────────
 	const refreshPublications = async () => {
@@ -355,14 +370,48 @@ const Publications: React.FC = () => {
 		},
 		{
 			header: '',
-			render: (pub) => (
-				<button
-					className="text-xl text-gray-600 hover:text-link-200"
-					onClick={() => handleViewInExplore(pub.id)}
-					title="View in Explore"
-				>
-					<MdOutlineRemoveRedEye />
-				</button>
+			render: (pub: Publication) => (
+				<div className="relative" ref={actionsOpenId === pub.id ? actionsRef : undefined}>
+					<button
+						className="text-xl text-gray-500 hover:text-gray-700 cursor-pointer p-1"
+						onClick={(e) => { e.stopPropagation(); setActionsOpenId(prev => prev === pub.id ? null : pub.id); }}
+						title="Actions"
+					>
+						<BsThreeDotsVertical />
+					</button>
+					{actionsOpenId === pub.id && (
+						<div className="absolute right-0 mt-1 w-44 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
+							<button
+								className="w-full text-left px-4 py-3 hover:bg-gray-50 text-sm text-gray-700 cursor-pointer rounded-t-lg"
+								onClick={(e) => { e.stopPropagation(); setActionsOpenId(null); handleViewInExplore(pub.id); }}
+							>
+								View Data
+							</button>
+							{isAdmin && (
+								<>
+									<button
+										className="w-full text-left px-4 py-3 hover:bg-gray-50 text-sm text-gray-700 cursor-pointer"
+										onClick={(e) => { e.stopPropagation(); setActionsOpenId(null); openEditPublication(pub); }}
+									>
+										Edit Publication
+									</button>
+									<button
+										className="w-full text-left px-4 py-3 hover:bg-gray-50 text-sm text-gray-700 cursor-pointer"
+										onClick={(e) => { e.stopPropagation(); setActionsOpenId(null); handleOpenDataset(pub.id, true, pub); }}
+									>
+										Edit Data
+									</button>
+									<button
+										className="w-full text-left px-4 py-3 hover:bg-gray-50 text-sm text-red-600 cursor-pointer border-t border-gray-100 rounded-b-lg"
+										onClick={(e) => { e.stopPropagation(); setActionsOpenId(null); setConfirmDeleteId(pub.id); }}
+									>
+										Delete
+									</button>
+								</>
+							)}
+						</div>
+					)}
+				</div>
 			),
 		},
 	];
@@ -376,7 +425,7 @@ const Publications: React.FC = () => {
 				<>
 					{isAdmin && 
 						<div className='flex justify-end'>
-							<button className="button-primary items-center content-center w-24 mb-2">
+							<button className="button-primary items-center content-center w-24 mb-2" onClick={openAddPublication}>
 								Add
 							</button>
 						</div>
@@ -386,6 +435,7 @@ const Publications: React.FC = () => {
 							data={publications ?? []}
 							columns={columns}
 							rowKey={(pub) => pub.id}
+							className="!overflow-visible"
 						/>
 					</div>
 				</>

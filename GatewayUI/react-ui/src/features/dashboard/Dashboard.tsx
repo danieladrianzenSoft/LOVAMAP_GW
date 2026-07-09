@@ -7,6 +7,8 @@ import { BarChart } from "../plotting/bar-chart";
 import { AreaChart } from "../plotting/area-chart";
 import RdfVisualization from "../rdf-visualization/RdfVisualization";
 import LoadingSpinner from '../../app/common/loading-spinner/loading-spinner';
+import { Link } from 'react-router-dom';
+import { FaExpand } from 'react-icons/fa';
 
 type DataFilter = "all" | "simulated" | "real";
 type TransferMode = "uploads" | "downloads";
@@ -252,7 +254,16 @@ const Dashboard: React.FC = observer(() => {
 
 			{/* ── RDF Database section ── */}
 			<section className="space-y-4">
-				<h2 className="text-xl font-semibold text-gray-700 dark:text-gray-300">RDF Database</h2>
+				<div className="flex items-center justify-between">
+					<h2 className="text-xl font-semibold text-gray-700 dark:text-gray-300">RDF Database</h2>
+					<Link
+						to="/rdf-explorer"
+						className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
+					>
+						<FaExpand className="h-3 w-3" />
+						Open Explorer
+					</Link>
+				</div>
 				<RdfVisualization height={550} />
 			</section>
 		</div>

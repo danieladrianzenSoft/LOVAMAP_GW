@@ -226,14 +226,14 @@ const ScaffoldGroupUploads: React.FC = () => {
             render: (group) => group.tags?.join(', '),
             cellClassName: 'max-w-[300px] ellipsis',
         },
-        {
-            header: 'Images',
-            render: (group) => group.images.length,
+{
+            header: 'Date Added',
+            render: (group) => new Date(group.createdAt).toLocaleString(),
             cellClassName: 'whitespace-nowrap',
         },
         {
-            header: 'Date Added',
-            render: (group) => new Date(group.createdAt).toLocaleString(),
+            header: 'Public',
+            render: (group) => group.isPublic ? 'Yes' : 'No',
             cellClassName: 'whitespace-nowrap',
         },
     ];
