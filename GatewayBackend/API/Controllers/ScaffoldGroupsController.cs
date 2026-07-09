@@ -336,7 +336,8 @@ public class ScaffoldGroupsController : ControllerBase
 				searchRequest.Prompt,
 				userId,
 				searchRequest.IsSimulated,
-				searchRequest.ShapeTagNames);
+				searchRequest.ShapeTagNames,
+				searchRequest.DispersityTagNames);
 
 			if (!success || searchResult == null) return BadRequest(new ApiResponse<string>(400, errorMessage));
 

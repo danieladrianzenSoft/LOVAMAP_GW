@@ -96,7 +96,7 @@ const ScaffoldGroups = {
 	getSummarized: (queryParams: string) => requests.get<ApiResponse<ScaffoldGroup[]>>('/scaffoldgroups' + queryParams),
 	getPublic: (queryParams: string) => requests.get<ApiResponse<ScaffoldGroup[]>>('/scaffoldgroups/public' + queryParams),
     getSummary: (id: number) => requests.get<ApiResponse<ScaffoldGroup>>('/scaffoldgroups/' + id + '/summary'),
-    search: (payload: { prompt: string; isSimulated?: boolean; shapeTagNames?: string[] }) =>
+    search: (payload: { prompt: string; isSimulated?: boolean; shapeTagNames?: string[]; dispersityTagNames?: string[] }) =>
         requests.post<ApiResponse<AiScaffoldGroupSearch>>('/scaffoldgroups/search', payload),
     getGroupSummaryByScaffoldId: (id: number) => requests.get<ApiResponse<ScaffoldGroup>>('/scaffoldgroups/scaffold/' + id + '/summary'),
 	getDetailed: (id: number) => requests.get<ApiResponse<ScaffoldGroup>>('/scaffoldGroups/' + id),

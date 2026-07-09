@@ -788,7 +788,7 @@ const Visualization: React.FC = () => {
 				</p>
 				<div
 					ref={searchContainerRef}
-					className="relative w-full md:max-w-[32rem] mt-2 md:mt-3 pb-2"
+					className="relative w-full md:max-w-[36rem] mt-2 md:mt-3 pb-2"
 				>
 					<AISearchBar
 						onSearch={runSearch}

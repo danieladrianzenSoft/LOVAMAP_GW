@@ -387,13 +387,14 @@ export default class ScaffoldGroupStore {
 
 	searchScaffoldGroups = async (
 		searchPrompt: string,
-		preFilter?: { isSimulated?: boolean; shapeTagNames?: string[] }
+		preFilter?: { isSimulated?: boolean; shapeTagNames?: string[]; dispersityTagNames?: string[] }
 	) => {
 		try {
 			const response = await agent.ScaffoldGroups.search({
 				prompt: searchPrompt,
 				isSimulated: preFilter?.isSimulated,
 				shapeTagNames: preFilter?.shapeTagNames,
+				dispersityTagNames: preFilter?.dispersityTagNames,
 			});
 			runInAction(() => {
 				this.scaffoldGroups = response.data.scaffoldGroups;

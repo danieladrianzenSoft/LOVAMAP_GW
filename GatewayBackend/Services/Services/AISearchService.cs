@@ -48,11 +48,11 @@ namespace Services.Services
 			_httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {apiKey}");
 		}
 
-		public async Task<(bool Succeeded, string ErrorMessage, AIScaffoldSearchResponse? searchResponse)> RunSearchScaffoldGroupPipeline(string searchPrompt, string userId, bool? isSimulated = null, List<string>? shapeTagNames = null)
+		public async Task<(bool Succeeded, string ErrorMessage, AIScaffoldSearchResponse? searchResponse)> RunSearchScaffoldGroupPipeline(string searchPrompt, string userId, bool? isSimulated = null, List<string>? shapeTagNames = null, List<string>? dispersityTagNames = null)
 		{
 			try
 			{
-				var (succeededSearch, errorMessageSearch, scaffoldFilter) = await SearchScaffoldGroup(searchPrompt, shapeTagNames, isSimulated);
+				var (succeededSearch, errorMessageSearch, scaffoldFilter) = await SearchScaffoldGroup(searchPrompt, shapeTagNames, isSimulated, dispersityTagNames);
 
 				if (!succeededSearch || scaffoldFilter == null)
 				{
@@ -65,11 +65,17 @@ namespace Services.Services
 					scaffoldFilter.IsSimulated = isSimulated.Value;
 				}
 
+				var preScopedTagNames = new List<string>();
 				if (shapeTagNames != null && shapeTagNames.Count > 0)
+					preScopedTagNames.AddRange(shapeTagNames);
+				if (dispersityTagNames != null && dispersityTagNames.Count > 0)
+					preScopedTagNames.AddRange(dispersityTagNames);
+
+				if (preScopedTagNames.Count > 0)
 				{
 					var existingNames = scaffoldFilter.TagNames ?? new List<string>();
 					var mergedNames = existingNames
-						.Concat(shapeTagNames)
+						.Concat(preScopedTagNames)
 						.GroupBy(n => n.ToLowerInvariant())
 						.Select(g => g.First())
 						.ToList();
@@ -113,7 +119,7 @@ namespace Services.Services
 
 		}
 
-		public async Task<(bool Succeeded, string ErrorMessage, ScaffoldFilter? scaffoldFilter)> SearchScaffoldGroup(string searchPrompt, List<string>? shapeTagNames = null, bool? isSimulated = null)
+		public async Task<(bool Succeeded, string ErrorMessage, ScaffoldFilter? scaffoldFilter)> SearchScaffoldGroup(string searchPrompt, List<string>? shapeTagNames = null, bool? isSimulated = null, List<string>? dispersityTagNames = null)
 		{
 			try
 			{
@@ -127,6 +133,11 @@ namespace Services.Services
 				{
 					var scoped = string.Join(", ", shapeTagNames.Select(n => $"\"{n}\""));
 					preScopedNotes.Add($"The user has already scoped the search to the following shape(s): [{scoped}]. Do not duplicate or contradict this shape scoping in TagNames.");
+				}
+				if (dispersityTagNames != null && dispersityTagNames.Count > 0)
+				{
+					var scoped = string.Join(", ", dispersityTagNames.Select(n => $"\"{n}\""));
+					preScopedNotes.Add($"The user has already scoped the search to the following dispersity: [{scoped}]. Do not duplicate or contradict this dispersity scoping in TagNames.");
 				}
 				if (isSimulated.HasValue)
 				{

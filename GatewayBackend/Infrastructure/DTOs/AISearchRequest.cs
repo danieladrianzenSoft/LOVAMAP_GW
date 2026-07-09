@@ -8,5 +8,6 @@ namespace Infrastructure.DTOs
 		public required string Prompt { get; set; }
 		public bool? IsSimulated { get; set; }
 		public List<string>? ShapeTagNames { get; set; }
+		public List<string>? DispersityTagNames { get; set; }
 	}
 }
