@@ -42,7 +42,11 @@ function DataTable<T>({
 						{columns.map((col, idx) => (
 							<th
 								key={idx}
-								className={`px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider ${col.headerClassName ?? ''}`}
+								className={`px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider ${
+									idx === 0 ? 'rounded-tl-lg' : ''
+								} ${
+									idx === columns.length - 1 ? 'rounded-tr-lg' : ''
+								} ${col.headerClassName ?? ''}`}
 							>
 								{col.header}
 							</th>
@@ -54,7 +58,7 @@ function DataTable<T>({
 						<tr>
 							<td
 								colSpan={columns.length}
-								className="px-4 py-6 text-center text-sm text-gray-500"
+								className="rounded-b-lg px-4 py-6 text-center text-sm text-gray-500"
 							>
 								{emptyMessage}
 							</td>
@@ -66,14 +70,21 @@ function DataTable<T>({
 								onClick={isClickable ? () => onRowClick!(row, rowIndex) : undefined}
 								className={isClickable ? 'cursor-pointer hover:bg-gray-50' : ''}
 							>
-								{columns.map((col, colIndex) => (
+								{columns.map((col, colIndex) => {
+									const isLastRow = rowIndex === data.length - 1;
+									return (
 									<td
 										key={colIndex}
-										className={`px-4 py-4 text-sm text-gray-700 ${col.cellClassName ?? ''}`}
+										className={`px-4 py-4 text-sm text-gray-700 ${
+											isLastRow && colIndex === 0 ? 'rounded-bl-lg' : ''
+										} ${
+											isLastRow && colIndex === columns.length - 1 ? 'rounded-br-lg' : ''
+										} ${col.cellClassName ?? ''}`}
 									>
 										{col.render(row, rowIndex)}
 									</td>
-								))}
+									);
+								})}
 							</tr>
 						))
 					)}

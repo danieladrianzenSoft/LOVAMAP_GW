@@ -95,6 +95,8 @@ const ScaffoldGroupLibrary: React.FC<ScaffoldGroupLibraryProps> = ({
 	const [pendingVisibility, setPendingVisibility] = useState<boolean | null>(null);
 	const [pendingMove, setPendingMove] = useState<PendingMove | null>(null);
 	const [moveSearchQuery, setMoveSearchQuery] = useState('');
+	const libraryShellRef = useRef<HTMLDivElement>(null);
+	const detailsRef = useRef<HTMLElement>(null);
 	const listScrollRef = useRef<HTMLDivElement>(null);
 	const isDragCanceledRef = useRef(false);
 
@@ -194,6 +196,24 @@ const ScaffoldGroupLibrary: React.FC<ScaffoldGroupLibraryProps> = ({
 		document.addEventListener('keydown', handleKeyDown);
 		return () => document.removeEventListener('keydown', handleKeyDown);
 	}, [draggedScaffold]);
+
+	useEffect(() => {
+		if (!selection) return;
+
+		const handlePointerDown = (event: MouseEvent | TouchEvent) => {
+			const target = event.target as Node;
+			if (detailsRef.current?.contains(target)) return;
+			if (target instanceof Element && target.closest('[data-library-selectable-row="true"]')) return;
+			setSelection(null);
+		};
+
+		document.addEventListener('mousedown', handlePointerDown);
+		document.addEventListener('touchstart', handlePointerDown);
+		return () => {
+			document.removeEventListener('mousedown', handlePointerDown);
+			document.removeEventListener('touchstart', handlePointerDown);
+		};
+	}, [selection]);
 
 	const toggleExpanded = (groupId: number) => {
 		setExpandedGroupIds(prev => {
@@ -392,7 +412,7 @@ const ScaffoldGroupLibrary: React.FC<ScaffoldGroupLibraryProps> = ({
 		: includeGroupActionColumn ? 'min-w-[736px] lg:min-w-[816px]' : 'min-w-[640px] lg:min-w-[696px]';
 
 	return (
-		<div className={`grid grid-cols-1 gap-4 min-h-[640px] min-w-0 ${
+		<div ref={libraryShellRef} className={`grid grid-cols-1 gap-4 min-h-[640px] min-w-0 ${
 			showFolders
 				? selectedGroup ? 'xl:grid-cols-[220px_minmax(0,1fr)_320px] 2xl:grid-cols-[240px_minmax(0,1fr)_360px]' : 'xl:grid-cols-[240px_minmax(0,1fr)]'
 				: selectedGroup ? 'xl:grid-cols-[minmax(0,1fr)_320px] 2xl:grid-cols-[minmax(0,1fr)_360px]' : 'xl:grid-cols-1'
@@ -486,6 +506,7 @@ const ScaffoldGroupLibrary: React.FC<ScaffoldGroupLibraryProps> = ({
 							return (
 								<div key={group.id}>
 									<div
+										data-library-selectable-row="true"
 										className={`grid ${groupGridClass} items-center px-4 py-3 border-b border-gray-100 cursor-pointer ${
 											dropTargetGroupId === group.id
 												? 'bg-secondary-100 ring-1 ring-inset ring-secondary-300'
@@ -569,6 +590,7 @@ const ScaffoldGroupLibrary: React.FC<ScaffoldGroupLibraryProps> = ({
 										const thumbnail = getScaffoldThumbnail(group, scaffoldId);
 										return (
 											<div
+												data-library-selectable-row="true"
 												key={scaffoldId}
 												className={`grid ${scaffoldGridClass} items-center px-4 py-2 border-b border-gray-100 cursor-pointer ${
 													isSelectedScaffold ? 'bg-secondary-50' : 'hover:bg-gray-50'
@@ -644,6 +666,7 @@ const ScaffoldGroupLibrary: React.FC<ScaffoldGroupLibraryProps> = ({
 						aria-label="Close details"
 					/>
 					<aside
+						ref={detailsRef}
 						className="fixed inset-0 z-50 bg-white overflow-hidden sm:left-auto sm:w-[420px] sm:max-w-[calc(100vw-2rem)] sm:shadow-xl xl:sticky xl:inset-auto xl:z-auto xl:top-4 xl:w-auto xl:max-w-none xl:self-start xl:border xl:border-gray-200 xl:rounded-lg xl:shadow-none xl:max-h-[calc(100vh-7.625rem)] xl:min-w-0"
 						role="dialog"
 						aria-modal="true"
@@ -1261,12 +1284,7 @@ const formatParticleGroupSummary = (particle: ParticlePropertyGroup) => {
 
 const getScaffoldThumbnail = (group: ScaffoldGroup, scaffoldId: number) => {
 	const scaffoldImages = group.images?.filter(image => image.scaffoldId === scaffoldId) ?? [];
-	return (
-		scaffoldImages.find(image => image.category === 'HalfHalf') ??
-		scaffoldImages.find(image => image.isThumbnail) ??
-		scaffoldImages.find(image => image.category === 'Particles') ??
-		null
-	);
+	return scaffoldImages.find(image => getImageCategoryKey(image.category) === 'HalfHalf') ?? null;
 };
 
 const getInspectorImages = (group: ScaffoldGroup, scaffoldId: number | null) => {
@@ -1278,11 +1296,9 @@ const getInspectorImages = (group: ScaffoldGroup, scaffoldId: number | null) => 
 		);
 	}
 
-	const allImages = group.images ?? [];
-	const thumbnailImages = allImages.filter(image => image.isThumbnail);
-	const groupLevelImages = allImages.filter(image => image.scaffoldId == null);
 	return uniqueImagesByCategory(
-		(thumbnailImages.length > 0 ? thumbnailImages : groupLevelImages.length > 0 ? groupLevelImages : allImages)
+		(group.images ?? [])
+			.filter(image => image.isThumbnail)
 			.sort(sortImagesForCategoryDisplay)
 	);
 };
@@ -1292,8 +1308,9 @@ const uniqueImagesByCategory = (images: Image[]) => {
 	const result: Image[] = [];
 
 	for (const image of images) {
-		if (seen.has(image.category)) continue;
-		seen.add(image.category);
+		const categoryKey = getImageCategoryKey(image.category);
+		if (seen.has(categoryKey)) continue;
+		seen.add(categoryKey);
 		result.push(image);
 	}
 
@@ -1302,9 +1319,21 @@ const uniqueImagesByCategory = (images: Image[]) => {
 
 const sortImagesForCategoryDisplay = (a: Image, b: Image) => {
 	const categoryOrder = ['HalfHalf', 'Particles', 'InteriorPores', 'ExteriorPores', 'Other'];
-	const categoryDelta = categoryOrder.indexOf(a.category) - categoryOrder.indexOf(b.category);
+	const getRank = (category: string | number | null | undefined) => {
+		const rank = categoryOrder.indexOf(getImageCategoryKey(category));
+		return rank === -1 ? categoryOrder.length : rank;
+	};
+	const categoryDelta = getRank(a.category) - getRank(b.category);
 	if (categoryDelta !== 0) return categoryDelta;
 	return Number(b.isThumbnail) - Number(a.isThumbnail);
+};
+
+const getImageCategoryKey = (category: string | number | null | undefined) => {
+	const numericCategory = Number(category);
+	if (!Number.isNaN(numericCategory)) {
+		return ImageCategory[numericCategory] ?? 'Other';
+	}
+	return category?.toString() ?? 'Other';
 };
 
 export default ScaffoldGroupLibrary;
