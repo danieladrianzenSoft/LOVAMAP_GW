@@ -15,16 +15,20 @@ public class PublicationsController : ControllerBase
 	private readonly IUserService _userService;
 	private readonly IPublicationService _publicationService;
 	private readonly IPublicationDatasetService _datasetService;
+	private readonly IPublicationExportService _publicationExportService;
 
 
 	public PublicationsController(ILogger<PublicationsController> logger,
 		IUserService userService,
-		IPublicationService publicationService, IPublicationDatasetService datasetService)
+		IPublicationService publicationService,
+		IPublicationDatasetService datasetService,
+		IPublicationExportService publicationExportService)
 	{
 		_logger = logger;
 		_userService = userService;
 		_datasetService = datasetService;
 		_publicationService = publicationService;
+		_publicationExportService = publicationExportService;
 	}
 
 	[AllowAnonymous]
@@ -219,6 +223,31 @@ public class PublicationsController : ControllerBase
 		}
 
 		return Ok(new ApiResponse<PublicationDatasetDto>(200, "Publication scaffold groups updated", publicationDataset));
+	}
+
+	[HttpGet("{publicationId:int}/downloads/comprehensive")]
+	public async Task<IActionResult> DownloadComprehensivePublicationData(int publicationId, CancellationToken cancellationToken)
+	{
+		var currentUserId = _userService.GetCurrentUserId();
+		if (currentUserId == null)
+			return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
+
+		var (succeeded, errorMessage, export) =
+			await _publicationExportService.PrepareComprehensiveExportAsync(publicationId, currentUserId);
+
+		if (!succeeded || export == null)
+		{
+			if (errorMessage == "Publication not found." || errorMessage.Contains("not found", StringComparison.OrdinalIgnoreCase))
+				return NotFound(new ApiResponse<string>(404, errorMessage));
+
+			return BadRequest(new ApiResponse<string>(400, errorMessage));
+		}
+
+		Response.ContentType = "application/zip";
+		Response.Headers.ContentDisposition = $"attachment; filename=\"{export.ZipFileName}\"";
+
+		await _publicationExportService.WriteComprehensiveExportZipAsync(export, Response.Body, cancellationToken);
+		return new EmptyResult();
 	}
 
 	[HttpGet("datasets/{datasetId:int}")]

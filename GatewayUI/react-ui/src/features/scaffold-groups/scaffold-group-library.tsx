@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { FaChevronRight, FaDownload, FaExchangeAlt, FaFolder, FaGlobeAmericas, FaImage, FaLock, FaRegStar, FaSearch, FaSpinner, FaStar, FaTimes, FaTrash } from 'react-icons/fa';
+import { FaChevronRight, FaDownload, FaExchangeAlt, FaExternalLinkAlt, FaFolder, FaGlobeAmericas, FaImage, FaLock, FaRegStar, FaSearch, FaSpinner, FaStar, FaTimes, FaTrash } from 'react-icons/fa';
 import UploadFile from '../../app/common/upload-file/upload-file';
 import { Image, ImageCategory, ImageToUpdate } from '../../app/models/image';
 import { Publication } from '../../app/models/publication';
@@ -39,6 +39,7 @@ interface ScaffoldGroupLibraryProps {
 	canDeleteGroups?: boolean;
 	getGroupFolderAction?: (group: ScaffoldGroup) => { label: string; targetFolderKey: LibraryFolder; title?: string } | null;
 	onMoveGroupToFolder?: (group: ScaffoldGroup, targetFolderKey: LibraryFolder) => Promise<void>;
+	useGroupBulkSelection?: boolean;
 	canDownloadGroup?: boolean;
 	isGroupDownloadLoading?: boolean;
 	onDownloadGroup?: (group: ScaffoldGroup) => Promise<void> | void;
@@ -75,6 +76,7 @@ const ScaffoldGroupLibrary: React.FC<ScaffoldGroupLibraryProps> = ({
 	canDeleteGroups = isAdmin,
 	getGroupFolderAction,
 	onMoveGroupToFolder,
+	useGroupBulkSelection = false,
 	canDownloadGroup = false,
 	isGroupDownloadLoading = false,
 	onDownloadGroup,
@@ -95,6 +97,7 @@ const ScaffoldGroupLibrary: React.FC<ScaffoldGroupLibraryProps> = ({
 	const [pendingVisibility, setPendingVisibility] = useState<boolean | null>(null);
 	const [pendingMove, setPendingMove] = useState<PendingMove | null>(null);
 	const [moveSearchQuery, setMoveSearchQuery] = useState('');
+	const [checkedGroupIds, setCheckedGroupIds] = useState<Set<number>>(new Set());
 	const libraryShellRef = useRef<HTMLDivElement>(null);
 	const detailsRef = useRef<HTMLElement>(null);
 	const listScrollRef = useRef<HTMLDivElement>(null);
@@ -134,6 +137,10 @@ const ScaffoldGroupLibrary: React.FC<ScaffoldGroupLibraryProps> = ({
 		if (folders.some(folder => folder.key === activeFolder)) return;
 		setActiveFolder(folders[0]?.key ?? 'all');
 	}, [activeFolder, folders]);
+
+	useEffect(() => {
+		setCheckedGroupIds(new Set());
+	}, [activeFolder]);
 
 	const counts = useMemo(() => {
 		const isPublished = (group: ScaffoldGroup) => (publicationLookup.get(group.id)?.length ?? 0) > 0;
@@ -204,6 +211,11 @@ const ScaffoldGroupLibrary: React.FC<ScaffoldGroupLibraryProps> = ({
 			const target = event.target as Node;
 			if (detailsRef.current?.contains(target)) return;
 			if (target instanceof Element && target.closest('[data-library-selectable-row="true"]')) return;
+			if (
+				target instanceof Element &&
+				libraryShellRef.current?.contains(target) &&
+				target.closest('button, a, input, select, textarea, label, [role="button"]')
+			) return;
 			setSelection(null);
 		};
 
@@ -391,11 +403,38 @@ const ScaffoldGroupLibrary: React.FC<ScaffoldGroupLibraryProps> = ({
 		await onMoveGroupToFolder(group, targetFolderKey);
 		setIsMutating(false);
 		setDropTargetFolderKey(null);
+		setCheckedGroupIds(current => {
+			if (!current.has(group.id)) return current;
+			const next = new Set(current);
+			next.delete(group.id);
+			return next;
+		});
+	};
+
+	const handleBulkMoveGroupsToFolder = async (groups: ScaffoldGroup[], targetFolderKey: LibraryFolder) => {
+		if (!onMoveGroupToFolder || isMutating || groups.length === 0) return;
+
+		setIsMutating(true);
+		for (const group of groups) {
+			await onMoveGroupToFolder(group, targetFolderKey);
+		}
+		setIsMutating(false);
+		setCheckedGroupIds(new Set());
+	};
+
+	const toggleCheckedGroup = (groupId: number) => {
+		setCheckedGroupIds(current => {
+			const next = new Set(current);
+			next.has(groupId) ? next.delete(groupId) : next.add(groupId);
+			return next;
+		});
 	};
 
 	const activeFolderLabel = folders.find(folder => folder.key === activeFolder)?.label ?? 'Scaffold Groups';
 	const hasGroupFolderActions = Boolean(getGroupFolderAction && onMoveGroupToFolder);
-	const includeGroupActionColumn = hasGroupFolderActions;
+	const includeGroupActionColumn = hasGroupFolderActions && !useGroupBulkSelection;
+	const checkedGroups = filteredGroups.filter(group => checkedGroupIds.has(group.id));
+	const checkedGroupAction = checkedGroups.length > 0 ? getGroupFolderAction?.(checkedGroups[0]) ?? null : null;
 	const groupGridClass = showVisibility
 		? includeGroupActionColumn
 			? 'grid-cols-[minmax(240px,1fr)_100px_140px_110px_96px] lg:grid-cols-[minmax(260px,1fr)_120px_150px_120px_104px]'
@@ -481,6 +520,33 @@ const ScaffoldGroupLibrary: React.FC<ScaffoldGroupLibraryProps> = ({
 					</label>
 				</div>
 
+				{useGroupBulkSelection && checkedGroups.length > 0 && checkedGroupAction && (
+					<div className="flex flex-col gap-3 border-b border-gray-100 bg-secondary-50 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
+						<div className="text-sm text-gray-700">
+							<span className="font-medium">{checkedGroups.length}</span> scaffold group{checkedGroups.length === 1 ? '' : 's'} selected
+						</div>
+						<div className="flex flex-wrap gap-2">
+							<button
+								type="button"
+								onClick={() => setCheckedGroupIds(new Set())}
+								className="button-outline px-3 py-1.5 text-xs"
+								disabled={isMutating}
+							>
+								Clear
+							</button>
+							<button
+								type="button"
+								onClick={() => handleBulkMoveGroupsToFolder(checkedGroups, checkedGroupAction.targetFolderKey)}
+								className="button-secondary px-3 py-1.5 text-xs"
+								disabled={isMutating}
+								title={checkedGroupAction.title}
+							>
+								{checkedGroupAction.label}
+							</button>
+						</div>
+					</div>
+				)}
+
 				<div
 					ref={listScrollRef}
 					className="overflow-auto"
@@ -539,6 +605,19 @@ const ScaffoldGroupLibrary: React.FC<ScaffoldGroupLibraryProps> = ({
 											}}
 									>
 										<div className="flex items-center gap-2 min-w-0">
+											{useGroupBulkSelection && groupFolderAction && (
+												<input
+													type="checkbox"
+													checked={checkedGroupIds.has(group.id)}
+													onChange={event => {
+														event.stopPropagation();
+														toggleCheckedGroup(group.id);
+													}}
+													onClick={event => event.stopPropagation()}
+													className="h-4 w-4 shrink-0 rounded border-gray-300 accent-link-300"
+													aria-label={`Select scaffold group ${group.name || group.id}`}
+												/>
+											)}
 											<button
 												type="button"
 												onClick={event => {
@@ -724,8 +803,24 @@ const ScaffoldGroupLibrary: React.FC<ScaffoldGroupLibraryProps> = ({
 									{selectedPublications.length > 0 ? (
 										<div className="flex flex-wrap gap-2">
 											{selectedPublications.map(publication => (
-												<span key={publication.id} className="px-2 py-1 rounded bg-secondary-50 text-xs text-gray-700">
-													{publication.title}
+												<span key={publication.id} className="inline-flex max-w-full items-center gap-2 rounded bg-secondary-50 px-2 py-1.5 text-xs text-gray-700">
+													<span className="min-w-0">
+														<span className="block truncate">{publication.title}</span>
+														<span className="block truncate text-[11px] text-gray-400">
+															{publication.journal} · {new Date(publication.publishedAt).toLocaleDateString()}
+														</span>
+													</span>
+													<a
+														href={`https://doi.org/${publication.doi}`}
+														target="_blank"
+														rel="noopener noreferrer"
+														onClick={event => event.stopPropagation()}
+														className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded text-gray-400 hover:bg-white hover:text-link-100"
+														title="Open publication DOI"
+														aria-label={`Open DOI for ${publication.title}`}
+													>
+														<FaExternalLinkAlt size={10} />
+													</a>
 												</span>
 											))}
 										</div>

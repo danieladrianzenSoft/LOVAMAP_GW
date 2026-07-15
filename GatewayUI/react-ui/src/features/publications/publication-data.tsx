@@ -3,7 +3,7 @@ import { observer } from 'mobx-react-lite';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { FaArrowLeft, FaChevronDown, FaDownload, FaEdit, FaSave, FaSpinner, FaTimes } from 'react-icons/fa';
-import { downloadScaffoldGroupAsExcel, triggerDownload, triggerZipDownload } from '../../app/common/excel-generator/excel-generator';
+import { downloadScaffoldGroupAsExcel, triggerDownload } from '../../app/common/excel-generator/excel-generator';
 import { openPreviewInNewTab } from '../../app/common/new-tab-preview/new-tab-preview';
 import LoadingSpinner from '../../app/common/loading-spinner/loading-spinner';
 import { Image, ImageToUpdate } from '../../app/models/image';
@@ -159,36 +159,24 @@ const PublicationData: React.FC = () => {
 		}
 
 		setDownloadMode('comprehensive');
-		const groupsToDownload = allGroups.filter(group => selectedGroupIds.has(group.id));
-		if (groupsToDownload.length === 0) {
+		if (selectedGroupIds.size === 0) {
 			setDownloadMode(null);
 			toast.error('No scaffold groups selected for this publication.');
 			return;
 		}
 
-		const detailedGroups = await Promise.all(
-			groupsToDownload.map(group => scaffoldGroupStore.getDetailedScaffoldGroupById({ scaffoldGroupId: group.id }))
-		);
-		const validGroups = detailedGroups.filter((group): group is ScaffoldGroup => Boolean(group));
-
-		if (validGroups.length === 0) {
+		const result = await publicationStore.downloadComprehensive(numericPublicationId);
+		if (!result.success || !result.blob) {
 			setDownloadMode(null);
-			toast.error('Failed to load publication descriptor data.');
+			toast.error(result.error ?? 'Failed to download publication data.');
 			return;
 		}
 
-		const files = validGroups.map(group => {
-			const result = downloadScaffoldGroupAsExcel(group);
-			return {
-				...result,
-				filename: makePublicationWorkbookFilename(group, result.filename),
-			};
-		});
 		const zipName = `${publication?.title ?? 'publication'}_data`
 			.replace(/[^a-z0-9]+/gi, '_')
 			.replace(/^_+|_+$/g, '')
 			.slice(0, 80) || 'publication_data';
-		triggerZipDownload(files, `${zipName}.zip`);
+		triggerBlobDownload(result.blob, `${zipName}.zip`);
 		setDownloadMode(null);
 	};
 
@@ -340,9 +328,10 @@ const PublicationData: React.FC = () => {
 				showVisibility={false}
 				canDeleteGroups={false}
 				getGroupFolderAction={isEditMode ? group => selectedGroupIds.has(group.id)
-					? { label: 'Remove', targetFolderKey: 'available', title: 'Remove from publication' }
-					: { label: 'Add', targetFolderKey: 'selected', title: 'Add to publication' } : undefined}
+					? { label: 'Remove from publication', targetFolderKey: 'available', title: 'Remove from publication' }
+					: { label: 'Add to publication', targetFolderKey: 'selected', title: 'Add to publication' } : undefined}
 				onMoveGroupToFolder={isEditMode ? handleMoveGroupToFolder : undefined}
+				useGroupBulkSelection={isEditMode}
 				canDownloadGroup={true}
 				isGroupDownloadLoading={downloadMode === 'group'}
 				onDownloadGroup={handleDownloadGroup}
@@ -383,14 +372,12 @@ const setsEqual = (left: Set<number>, right: Set<number>) => {
 	return true;
 };
 
-const makePublicationWorkbookFilename = (group: ScaffoldGroup, fallbackFilename: string) => {
-	const rawBase = group.name?.trim() || fallbackFilename.replace(/\.xlsx$/i, '') || `scaffold_group_${group.id}`;
-	const safeBase = rawBase
-		.replace(/[^a-z0-9]+/gi, '_')
-		.replace(/^_+|_+$/g, '')
-		.slice(0, 60) || 'scaffold_group';
-
-	return `${safeBase}_group_${group.id}.xlsx`;
+const triggerBlobDownload = (blob: Blob, filename: string) => {
+	const link = document.createElement('a');
+	link.href = URL.createObjectURL(blob);
+	link.download = filename;
+	link.click();
+	URL.revokeObjectURL(link.href);
 };
 
 const DownloadMenu: React.FC<{

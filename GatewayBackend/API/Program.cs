@@ -176,6 +176,7 @@ builder.Services.AddScoped<IScaffoldGroupService, ScaffoldGroupService>();
 builder.Services.AddScoped<IImageService, ImageService>();
 builder.Services.AddScoped<IPublicationService, PublicationService>();
 builder.Services.AddScoped<IPublicationDatasetService, PublicationDatasetService>();
+builder.Services.AddScoped<IPublicationExportService, PublicationExportService>();
 builder.Services.AddScoped<IDomainService, DomainService>();
 builder.Services.AddScoped<IModelMapper, ModelMapper>();
 builder.Services.AddScoped<ILovamapCoreJobService, LovamapCoreJobService>();

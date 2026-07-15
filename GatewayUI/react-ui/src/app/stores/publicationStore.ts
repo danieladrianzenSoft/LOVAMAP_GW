@@ -87,6 +87,17 @@ export default class PublicationStore {
 		}
 	}
 
+	downloadComprehensive = async(publicationId: number): Promise<{ success: boolean; blob?: Blob; error?: string }> => {
+		try {
+			const blob = await agent.Publications.downloadComprehensive(publicationId);
+			return { success: true, blob };
+		} catch (error: any) {
+			const msg = getPublicationErrorMessage(error, "Failed to download publication data.");
+			console.error("Error downloading publication data", error);
+			return { success: false, error: msg };
+		}
+	}
+
 	deletePublication = async(publicationId: number): Promise<{ success: boolean; error?: string }> => {
 		try {
 			await agent.Publications.delete(publicationId);

@@ -6,7 +6,7 @@ import { ScaffoldGroup } from '../../app/models/scaffoldGroup';
 import { DescriptorType } from '../../app/models/descriptorType';
 import LoadingSpinner from '../../app/common/loading-spinner/loading-spinner';
 import History from "../../app/helpers/History";
-import { FaSpinner } from "react-icons/fa";
+import { FaExternalLinkAlt, FaSpinner, FaTimes } from "react-icons/fa";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import DataTable, { DataTableColumn } from '../../app/common/data-table/data-table';
 
@@ -74,6 +74,7 @@ const Publications: React.FC = () => {
 	const [isDeleting, setIsDeleting] = useState(false);
 
 	const isAdmin = userStore.user?.roles?.includes('administrator') ?? false;
+	const canManagePublication = (pub: Publication) => Boolean(userStore.user && (isAdmin || pub.uploaderId === userStore.user.id));
 
 	// ── close actions dropdown on outside click ───────────────────────────
 	useEffect(() => {
@@ -349,22 +350,26 @@ const Publications: React.FC = () => {
 			cellClassName: '!text-gray-800',
 		},
 		{
-			header: 'DOI',
+			header: '',
 			render: (pub) => (
 				<a
 					href={`https://doi.org/${pub.doi}`}
 					target="_blank"
 					rel="noopener noreferrer"
-					className="hover:underline"
+					className="inline-flex h-8 w-8 items-center justify-center rounded-md text-gray-400 hover:bg-gray-100 hover:text-link-100"
+					title="Open publication DOI"
+					aria-label={`Open DOI for ${pub.title}`}
+					onClick={(e) => e.stopPropagation()}
 				>
-					{pub.doi}
+					<FaExternalLinkAlt size={12} />
 				</a>
 			),
-			cellClassName: '!text-link-100 break-all',
+			headerClassName: 'w-12',
+			cellClassName: 'w-12',
 		},
 		{
 			header: '',
-			render: (pub: Publication) => (
+			render: (pub: Publication) => canManagePublication(pub) ? (
 				<div className="relative" ref={actionsOpenId === pub.id ? actionsRef : undefined}>
 					<button
 						className="text-xl text-gray-500 hover:text-gray-700 cursor-pointer p-1"
@@ -377,30 +382,22 @@ const Publications: React.FC = () => {
 						<div className="absolute right-0 mt-1 w-44 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
 							<button
 								className="w-full text-left px-4 py-3 hover:bg-gray-50 text-sm text-gray-700 cursor-pointer rounded-t-lg"
-								onClick={(e) => { e.stopPropagation(); setActionsOpenId(null); handleViewData(pub.id); }}
+								onClick={(e) => { e.stopPropagation(); setActionsOpenId(null); openEditPublication(pub); }}
 							>
-								View Data
+								Edit Publication
 							</button>
-							{isAdmin && (
-								<>
-									<button
-										className="w-full text-left px-4 py-3 hover:bg-gray-50 text-sm text-gray-700 cursor-pointer"
-										onClick={(e) => { e.stopPropagation(); setActionsOpenId(null); openEditPublication(pub); }}
-									>
-										Edit Publication
-									</button>
-									<button
-										className="w-full text-left px-4 py-3 hover:bg-gray-50 text-sm text-red-600 cursor-pointer border-t border-gray-100 rounded-b-lg"
-										onClick={(e) => { e.stopPropagation(); setActionsOpenId(null); setConfirmDeleteId(pub.id); }}
-									>
-										Delete
-									</button>
-								</>
-							)}
+							<button
+								className="w-full text-left px-4 py-3 hover:bg-gray-50 text-sm text-red-600 cursor-pointer border-t border-gray-100 rounded-b-lg"
+								onClick={(e) => { e.stopPropagation(); setActionsOpenId(null); setConfirmDeleteId(pub.id); }}
+							>
+								Delete
+							</button>
 						</div>
 					)}
 				</div>
-			),
+			) : null,
+			headerClassName: 'w-12',
+			cellClassName: 'w-12',
 		},
 	];
 
@@ -423,6 +420,7 @@ const Publications: React.FC = () => {
 							data={publications ?? []}
 							columns={columns}
 							rowKey={(pub) => pub.id}
+							onRowClick={(pub) => handleViewData(pub.id)}
 							className="!overflow-visible"
 						/>
 					</div>
@@ -448,7 +446,7 @@ const Publications: React.FC = () => {
 			{/* Modal 1 — Add / Edit Publication */}
 			{step === 'addPublication' && (
 				<Overlay>
-					<ModalBox title={editingPubId !== null ? 'Edit Publication' : 'Add Publication'}>
+					<ModalBox title={editingPubId !== null ? 'Edit Publication' : 'Add Publication'} onClose={() => setStep('none')}>
 						<div className="space-y-3">
 							<Field label="Title" required><input name="title" value={form.title} onChange={handleFormChange} className={inputCls} placeholder="Publication title" /></Field>
 							<Field label="Authors" required><input name="authors" value={form.authors} onChange={handleFormChange} className={inputCls} placeholder="e.g. Smith J, Lee K, et al." /></Field>
@@ -623,9 +621,22 @@ const Overlay: React.FC<{ children: React.ReactNode }> = ({ children }) => (
 	<div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">{children}</div>
 );
 
-const ModalBox: React.FC<{ title: string; wide?: boolean; children: React.ReactNode }> = ({ title, wide, children }) => (
-	<div className={`bg-white rounded-lg shadow-xl mx-4 p-6 w-full overflow-y-auto max-h-screen ${wide ? 'max-w-2xl' : 'max-w-lg'}`}>
-		<div className="text-xl font-bold text-gray-700 mb-4">{title}</div>
+const ModalBox: React.FC<{ title: string; wide?: boolean; onClose?: () => void; children: React.ReactNode }> = ({ title, wide, onClose, children }) => (
+	<div className={`relative bg-white rounded-lg shadow-xl mx-4 p-6 w-full overflow-y-auto max-h-screen ${wide ? 'max-w-2xl' : 'max-w-lg'}`}>
+		<div className="flex items-start justify-between gap-4 mb-4">
+			<div className="text-xl font-bold text-gray-700">{title}</div>
+			{onClose && (
+				<button
+					type="button"
+					onClick={onClose}
+					className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-md text-gray-400 hover:bg-gray-100 hover:text-gray-700"
+					aria-label="Close modal"
+					title="Close"
+				>
+					<FaTimes size={13} />
+				</button>
+			)}
+		</div>
 		{children}
 	</div>
 );

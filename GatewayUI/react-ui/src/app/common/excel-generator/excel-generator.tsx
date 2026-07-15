@@ -7,7 +7,7 @@ import { Scaffold } from '../../models/scaffold';
 const headingCharacterLength = 30;
 
 export function triggerDownload(wb: XLSX.WorkBook, filename: string) {
-    XLSX.writeFile(wb, filename);
+    XLSX.writeFile(wb, ensureXlsxFilename(filename));
 }
 
 export function triggerZipDownload(
@@ -17,7 +17,7 @@ export function triggerZipDownload(
     const zipEntries = files.map(({ file, filename }) => {
         const bytes = new Uint8Array(XLSX.write(file, { bookType: 'xlsx', type: 'array' }));
         return {
-            filename: filename.endsWith('.xlsx') ? filename : `${filename}.xlsx`,
+            filename: ensureXlsxFilename(filename),
             bytes,
         };
     });
@@ -26,7 +26,7 @@ export function triggerZipDownload(
     const blob = new Blob([zipBytes], { type: 'application/zip' });
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
-    link.download = zipFilename.endsWith('.zip') ? zipFilename : `${zipFilename}.zip`;
+    link.download = ensureZipFilename(zipFilename);
     link.click();
     URL.revokeObjectURL(link.href);
 }
@@ -237,9 +237,36 @@ export function downloadScaffoldGroupAsExcel(scaffoldGroup: ScaffoldGroup) {
 
     });
 
-    // XLSX.writeFile(wb, `${scaffoldGroup.name.replace(/\s+/g, '_').slice(0,headingCharacterLength)}.xlsx`);
-    const filename = `${scaffoldGroup.name.replace(/\s+/g, '_').slice(0,headingCharacterLength)}.xlsx`;
+    const filename = makeScaffoldGroupWorkbookFilename(scaffoldGroup);
     return {file: wb, filename: filename, headingRowsBySheet};
+}
+
+function makeScaffoldGroupWorkbookFilename(scaffoldGroup: ScaffoldGroup) {
+    const baseName = sanitizeFilename(scaffoldGroup.name || `scaffold_group_${scaffoldGroup.id}`, headingCharacterLength);
+    return `${baseName}_group_${scaffoldGroup.id}.xlsx`;
+}
+
+function ensureXlsxFilename(filename: string) {
+    const safeName = sanitizeFilename(filename.replace(/\.xlsx$/i, ''), 120);
+    return `${safeName}.xlsx`;
+}
+
+function ensureZipFilename(filename: string) {
+    const safeName = sanitizeFilename(filename.replace(/\.zip$/i, ''), 120);
+    return `${safeName}.zip`;
+}
+
+function sanitizeFilename(value: string, maxLength: number) {
+    const sanitized = value
+        .normalize('NFKD')
+        .split('')
+        .filter(character => character.charCodeAt(0) <= 127)
+        .join('')
+        .replace(/[^a-z0-9]+/gi, '_')
+        .replace(/^_+|_+$/g, '')
+        .slice(0, maxLength);
+
+    return sanitized || 'scaffold_group';
 }
 
 export function downloadExperimentsAsExcel(
@@ -439,7 +466,7 @@ export function downloadExperimentsAsExcel(
             }
 
             // Save the workbook
-            const filename = `${fileName}_ScaffoldGroup${scaffoldGroup.id}.xlsx`;
+            const filename = ensureXlsxFilename(`${fileName}_ScaffoldGroup${scaffoldGroup.id}`);
             if (shouldReturnWorkbook) {
                 generatedFiles.push({ file: wb, filename, headingRowsBySheet });
             } else {
@@ -607,7 +634,7 @@ export function downloadExperimentsAsExcel(
         }
     
         // Save the workbook as a single file
-        const filename = `${fileName}_Replicates.xlsx`;
+        const filename = ensureXlsxFilename(`${fileName}_Replicates`);
         if (shouldReturnWorkbook) {
             generatedFiles.push({ file: wb, filename, headingRowsBySheet });
         } else {
@@ -812,7 +839,7 @@ export function downloadExperimentsAsExcel(
             }
     
             // Save the workbook
-            const filename = `${fileName}_${descriptor.name.slice(0, headingCharacterLength)}.xlsx`;
+            const filename = ensureXlsxFilename(`${fileName}_${descriptor.name.slice(0, headingCharacterLength)}`);
             if (shouldReturnWorkbook) {
                 generatedFiles.push({ file: wb, filename, headingRowsBySheet });
             } else {
@@ -913,7 +940,7 @@ export function downloadExperimentsAsExcel(
             }
     
             // Save the workbook with a filename indicating the replicate number          
-            const filename = `${fileName}_Replicate${replicateIndex + 1}.xlsx`;
+            const filename = ensureXlsxFilename(`${fileName}_Replicate${replicateIndex + 1}`);
             if (shouldReturnWorkbook) {
                 // generatedFiles.push({ file: wb, filename });
                 generatedFiles.push({ file: wb, filename, headingRowsBySheet });
@@ -987,7 +1014,7 @@ export function downloadExperimentsAsExcel(
             });
     
             // Save the workbook with a filename indicating the scaffold group
-            const filename = `${fileName}_ScaffoldGroup${scaffoldGroup.id}.xlsx`;
+            const filename = ensureXlsxFilename(`${fileName}_ScaffoldGroup${scaffoldGroup.id}`);
             if (shouldReturnWorkbook) {
                 generatedFiles.push({ file: wb, filename, headingRowsBySheet });
             } else {

@@ -298,6 +298,12 @@ const Jobs = {
 const Publications = {
     getById: async (publicationId: number) => requests.get<ApiResponse<Publication>>(`/publications/${publicationId}`),
     getAll: async () => requests.get<ApiResponse<Publication[]>>(`/publications`),
+    downloadComprehensive: async (publicationId: number) => {
+        const response = await axios.get(`/publications/${publicationId}/downloads/comprehensive`, {
+            responseType: 'blob'
+        });
+        return response.data as Blob;
+    },
     create: async (data: PublicationToCreate) => requests.post<ApiResponse<string>>(`/publications`, data),
     update: async (publicationId: number, data: PublicationToCreate) => requests.put<ApiResponse<string>>(`/publications/${publicationId}`, data),
     delete: async (publicationId: number) => requests.del<ApiResponse<string>>(`/publications/${publicationId}`),
