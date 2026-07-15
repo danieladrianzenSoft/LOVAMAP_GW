@@ -836,27 +836,68 @@ namespace Services.Services
 			var (meanSize, stdDev) = LovamapResultMapper.GetParticleDiameterStats(resultsJson);
 
 			// 4) Build ScaffoldGroupToCreateDto
-			var particleGroup = new ParticlePropertyGroupToCreateDto
+			var particleGroups = new List<ParticlePropertyGroupToCreateDto>();
+			if (dto.Particles != null && dto.Particles.Count > 0)
 			{
-				Shape = dto.Shape,
-				Stiffness = dto.Stiffness,
-				Dispersity = dto.Dispersity,
-				MeanSize = meanSize,
-				StandardDeviationSize = stdDev,
-				Proportion = 1
-			};
+				for (int i = 0; i < dto.Particles.Count; i++)
+				{
+					var p = dto.Particles[i];
+					var particleMean = i == 0 ? meanSize : 0;
+					var particleStdDev = i == 0 ? stdDev : 0;
+
+					// For experimental scaffolds, auto-determine dispersity from stats
+					var dispersity = p.Dispersity;
+					var sizeDistType = p.SizeDistributionType;
+					if (!dto.IsSimulated)
+					{
+						var cv = particleMean > 0 ? particleStdDev / particleMean : 0;
+						dispersity = cv < 0.05 ? "monodisperse" : "polydisperse";
+						sizeDistType = "unknown";
+					}
+
+					particleGroups.Add(new ParticlePropertyGroupToCreateDto
+					{
+						Shape = p.Shape,
+						Stiffness = p.Stiffness,
+						Dispersity = dispersity,
+						SizeDistributionType = sizeDistType,
+						Material = p.Material,
+						Proportion = p.Proportion,
+						MeanSize = particleMean,
+						StandardDeviationSize = particleStdDev,
+					});
+				}
+			}
+			else
+			{
+				// Fallback: single default particle group
+				var cv = meanSize > 0 ? stdDev / meanSize : 0;
+				particleGroups.Add(new ParticlePropertyGroupToCreateDto
+				{
+					Shape = "spheres",
+					Stiffness = "rigid",
+					Dispersity = cv < 0.05 ? "monodisperse" : "polydisperse",
+					SizeDistributionType = "unknown",
+					MeanSize = meanSize,
+					StandardDeviationSize = stdDev,
+					Proportion = 1,
+				});
+			}
 
 			var inputGroup = new InputGroupToCreateDto
 			{
 				ContainerShape = dto.ContainerShape,
 				ContainerDimensions = dto.ContainerDimensions,
 				PackingConfiguration = dto.PackingConfiguration,
-				ParticlePropertyGroups = new List<ParticlePropertyGroupToCreateDto> { particleGroup }
+				InterlinkingMechanism = dto.InterlinkingMechanism,
+				ScaffoldOccupants = dto.ScaffoldOccupants,
+				ImagingMethod = dto.ImagingMethod,
+				ParticlePropertyGroups = particleGroups
 			};
 
 			var sgDto = new ScaffoldGroupToCreateDto
 			{
-				IsSimulated = true,
+				IsSimulated = dto.IsSimulated,
 				InputGroup = inputGroup,
 				Scaffolds = new List<ScaffoldToCreateDto> { scaffoldDto }
 			};
@@ -901,14 +942,27 @@ namespace Services.Services
 
 				if (groupEntity?.InputGroup != null)
 				{
-					var ppg = groupEntity.InputGroup.ParticlePropertyGroups.FirstOrDefault();
-					if (ppg != null)
+					groupEntity.InputGroup.InterlinkingMechanism = dto.InterlinkingMechanism;
+					groupEntity.InputGroup.ScaffoldOccupants = dto.ScaffoldOccupants;
+					groupEntity.InputGroup.ImagingMethod = dto.ImagingMethod;
+
+					// Update particle property groups from DTO
+					if (dto.Particles != null && dto.Particles.Count > 0)
 					{
-						ppg.Shape = dto.Shape;
-						ppg.Stiffness = dto.Stiffness;
-						ppg.Dispersity = dto.Dispersity;
-						ppg.MeanSize = meanSize;
-						ppg.StandardDeviationSize = stdDev;
+						var existingPpgs = groupEntity.InputGroup.ParticlePropertyGroups.ToList();
+						for (int i = 0; i < dto.Particles.Count; i++)
+						{
+							var p = dto.Particles[i];
+							if (i < existingPpgs.Count)
+							{
+								existingPpgs[i].Shape = p.Shape;
+								existingPpgs[i].Stiffness = p.Stiffness;
+								existingPpgs[i].Dispersity = p.Dispersity;
+								existingPpgs[i].Material = p.Material;
+								existingPpgs[i].MeanSize = i == 0 ? meanSize : existingPpgs[i].MeanSize;
+								existingPpgs[i].StandardDeviationSize = i == 0 ? stdDev : existingPpgs[i].StandardDeviationSize;
+							}
+						}
 					}
 				}
 			}

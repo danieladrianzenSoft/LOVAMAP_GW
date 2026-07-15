@@ -9,6 +9,7 @@ namespace Repositories.IRepositories
 	{
 		bool HasChanges();
 		void Add(Publication publication);
+		Task<Publication?> GetByIdAsync(int publicationId);
 		Task<PublicationSummaryDto?> GetPublicationSummaryByIdAsync(int publicationId);
 		Task<bool> ExistsAsync(int publicationId);
 		Task<List<PublicationSummaryDto>> GetPublicationSummariesAsync(PublicationFilter filter);

@@ -46,6 +46,7 @@ namespace Repositories.Repositories
 		{
 			return await _context.Jobs
 				.Include(j => j.Scaffold)
+				.Include(j => j.Creator)
 				.OrderByDescending(j => j.SubmittedAt)
 				.ToListAsync();
 		}

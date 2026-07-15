@@ -3,12 +3,17 @@ import { FaChevronDown, FaSpinner, FaCheckCircle } from "react-icons/fa";
 import { SaveLovamapResultRequest } from "../../app/models/job";
 import { useStore } from "../../app/stores/store";
 import { ScaffoldGroup } from "../../app/models/scaffoldGroup";
-import { PACKING_CONFIGS } from "../../constants/packing-configurations";
 import { PARTICLE_DISPERSITIES } from "../../constants/particle-dispersities";
 import { PARTICLE_SHAPES } from "../../constants/particle-shapes";
 import { PARTICLE_STIFFNESSES } from "../../constants/particle-stiffnesses";
 import { CONTAINER_SHAPES } from "../../constants/container-shapes";
+import { PARTICLE_MATERIALS } from "../../constants/particle-materials";
+import { INTERLINKING_MECHANISMS } from "../../constants/interlinking-mechanisms";
+import { IMAGING_METHODS } from "../../constants/imaging-methods";
+import { SCAFFOLD_OCCUPANTS } from "../../constants/scaffold-occupants";
+import { SIZE_DISTRIBUTION_TYPES } from "../../constants/size-distribution-types";
 import { ImageCategory, ImageToCreate } from "../../app/models/image";
+import SelectWithOther from "../../app/common/form/select-with-other";
 import ScreenshotViewer from "../visualization/screenshot-viewer";
 
 type Props = {
@@ -17,6 +22,26 @@ type Props = {
   onClose: () => void;
   onSaved?: (scaffoldGroupId: number, scaffoldId?: number) => void;
 };
+
+interface ParticleState {
+  shape: string;
+  stiffness: string;
+  dispersity: string;
+  sizeDistributionType: string;
+  material: string;
+  materialOther: string;
+  proportion: number;
+}
+
+const defaultParticle = (): ParticleState => ({
+  shape: "",
+  stiffness: "",
+  dispersity: "",
+  sizeDistributionType: "",
+  material: "",
+  materialOther: "",
+  proportion: 1,
+});
 
 function computeMeanStdDev(values: number[]): { mean: number; stdDev: number } {
   if (!values || values.length === 0) return { mean: 0, stdDev: 0 };
@@ -40,12 +65,14 @@ const SelectField: React.FC<{
   onChange: (v: string) => void;
   options: { value: string; label: string }[];
   error?: string;
-}> = ({ label, value, onChange, options, error }) => (
+  onBlur?: () => void;
+}> = ({ label, value, onChange, options, error, onBlur }) => (
   <div className="flex flex-col text-sm">
     <label className="text-gray-500 mb-1">{label}</label>
     <select
       value={value}
       onChange={(e) => onChange(e.target.value)}
+      onBlur={onBlur}
       className={`px-3 py-2 bg-white border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition ${
         error ? "border-red-400" : "border-gray-200"
       }`}
@@ -67,7 +94,8 @@ const MultiInput: React.FC<{
   separator: string;
   onChange: (values: string[]) => void;
   error?: string;
-}> = ({ label, values, placeholders, separator, onChange, error }) => {
+  onBlur?: () => void;
+}> = ({ label, values, placeholders, separator, onChange, error, onBlur }) => {
   const refs = useRef<(HTMLInputElement | null)[]>([]);
 
   const handleChange = (idx: number, raw: string) => {
@@ -110,6 +138,7 @@ const MultiInput: React.FC<{
               value={val}
               onChange={(e) => handleChange(idx, e.target.value)}
               onKeyDown={(e) => handleKeyDown(idx, e)}
+              onBlur={onBlur}
               placeholder={placeholders[idx] || ""}
               className="w-full px-3 py-2 text-center text-sm bg-transparent outline-none"
             />
@@ -127,7 +156,8 @@ const ContainerSizeInput: React.FC<{
   value: string;
   onChange: (value: string) => void;
   error?: string;
-}> = ({ label, shape, value, onChange, error }) => {
+  onBlur?: () => void;
+}> = ({ label, shape, value, onChange, error, onBlur }) => {
   // Parse stored value into parts based on shape
   const parts = value ? value.split(/\s*[x×]\s*/) : [];
 
@@ -140,6 +170,7 @@ const ContainerSizeInput: React.FC<{
           inputMode="numeric"
           value={parts[0] || ""}
           onChange={(e) => onChange(e.target.value.replace(/[^0-9.]/g, ""))}
+          onBlur={onBlur}
           placeholder="Diameter"
           className={`px-3 py-2 bg-white border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition ${
             error ? "border-red-400" : "border-gray-200"
@@ -160,6 +191,7 @@ const ContainerSizeInput: React.FC<{
         separator="×"
         onChange={(v) => onChange(v.join(" x "))}
         error={error}
+        onBlur={onBlur}
       />
     );
   }
@@ -172,6 +204,7 @@ const ContainerSizeInput: React.FC<{
           type="text"
           value={value}
           onChange={(e) => onChange(e.target.value)}
+          onBlur={onBlur}
           placeholder="Enter"
           className={`px-3 py-2 bg-white border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition ${
             error ? "border-red-400" : "border-gray-200"
@@ -192,6 +225,7 @@ const ContainerSizeInput: React.FC<{
       separator="×"
       onChange={(v) => onChange(v.join(" x "))}
       error={error}
+      onBlur={onBlur}
     />
   );
 };
@@ -209,11 +243,19 @@ const LovamapScaffoldForm: React.FC<Props> = ({ jobId, results, onClose, onSaved
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Particle state
-  const [shape, setShape] = useState("");
-  const [stiffness, setStiffness] = useState("");
-  const [packingConfig, setPackingConfig] = useState("");
-  const [dispersity, setDispersity] = useState("");
+  // Simulated toggle
+  const [isSimulated, setIsSimulated] = useState(true);
+
+  // Particle groups (array)
+  const [particles, setParticles] = useState<ParticleState[]>([defaultParticle()]);
+
+  // Scaffold properties (experimental only)
+  const [interlinkingMechanism, setInterlinkingMechanism] = useState("");
+  const [interlinkingOther, setInterlinkingOther] = useState("");
+  const [scaffoldOccupants, setScaffoldOccupants] = useState<string[]>([]);
+  const [scaffoldOccupantsOther, setScaffoldOccupantsOther] = useState("");
+  const [imagingMethod, setImagingMethod] = useState("");
+  const [imagingOther, setImagingOther] = useState("");
 
   // Container state
   const [containerShape, setContainerShape] = useState("");
@@ -239,16 +281,28 @@ const LovamapScaffoldForm: React.FC<Props> = ({ jobId, results, onClose, onSaved
   const [screenshotsDone, setScreenshotsDone] = useState(0);
 
   // Validation
-  const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
+  const [touched, setTouched] = useState<Set<string>>(new Set());
+  const touch = (field: string) => setTouched((prev) => new Set(prev).add(field));
 
   const extracted = useMemo(() => {
-    const global = results?.globalDescriptors ?? {};
     const other = results?.otherDescriptors ?? {};
     const particleDiamValues: number[] = other?.ParticleDiam?.values ?? [];
     const { mean, stdDev } = computeMeanStdDev(particleDiamValues);
     return { meanDiameter: mean, stdDevDiameter: stdDev };
   }, [results]);
+
+  // Particle array helpers
+  const updateParticle = (idx: number, field: keyof ParticleState, value: any) => {
+    setParticles((prev) => prev.map((p, i) => (i === idx ? { ...p, [field]: value } : p)));
+  };
+
+  const addParticle = () => setParticles((prev) => [...prev, defaultParticle()]);
+
+  const removeParticle = (idx: number) => {
+    if (particles.length <= 1) return;
+    setParticles((prev) => prev.filter((_, i) => i !== idx));
+  };
 
   // Fetch user's scaffold groups on mount
   useEffect(() => {
@@ -284,19 +338,23 @@ const LovamapScaffoldForm: React.FC<Props> = ({ jobId, results, onClose, onSaved
   }, [handleClickOutside]);
 
   const applyDefaults = () => {
-    setShape("");
-    setStiffness("");
-    setPackingConfig("");
-    setDispersity("");
+    setIsSimulated(true);
+    setParticles([defaultParticle()]);
     setContainerShape("");
     setContainerSize("");
+    setInterlinkingMechanism("");
+    setInterlinkingOther("");
+    setScaffoldOccupants([]);
+    setScaffoldOccupantsOther("");
+    setImagingMethod("");
+    setImagingOther("");
   };
 
   const prefillFromGroup = (group: ScaffoldGroup) => {
     const inputs = group.inputs;
     if (!inputs) return;
 
-    setPackingConfig(inputs.packingConfiguration || "Isotropic");
+    setIsSimulated(group.isSimulated);
     setContainerShape(inputs.containerShape || "cube");
 
     if (inputs.containerDimensions) {
@@ -308,11 +366,37 @@ const LovamapScaffoldForm: React.FC<Props> = ({ jobId, results, onClose, onSaved
       setContainerSize("");
     }
 
-    const p = inputs.particles?.[0];
-    if (p) {
-      setShape(p.shape || "spheres");
-      setStiffness(p.stiffness || "rigid");
-      setDispersity(p.dispersity || "polydisperse");
+    // Material properties
+    if (inputs.interlinkingMechanism) {
+      const isKnown = INTERLINKING_MECHANISMS.some(o => o.value === inputs.interlinkingMechanism);
+      setInterlinkingMechanism(isKnown ? inputs.interlinkingMechanism : "other");
+      setInterlinkingOther(isKnown ? "" : inputs.interlinkingMechanism);
+    }
+    if (inputs.scaffoldOccupants) {
+      setScaffoldOccupants(inputs.scaffoldOccupants.split(",").map(s => s.trim()).filter(Boolean));
+    }
+    if (inputs.imagingMethod) {
+      const isKnown = IMAGING_METHODS.some(o => o.value === inputs.imagingMethod);
+      setImagingMethod(isKnown ? inputs.imagingMethod : "other");
+      setImagingOther(isKnown ? "" : inputs.imagingMethod);
+    }
+
+    // Particle groups
+    if (inputs.particles && inputs.particles.length > 0) {
+      setParticles(
+        inputs.particles.map((p) => {
+          const materialKnown = p.material ? PARTICLE_MATERIALS.some(o => o.value === p.material) : true;
+          return {
+            shape: p.shape || "",
+            stiffness: p.stiffness || "",
+            dispersity: p.dispersity || "",
+            sizeDistributionType: p.sizeDistributionType || "",
+            material: p.material ? (materialKnown ? p.material : "other") : "",
+            materialOther: p.material && !materialKnown ? p.material : "",
+            proportion: p.proportion ?? 1,
+          };
+        })
+      );
     }
   };
 
@@ -326,12 +410,21 @@ const LovamapScaffoldForm: React.FC<Props> = ({ jobId, results, onClose, onSaved
     }
   };
 
+  const resolvedInterlinking = interlinkingMechanism === "other" ? interlinkingOther : interlinkingMechanism;
+  const resolvedImaging = imagingMethod === "other" ? imagingOther : imagingMethod;
+  const resolvedOccupants = (() => {
+    const items = [...scaffoldOccupants];
+    const otherIdx = items.indexOf("other");
+    if (otherIdx >= 0 && scaffoldOccupantsOther.trim()) {
+      items[otherIdx] = scaffoldOccupantsOther.trim();
+    } else if (otherIdx >= 0) {
+      items.splice(otherIdx, 1);
+    }
+    return items;
+  })();
+
   const validate = useCallback(() => {
     const errs: Record<string, string> = {};
-    if (!shape) errs.shape = "Shape is required";
-    if (!stiffness) errs.stiffness = "Stiffness is required";
-    if (!packingConfig) errs.packingConfig = "Packing configuration is required";
-    if (!dispersity) errs.dispersity = "Dispersity is required";
     if (!containerShape) errs.containerShape = "Container shape is required";
     if (!containerSize.trim()) errs.containerSize = "Size is required";
     else if (containerShape === "cube") {
@@ -341,29 +434,65 @@ const LovamapScaffoldForm: React.FC<Props> = ({ jobId, results, onClose, onSaved
       const parts = containerSize.split(/\s*[x×]\s*/);
       if (parts.length < 2 || parts.some((p) => !p.trim())) errs.containerSize = "Both radius and length are required";
     }
-    return errs;
-  }, [shape, stiffness, packingConfig, dispersity, containerShape, containerSize]);
 
-  // Re-validate on changes after first submit attempt
-  useEffect(() => {
-    if (submitted) setErrors(validate());
-  }, [submitted, validate]);
+    // Validate each particle species
+    particles.forEach((p, idx) => {
+      if (!p.shape) errs[`p${idx}.shape`] = "Required";
+      if (!p.stiffness) errs[`p${idx}.stiffness`] = "Required";
+      if (isSimulated) {
+        if (!p.dispersity) errs[`p${idx}.dispersity`] = "Required";
+        if (!p.sizeDistributionType) errs[`p${idx}.sizeDistributionType`] = "Required";
+      }
+      if (!isSimulated) {
+        const resolved = p.material === "other" ? p.materialOther : p.material;
+        if (!resolved) errs[`p${idx}.material`] = "Required";
+      }
+    });
+
+    // Scaffold-level fields (experimental only)
+    if (!isSimulated) {
+      if (!resolvedInterlinking) errs.interlinkingMechanism = "Interlinking mechanism is required";
+      if (scaffoldOccupants.length === 0) errs.scaffoldOccupants = "At least one selection is required";
+      else if (scaffoldOccupants.includes("other") && !scaffoldOccupantsOther.trim()) errs.scaffoldOccupants = "Please specify the other occupant species";
+      if (!resolvedImaging) errs.imagingMethod = "Imaging method is required";
+    }
+    return errs;
+  }, [containerShape, containerSize, particles, isSimulated, resolvedInterlinking, scaffoldOccupants, scaffoldOccupantsOther, resolvedImaging]);
+
+  // Show errors for touched fields or all fields after submit
+  const visibleErrors = useMemo(() => {
+    const allErrs = validate();
+    if (submitted) return allErrs;
+    const filtered: Record<string, string> = {};
+    for (const key of Object.keys(allErrs)) {
+      if (touched.has(key)) filtered[key] = allErrs[key];
+    }
+    return filtered;
+  }, [validate, submitted, touched]);
 
   const handleSubmit = async () => {
     setSubmitted(true);
     setSubmitError(null);
     const errs = validate();
-    setErrors(errs);
     if (Object.keys(errs).length > 0) return;
 
     const request: SaveLovamapResultRequest = {
       scaffoldGroupId: selectedGroupId !== CREATE_NEW ? parseInt(selectedGroupId) : undefined,
-      shape,
-      stiffness,
-      dispersity,
-      packingConfiguration: packingConfig,
+      isSimulated,
+      packingConfiguration: "Isotropic",
       containerShape,
       containerDimensions: containerSize || undefined,
+      particles: particles.map((p) => ({
+        shape: p.shape,
+        stiffness: p.stiffness,
+        dispersity: isSimulated ? p.dispersity : "polydisperse",
+        sizeDistributionType: isSimulated ? p.sizeDistributionType || undefined : undefined,
+        material: !isSimulated ? (p.material === "other" ? p.materialOther : p.material) || undefined : undefined,
+        proportion: p.proportion,
+      })),
+      interlinkingMechanism: !isSimulated ? resolvedInterlinking || undefined : undefined,
+      scaffoldOccupants: !isSimulated && resolvedOccupants.length > 0 ? resolvedOccupants.join(",") : undefined,
+      imagingMethod: !isSimulated ? resolvedImaging || undefined : undefined,
     };
 
     setSaving(true);
@@ -452,12 +581,6 @@ const LovamapScaffoldForm: React.FC<Props> = ({ jobId, results, onClose, onSaved
       onClose();
     }
   };
-
-  const shapeOptions = PARTICLE_SHAPES;
-  const stiffnessOptions = PARTICLE_STIFFNESSES;
-  const packingOptions = PACKING_CONFIGS;
-  const dispersityOptions = PARTICLE_DISPERSITIES;
-  const containerShapeOptions = CONTAINER_SHAPES;
 
   // Screenshot generation phase UI
   if (screenshotPhase && savedScaffoldId) {
@@ -632,9 +755,33 @@ const LovamapScaffoldForm: React.FC<Props> = ({ jobId, results, onClose, onSaved
             )}
           </div>
 
-          {/* Particle Properties */}
+          {/* Simulated / Experimental toggle */}
+          <fieldset className="flex flex-col text-sm">
+            <span className="text-gray-500 mb-1">How was your scaffold created?</span>
+            <div className="flex gap-4">
+              <label className="flex items-center gap-1.5 cursor-pointer">
+                <input
+                  type="radio"
+                  checked={isSimulated === true}
+                  onChange={() => setIsSimulated(true)}
+                  className="accent-blue-600"
+                />
+                <span className="text-gray-700">Computer simulation</span>
+              </label>
+              <label className="flex items-center gap-1.5 cursor-pointer">
+                <input
+                  type="radio"
+                  checked={isSimulated === false}
+                  onChange={() => setIsSimulated(false)}
+                  className="accent-blue-600"
+                />
+                <span className="text-gray-700">Experimental image</span>
+              </label>
+            </div>
+          </fieldset>
+
+          {/* Computed stats (read-only) */}
           <div>
-            <h4 className="text-sm font-semibold text-gray-600 mb-3">Particle Properties</h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <ReadOnlyField
                 label="Mean Particle Diameter (μm)"
@@ -644,21 +791,127 @@ const LovamapScaffoldForm: React.FC<Props> = ({ jobId, results, onClose, onSaved
                 label="Std Dev (μm)"
                 value={extracted.stdDevDiameter.toFixed(4)}
               />
-              <SelectField label="Shape" value={shape} onChange={setShape} options={shapeOptions} error={errors.shape} />
-              <SelectField label="Stiffness" value={stiffness} onChange={setStiffness} options={stiffnessOptions} error={errors.stiffness} />
-              <SelectField label="Packing Configuration" value={packingConfig} onChange={setPackingConfig} options={packingOptions} error={errors.packingConfig} />
-              <SelectField label="Dispersity" value={dispersity} onChange={setDispersity} options={dispersityOptions} error={errors.dispersity} />
             </div>
+          </div>
+
+          {/* Particle Property Groups */}
+          <div>
+            <div className="flex items-center justify-between mb-3">
+              <h4 className="text-sm font-semibold text-gray-600">Particle Properties</h4>
+              <button
+                type="button"
+                onClick={addParticle}
+                className="px-3 py-1 text-xs bg-blue-100 hover:bg-blue-200 rounded transition"
+              >
+                + Add particle species
+              </button>
+            </div>
+            {particles.map((p, idx) => (
+              <div key={idx} className="border border-gray-200 rounded-md p-3 mb-3">
+                {particles.length > 1 && (
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-xs text-gray-400 font-medium">Species {idx + 1}</span>
+                    <button
+                      type="button"
+                      onClick={() => removeParticle(idx)}
+                      className="text-xs px-2 py-0.5 bg-red-100 hover:bg-red-200 rounded transition"
+                    >
+                      Remove
+                    </button>
+                  </div>
+                )}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <SelectField label="Shape" value={p.shape} onChange={(v) => updateParticle(idx, "shape", v)} options={PARTICLE_SHAPES} error={visibleErrors[`p${idx}.shape`]} onBlur={() => touch(`p${idx}.shape`)} />
+                  <SelectField label="Stiffness" value={p.stiffness} onChange={(v) => updateParticle(idx, "stiffness", v)} options={PARTICLE_STIFFNESSES} error={visibleErrors[`p${idx}.stiffness`]} onBlur={() => touch(`p${idx}.stiffness`)} />
+                  {isSimulated && (
+                    <>
+                      <SelectField label="Composition" value={p.dispersity} onChange={(v) => updateParticle(idx, "dispersity", v)} options={PARTICLE_DISPERSITIES} error={visibleErrors[`p${idx}.dispersity`]} onBlur={() => touch(`p${idx}.dispersity`)} />
+                      <SelectField label="Size Distribution" value={p.sizeDistributionType} onChange={(v) => updateParticle(idx, "sizeDistributionType", v)} options={SIZE_DISTRIBUTION_TYPES} error={visibleErrors[`p${idx}.sizeDistributionType`]} onBlur={() => touch(`p${idx}.sizeDistributionType`)} />
+                    </>
+                  )}
+                  {!isSimulated && (
+                    <SelectWithOther label="Material" value={p.material} otherValue={p.materialOther} onChange={(v) => updateParticle(idx, "material", v)} onOtherChange={(v) => updateParticle(idx, "materialOther", v)} options={PARTICLE_MATERIALS} error={visibleErrors[`p${idx}.material`]} onBlur={() => touch(`p${idx}.material`)} />
+                  )}
+                  {particles.length > 1 && (
+                    <div className="flex flex-col text-sm">
+                      <label className="text-gray-500 mb-1">Proportion</label>
+                      <input
+                        type="number"
+                        min={0}
+                        max={1}
+                        step={0.1}
+                        value={p.proportion}
+                        onChange={(e) => updateParticle(idx, "proportion", parseFloat(e.target.value) || 0)}
+                        className="px-3 py-2 bg-white border border-gray-200 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+                      />
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
           </div>
 
           {/* Container Properties */}
           <div>
             <h4 className="text-sm font-semibold text-gray-600 mb-3">Container Properties</h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <SelectField label="Shape" value={containerShape} onChange={(v) => { setContainerShape(v); setContainerSize(""); }} options={containerShapeOptions} error={errors.containerShape} />
-              <ContainerSizeInput label="Size (μm)" shape={containerShape} value={containerSize} onChange={setContainerSize} error={errors.containerSize} />
+              <SelectField label="Shape" value={containerShape} onChange={(v) => { setContainerShape(v); setContainerSize(""); }} options={CONTAINER_SHAPES} error={visibleErrors.containerShape} onBlur={() => touch("containerShape")} />
+              <ContainerSizeInput label="Size (μm)" shape={containerShape} value={containerSize} onChange={setContainerSize} error={visibleErrors.containerSize} onBlur={() => touch("containerSize")} />
             </div>
           </div>
+
+          {/* Scaffold Properties (experimental only) */}
+          {!isSimulated && (
+            <div>
+              <h4 className="text-sm font-semibold text-gray-600 mb-3">Scaffold Properties</h4>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <SelectWithOther label="Interlinking Mechanism" value={interlinkingMechanism} otherValue={interlinkingOther} onChange={setInterlinkingMechanism} onOtherChange={setInterlinkingOther} options={INTERLINKING_MECHANISMS} error={visibleErrors.interlinkingMechanism} onBlur={() => touch("interlinkingMechanism")} />
+                <SelectWithOther label="Imaging Method" value={imagingMethod} otherValue={imagingOther} onChange={setImagingMethod} onOtherChange={setImagingOther} options={IMAGING_METHODS} error={visibleErrors.imagingMethod} onBlur={() => touch("imagingMethod")} />
+              </div>
+
+              {/* Scaffold Occupants - multi-select checkboxes */}
+              <div className="mt-3">
+                <h4 className="text-sm font-semibold text-gray-600 mb-3">Other Scaffold Occupant Species</h4>
+                <div className={`flex flex-wrap gap-2 p-3 border rounded-md ${visibleErrors.scaffoldOccupants ? "border-red-400" : "border-gray-200"}`}>
+                  {SCAFFOLD_OCCUPANTS.map((opt) => {
+                    const isChecked = scaffoldOccupants.includes(opt.value);
+                    return (
+                      <label key={opt.value} className="flex items-center gap-1.5 text-sm cursor-pointer">
+                        <input
+                          type="checkbox"
+                          checked={isChecked}
+                          onChange={() => {
+                            touch("scaffoldOccupants");
+                            if (opt.value === "None") {
+                              setScaffoldOccupants(isChecked ? [] : ["None"]);
+                            } else {
+                              let next = isChecked
+                                ? scaffoldOccupants.filter((v) => v !== opt.value)
+                                : [...scaffoldOccupants.filter((v) => v !== "None"), opt.value];
+                              setScaffoldOccupants(next);
+                            }
+                          }}
+                          className="h-4 w-4 accent-blue-600"
+                        />
+                        <span className="text-gray-700">{opt.label}</span>
+                      </label>
+                    );
+                  })}
+                  {scaffoldOccupants.includes("other") && (
+                    <input
+                      type="text"
+                      value={scaffoldOccupantsOther}
+                      onChange={(e) => setScaffoldOccupantsOther(e.target.value)}
+                      onBlur={() => touch("scaffoldOccupants")}
+                      placeholder="Please specify..."
+                      className="w-full mt-1 px-3 py-2 bg-white border border-gray-200 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+                    />
+                  )}
+                </div>
+                {visibleErrors.scaffoldOccupants && <span className="text-xs text-red-500 mt-1">{visibleErrors.scaffoldOccupants}</span>}
+              </div>
+            </div>
+          )}
         </div>
 
         <div className="px-5 py-4 border-t border-gray-200">

@@ -11,6 +11,9 @@ namespace Infrastructure.DTOs
 		public string? ContainerDimensions { get; set; }
 		// public bool? IsAnisotropic { get; set; }
 		public string PackingConfiguration { get; set; } = "";
+		public string? InterlinkingMechanism { get; set; }
+		public string? ScaffoldOccupants { get; set; }
+		public string? ImagingMethod { get; set; }
 		public IEnumerable<ParticlePropertyBaseDto> Particles { get; set; } = [];
 		public JsonDocument? SizeDistribution { get; set; }
 	}

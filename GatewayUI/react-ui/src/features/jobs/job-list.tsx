@@ -68,7 +68,7 @@ const PageHeader: React.FC<{ title: React.ReactNode; backTo?: string }> = ({ tit
 };
 
 /* ── Sub-view: Job table (default /jobs) ── */
-const JobTableView: React.FC<{ jobs: JobForList[]; }> = observer(({ jobs }) => {
+const JobTableView: React.FC<{ jobs: JobForList[]; isAdmin: boolean }> = observer(({ jobs, isAdmin }) => {
 	const navigate = useNavigate();
 
 	const jobColumns: DataTableColumn<JobForList>[] = [
@@ -92,6 +92,10 @@ const JobTableView: React.FC<{ jobs: JobForList[]; }> = observer(({ jobs }) => {
 				);
 			},
 		},
+		...(isAdmin ? [{
+			header: 'Submitted by',
+			render: (job: JobForList) => job.creatorEmail ?? '—',
+		}] : []),
 	];
 
 	return (
@@ -190,18 +194,23 @@ const JobDetailView: React.FC<{ jobs: JobForList[]; onDownloadResults: (jobId: s
 /* ── Main component: wraps all sub-routes ── */
 const JobList: React.FC = () => {
 	const { jobStore, userStore } = useStore();
-	const { getUserJobs, getJobResult, startConnection, stopConnection } = jobStore;
+	const { getUserJobs, getAllJobs, getJobResult, startConnection, stopConnection } = jobStore;
 	const [isLoading, setIsLoading] = useState<boolean>(true);
 	const navigate = useNavigate();
 
 	const isLoggedIn = !!userStore.user;
+	const isAdmin = !!userStore.user?.roles?.includes('administrator');
 
 	const fetchJobs = useCallback(async () => {
 		if (!isLoggedIn) return;
 		setIsLoading(true);
-		await getUserJobs();
+		if (isAdmin) {
+			await getAllJobs();
+		} else {
+			await getUserJobs();
+		}
 		setIsLoading(false);
-	}, [getUserJobs, isLoggedIn]);
+	}, [getUserJobs, getAllJobs, isLoggedIn, isAdmin]);
 
 	const downloadJobResults = useCallback(
 		async (jobId: string, suggestedFileName?: string) => {
@@ -256,7 +265,7 @@ const JobList: React.FC = () => {
 	return (
 		<div className="container mx-auto py-8 px-6">
 			<Routes>
-				<Route index element={<JobTableView jobs={jobStore.jobsRan} />} />
+				<Route index element={<JobTableView jobs={jobStore.jobsRan} isAdmin={isAdmin} />} />
 				<Route path="new" element={<JobTypeGrid />} />
 				<Route path="new/lovamap" element={<LovamapFormView onSubmitted={handleJobSubmitted} />} />
 				<Route path="new/segmentation" element={<SegmentationFormView onSubmitted={handleJobSubmitted} />} />

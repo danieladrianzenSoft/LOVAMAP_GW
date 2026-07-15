@@ -7,6 +7,7 @@ export interface ParticlePropertyGroup {
     meanSize: number;
     standardDeviationSize: number;
     proportion: number;
+    material?: string;
     sizeDistribution: any[];
 }
 

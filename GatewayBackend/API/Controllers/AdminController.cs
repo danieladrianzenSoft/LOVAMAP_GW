@@ -1,3 +1,4 @@
+using System.Text;
 using API.Models;
 using Infrastructure.DTOs;
 using Microsoft.AspNetCore.Authorization;
@@ -35,5 +36,14 @@ public class AdminController : ControllerBase
 		}
 
 		return Ok(new ApiResponse<BatchReplaceResultDto>(200, "Batch replace completed", result));
+	}
+
+	[HttpGet("domains/original-filenames")]
+	public async Task<IActionResult> GetAllOriginalFileNames()
+	{
+		var entries = await _domainService.GetAllOriginalFileNamesAsync();
+		var content = string.Join("\n", entries.Select(e => $"{e.Category}, {e.FileName}"));
+		var bytes = Encoding.UTF8.GetBytes(content);
+		return File(bytes, "text/plain", "mesh-original-filenames.txt");
 	}
 }

@@ -12,6 +12,9 @@ namespace Infrastructure.DTOs
 		public string? ContainerDimensions { get; set; }
 		public string PackingConfiguration { get; set; } = "Isotropic";
 		public JsonDocument SizeDistribution { get; set; } = JsonDocument.Parse("{}");
+		public string? InterlinkingMechanism { get; set; }
+		public string? ScaffoldOccupants { get; set; }
+		public string? ImagingMethod { get; set; }
 		public ICollection<ParticlePropertyGroupToCreateDto> ParticlePropertyGroups { get; set; } = [];
 
 	}

@@ -18,6 +18,7 @@ namespace Infrastructure.DTOs
 		public string? SourceJobId { get; set; }
 		public int? ScaffoldGroupId { get; set; }
 		public int? ScaffoldId { get; set; }
+		public string? CreatorEmail { get; set; }
 	}
 }
 

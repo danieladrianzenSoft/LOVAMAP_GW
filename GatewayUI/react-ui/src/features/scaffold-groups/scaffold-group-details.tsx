@@ -214,6 +214,12 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 											<td className="font-medium text-gray-400 py-0.5 pr-3 pl-4 align-top whitespace-nowrap">Stiffness:</td>
 											<td className="py-0.5">{firstParticle.stiffness}</td>
 										</tr>
+										{firstParticle.material && (
+											<tr>
+												<td className="font-medium text-gray-400 py-0.5 pr-3 pl-4 align-top whitespace-nowrap">Material:</td>
+												<td className="py-0.5">{firstParticle.material}</td>
+											</tr>
+										)}
 										<tr>
 											<td className="font-medium text-gray-400 py-0.5 pr-3 pl-4 align-top whitespace-nowrap">Friction:</td>
 											<td className="py-0.5">{firstParticle.friction}</td>
@@ -224,6 +230,24 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 									<td className="font-medium text-gray-500 py-0.5 pr-3 align-top whitespace-nowrap">Container:</td>
 									<td className="py-0.5">{scaffoldGroup.inputs?.containerShape ?? 'n/a'}</td>
 								</tr>
+								{scaffoldGroup.inputs?.interlinkingMechanism && (
+									<tr>
+										<td className="font-medium text-gray-500 py-0.5 pr-3 align-top whitespace-nowrap">Interlinking:</td>
+										<td className="py-0.5">{scaffoldGroup.inputs.interlinkingMechanism}</td>
+									</tr>
+								)}
+								{scaffoldGroup.inputs?.scaffoldOccupants && (
+									<tr>
+										<td className="font-medium text-gray-500 py-0.5 pr-3 align-top whitespace-nowrap">Occupants:</td>
+										<td className="py-0.5">{scaffoldGroup.inputs.scaffoldOccupants.split(',').join(', ')}</td>
+									</tr>
+								)}
+								{scaffoldGroup.inputs?.imagingMethod && (
+									<tr>
+										<td className="font-medium text-gray-500 py-0.5 pr-3 align-top whitespace-nowrap">Imaging:</td>
+										<td className="py-0.5">{scaffoldGroup.inputs.imagingMethod}</td>
+									</tr>
+								)}
 							</tbody>
 						</table>
 

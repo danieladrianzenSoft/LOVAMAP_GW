@@ -20,6 +20,7 @@ namespace Infrastructure.DTOs
 		[JsonConverter(typeof(PlaceholderTolerantDoubleConverter))]
 		public double StandardDeviationSize { get; set; }
 		public double Proportion { get; set; } = 1;
+		public string? Material { get; set; }
 
 	}
 }

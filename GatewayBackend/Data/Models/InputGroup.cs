@@ -13,6 +13,9 @@ namespace Data.Models
 		public string? ContainerDimensions { get; set; }
 		public PackingConfiguration PackingConfiguration { get; set; } = 0;
 		public JsonDocument? SizeDistribution { get; set; } 
+		public string? InterlinkingMechanism { get; set; }
+		public string? ScaffoldOccupants { get; set; }
+		public string? ImagingMethod { get; set; }
 		public ICollection<ParticlePropertyGroup> ParticlePropertyGroups { get; set; } = new List<ParticlePropertyGroup>();
 	}
 

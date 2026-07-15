@@ -103,14 +103,19 @@ namespace Services.Services
 
 			foreach (var particlePropertyGroup in validParticleGroups)
 			{
-				// Always add a tag related to the shape and stiffness declared
+				// Always add a tag related to the shape, stiffness, and material declared
 				AddTagIfNotEmpty(tagsToCreate, particlePropertyGroup.Shape);
 				AddTagIfNotEmpty(tagsToCreate, particlePropertyGroup.Stiffness);
+				AddTagIfNotEmpty(tagsToCreate, particlePropertyGroup.Material);
 
 				dispersities.Add(particlePropertyGroup.Dispersity);
 				if (!string.IsNullOrWhiteSpace(particlePropertyGroup.SizeDistributionType))
 					sizeDistributionTypes.Add(particlePropertyGroup.SizeDistributionType);
 			}
+
+			// Add tags for scaffold-level material properties
+			AddTagIfNotEmpty(tagsToCreate, scaffoldGroup.InputGroup?.InterlinkingMechanism);
+			AddTagIfNotEmpty(tagsToCreate, scaffoldGroup.InputGroup?.ImagingMethod);
 
 			int groupCount = validParticleGroups.Count;
 

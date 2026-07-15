@@ -16,6 +16,7 @@ export interface JobForList {
 	sourceJobId?: string;
 	scaffoldGroupId?: number;
 	scaffoldId?: number;
+	creatorEmail?: string;
 }
 
 export interface JobDetailed {
@@ -56,12 +57,23 @@ export interface MeshStatusResponse {
 	particleMeshStatus: string | null;
 }
 
-export interface SaveLovamapResultRequest {
-	scaffoldGroupId?: number | null;
+export interface SaveLovamapResultParticle {
 	shape: string;
 	stiffness: string;
 	dispersity: string;
+	sizeDistributionType?: string;
+	material?: string;
+	proportion: number;
+}
+
+export interface SaveLovamapResultRequest {
+	scaffoldGroupId?: number | null;
+	isSimulated: boolean;
 	packingConfiguration: string;
 	containerShape: string;
 	containerDimensions?: string;
+	particles: SaveLovamapResultParticle[];
+	interlinkingMechanism?: string;
+	scaffoldOccupants?: string;
+	imagingMethod?: string;
 }

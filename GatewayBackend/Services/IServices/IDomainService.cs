@@ -15,5 +15,6 @@ namespace Services.IServices
 		Task<(bool Succeeded, string ErrorMessage)> DeleteDomain(int domainId, string userId);
 		Task<int?> GetRandomScaffoldIdForDomainAsync();
 		Task<(bool Succeeded, string ErrorMessage, BatchReplaceResultDto? Result)> BatchReplaceMeshFiles(BatchReplaceRequestDto request);
+		Task<List<(string FileName, string Category)>> GetAllOriginalFileNamesAsync();
 	}
 }

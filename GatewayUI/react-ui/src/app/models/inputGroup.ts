@@ -5,6 +5,9 @@ export interface InputGroup {
     containerSize: number | null;
     containerDimensions?: string | null;
     packingConfiguration: string;
+    interlinkingMechanism?: string;
+    scaffoldOccupants?: string;
+    imagingMethod?: string;
     particles: ParticlePropertyGroup[];
     sizeDistribution: number[];
     isSimulated: boolean;
@@ -16,6 +19,9 @@ export interface InputGroupToCreate {
     containerSize: number | null;
     containerDimensions?: string | null;
     packingConfiguration: string;
+    interlinkingMechanism?: string;
+    scaffoldOccupants?: string;
+    imagingMethod?: string;
     particlePropertyGroups: ParticlePropertyGroup[];
 }
 

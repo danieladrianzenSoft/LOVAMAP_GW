@@ -91,7 +91,13 @@ public class PublicationsController : ControllerBase
 		try
 		{
 			var (succeeded, errorMessage) = await _publicationService.UpdatePublication(publicationId, dto);
-			if (!succeeded) return NotFound(new ApiResponse<string>(404, errorMessage));
+			if (!succeeded)
+			{
+				if (errorMessage == "Publication not found.")
+					return NotFound(new ApiResponse<string>(404, errorMessage));
+
+				return BadRequest(new ApiResponse<string>(400, errorMessage));
+			}
 			return Ok(new ApiResponse<string>(200, "Publication updated successfully."));
 		}
 		catch (Exception ex)

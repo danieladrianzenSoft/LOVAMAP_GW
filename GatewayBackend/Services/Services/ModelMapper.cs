@@ -146,6 +146,9 @@ namespace Services.Services
                 ContainerSize = dto.ContainerSize,
                 ContainerDimensions = dto.ContainerDimensions,
                 PackingConfiguration = _metadataService.ParsePackingConfiguration(dto.PackingConfiguration), // Map int to enum
+                InterlinkingMechanism = dto.InterlinkingMechanism,
+                ScaffoldOccupants = dto.ScaffoldOccupants,
+                ImagingMethod = dto.ImagingMethod,
                 ParticlePropertyGroups = dto.ParticlePropertyGroups.Select(ppg => MapToParticlePropertyGroup(ppg)).ToList(),
                 SizeDistribution = dto.SizeDistribution
             };
@@ -172,6 +175,7 @@ namespace Services.Services
                 MinSize = dto.MinSize,
                 StandardDeviationSize = dto.StandardDeviationSize,
                 Proportion = dto.Proportion,
+                Material = dto.Material,
             };
         }
 
@@ -390,6 +394,9 @@ namespace Services.Services
                     PackingConfiguration = scaffoldGroup.InputGroup?.PackingConfiguration != null
                         ? scaffoldGroup.InputGroup.PackingConfiguration.ToString()
                         : "unknown",
+                    InterlinkingMechanism = scaffoldGroup.InputGroup?.InterlinkingMechanism,
+                    ScaffoldOccupants = scaffoldGroup.InputGroup?.ScaffoldOccupants,
+                    ImagingMethod = scaffoldGroup.InputGroup?.ImagingMethod,
                     Particles = particles ?? [],
                     SizeDistribution = scaffoldGroup.InputGroup?.SizeDistribution
                 },
@@ -455,6 +462,9 @@ namespace Services.Services
                     PackingConfiguration = scaffoldGroup.InputGroup?.PackingConfiguration != null
                         ? scaffoldGroup.InputGroup.PackingConfiguration.ToString()
                         : "unknown",
+                    InterlinkingMechanism = scaffoldGroup.InputGroup?.InterlinkingMechanism,
+                    ScaffoldOccupants = scaffoldGroup.InputGroup?.ScaffoldOccupants,
+                    ImagingMethod = scaffoldGroup.InputGroup?.ImagingMethod,
                     Particles = particles ?? [],
                     SizeDistribution = scaffoldGroup.InputGroup?.SizeDistribution
                 },
@@ -472,7 +482,8 @@ namespace Services.Services
                 SizeDistributionType = particlePropertyGroup?.SizeDistributionType,
                 MeanSize = particlePropertyGroup!.MeanSize,
                 StandardDeviationSize = particlePropertyGroup?.StandardDeviationSize,
-                Proportion = particlePropertyGroup?.Proportion
+                Proportion = particlePropertyGroup?.Proportion,
+                Material = particlePropertyGroup?.Material
             };
         }
 
@@ -647,7 +658,8 @@ namespace Services.Services
                 JobType = job.JobType.ToString(),
                 SourceJobId = job.SourceJobId,
                 ScaffoldGroupId = job.Scaffold?.ScaffoldGroupId,
-                ScaffoldId = job.ScaffoldId
+                ScaffoldId = job.ScaffoldId,
+                CreatorEmail = job.Creator?.Email
             };
 
             return coreJobDto;

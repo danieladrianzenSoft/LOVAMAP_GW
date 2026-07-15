@@ -2,6 +2,11 @@ import { makeAutoObservable } from "mobx";
 import { Publication, PublicationToCreate, DescriptorRuleToCreate } from "../models/publication";
 import agent from "../api/agent";
 
+const getPublicationErrorMessage = (error: any, fallback: string) => {
+	if (typeof error === "string") return error;
+	return error?.message || error?.response?.data?.message || fallback;
+};
+
 export default class PublicationStore {
 	constructor() {
 		makeAutoObservable(this)
@@ -32,7 +37,7 @@ export default class PublicationStore {
 			await agent.Publications.create(data);
 			return { success: true };
 		} catch (error: any) {
-			const msg = error?.response?.data?.message || "Failed to create publication.";
+			const msg = getPublicationErrorMessage(error, "Failed to create publication.");
 			console.error("Error creating publication", error);
 			return { success: false, error: msg };
 		}
@@ -43,7 +48,7 @@ export default class PublicationStore {
 			await agent.Publications.update(publicationId, data);
 			return { success: true };
 		} catch (error: any) {
-			const msg = error?.response?.data?.message || "Failed to update publication.";
+			const msg = getPublicationErrorMessage(error, "Failed to update publication.");
 			console.error("Error updating publication", error);
 			return { success: false, error: msg };
 		}
@@ -54,7 +59,7 @@ export default class PublicationStore {
 			await agent.Publications.createDataset(publicationId, { name: "Main", scaffoldIds, descriptorRules });
 			return { success: true };
 		} catch (error: any) {
-			const msg = error?.response?.data?.message || "Failed to create dataset.";
+			const msg = getPublicationErrorMessage(error, "Failed to create dataset.");
 			console.error("Error creating dataset", error);
 			return { success: false, error: msg };
 		}
@@ -65,7 +70,7 @@ export default class PublicationStore {
 			await agent.Publications.upsertDataset(publicationId, { name: "Main", scaffoldIds, descriptorRules });
 			return { success: true };
 		} catch (error: any) {
-			const msg = error?.response?.data?.message || "Failed to update dataset.";
+			const msg = getPublicationErrorMessage(error, "Failed to update dataset.");
 			console.error("Error updating dataset", error);
 			return { success: false, error: msg };
 		}
@@ -76,7 +81,7 @@ export default class PublicationStore {
 			await agent.Publications.delete(publicationId);
 			return { success: true };
 		} catch (error: any) {
-			const msg = error?.response?.data?.message || "Failed to delete publication.";
+			const msg = getPublicationErrorMessage(error, "Failed to delete publication.");
 			console.error("Error deleting publication", error);
 			return { success: false, error: msg };
 		}

@@ -565,6 +565,17 @@ namespace Services.Services
 			}
 		}
 
+		public async Task<List<(string FileName, string Category)>> GetAllOriginalFileNamesAsync()
+		{
+			var domains = await _context.Domains
+				.AsNoTracking()
+				.Where(d => d.OriginalFileName != null)
+				.Select(d => new { d.OriginalFileName, d.Category })
+				.ToListAsync();
+
+			return domains.Select(d => (d.OriginalFileName!, d.Category.ToString())).ToList();
+		}
+
 		/// <summary>
 		/// Strips @timestamp suffix from filenames before the .glb extension.
 		/// e.g. "labeledDomain_foo@20250524T124745.glb" → "labeledDomain_foo.glb"

@@ -73,10 +73,32 @@ namespace Services.Services
 		{
 			try
 			{
-				var exists = await _publicationRepository.ExistsAsync(publicationId);
-				if (!exists) return (false, "Publication not found.");
-				// TODO: implement update logic
-				return (false, "Update not yet implemented.");
+				if (publicationToUpdate is null)
+					return (false, "Publication update payload is required.");
+
+				if (string.IsNullOrWhiteSpace(publicationToUpdate.Title) ||
+					string.IsNullOrWhiteSpace(publicationToUpdate.Authors) ||
+					string.IsNullOrWhiteSpace(publicationToUpdate.Journal) ||
+					string.IsNullOrWhiteSpace(publicationToUpdate.Doi) ||
+					publicationToUpdate.PublishedAt == default)
+				{
+					return (false, "Title, authors, journal, DOI, and published date are required.");
+				}
+
+				var publication = await _publicationRepository.GetByIdAsync(publicationId);
+				if (publication == null) return (false, "Publication not found.");
+
+				publication.Title = publicationToUpdate.Title.Trim();
+				publication.Authors = publicationToUpdate.Authors.Trim();
+				publication.Journal = publicationToUpdate.Journal.Trim();
+				publication.Doi = publicationToUpdate.Doi.Trim();
+				publication.PublishedAt = DateTime.SpecifyKind(publicationToUpdate.PublishedAt, DateTimeKind.Utc);
+				publication.Citation = string.IsNullOrWhiteSpace(publicationToUpdate.Citation)
+					? null
+					: publicationToUpdate.Citation.Trim();
+
+				await _context.SaveChangesAsync();
+				return (true, "");
 			}
 			catch (Exception ex)
 			{

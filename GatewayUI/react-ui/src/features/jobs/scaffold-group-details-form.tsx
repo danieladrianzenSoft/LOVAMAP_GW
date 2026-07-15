@@ -13,6 +13,10 @@ import TextInput from "../../app/common/form/text-input";
 import SelectInput from "../../app/common/form/select-input";
 import { PARTICLE_DISPERSITIES } from "../../constants/particle-dispersities";
 import { CONTAINER_SHAPES } from "../../constants/container-shapes";
+import { PARTICLE_MATERIALS } from "../../constants/particle-materials";
+import { INTERLINKING_MECHANISMS } from "../../constants/interlinking-mechanisms";
+import { IMAGING_METHODS } from "../../constants/imaging-methods";
+import { SCAFFOLD_OCCUPANTS } from "../../constants/scaffold-occupants";
 
 
 type Props = {
@@ -41,7 +45,15 @@ export const ScaffoldGroupDetailsForm: React.FC<Props> = ({ initial, onMatchesFo
 		particles: initial?.particles ?? [defaultParticle()],
 		sizeDistribution: initial?.sizeDistribution ?? "",
 		isSimulated: initial?.isSimulated ?? true,
-		dx: initial?.dx ?? 2
+		dx: initial?.dx ?? 2,
+		interlinkingMechanism: initial?.interlinkingMechanism ?? "",
+		interlinkingOther: "",
+		scaffoldOccupants: initial?.scaffoldOccupants ? initial.scaffoldOccupants.split(",").map(s => s.trim()) : [] as string[],
+		scaffoldOccupantsOther: "",
+		imagingMethod: initial?.imagingMethod ?? "",
+		imagingOther: "",
+		material: "",
+		materialOther: "",
 	};
 
 	const validationSchema = Yup.object({
@@ -55,6 +67,9 @@ export const ScaffoldGroupDetailsForm: React.FC<Props> = ({ initial, onMatchesFo
 		.min(1),
 	});
 
+	const resolveOther = (value: string, otherValue: string) =>
+		value === "other" ? otherValue : value;
+
 	const buildMatchRequest = (values: any) => ({
 		containerShape: values.containerShape ?? null,
 		containerSize: values.containerSize ?? null,
@@ -66,6 +81,7 @@ export const ScaffoldGroupDetailsForm: React.FC<Props> = ({ initial, onMatchesFo
 			meanSize: p.meanSize ?? 0,
 			standardDeviationSize: p.standardDeviationSize ?? 0,
 			proportion: p.proportion ?? 1,
+			material: resolveOther(p.material ?? "", p.materialOther ?? "") || null,
 		})),
 		sizeDistribution: values.sizeDistribution ?? null,
 		isSimulated: values.isSimulated ?? true,
@@ -89,11 +105,27 @@ export const ScaffoldGroupDetailsForm: React.FC<Props> = ({ initial, onMatchesFo
 			}
 
 			// Build InputGroup typed object for the parent
+			const resolvedInterlinking = resolveOther(values.interlinkingMechanism ?? "", values.interlinkingOther ?? "");
+			const resolvedImaging = resolveOther(values.imagingMethod ?? "", values.imagingOther ?? "");
+			const occupants = [...(values.scaffoldOccupants ?? [])];
+			const otherIdx = occupants.indexOf("other");
+			if (otherIdx >= 0 && values.scaffoldOccupantsOther?.trim()) {
+				occupants[otherIdx] = values.scaffoldOccupantsOther.trim();
+			} else if (otherIdx >= 0) {
+				occupants.splice(otherIdx, 1);
+			}
+
 			const inputGroup: InputGroup = {
 				containerShape: values.containerShape ?? null,
 				containerSize: values.containerSize ?? null,
 				packingConfiguration: values.packingConfiguration ?? null,
-				particles: values.particles,
+				interlinkingMechanism: resolvedInterlinking || undefined,
+				scaffoldOccupants: occupants.length > 0 ? occupants.join(",") : undefined,
+				imagingMethod: resolvedImaging || undefined,
+				particles: values.particles.map((p: any) => ({
+					...p,
+					material: resolveOther(p.material ?? "", p.materialOther ?? "") || undefined,
+				})),
 				sizeDistribution: values.sizeDistribution ?? null,
 				isSimulated: values.isSimulated ?? true,
 			} as any;
@@ -211,9 +243,78 @@ export const ScaffoldGroupDetailsForm: React.FC<Props> = ({ initial, onMatchesFo
 								min={0} step={0.1}
 							/>
 						</label>
-						
 					)}
 				</div>
+
+				{values.isSimulated === false && (
+					<div className="mt-4">
+						<div className="font-semibold mb-2">Scaffold Properties</div>
+						<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-2 gap-y-2">
+							<div>
+								<SelectInput
+									name="interlinkingMechanism"
+									label="Interlinking Mechanism"
+									options={INTERLINKING_MECHANISMS}
+									errors={errors}
+									touched={touched}
+								/>
+								{(values as any).interlinkingMechanism === "other" && (
+									<div className="mt-1">
+										<TextInput name="interlinkingOther" label="Specify" type="text" errors={errors} touched={touched} />
+									</div>
+								)}
+							</div>
+							<div>
+								<SelectInput
+									name="imagingMethod"
+									label="Imaging Method"
+									options={IMAGING_METHODS}
+									errors={errors}
+									touched={touched}
+								/>
+								{(values as any).imagingMethod === "other" && (
+									<div className="mt-1">
+										<TextInput name="imagingOther" label="Specify" type="text" errors={errors} touched={touched} />
+									</div>
+								)}
+							</div>
+						</div>
+						<div className="mt-3">
+							<span className="text-sm text-gray-700 mb-1 block">Scaffold Occupants</span>
+							<div className="flex flex-wrap gap-2 p-3 border border-gray-200 rounded-md">
+								{SCAFFOLD_OCCUPANTS.map((opt) => {
+									const occupants: string[] = (values as any).scaffoldOccupants ?? [];
+									const isChecked = occupants.includes(opt.value);
+									return (
+										<label key={opt.value} className="flex items-center gap-1.5 text-sm cursor-pointer">
+											<input
+												type="checkbox"
+												checked={isChecked}
+												onChange={() => {
+													if (opt.value === "None") {
+														setFieldValue("scaffoldOccupants", isChecked ? [] : ["None"]);
+													} else {
+														const next = isChecked
+															? occupants.filter((v: string) => v !== opt.value)
+															: [...occupants.filter((v: string) => v !== "None"), opt.value];
+														setFieldValue("scaffoldOccupants", next);
+													}
+												}}
+												className="h-4 w-4 accent-blue-600"
+											/>
+											<span className="text-gray-700">{opt.label}</span>
+										</label>
+									);
+								})}
+							</div>
+							{((values as any).scaffoldOccupants ?? []).includes("other") && (
+								<div className="mt-1">
+									<TextInput name="scaffoldOccupantsOther" label="Specify" type="text" errors={errors} touched={touched} />
+								</div>
+							)}
+						</div>
+					</div>
+				)}
 
 				<div>
 					<div className="w-full flex justify-between mb-2 mt-8">
@@ -295,12 +396,6 @@ export const ScaffoldGroupDetailsForm: React.FC<Props> = ({ initial, onMatchesFo
 										</div>
 
 										<div>
-											{/* <label className="block text-sm text-gray-700 mb-1">Stiffness</label>
-											<Field as="select" name={`particles.${idx}.stiffness`} className="w-full px-4 py-2 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition text-sm">
-												<option value="rigid">Rigid</option>
-												<option value="semisoft">Semi-soft</option>
-												<option value="soft">Soft</option>
-											</Field> */}
 											<SelectInput
 												name={`particles.${idx}.stiffness`}
 												label="Stiffness"
@@ -311,6 +406,25 @@ export const ScaffoldGroupDetailsForm: React.FC<Props> = ({ initial, onMatchesFo
 											/>
 										</div>
 									</div>
+									{values.isSimulated === false && (
+										<div className="mt-3 grid grid-cols-3 gap-2 text-sm">
+											<div>
+												<SelectInput
+													name={`particles.${idx}.material`}
+													label="Material"
+													placeholder="Select a material"
+													options={PARTICLE_MATERIALS}
+													errors={errors}
+													touched={touched}
+												/>
+												{(values.particles[idx] as any)?.material === "other" && (
+													<div className="mt-1">
+														<TextInput name={`particles.${idx}.materialOther`} label="Specify" type="text" errors={errors} touched={touched} />
+													</div>
+												)}
+											</div>
+										</div>
+									)}
 
 									<div className="w-full flex flex-end text-sm">
 										<div className="w-full flex justify-end">

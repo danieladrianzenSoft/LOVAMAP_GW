@@ -27,6 +27,11 @@ namespace Repositories.Repositories
 			_context.Publications.Add(publication);
 		}
 
+		public async Task<Publication?> GetByIdAsync(int publicationId)
+		{
+			return await _context.Publications.FindAsync(publicationId);
+		}
+
 		public async Task<PublicationSummaryDto?> GetPublicationSummaryByIdAsync(int publicationId)
 		{
 			return await _context.Publications.AsNoTracking()
@@ -90,7 +95,8 @@ namespace Repositories.Repositories
 						.ToList(),
 					DescriptorTypeIds = pub.DescriptorTypes
 						.Select(dt => dt.Id)
-						.ToList()
+						.ToList(),
+					Citation = pub.Citation
 				})
 				.ToListAsync();
 		}
