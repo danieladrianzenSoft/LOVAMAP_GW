@@ -87,6 +87,7 @@ namespace Repositories.Repositories
 				.ToDictionaryAsync(g => g.Key, g => g.Select(img => new ImageToShowDto
 				{
 					Id = img.Id,
+					ScaffoldId = img.ScaffoldId,
 					Url = img.Url,
 					PublicId = img.PublicId,
 					IsThumbnail = img.IsThumbnail,
@@ -129,6 +130,7 @@ namespace Repositories.Repositories
 				.ToDictionaryAsync(g => g.Key, g => g.Select(img => new ImageToShowDto
 				{
 					Id = img.Id,
+					ScaffoldId = img.ScaffoldId,
 					Url = img.Url,
 					PublicId = img.PublicId,
 					IsThumbnail = img.IsThumbnail,

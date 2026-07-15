@@ -108,6 +108,10 @@ const ScaffoldGroups = {
     uploadScaffoldGroup: (scaffoldGroup: ScaffoldGroupToCreate) => requests.post<ApiResponse<ScaffoldGroup>>('/scaffoldgroups/create', scaffoldGroup),
     appendScaffoldsToGroup: (scaffoldGroupId: number, scaffoldGroup: ScaffoldGroupToCreate) =>
         requests.post<ApiResponse<ScaffoldGroup>>(`/scaffoldgroups/${scaffoldGroupId}/scaffolds`, scaffoldGroup),
+    moveScaffoldToGroup: (scaffoldId: number, targetScaffoldGroupId: number) =>
+        requests.put<ApiResponse<ScaffoldGroup[]>>(`/scaffoldgroups/scaffolds/${scaffoldId}/group`, { targetScaffoldGroupId }),
+    updateVisibility: (scaffoldGroupId: number, isPublic: boolean) =>
+        requests.put<ApiResponse<ScaffoldGroup>>(`/scaffoldgroups/${scaffoldGroupId}/visibility`, { isPublic }),
     deleteScaffold: (scaffoldId: number) =>
         requests.del<ApiResponse<ScaffoldGroup>>(`/scaffoldgroups/scaffolds/${scaffoldId}`),
     uploadScaffoldGroupBatch: (scaffoldGroups: ScaffoldGroupToCreate[]) => requests.post<ApiResponse<ScaffoldGroup[]>>('/scaffoldgroups/createBatch', scaffoldGroups),

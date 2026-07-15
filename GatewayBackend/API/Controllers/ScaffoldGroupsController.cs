@@ -86,8 +86,79 @@ public class ScaffoldGroupsController : ControllerBase
 		{
 			_logger.LogError(ex, "Failed to append scaffolds to scaffold group {ScaffoldGroupId}", scaffoldGroupId);
         	return StatusCode(500, new ApiResponse<string>(500, "An error occurred while appending scaffolds to the scaffold group"));
-		}
+        }
     }
+
+	[HttpPut("scaffolds/{scaffoldId}/group")]
+	public async Task<IActionResult> MoveScaffoldToGroup(int scaffoldId, [FromBody] MoveScaffoldToGroupDto moveRequest)
+	{
+		try
+		{
+			var currentUserId = _userService.GetCurrentUserId();
+
+			if (currentUserId == null) return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
+			if (moveRequest == null || moveRequest.TargetScaffoldGroupId <= 0)
+				return BadRequest(new ApiResponse<string>(400, "Target scaffold group is required"));
+
+			var (succeeded, errorMessage, scaffoldGroups) =
+				await _scaffoldGroupService.MoveScaffoldToGroup(scaffoldId, moveRequest.TargetScaffoldGroupId, currentUserId);
+
+			if (!succeeded)
+			{
+				if (errorMessage == "Unauthorized")
+					return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
+
+				if (errorMessage == "ScaffoldNotFound")
+					return NotFound(new ApiResponse<string>(404, "Scaffold not found"));
+
+				if (errorMessage == "TargetScaffoldGroupNotFound")
+					return NotFound(new ApiResponse<string>(404, "Target scaffold group not found"));
+
+				return BadRequest(new ApiResponse<string>(400, errorMessage));
+			}
+
+			return Ok(new ApiResponse<IEnumerable<ScaffoldGroupSummaryDto>>(200, "Scaffold moved", scaffoldGroups));
+		}
+		catch (Exception ex)
+		{
+			_logger.LogError(ex, "Failed to move scaffold {ScaffoldId}", scaffoldId);
+			return StatusCode(500, new ApiResponse<string>(500, "An error occurred while moving the scaffold"));
+		}
+	}
+
+	[HttpPut("{scaffoldGroupId}/visibility")]
+	public async Task<IActionResult> UpdateVisibility(int scaffoldGroupId, [FromBody] ScaffoldGroupVisibilityUpdateDto visibility)
+	{
+		try
+		{
+			var currentUserId = _userService.GetCurrentUserId();
+
+			if (currentUserId == null) return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
+			if (visibility == null)
+				return BadRequest(new ApiResponse<string>(400, "Visibility payload is required"));
+
+			var (succeeded, errorMessage, scaffoldGroup) =
+				await _scaffoldGroupService.UpdateScaffoldGroupVisibility(scaffoldGroupId, visibility.IsPublic, currentUserId);
+
+			if (!succeeded)
+			{
+				if (errorMessage == "Unauthorized")
+					return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
+
+				if (errorMessage == "ScaffoldGroupNotFound")
+					return NotFound(new ApiResponse<string>(404, "Scaffold group not found"));
+
+				return BadRequest(new ApiResponse<string>(400, errorMessage));
+			}
+
+			return Ok(new ApiResponse<ScaffoldGroupSummaryDto>(200, "Scaffold group visibility updated", scaffoldGroup));
+		}
+		catch (Exception ex)
+		{
+			_logger.LogError(ex, "Failed to update scaffold group visibility {ScaffoldGroupId}", scaffoldGroupId);
+			return StatusCode(500, new ApiResponse<string>(500, "An error occurred while updating scaffold group visibility"));
+		}
+	}
 
 	[HttpDelete("scaffolds/{scaffoldId}")]
 	public async Task<IActionResult> DeleteScaffold(int scaffoldId)
@@ -416,7 +487,11 @@ public class ScaffoldGroupsController : ControllerBase
 
    			var filter = new ScaffoldFilter { UserId = currentUserId };
 
-			var (succeeded, errorMessage, scaffoldGroups) = await _scaffoldGroupService.GetFilteredScaffoldGroups(filter, currentUserId);
+			var (succeeded, errorMessage, scaffoldGroups) = await _scaffoldGroupService.GetFilteredScaffoldGroups(
+				filter,
+				currentUserId,
+				isDetailed: false,
+				includeAllImages: true);
 
 			if (!succeeded) {
 				return NotFound(new ApiResponse<string>(404, errorMessage));

@@ -209,6 +209,101 @@ namespace Services.Services
 			}
 		}
 
+		public async Task<(bool Succeeded, string ErrorMessage, IEnumerable<ScaffoldGroupSummaryDto>? UpdatedScaffoldGroups)> MoveScaffoldToGroup(
+			int scaffoldId,
+			int targetScaffoldGroupId,
+			string userId)
+		{
+			try
+			{
+				var scaffold = await _context.Scaffolds
+					.Include(s => s.ScaffoldGroup)
+						.ThenInclude(sg => sg.InputGroup)
+							.ThenInclude(ig => ig.ParticlePropertyGroups)
+					.FirstOrDefaultAsync(s => s.Id == scaffoldId);
+
+				if (scaffold == null)
+					return (false, "ScaffoldNotFound", null);
+
+				var sourceGroup = scaffold.ScaffoldGroup;
+				if (sourceGroup.Id == targetScaffoldGroupId)
+				{
+					var unchangedSummary = await BuildScaffoldGroupSummary(sourceGroup.Id, userId);
+					return unchangedSummary == null
+						? (false, "ScaffoldGroupNotFound", null)
+						: (true, "", [unchangedSummary]);
+				}
+
+				var targetGroup = await _scaffoldGroupRepository.Get(targetScaffoldGroupId);
+				if (targetGroup == null)
+					return (false, "TargetScaffoldGroupNotFound", null);
+
+				var isAdmin = await _userAuthHelper.IsInRole(userId, "administrator");
+				var canEditSource = sourceGroup.UploaderId == userId || scaffold.UploaderId == userId || isAdmin;
+				var canEditTarget = targetGroup.UploaderId == userId || isAdmin;
+
+				if (!canEditSource || !canEditTarget)
+					return (false, "Unauthorized", null);
+
+				scaffold.ScaffoldGroupId = targetGroup.Id;
+				scaffold.ScaffoldGroup = targetGroup;
+				scaffold.ReplicateNumber = targetGroup.Scaffolds.Count == 0
+					? 1
+					: targetGroup.Scaffolds.Max(s => s.ReplicateNumber) + 1;
+
+				sourceGroup.UpdatedAt = DateTime.UtcNow;
+				targetGroup.UpdatedAt = DateTime.UtcNow;
+
+				await _context.SaveChangesAsync();
+				await ReindexReplicateNumbers(sourceGroup.Id);
+
+				var updatedSummaries = new List<ScaffoldGroupSummaryDto>();
+				var sourceSummary = await BuildScaffoldGroupSummary(sourceGroup.Id, userId);
+				if (sourceSummary != null) updatedSummaries.Add(sourceSummary);
+
+				var targetSummary = await BuildScaffoldGroupSummary(targetGroup.Id, userId);
+				if (targetSummary != null) updatedSummaries.Add(targetSummary);
+
+				return (true, "", updatedSummaries);
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, "Failed to move scaffold {ScaffoldId} to scaffold group {TargetScaffoldGroupId}", scaffoldId, targetScaffoldGroupId);
+				return (false, "UnexpectedError", null);
+			}
+		}
+
+		public async Task<(bool Succeeded, string ErrorMessage, ScaffoldGroupSummaryDto? UpdatedScaffoldGroup)> UpdateScaffoldGroupVisibility(
+			int scaffoldGroupId,
+			bool isPublic,
+			string userId)
+		{
+			try
+			{
+				var scaffoldGroup = await _scaffoldGroupRepository.Get(scaffoldGroupId);
+				if (scaffoldGroup == null)
+					return (false, "ScaffoldGroupNotFound", null);
+
+				var isAdmin = await _userAuthHelper.IsInRole(userId, "administrator");
+				if (scaffoldGroup.UploaderId != userId && !isAdmin)
+					return (false, "Unauthorized", null);
+
+				scaffoldGroup.IsPublic = isPublic;
+				scaffoldGroup.UpdatedAt = DateTime.UtcNow;
+				await _context.SaveChangesAsync();
+
+				var updatedSummary = await BuildScaffoldGroupSummary(scaffoldGroupId, userId);
+				return updatedSummary == null
+					? (false, "ScaffoldGroupNotFound", null)
+					: (true, "", updatedSummary);
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, "Failed to update visibility for scaffold group {ScaffoldGroupId}", scaffoldGroupId);
+				return (false, "UnexpectedError", null);
+			}
+		}
+
 		private static void NormalizeInputGroup(ScaffoldGroupToCreateDto dto)
 		{
 			if (dto.InputGroup == null)
@@ -437,6 +532,39 @@ namespace Services.Services
 				});
 
 			return JsonSerializer.Serialize(existingParticles) == JsonSerializer.Serialize(incomingParticles);
+		}
+
+		private async Task ReindexReplicateNumbers(int scaffoldGroupId)
+		{
+			var scaffolds = await _context.Scaffolds
+				.Where(s => s.ScaffoldGroupId == scaffoldGroupId)
+				.OrderBy(s => s.ReplicateNumber)
+				.ThenBy(s => s.Id)
+				.ToListAsync();
+
+			for (var index = 0; index < scaffolds.Count; index++)
+			{
+				scaffolds[index].ReplicateNumber = index + 1;
+			}
+
+			await _context.SaveChangesAsync();
+		}
+
+		private async Task<ScaffoldGroupSummaryDto?> BuildScaffoldGroupSummary(int scaffoldGroupId, string userId)
+		{
+			var summary = await _scaffoldGroupRepository.GetSummary(scaffoldGroupId);
+			if (summary == null) return null;
+
+			var (succeeded, _, completeGroups) = await GetCompleteScaffoldGroupsFromSummaries(
+				[summary],
+				userId,
+				isDetailed: false,
+				filter: null,
+				includeAllImages: true);
+
+			return succeeded
+				? completeGroups?.OfType<ScaffoldGroupSummaryDto>().FirstOrDefault()
+				: summary;
 		}
 
 		private static double CalculatePopulationStdDev(List<double> values, double mean)
@@ -683,7 +811,7 @@ namespace Services.Services
 		}
 
 		public async Task<(bool Succeeded, string ErrorMessage, IEnumerable<ScaffoldGroupBaseDto>? scaffoldGroups)>
-			GetFilteredScaffoldGroups(ScaffoldFilter filter, string userId, bool isDetailed = false)
+			GetFilteredScaffoldGroups(ScaffoldFilter filter, string userId, bool isDetailed = false, bool includeAllImages = false)
 		{
 			try
 			{
@@ -709,7 +837,7 @@ namespace Services.Services
 				// 	return (false, "NotFound", null);
 				// }
 
-				return await GetCompleteScaffoldGroupsFromSummaries(scaffoldGroups ?? [], userId, isDetailed, filter);
+				return await GetCompleteScaffoldGroupsFromSummaries(scaffoldGroups ?? [], userId, isDetailed, filter, includeAllImages);
 
 			}
 			catch (Exception ex)
@@ -719,13 +847,13 @@ namespace Services.Services
 			}
 		}
 
-		private async Task<(bool Succeeded, string ErrorMessage, IEnumerable<ScaffoldGroupBaseDto>? scaffoldGroups)> GetCompleteScaffoldGroupsFromSummaries(IEnumerable<ScaffoldGroupSummaryDto> scaffoldGroups, string userId, bool isDetailed, ScaffoldFilter? filter)
+		private async Task<(bool Succeeded, string ErrorMessage, IEnumerable<ScaffoldGroupBaseDto>? scaffoldGroups)> GetCompleteScaffoldGroupsFromSummaries(IEnumerable<ScaffoldGroupSummaryDto> scaffoldGroups, string userId, bool isDetailed, ScaffoldFilter? filter, bool includeAllImages = false)
 		{
 			try
 			{
 				var scaffoldGroupIds = scaffoldGroups.Select(sg => sg.Id).ToList();
 
-				var imagesLookup = isDetailed
+				var imagesLookup = isDetailed || includeAllImages
 						? await _imageService.GetAllImagesForScaffoldGroups(scaffoldGroupIds)
 						: await _imageService.GetThumbnailsForScaffoldGroups(scaffoldGroupIds);
 				var tagsLookup = await _tagService.GetTagNamesForScaffoldGroups(scaffoldGroupIds, userId);

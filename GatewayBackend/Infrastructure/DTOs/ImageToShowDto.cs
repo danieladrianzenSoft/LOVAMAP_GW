@@ -7,6 +7,7 @@ namespace Infrastructure.DTOs
 	public class ImageToShowDto
     {
         public int Id { get; set; }
+        public int? ScaffoldId { get; set; }
         public string Url { get; set; } = "";
         public string PublicId { get; set; } = "";
 		public bool IsThumbnail { get; set; } = false;

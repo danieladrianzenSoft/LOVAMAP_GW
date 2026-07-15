@@ -301,6 +301,53 @@ export default class ScaffoldGroupStore {
 		}
 	}
 
+	moveScaffoldToGroup = async (scaffoldId: number, targetScaffoldGroupId: number) => {
+		try {
+			const apiResponse = await agent.ScaffoldGroups.moveScaffoldToGroup(scaffoldId, targetScaffoldGroupId);
+			const scaffoldGroups = apiResponse.data ?? [];
+
+			runInAction(() => {
+				this.applyScaffoldGroupUpdates(scaffoldGroups);
+			});
+
+			return scaffoldGroups;
+		} catch (error) {
+			console.error("Failed to move scaffold:", error);
+			return null;
+		}
+	}
+
+	updateScaffoldGroupVisibility = async (scaffoldGroupId: number, isPublic: boolean) => {
+		try {
+			const apiResponse = await agent.ScaffoldGroups.updateVisibility(scaffoldGroupId, isPublic);
+			const scaffoldGroup = apiResponse.data;
+
+			runInAction(() => {
+				this.applyScaffoldGroupUpdates([scaffoldGroup]);
+			});
+
+			return scaffoldGroup;
+		} catch (error) {
+			console.error("Failed to update scaffold group visibility:", error);
+			return null;
+		}
+	}
+
+	applyScaffoldGroupUpdates = (updatedGroups: ScaffoldGroup[]) => {
+		const updates = new Map(updatedGroups.map(group => [group.id, group]));
+
+		this.uploadedScaffoldGroups = this.uploadedScaffoldGroups.map((group) =>
+			updates.get(group.id) ?? group
+		);
+		this.scaffoldGroups = this.scaffoldGroups.map((group) =>
+			updates.get(group.id) ?? group
+		);
+
+		if (this.selectedScaffoldGroup && updates.has(this.selectedScaffoldGroup.id)) {
+			this.selectedScaffoldGroup = updates.get(this.selectedScaffoldGroup.id) ?? this.selectedScaffoldGroup;
+		}
+	}
+
 	uploadScaffoldGroupBatchStreamed = async (
 		scaffoldGroupsToCreate: ScaffoldGroupToCreate[],
 		onProgress?: (pct: number) => void

@@ -4,29 +4,26 @@ import { useNavigate } from 'react-router-dom';
 import UploadFile from '../../app/common/upload-file/upload-file';
 import { useStore } from '../../app/stores/store';
 import toast from "react-hot-toast";
-import { FaPlus, FaStar, FaRegStar, FaTimes } from 'react-icons/fa';
+import { FaPlus, FaTimes } from 'react-icons/fa';
 import LoadingSpinner from '../../app/common/loading-spinner/loading-spinner';
-import { Image, ImageCategory, ImageToCreate, ImageToUpdate } from '../../app/models/image';
+import { Image, ImageToCreate, ImageToUpdate } from '../../app/models/image';
+import { Publication } from '../../app/models/publication';
 import { ScaffoldGroup, ScaffoldGroupToCreate } from '../../app/models/scaffoldGroup';
 import { useDescriptorTypes } from '../../app/common/hooks/useDescriptorTypes';
 import { processExcelFile } from '../../app/common/excel-processor/excel-processor';
-import { RiDeleteBin5Fill } from "react-icons/ri";
-import DataTable, { DataTableColumn } from '../../app/common/data-table/data-table';
+import ScaffoldGroupLibrary from './scaffold-group-library';
 
 const ScaffoldGroupUploads: React.FC = () => {
     const { descriptorTypes} = useDescriptorTypes();
-    const { scaffoldGroupStore, userStore } = useStore();
+    const { scaffoldGroupStore, userStore, publicationStore } = useStore();
     const { getUploadedScaffoldGroups, uploadedScaffoldGroups = [],
-        updateImage, navigateToVisualization, deleteScaffoldGroup } = scaffoldGroupStore;
+        updateImage, navigateToVisualization, deleteScaffoldGroup, moveScaffoldToGroup, updateScaffoldGroupVisibility } = scaffoldGroupStore;
 
     const navigate = useNavigate();
     const isAdmin = userStore.user?.roles?.includes("administrator") ?? false;
 
     const [isLoading, setIsLoading] = useState<boolean>(true);
-    const [selectedGroup, setSelectedGroup] = useState<ScaffoldGroup | null>(null); // Track selected group
-    const [isModalOpen, setIsModalOpen] = useState<boolean>(false); // Track modal state
-    const [isUploadVisible, setIsUploadVisible] = useState<boolean>(false); // Track visibility of UploadFile (modal images)
-    const [showConfirmDelete, setShowConfirmDelete] = useState(false);
+    const [publications, setPublications] = useState<Publication[]>([]);
     const [uploadPct, setUploadPct] = useState<number | null>(null);
     const [showAddMenu, setShowAddMenu] = useState(false);
     const [showFileUpload, setShowFileUpload] = useState(false);
@@ -35,11 +32,15 @@ const ScaffoldGroupUploads: React.FC = () => {
     useEffect(() => {
         const fetchUploadedScaffoldGroups = async () => {
             setIsLoading(true);
-            await getUploadedScaffoldGroups();
+            const [publicationResults] = await Promise.all([
+                publicationStore.getPublications(),
+                getUploadedScaffoldGroups(),
+            ]);
+            setPublications(publicationResults);
             setIsLoading(false);
         };
         fetchUploadedScaffoldGroups();
-    }, [getUploadedScaffoldGroups]);
+    }, [getUploadedScaffoldGroups, publicationStore]);
 
     // Close dropdown when clicking outside
     useEffect(() => {
@@ -61,12 +62,10 @@ const ScaffoldGroupUploads: React.FC = () => {
         link.click();
     };
 
-    const handleConfirmDeletion = async (scaffoldGroupId: number) => {
+    const handleDeleteGroup = async (scaffoldGroupId: number) => {
         try {
             await deleteScaffoldGroup(scaffoldGroupId);
             toast.success('Scaffold group deleted successfully');
-            setShowConfirmDelete(false);
-            setIsModalOpen(false);
             if (uploadedScaffoldGroups.some(g => g.id === scaffoldGroupId)) {
                 scaffoldGroupStore.removeUploadedScaffoldGroup(scaffoldGroupId);
             }
@@ -123,120 +122,97 @@ const ScaffoldGroupUploads: React.FC = () => {
         }
     };
 
-    const handleUploadSubmitImage = async (files: File[], category?: string) => {
+    const handleUploadSubmitImage = async (group: ScaffoldGroup, files: File[], scaffoldId?: number) => {
         try {
             const imageFiles = files.filter(file => file.type.startsWith('image/'));
 
-            // Handle image uploads if a group is selected
-            if (imageFiles.length > 0 && selectedGroup) {
+            if (imageFiles.length > 0) {
                 await Promise.all(
                     imageFiles.map(async (imageFile) => {
                         const image: ImageToCreate = {
-                            scaffoldGroupId: selectedGroup.id,
+                            scaffoldGroupId: group.id,
+                            scaffoldId: scaffoldId ?? null,
                             file: imageFile,
                         };
-                        const addedImage = await scaffoldGroupStore.uploadImageForScaffoldGroup(
-                            selectedGroup.id,
-                            image,
-                        );
-
-                        // Update the selected group state to reflect the new images
-                        if (addedImage != null) {
-                            console.log(addedImage)
-                            selectedGroup.images.push(addedImage);
-                            console.log(addedImage);
-                        }
+                        await scaffoldGroupStore.uploadImageForScaffoldGroup(group.id, image);
                     })
                 );
+                await getUploadedScaffoldGroups();
+                return await scaffoldGroupStore.getScaffoldGroupSummary(group.id) ?? null;
             }
         } catch (error) {
             console.error(error);
             toast.error('Failed to upload images.');
         }
+        return null;
     };
 
-    const handleImageUpdate = async (image: any, updates: Partial<ImageToUpdate>) => {
+    const handleImageUpdate = async (group: ScaffoldGroup, image: Image, updates: Partial<ImageToUpdate>) => {
         try {
-            if (selectedGroup == null) return;
             const updatedImage: ImageToUpdate = {
                 id: image.id,
                 category: updates.category ?? image.category,
                 isThumbnail: updates.isThumbnail ?? image.isThumbnail,
-                scaffoldGroupId: selectedGroup.id,
+                scaffoldGroupId: group.id,
                 scaffoldId: image.scaffoldId ?? null,
             };
-            const updatedScaffoldGroup = await updateImage(selectedGroup.id, updatedImage);
+            const updatedScaffoldGroup = await updateImage(group.id, updatedImage);
             if (updatedScaffoldGroup) {
-                setSelectedGroup(updatedScaffoldGroup);
                 await getUploadedScaffoldGroups(); // Refresh the scaffold group data
+                return updatedScaffoldGroup;
             }
         } catch (error) {
             console.error(error);
             toast.error('Failed to update image.');
         }
+        return null;
     };
 
-    const handleImageDelete = async (imageId: number) => {
-        if (selectedGroup == null) return;
+    const handleImageDelete = async (group: ScaffoldGroup, imageId: number) => {
         try {
-            const result = await scaffoldGroupStore.deleteImage(selectedGroup.id, imageId);
-
-            // Update selectedGroup with the updated scaffold group data
+            const result = await scaffoldGroupStore.deleteImage(group.id, imageId);
             if (result) {
-                selectedGroup.images = selectedGroup.images?.filter((image:Image) => image.id !== imageId);
+                await getUploadedScaffoldGroups();
+                return result;
             }
         } catch (error) {
             console.error(error);
             toast.error('Failed to delete image.');
         }
+        return null;
+    };
+
+    const handleMoveScaffold = async (scaffoldId: number, targetGroupId: number) => {
+        try {
+            const result = await moveScaffoldToGroup(scaffoldId, targetGroupId);
+            if (result) {
+                toast.success('Scaffold moved successfully');
+                return true;
+            }
+        } catch (error) {
+            console.error(error);
+        }
+        toast.error('Failed to move scaffold. Confirm the target group has matching metadata.');
+        return false;
+    };
+
+    const handleVisibilityChange = async (group: ScaffoldGroup, isPublic: boolean) => {
+        try {
+            const result = await updateScaffoldGroupVisibility(group.id, isPublic);
+            if (result) {
+                toast.success(`Scaffold group is now ${isPublic ? 'public' : 'private'}`);
+                return result;
+            }
+        } catch (error) {
+            console.error(error);
+        }
+        toast.error('Failed to update scaffold group visibility.');
+        return null;
     };
 
     const handleUploadError = (group: any) => {
         toast.error('Failed to upload files.');
     };
-
-    const handleRowClick = (group: any) => {
-        setSelectedGroup(group); // Set selected group
-        setIsModalOpen(true); // Open modal
-    };
-
-    const closeModal = () => {
-        setSelectedGroup(null); // Clear selected group
-        setIsUploadVisible(false);
-        setIsModalOpen(false); // Close modal
-    };
-
-    const toggleUploadSection = () => {
-        setIsUploadVisible(!isUploadVisible); // Toggle upload section visibility
-    };
-
-    const uploadColumns: DataTableColumn<ScaffoldGroup>[] = [
-        {
-            header: 'Id',
-            render: (group) => group.id,
-            cellClassName: 'max-w-[50px] ellipsis',
-        },
-        {
-            header: 'Name',
-            render: (group) => group.name,
-            cellClassName: 'max-w-[300px] ellipsis',
-        },
-        {
-            header: 'Tags',
-            render: (group) => group.tags?.join(', '),
-            cellClassName: 'max-w-[300px] ellipsis',
-        },
-{
-            header: 'Date Added',
-            render: (group) => new Date(group.createdAt).toLocaleString(),
-            cellClassName: 'whitespace-nowrap',
-        },
-        {
-            header: 'Public',
-            render: (group) => group.isPublic ? 'Yes' : 'No',
-            cellClassName: 'whitespace-nowrap',
-        },
-    ];
 
     return (
         <div className={`container mx-auto py-8 px-6`}>
@@ -310,137 +286,18 @@ const ScaffoldGroupUploads: React.FC = () => {
             {isLoading ? (
                 <LoadingSpinner />
             ) : (
-                <div className="flex">
-                    <DataTable
-                        data={uploadedScaffoldGroups}
-                        columns={uploadColumns}
-                        onRowClick={(group) => handleRowClick(group)}
-                        rowKey={(group) => group.id}
-                    />
-                </div>
-            )}
-
-            {isModalOpen && selectedGroup && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                    <div className="bg-white p-6 rounded-lg shadow-lg max-w-lg w-full">
-                        <div className="flex justify-between items-center mb-4">
-                            <h2 className="text-xl font-bold">{selectedGroup.name}</h2>
-                            <button onClick={closeModal} className="text-gray-500 hover:text-gray-700 cursor-pointer">&times;</button>
-                        </div>
-                        <p className="mb-4">Tags: {selectedGroup.tags?.join(', ')}</p>
-                        <p className="mb-4">
-                            Created At: {new Date(selectedGroup.createdAt).toLocaleString()}
-                        </p>
-                        <p className="mb-4">
-                            Replicates: {selectedGroup.scaffoldIds.length}
-                        </p>
-                        <p className="mb-4">
-                            Domains: {selectedGroup.scaffoldIdsWithDomains.length}
-                        </p>
-
-                        <p className="mb-4">Uploaded Images: </p>
-
-                        <div className="grid grid-cols-3 gap-2 mt-2">
-                            {selectedGroup?.images
-                                .slice() // Create a shallow copy to avoid mutating the original array
-                                .sort((a: any, b: any) => Number(b.isThumbnail) - Number(a.isThumbnail)) // Thumbnails first
-                                .map((image: any) => (
-                                <div key={image.id} className="relative border rounded-lg overflow-hidden">
-                                    <img
-                                        src={image.url}
-                                        alt={`${image.id}`}
-                                        className="object-cover w-full h-24 p-2"
-                                    />
-                                    <button
-                                        onClick={() => handleImageDelete(image.id)}
-                                        className="absolute top-1 left-1 bg-white rounded-full p-1 hover:bg-gray-200 cursor-pointer"
-                                    >
-                                        <FaTimes className="text-gray-500" size={12} />
-                                    </button>
-                                    <button
-                                        onClick={() =>
-                                            handleImageUpdate(image, { isThumbnail: !image.isThumbnail })
-                                        }
-                                        className="absolute top-2 right-2 text-yellow-500 cursor-pointer hover:text-yellow-300"
-                                    >
-                                        {image.isThumbnail ? <FaStar /> : <FaRegStar />}
-                                    </button>
-                                    <select
-                                        className="absolute bottom-2 left-2 bg-white/80 text-sm max-w-full w-11/12 px-2 py-1 rounded-md"
-                                        value={image.category}
-                                        onChange={(e) => handleImageUpdate(image, { category: e.target.value })}
-                                    >
-                                        {Object.keys(ImageCategory)
-                                            .filter((key) => isNaN(Number(key)))
-                                            .map((category) => (
-                                                <option key={category} value={category}>
-                                                    {category}
-                                                </option>
-                                        ))}
-                                    </select>
-                                </div>
-                            ))}
-                            <button
-                                onClick={toggleUploadSection}
-                                className="flex items-center justify-center border-2 border-dashed rounded-lg h-24 cursor-pointer hover:border-blue-500"
-                            >
-                                <FaPlus size={24} className="text-gray-400" />
-                            </button>
-                        </div>
-
-                        {isUploadVisible && (
-                            <div className="mt-4">
-                                <UploadFile
-                                    acceptedFileTypes={{ 'image/*': ['.jpg', '.jpeg', '.png'] }}
-                                    onUploadSubmit={handleUploadSubmitImage}
-                                />
-                            </div>
-                        )}
-
-                        <div className="mt-4 flex justify-between items-center">
-                        {showConfirmDelete ? (
-                            <>
-                            <span className="text-sm text-gray-700 mr-auto">Are you sure you want to delete this scaffold group? All associated data, images and domains will be deleted permanently.</span>
-                            <button
-                                onClick={() => setShowConfirmDelete(false)}
-                                className="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 ml-2"
-                            >
-                                Cancel
-                            </button>
-                            <button
-                                onClick={() => handleConfirmDeletion(selectedGroup.id)}
-                                className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 ml-2"
-                            >
-                                Delete
-                            </button>
-                            </>
-                        ) : (
-                            <>
-                            <button
-                                className="px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700"
-                                onClick={() => navigateToVisualization(selectedGroup)}
-                            >
-                                Interact
-                            </button>
-                            <div className="flex gap-2">
-                                <button
-                                onClick={() => setShowConfirmDelete(true)}
-                                className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
-                                >
-                                    <RiDeleteBin5Fill />
-                                </button>
-                                <button
-                                onClick={closeModal}
-                                className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
-                                >
-                                Close
-                                </button>
-                            </div>
-                            </>
-                        )}
-                        </div>
-                    </div>
-                </div>
+                <ScaffoldGroupLibrary
+                    scaffoldGroups={uploadedScaffoldGroups}
+                    publications={publications}
+                    isAdmin={isAdmin}
+                    onInteractGroup={(group, scaffoldId) => navigateToVisualization(group, scaffoldId)}
+                    onDeleteGroup={handleDeleteGroup}
+                    onUploadImages={handleUploadSubmitImage}
+                    onUpdateImage={handleImageUpdate}
+                    onDeleteImage={handleImageDelete}
+                    onMoveScaffold={handleMoveScaffold}
+                    onUpdateVisibility={handleVisibilityChange}
+                />
             )}
         </div>
     );

@@ -380,11 +380,17 @@ namespace Services.Services
             {
                 Id = scaffoldGroup.Id,
                 Name = scaffoldGroup.Name,
+                Comments = scaffoldGroup.Comments,
                 CreatedAt = scaffoldGroup.CreatedAt,
+                IsPublic = scaffoldGroup.IsPublic,
                 IsSimulated = scaffoldGroup.IsSimulated,
                 Tags = tags,
                 NumReplicates = scaffoldGroup.Scaffolds?.Count ?? 0,
                 ScaffoldIds = scaffoldGroup.Scaffolds?.Select(s => s.Id).ToList() ?? [],
+                ScaffoldIdsWithDomains = scaffoldGroup.Scaffolds?
+                    .Where(s => s.Domains != null && s.Domains.Any())
+                    .Select(s => s.Id)
+                    .ToList() ?? [],
                 Images = imagesToReturn,
                 Inputs = new InputGroupBaseDto
                 {
@@ -449,11 +455,18 @@ namespace Services.Services
             {
                 Id = scaffoldGroup.Id,
                 Name = scaffoldGroup.Name,
+                CreatedAt = scaffoldGroup.CreatedAt,
+                IsPublic = scaffoldGroup.IsPublic,
                 IsSimulated = scaffoldGroup.IsSimulated,
                 Tags = tags,
                 NumReplicates = scaffoldGroup.Scaffolds?.Count ?? 0,
                 Comments = scaffoldGroup.Comments,
                 Images = imagesToReturn,
+                ScaffoldIds = scaffoldGroup.Scaffolds?.Select(s => s.Id).ToList() ?? [],
+                ScaffoldIdsWithDomains = scaffoldGroup.Scaffolds?
+                    .Where(s => s.Domains != null && s.Domains.Any())
+                    .Select(s => s.Id)
+                    .ToList() ?? [],
                 Inputs = new InputGroupBaseDto
                 {
                     ContainerShape = scaffoldGroup.InputGroup?.ContainerShape,
@@ -492,6 +505,7 @@ namespace Services.Services
             return new ImageToShowDto
             {
                 Id = image.Id,
+                ScaffoldId = image.ScaffoldId,
                 Url = image.Url,
                 PublicId = image.PublicId,
                 IsThumbnail = image.IsThumbnail,

@@ -1,7 +1,7 @@
 export interface Image {
 	id: number;
     scaffoldGroupId: number;
-    scaffoldId: number;
+    scaffoldId: number | null;
     uploaderId: number;
     url: string;
     file: File;

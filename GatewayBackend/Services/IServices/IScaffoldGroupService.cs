@@ -13,6 +13,8 @@ namespace Services.IServices
 		Task<(bool Succeeded, string ErrorMessage, ScaffoldGroupBaseDto? CreatedScaffoldGroup)> CreateScaffoldGroup(ScaffoldGroupToCreateDto scaffoldGroupToCreate, string? userId);
 		Task<(bool Succeeded, string ErrorMessage, IEnumerable<ScaffoldGroupBaseDto>? CreatedScaffoldGroups)> CreateScaffoldGroups(IEnumerable<ScaffoldGroupToCreateDto> scaffoldGroupsToCreate, string? userId);
 		Task<(bool Succeeded, string ErrorMessage, ScaffoldGroupSummaryDto? UpdatedScaffoldGroup)> AppendScaffoldsToGroup(int scaffoldGroupId, ScaffoldGroupToCreateDto scaffoldsToAppend, string userId);
+		Task<(bool Succeeded, string ErrorMessage, IEnumerable<ScaffoldGroupSummaryDto>? UpdatedScaffoldGroups)> MoveScaffoldToGroup(int scaffoldId, int targetScaffoldGroupId, string userId);
+		Task<(bool Succeeded, string ErrorMessage, ScaffoldGroupSummaryDto? UpdatedScaffoldGroup)> UpdateScaffoldGroupVisibility(int scaffoldGroupId, bool isPublic, string userId);
 		Task<(bool Succeeded, string ErrorMessage, IEnumerable<ScaffoldGroupBaseDto>? CreatedScaffoldGroups)> CreateScaffoldGroupsFromJsonStream(
             Stream jsonStream,
             string userId,
@@ -26,7 +28,7 @@ namespace Services.IServices
 		// Task<(bool Succeeded, string ErrorMessage, ScaffoldGroupDataDto? Result)> GetDataForVisualization(int scaffoldGroupId);
 		// Task<(bool Succeeded, string ErrorMessage, ScaffoldGroupDataDto? Result)> GetDataForVisualization(int scaffoldGroupId, string? userId);
 		Task<(bool Succeeded, string ErrorMessage, ScaffoldGroupDataDto? Result)> GetDataForVisualization(int scaffoldGroupId, string? userId, List<int> descriptorTypeIds);
-		Task<(bool Succeeded, string ErrorMessage, IEnumerable<ScaffoldGroupBaseDto>? scaffoldGroups)> GetFilteredScaffoldGroups(ScaffoldFilter filters, string userId, bool isDetailed=false);
+		Task<(bool Succeeded, string ErrorMessage, IEnumerable<ScaffoldGroupBaseDto>? scaffoldGroups)> GetFilteredScaffoldGroups(ScaffoldFilter filters, string userId, bool isDetailed=false, bool includeAllImages=false);
 		Task<(bool Succeeded, string ErrorMessage, ICollection<ImageToShowDto>? scaffoldGroupImages)> GetScaffoldGroupImages(int scaffoldGroupId);
 		Task<(bool Succeeded, string ErrorMessage, ScaffoldGroupSummaryDto? updatedScaffoldGroup)> UpdateScaffoldGroupImage(string userId, int scaffoldGroupId, ImageToUpdateDto image);
 		Task<List<ScaffoldMissingThumbnailInfoDto>> GetScaffoldsMissingThumbnailsByCategory(ImageCategory imageCategory = ImageCategory.Particles, int? scaffoldGroupId = null);
