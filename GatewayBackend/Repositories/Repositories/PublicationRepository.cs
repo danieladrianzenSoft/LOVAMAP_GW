@@ -44,6 +44,7 @@ namespace Repositories.Repositories
 						Journal = pub.Journal,
 						Doi = pub.Doi,
 						PublishedAt = pub.PublishedAt,
+						UploaderId = pub.UploaderId,
 						// 4/27 JacklynX changed - get scaffold group IDs via dataset chain
 						ScaffoldGroupIds = pub.PublicationDatasets
 							.SelectMany(ds => ds.PublicationDatasetScaffolds)
@@ -88,6 +89,7 @@ namespace Repositories.Repositories
 					Journal = pub.Journal,
 					Doi = pub.Doi,
 					PublishedAt = pub.PublishedAt,
+					UploaderId = pub.UploaderId,
 					ScaffoldGroupIds = pub.PublicationDatasets
 						.SelectMany(ds => ds.PublicationDatasetScaffolds)
 						.Select(pds => pds.Scaffold.ScaffoldGroupId)

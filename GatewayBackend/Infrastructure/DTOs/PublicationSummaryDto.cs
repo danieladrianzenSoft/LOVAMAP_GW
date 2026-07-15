@@ -10,8 +10,8 @@ namespace Infrastructure.DTOs
 		public DateTime PublishedAt { get; set; }
 		public string Doi { get; set; } = null!;
 		public string? Citation { get; set; }
+		public string? UploaderId { get; set; }
 		public List<int> ScaffoldGroupIds { get; set; } = [];
     	public List<int> DescriptorTypeIds { get; set; } = [];
 	}
 }
-

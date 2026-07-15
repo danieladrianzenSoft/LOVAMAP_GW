@@ -305,6 +305,8 @@ const Publications = {
         requests.post<ApiResponse<string>>(`/publications/${publicationId}/datasets`, { ...data, publicationId }),
     upsertDataset: async (publicationId: number, data: { name: string; scaffoldIds: number[]; descriptorRules: DescriptorRuleToCreate[] }) =>
         requests.put<ApiResponse<string>>(`/publications/${publicationId}/datasets`, { ...data, publicationId }),
+    updateScaffoldGroups: async (publicationId: number, scaffoldGroupIds: number[]) =>
+        requests.put<ApiResponse<string>>(`/publications/${publicationId}/scaffold-groups`, { scaffoldGroupIds }),
 }
 
 const Analytics = {

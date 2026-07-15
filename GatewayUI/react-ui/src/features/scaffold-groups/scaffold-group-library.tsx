@@ -1,12 +1,12 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { FaChevronRight, FaExchangeAlt, FaFolder, FaGlobeAmericas, FaImage, FaLock, FaRegStar, FaSearch, FaStar, FaTimes, FaTrash } from 'react-icons/fa';
+import { FaChevronRight, FaDownload, FaExchangeAlt, FaFolder, FaGlobeAmericas, FaImage, FaLock, FaRegStar, FaSearch, FaSpinner, FaStar, FaTimes, FaTrash } from 'react-icons/fa';
 import UploadFile from '../../app/common/upload-file/upload-file';
 import { Image, ImageCategory, ImageToUpdate } from '../../app/models/image';
 import { Publication } from '../../app/models/publication';
 import { ScaffoldGroup } from '../../app/models/scaffoldGroup';
 import { ParticlePropertyGroup } from '../../app/models/particlePropertyGroup';
 
-type LibraryFolder = 'all' | 'published' | 'unpublished' | 'public' | 'private' | 'simulated' | 'experimental';
+type LibraryFolder = string;
 
 type Selection =
 	| { type: 'group'; groupId: number }
@@ -30,16 +30,29 @@ interface ScaffoldGroupLibraryProps {
 	onDeleteImage: (group: ScaffoldGroup, imageId: number) => Promise<ScaffoldGroup | null>;
 	onMoveScaffold: (scaffoldId: number, targetGroupId: number) => Promise<boolean>;
 	onUpdateVisibility: (group: ScaffoldGroup, isPublic: boolean) => Promise<ScaffoldGroup | null>;
+	showFolders?: boolean;
+	customFolders?: Array<{ key: LibraryFolder; label: string; filter: (group: ScaffoldGroup) => boolean }>;
+	canManageScaffolds?: boolean;
+	canManageImages?: boolean;
+	canManageVisibility?: boolean;
+	showVisibility?: boolean;
+	canDeleteGroups?: boolean;
+	getGroupFolderAction?: (group: ScaffoldGroup) => { label: string; targetFolderKey: LibraryFolder; title?: string } | null;
+	onMoveGroupToFolder?: (group: ScaffoldGroup, targetFolderKey: LibraryFolder) => Promise<void>;
+	canDownloadGroup?: boolean;
+	isGroupDownloadLoading?: boolean;
+	onDownloadGroup?: (group: ScaffoldGroup) => Promise<void> | void;
+	headerAction?: React.ReactNode;
 }
 
-const folders: Array<{ key: LibraryFolder; label: string }> = [
-	{ key: 'all', label: 'All My Scaffolds' },
-	{ key: 'published', label: 'Published' },
-	{ key: 'unpublished', label: 'Unpublished' },
-	{ key: 'public', label: 'Public' },
-	{ key: 'private', label: 'Private' },
-	{ key: 'simulated', label: 'Simulated' },
-	{ key: 'experimental', label: 'Experimental' },
+const defaultFolders: Array<{ key: LibraryFolder; label: string; filter: (group: ScaffoldGroup, isPublished: boolean) => boolean }> = [
+	{ key: 'all', label: 'All My Scaffolds', filter: () => true },
+	{ key: 'published', label: 'Published', filter: (_group, isPublished) => isPublished },
+	{ key: 'unpublished', label: 'Unpublished', filter: (_group, isPublished) => !isPublished },
+	{ key: 'public', label: 'Public', filter: group => group.isPublic },
+	{ key: 'private', label: 'Private', filter: group => !group.isPublic },
+	{ key: 'simulated', label: 'Simulated', filter: group => group.isSimulated },
+	{ key: 'experimental', label: 'Experimental', filter: group => !group.isSimulated },
 ];
 
 const ScaffoldGroupLibrary: React.FC<ScaffoldGroupLibraryProps> = ({
@@ -53,8 +66,22 @@ const ScaffoldGroupLibrary: React.FC<ScaffoldGroupLibraryProps> = ({
 	onDeleteImage,
 	onMoveScaffold,
 	onUpdateVisibility,
+	showFolders = true,
+	customFolders,
+	canManageScaffolds = true,
+	canManageImages = isAdmin,
+	canManageVisibility = isAdmin,
+	showVisibility = true,
+	canDeleteGroups = isAdmin,
+	getGroupFolderAction,
+	onMoveGroupToFolder,
+	canDownloadGroup = false,
+	isGroupDownloadLoading = false,
+	onDownloadGroup,
+	headerAction,
 }) => {
-	const [activeFolder, setActiveFolder] = useState<LibraryFolder>('all');
+	const folders = customFolders ?? defaultFolders;
+	const [activeFolder, setActiveFolder] = useState<LibraryFolder>(folders[0]?.key ?? 'all');
 	const [query, setQuery] = useState('');
 	const [expandedGroupIds, setExpandedGroupIds] = useState<Set<number>>(new Set());
 	const [selection, setSelection] = useState<Selection | null>(null);
@@ -62,7 +89,9 @@ const ScaffoldGroupLibrary: React.FC<ScaffoldGroupLibraryProps> = ({
 	const [confirmDelete, setConfirmDelete] = useState(false);
 	const [isMutating, setIsMutating] = useState(false);
 	const [draggedScaffold, setDraggedScaffold] = useState<{ scaffoldId: number; sourceGroupId: number } | null>(null);
+	const [draggedGroupId, setDraggedGroupId] = useState<number | null>(null);
 	const [dropTargetGroupId, setDropTargetGroupId] = useState<number | null>(null);
+	const [dropTargetFolderKey, setDropTargetFolderKey] = useState<LibraryFolder | null>(null);
 	const [pendingVisibility, setPendingVisibility] = useState<boolean | null>(null);
 	const [pendingMove, setPendingMove] = useState<PendingMove | null>(null);
 	const [moveSearchQuery, setMoveSearchQuery] = useState('');
@@ -99,18 +128,18 @@ const ScaffoldGroupLibrary: React.FC<ScaffoldGroupLibraryProps> = ({
 		setPendingVisibility(null);
 	}, [selection]);
 
+	useEffect(() => {
+		if (folders.some(folder => folder.key === activeFolder)) return;
+		setActiveFolder(folders[0]?.key ?? 'all');
+	}, [activeFolder, folders]);
+
 	const counts = useMemo(() => {
 		const isPublished = (group: ScaffoldGroup) => (publicationLookup.get(group.id)?.length ?? 0) > 0;
-		return {
-			all: scaffoldGroups.length,
-			published: scaffoldGroups.filter(isPublished).length,
-			unpublished: scaffoldGroups.filter(group => !isPublished(group)).length,
-			public: scaffoldGroups.filter(group => group.isPublic).length,
-			private: scaffoldGroups.filter(group => !group.isPublic).length,
-			simulated: scaffoldGroups.filter(group => group.isSimulated).length,
-			experimental: scaffoldGroups.filter(group => !group.isSimulated).length,
-		};
-	}, [publicationLookup, scaffoldGroups]);
+		return Object.fromEntries(folders.map(folder => [
+			folder.key,
+			scaffoldGroups.filter(group => folder.filter(group, isPublished(group))).length,
+		]));
+	}, [folders, publicationLookup, scaffoldGroups]);
 
 	const filteredGroups = useMemo(() => {
 		const queryTerms = query
@@ -122,14 +151,8 @@ const ScaffoldGroupLibrary: React.FC<ScaffoldGroupLibraryProps> = ({
 		return scaffoldGroups.filter(group => {
 			const groupPublications = publicationLookup.get(group.id) ?? [];
 			const isPublished = groupPublications.length > 0;
-			const matchesFolder =
-				activeFolder === 'all' ||
-				(activeFolder === 'published' && isPublished) ||
-				(activeFolder === 'unpublished' && !isPublished) ||
-				(activeFolder === 'public' && group.isPublic) ||
-				(activeFolder === 'private' && !group.isPublic) ||
-				(activeFolder === 'simulated' && group.isSimulated) ||
-				(activeFolder === 'experimental' && !group.isSimulated);
+			const activeFolderConfig = folders.find(folder => folder.key === activeFolder);
+			const matchesFolder = !showFolders || !activeFolderConfig || activeFolderConfig.filter(group, isPublished);
 
 			if (!matchesFolder) return false;
 			if (queryTerms.length === 0) return true;
@@ -151,7 +174,7 @@ const ScaffoldGroupLibrary: React.FC<ScaffoldGroupLibraryProps> = ({
 
 			return queryTerms.every(term => searchable.includes(term));
 		});
-	}, [activeFolder, publicationLookup, query, scaffoldGroups]);
+	}, [activeFolder, folders, publicationLookup, query, scaffoldGroups, showFolders]);
 
 	useEffect(() => {
 		if (selection && filteredGroups.some(group => group.id === selection.groupId)) return;
@@ -231,7 +254,7 @@ const ScaffoldGroupLibrary: React.FC<ScaffoldGroupLibraryProps> = ({
 			isDragCanceledRef.current = false;
 			return;
 		}
-		if (!draggedScaffold || draggedScaffold.sourceGroupId === targetGroupId || isMutating) return;
+		if (!canManageScaffolds || !draggedScaffold || draggedScaffold.sourceGroupId === targetGroupId || isMutating) return;
 
 		setDropTargetGroupId(null);
 		setMoveSearchQuery('');
@@ -244,6 +267,7 @@ const ScaffoldGroupLibrary: React.FC<ScaffoldGroupLibraryProps> = ({
 	};
 
 	const handleOpenMovePicker = (scaffoldId: number, sourceGroupId: number) => {
+		if (!canManageScaffolds) return;
 		setMoveSearchQuery('');
 		setPendingMove({
 			scaffoldId,
@@ -254,7 +278,7 @@ const ScaffoldGroupLibrary: React.FC<ScaffoldGroupLibraryProps> = ({
 	};
 
 	const handleConfirmMoveScaffold = async () => {
-		if (!pendingMove || pendingMove.targetGroupId == null || isMutating) return;
+		if (!canManageScaffolds || !pendingMove || pendingMove.targetGroupId == null || isMutating) return;
 		const targetGroupId = pendingMove.targetGroupId;
 
 		setIsMutating(true);
@@ -276,7 +300,7 @@ const ScaffoldGroupLibrary: React.FC<ScaffoldGroupLibraryProps> = ({
 	};
 
 	const handleDragAutoScroll = (event: React.DragEvent<HTMLElement>) => {
-		if (!draggedScaffold || isDragCanceledRef.current) return;
+		if ((!draggedScaffold && !draggedGroupId) || isDragCanceledRef.current) return;
 
 		const edgeSize = 96;
 		const maxStep = 24;
@@ -308,7 +332,7 @@ const ScaffoldGroupLibrary: React.FC<ScaffoldGroupLibraryProps> = ({
 	};
 
 	const handleVisibilityUpdate = async (isPublic: boolean) => {
-		if (!selectedGroup || isMutating || selectedGroup.isPublic === isPublic) return;
+		if (!canManageVisibility || !selectedGroup || isMutating || selectedGroup.isPublic === isPublic) return;
 
 		setIsMutating(true);
 		const updatedGroup = await onUpdateVisibility(selectedGroup, isPublic);
@@ -340,39 +364,91 @@ const ScaffoldGroupLibrary: React.FC<ScaffoldGroupLibraryProps> = ({
 			});
 	}, [moveSearchQuery, pendingMove, scaffoldGroups]);
 
-	return (
-		<div className={`grid grid-cols-1 gap-4 min-h-[640px] min-w-0 ${selectedGroup ? 'xl:grid-cols-[220px_minmax(0,1fr)_320px] 2xl:grid-cols-[240px_minmax(0,1fr)_360px]' : 'xl:grid-cols-[240px_minmax(0,1fr)]'}`}>
-			<aside className="bg-white border border-gray-200 rounded-lg overflow-hidden">
-				<div className="px-4 py-3 border-b border-gray-100">
-					<div className="text-sm font-semibold text-gray-800">Folders</div>
-				</div>
-				<div className="p-2">
-					{folders.map(folder => (
-						<button
-							key={folder.key}
-							type="button"
-							onClick={() => setActiveFolder(folder.key)}
-							className={`w-full flex items-center justify-between gap-3 px-3 py-2 rounded-md text-sm text-left ${
-								activeFolder === folder.key
-									? 'bg-secondary-100 text-gray-900 font-medium'
-									: 'text-gray-600 hover:bg-gray-50'
-							}`}
-						>
-							<span className="inline-flex items-center gap-2 min-w-0">
-								<FaFolder className="text-gray-400 shrink-0" size={13} />
-								<span className="truncate">{folder.label}</span>
-							</span>
-							<span className="text-xs text-gray-400">{counts[folder.key]}</span>
-						</button>
-					))}
-				</div>
-			</aside>
+	const handleMoveGroupToFolder = async (group: ScaffoldGroup, targetFolderKey: LibraryFolder) => {
+		if (!onMoveGroupToFolder || isMutating) return;
 
-			<section className="bg-white border border-gray-200 rounded-lg overflow-hidden min-w-0">
+		setIsMutating(true);
+		await onMoveGroupToFolder(group, targetFolderKey);
+		setIsMutating(false);
+		setDropTargetFolderKey(null);
+	};
+
+	const activeFolderLabel = folders.find(folder => folder.key === activeFolder)?.label ?? 'Scaffold Groups';
+	const hasGroupFolderActions = Boolean(getGroupFolderAction && onMoveGroupToFolder);
+	const includeGroupActionColumn = hasGroupFolderActions;
+	const groupGridClass = showVisibility
+		? includeGroupActionColumn
+			? 'grid-cols-[minmax(240px,1fr)_100px_140px_110px_96px] lg:grid-cols-[minmax(260px,1fr)_120px_150px_120px_104px]'
+			: 'grid-cols-[minmax(240px,1fr)_100px_140px_110px] lg:grid-cols-[minmax(260px,1fr)_120px_150px_120px]'
+		: includeGroupActionColumn
+			? 'grid-cols-[minmax(240px,1fr)_100px_140px_96px] lg:grid-cols-[minmax(260px,1fr)_120px_150px_104px]'
+			: 'grid-cols-[minmax(240px,1fr)_100px_140px] lg:grid-cols-[minmax(260px,1fr)_120px_150px]';
+	const scaffoldGridClass = showVisibility
+		? 'grid-cols-[minmax(240px,1fr)_100px_140px_110px_56px] lg:grid-cols-[minmax(260px,1fr)_120px_150px_120px_56px]'
+		: 'grid-cols-[minmax(240px,1fr)_100px_140px_56px] lg:grid-cols-[minmax(260px,1fr)_120px_150px_56px]';
+	const scaffoldSummaryColSpan = showVisibility ? 'col-span-3' : 'col-span-2';
+	const tableMinWidth = showVisibility
+		? includeGroupActionColumn ? 'min-w-[832px] lg:min-w-[920px]' : 'min-w-[736px] lg:min-w-[816px]'
+		: includeGroupActionColumn ? 'min-w-[736px] lg:min-w-[816px]' : 'min-w-[640px] lg:min-w-[696px]';
+
+	return (
+		<div className={`grid grid-cols-1 gap-4 min-h-[640px] min-w-0 ${
+			showFolders
+				? selectedGroup ? 'xl:grid-cols-[220px_minmax(0,1fr)_320px] 2xl:grid-cols-[240px_minmax(0,1fr)_360px]' : 'xl:grid-cols-[240px_minmax(0,1fr)]'
+				: selectedGroup ? 'xl:grid-cols-[minmax(0,1fr)_320px] 2xl:grid-cols-[minmax(0,1fr)_360px]' : 'xl:grid-cols-1'
+		}`}>
+			{showFolders && (
+				<aside className="bg-white border border-gray-200 rounded-lg overflow-hidden">
+					<div className="px-4 py-3 border-b border-gray-100">
+						<div className="text-sm font-semibold text-gray-800">Folders</div>
+					</div>
+					<div className="p-2">
+						{folders.map(folder => (
+							<button
+								key={folder.key}
+								type="button"
+								onClick={() => setActiveFolder(folder.key)}
+								onDragOver={event => {
+									if (!draggedGroupId || !onMoveGroupToFolder) return;
+									event.preventDefault();
+									setDropTargetFolderKey(folder.key);
+								}}
+								onDragLeave={() => {
+									if (dropTargetFolderKey === folder.key) setDropTargetFolderKey(null);
+								}}
+								onDrop={async event => {
+									event.preventDefault();
+									const group = scaffoldGroups.find(item => item.id === draggedGroupId);
+									if (group) await handleMoveGroupToFolder(group, folder.key);
+									setDraggedGroupId(null);
+								}}
+								className={`w-full flex items-center justify-between gap-3 px-3 py-2 rounded-md text-sm text-left ${
+									dropTargetFolderKey === folder.key
+										? 'bg-secondary-100 ring-1 ring-inset ring-secondary-300'
+										: activeFolder === folder.key
+											? 'bg-secondary-100 text-gray-900 font-medium'
+											: 'text-gray-600 hover:bg-gray-50'
+								}`}
+							>
+								<span className="inline-flex items-center gap-2 min-w-0">
+									<FaFolder className="text-gray-400 shrink-0" size={13} />
+									<span className="truncate">{folder.label}</span>
+								</span>
+								<span className="text-xs text-gray-400">{counts[folder.key] ?? 0}</span>
+							</button>
+						))}
+					</div>
+				</aside>
+			)}
+
+			<section className="bg-white border border-gray-200 rounded-lg min-w-0">
 				<div className="px-4 py-3 border-b border-gray-100 flex flex-col md:flex-row md:items-center gap-3 md:justify-between">
-					<div>
-						<div className="text-sm font-semibold text-gray-800">{folders.find(folder => folder.key === activeFolder)?.label}</div>
-						<div className="text-xs text-gray-400">{filteredGroups.length} scaffold group{filteredGroups.length === 1 ? '' : 's'}</div>
+					<div className="flex w-full items-center justify-between gap-4 md:w-auto md:justify-start">
+						<div>
+							<div className="text-sm font-semibold text-gray-800">{showFolders ? activeFolderLabel : 'Scaffold Groups'}</div>
+							<div className="text-xs text-gray-400">{filteredGroups.length} scaffold group{filteredGroups.length === 1 ? '' : 's'}</div>
+						</div>
+						{headerAction}
 					</div>
 					<label className="relative block w-full md:w-72">
 						<FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={12} />
@@ -390,13 +466,14 @@ const ScaffoldGroupLibrary: React.FC<ScaffoldGroupLibraryProps> = ({
 					className="overflow-auto"
 					onDragOver={event => handleDragAutoScroll(event)}
 				>
-					<div className="grid grid-cols-[minmax(240px,1fr)_100px_140px_110px] lg:grid-cols-[minmax(260px,1fr)_120px_150px_120px] gap-0 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-gray-400 border-b border-gray-100 min-w-[736px] lg:min-w-[816px]">
+					<div className={`grid ${groupGridClass} gap-0 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-gray-400 border-b border-gray-100 ${tableMinWidth}`}>
 						<div>Name</div>
 						<div>Count</div>
 						<div>Publication</div>
-						<div>Visibility</div>
+						{showVisibility && <div>Visibility</div>}
+						{includeGroupActionColumn && <div></div>}
 					</div>
-					<div className="min-w-[736px] lg:min-w-[816px]">
+					<div className={tableMinWidth}>
 						{filteredGroups.length === 0 ? (
 							<div className="px-4 py-12 text-center text-sm text-gray-400">No scaffold groups found.</div>
 						) : filteredGroups.map(group => {
@@ -404,18 +481,30 @@ const ScaffoldGroupLibrary: React.FC<ScaffoldGroupLibraryProps> = ({
 							const isExpanded = expandedGroupIds.has(group.id);
 							const isSelectedGroup = selection?.type === 'group' && selection.groupId === group.id;
 							const scaffoldIds = group.scaffoldIds ?? [];
+							const groupFolderAction = getGroupFolderAction?.(group) ?? null;
 
 							return (
 								<div key={group.id}>
 									<div
-										className={`grid grid-cols-[minmax(240px,1fr)_100px_140px_110px] lg:grid-cols-[minmax(260px,1fr)_120px_150px_120px] items-center px-4 py-3 border-b border-gray-100 cursor-pointer ${
+										className={`grid ${groupGridClass} items-center px-4 py-3 border-b border-gray-100 cursor-pointer ${
 											dropTargetGroupId === group.id
 												? 'bg-secondary-100 ring-1 ring-inset ring-secondary-300'
 												: isSelectedGroup ? 'bg-secondary-50' : 'hover:bg-gray-50'
 										}`}
 										onClick={() => selectGroup(group.id)}
+										draggable={hasGroupFolderActions && !isMutating}
+										onDragStart={event => {
+											if (!hasGroupFolderActions) return;
+											event.dataTransfer.effectAllowed = 'move';
+											event.dataTransfer.setData('text/plain', group.id.toString());
+											setDraggedGroupId(group.id);
+										}}
+										onDragEnd={() => {
+											setDraggedGroupId(null);
+											setDropTargetFolderKey(null);
+										}}
 										onDragOver={event => {
-											if (!draggedScaffold || draggedScaffold.sourceGroupId === group.id) return;
+											if (!canManageScaffolds || !draggedScaffold || draggedScaffold.sourceGroupId === group.id) return;
 											event.preventDefault();
 											handleDragAutoScroll(event);
 											setDropTargetGroupId(group.id);
@@ -450,9 +539,29 @@ const ScaffoldGroupLibrary: React.FC<ScaffoldGroupLibraryProps> = ({
 										<div className="text-sm text-gray-600 truncate">
 											{groupPublications.length > 0 ? `${groupPublications.length} linked` : 'Unpublished'}
 										</div>
-										<div>
-											<VisibilityBadge isPublic={group.isPublic} />
-										</div>
+										{showVisibility && (
+											<div>
+												<VisibilityBadge isPublic={group.isPublic} />
+											</div>
+										)}
+										{includeGroupActionColumn && (
+											<div className="flex justify-end">
+												{groupFolderAction && (
+													<button
+														type="button"
+														onClick={async event => {
+															event.stopPropagation();
+															await handleMoveGroupToFolder(group, groupFolderAction.targetFolderKey);
+														}}
+														disabled={isMutating}
+														className="button-outline px-3 py-1 text-xs"
+														title={groupFolderAction.title}
+													>
+														{groupFolderAction.label}
+													</button>
+												)}
+											</div>
+										)}
 									</div>
 
 									{isExpanded && scaffoldIds.map((scaffoldId, index) => {
@@ -461,12 +570,13 @@ const ScaffoldGroupLibrary: React.FC<ScaffoldGroupLibraryProps> = ({
 										return (
 											<div
 												key={scaffoldId}
-												className={`grid grid-cols-[minmax(240px,1fr)_100px_140px_110px_56px] lg:grid-cols-[minmax(260px,1fr)_120px_150px_120px_56px] items-center px-4 py-2 border-b border-gray-100 cursor-pointer ${
+												className={`grid ${scaffoldGridClass} items-center px-4 py-2 border-b border-gray-100 cursor-pointer ${
 													isSelectedScaffold ? 'bg-secondary-50' : 'hover:bg-gray-50'
 												}`}
 												onClick={() => selectScaffold(group.id, scaffoldId)}
-												draggable={!isMutating}
+												draggable={canManageScaffolds && !isMutating}
 												onDragStart={event => {
+													if (!canManageScaffolds) return;
 													event.stopPropagation();
 													isDragCanceledRef.current = false;
 													event.dataTransfer.effectAllowed = 'move';
@@ -495,23 +605,25 @@ const ScaffoldGroupLibrary: React.FC<ScaffoldGroupLibraryProps> = ({
 														<div className="text-xs text-gray-400">Replicate {index + 1}</div>
 													</div>
 												</div>
-												<div className="col-span-3 text-xs text-gray-400 truncate">
+												<div className={`${scaffoldSummaryColSpan} text-xs text-gray-400 truncate`}>
 													{group.name || formatParticle(group)}
 												</div>
 												<div className="flex justify-center">
-													<button
-														type="button"
-														onClick={event => {
-															event.stopPropagation();
-															handleOpenMovePicker(scaffoldId, group.id);
-														}}
-														className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded text-gray-500 hover:bg-gray-100 hover:text-gray-800"
-														title="Move scaffold"
-														aria-label={`Move scaffold ${scaffoldId}`}
-														disabled={isMutating}
-													>
-														<FaExchangeAlt size={12} />
-													</button>
+													{canManageScaffolds && (
+														<button
+															type="button"
+															onClick={event => {
+																event.stopPropagation();
+																handleOpenMovePicker(scaffoldId, group.id);
+															}}
+															className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded text-gray-500 hover:bg-gray-100 hover:text-gray-800"
+															title="Move scaffold"
+															aria-label={`Move scaffold ${scaffoldId}`}
+															disabled={isMutating}
+														>
+															<FaExchangeAlt size={12} />
+														</button>
+													)}
 												</div>
 											</div>
 										);
@@ -546,11 +658,14 @@ const ScaffoldGroupLibrary: React.FC<ScaffoldGroupLibraryProps> = ({
 										</h2>
 									</div>
 									<div className="flex items-center gap-2 shrink-0">
-										<VisibilityControl
-											isPublic={selectedGroup.isPublic}
-											isDisabled={isMutating}
-											onChange={setPendingVisibility}
-										/>
+										{showVisibility && (
+											<VisibilityControl
+												isPublic={selectedGroup.isPublic}
+												isDisabled={isMutating}
+												onChange={setPendingVisibility}
+												canChange={canManageVisibility}
+											/>
+										)}
 										<button
 											type="button"
 											onClick={() => setSelection(null)}
@@ -564,7 +679,7 @@ const ScaffoldGroupLibrary: React.FC<ScaffoldGroupLibraryProps> = ({
 							</div>
 
 							<div className="p-4 overflow-auto space-y-5">
-								{pendingVisibility !== null && (
+								{showVisibility && pendingVisibility !== null && (
 									<VisibilityConfirm
 										groupName={selectedGroup.name || `Scaffold Group ${selectedGroup.id}`}
 										isPublic={pendingVisibility}
@@ -622,7 +737,7 @@ const ScaffoldGroupLibrary: React.FC<ScaffoldGroupLibraryProps> = ({
 									<div className="text-xs font-semibold uppercase tracking-wide text-gray-400">
 										{selectedScaffoldId ? 'Scaffold Images' : 'Group Images'}
 									</div>
-									{isAdmin && (
+									{canManageImages && (
 										<button
 											type="button"
 											onClick={() => setShowImageUpload(prev => !prev)}
@@ -649,7 +764,7 @@ const ScaffoldGroupLibrary: React.FC<ScaffoldGroupLibraryProps> = ({
 										{inspectorImages.map(image => (
 											<div key={image.id} className="relative border border-gray-200 rounded-md overflow-hidden bg-gray-50">
 												<img src={image.url} alt={`${image.id}`} className="w-full h-24 object-cover" />
-												{isAdmin && (
+												{canManageImages && (
 													<>
 														<button
 															type="button"
@@ -714,7 +829,19 @@ const ScaffoldGroupLibrary: React.FC<ScaffoldGroupLibraryProps> = ({
 									>
 										Interact
 									</button>
-									{isAdmin && (
+									{canDownloadGroup && onDownloadGroup && (
+										<button
+											type="button"
+											onClick={() => onDownloadGroup(selectedGroup)}
+											className="button-outline inline-flex items-center justify-center gap-2 px-3"
+											title="Download descriptors"
+											disabled={isGroupDownloadLoading}
+										>
+											{isGroupDownloadLoading ? <FaSpinner className="animate-spin" size={12} /> : <FaDownload size={12} />}
+											{isGroupDownloadLoading ? 'Preparing...' : 'Download'}
+										</button>
+									)}
+									{canDeleteGroups && (
 										<button
 											type="button"
 											onClick={() => setConfirmDelete(true)}
@@ -732,7 +859,7 @@ const ScaffoldGroupLibrary: React.FC<ScaffoldGroupLibraryProps> = ({
 				</>
 			)}
 
-			{pendingMove && pendingMoveSourceGroup && (
+			{canManageScaffolds && pendingMove && pendingMoveSourceGroup && (
 				<MoveScaffoldConfirm
 					scaffoldId={pendingMove.scaffoldId}
 					sourceGroup={pendingMoveSourceGroup}
@@ -766,13 +893,14 @@ const VisibilityBadge: React.FC<{ isPublic: boolean }> = ({ isPublic }) => (
 const VisibilityControl: React.FC<{
 	isPublic: boolean;
 	isDisabled: boolean;
+	canChange?: boolean;
 	onChange: (isPublic: boolean) => void;
-}> = ({ isPublic, isDisabled, onChange }) => (
+}> = ({ isPublic, isDisabled, canChange = true, onChange }) => (
 	<div className="inline-flex rounded-md border border-gray-200 bg-gray-50 p-0.5">
 		<button
 			type="button"
 			onClick={() => onChange(true)}
-			disabled={isDisabled || isPublic}
+			disabled={!canChange || isDisabled || isPublic}
 			className={`inline-flex items-center gap-1 rounded px-2 py-1 text-xs transition ${
 				isPublic ? 'bg-white text-green-700 shadow-sm' : 'text-gray-500 hover:text-gray-800'
 			}`}
@@ -784,7 +912,7 @@ const VisibilityControl: React.FC<{
 		<button
 			type="button"
 			onClick={() => onChange(false)}
-			disabled={isDisabled || !isPublic}
+			disabled={!canChange || isDisabled || !isPublic}
 			className={`inline-flex items-center gap-1 rounded px-2 py-1 text-xs transition ${
 				!isPublic ? 'bg-white text-gray-700 shadow-sm' : 'text-gray-500 hover:text-gray-800'
 			}`}

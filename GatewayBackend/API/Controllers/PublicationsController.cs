@@ -131,7 +131,7 @@ public class PublicationsController : ControllerBase
 		if (dto is null) return BadRequest(new ApiResponse<string>(400, "Body required."));
 		try
 		{
-			await _publicationService.CreatePublication(dto);
+			await _publicationService.CreatePublication(dto, _userService.GetCurrentUserId());
 			return Ok(new ApiResponse<string>(201, "Publication created successfully."));
 		}
 		catch (Exception ex)
@@ -150,10 +150,17 @@ public class PublicationsController : ControllerBase
 		if (publicationId != dto.PublicationId)
 			return BadRequest("Path publicationId does not match body PublicationId.");
 
-		var (succeeded, errorMessage, result) = await _datasetService.CreatePublicationDatasetAsync(dto);
+		var (succeeded, errorMessage, result) = await _datasetService.CreatePublicationDatasetAsync(
+			dto,
+			_userService.GetCurrentUserId(),
+			User.IsInRole("administrator"));
 
 		if (!succeeded)
+		{
+			if (errorMessage == "Unauthorized.")
+				return Forbid();
 			return BadRequest(new ApiResponse<string>(400, errorMessage));
+		}
 
 		return Ok(new ApiResponse<PublicationDatasetDto>(201, "Publication dataset created", result));
 	}
@@ -168,10 +175,17 @@ public class PublicationsController : ControllerBase
 			return BadRequest("Path publicationId does not match body PublicationId.");
 
 		var (succeeded, message, publicationDataset, isNew) = 
-			await _datasetService.UpsertPublicationDatasetAsync(dto);
+			await _datasetService.UpsertPublicationDatasetAsync(
+				dto,
+				_userService.GetCurrentUserId(),
+				User.IsInRole("administrator"));
 
 		if (!succeeded)
+		{
+			if (message == "Unauthorized.")
+				return Forbid();
 			return BadRequest(new ApiResponse<string>(400, message));
+		}
 
 		// 201 if it was created, 200 if updated – not strictly required, but nice.
 		var statusCode = isNew == true ? 201 : 200;
@@ -181,6 +195,30 @@ public class PublicationsController : ControllerBase
 			statusCode,
 			new ApiResponse<PublicationDatasetDto>(statusCode, messageToReturn, publicationDataset)
 		);
+	}
+
+	[HttpPut("{publicationId:int}/scaffold-groups")]
+	public async Task<IActionResult> UpdatePublicationScaffoldGroups(
+		int publicationId,
+		[FromBody] PublicationScaffoldGroupsUpdateDto dto)
+	{
+		if (dto is null) return BadRequest("Body required.");
+
+		var (succeeded, message, publicationDataset) =
+			await _datasetService.UpdatePublicationScaffoldGroupsAsync(
+				publicationId,
+				dto,
+				_userService.GetCurrentUserId(),
+				User.IsInRole("administrator"));
+
+		if (!succeeded)
+		{
+			if (message == "Unauthorized.")
+				return Forbid();
+			return BadRequest(new ApiResponse<string>(400, message));
+		}
+
+		return Ok(new ApiResponse<PublicationDatasetDto>(200, "Publication scaffold groups updated", publicationDataset));
 	}
 
 	[HttpGet("datasets/{datasetId:int}")]

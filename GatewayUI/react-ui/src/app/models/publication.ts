@@ -6,6 +6,7 @@ export interface Publication {
 	publishedAt: Date;
 	doi: string;
 	citation: string | null;
+	uploaderId: string | null;
 	scaffoldGroupIds: number[];
 	descriptorTypeIds: number[];
 }

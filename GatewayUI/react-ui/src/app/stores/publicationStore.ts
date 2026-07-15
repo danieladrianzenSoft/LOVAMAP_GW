@@ -76,6 +76,17 @@ export default class PublicationStore {
 		}
 	}
 
+	updateScaffoldGroups = async(publicationId: number, scaffoldGroupIds: number[]): Promise<{ success: boolean; error?: string }> => {
+		try {
+			await agent.Publications.updateScaffoldGroups(publicationId, scaffoldGroupIds);
+			return { success: true };
+		} catch (error: any) {
+			const msg = getPublicationErrorMessage(error, "Failed to update publication scaffold groups.");
+			console.error("Error updating publication scaffold groups", error);
+			return { success: false, error: msg };
+		}
+	}
+
 	deletePublication = async(publicationId: number): Promise<{ success: boolean; error?: string }> => {
 		try {
 			await agent.Publications.delete(publicationId);

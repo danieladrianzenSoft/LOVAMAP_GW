@@ -7,7 +7,7 @@ namespace Services.IServices
 {
 	public interface IPublicationService
 	{
-		Task CreatePublication(PublicationToCreateDto publicationToCreate);
+		Task CreatePublication(PublicationToCreateDto publicationToCreate, string? uploaderId);
 		Task<(bool Succeeded, string ErrorMessage)> UpdatePublication(int publicationId, PublicationToCreateDto publicationToUpdate);
 		Task<(bool Succeeded, string ErrorMessage)> DeletePublication(int publicationId);
 		Task<(bool Succeeded, string ErrorMessage, PublicationSummaryDto? publication)> GetPublicationSummaryByIdAsync(int publicationId);

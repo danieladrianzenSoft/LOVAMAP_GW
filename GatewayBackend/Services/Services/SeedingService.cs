@@ -153,7 +153,7 @@ namespace Services.Services
 				foreach (var publication in publications)
 				{
 					publication.PublishedAt = DateTime.SpecifyKind(publication.PublishedAt, DateTimeKind.Utc);
-					await _publicationService.CreatePublication(publication);
+					await _publicationService.CreatePublication(publication, null);
 				}
 			}
 		}

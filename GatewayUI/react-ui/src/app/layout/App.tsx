@@ -27,6 +27,7 @@ import BulkUploadPage from '../../features/bulk-upload/bulk-upload-page';
 import DescriptorCalculator from '../../features/descriptors/descriptor-calculator';
 import { ExploreData } from '../../features/explore-data/explore-data';
 import Publications from '../../features/publications/publications';
+import PublicationData from '../../features/publications/publication-data';
 import JobsMain from '../../features/jobs/jobs-main';
 import JobList from '../../features/jobs/job-list';
 import RunSegmentation from '../../features/jobs/run-segmentation';
@@ -102,6 +103,7 @@ const MainLayout: React.FC = observer(() => {
           <Route path="/data/:scaffoldGroupId" element={<ExploreData />} />
           <Route path="/descriptor-calculator" element={<DescriptorCalculator />} />
           <Route path="/publications" element={<Publications />} />
+          <Route path="/publications/:publicationId/data" element={<PublicationData />} />
           <Route path="/experiments" element={<ProtectedRoute element={<CreateExperiments />} />} />
           <Route path="/my-scaffolds" element={<ProtectedRoute element={<ScaffoldGroupUploads />} />} />
           <Route path="/run" element={<JobsMain />} />

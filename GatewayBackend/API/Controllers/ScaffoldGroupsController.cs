@@ -363,6 +363,7 @@ public class ScaffoldGroupsController : ControllerBase
 		}
 	}
 
+	[AllowAnonymous]
 	[HttpGet]
     public async Task<IActionResult> GetSummarizedScaffoldGroups([FromQuery] ScaffoldFilter filter)
     {
@@ -370,7 +371,17 @@ public class ScaffoldGroupsController : ControllerBase
 		{
             var currentUserId = _userService.GetCurrentUserId();
 
-			if (currentUserId == null) return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
+			if (currentUserId == null)
+			{
+				if (filter.PublicationId == null && filter.PublicationDatasetId == null)
+					return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
+
+				var (succeededAdminUser, errorMessageAdminUser, adminUserId) = await _userService.GetAdminUserIdAsync();
+				if (!succeededAdminUser || adminUserId == null)
+					return StatusCode(500, new ApiResponse<string>(500, errorMessageAdminUser));
+
+				currentUserId = adminUserId;
+			}
 
 			var (succeeded, errorMessage, scaffoldGroups) = await _scaffoldGroupService.GetFilteredScaffoldGroups(filter, currentUserId);
 

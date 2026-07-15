@@ -311,15 +311,9 @@ const Publications: React.FC = () => {
 		await refreshPublications();
 	};
 
-	const handleViewInExplore = (pubId: number) => {
-		History.push(`/explore?publicationId=${pubId}&restrictToPublicationDataset=true`);
+	const handleViewData = (pubId: number) => {
+		History.push(`/publications/${pubId}/data`);
 	};
-
-	// If you later show datasets per pub and want dataset-level scope:
-	const handleViewDatasetInExplore = (datasetId: number) => {
-		History.push(`/explore?publicationDatasetId=${datasetId}&restrictToPublicationDataset=true`);
-	};
-
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -383,7 +377,7 @@ const Publications: React.FC = () => {
 						<div className="absolute right-0 mt-1 w-44 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
 							<button
 								className="w-full text-left px-4 py-3 hover:bg-gray-50 text-sm text-gray-700 cursor-pointer rounded-t-lg"
-								onClick={(e) => { e.stopPropagation(); setActionsOpenId(null); handleViewInExplore(pub.id); }}
+								onClick={(e) => { e.stopPropagation(); setActionsOpenId(null); handleViewData(pub.id); }}
 							>
 								View Data
 							</button>
@@ -394,12 +388,6 @@ const Publications: React.FC = () => {
 										onClick={(e) => { e.stopPropagation(); setActionsOpenId(null); openEditPublication(pub); }}
 									>
 										Edit Publication
-									</button>
-									<button
-										className="w-full text-left px-4 py-3 hover:bg-gray-50 text-sm text-gray-700 cursor-pointer"
-										onClick={(e) => { e.stopPropagation(); setActionsOpenId(null); handleOpenDataset(pub.id, true, pub); }}
-									>
-										Edit Data
 									</button>
 									<button
 										className="w-full text-left px-4 py-3 hover:bg-gray-50 text-sm text-red-600 cursor-pointer border-t border-gray-100 rounded-b-lg"

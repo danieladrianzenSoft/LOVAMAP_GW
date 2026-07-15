@@ -7,6 +7,7 @@ using Infrastructure.IHelpers;
 using System.Text.Json;
 using Data;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
 using Repositories.Repositories;
 
 namespace Services.Services
@@ -34,7 +35,7 @@ namespace Services.Services
 			_publicationRepository = publicationRepository;
 			_logger = logger;
 		}
-		public async Task<(bool Succeeded, string ErrorMessage, PublicationDatasetDto? publicationDatasetDto)> CreatePublicationDatasetAsync(PublicationDatasetForCreationDto datasetForCreationDto)
+		public async Task<(bool Succeeded, string ErrorMessage, PublicationDatasetDto? publicationDatasetDto)> CreatePublicationDatasetAsync(PublicationDatasetForCreationDto datasetForCreationDto, string? currentUserId, bool isAdmin)
 		{
 			try
 			{
@@ -42,8 +43,11 @@ namespace Services.Services
 					return (false, "Dataset name is required.", null);
 
 				// 1) Validate Publication exists
-				if (!await _publicationRepository.ExistsAsync(datasetForCreationDto.PublicationId))
+				var publication = await _publicationRepository.GetByIdAsync(datasetForCreationDto.PublicationId);
+				if (publication == null)
 					return (false, $"Publication {datasetForCreationDto.PublicationId} not found.", null);
+				if (!CanEditPublication(publication, currentUserId, isAdmin))
+					return (false, "Unauthorized.", null);
 
 				// 2) Enforce name uniqueness within publication
 				if (await _publicationDatasetRepository.PublicationDatasetNameExistsAsync(datasetForCreationDto.PublicationId, datasetForCreationDto.Name.Trim()))
@@ -104,7 +108,7 @@ namespace Services.Services
 		}
 
 		public async Task<(bool Succeeded, string ErrorMessage, PublicationDatasetDto? publicationDatasetDto, bool? isNew)>
-			UpsertPublicationDatasetAsync(PublicationDatasetForCreationDto datasetForUpsertDto)
+			UpsertPublicationDatasetAsync(PublicationDatasetForCreationDto datasetForUpsertDto, string? currentUserId, bool isAdmin)
 		{
 			try
 			{
@@ -118,8 +122,11 @@ namespace Services.Services
 				datasetForUpsertDto.Name = trimmedName;
 
 				// 1) Validate Publication exists
-				if (!await _publicationRepository.ExistsAsync(datasetForUpsertDto.PublicationId))
+				var publication = await _publicationRepository.GetByIdAsync(datasetForUpsertDto.PublicationId);
+				if (publication == null)
 					return (false, $"Publication {datasetForUpsertDto.PublicationId} not found.", null, null);
+				if (!CanEditPublication(publication, currentUserId, isAdmin))
+					return (false, "Unauthorized.", null, null);
 
 				// 2) Validate scaffolds
 				var requestedScaffoldIds = datasetForUpsertDto.ScaffoldIds?.Distinct().ToArray() ?? Array.Empty<int>();
@@ -220,6 +227,83 @@ namespace Services.Services
 				_logger.LogError(ex, "Error getting publication dataset");
 				return (false, "Error getting publication dataset", null);
 			}
+		}
+
+		public async Task<(bool Succeeded, string ErrorMessage, PublicationDatasetDto? publicationDatasetDto)> UpdatePublicationScaffoldGroupsAsync(
+			int publicationId,
+			PublicationScaffoldGroupsUpdateDto dto,
+			string? currentUserId,
+			bool isAdmin)
+		{
+			try
+			{
+				if (dto is null)
+					return (false, "Body required.", null);
+
+				var publication = await _publicationRepository.GetByIdAsync(publicationId);
+				if (publication == null)
+					return (false, $"Publication {publicationId} not found.", null);
+				if (!CanEditPublication(publication, currentUserId, isAdmin))
+					return (false, "Unauthorized.", null);
+
+				var groupIds = dto.ScaffoldGroupIds?.Distinct().ToArray() ?? Array.Empty<int>();
+				var groups = await _context.ScaffoldGroups
+					.AsNoTracking()
+					.Where(group => groupIds.Contains(group.Id))
+					.Select(group => new
+					{
+						group.Id,
+						ScaffoldIds = group.Scaffolds.Select(scaffold => scaffold.Id).ToList()
+					})
+					.ToListAsync();
+
+				var missingGroupIds = groupIds.Except(groups.Select(group => group.Id)).ToArray();
+				if (missingGroupIds.Length > 0)
+					return (false, $"Some scaffold groups do not exist: {string.Join(",", missingGroupIds)}", null);
+
+				var scaffoldIds = groups
+					.SelectMany(group => group.ScaffoldIds)
+					.Distinct()
+					.ToArray();
+
+				using var transaction = await _context.Database.BeginTransactionAsync();
+
+				var dataset = await _publicationDatasetRepository.GetPublicationDatasetByNameAsync(publicationId, "Main");
+				if (dataset == null)
+				{
+					dataset = new PublicationDataset
+					{
+						PublicationId = publicationId,
+						Name = "Main"
+					};
+					_publicationDatasetRepository.Add(dataset);
+					await _context.SaveChangesAsync();
+				}
+				else
+				{
+					await _publicationDatasetRepository.DeleteScaffolds(dataset.Id);
+				}
+
+				if (scaffoldIds.Length > 0)
+					await _publicationDatasetRepository.AddPublicationDatasetScaffolds(dataset.Id, scaffoldIds);
+
+				await _context.SaveChangesAsync();
+				await transaction.CommitAsync();
+
+				var datasetToReturn = await _publicationDatasetRepository.GetPublicationDatasetByIdAsync(dataset.Id);
+				return (true, "", datasetToReturn);
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, "Error updating publication scaffold groups");
+				return (false, "Error updating publication scaffold groups", null);
+			}
+		}
+
+		private static bool CanEditPublication(Publication publication, string? currentUserId, bool isAdmin)
+		{
+			if (isAdmin) return true;
+			return !string.IsNullOrWhiteSpace(currentUserId) && publication.UploaderId == currentUserId;
 		}
 	}
 }

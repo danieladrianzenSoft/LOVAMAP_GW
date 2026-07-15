@@ -1,5 +1,5 @@
 export interface User {
-	id: number;
+	id: string;
 	email: string;
 	accessToken: string;
 	roles: string[];
@@ -30,4 +30,3 @@ export interface UserChangePassword {
 	oldPassword: string;
 	newPassword: string;
 }
-

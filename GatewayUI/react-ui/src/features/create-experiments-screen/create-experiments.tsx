@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { observer } from "mobx-react-lite";
 import { useSearchParams } from "react-router-dom";
 import { useStore } from "../../app/stores/store";
@@ -36,12 +36,45 @@ const CreateExperiments = () => {
     const [selectedScaffoldGroups, setSelectedScaffoldGroups] = useState<ScaffoldGroup[]>([]);
     const [selectedDescriptorTypes, setSelectedDescriptorTypes] = useState<DescriptorType[]>([]);
     const [replicatesByGroup, setReplicatesByGroup] = useState<Record<number, number>>({});
-    const [experimentStage, setExperimentStage] = useState(1);
+    const initialStageParam = Number(searchParams.get('stage'));
+    const initialStage = [1, 2, 3].includes(initialStageParam) ? initialStageParam : 1;
+    const initialScaffoldGroupIdsParam = searchParams.get('scaffoldGroupIds');
+    const initialScaffoldGroupIdParam = searchParams.get('scaffoldGroupId');
+    const hasInitialPreselection = Boolean(initialScaffoldGroupIdsParam || initialScaffoldGroupIdParam);
+    const [experimentStage, setExperimentStage] = useState(initialStage);
     const [numFiles, setNumFiles] = useState(2);
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [isPreselectionLoading, setIsPreselectionLoading] = useState(hasInitialPreselection);
     const [error, setError] = useState<string | null>(null);
     const [isSidebarVisible, setSidebarVisible] = useState(false);
     const [showAcknowledgement, setShowAcknowledgement] = useState(false);
+    const [publicationContext, setPublicationContext] = useState<{
+        id: number | null;
+        title: string;
+        authors?: string;
+        journal?: string;
+        publishedAt?: string;
+        doi?: string;
+        originalGroupIds: number[];
+    } | null>(() => {
+        const publicationTitle = searchParams.get('publicationTitle');
+        const publicationId = Number(searchParams.get('publicationId'));
+        const originalGroupIds = initialScaffoldGroupIdsParam
+            ? initialScaffoldGroupIdsParam.split(',').map(Number).filter(id => !isNaN(id))
+            : [];
+
+        return publicationTitle
+            ? {
+                id: isNaN(publicationId) ? null : publicationId,
+                title: publicationTitle,
+                authors: searchParams.get('publicationAuthors') ?? undefined,
+                journal: searchParams.get('publicationJournal') ?? undefined,
+                publishedAt: searchParams.get('publicationPublishedAt') ?? undefined,
+                doi: searchParams.get('publicationDoi') ?? undefined,
+                originalGroupIds,
+            }
+            : null;
+    });
 
     const maxNumFiles = 2;
     const numSheets = 4;
@@ -71,32 +104,87 @@ const CreateExperiments = () => {
         setSearchCategory,
     } = useScaffoldGroupFiltering(true, setIsLoading);
 
-    // Pre-select scaffold group from URL query param (e.g. /experiments?scaffoldGroupId=123)
+    // Pre-select scaffold group(s) from URL query params:
+    // /experiments?scaffoldGroupId=123 or /experiments?scaffoldGroupIds=123,456&stage=2
     useEffect(() => {
-        const scaffoldGroupIdParam = searchParams.get('scaffoldGroupId');
-        if (!scaffoldGroupIdParam) return;
+        const scaffoldGroupIdParam = initialScaffoldGroupIdParam;
+        const scaffoldGroupIdsParam = initialScaffoldGroupIdsParam;
+        const stageParam = initialStageParam;
+        const publicationTitle = searchParams.get('publicationTitle');
+        const publicationId = Number(searchParams.get('publicationId'));
+        const publicationAuthors = searchParams.get('publicationAuthors') ?? undefined;
+        const publicationJournal = searchParams.get('publicationJournal') ?? undefined;
+        const publicationPublishedAt = searchParams.get('publicationPublishedAt') ?? undefined;
+        const publicationDoi = searchParams.get('publicationDoi') ?? undefined;
+        const parsedIds = [
+            ...(scaffoldGroupIdParam ? [Number(scaffoldGroupIdParam)] : []),
+            ...(scaffoldGroupIdsParam ? scaffoldGroupIdsParam.split(',').map(Number) : []),
+        ].filter(id => !isNaN(id));
 
-        const scaffoldGroupId = parseInt(scaffoldGroupIdParam);
-        if (isNaN(scaffoldGroupId)) return;
+        if (parsedIds.length === 0 && !stageParam) return;
 
         // Clear the param so it doesn't re-trigger
         searchParams.delete('scaffoldGroupId');
+        searchParams.delete('scaffoldGroupIds');
+        searchParams.delete('stage');
+        searchParams.delete('publicationId');
+        searchParams.delete('publicationTitle');
+        searchParams.delete('publicationAuthors');
+        searchParams.delete('publicationJournal');
+        searchParams.delete('publicationPublishedAt');
+        searchParams.delete('publicationDoi');
         setSearchParams(searchParams, { replace: true });
 
         const preselect = async () => {
             try {
-                const group = await scaffoldGroupStore.getDetailedScaffoldGroupById({ scaffoldGroupId });
-                if (group) {
-                    setSelectedScaffoldGroups(prev =>
-                        prev.some(g => g.id === group.id) ? prev : [...prev, group]
+                setIsPreselectionLoading(parsedIds.length > 0);
+                if (parsedIds.length > 0) {
+                    const groups = await Promise.all(
+                        parsedIds.map(scaffoldGroupId => scaffoldGroupStore.getDetailedScaffoldGroupById({ scaffoldGroupId }))
                     );
+                    const validGroups = groups.filter((group): group is ScaffoldGroup => Boolean(group));
+                    setSelectedScaffoldGroups(prev => {
+                        const existingIds = new Set(prev.map(group => group.id));
+                        return [...prev, ...validGroups.filter(group => !existingIds.has(group.id))];
+                    });
+                    setReplicatesByGroup(prev => {
+                        const next = { ...prev };
+                        validGroups.forEach(group => {
+                            next[group.id] = group.numReplicates;
+                        });
+                        return next;
+                    });
+                }
+                if ([1, 2, 3].includes(stageParam)) {
+                    setExperimentStage(stageParam);
+                }
+                if (publicationTitle) {
+                    setPublicationContext({
+                        id: isNaN(publicationId) ? null : publicationId,
+                        title: publicationTitle,
+                        authors: publicationAuthors,
+                        journal: publicationJournal,
+                        publishedAt: publicationPublishedAt,
+                        doi: publicationDoi,
+                        originalGroupIds: parsedIds,
+                    });
                 }
             } catch (err) {
-                console.error('Failed to pre-select scaffold group:', err);
+                console.error('Failed to pre-select scaffold groups:', err);
+            } finally {
+                setIsPreselectionLoading(false);
             }
         };
         preselect();
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+    const publicationSelectionModified = useMemo(() => {
+        if (!publicationContext) return false;
+        const currentIds = new Set(selectedScaffoldGroups.map(group => group.id));
+        const originalIds = new Set(publicationContext.originalGroupIds);
+        if (currentIds.size !== originalIds.size) return true;
+        return Array.from(currentIds).some(id => !originalIds.has(id));
+    }, [publicationContext, selectedScaffoldGroups]);
 
     const clearFilters = () => {
 		setSelectedTags({});
@@ -139,12 +227,21 @@ const CreateExperiments = () => {
         setError(null);
         if (!selectedScaffoldGroups.some(group => group.id === scaffoldGroup.id)) {
             setSelectedScaffoldGroups([...selectedScaffoldGroups, scaffoldGroup]);
+            setReplicatesByGroup(prev => ({
+                ...prev,
+                [scaffoldGroup.id]: scaffoldGroup.numReplicates,
+            }));
         }
     };
 
     const handleUnselectScaffoldGroup = (scaffoldGroupId: number) => {
         setError(null);
         setSelectedScaffoldGroups(selectedScaffoldGroups.filter(group => group.id !== scaffoldGroupId));
+        setReplicatesByGroup(prev => {
+            const next = { ...prev };
+            delete next[scaffoldGroupId];
+            return next;
+        });
     };
 
     // const handleDownloadClick = () => {
@@ -422,10 +519,53 @@ const CreateExperiments = () => {
 
     return (
         <div className="flex mx-auto py-8 px-6">
-            <div className="flex-1 space-y-12 pr-4">
-                <div className="text-3xl text-gray-700 font-bold mb-12">Customize downloads</div>
+            <div className="flex-1 pr-4">
+                <div className="mb-8 text-3xl text-gray-700 font-bold">Customize downloads</div>
+                {publicationContext && (
+                    <div className="mb-6 rounded-lg border border-secondary-200 bg-white px-4 py-3 text-sm text-gray-700">
+                        <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+                            <div className="min-w-0">
+                                <div>
+                                    <span className="font-semibold">Publication dataset:</span>{' '}
+                                    <span className="break-words">{publicationContext.title}</span>
+                                </div>
+                                <div className="mt-1 text-xs text-gray-500">
+                                    {[publicationContext.authors, publicationContext.journal, publicationContext.publishedAt ? new Date(publicationContext.publishedAt).toLocaleDateString() : null]
+                                        .filter(Boolean)
+                                        .join(' · ')}
+                                </div>
+                                {publicationContext.doi && (
+                                    <a
+                                        href={`https://doi.org/${publicationContext.doi}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="mt-1 inline-block break-all text-xs text-link-100 hover:underline"
+                                    >
+                                        {publicationContext.doi}
+                                    </a>
+                                )}
+                            </div>
+                            <div className="flex shrink-0 items-center gap-2">
+                                <span className="rounded bg-secondary-50 px-2 py-1 text-xs text-gray-600">
+                                    {selectedScaffoldGroups.length} scaffold group{selectedScaffoldGroups.length === 1 ? '' : 's'} selected
+                                </span>
+                                {publicationSelectionModified && (
+                                    <span className="rounded bg-yellow-50 px-2 py-1 text-xs font-medium text-yellow-700">
+                                        Modified
+                                    </span>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                )}
                 <Stepper steps={["Scaffold Groups", "Descriptors", "Layout"]} currentStep={experimentStage - 1} />
-                <div className="flex h-full w-full">
+                <div className="mt-12 flex h-full w-full">
+                    {isPreselectionLoading ? (
+                        <div className="w-full rounded-lg border border-gray-200 bg-white">
+                            <LoadingSpinner text="Loading publication scaffold groups..." />
+                        </div>
+                    ) : (
+                    <>
                     {experimentStage === 1 && 
                         <div className="w-full mb-12">
                             <div className="flex flex-col md:flex-row md:justify-between md:items-center">
@@ -578,8 +718,11 @@ const CreateExperiments = () => {
                             </div>
                         </div>
                     }
+                    </>
+                    )}
                 </div>
             </div>
+            {!isPreselectionLoading && (
             <Sidebar
                 isVisible={isSidebarVisible}
                 onClose={() => setSidebarVisible(false)}
@@ -604,6 +747,7 @@ const CreateExperiments = () => {
                     }}
                 />
             </Sidebar>
+            )}
             <AcknowledgementModal
                 isOpen={showAcknowledgement}
                 onClose={() => setShowAcknowledgement(false)}

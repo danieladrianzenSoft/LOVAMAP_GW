@@ -81,7 +81,8 @@ const ExperimentSidebar = ({
 								{group.name}
 							</div>
 							<Formik
-								initialValues={{scaffoldGroup:group.id, replicates: 1 }}
+								initialValues={{ scaffoldGroup: group.id, replicates: group.numReplicates || 1 }}
+								enableReinitialize
 								onSubmit={(values, {setErrors}) => console.log(values, setErrors)}
 							>
 								{formik => (
@@ -100,7 +101,7 @@ const ExperimentSidebar = ({
 													onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
 														const value = Number(e.target.value);
 														formik.setFieldValue('replicates', value);
-														onReplicatesChange(group.id, Number(e.target.value));
+														onReplicatesChange(group.id, value);
 													}}
 													compact={true}
 													value={formik.values.replicates}

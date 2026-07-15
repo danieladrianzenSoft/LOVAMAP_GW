@@ -26,12 +26,13 @@ namespace Services.Services
 			_logger = logger;
 		}
 
-		public async Task CreatePublication(PublicationToCreateDto publicationToCreate)
+		public async Task CreatePublication(PublicationToCreateDto publicationToCreate, string? uploaderId)
 		{
 			try
 			{
 				publicationToCreate.PublishedAt = DateTime.SpecifyKind(publicationToCreate.PublishedAt, DateTimeKind.Utc);
 				var publication = _modelMapper.MapToPublication(publicationToCreate);
+				publication.UploaderId = uploaderId;
 				_publicationRepository.Add(publication);
 
 				await _context.SaveChangesAsync();

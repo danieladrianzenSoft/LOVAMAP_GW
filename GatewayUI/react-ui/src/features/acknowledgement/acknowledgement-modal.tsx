@@ -40,13 +40,13 @@ const AcknowledgementModal: React.FC<AcknowledgementModalProps> = ({
 				<div className="flex justify-end space-x-2 mt-4">
 					<button
 						onClick={onClose}
-						className="px-4 py-2 rounded border border-gray-300 text-gray-700 hover:bg-gray-100"
+						className="inline-flex items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-1"
 					>
 						Cancel
 					</button>
 					<button
 						onClick={onConfirm}
-						className="button-primary"
+						className="inline-flex items-center justify-center rounded-md bg-gray-800 px-4 py-2 text-sm font-medium text-white shadow-sm transition-colors hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-1"
 					>
 						Continue to Download
 					</button>
