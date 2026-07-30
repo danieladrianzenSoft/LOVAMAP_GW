@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using Repositories.IRepositories;
 using Data;
 using Data.Models;
+using Infrastructure.DTOs;
+using Infrastructure.Helpers;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -32,29 +34,34 @@ namespace Repositories.Repositories
 			return await _context.Jobs.FindAsync(jobId);
 		}
 
-		public async Task<IEnumerable<Job>> GetJobsByCreatorIdAsync(string creatorId)
+		public async Task<PagedList<Job>> GetJobsByCreatorIdAsync(string creatorId, PagingParams pagingParams)
 		{
-			return await _context.Jobs
+			var query = _context.Jobs
 				.Include(j => j.Scaffold)
+				.Include(j => j.Creator)
 				.Where(j => j.CreatorId == creatorId)
-				.OrderByDescending(j => j.SubmittedAt)
-				.ToListAsync();
+				.OrderByDescending(j => j.SubmittedAt);
+
+			return await PagedList<Job>.CreateAsync(query, pagingParams.PageNumber, pagingParams.PageSize);
 		}
 
 		// 4/13 JacklynX changed - get all jobs for admin use
-		public async Task<IEnumerable<Job>> GetAllJobsAsync()
+		public async Task<PagedList<Job>> GetAllJobsAsync(PagingParams pagingParams)
 		{
-			return await _context.Jobs
+			var query = _context.Jobs
 				.Include(j => j.Scaffold)
 				.Include(j => j.Creator)
-				.OrderByDescending(j => j.SubmittedAt)
-				.ToListAsync();
+				.OrderByDescending(j => j.SubmittedAt);
+
+			return await PagedList<Job>.CreateAsync(query, pagingParams.PageNumber, pagingParams.PageSize);
 		}
 
 		public async Task<IEnumerable<Job>> GetActiveJobsAsync()
 		{
 			return await _context.Jobs
-				.Where(j => j.Status == JobStatus.Pending || j.Status == JobStatus.Running)
+				.Include(j => j.Creator)
+				.Where(j => (j.Status == JobStatus.Pending || j.Status == JobStatus.Running)
+				          && j.IsSubmittedToCore)
 				.ToListAsync();
 		}
 

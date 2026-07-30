@@ -5,7 +5,7 @@ import { Routes, Route, useNavigate, useParams } from "react-router-dom";
 import RunLovamap from "./run-lovamap";
 import RunSegmentation from "./run-segmentation";
 import RunMesh from "./run-mesh";
-import { JobForList } from '../../app/models/job';
+import { JobForList, Pagination } from '../../app/models/job';
 import { formatDate } from '../../app/utils/format-date';
 import JobDetail from './job-detail';
 import { FaArrowLeft, FaSpinner } from 'react-icons/fa';
@@ -67,12 +67,80 @@ const PageHeader: React.FC<{ title: React.ReactNode; backTo?: string }> = ({ tit
 	);
 };
 
+/* ── Sub-view: Pagination controls ── */
+const PaginationControls: React.FC<{
+	pagination: Pagination;
+	onPageChange: (page: number) => void;
+}> = ({ pagination, onPageChange }) => {
+	const { currentPage, totalPages } = pagination;
+	if (totalPages <= 1) return null;
+
+	const getPageNumbers = () => {
+		const pages: (number | '...')[] = [];
+		if (totalPages <= 7) {
+			for (let i = 1; i <= totalPages; i++) pages.push(i);
+		} else {
+			pages.push(1);
+			if (currentPage > 3) pages.push('...');
+			for (let i = Math.max(2, currentPage - 1); i <= Math.min(totalPages - 1, currentPage + 1); i++) {
+				pages.push(i);
+			}
+			if (currentPage < totalPages - 2) pages.push('...');
+			pages.push(totalPages);
+		}
+		return pages;
+	};
+
+	return (
+		<div className="flex items-center justify-center gap-1 mt-4">
+			<button
+				onClick={() => onPageChange(currentPage - 1)}
+				disabled={currentPage === 1}
+				className="px-3 py-1.5 text-sm rounded border border-gray-300 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-gray-50"
+			>
+				Previous
+			</button>
+			{getPageNumbers().map((page, idx) =>
+				page === '...' ? (
+					<span key={`ellipsis-${idx}`} className="px-2 py-1.5 text-sm text-gray-400">...</span>
+				) : (
+					<button
+						key={page}
+						onClick={() => onPageChange(page)}
+						className={`px-3 py-1.5 text-sm rounded border ${
+							page === currentPage
+								? 'bg-gray-800 text-white border-gray-800'
+								: 'border-gray-300 hover:bg-gray-50'
+						}`}
+					>
+						{page}
+					</button>
+				)
+			)}
+			<button
+				onClick={() => onPageChange(currentPage + 1)}
+				disabled={currentPage === totalPages}
+				className="px-3 py-1.5 text-sm rounded border border-gray-300 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-gray-50"
+			>
+				Next
+			</button>
+		</div>
+	);
+};
+
 /* ── Sub-view: Job table (default /jobs) ── */
-const JobTableView: React.FC<{ jobs: JobForList[]; isAdmin: boolean }> = observer(({ jobs, isAdmin }) => {
+const JobTableView: React.FC<{
+	jobs: JobForList[];
+	isAdmin: boolean;
+	pagination: Pagination | null;
+	onPageChange: (page: number) => void;
+}> = observer(({ jobs, isAdmin, pagination, onPageChange }) => {
 	const navigate = useNavigate();
 
+	const pageOffset = pagination ? (pagination.currentPage - 1) * pagination.itemsPerPage : 0;
+
 	const jobColumns: DataTableColumn<JobForList>[] = [
-		{ header: '#', render: (_job, index) => index + 1 },
+		{ header: '#', render: (_job, index) => pageOffset + index + 1 },
 		{ header: 'Id', render: (job) => job.id },
 		{ header: 'Type', render: (job) => formatJobType(job.jobType) },
 		{ header: 'Date', render: (job) => formatDate(job.submittedAt) },
@@ -101,18 +169,49 @@ const JobTableView: React.FC<{ jobs: JobForList[]; isAdmin: boolean }> = observe
 	return (
 		<>
 			<PageHeader title="Jobs" />
-			<div className="mb-2 flex w-full justify-end">
-				<button className="button-primary items-center content-center w-36" onClick={() => navigate('/jobs/new')}>
-					Submit Job
-				</button>
+			<h2 className="text-lg font-semibold text-gray-700 mb-3">Submit Job</h2>
+			{/* Compact buttons on smaller screens */}
+			<div className="flex flex-col gap-2 mb-6 lg:hidden">
+				{jobTypeCards.map((card) => (
+					<button
+						key={card.mode}
+						className="group flex items-center justify-between border border-gray-200 rounded-lg px-4 py-3 hover:border-gray-400 hover:shadow-sm transition-all bg-white"
+						onClick={() => navigate(`/jobs/new/${card.mode}`)}
+					>
+						<span className="text-sm font-semibold text-gray-800">{card.title}{card.beta && <BetaBadge />}</span>
+						<span className="text-gray-400 group-hover:text-gray-600 transition-colors" aria-hidden="true">&rarr;</span>
+					</button>
+				))}
 			</div>
-			<div className="flex">
+			{/* Full cards on large+ screens */}
+			<div className="hidden lg:grid lg:grid-cols-3 gap-4 mb-8">
+				{jobTypeCards.map((card) => (
+					<button
+						key={card.mode}
+						className="group text-left border border-gray-200 rounded-xl p-5 hover:border-gray-400 hover:shadow-md transition-all bg-white flex flex-col"
+						onClick={() => navigate(`/jobs/new/${card.mode}`)}
+					>
+						<div className="w-full h-24 bg-gray-100 rounded-lg mb-3 flex items-center justify-center text-gray-400 text-sm text-center px-3">
+							{card.title}
+						</div>
+						<h3 className="text-base font-semibold text-gray-800 mb-1">{card.title}{card.beta && <BetaBadge />}</h3>
+						<p className="text-sm text-gray-500 leading-snug mb-3 flex-1">{card.description}</p>
+						<span className="text-sm text-gray-400 group-hover:text-gray-600 transition-colors flex justify-end" aria-hidden="true">
+							&rarr;
+						</span>
+					</button>
+				))}
+			</div>
+			<div className="flex flex-col">
 				<DataTable
 					data={jobs ?? []}
 					columns={jobColumns}
 					onRowClick={(job) => navigate(`/jobs/${job.id.substring(0, 8)}`)}
 					rowKey={(job) => job.id}
 				/>
+				{pagination && (
+					<PaginationControls pagination={pagination} onPageChange={onPageChange} />
+				)}
 			</div>
 		</>
 	);
@@ -146,21 +245,21 @@ const JobTypeGrid: React.FC = () => {
 /* ── Sub-view wrappers for each form ── */
 const LovamapFormView: React.FC<{ onSubmitted: () => void }> = ({ onSubmitted }) => (
 	<>
-		<PageHeader title={<>LOVAMAP Analysis<BetaBadge /></>} backTo="/jobs/new" />
+		<PageHeader title={<>LOVAMAP Analysis<BetaBadge /></>} backTo="/jobs" />
 		<RunLovamap onJobSubmitted={onSubmitted} />
 	</>
 );
 
 const SegmentationFormView: React.FC<{ onSubmitted: () => void }> = ({ onSubmitted }) => (
 	<>
-		<PageHeader title="Particle Segmentation" backTo="/jobs/new" />
+		<PageHeader title="Particle Segmentation" backTo="/jobs" />
 		<RunSegmentation onJobSubmitted={onSubmitted} />
 	</>
 );
 
 const MeshFormView: React.FC<{ onSubmitted: () => void }> = ({ onSubmitted }) => (
 	<>
-		<PageHeader title="Mesh Generation" backTo="/jobs/new" />
+		<PageHeader title="Mesh Generation" backTo="/jobs" />
 		<RunMesh onJobSubmitted={onSubmitted} />
 	</>
 );
@@ -210,7 +309,12 @@ const JobList: React.FC = () => {
 			await getUserJobs();
 		}
 		setIsLoading(false);
-	}, [getUserJobs, getAllJobs, isLoggedIn, isAdmin]);
+	}, [getUserJobs, getAllJobs, isLoggedIn, isAdmin, jobStore.currentPage]);
+
+	const handlePageChange = useCallback(async (page: number) => {
+		jobStore.setPage(page);
+		await fetchJobs();
+	}, [jobStore, fetchJobs]);
 
 	const downloadJobResults = useCallback(
 		async (jobId: string, suggestedFileName?: string) => {
@@ -248,6 +352,7 @@ const JobList: React.FC = () => {
 	}, [isLoggedIn, startConnection, stopConnection]);
 
 	const handleJobSubmitted = async () => {
+		jobStore.setPage(1);
 		await fetchJobs();
 		navigate('/jobs');
 	};
@@ -265,7 +370,7 @@ const JobList: React.FC = () => {
 	return (
 		<div className="container mx-auto py-8 px-6">
 			<Routes>
-				<Route index element={<JobTableView jobs={jobStore.jobsRan} isAdmin={isAdmin} />} />
+				<Route index element={<JobTableView jobs={jobStore.jobsRan} isAdmin={isAdmin} pagination={jobStore.pagination} onPageChange={handlePageChange} />} />
 				<Route path="new" element={<JobTypeGrid />} />
 				<Route path="new/lovamap" element={<LovamapFormView onSubmitted={handleJobSubmitted} />} />
 				<Route path="new/segmentation" element={<SegmentationFormView onSubmitted={handleJobSubmitted} />} />

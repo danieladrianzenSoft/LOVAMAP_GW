@@ -62,11 +62,11 @@ namespace Services.Services
 					result.Errors.Add($"TIFF has {channels} channels; expected single-channel (1). Please provide a binarized single-channel image.");
 				}
 
-				// --- Binarization check ---
+				// --- Binarization check (advisory only — Core does the authoritative check) ---
 				result.IsBinarized = CheckBinarized(tif);
 				if (result.IsBinarized == false)
 				{
-					result.Errors.Add("TIFF does not appear to be binarized. Expected only 2 unique pixel values (e.g. 0/1 or 0/255).");
+					_logger.LogInformation("TIFF {FileName} does not appear to be binarized (checked first frame). Proceeding anyway — Core will verify.", tifFile.FileName);
 				}
 
 				// --- Extract dx, dy, dz from metadata ---

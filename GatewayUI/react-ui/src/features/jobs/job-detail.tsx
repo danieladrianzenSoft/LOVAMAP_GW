@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { FaArrowLeft, FaSpinner } from "react-icons/fa";
+import { FaArrowLeft, FaDownload, FaSpinner } from "react-icons/fa";
 import { JobDetailed } from "../../app/models/job";
 import { useStore } from "../../app/stores/store";
 import { downloadScaffoldGroupAsExcel, triggerDownload } from "../../app/common/excel-generator/excel-generator";
@@ -36,7 +36,8 @@ const JobDetail: React.FC<Props> = ({ job, onBack, onJobSubmitted, formatDate, o
 
   const isSegmentation = job.jobType === "ParticleSegmentation";
   const isLovamap = job.jobType === "Lovamap";
-  const showMeshSection = canDownload && (isSegmentation || isLovamap);
+  const isMeshProcessing = job.jobType === "MeshProcessing";
+  const showMeshSection = canDownload && (isSegmentation || isLovamap || isMeshProcessing);
   const canRunLovamap = canDownload && isSegmentation;
 
   const [showLovamapForm, setShowLovamapForm] = useState(false);
@@ -87,6 +88,14 @@ const JobDetail: React.FC<Props> = ({ job, onBack, onJobSubmitted, formatDate, o
   // Poll mesh child job statuses via the lightweight mesh-status endpoint
   useEffect(() => {
     if (!showMeshSection) return;
+
+    // MeshProcessing jobs ARE the mesh job — no children to poll
+    if (isMeshProcessing) {
+      setPoreMeshState('not-available');
+      setParticleMeshState('ready');
+      return;
+    }
+
     let cancelled = false;
     let poreResolved = isSegmentation; // segmentation has no pore mesh
     let particleResolved = false;
@@ -385,14 +394,49 @@ const JobDetail: React.FC<Props> = ({ job, onBack, onJobSubmitted, formatDate, o
           <Row
             label="Status"
             value={
-              <span className="inline-flex items-center gap-2">
-                {job.status}
-                {(job.status === 'Pending' || job.status === 'Running') && (
-                  <span className="text-gray-400">
-                    <ElapsedTime since={job.submittedAt} />
-                  </span>
+              <div>
+                <span className="inline-flex items-center gap-2">
+                  {job.status === 'Failed' ? (
+                    <span className="text-red-600 font-medium">Failed</span>
+                  ) : (
+                    job.status
+                  )}
+                  {(job.status === 'Pending' || job.status === 'Running') && (
+                    <span className="text-gray-400">
+                      <ElapsedTime since={job.submittedAt} />
+                    </span>
+                  )}
+                </span>
+                {job.status === 'Failed' && job.errorMessage && (
+                  <div className="mt-2 p-3 bg-red-50 border border-red-200 rounded-lg">
+                    <p className="text-sm text-red-700">{job.errorMessage}</p>
+                    {job.errorMessage.includes('[INPUT]') && job.errorMessage.includes('Missing required parameters') && (
+                      <p className="text-sm text-red-600 mt-2">
+                        This is an input error — the job will not retry. Please resubmit with the missing parameters filled in. You can find voxel dimension values (dx, dy, dz) in your microscope acquisition settings.
+                      </p>
+                    )}
+                  </div>
                 )}
-              </span>
+                {(job.status === 'Completed' || job.status === 'Failed') && (
+                  <button
+                    className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-700 underline mt-2"
+                    onClick={async () => {
+                      const blob = await jobStore.getJobLogs(job.id);
+                      if (!blob) return;
+                      const url = URL.createObjectURL(blob);
+                      const a = document.createElement("a");
+                      a.href = url;
+                      a.download = `job_${job.id}_logs.txt`;
+                      document.body.appendChild(a);
+                      a.click();
+                      a.remove();
+                      URL.revokeObjectURL(url);
+                    }}
+                  >
+                    <FaDownload className="w-3 h-3" /> Download Logs
+                  </button>
+                )}
+              </div>
             }
           />
           <Row label="Submitted At" value={job.submittedAt ? formatDate(job.submittedAt) : undefined} />

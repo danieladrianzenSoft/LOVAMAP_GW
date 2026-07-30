@@ -22,6 +22,7 @@ namespace Data.Models
 		public string? LovamapCoreVersion { get; set; }
 		public string? FinalHeartbeatMessage { get; set; }
 		public int RetryCount { get; set; } = 0;
+		public bool IsSubmittedToCore { get; set; } = false;
 		public string? ErrorMessage { get; set; }
 		public string? SourceJobId { get; set; }  // GW JobId (GUID string) of the source job
 		public ICollection<Domain> OutputDomains { get; set; } = new List<Domain>(); // Usually Pore, Other

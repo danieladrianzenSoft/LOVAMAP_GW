@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Infrastructure.DTOs;
+using Infrastructure.Helpers;
 using Services.IServices;
 using API.Models;
+using API.Extensions;
 using Data.Models;
 using Microsoft.AspNetCore.Authorization;
 using Infrastructure.IHelpers;
@@ -26,6 +28,14 @@ public class JobsController : ControllerBase
 		_configuration = configuration;
 		_userService = userService;
 		_userAuthHelper = userAuthHelper;
+	}
+
+	[AllowAnonymous]
+	[HttpGet("config")]
+	public IActionResult GetJobConfig()
+	{
+		var maxFileSizeMb = _configuration.GetValue<int>("Upload:MaxFileSizeMb", 500);
+		return Ok(new { maxFileSizeMb });
 	}
 
 	[HttpPost("submit-job")]
@@ -292,11 +302,18 @@ public class JobsController : ControllerBase
 	// 4/13 JacklynX changed - get all jobs for admin to select specific job in dataset descriptor rules
 	[Authorize(Roles = "administrator")]
 	[HttpGet("all")]
-	public async Task<IActionResult> GetAllJobs()
+	public async Task<IActionResult> GetAllJobs([FromQuery] PagingParams pagingParams)
 	{
 		try
 		{
-			var jobs = await _jobService.GetAllJobsAsync();
+			var jobs = await _jobService.GetAllJobsAsync(pagingParams);
+			Response.AddPaginationHeader(new Pagination
+			{
+				CurrentPage = jobs.CurrentPage,
+				ItemsPerPage = jobs.PageSize,
+				TotalItems = jobs.TotalCount,
+				TotalPages = jobs.TotalPages
+			});
 			return Ok(new ApiResponse<IEnumerable<JobToReturnDto>>(200, "", jobs));
 		}
 		catch (Exception ex)
@@ -346,8 +363,34 @@ public class JobsController : ControllerBase
 		return Ok(new ApiResponse<object>(200, "", status));
 	}
 
+	[HttpGet("{jobId}/logs")]
+	public async Task<IActionResult> GetJobLogs([FromRoute] string jobId, CancellationToken ct)
+	{
+		if (!Guid.TryParse(jobId, out var jobGuid))
+			return BadRequest(new ApiResponse<string>(400, "Invalid jobId"));
+
+		var currentUserId = _userService.GetCurrentUserId();
+		if (currentUserId == null) return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
+		var isAdmin = await _userAuthHelper.IsInRole(currentUserId, "administrator");
+		var job = await _jobService.GetByIdAsync(jobGuid);
+
+		if (job == null)
+			return NotFound(new ApiResponse<string>(404, "Job not found"));
+
+		if (job.CreatorId != currentUserId && !isAdmin)
+			return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
+
+		// Proxy Core's logs endpoint
+		var (succeeded, errorMessage, logBytes) = await _jobService.FetchJobLogsFromCoreAsync(jobGuid, ct);
+
+		if (!succeeded || logBytes == null)
+			return NotFound(new ApiResponse<string>(404, errorMessage ?? "Logs not available"));
+
+		return File(logBytes, "text/plain", $"job_{jobId}_logs.txt");
+	}
+
 	[HttpGet("me")]
-	public async Task<IActionResult> GetJobsSubmittedByUser()
+	public async Task<IActionResult> GetJobsSubmittedByUser([FromQuery] PagingParams pagingParams)
 	{
 		try
 		{
@@ -355,7 +398,15 @@ public class JobsController : ControllerBase
 
 			if (currentUserId == null) return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
 
-			var jobs = await _jobService.GetJobsByCreatorIdAsync(currentUserId);
+			var jobs = await _jobService.GetJobsByCreatorIdAsync(currentUserId, pagingParams);
+
+			Response.AddPaginationHeader(new Pagination
+			{
+				CurrentPage = jobs.CurrentPage,
+				ItemsPerPage = jobs.PageSize,
+				TotalItems = jobs.TotalCount,
+				TotalPages = jobs.TotalPages
+			});
 
 			return Ok(new ApiResponse<IEnumerable<JobToReturnDto>>(200, "", jobs));
 		}

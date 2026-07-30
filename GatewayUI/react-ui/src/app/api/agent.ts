@@ -9,7 +9,7 @@ import { DescriptorType } from "../models/descriptorType";
 import { Image, ImageCategory, ImageToCreate, ImageToUpdate } from "../models/image";
 import environment from "../environments/environment"
 import { Domain } from "../models/domain";
-import { Job, JobForList, LovamapFromSourceJob, MeshJob, MeshStatusResponse, SaveLovamapResultRequest, SegmentationJob } from "../models/job";
+import { Job, JobForList, LovamapFromSourceJob, MeshJob, MeshStatusResponse, Pagination, SaveLovamapResultRequest, SegmentationJob } from "../models/job";
 import { ScaffoldWithMissingThumbnail } from "../models/scaffold";
 import { ParticleDiameter, PoreInfo, PoreInfoForScaffoldGroup } from "../models/poreInfo";
 import { DomainMetadata } from "../models/domainMetadata";
@@ -51,6 +51,17 @@ axios.interceptors.response.use(response => {
 });
 
 const responseBody = <T> (response: AxiosResponse<T>) => response.data;
+
+export interface PaginatedResponse<T> {
+	data: T;
+	pagination: Pagination;
+}
+
+function extractPagination(response: AxiosResponse): Pagination | null {
+	const header = response.headers['pagination'];
+	if (!header) return null;
+	return JSON.parse(header) as Pagination;
+}
 
 const requests = {
 	get: <T> (url: string) => axios.get<T>(url).then(responseBody),
@@ -220,6 +231,10 @@ const Domains = {
 }
 
 const Jobs = {
+    getConfig: async (): Promise<{ maxFileSizeMb: number }> => {
+        const response = await axios.get('/jobs/config');
+        return response.data;
+    },
     submitJob: async (job: Job) => {
         const formData = new FormData();
         if (job.csvFile) {
@@ -244,9 +259,9 @@ const Jobs = {
         formData.append('TifFile', job.tifFile);
         formData.append('FluorescentLabel', job.fluorescentLabel.toString());
         formData.append('RadiusUm', job.radiusUm.toString());
-        if (job.dx != null) formData.append('Dx', job.dx.toString());
-        if (job.dy != null) formData.append('Dy', job.dy.toString());
-        if (job.dz != null) formData.append('Dz', job.dz.toString());
+        formData.append('Dx', job.dx.toString());
+        formData.append('Dy', job.dy.toString());
+        formData.append('Dz', job.dz.toString());
 
         const response = await axios.post<ApiResponse<any>>(
             `/jobs/submit-segmentation-job`, formData
@@ -269,8 +284,14 @@ const Jobs = {
         );
         return response.data;
     },
-    getUserJobs: async () => requests.get<ApiResponse<JobForList[]>>('/jobs/me'),
-    getAllJobs: async () => requests.get<ApiResponse<JobForList[]>>('/jobs/all'),
+    getUserJobs: async (pageNumber = 1, pageSize = 10): Promise<PaginatedResponse<JobForList[]>> => {
+        const response = await axios.get<ApiResponse<JobForList[]>>(`/jobs/me?pageNumber=${pageNumber}&pageSize=${pageSize}`);
+        return { data: response.data.data, pagination: extractPagination(response)! };
+    },
+    getAllJobs: async (pageNumber = 1, pageSize = 10): Promise<PaginatedResponse<JobForList[]>> => {
+        const response = await axios.get<ApiResponse<JobForList[]>>(`/jobs/all?pageNumber=${pageNumber}&pageSize=${pageSize}`);
+        return { data: response.data.data, pagination: extractPagination(response)! };
+    },
     getJobResult: async (jobId: string) => {
         const response = await axios.get(`/jobs/${jobId}/result`, {
             responseType: 'blob'
@@ -293,6 +314,12 @@ const Jobs = {
         requests.post<ApiResponse<{ scaffoldGroupId: number; scaffoldId: number }>>(`/jobs/${jobId}/save-scaffold`, data),
     getMeshStatus: (jobId: string) =>
         requests.get<ApiResponse<MeshStatusResponse>>(`/jobs/${jobId}/mesh-status`),
+    getJobLogs: async (jobId: string) => {
+        const response = await axios.get(`/jobs/${jobId}/logs`, {
+            responseType: 'blob'
+        });
+        return response.data;
+    },
 }
 
 const Publications = {

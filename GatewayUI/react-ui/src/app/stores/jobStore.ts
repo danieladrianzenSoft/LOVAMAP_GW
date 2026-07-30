@@ -1,17 +1,24 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import * as signalR from "@microsoft/signalr";
 import agent from "../api/agent";
-import { Job, JobForList, LovamapFromSourceJob, MeshJob, SaveLovamapResultRequest, SegmentationJob } from "../models/job";
+import { Job, JobForList, LovamapFromSourceJob, MeshJob, Pagination, SaveLovamapResultRequest, SegmentationJob } from "../models/job";
 import { store } from "./store";
 import environment from "../environments/environment";
 
 export default class JobStore {
 	jobsRan: JobForList[] = [];
+	pagination: Pagination | null = null;
+	currentPage = 1;
+	pageSize = 50;
 	private hubConnection: signalR.HubConnection | null = null;
 
 	constructor() {
 		makeAutoObservable(this)
 	}
+
+	setPage = (page: number) => {
+		this.currentPage = page;
+	};
 
 	startConnection = () => {
 		if (this.hubConnection) return;
@@ -68,9 +75,11 @@ export default class JobStore {
 		try {
 			const response = await agent.Jobs.submitSegmentationJob(job);
 			return response.data;
-		} catch (error) {
+		} catch (error: any) {
 			console.error('Error submitting segmentation job:', error);
-			return null;
+			// Propagate the error message from the API response so the UI can display it
+			const msg = error?.message || error?.Message || error?.statusText || 'Failed to submit segmentation job';
+			throw new Error(msg);
 		}
 	};
 
@@ -96,9 +105,10 @@ export default class JobStore {
 
 	getUserJobs = async (): Promise<JobForList[] | null> => {
 		try {
-			const response = await agent.Jobs.getUserJobs();
+			const response = await agent.Jobs.getUserJobs(this.currentPage, this.pageSize);
 			runInAction(() => {
 				this.jobsRan = response.data;
+				this.pagination = response.pagination;
 			})
 			return response.data;
 		} catch (error) {
@@ -109,9 +119,10 @@ export default class JobStore {
 
 	getAllJobs = async (): Promise<JobForList[] | null> => {
 		try {
-			const response = await agent.Jobs.getAllJobs();
+			const response = await agent.Jobs.getAllJobs(this.currentPage, this.pageSize);
 			runInAction(() => {
 				this.jobsRan = response.data;
+				this.pagination = response.pagination;
 			})
 			return response.data;
 		} catch (error) {
@@ -162,6 +173,15 @@ export default class JobStore {
 			return data;
 		} catch (error) {
 			console.error('Error fetching job particle mesh:', error);
+			return null;
+		}
+	}
+
+	getJobLogs = async (jobId: string): Promise<Blob | null> => {
+		try {
+			return await agent.Jobs.getJobLogs(jobId);
+		} catch (error) {
+			console.error('Error fetching job logs:', error);
 			return null;
 		}
 	}

@@ -323,9 +323,11 @@ const LovamapJobForm: React.FC<Props> = ({ segmentationJobs, onUploadSubmit, onS
 												)}
 												{validation.type === 'json' && (
 													<>
+														{validation.beadCount != null && (
 														<span className="inline-flex items-center gap-1 text-xs px-2 py-1 rounded-full bg-green-100 text-green-700">
 															<FaCheckCircle /> {validation.beadCount.toLocaleString()} beads
 														</span>
+													)}
 														<span className="inline-flex items-center gap-1 text-xs px-2 py-1 rounded-full bg-green-100 text-green-700">
 															<FaCheckCircle /> Domain: {Array.isArray(validation.domainSize) ? validation.domainSize.join(' x ') : validation.domainSize}
 														</span>

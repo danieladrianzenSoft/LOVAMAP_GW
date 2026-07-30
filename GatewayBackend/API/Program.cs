@@ -102,29 +102,28 @@ builder.Services.AddCors(opt =>
                 "http://localhost:5001",
                 "http://152.3.103.246:3000",
                 "https://lovamap.com")
-            .WithExposedHeaders("X-Domain-Id", 
-                "X-Scaffold-Id", 
-                "X-Category", 
-                "X-Voxel-Count", 
-                "X-Voxel-Size", 
-                "X-Domain-Size", 
-                "X-Original-Filename");
+            .WithExposedHeaders("X-Domain-Id",
+                "X-Scaffold-Id",
+                "X-Category",
+                "X-Voxel-Count",
+                "X-Voxel-Size",
+                "X-Domain-Size",
+                "X-Original-Filename",
+                "Pagination");
     });
 });
 
+var maxUploadMb = builder.Configuration.GetValue<int>("Upload:MaxFileSizeMb", 500);
+var maxUploadBytes = (long)maxUploadMb * 1_000_000;
+
 builder.WebHost.ConfigureKestrel(options =>
 {
-    // allow up to 250 MB
-    options.Limits.MaxRequestBodySize = 250_000_000;
+    options.Limits.MaxRequestBodySize = maxUploadBytes;
 });
 
 builder.Services.Configure<FormOptions>(options =>
 {
-    // keep this in sync with Kestrel
-    options.MultipartBodyLengthLimit = 250_000_000;
-    // optionally:
-    // options.ValueLengthLimit = int.MaxValue;
-    // options.BufferBody = true;
+    options.MultipartBodyLengthLimit = maxUploadBytes;
 });
 
 // Add repository service registrations

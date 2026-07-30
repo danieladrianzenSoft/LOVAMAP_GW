@@ -7,10 +7,10 @@ export interface LovamapDatValidation {
 export interface LovamapJsonValidation {
 	type: 'json';
 	valid: true;
-	beadCount: number;
+	beadCount?: number;
 	domainSize: number | number[];
 	voxelSize: number | number[];
-	voxelCount: number | number[];
+	voxelCount?: number;
 }
 
 export interface LovamapValidationError {
@@ -23,7 +23,7 @@ export type LovamapFileValidation =
 	| LovamapJsonValidation
 	| LovamapValidationError;
 
-const REQUIRED_JSON_KEYS = ['bead_data', 'domain_size', 'voxel_size', 'voxel_count', 'bead_count'] as const;
+const REQUIRED_JSON_KEYS = ['domain_size', 'voxel_size'] as const;
 
 export async function validateLovamapFile(file: File): Promise<LovamapFileValidation> {
 	const ext = file.name.toLowerCase().split('.').pop();
@@ -80,6 +80,11 @@ async function validateJsonFile(file: File): Promise<LovamapFileValidation> {
 	const missing = REQUIRED_JSON_KEYS.filter((k) => !(k in obj));
 	if (missing.length > 0) {
 		return { valid: false, error: `Missing required keys: ${missing.join(', ')}` };
+	}
+
+	// bead_data (or its alias "beads") is required for particle-type JSON
+	if (!('bead_data' in obj) && !('beads' in obj)) {
+		return { valid: false, error: 'Missing required key: bead_data (or beads)' };
 	}
 
 	return {

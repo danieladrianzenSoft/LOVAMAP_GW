@@ -16,6 +16,8 @@ namespace Infrastructure.DTOs
 		public string? ResultPath { get; set; }
 		public int RetryCount { get; set; }
 		public string? ErrorMessage { get; set; }
+		public string? StdOut { get; set; }
+		public string? StdErr { get; set; }
 		public string? SourceJobId { get; set; }
 	}
 }

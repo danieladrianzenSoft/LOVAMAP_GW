@@ -4,6 +4,7 @@ using System.Text.Json;
 using Data;
 using Data.Models;
 using Infrastructure.DTOs;
+using Infrastructure.Helpers;
 using Infrastructure.IHelpers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
@@ -136,8 +137,9 @@ namespace Services.Services
 
 			if (!response.IsSuccessStatusCode)
 			{
-				_logger.LogWarning("Core returned {Status}: {Body}", response.StatusCode, body);
-				return (false, $"Lovamap Core returned {response.StatusCode}: {body}", null);
+				var errorMsg = ParseCoreErrorMessage(response.StatusCode, body);
+				_logger.LogWarning("Core returned {Status} for job: {Body}", response.StatusCode, body);
+				return (false, errorMsg, null);
 			}
 
 			// 6) Map Core’s response
@@ -158,12 +160,9 @@ namespace Services.Services
 			if (coreJob is null)
 				return (false, "Lovamap Core returned empty body.", null);
 
-			// 7) OPTIONAL: update your local GW job with Core metadata if you keep a link
-			// (Uncomment/adjust if you have fields like CoreJobId, etc.)
-			// job.CoreJobId = coreJob.Id;
-			// job.CoreJobExternalKey = coreJob.JobId;
-			// job.Status = MapCoreStatus(coreJob.Status);
-			// await _context.SaveChangesAsync();
+			// 7) Mark that Core has accepted this job so the poller can start tracking it
+			job.IsSubmittedToCore = true;
+			await _context.SaveChangesAsync();
 
 			// If you prefer to return a brand-new mapped Job object:
 			var mapped = _modelMapper.MapToJob(coreJob);
@@ -207,8 +206,13 @@ namespace Services.Services
 				? storedPath
 				: Path.GetFullPath(Path.Combine(GetJobResultsDir(), storedPath));
 
-			var downloadName = $"job_{jobId}_results.json";
-			var contentType = "application/json";
+			var ext = Path.GetExtension(storedPath)?.ToLowerInvariant() ?? ".json";
+			var (contentType, downloadName) = ext switch
+			{
+				".glb" => ("model/gltf-binary", $"job_{jobId}_mesh.glb"),
+				".proto" => ("application/x-protobuf", $"job_{jobId}_results.proto"),
+				_ => ("application/json", $"job_{jobId}_results.json"),
+			};
 
 			// If the file exists locally (prod / Docker shared volume), serve from disk
 			if (System.IO.File.Exists(fullFile))
@@ -247,19 +251,19 @@ namespace Services.Services
 			return await _jobRepository.GetJobByIdAsync(jobId);
 		}
 
-		public async Task<IEnumerable<JobToReturnDto>> GetJobsByCreatorIdAsync(string creatorId)
+		public async Task<PagedList<JobToReturnDto>> GetJobsByCreatorIdAsync(string creatorId, PagingParams pagingParams)
 		{
-			var jobs = await _jobRepository.GetJobsByCreatorIdAsync(creatorId);
-			var jobToReturn = jobs.Select(_modelMapper.MapToJobToReturnDto).ToList();
-			return jobToReturn;
+			var jobs = await _jobRepository.GetJobsByCreatorIdAsync(creatorId, pagingParams);
+			var dtos = jobs.Select(_modelMapper.MapToJobToReturnDto).ToList();
+			return new PagedList<JobToReturnDto>(dtos, jobs.TotalCount, jobs.CurrentPage, jobs.PageSize);
 		}
 
 		// 4/13 JacklynX changed - get all jobs for admin use in dataset descriptor rules
-		public async Task<IEnumerable<JobToReturnDto>> GetAllJobsAsync()
+		public async Task<PagedList<JobToReturnDto>> GetAllJobsAsync(PagingParams pagingParams)
 		{
-			var jobs = await _jobRepository.GetAllJobsAsync();
-			var jobToReturn = jobs.Select(_modelMapper.MapToJobToReturnDto).ToList();
-			return jobToReturn;
+			var jobs = await _jobRepository.GetAllJobsAsync(pagingParams);
+			var dtos = jobs.Select(_modelMapper.MapToJobToReturnDto).ToList();
+			return new PagedList<JobToReturnDto>(dtos, jobs.TotalCount, jobs.CurrentPage, jobs.PageSize);
 		}
 
 		public async Task<IEnumerable<Job>> GetActiveJobsAsync()
@@ -356,6 +360,29 @@ namespace Services.Services
 			return (true, job);
 		}
 
+		public async Task<(bool Succeeded, string? ErrorMessage, byte[]? LogBytes)> FetchJobLogsFromCoreAsync(Guid jobId, CancellationToken ct = default)
+		{
+			try
+			{
+				var response = await _coreApiClient.GetJobLogsAsync(jobId.ToString(), ct);
+
+				if (!response.IsSuccessStatusCode)
+				{
+					var msg = $"Core returned {response.StatusCode} for logs of job {jobId}";
+					_logger.LogWarning("FetchJobLogsFromCoreAsync: {Message}", msg);
+					return (false, msg, null);
+				}
+
+				var bytes = await response.Content.ReadAsByteArrayAsync(ct);
+				return (true, null, bytes);
+			}
+			catch (Exception ex)
+			{
+				_logger.LogWarning(ex, "Failed to fetch logs from Core for job {JobId}", jobId);
+				return (false, "Error connecting to processing server.", null);
+			}
+		}
+
 		public async Task<Job?> TimeoutJobAsync(Guid jobId)
 		{
 			var job = await _jobRepository.UpdateJobFromCoreAsync(
@@ -423,6 +450,7 @@ namespace Services.Services
 		{
 			try
 			{
+				_logger.LogInformation("FetchJobMeshFromCoreAsync: requesting mesh from Core for id={JobId}", jobId);
 				var response = await _coreApiClient.GetJobMeshAsync(jobId, cancellationToken);
 
 				if (!response.IsSuccessStatusCode)
@@ -488,6 +516,32 @@ namespace Services.Services
 		}
 
 
+		/// <summary>
+		/// Parses Core's structured error response { "error": "...", "message": "..." }
+		/// and returns a user-friendly message. Falls back to the raw body if parsing fails.
+		/// </summary>
+		private static string ParseCoreErrorMessage(System.Net.HttpStatusCode statusCode, string body)
+		{
+			try
+			{
+				using var doc = JsonDocument.Parse(body);
+				var root = doc.RootElement;
+
+				if (root.TryGetProperty("message", out var msgProp))
+				{
+					var message = msgProp.GetString();
+					if (!string.IsNullOrWhiteSpace(message))
+						return message;
+				}
+			}
+			catch
+			{
+				// Not valid JSON — fall through
+			}
+
+			return $"Lovamap Core returned {(int)statusCode}: {body}";
+		}
+
 		private async Task MarkJobFailedAsync(Job job, string errorMessage)
 		{
 			job.Status = JobStatus.Failed;
@@ -543,9 +597,23 @@ namespace Services.Services
 			var dy = dto.Dy ?? validation.Dy?.ToString(System.Globalization.CultureInfo.InvariantCulture);
 			var dz = dto.Dz ?? validation.Dz?.ToString(System.Globalization.CultureInfo.InvariantCulture);
 
-			if (!string.IsNullOrWhiteSpace(dx)) form.Add(new StringContent(dx), "dx");
-			if (!string.IsNullOrWhiteSpace(dy)) form.Add(new StringContent(dy), "dy");
-			if (!string.IsNullOrWhiteSpace(dz)) form.Add(new StringContent(dz), "dz");
+			// Validate that all voxel dimensions are present
+			var missingParams = new List<string>();
+			if (string.IsNullOrWhiteSpace(dx)) missingParams.Add("dx");
+			if (string.IsNullOrWhiteSpace(dy)) missingParams.Add("dy");
+			if (string.IsNullOrWhiteSpace(dz)) missingParams.Add("dz");
+
+			if (missingParams.Count > 0)
+			{
+				var missing = string.Join(", ", missingParams);
+				var errorMsg = $"Missing required voxel dimensions: {missing}. These could not be extracted from the TIF metadata — please provide them manually.";
+				_logger.LogWarning("Segmentation job rejected: {Error}", errorMsg);
+				return (false, errorMsg, null);
+			}
+
+			form.Add(new StringContent(dx!), "dx");
+			form.Add(new StringContent(dy!), "dy");
+			form.Add(new StringContent(dz!), "dz");
 
 			// 5) Call Core
 			HttpResponseMessage response;
@@ -570,7 +638,7 @@ namespace Services.Services
 
 			if (!response.IsSuccessStatusCode)
 			{
-				var errorMsg = $"Lovamap Core returned {response.StatusCode}: {body}";
+				var errorMsg = ParseCoreErrorMessage(response.StatusCode, body);
 				_logger.LogWarning("Core returned {Status} for segmentation job: {Body}", response.StatusCode, body);
 				await MarkJobFailedAsync(job, errorMsg);
 				return (false, errorMsg, null);
@@ -597,6 +665,9 @@ namespace Services.Services
 				await MarkJobFailedAsync(job, "Lovamap Core returned empty body.");
 				return (false, "Lovamap Core returned empty body.", null);
 			}
+
+			job.IsSubmittedToCore = true;
+			await _context.SaveChangesAsync();
 
 			var mapped = _modelMapper.MapToJob(coreJob);
 			mapped.JobType = JobType.ParticleSegmentation;
@@ -669,7 +740,7 @@ namespace Services.Services
 
 			if (!response.IsSuccessStatusCode)
 			{
-				var errorMsg = $"Lovamap Core returned {response.StatusCode}: {body}";
+				var errorMsg = ParseCoreErrorMessage(response.StatusCode, body);
 				_logger.LogWarning("Core returned {Status} for mesh job: {Body}", response.StatusCode, body);
 				await MarkJobFailedAsync(job, errorMsg);
 				return (false, errorMsg, null);
@@ -696,6 +767,9 @@ namespace Services.Services
 				await MarkJobFailedAsync(job, "Lovamap Core returned empty body.");
 				return (false, "Lovamap Core returned empty body.", null);
 			}
+
+			job.IsSubmittedToCore = true;
+			await _context.SaveChangesAsync();
 
 			var mapped = _modelMapper.MapToJob(coreJob);
 			mapped.JobType = JobType.MeshProcessing;
@@ -766,7 +840,7 @@ namespace Services.Services
 
 			if (!response.IsSuccessStatusCode)
 			{
-				var errorMsg = $"Lovamap Core returned {response.StatusCode}: {body}";
+				var errorMsg = ParseCoreErrorMessage(response.StatusCode, body);
 				_logger.LogWarning("Core returned {Status} for lovamap-from-source job: {Body}", response.StatusCode, body);
 				await MarkJobFailedAsync(job, errorMsg);
 				return (false, errorMsg, null);
@@ -793,6 +867,9 @@ namespace Services.Services
 				await MarkJobFailedAsync(job, "Lovamap Core returned empty body.");
 				return (false, "Lovamap Core returned empty body.", null);
 			}
+
+			job.IsSubmittedToCore = true;
+			await _context.SaveChangesAsync();
 
 			var mapped = _modelMapper.MapToJob(coreJob);
 			mapped.JobType = JobType.Lovamap;

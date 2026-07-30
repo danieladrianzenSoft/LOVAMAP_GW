@@ -17,6 +17,7 @@ export interface JobForList {
 	scaffoldGroupId?: number;
 	scaffoldId?: number;
 	creatorEmail?: string;
+	errorMessage?: string | null;
 }
 
 export interface JobDetailed {
@@ -30,15 +31,16 @@ export interface JobDetailed {
 	sourceJobId?: string;
 	scaffoldGroupId?: number;
 	scaffoldId?: number;
+	errorMessage?: string | null;
 }
 
 export interface SegmentationJob {
 	tifFile: File;
 	fluorescentLabel: number; // 0 or 1
 	radiusUm: number;
-	dx?: number;
-	dy?: number;
-	dz?: number;
+	dx: number;
+	dy: number;
+	dz: number;
 }
 
 export interface MeshJob {
@@ -64,6 +66,13 @@ export interface SaveLovamapResultParticle {
 	sizeDistributionType?: string;
 	material?: string;
 	proportion: number;
+}
+
+export interface Pagination {
+	currentPage: number;
+	itemsPerPage: number;
+	totalItems: number;
+	totalPages: number;
 }
 
 export interface SaveLovamapResultRequest {
