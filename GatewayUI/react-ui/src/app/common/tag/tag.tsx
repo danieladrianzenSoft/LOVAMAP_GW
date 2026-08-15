@@ -3,12 +3,13 @@ import { FaTimes } from 'react-icons/fa';
 
 interface TagProps {
     text: string;
+    displayText?: string;
     className?: string;
     showRemove?: boolean;
     onRemove?: (text: string) => void;
 }
 
-const Tag: React.FC<TagProps> = ({ text, className, showRemove = false, onRemove }) => {
+const Tag: React.FC<TagProps> = ({ text, displayText, className, showRemove = false, onRemove }) => {
     return (
         <span className={`flex items-center bg-gray-200 text-gray-700 text-xs px-2.5 py-0.5 rounded-lg space-x-1 ${className}`}>
             {showRemove && (
@@ -20,7 +21,7 @@ const Tag: React.FC<TagProps> = ({ text, className, showRemove = false, onRemove
                     <FaTimes size={10} />
                 </button>
             )}
-            <span>{text}</span>
+            <span>{displayText ?? text}</span>
         </span>
         // <span className="bg-gray-200 text-gray-700 text-xs px-2.5 py-0.5 rounded-lg">
         //     {text}

@@ -1,47 +1,31 @@
 import React, { useState } from "react";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
-import Tag from "../../app/common/tag/tag";
 import { ScaffoldGroup } from "../../app/models/scaffoldGroup";
-import { Domain } from  "../../app/models/domain";
 import { FaCamera } from "react-icons/fa";
 
 interface Props {
   isOpen: boolean;
   toggleOpen: () => void;
   scaffoldGroup: ScaffoldGroup | null;
-  selectedScaffoldId: number | null;
-  onScaffoldChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-  selectedCategories: number[];
-  onCategoryChange: (values: number[]) => void;
-  domain: Domain | null;
   isLoading: boolean;
+  selectedScaffoldId?: number | null;
   onScreenshot?: () => void;
   className?: string;
 }
-
-// const domainCategories = [
-//   { value: 0, label: "Particles" },
-//   { value: 1, label: "Pores" },
-//   { value: 2, label: "Other" },
-// ];
 
 const InfoPanel: React.FC<Props> = ({
   isOpen,
   toggleOpen,
   scaffoldGroup,
-  selectedScaffoldId,
-  onScaffoldChange,
-  selectedCategories,
-  onCategoryChange,
   onScreenshot,
-  domain,
-  // canEdit,
-  // onEditClick,
   isLoading,
+  selectedScaffoldId,
   className,
 }) => {
 
   const [showMore, setShowMore] = useState(false);
+  const particles = scaffoldGroup?.inputs?.particles ?? [];
+  const firstParticle = particles[0];
 
   return (
     <div className={className ?? "bg-white bg-opacity-80 shadow-lg rounded-lg p-4 w-64"}>
@@ -69,7 +53,6 @@ const InfoPanel: React.FC<Props> = ({
         {isOpen ? <FiChevronUp /> : <FiChevronDown />}
       </div>
 
-
       <div
         className={`overflow-hidden ${
           isOpen ? "max-h-102 opacity-100" : "max-h-0 opacity-0"
@@ -77,42 +60,45 @@ const InfoPanel: React.FC<Props> = ({
       >
         {scaffoldGroup && !isLoading ?
           (
-            <div className="mt-3 text-sm text-gray-700">
-              <div className="flex flex-wrap gap-y-1 mb-2">
-                {scaffoldGroup.tags.map((tag, index) => (
-                  <Tag key={index} text={tag} />
-                ))}
-              </div>
-
-              <p className="mt-2">
-                <span className="font-semibold">Name:</span> {scaffoldGroup.name ?? "Unknown"}
+            <div className="mt-3 text-sm text-gray-700 space-y-1.5">
+              <p>
+                <span className="font-semibold">Source:</span> {scaffoldGroup.isSimulated ? "Simulated" : "Experimental"}
               </p>
-
-              <p className="mt-2">
-                <span className="font-semibold">Simulated:</span> {scaffoldGroup.isSimulated ? "Yes" : "No"}
-              </p>
-
-              <p className="mt-2">
+              {particles.length === 1 && firstParticle && (
+                <>
+                  <p>
+                    <span className="font-semibold">Shape:</span> {firstParticle.shape}
+                  </p>
+                  <p>
+                    <span className="font-semibold">Size:</span> {firstParticle.meanSize?.toPrecision(3)}&#956;m
+                  </p>
+                  <p>
+                    <span className="font-semibold">Composition:</span> {firstParticle.dispersity?.toLowerCase()}
+                  </p>
+                </>
+              )}
+              {particles.length > 1 && (
+                <div>
+                  <span className="font-semibold">Particles:</span>
+                  <ul className="ml-3 mt-0.5 space-y-0.5 text-gray-600">
+                    {particles.map((p, i) => (
+                      <li key={i}>
+                        {(p.proportion * 100).toPrecision(3)}% &middot; {p.meanSize?.toPrecision(3)}&#956;m {p.shape}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              <p>
                 <span className="font-semibold">Packing:</span> {scaffoldGroup.inputs?.packingConfiguration ?? "Unknown"}
               </p>
+              {scaffoldGroup.inputs?.containerShape && (
+                <p>
+                  <span className="font-semibold">Container:</span> {scaffoldGroup.inputs.containerShape}
+                </p>
+              )}
 
-              <div className="flex justify-between items-center mt-3 text-sm text-gray-700">
-                <label htmlFor="replicateSelect" className="mr-2 font-semibold">Replicate</label>
-                <select
-                  id="replicateSelect"
-                  value={selectedScaffoldId ?? ""}
-                  onChange={onScaffoldChange}
-                  className="border border-gray-300 rounded px-2 py-1 text-sm"
-                >
-                  {scaffoldGroup.scaffoldIds.map((id) => (
-                    <option key={id} value={id}>
-                      {id}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div className="flex justify-start items-start mt-4">
+              <div className="flex justify-start items-start pt-2">
                 <button
                   className="button-link"
                   onClick={() => setShowMore(!showMore)}
@@ -123,43 +109,30 @@ const InfoPanel: React.FC<Props> = ({
 
               {showMore && (
                 <div className="text-sm text-gray-700 space-y-1">
-                  <p className="mt-4">
-                    <span className="font-semibold">ID:</span> {scaffoldGroup.id ?? "Unknown"}
+                  {firstParticle && (
+                    <>
+                      {firstParticle.friction && (
+                        <p>
+                          <span className="font-semibold">Friction:</span> {firstParticle.friction}
+                        </p>
+                      )}
+                      {firstParticle.material && (
+                        <p>
+                          <span className="font-semibold">Material:</span> {firstParticle.material}
+                        </p>
+                      )}
+                    </>
+                  )}
+                  <p className="pt-2">
+                    <span className="font-semibold">Scaffold Group ID:</span> {scaffoldGroup.id ?? "Unknown"}
                   </p>
+                  {selectedScaffoldId && (
+                    <p>
+                      <span className="font-semibold">Scaffold ID:</span> {selectedScaffoldId}
+                    </p>
+                  )}
                 </div>
               )}
-
-              {selectedCategories[0] === 1 && domain != null &&(
-                <div className="flex flex-end -mt-3 justify-end">
-                  {/* <label className="flex items-center space-x-2">
-                    <input
-                      type="checkbox"
-                      className="form-checkbox text-blue-600"
-                      onChange={(e) => {
-                        if (onToggleHideEdgePores) {
-                          onToggleHideEdgePores(e.target.checked);
-                        }
-                      }}
-                    />
-                    <span className="text-sm text-gray-800">Hide Edge Pores</span>
-                  </label> */}
-                </div>
-              )}
-
-              {/* <p className="mt-2">
-                <span className="font-semibold">Voxel Size:</span> {domain?.voxelSize ?? "Unknown"}
-              </p> */}
-
-              {/* {canEdit && (
-                <div className="mt-4">
-                  <button
-                    className="button-outline self-start flex items-center gap-2"
-                    onClick={onEditClick}
-                  >
-                    Update
-                  </button>
-                </div>
-              )} */}
             </div>
           ) : isLoading ? (
             <p className="text-sm text-gray-600 italic mt-3">Loading...</p>

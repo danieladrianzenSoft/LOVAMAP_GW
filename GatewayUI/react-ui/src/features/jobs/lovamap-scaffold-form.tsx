@@ -5,7 +5,7 @@ import { useStore } from "../../app/stores/store";
 import { ScaffoldGroup } from "../../app/models/scaffoldGroup";
 import { PARTICLE_DISPERSITIES } from "../../constants/particle-dispersities";
 import { PARTICLE_SHAPES } from "../../constants/particle-shapes";
-import { PARTICLE_STIFFNESSES } from "../../constants/particle-stiffnesses";
+import { PARTICLE_STIFFNESSES, validateYoungsModulus } from "../../constants/particle-stiffnesses";
 import { CONTAINER_SHAPES } from "../../constants/container-shapes";
 import { PARTICLE_MATERIALS } from "../../constants/particle-materials";
 import { INTERLINKING_MECHANISMS } from "../../constants/interlinking-mechanisms";
@@ -31,6 +31,7 @@ interface ParticleState {
   material: string;
   materialOther: string;
   proportion: number;
+  youngsModulus: string;
 }
 
 const defaultParticle = (): ParticleState => ({
@@ -41,6 +42,7 @@ const defaultParticle = (): ParticleState => ({
   material: "",
   materialOther: "",
   proportion: 1,
+  youngsModulus: "",
 });
 
 function computeMeanStdDev(values: number[]): { mean: number; stdDev: number } {
@@ -394,6 +396,7 @@ const LovamapScaffoldForm: React.FC<Props> = ({ jobId, results, onClose, onSaved
             material: p.material ? (materialKnown ? p.material : "other") : "",
             materialOther: p.material && !materialKnown ? p.material : "",
             proportion: p.proportion ?? 1,
+            youngsModulus: p.youngsModulus != null ? String(p.youngsModulus) : "",
           };
         })
       );
@@ -447,6 +450,16 @@ const LovamapScaffoldForm: React.FC<Props> = ({ jobId, results, onClose, onSaved
         const resolved = p.material === "other" ? p.materialOther : p.material;
         if (!resolved) errs[`p${idx}.material`] = "Required";
       }
+      // Validate Young's Modulus against stiffness range
+      if (p.youngsModulus.trim()) {
+        const eVal = parseFloat(p.youngsModulus);
+        if (isNaN(eVal) || eVal < 0) {
+          errs[`p${idx}.youngsModulus`] = "Must be a positive number";
+        } else {
+          const rangeErr = validateYoungsModulus(p.stiffness, eVal);
+          if (rangeErr) errs[`p${idx}.youngsModulus`] = rangeErr;
+        }
+      }
     });
 
     // Scaffold-level fields (experimental only)
@@ -489,6 +502,7 @@ const LovamapScaffoldForm: React.FC<Props> = ({ jobId, results, onClose, onSaved
         sizeDistributionType: isSimulated ? p.sizeDistributionType || undefined : undefined,
         material: !isSimulated ? (p.material === "other" ? p.materialOther : p.material) || undefined : undefined,
         proportion: p.proportion,
+        youngsModulus: p.youngsModulus.trim() ? parseFloat(p.youngsModulus) : undefined,
       })),
       interlinkingMechanism: !isSimulated ? resolvedInterlinking || undefined : undefined,
       scaffoldOccupants: !isSimulated && resolvedOccupants.length > 0 ? resolvedOccupants.join(",") : undefined,
@@ -822,7 +836,25 @@ const LovamapScaffoldForm: React.FC<Props> = ({ jobId, results, onClose, onSaved
                 )}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <SelectField label="Shape" value={p.shape} onChange={(v) => updateParticle(idx, "shape", v)} options={PARTICLE_SHAPES} error={visibleErrors[`p${idx}.shape`]} onBlur={() => touch(`p${idx}.shape`)} />
-                  <SelectField label="Stiffness" value={p.stiffness} onChange={(v) => updateParticle(idx, "stiffness", v)} options={PARTICLE_STIFFNESSES} error={visibleErrors[`p${idx}.stiffness`]} onBlur={() => touch(`p${idx}.stiffness`)} />
+                  <SelectField label="Stiffness" value={p.stiffness} onChange={(v) => { updateParticle(idx, "stiffness", v); if (v === "rigid" || v === "" || v === "unknown") updateParticle(idx, "youngsModulus", ""); }} options={PARTICLE_STIFFNESSES} error={visibleErrors[`p${idx}.stiffness`]} onBlur={() => touch(`p${idx}.stiffness`)} />
+                  {p.stiffness && p.stiffness !== "rigid" && p.stiffness !== "unknown" && (
+                    <div className="flex flex-col text-sm">
+                      <label className="text-gray-500 mb-1">Young's Modulus (Pa)</label>
+                      <input
+                        type="number"
+                        min={0}
+                        step="any"
+                        value={p.youngsModulus}
+                        onChange={(e) => updateParticle(idx, "youngsModulus", e.target.value)}
+                        onBlur={() => touch(`p${idx}.youngsModulus`)}
+                        placeholder="Optional — specify E"
+                        className={`px-3 py-2 bg-white border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition ${
+                          visibleErrors[`p${idx}.youngsModulus`] ? "border-red-400" : "border-gray-200"
+                        }`}
+                      />
+                      {visibleErrors[`p${idx}.youngsModulus`] && <span className="text-xs text-red-500 mt-1">{visibleErrors[`p${idx}.youngsModulus`]}</span>}
+                    </div>
+                  )}
                   {isSimulated && (
                     <>
                       <SelectField label="Composition" value={p.dispersity} onChange={(v) => updateParticle(idx, "dispersity", v)} options={PARTICLE_DISPERSITIES} error={visibleErrors[`p${idx}.dispersity`]} onBlur={() => touch(`p${idx}.dispersity`)} />

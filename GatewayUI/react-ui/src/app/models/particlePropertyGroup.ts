@@ -8,6 +8,7 @@ export interface ParticlePropertyGroup {
     standardDeviationSize: number;
     proportion: number;
     material?: string;
+    youngsModulus?: number | null;
     sizeDistribution: any[];
 }
 

@@ -234,7 +234,8 @@ export function processExcelFile(file: File, descriptorTypes: DescriptorType[]):
                         particlePropertyGroups: [
                             {
                                 shape: "<STRING: spheres | rods | nuggets | ellipsoids | amorphous>",
-                                stiffness: "<STRING: rigid | semisoft | soft>",
+                                stiffness: "<STRING: rigid | stiff | semisoft | soft>",
+                                youngsModulus: "<NUMBER: optional, Young's modulus in Pa>",
                                 friction: "<STRING>",
                                 dispersity: "<STRING: monodisperse | polydisperse>",
                                 sizeDistributionType: "<STRING: gaussian | binomial | poisson | uniform>",

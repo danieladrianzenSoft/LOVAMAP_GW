@@ -3,6 +3,7 @@ import { ScaffoldGroup } from '../../models/scaffoldGroup';
 import { Descriptor } from '../../models/descriptor';
 import { DescriptorType } from '../../models/descriptorType';
 import { Scaffold } from '../../models/scaffold';
+import { getStiffnessLabel } from '../../../constants/particle-stiffnesses';
 
 const headingCharacterLength = 30;
 
@@ -173,7 +174,7 @@ export function createGeneralInfoWorksheet(
     headingRows.push(currentRow++);
     
     const particlesData = scaffoldGroup.inputs.particles.map(p => [
-      p.shape, p.stiffness, p.dispersity, p.sizeDistributionType,
+      p.shape, getStiffnessLabel(p.stiffness), p.dispersity, p.sizeDistributionType,
       p.meanSize, p.standardDeviationSize, p.proportion
     ]);
 

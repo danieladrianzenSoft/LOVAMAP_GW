@@ -176,6 +176,7 @@ namespace Services.Services
                 StandardDeviationSize = dto.StandardDeviationSize,
                 Proportion = dto.Proportion,
                 Material = dto.Material,
+                YoungsModulus = dto.YoungsModulus,
             };
         }
 
@@ -496,7 +497,8 @@ namespace Services.Services
                 MeanSize = particlePropertyGroup!.MeanSize,
                 StandardDeviationSize = particlePropertyGroup?.StandardDeviationSize,
                 Proportion = particlePropertyGroup?.Proportion,
-                Material = particlePropertyGroup?.Material
+                Material = particlePropertyGroup?.Material,
+                YoungsModulus = particlePropertyGroup?.YoungsModulus
             };
         }
 

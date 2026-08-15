@@ -21,5 +21,6 @@ namespace Infrastructure.DTOs
 		public string? SizeDistributionType { get; set; }
 		public string? Material { get; set; }
 		public double Proportion { get; set; } = 1;
+		public double? YoungsModulus { get; set; }
 	}
 }

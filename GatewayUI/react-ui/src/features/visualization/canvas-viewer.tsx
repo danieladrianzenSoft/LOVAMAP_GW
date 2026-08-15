@@ -1,10 +1,42 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { Suspense, useCallback, useEffect, useRef, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Bounds, OrbitControls, useProgress } from "@react-three/drei";
 import { PCFSoftShadowMap} from "three";
 import * as THREE from "three";
 import Model from "./model";
 import { CANVAS_CAMERA_PROPS, applyCameraFraming } from "./camera-config";
+
+// Error boundary to catch R3F reconciliation errors (e.g. Canvas root not ready)
+class CanvasErrorBoundary extends React.Component<
+  { children: React.ReactNode },
+  { hasError: boolean }
+> {
+  constructor(props: { children: React.ReactNode }) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error: Error) {
+    // Suppress R3F root-not-ready errors — the Canvas will recover on next render
+    console.warn("[CanvasViewer] Caught render error:", error.message);
+  }
+
+  componentDidUpdate(_: any, prevState: { hasError: boolean }) {
+    // Auto-recover on the next render cycle
+    if (this.state.hasError && !prevState.hasError) {
+      this.setState({ hasError: false });
+    }
+  }
+
+  render() {
+    if (this.state.hasError) return null;
+    return this.props.children;
+  }
+}
 
 interface DomainMeshProps {
   url: string;
@@ -254,7 +286,7 @@ const CanvasViewer: React.FC<CanvasViewerProps> = ({ meshes, onSliceBoundsComput
   const isRendering = isLoaderActive || loadingCount > 0;
 
   return (
-    <>
+    <CanvasErrorBoundary>
       {isRendering && (
         <div className="absolute inset-0 z-40 flex items-center justify-center pointer-events-none">
           <div className="rounded-md bg-white bg-opacity-90 p-3 shadow">
@@ -286,42 +318,44 @@ const CanvasViewer: React.FC<CanvasViewerProps> = ({ meshes, onSliceBoundsComput
         <ambientLight intensity={0.3} />
         <CamLight />
         <CameraTracker onPosChange={(x, y, z) => setLivePos({ x, y, z })} />
-        <Bounds>
-          {meshes.map((meshProps, idx) => (
-            <group key={meshProps.url ?? idx}>
-              {meshProps.debugMode && <axesHelper args={[100]} />}
-              <Model
-                key={idx}
-                url={meshProps.url}
-                category={meshProps.category}
-                visible={meshProps.visible}
-                hiddenIds={meshProps.hiddenIds}
-                selectedEntity={meshProps.selectedEntity}
-                combinedCenter={combinedCenter ?? new THREE.Vector3()}
-                onEntityClick={meshProps.onEntityClick}
-                onEntityRightClick={meshProps.onEntityRightClick}
-                opacity={meshProps.opacity}
-                color={meshProps.color}
-                dimmed={meshProps.dimmed ?? false}
-                dimmedOptions={meshProps.dimmedOptions}
-                debugMode={meshProps.debugMode}
-                onLoad={handleModelLoad}
-                slicingActive={meshProps.slicingActive}
-                sliceXThreshold={meshProps.sliceXThreshold}
-                diameterValues={meshProps.diameterValues}
-                idToIndex={meshProps.idToIndex}
-                colorOverrideMap={meshProps.colorOverrideMap}
-                onEntityIdsLoaded={meshProps.onEntityIdsLoaded}
-              />
-            </group>
-          ))}
-        </Bounds>
+        <Suspense fallback={null}>
+          <Bounds>
+            {meshes.map((meshProps, idx) => (
+              <group key={meshProps.url ?? idx}>
+                {meshProps.debugMode && <axesHelper args={[100]} />}
+                <Model
+                  key={idx}
+                  url={meshProps.url}
+                  category={meshProps.category}
+                  visible={meshProps.visible}
+                  hiddenIds={meshProps.hiddenIds}
+                  selectedEntity={meshProps.selectedEntity}
+                  combinedCenter={combinedCenter ?? new THREE.Vector3()}
+                  onEntityClick={meshProps.onEntityClick}
+                  onEntityRightClick={meshProps.onEntityRightClick}
+                  opacity={meshProps.opacity}
+                  color={meshProps.color}
+                  dimmed={meshProps.dimmed ?? false}
+                  dimmedOptions={meshProps.dimmedOptions}
+                  debugMode={meshProps.debugMode}
+                  onLoad={handleModelLoad}
+                  slicingActive={meshProps.slicingActive}
+                  sliceXThreshold={meshProps.sliceXThreshold}
+                  diameterValues={meshProps.diameterValues}
+                  idToIndex={meshProps.idToIndex}
+                  colorOverrideMap={meshProps.colorOverrideMap}
+                  onEntityIdsLoaded={meshProps.onEntityIdsLoaded}
+                />
+              </group>
+            ))}
+          </Bounds>
+        </Suspense>
         <OrbitControls ref={controlsRef} enableDamping dampingFactor={0.1}/>
       </Canvas>
 
       {/* 4/27 JacklynX changed - SVG axes indicator + coordinate inputs, bottom-left */}
       <CameraControlPanel controlsRef={controlsRef} livePos={livePos} />
-    </>
+    </CanvasErrorBoundary>
   );
 };
 

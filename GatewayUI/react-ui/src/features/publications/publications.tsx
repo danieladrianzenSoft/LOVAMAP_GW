@@ -6,6 +6,7 @@ import { ScaffoldGroup } from '../../app/models/scaffoldGroup';
 import { DescriptorType } from '../../app/models/descriptorType';
 import LoadingSpinner from '../../app/common/loading-spinner/loading-spinner';
 import History from "../../app/helpers/History";
+import { getStiffnessLabel } from "../../constants/particle-stiffnesses";
 import { FaExternalLinkAlt, FaSpinner, FaTimes } from "react-icons/fa";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import DataTable, { DataTableColumn } from '../../app/common/data-table/data-table';
@@ -517,7 +518,7 @@ const Publications: React.FC = () => {
 											<div className="text-sm font-medium text-gray-800">{g.name || `Group ${g.id}`}</div>
 											<div className="text-xs text-gray-400">
 												{g.scaffoldIds?.length ?? 0} scaffold{g.scaffoldIds?.length !== 1 ? 's' : ''}
-												{g.tags?.length ? ` · ${g.tags.slice(0, 3).join(', ')}` : ''}
+												{g.tags?.length ? ` · ${g.tags.slice(0, 3).map(t => getStiffnessLabel(t)).join(', ')}` : ''}
 											</div>
 										</div>
 									</div>

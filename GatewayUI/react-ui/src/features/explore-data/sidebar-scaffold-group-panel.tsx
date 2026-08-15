@@ -4,6 +4,7 @@ import Tag from "../../app/common/tag/tag";
 import React from "react";
 import { FaTimes } from "react-icons/fa";
 import { getPlotColor } from "../../app/utils/plot-colors";
+import { getStiffnessLabel } from "../../constants/particle-stiffnesses";
 
 interface SidebarScaffoldGroupPanelProps {
 	groupData: ScaffoldGroupData;
@@ -70,7 +71,7 @@ export const SidebarScaffoldGroupPanel: React.FC<SidebarScaffoldGroupPanelProps>
 					</div>
 					<div className="flex flex-wrap gap-1 mt-2">
 						{groupData.scaffoldGroup.tags.map((tag, index) => (
-						<Tag key={index} text={tag} />
+						<Tag key={index} text={tag} displayText={getStiffnessLabel(tag)} />
 						))}
 					</div>
 				</div>
@@ -142,7 +143,7 @@ export const SidebarScaffoldGroupPanel: React.FC<SidebarScaffoldGroupPanelProps>
 										</tr>
 										<tr>
 											<td className="pl-2 text-gray-500">stiffness:</td>
-											<td>{p.stiffness}</td>
+											<td>{getStiffnessLabel(p.stiffness)}</td>
 										</tr>
 										<tr>
 											<td className="pl-2 text-gray-500">dispersity:</td>

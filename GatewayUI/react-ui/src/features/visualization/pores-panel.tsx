@@ -61,7 +61,7 @@ const PoresPanel: React.FC<DomainPanelProps> = ({
 
 				{onToggleHideEdgePores && (
 					<div className={`flex justify-between items-center mt-3 text-sm ${visible ? 'text-gray-700' : 'text-gray-400'}`}>
-						<span>Show edge pores</span>
+						<span>Show surface pores</span>
 						<label className={`inline-flex items-center relative w-11 h-6 ${visible ? 'cursor-pointer' : 'cursor-not-allowed'}`}>
 							<input
 								type="checkbox"

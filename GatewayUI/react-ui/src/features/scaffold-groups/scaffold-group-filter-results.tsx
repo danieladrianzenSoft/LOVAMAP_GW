@@ -3,6 +3,7 @@ import { ScaffoldGroup } from '../../app/models/scaffoldGroup';
 import ScaffoldGroupCard from "./scaffold-group-card"; // adjust path if different
 import ScaffoldGroupDetails from "./scaffold-group-details";
 import Tag from "../../app/common/tag/tag";
+import { getStiffnessLabel } from "../../constants/particle-stiffnesses";
 
 interface ScaffoldGroupsFilterResultsProps {
 	scaffoldGroups: ScaffoldGroup[];
@@ -178,7 +179,7 @@ const ScaffoldGroupsFilterResults: React.FC<ScaffoldGroupsFilterResultsProps> = 
 					<h2 className="text-2xl font-semibold text-gray-800 mt-10">Exact Matches</h2>
 					<div className="flex flex-wrap gap-x-1 gap-y-1 mt-2 mb-8">
 						{selectedTagNames.map((tag, index) => (
-							<Tag key={index} showRemove={true} onRemove={onRemoveTag} text={tag} />
+							<Tag key={index} showRemove={true} onRemove={onRemoveTag} text={tag} displayText={getStiffnessLabel(tag)} />
 						))}
 						{selectedParticleSizeIds.map((tag, index) => (
 							<Tag key={index} showRemove={true} onRemove={onRemoveTag} text={tag.toString() + "um"} />

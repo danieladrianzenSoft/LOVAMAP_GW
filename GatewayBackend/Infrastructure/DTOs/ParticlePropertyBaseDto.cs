@@ -10,5 +10,6 @@ namespace Infrastructure.DTOs
 		public double? StandardDeviationSize { get; set; }
 		public double? Proportion { get; set; }
 		public string? Material { get; set; }
+		public double? YoungsModulus { get; set; }
 	}
 }

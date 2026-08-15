@@ -28,6 +28,8 @@ import { ScaffoldGroup } from '../../app/models/scaffoldGroup';
 import toast from 'react-hot-toast';
 import { FaCamera } from 'react-icons/fa';
 import LoadingSpinner from '../../app/common/loading-spinner/loading-spinner';
+import Tag from '../../app/common/tag/tag';
+import { getStiffnessLabel } from '../../constants/particle-stiffnesses';
 
 const Visualization: React.FC = () => {
 	// Store access
@@ -105,6 +107,20 @@ const Visualization: React.FC = () => {
 	const [showSearchDropdown, setShowSearchDropdown] = useState(false);
 	const [searchSelectionLoadingId, setSearchSelectionLoadingId] = useState<number | null>(null);
 	const [searchCategory, setSearchCategory] = useState<SearchCategory>(DEFAULT_CATEGORY);
+	const [replicateScrollOffset, setReplicateScrollOffset] = useState(0);
+
+	// Auto-scroll replicate pills to keep the active one visible
+	useEffect(() => {
+		const ids = scaffoldGroupStore.selectedScaffoldGroup?.scaffoldIds;
+		if (!ids || ids.length <= 5) return;
+		const activeIdx = ids.indexOf(selectedScaffoldId ?? -1);
+		if (activeIdx < 0) return;
+		setReplicateScrollOffset(prev => {
+			if (activeIdx < prev) return activeIdx;
+			if (activeIdx >= prev + 5) return activeIdx - 4;
+			return prev;
+		});
+	}, [selectedScaffoldId, scaffoldGroupStore.selectedScaffoldGroup?.scaffoldIds]);
 	const searchContainerRef = useRef<HTMLDivElement>(null);
 
 	// small helper - compare two Sets of strings for equality
@@ -563,15 +579,11 @@ const Visualization: React.FC = () => {
 		setShowParticles(true);
 		setShowPores(true);
 		setPoreColorSeed(0);
+		setReplicateScrollOffset(0);
 		clearHistory();
 
 		await loadDomainAndGroup();
 	}, [domainStore, clearHistory, loadDomainAndGroup]);
-
-	const handleScaffoldChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-		const newScaffoldId = parseInt(e.target.value, 10);
-		switchToScaffold(newScaffoldId);
-	};
 
 	const runSearch = async (query: string) => {
 		setSearching(true);
@@ -779,7 +791,7 @@ const Visualization: React.FC = () => {
 	return (
 		<div className={`relative w-full h-[calc(100vh-4rem)] mt-8 -mb-8 overflow-hidden flex flex-col ${isMobile ? 'ml-0 pb-14' : 'ml-2'}`}>
 			{/* Header: title, subtitle, search */}
-			<div className="flex-shrink-0 px-2 pb-2 md:pb-4">
+			<div className="flex-shrink-0 px-2 pb-3 md:pb-5">
 				<h1 className="text-xl md:text-3xl font-bold text-gray-900 leading-tight">
 					LOVAMAP playground
 				</h1>
@@ -788,7 +800,7 @@ const Visualization: React.FC = () => {
 				</p>
 				<div
 					ref={searchContainerRef}
-					className="relative w-full md:max-w-[36rem] mt-2 md:mt-3 pb-2"
+					className="relative w-full md:max-w-[36rem] mt-4 md:mt-5 pb-2"
 				>
 					<AISearchBar
 						onSearch={runSearch}
@@ -808,10 +820,75 @@ const Visualization: React.FC = () => {
 						/>
 					)}
 				</div>
+
+				{/* Context strip: scaffold name + tags | replicate pills */}
+				{scaffoldGroupStore.selectedScaffoldGroup && !isBusy && (
+					<div className="flex flex-wrap items-center justify-between gap-2 mt-3 bg-white bg-opacity-80 border border-gray-200 rounded-lg px-3 py-2 shadow-sm">
+						<div className="flex flex-wrap items-center gap-2 min-w-0">
+							<span className="font-semibold text-sm text-gray-900">
+								{scaffoldGroupStore.selectedScaffoldGroup.name ?? 'Unnamed'}
+							</span>
+							{scaffoldGroupStore.selectedScaffoldGroup.tags?.map((tag, i) => (
+								<Tag key={i} text={tag} displayText={getStiffnessLabel(tag)} />
+							))}
+						</div>
+						{scaffoldGroupStore.selectedScaffoldGroup.scaffoldIds.length > 1 && (() => {
+							const ids = scaffoldGroupStore.selectedScaffoldGroup!.scaffoldIds;
+							const maxVisible = 5;
+							const needsPaging = ids.length > maxVisible;
+							const activeIdx = ids.indexOf(selectedScaffoldId ?? -1);
+							// Auto-scroll to keep active replicate visible
+							let effectiveOffset = replicateScrollOffset;
+							if (needsPaging && activeIdx >= 0) {
+								if (activeIdx < effectiveOffset) effectiveOffset = activeIdx;
+								else if (activeIdx >= effectiveOffset + maxVisible) effectiveOffset = activeIdx - maxVisible + 1;
+							}
+							const startIdx = needsPaging ? Math.min(effectiveOffset, ids.length - maxVisible) : 0;
+							const visibleIds = needsPaging ? ids.slice(startIdx, startIdx + maxVisible) : ids;
+
+							return (
+								<div className="flex items-center gap-1">
+									<span className="text-xs text-gray-500 mr-1">Replicate</span>
+									{needsPaging && (
+										<button
+											onClick={() => setReplicateScrollOffset(Math.max(0, startIdx - 1))}
+											disabled={startIdx === 0}
+											className={`px-1 py-0.5 text-xs ${startIdx === 0 ? 'text-gray-300' : 'text-gray-500 hover:text-gray-800'}`}
+										>
+											&#8249;
+										</button>
+									)}
+									{visibleIds.map((id) => (
+										<button
+											key={id}
+											onClick={() => switchToScaffold(id)}
+											className={`px-2 py-0.5 text-xs rounded-full border transition ${
+												id === selectedScaffoldId
+													? 'bg-link-300 text-white border-link-300'
+													: 'bg-white text-gray-700 border-gray-300 hover:border-link-300'
+											}`}
+										>
+											{ids.indexOf(id) + 1}
+										</button>
+									))}
+									{needsPaging && (
+										<button
+											onClick={() => setReplicateScrollOffset(Math.min(ids.length - maxVisible, startIdx + 1))}
+											disabled={startIdx + maxVisible >= ids.length}
+											className={`px-1 py-0.5 text-xs ${startIdx + maxVisible >= ids.length ? 'text-gray-300' : 'text-gray-500 hover:text-gray-800'}`}
+										>
+											&#8250;
+										</button>
+									)}
+								</div>
+							);
+						})()}
+					</div>
+				)}
 			</div>
 
 			{/* Canvas area with floating panels */}
-			<div className="relative flex-1 min-h-0 w-full overflow-hidden">
+			<div className="relative flex-1 min-h-0 w-full overflow-hidden pt-2">
 				<div className="absolute left-0 right-0 -top-[10%] h-[110%] rounded-lg">
 					{isBusy && (
 						<div className="h-full w-full flex items-center justify-center">
@@ -852,10 +929,10 @@ const Visualization: React.FC = () => {
 				</button>
 			)}
 
-			{/* Desktop panels — unchanged */}
+			{/* Desktop panels */}
 			{!isMobile && !meshMissing && (
 				<>
-					<div className="absolute top-[5%] left-0 z-20 space-y-1 ml-2">
+					<div className="absolute top-1 left-0 z-20 space-y-1 ml-2">
 						<SelectedPanel
 							selectedDomainEntity={activeSelected}
 							domainCategory={activeCategory}
@@ -884,20 +961,12 @@ const Visualization: React.FC = () => {
 							/>
 						)}
 					</div>
-					<div className="absolute top-[5%] right-0 z-20 space-y-1 mr-2">
-						<button className="button-primary items-center content-center w-full mb-2" onClick={() => History.push('/explore')}>
-							Explore More
-						</button>
-
+					<div className="absolute top-1 right-0 z-20 space-y-1 max-h-[90%] overflow-y-auto px-3 pb-5">
 						<InfoPanel
 							isOpen={isPanelOpen}
 							toggleOpen={() => setIsPanelOpen(!isPanelOpen)}
 							scaffoldGroup={scaffoldGroupStore.selectedScaffoldGroup}
 							selectedScaffoldId={selectedScaffoldId}
-							onScaffoldChange={handleScaffoldChange}
-							selectedCategories={selectedCategories}
-							onCategoryChange={setSelectedCategories}
-							domain={particleDomain}
 							isLoading={scaffoldGroupStore.isFetchingScaffoldGroup}
 						/>
 
@@ -996,10 +1065,6 @@ const Visualization: React.FC = () => {
 							toggleOpen={() => {}}
 							scaffoldGroup={scaffoldGroupStore.selectedScaffoldGroup}
 							selectedScaffoldId={selectedScaffoldId}
-							onScaffoldChange={handleScaffoldChange}
-							selectedCategories={selectedCategories}
-							onCategoryChange={setSelectedCategories}
-							domain={particleDomain}
 							onScreenshot={handleManualScreenshot}
 							isLoading={scaffoldGroupStore.isFetchingScaffoldGroup}
 							className="w-full bg-transparent shadow-none p-0"

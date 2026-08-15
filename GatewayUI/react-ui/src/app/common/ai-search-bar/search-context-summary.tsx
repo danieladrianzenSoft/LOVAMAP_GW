@@ -1,4 +1,5 @@
 import Tag from "../tag/tag";
+import { getStiffnessLabel } from "../../../constants/particle-stiffnesses";
 
 interface SearchContextSummaryProps {
   aiSearchUsed: boolean;
@@ -20,7 +21,7 @@ export const SearchContextSummary: React.FC<SearchContextSummaryProps> = ({
 		<div className="flex flex-wrap gap-x-1 gap-y-1">
 			<p>Based on your search prompt, the best-matching tags are:</p>
 			{selectedTagNames.map((tag, index) => (
-				<Tag key={`tag-${index}`} text={tag} />
+				<Tag key={`tag-${index}`} text={tag} displayText={getStiffnessLabel(tag)} />
 			))}
 			{selectedParticleSizeIds.map((tag, index) => (
 				<Tag key={`size-${index}`} text={tag.toString() + "μm"} />

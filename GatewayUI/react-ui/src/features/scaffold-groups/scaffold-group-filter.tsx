@@ -4,6 +4,7 @@ import { useStore } from "../../app/stores/store";
 import { GroupedTags, Tag, displayNameMap } from "../../app/models/tag";
 import { FaCaretDown } from "react-icons/fa";
 import { useOnClickOutside } from "../../app/common/hooks/useOnClickOutside";
+import { getStiffnessLabel, PARTICLE_STIFFNESSES } from "../../constants/particle-stiffnesses";
 
 interface ScaffoldGroupFiltersProps {
 	condensed?: boolean;
@@ -170,7 +171,14 @@ const ScaffoldGroupFilters: React.FC<ScaffoldGroupFiltersProps> = ({
                                 {displayNameMap[key] || key}
                             </h4>
                             <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-x-4 gap-y-1">
-                                {tags.map(tag => {
+                                {(key === "stiffness"
+                                    ? [...tags].sort((a, b) => {
+                                        const order = PARTICLE_STIFFNESSES.map(s => s.value);
+                                        return (order.indexOf(a.name) === -1 ? 999 : order.indexOf(a.name))
+                                             - (order.indexOf(b.name) === -1 ? 999 : order.indexOf(b.name));
+                                      })
+                                    : tags
+                                ).map(tag => {
                                     const checked = selectedTags[key]?.some(t => t.id === tag.id) ?? false;
                                     return (
                                         <label key={tag.id} className="flex items-center space-x-2 cursor-pointer">
@@ -180,7 +188,7 @@ const ScaffoldGroupFilters: React.FC<ScaffoldGroupFiltersProps> = ({
                                                 onChange={() => handleSelectTag(key, tag)}
                                                 className="accent-link-50"
                                             />
-                                            <span className="text-sm text-gray-700">{tag.name}</span>
+                                            <span className="text-sm text-gray-700">{key === "stiffness" ? getStiffnessLabel(tag.name) : tag.name}</span>
                                         </label>
                                     );
                                 })}

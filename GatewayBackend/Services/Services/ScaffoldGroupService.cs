@@ -723,7 +723,6 @@ namespace Services.Services
 		{
 			try
 			{
-				// ScaffoldGroup? scaffoldGroup = await _scaffoldGroupRepository.Get(id); 
 				var scaffoldGroup  = await _scaffoldGroupRepository.GetSummaryByScaffoldId(scaffoldId);
 
 				if (scaffoldGroup == null)
@@ -735,7 +734,15 @@ namespace Services.Services
 					return (false, "Unauthorized", null);
 				}
 
-				return (true, "", scaffoldGroup);
+				var (succeeded, errorMessage, completeScaffoldGroups) =
+					await GetCompleteScaffoldGroupsFromSummaries([scaffoldGroup], userId, isDetailed: false, filter: null);
+
+				if (!succeeded || completeScaffoldGroups == null)
+				{
+					return (false, errorMessage, null);
+				}
+
+				return (true, "", completeScaffoldGroups.OfType<ScaffoldGroupSummaryDto>().FirstOrDefault());
 
 			}
 			catch (Exception ex)

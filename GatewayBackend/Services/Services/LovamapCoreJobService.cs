@@ -942,6 +942,7 @@ namespace Services.Services
 						Proportion = p.Proportion,
 						MeanSize = particleMean,
 						StandardDeviationSize = particleStdDev,
+						YoungsModulus = p.YoungsModulus,
 					});
 				}
 			}
@@ -1036,6 +1037,7 @@ namespace Services.Services
 								existingPpgs[i].Stiffness = p.Stiffness;
 								existingPpgs[i].Dispersity = p.Dispersity;
 								existingPpgs[i].Material = p.Material;
+								existingPpgs[i].YoungsModulus = p.YoungsModulus;
 								existingPpgs[i].MeanSize = i == 0 ? meanSize : existingPpgs[i].MeanSize;
 								existingPpgs[i].StandardDeviationSize = i == 0 ? stdDev : existingPpgs[i].StandardDeviationSize;
 							}

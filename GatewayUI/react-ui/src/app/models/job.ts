@@ -66,6 +66,7 @@ export interface SaveLovamapResultParticle {
 	sizeDistributionType?: string;
 	material?: string;
 	proportion: number;
+	youngsModulus?: number | null;
 }
 
 export interface Pagination {

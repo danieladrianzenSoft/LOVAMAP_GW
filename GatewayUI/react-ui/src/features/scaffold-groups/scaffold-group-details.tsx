@@ -9,6 +9,7 @@ import History from "../../app/helpers/History";
 import { PORE_DESCRIPTOR_MAP, PoreDescriptorUIConfig } from '../../constants/pore-descriptors';
 import { DescriptorType } from '../../app/models/descriptorType';
 import { useDescriptorTypes } from '../../app/common/hooks/useDescriptorTypes';
+import { getStiffnessLabel } from '../../constants/particle-stiffnesses';
 
 interface ScaffoldGroupDetailsProps {
     scaffoldGroup: ScaffoldGroup;
@@ -20,7 +21,7 @@ interface ScaffoldGroupDetailsProps {
 
 const domainCategories = [
 	{ key: 'Particles', label: 'Particles' },
-	{ key: 'ExteriorPores', label: 'Edge Pores' },
+	{ key: 'ExteriorPores', label: 'Surface Pores' },
 	{ key: 'InteriorPores', label: 'Interior Pores' },
 ];
 
@@ -212,7 +213,12 @@ const ScaffoldGroupDetails: React.FC<ScaffoldGroupDetailsProps> = ({ scaffoldGro
 										</tr>
 										<tr>
 											<td className="font-medium text-gray-400 py-0.5 pr-3 pl-4 align-top whitespace-nowrap">Stiffness:</td>
-											<td className="py-0.5">{firstParticle.stiffness}</td>
+											<td className="py-0.5">
+												{getStiffnessLabel(firstParticle.stiffness)}
+												{firstParticle.youngsModulus != null && (
+													<span className="text-gray-400 ml-1">(E = {firstParticle.youngsModulus} Pa)</span>
+												)}
+											</td>
 										</tr>
 										{firstParticle.material && (
 											<tr>

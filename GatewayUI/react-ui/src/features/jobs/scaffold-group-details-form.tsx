@@ -33,6 +33,7 @@ const defaultParticle = (): Partial<ParticlePropertyGroup> => ({
   meanSize: 100,
   standardDeviationSize: 0,
   proportion: 1,
+  youngsModulus: null,
 });
 
 export const ScaffoldGroupDetailsForm: React.FC<Props> = ({ initial, onMatchesFound, onReady, onStatus }) => {
@@ -82,6 +83,7 @@ export const ScaffoldGroupDetailsForm: React.FC<Props> = ({ initial, onMatchesFo
 			standardDeviationSize: p.standardDeviationSize ?? 0,
 			proportion: p.proportion ?? 1,
 			material: resolveOther(p.material ?? "", p.materialOther ?? "") || null,
+			youngsModulus: p.youngsModulus != null && p.youngsModulus !== "" ? Number(p.youngsModulus) : null,
 		})),
 		sizeDistribution: values.sizeDistribution ?? null,
 		isSimulated: values.isSimulated ?? true,
@@ -406,6 +408,21 @@ export const ScaffoldGroupDetailsForm: React.FC<Props> = ({ initial, onMatchesFo
 											/>
 										</div>
 									</div>
+									{(values.particles[idx] as any)?.stiffness && (values.particles[idx] as any)?.stiffness !== "rigid" && (values.particles[idx] as any)?.stiffness !== "unknown" && (
+										<div className="mt-3 grid grid-cols-3 gap-2 text-sm">
+											<div>
+												<TextInput
+													name={`particles.${idx}.youngsModulus`}
+													label="Young's Modulus (Pa)"
+													type="number"
+													errors={errors}
+													touched={touched}
+													min={0}
+													step={0.1}
+												/>
+											</div>
+										</div>
+									)}
 									{values.isSimulated === false && (
 										<div className="mt-3 grid grid-cols-3 gap-2 text-sm">
 											<div>

@@ -5,6 +5,7 @@ import { Image, ImageCategory, ImageToUpdate } from '../../app/models/image';
 import { Publication } from '../../app/models/publication';
 import { ScaffoldGroup } from '../../app/models/scaffoldGroup';
 import { ParticlePropertyGroup } from '../../app/models/particlePropertyGroup';
+import { getStiffnessLabel } from '../../constants/particle-stiffnesses';
 
 type LibraryFolder = string;
 
@@ -632,7 +633,7 @@ const ScaffoldGroupLibrary: React.FC<ScaffoldGroupLibraryProps> = ({
 											<FaFolder className="text-secondary-300 shrink-0" size={16} />
 											<div className="min-w-0">
 												<div className="text-sm font-medium text-gray-800 truncate">{group.name || `Scaffold Group ${group.id}`}</div>
-												<div className="text-xs text-gray-400 truncate">{group.tags?.slice(0, 4).join(', ') || `Group ${group.id}`}</div>
+												<div className="text-xs text-gray-400 truncate">{group.tags?.slice(0, 4).map(t => getStiffnessLabel(t)).join(', ') || `Group ${group.id}`}</div>
 											</div>
 										</div>
 										<div className="text-sm text-gray-600">{scaffoldIds.length}</div>
@@ -1164,7 +1165,7 @@ const MoveScaffoldConfirm: React.FC<{
 										<span className="shrink-0 text-xs text-gray-400">{group.scaffoldIds?.length ?? 0} scaffolds</span>
 									</div>
 									<div className="mt-1 truncate text-xs text-gray-400">
-										{[group.id.toString(), group.isSimulated ? 'simulated' : 'experimental', ...(group.tags ?? []).slice(0, 4)].join(' | ')}
+										{[group.id.toString(), group.isSimulated ? 'simulated' : 'experimental', ...(group.tags ?? []).slice(0, 4).map(t => getStiffnessLabel(t))].join(' | ')}
 									</div>
 								</button>
 							))}
@@ -1254,7 +1255,7 @@ const ScaffoldMoveMetadata: React.FC<{ group: ScaffoldGroup; scaffoldCountText: 
 						<MetadataRow label="Composition" value={firstParticle.dispersity?.toLowerCase()} isNested />
 						<MetadataRow label="Configuration" value={group.inputs?.packingConfiguration?.toLowerCase() ?? 'unknown'} isNested />
 						<MetadataRow label="Size distribution" value={formatSizeDistributionType(firstParticle.sizeDistributionType)} isNested />
-						<MetadataRow label="Stiffness" value={firstParticle.stiffness} isNested />
+						<MetadataRow label="Stiffness" value={getStiffnessLabel(firstParticle.stiffness ?? '')} isNested />
 						{firstParticle.material && <MetadataRow label="Material" value={firstParticle.material} isNested />}
 						<MetadataRow label="Friction" value={firstParticle.friction} isNested />
 					</>
@@ -1295,7 +1296,7 @@ const GroupTags: React.FC<{ tags: string[] }> = ({ tags }) => {
 		<div className="flex flex-wrap gap-1.5">
 			{tags.slice(0, 8).map(tag => (
 				<span key={tag} className="rounded bg-white px-2 py-1 text-xs text-gray-600 ring-1 ring-gray-200">
-					{tag}
+					{getStiffnessLabel(tag)}
 				</span>
 			))}
 			{tags.length > 8 && (
@@ -1372,7 +1373,7 @@ const formatSizeDistributionType = (sizeDistributionType?: string | null) => {
 const formatParticleGroupSummary = (particle: ParticlePropertyGroup) => {
 	const proportion = particle.proportion != null ? `${(particle.proportion * 100).toPrecision(3)}%` : '';
 	const size = particle.meanSize != null ? `${particle.meanSize.toPrecision(3)} um` : '';
-	return [proportion, size, particle.shape, particle.stiffness, particle.material]
+	return [proportion, size, particle.shape, getStiffnessLabel(particle.stiffness ?? ''), particle.material]
 		.filter(Boolean)
 		.join(' ');
 };
