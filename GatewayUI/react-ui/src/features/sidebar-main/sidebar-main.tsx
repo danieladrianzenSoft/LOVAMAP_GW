@@ -24,7 +24,7 @@ const SideBarMain: React.FC = () => {
 	useEffect(() => {
 		const p = location.pathname;
 
-		if (p === '/' || matchPath('/visualize/*', p)) {
+		if (matchPath('/visualize/*', p)) {
 			setActiveTab(0);
 		} else if (matchPath('/explore/*', p)) {
 			setActiveTab(1);

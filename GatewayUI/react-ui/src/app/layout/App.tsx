@@ -35,6 +35,7 @@ import Dashboard from '../../features/dashboard/Dashboard';
 import RdfExplorer from '../../features/rdf-explorer/RdfExplorer';
 import { isWhiteBackgroundRoute } from '../helpers/routeTheme';
 import ScaffoldGroupPreviewPage from '../../features/scaffold-groups/scaffold-group-preview-page';
+import HomePage from '../../features/home/home-page';
 
 const App: React.FC = () => {
   const { commonStore, userStore } = useStore();
@@ -74,6 +75,7 @@ const App: React.FC = () => {
         <Route path="/reset-password" element={<ResetPasswordForm />} />
         <Route path="/forgot-password" element={<ForgotPasswordForm />} />
         <Route path="/preview/scaffold-group/:id" element={<ScaffoldGroupPreviewPage />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/*" element={<MainLayout />} />
       </Routes>
     </HistoryRouter>
@@ -93,7 +95,6 @@ const MainLayout: React.FC = observer(() => {
       <SideBarMain />
       <div className={`content ${contentBgClass}`}>
         <Routes>
-          <Route path="/" element={<Visualization />} />
           <Route path="/visualize" element={<Visualization />} />
           <Route path="/visualize/:scaffoldId" element={<Visualization />} />
           <Route path="/test-visualization" element={<TestVisualization />} />

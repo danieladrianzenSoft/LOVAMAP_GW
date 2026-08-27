@@ -232,4 +232,17 @@
     border: none;
   }
 
+  .section-heading {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold text-center mt-28 mb-6 leading-tight;
+  }
+
+  .section-subheading {
+    @apply text-lg md:text-xl text-center text-gray-500 mb-28 max-w-2xl mx-auto;
+  }
+
+  .heading-gradient {
+    @apply bg-clip-text text-transparent inline-block;
+    background-image: linear-gradient(to right, #C200C2 0%, #2A88C6 69%, #10AB89 100%);
+  }
+
 }
