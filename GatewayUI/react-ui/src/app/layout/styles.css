@@ -245,4 +245,8 @@
     background-image: linear-gradient(to right, #C200C2 0%, #2A88C6 69%, #10AB89 100%);
   }
 
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
 }

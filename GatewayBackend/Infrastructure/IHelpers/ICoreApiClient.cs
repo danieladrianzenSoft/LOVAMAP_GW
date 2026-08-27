@@ -9,5 +9,6 @@ namespace Infrastructure.IHelpers
 		Task<HttpResponseMessage> GetJobMeshAsync(string jobId, CancellationToken ct = default);
 		Task<HttpResponseMessage> GetJobChildrenAsync(string jobId, CancellationToken ct = default);
 		Task<HttpResponseMessage> GetJobLogsAsync(string jobId, CancellationToken ct = default);
+		Task<HttpResponseMessage> GetToolVersionsAsync(CancellationToken ct = default);
 	}
 }

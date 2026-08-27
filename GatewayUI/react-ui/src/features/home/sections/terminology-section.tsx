@@ -16,7 +16,8 @@ interface TermItem {
   videoSrc: string; // base path (without format extension)
   arrowsUrl: string; // arrows-only overlay (transparent PNG)
   gifPos: GifPos; // video overlay position as % of arrows image
-  hasAlpha: boolean; // source has real transparency
+  hasAlpha: boolean; // true = serve as native GIF (preserves transparency in all browsers)
+  gifDurationMs?: number; // required when hasAlpha=true (GIF has no onEnded event)
 }
 
 const TERMS: TermItem[] = [
@@ -40,6 +41,7 @@ const TERMS: TermItem[] = [
     arrowsUrl: `${CLOUD_BASE}/f_auto,q_auto/v1787333483/section3_arrows2_xiclwo.png`,
     gifPos: { top: 'calc(19% + 10px)', left: 'calc(16% - 6px)', width: '67%', height: '76%' },
     hasAlpha: true,
+    gifDurationMs: 5000,
   },
 ];
 
@@ -59,17 +61,14 @@ const TermCard: React.FC<{ term: TermItem }> = ({ term }) => {
     const v = videoRef.current;
     if (!v) return;
     v.play().catch(() => {
-      // Retry once after a short delay if autoplay is blocked
       setTimeout(() => v.play().catch(() => {}), 500);
     });
   };
 
-  // Video ended — last frame stays visible, fade in arrows and stop.
   const onVideoEnded = () => {
     setShowArrows(true);
   };
 
-  // Start playback when the card enters the viewport
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
@@ -77,20 +76,28 @@ const TermCard: React.FC<{ term: TermItem }> = ({ term }) => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          // Reset and play once each time it enters view
-          const v = videoRef.current;
-          if (v) {
-            v.currentTime = 0;
-            setShowArrows(false);
-            clearTimers();
+          setShowArrows(false);
+          clearTimers();
+
+          if (term.hasAlpha) {
+            // GIF loops — show arrows after estimated duration
+            timerRef.current = window.setTimeout(() => {
+              setShowArrows(true);
+            }, term.gifDurationMs ?? 5000);
+          } else {
+            const v = videoRef.current;
+            if (v) {
+              v.currentTime = 0;
+            }
+            tryPlay();
           }
-          tryPlay();
         } else {
-          // Pause and reset when scrolled away
-          const v = videoRef.current;
-          if (v) {
-            v.pause();
-            v.currentTime = 0;
+          if (!term.hasAlpha) {
+            const v = videoRef.current;
+            if (v) {
+              v.pause();
+              v.currentTime = 0;
+            }
           }
           setShowArrows(false);
           clearTimers();
@@ -109,42 +116,50 @@ const TermCard: React.FC<{ term: TermItem }> = ({ term }) => {
   return (
     <div ref={containerRef} className="flex flex-col items-center text-center flex-shrink-0">
       <div className="relative">
-        {/* Arrows overlay (transparent PNG) - fades in/out over video's last frame */}
+        {/* Arrows overlay (transparent PNG) - fades in/out */}
         <img
           src={term.arrowsUrl}
           alt={`${term.title} labels`}
           className="h-80 w-auto relative z-10 transition-opacity pointer-events-none"
           style={{ opacity: showArrows ? 1 : 0, transitionDuration: `${FADE_MS}ms` }}
         />
-        {/* Video always visible, positioned to match content area */}
-        <video
-          ref={videoRef}
-          muted
-          playsInline
-          preload="auto"
-          onEnded={onVideoEnded}
-          className="absolute"
-          style={{
-            top: term.gifPos.top,
-            left: term.gifPos.left,
-            width: term.gifPos.width,
-            height: term.gifPos.height,
-            objectFit: 'contain',
-            ...(term.hasAlpha ? {} : { mixBlendMode: 'multiply' as const }),
-          }}
-        >
-          {term.hasAlpha ? (
-            <>
-              <source src={`${VIDEO_WEBM}/${term.videoSrc}`} type="video/webm" />
-              <source src={`${VIDEO_MP4}/${term.videoSrc}`} type="video/mp4" />
-            </>
-          ) : (
-            <>
-              <source src={`${VIDEO_WEBM},b_white/${term.videoSrc}`} type="video/webm" />
-              <source src={`${VIDEO_MP4},b_white/${term.videoSrc}`} type="video/mp4" />
-            </>
-          )}
-        </video>
+
+        {term.hasAlpha ? (
+          /* Native GIF — transparency works in all browsers */
+          <img
+            src={`${CLOUD_BASE}/${term.videoSrc}`}
+            alt={term.title}
+            className="absolute"
+            style={{
+              top: term.gifPos.top,
+              left: term.gifPos.left,
+              width: term.gifPos.width,
+              height: term.gifPos.height,
+              objectFit: 'contain',
+            }}
+          />
+        ) : (
+          /* Video with white bg + multiply blend */
+          <video
+            ref={videoRef}
+            muted
+            playsInline
+            preload="auto"
+            onEnded={onVideoEnded}
+            className="absolute"
+            style={{
+              top: term.gifPos.top,
+              left: term.gifPos.left,
+              width: term.gifPos.width,
+              height: term.gifPos.height,
+              objectFit: 'contain',
+              mixBlendMode: 'multiply' as const,
+            }}
+          >
+            <source src={`${VIDEO_WEBM},b_white/${term.videoSrc}`} type="video/webm" />
+            <source src={`${VIDEO_MP4},b_white/${term.videoSrc}`} type="video/mp4" />
+          </video>
+        )}
       </div>
     </div>
   );
@@ -159,8 +174,8 @@ const TerminologySection: React.FC = () => {
     >
       <div className="max-w-7xl mx-auto">
         <h2 className="section-heading flex flex-col items-center">
-          <span className="heading-gradient pb-2">A brief background for</span>
-          <span className="heading-gradient">context</span>
+          <span className="heading-gradient pb-2">A brief background</span>
+          <span className="heading-gradient">for context</span>
         </h2>
         <p className="section-subheading">
           Different terminology gets tossed around. Below are some common synonyms

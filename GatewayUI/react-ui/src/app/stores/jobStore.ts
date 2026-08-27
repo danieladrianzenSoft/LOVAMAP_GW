@@ -1,7 +1,7 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import * as signalR from "@microsoft/signalr";
 import agent from "../api/agent";
-import { Job, JobForList, LovamapFromSourceJob, MeshJob, Pagination, SaveLovamapResultRequest, SegmentationJob } from "../models/job";
+import { Job, JobForList, LovamapFromSourceJob, MeshJob, Pagination, SaveLovamapResultRequest, SegmentationJob, ToolVersions } from "../models/job";
 import { store } from "./store";
 import environment from "../environments/environment";
 
@@ -10,6 +10,7 @@ export default class JobStore {
 	pagination: Pagination | null = null;
 	currentPage = 1;
 	pageSize = 50;
+	toolVersions: ToolVersions | null = null;
 	private hubConnection: signalR.HubConnection | null = null;
 
 	constructor() {
@@ -18,6 +19,14 @@ export default class JobStore {
 
 	setPage = (page: number) => {
 		this.currentPage = page;
+	};
+
+	loadToolVersions = async () => {
+		if (this.toolVersions) return;
+		const versions = await agent.Jobs.getToolVersions();
+		runInAction(() => {
+			this.toolVersions = versions;
+		});
 	};
 
 	startConnection = () => {

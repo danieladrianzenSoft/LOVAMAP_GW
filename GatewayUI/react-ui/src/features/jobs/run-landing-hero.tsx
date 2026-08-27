@@ -1,14 +1,26 @@
 import { observer } from "mobx-react-lite";
 import { FaGithub, FaMicroscope, FaProjectDiagram, FaCubes, FaEnvelope } from "react-icons/fa";
+import { ToolVersions } from "../../app/models/job";
 
 interface RunLandingHeroProps {
 	isLoggedIn: boolean;
 	onCtaClick: () => void;
+	toolVersions?: ToolVersions | null;
 }
+
+const VersionBadge: React.FC<{ version: string | null | undefined }> = ({ version }) => {
+	if (!version) return null;
+	return (
+		<span className="ml-1.5 inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium tracking-wide bg-gray-100 text-gray-500 leading-none align-middle">
+			{version}
+		</span>
+	);
+};
 
 const RunLandingHero: React.FC<RunLandingHeroProps> = ({
 	isLoggedIn,
 	onCtaClick,
+	toolVersions,
 }) => {
 	return (
 		<div className="min-h-[calc(90vh-8rem)] flex flex-col">
@@ -40,7 +52,10 @@ const RunLandingHero: React.FC<RunLandingHeroProps> = ({
 				<div className="grid gap-4 md:grid-cols-3">
 					<div className="rounded-xl bg-white p-5 shadow-sm">
 						<FaMicroscope className="text-xl text-gray-400" />
-						<h3 className="mt-3 text-sm font-semibold text-gray-900">Particle Segmentation</h3>
+						<h3 className="mt-3 text-sm font-semibold text-gray-900">
+							Particle Segmentation
+							<VersionBadge version={toolVersions?.particleSegmentation} />
+						</h3>
 						<p className="mt-1 text-sm text-gray-500">
 							Convert microscope TIF stacks into labeled particle data.
 						</p>
@@ -49,7 +64,10 @@ const RunLandingHero: React.FC<RunLandingHeroProps> = ({
 					<div className="rounded-xl bg-white p-5 shadow-sm">
 						<FaProjectDiagram className="text-xl text-gray-400" />
 						<div className="mt-3 flex items-center gap-1.5">
-							<h3 className="text-sm font-semibold text-gray-900">LOVAMAP Analysis</h3>
+							<h3 className="text-sm font-semibold text-gray-900">
+								LOVAMAP Analysis
+								<VersionBadge version={toolVersions?.lovamap} />
+							</h3>
 							<span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-semibold uppercase tracking-wide bg-amber-100 text-amber-700 leading-none">
 								Beta
 							</span>
@@ -61,7 +79,10 @@ const RunLandingHero: React.FC<RunLandingHeroProps> = ({
 
 					<div className="rounded-xl bg-white p-5 shadow-sm">
 						<FaCubes className="text-xl text-gray-400" />
-						<h3 className="mt-3 text-sm font-semibold text-gray-900">Mesh Generation</h3>
+						<h3 className="mt-3 text-sm font-semibold text-gray-900">
+							Mesh Generation
+							<VersionBadge version={toolVersions?.segmentationWorkflows} />
+						</h3>
 						<p className="mt-1 text-sm text-gray-500">
 							Generate 3D meshes from segmentation outputs.
 						</p>

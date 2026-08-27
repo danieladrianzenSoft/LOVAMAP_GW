@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { FiChevronRight } from 'react-icons/fi';
 
 const BANNER_URL =
-  'https://res.cloudinary.com/danmkw7ni/image/upload/f_auto,q_auto/v1787325326/main_banner_hfgjod.png';
+  'https://res.cloudinary.com/danmkw7ni/image/upload/f_auto,q_auto/v1787325326/main_banner_full_mj06em.png';
 
 const HERO_FONT: React.CSSProperties = {
   fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
@@ -11,7 +11,7 @@ const HERO_FONT: React.CSSProperties = {
 
 const FAQ_LINKS = [
   { keyword: 'packed particle scaffold', keywordColor: 'text-link-100' },
-  { keyword: '3D pore', keywordColor: 'text-orange-500' },
+  { keyword: '3D pore', keywordColor: 'text-link-100' },
 ];
 
 const HeroSection: React.FC = () => {
@@ -23,7 +23,7 @@ const HeroSection: React.FC = () => {
   return (
     <section className="w-full bg-white pt-20">
       {/* Desktop: side-by-side | Mobile: banner behind, text overlay */}
-      <div className="relative min-h-[80vh]">
+      <div className="relative min-h-[95vh]">
         {/* Banner image — full width background */}
         <img
           src={BANNER_URL}
@@ -34,7 +34,7 @@ const HeroSection: React.FC = () => {
 
         {/* Text content — floating card over the banner */}
         <div
-          className="relative z-10 flex items-center justify-end min-h-[80vh] px-4 md:px-10"
+          className="relative z-10 flex items-center justify-end min-h-[95vh] px-4 md:px-10"
         >
           <div
             className="w-full md:w-[45%] flex flex-col justify-center px-8 md:px-12 lg:px-16 py-16 bg-white/75 backdrop-blur-sm rounded-2xl"

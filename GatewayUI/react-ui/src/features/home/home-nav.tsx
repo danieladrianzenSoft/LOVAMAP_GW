@@ -31,14 +31,16 @@ const HomeNav: React.FC = () => {
         scrolled ? 'bg-white/95 backdrop-blur-sm shadow-sm' : 'bg-white'
       }`}
     >
-      <div className="px-8 flex items-center justify-between h-20">
+      <div className="px-8 flex items-center h-20">
         {/* Left: Logo */}
-        <Link to="/" className="flex-shrink-0">
-          <img src={logo} alt="LOVAMAP" className="h-12 w-auto" />
-        </Link>
+        <div className="flex-1 flex items-center">
+          <Link to="/" className="flex-shrink-0">
+            <img src={logo} alt="LOVAMAP" className="h-12 w-auto" />
+          </Link>
+        </div>
 
         {/* Center: Nav links (desktop) */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-12">
           {NAV_LINKS.map(({ to, label }) => (
             <NavLink
               key={to}
@@ -52,7 +54,7 @@ const HomeNav: React.FC = () => {
         </div>
 
         {/* Right: Auth */}
-        <div className="flex items-center">
+        <div className="flex-1 flex items-center justify-end">
           {commonStore.isLoggedIn ? (
             <div className="relative">
               <Menu>

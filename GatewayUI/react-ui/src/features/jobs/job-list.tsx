@@ -5,7 +5,7 @@ import { Routes, Route, useNavigate, useParams } from "react-router-dom";
 import RunLovamap from "./run-lovamap";
 import RunSegmentation from "./run-segmentation";
 import RunMesh from "./run-mesh";
-import { JobForList, Pagination } from '../../app/models/job';
+import { JobForList, Pagination, ToolVersions } from '../../app/models/job';
 import { formatDate } from '../../app/utils/format-date';
 import JobDetail from './job-detail';
 import { FaArrowLeft, FaSpinner } from 'react-icons/fa';
@@ -26,6 +26,25 @@ const BetaBadge: React.FC = () => (
 		Beta
 	</span>
 );
+
+const VersionBadge: React.FC<{ version: string | null | undefined }> = ({ version }) => {
+	if (!version) return null;
+	return (
+		<span className="ml-1.5 inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium tracking-wide bg-gray-100 text-gray-500 leading-none align-middle">
+			{version}
+		</span>
+	);
+};
+
+const getVersionForMode = (mode: string, versions: ToolVersions | null): string | null => {
+	if (!versions) return null;
+	switch (mode) {
+		case 'lovamap': return versions.lovamap;
+		case 'segmentation': return versions.particleSegmentation;
+		case 'mesh': return versions.segmentationWorkflows;
+		default: return null;
+	}
+};
 
 const jobTypeCards = [
 	{
@@ -134,7 +153,8 @@ const JobTableView: React.FC<{
 	isAdmin: boolean;
 	pagination: Pagination | null;
 	onPageChange: (page: number) => void;
-}> = observer(({ jobs, isAdmin, pagination, onPageChange }) => {
+	toolVersions: ToolVersions | null;
+}> = observer(({ jobs, isAdmin, pagination, onPageChange, toolVersions }) => {
 	const navigate = useNavigate();
 
 	const pageOffset = pagination ? (pagination.currentPage - 1) * pagination.itemsPerPage : 0;
@@ -178,7 +198,11 @@ const JobTableView: React.FC<{
 						className="group flex items-center justify-between border border-gray-200 rounded-lg px-4 py-3 hover:border-gray-400 hover:shadow-sm transition-all bg-white"
 						onClick={() => navigate(`/jobs/new/${card.mode}`)}
 					>
-						<span className="text-sm font-semibold text-gray-800">{card.title}{card.beta && <BetaBadge />}</span>
+						<span className="text-sm font-semibold text-gray-800">
+							{card.title}
+							{card.beta && <BetaBadge />}
+							<VersionBadge version={getVersionForMode(card.mode, toolVersions)} />
+						</span>
 						<span className="text-gray-400 group-hover:text-gray-600 transition-colors" aria-hidden="true">&rarr;</span>
 					</button>
 				))}
@@ -194,7 +218,11 @@ const JobTableView: React.FC<{
 						<div className="w-full h-24 bg-gray-100 rounded-lg mb-3 flex items-center justify-center text-gray-400 text-sm text-center px-3">
 							{card.title}
 						</div>
-						<h3 className="text-base font-semibold text-gray-800 mb-1">{card.title}{card.beta && <BetaBadge />}</h3>
+						<h3 className="text-base font-semibold text-gray-800 mb-1">
+							{card.title}
+							{card.beta && <BetaBadge />}
+							<VersionBadge version={getVersionForMode(card.mode, toolVersions)} />
+						</h3>
 						<p className="text-sm text-gray-500 leading-snug mb-3 flex-1">{card.description}</p>
 						<span className="text-sm text-gray-400 group-hover:text-gray-600 transition-colors flex justify-end" aria-hidden="true">
 							&rarr;
@@ -218,7 +246,7 @@ const JobTableView: React.FC<{
 });
 
 /* ── Sub-view: Job type selection card grid (/jobs/new) ── */
-const JobTypeGrid: React.FC = () => {
+const JobTypeGrid: React.FC<{ toolVersions: ToolVersions | null }> = ({ toolVersions }) => {
 	const navigate = useNavigate();
 	return (
 		<>
@@ -233,7 +261,11 @@ const JobTypeGrid: React.FC = () => {
 						<div className="w-full h-24 bg-gray-100 rounded-lg mb-4 flex items-center justify-center text-gray-400 text-sm">
 							{card.title}
 						</div>
-						<h3 className="text-lg font-semibold text-gray-800 mb-2">{card.title}{card.beta && <BetaBadge />}</h3>
+						<h3 className="text-lg font-semibold text-gray-800 mb-2">
+							{card.title}
+							{card.beta && <BetaBadge />}
+							<VersionBadge version={getVersionForMode(card.mode, toolVersions)} />
+						</h3>
 						<p className="text-sm text-gray-500">{card.description}</p>
 					</button>
 				))}
@@ -243,23 +275,23 @@ const JobTypeGrid: React.FC = () => {
 };
 
 /* ── Sub-view wrappers for each form ── */
-const LovamapFormView: React.FC<{ onSubmitted: () => void }> = ({ onSubmitted }) => (
+const LovamapFormView: React.FC<{ onSubmitted: () => void; toolVersions: ToolVersions | null }> = ({ onSubmitted, toolVersions }) => (
 	<>
-		<PageHeader title={<>LOVAMAP Analysis<BetaBadge /></>} backTo="/jobs" />
+		<PageHeader title={<>LOVAMAP Analysis<BetaBadge /><VersionBadge version={toolVersions?.lovamap} /></>} backTo="/jobs" />
 		<RunLovamap onJobSubmitted={onSubmitted} />
 	</>
 );
 
-const SegmentationFormView: React.FC<{ onSubmitted: () => void }> = ({ onSubmitted }) => (
+const SegmentationFormView: React.FC<{ onSubmitted: () => void; toolVersions: ToolVersions | null }> = ({ onSubmitted, toolVersions }) => (
 	<>
-		<PageHeader title="Particle Segmentation" backTo="/jobs" />
+		<PageHeader title={<>Particle Segmentation<VersionBadge version={toolVersions?.particleSegmentation} /></>} backTo="/jobs" />
 		<RunSegmentation onJobSubmitted={onSubmitted} />
 	</>
 );
 
-const MeshFormView: React.FC<{ onSubmitted: () => void }> = ({ onSubmitted }) => (
+const MeshFormView: React.FC<{ onSubmitted: () => void; toolVersions: ToolVersions | null }> = ({ onSubmitted, toolVersions }) => (
 	<>
-		<PageHeader title="Mesh Generation" backTo="/jobs" />
+		<PageHeader title={<>Mesh Generation<VersionBadge version={toolVersions?.segmentationWorkflows} /></>} backTo="/jobs" />
 		<RunMesh onJobSubmitted={onSubmitted} />
 	</>
 );
@@ -293,7 +325,7 @@ const JobDetailView: React.FC<{ jobs: JobForList[]; onDownloadResults: (jobId: s
 /* ── Main component: wraps all sub-routes ── */
 const JobList: React.FC = () => {
 	const { jobStore, userStore } = useStore();
-	const { getUserJobs, getAllJobs, getJobResult, startConnection, stopConnection } = jobStore;
+	const { getUserJobs, getAllJobs, getJobResult, startConnection, stopConnection, loadToolVersions } = jobStore;
 	const [isLoading, setIsLoading] = useState<boolean>(true);
 	const navigate = useNavigate();
 
@@ -343,7 +375,8 @@ const JobList: React.FC = () => {
 	useEffect(() => {
 		if (!isLoggedIn) return;
 		fetchJobs();
-	}, [fetchJobs, isLoggedIn]);
+		loadToolVersions();
+	}, [fetchJobs, isLoggedIn, loadToolVersions]);
 
 	useEffect(() => {
 		if (!isLoggedIn) return;
@@ -370,11 +403,11 @@ const JobList: React.FC = () => {
 	return (
 		<div className="container mx-auto py-8 px-6">
 			<Routes>
-				<Route index element={<JobTableView jobs={jobStore.jobsRan} isAdmin={isAdmin} pagination={jobStore.pagination} onPageChange={handlePageChange} />} />
-				<Route path="new" element={<JobTypeGrid />} />
-				<Route path="new/lovamap" element={<LovamapFormView onSubmitted={handleJobSubmitted} />} />
-				<Route path="new/segmentation" element={<SegmentationFormView onSubmitted={handleJobSubmitted} />} />
-				<Route path="new/mesh" element={<MeshFormView onSubmitted={handleJobSubmitted} />} />
+				<Route index element={<JobTableView jobs={jobStore.jobsRan} isAdmin={isAdmin} pagination={jobStore.pagination} onPageChange={handlePageChange} toolVersions={jobStore.toolVersions} />} />
+				<Route path="new" element={<JobTypeGrid toolVersions={jobStore.toolVersions} />} />
+				<Route path="new/lovamap" element={<LovamapFormView onSubmitted={handleJobSubmitted} toolVersions={jobStore.toolVersions} />} />
+				<Route path="new/segmentation" element={<SegmentationFormView onSubmitted={handleJobSubmitted} toolVersions={jobStore.toolVersions} />} />
+				<Route path="new/mesh" element={<MeshFormView onSubmitted={handleJobSubmitted} toolVersions={jobStore.toolVersions} />} />
 				<Route path=":jobId" element={<JobDetailView jobs={jobStore.jobsRan} onDownloadResults={downloadJobResults} onJobSubmitted={handleJobSubmitted} />} />
 			</Routes>
 		</div>

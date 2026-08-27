@@ -38,6 +38,31 @@ public class JobsController : ControllerBase
 		return Ok(new { maxFileSizeMb });
 	}
 
+	[AllowAnonymous]
+	[HttpGet("tool-versions")]
+	public async Task<IActionResult> GetToolVersions(CancellationToken ct)
+	{
+		try
+		{
+			var coreApiClient = HttpContext.RequestServices.GetRequiredService<ICoreApiClient>();
+			var response = await coreApiClient.GetToolVersionsAsync(ct);
+
+			if (!response.IsSuccessStatusCode)
+			{
+				_logger.LogWarning("Core /info returned {StatusCode}", response.StatusCode);
+				return StatusCode(503, new ApiResponse<string>(503, "Could not retrieve tool versions from Core"));
+			}
+
+			var json = await response.Content.ReadAsStringAsync(ct);
+			return Content(json, "application/json");
+		}
+		catch (Exception ex)
+		{
+			_logger.LogWarning(ex, "Failed to reach Core /info");
+			return StatusCode(503, new ApiResponse<string>(503, "Core service is unavailable"));
+		}
+	}
+
 	[HttpPost("submit-job")]
 	public async Task<IActionResult> SubmitJob([FromForm] JobSubmissionDto jobSubmission)
 	{

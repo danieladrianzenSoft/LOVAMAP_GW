@@ -9,7 +9,7 @@ import { DescriptorType } from "../models/descriptorType";
 import { Image, ImageCategory, ImageToCreate, ImageToUpdate } from "../models/image";
 import environment from "../environments/environment"
 import { Domain } from "../models/domain";
-import { Job, JobForList, LovamapFromSourceJob, MeshJob, MeshStatusResponse, Pagination, SaveLovamapResultRequest, SegmentationJob } from "../models/job";
+import { Job, JobForList, LovamapFromSourceJob, MeshJob, MeshStatusResponse, Pagination, SaveLovamapResultRequest, SegmentationJob, ToolVersions } from "../models/job";
 import { ScaffoldWithMissingThumbnail } from "../models/scaffold";
 import { ParticleDiameter, PoreInfo, PoreInfoForScaffoldGroup } from "../models/poreInfo";
 import { DomainMetadata } from "../models/domainMetadata";
@@ -319,6 +319,14 @@ const Jobs = {
             responseType: 'blob'
         });
         return response.data;
+    },
+    getToolVersions: async (): Promise<ToolVersions | null> => {
+        try {
+            const response = await axios.get<ToolVersions>('/jobs/tool-versions');
+            return response.data;
+        } catch {
+            return null;
+        }
     },
 }
 

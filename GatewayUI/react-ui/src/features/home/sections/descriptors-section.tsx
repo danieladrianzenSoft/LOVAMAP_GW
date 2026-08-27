@@ -15,81 +15,94 @@ const DESCRIPTORS = [
   { id: 9, url: `${CLOUD_BASE}/v1787325295/section2_descriptor9_hhaynq.png` },
 ];
 
-const AUTO_SCROLL_INTERVAL = 3000;
-const AUTO_SCROLL_RESUME_DELAY = 5000;
+/** Pixels per second for continuous scroll */
+const SCROLL_SPEED = 40;
+/** How far (px) the arrow buttons jump */
+const ARROW_SCROLL = 400;
+/** Duration (ms) for arrow smooth scroll */
+const ARROW_DURATION = 400;
 
 const DescriptorsSection: React.FC = () => {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
-  const autoScrollTimer = useRef<number | null>(null);
-  const resumeTimer = useRef<number | null>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const offsetRef = useRef(0);
+  const rafRef = useRef(0);
+  const lastTimeRef = useRef(0);
   const isPaused = useRef(false);
+  const setWidthRef = useRef(0);
+  const [hovered, setHovered] = useState(false);
 
-  const checkScroll = useCallback(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    setCanScrollLeft(el.scrollLeft > 0);
-    setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 2);
+  // Arrow smooth-scroll animation state
+  const arrowAnim = useRef<{ start: number; from: number; to: number } | null>(null);
+
+  // Measure the width of one full set of items
+  const measureSet = useCallback(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    setWidthRef.current = track.scrollWidth / 2;
   }, []);
-
-  const autoAdvance = useCallback(() => {
-    const el = scrollRef.current;
-    if (!el || isPaused.current) return;
-
-    const atEnd = el.scrollLeft + el.clientWidth >= el.scrollWidth - 2;
-    if (atEnd) {
-      // Loop back to start
-      el.scrollTo({ left: 0, behavior: 'smooth' });
-    } else {
-      // Scroll by one card width
-      const firstCard = el.querySelector<HTMLElement>(':scope > div');
-      const amount = firstCard ? firstCard.offsetWidth + 16 : el.clientWidth * 0.3;
-      el.scrollBy({ left: amount, behavior: 'smooth' });
-    }
-  }, []);
-
-  const startAutoScroll = useCallback(() => {
-    if (autoScrollTimer.current) clearInterval(autoScrollTimer.current);
-    autoScrollTimer.current = window.setInterval(autoAdvance, AUTO_SCROLL_INTERVAL);
-  }, [autoAdvance]);
-
-  const pauseAndResume = useCallback(() => {
-    // Pause auto-scroll
-    isPaused.current = true;
-    if (autoScrollTimer.current) clearInterval(autoScrollTimer.current);
-    if (resumeTimer.current) clearTimeout(resumeTimer.current);
-
-    // Resume after delay
-    resumeTimer.current = window.setTimeout(() => {
-      isPaused.current = false;
-      startAutoScroll();
-    }, AUTO_SCROLL_RESUME_DELAY);
-  }, [startAutoScroll]);
 
   useEffect(() => {
-    checkScroll();
+    measureSet();
+    window.addEventListener('resize', measureSet);
+    return () => window.removeEventListener('resize', measureSet);
+  }, [measureSet]);
 
-    const el = scrollRef.current;
-    if (!el) return;
-    const imgs = el.querySelectorAll('img');
-    imgs.forEach((img) => img.addEventListener('load', checkScroll));
+  // Wait for images to load before measuring
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    const imgs = track.querySelectorAll('img');
+    const onLoad = () => measureSet();
+    imgs.forEach((img) => img.addEventListener('load', onLoad));
+    return () => imgs.forEach((img) => img.removeEventListener('load', onLoad));
+  }, [measureSet]);
 
-    startAutoScroll();
+  const tick = useCallback((timestamp: number) => {
+    const track = trackRef.current;
+    if (!track) { rafRef.current = requestAnimationFrame(tick); return; }
 
-    return () => {
-      imgs.forEach((img) => img.removeEventListener('load', checkScroll));
-      if (autoScrollTimer.current) clearInterval(autoScrollTimer.current);
-      if (resumeTimer.current) clearTimeout(resumeTimer.current);
-    };
-  }, [checkScroll, startAutoScroll]);
+    // Handle arrow animation
+    if (arrowAnim.current) {
+      const { start, from, to } = arrowAnim.current;
+      const elapsed = timestamp - start;
+      const progress = Math.min(elapsed / ARROW_DURATION, 1);
+      // ease-out
+      const eased = 1 - Math.pow(1 - progress, 3);
+      offsetRef.current = from + (to - from) * eased;
+      if (progress >= 1) arrowAnim.current = null;
+    } else if (!isPaused.current) {
+      const dt = lastTimeRef.current ? (timestamp - lastTimeRef.current) / 1000 : 0;
+      offsetRef.current += SCROLL_SPEED * dt;
+    }
+
+    // Seamless wrap
+    const sw = setWidthRef.current;
+    if (sw > 0) {
+      while (offsetRef.current >= sw) offsetRef.current -= sw;
+      while (offsetRef.current < 0) offsetRef.current += sw;
+    }
+
+    track.style.transform = `translateX(${-offsetRef.current}px)`;
+    lastTimeRef.current = timestamp;
+    rafRef.current = requestAnimationFrame(tick);
+  }, []);
+
+  useEffect(() => {
+    rafRef.current = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, [tick]);
+
+  useEffect(() => {
+    isPaused.current = hovered;
+  }, [hovered]);
 
   const scroll = (direction: 'left' | 'right') => {
-    const el = scrollRef.current;
-    if (!el) return;
-    const amount = el.clientWidth * 0.7;
-    el.scrollBy({ left: direction === 'left' ? -amount : amount, behavior: 'smooth' });
-    pauseAndResume();
+    const delta = direction === 'right' ? ARROW_SCROLL : -ARROW_SCROLL;
+    arrowAnim.current = {
+      start: performance.now(),
+      from: offsetRef.current,
+      to: offsetRef.current + delta,
+    };
   };
 
   return (
@@ -104,48 +117,48 @@ const DescriptorsSection: React.FC = () => {
         </p>
       </div>
 
-      <div className="flex items-center gap-4 px-4">
-          {/* Left caret */}
-          <button
-            onClick={() => scroll('left')}
-            className={`flex-shrink-0 p-1 transition-colors ${
-              canScrollLeft ? 'text-gray-500 hover:text-gray-800' : 'text-gray-200 cursor-default'
-            }`}
-            disabled={!canScrollLeft}
-            aria-label="Scroll left"
-          >
-            <FiChevronLeft className="w-8 h-8" />
-          </button>
-
-        {/* Scrollable container */}
-        <div
-          ref={scrollRef}
-          onScroll={checkScroll}
-          className="flex-1 min-w-0 flex items-center gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory"
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+      <div
+        className="flex items-center gap-4 px-4"
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+      >
+        {/* Left caret */}
+        <button
+          onClick={() => scroll('left')}
+          className="flex-shrink-0 p-1 text-gray-500 hover:text-gray-800 transition-colors"
+          aria-label="Scroll left"
         >
-          {DESCRIPTORS.map((d) => (
-            <div
-              key={d.id}
-              className="flex-none snap-start rounded-lg overflow-hidden px-2"
-            >
-              <img
-                src={d.url}
-                alt={`Descriptor ${d.id}`}
-                loading="lazy"
-                className="h-72 w-auto"
-              />
-            </div>
-          ))}
+          <FiChevronLeft className="w-8 h-8" />
+        </button>
+
+        {/* Viewport — clips the track */}
+        <div className="flex-1 min-w-0 overflow-hidden">
+          {/* Track — translated via transform for cross-browser support */}
+          <div
+            ref={trackRef}
+            className="flex items-center gap-4 will-change-transform"
+            style={{ width: 'max-content' }}
+          >
+            {[...DESCRIPTORS, ...DESCRIPTORS].map((d, i) => (
+              <div
+                key={`${d.id}-${i}`}
+                className="flex-none rounded-lg overflow-hidden px-2"
+              >
+                <img
+                  src={d.url}
+                  alt={`Descriptor ${d.id}`}
+                  loading="lazy"
+                  className="h-72 w-auto"
+                />
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Right caret */}
         <button
           onClick={() => scroll('right')}
-          className={`flex-shrink-0 p-1 transition-colors ${
-            canScrollRight ? 'text-gray-500 hover:text-gray-800' : 'text-gray-200 cursor-default'
-          }`}
-          disabled={!canScrollRight}
+          className="flex-shrink-0 p-1 text-gray-500 hover:text-gray-800 transition-colors"
           aria-label="Scroll right"
         >
           <FiChevronRight className="w-8 h-8" />

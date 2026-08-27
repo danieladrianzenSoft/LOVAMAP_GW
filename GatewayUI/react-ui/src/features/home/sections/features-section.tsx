@@ -67,7 +67,7 @@ const FeatureCardItem: React.FC<{ feature: FeatureCard }> = ({ feature }) => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <div className="overflow-hidden bg-white aspect-video p-4">
+      <div className="overflow-hidden bg-white aspect-video pt-5 px-4">
         <video
           ref={videoRef}
           src={feature.videoUrl}
@@ -101,7 +101,7 @@ const FeaturesSection: React.FC = () => {
           <span className="heading-gradient">Dynamic visualizations</span>
         </h2>
         <p className="section-subheading">
-          Explore what LOVAMAP can do for your research
+          A free online platform for packed particle analysis
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

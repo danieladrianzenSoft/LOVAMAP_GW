@@ -76,6 +76,12 @@ export interface Pagination {
 	totalPages: number;
 }
 
+export interface ToolVersions {
+	lovamap: string | null;
+	segmentationWorkflows: string | null;
+	particleSegmentation: string | null;
+}
+
 export interface SaveLovamapResultRequest {
 	scaffoldGroupId?: number | null;
 	isSimulated: boolean;

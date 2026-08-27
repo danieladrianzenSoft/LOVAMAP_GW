@@ -63,6 +63,11 @@ namespace Infrastructure.Helpers
 
 			return _http.SendAsync(request, ct);
 		}
+
+		public Task<HttpResponseMessage> GetToolVersionsAsync(CancellationToken ct = default)
+		{
+			return _http.GetAsync("info", ct);
+		}
 	}
 }
 
