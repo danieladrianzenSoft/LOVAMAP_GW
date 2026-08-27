@@ -12,9 +12,9 @@ const ComparisonSection: React.FC = () => {
   return (
     <section className="py-20 px-4 bg-white">
       <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row items-center gap-12 md:gap-16">
+        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
           {/* Left: Text */}
-          <div className="md:w-2/5 flex flex-col">
+          <div className="lg:w-2/5 flex flex-col">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
               Analyzing void space in 2D is easier, but does it produce comparable results to 3D?
             </h2>
@@ -32,23 +32,30 @@ const ComparisonSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Right: Images and plots in 2x2 grid */}
-          <div className="md:w-3/5">
-            <div className="grid grid-cols-2 gap-4">
-              {/* Images row */}
-              <div className="rounded-lg overflow-hidden">
-                <img src={IMAGE_2D} alt="2D analysis" loading="lazy" className="w-full h-auto" />
+          {/* Right: Images and plots */}
+          <div className="w-full lg:w-3/5 flex justify-center">
+            <div className="flex flex-col gap-4 max-w-2xl w-full">
+              {/* Images row — flex widths proportional to aspect ratio so heights match */}
+              <div className="flex gap-4">
+                <div className="rounded-lg overflow-hidden" style={{ flex: '1698 1 0%' }}>
+                  <img src={IMAGE_2D} alt="2D analysis" loading="lazy" className="w-full h-auto" />
+                </div>
+                <div className="rounded-lg overflow-hidden" style={{ flex: '1539 1 0%' }}>
+                  <img src={IMAGE_3D} alt="3D analysis" loading="lazy" className="w-full h-auto" />
+                </div>
               </div>
-              <div className="rounded-lg overflow-hidden">
-                <img src={IMAGE_3D} alt="3D analysis" loading="lazy" className="w-full h-auto" />
-              </div>
-
-              {/* Plots row */}
-              <div className="rounded-lg overflow-hidden">
-                <img src={PLOT_2D} alt="2D plot" loading="lazy" className="w-full h-auto" />
-              </div>
-              <div className="rounded-lg overflow-hidden">
-                <img src={PLOT_3D} alt="3D plot" loading="lazy" className="w-full h-auto" />
+              {/* Plots row — aligned under respective images */}
+              <div className="flex gap-4">
+                <div style={{ flex: '1698 1 0%' }}>
+                  <div className="rounded-lg overflow-hidden w-5/6">
+                    <img src={PLOT_2D} alt="2D plot" loading="lazy" className="w-full h-auto" />
+                  </div>
+                </div>
+                <div style={{ flex: '1539 1 0%' }}>
+                  <div className="rounded-lg overflow-hidden w-11/12">
+                    <img src={PLOT_3D} alt="3D plot" loading="lazy" className="w-full h-auto" />
+                  </div>
+                </div>
               </div>
             </div>
           </div>

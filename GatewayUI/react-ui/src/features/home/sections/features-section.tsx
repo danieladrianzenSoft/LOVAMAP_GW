@@ -92,7 +92,7 @@ const FeatureCardItem: React.FC<{ feature: FeatureCard }> = ({ feature }) => {
 const FeaturesSection: React.FC = () => {
   return (
     <section
-      className="pb-20 px-4"
+      className="pt-20 pb-28 px-4"
       style={{ background: 'linear-gradient(to bottom, #FFFFFF 0%, #F5F5F8 41%)' }}
     >
       <div className="max-w-6xl mx-auto">
@@ -101,7 +101,7 @@ const FeaturesSection: React.FC = () => {
           <span className="heading-gradient">Dynamic visualizations</span>
         </h2>
         <p className="section-subheading">
-          A free online platform for packed particle analysis
+          An online platform for packed particle analysis
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

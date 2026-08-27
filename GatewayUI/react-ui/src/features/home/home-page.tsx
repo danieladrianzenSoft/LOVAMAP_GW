@@ -3,10 +3,10 @@ import HomeNav from './home-nav';
 import HomeFooter from './home-footer';
 import HeroSection from './sections/hero-section';
 import FeaturesSection from './sections/features-section';
+import TerminologySection from './sections/terminology-section';
 
 // Lazy-loaded below-the-fold sections
 const DescriptorsSection = React.lazy(() => import('./sections/descriptors-section'));
-const TerminologySection = React.lazy(() => import('./sections/terminology-section'));
 const ComparisonSection = React.lazy(() => import('./sections/comparison-section'));
 const TutorialsSection = React.lazy(() => import('./sections/tutorials-section'));
 
@@ -54,9 +54,7 @@ const HomePage: React.FC = () => {
         <DescriptorsSection />
       </LazySection>
 
-      <LazySection>
-        <TerminologySection />
-      </LazySection>
+      <TerminologySection />
 
       <LazySection>
         <ComparisonSection />

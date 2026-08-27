@@ -17,11 +17,29 @@ const FAQ_LINKS = [
 const HeroSection: React.FC = () => {
   const scrollToTerminology = () => {
     const el = document.getElementById('terminology');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    if (!el) return;
+
+    const start = window.scrollY;
+    const end = el.getBoundingClientRect().top + start;
+    const duration = 1200; // ms — consistent across browsers
+    const startTime = performance.now();
+
+    const step = (now: number) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      // ease-in-out
+      const eased = progress < 0.5
+        ? 2 * progress * progress
+        : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+      window.scrollTo(0, start + (end - start) * eased);
+      if (progress < 1) requestAnimationFrame(step);
+    };
+
+    requestAnimationFrame(step);
   };
 
   return (
-    <section className="w-full bg-white pt-20">
+    <section className="w-full bg-white pt-20 pb-20">
       {/* Desktop: side-by-side | Mobile: banner behind, text overlay */}
       <div className="relative min-h-[95vh]">
         {/* Banner image — full width background */}
