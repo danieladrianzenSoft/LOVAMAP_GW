@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
+import { useLocation } from "react-router-dom";
 import { DescriptorType, displayNameMap, GroupedDescriptorTypes } from "../../app/models/descriptorType";
 import ReactMarkdown from "react-markdown";
 import rehypeSanitize from "rehype-sanitize";
 import { useDescriptorTypes } from "../../app/common/hooks/useDescriptorTypes";
 
 const LearnScreen = () => {
+    const location = useLocation();
     const { descriptorTypes } = useDescriptorTypes(); // Use the hook
     const [activeTab, setActiveTab] = useState("Global"); // Default active tab is "Global"
 
@@ -25,6 +27,31 @@ const LearnScreen = () => {
         }
     }, [descriptorTypes]);
 
+    useEffect(() => {
+        if (!location.hash) return;
+        const id = location.hash.replace('#', '');
+
+        // Retry scroll until layout stabilizes (images may still be loading)
+        let lastTop = -1;
+        let attempts = 0;
+        const maxAttempts = 10;
+
+        const tryScroll = () => {
+            const el = document.getElementById(id);
+            if (!el) return;
+            const top = el.getBoundingClientRect().top + window.scrollY;
+            if (top !== lastTop && attempts < maxAttempts) {
+                lastTop = top;
+                attempts++;
+                el.scrollIntoView({ behavior: 'smooth' });
+                timer = window.setTimeout(tryScroll, 500);
+            }
+        };
+
+        let timer = window.setTimeout(tryScroll, 100);
+        return () => clearTimeout(timer);
+    }, [location.hash, groupedDescriptorTypes]);
+
     const categoryOrder = ["Global", "Pore", "Other"];
 
     const getLabelWithUnit = (descriptor?: DescriptorType): string => {
@@ -36,8 +63,8 @@ const LearnScreen = () => {
 
     return (
         <div className="container mx-auto py-8 px-6">
-            <div>
-                <div className="text-3xl text-gray-700 font-bold mb-12">Generating Simulated Scaffolds</div>                        
+            <div id="simulated-scaffolds">
+                <div className="text-3xl text-gray-700 font-bold mb-12">Generating Simulated Scaffolds</div>
                 <div className="flex flex-wrap justify-center gap-4">
                     <div className="aspect-[4/3] w-full sm:w-[48%] overflow-hidden rounded-xl shadow-lg">
                         <video
@@ -81,8 +108,8 @@ const LearnScreen = () => {
             </div>
             
 
-            <div className="mt-12">
-                <div className="text-3xl text-gray-700 font-bold mb-12">Descriptors</div>    
+            <div id="descriptors" className="mt-12">
+                <div className="text-3xl text-gray-700 font-bold mb-12">Descriptors</div>
                 <div className="mb-12">
                     <p>
                         Descriptors are the output of LOVAMAP, and they provide a quantitative way of characterizing,
@@ -169,6 +196,15 @@ const LearnScreen = () => {
                         </table>
                     </div>
                 )}
+            </div>
+
+            <div id="compare-2d-3d" className="mt-12">
+                <div className="text-3xl text-gray-700 font-bold mb-12">Compare 2D vs. 3D</div>
+                <div className="text-center">
+                    <div className="inline-block bg-secondary-50 rounded-xl px-10 py-8">
+                        <p className="text-lg text-gray-400 font-medium">Coming soon</p>
+                    </div>
+                </div>
             </div>
         </div>
     );

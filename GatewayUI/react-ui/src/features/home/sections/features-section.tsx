@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 interface FeatureCard {
@@ -10,9 +10,9 @@ interface FeatureCard {
 
 const FEATURES: FeatureCard[] = [
   {
-    title: 'Analyze your scaffold',
+    title: 'Interact with 3D pores',
     description:
-      'Upload custom microscope images or simulated particle data and run LOVAMAP to compute pore descriptors and visualizations.',
+      'Play with our easy-to-use interface for visualizing and understanding particle scaffolds and their 3D pores.',
     videoUrl:
       'https://res.cloudinary.com/danmkw7ni/video/upload/c_crop,w_820,h_520,g_center/c_pad,w_960,h_540,b_white/v1787325324/section1_analyze_mlnhr5.mp4',
     link: '/visualize',
@@ -43,15 +43,32 @@ const FEATURES: FeatureCard[] = [
   },
 ];
 
-const FeatureCardItem: React.FC<{ feature: FeatureCard }> = ({ feature }) => {
+interface FeatureCardItemProps {
+  feature: FeatureCard;
+  isMobile: boolean;
+  isActive: boolean;
+  cardRef: (el: HTMLAnchorElement | null) => void;
+}
+
+const FeatureCardItem: React.FC<FeatureCardItemProps> = ({ feature, isMobile, isActive, cardRef }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
 
+  useEffect(() => {
+    if (!isMobile) return;
+    if (isActive) {
+      videoRef.current?.play().catch(() => {});
+    } else if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
+  }, [isMobile, isActive]);
+
   const handleMouseEnter = () => {
-    videoRef.current?.play().catch(() => {});
+    if (!isMobile) videoRef.current?.play().catch(() => {});
   };
 
   const handleMouseLeave = () => {
-    if (videoRef.current) {
+    if (!isMobile && videoRef.current) {
       videoRef.current.pause();
       videoRef.current.currentTime = 0;
     }
@@ -62,6 +79,7 @@ const FeatureCardItem: React.FC<{ feature: FeatureCard }> = ({ feature }) => {
 
   return (
     <Link
+      ref={cardRef}
       to={feature.link}
       className="group flex flex-col bg-white rounded-xl hover:shadow-xl transition-shadow overflow-hidden h-full"
       onMouseEnter={handleMouseEnter}
@@ -90,9 +108,57 @@ const FeatureCardItem: React.FC<{ feature: FeatureCard }> = ({ feature }) => {
 };
 
 const FeaturesSection: React.FC = () => {
+  const [isMobile, setIsMobile] = useState(false);
+  const [activeIndex, setActiveIndex] = useState<number>(-1);
+  const cardEls = useRef<(HTMLAnchorElement | null)[]>([]);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 768px)');
+    setIsMobile(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, []);
+
+  // On mobile, find the card closest to viewport center and make it active
+  useEffect(() => {
+    if (!isMobile) {
+      setActiveIndex(-1);
+      return;
+    }
+
+    const findClosest = () => {
+      const viewportCenter = window.innerHeight / 2;
+      let closest = -1;
+      let minDist = Infinity;
+
+      cardEls.current.forEach((el, i) => {
+        if (!el) return;
+        const rect = el.getBoundingClientRect();
+        const cardCenter = rect.top + rect.height / 2;
+        const dist = Math.abs(cardCenter - viewportCenter);
+        // Only consider cards that are at least partially visible
+        if (rect.bottom > 0 && rect.top < window.innerHeight && dist < minDist) {
+          minDist = dist;
+          closest = i;
+        }
+      });
+
+      setActiveIndex(closest);
+    };
+
+    findClosest();
+    window.addEventListener('scroll', findClosest, { passive: true });
+    return () => window.removeEventListener('scroll', findClosest);
+  }, [isMobile]);
+
+  const setCardRef = (index: number) => (el: HTMLAnchorElement | null) => {
+    cardEls.current[index] = el;
+  };
+
   return (
     <section
-      className="pt-20 pb-28 px-4"
+      className="pt-14 pb-28 px-4"
       style={{ background: 'linear-gradient(to bottom, #FFFFFF 0%, #F5F5F8 41%)' }}
     >
       <div className="max-w-6xl mx-auto">
@@ -105,8 +171,14 @@ const FeaturesSection: React.FC = () => {
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {FEATURES.map((feature) => (
-            <FeatureCardItem key={feature.title} feature={feature} />
+          {FEATURES.map((feature, i) => (
+            <FeatureCardItem
+              key={feature.title}
+              feature={feature}
+              isMobile={isMobile}
+              isActive={activeIndex === i}
+              cardRef={setCardRef(i)}
+            />
           ))}
         </div>
       </div>

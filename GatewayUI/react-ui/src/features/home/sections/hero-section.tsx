@@ -16,11 +16,12 @@ const FAQ_LINKS = [
 
 const HeroSection: React.FC = () => {
   const scrollToTerminology = () => {
-    const el = document.getElementById('terminology');
-    if (!el) return;
+    const heading = document.getElementById('terminology-heading');
+    if (!heading) return;
 
     const start = window.scrollY;
-    const end = el.getBoundingClientRect().top + start;
+    const offset = 120;
+    const end = heading.getBoundingClientRect().top + start - offset;
     const duration = 1200; // ms — consistent across browsers
     const startTime = performance.now();
 

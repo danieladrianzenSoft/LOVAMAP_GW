@@ -3,14 +3,14 @@ import { Link, NavLink } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 import { useStore } from '../../app/stores/store';
 import { FaUserCircle } from 'react-icons/fa';
-import { FiChevronRight } from 'react-icons/fi';
+import { FiChevronRight, FiPlay, FiCompass, FiBookOpen, FiLogIn, FiUser } from 'react-icons/fi';
 import { Menu, MenuButton, MenuItem, MenuItems, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
 import History from '../../app/helpers/History';
 import logo from '../../LOVAMAP_logo.png';
 
 const NAV_LINKS = [
-  { to: '/visualize', label: 'Analyze' },
+  { to: '/run', label: 'Analyze' },
   { to: '/explore', label: 'Explore' },
   { to: '/learn', label: 'Learn' },
 ];
@@ -26,6 +26,7 @@ const HomeNav: React.FC = () => {
   }, []);
 
   return (
+    <>
     <nav
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
         scrolled ? 'bg-white/95 backdrop-blur-sm shadow-sm' : 'bg-white'
@@ -119,6 +120,36 @@ const HomeNav: React.FC = () => {
         </div>
       </div>
     </nav>
+
+    {/* Mobile bottom tab bar */}
+    <div className="fixed bottom-0 left-0 w-full z-50 bg-white border-t border-gray-200 md:hidden">
+      <div className="flex items-center justify-around h-16">
+        <Link to="/run" className="flex flex-col items-center gap-1 text-gray-500 hover:text-gray-800 transition-colors">
+          <FiPlay className="w-5 h-5" />
+          <span className="text-xs font-medium">Analyze</span>
+        </Link>
+        <Link to="/explore" className="flex flex-col items-center gap-1 text-gray-500 hover:text-gray-800 transition-colors">
+          <FiCompass className="w-5 h-5" />
+          <span className="text-xs font-medium">Explore</span>
+        </Link>
+        <Link to="/learn" className="flex flex-col items-center gap-1 text-gray-500 hover:text-gray-800 transition-colors">
+          <FiBookOpen className="w-5 h-5" />
+          <span className="text-xs font-medium">Learn</span>
+        </Link>
+        {commonStore.isLoggedIn ? (
+          <Link to="/settings" className="flex flex-col items-center gap-1 text-gray-500 hover:text-gray-800 transition-colors">
+            <FiUser className="w-5 h-5" />
+            <span className="text-xs font-medium">Account</span>
+          </Link>
+        ) : (
+          <Link to="/login" className="flex flex-col items-center gap-1 text-gray-500 hover:text-gray-800 transition-colors">
+            <FiLogIn className="w-5 h-5" />
+            <span className="text-xs font-medium">Login</span>
+          </Link>
+        )}
+      </div>
+    </div>
+    </>
   );
 };
 

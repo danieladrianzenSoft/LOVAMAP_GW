@@ -2,7 +2,7 @@ import React from 'react';
 
 const TutorialsSection: React.FC = () => {
   return (
-    <section className="pt-20 pb-28 px-6 bg-secondary-50">
+    <section className="pt-14 pb-28 px-6 bg-secondary-50">
       <div className="max-w-4xl mx-auto text-center">
         <h2 className="section-heading flex flex-col items-center">
           <span className="heading-gradient">Tutorials and workshops</span>

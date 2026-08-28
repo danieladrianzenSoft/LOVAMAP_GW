@@ -24,7 +24,7 @@ const ComparisonSection: React.FC = () => {
             </p>
             <div>
               <Link
-                to="/data"
+                to="/learn#compare-2d-3d"
                 className="button-secondary px-8 py-3 text-lg"
               >
                 Compare 2D vs. 3D

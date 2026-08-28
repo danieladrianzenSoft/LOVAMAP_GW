@@ -18,6 +18,9 @@ interface TermItem {
   gifPos: GifPos; // video overlay position as % of arrows image
   hasAlpha: boolean; // true = serve as native GIF (preserves transparency in all browsers)
   gifDurationMs?: number; // required when hasAlpha=true (GIF has no onEnded event)
+  arrowEarlyS?: number; // override ARROW_EARLY_S per card
+  delayAfterMs?: number; // override BETWEEN_DELAY_MS for the gap *after* this card
+  multiply?: boolean; // true = apply mixBlendMode multiply (for GIFs with white bg)
 }
 
 const TERMS: TermItem[] = [
@@ -25,8 +28,11 @@ const TERMS: TermItem[] = [
     title: 'Packed particles',
     videoSrc: 'v1787325296/section3_gif1_yhwxnd.gif',
     arrowsUrl: `${CLOUD_BASE}/f_auto,q_auto/v1787333483/section3_arrows1_y9cbpw.png`,
-    gifPos: { top: 'calc(19% + 7px)', left: '32.5%', width: '57%', height: '77%' },
-    hasAlpha: false,
+    gifPos: { top: 'calc(19% + 3px)', left: '32.5%', width: '57%', height: '77%' },
+    hasAlpha: true,
+    gifDurationMs: 4600,
+    multiply: true,
+    delayAfterMs: 800,
   },
   {
     title: 'Void space',
@@ -34,6 +40,8 @@ const TERMS: TermItem[] = [
     arrowsUrl: `${CLOUD_BASE}/f_auto,q_auto/v1787333483/section3_arrows3_d2nzks.png`,
     gifPos: { top: 'calc(29% - 20px)', left: 'calc(39% - 67.5px)', width: '73.5%', height: '74.5%' },
     hasAlpha: false,
+    arrowEarlyS: 1.5,
+    delayAfterMs: 700,
   },
   {
     title: 'Pore',
@@ -41,26 +49,40 @@ const TERMS: TermItem[] = [
     arrowsUrl: `${CLOUD_BASE}/f_auto,q_auto/v1787333483/section3_arrows2_xiclwo.png`,
     gifPos: { top: 'calc(19% + 10px)', left: 'calc(16% - 6px)', width: '67%', height: '76%' },
     hasAlpha: true,
-    gifDurationMs: 5000,
+    gifDurationMs: 4800,
   },
 ];
 
-const FADE_MS = 500;
-const NEAR_END_OFFSET = 0; // seconds before end to trigger next card
+const BETWEEN_DELAY_MS = 400; // pause between cards
+const ARROW_EARLY_S = 0.5; // show arrows this many seconds before video/gif technically ends
+
+const bounceInStyle = document.createElement('style');
+bounceInStyle.textContent = `
+@keyframes arrowsBounceIn {
+  0%   { opacity: 0; transform: scale(0.85); }
+  50%  { opacity: 1; transform: scale(1.06); }
+  75%  { transform: scale(0.97); }
+  100% { opacity: 1; transform: scale(1); }
+}
+`;
+document.head.appendChild(bounceInStyle);
 
 const TermCard: React.FC<{
   term: TermItem;
   play: boolean;
+  visible: boolean;
   onNearEnd: () => void;
-}> = ({ term, play, onNearEnd }) => {
+}> = ({ term, play, visible, onNearEnd }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [showArrows, setShowArrows] = useState(false);
   const timerRef = useRef<number | null>(null);
   const arrowTimerRef = useRef<number | null>(null);
-  const nearEndFiredRef = useRef(false);
   const onNearEndRef = useRef(onNearEnd);
   onNearEndRef.current = onNearEnd;
+  const firedRef = useRef(false);
   const [gifKey, setGifKey] = useState(0);
+  const [gifDone, setGifDone] = useState(false);
+  const [videoPlaying, setVideoPlaying] = useState(false);
 
   const clearTimers = () => {
     if (timerRef.current) { clearTimeout(timerRef.current); timerRef.current = null; }
@@ -68,21 +90,20 @@ const TermCard: React.FC<{
   };
 
   useEffect(() => {
-    nearEndFiredRef.current = false;
-
     if (play) {
       setShowArrows(false);
+      firedRef.current = false;
 
       if (term.hasAlpha) {
         const dur = term.gifDurationMs ?? 5000;
-        const offset = Math.min(NEAR_END_OFFSET * 1000, dur);
+        const earlyDur = Math.max(0, dur - earlyS * 1000);
         setGifKey(k => k + 1);
-        timerRef.current = window.setTimeout(() => {
-          onNearEndRef.current();
-        }, dur - offset);
+        setGifDone(false);
         arrowTimerRef.current = window.setTimeout(() => {
+          setGifDone(true);
           setShowArrows(true);
-        }, dur);
+          onNearEndRef.current();
+        }, earlyDur);
       } else {
         const v = videoRef.current;
         if (v) {
@@ -96,6 +117,7 @@ const TermCard: React.FC<{
       if (!term.hasAlpha) {
         const v = videoRef.current;
         if (v) { v.pause(); v.currentTime = 0; }
+        setVideoPlaying(false);
       }
       setShowArrows(false);
       clearTimers();
@@ -104,59 +126,53 @@ const TermCard: React.FC<{
     return () => clearTimers();
   }, [play]);
 
-  // Preload GIF so there's no delay when it's time to play
+  // Preload GIF and its last frame so there's no delay/flash
   useEffect(() => {
     if (term.hasAlpha) {
-      const img = new Image();
-      img.src = `${CLOUD_BASE}/${term.videoSrc}`;
+      const gif = new Image();
+      gif.src = `${CLOUD_BASE}/${term.videoSrc}`;
+      const lastFrame = new Image();
+      lastFrame.src = `${CLOUD_BASE}/pg_-1,f_auto,q_auto/${term.videoSrc}`;
     }
   }, []);
 
+  const earlyS = term.arrowEarlyS ?? ARROW_EARLY_S;
+
   const onTimeUpdate = () => {
-    if (nearEndFiredRef.current) return;
+    if (firedRef.current) return;
     const v = videoRef.current;
     if (!v || !v.duration) return;
-    if (v.currentTime >= v.duration - NEAR_END_OFFSET) {
-      nearEndFiredRef.current = true;
+    if (v.currentTime >= v.duration - earlyS) {
+      firedRef.current = true;
+      setShowArrows(true);
       onNearEndRef.current();
     }
   };
 
-  const onVideoEnded = () => {
-    setShowArrows(true);
-  };
-
   return (
-    <div className="flex flex-col items-center text-center flex-shrink-0">
+    <div
+      className="flex flex-col items-center text-center flex-shrink-0"
+      style={{ visibility: visible ? 'visible' : 'hidden' }}
+    >
       <div className="relative">
         {/* Arrows overlay (transparent PNG) - fades in/out */}
         <img
           src={term.arrowsUrl}
           alt={`${term.title} labels`}
-          className="h-80 w-auto relative z-10 transition-opacity pointer-events-none"
-          style={{ opacity: showArrows ? 1 : 0, transitionDuration: `${FADE_MS}ms` }}
+          className="h-80 w-auto relative z-10 pointer-events-none"
+          style={{
+            opacity: showArrows ? 1 : 0,
+            animation: showArrows ? 'arrowsBounceIn 350ms ease-out forwards' : 'none',
+          }}
         />
 
         {term.hasAlpha ? (
           <>
-            {/* Static first frame — always visible as base layer */}
-            <img
-              src={`${CLOUD_BASE}/pg_1,f_auto,q_auto/${term.videoSrc}`}
-              alt={term.title}
-              className="absolute"
-              style={{
-                top: term.gifPos.top,
-                left: term.gifPos.left,
-                width: term.gifPos.width,
-                height: term.gifPos.height,
-                objectFit: 'contain',
-              }}
-            />
-            {/* Animated GIF — layered on top when playing, key forces restart */}
-            {play && (
+            {/* Animated GIF while playing, static last frame once done */}
+            {play && !gifDone && (
               <img
                 key={gifKey}
-                src={`${CLOUD_BASE}/${term.videoSrc}`}
+                src={`${CLOUD_BASE}/${term.videoSrc}?_=${gifKey}`}
                 alt=""
                 className="absolute"
                 style={{
@@ -165,6 +181,22 @@ const TermCard: React.FC<{
                   width: term.gifPos.width,
                   height: term.gifPos.height,
                   objectFit: 'contain',
+                  ...(term.multiply && { mixBlendMode: 'multiply' as const }),
+                }}
+              />
+            )}
+            {gifDone && (
+              <img
+                src={`${CLOUD_BASE}/pg_-1,f_auto,q_auto/${term.videoSrc}`}
+                alt=""
+                className="absolute"
+                style={{
+                  top: term.gifPos.top,
+                  left: term.gifPos.left,
+                  width: term.gifPos.width,
+                  height: term.gifPos.height,
+                  objectFit: 'contain',
+                  ...(term.multiply && { mixBlendMode: 'multiply' as const }),
                 }}
               />
             )}
@@ -176,7 +208,7 @@ const TermCard: React.FC<{
             muted
             playsInline
             preload="auto"
-            onEnded={onVideoEnded}
+            onPlaying={() => setVideoPlaying(true)}
             onTimeUpdate={onTimeUpdate}
             className="absolute"
             style={{
@@ -186,6 +218,7 @@ const TermCard: React.FC<{
               height: term.gifPos.height,
               objectFit: 'contain',
               mixBlendMode: 'multiply' as const,
+              opacity: videoPlaying ? 1 : 0,
             }}
           >
             <source src={`${VIDEO_WEBM},b_white/${term.videoSrc}`} type="video/webm" />
@@ -200,6 +233,20 @@ const TermCard: React.FC<{
 const TerminologySection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(-1);
+  const delayTimerRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (delayTimerRef.current) clearTimeout(delayTimerRef.current);
+    };
+  }, []);
+
+  const advanceTo = (index: number, delayMs?: number) => {
+    if (delayTimerRef.current) clearTimeout(delayTimerRef.current);
+    delayTimerRef.current = window.setTimeout(() => {
+      setActiveIndex(prev => Math.max(prev, index));
+    }, delayMs ?? BETWEEN_DELAY_MS);
+  };
 
   useEffect(() => {
     const el = sectionRef.current;
@@ -210,6 +257,7 @@ const TerminologySection: React.FC = () => {
         if (entry.isIntersecting) {
           setActiveIndex(0);
         } else {
+          if (delayTimerRef.current) clearTimeout(delayTimerRef.current);
           setActiveIndex(-1);
         }
       },
@@ -224,16 +272,17 @@ const TerminologySection: React.FC = () => {
     <section
       ref={sectionRef}
       id="terminology"
-      className="py-20 px-4"
+      className="pt-14 pb-20 px-4"
       style={{ background: 'linear-gradient(to bottom, #FFFFFF 0%, #F8F5F4 100%)' }}
     >
       <div className="max-w-7xl mx-auto">
-        <h2 className="section-heading flex flex-col items-center">
+        <h2 id="terminology-heading" className="section-heading flex flex-col items-center">
           <span className="heading-gradient pb-2">A brief background</span>
           <span className="heading-gradient">for context</span>
         </h2>
-        <p className="section-subheading">
-          Different terminology gets tossed around. Below are some common synonyms
+        <p className="section-subheading flex flex-col items-center">
+          <span>Different terminology gets tossed around.</span>
+          <span>Below are some common synonyms</span>
         </p>
 
         <div className="flex flex-col xl:flex-row items-center justify-center gap-8">
@@ -241,10 +290,9 @@ const TerminologySection: React.FC = () => {
             <TermCard
               key={term.title}
               term={term}
+              visible={activeIndex >= i}
               play={activeIndex >= i}
-              onNearEnd={() => {
-                setActiveIndex(prev => Math.max(prev, i + 1));
-              }}
+              onNearEnd={() => advanceTo(i + 1, term.delayAfterMs)}
             />
           ))}
         </div>

@@ -111,7 +111,7 @@ const DescriptorsSection: React.FC = () => {
         <h2 className="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-6">
           A quick snapshot of LOVAMAP outputs
         </h2>
-        <p className="section-subheading !mb-12">
+        <p className="section-subheading !mb-[4.25rem]">
           Topics include pore size and orientation, paths through the void space,
           and connections between pores
         </p>
