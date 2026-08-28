@@ -113,21 +113,7 @@ const ParticlesPanel: React.FC<DomainPanelProps> = ({
 						</label>
 					</div>
 
-					<div className="flex justify-between items-center mt-3 text-sm text-gray-700">
-						<span>Slice Particles</span>
-						<label className="inline-flex items-center cursor-pointer relative w-11 h-6">
-							<input
-								type="checkbox"
-								className="sr-only peer"
-								checked={slicingActive}
-								onChange={(e) => setSlicingActive(e.target.checked)}
-							/>
-							<div className="w-full h-full bg-gray-200 rounded-full peer-checked:bg-link-100 transition-colors" />
-  							<div className="absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform transform peer-checked:translate-x-5" />
-						</label>
-					</div>
-
-					{ slicingActive && sliceXThreshold != null && (
+					{ sliceXThreshold != null && (
 						<Slider
 							label="Slice Distance (µm)"
 							value={sliceXThreshold}
@@ -153,14 +139,17 @@ const ParticlesPanel: React.FC<DomainPanelProps> = ({
 				<p className="mt-2 text-sm italic text-gray-500">Non-existent domain</p>
 			)}
 			{canEdit && (
-				<div className="mt-4">
-					<button
-					className="button-outline self-start flex items-center gap-2"
-					onClick={onEditClick}
-					>
-					Update
-					</button>
-				</div>
+				<>
+					<hr className="mt-3 border-t border-gray-200" />
+					<div className="mt-2 flex justify-end">
+						<button
+						className="button-tag"
+						onClick={onEditClick}
+						>
+						Update
+						</button>
+					</div>
+				</>
 			)}
 		</div>
 		</div>

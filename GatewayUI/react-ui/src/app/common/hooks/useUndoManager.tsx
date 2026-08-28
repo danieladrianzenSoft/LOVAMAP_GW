@@ -12,6 +12,7 @@ interface UndoManagerOptions {
   setShowParticles: React.Dispatch<React.SetStateAction<boolean>>;
   setShowPores: React.Dispatch<React.SetStateAction<boolean>>;
   setAreEdgePoresHidden: React.Dispatch<React.SetStateAction<boolean>>;
+  onRestoreCamera?: (position: THREE.Vector3, target: THREE.Vector3) => void;
 }
 
 export function useUndoManager({
@@ -22,6 +23,7 @@ export function useUndoManager({
   setShowParticles,
   setShowPores,
   setAreEdgePoresHidden,
+  onRestoreCamera,
 }: UndoManagerOptions) {
 	const [history, setHistory] = useState<HistoryAction[]>([]);
 	const maxHistorySize = 10;
@@ -108,6 +110,10 @@ export function useUndoManager({
 
 				case 'TOGGLE_EDGE_PORES':
 					setAreEdgePoresHidden(last.previousState);
+					break;
+
+				case 'RESET_CAMERA':
+					onRestoreCamera?.(last.previousState.position, last.previousState.target);
 					break;
 
 				default:

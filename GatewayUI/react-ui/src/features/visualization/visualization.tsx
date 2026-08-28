@@ -4,7 +4,7 @@ import { useStore } from '../../app/stores/store';
 import { useParams } from 'react-router-dom';
 import History from '../../app/helpers/History';
 import useUndoShortcut from '../../app/common/hooks/undo';
-import CanvasViewer from './canvas-viewer';
+import CanvasViewer, { CanvasViewerHandle } from './canvas-viewer';
 import InfoPanel from './info-panel';
 import HiddenPanel from './hidden-panel';
 import SelectedPanel from './selected-panel';
@@ -26,7 +26,7 @@ import { DEFAULT_CATEGORY, SearchCategory, categoryToPreFilter } from '../../app
 import { SearchResultsDropdown } from '../../app/common/ai-search-bar/search-results-dropdown';
 import { ScaffoldGroup } from '../../app/models/scaffoldGroup';
 import toast from 'react-hot-toast';
-import { FaCamera } from 'react-icons/fa';
+import { FaCamera, FaUndo } from 'react-icons/fa';
 import LoadingSpinner from '../../app/common/loading-spinner/loading-spinner';
 import Tag from '../../app/common/tag/tag';
 import { getStiffnessLabel } from '../../constants/particle-stiffnesses';
@@ -64,6 +64,7 @@ const Visualization: React.FC = () => {
 	// const [dimAppliedOnce, setDimAppliedOnce] = useState(true);
 
 	const canvasRef = useRef<HTMLCanvasElement | null>(null);
+	const canvasViewerRef = useRef<CanvasViewerHandle>(null);
 	const resolvedScaffoldId = params.scaffoldId ? parseInt(params.scaffoldId, 10) : null;
 	const canEdit = userStore.user?.roles?.includes("administrator") ?? false;
 
@@ -83,6 +84,7 @@ const Visualization: React.FC = () => {
 	const [, setParticleColor] = useState(null);
 	const [slicingActive, setSlicingActive] = useState(true);
 	const [sliceXThreshold, setSliceXThreshold] = useState<number | null>(null);
+	const [zUp, setZUp] = useState(false);
 	// const [sliceHiddenParticleIds, setSliceHiddenParticleIds] = useState<Set<string>>(new Set());
 	const [sliceDomainBounds, setSliceDomainBounds] = useState<{
 		min: THREE.Vector3;
@@ -209,6 +211,7 @@ const Visualization: React.FC = () => {
 		setShowParticles,
 		setShowPores,
 		setAreEdgePoresHidden,
+		onRestoreCamera: (position, target) => canvasViewerRef.current?.restoreCamera(position, target),
 	});
 
 	useUndoShortcut(undoLastAction);
@@ -219,11 +222,23 @@ const Visualization: React.FC = () => {
 			const maxX = sliceDomainBounds.max.x;
 			const midpoint = (minX + maxX) / 2;
 			setSliceXThreshold(midpoint);
+			setSlicingActive(true);
 		}
 	}, [sliceDomainBounds, sliceXThreshold]);
 
 	const poresMetadata = domainStore.getActiveMetadata(1)?.metadata;
 	const poresDomainId = domainStore.getActiveDomain(1)?.id;
+
+	const edgePoreIds = useMemo(() => {
+		const ids = new Set<string>();
+		if (!poresMetadata) return ids;
+		Object.entries(poresMetadata).forEach(([id, meta]) => {
+			if (typeof meta === "object" && meta && "edge" in meta && (meta as any).edge === 1) {
+				ids.add(id);
+			}
+		});
+		return ids;
+	}, [poresMetadata]);
 
 	const poreColorOverrideMap = useMemo(() => {
 		if (poreColorSeed === 0) return null;
@@ -543,7 +558,6 @@ const Visualization: React.FC = () => {
 			previousState: showParticles,
 		});
 		setShowParticles(value);
-		setUserOverrideParticleOpacity(false);
 	};
 
 	const handleToggleShowPores = (value: boolean) => {
@@ -662,12 +676,30 @@ const Visualization: React.FC = () => {
 		return () => document.removeEventListener('mousedown', handleClickOutside);
 	}, []);
 
+	const handleResetCamera = () => {
+		const prev = canvasViewerRef.current?.resetCamera();
+		if (prev) {
+			addToHistory({ type: 'RESET_CAMERA', previousState: prev });
+		}
+		// Unselect any selected entity
+		setSelectedByCategory((prev) => {
+			const cleared: Record<number, null> = {};
+			for (const key of Object.keys(prev)) cleared[key as any] = null;
+			return cleared;
+		});
+	};
+
 	const handleResetOverrides = () => {
-		setParticleOpacity(1); // Restore full opacity
-		setUserOverrideParticleOpacity(false); // Allow dimming logic again
-		setColorfulParticles(false); // Disable dim
+		setParticleOpacity(1);
+		setUserOverrideParticleOpacity(false);
+		setColorfulParticles(false);
 		setParticleColor(null);
-		setSlicingActive(false);
+		// Reset slice to midpoint
+		if (sliceDomainBounds) {
+			const midpoint = (sliceDomainBounds.min.x + sliceDomainBounds.max.x) / 2;
+			setSlicingActive(true);
+			setSliceXThreshold(midpoint);
+		}
 	}
 
 	const handleScreenshotUpload = async (blob: Blob) => {
@@ -898,9 +930,12 @@ const Visualization: React.FC = () => {
 					{!isBusy && meshList.length > 0 && (
 						<div className="h-full w-full">
 							<CanvasViewer
+								ref={canvasViewerRef}
 								meshes={meshList}
 								onSliceBoundsComputed={setSliceDomainBounds}
 								onCanvasCreated={(el) => canvasRef.current = el}
+								zUp={zUp}
+								onToggleZUp={() => setZUp(prev => !prev)}
 							/>
 						</div>
 					)}
@@ -917,16 +952,26 @@ const Visualization: React.FC = () => {
 					)}
 				</div>
 
-			{/* Floating screenshot button (desktop only) */}
+			{/* Floating buttons (desktop only) */}
 			{!isMobile && !meshMissing && (
-				<button
-					onClick={handleManualScreenshot}
-					title="Take a screenshot"
-					className="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 bg-white shadow-lg rounded-full px-4 py-2 flex items-center gap-2 hover:shadow-xl transition"
-				>
-					<span className="text-sm font-medium text-gray-800">Take a screenshot</span>
-					<FaCamera className="text-gray-600" />
-				</button>
+				<div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2">
+					<button
+						onClick={handleResetCamera}
+						title="Reset camera view"
+						className="bg-white shadow-lg rounded-full px-4 py-2 flex items-center gap-2 hover:shadow-xl transition"
+					>
+						<span className="text-sm font-medium text-gray-800">Reset view</span>
+						<FaUndo className="text-gray-600" />
+					</button>
+					<button
+						onClick={handleManualScreenshot}
+						title="Screenshot"
+						className="bg-white shadow-lg rounded-full px-4 py-2 flex items-center gap-2 hover:shadow-xl transition"
+					>
+						<span className="text-sm font-medium text-gray-800">Screenshot</span>
+						<FaCamera className="text-gray-600" />
+					</button>
+				</div>
 			)}
 
 			{/* Desktop panels */}
@@ -946,6 +991,7 @@ const Visualization: React.FC = () => {
 								toggleOpen={() => setIsHiddenPanelOpen(!isHiddenPanelOpen)}
 								category={activeCategory}
 								hiddenIds={activeHidden}
+								edgePoreIds={activeCategory === 1 ? edgePoreIds : undefined}
 								onShowAll={() => {
 									setHiddenByCategory((prev) => {
 										const prevHidden = new Set(prev[activeCategory]);
@@ -954,6 +1000,10 @@ const Visualization: React.FC = () => {
 											category: activeCategory,
 											previousState: { hiddenIds: prevHidden },
 										});
+										// For pores: if edge pores are hidden, keep them hidden
+										if (activeCategory === 1 && areEdgePoresHidden && edgePoreIds.size > 0) {
+											return { ...prev, [activeCategory]: new Set(edgePoreIds) };
+										}
 										return { ...prev, [activeCategory]: new Set() };
 									});
 								}}
@@ -993,6 +1043,11 @@ const Visualization: React.FC = () => {
 							setOpacity={(value: number) => {
 								setParticleOpacity(value);
 								setUserOverrideParticleOpacity(true);
+								if (value === 0 && showParticles) {
+									setShowParticles(false);
+								} else if (value > 0 && !showParticles) {
+									setShowParticles(true);
+								}
 							}}
 							slicingActive={slicingActive}
 							setSlicingActive={setSlicingActive}
@@ -1048,9 +1103,13 @@ const Visualization: React.FC = () => {
 									category: activeCategory,
 									previousState: { hiddenIds: prevHidden },
 								});
+								if (activeCategory === 1 && areEdgePoresHidden && edgePoreIds.size > 0) {
+									return { ...prev, [activeCategory]: new Set(edgePoreIds) };
+								}
 								return { ...prev, [activeCategory]: new Set() };
 							});
 						}}
+						edgePoreIds={activeCategory === 1 ? edgePoreIds : undefined}
 						onToggleVisibility={(id) => toggleVisibility(id, activeCategory)}
 						isActiveCategoryVisible={isActiveCategoryVisible}
 					/>
@@ -1090,6 +1149,11 @@ const Visualization: React.FC = () => {
 							setOpacity={(value: number) => {
 								setParticleOpacity(value);
 								setUserOverrideParticleOpacity(true);
+								if (value === 0 && showParticles) {
+									setShowParticles(false);
+								} else if (value > 0 && !showParticles) {
+									setShowParticles(true);
+								}
 							}}
 							slicingActive={slicingActive}
 							setSlicingActive={setSlicingActive}

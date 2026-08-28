@@ -51,9 +51,17 @@ export type HistoryAction =
 	category: number;
 	previousState: boolean; // previous value of showParticles/showPores
 }
-  	| 
+  	|
 {
 	type: 'TOGGLE_EDGE_PORES';
 	category: number;
 	previousState: boolean; // previous value of areEdgePoresHidden
+}
+  	|
+{
+	type: 'RESET_CAMERA';
+	previousState: {
+		position: THREE.Vector3;
+		target: THREE.Vector3;
+	};
 };

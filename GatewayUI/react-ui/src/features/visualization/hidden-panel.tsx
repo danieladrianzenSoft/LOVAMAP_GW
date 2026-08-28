@@ -6,6 +6,7 @@ interface Props {
   toggleOpen: () => void;
   category: number;
   hiddenIds: Set<string>;
+  edgePoreIds?: Set<string>;
   onShowAll: () => void;
   onToggleVisibility: (particleId: string) => void;
   className?: string;
@@ -16,6 +17,7 @@ const HiddenPanel: React.FC<Props> = ({
   toggleOpen,
   category,
   hiddenIds,
+  edgePoreIds,
   onShowAll,
   onToggleVisibility,
   className,
@@ -55,7 +57,16 @@ const HiddenPanel: React.FC<Props> = ({
           <ul className="mt-2 space-y-1">
             {Array.from(hiddenIds).map((entityId) => (
               <li key={entityId} className="flex justify-between items-center">
-                <span>{`${category === 0 ? "particle " : "pore "}`}{entityId.split('-')[0]}</span>
+                <span>
+                  {category === 0
+                    ? `particle ${entityId.split('-')[0]}`
+                    : edgePoreIds && edgePoreIds.size > 0
+                      ? edgePoreIds.has(entityId)
+                        ? `surface pore ${entityId.split('-')[0]}`
+                        : `pore ${entityId.split('-')[0]}`
+                      : `pore ${entityId.split('-')[0]}`
+                  }
+                </span>
                 <button
                   className="button-link"
                   onClick={() => onToggleVisibility(entityId)}

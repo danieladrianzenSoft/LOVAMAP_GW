@@ -93,14 +93,17 @@ const PoresPanel: React.FC<DomainPanelProps> = ({
 				<p className="mt-2 text-sm italic text-gray-500">Non-existent domain</p>
 			)}
 			{canEdit && (
-				<div className="mt-4">
-					<button
-					className="button-outline self-start flex items-center gap-2"
-					onClick={onEditClick}
-					>
-					Update
-					</button>
-				</div>
+				<>
+					<hr className="mt-3 border-t border-gray-200" />
+					<div className="mt-2 flex justify-end">
+						<button
+						className="button-tag"
+						onClick={onEditClick}
+						>
+						Update
+						</button>
+					</div>
+				</>
 			)}
       	</div>
     </div>

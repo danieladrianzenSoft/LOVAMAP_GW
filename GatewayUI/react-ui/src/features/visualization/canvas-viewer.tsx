@@ -1,4 +1,4 @@
-import React, { Suspense, useCallback, useEffect, useRef, useState } from "react";
+import React, { Suspense, useCallback, useEffect, useImperativeHandle, useRef, useState, forwardRef } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Bounds, OrbitControls, useProgress } from "@react-three/drei";
 import { PCFSoftShadowMap} from "three";
@@ -66,6 +66,13 @@ interface CanvasViewerProps {
   meshes: DomainMeshProps[];
   onSliceBoundsComputed?: (bounds: { min: THREE.Vector3; max: THREE.Vector3 }) => void;
   onCanvasCreated?: (canvas: HTMLCanvasElement) => void;
+  zUp?: boolean;
+  onToggleZUp?: () => void;
+}
+
+export interface CanvasViewerHandle {
+  resetCamera: () => { position: THREE.Vector3; target: THREE.Vector3 } | null;
+  restoreCamera: (position: THREE.Vector3, target: THREE.Vector3) => void;
 }
 
 // JX: camera-following directional light for MATLAB-like lighting
@@ -179,9 +186,11 @@ const AxesIndicator: React.FC<AxesIndicatorProps> = ({ controlsRef }) => {
 interface CameraControlPanelProps {
   controlsRef: React.RefObject<any>;
   livePos: { x: number; y: number; z: number };
+  zUp: boolean;
+  onToggleZUp: () => void;
 }
 
-const CameraControlPanel: React.FC<CameraControlPanelProps> = ({ controlsRef, livePos }) => {
+const CameraControlPanel: React.FC<CameraControlPanelProps> = ({ controlsRef, livePos, zUp, onToggleZUp }) => {
   const [editingAxis, setEditingAxis] = useState<'x' | 'y' | 'z' | null>(null);
   const [editValue, setEditValue] = useState('');
   const editingRef = useRef(false);
@@ -248,11 +257,19 @@ const CameraControlPanel: React.FC<CameraControlPanelProps> = ({ controlsRef, li
           </div>
         ))}
       </div>
+      <button
+        onClick={onToggleZUp}
+        className={`mt-1 px-2 py-0.5 rounded text-gray-500 hover:text-gray-700 transition-colors cursor-pointer ${zUp ? 'font-bold' : ''}`}
+        style={{ fontSize: '10px' }}
+        title="Toggle Y-up / Z-up"
+      >
+        Up: {zUp ? 'Z' : 'Y'}
+      </button>
     </div>
   );
 };
 
-const CanvasViewer: React.FC<CanvasViewerProps> = ({ meshes, onSliceBoundsComputed, onCanvasCreated }) => {
+const CanvasViewer = forwardRef<CanvasViewerHandle, CanvasViewerProps>(({ meshes, onSliceBoundsComputed, onCanvasCreated, zUp = false, onToggleZUp }, ref) => {
   const [combinedCenter, ] = useState<THREE.Vector3 | null>(null);
   const [, setParticleCenters] = useState<THREE.Vector3[]>([]);
   const [particleBounds, setParticleBounds] = useState<{ min: THREE.Vector3; max: THREE.Vector3 } | null>(null);
@@ -262,6 +279,7 @@ const CanvasViewer: React.FC<CanvasViewerProps> = ({ meshes, onSliceBoundsComput
   const controlsRef = useRef<any>(null);
   const hasSetCamera = useRef(false);
   const [livePos, setLivePos] = useState({ x: 0, y: 0, z: 0 });
+  const initialFramingRef = useRef<{ center: THREE.Vector3; size: number } | null>(null);
 
   useEffect(() => {
     if (!particleBounds || !onSliceBoundsComputed) return;
@@ -276,12 +294,51 @@ const CanvasViewer: React.FC<CanvasViewerProps> = ({ meshes, onSliceBoundsComput
     }
     if (hasSetCamera.current) return;
 
+    initialFramingRef.current = { center: center.clone(), size };
     applyCameraFraming(controlsRef.current.object, center, size);
 
     controlsRef.current.target.copy(center);
     controlsRef.current.update();
     hasSetCamera.current = true;
   }, []);
+
+  useImperativeHandle(ref, () => ({
+    resetCamera: () => {
+      if (!controlsRef.current || !initialFramingRef.current) return null;
+      const camera = controlsRef.current.object;
+      const prevPosition = camera.position.clone();
+      const prevTarget = controlsRef.current.target.clone();
+
+      const { center, size } = initialFramingRef.current;
+      applyCameraFraming(camera, center, size);
+      controlsRef.current.target.copy(center);
+      controlsRef.current.update();
+
+      return { position: prevPosition, target: prevTarget };
+    },
+    restoreCamera: (position: THREE.Vector3, target: THREE.Vector3) => {
+      if (!controlsRef.current) return;
+      const camera = controlsRef.current.object;
+      camera.position.copy(position);
+      camera.lookAt(target);
+      camera.updateProjectionMatrix();
+      controlsRef.current.target.copy(target);
+      controlsRef.current.update();
+    },
+  }), []);
+
+  // Switch camera up vector for Y-up vs Z-up and reframe
+  useEffect(() => {
+    if (!controlsRef.current || !initialFramingRef.current) return;
+    const camera = controlsRef.current.object;
+    const newUp = zUp ? new THREE.Vector3(0, 0, 1) : new THREE.Vector3(0, 1, 0);
+    camera.up.copy(newUp);
+
+    const { center, size } = initialFramingRef.current;
+    applyCameraFraming(camera, center, size);
+    controlsRef.current.target.copy(center);
+    controlsRef.current.update();
+  }, [zUp]);
 
   const isRendering = isLoaderActive || loadingCount > 0;
 
@@ -354,9 +411,9 @@ const CanvasViewer: React.FC<CanvasViewerProps> = ({ meshes, onSliceBoundsComput
       </Canvas>
 
       {/* 4/27 JacklynX changed - SVG axes indicator + coordinate inputs, bottom-left */}
-      <CameraControlPanel controlsRef={controlsRef} livePos={livePos} />
+      <CameraControlPanel controlsRef={controlsRef} livePos={livePos} zUp={zUp} onToggleZUp={onToggleZUp ?? (() => {})} />
     </CanvasErrorBoundary>
   );
-};
+});
 
 export default CanvasViewer;

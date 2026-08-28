@@ -337,8 +337,31 @@ const Model: React.FC<ModelProps> = ({
 		};
 	}, [scene]);
 
-	const handleClick = (event: ThreeEvent<PointerEvent>) => {
+	// Track pointer down state to distinguish clicks from drags
+	const pointerDownRef = useRef<{ x: number; y: number; time: number } | null>(null);
+	const CLICK_THRESHOLD_PX = 5;
+	const CLICK_THRESHOLD_MS = 300;
+
+	const handlePointerDown = (event: ThreeEvent<PointerEvent>) => {
+		pointerDownRef.current = {
+			x: event.nativeEvent.clientX,
+			y: event.nativeEvent.clientY,
+			time: Date.now(),
+		};
+	};
+
+	const isClick = (event: ThreeEvent<PointerEvent>): boolean => {
+		if (!pointerDownRef.current) return false;
+		const dx = event.nativeEvent.clientX - pointerDownRef.current.x;
+		const dy = event.nativeEvent.clientY - pointerDownRef.current.y;
+		const dist = Math.sqrt(dx * dx + dy * dy);
+		const elapsed = Date.now() - pointerDownRef.current.time;
+		return dist < CLICK_THRESHOLD_PX && elapsed < CLICK_THRESHOLD_MS;
+	};
+
+	const handlePointerUp = (event: ThreeEvent<PointerEvent>) => {
 		event.stopPropagation();
+		if (!isClick(event)) return;
 		const mesh = event.object as THREE.Mesh;
 		if (!mesh) return;
 		const id = mesh.userData.particleId;
@@ -353,13 +376,13 @@ const Model: React.FC<ModelProps> = ({
 		if (!mesh) return;
 
 		const id = mesh.userData.particleId;
-		
+
 		if (id) onEntityRightClick?.(category, id, mesh);
 	};
 
 	if (!combinedCenter) return null;
 
-	return <primitive object={scene} onClick={handleClick} onContextMenu={handleRightClick} />;
+	return <primitive object={scene} onPointerDown={handlePointerDown} onPointerUp={handlePointerUp} onContextMenu={handleRightClick} />;
 };
 
 export default observer(Model);

@@ -18,6 +18,7 @@ interface MobileFloatingChipsProps {
   onShowAll: () => void;
   onToggleVisibility: (id: string) => void;
   isActiveCategoryVisible: boolean;
+  edgePoreIds?: Set<string>;
 }
 
 const MobileFloatingChips: React.FC<MobileFloatingChipsProps> = ({
@@ -32,6 +33,7 @@ const MobileFloatingChips: React.FC<MobileFloatingChipsProps> = ({
   onShowAll,
   onToggleVisibility,
   isActiveCategoryVisible,
+  edgePoreIds,
 }) => {
   const [selectedSheetOpen, setSelectedSheetOpen] = useState(false);
   const [hiddenSheetOpen, setHiddenSheetOpen] = useState(false);
@@ -90,6 +92,7 @@ const MobileFloatingChips: React.FC<MobileFloatingChipsProps> = ({
           toggleOpen={() => {}}
           category={activeCategory}
           hiddenIds={hiddenIds}
+          edgePoreIds={activeCategory === 1 ? edgePoreIds : undefined}
           onShowAll={() => {
             onShowAll();
             setHiddenSheetOpen(false);

@@ -16,40 +16,43 @@ const SideBarMain: React.FC = () => {
 
 	const isAdmin = userStore.user?.roles?.includes("administrator") ?? false;
 
+	// Offset for tab indices: My Scaffolds is tab 0 when logged in, shifting everything else by 1
+	const o = userStore.isLoggedIn ? 1 : 0;
+
 	const handleVisualizationClick = () => {
-		setActiveTab(0);
+		setActiveTab(2 + o);
 		commonStore.setSidebarOpen(false);
 	};
 
 	useEffect(() => {
 		const p = location.pathname;
 
-		if (matchPath('/visualize/*', p)) {
+		if (matchPath('/my-scaffolds', p)) {
 			setActiveTab(0);
-		} else if (matchPath('/explore/*', p)) {
-			setActiveTab(1);
-		} else if (matchPath('/data/*', p)) {
-			setActiveTab(2);
-		} else if (matchPath('/learn/*', p)) {
-			setActiveTab(3);
-		} else if (matchPath('/descriptor-calculator/*', p)) {
-			setActiveTab(4);
-		} else if (matchPath('/experiments/*', p)) {
-			setActiveTab(5);
 		} else if (matchPath('/jobs/*', p) || matchPath('/run', p)) {
-			setActiveTab(6);
+			setActiveTab(0 + o);
+		} else if (matchPath('/descriptor-calculator/*', p)) {
+			setActiveTab(1 + o);
+		} else if (matchPath('/visualize/*', p)) {
+			setActiveTab(2 + o);
+		} else if (matchPath('/explore/*', p)) {
+			setActiveTab(3 + o);
+		} else if (matchPath('/data/*', p)) {
+			setActiveTab(4 + o);
+		} else if (matchPath('/experiments/*', p)) {
+			setActiveTab(5 + o);
+		} else if (matchPath('/learn/*', p)) {
+			setActiveTab(6 + o);
 		} else if (matchPath('/publications/*', p)) {
-			setActiveTab(7);
-		} else if (matchPath('/my-scaffolds', p)) {
-			setActiveTab(8);
+			setActiveTab(7 + o);
 		} else if (matchPath('/dashboard/*', p) || matchPath('/dashboard', p)) {
-			setActiveTab(9);
+			setActiveTab(8 + o);
 		} else if (matchPath('/admin/*', p) || matchPath('/rdf-explorer/*', p) || matchPath('/rdf-explorer', p)) {
-			setActiveTab(10);
+			setActiveTab(9 + o);
 		} else {
-			setActiveTab(0);
+			setActiveTab(2 + o); // Default to Interact
 		}
-	}, [location.pathname, setActiveTab]);
+	}, [location.pathname, setActiveTab, o]);
 
 	return (
 		<>
@@ -65,13 +68,44 @@ const SideBarMain: React.FC = () => {
 					${commonStore.isSidebarCollapsed ? 'md:hidden' : 'md:translate-x-0'}
 				`}
 			>
-				<div className='flex flex-col justify-between h-full p-2 m-0'>
-					<TabGroup vertical selectedIndex={activeTab} onChange={setActiveTab}>
+				<div className='flex flex-col justify-between h-full p-2 m-0 overflow-hidden'>
+					<TabGroup vertical selectedIndex={activeTab} onChange={setActiveTab} className="flex-1 min-h-0 overflow-y-auto">
 						<TabList className="flex flex-col">
 
 							<NavLink to="/" onClick={() => commonStore.setSidebarOpen(false)}>
 								<img className="mx-auto w-40 my-4" src={logo} alt="logo" />
 							</NavLink>
+
+							{userStore.isLoggedIn && (
+								<>
+									<Tab as={NavLink} to='/my-scaffolds' onClick={() => commonStore.setSidebarOpen(false)} className="focus:outline-none">
+										{({ selected }: TabRenderProps) => (
+											<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
+												<p>My Scaffolds</p>
+											</div>
+										)}
+									</Tab>
+									<div className="flex items-center justify-center w-full my-4 pl-2 pr-2">
+										<hr className="flex-grow border-t border-gray-300" />
+									</div>
+								</>
+							)}
+
+							<Tab as={NavLink} to='/run' onClick={() => commonStore.setSidebarOpen(false)} className="focus:outline-none">
+								{({ selected }: TabRenderProps) => (
+									<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
+										<p>Run LOVAMAP</p>
+									</div>
+								)}
+							</Tab>
+
+							<Tab as={NavLink} to='/descriptor-calculator' onClick={() => commonStore.setSidebarOpen(false)} className="focus:outline-none">
+								{({ selected }: TabRenderProps) => (
+									<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
+										<p>Calculate</p>
+									</div>
+								)}
+							</Tab>
 
 							<Tab as={NavLink} to='/visualize' onClick={handleVisualizationClick} className="focus:outline-none">
 								{({ selected }: TabRenderProps) => (
@@ -97,22 +131,6 @@ const SideBarMain: React.FC = () => {
 								)}
 							</Tab>
 
-							<Tab as={NavLink} to='/learn' onClick={() => commonStore.setSidebarOpen(false)} className="focus:outline-none">
-								{({ selected }: TabRenderProps) => (
-									<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
-										<p>Learn</p>
-									</div>
-								)}
-							</Tab>
-
-							<Tab as={NavLink} to='/descriptor-calculator' onClick={() => commonStore.setSidebarOpen(false)} className="focus:outline-none">
-								{({ selected }: TabRenderProps) => (
-									<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
-										<p>Calculate</p>
-									</div>
-								)}
-							</Tab>
-
 							<Tab as={NavLink} to='/experiments' onClick={() => commonStore.setSidebarOpen(false)} className="focus:outline-none">
 								{({ selected }: TabRenderProps) => (
 									<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
@@ -121,10 +139,10 @@ const SideBarMain: React.FC = () => {
 								)}
 							</Tab>
 
-							<Tab as={NavLink} to='/run' onClick={() => commonStore.setSidebarOpen(false)} className="focus:outline-none">
+							<Tab as={NavLink} to='/learn' onClick={() => commonStore.setSidebarOpen(false)} className="focus:outline-none">
 								{({ selected }: TabRenderProps) => (
 									<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
-										<p>Run LOVAMAP</p>
+										<p>Learn</p>
 									</div>
 								)}
 							</Tab>
@@ -136,16 +154,6 @@ const SideBarMain: React.FC = () => {
 									</div>
 								)}
 							</Tab>
-
-							{userStore.isLoggedIn && (
-								<Tab as={NavLink} to='/my-scaffolds' onClick={() => commonStore.setSidebarOpen(false)} className="focus:outline-none">
-									{({ selected }: TabRenderProps) => (
-										<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
-											<p>My Scaffolds</p>
-										</div>
-									)}
-								</Tab>
-							)}
 
 							{isAdmin && (
 								<>
