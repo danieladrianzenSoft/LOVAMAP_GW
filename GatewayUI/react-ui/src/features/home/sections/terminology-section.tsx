@@ -4,6 +4,42 @@ const CLOUD_BASE = 'https://res.cloudinary.com/danmkw7ni/image/upload';
 const VIDEO_WEBM = 'https://res.cloudinary.com/danmkw7ni/image/upload/f_webm,q_auto';
 const VIDEO_MP4 = 'https://res.cloudinary.com/danmkw7ni/image/upload/f_mp4,q_auto';
 
+/**
+ * Remove the NETSCAPE2.0 looping extension from a GIF binary.
+ * Without it, browsers play the GIF exactly once and stop on the last frame.
+ */
+function removeGifLoop(buffer: ArrayBuffer): ArrayBuffer {
+  const data = new Uint8Array(buffer);
+
+  for (let i = 0; i < data.length - 14; i++) {
+    // Application Extension header: 0x21 0xFF 0x0B
+    if (data[i] !== 0x21 || data[i + 1] !== 0xFF || data[i + 2] !== 0x0B) continue;
+
+    // Check for "NETSCAPE2.0" identifier
+    let isNetscape = true;
+    const id = 'NETSCAPE2.0';
+    for (let j = 0; j < id.length; j++) {
+      if (data[i + 3 + j] !== id.charCodeAt(j)) { isNetscape = false; break; }
+    }
+    if (!isNetscape) continue;
+
+    // Found it — skip past all sub-blocks to find the end
+    let pos = i + 14; // past header + identifier
+    while (pos < data.length && data[pos] !== 0x00) {
+      pos += 1 + data[pos]; // sub-block size byte + its data
+    }
+    pos++; // skip the 0x00 block terminator
+
+    // Remove the extension bytes
+    const result = new Uint8Array(data.length - (pos - i));
+    result.set(data.subarray(0, i));
+    result.set(data.subarray(pos), i);
+    return result.buffer;
+  }
+
+  return buffer; // no loop extension found
+}
+
 interface GifPos {
   top: string;
   left: string;
@@ -13,14 +49,14 @@ interface GifPos {
 
 interface TermItem {
   title: string;
-  videoSrc: string; // base path (without format extension)
-  arrowsUrl: string; // arrows-only overlay (transparent PNG)
-  gifPos: GifPos; // video overlay position as % of arrows image
-  hasAlpha: boolean; // true = serve as native GIF (preserves transparency in all browsers)
-  gifDurationMs?: number; // required when hasAlpha=true (GIF has no onEnded event)
-  arrowEarlyS?: number; // override ARROW_EARLY_S per card
-  delayAfterMs?: number; // override BETWEEN_DELAY_MS for the gap *after* this card
-  multiply?: boolean; // true = apply mixBlendMode multiply (for GIFs with white bg)
+  videoSrc: string;
+  arrowsUrl: string;
+  gifPos: GifPos;
+  hasAlpha: boolean;
+  gifDurationMs?: number;
+  arrowEarlyS?: number;
+  delayAfterMs?: number;
+  multiply?: boolean;
 }
 
 const TERMS: TermItem[] = [
@@ -53,8 +89,8 @@ const TERMS: TermItem[] = [
   },
 ];
 
-const BETWEEN_DELAY_MS = 400; // pause between cards
-const ARROW_EARLY_S = 0.5; // show arrows this many seconds before video/gif technically ends
+const BETWEEN_DELAY_MS = 400;
+const ARROW_EARLY_S = 0.5;
 
 const bounceInStyle = document.createElement('style');
 bounceInStyle.textContent = `
@@ -75,18 +111,54 @@ const TermCard: React.FC<{
 }> = ({ term, play, visible, onNearEnd }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [showArrows, setShowArrows] = useState(false);
-  const timerRef = useRef<number | null>(null);
   const arrowTimerRef = useRef<number | null>(null);
   const onNearEndRef = useRef(onNearEnd);
   onNearEndRef.current = onNearEnd;
   const firedRef = useRef(false);
-  const [gifKey, setGifKey] = useState(0);
-  const [gifDone, setGifDone] = useState(false);
   const [videoPlaying, setVideoPlaying] = useState(false);
 
+  // GIF-specific: blob with loop removed, and current blob URL
+  const noLoopBlobRef = useRef<Blob | null>(null);
+  const [gifUrl, setGifUrl] = useState<string | null>(null);
+  const pendingPlayRef = useRef(false);
+
+  const earlyS = term.arrowEarlyS ?? ARROW_EARLY_S;
+
   const clearTimers = () => {
-    if (timerRef.current) { clearTimeout(timerRef.current); timerRef.current = null; }
     if (arrowTimerRef.current) { clearTimeout(arrowTimerRef.current); arrowTimerRef.current = null; }
+  };
+
+  // Fetch GIF, strip the loop extension, store as blob
+  useEffect(() => {
+    if (!term.hasAlpha) return;
+    fetch(`${CLOUD_BASE}/${term.videoSrc}`)
+      .then(r => r.arrayBuffer())
+      .then(buf => {
+        const noLoop = removeGifLoop(buf);
+        noLoopBlobRef.current = new Blob([noLoop], { type: 'image/gif' });
+        if (pendingPlayRef.current) {
+          pendingPlayRef.current = false;
+          startGif();
+        }
+      })
+      .catch(() => {});
+  }, []);
+
+  const startGif = () => {
+    const blob = noLoopBlobRef.current;
+    if (!blob) return;
+    // Revoke old URL
+    setGifUrl(prev => { if (prev) URL.revokeObjectURL(prev); return null; });
+    // Fresh blob URL forces the GIF to restart from frame 1
+    const url = URL.createObjectURL(blob);
+    setGifUrl(url);
+
+    const dur = term.gifDurationMs ?? 5000;
+    const arrowDelay = Math.max(0, dur - earlyS * 1000);
+    arrowTimerRef.current = window.setTimeout(() => {
+      setShowArrows(true);
+      onNearEndRef.current();
+    }, arrowDelay);
   };
 
   useEffect(() => {
@@ -95,15 +167,11 @@ const TermCard: React.FC<{
       firedRef.current = false;
 
       if (term.hasAlpha) {
-        const dur = term.gifDurationMs ?? 5000;
-        const earlyDur = Math.max(0, dur - earlyS * 1000);
-        setGifKey(k => k + 1);
-        setGifDone(false);
-        arrowTimerRef.current = window.setTimeout(() => {
-          setGifDone(true);
-          setShowArrows(true);
-          onNearEndRef.current();
-        }, earlyDur);
+        if (noLoopBlobRef.current) {
+          startGif();
+        } else {
+          pendingPlayRef.current = true;
+        }
       } else {
         const v = videoRef.current;
         if (v) {
@@ -119,24 +187,14 @@ const TermCard: React.FC<{
         if (v) { v.pause(); v.currentTime = 0; }
         setVideoPlaying(false);
       }
+      pendingPlayRef.current = false;
       setShowArrows(false);
+      setGifUrl(prev => { if (prev) URL.revokeObjectURL(prev); return null; });
       clearTimers();
     }
 
     return () => clearTimers();
   }, [play]);
-
-  // Preload GIF and its last frame so there's no delay/flash
-  useEffect(() => {
-    if (term.hasAlpha) {
-      const gif = new Image();
-      gif.src = `${CLOUD_BASE}/${term.videoSrc}`;
-      const lastFrame = new Image();
-      lastFrame.src = `${CLOUD_BASE}/pg_-1,f_auto,q_auto/${term.videoSrc}`;
-    }
-  }, []);
-
-  const earlyS = term.arrowEarlyS ?? ARROW_EARLY_S;
 
   const onTimeUpdate = () => {
     if (firedRef.current) return;
@@ -155,7 +213,7 @@ const TermCard: React.FC<{
       style={{ visibility: visible ? 'visible' : 'hidden' }}
     >
       <div className="relative">
-        {/* Arrows overlay (transparent PNG) - fades in/out */}
+        {/* Arrows overlay */}
         <img
           src={term.arrowsUrl}
           alt={`${term.title} labels`}
@@ -167,42 +225,23 @@ const TermCard: React.FC<{
         />
 
         {term.hasAlpha ? (
-          <>
-            {/* Animated GIF while playing, static last frame once done */}
-            {play && !gifDone && (
-              <img
-                key={gifKey}
-                src={`${CLOUD_BASE}/${term.videoSrc}?_=${gifKey}`}
-                alt=""
-                className="absolute"
-                style={{
-                  top: term.gifPos.top,
-                  left: term.gifPos.left,
-                  width: term.gifPos.width,
-                  height: term.gifPos.height,
-                  objectFit: 'contain',
-                  ...(term.multiply && { mixBlendMode: 'multiply' as const }),
-                }}
-              />
-            )}
-            {gifDone && (
-              <img
-                src={`${CLOUD_BASE}/pg_-1,f_auto,q_auto/${term.videoSrc}`}
-                alt=""
-                className="absolute"
-                style={{
-                  top: term.gifPos.top,
-                  left: term.gifPos.left,
-                  width: term.gifPos.width,
-                  height: term.gifPos.height,
-                  objectFit: 'contain',
-                  ...(term.multiply && { mixBlendMode: 'multiply' as const }),
-                }}
-              />
-            )}
-          </>
+          /* GIF with loop removed — plays once, stops on last frame natively */
+          gifUrl && (
+            <img
+              src={gifUrl}
+              alt=""
+              className="absolute"
+              style={{
+                top: term.gifPos.top,
+                left: term.gifPos.left,
+                width: term.gifPos.width,
+                height: term.gifPos.height,
+                objectFit: 'contain',
+                ...(term.multiply && { mixBlendMode: 'multiply' as const }),
+              }}
+            />
+          )
         ) : (
-          /* Video with white bg + multiply blend */
           <video
             ref={videoRef}
             muted

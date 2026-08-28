@@ -34,6 +34,12 @@ const DescriptorsSection: React.FC = () => {
   // Arrow smooth-scroll animation state
   const arrowAnim = useRef<{ start: number; from: number; to: number } | null>(null);
 
+  // Drag state
+  const dragRef = useRef<{ active: boolean; startX: number; startOffset: number }>({
+    active: false, startX: 0, startOffset: 0,
+  });
+  const viewportRef = useRef<HTMLDivElement>(null);
+
   // Measure the width of one full set of items
   const measureSet = useCallback(() => {
     const track = trackRef.current;
@@ -61,17 +67,27 @@ const DescriptorsSection: React.FC = () => {
     const track = trackRef.current;
     if (!track) { rafRef.current = requestAnimationFrame(tick); return; }
 
+    const dt = lastTimeRef.current ? (timestamp - lastTimeRef.current) / 1000 : 0;
+
     // Handle arrow animation
     if (arrowAnim.current) {
       const { start, from, to } = arrowAnim.current;
       const elapsed = timestamp - start;
       const progress = Math.min(elapsed / ARROW_DURATION, 1);
-      // ease-out
       const eased = 1 - Math.pow(1 - progress, 3);
       offsetRef.current = from + (to - from) * eased;
       if (progress >= 1) arrowAnim.current = null;
+    } else if (dragRef.current.active) {
+      // During drag — offset is set directly in handlePointerMove
+    } else if (Math.abs(velocityRef.current) > 1) {
+      // Momentum phase after drag release
+      offsetRef.current += velocityRef.current * dt;
+      velocityRef.current *= 0.95; // friction
+      if (Math.abs(velocityRef.current) <= 1) {
+        velocityRef.current = 0;
+        isPaused.current = hovered;
+      }
     } else if (!isPaused.current) {
-      const dt = lastTimeRef.current ? (timestamp - lastTimeRef.current) / 1000 : 0;
       offsetRef.current += SCROLL_SPEED * dt;
     }
 
@@ -105,6 +121,61 @@ const DescriptorsSection: React.FC = () => {
     };
   };
 
+  // Click-and-drag with momentum
+  const velocityRef = useRef(0);
+  const lastDragXRef = useRef(0);
+  const lastDragTimeRef = useRef(0);
+
+  const handlePointerDown = (e: React.PointerEvent) => {
+    arrowAnim.current = null;
+    velocityRef.current = 0;
+    dragRef.current = { active: true, startX: e.clientX, startOffset: offsetRef.current };
+    lastDragXRef.current = e.clientX;
+    lastDragTimeRef.current = performance.now();
+    isPaused.current = true;
+    (e.target as HTMLElement).setPointerCapture(e.pointerId);
+  };
+
+  const handlePointerMove = (e: React.PointerEvent) => {
+    if (!dragRef.current.active) return;
+    const now = performance.now();
+    const dt = now - lastDragTimeRef.current;
+    const dx = e.clientX - lastDragXRef.current;
+
+    if (dt > 0) {
+      velocityRef.current = -dx / dt * 1000; // px/s
+    }
+
+    lastDragXRef.current = e.clientX;
+    lastDragTimeRef.current = now;
+
+    const totalDx = e.clientX - dragRef.current.startX;
+    offsetRef.current = dragRef.current.startOffset - totalDx;
+  };
+
+  const handlePointerUp = (e: React.PointerEvent) => {
+    dragRef.current.active = false;
+    (e.target as HTMLElement).releasePointerCapture(e.pointerId);
+    // Don't resume auto-scroll until momentum dies down
+  };
+
+  // Horizontal wheel scroll
+  const handleWheel = useCallback((e: WheelEvent) => {
+    // Use deltaX for horizontal scroll, fall back to deltaY for vertical scroll wheels
+    const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+    if (delta === 0) return;
+    e.preventDefault();
+    arrowAnim.current = null;
+    offsetRef.current += delta;
+  }, []);
+
+  useEffect(() => {
+    const viewport = viewportRef.current;
+    if (!viewport) return;
+    viewport.addEventListener('wheel', handleWheel, { passive: false });
+    return () => viewport.removeEventListener('wheel', handleWheel);
+  }, [handleWheel]);
+
   return (
     <section className="pt-28 pb-20 bg-white">
       <div className="px-4">
@@ -132,7 +203,14 @@ const DescriptorsSection: React.FC = () => {
         </button>
 
         {/* Viewport — clips the track */}
-        <div className="flex-1 min-w-0 overflow-hidden">
+        <div
+          ref={viewportRef}
+          className="flex-1 min-w-0 overflow-hidden cursor-grab active:cursor-grabbing"
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={handlePointerUp}
+          onPointerCancel={handlePointerUp}
+        >
           {/* Track — translated via transform for cross-browser support */}
           <div
             ref={trackRef}
@@ -148,7 +226,8 @@ const DescriptorsSection: React.FC = () => {
                   src={d.url}
                   alt={`Descriptor ${d.id}`}
                   loading="lazy"
-                  className="h-72 w-auto"
+                  draggable={false}
+                  className="h-72 w-auto select-none"
                 />
               </div>
             ))}
