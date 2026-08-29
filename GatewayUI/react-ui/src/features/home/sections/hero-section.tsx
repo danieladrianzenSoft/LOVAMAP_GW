@@ -21,17 +21,18 @@ const HeroSection: React.FC = () => {
 
     const start = window.scrollY;
     const offset = 120;
-    const end = heading.getBoundingClientRect().top + start - offset;
-    const duration = 1200; // ms — consistent across browsers
+    const duration = 1200;
     const startTime = performance.now();
 
     const step = (now: number) => {
       const elapsed = now - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      // ease-in-out
       const eased = progress < 0.5
         ? 2 * progress * progress
         : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+      // Recalculate target each frame so layout shifts from loading images
+      // don't cause the scroll to land short
+      const end = heading.getBoundingClientRect().top + window.scrollY - offset;
       window.scrollTo(0, start + (end - start) * eased);
       if (progress < 1) requestAnimationFrame(step);
     };

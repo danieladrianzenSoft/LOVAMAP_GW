@@ -159,23 +159,6 @@ const DescriptorsSection: React.FC = () => {
     // Don't resume auto-scroll until momentum dies down
   };
 
-  // Horizontal wheel scroll
-  const handleWheel = useCallback((e: WheelEvent) => {
-    // Use deltaX for horizontal scroll, fall back to deltaY for vertical scroll wheels
-    const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
-    if (delta === 0) return;
-    e.preventDefault();
-    arrowAnim.current = null;
-    offsetRef.current += delta;
-  }, []);
-
-  useEffect(() => {
-    const viewport = viewportRef.current;
-    if (!viewport) return;
-    viewport.addEventListener('wheel', handleWheel, { passive: false });
-    return () => viewport.removeEventListener('wheel', handleWheel);
-  }, [handleWheel]);
-
   return (
     <section className="pt-28 pb-20 bg-white">
       <div className="px-4">
