@@ -45,6 +45,28 @@ const LazySection: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 const HomePage: React.FC = () => {
   return (
     <div className="min-h-screen bg-white">
+      {/* Institutional logos banner */}
+      <div className="w-full bg-[#061957]">
+        <div className="flex items-center justify-between px-8 py-2.5">
+          <img
+            src="https://res.cloudinary.com/danmkw7ni/image/upload/f_auto,q_auto/Duke_Pratt_School_of_Engineering_logo_WHITE_fnt3om"
+            alt="Duke Pratt School of Engineering"
+            className="h-5 md:h-7 w-auto"
+          />
+          <div className="flex items-center gap-2">
+            <img
+              src="https://res.cloudinary.com/danmkw7ni/image/upload/f_auto,q_auto/MIMC_logo_WHITE_o7gbjl"
+              alt="Materials in Medicine Center"
+              className="h-8 md:h-11 w-auto"
+            />
+            <div className="text-white" style={{ fontFamily: "'Barlow', sans-serif", lineHeight: '1.1' }}>
+              <div className="text-[13px] md:text-[15px] font-medium tracking-wide uppercase">Materials in</div>
+              <div className="text-[13px] md:text-[15px] font-medium tracking-wide uppercase">Medicine Center</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <HomeNav />
 
       <HeroSection />

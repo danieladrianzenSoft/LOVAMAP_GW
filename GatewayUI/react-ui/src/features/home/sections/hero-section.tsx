@@ -41,7 +41,7 @@ const HeroSection: React.FC = () => {
   };
 
   return (
-    <section className="w-full bg-white pt-20 pb-20">
+    <section className="w-full bg-white pb-20">
       {/* Desktop: side-by-side | Mobile: banner behind, text overlay */}
       <div className="relative min-h-[95vh]">
         {/* Banner image — full width background */}
@@ -60,10 +60,10 @@ const HeroSection: React.FC = () => {
             className="w-full md:w-[45%] flex flex-col justify-center px-8 md:px-12 lg:px-16 py-16 bg-white/75 backdrop-blur-sm rounded-2xl"
             style={HERO_FONT}
           >
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-black mb-6">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-black mb-8">
             LOVAMAP is a software that analyzes packed particle porosity
           </h1>
-          <p className="text-base md:text-lg text-black mb-8 leading-relaxed">
+          <p className="text-xl md:text-2xl lg:text-[1.7rem] text-black mb-10 leading-relaxed" style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif", fontWeight: 300 }}>
             It starts by breaking up the void space between particles into
             natural open pockets of space called &lsquo;3D pores&rsquo;
           </p>
@@ -71,21 +71,22 @@ const HeroSection: React.FC = () => {
           <div className="mb-10">
             <Link
               to="/run"
-              className="button-secondary px-8 py-3 text-lg"
+              className="button-secondary px-12 py-4 text-lg md:text-xl"
             >
               Run LOVAMAP
             </Link>
           </div>
 
-          {/* Links that scroll to terminology section */}
-          <div className="space-y-3 max-w-md">
+          {/* FAQ links that scroll to terminology section */}
+          <div className="space-y-1.5 max-w-md">
+            <p className="text-lg md:text-xl text-gray-500">FAQ:</p>
             {FAQ_LINKS.map((item, idx) => (
               <button
                 key={idx}
                 onClick={scrollToTerminology}
-                className="flex items-start gap-2 text-base text-gray-500 hover:text-gray-700 transition-colors text-left"
+                className="flex items-center gap-2 text-lg md:text-xl text-gray-500 hover:text-gray-700 transition-colors text-left"
               >
-                <FiChevronRight className="w-4 h-4 flex-shrink-0 mt-1" />
+                <FiChevronRight className="w-5 h-5 flex-shrink-0" />
                 <span>
                   What&rsquo;s a{' '}
                   <span className={`font-semibold ${item.keywordColor}`}>
@@ -96,6 +97,10 @@ const HeroSection: React.FC = () => {
               </button>
             ))}
           </div>
+
+          <p className="mt-8 text-sm text-gray-500">
+            Offered by the Materials in Medicine Center at Duke University
+          </p>
           </div>
         </div>
       </div>

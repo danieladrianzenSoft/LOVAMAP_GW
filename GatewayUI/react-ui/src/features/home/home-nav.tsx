@@ -28,7 +28,7 @@ const HomeNav: React.FC = () => {
   return (
     <>
     <nav
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+      className={`sticky top-0 left-0 w-full z-50 transition-all duration-300 ${
         scrolled ? 'bg-white/95 backdrop-blur-sm shadow-sm' : 'bg-white'
       }`}
     >
@@ -36,7 +36,7 @@ const HomeNav: React.FC = () => {
         {/* Left: Logo */}
         <div className="flex-1 flex items-center">
           <Link to="/" className="flex-shrink-0">
-            <img src={logo} alt="LOVAMAP" className="h-12 w-auto" />
+            <img src={logo} alt="LOVAMAP" className="h-14 w-auto" />
           </Link>
         </div>
 
@@ -46,7 +46,7 @@ const HomeNav: React.FC = () => {
             <NavLink
               key={to}
               to={to}
-              className="flex items-center gap-1 text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
+              className="flex items-center gap-1 text-base font-medium text-gray-700 hover:text-gray-900 transition-colors"
             >
               <FiChevronRight className="w-3.5 h-3.5" />
               {label}
@@ -112,7 +112,7 @@ const HomeNav: React.FC = () => {
           ) : (
             <Link
               to="/login"
-              className="text-sm font-medium px-4 py-1.5 rounded-md bg-gray-700 text-white hover:bg-gray-800 transition-colors"
+              className="text-base font-medium px-5 py-2 rounded-md bg-gray-700 text-white hover:bg-gray-800 transition-colors"
             >
               Login
             </Link>

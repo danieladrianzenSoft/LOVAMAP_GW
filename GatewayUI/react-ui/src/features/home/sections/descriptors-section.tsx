@@ -160,7 +160,7 @@ const DescriptorsSection: React.FC = () => {
   };
 
   return (
-    <section className="pt-28 pb-20 bg-white">
+    <section className="pt-20 pb-14 bg-white">
       <div className="px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-6">
           A quick snapshot of LOVAMAP outputs

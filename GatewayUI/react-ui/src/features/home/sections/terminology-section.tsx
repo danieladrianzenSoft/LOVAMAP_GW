@@ -311,7 +311,7 @@ const TerminologySection: React.FC = () => {
     <section
       ref={sectionRef}
       id="terminology"
-      className="pt-14 pb-20 px-4"
+      className="pt-10 pb-14 px-4"
       style={{ background: 'linear-gradient(to bottom, #FFFFFF 0%, #F8F5F4 100%)' }}
     >
       <div className="max-w-7xl mx-auto">

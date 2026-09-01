@@ -32,19 +32,19 @@ const HomeFooter: React.FC = () => {
     <footer className="bg-primary-900 text-white py-10 px-6">
       <div className="max-w-6xl mx-auto">
         {/* Main content row */}
-        <div className="flex flex-col md:flex-row gap-10 md:gap-16">
-          {/* Logos */}
-          <div className="flex flex-row md:flex-col items-center md:items-start gap-4 flex-shrink-0 md:w-48">
+        <div className="flex flex-col md:flex-row items-center gap-10 md:gap-0">
+          {/* Duke logo — left */}
+          <div className="flex items-center flex-shrink-0 md:w-1/5">
             <img
               src="/Duke-Pratt-Logo.png"
               alt="Duke Pratt"
-              className="h-14 w-auto"
+              className="h-20 w-auto"
               style={{ filter: 'brightness(0) invert(1)' }}
             />
           </div>
 
-          {/* Link columns */}
-          <div className="flex-1 grid grid-cols-2 md:grid-cols-3 gap-8">
+          {/* Link columns — center */}
+          <div className="flex-1 grid grid-cols-2 md:grid-cols-3 gap-8 md:justify-items-center">
             {footerLinks.map((col) => (
               <div key={col.heading}>
                 <h4 className="text-sm font-semibold uppercase tracking-wider text-gray-300 mb-3">
@@ -64,6 +64,15 @@ const HomeFooter: React.FC = () => {
                 </ul>
               </div>
             ))}
+          </div>
+
+          {/* MIMC logo — right */}
+          <div className="flex items-center justify-end flex-shrink-0 md:w-1/5">
+            <img
+              src="https://res.cloudinary.com/danmkw7ni/image/upload/f_auto,q_auto/MIMC_logo_irilsb"
+              alt="Materials in Medicine Center"
+              className="h-24 w-auto"
+            />
           </div>
         </div>
 

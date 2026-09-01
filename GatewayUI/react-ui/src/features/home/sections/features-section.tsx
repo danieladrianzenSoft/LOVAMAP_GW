@@ -158,7 +158,7 @@ const FeaturesSection: React.FC = () => {
 
   return (
     <section
-      className="pt-14 pb-28 px-4"
+      className="pt-10 pb-[6.5rem] px-4"
       style={{ background: 'linear-gradient(to bottom, #FFFFFF 0%, #F5F5F8 41%)' }}
     >
       <div className="max-w-6xl mx-auto">

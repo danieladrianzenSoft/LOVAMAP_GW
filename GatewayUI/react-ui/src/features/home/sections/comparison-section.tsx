@@ -18,14 +18,14 @@ const ComparisonSection: React.FC = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
               Analyzing void space in 2D is easier, but does it produce comparable results to 3D?
             </h2>
-            <p className="text-lg text-gray-500 mb-8 leading-relaxed">
+            <p className="text-lg md:text-xl text-black mb-8 leading-relaxed" style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif", fontWeight: 300 }}>
               We&rsquo;ve compared packed particle descriptors computed over 2D-slice
               data versus complete 3D data, and results suggest there&rsquo;s a difference.
             </p>
             <div>
               <Link
                 to="/learn#compare-2d-3d"
-                className="button-secondary px-8 py-3 text-lg"
+                className="button-secondary px-12 py-4 text-lg md:text-xl"
               >
                 Compare 2D vs. 3D
               </Link>

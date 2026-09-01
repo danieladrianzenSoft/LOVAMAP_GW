@@ -183,14 +183,16 @@ const SideBarMain: React.FC = () => {
 						</TabList>
 					</TabGroup>
 
-					<div className="shrink-0 text-center mb-6">
-						<p className="text-xs font-semibold tracking-wide text-gray-500 leading-tight mb-2 px-2">
-							Materials in<br />Medicine Center
-						</p>
+					<div className="shrink-0 flex items-center justify-center gap-3 mb-6 px-2">
 						<img
-							className="mx-auto w-20 h-auto mt-2"
+							className="w-16 h-auto"
 							src="/Duke-Pratt-Logo.png"
-							alt="dukelogo"
+							alt="Duke Pratt"
+						/>
+						<img
+							className="h-16 w-auto"
+							src="https://res.cloudinary.com/danmkw7ni/image/upload/f_auto,q_auto/MIMC_logo_irilsb"
+							alt="Materials in Medicine Center"
 						/>
 					</div>
 				</div>
