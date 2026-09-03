@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { queryApi } from '../api/client';
-import type { QueryResult } from '../models/rdfGraph';
-import { FiSend, FiPlay, FiChevronUp, FiChevronDown } from 'react-icons/fi';
+import { FiSend, FiPlay, FiChevronUp, FiChevronDown, FiCode, FiX } from 'react-icons/fi';
+import { useQueryState } from '../hooks/useQueryState';
 
 const EXAMPLES = [
 	'How does particle size affect macrophage polarization markers like CD206 and CD86?',
@@ -22,16 +22,17 @@ function renderMarkdownLinks(text: string): string {
 	);
 }
 
-type SortDir = 'asc' | 'desc';
-
 const QueryPage: React.FC = () => {
-	const [question, setQuestion] = useState('');
-	const [sparql, setSparql] = useState('');
-	const [result, setResult] = useState<QueryResult | null>(null);
+	const {
+		question, setQuestion,
+		sparql, setSparql,
+		result, setResult,
+		error, setError,
+		sortField, setSortField,
+		sortDir, setSortDir,
+		sparqlOpen, setSparqlOpen,
+	} = useQueryState();
 	const [loading, setLoading] = useState(false);
-	const [error, setError] = useState<string | null>(null);
-	const [sortField, setSortField] = useState('');
-	const [sortDir, setSortDir] = useState<SortDir>('asc');
 	const textareaRef = useRef<HTMLTextAreaElement>(null);
 
 	const handleAsk = async (q?: string) => {
@@ -96,6 +97,17 @@ const QueryPage: React.FC = () => {
 			})
 		: [];
 
+	// Filter out the first column if all its values are URIs
+	const displayColumns = result
+		? (() => {
+				const cols = result.columns;
+				if (cols.length < 2) return cols;
+				const firstCol = cols[0];
+				const allUri = result.rows.length > 0 && result.rows.every(r => (r[firstCol] ?? '').startsWith('http'));
+				return allUri ? cols.slice(1) : cols;
+			})()
+		: [];
+
 	const SortIcon: React.FC<{ field: string }> = ({ field }) => {
 		if (sortField !== field) return null;
 		return sortDir === 'asc' ? (
@@ -127,7 +139,7 @@ const QueryPage: React.FC = () => {
 						value={question}
 						onChange={e => setQuestion(e.target.value)}
 						onKeyDown={handleKeyDown}
-						placeholder="e.g. Which materials showed cell viability above 90%?"
+						placeholder="e.g. Show me the papers where particle size affects cell response..."
 						className="flex-1 px-3 py-2 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 text-sm focus:outline-none focus:ring-2 focus:ring-kb-500 focus:border-transparent"
 						disabled={loading}
 					/>
@@ -139,10 +151,21 @@ const QueryPage: React.FC = () => {
 						<FiSend size={14} />
 						Ask
 					</button>
+					{(sparql || result) && !loading && (
+						<button
+							onClick={() => setSparqlOpen(true)}
+							className="inline-flex items-center gap-1.5 px-3 py-2 rounded-md border border-kb-300 dark:border-kb-600 text-kb-600 dark:text-kb-400 text-sm font-medium hover:bg-kb-50 dark:hover:bg-kb-900/20 transition-colors"
+							title="View SPARQL query"
+						>
+							<FiCode size={14} />
+							SPARQL
+						</button>
+					)}
 				</div>
 
 				{/* Example chips */}
-				<div className="flex flex-wrap gap-2 mt-3">
+				<p className="text-xs text-gray-500 dark:text-gray-400 mt-3 mb-1.5">Try an example</p>
+				<div className="flex flex-wrap gap-2">
 					{EXAMPLES.map(ex => (
 						<button
 							key={ex}
@@ -177,42 +200,56 @@ const QueryPage: React.FC = () => {
 				</div>
 			)}
 
-			{/* ── SPARQL display ── */}
-			{(sparql || result) && !loading && (
-				<div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4">
-					<div className="flex items-center justify-between mb-2">
-						<span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-							SPARQL Query
-						</span>
-						<button
-							onClick={handleRunSparql}
-							disabled={loading || !sparql.trim()}
-							className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-green-600 text-white text-xs font-medium hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-						>
-							<FiPlay size={12} />
-							Run
-						</button>
-					</div>
-					{result?.explanation && (
-						<p className="text-xs text-gray-500 dark:text-gray-400 mb-2 italic">
-							{result.explanation}
-						</p>
-					)}
-					<textarea
-						ref={textareaRef}
-						value={sparql}
-						onChange={e => setSparql(e.target.value)}
-						rows={Math.min(sparql.split('\n').length + 1, 20)}
-						className="w-full font-mono text-xs px-3 py-2 rounded-md border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-kb-500 focus:border-transparent resize-y"
-						spellCheck={false}
+			{/* ── SPARQL sidebar ── */}
+			{sparqlOpen && (
+				<>
+					<div
+						className="fixed inset-0 bg-black/20 dark:bg-black/40 z-40"
+						onClick={() => setSparqlOpen(false)}
 					/>
-				</div>
+					<div className="fixed top-0 right-0 h-full w-[400px] max-w-full bg-white dark:bg-gray-800 border-l border-gray-200 dark:border-gray-700 shadow-xl z-50 flex flex-col animate-slide-in-right">
+						<div className="flex items-center justify-between px-4 py-3 border-b border-gray-200 dark:border-gray-700">
+							<span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+								SPARQL Query
+							</span>
+							<button
+								onClick={() => setSparqlOpen(false)}
+								className="p-1 rounded-md text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+							>
+								<FiX size={18} />
+							</button>
+						</div>
+						<div className="flex-1 overflow-y-auto p-4 flex flex-col gap-3">
+							{result?.explanation && (
+								<p className="text-xs text-gray-500 dark:text-gray-400 italic">
+									{result.explanation}
+								</p>
+							)}
+							<textarea
+								ref={textareaRef}
+								value={sparql}
+								onChange={e => setSparql(e.target.value)}
+								rows={Math.min(sparql.split('\n').length + 1, 20)}
+								className="w-full flex-1 font-mono text-xs px-3 py-2 rounded-md border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-kb-500 focus:border-transparent resize-y"
+								spellCheck={false}
+							/>
+							<button
+								onClick={handleRunSparql}
+								disabled={loading || !sparql.trim()}
+								className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-md bg-green-600 text-white text-sm font-medium hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+							>
+								<FiPlay size={14} />
+								Run
+							</button>
+						</div>
+					</div>
+				</>
 			)}
 
 			{/* ── Answer ── */}
 			{result?.answer && !loading && (
-				<div className="bg-kb-50 dark:bg-kb-900/20 border border-kb-200 dark:border-kb-800 rounded-lg p-4">
-					<h3 className="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-2">
+				<div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 border-l-4 border-l-orange-500 rounded-lg p-4">
+					<h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">
 						Answer
 					</h3>
 					<div
@@ -223,7 +260,7 @@ const QueryPage: React.FC = () => {
 			)}
 
 			{/* ── Results table ── */}
-			{result && result.columns.length > 0 && !loading && (
+			{result && displayColumns.length > 0 && !loading && (
 				<div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
 					<div className="px-4 py-2 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
 						<span className="text-sm font-medium text-gray-700 dark:text-gray-300">
@@ -237,7 +274,7 @@ const QueryPage: React.FC = () => {
 						<table className="min-w-full text-xs">
 							<thead className="bg-gray-50 dark:bg-gray-900 sticky top-0">
 								<tr>
-									{result.columns.map(col => (
+									{displayColumns.map(col => (
 										<th
 											key={col}
 											onClick={() => handleSort(col)}
@@ -252,7 +289,7 @@ const QueryPage: React.FC = () => {
 							<tbody className="divide-y divide-gray-100 dark:divide-gray-700">
 								{sortedRows.map((row, i) => (
 									<tr key={i} className="hover:bg-gray-50 dark:hover:bg-gray-700/50">
-										{result.columns.map(col => (
+										{displayColumns.map(col => (
 											<td key={col} className="px-3 py-1.5 text-gray-800 dark:text-gray-200 max-w-xs truncate" title={row[col]}>
 												{shorten(row[col] ?? '')}
 											</td>
@@ -261,7 +298,7 @@ const QueryPage: React.FC = () => {
 								))}
 								{sortedRows.length === 0 && (
 									<tr>
-										<td colSpan={result.columns.length} className="px-3 py-6 text-center text-gray-500 dark:text-gray-400">
+										<td colSpan={displayColumns.length} className="px-3 py-6 text-center text-gray-500 dark:text-gray-400">
 											No results found.
 										</td>
 									</tr>
