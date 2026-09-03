@@ -7,7 +7,8 @@ GatewayBackend/API/obj/
 GatewayBackend/Data/Domains/
 GatewayBackend/Data/JobResults/
 GatewayBackend/API/wwwroot/
-GatewayUI/react-ui/node_modules
+**/node_modules/
+**/dist/
 certbot/
 test-data/
 
