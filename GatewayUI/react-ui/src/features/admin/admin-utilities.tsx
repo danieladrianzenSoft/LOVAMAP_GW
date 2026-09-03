@@ -40,6 +40,7 @@ const AdminUtilities: React.FC = () => {
 						Open Test Viewer
 					</button>
 				</div>
+				{/* RDF Explorer — moved to KnowledgeBase UI
 				<div className="border rounded-lg p-6 bg-white shadow flex flex-col justify-between">
 					<div>
 						<h2 className="text-lg font-semibold mb-2">RDF Explorer</h2>
@@ -55,6 +56,7 @@ const AdminUtilities: React.FC = () => {
 						Open RDF Explorer
 					</button>
 				</div>
+				*/}
 				<AdminThumbnailReset />
 				<AdminTitleResetter />
 				<AdminBatchDescriptorSeeder />

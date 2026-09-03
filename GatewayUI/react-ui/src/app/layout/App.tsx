@@ -32,7 +32,8 @@ import JobsMain from '../../features/jobs/jobs-main';
 import JobList from '../../features/jobs/job-list';
 import RunSegmentation from '../../features/jobs/run-segmentation';
 import Dashboard from '../../features/dashboard/Dashboard';
-import RdfExplorer from '../../features/rdf-explorer/RdfExplorer';
+// RDF Explorer — moved to KnowledgeBase UI
+// import RdfExplorer from '../../features/rdf-explorer/RdfExplorer';
 import { isWhiteBackgroundRoute } from '../helpers/routeTheme';
 import ScaffoldGroupPreviewPage from '../../features/scaffold-groups/scaffold-group-preview-page';
 import HomePage from '../../features/home/home-page';
@@ -114,7 +115,8 @@ const MainLayout: React.FC = observer(() => {
           <Route path="/admin" element={<ProtectedRoute requiredRole="administrator" element={<AdminUtilities />} />}/>
           <Route path="/bulk-upload" element={<ProtectedRoute requiredRole="administrator" element={<BulkUploadPage />} />}/>
           <Route path="/dashboard" element={<ProtectedRoute requiredRole="administrator" element={<Dashboard />} />}/>
-          <Route path="/rdf-explorer" element={<ProtectedRoute requiredRole="administrator" element={<RdfExplorer />} />}/>
+          {/* RDF Explorer — moved to KnowledgeBase UI */}
+          {/* <Route path="/rdf-explorer" element={<ProtectedRoute requiredRole="administrator" element={<RdfExplorer />} />}/> */}
           <Route path="/settings" element={<ProtectedRoute element={<SettingsScreen />} />}/>
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>

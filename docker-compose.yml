@@ -110,6 +110,46 @@ services:
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot
 
+  kb-backend:
+    build:
+      context: ./KnowledgeBaseBackend
+    ports:
+      - "5002:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+      fuseki:
+        condition: service_healthy
+    env_file:
+      - .env
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - KB_DB_READONLY=Host=db;Port=5432;Database=lovamap-db;Username=lovamap-db_admin;Password=bzWDVuQ60UfY
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/api/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  kb-frontend:
+    build:
+      context: ./KnowledgeBaseUI
+      dockerfile: Dockerfile
+    depends_on:
+      - kb-backend
+    restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
   umami-db-init:
     image: postgres:17
     container_name: umami_db_init

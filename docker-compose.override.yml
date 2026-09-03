@@ -55,5 +55,28 @@ services:
       timeout: 10s
       retries: 3
 
+  kb-backend:
+    platform: linux/amd64
+    build:
+      context: ./KnowledgeBaseBackend
+    ports:
+      - "5002:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    env_file:
+      - .env.preproduction
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+
+  kb-frontend:
+    build:
+      context: ./KnowledgeBaseUI
+      dockerfile: Dockerfile
+    ports:
+      - "3001:80"
+    depends_on:
+      - kb-backend
+
 volumes:
   postgres_data_preprod:

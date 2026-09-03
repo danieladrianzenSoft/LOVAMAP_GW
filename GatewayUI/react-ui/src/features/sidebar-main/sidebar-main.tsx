@@ -47,7 +47,7 @@ const SideBarMain: React.FC = () => {
 			setActiveTab(7 + o);
 		} else if (matchPath('/dashboard/*', p) || matchPath('/dashboard', p)) {
 			setActiveTab(8 + o);
-		} else if (matchPath('/admin/*', p) || matchPath('/rdf-explorer/*', p) || matchPath('/rdf-explorer', p)) {
+		} else if (matchPath('/admin/*', p)) {
 			setActiveTab(9 + o);
 		} else {
 			setActiveTab(2 + o); // Default to Interact
