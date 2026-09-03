@@ -2,6 +2,8 @@ GatewayBackend/API/appsettings.json
 GatewayBackend/API/appsettings.Development.json
 GatewayBackend/API/appsettings.DevRemote.json
 GatewayBackend/API/appsettings.Production.json
+KnowledgeBaseBackend/appsettings.Development.json
+KnowledgeBaseBackend/appsettings.Production.json
 GatewayBackend/API/bin/
 GatewayBackend/API/obj/
 GatewayBackend/Data/Domains/

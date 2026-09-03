@@ -124,7 +124,7 @@ services:
       - .env
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
-      - KB_DB_READONLY=Host=db;Port=5432;Database=lovamap-db;Username=lovamap-db_admin;Password=bzWDVuQ60UfY
+      - KB_DB_READONLY=${KB_DB_READONLY}
     restart: always
     logging:
       driver: "json-file"
