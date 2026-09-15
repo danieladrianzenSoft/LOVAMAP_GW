@@ -1,64 +1,24 @@
-import React, { useEffect } from 'react';
-import { Tab, TabList, TabGroup } from '@headlessui/react'
-import { NavLink, useLocation, matchPath } from 'react-router-dom';
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 import { useStore } from '../../app/stores/store';
 import { observer } from 'mobx-react-lite';
 import logo from '../../../src/LOVAMAP_logo.png';
-
-type TabRenderProps = {
-	selected: boolean;
-};
+import { NAV_CATEGORIES } from './sidebar-nav-config';
+import { useExpandedSections } from './use-expanded-sections';
+import SidebarSection from './sidebar-section';
 
 const SideBarMain: React.FC = () => {
 	const { commonStore, userStore } = useStore();
-	const { setActiveTab, activeTab } = commonStore;
-	const location = useLocation();
+	const { expanded, toggle } = useExpandedSections();
 
 	const isAdmin = userStore.user?.roles?.includes("administrator") ?? false;
-
-	// Offset for tab indices: My Scaffolds is tab 0 when logged in, shifting everything else by 1
-	const o = userStore.isLoggedIn ? 1 : 0;
-
-	const handleVisualizationClick = () => {
-		setActiveTab(2 + o);
-		commonStore.setSidebarOpen(false);
-	};
-
-	useEffect(() => {
-		const p = location.pathname;
-
-		if (matchPath('/my-scaffolds', p)) {
-			setActiveTab(0);
-		} else if (matchPath('/jobs/*', p) || matchPath('/run', p)) {
-			setActiveTab(0 + o);
-		} else if (matchPath('/descriptor-calculator/*', p)) {
-			setActiveTab(1 + o);
-		} else if (matchPath('/visualize/*', p)) {
-			setActiveTab(2 + o);
-		} else if (matchPath('/explore/*', p)) {
-			setActiveTab(3 + o);
-		} else if (matchPath('/data/*', p)) {
-			setActiveTab(4 + o);
-		} else if (matchPath('/experiments/*', p)) {
-			setActiveTab(5 + o);
-		} else if (matchPath('/learn/*', p)) {
-			setActiveTab(6 + o);
-		} else if (matchPath('/publications/*', p)) {
-			setActiveTab(7 + o);
-		} else if (matchPath('/dashboard/*', p) || matchPath('/dashboard', p)) {
-			setActiveTab(8 + o);
-		} else if (matchPath('/admin/*', p)) {
-			setActiveTab(9 + o);
-		} else {
-			setActiveTab(2 + o); // Default to Interact
-		}
-	}, [location.pathname, setActiveTab, o]);
+	const closeSidebar = () => commonStore.setSidebarOpen(false);
 
 	return (
 		<>
 			<div
 				className={`fixed inset-0 bg-black bg-opacity-40 z-40 md:hidden transition-opacity duration-300 ${commonStore.isSidebarOpen ? 'block' : 'hidden'}`}
-				onClick={() => commonStore.setSidebarOpen(false)}
+				onClick={closeSidebar}
 			/>
 
 			<div
@@ -69,126 +29,45 @@ const SideBarMain: React.FC = () => {
 				`}
 			>
 				<div className='flex flex-col justify-between h-full p-2 m-0 overflow-hidden'>
-					<TabGroup vertical selectedIndex={activeTab} onChange={setActiveTab} className="flex-1 min-h-0 overflow-y-auto">
-						<TabList className="flex flex-col">
-
-							<NavLink to="/" onClick={() => commonStore.setSidebarOpen(false)}>
+					<div className="flex-1 min-h-0 overflow-y-auto">
+						<div className="flex flex-col">
+							<NavLink to="/" onClick={closeSidebar}>
 								<img className="mx-auto w-40 my-4" src={logo} alt="logo" />
 							</NavLink>
 
 							{userStore.isLoggedIn && (
 								<>
-									<Tab as={NavLink} to='/my-scaffolds' onClick={() => commonStore.setSidebarOpen(false)} className="focus:outline-none">
-										{({ selected }: TabRenderProps) => (
-											<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
-												<p>My Scaffolds</p>
-											</div>
-										)}
-									</Tab>
+									<NavLink
+										to="/my-scaffolds"
+										onClick={closeSidebar}
+										className={({ isActive }) =>
+											isActive ? "sidebar-tab-sub-selected !pl-2" : "sidebar-tab-sub !pl-2"
+										}
+									>
+										My Scaffolds
+									</NavLink>
 									<div className="flex items-center justify-center w-full my-4 pl-2 pr-2">
 										<hr className="flex-grow border-t border-gray-300" />
 									</div>
 								</>
 							)}
 
-							<Tab as={NavLink} to='/run' onClick={() => commonStore.setSidebarOpen(false)} className="focus:outline-none">
-								{({ selected }: TabRenderProps) => (
-									<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
-										<p>Run LOVAMAP</p>
-									</div>
-								)}
-							</Tab>
+							{NAV_CATEGORIES.map((cat) => {
+								if (cat.requireRole && !isAdmin) return null;
+								return (
+									<SidebarSection
+										key={cat.key}
+										category={cat}
+										isExpanded={expanded.has(cat.key)}
+										onToggle={() => toggle(cat.key)}
+										onNavigate={closeSidebar}
+									/>
+								);
+							})}
+						</div>
+					</div>
 
-							<Tab as={NavLink} to='/descriptor-calculator' onClick={() => commonStore.setSidebarOpen(false)} className="focus:outline-none">
-								{({ selected }: TabRenderProps) => (
-									<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
-										<p>Calculate</p>
-									</div>
-								)}
-							</Tab>
-
-							<Tab as={NavLink} to='/visualize' onClick={handleVisualizationClick} className="focus:outline-none">
-								{({ selected }: TabRenderProps) => (
-									<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
-										<p>Interact</p>
-									</div>
-								)}
-							</Tab>
-
-							<Tab as={NavLink} to='/explore' onClick={() => commonStore.setSidebarOpen(false)} className="focus:outline-none">
-								{({ selected }: TabRenderProps) => (
-									<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
-										<p>Explore scaffolds</p>
-									</div>
-								)}
-							</Tab>
-
-							<Tab as={NavLink} to='/data' onClick={() => commonStore.setSidebarOpen(false)} className="focus:outline-none">
-								{({ selected }: TabRenderProps) => (
-									<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
-										<p>Explore data</p>
-									</div>
-								)}
-							</Tab>
-
-							<Tab as={NavLink} to='/experiments' onClick={() => commonStore.setSidebarOpen(false)} className="focus:outline-none">
-								{({ selected }: TabRenderProps) => (
-									<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
-										<p>Download Data</p>
-									</div>
-								)}
-							</Tab>
-
-							<Tab as={NavLink} to='/learn' onClick={() => commonStore.setSidebarOpen(false)} className="focus:outline-none">
-								{({ selected }: TabRenderProps) => (
-									<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
-										<p>Learn</p>
-									</div>
-								)}
-							</Tab>
-
-							<Tab as={NavLink} to='/publications' onClick={() => commonStore.setSidebarOpen(false)} className="focus:outline-none">
-								{({ selected }: TabRenderProps) => (
-									<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
-										<p>Publications</p>
-									</div>
-								)}
-							</Tab>
-
-							{isAdmin && (
-								<>
-									<div className="flex items-center justify-center w-full my-4 pl-2 pr-2 italic">
-										<hr className="flex-grow border-t border-gray-300" />
-										<span className="px-3 text-sm text-gray-300 whitespace-nowrap">Admin</span>
-										<hr className="flex-grow border-t border-gray-300" />
-									</div>
-									<Tab as={NavLink} to='/dashboard' onClick={() => commonStore.setSidebarOpen(false)} className="focus:outline-none">
-										{({ selected }) => (
-										<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
-											<p>Dashboard</p>
-										</div>
-										)}
-									</Tab>
-
-									<Tab as={NavLink} to='/admin' onClick={() => commonStore.setSidebarOpen(false)} className="focus:outline-none">
-										{({ selected }: TabRenderProps) => (
-											<div className={selected ? "sidebar-tab-selected" : "sidebar-tab"}>
-												<p>Utilities</p>
-											</div>
-										)}
-									</Tab>
-								</>
-							)}
-
-						</TabList>
-					</TabGroup>
-
-					<div className="shrink-0 flex items-center justify-center gap-3 mb-6 px-2">
-						<img
-							className="w-16 h-auto"
-							src="/Duke-Pratt-Logo.png"
-							alt="Duke Pratt"
-						/>
+					<div className="shrink-0 flex items-center justify-center mb-6 px-2">
 						<img
 							className="h-16 w-auto"
 							src="https://res.cloudinary.com/danmkw7ni/image/upload/f_auto,q_auto/MIMC_logo_irilsb"

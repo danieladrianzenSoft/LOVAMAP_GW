@@ -6,12 +6,12 @@ import ReactMarkdown from "react-markdown";
 import rehypeSanitize from "rehype-sanitize";
 import { useDescriptorTypes } from "../../app/common/hooks/useDescriptorTypes";
 
-const LearnScreen = () => {
+const DescriptorsTab = () => {
     const location = useLocation();
-    const { descriptorTypes } = useDescriptorTypes(); // Use the hook
-    const [activeTab, setActiveTab] = useState("Global"); // Default active tab is "Global"
+    const { descriptorTypes } = useDescriptorTypes();
+    const [activeTab, setActiveTab] = useState("Global");
 
-	const [groupedDescriptorTypes, setGroupedDescriptorTypes] = useState<GroupedDescriptorTypes>({});
+    const [groupedDescriptorTypes, setGroupedDescriptorTypes] = useState<GroupedDescriptorTypes>({});
 
     useEffect(() => {
         if (descriptorTypes.length > 0) {
@@ -31,7 +31,6 @@ const LearnScreen = () => {
         if (!location.hash) return;
         const id = location.hash.replace('#', '');
 
-        // Retry scroll until layout stabilizes (images may still be loading)
         let lastTop = -1;
         let attempts = 0;
         const maxAttempts = 10;
@@ -63,68 +62,37 @@ const LearnScreen = () => {
 
     return (
         <div className="container mx-auto py-8 px-6">
-            <div id="simulated-scaffolds">
-                <div className="text-3xl text-gray-700 font-bold mb-12">Generating Simulated Scaffolds</div>
-                <div className="flex flex-wrap justify-center gap-4">
-                    <div className="aspect-[4/3] w-full sm:w-[48%] overflow-hidden rounded-xl shadow-lg">
-                        <video
-                        controls
-                        className="w-full h-full object-cover"
-                        >
-                        <source src="https://res.cloudinary.com/danmkw7ni/video/upload/v1234567890/u0ytoqfz2ubvrhxuwgkb.mp4" type="video/mp4" />
-                        Your browser does not support the video tag.
-                        </video>
-                    </div>
-
-                    <div className="aspect-[4/3] w-full sm:w-[48%] overflow-hidden rounded-xl shadow-lg">
-                        <video
-                        controls
-                        className="w-full h-full object-cover"
-                        >
-                        <source src="https://res.cloudinary.com/danmkw7ni/video/upload/v1234567890/rqdeaoleiywlydnwzcjz.mp4" type="video/mp4" />
-                        Your browser does not support the video tag.
-                        </video>
-                    </div>
-                </div>
-                <div className="mt-12">
-                    <p>
-                        To generate particle scaffolds of various shapes and configurations, we used SideFX Houdini,
-                        an industry-standard physics simulation software. This involves creating particles of desired 
-                        shapes, sizes, and random orientations and using Houdini's rigid-body solver to simulate how 
-                        they fall, collide, and settle into a container of a prescribed shape and size. 
-                        For non-rigid particles, we use Houdini's native finite element physics solver after imposing 
-                        the particles' Lamé parameters. To reduce computational expense, we use the last
-                        frame of the rigid-body simulation as the initial condition of the non-rigid simulation. 
-                        For more details, see <a
-                            href="https://doi.org/10.1038/s43588-023-00551-x"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-link-100 hover:underline"
-                        >
-                        Riley et al., 2023.
-                        </a>
-                    </p>
-                </div>
-            </div>
-            
-
-            <div id="descriptors" className="mt-12">
+            <div id="descriptors">
                 <div className="text-3xl text-gray-700 font-bold mb-12">Descriptors</div>
                 <div className="mb-12">
                     <p>
                         Descriptors are the output of LOVAMAP, and they provide a quantitative way of characterizing,
-                        analyzing, and comparing granular materials. Check the table below for a summary of 
-                        all the descriptors that LOVAMAP outputs.
+                        analyzing, and comparing granular materials. They fall into three categories:{" "}
+                        <strong>Global</strong> descriptors capture whole-packing properties such as void volume fraction,
+                        total number of pores, and total number of bottlenecks (the narrow passages connecting adjacent pores).{" "}
+                        <strong>Pore</strong> descriptors are computed per-pore and include metrics like pore volume,
+                        surface area, largest enclosed sphere, bottleneck area, and pore coordination number.{" "}
+                        <strong>Other</strong> descriptors cover additional features such as hotspot fractions and
+                        geometric approximations of pore shape (vertices, edges, and faces).
+                        Check the table below for a summary of all the descriptors that LOVAMAP outputs.
                         For more details, see <a
                             href="https://doi.org/10.1038/s43588-023-00551-x"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-link-100 hover:underline"
                         >
-                        Riley et al., 2023.
+                        Riley et al., 2023
+                        </a>{" "}and{" "}
+                        <a
+                            href="https://doi.org/10.1002/ppsc.202500163"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-link-100 hover:underline"
+                        >
+                        Riley et al., 2025.
                         </a>
                     </p>
-                </div>                
+                </div>
                 {/* Tab Navigation */}
                 <div className="flex space-x-4 mb-8">
                     {categoryOrder.map((category) => (
@@ -197,17 +165,8 @@ const LearnScreen = () => {
                     </div>
                 )}
             </div>
-
-            <div id="compare-2d-3d" className="mt-12">
-                <div className="text-3xl text-gray-700 font-bold mb-12">Compare 2D vs. 3D</div>
-                <div className="text-center">
-                    <div className="inline-block bg-secondary-50 rounded-xl px-10 py-8">
-                        <p className="text-lg text-gray-400 font-medium">Coming soon</p>
-                    </div>
-                </div>
-            </div>
         </div>
     );
 };
 
-export default observer(LearnScreen);
+export default observer(DescriptorsTab);

@@ -34,25 +34,10 @@
     h-full w-full mt-0 ml-0 mx-auto px-0 pb-12
     overflow-y-scroll bg-white
   }
-  .top-navigation {
-    @apply flex flex-row items-center justify-between
-    w-full h-16 z-10
-    m-0 px-4 py-2 fixed top-0;
-  }
-  .top-navigation-icon {
-    @apply text-gray-500 dark:text-gray-300
-    mr-3 ml-4
-    transition duration-300 ease-in-out 
-    hover:text-gray-500
-    cursor-pointer;
-  }
-  .top-navigation-icon:first {
-    @apply ml-auto mr-4;
-  }
   .title-text {
-    @apply text-xl tracking-wider font-semibold text-opacity-80 
+    @apply text-xl tracking-wider font-semibold text-opacity-80
     text-gray-600 dark:text-gray-300
-    mr-auto ml-4 my-auto 
+    mr-auto ml-4 my-auto
     transition duration-300 ease-in-out;
   }
   .search {
@@ -104,7 +89,7 @@
     rounded-md px-2 py-2 text-sm overflow-auto
   }
   .fixed-dropdown {
-    @apply fixed top-12 right-2 z-50; /* Adjust the top and right values as needed */
+    @apply fixed top-24 right-2 z-50;
   }
   .pagination-icon {
     @apply relative flex items-center
@@ -179,6 +164,19 @@
     @apply focus:outline-none outline-none border-none py-4 rounded-lg
   bg-gray-100 px-2 font-bold text-gray-700 active:outline-none;
   }
+  .sidebar-category-header {
+    @apply flex items-center justify-between w-full px-2 py-3 text-sm
+    text-gray-600 hover:bg-gray-100 rounded-lg transition-colors
+    focus:outline-none cursor-pointer;
+  }
+  .sidebar-tab-sub {
+    @apply block pl-8 pr-2 py-2.5 text-sm text-gray-600 rounded-lg
+    hover:bg-gray-100 transition-colors;
+  }
+  .sidebar-tab-sub-selected {
+    @apply block pl-8 pr-2 py-2.5 text-sm font-bold text-gray-700
+    bg-gray-100 rounded-lg;
+  }
   .fixed-vertical-button-container {
     @apply fixed top-1/2 right-10 z-50 h-fit transform -translate-y-1/2 lg:hidden;
   }
@@ -189,9 +187,9 @@
     transform-origin: top right;
   }
   .top-navigation {
-    @apply flex flex-row items-center justify-between 
-    w-full h-16 z-40 fixed top-0 left-0
-    m-0 overflow-x-hidden overflow-y-hidden;
+    @apply flex flex-row items-center justify-between
+    w-full h-16 z-40 sticky top-0
+    m-0 px-4 py-2 overflow-x-hidden overflow-y-hidden;
   }
   .top-navigation-icon {
     @apply text-gray-500 dark:text-gray-300

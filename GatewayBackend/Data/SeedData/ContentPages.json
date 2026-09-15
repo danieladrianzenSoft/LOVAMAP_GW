@@ -1,0 +1,106 @@
+[
+  {
+    "slug": "getting-started",
+    "title": "Getting Started",
+    "area": "learn",
+    "description": "An introduction to particle packing analysis and the LOVAMAP platform.",
+    "comingSoon": false,
+    "sortOrder": 0,
+    "sections": [
+      {
+        "title": "What is LOVAMAP?",
+        "body": "LOVAMAP (Local Void Analysis using Medial Axis by Particle configuration) is a computational methodology and web platform for identifying and analyzing 3D pores in packed particulate materials. Rather than focusing on the solid particles themselves, LOVAMAP characterizes the empty void space between them - revealing pore geometry, connectivity, and topology. It applies graph theory and medial axis techniques to segment void space into distinct 3D pores, enabling quantitative comparison of packings across a wide range of applications in bioengineering, geoscience, pharmacology, and manufacturing.",
+        "sortOrder": 0
+      },
+      {
+        "title": "Key Concepts",
+        "body": "A packing (or scaffold) is a collection of particles, often spheres, arranged in a bounded domain. The void space is everything that is not occupied by particles. LOVAMAP computes the medial axis of this void space to identify spatial landmarks such as peaks, ridges, and saddle points, which are used to segment the void into individual 3D pores. Descriptors are quantitative measures computed on these pores — including pore volume, surface area, bottleneck size, largest enclosed sphere, and topological features like coordination number. Descriptors fall into three categories: global (whole-packing properties like void volume fraction), pore-based (per-pore metrics), and other metrics (e.g., hotspot fractions). Together, these descriptors enable objective comparison of packings that vary by particle size, shape, and stiffness.",
+        "sortOrder": 1
+      },
+      {
+        "title": "Typical Workflow",
+        "body": "Provide particle data (center coordinates and radii for sphere packings, or segmented voxel images for non-spherical particles) → LOVAMAP identifies the void space and segments it into 3D pores → descriptors are computed for each pore and for the packing as a whole → visualize the packing and its pore network in 3D → compare descriptor distributions across scaffold groups. You can also generate virtual scaffolds with controlled parameters to benchmark against experimental data.",
+        "sortOrder": 2
+      },
+      {
+        "title": "Supported Input Data",
+        "body": "LOVAMAP accepts two types of input: (1) sphere data, consisting of particle center coordinates and radii (e.g., CSV files), and (2) labeled particle domains, where each particle is represented as a labeled region in a voxel grid. The latter is useful for non-spherical or irregularly shaped particles obtained from microscope image segmentation.",
+        "sortOrder": 3
+      },
+      {
+        "title": "Quick Start Tutorial",
+        "body": "> Video tutorials coming soon",
+        "sortOrder": 4
+      }
+    ]
+  },
+  {
+    "slug": "scaffold-generation",
+    "title": "Generating Simulated Scaffolds",
+    "area": "learn",
+    "description": "How virtual scaffolds are generated and what parameters control them.",
+    "comingSoon": false,
+    "sortOrder": 1,
+    "sections": [
+      {
+        "title": "",
+        "body": "![Rigid-body simulation](https://res.cloudinary.com/danmkw7ni/video/upload/v1234567890/u0ytoqfz2ubvrhxuwgkb.mp4)\n![FEM simulation](https://res.cloudinary.com/danmkw7ni/video/upload/v1234567890/rqdeaoleiywlydnwzcjz.mp4)\n\nTo generate particle scaffolds of various shapes and configurations, we used SideFX Houdini, an industry-standard physics simulation software. This involves creating particles of desired shapes, sizes, and random orientations and using Houdini's rigid-body solver to simulate how they fall, collide, and settle into a container of a prescribed shape and size. For non-rigid particles, we use Houdini's native finite element physics solver after imposing the particles' Lamé parameters. To reduce computational expense, we use the last frame of the rigid-body simulation as the initial condition of the non-rigid simulation. For more details, see [Riley et al., 2023](https://doi.org/10.1038/s43588-023-00551-x).",
+        "sortOrder": 0
+      }
+    ]
+  },
+  {
+    "slug": "descriptors",
+    "title": "Descriptors",
+    "area": "learn",
+    "description": "Quantitative measures that characterize the geometry and topology of packings.",
+    "comingSoon": false,
+    "sortOrder": 2,
+    "sections": []
+  },
+  {
+    "slug": "compare-2d-3d",
+    "title": "Compare 2D vs. 3D",
+    "area": "learn",
+    "description": "Side-by-side comparison of descriptor behavior in two and three dimensions.",
+    "comingSoon": true,
+    "sortOrder": 3,
+    "sections": []
+  },
+  {
+    "slug": "website-guide",
+    "title": "Website Guide",
+    "area": "documentation",
+    "description": "How to use the LOVAMAP web platform to upload, analyze, and explore data.",
+    "comingSoon": true,
+    "sortOrder": 0,
+    "sections": []
+  },
+  {
+    "slug": "lovamap-core",
+    "title": "lovamap-core",
+    "area": "documentation",
+    "description": "Core library for computing descriptors from particle packings.",
+    "comingSoon": true,
+    "sortOrder": 1,
+    "sections": []
+  },
+  {
+    "slug": "particle-segmentation",
+    "title": "particle-segmentation",
+    "area": "documentation",
+    "description": "Tools for segmenting particles from microscope images.",
+    "comingSoon": true,
+    "sortOrder": 2,
+    "sections": []
+  },
+  {
+    "slug": "mesh-generation",
+    "title": "mesh-generation",
+    "area": "documentation",
+    "description": "Tools for generating meshes from segmented particle packings.",
+    "comingSoon": true,
+    "sortOrder": 3,
+    "sections": []
+  }
+]

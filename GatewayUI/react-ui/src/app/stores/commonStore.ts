@@ -3,7 +3,6 @@ import { makeAutoObservable, reaction } from "mobx";
 export default class CommonStore {
 	accessToken: string | null = window.localStorage.getItem('accessToken');
 	appLoaded = false;
-	activeTab = 0;
 	isSidebarOpen = false;
 	isSidebarCollapsed = false;
 	darkMode: boolean = window.localStorage.getItem('darkMode') === 'true';
@@ -53,10 +52,6 @@ export default class CommonStore {
             localStorage.removeItem("accessToken");
         }
 		this.accessToken = accessToken;
-	}
-
-	setActiveTab = (activeTab: number) => { 
-		this.activeTab = activeTab;
 	}
 
 	setAppLoaded = () => {

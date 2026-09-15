@@ -75,6 +75,7 @@ namespace Services.Services
 				await SeedPublicationsAsync();
 				await SeedDescriptorTypesAsync();
 				await SeedTagsAsync();
+				await SeedContentPagesAsync();
 				// await SeedScaffoldGroupsAsync();
 			}
 			catch (Exception ex)
@@ -320,6 +321,42 @@ namespace Services.Services
 
 		}
 
+		private async Task SeedContentPagesAsync()
+		{
+			if (await _context.ContentPages.AnyAsync() == false)
+			{
+				var path = Path.Combine(baseUrl, "ContentPages.json");
+				var data = File.ReadAllText(path);
+				var pages = JsonSerializer.Deserialize<List<ContentPageSeedDto>>(data, _jsonSerializerOptions);
+				if (pages == null)
+				{
+					throw new ApplicationException("Failed to deserialize content pages");
+				}
+
+				foreach (var dto in pages)
+				{
+					var page = new ContentPage
+					{
+						Slug = dto.Slug,
+						Title = dto.Title,
+						Area = dto.Area,
+						Description = dto.Description,
+						ComingSoon = dto.ComingSoon,
+						SortOrder = dto.SortOrder,
+						Sections = dto.Sections.Select(s => new ContentSection
+						{
+							Title = s.Title,
+							Body = s.Body,
+							SortOrder = s.SortOrder
+						}).ToList()
+					};
+					_context.ContentPages.Add(page);
+				}
+				await _context.SaveChangesAsync();
+				_logger.LogInformation("Seeded {Count} content pages", pages.Count);
+			}
+		}
+
 		private async Task SeedScaffoldGroupsAsync()
 		{
 			if (await _context.ScaffoldGroups.AnyAsync() == false)
@@ -330,9 +367,27 @@ namespace Services.Services
 				if (scaffoldGroups == null) {
 					throw new ApplicationException("Failed to deserialize scaffold groups");
 				}
-		
+
 				await _scaffoldGroupService.CreateScaffoldGroups(scaffoldGroups, null);
 			}
+		}
+
+		private class ContentPageSeedDto
+		{
+			public string Slug { get; set; } = null!;
+			public string Title { get; set; } = null!;
+			public string Area { get; set; } = null!;
+			public string? Description { get; set; }
+			public bool ComingSoon { get; set; }
+			public int SortOrder { get; set; }
+			public List<ContentSectionSeedDto> Sections { get; set; } = [];
+		}
+
+		private class ContentSectionSeedDto
+		{
+			public string? Title { get; set; }
+			public string Body { get; set; } = "";
+			public int SortOrder { get; set; }
 		}
 	}
 }

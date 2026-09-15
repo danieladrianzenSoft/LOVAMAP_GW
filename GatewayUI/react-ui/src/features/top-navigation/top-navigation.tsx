@@ -13,6 +13,11 @@ const ROUTE_LABELS: Record<string, string> = {
 	visualize: 'Interact',
 	'test-visualization': 'Test Visualization',
 	learn: 'Learn',
+	descriptors: 'Descriptors',
+	'scaffold-generation': 'Scaffold Generation',
+	'getting-started': 'Getting Started',
+	'compare-2d-3d': 'Compare 2D vs. 3D',
+	documentation: 'Documentation',
 	explore: 'Explore',
 	data: 'Data',
 	'descriptor-calculator': 'Descriptor Calculator',
@@ -29,6 +34,7 @@ const ROUTE_LABELS: Record<string, string> = {
 	admin: 'Admin',
 	'bulk-upload': 'Bulk Upload',
 	dashboard: 'Dashboard',
+	content: 'Content',
 	'rdf-explorer': 'RDF Explorer',
 	settings: 'Settings',
 };
@@ -45,7 +51,7 @@ const formatSegment = (segment: string): string => {
 	}
 };
 
-const Breadcrumbs: React.FC<{ pathname: string; sidebarCollapsed: boolean }> = ({ pathname, sidebarCollapsed }) => {
+const Breadcrumbs: React.FC<{ pathname: string }> = ({ pathname }) => {
 	const segments = pathname.split('/').filter(Boolean);
 
 	// Build crumbs: always start with Home, then each path segment
@@ -65,10 +71,8 @@ const Breadcrumbs: React.FC<{ pathname: string; sidebarCollapsed: boolean }> = (
 		}),
 	];
 
-	const leftPosition = sidebarCollapsed ? 'left-1/2' : 'left-[calc(50%+6.5rem)]';
-
 	return (
-		<nav aria-label="Breadcrumb" className={`hidden md:flex items-center text-sm absolute ${leftPosition} -translate-x-1/2`}>
+		<nav aria-label="Breadcrumb" className="hidden md:flex items-center text-sm absolute left-1/2 -translate-x-1/2">
 			<ol className="flex items-center flex-wrap">
 				{crumbs.map((crumb, idx) => {
 					const isLast = idx === crumbs.length - 1;
@@ -109,7 +113,7 @@ const TopNavigation: React.FC = () => {
 		<div className={`top-navigation ${bgClass}`}>
 			{/* Left side: Logo + hamburger */}
 			{!commonStore.isSidebarOpen && (
-				<div className={`flex items-center space-x-4 ${commonStore.isSidebarCollapsed ? 'md:-ml-2' : 'md:ml-[12.5rem]'}`}>
+				<div className="flex items-center space-x-4">
 					{/* Hamburger only on mobile */}
 					<button
 						className="md:hidden focus:outline-none"
@@ -145,7 +149,7 @@ const TopNavigation: React.FC = () => {
 			)}
 
 			{/* Middle: Breadcrumbs */}
-			<Breadcrumbs pathname={location.pathname} sidebarCollapsed={commonStore.isSidebarCollapsed} />
+			<Breadcrumbs pathname={location.pathname} />
 
 			{/* Right side: User/Login */}
 			<div className="flex items-center space-x-4 mr-0">

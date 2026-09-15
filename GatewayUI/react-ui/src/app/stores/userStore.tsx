@@ -67,7 +67,6 @@ export default class UserStore {
 				store.commonStore.setToken(user.accessToken);
 				this.user = user;
 				console.log('Login successful');
-				store.commonStore.setActiveTab(0);
 			});
 			return { success: true };
 		} catch (error: any) {
@@ -201,7 +200,6 @@ export default class UserStore {
 	}
 
 	logout = () => {
-		store.commonStore.setActiveTab(0);
 		this.clearSession();
 		history.push('/');
 	}

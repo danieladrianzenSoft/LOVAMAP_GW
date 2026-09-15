@@ -141,6 +141,7 @@ builder.Services.AddScoped<ILovamapCoreJobRepository, LovamapCoreJobRepository>(
 builder.Services.AddScoped<IRdfRepository, RdfRepository>();
 builder.Services.AddScoped<IRdfScaffoldRepository, RdfScaffoldRepository>();
 builder.Services.AddScoped<IAnalyticsRepository, AnalyticsRepository>();
+builder.Services.AddScoped<IContentRepository, ContentRepository>();
 
 // Add helpers
 builder.Services.AddMemoryCache();
@@ -186,6 +187,7 @@ builder.Services.AddScoped<IScaffoldGroupMetadataService, ScaffoldGroupMetadataS
 builder.Services.AddScoped<IRdfScaffoldService, RdfScaffoldService>();
 builder.Services.AddScoped<IAnalyticsService, AnalyticsService>();
 builder.Services.AddScoped<IDescriptorValueGenerator, ParticleAspectRatioGenerator>();
+builder.Services.AddScoped<IContentService, ContentService>();
 builder.Services.AddScoped<ISeedingService, SeedingService>();
 builder.Services.AddScoped<SeedingService>();
 

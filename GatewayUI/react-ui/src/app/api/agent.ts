@@ -22,6 +22,7 @@ import { InputGroup } from "../models/inputGroup";
 import { RdfGraph, RdfOntologySummary } from "../models/rdfGraph";
 import { DashboardAnalytics } from "../models/dashboardAnalytics";
 import { ThumbnailResetPreview } from "../models/thumbnailResetPreview";
+import { ContentPageSummary, ContentPageDetail, ContentPageToCreate, ContentPageToUpdate, ContentSectionToCreate, ContentSectionToUpdate, ContentSection, ReorderSections } from "../models/contentPage";
 
 axios.defaults.baseURL = environment.baseUrl;
 
@@ -362,6 +363,18 @@ const RdfVisualization = {
 	getGraphSummary: () => requests.get<RdfOntologySummary>('/RDFVisualization/graph/summary'),
 }
 
+const Content = {
+	getPages: (area: string) => requests.get<ApiResponse<ContentPageSummary[]>>(`/content/pages?area=${area}`),
+	getPageBySlug: (slug: string) => requests.get<ApiResponse<ContentPageDetail>>(`/content/pages/${slug}`),
+	createPage: (data: ContentPageToCreate) => requests.post<ApiResponse<ContentPageDetail>>('/content/pages', data),
+	updatePage: (id: number, data: ContentPageToUpdate) => requests.put<ApiResponse<ContentPageDetail>>(`/content/pages/${id}`, data),
+	deletePage: (id: number) => requests.del<ApiResponse<string>>(`/content/pages/${id}`),
+	addSection: (pageId: number, data: ContentSectionToCreate) => requests.post<ApiResponse<ContentSection>>(`/content/pages/${pageId}/sections`, data),
+	updateSection: (sectionId: number, data: ContentSectionToUpdate) => requests.put<ApiResponse<ContentSection>>(`/content/sections/${sectionId}`, data),
+	deleteSection: (sectionId: number) => requests.del<ApiResponse<string>>(`/content/sections/${sectionId}`),
+	reorderSections: (pageId: number, data: ReorderSections) => requests.put<ApiResponse<string>>(`/content/pages/${pageId}/sections/reorder`, data),
+}
+
 const agent = {
 	Resources,
     Seed,
@@ -372,7 +385,8 @@ const agent = {
     Jobs,
     Publications,
 	RdfVisualization,
-	Analytics
+	Analytics,
+	Content
 }
 
 export default agent;

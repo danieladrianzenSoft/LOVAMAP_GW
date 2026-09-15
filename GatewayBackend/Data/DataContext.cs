@@ -33,6 +33,8 @@ public partial class DataContext : IdentityDbContext<User, Role, string>
 	public DbSet<ScaffoldDownload> ScaffoldDownloads { get; set; }
 	public DbSet<ScaffoldTag> ScaffoldTags { get; set; }
     public DbSet<AISearch> AISearches { get; set; }
+	public DbSet<ContentPage> ContentPages { get; set; }
+	public DbSet<ContentSection> ContentSections { get; set; }
 
 	protected override void OnModelCreating(ModelBuilder builder)
 	{
@@ -434,5 +436,16 @@ public partial class DataContext : IdentityDbContext<User, Role, string>
             .WithMany(d => d.DescriptorTypeDownloads)
             .HasForeignKey(dtd => dtd.DownloadId);
 
+		// ContentPage: unique slug index
+		builder.Entity<ContentPage>()
+			.HasIndex(p => p.Slug)
+			.IsUnique();
+
+		// ContentPage to ContentSection one-to-many
+		builder.Entity<ContentPage>()
+			.HasMany(p => p.Sections)
+			.WithOne(s => s.ContentPage)
+			.HasForeignKey(s => s.ContentPageId)
+			.OnDelete(DeleteBehavior.Cascade);
 	}
 }

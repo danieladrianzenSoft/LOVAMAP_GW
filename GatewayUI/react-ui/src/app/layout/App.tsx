@@ -7,7 +7,12 @@ import history from '../helpers/History';
 import LoginPage from '../../features/login/login';
 import RegisterPage from '../../features/register/register';
 import ExploreScreen from '../../features/explore-screen/explore-screen';
-import LearnScreen from '../../features/learn-screen/learn-screen';
+import LearnLayout from '../../features/learn-screen/learn-layout';
+import DescriptorsTab from '../../features/learn-screen/descriptors-tab';
+import ScaffoldGenerationTab from '../../features/learn-screen/scaffold-generation-tab';
+import GettingStartedTab from '../../features/learn-screen/getting-started-tab';
+import Compare2d3dTab from '../../features/learn-screen/compare-2d-3d-tab';
+import Documentation from '../../features/documentation/documentation';
 import CreateExperiments from '../../features/create-experiments-screen/create-experiments';
 import TopNavigation from '../../features/top-navigation/top-navigation';
 import SideBarMain from '../../features/sidebar-main/sidebar-main';
@@ -37,6 +42,9 @@ import Dashboard from '../../features/dashboard/Dashboard';
 import { isWhiteBackgroundRoute } from '../helpers/routeTheme';
 import ScaffoldGroupPreviewPage from '../../features/scaffold-groups/scaffold-group-preview-page';
 import HomePage from '../../features/home/home-page';
+import InstitutionalBanner from '../../features/common/institutional-banner';
+import ContentEditorList from '../../features/admin/content-editor-list';
+import ContentEditor from '../../features/admin/content-editor';
 
 const App: React.FC = () => {
   const { commonStore, userStore } = useStore();
@@ -92,34 +100,45 @@ const MainLayout: React.FC = observer(() => {
 
   return (
     <div className="main-layout">
-      <TopNavigation />
       <SideBarMain />
-      <div className={`content ${contentBgClass}`}>
-        <Routes>
-          <Route path="/visualize" element={<Visualization />} />
-          <Route path="/visualize/:scaffoldId" element={<Visualization />} />
-          <Route path="/test-visualization" element={<TestVisualization />} />
-          <Route path="/learn" element={<LearnScreen />} />
-          <Route path="/explore" element={<ExploreScreen />} />
-          <Route path="/data" element={<ExploreData />} />
-          <Route path="/data/:scaffoldGroupId" element={<ExploreData />} />
-          <Route path="/descriptor-calculator" element={<DescriptorCalculator />} />
-          <Route path="/publications" element={<Publications />} />
-          <Route path="/publications/:publicationId/data" element={<PublicationData />} />
-          <Route path="/experiments" element={<ProtectedRoute element={<CreateExperiments />} />} />
-          <Route path="/my-scaffolds" element={<ProtectedRoute element={<ScaffoldGroupUploads />} />} />
-          <Route path="/run" element={<JobsMain />} />
-          <Route path="/jobs/*" element={<ProtectedRoute element={<JobList />} />}  />
-          <Route path="/segment" element={<ProtectedRoute element={<RunSegmentation />} />} />
-          <Route path="/screenshots/:scaffoldId" element={<ProtectedRoute requiredRole="administrator" element={<ScreenshotViewer />} />} />
-          <Route path="/admin" element={<ProtectedRoute requiredRole="administrator" element={<AdminUtilities />} />}/>
-          <Route path="/bulk-upload" element={<ProtectedRoute requiredRole="administrator" element={<BulkUploadPage />} />}/>
-          <Route path="/dashboard" element={<ProtectedRoute requiredRole="administrator" element={<Dashboard />} />}/>
-          {/* RDF Explorer — moved to KnowledgeBase UI */}
-          {/* <Route path="/rdf-explorer" element={<ProtectedRoute requiredRole="administrator" element={<RdfExplorer />} />}/> */}
-          <Route path="/settings" element={<ProtectedRoute element={<SettingsScreen />} />}/>
-          <Route path="*" element={<Navigate to="/" />} />
-        </Routes>
+      <div className={`flex-1 overflow-y-auto overflow-x-auto ${contentBgClass}`}>
+        <InstitutionalBanner size="small" />
+        <TopNavigation />
+        <div className="pt-2 pb-8 px-2">
+          <Routes>
+            <Route path="/visualize" element={<Visualization />} />
+            <Route path="/visualize/:scaffoldId" element={<Visualization />} />
+            <Route path="/test-visualization" element={<TestVisualization />} />
+            <Route path="/learn" element={<LearnLayout />}>
+              <Route path="descriptors" element={<DescriptorsTab />} />
+              <Route path="scaffold-generation" element={<ScaffoldGenerationTab />} />
+              <Route path="getting-started" element={<GettingStartedTab />} />
+              <Route path="compare-2d-3d" element={<Compare2d3dTab />} />
+            </Route>
+            <Route path="/documentation" element={<Documentation />} />
+            <Route path="/explore" element={<ExploreScreen />} />
+            <Route path="/data" element={<ExploreData />} />
+            <Route path="/data/:scaffoldGroupId" element={<ExploreData />} />
+            <Route path="/descriptor-calculator" element={<DescriptorCalculator />} />
+            <Route path="/publications" element={<Publications />} />
+            <Route path="/publications/:publicationId/data" element={<PublicationData />} />
+            <Route path="/experiments" element={<ProtectedRoute element={<CreateExperiments />} />} />
+            <Route path="/my-scaffolds" element={<ProtectedRoute element={<ScaffoldGroupUploads />} />} />
+            <Route path="/run" element={<JobsMain />} />
+            <Route path="/jobs/*" element={<ProtectedRoute element={<JobList />} />}  />
+            <Route path="/segment" element={<ProtectedRoute element={<RunSegmentation />} />} />
+            <Route path="/screenshots/:scaffoldId" element={<ProtectedRoute requiredRole="administrator" element={<ScreenshotViewer />} />} />
+            <Route path="/admin" element={<ProtectedRoute requiredRole="administrator" element={<AdminUtilities />} />}/>
+            <Route path="/bulk-upload" element={<ProtectedRoute requiredRole="administrator" element={<BulkUploadPage />} />}/>
+            <Route path="/dashboard" element={<ProtectedRoute requiredRole="administrator" element={<Dashboard />} />}/>
+            <Route path="/admin/content" element={<ProtectedRoute requiredRole="administrator" element={<ContentEditorList />} />}/>
+            <Route path="/admin/content/:slug" element={<ProtectedRoute requiredRole="administrator" element={<ContentEditor />} />}/>
+            {/* RDF Explorer — moved to KnowledgeBase UI */}
+            {/* <Route path="/rdf-explorer" element={<ProtectedRoute requiredRole="administrator" element={<RdfExplorer />} />}/> */}
+            <Route path="/settings" element={<ProtectedRoute element={<SettingsScreen />} />}/>
+            <Route path="*" element={<Navigate to="/" />} />
+          </Routes>
+        </div>
       </div>
     </div>
   );
