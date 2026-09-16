@@ -4,7 +4,7 @@
  *
  * Matches either an exact path or a path-prefix (e.g. "/visualize/:id").
  */
-const WHITE_BG_ROUTES = ['/visualize', '/learn', '/test-visualization', '/documentation'];
+const WHITE_BG_ROUTES = ['/visualize', '/test-visualization'];
 
 export const isWhiteBackgroundRoute = (pathname: string): boolean => {
 	if (pathname === '/') return true;

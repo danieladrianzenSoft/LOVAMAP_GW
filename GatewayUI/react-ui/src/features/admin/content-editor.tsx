@@ -1,10 +1,10 @@
-import React, { useEffect, useState, useCallback } from "react";
-import { useParams, Link } from "react-router-dom";
+import React, { useEffect, useState, useCallback, useMemo } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import agent from "../../app/api/agent";
 import { useStore } from "../../app/stores/store";
 import { ContentPageDetail, ContentSection } from "../../app/models/contentPage";
-import { FiArrowLeft, FiTrash2, FiPlus, FiArrowUp, FiArrowDown, FiEye } from "react-icons/fi";
+import { FiArrowLeft, FiTrash2, FiPlus, FiArrowUp, FiArrowDown, FiEye, FiHelpCircle, FiChevronDown, FiChevronUp } from "react-icons/fi";
 import ContentRenderer from "../common/content-renderer";
 
 const ContentEditor: React.FC = () => {
@@ -14,12 +14,44 @@ const ContentEditor: React.FC = () => {
 	const [loading, setLoading] = useState(true);
 	const [saving, setSaving] = useState(false);
 	const [previewing, setPreviewing] = useState(false);
+	const [showHelp, setShowHelp] = useState(false);
 
 	// Local editable state
 	const [title, setTitle] = useState("");
 	const [description, setDescription] = useState("");
 	const [comingSoon, setComingSoon] = useState(false);
 	const [sections, setSections] = useState<ContentSection[]>([]);
+
+	const isDirty = useMemo(() => {
+		if (!page) return false;
+		if (title !== page.title) return true;
+		if (description !== (page.description || "")) return true;
+		if (comingSoon !== page.comingSoon) return true;
+		if (sections.length !== page.sections.length) return true;
+		return sections.some((s, i) => {
+			const orig = page.sections[i];
+			if (!orig) return true;
+			return s.title !== orig.title || s.body !== orig.body || s.sortOrder !== orig.sortOrder;
+		});
+	}, [page, title, description, comingSoon, sections]);
+
+	// Browser navigation guard (refresh, close tab)
+	useEffect(() => {
+		const handler = (e: BeforeUnloadEvent) => {
+			if (isDirty) {
+				e.preventDefault();
+			}
+		};
+		window.addEventListener("beforeunload", handler);
+		return () => window.removeEventListener("beforeunload", handler);
+	}, [isDirty]);
+
+	const navigate = useNavigate();
+
+	const guardedNavigate = (to: string) => {
+		if (isDirty && !window.confirm("You have unsaved changes. Are you sure you want to leave?")) return;
+		navigate(to);
+	};
 
 	const fetchPage = useCallback(async () => {
 		if (!slug) return;
@@ -150,9 +182,9 @@ const ContentEditor: React.FC = () => {
 		<div className="container mx-auto py-8 px-6 max-w-6xl">
 			{/* Header */}
 			<div className="flex items-center gap-4 mb-8">
-				<Link to="/admin/content" className="text-gray-500 hover:text-gray-700">
+				<button onClick={() => guardedNavigate("/admin/content")} className="text-gray-500 hover:text-gray-700">
 					<FiArrowLeft className="w-5 h-5" />
-				</Link>
+				</button>
 				<div className="text-2xl text-gray-700 font-bold flex-1">Edit: {page.slug}</div>
 				<button
 					onClick={() => setPreviewing(true)}
@@ -167,6 +199,109 @@ const ContentEditor: React.FC = () => {
 				>
 					{saving ? "Saving..." : "Save"}
 				</button>
+			</div>
+
+			{/* Formatting guide */}
+			<div className="mb-8">
+				<button
+					onClick={() => setShowHelp(!showHelp)}
+					className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-700 transition-colors"
+				>
+					<FiHelpCircle className="w-4 h-4" />
+					Formatting guide
+					{showHelp ? <FiChevronUp className="w-3 h-3" /> : <FiChevronDown className="w-3 h-3" />}
+				</button>
+				{showHelp && (
+					<div className="mt-3 bg-gray-50 border border-gray-200 rounded-xl p-6 text-sm text-gray-600 space-y-4">
+						<div>
+							<div className="font-semibold text-gray-700 mb-2">Headings</div>
+							<div className="font-mono bg-white rounded p-3 space-y-1 text-xs">
+								<div># Large heading</div>
+								<div>## Regular heading</div>
+								<div>### Subheading</div>
+								<div>#### Small heading</div>
+							</div>
+						</div>
+						<div>
+							<div className="font-semibold text-gray-700 mb-2">Text styling</div>
+							<div className="font-mono bg-white rounded p-3 space-y-1 text-xs">
+								<div>**bold text**</div>
+								<div>*italic text*</div>
+								<div>`inline code`</div>
+							</div>
+						</div>
+						<div>
+							<div className="font-semibold text-gray-700 mb-2">Links</div>
+							<div className="font-mono bg-white rounded p-3 text-xs">
+								<div>[link text](https://example.com)</div>
+							</div>
+							<div className="mt-1 text-xs text-gray-400">Links open in a new tab automatically.</div>
+						</div>
+						<div>
+							<div className="font-semibold text-gray-700 mb-2">Images</div>
+							<div className="font-mono bg-white rounded p-3 text-xs">
+								<div>![alt text](https://example.com/image.png)</div>
+							</div>
+						</div>
+						<div>
+							<div className="font-semibold text-gray-700 mb-2">Videos</div>
+							<div className="font-mono bg-white rounded p-3 space-y-1 text-xs">
+								<div>![description](https://example.com/video.mp4)</div>
+							</div>
+							<div className="mt-1 text-xs text-gray-400">
+								Use the same image syntax with a .mp4, .webm, or .ogg URL. The video will render with playback controls.
+							</div>
+							<div className="mt-1 text-xs text-gray-400">
+								To show two videos side by side, place them on consecutive lines with no blank line between them:
+							</div>
+							<div className="font-mono bg-white rounded p-3 space-y-1 text-xs mt-1">
+								<div>![first video](https://example.com/a.mp4)</div>
+								<div>![second video](https://example.com/b.mp4)</div>
+							</div>
+						</div>
+						<div>
+							<div className="font-semibold text-gray-700 mb-2">Lists</div>
+							<div className="font-mono bg-white rounded p-3 space-y-1 text-xs">
+								<div>- Bullet item</div>
+								<div>- Another item</div>
+								<div>&nbsp;&nbsp;- Nested item</div>
+								<div></div>
+								<div>1. Numbered item</div>
+								<div>2. Second item</div>
+							</div>
+						</div>
+						<div>
+							<div className="font-semibold text-gray-700 mb-2">Tables</div>
+							<div className="font-mono bg-white rounded p-3 space-y-1 text-xs">
+								<div>| Column 1 | Column 2 | Column 3 |</div>
+								<div>| -------- | -------- | -------- |</div>
+								<div>| cell     | cell     | cell     |</div>
+								<div>| cell     | cell     | cell     |</div>
+							</div>
+						</div>
+						<div>
+							<div className="font-semibold text-gray-700 mb-2">Callout / label</div>
+							<div className="font-mono bg-white rounded p-3 text-xs">
+								<div>&gt; This text appears as a styled label</div>
+							</div>
+							<div className="mt-1 text-xs text-gray-400">
+								Use the blockquote syntax (&gt;) to render a styled pill/callout, e.g. "Coming soon" labels.
+							</div>
+						</div>
+						<div>
+							<div className="font-semibold text-gray-700 mb-2">Code blocks</div>
+							<div className="font-mono bg-white rounded p-3 space-y-1 text-xs">
+								<div>```</div>
+								<div>code goes here</div>
+								<div>```</div>
+							</div>
+						</div>
+						<div className="border-t border-gray-200 pt-3 text-xs text-gray-400">
+							Use the <strong>Preview</strong> button to see how the page will look before saving.
+							Each section can contain multiple headings, paragraphs, and media — you don't need a separate section for each heading.
+						</div>
+					</div>
+				)}
 			</div>
 
 			{/* Page metadata */}

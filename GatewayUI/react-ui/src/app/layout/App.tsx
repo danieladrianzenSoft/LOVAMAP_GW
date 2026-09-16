@@ -9,10 +9,8 @@ import RegisterPage from '../../features/register/register';
 import ExploreScreen from '../../features/explore-screen/explore-screen';
 import LearnLayout from '../../features/learn-screen/learn-layout';
 import DescriptorsTab from '../../features/learn-screen/descriptors-tab';
-import ScaffoldGenerationTab from '../../features/learn-screen/scaffold-generation-tab';
-import GettingStartedTab from '../../features/learn-screen/getting-started-tab';
-import Compare2d3dTab from '../../features/learn-screen/compare-2d-3d-tab';
 import Documentation from '../../features/documentation/documentation';
+import CmsPage from '../../features/common/cms-page';
 import CreateExperiments from '../../features/create-experiments-screen/create-experiments';
 import TopNavigation from '../../features/top-navigation/top-navigation';
 import SideBarMain from '../../features/sidebar-main/sidebar-main';
@@ -111,11 +109,11 @@ const MainLayout: React.FC = observer(() => {
             <Route path="/test-visualization" element={<TestVisualization />} />
             <Route path="/learn" element={<LearnLayout />}>
               <Route path="descriptors" element={<DescriptorsTab />} />
-              <Route path="scaffold-generation" element={<ScaffoldGenerationTab />} />
-              <Route path="getting-started" element={<GettingStartedTab />} />
-              <Route path="compare-2d-3d" element={<Compare2d3dTab />} />
+              <Route path=":slug" element={<CmsPage />} />
             </Route>
-            <Route path="/documentation" element={<Documentation />} />
+            <Route path="/documentation" element={<Documentation />}>
+              <Route path=":slug" element={<CmsPage />} />
+            </Route>
             <Route path="/explore" element={<ExploreScreen />} />
             <Route path="/data" element={<ExploreData />} />
             <Route path="/data/:scaffoldGroupId" element={<ExploreData />} />
