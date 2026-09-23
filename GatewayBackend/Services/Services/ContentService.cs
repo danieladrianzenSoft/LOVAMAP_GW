@@ -75,6 +75,7 @@ namespace Services.Services
 				if (dto.Description != null) page.Description = dto.Description;
 				if (dto.ComingSoon.HasValue) page.ComingSoon = dto.ComingSoon.Value;
 				if (dto.SortOrder.HasValue) page.SortOrder = dto.SortOrder.Value;
+				if (dto.Area != null) page.Area = dto.Area;
 				page.UpdatedAt = DateTime.UtcNow;
 
 				await _repo.SaveChangesAsync();
@@ -194,6 +195,30 @@ namespace Services.Services
 			catch (Exception ex)
 			{
 				_logger.LogError(ex, "Failed to reorder sections for page {PageId}", pageId);
+				return (false, "UnexpectedError");
+			}
+		}
+
+		public async Task<(bool Succeeded, string ErrorMessage)> ReorderPages(string area, ReorderPagesDto dto)
+		{
+			try
+			{
+				for (int i = 0; i < dto.PageIds.Count; i++)
+				{
+					var page = await _repo.GetPageById(dto.PageIds[i]);
+					if (page != null && page.Area == area)
+					{
+						page.SortOrder = i;
+						page.UpdatedAt = DateTime.UtcNow;
+					}
+				}
+
+				await _repo.SaveChangesAsync();
+				return (true, "");
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, "Failed to reorder pages for area {Area}", area);
 				return (false, "UnexpectedError");
 			}
 		}

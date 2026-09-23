@@ -24,6 +24,7 @@ namespace Infrastructure.DTOs
 		public string? Description { get; set; }
 		public bool? ComingSoon { get; set; }
 		public int? SortOrder { get; set; }
+		public string? Area { get; set; }
 	}
 
 	public class ContentSectionToUpdateDto
@@ -36,5 +37,10 @@ namespace Infrastructure.DTOs
 	public class ReorderSectionsDto
 	{
 		public List<int> SectionIds { get; set; } = [];
+	}
+
+	public class ReorderPagesDto
+	{
+		public List<int> PageIds { get; set; } = [];
 	}
 }

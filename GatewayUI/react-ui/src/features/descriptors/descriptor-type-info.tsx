@@ -18,7 +18,7 @@ const DescriptorTypeInfo: React.FC<DescriptorTypeInfoProps> = ({ label, tableLab
         <div className="ml-1 text-gray-400 opacity-0 group-hover:opacity-100 transition cursor-pointer"
           onClick={(e) => {
             e.stopPropagation();
-            window.open('/learn', '_blank');
+            window.open('/tutorials', '_blank');
           }}
         >
           <FaInfoCircle />

@@ -21,7 +21,7 @@ const footerLinks = [
   {
     heading: 'Education',
     links: [
-      { label: 'Learn', to: '/learn' },
+      { label: 'Tutorials', to: '/tutorials' },
       { label: 'Publications', to: '/publications' },
     ],
   },

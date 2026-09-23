@@ -20,12 +20,14 @@ const ContentEditor: React.FC = () => {
 	const [title, setTitle] = useState("");
 	const [description, setDescription] = useState("");
 	const [comingSoon, setComingSoon] = useState(false);
+	const [area, setArea] = useState("");
 	const [sections, setSections] = useState<ContentSection[]>([]);
 
 	const isDirty = useMemo(() => {
 		if (!page) return false;
 		if (title !== page.title) return true;
 		if (description !== (page.description || "")) return true;
+		if (area !== page.area) return true;
 		if (comingSoon !== page.comingSoon) return true;
 		if (sections.length !== page.sections.length) return true;
 		return sections.some((s, i) => {
@@ -33,7 +35,7 @@ const ContentEditor: React.FC = () => {
 			if (!orig) return true;
 			return s.title !== orig.title || s.body !== orig.body || s.sortOrder !== orig.sortOrder;
 		});
-	}, [page, title, description, comingSoon, sections]);
+	}, [page, title, description, area, comingSoon, sections]);
 
 	// Browser navigation guard (refresh, close tab)
 	useEffect(() => {
@@ -62,6 +64,7 @@ const ContentEditor: React.FC = () => {
 			setPage(p);
 			setTitle(p.title);
 			setDescription(p.description || "");
+			setArea(p.area);
 			setComingSoon(p.comingSoon);
 			setSections([...p.sections]);
 		} finally {
@@ -77,10 +80,12 @@ const ContentEditor: React.FC = () => {
 		if (!page) return;
 		setSaving(true);
 		try {
+			const oldArea = page.area;
 			await agent.Content.updatePage(page.id, {
 				title,
 				description,
 				comingSoon,
+				area,
 			});
 
 			for (const section of sections) {
@@ -100,6 +105,7 @@ const ContentEditor: React.FC = () => {
 
 			contentStore.invalidateSlug(slug!);
 			contentStore.invalidateArea(page.area);
+			if (oldArea !== area) contentStore.invalidateArea(oldArea);
 			toast.success("Page saved");
 			await fetchPage();
 		} catch {
@@ -321,8 +327,19 @@ const ContentEditor: React.FC = () => {
 						value={description}
 						onChange={(e) => setDescription(e.target.value)}
 						rows={2}
-						className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-link-100"
+						className="block w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-link-100"
 					/>
+				</div>
+				<div>
+					<label className="block text-sm font-medium text-gray-700 mb-1">Area</label>
+					<select
+						value={area}
+						onChange={(e) => setArea(e.target.value)}
+						className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-link-100"
+					>
+						<option value="learn">Tutorials</option>
+						<option value="documentation">Dev Docs</option>
+					</select>
 				</div>
 				<div className="flex items-center gap-2">
 					<input

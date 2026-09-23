@@ -39,7 +39,7 @@ const FEATURES: FeatureCard[] = [
       'Learn about the functionality and descriptors we offer, including detailed explanations and examples.',
     videoUrl:
       'https://res.cloudinary.com/danmkw7ni/video/upload/v1787325327/section1_learn_g3opn1.mov',
-    link: '/learn',
+    link: '/tutorials',
   },
 ];
 

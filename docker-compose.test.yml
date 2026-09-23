@@ -31,6 +31,7 @@ services:
       - ADMIN_PASSWORD=${FUSEKI_ADMIN_PASSWORD}
     volumes:
       - lovamap_gw_fuseki_data_test:/fuseki
+      - ./fuseki/configuration/lovamap-rdf.ttl:/fuseki/configuration/lovamap-rdf.ttl:ro
     healthcheck:
       test: ["CMD-SHELL", "wget -qO- http://localhost:3030/$$/ping > /dev/null || exit 1"]
       interval: 10s

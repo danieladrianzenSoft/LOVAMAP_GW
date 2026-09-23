@@ -8,7 +8,7 @@ import { ContentPageSummary } from "../../app/models/contentPage";
 
 const DocIndex = ({ pages }: { pages: ContentPageSummary[] }) => (
     <div className="container mx-auto py-8 px-6">
-        <div className="text-3xl text-gray-700 font-bold mb-12">Documentation</div>
+        <div className="text-3xl text-gray-700 font-bold mb-12">Development Documentation</div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {pages.map((card) =>
                 card.comingSoon ? (
@@ -50,7 +50,7 @@ const DocNav = ({ pages }: { pages: ContentPageSummary[] }) => (
             className="flex-shrink-0 flex items-center gap-1 px-3 py-1 text-sm font-medium bg-white border border-gray-300 rounded-full text-gray-600 hover:bg-gray-50 transition-colors mr-2"
         >
             <FiArrowLeft className="w-3.5 h-3.5" />
-            Docs
+            Dev Docs
         </Link>
 
         <div className="relative flex-1 min-w-0">
@@ -71,7 +71,7 @@ const DocNav = ({ pages }: { pages: ContentPageSummary[] }) => (
                     </NavLink>
                 ))}
             </div>
-            <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-secondary-50 to-transparent" />
+            <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white to-transparent" />
         </div>
     </nav>
 );

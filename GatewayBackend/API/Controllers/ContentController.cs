@@ -97,6 +97,16 @@ namespace API.Controllers
 		}
 
 		[Authorize(Roles = "administrator")]
+		[HttpPut("pages/reorder")]
+		public async Task<IActionResult> ReorderPages([FromQuery] string area, ReorderPagesDto dto)
+		{
+			var (succeeded, errorMessage) = await _contentService.ReorderPages(area, dto);
+			if (!succeeded)
+				return BadRequest(new ApiResponse<string>(400, errorMessage));
+			return Ok(new ApiResponse<string>(200, "Pages reordered"));
+		}
+
+		[Authorize(Roles = "administrator")]
 		[HttpPut("pages/{pageId}/sections/reorder")]
 		public async Task<IActionResult> ReorderSections(int pageId, ReorderSectionsDto dto)
 		{

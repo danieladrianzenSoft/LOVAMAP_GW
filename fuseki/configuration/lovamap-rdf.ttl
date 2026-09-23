@@ -1,0 +1,53 @@
+@prefix :        <#> .
+@prefix fuseki:  <http://jena.apache.org/fuseki#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ja:      <http://jena.hpl.hp.com/2005/11/Assembler#> .
+@prefix tdb2:    <http://jena.apache.org/2016/tdb#> .
+@prefix text:    <http://jena.apache.org/text#> .
+@prefix lova:    <https://lovamap.com/ontology#> .
+@prefix dc:      <http://purl.org/dc/terms/> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+
+## ── Fuseki Service ──────────────────────────────────────────────
+:service a fuseki:Service ;
+    fuseki:name              "lovamap-rdf" ;
+    fuseki:endpoint [ fuseki:operation fuseki:query  ; fuseki:name "query"  ] ;
+    fuseki:endpoint [ fuseki:operation fuseki:update ; fuseki:name "update" ] ;
+    fuseki:endpoint [ fuseki:operation fuseki:gsp-rw ; fuseki:name "data"   ] ;
+    fuseki:dataset           :text_dataset .
+
+## ── Text Dataset (wraps TDB2 with Lucene full-text index) ──────
+:text_dataset a text:TextDataset ;
+    text:dataset :tdb_dataset ;
+    text:index   :indexLucene .
+
+## ── Base TDB2 Dataset ──────────────────────────────────────────
+:tdb_dataset a tdb2:DatasetTDB2 ;
+    tdb2:location "/fuseki/databases/lovamap-rdf" .
+
+## ── Lucene Text Index ──────────────────────────────────────────
+:indexLucene a text:TextIndexLucene ;
+    text:directory   "/fuseki/databases/lovamap-rdf-lucene" ;
+    text:entityMap   :entMap ;
+    text:storeValues true .
+
+## ── Entity Map: properties to index for full-text search ───────
+:entMap a text:EntityMap ;
+    text:defaultField "label" ;
+    text:entityField  "uri" ;
+    text:map (
+        [ text:field "label"               ; text:predicate rdfs:label ]
+        [ text:field "title"               ; text:predicate dc:title ]
+        [ text:field "name"                ; text:predicate foaf:name ]
+        [ text:field "familyName"          ; text:predicate foaf:familyName ]
+        [ text:field "givenName"           ; text:predicate foaf:givenName ]
+        [ text:field "measurementType"     ; text:predicate lova:measurementType ]
+        [ text:field "experimentType"      ; text:predicate lova:experimentType ]
+        [ text:field "chemistry"           ; text:predicate lova:chemistry ]
+        [ text:field "manufacturingMethod" ; text:predicate lova:manufacturingMethod ]
+        [ text:field "cellType"            ; text:predicate lova:cellType ]
+        [ text:field "particleMaterial"    ; text:predicate lova:particleMaterial ]
+        [ text:field "focusMaterial"       ; text:predicate lova:focusMaterial ]
+        [ text:field "assayOrMethod"       ; text:predicate lova:assayOrMethod ]
+    ) .

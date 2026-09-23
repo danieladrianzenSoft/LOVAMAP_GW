@@ -47,6 +47,7 @@ export interface ContentPageToUpdate {
 	description?: string;
 	comingSoon?: boolean;
 	sortOrder?: number;
+	area?: string;
 }
 
 export interface ContentSectionToUpdate {
@@ -57,4 +58,8 @@ export interface ContentSectionToUpdate {
 
 export interface ReorderSections {
 	sectionIds: number[];
+}
+
+export interface ReorderPages {
+	pageIds: number[];
 }

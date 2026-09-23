@@ -107,7 +107,7 @@ const MainLayout: React.FC = observer(() => {
             <Route path="/visualize" element={<Visualization />} />
             <Route path="/visualize/:scaffoldId" element={<Visualization />} />
             <Route path="/test-visualization" element={<TestVisualization />} />
-            <Route path="/learn" element={<LearnLayout />}>
+            <Route path="/tutorials" element={<LearnLayout />}>
               <Route path="descriptors" element={<DescriptorsTab />} />
               <Route path=":slug" element={<CmsPage />} />
             </Route>

@@ -36,8 +36,8 @@ export const NAV_CATEGORIES: NavCategory[] = [
 		key: 'learn',
 		label: 'Learn',
 		items: [
-			{ label: 'Learn', to: '/learn', matchPaths: ['/learn/*'] },
-			{ label: 'Documentation', to: '/documentation' },
+			{ label: 'Tutorials', to: '/tutorials', matchPaths: ['/tutorials/*'] },
+			{ label: 'Dev Docs', to: '/documentation' },
 			{ label: 'Publications', to: '/publications' },
 		],
 	},

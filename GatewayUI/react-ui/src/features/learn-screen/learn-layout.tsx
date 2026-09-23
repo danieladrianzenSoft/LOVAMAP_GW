@@ -8,7 +8,7 @@ import { ContentPageSummary } from "../../app/models/contentPage";
 
 const LearnIndex = ({ pages }: { pages: ContentPageSummary[] }) => (
     <div className="container mx-auto py-8 px-6">
-        <div className="text-3xl text-gray-700 font-bold mb-12">Learn</div>
+        <div className="text-3xl text-gray-700 font-bold mb-12">Tutorials</div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {pages.map((s) =>
                 s.comingSoon ? (
@@ -25,7 +25,7 @@ const LearnIndex = ({ pages }: { pages: ContentPageSummary[] }) => (
                 ) : (
                     <Link
                         key={s.slug}
-                        to={`/learn/${s.slug}`}
+                        to={`/tutorials/${s.slug}`}
                         className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm flex flex-col hover:shadow-md transition-shadow"
                     >
                         <div className="text-xl font-semibold text-gray-800 mb-2">{s.title}</div>
@@ -42,11 +42,11 @@ const LearnIndex = ({ pages }: { pages: ContentPageSummary[] }) => (
 const SectionNav = ({ pages }: { pages: ContentPageSummary[] }) => (
     <nav className="flex items-center gap-3 px-6 pt-4 pb-2">
         <Link
-            to="/learn"
+            to="/tutorials"
             className="flex-shrink-0 flex items-center gap-1 px-3 py-1 text-sm font-medium bg-white border border-gray-300 rounded-full text-gray-600 hover:bg-gray-50 transition-colors mr-2"
         >
             <FiArrowLeft className="w-3.5 h-3.5" />
-            Learn
+            Tutorials
         </Link>
 
         <div className="relative flex-1 min-w-0">
@@ -54,7 +54,7 @@ const SectionNav = ({ pages }: { pages: ContentPageSummary[] }) => (
                 {pages.map((s) => (
                     <NavLink
                         key={s.slug}
-                        to={`/learn/${s.slug}`}
+                        to={`/tutorials/${s.slug}`}
                         className={({ isActive }) =>
                             `flex-shrink-0 px-3 py-1 text-sm font-medium rounded-full transition-colors whitespace-nowrap ${
                                 isActive
@@ -67,7 +67,7 @@ const SectionNav = ({ pages }: { pages: ContentPageSummary[] }) => (
                     </NavLink>
                 ))}
             </div>
-            <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-secondary-50 to-transparent" />
+            <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white to-transparent" />
         </div>
     </nav>
 );
@@ -75,7 +75,7 @@ const SectionNav = ({ pages }: { pages: ContentPageSummary[] }) => (
 /* ── Layout wrapper ────────────────────────────────────────── */
 
 const LearnLayout = () => {
-    const isIndex = useMatch("/learn");
+    const isIndex = useMatch("/tutorials");
     const { pages, loading } = useContentPages("learn");
 
     if (loading) return <div className="container mx-auto py-8 px-6 text-gray-400">Loading...</div>;

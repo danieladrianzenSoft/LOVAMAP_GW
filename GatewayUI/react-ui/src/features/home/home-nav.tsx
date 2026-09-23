@@ -12,7 +12,7 @@ import logo from '../../LOVAMAP_logo.png';
 const NAV_LINKS = [
   { to: '/run', label: 'Analyze' },
   { to: '/explore', label: 'Explore' },
-  { to: '/learn', label: 'Learn' },
+  { to: '/tutorials', label: 'Learn' },
 ];
 
 const HomeNav: React.FC = () => {
@@ -132,7 +132,7 @@ const HomeNav: React.FC = () => {
           <FiCompass className="w-5 h-5" />
           <span className="text-xs font-medium">Explore</span>
         </Link>
-        <Link to="/learn" className="flex flex-col items-center gap-1 text-gray-500 hover:text-gray-800 transition-colors">
+        <Link to="/tutorials" className="flex flex-col items-center gap-1 text-gray-500 hover:text-gray-800 transition-colors">
           <FiBookOpen className="w-5 h-5" />
           <span className="text-xs font-medium">Learn</span>
         </Link>

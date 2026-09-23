@@ -22,7 +22,7 @@ import { InputGroup } from "../models/inputGroup";
 import { RdfGraph, RdfOntologySummary } from "../models/rdfGraph";
 import { DashboardAnalytics } from "../models/dashboardAnalytics";
 import { ThumbnailResetPreview } from "../models/thumbnailResetPreview";
-import { ContentPageSummary, ContentPageDetail, ContentPageToCreate, ContentPageToUpdate, ContentSectionToCreate, ContentSectionToUpdate, ContentSection, ReorderSections } from "../models/contentPage";
+import { ContentPageSummary, ContentPageDetail, ContentPageToCreate, ContentPageToUpdate, ContentSectionToCreate, ContentSectionToUpdate, ContentSection, ReorderSections, ReorderPages } from "../models/contentPage";
 
 axios.defaults.baseURL = environment.baseUrl;
 
@@ -373,6 +373,7 @@ const Content = {
 	updateSection: (sectionId: number, data: ContentSectionToUpdate) => requests.put<ApiResponse<ContentSection>>(`/content/sections/${sectionId}`, data),
 	deleteSection: (sectionId: number) => requests.del<ApiResponse<string>>(`/content/sections/${sectionId}`),
 	reorderSections: (pageId: number, data: ReorderSections) => requests.put<ApiResponse<string>>(`/content/pages/${pageId}/sections/reorder`, data),
+	reorderPages: (area: string, data: ReorderPages) => requests.put<ApiResponse<string>>(`/content/pages/reorder?area=${area}`, data),
 }
 
 const agent = {

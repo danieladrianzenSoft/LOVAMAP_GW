@@ -30,6 +30,7 @@ public sealed class QueryService
 		PREFIX rdfs:   <http://www.w3.org/2000/01/rdf-schema#>
 		PREFIX rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 		PREFIX xsd:    <http://www.w3.org/2001/XMLSchema#>
+		PREFIX text:   <http://jena.apache.org/text#>
 		""";
 
 	// ── Public API ──
@@ -83,6 +84,7 @@ public sealed class QueryService
 		_logger.LogInformation("Parsed SPARQL:\n{Sparql}", sparql);
 
 		sparql = NormalizePrefixes(sparql);
+		sparql = EnsureOrderBy(sparql);
 		sparql = EnsureLimit(sparql);
 		ValidateSelectOnly(sparql);
 
@@ -101,6 +103,7 @@ public sealed class QueryService
 	public async Task<QueryResult> ExecuteSparqlAsync(string sparql, CancellationToken ct)
 	{
 		sparql = NormalizePrefixes(sparql.Trim());
+		sparql = EnsureOrderBy(sparql);
 		sparql = EnsureLimit(sparql);
 		ValidateSelectOnly(sparql);
 
@@ -201,7 +204,7 @@ public sealed class QueryService
 			var sb = new StringBuilder();
 			sb.AppendLine(string.Join(" | ", columns));
 			sb.AppendLine(new string('-', columns.Count * 20));
-			foreach (var row in rows.Take(50))
+			foreach (var row in rows.Take(100))
 			{
 				var values = columns.Select(c =>
 				{
@@ -216,8 +219,8 @@ public sealed class QueryService
 				});
 				sb.AppendLine(string.Join(" | ", values));
 			}
-			if (rows.Count > 50)
-				sb.AppendLine($"... and {rows.Count - 50} more rows");
+			if (rows.Count > 100)
+				sb.AppendLine($"... and {rows.Count - 100} more rows");
 
 			// Fetch real paper metadata for grounded citations
 			var sourcesBlock = await BuildSourcesBlockAsync(columns, rows);
@@ -243,7 +246,7 @@ public sealed class QueryService
 					new { role = "user", content = $"Question: {question}\n\nResults ({rows.Count} rows):\n{sb}{sourcesBlock}" },
 				},
 				temperature = 0.0,
-				max_tokens = 400,
+				max_tokens = 800,
 			};
 
 			var json = JsonSerializer.Serialize(requestBody);
@@ -369,6 +372,37 @@ public sealed class QueryService
 			throw new InvalidOperationException("Only SELECT queries are allowed.");
 	}
 
+	private static string EnsureOrderBy(string sparql)
+	{
+		if (Regex.IsMatch(sparql, @"\bORDER\s+BY\b", RegexOptions.IgnoreCase))
+			return sparql;
+
+		// Extract variable names from the SELECT clause
+		var selectMatch = Regex.Match(sparql, @"\bSELECT\b(.*?)\bWHERE\b", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+		if (!selectMatch.Success)
+			return sparql;
+
+		var selectVars = selectMatch.Groups[1].Value;
+
+		// Pick a default ordering based on available variables
+		string orderClause;
+		if (Regex.IsMatch(selectVars, @"\?year\b", RegexOptions.IgnoreCase))
+			orderClause = "ORDER BY DESC(?year)";
+		else if (Regex.IsMatch(selectVars, @"\?value\b", RegexOptions.IgnoreCase))
+			orderClause = "ORDER BY DESC(?value)";
+		else if (Regex.IsMatch(selectVars, @"\?score\b", RegexOptions.IgnoreCase))
+			orderClause = "ORDER BY DESC(?score)";
+		else
+			return sparql; // No sensible default — leave unordered
+
+		// Insert ORDER BY before LIMIT (if present) or at the end
+		var limitMatch = Regex.Match(sparql, @"\bLIMIT\s+\d+", RegexOptions.IgnoreCase);
+		if (limitMatch.Success)
+			return sparql[..limitMatch.Index] + orderClause + "\n" + sparql[limitMatch.Index..];
+
+		return sparql.TrimEnd().TrimEnd(';') + "\n" + orderClause;
+	}
+
 	private static string EnsureLimit(string sparql)
 	{
 		if (!Regex.IsMatch(sparql, @"\bLIMIT\s+\d+", RegexOptions.IgnoreCase))
@@ -387,6 +421,7 @@ public sealed class QueryService
 		PREFIX rdfs:   <http://www.w3.org/2000/01/rdf-schema#>
 		PREFIX rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 		PREFIX xsd:    <http://www.w3.org/2001/XMLSchema#>
+		PREFIX text:   <http://jena.apache.org/text#>
 
 		## Ontology Schema
 
@@ -461,62 +496,92 @@ public sealed class QueryService
 		- Outcome → Paper: lova:describedIn
 		- Outcome → Experiment: lova:fromExperiment
 
+		## Full-Text Search
+		The knowledge base has Lucene full-text indexing enabled on key properties.
+		Use text:query for text search — it is faster and more flexible than FILTER(CONTAINS(...)).
+
+		Indexed fields and their properties:
+		- "label" → rdfs:label
+		- "title" → dc:title
+		- "name" → foaf:name
+		- "familyName" → foaf:familyName
+		- "givenName" → foaf:givenName
+		- "measurementType" → lova:measurementType
+		- "experimentType" → lova:experimentType
+		- "chemistry" → lova:chemistry
+		- "manufacturingMethod" → lova:manufacturingMethod
+		- "cellType" → lova:cellType
+		- "particleMaterial" → lova:particleMaterial
+		- "focusMaterial" → lova:focusMaterial
+		- "assayOrMethod" → lova:assayOrMethod
+
+		Syntax: (?subject ?score) text:query (property "search terms") .
+		- Use * for wildcard: "viabil*" matches "viability"
+		- Use the specific field for targeted search: (rdfs:label "photopolymerization")
+		- ?score gives a relevance score for ordering
+
+		Fallback: use FILTER(CONTAINS(LCASE(...))) only for properties NOT in the text index,
+		or for exact substring matching on numeric/boolean fields.
+
 		## Example Queries
 
 		Q: "List all papers"
 		```sparql
 		PREFIX lova: <https://lovamap.com/ontology#>
 		PREFIX dc:   <http://purl.org/dc/terms/>
-		SELECT ?paper ?title ?doi WHERE {
+		SELECT ?paper ?title ?doi ?year WHERE {
 		  ?paper a lova:Paper ;
 		         dc:title ?title ;
 		         dc:identifier ?doi .
+		  OPTIONAL { ?paper dc:date ?year }
 		}
+		ORDER BY DESC(?year)
 		```
 
 		Q: "Which materials showed cell viability above 90%?"
 		```sparql
 		PREFIX lova: <https://lovamap.com/ontology#>
 		PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+		PREFIX text: <http://jena.apache.org/text#>
 		SELECT ?material ?materialLabel ?outcomeLabel ?value ?unit WHERE {
+		  (?outcome ?score) text:query (lova:measurementType "viabil*") .
 		  ?outcome a lova:Outcome ;
-		           lova:measurementType ?mtype ;
 		           lova:value ?value ;
 		           lova:unit ?unit ;
 		           rdfs:label ?outcomeLabel ;
 		           lova:fromExperiment ?exp .
 		  ?exp lova:usedMaterial ?material .
 		  ?material rdfs:label ?materialLabel .
-		  FILTER(CONTAINS(LCASE(?mtype), "viability") && ?value > 90)
+		  FILTER(?value > 90)
 		}
+		ORDER BY DESC(?value)
 		```
 
 		Q: "What fabrication methods used photopolymerization?"
 		```sparql
 		PREFIX lova: <https://lovamap.com/ontology#>
 		PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+		PREFIX text: <http://jena.apache.org/text#>
 		SELECT ?fm ?label ?chemistry ?method WHERE {
+		  (?fm ?score) text:query "photopolymerization" .
 		  ?fm a lova:FabricationMethod ;
 		      rdfs:label ?label .
 		  OPTIONAL { ?fm lova:chemistry ?chemistry }
 		  OPTIONAL { ?fm lova:manufacturingMethod ?method }
-		  FILTER(
-		    CONTAINS(LCASE(?chemistry), "photopolymerization") ||
-		    CONTAINS(LCASE(?method), "photopolymerization") ||
-		    CONTAINS(LCASE(?label), "photopolymerization")
-		  )
 		}
+		ORDER BY DESC(?score)
 		```
 
 		Q: "Find experiments with MC3T3 cells and their outcomes"
 		```sparql
 		PREFIX lova: <https://lovamap.com/ontology#>
 		PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+		PREFIX text: <http://jena.apache.org/text#>
 		SELECT ?exp ?expLabel ?cellType ?outcome ?outcomeLabel ?value ?unit WHERE {
+		  (?exp ?score) text:query (lova:cellType "MC3T3*") .
 		  ?exp a lova:Experiment ;
 		       rdfs:label ?expLabel ;
 		       lova:cellType ?cellType .
-		  FILTER(CONTAINS(LCASE(?cellType), "mc3t3"))
 		  OPTIONAL {
 		    ?outcome a lova:Outcome ;
 		             lova:fromExperiment ?exp ;
@@ -525,16 +590,25 @@ public sealed class QueryService
 		    OPTIONAL { ?outcome lova:unit ?unit }
 		  }
 		}
+		ORDER BY DESC(?score)
 		```
 
 		## Instructions
 		- Only generate SELECT queries (never INSERT, DELETE, DROP, etc.)
 		- Always include relevant prefixes
 		- Use OPTIONAL for properties that might not exist on every instance
-		- Use FILTER with CONTAINS(LCASE(...)) for text matching
+		- Prefer text:query for text search on indexed properties (faster than FILTER)
+		- Use FILTER with CONTAINS(LCASE(...)) only for non-indexed properties or exact substring matching
 		- Keep queries focused and efficient
 		- Return ONLY a SPARQL query inside a ```sparql code block
 		- Before the code block, include a one-sentence explanation of what the query does
+		- Always include an ORDER BY clause to rank results by relevance to the question:
+		  * For text search queries → ORDER BY DESC(?score) to show most relevant first
+		  * For "highest", "best", "top", "most" → ORDER BY DESC on the relevant numeric value
+		  * For "lowest", "least", "worst", "minimum" → ORDER BY ASC on the relevant numeric value
+		  * For chronological or general paper listing → ORDER BY DESC(?year) to show newest first
+		  * For comparisons across materials/experiments → ORDER BY the grouping variable, then DESC on the metric
+		  * When unsure, default to ORDER BY DESC(?year) if ?year is available
 		""";
 }
 

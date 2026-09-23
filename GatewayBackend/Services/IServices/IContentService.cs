@@ -13,5 +13,6 @@ namespace Services.IServices
 		Task<(bool Succeeded, string ErrorMessage, ContentSectionDto? Section)> UpdateSection(int sectionId, ContentSectionToUpdateDto dto);
 		Task<(bool Succeeded, string ErrorMessage)> DeleteSection(int sectionId);
 		Task<(bool Succeeded, string ErrorMessage)> ReorderSections(int pageId, ReorderSectionsDto dto);
+		Task<(bool Succeeded, string ErrorMessage)> ReorderPages(string area, ReorderPagesDto dto);
 	}
 }
