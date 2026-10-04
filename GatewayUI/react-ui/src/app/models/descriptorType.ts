@@ -12,6 +12,13 @@ export interface DescriptorType {
     publication: string;
 }
 
+export interface DescriptorTypeToUpdate {
+    description?: string;
+    imageUrl?: string;
+    tableLabel?: string;
+    unit?: string;
+}
+
 export interface GroupedDescriptorTypes {
     [key: string]: DescriptorType[];
 }

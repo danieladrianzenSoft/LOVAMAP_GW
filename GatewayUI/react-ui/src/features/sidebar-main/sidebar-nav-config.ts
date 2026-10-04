@@ -48,6 +48,7 @@ export const NAV_CATEGORIES: NavCategory[] = [
 		items: [
 			{ label: 'Dashboard', to: '/dashboard' },
 			{ label: 'Content', to: '/admin/content', matchPaths: ['/admin/content/*'] },
+			{ label: 'Descriptors', to: '/admin/descriptors' },
 			{ label: 'Utilities', to: '/admin' },
 		],
 	},

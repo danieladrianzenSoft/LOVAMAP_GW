@@ -5,7 +5,7 @@ import { User, UserChangePassword, UserConfirmEmail, UserLogin, UserRegister, Us
 import { ApiResponse } from "../models/apiResponse";
 import { Tag } from "../models/tag";
 import { ScaffoldGroup, ScaffoldGroupMatch, ScaffoldGroupToCreate } from "../models/scaffoldGroup";
-import { DescriptorType } from "../models/descriptorType";
+import { DescriptorType, DescriptorTypeToUpdate } from "../models/descriptorType";
 import { Image, ImageCategory, ImageToCreate, ImageToUpdate } from "../models/image";
 import environment from "../environments/environment"
 import { Domain } from "../models/domain";
@@ -191,6 +191,7 @@ const Descriptors = {
     getPoreInfoForScaffoldGroup: (scaffoldGroupId: number, queryParams: string) => requests.get<ApiResponse<PoreInfoForScaffoldGroup>>(`/descriptors/data/${scaffoldGroupId}`+ queryParams),
     getPoreInfoForRandomScaffoldGroup: (queryParams: string) => requests.get<ApiResponse<PoreInfoForScaffoldGroup>>(`/descriptors/data/random/`+ queryParams),
     getParticleDiameter: (scaffoldGroupId: number) => requests.get<ApiResponse<ParticleDiameter>>(`/descriptors/diameter/${scaffoldGroupId}`),
+    updateDescriptorType: (id: number, data: DescriptorTypeToUpdate) => requests.put<ApiResponse<DescriptorType>>(`/descriptors/${id}`, data),
 }
 
 const Domains = {

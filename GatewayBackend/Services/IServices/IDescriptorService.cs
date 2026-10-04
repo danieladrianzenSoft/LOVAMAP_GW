@@ -15,6 +15,7 @@ namespace Services.IServices
 		Task<(bool Succeeded, string ErrorMessage, PoreInfoDto? poreInfo)> GetPoreInfo(int scaffoldGroupId, int? scaffoldId = null);
 		Task<(bool Succeeded, string ErrorMessage, PoreInfoScaffoldGroupDto? poreInfo)> GetPoreDescriptorInfoScaffoldGroup(int scaffoldGroupId, List<int> descriptorTypeIds);
 		Task<(bool Succeeded, string ErrorMessage, ParticleDiameterDto? Result)> GetParticleDiameter(int scaffoldGroupId);
+		Task<(bool Succeeded, string ErrorMessage, DescriptorTypeDto? Result)> UpdateDescriptorType(int id, DescriptorTypeToUpdateDto dto);
 		// Task<(Dictionary<int, List<ScaffoldBaseDto>>, Dictionary<int, List<DescriptorDto>>, Dictionary<int, List<DescriptorDto>>, Dictionary<int, List<DescriptorDto>>)> GetScaffoldsAndDescriptorsFromScaffoldGroupIds(IEnumerable<int> scaffoldGroupIds);
 		// Task<(Dictionary<int, List<ScaffoldBaseDto>>, Dictionary<int, List<DescriptorDto>>, Dictionary<int, List<DescriptorDto>>, Dictionary<int, List<DescriptorDto>>)>
 		// 	GetScaffoldsAndDescriptorsFromScaffoldIds(List<int> scaffoldIds, ScaffoldFilter filter);

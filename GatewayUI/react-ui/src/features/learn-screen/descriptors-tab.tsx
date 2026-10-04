@@ -5,11 +5,20 @@ import { DescriptorType, displayNameMap, GroupedDescriptorTypes } from "../../ap
 import ReactMarkdown from "react-markdown";
 import rehypeSanitize from "rehype-sanitize";
 import { useDescriptorTypes } from "../../app/common/hooks/useDescriptorTypes";
+import { ContentPageDetail } from "../../app/models/contentPage";
+import agent from "../../app/api/agent";
 
 const DescriptorsTab = () => {
     const location = useLocation();
     const { descriptorTypes } = useDescriptorTypes();
+    const [introPage, setIntroPage] = useState<ContentPageDetail | null>(null);
     const [activeTab, setActiveTab] = useState("Global");
+
+    useEffect(() => {
+        agent.Content.getPageBySlug("descriptors-intro")
+            .then((res) => setIntroPage(res.data))
+            .catch(() => {}); // CMS page doesn't exist yet — use fallback
+    }, []);
 
     const [groupedDescriptorTypes, setGroupedDescriptorTypes] = useState<GroupedDescriptorTypes>({});
 
@@ -65,33 +74,47 @@ const DescriptorsTab = () => {
             <div id="descriptors">
                 <div className="text-3xl text-gray-700 font-bold mb-12">Descriptors</div>
                 <div className="mb-12">
-                    <p>
-                        Descriptors are the output of LOVAMAP, and they provide a quantitative way of characterizing,
-                        analyzing, and comparing granular materials. They fall into three categories:{" "}
-                        <strong>Global</strong> descriptors capture whole-packing properties such as void volume fraction,
-                        total number of pores, and total number of bottlenecks (the narrow passages connecting adjacent pores).{" "}
-                        <strong>Pore</strong> descriptors are computed per-pore and include metrics like pore volume,
-                        surface area, largest enclosed sphere, bottleneck area, and pore coordination number.{" "}
-                        <strong>Other</strong> descriptors cover additional features such as hotspot fractions and
-                        geometric approximations of pore shape (vertices, edges, and faces).
-                        Check the table below for a summary of all the descriptors that LOVAMAP outputs.
-                        For more details, see <a
-                            href="https://doi.org/10.1038/s43588-023-00551-x"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-link-100 hover:underline"
+                    {introPage?.sections?.[0]?.body ? (
+                        <ReactMarkdown
+                            rehypePlugins={[rehypeSanitize]}
+                            className="markdown-content"
+                            components={{
+                                a: ({ children, ...props }) => (
+                                    <a {...props} target="_blank" rel="noopener noreferrer" className="text-link-100 hover:underline">{children}</a>
+                                ),
+                            }}
                         >
-                        Riley et al., 2023
-                        </a>{" "}and{" "}
-                        <a
-                            href="https://doi.org/10.1002/ppsc.202500163"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-link-100 hover:underline"
-                        >
-                        Riley et al., 2025.
-                        </a>
-                    </p>
+                            {introPage.sections[0].body}
+                        </ReactMarkdown>
+                    ) : (
+                        <p>
+                            Descriptors are the output of LOVAMAP, and they provide a quantitative way of characterizing,
+                            analyzing, and comparing granular materials. They fall into three categories:{" "}
+                            <strong>Global</strong> descriptors capture whole-packing properties such as void volume fraction,
+                            total number of pores, and total number of bottlenecks (the narrow passages connecting adjacent pores).{" "}
+                            <strong>Pore</strong> descriptors are computed per-pore and include metrics like pore volume,
+                            surface area, largest enclosed sphere, bottleneck area, and pore coordination number.{" "}
+                            <strong>Other</strong> descriptors cover additional features such as hotspot fractions and
+                            geometric approximations of pore shape (vertices, edges, and faces).
+                            Check the table below for a summary of all the descriptors that LOVAMAP outputs.
+                            For more details, see <a
+                                href="https://doi.org/10.1038/s43588-023-00551-x"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-link-100 hover:underline"
+                            >
+                            Riley et al., 2023
+                            </a>{" "}and{" "}
+                            <a
+                                href="https://doi.org/10.1002/ppsc.202500163"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-link-100 hover:underline"
+                            >
+                            Riley et al., 2025.
+                            </a>
+                        </p>
+                    )}
                 </div>
                 {/* Tab Navigation */}
                 <div className="flex space-x-4 mb-8">

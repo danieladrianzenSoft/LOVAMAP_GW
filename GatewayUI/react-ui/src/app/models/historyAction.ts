@@ -64,4 +64,13 @@ export type HistoryAction =
 		position: THREE.Vector3;
 		target: THREE.Vector3;
 	};
+}
+  	|
+{
+	type: 'ISOLATE_PORE';
+	category: number;
+	previousState: {
+		hiddenIds: Set<string>;
+		isolatedPoreId: string | null;
+	};
 };

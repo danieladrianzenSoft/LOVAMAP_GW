@@ -12,6 +12,7 @@ interface UndoManagerOptions {
   setShowParticles: React.Dispatch<React.SetStateAction<boolean>>;
   setShowPores: React.Dispatch<React.SetStateAction<boolean>>;
   setAreEdgePoresHidden: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsolatedPoreId?: React.Dispatch<React.SetStateAction<string | null>>;
   onRestoreCamera?: (position: THREE.Vector3, target: THREE.Vector3) => void;
 }
 
@@ -23,6 +24,7 @@ export function useUndoManager({
   setShowParticles,
   setShowPores,
   setAreEdgePoresHidden,
+  setIsolatedPoreId,
   onRestoreCamera,
 }: UndoManagerOptions) {
 	const [history, setHistory] = useState<HistoryAction[]>([]);
@@ -114,6 +116,14 @@ export function useUndoManager({
 
 				case 'RESET_CAMERA':
 					onRestoreCamera?.(last.previousState.position, last.previousState.target);
+					break;
+
+				case 'ISOLATE_PORE':
+					setHiddenByCategory((prev) => ({
+						...prev,
+						[last.category]: new Set(last.previousState.hiddenIds),
+					}));
+					setIsolatedPoreId?.(last.previousState.isolatedPoreId);
 					break;
 
 				default:

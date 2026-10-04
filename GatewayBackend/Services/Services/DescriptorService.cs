@@ -159,6 +159,30 @@ namespace Services.Services
 			}
 		}
 
+		public async Task<(bool Succeeded, string ErrorMessage, DescriptorTypeDto? Result)> UpdateDescriptorType(int id, DescriptorTypeToUpdateDto dto)
+		{
+			try
+			{
+				var descriptorType = await _descriptorRepository.GetDescriptorById(id);
+				if (descriptorType == null) return (false, "Descriptor type not found", null);
+
+				if (dto.Description != null) descriptorType.Description = dto.Description;
+				if (dto.ImageUrl != null) descriptorType.ImageUrl = dto.ImageUrl;
+				if (dto.TableLabel != null) descriptorType.TableLabel = dto.TableLabel;
+				if (dto.Unit != null) descriptorType.Unit = dto.Unit;
+
+				await _context.SaveChangesAsync();
+
+				var result = _modelMapper.MapDescriptorTypeToDto(descriptorType);
+				return (true, "", result);
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, "Failed to update descriptor type");
+				return (false, "UnexpectedError", null);
+			}
+		}
+
 		// public async Task<(Dictionary<int, List<ScaffoldBaseDto>>, Dictionary<int, List<DescriptorDto>>, Dictionary<int, List<DescriptorDto>>, Dictionary<int, List<DescriptorDto>>)>
 		// 	GetScaffoldsAndDescriptorsFromScaffoldGroupIds(IEnumerable<int> scaffoldGroupIds)
 		// {

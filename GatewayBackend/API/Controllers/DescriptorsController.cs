@@ -113,6 +113,28 @@ public class DescriptorsController : ControllerBase
 		}
 	}
 
+	[HttpPut("{id}")]
+	[Authorize(Roles = "administrator")]
+	public async Task<IActionResult> UpdateDescriptorType(int id, [FromBody] DescriptorTypeToUpdateDto dto)
+	{
+		try
+		{
+			var (succeeded, errorMessage, result) = await _descriptorService.UpdateDescriptorType(id, dto);
+
+			if (!succeeded)
+			{
+				return NotFound(new ApiResponse<string>(404, errorMessage));
+			}
+
+			return Ok(new ApiResponse<DescriptorTypeDto>(200, "Descriptor type updated successfully", result));
+		}
+		catch (Exception ex)
+		{
+			_logger.LogError(ex, "Failed to update descriptor type");
+			return StatusCode(500, new ApiResponse<string>(500, "An error occurred while updating descriptor type"));
+		}
+	}
+
 	[AllowAnonymous]
 	[HttpGet("data/random")]
     public async Task<IActionResult> GetDescriptorDataRandomScaffoldGroup([FromQuery] List<int> descriptorTypeIds)

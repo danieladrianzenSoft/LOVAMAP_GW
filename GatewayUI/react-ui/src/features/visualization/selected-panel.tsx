@@ -68,7 +68,7 @@ const SelectedPanel: React.FC<Props> = ({
         </button>
       </div>
 
-      <div className="mt-2 text-sm text-gray-700 max-h-40 overflow-y-auto">
+      <div className="mt-2 text-sm text-gray-700 max-h-72 overflow-y-auto">
         {selectedDomainEntity ? (
           <>
             {/* Particle Display */}
@@ -80,25 +80,27 @@ const SelectedPanel: React.FC<Props> = ({
             )}
 
             {/* Pore Display */}
-            {domainCategory !== 0 && poreMetadata && (
+            {domainCategory !== 0 && (
               <>
-                <div className="text-sm text-gray-700 space-y-1">
-                  {typeof poreMetadata.volume === "number" && (
-                    <p><span className="font-semibold">Volume (pL):</span> {poreMetadata.volume.toFixed(2)}</p>
-                  )}
-                  {typeof poreMetadata.surfArea === "number" && (
-                    <p><span className="font-semibold">Surface Area (μm²/1000):</span> {poreMetadata.surfArea.toFixed(2)}</p>
-                  )}
-                  {typeof poreMetadata.charLength === "number" && (
-                    <p><span className="font-semibold">Aspect Ratio:</span> {poreMetadata.charLength.toFixed(2)}</p>
-                  )}
-                  {typeof poreMetadata.avgDoorDiam === "number" && (
-                    <p><span className="font-semibold">Avg Door Diam (µm):</span> {poreMetadata.avgDoorDiam.toFixed(2)}</p>
-                  )}
-                  {typeof poreMetadata.largestDoorDiam === "number" && (
-                    <p><span className="font-semibold">Largest Door Diam (µm):</span> {poreMetadata.largestDoorDiam.toFixed(2)}</p>
-                  )}
-                </div>
+                {poreMetadata && (
+                  <div className="text-sm text-gray-700 space-y-1">
+                    {typeof poreMetadata.volume === "number" && (
+                      <p><span className="font-semibold">Volume (pL):</span> {poreMetadata.volume.toFixed(2)}</p>
+                    )}
+                    {typeof poreMetadata.surfArea === "number" && (
+                      <p><span className="font-semibold">Surface Area (μm²/1000):</span> {poreMetadata.surfArea.toFixed(2)}</p>
+                    )}
+                    {typeof poreMetadata.charLength === "number" && (
+                      <p><span className="font-semibold">Aspect Ratio:</span> {poreMetadata.charLength.toFixed(2)}</p>
+                    )}
+                    {typeof poreMetadata.avgDoorDiam === "number" && (
+                      <p><span className="font-semibold">Avg Door Diam (µm):</span> {poreMetadata.avgDoorDiam.toFixed(2)}</p>
+                    )}
+                    {typeof poreMetadata.largestDoorDiam === "number" && (
+                      <p><span className="font-semibold">Largest Door Diam (µm):</span> {poreMetadata.largestDoorDiam.toFixed(2)}</p>
+                    )}
+                  </div>
+                )}
                 <div className="flex justify-start items-start pb-2 mt-2">
                   <button
                     className="button-link"
@@ -109,7 +111,8 @@ const SelectedPanel: React.FC<Props> = ({
                 </div>
                 {showMore && (
                   <div className="text-sm text-gray-700 space-y-1 mt-1">
-                    <p><span className="font-semibold">ID:</span> {selectedDomainEntity.id}</p>
+                    <p><span className="font-semibold">ID:</span> {selectedDomainEntity.id.split('-')[0]}</p>
+                    <p className="text-xs text-gray-400 break-all">{selectedDomainEntity.id}</p>
                   </div>
                 )}
               </>

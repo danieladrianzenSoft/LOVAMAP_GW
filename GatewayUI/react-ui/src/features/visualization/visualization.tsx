@@ -61,6 +61,7 @@ const Visualization: React.FC = () => {
 	const [showPores, setShowPores] = useState(true);
   	const [, setHasAutoHiddenEdgePores] = useState(false);
 	const [areEdgePoresHidden, setAreEdgePoresHidden] = useState(false);
+	const [isolatedPoreId, setIsolatedPoreId] = useState<string | null>(null);
 	// const [dimAppliedOnce, setDimAppliedOnce] = useState(true);
 
 	const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -211,6 +212,7 @@ const Visualization: React.FC = () => {
 		setShowParticles,
 		setShowPores,
 		setAreEdgePoresHidden,
+		setIsolatedPoreId,
 		onRestoreCamera: (position, target) => canvasViewerRef.current?.restoreCamera(position, target),
 	});
 
@@ -568,6 +570,45 @@ const Visualization: React.FC = () => {
 		});
 		setShowPores(value);
 		setUserOverrideParticleOpacity(false);
+		if (!value) setIsolatedPoreId(null);
+	};
+
+	const handleIsolatePore = (id: string) => {
+		const meta = domainStore.getActiveMetadata(1);
+		const allKeys = meta?.metadata ? Object.keys(meta.metadata) : null;
+		if (!allKeys) return;
+
+		addToHistory({
+			type: 'ISOLATE_PORE',
+			category: 1,
+			previousState: {
+				hiddenIds: new Set(hiddenByCategory[1]),
+				isolatedPoreId,
+			},
+		});
+
+		const newHidden = new Set(allKeys);
+		newHidden.delete(id);
+		setHiddenByCategory(prev => ({ ...prev, 1: newHidden }));
+		setIsolatedPoreId(id);
+	};
+
+	const handleUnisolatePore = () => {
+		addToHistory({
+			type: 'ISOLATE_PORE',
+			category: 1,
+			previousState: {
+				hiddenIds: new Set(hiddenByCategory[1]),
+				isolatedPoreId,
+			},
+		});
+
+		if (areEdgePoresHidden && edgePoreIds.size > 0) {
+			setHiddenByCategory(prev => ({ ...prev, 1: new Set(edgePoreIds) }));
+		} else {
+			setHiddenByCategory(prev => ({ ...prev, 1: new Set() }));
+		}
+		setIsolatedPoreId(null);
 	};
 
 	// Core reset+load for switching the viewer to a new scaffold id. Shared
@@ -592,6 +633,7 @@ const Visualization: React.FC = () => {
 		setSliceXThreshold(null);
 		setShowParticles(true);
 		setShowPores(true);
+		setIsolatedPoreId(null);
 		setPoreColorSeed(0);
 		setReplicateScrollOffset(0);
 		clearHistory();
@@ -1006,6 +1048,7 @@ const Visualization: React.FC = () => {
 										}
 										return { ...prev, [activeCategory]: new Set() };
 									});
+									if (activeCategory === 1) setIsolatedPoreId(null);
 								}}
 								onToggleVisibility={(id) => toggleVisibility(id, activeCategory)}
 							/>
@@ -1075,6 +1118,10 @@ const Visualization: React.FC = () => {
 							areEdgePoresHidden={areEdgePoresHidden}
 							onToggleHideEdgePores={handleToggleHideEdgePores}
 							onRefreshColors={() => setPoreColorSeed(s => s + 1)}
+							onIsolatePore={handleIsolatePore}
+							onUnisolatePore={handleUnisolatePore}
+							isolatedPoreId={isolatedPoreId}
+							allPoreIds={domainStore.getActiveMetadata(1)?.metadata ? Object.keys(domainStore.getActiveMetadata(1)!.metadata) : undefined}
 						/>
 					</div>
 				</>
@@ -1108,6 +1155,7 @@ const Visualization: React.FC = () => {
 								}
 								return { ...prev, [activeCategory]: new Set() };
 							});
+							if (activeCategory === 1) setIsolatedPoreId(null);
 						}}
 						edgePoreIds={activeCategory === 1 ? edgePoreIds : undefined}
 						onToggleVisibility={(id) => toggleVisibility(id, activeCategory)}
@@ -1179,6 +1227,10 @@ const Visualization: React.FC = () => {
 							areEdgePoresHidden={areEdgePoresHidden}
 							onToggleHideEdgePores={handleToggleHideEdgePores}
 							onRefreshColors={() => setPoreColorSeed(s => s + 1)}
+							onIsolatePore={handleIsolatePore}
+							onUnisolatePore={handleUnisolatePore}
+							isolatedPoreId={isolatedPoreId}
+							allPoreIds={domainStore.getActiveMetadata(1)?.metadata ? Object.keys(domainStore.getActiveMetadata(1)!.metadata) : undefined}
 							className="w-full bg-transparent shadow-none p-0"
 						/>
 					</BottomSheet>

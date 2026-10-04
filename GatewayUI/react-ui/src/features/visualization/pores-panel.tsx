@@ -1,3 +1,5 @@
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { Domain } from "../../app/models/domain";
 import { FiChevronDown, FiChevronUp, FiShuffle } from "react-icons/fi";
 
@@ -13,7 +15,13 @@ interface DomainPanelProps {
 	onEditClick: () => void;
 	className?: string;
 	onRefreshColors?: () => void;
+	onIsolatePore?: (id: string) => void;
+	onUnisolatePore?: () => void;
+	isolatedPoreId?: string | null;
+	allPoreIds?: string[];
 }
+
+const MAX_DROPDOWN_ITEMS = 20;
 
 const PoresPanel: React.FC<DomainPanelProps> = ({
   isOpen,
@@ -27,7 +35,63 @@ const PoresPanel: React.FC<DomainPanelProps> = ({
   onEditClick,
   className,
   onRefreshColors,
+  onIsolatePore,
+  onUnisolatePore,
+  isolatedPoreId,
+  allPoreIds,
 }) => {
+  const [searchValue, setSearchValue] = useState("");
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [dropdownPos, setDropdownPos] = useState<{ top: number; left: number; width: number } | null>(null);
+
+  const updateDropdownPos = useCallback(() => {
+    if (!inputRef.current) return;
+    const rect = inputRef.current.getBoundingClientRect();
+    setDropdownPos({ top: rect.bottom + 4, left: rect.left, width: rect.width });
+  }, []);
+
+  useEffect(() => {
+    if (!dropdownOpen) return;
+    updateDropdownPos();
+    window.addEventListener('scroll', updateDropdownPos, true);
+    window.addEventListener('resize', updateDropdownPos);
+    return () => {
+      window.removeEventListener('scroll', updateDropdownPos, true);
+      window.removeEventListener('resize', updateDropdownPos);
+    };
+  }, [dropdownOpen, updateDropdownPos]);
+
+  const filteredPoreIds = useMemo(() => {
+    const query = searchValue.trim().toLowerCase();
+    if (query.length < 3 || !allPoreIds) return [];
+    return allPoreIds
+      .filter(id => id.toLowerCase().includes(query))
+      .slice(0, MAX_DROPDOWN_ITEMS);
+  }, [searchValue, allPoreIds]);
+
+  const handleSelect = (id: string) => {
+    onIsolatePore?.(id);
+    setSearchValue("");
+    setDropdownOpen(false);
+  };
+
+  const handleUnisolate = () => {
+    onUnisolatePore?.();
+  };
+
+  const handleInputChange = (value: string) => {
+    setSearchValue(value);
+    setDropdownOpen(value.trim().length >= 3);
+  };
+
+  const handleBlur = (e: React.FocusEvent) => {
+    // Keep dropdown open if focus moves within the container
+    if (containerRef.current?.contains(e.relatedTarget as Node)) return;
+    setDropdownOpen(false);
+  };
+
   return (
     <div className={className ?? "bg-white bg-opacity-80 shadow-lg rounded-lg p-4 w-64 mt-2"}>
       <div
@@ -40,8 +104,8 @@ const PoresPanel: React.FC<DomainPanelProps> = ({
         {isOpen ? <FiChevronUp /> : <FiChevronDown />}
       </div>
 
-      <div className={`overflow-hidden ${
-          isOpen ? "max-h-102 opacity-100" : "max-h-0 opacity-0"
+      <div className={`${
+          isOpen ? "max-h-102 opacity-100" : "max-h-0 opacity-0 overflow-hidden"
         }`}>
 			{domain ? (
 			<>
@@ -86,6 +150,59 @@ const PoresPanel: React.FC<DomainPanelProps> = ({
 						>
 							<FiShuffle /> Randomize colors
 						</button>
+					</div>
+				)}
+
+				{onIsolatePore && onUnisolatePore && (
+					<div className="mt-3 pt-3 border-t border-gray-200">
+						{isolatedPoreId != null ? (
+							<div className="flex items-center justify-between gap-2">
+								<span className="text-xs font-medium text-link-300 bg-link-50 rounded-full px-2 py-1 truncate">
+									Isolated: Pore {isolatedPoreId.split('-')[0]}
+								</span>
+								<button
+									className="button-tag text-xs"
+									onClick={handleUnisolate}
+								>
+									Un-isolate
+								</button>
+							</div>
+						) : (
+							<div ref={containerRef} onBlur={handleBlur}>
+								<input
+									ref={inputRef}
+									type="text"
+									placeholder="Search pore ID..."
+									value={searchValue}
+									onChange={(e) => handleInputChange(e.target.value)}
+									onFocus={() => { if (searchValue.trim().length >= 3) setDropdownOpen(true); }}
+									disabled={!visible}
+									className="w-full text-sm border border-gray-300 rounded px-2 py-1 focus:outline-none focus:border-link-100 disabled:opacity-50"
+								/>
+								{dropdownOpen && filteredPoreIds.length > 0 && dropdownPos && createPortal(
+									<div
+										style={{ position: 'fixed', top: dropdownPos.top, left: dropdownPos.left, width: dropdownPos.width }}
+										className="z-[9999] bg-white border border-gray-200 rounded shadow-lg max-h-40 overflow-y-auto"
+									>
+										{filteredPoreIds.map(id => (
+											<button
+												key={id}
+												className="w-full text-left px-2 py-1.5 text-xs text-gray-700 hover:bg-link-50 truncate"
+												onMouseDown={(e) => e.preventDefault()}
+												onClick={() => handleSelect(id)}
+											>
+												{id.split('-')[0]}
+												<span className="text-gray-400 ml-1">{id.substring(id.indexOf('-'))}</span>
+											</button>
+										))}
+									</div>,
+									document.body
+								)}
+								{dropdownOpen && searchValue.trim().length >= 3 && filteredPoreIds.length === 0 && (
+									<p className="text-xs text-red-500 mt-1">No pores found</p>
+								)}
+							</div>
+						)}
 					</div>
 				)}
 			</>
