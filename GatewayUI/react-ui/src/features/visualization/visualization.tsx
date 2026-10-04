@@ -591,6 +591,7 @@ const Visualization: React.FC = () => {
 		const newHidden = new Set(allKeys.filter(k => !keepSet.has(k)));
 		setHiddenByCategory(prev => ({ ...prev, 1: newHidden }));
 		setIsolatedPoreIds(ids);
+		setShowParticles(false);
 	};
 
 	const handleUnisolatePore = () => {
@@ -609,6 +610,7 @@ const Visualization: React.FC = () => {
 			setHiddenByCategory(prev => ({ ...prev, 1: new Set() }));
 		}
 		setIsolatedPoreIds(null);
+		setShowParticles(true);
 	};
 
 	// Core reset+load for switching the viewer to a new scaffold id. Shared

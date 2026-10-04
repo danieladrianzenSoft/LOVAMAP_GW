@@ -37,6 +37,7 @@ interface DomainPanelProps {
 }
 
 const MAX_DROPDOWN_ITEMS = 20;
+const MIN_SEARCH_CHARS = 1;
 
 const PoresPanel: React.FC<DomainPanelProps> = ({
   isOpen,
@@ -61,7 +62,24 @@ const PoresPanel: React.FC<DomainPanelProps> = ({
   const [listMatchError, setListMatchError] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const [dropdownPos, setDropdownPos] = useState<{ top: number; left: number; width: number } | null>(null);
+
+  const isIsolated = isolatedPoreIds != null && isolatedPoreIds.length > 0;
+
+  // Sync local selectedIds from parent isolatedPoreIds only when the
+  // parent value actually changes (undo, scaffold switch, un-isolate, etc.)
+  const lastSyncedRef = useRef<string[] | null | undefined>(undefined);
+  useEffect(() => {
+    // Skip if the reference hasn't changed
+    if (lastSyncedRef.current === isolatedPoreIds) return;
+    lastSyncedRef.current = isolatedPoreIds;
+    if (isolatedPoreIds && isolatedPoreIds.length > 0) {
+      setSelectedIds(new Set(isolatedPoreIds));
+    } else {
+      setSelectedIds(new Set());
+    }
+  }, [isolatedPoreIds]);
 
   // Build a prefix→fullId lookup
   const prefixMap = useMemo(() => {
@@ -90,15 +108,31 @@ const PoresPanel: React.FC<DomainPanelProps> = ({
     };
   }, [dropdownOpen, updateDropdownPos]);
 
+  // Click-outside to close dropdown
+  useEffect(() => {
+    if (!dropdownOpen) return;
+    const handleClickOutside = (e: MouseEvent) => {
+      const target = e.target as Node;
+      if (containerRef.current?.contains(target)) return;
+      if (dropdownRef.current?.contains(target)) return;
+      setDropdownOpen(false);
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [dropdownOpen]);
+
+  // The "active token" is the text after the last comma (or the whole input if no comma).
+  const activeToken = useMemo(() => {
+    const parts = searchValue.split(',');
+    return parts[parts.length - 1].trim().toLowerCase();
+  }, [searchValue]);
+
   const filteredPoreIds = useMemo(() => {
-    const query = searchValue.trim().toLowerCase();
-    if (query.length < 3 || !allPoreIds) return [];
-    // Don't show dropdown for list input (has commas)
-    if (query.includes(',')) return [];
+    if (activeToken.length < MIN_SEARCH_CHARS || !allPoreIds) return [];
     return allPoreIds
-      .filter(id => id.toLowerCase().includes(query))
+      .filter(id => id.toLowerCase().includes(activeToken))
       .slice(0, MAX_DROPDOWN_ITEMS);
-  }, [searchValue, allPoreIds]);
+  }, [activeToken, allPoreIds]);
 
   const toggleSelection = (id: string) => {
     setSelectedIds(prev => {
@@ -107,12 +141,70 @@ const PoresPanel: React.FC<DomainPanelProps> = ({
       else next.add(id);
       return next;
     });
+    // Clear the active token from input, keep any preceding entries
+    const parts = searchValue.split(',');
+    parts.pop();
+    setSearchValue(parts.length > 0 ? parts.join(',') + ', ' : '');
   };
 
-  const handleIsolate = () => {
-    if (selectedIds.size === 0) return;
+  const removeSelection = (id: string) => {
+    const next = new Set(selectedIds);
+    next.delete(id);
+    setSelectedIds(next);
+    // Re-isolate with remaining IDs, or un-isolate if none left
+    if (isIsolated) {
+      if (next.size > 0) {
+        onIsolatePores?.(Array.from(next));
+      } else {
+        onUnisolatePore?.();
+      }
+    }
+  };
+
+  /** Resolve typed input into pore IDs and apply isolation. */
+  const handleApply = () => {
+    // First, try to resolve the current input (single search or pasted list)
+    const trimmed = searchValue.trim();
+    if (trimmed) {
+      const list = parseAsList(trimmed);
+      const tokens = list ?? [trimmed];
+      const newSelected = new Set<string>(selectedIds);
+      const notFound: string[] = [];
+      for (const token of tokens) {
+        const t = token.trim();
+        if (!t) continue;
+        // Try prefix match first
+        const fullId = prefixMap.get(t);
+        if (fullId) {
+          newSelected.add(fullId);
+        } else {
+          // Try as a full/partial ID match
+          const match = allPoreIds?.find(id => id.toLowerCase().includes(t.toLowerCase()));
+          if (match) newSelected.add(match);
+          else notFound.push(t);
+        }
+      }
+      if (notFound.length > 0) {
+        setListMatchError(`Not found: ${notFound.join(', ')}`);
+        setSelectedIds(newSelected);
+        return; // Don't isolate yet, show error
+      }
+      setSelectedIds(newSelected);
+      setSearchValue("");
+      setListMatchError(null);
+      setDropdownOpen(false);
+      if (newSelected.size > 0) {
+        onIsolatePores?.(Array.from(newSelected));
+      }
+      return;
+    }
+
+    // No input text — isolate whatever is currently selected
+    if (selectedIds.size === 0) {
+      if (isIsolated) onUnisolatePore?.();
+      return;
+    }
     onIsolatePores?.(Array.from(selectedIds));
-    setSelectedIds(new Set());
     setSearchValue("");
     setDropdownOpen(false);
   };
@@ -120,38 +212,18 @@ const PoresPanel: React.FC<DomainPanelProps> = ({
   const handleInputChange = (value: string) => {
     setSearchValue(value);
     setListMatchError(null);
-    const list = parseAsList(value);
-    if (list) {
-      // List mode: resolve prefixes to full IDs immediately
-      setDropdownOpen(false);
-      const matched = new Set<string>();
-      const notFound: string[] = [];
-      for (const token of list) {
-        const fullId = prefixMap.get(token);
-        if (fullId) matched.add(fullId);
-        else notFound.push(token);
-      }
-      setSelectedIds(matched);
-      if (notFound.length > 0) {
-        setListMatchError(`Not found: ${notFound.join(', ')}`);
-      }
-    } else {
-      setDropdownOpen(value.trim().length >= 3);
+    // Open dropdown based on the active token (text after last comma)
+    const parts = value.split(',');
+    const lastToken = parts[parts.length - 1].trim();
+    setDropdownOpen(lastToken.length >= MIN_SEARCH_CHARS);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      handleApply();
     }
   };
-
-  const handleBlur = (e: React.FocusEvent) => {
-    if (containerRef.current?.contains(e.relatedTarget as Node)) return;
-    // Don't close if there are selected items (user might click Isolate)
-    if (selectedIds.size > 0) return;
-    setDropdownOpen(false);
-  };
-
-  const handleUnisolate = () => {
-    onUnisolatePore?.();
-  };
-
-  const isIsolated = isolatedPoreIds != null && isolatedPoreIds.length > 0;
 
   return (
     <div className={className ?? "bg-white bg-opacity-80 shadow-lg rounded-lg p-4 w-64 mt-2"}>
@@ -216,115 +288,89 @@ const PoresPanel: React.FC<DomainPanelProps> = ({
 
 				{onIsolatePores && onUnisolatePore && (
 					<div className="mt-3 pt-3 border-t border-gray-200">
-						{isIsolated ? (
-							<div className="space-y-2">
-								<div className="flex items-center justify-between gap-2">
-									<span className="text-xs font-medium text-link-300 bg-link-50 rounded-full px-2 py-1 truncate">
-										Isolated: {isolatedPoreIds!.length === 1
-											? `Pore ${getPorePrefix(isolatedPoreIds![0])}`
-											: `${isolatedPoreIds!.length} pores`}
-									</span>
-									<button
-										className="button-tag text-xs"
-										onClick={handleUnisolate}
-									>
-										Un-isolate
-									</button>
-								</div>
-								{isolatedPoreIds!.length > 1 && (
-									<div className="flex flex-wrap gap-1">
-										{isolatedPoreIds!.map(id => (
-											<span key={id} className="text-[10px] bg-gray-100 text-gray-600 rounded px-1.5 py-0.5">
-												{getPorePrefix(id)}
-											</span>
-										))}
-									</div>
-								)}
-							</div>
-						) : (
-							<div ref={containerRef} onBlur={handleBlur}>
-								<input
-									ref={inputRef}
-									type="text"
-									placeholder="Search ID or paste list..."
-									value={searchValue}
-									onChange={(e) => handleInputChange(e.target.value)}
-									onFocus={() => { if (searchValue.trim().length >= 3) setDropdownOpen(true); }}
-									disabled={!visible}
-									className="w-full text-sm border border-gray-300 rounded px-2 py-1 focus:outline-none focus:border-link-100 disabled:opacity-50"
-								/>
+						<div ref={containerRef}>
+							<input
+								ref={inputRef}
+								type="text"
+								placeholder="Search ID or paste list..."
+								value={searchValue}
+								onChange={(e) => handleInputChange(e.target.value)}
+								onKeyDown={handleKeyDown}
+								onFocus={() => { if (searchValue.trim().length >= MIN_SEARCH_CHARS) setDropdownOpen(true); }}
+								disabled={!visible}
+								className="w-full text-sm border border-gray-300 rounded px-2 py-1 focus:outline-none focus:border-link-100 disabled:opacity-50"
+							/>
 
-								{/* Selected chips */}
-								{selectedIds.size > 0 && (
-									<div className="flex flex-wrap gap-1 mt-1.5">
-										{Array.from(selectedIds).map(id => (
-											<span
-												key={id}
-												className="inline-flex items-center gap-0.5 text-[10px] bg-link-50 text-link-300 rounded-full px-1.5 py-0.5"
+							{/* Selected / isolated chips */}
+							{selectedIds.size > 0 && (
+								<div className="flex flex-wrap gap-1 mt-1.5">
+									{Array.from(selectedIds).map(id => (
+										<span
+											key={id}
+											className="inline-flex items-center gap-0.5 text-[10px] bg-link-50 text-link-300 rounded-full px-1.5 py-0.5"
+										>
+											{getPorePrefix(id)}
+											<button
+												className="hover:text-red-500"
+												onClick={() => removeSelection(id)}
+												onMouseDown={(e) => e.preventDefault()}
 											>
+												<FiX size={10} />
+											</button>
+										</span>
+									))}
+								</div>
+							)}
+
+							{isIsolated && (
+								<button
+									className="button-tag text-xs mt-1.5 w-full"
+									onClick={() => onUnisolatePore?.()}
+								>
+									Un-isolate
+								</button>
+							)}
+
+							{/* Dropdown (portal) */}
+							{dropdownOpen && filteredPoreIds.length > 0 && dropdownPos && createPortal(
+								<div
+									ref={dropdownRef}
+									style={{ position: 'fixed', top: dropdownPos.top, left: dropdownPos.left, width: dropdownPos.width }}
+									className="z-[9999] bg-white border border-gray-200 rounded shadow-lg max-h-40 overflow-y-auto"
+								>
+									{filteredPoreIds.map(id => {
+										const isSelected = selectedIds.has(id);
+										return (
+											<button
+												key={id}
+												className={`w-full text-left px-2 py-1.5 text-xs truncate flex items-center gap-1.5 ${
+													isSelected ? 'bg-link-50 text-link-300' : 'text-gray-700 hover:bg-gray-50'
+												}`}
+												onMouseDown={(e) => e.preventDefault()}
+												onClick={() => toggleSelection(id)}
+											>
+												<span className={`w-3.5 h-3.5 rounded border flex-shrink-0 flex items-center justify-center ${
+													isSelected ? 'bg-link-300 border-link-300 text-white' : 'border-gray-300'
+												}`}>
+													{isSelected && <span className="text-[9px]">&#10003;</span>}
+												</span>
 												{getPorePrefix(id)}
-												<button
-													className="hover:text-red-500"
-													onClick={() => toggleSelection(id)}
-													onMouseDown={(e) => e.preventDefault()}
-												>
-													<FiX size={10} />
-												</button>
-											</span>
-										))}
-									</div>
-								)}
+												<span className="text-gray-400">{id.substring(id.indexOf('-'))}</span>
+											</button>
+										);
+									})}
+								</div>,
+								document.body
+							)}
 
-								{/* Isolate button */}
-								{selectedIds.size > 0 && (
-									<button
-										className="button-tag text-xs mt-1.5 w-full disabled:opacity-50 disabled:cursor-not-allowed"
-										onClick={handleIsolate}
-									>
-										Isolate {selectedIds.size === 1 ? `pore ${getPorePrefix(Array.from(selectedIds)[0])}` : `${selectedIds.size} pores`}
-									</button>
-								)}
-
-								{/* Dropdown (portal) */}
-								{dropdownOpen && filteredPoreIds.length > 0 && dropdownPos && createPortal(
-									<div
-										style={{ position: 'fixed', top: dropdownPos.top, left: dropdownPos.left, width: dropdownPos.width }}
-										className="z-[9999] bg-white border border-gray-200 rounded shadow-lg max-h-40 overflow-y-auto"
-									>
-										{filteredPoreIds.map(id => {
-											const isSelected = selectedIds.has(id);
-											return (
-												<button
-													key={id}
-													className={`w-full text-left px-2 py-1.5 text-xs truncate flex items-center gap-1.5 ${
-														isSelected ? 'bg-link-50 text-link-300' : 'text-gray-700 hover:bg-gray-50'
-													}`}
-													onMouseDown={(e) => e.preventDefault()}
-													onClick={() => toggleSelection(id)}
-												>
-													<span className={`w-3.5 h-3.5 rounded border flex-shrink-0 flex items-center justify-center ${
-														isSelected ? 'bg-link-300 border-link-300 text-white' : 'border-gray-300'
-													}`}>
-														{isSelected && <span className="text-[9px]">&#10003;</span>}
-													</span>
-													{getPorePrefix(id)}
-													<span className="text-gray-400">{id.substring(id.indexOf('-'))}</span>
-												</button>
-											);
-										})}
-									</div>,
-									document.body
-								)}
-
-								{/* Error messages */}
-								{listMatchError && (
-									<p className="text-xs text-red-500 mt-1">{listMatchError}</p>
-								)}
-								{dropdownOpen && searchValue.trim().length >= 3 && filteredPoreIds.length === 0 && !parseAsList(searchValue) && (
-									<p className="text-xs text-red-500 mt-1">No pores found</p>
-								)}
-							</div>
-						)}
+							{/* Error messages */}
+							{listMatchError && (
+								<p className="text-xs text-red-500 mt-1">{listMatchError}</p>
+							)}
+							{dropdownOpen && activeToken.length >= MIN_SEARCH_CHARS && filteredPoreIds.length === 0 && (
+								<p className="text-xs text-red-500 mt-1">No pores found</p>
+							)}
+						</div>
 					</div>
 				)}
 			</>
