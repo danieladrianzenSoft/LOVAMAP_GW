@@ -71,6 +71,6 @@ export type HistoryAction =
 	category: number;
 	previousState: {
 		hiddenIds: Set<string>;
-		isolatedPoreId: string | null;
+		isolatedPoreIds: string[] | null;
 	};
 };
