@@ -1,0 +1,886 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> a bibo:AcademicArticle ;
+    rdfs:label "Truong et al., 2019 — MAP Hydrogel Gene Transfer" ;
+    dc:title "Microporous annealed particle hydrogel stiffness, void space size, and adhesion properties impact cell proliferation, cell spreading, and gene transfer" ;
+    dc:identifier "10.1016/j.actbio.2019.02.054" ;
+    dc:date "2019"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/acta-biomaterialia> ;
+    dc:creator <https://lovamap.com/ontology#author/truong-norman> ,
+               <https://lovamap.com/ontology#author/kurt-evan> ,
+               <https://lovamap.com/ontology#author/tahmizyan-nairi> ,
+               <https://lovamap.com/ontology#author/lesher-perez-sasha> ,
+               <https://lovamap.com/ontology#author/chen-mabel> ,
+               <https://lovamap.com/ontology#author/darling-nicole> ,
+               <https://lovamap.com/ontology#author/xi-weixian> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/truong-norman>
+                       <https://lovamap.com/ontology#author/kurt-evan>
+                       <https://lovamap.com/ontology#author/tahmizyan-nairi>
+                       <https://lovamap.com/ontology#author/lesher-perez-sasha>
+                       <https://lovamap.com/ontology#author/chen-mabel>
+                       <https://lovamap.com/ontology#author/darling-nicole>
+                       <https://lovamap.com/ontology#author/xi-weixian>
+                       <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    dc:bibliographicCitation "Truong et al., 2019" ;
+    lova:focusMaterial "HA-Norb microporous annealed particle (MAP) hydrogels varying microgel size, stiffness, RGD concentration/clustering, and integrin specificity for non-viral gene transfer to HDFs" .
+
+<https://lovamap.com/ontology#author/truong-norman> a foaf:Person ;
+    foaf:familyName "Truong" ; foaf:givenName "Norman F." ; foaf:name "Norman F. Truong" .
+<https://lovamap.com/ontology#author/kurt-evan> a foaf:Person ;
+    foaf:familyName "Kurt" ; foaf:givenName "Evan" ; foaf:name "Evan Kurt" .
+<https://lovamap.com/ontology#author/tahmizyan-nairi> a foaf:Person ;
+    foaf:familyName "Tahmizyan" ; foaf:givenName "Nairi" ; foaf:name "Nairi Tahmizyan" .
+<https://lovamap.com/ontology#author/lesher-perez-sasha> a foaf:Person ;
+    foaf:familyName "Lesher‐Pérez" ; foaf:givenName "Sasha Cai" ; foaf:name "Sasha Cai Lesher‐Pérez" .
+<https://lovamap.com/ontology#author/chen-mabel> a foaf:Person ;
+    foaf:familyName "Chen" ; foaf:givenName "Mabel" ; foaf:name "Mabel Chen" .
+<https://lovamap.com/ontology#author/darling-nicole> a foaf:Person ;
+    foaf:familyName "Darling" ; foaf:givenName "Nicole J." ; foaf:name "Nicole J. Darling" .
+<https://lovamap.com/ontology#author/xi-weixian> a foaf:Person ;
+    foaf:familyName "Xi" ; foaf:givenName "Weixian" ; foaf:name "Weixian Xi" .
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ; foaf:givenName "Tatiana" ; foaf:name "Tatiana Segura" .
+
+<https://lovamap.com/ontology#journal/acta-biomaterialia> a bibo:Journal ;
+    dc:title "Acta Biomaterialia" ;
+    bibo:issn "1742-7061" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2019.02.054/ha-norb-synthesis> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "HA-Norb synthesis via DMTMM-activated carboxylic acid coupling with NMA" ;
+    lova:chemistry "Amine-carboxylic acid coupling (DMTMM activation)" ;
+    lova:manufacturingMethod "Solution-phase chemical synthesis" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2019.02.054/ha>,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2019.02.054/dmtmm>,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2019.02.054/nma>,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2019.02.054/mes-buffer> .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2019.02.054/ha> a lova:Reagent ;
+    rdfs:label "Sodium hyaluronan (HA, 60 kDa)" ;
+    lova:reagentRole "monomer" ;
+    lova:molecularWeight "60 kDa" ;
+    lova:concentration "1 g; final HA-Norb at 3.5 wt% in microgel precursor" ;
+    lova:supplier "Genzyme" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2019.02.054/dmtmm> a lova:Reagent ;
+    rdfs:label "4-(4,6-dimethoxy-1,3,5-triazin-2-yl)-4-methyl-morpholinium chloride (DMTMM)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "3.111 g (molar ratio ~1:633 HA:DMTMM)" ;
+    lova:supplier "Thermo Fisher Scientific" ;
+    lova:reagentFunction "Carboxylic acid activation" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2019.02.054/nma> a lova:Reagent ;
+    rdfs:label "5-norbornene-2-methylamine (NMA)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "0.677 mL (molar ratio ~1:343 activated HA:NMA)" ;
+    lova:supplier "TCI America" ;
+    lova:reagentFunction "Introduces norbornene functional group onto HA" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2019.02.054/mes-buffer> a lova:Reagent ;
+    rdfs:label "MES buffer" ;
+    lova:reagentRole "solvent" ;
+    lova:concentration "200 mM, pH 5.5" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2019.02.054/peg-tet-synthesis> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "PEG-tetrazine (PEG-Tet) synthesis via thiol-maleimide reaction" ;
+    lova:chemistry "Thiol-maleimide Michael addition" ;
+    lova:manufacturingMethod "Solution-phase chemical synthesis" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2019.02.054/peg-thiol>,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2019.02.054/tet-mal>,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2019.02.054/dcm>,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2019.02.054/trimethylamine> .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2019.02.054/peg-thiol> a lova:Reagent ;
+    rdfs:label "4-arm PEG-thiol (20 kDa)" ;
+    lova:reagentRole "monomer" ;
+    lova:molecularWeight "20 kDa" ;
+    lova:concentration "100 mg" ;
+    lova:supplier "NOF America" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2019.02.054/tet-mal> a lova:Reagent ;
+    rdfs:label "Methyltetrazine-PEG4-maleimide (Tet-PEG4-Mal)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:concentration "15 mg (Mal/SH ratio 1.05)" ;
+    lova:supplier "Kerafast" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2019.02.054/dcm> a lova:Reagent ;
+    rdfs:label "Dichloromethane (DCM)" ;
+    lova:reagentRole "solvent" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2019.02.054/trimethylamine> a lova:Reagent ;
+    rdfs:label "Trimethylamine" ;
+    lova:reagentRole "other" ;
+    lova:concentration "1 μL (0.5 molar equivalent)" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2019.02.054/microgel-formation> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "HA-Norb microgel formation via batch water-in-hexane emulsion and thiol-ene photocrosslinking" ;
+    lova:chemistry "Thiol-ene photopolymerization (norbornene-thiol)" ;
+    lova:manufacturingMethod "Batch water-in-hexane emulsion" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2019.02.054/lap>,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2019.02.054/rgd-peptide>,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2019.02.054/tcep>,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2019.02.054/dtt>,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2019.02.054/span80>,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2019.02.054/fn-9x10>,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2019.02.054/fn-9-4g-10> .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2019.02.054/lap> a lova:Reagent ;
+    rdfs:label "Lithium phenyl(2,4,6-trimethylbenzoyl)phosphinate (LAP) photoinitiator" ;
+    lova:reagentRole "photoinitiator" ;
+    lova:concentration "2.2 mM" ;
+    lova:supplier "TCI America" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2019.02.054/rgd-peptide> a lova:Reagent ;
+    rdfs:label "Thiolated RGD peptide (RGDSPGERCG)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "RGDSPGERCG" ;
+    lova:concentration "100, 250, 500, or 1000 μM" ;
+    lova:supplier "Genscript" ;
+    lova:reagentFunction "Cell adhesion" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2019.02.054/tcep> a lova:Reagent ;
+    rdfs:label "Tris(2-carboxyethyl)phosphine (TCEP)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "25% of total thiol molarity (mmol TCEP:mmol thiols = 1:4)" ;
+    lova:reagentFunction "Reducing agent" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2019.02.054/dtt> a lova:Reagent ;
+    rdfs:label "Dithiothreitol (DTT) crosslinker" ;
+    lova:reagentRole "crosslinker" ;
+    lova:concentration "50 mM stock; crosslinking ratio 14, 28, or 56 mmol SH:mmol HA" ;
+    lova:supplier "Thermo Fisher Scientific" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2019.02.054/span80> a lova:Reagent ;
+    rdfs:label "Span-80 surfactant" ;
+    lova:reagentRole "surfactant" ;
+    lova:concentration "3% in hexane" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2019.02.054/fn-9x10> a lova:Reagent ;
+    rdfs:label "Fibronectin fragment 9*10 (Leu-Pro mutant)" ;
+    lova:reagentRole "peptide" ;
+    lova:concentration "5 μM" ;
+    lova:reagentFunction "Preferential α3/α5β1 integrin activation" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2019.02.054/fn-9-4g-10> a lova:Reagent ;
+    rdfs:label "Fibronectin fragment 9(4G)10 (4xGly linker)" ;
+    lova:reagentRole "peptide" ;
+    lova:concentration "5 μM" ;
+    lova:reagentFunction "Preferential αvβ3 integrin activation" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2019.02.054/map-annealing> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "MAP scaffold annealing via norbornene-tetrazine click reaction" ;
+    lova:chemistry "Inverse electron demand Diels-Alder click reaction (norbornene-tetrazine)" ;
+    lova:manufacturingMethod "Microgel mixing, centrifugation, pipetting into culture well" ;
+    lova:annealingChemistry "Norbornene-tetrazine click reaction (PEG-Tet crosslinker)" ;
+    lova:annealingConditions "37°C, 1 hour" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2019.02.054/tet-mal> .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2019.02.054/tritc-dextran> a lova:Reagent ;
+    rdfs:label "TRITC-dextran (500 kDa)" ;
+    lova:reagentRole "other" ;
+    lova:molecularWeight "500 kDa" ;
+    lova:concentration "1 μg/mL" ;
+    lova:supplier "Sigma-Aldrich" ;
+    lova:reagentFunction "Void space visualization" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2019.02.054/jetpei> a lova:Reagent ;
+    rdfs:label "jetPEI" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Polyplus-Transfection" ;
+    lova:reagentFunction "Cationic polymer for DNA polyplex formation (N/P ratio 5)" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2019.02.054/gluc-dna> a lova:Reagent ;
+    rdfs:label "Plasmid DNA encoding Gaussia luciferase (GLuc)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "0.125, 0.25, or 0.5 μg per well" ;
+    lova:reagentFunction "Reporter transgene for transfection assay" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2019.02.054/yoyo1> a lova:Reagent ;
+    rdfs:label "YOYO-1 dye" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Thermo Fisher Scientific" ;
+    lova:reagentFunction "Fluorescent labeling of DNA polyplexes" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2019.02.054/primocin> a lova:Reagent ;
+    rdfs:label "Primocin" ;
+    lova:reagentRole "other" ;
+    lova:concentration "50 μg/mL" ;
+    lova:supplier "InvivoGen" .
+
+<https://lovamap.com/ontology#material/10.1016-j.actbio.2019.02.054/map-20-60um> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "MAP gel, 20–60 μm microgel sieving range" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "HA-Norb (hyaluronic acid-norbornene)" ;
+    lova:particleSizeMin 20.0 ;
+    lova:particleSizeMax 60.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:sizeDistribution "Polydisperse, average diameter 54.25 ± 29.11 μm" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2019.02.054/microgel-formation> ;
+    lova:packingConfiguration "Random" ;
+    lova:reportedPorosity 0.25 .
+
+<https://lovamap.com/ontology#material/10.1016-j.actbio.2019.02.054/map-60-100um> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "MAP gel, 60–100 μm microgel sieving range" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "HA-Norb (hyaluronic acid-norbornene)" ;
+    lova:particleSizeMin 60.0 ;
+    lova:particleSizeMax 100.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:sizeDistribution "Polydisperse, average diameter 86.04 ± 20.25 μm" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2019.02.054/microgel-formation> ;
+    lova:packingConfiguration "Random" ;
+    lova:reportedPorosity 0.22 .
+
+<https://lovamap.com/ontology#material/10.1016-j.actbio.2019.02.054/map-100-200um> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "MAP gel, 100–200 μm microgel sieving range (baseline: crosslink 14, RGD 500 μM, clustering 2)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "HA-Norb (hyaluronic acid-norbornene)" ;
+    lova:particleSizeMin 100.0 ;
+    lova:particleSizeMax 200.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:sizeDistribution "Polydisperse, average diameter 150.76 ± 44.14 μm" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2019.02.054/microgel-formation> ;
+    lova:packingConfiguration "Random" ;
+    lova:reportedPorosity 0.24 .
+
+<https://lovamap.com/ontology#material/10.1016-j.actbio.2019.02.054/nonporous-crosslink14> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "Nonporous HA-Norb gel, crosslinking ratio 14" ;
+    lova:particleMaterial "HA-Norb (hyaluronic acid-norbornene)" ;
+    lova:stiffnessValue 1810.0 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:packingConfiguration "Nonporous bulk" .
+
+<https://lovamap.com/ontology#material/10.1016-j.actbio.2019.02.054/nonporous-crosslink28> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "Nonporous HA-Norb gel, crosslinking ratio 28" ;
+    lova:particleMaterial "HA-Norb (hyaluronic acid-norbornene)" ;
+    lova:stiffnessValue 2591.0 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:packingConfiguration "Nonporous bulk" .
+
+<https://lovamap.com/ontology#material/10.1016-j.actbio.2019.02.054/nonporous-crosslink56> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "Nonporous HA-Norb gel, crosslinking ratio 56" ;
+    lova:particleMaterial "HA-Norb (hyaluronic acid-norbornene)" ;
+    lova:stiffnessValue 3646.0 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:packingConfiguration "Nonporous bulk" .
+
+<https://lovamap.com/ontology#material/10.1016-j.actbio.2019.02.054/map-stiffness-222> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "MAP gel, storage modulus 222 Pa (crosslink 14, 100–200 μm, RGD 500 μM, clustering 2)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "HA-Norb (hyaluronic acid-norbornene)" ;
+    lova:particleSizeMin 100.0 ;
+    lova:particleSizeMax 200.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:stiffnessValue 222.0 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2019.02.054/map-annealing> ;
+    lova:packingConfiguration "Random" .
+
+<https://lovamap.com/ontology#material/10.1016-j.actbio.2019.02.054/map-stiffness-377> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "MAP gel, storage modulus 377 Pa (crosslink 28, 100–200 μm, RGD 500 μM, clustering 2)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "HA-Norb (hyaluronic acid-norbornene)" ;
+    lova:particleSizeMin 100.0 ;
+    lova:particleSizeMax 200.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:stiffnessValue 377.0 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2019.02.054/map-annealing> ;
+    lova:packingConfiguration "Random" .
+
+<https://lovamap.com/ontology#material/10.1016-j.actbio.2019.02.054/map-stiffness-970> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "MAP gel, storage modulus 970 Pa (crosslink 56, 100–200 μm, RGD 500 μM, clustering 2)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "HA-Norb (hyaluronic acid-norbornene)" ;
+    lova:particleSizeMin 100.0 ;
+    lova:particleSizeMax 200.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:stiffnessValue 970.0 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2019.02.054/map-annealing> ;
+    lova:packingConfiguration "Random" .
+
+<https://lovamap.com/ontology#material/10.1016-j.actbio.2019.02.054/map-rgd-100> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "MAP gel, RGD concentration 100 μM (222 Pa, 100–200 μm)" ;
+    lova:particleMaterial "HA-Norb (hyaluronic acid-norbornene)" ;
+    lova:particleSizeMin 100.0 ; lova:particleSizeMax 200.0 ; lova:particleSizeUnit "μm" ;
+    lova:stiffnessValue 222.0 ; lova:stiffnessUnit "Pa" ;
+    lova:surfaceModification "RGD-coated, 100 μM" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2019.02.054/microgel-formation> .
+
+<https://lovamap.com/ontology#material/10.1016-j.actbio.2019.02.054/map-rgd-250> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "MAP gel, RGD concentration 250 μM (222 Pa, 100–200 μm)" ;
+    lova:particleMaterial "HA-Norb (hyaluronic acid-norbornene)" ;
+    lova:particleSizeMin 100.0 ; lova:particleSizeMax 200.0 ; lova:particleSizeUnit "μm" ;
+    lova:stiffnessValue 222.0 ; lova:stiffnessUnit "Pa" ;
+    lova:surfaceModification "RGD-coated, 250 μM" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2019.02.054/microgel-formation> .
+
+<https://lovamap.com/ontology#material/10.1016-j.actbio.2019.02.054/map-rgd-500> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "MAP gel, RGD concentration 500 μM (222 Pa, 100–200 μm)" ;
+    lova:particleMaterial "HA-Norb (hyaluronic acid-norbornene)" ;
+    lova:particleSizeMin 100.0 ; lova:particleSizeMax 200.0 ; lova:particleSizeUnit "μm" ;
+    lova:stiffnessValue 222.0 ; lova:stiffnessUnit "Pa" ;
+    lova:surfaceModification "RGD-coated, 500 μM" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2019.02.054/microgel-formation> .
+
+<https://lovamap.com/ontology#material/10.1016-j.actbio.2019.02.054/map-rgd-1000> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "MAP gel, RGD concentration 1000 μM (222 Pa, 100–200 μm)" ;
+    lova:particleMaterial "HA-Norb (hyaluronic acid-norbornene)" ;
+    lova:particleSizeMin 100.0 ; lova:particleSizeMax 200.0 ; lova:particleSizeUnit "μm" ;
+    lova:stiffnessValue 222.0 ; lova:stiffnessUnit "Pa" ;
+    lova:surfaceModification "RGD-coated, 1000 μM" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2019.02.054/microgel-formation> .
+
+<https://lovamap.com/ontology#material/10.1016-j.actbio.2019.02.054/map-clustering-1> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "MAP gel, RGD clustering ratio 1 mmol RGD:mmol HA (500 μM RGD, 222 Pa)" ;
+    lova:particleMaterial "HA-Norb (hyaluronic acid-norbornene)" ;
+    lova:surfaceModification "RGD clustering ratio 1:1" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2019.02.054/microgel-formation> .
+
+<https://lovamap.com/ontology#material/10.1016-j.actbio.2019.02.054/map-clustering-2> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "MAP gel, RGD clustering ratio 2 mmol RGD:mmol HA (500 μM RGD, 222 Pa)" ;
+    lova:particleMaterial "HA-Norb (hyaluronic acid-norbornene)" ;
+    lova:surfaceModification "RGD clustering ratio 2:1" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2019.02.054/microgel-formation> .
+
+<https://lovamap.com/ontology#material/10.1016-j.actbio.2019.02.054/map-clustering-4> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "MAP gel, RGD clustering ratio 4 mmol RGD:mmol HA (500 μM RGD, 222 Pa)" ;
+    lova:particleMaterial "HA-Norb (hyaluronic acid-norbornene)" ;
+    lova:surfaceModification "RGD clustering ratio 4:1" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2019.02.054/microgel-formation> .
+
+<https://lovamap.com/ontology#material/10.1016-j.actbio.2019.02.054/map-clustering-12> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "MAP gel, RGD clustering ratio 12 mmol RGD:mmol HA (500 μM RGD, 222 Pa)" ;
+    lova:particleMaterial "HA-Norb (hyaluronic acid-norbornene)" ;
+    lova:surfaceModification "RGD clustering ratio 12:1" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2019.02.054/microgel-formation> .
+
+<https://lovamap.com/ontology#material/10.1016-j.actbio.2019.02.054/map-fn-9x10> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "MAP gel with fibronectin fragment 9*10 (α3/α5β1-activating), 222 Pa, 100–200 μm" ;
+    lova:particleMaterial "HA-Norb (hyaluronic acid-norbornene)" ;
+    lova:stiffnessValue 222.0 ; lova:stiffnessUnit "Pa" ;
+    lova:surfaceModification "Fibronectin fragment 9*10, 5 μM" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2019.02.054/microgel-formation> .
+
+<https://lovamap.com/ontology#material/10.1016-j.actbio.2019.02.054/map-fn-9-4g-10> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "MAP gel with fibronectin fragment 9(4G)10 (αvβ3-activating), 222 Pa, 100–200 μm" ;
+    lova:particleMaterial "HA-Norb (hyaluronic acid-norbornene)" ;
+    lova:stiffnessValue 222.0 ; lova:stiffnessUnit "Pa" ;
+    lova:surfaceModification "Fibronectin fragment 9(4G)10, 5 μM" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2019.02.054/microgel-formation> .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2019.02.054/dose-transfection> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2019.02.054/map-rgd-500> ;
+    rdfs:label "Transgene expression and viability vs DNA polyplex dose" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transfection" ;
+    lova:assayOrMethod "BioLux Gaussia Luciferase assay" ;
+    lova:cellType "HDF" ;
+    lova:cellSource "Human dermal" ;
+    lova:cultureMedium "DMEM + 10% FBS" ;
+    lova:cultureDuration "Up to 10 days" ;
+    lova:temperature "37°C" ;
+    lova:atmosphere "5% CO2" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/rlu-05ug-d10> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2019.02.054/dose-transfection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "GLuc RLU at day 10, 0.5 μg DNA dose" ;
+    lova:measurementType "Transgene expression (GLuc RLU)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 3.4E7 ; qudt:unit "RLU" ;
+    lova:timePoint "Day 10" ; lova:isSignificant true ; lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/rlu-025ug-d10> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2019.02.054/dose-transfection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "GLuc RLU at day 10, 0.25 μg DNA dose" ;
+    lova:measurementType "Transgene expression (GLuc RLU)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.5E7 ; qudt:unit "RLU" ;
+    lova:timePoint "Day 10" ; lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/rlu-0125ug-d10> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2019.02.054/dose-transfection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "GLuc RLU at day 10, 0.125 μg DNA dose" ;
+    lova:measurementType "Transgene expression (GLuc RLU)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.2E7 ; qudt:unit "RLU" ;
+    lova:timePoint "Day 10" ; lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/viability-05ug-d4> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2019.02.054/dose-transfection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "Relative viability at day 4, 0.5 μg DNA dose" ;
+    lova:measurementType "Relative cell viability" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.68 ; qudt:unit "ratio" ;
+    lova:timePoint "Day 4" ; lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/viability-0125ug-d4> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2019.02.054/dose-transfection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "Relative viability at day 4, 0.125 μg DNA dose" ;
+    lova:measurementType "Relative cell viability" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.0 ; qudt:unit "ratio" ;
+    lova:timePoint "Day 4" ; lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/coloc-area> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2019.02.054/dose-transfection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "Polyplex/actin colocalization area along z-axis (0–600 μm from base)" ;
+    lova:measurementType "Polyplex-actin colocalization area %" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "0.1% to 0.4% colocalization area, relatively consistent across z-axis" ;
+    lova:timePoint "4 h" ; lova:scope "Regional" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2019.02.054/zeta-potential> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2019.02.054/map-100-200um> ;
+    rdfs:label "Zeta potential of HA and HA-Norb (ELS)" ;
+    lova:experimentCategory "Physicochemical" ;
+    lova:experimentType "Electrophoretic light scattering" ;
+    lova:equipment "Malvern ZetaSizer ZS" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/zeta-ha> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2019.02.054/zeta-potential> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "Zeta potential of precursor HA" ;
+    lova:measurementType "Zeta potential" ; lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue -27.4 ; qudt:unit "mV" ; lova:stdDev 0.4 ; lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/zeta-hanorb> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2019.02.054/zeta-potential> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "Zeta potential of HA-Norb product" ;
+    lova:measurementType "Zeta potential" ; lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue -28.3 ; qudt:unit "mV" ; lova:stdDev 2.4 ; lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2019.02.054/nmr-modification> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2019.02.054/map-100-200um> ;
+    rdfs:label "NMR quantification of chemical modification" ;
+    lova:experimentCategory "Physicochemical" ;
+    lova:experimentType "NMR spectrometry" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/ha-norb-modification> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2019.02.054/nmr-modification> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "Percent HA monomers modified with norbornene" ;
+    lova:measurementType "Degree of substitution" ; lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 41.85 ; qudt:unit "%" ; lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/peg-tet-modification> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2019.02.054/nmr-modification> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "Percent PEG-thiol groups converted to tetrazine" ;
+    lova:measurementType "Degree of substitution" ; lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 98.0 ; qudt:unit "%" ; lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2019.02.054/void-space-analysis> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2019.02.054/map-20-60um>,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2019.02.054/map-60-100um>,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2019.02.054/map-100-200um> ;
+    rdfs:label "Void space fraction quantification via TRITC-dextran and IMARIS" ;
+    lova:experimentCategory "Physicochemical" ;
+    lova:experimentType "Void space imaging" ;
+    lova:assayOrMethod "Confocal microscopy + IMARIS surface rendering" ;
+    lova:sampleSize 4 .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/voidfraction-20-60> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2019.02.054/void-space-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "Void space fraction, 20–60 μm microgels" ;
+    lova:measurementType "Void space fraction" ; lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 0.25 ; qudt:unit "fraction" ; lova:scope "Bulk/global" ; lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/voidfraction-60-100> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2019.02.054/void-space-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "Void space fraction, 60–100 μm microgels" ;
+    lova:measurementType "Void space fraction" ; lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 0.22 ; qudt:unit "fraction" ; lova:scope "Bulk/global" ; lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/voidfraction-100-200> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2019.02.054/void-space-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "Void space fraction, 100–200 μm microgels" ;
+    lova:measurementType "Void space fraction" ; lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 0.24 ; qudt:unit "fraction" ; lova:scope "Bulk/global" ; lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2019.02.054/rheometry> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2019.02.054/nonporous-crosslink14>,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2019.02.054/nonporous-crosslink28>,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2019.02.054/nonporous-crosslink56>,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2019.02.054/map-stiffness-222>,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2019.02.054/map-stiffness-377>,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2019.02.054/map-stiffness-970> ;
+    rdfs:label "Oscillation rheometry of nonporous HA-Norb and annealed MAP gels" ;
+    lova:experimentCategory "Rheological" ;
+    lova:experimentType "Storage modulus measurement" ;
+    lova:equipment "Physica MCR plate-to-plate rheometer (Anton Paar)" ;
+    lova:frequency "0.5 to 10 rad/s angular frequency sweep" ;
+    lova:strainRate "0.2% (nonporous) or 1% (MAP)" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/gprime-nonporous-14> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2019.02.054/rheometry> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "Storage modulus, nonporous gel, crosslinking ratio 14" ;
+    lova:measurementType "Storage modulus (G')" ; lova:measurementCategory "Rheological" ;
+    qudt:numericValue 1810.0 ; qudt:unit "Pa" ; lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/gprime-nonporous-28> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2019.02.054/rheometry> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "Storage modulus, nonporous gel, crosslinking ratio 28" ;
+    lova:measurementType "Storage modulus (G')" ; lova:measurementCategory "Rheological" ;
+    qudt:numericValue 2591.0 ; qudt:unit "Pa" ; lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/gprime-nonporous-56> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2019.02.054/rheometry> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "Storage modulus, nonporous gel, crosslinking ratio 56" ;
+    lova:measurementType "Storage modulus (G')" ; lova:measurementCategory "Rheological" ;
+    qudt:numericValue 3646.0 ; qudt:unit "Pa" ; lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/gprime-map-222> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2019.02.054/rheometry> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "Storage modulus, annealed MAP gel, crosslinking ratio 14" ;
+    lova:measurementType "Storage modulus (G')" ; lova:measurementCategory "Rheological" ;
+    qudt:numericValue 222.0 ; qudt:unit "Pa" ; lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/gprime-map-377> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2019.02.054/rheometry> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "Storage modulus, annealed MAP gel, crosslinking ratio 28" ;
+    lova:measurementType "Storage modulus (G')" ; lova:measurementCategory "Rheological" ;
+    qudt:numericValue 377.0 ; qudt:unit "Pa" ; lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/gprime-map-970> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2019.02.054/rheometry> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "Storage modulus, annealed MAP gel, crosslinking ratio 56" ;
+    lova:measurementType "Storage modulus (G')" ; lova:measurementCategory "Rheological" ;
+    qudt:numericValue 970.0 ; qudt:unit "Pa" ; lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2019.02.054/microgel-size-effect> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2019.02.054/map-20-60um>,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2019.02.054/map-60-100um>,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2019.02.054/map-100-200um> ;
+    rdfs:label "Effect of microgel diameter on HDF spreading, proliferation, and transfection" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell spreading and transfection" ;
+    lova:assayOrMethod "IMARIS surface rendering, PrestoBlue, GLuc luciferase assay" ;
+    lova:cellType "HDF" ; lova:cellSource "Human dermal" ;
+    lova:cultureDuration "2 and 6 days" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/cellarea-20-60> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2019.02.054/microgel-size-effect> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "Average cell surface area, 20–60 μm microgels" ;
+    lova:measurementType "Average cell surface area" ; lova:measurementCategory "Biological" ;
+    qudt:numericValue 6500.0 ; qudt:unit "μm²" ; lova:timePoint "Day 2" ; lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/cellarea-60-100> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2019.02.054/microgel-size-effect> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "Average cell surface area, 60–100 μm microgels" ;
+    lova:measurementType "Average cell surface area" ; lova:measurementCategory "Biological" ;
+    qudt:numericValue 7700.0 ; qudt:unit "μm²" ; lova:timePoint "Day 2" ; lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/cellarea-100-200> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2019.02.054/microgel-size-effect> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "Average cell surface area, 100–200 μm microgels" ;
+    lova:measurementType "Average cell surface area" ; lova:measurementCategory "Biological" ;
+    qudt:numericValue 8200.0 ; qudt:unit "μm²" ; lova:timePoint "Day 2" ; lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/proliferation-20-60> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2019.02.054/microgel-size-effect> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "Relative proliferation, 20–60 μm microgels" ;
+    lova:measurementType "Relative proliferation" ; lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.72 ; qudt:unit "ratio" ; lova:timePoint "Day 2" ; lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/proliferation-60-100> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2019.02.054/microgel-size-effect> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "Relative proliferation, 60–100 μm microgels" ;
+    lova:measurementType "Relative proliferation" ; lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.0 ; qudt:unit "ratio" ; lova:timePoint "Day 2" ; lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/proliferation-100-200> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2019.02.054/microgel-size-effect> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "Relative proliferation, 100–200 μm microgels" ;
+    lova:measurementType "Relative proliferation" ; lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.12 ; qudt:unit "ratio" ; lova:timePoint "Day 2" ; lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/rlu-size-20-60-d6> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2019.02.054/microgel-size-effect> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "GLuc RLU at day 6, 20–60 μm microgels" ;
+    lova:measurementType "Transgene expression (GLuc RLU)" ; lova:measurementCategory "Biological" ;
+    qudt:numericValue 4.0E6 ; qudt:unit "RLU" ; lova:timePoint "Day 6" ; lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/rlu-size-60-100-d6> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2019.02.054/microgel-size-effect> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "GLuc RLU at day 6, 60–100 μm microgels" ;
+    lova:measurementType "Transgene expression (GLuc RLU)" ; lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.6E7 ; qudt:unit "RLU" ; lova:timePoint "Day 6" ; lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/rlu-size-100-200-d6> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2019.02.054/microgel-size-effect> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "GLuc RLU at day 6, 100–200 μm microgels" ;
+    lova:measurementType "Transgene expression (GLuc RLU)" ; lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.5E7 ; qudt:unit "RLU" ; lova:timePoint "Day 6" ; lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2019.02.054/spreading-20-60-vs-100-200> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "Cell surface area lower in 20–60 μm vs 100–200 μm MAP" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/cellarea-20-60> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/cellarea-100-200> ;
+    lova:direction "lower" ; lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2019.02.054/stiffness-effect> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2019.02.054/map-stiffness-222>,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2019.02.054/map-stiffness-377>,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2019.02.054/map-stiffness-970> ;
+    rdfs:label "Effect of MAP gel stiffness on HDF spreading, proliferation, and transfection" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell spreading and transfection" ;
+    lova:cellType "HDF" ; lova:cellSource "Human dermal" ;
+    lova:cultureDuration "2 and 6 days" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/rlu-stiff-222-d2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2019.02.054/stiffness-effect> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "GLuc RLU at day 2, 222 Pa MAP gel" ;
+    lova:measurementType "Transgene expression (GLuc RLU)" ; lova:measurementCategory "Biological" ;
+    qudt:numericValue 7.0E6 ; qudt:unit "RLU" ; lova:timePoint "Day 2" ; lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/rlu-stiff-970-d2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2019.02.054/stiffness-effect> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "GLuc RLU at day 2, 970 Pa MAP gel" ;
+    lova:measurementType "Transgene expression (GLuc RLU)" ; lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.55E7 ; qudt:unit "RLU" ; lova:timePoint "Day 2" ; lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/rlu-stiff-222-d6> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2019.02.054/stiffness-effect> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "GLuc RLU at day 6, 222 Pa MAP gel" ;
+    lova:measurementType "Transgene expression (GLuc RLU)" ; lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.05E7 ; qudt:unit "RLU" ; lova:timePoint "Day 6" ; lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/rlu-stiff-970-d6> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2019.02.054/stiffness-effect> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "GLuc RLU at day 6, 970 Pa MAP gel" ;
+    lova:measurementType "Transgene expression (GLuc RLU)" ; lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.3E7 ; qudt:unit "RLU" ; lova:timePoint "Day 6" ; lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2019.02.054/transfection-970-vs-222-d2> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "Transgene expression higher at 970 Pa vs 222 Pa MAP at day 2 (2.28-fold)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/rlu-stiff-970-d2> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/rlu-stiff-222-d2> ;
+    lova:direction "higher" ; lova:foldChange 2.28 .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2019.02.054/transfection-970-vs-222-d6> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "Transgene expression higher at 970 Pa vs 222 Pa MAP at day 6 (2.25-fold)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/rlu-stiff-970-d6> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/rlu-stiff-222-d6> ;
+    lova:direction "higher" ; lova:foldChange 2.25 .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2019.02.054/rgd-concentration-effect> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2019.02.054/map-rgd-100>,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2019.02.054/map-rgd-250>,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2019.02.054/map-rgd-500>,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2019.02.054/map-rgd-1000> ;
+    rdfs:label "Effect of RGD concentration on HDF spreading, proliferation, and transfection" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell spreading and transfection" ;
+    lova:cellType "HDF" ; lova:cellSource "Human dermal" ;
+    lova:cultureDuration "2 and 6 days" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/rlu-rgd-100-d6> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2019.02.054/rgd-concentration-effect> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "GLuc RLU at day 6, RGD 100 μM" ;
+    lova:measurementType "Transgene expression (GLuc RLU)" ; lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.5E6 ; qudt:unit "RLU" ; lova:timePoint "Day 6" ; lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/rlu-rgd-500-d6> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2019.02.054/rgd-concentration-effect> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "GLuc RLU at day 6, RGD 500 μM" ;
+    lova:measurementType "Transgene expression (GLuc RLU)" ; lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.3E7 ; qudt:unit "RLU" ; lova:timePoint "Day 6" ; lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2019.02.054/rgd-500-vs-100-d6> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "Transgene expression higher at RGD 500 μM vs 100 μM MAP at day 6" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/rlu-rgd-500-d6> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/rlu-rgd-100-d6> ;
+    lova:direction "higher" ; lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2019.02.054/rgd-clustering-effect> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2019.02.054/map-clustering-1>,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2019.02.054/map-clustering-2>,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2019.02.054/map-clustering-4>,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2019.02.054/map-clustering-12> ;
+    rdfs:label "Effect of RGD clustering ratio on HDF spreading, proliferation, and transfection" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell spreading and transfection" ;
+    lova:cellType "HDF" ; lova:cellSource "Human dermal" ;
+    lova:cultureDuration "2 and 6 days" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/rlu-cluster-1-d6> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2019.02.054/rgd-clustering-effect> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "GLuc RLU at day 6, RGD clustering ratio 1" ;
+    lova:measurementType "Transgene expression (GLuc RLU)" ; lova:measurementCategory "Biological" ;
+    qudt:numericValue 3.1E7 ; qudt:unit "RLU" ; lova:timePoint "Day 6" ; lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/rlu-cluster-12-d6> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2019.02.054/rgd-clustering-effect> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "GLuc RLU at day 6, RGD clustering ratio 12" ;
+    lova:measurementType "Transgene expression (GLuc RLU)" ; lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.75E7 ; qudt:unit "RLU" ; lova:timePoint "Day 6" ; lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2019.02.054/cluster-12-vs-1-d6> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "Transgene expression lower at RGD clustering ratio 12 vs ratio 1 at day 6" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/rlu-cluster-12-d6> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/rlu-cluster-1-d6> ;
+    lova:direction "lower" ; lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2019.02.054/integrin-specificity-effect> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2019.02.054/map-fn-9x10>,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2019.02.054/map-fn-9-4g-10> ;
+    rdfs:label "Effect of integrin specificity (fibronectin fragment) on HDF spreading, proliferation, and transfection" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell spreading and transfection" ;
+    lova:cellType "HDF" ; lova:cellSource "Human dermal" ;
+    lova:cultureDuration "2 and 6 days" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/cellarea-9x10> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2019.02.054/integrin-specificity-effect> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "Average cell surface area, α3/α5β1-activating gel" ;
+    lova:measurementType "Average cell surface area" ; lova:measurementCategory "Biological" ;
+    qudt:numericValue 3500.0 ; qudt:unit "μm²" ; lova:timePoint "Day 2" ; lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/cellarea-9-4g-10> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2019.02.054/integrin-specificity-effect> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "Average cell surface area, αvβ3-activating gel" ;
+    lova:measurementType "Average cell surface area" ; lova:measurementCategory "Biological" ;
+    qudt:numericValue 5900.0 ; qudt:unit "μm²" ; lova:timePoint "Day 2" ; lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/proliferation-9x10> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2019.02.054/integrin-specificity-effect> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "Relative proliferation, α3/α5β1-activating gel" ;
+    lova:measurementType "Relative proliferation" ; lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.97 ; qudt:unit "ratio" ; lova:timePoint "Day 2" ; lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/proliferation-9-4g-10> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2019.02.054/integrin-specificity-effect> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "Relative proliferation, αvβ3-activating gel" ;
+    lova:measurementType "Relative proliferation" ; lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.70 ; qudt:unit "ratio" ; lova:timePoint "Day 2" ; lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/rlu-9x10-d6> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2019.02.054/integrin-specificity-effect> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "GLuc RLU at day 6, α3/α5β1-activating gel" ;
+    lova:measurementType "Transgene expression (GLuc RLU)" ; lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.9E7 ; qudt:unit "RLU" ; lova:timePoint "Day 6" ; lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/rlu-9-4g-10-d6> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2019.02.054/integrin-specificity-effect> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "GLuc RLU at day 6, αvβ3-activating gel" ;
+    lova:measurementType "Transgene expression (GLuc RLU)" ; lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.35E7 ; qudt:unit "RLU" ; lova:timePoint "Day 6" ; lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2019.02.054/spreading-9x10-vs-9-4g-10> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "Cell surface area lower in α3/α5β1-activating gel vs αvβ3-activating gel" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/cellarea-9x10> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/cellarea-9-4g-10> ;
+    lova:direction "lower" ; lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2019.02.054/proliferation-9x10-vs-9-4g-10> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "Proliferation higher in α3/α5β1-activating gel vs αvβ3-activating gel" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/proliferation-9x10> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/proliferation-9-4g-10> ;
+    lova:direction "higher" ; lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2019.02.054/transfection-9x10-vs-9-4g-10-d6> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2019.02.054> ;
+    rdfs:label "Transgene expression higher in α3/α5β1-activating gel vs αvβ3-activating gel at day 6" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/rlu-9x10-d6> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2019.02.054/rlu-9-4g-10-d6> ;
+    lova:direction "higher" ; lova:isSignificant true .

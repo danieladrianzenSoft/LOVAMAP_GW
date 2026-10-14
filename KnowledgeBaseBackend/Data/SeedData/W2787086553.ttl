@@ -1,0 +1,727 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> a bibo:AcademicArticle ;
+    rdfs:label "Truong & Segura, 2018 — Sustained Transgene Expression via Hydrogel-Mediated Gene Transfer" ;
+    dc:title "Sustained Transgene Expression via Hydrogel-Mediated Gene Transfer Results from Multiple Transfection Events" ;
+    dc:identifier "10.1021/acsbiomaterials.7b00957" ;
+    dc:date "2018"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/acs-biomaterials-science-engineering> ;
+    dc:creator <https://lovamap.com/ontology#author/truong-norman> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/truong-norman>
+                       <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    dc:bibliographicCitation "Truong & Segura, 2018" ;
+    lova:focusMaterial "Porous hyaluronic acid (HA) hydrogel scaffolds surface-coated with DNA/PEI polyplexes for sustained nonviral gene delivery to D1 mouse mesenchymal stem cells" .
+
+<https://lovamap.com/ontology#author/truong-norman> a foaf:Person ;
+    foaf:familyName "Truong" ;
+    foaf:givenName "Norman F." ;
+    foaf:name "Norman F. Truong" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California Los Angeles" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California Los Angeles" ;
+    schema:affiliation "Department of Biomedical Engineering, Duke University" .
+
+<https://lovamap.com/ontology#journal/acs-biomaterials-science-engineering> a bibo:Journal ;
+    dc:title "ACS Biomaterials Science & Engineering" ;
+    bibo:issn "2373-9878" .
+
+<https://lovamap.com/ontology#material/10.1021-acsbiomaterials.7b00957/ha-hydrogel-uncoated> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    rdfs:label "Porous HA hydrogel, non-coated (sphere-templated)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Hyaluronic acid (HA)" ;
+    lova:particleSizeMin 53.0 ;
+    lova:particleSizeMax 63.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:stiffnessValue 245.0 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:reportedPoreSize "83.7 ± 15.2 μm" ;
+    lova:scaffoldDimensions "4 mm diameter biopsy punch, 20 μL hydrogel volume" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-acsbiomaterials.7b00957/ha-sphere-templating> .
+
+<https://lovamap.com/ontology#material/10.1021-acsbiomaterials.7b00957/ha-hydrogel-dna-1.03ug> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    rdfs:label "Porous HA hydrogel surface-coated with 1.03 ± 0.20 μg DNA polyplexes (0.05 μg/μL coating solution)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Hyaluronic acid (HA)" ;
+    lova:particleSizeMin 53.0 ;
+    lova:particleSizeMax 63.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:stiffnessValue 245.0 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:reportedPoreSize "83.7 ± 15.2 μm" ;
+    lova:surfaceModification "DNA/PEI polyplex surface coating, 1.03 ± 0.20 μg DNA" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-acsbiomaterials.7b00957/ha-sphere-templating> ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-acsbiomaterials.7b00957/polyplex-surface-coating> .
+
+<https://lovamap.com/ontology#material/10.1021-acsbiomaterials.7b00957/ha-hydrogel-dna-1.66ug> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    rdfs:label "Porous HA hydrogel surface-coated with 1.66 ± 0.26 μg DNA polyplexes (0.1 μg/μL coating solution)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Hyaluronic acid (HA)" ;
+    lova:particleSizeMin 53.0 ;
+    lova:particleSizeMax 63.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:stiffnessValue 245.0 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:reportedPoreSize "83.7 ± 15.2 μm" ;
+    lova:surfaceModification "DNA/PEI polyplex surface coating, 1.66 ± 0.26 μg DNA" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-acsbiomaterials.7b00957/ha-sphere-templating> ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-acsbiomaterials.7b00957/polyplex-surface-coating> .
+
+<https://lovamap.com/ontology#material/10.1021-acsbiomaterials.7b00957/ha-hydrogel-dna-2.71ug> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    rdfs:label "Porous HA hydrogel surface-coated with 2.71 ± 0.60 μg DNA polyplexes (0.2 μg/μL coating solution)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Hyaluronic acid (HA)" ;
+    lova:particleSizeMin 53.0 ;
+    lova:particleSizeMax 63.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:stiffnessValue 245.0 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:reportedPoreSize "83.7 ± 15.2 μm" ;
+    lova:surfaceModification "DNA/PEI polyplex surface coating, 2.71 ± 0.60 μg DNA" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-acsbiomaterials.7b00957/ha-sphere-templating> ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-acsbiomaterials.7b00957/polyplex-surface-coating> .
+
+<https://lovamap.com/ontology#material/10.1021-acsbiomaterials.7b00957/tcp-2d-control> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    rdfs:label "2D tissue-culture plastic (bolus transfection control)" ;
+    lova:particleShape "None (2D substrate)" ;
+    lova:stiffnessQualitative "Rigid" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1021-acsbiomaterials.7b00957/ha-sphere-templating> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    rdfs:label "Porous HA hydrogel formation via chemically sintered PMMA sphere templating" ;
+    lova:chemistry "Michael-type addition (thiol-ene)" ;
+    lova:manufacturingMethod "Sphere templating (chemically sintered PMMA microsphere template, centrifugal perfusion, acetone dissolution of template)" ;
+    lova:annealingConditions "37 °C for 20 min to induce complete cross-linking after perfusion at 500g, 15 min, 4°C" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.7b00957/ha-60kda> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.7b00957/adh> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.7b00957/edc> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.7b00957/nhs-ac> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.7b00957/hs-mmp-sh-peptide> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.7b00957/rgd-peptide> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.7b00957/pmma-microspheres> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1021-acsbiomaterials.7b00957/polyplex-surface-coating> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    rdfs:label "DNA/PEI polyplex formation and electrostatic surface coating onto HA hydrogel pores" ;
+    lova:chemistry "Electrostatic complexation (polyelectrolyte self-assembly)" ;
+    lova:manufacturingMethod "Polyplex formation at N/P ratio 7 followed by electrostatic surface coating onto porous hydrogel for 2 h with agitation" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.7b00957/lpei-25kda> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.7b00957/pcmv-gluc-vector> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.7b00957/nacl> .
+
+<https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.7b00957/ha-60kda> a lova:Reagent ;
+    rdfs:label "Sodium hyaluronan (HA, 60 kDa)" ;
+    lova:reagentRole "monomer" ;
+    lova:molecularWeight "60 kDa" ;
+    lova:supplier "Genzyme Corporation" ;
+    lova:reagentFunction "Hydrogel backbone polymer" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.7b00957/adh> a lova:Reagent ;
+    rdfs:label "Adipic acid dihydrazide (ADH)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "36.77 g (211.07 mmol)" ;
+    lova:reagentFunction "Hydrazide functionalization of HA (HA-ADH synthesis)" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.7b00957/edc> a lova:Reagent ;
+    rdfs:label "1-ethyl-3-[3-(dimethylamino)propyl] carbodiimide hydrochloride (EDC)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "4 g" ;
+    lova:reagentFunction "Carbodiimide coupling agent for HA-ADH synthesis" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.7b00957/nhs-ac> a lova:Reagent ;
+    rdfs:label "N-acryloxysuccinimide (NHS-Ac)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "4.46 g" ;
+    lova:reagentFunction "Acrylate functionalization of HA-ADH to produce HA-Ac" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.7b00957/hs-mmp-sh-peptide> a lova:Reagent ;
+    rdfs:label "HS-MMP-SH peptide (Ac-GCRDGPQGIWGQDRCG-NH2)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:sequence "GCRDGPQGIWGQDRCG" ;
+    lova:supplier "Genscript" ;
+    lova:reagentFunction "MMP-degradable crosslinker for Michael addition hydrogel gelation" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.7b00957/rgd-peptide> a lova:Reagent ;
+    rdfs:label "RGD peptide (Ac-GCGYGRGDSPG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "GCGYGRGDSPG" ;
+    lova:supplier "Genscript" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.7b00957/pmma-microspheres> a lova:Reagent ;
+    rdfs:label "Poly(methyl methacrylate) (PMMA) microspheres, 53-63 μm" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Cospheric" ;
+    lova:reagentFunction "Sacrificial porogen template for pore formation" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.7b00957/lpei-25kda> a lova:Reagent ;
+    rdfs:label "High molecular weight linear polyethylenimine (LPEI, 25 kDa)" ;
+    lova:reagentRole "other" ;
+    lova:molecularWeight "25 kDa" ;
+    lova:supplier "Polysciences" ;
+    lova:reagentFunction "Cationic polymer for DNA polyplex formation" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.7b00957/pcmv-gluc-vector> a lova:Reagent ;
+    rdfs:label "pCMV-GLuc (Gaussia luciferase expression vector, pGluc)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "New England Biolabs" ;
+    lova:reagentFunction "Plasmid DNA encoding Gaussia luciferase reporter gene" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.7b00957/nacl> a lova:Reagent ;
+    rdfs:label "NaCl solution (1.5 M stock)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "150 mM final concentration" ;
+    lova:reagentFunction "Ionic strength adjustment of polyplex solution" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.7b00957/fibronectin> a lova:Reagent ;
+    rdfs:label "Human plasma fibronectin" ;
+    lova:reagentRole "other" ;
+    lova:supplier "EMD Millipore" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.7b00957/yoyo1> a lova:Reagent ;
+    rdfs:label "YOYO-1 DNA stain" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Life Technologies" ;
+    lova:reagentFunction "DNA staining for polyplex visualization" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.7b00957/p32-dctp> a lova:Reagent ;
+    rdfs:label "32P-dCTP radiolabel" ;
+    lova:reagentRole "other" ;
+    lova:concentration "250 μCi" ;
+    lova:supplier "PerkinElmer" ;
+    lova:reagentFunction "DNA radiolabeling for release/internalization tracking" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.7b00957/biosafe-ii-cocktail> a lova:Reagent ;
+    rdfs:label "BioSafe II scintillation cocktail" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Research Products International Corp" ;
+    lova:reagentFunction "Scintillation counting of radiolabeled DNA" .
+
+<https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.7b00957/rheology-storage-modulus> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-acsbiomaterials.7b00957/ha-hydrogel-uncoated> ;
+    rdfs:label "Storage modulus measurement of porous HA hydrogel" ;
+    lova:experimentCategory "Mechanical" ;
+    lova:experimentType "Oscillation rheometry" ;
+    lova:equipment "Physica MCR, Anton Paar; 8 mm diameter plate" ;
+    lova:strainRate "0.8% constant strain" ;
+    lova:frequency "0.5 to 10 s^-1 angular frequency" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.7b00957/storage-modulus> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.7b00957/rheology-storage-modulus> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    rdfs:label "Storage modulus of porous HA hydrogel" ;
+    lova:measurementType "Storage modulus" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 245.0 ;
+    qudt:unit "Pa" ;
+    lova:stdDev 26.0 ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.7b00957/pore-size-measurement> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-acsbiomaterials.7b00957/ha-hydrogel-uncoated> ;
+    rdfs:label "Average pore diameter measurement of porous HA hydrogel" ;
+    lova:experimentCategory "Structural" ;
+    lova:experimentType "Pore size measurement" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.7b00957/pore-diameter> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.7b00957/pore-size-measurement> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    rdfs:label "Average pore diameter of porous HA hydrogel" ;
+    lova:measurementType "Pore diameter" ;
+    lova:measurementCategory "Structural" ;
+    qudt:numericValue 83.7 ;
+    qudt:unit "μm" ;
+    lova:stdDev 15.2 ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.7b00957/dna-loading-quantification> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-acsbiomaterials.7b00957/ha-hydrogel-dna-1.03ug> ,
+                       <https://lovamap.com/ontology#material/10.1021-acsbiomaterials.7b00957/ha-hydrogel-dna-1.66ug> ,
+                       <https://lovamap.com/ontology#material/10.1021-acsbiomaterials.7b00957/ha-hydrogel-dna-2.71ug> ;
+    rdfs:label "DNA mass loaded into 20-μL porous HA hydrogels as a function of coating solution concentration" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "DNA loading quantification" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.7b00957/dna-loaded-1.03ug> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.7b00957/dna-loading-quantification> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    rdfs:label "DNA mass loaded with 0.05 μg/μL coating solution" ;
+    lova:measurementType "DNA mass loaded" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 1.03 ;
+    qudt:unit "μg" ;
+    lova:stdDev 0.20 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.7b00957/dna-loaded-1.66ug> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.7b00957/dna-loading-quantification> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    rdfs:label "DNA mass loaded with 0.1 μg/μL coating solution" ;
+    lova:measurementType "DNA mass loaded" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 1.66 ;
+    qudt:unit "μg" ;
+    lova:stdDev 0.26 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.7b00957/dna-loaded-2.71ug> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.7b00957/dna-loading-quantification> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    rdfs:label "DNA mass loaded with 0.2 μg/μL coating solution" ;
+    lova:measurementType "DNA mass loaded" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 2.71 ;
+    qudt:unit "μg" ;
+    lova:stdDev 0.60 ;
+    lova:isSignificant true ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.7b00957/dna-release-profile> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-acsbiomaterials.7b00957/ha-hydrogel-dna-1.03ug> ,
+                       <https://lovamap.com/ontology#material/10.1021-acsbiomaterials.7b00957/ha-hydrogel-dna-1.66ug> ,
+                       <https://lovamap.com/ontology#material/10.1021-acsbiomaterials.7b00957/ha-hydrogel-dna-2.71ug> ;
+    rdfs:label "Cumulative radiolabeled DNA release from surface-coated hydrogels over 7 days" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "DNA release" ;
+    lova:assayOrMethod "Scintillation counting of 32P-labeled DNA" ;
+    lova:temperature "37 °C" ;
+    lova:medium "PBS" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.7b00957/dna-release-7d-high-load> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.7b00957/dna-release-profile> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    rdfs:label "Cumulative percent DNA release over 7 days (two highest loading amounts)" ;
+    lova:measurementType "Cumulative percent DNA release" ;
+    lova:measurementCategory "Biochemical" ;
+    lova:valueString "<5%" ;
+    lova:timePoint "7 days" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.7b00957/dna-release-harvest-frequency> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-acsbiomaterials.7b00957/ha-hydrogel-dna-2.71ug> ;
+    rdfs:label "DNA release comparing daily vs every-3-day harvest" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "DNA release" ;
+    lova:assayOrMethod "Scintillation counting of 32P-labeled DNA" ;
+    lova:temperature "37 °C" ;
+    lova:medium "PBS" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.7b00957/dna-release-daily-day15> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.7b00957/dna-release-harvest-frequency> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    rdfs:label "Cumulative DNA released by day 15 with daily harvest" ;
+    lova:measurementType "Cumulative DNA released" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 0.3191 ;
+    qudt:unit "μg" ;
+    lova:stdDev 0.0321 ;
+    lova:timePoint "Day 15" ;
+    lova:comparisonGroup "Harvest every 3 days" ;
+    lova:isSignificant true ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.7b00957/dna-release-3day-day15> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.7b00957/dna-release-harvest-frequency> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    rdfs:label "Cumulative DNA released by day 15 with harvest every 3 days" ;
+    lova:measurementType "Cumulative DNA released" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 0.1335 ;
+    qudt:unit "μg" ;
+    lova:stdDev 0.0033 ;
+    lova:timePoint "Day 15" ;
+    lova:comparisonGroup "Daily harvest" ;
+    lova:isSignificant true ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1021-acsbiomaterials.7b00957/release-daily-vs-3day> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    rdfs:label "Daily harvest results in higher cumulative DNA release than harvest every 3 days (day 15)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.7b00957/dna-release-daily-day15> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.7b00957/dna-release-3day-day15> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.7b00957/cell-seeding-quantification> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-acsbiomaterials.7b00957/ha-hydrogel-uncoated> ;
+    rdfs:label "CyQUANT quantification of D1 cells seeded in porous hydrogels" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell quantification" ;
+    lova:assayOrMethod "CyQUANT assay" ;
+    lova:cellType "D1 (mouse bone marrow mesenchymal stem cell)" ;
+    lova:cellSource "Mouse bone marrow" ;
+    lova:seedingDensity "1,000,000 cells/mL, 250 μL/gel" ;
+    lova:cultureDuration "12 h" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.7b00957/cells-seeded-count> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.7b00957/cell-seeding-quantification> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    rdfs:label "Number of D1 cells seeded per scaffold" ;
+    lova:measurementType "Cell count" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 43000.0 ;
+    qudt:unit "cells/scaffold" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.7b00957/longterm-transfection> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-acsbiomaterials.7b00957/ha-hydrogel-dna-1.03ug> ,
+                       <https://lovamap.com/ontology#material/10.1021-acsbiomaterials.7b00957/ha-hydrogel-dna-1.66ug> ,
+                       <https://lovamap.com/ontology#material/10.1021-acsbiomaterials.7b00957/ha-hydrogel-dna-2.71ug> ,
+                       <https://lovamap.com/ontology#material/10.1021-acsbiomaterials.7b00957/tcp-2d-control> ,
+                       <https://lovamap.com/ontology#material/10.1021-acsbiomaterials.7b00957/ha-hydrogel-uncoated> ;
+    rdfs:label "Long-term transgene (Gaussia luciferase) expression from surface-coated porous HA hydrogels vs bolus transfection" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transgene expression" ;
+    lova:assayOrMethod "BioLux Gaussia Luciferase assay" ;
+    lova:equipment "Modulus Fluorometer, Turner BioSystems" ;
+    lova:cellType "D1 (mouse bone marrow mesenchymal stem cell)" ;
+    lova:cellSource "Mouse bone marrow" ;
+    lova:cultureDuration "30 days" ;
+    lova:cultureMedium "DMEM + 10% bovine growth serum + 1% penicillin/streptomycin" ;
+    lova:temperature "37 °C" ;
+    lova:atmosphere "5% CO2" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.7b00957/cumrlu-2.71ug-day28> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.7b00957/longterm-transfection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    rdfs:label "Cumulative RLU at ~day 28, 2.71 μg DNA surface-coated hydrogel" ;
+    lova:measurementType "Cumulative Gaussia luciferase expression (RLU)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 3.3E8 ;
+    qudt:unit "RLU" ;
+    lova:timePoint "Day 28" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.7b00957/cumrlu-1.66ug-day28> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.7b00957/longterm-transfection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    rdfs:label "Cumulative RLU at ~day 28, 1.66 μg DNA surface-coated hydrogel" ;
+    lova:measurementType "Cumulative Gaussia luciferase expression (RLU)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.8E8 ;
+    qudt:unit "RLU" ;
+    lova:timePoint "Day 28" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.7b00957/cumrlu-1.03ug-day28> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.7b00957/longterm-transfection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    rdfs:label "Cumulative RLU at ~day 28, 1.03 μg DNA surface-coated hydrogel" ;
+    lova:measurementType "Cumulative Gaussia luciferase expression (RLU)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.85E8 ;
+    qudt:unit "RLU" ;
+    lova:timePoint "Day 28" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.7b00957/cumrlu-2dbolus-day8> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.7b00957/longterm-transfection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    rdfs:label "Cumulative RLU at day 8, 2D bolus transfection (2.71 μg DNA)" ;
+    lova:measurementType "Cumulative Gaussia luciferase expression (RLU)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.65E8 ;
+    qudt:unit "RLU" ;
+    lova:timePoint "Day 8" ;
+    lova:comparisonGroup "2D bolus transfection" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.7b00957/cumrlu-porousbolus-day17> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.7b00957/longterm-transfection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    rdfs:label "Cumulative RLU at day 17, porous gel bolus transfection (2.71 μg DNA)" ;
+    lova:measurementType "Cumulative Gaussia luciferase expression (RLU)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.2E8 ;
+    qudt:unit "RLU" ;
+    lova:timePoint "Day 17" ;
+    lova:comparisonGroup "Porous gel bolus transfection" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1021-acsbiomaterials.7b00957/cumrlu-2.71-vs-1.03> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    rdfs:label "Higher cumulative RLU with 2.71 μg DNA loading vs 1.03 μg DNA loading" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.7b00957/cumrlu-2.71ug-day28> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.7b00957/cumrlu-1.03ug-day28> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#comparison/10.1021-acsbiomaterials.7b00957/cumrlu-2.71-vs-2dbolus> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    rdfs:label "Surface-coated 2.71 μg DNA hydrogel produces higher and more sustained expression than 2D bolus transfection" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.7b00957/cumrlu-2.71ug-day28> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.7b00957/cumrlu-2dbolus-day8> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#comparison/10.1021-acsbiomaterials.7b00957/cumrlu-2.71-vs-porousbolus> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    rdfs:label "Surface-coated 2.71 μg DNA hydrogel produces higher and more sustained expression than porous gel bolus transfection" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.7b00957/cumrlu-2.71ug-day28> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.7b00957/cumrlu-porousbolus-day17> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.7b00957/toxicity-2d-bolus> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-acsbiomaterials.7b00957/tcp-2d-control> ;
+    rdfs:label "Toxicity of repeated bolus polyplex transfections in 2D culture" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell viability / toxicity" ;
+    lova:assayOrMethod "MTS (CellTiter AQueous One)" ;
+    lova:cellType "D1 (mouse bone marrow mesenchymal stem cell)" ;
+    lova:seedingDensity "20,000 cells/well" ;
+    lova:cultureDuration "8 days" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.7b00957/cellnum-0x-day8> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.7b00957/toxicity-2d-bolus> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    rdfs:label "Cell number at day 8, 0 bolus doses" ;
+    lova:measurementType "Cell number" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 47000.0 ;
+    qudt:unit "cells" ;
+    lova:timePoint "Day 8" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.7b00957/cellnum-3x-day8> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.7b00957/toxicity-2d-bolus> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    rdfs:label "Cell number at day 8, 3x bolus doses" ;
+    lova:measurementType "Cell number" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 15000.0 ;
+    qudt:unit "cells" ;
+    lova:timePoint "Day 8" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1021-acsbiomaterials.7b00957/cellnum-0x-vs-3x> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    rdfs:label "Cell number lower with 3x bolus doses vs 0x bolus doses at day 8" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.7b00957/cellnum-3x-day8> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.7b00957/cellnum-0x-day8> ;
+    lova:direction "lower" .
+
+<https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.7b00957/toxicity-porous-coated-vs-noncoated> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-acsbiomaterials.7b00957/ha-hydrogel-uncoated> ,
+                       <https://lovamap.com/ontology#material/10.1021-acsbiomaterials.7b00957/ha-hydrogel-dna-2.71ug> ;
+    rdfs:label "Toxicity of surface-coated vs noncoated porous hydrogel scaffolds" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell viability" ;
+    lova:assayOrMethod "alamarBlue assay" ;
+    lova:cellType "D1 (mouse bone marrow mesenchymal stem cell)" ;
+    lova:cultureDuration "29 days" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.7b00957/cellnum-nodna-day29> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.7b00957/toxicity-porous-coated-vs-noncoated> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    rdfs:label "Cell number at day 29, no DNA (noncoated porous hydrogel)" ;
+    lova:measurementType "Cell number" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 118000.0 ;
+    qudt:unit "cells" ;
+    lova:timePoint "Day 29" ;
+    lova:comparisonGroup "no DNA" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.7b00957/cellnum-surfacecoated-day29> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.7b00957/toxicity-porous-coated-vs-noncoated> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    rdfs:label "Cell number at day 29, surface-coated DNA" ;
+    lova:measurementType "Cell number" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 80000.0 ;
+    qudt:unit "cells" ;
+    lova:timePoint "Day 29" ;
+    lova:comparisonGroup "surface-coated DNA" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1021-acsbiomaterials.7b00957/cellnum-nodna-vs-coated-day10> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    rdfs:label "Cell number higher in no-DNA scaffolds vs surface-coated scaffolds at day 10" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.7b00957/cellnum-nodna-day29> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.7b00957/cellnum-surfacecoated-day29> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.7b00957/celldensity-transfection> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-acsbiomaterials.7b00957/tcp-2d-control> ;
+    rdfs:label "Effect of plating density (6-, 12-, 24-, 48-well) on bolus transfection of D1 cells" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transfection efficiency" ;
+    lova:assayOrMethod "BioLux Gaussia Luciferase assay" ;
+    lova:cellType "D1 (mouse bone marrow mesenchymal stem cell)" ;
+    lova:seedingDensity "20,000 cells/well" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.7b00957/celldensity-transfection-trend> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.7b00957/celldensity-transfection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    rdfs:label "Decreased transfection with lower seeding density (larger well surface area)" ;
+    lova:measurementType "Transfection efficiency trend" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Decreased transfection with lower seeding density across 6-, 12-, 24-, 48-well plates" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.7b00957/celldensity-expression> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-acsbiomaterials.7b00957/tcp-2d-control> ;
+    rdfs:label "Effect of plating density on transgene expression after transfection" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transgene expression" ;
+    lova:assayOrMethod "BioLux Gaussia Luciferase assay" ;
+    lova:cellType "D1 (mouse bone marrow mesenchymal stem cell)" ;
+    lova:seedingDensity "20,000 pretransfected cells/well" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.7b00957/celldensity-expression-nodiff> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.7b00957/celldensity-expression> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    rdfs:label "No significant difference in transgene expression across plating densities of pretransfected cells" ;
+    lova:measurementType "Transgene expression" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "No significant difference between 6-, 12-, 24-, 48-well plating densities" ;
+    lova:isSignificant false ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.7b00957/retransfection-assay> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-acsbiomaterials.7b00957/ha-hydrogel-uncoated> ,
+                       <https://lovamap.com/ontology#material/10.1021-acsbiomaterials.7b00957/ha-hydrogel-dna-2.71ug> ;
+    rdfs:label "Retransfection assay: pretransfected vs non-pretransfected cells in surface-coated vs noncoated hydrogels" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Retransfection / transgene expression" ;
+    lova:assayOrMethod "BioLux Gaussia Luciferase assay" ;
+    lova:cellType "D1 (mouse bone marrow mesenchymal stem cell)" ;
+    lova:cultureDuration "5 days" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.7b00957/retransfection-pretransfected-coated> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.7b00957/retransfection-assay> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    rdfs:label "Cumulative RLU, pretransfected cells + surface-coated hydrogel" ;
+    lova:measurementType "Cumulative Gaussia luciferase expression (RLU)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.65E8 ;
+    qudt:unit "RLU" ;
+    lova:timePoint "Day 5" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.7b00957/retransfection-pretransfected-noncoated> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.7b00957/retransfection-assay> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    rdfs:label "Cumulative RLU, pretransfected cells + noncoated hydrogel" ;
+    lova:measurementType "Cumulative Gaussia luciferase expression (RLU)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.2E8 ;
+    qudt:unit "RLU" ;
+    lova:timePoint "Day 5" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1021-acsbiomaterials.7b00957/retransfection-coated-vs-noncoated> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    rdfs:label "Pretransfected cells seeded in surface-coated hydrogel show higher expression than in noncoated hydrogel" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.7b00957/retransfection-pretransfected-coated> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.7b00957/retransfection-pretransfected-noncoated> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.7b00957/internalized-dna-tracking> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-acsbiomaterials.7b00957/ha-hydrogel-dna-2.71ug> ,
+                       <https://lovamap.com/ontology#material/10.1021-acsbiomaterials.7b00957/ha-hydrogel-uncoated> ;
+    rdfs:label "Internalized radiolabeled DNA over time: surface-coated hydrogel vs bolus transfection in noncoated hydrogel" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Internalized DNA tracking" ;
+    lova:assayOrMethod "Scintillation counting of internalized 32P-DNA" ;
+    lova:cellType "D1 (mouse bone marrow mesenchymal stem cell)" ;
+    lova:cultureDuration "19 days" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.7b00957/internalizeddna-coated-day5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.7b00957/internalized-dna-tracking> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    rdfs:label "Internalized DNA (% of day 2) at day 5, surface-coated porous gel" ;
+    lova:measurementType "Internalized DNA (% of day 2)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 115.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 5" ;
+    lova:comparisonGroup "Bolus transfection, porous gel" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.7b00957/internalizeddna-bolus-day5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.7b00957/internalized-dna-tracking> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    rdfs:label "Internalized DNA (% of day 2) at day 5, bolus transfection in noncoated porous gel" ;
+    lova:measurementType "Internalized DNA (% of day 2)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 43.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 5" ;
+    lova:comparisonGroup "Surface coated, porous gel" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.7b00957/internalizeddna-coated-day19> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.7b00957/internalized-dna-tracking> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    rdfs:label "Internalized DNA (% of day 2) at day 19, surface-coated porous gel" ;
+    lova:measurementType "Internalized DNA (% of day 2)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 73.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 19" ;
+    lova:comparisonGroup "Bolus transfection, porous gel" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.7b00957/internalizeddna-bolus-day19> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.7b00957/internalized-dna-tracking> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    rdfs:label "Internalized DNA (% of day 2) at day 19, bolus transfection in noncoated porous gel" ;
+    lova:measurementType "Internalized DNA (% of day 2)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 5.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 19" ;
+    lova:comparisonGroup "Surface coated, porous gel" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1021-acsbiomaterials.7b00957/internalizeddna-day5> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    rdfs:label "Internalized DNA higher in surface-coated vs bolus transfection at day 5" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.7b00957/internalizeddna-coated-day5> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.7b00957/internalizeddna-bolus-day5> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1021-acsbiomaterials.7b00957/internalizeddna-day19> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.7b00957> ;
+    rdfs:label "Internalized DNA higher in surface-coated vs bolus transfection at day 19" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.7b00957/internalizeddna-coated-day19> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.7b00957/internalizeddna-bolus-day19> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .

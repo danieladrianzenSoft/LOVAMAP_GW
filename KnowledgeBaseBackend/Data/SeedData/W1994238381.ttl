@@ -1,0 +1,720 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> a bibo:AcademicArticle ;
+    rdfs:label "Segura et al., 2004 — DNA delivery from hyaluronic acid-collagen hydrogels" ;
+    dc:title "DNA delivery from hyaluronic acid-collagen hydrogels via a substrate-mediated approach" ;
+    dc:identifier "10.1016/j.biomaterials.2004.05.007" ;
+    dc:date "2004"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/biomaterials> ;
+    dc:creator <https://lovamap.com/ontology#author/segura-tatiana> ,
+               <https://lovamap.com/ontology#author/chung-peter> ,
+               <https://lovamap.com/ontology#author/shea-lonnie> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/segura-tatiana>
+                       <https://lovamap.com/ontology#author/chung-peter>
+                       <https://lovamap.com/ontology#author/shea-lonnie> ) ;
+    dc:bibliographicCitation "Segura et al., 2004" ;
+    lova:focusMaterial "DNA/PEI complexes immobilized on hyaluronic acid-collagen hydrogels for substrate-mediated non-viral gene delivery" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" ;
+    schema:affiliation "Department of Chemical and Biological Engineering, Northwestern University, Evanston, IL, USA" .
+
+<https://lovamap.com/ontology#author/chung-peter> a foaf:Person ;
+    foaf:familyName "Chung" ;
+    foaf:givenName "Peter H." ;
+    foaf:name "Peter H. Chung" ;
+    schema:affiliation "Department of Biomedical Engineering, Northwestern University, Evanston, IL, USA" .
+
+<https://lovamap.com/ontology#author/shea-lonnie> a foaf:Person ;
+    foaf:familyName "Shea" ;
+    foaf:givenName "Lonnie D." ;
+    foaf:name "Lonnie D. Shea" ;
+    schema:affiliation "Department of Chemical and Biological Engineering, Northwestern University, Evanston, IL, USA" ;
+    schema:affiliation "Department of Biomedical Engineering, Northwestern University, Evanston, IL, USA" .
+
+<https://lovamap.com/ontology#journal/biomaterials> a bibo:Journal ;
+    dc:title "Biomaterials" ;
+    bibo:issn "0142-9612" .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2004.05.007/ha-collagen-hydrogel> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> ;
+    rdfs:label "Hyaluronic acid-collagen hydrogel substrate (biotinylated, neutravidin-coated)" ;
+    lova:particleMaterial "Hyaluronic acid-collagen" ;
+    lova:packingConfiguration "Crosslinked hydrogel network" ;
+    lova:surfaceModification "Biotinylated, Neutravidin-coated" .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2004.05.007/dna-pei-small> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> ;
+    rdfs:label "DNA/PEI complex, small diameter (formed in water, N/P=5)" ;
+    lova:particleShape "Complex (polyplex)" ;
+    lova:particleMaterial "PEI/DNA polyplex" ;
+    lova:particleSizeMin 138.1 ;
+    lova:particleSizeMax 140.7 ;
+    lova:particleSizeUnit "nm" ;
+    lova:sizeDistribution "Monodisperse (z-average 139.4±1.3 nm)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2004.05.007/dna-pei-complexation> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2004.05.007/dna-pei-large> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> ;
+    rdfs:label "DNA/PEI complex, large diameter (formed in 150 mM NaCl, N/P=5)" ;
+    lova:particleShape "Complex (polyplex)" ;
+    lova:particleMaterial "PEI/DNA polyplex" ;
+    lova:particleSizeMin 1069.4 ;
+    lova:particleSizeMax 1374.0 ;
+    lova:particleSizeUnit "nm" ;
+    lova:sizeDistribution "z-average 1221.7±152.3 nm" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2004.05.007/dna-pei-complexation> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2004.05.007/dna-pei-rgd> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> ;
+    rdfs:label "DNA/PEI complex with RGD-PEI (10-75%), biotinylated PEI 25% constant" ;
+    lova:particleShape "Complex (polyplex)" ;
+    lova:particleMaterial "PEI/DNA polyplex with RGD-PEI" ;
+    lova:surfaceModification "RGD-PEI (10%, 25%, 50%, 75%)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2004.05.007/dna-pei-complexation> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2004.05.007/ha-collagen-hydrogel-synthesis> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> ;
+    rdfs:label "HA-collagen hydrogel crosslinking with PEGDG and biotinylation" ;
+    lova:chemistry "Epoxide-alcohol crosslinking reaction (HA alcohols with PEGDG)" ;
+    lova:manufacturingMethod "Chemical crosslinking with pattern transfer topographical patterning" ;
+    lova:annealingChemistry "Biotin/neutravidin non-covalent binding" ;
+    lova:annealingConditions "1 mM NA solution in PBS, 1h, room temperature" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2004.05.007/ha> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2004.05.007/pegdg> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2004.05.007/aad> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2004.05.007/edc> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2004.05.007/sulfo-nhs> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2004.05.007/collagen> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2004.05.007/nhs-biotin> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2004.05.007/neutravidin> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2004.05.007/biotin> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2004.05.007/dna-pei-complexation> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> ;
+    rdfs:label "DNA/PEI complex formation at varying N/P ratios and salt concentration" ;
+    lova:chemistry "Electrostatic complexation (polyplex self-assembly)" ;
+    lova:manufacturingMethod "Solution mixing (DNA + PEI) in water or 150 mM NaCl, N/P 2.5-20" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2004.05.007/plasmid-dna> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2004.05.007/pei> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2004.05.007/pei-biotin> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2004.05.007/rgd-pei> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2004.05.007/nacl> .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2004.05.007/ha> a lova:Reagent ;
+    rdfs:label "Sodium hyaluronan (HA)" ;
+    lova:reagentRole "monomer" ;
+    lova:molecularWeight "1330 kDa" ;
+    lova:supplier "Genzyme Corporation, Cambridge, MA" ;
+    lova:reagentFunction "Hydrogel backbone polymer" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2004.05.007/pegdg> a lova:Reagent ;
+    rdfs:label "Poly(ethylene glycol) diglycidyl ether (PEGDG, n=200)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:supplier "Polysciences, Warrington, PA" ;
+    lova:reagentFunction "Crosslinker for HA hydrogel" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2004.05.007/aad> a lova:Reagent ;
+    rdfs:label "Adipic acid dihydrazide (AAD)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:supplier "Sigma, St Louis, MO" ;
+    lova:concentration "30 equivalents" ;
+    lova:reagentFunction "Backbone modification of HA to introduce hydrazide groups" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2004.05.007/edc> a lova:Reagent ;
+    rdfs:label "N-(3-dimethylpropyl)-N-ethylcarbodiimide hydrochloride (EDC)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Sigma, St Louis, MO" ;
+    lova:concentration "0.5 equivalents" ;
+    lova:reagentFunction "Carbodiimide coupling agent" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2004.05.007/sulfo-nhs> a lova:Reagent ;
+    rdfs:label "N-hydroxysulfosuccinimide sodium salt (sulfo-NHS)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Sigma, St Louis, MO" ;
+    lova:concentration "0.5 equivalents" ;
+    lova:reagentFunction "Coupling agent for carbodiimide chemistry" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2004.05.007/collagen> a lova:Reagent ;
+    rdfs:label "Collagen (rat tail)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "0.19 mg/ml (final concentration in hydrogel)" ;
+    lova:reagentFunction "Cell adhesion component of hydrogel" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2004.05.007/nhs-biotin> a lova:Reagent ;
+    rdfs:label "Sulfo-NHS-LC-biotin (NHS-Biotin)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Pierce, Rockford, IL" ;
+    lova:reagentFunction "Biotinylation of HA-AAD" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2004.05.007/neutravidin> a lova:Reagent ;
+    rdfs:label "Neutravidin (NA)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Pierce, Rockford, IL" ;
+    lova:concentration "1 mM NA solution in PBS" ;
+    lova:reagentFunction "Biotin-binding protein for DNA complex immobilization" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2004.05.007/biotin> a lova:Reagent ;
+    rdfs:label "Biotin reagents for HA modification" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Pierce, Rockford, IL" ;
+    lova:reagentFunction "HA biotinylation" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2004.05.007/plasmid-dna> a lova:Reagent ;
+    rdfs:label "Plasmid DNA encoding luciferase or GFP" ;
+    lova:reagentRole "other" ;
+    lova:concentration "40 μg/ml" ;
+    lova:supplier "Purified using Qiagen reagents, Santa Clara, CA" ;
+    lova:reagentFunction "Transgene delivery for reporter gene expression" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2004.05.007/pei> a lova:Reagent ;
+    rdfs:label "Linear poly(ethylene imine) (PEI)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "PolyTransfection, Strasbourg, France" ;
+    lova:reagentFunction "Cationic polymer for DNA complexation" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2004.05.007/pei-biotin> a lova:Reagent ;
+    rdfs:label "Biotinylated linear PEI (PEI-Biotin)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "PolyTransfection, Strasbourg, France" ;
+    lova:reagentFunction "Biotin-mediated immobilization of DNA complex to neutravidin-coated hydrogel" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2004.05.007/rgd-pei> a lova:Reagent ;
+    rdfs:label "RGD-modified linear PEI (RGD-PEI)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "RGD" ;
+    lova:supplier "PolyTransfection, Strasbourg, France" ;
+    lova:reagentFunction "Integrin receptor binding to increase cellular interaction with complex" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2004.05.007/nacl> a lova:Reagent ;
+    rdfs:label "Sodium chloride (NaCl)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "150 mM" ;
+    lova:reagentFunction "Regulate DNA/PEI complex size during formation" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.05.007/dls-sizing> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2004.05.007/dna-pei-small> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2004.05.007/dna-pei-large> ;
+    rdfs:label "DLS sizing and zeta potential of DNA/PEI complexes at varying N/P ratio" ;
+    lova:experimentCategory "Physical characterization" ;
+    lova:experimentType "Dynamic light scattering" ;
+    lova:equipment "Zetasizer Nano ZS (Malvern, Worcestershire, UK)" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.05.007/complex-aggregation> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2004.05.007/dna-pei-small> ;
+    rdfs:label "DNA/PEI complex aggregation upon salt addition over time" ;
+    lova:experimentCategory "Physical characterization" ;
+    lova:experimentType "Dynamic light scattering (time course)" ;
+    lova:equipment "Zetasizer Nano ZS (Malvern, Worcestershire, UK)" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.05.007/surface-immobilization> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2004.05.007/ha-collagen-hydrogel> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2004.05.007/dna-pei-small> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2004.05.007/dna-pei-large> ;
+    rdfs:label "DNA/PEI complex surface immobilization and density quantification" ;
+    lova:experimentCategory "Physical characterization" ;
+    lova:experimentType "Surface binding assay" ;
+    lova:assayOrMethod "32P-DNA scintillation counting" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.05.007/release-kinetics> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2004.05.007/ha-collagen-hydrogel> ;
+    rdfs:label "DNA release kinetics from HA-collagen hydrogel" ;
+    lova:experimentCategory "Release kinetics" ;
+    lova:experimentType "DNA release assay" ;
+    lova:assayOrMethod "32P-DNA scintillation counting" ;
+    lova:temperature "37°C" ;
+    lova:medium "PBS, conditioned media (DMEM+10% FBS from 2-day NIH/3T3 culture), or hyaluronidase (100 U/ml)" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.05.007/luciferase-transfection> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2004.05.007/ha-collagen-hydrogel> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2004.05.007/dna-pei-small> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2004.05.007/dna-pei-large> ;
+    rdfs:label "Luciferase transgene expression mediated by immobilized DNA complexes" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transfection" ;
+    lova:assayOrMethod "Luciferase enzymatic assay (Promega)" ;
+    lova:cellType "NIH/3T3" ;
+    lova:cellSource "Mouse fibroblast cell line" ;
+    lova:seedingDensity "10,000 cells/well" ;
+    lova:cultureDuration "2 days" ;
+    lova:cultureMedium "DMEM + 10% heat-inactivated FBS + 1% penicillin/streptomycin" ;
+    lova:temperature "37°C" ;
+    lova:atmosphere "5% CO2" ;
+    lova:equipment "Luminometer (3-s delay, 10-s integration)" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.05.007/gfp-transfection> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2004.05.007/dna-pei-small> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2004.05.007/dna-pei-large> ;
+    rdfs:label "GFP-based percentage transfected cells on patterned HA-collagen hydrogel" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transfection efficiency / fluorescence microscopy" ;
+    lova:assayOrMethod "GFP expression with rhodamine phalloidin and Hoechst staining" ;
+    lova:cellType "NIH/3T3" ;
+    lova:cellSource "Mouse fibroblast cell line" ;
+    lova:seedingDensity "7,000 cells/well" ;
+    lova:cultureDuration "48h" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.05.007/rgd-dose-response> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2004.05.007/dna-pei-rgd> ;
+    rdfs:label "Effect of RGD-PEI content on transgene expression" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transfection" ;
+    lova:assayOrMethod "Luciferase enzymatic assay (Promega)" ;
+    lova:cellType "NIH/3T3" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.05.007/cell-contact-control> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2004.05.007/ha-collagen-hydrogel> ;
+    rdfs:label "Gene transfer comparison for cells on vs. not-in-contact with hydrogel" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transfection" ;
+    lova:assayOrMethod "Luciferase enzymatic assay (Promega)" ;
+    lova:cellType "NIH/3T3" ;
+    lova:seedingDensity "15,000 cells/well" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.05.007/spatial-patterning> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2004.05.007/ha-collagen-hydrogel> ;
+    rdfs:label "Spatially controlled gene transfer via topographically patterned hydrogel" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Fluorescence microscopy imaging" ;
+    lova:assayOrMethod "GFP expression overlay with rhodamine phalloidin staining" ;
+    lova:cellType "NIH/3T3" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.05.007/dz-water-np5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.05.007/dls-sizing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> ;
+    rdfs:label "z-average diameter, water, N/P=5" ;
+    lova:measurementType "z-average diameter" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 139.4 ;
+    qudt:unit "nm" ;
+    lova:stdDev 1.3 ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.05.007/dz-nacl-np5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.05.007/dls-sizing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> ;
+    rdfs:label "z-average diameter, 150 mM NaCl, N/P=5" ;
+    lova:measurementType "z-average diameter" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 1221.7 ;
+    qudt:unit "nm" ;
+    lova:stdDev 152.3 ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.05.007/dz-nacl-np20> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.05.007/dls-sizing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> ;
+    rdfs:label "z-average diameter, 150 mM NaCl, N/P=20" ;
+    lova:measurementType "z-average diameter" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 848.9 ;
+    qudt:unit "nm" ;
+    lova:stdDev 63.6 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.05.007/dz-nacl-np2-5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.05.007/dls-sizing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> ;
+    rdfs:label "z-average diameter, 150 mM NaCl, N/P=2.5" ;
+    lova:measurementType "z-average diameter" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 1778.0 ;
+    qudt:unit "nm" ;
+    lova:stdDev 227.7 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.05.007/dz-water-np20> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.05.007/dls-sizing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> ;
+    rdfs:label "z-average diameter, water, N/P=20" ;
+    lova:measurementType "z-average diameter" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 125.6 ;
+    qudt:unit "nm" ;
+    lova:stdDev 2.3 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.05.007/dz-water-np2-5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.05.007/dls-sizing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> ;
+    rdfs:label "z-average diameter, water, N/P=2.5" ;
+    lova:measurementType "z-average diameter" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 173.9 ;
+    qudt:unit "nm" ;
+    lova:stdDev 2.2 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.05.007/zeta-nacl-np2-5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.05.007/dls-sizing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> ;
+    rdfs:label "Zeta potential, 150 mM NaCl, N/P=2.5" ;
+    lova:measurementType "Zeta potential" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 11.0 ;
+    qudt:unit "mV" ;
+    lova:stdDev 2.3 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.05.007/zeta-nacl-np20> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.05.007/dls-sizing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> ;
+    rdfs:label "Zeta potential, 150 mM NaCl, N/P=20" ;
+    lova:measurementType "Zeta potential" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 24.4 ;
+    qudt:unit "mV" ;
+    lova:stdDev 0.6 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.05.007/aggregation-t0> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.05.007/complex-aggregation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> ;
+    rdfs:label "z-average diameter before salt addition, N/P=5" ;
+    lova:measurementType "z-average diameter" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 139.7 ;
+    qudt:unit "nm" ;
+    lova:stdDev 1.3 ;
+    lova:timePoint "0 min (before NaCl addition)" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.05.007/aggregation-immediate> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.05.007/complex-aggregation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> ;
+    rdfs:label "z-average diameter immediately after salt addition, N/P=5" ;
+    lova:measurementType "z-average diameter" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 342.7 ;
+    qudt:unit "nm" ;
+    lova:stdDev 12.8 ;
+    lova:timePoint "Immediate (post-NaCl addition)" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.05.007/aggregation-76min> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.05.007/complex-aggregation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> ;
+    rdfs:label "z-average diameter after 76 min incubation post-NaCl addition, N/P=5" ;
+    lova:measurementType "z-average diameter" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 758.7 ;
+    qudt:unit "nm" ;
+    lova:stdDev 53.8 ;
+    lova:timePoint "76 min" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.05.007/dna-mass-min> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.05.007/surface-immobilization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> ;
+    rdfs:label "Minimum mass of DNA immobilized to hydrogel" ;
+    lova:measurementType "Immobilized DNA mass" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 0.411 ;
+    qudt:unit "μg" ;
+    lova:stdDev 0.042 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.05.007/dna-mass-max> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.05.007/surface-immobilization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> ;
+    rdfs:label "Maximum mass of DNA immobilized to hydrogel" ;
+    lova:measurementType "Immobilized DNA mass" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 0.484 ;
+    qudt:unit "μg" ;
+    lova:stdDev 0.014 ;
+    lova:isSignificant false ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.05.007/luc-large> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.05.007/luciferase-transfection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> ;
+    rdfs:label "Maximal luciferase expression, large diameter complex" ;
+    lova:measurementType "Luciferase transgene expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 162000.0 ;
+    qudt:unit "RLU/10,000 cells" ;
+    lova:stdDev 67000.0 ;
+    lova:timePoint "2 days" ;
+    lova:comparisonGroup "Small diameter complex" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.05.007/luc-small> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.05.007/luciferase-transfection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> ;
+    rdfs:label "Maximal luciferase expression, small diameter complex" ;
+    lova:measurementType "Luciferase transgene expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 42800.0 ;
+    qudt:unit "RLU/10,000 cells" ;
+    lova:stdDev 6200.0 ;
+    lova:timePoint "2 days" ;
+    lova:comparisonGroup "Large diameter complex" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.05.007/pct-transfected-small> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.05.007/gfp-transfection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> ;
+    rdfs:label "Percentage transfected cells, small diameter complex" ;
+    lova:measurementType "Percentage transfected cells" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 48.7 ;
+    qudt:unit "%" ;
+    lova:stdDev 5.4 ;
+    lova:comparisonGroup "Large diameter complex" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.05.007/pct-transfected-large> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.05.007/gfp-transfection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> ;
+    rdfs:label "Percentage transfected cells, large diameter complex" ;
+    lova:measurementType "Percentage transfected cells" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 22.3 ;
+    qudt:unit "%" ;
+    lova:stdDev 5.8 ;
+    lova:pValue 0.0001 ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "Small diameter complex" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.05.007/release-nonbiotin-pbs-8d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.05.007/release-kinetics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> ;
+    rdfs:label "% DNA released, non-biotinylated complex, PBS, 8 days" ;
+    lova:measurementType "DNA release" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 51.6 ;
+    qudt:unit "%" ;
+    lova:stdDev 1.5 ;
+    lova:timePoint "8 days" ;
+    lova:medium "PBS" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.05.007/release-nonbiotin-cm-8d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.05.007/release-kinetics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> ;
+    rdfs:label "% DNA released, non-biotinylated complex, conditioned media, 8 days" ;
+    lova:measurementType "DNA release" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 58.7 ;
+    qudt:unit "%" ;
+    lova:stdDev 6.4 ;
+    lova:timePoint "8 days" ;
+    lova:medium "Conditioned media (DMEM + 10% FBS)" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.05.007/release-nonbiotin-haase-8d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.05.007/release-kinetics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> ;
+    rdfs:label "% DNA released, non-biotinylated complex, hyaluronidase, 8 days" ;
+    lova:measurementType "DNA release" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 78.6 ;
+    qudt:unit "%" ;
+    lova:stdDev 8.8 ;
+    lova:timePoint "8 days" ;
+    lova:medium "Hyaluronidase (100 U/ml)" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.05.007/release-biotin-pbs-8d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.05.007/release-kinetics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> ;
+    rdfs:label "% DNA released, biotinylated complex, PBS, 8 days" ;
+    lova:measurementType "DNA release" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 43.4 ;
+    qudt:unit "%" ;
+    lova:stdDev 5.3 ;
+    lova:timePoint "8 days" ;
+    lova:medium "PBS" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.05.007/release-biotin-cm-8d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.05.007/release-kinetics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> ;
+    rdfs:label "% DNA released, biotinylated complex, conditioned media, 8 days" ;
+    lova:measurementType "DNA release" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 83.3 ;
+    qudt:unit "%" ;
+    lova:stdDev 3.1 ;
+    lova:timePoint "8 days" ;
+    lova:medium "Conditioned media (DMEM + 10% FBS)" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.05.007/release-biotin-haase-8d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.05.007/release-kinetics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> ;
+    rdfs:label "% DNA released, biotinylated complex, hyaluronidase, 8 days" ;
+    lova:measurementType "DNA release" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 94.7 ;
+    qudt:unit "%" ;
+    lova:stdDev 0.5 ;
+    lova:timePoint "8 days" ;
+    lova:medium "Hyaluronidase (100 U/ml)" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.05.007/release-nonbiotin-cm-48h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.05.007/release-kinetics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> ;
+    rdfs:label "% DNA released, non-biotinylated complex, conditioned media, 48h" ;
+    lova:measurementType "DNA release" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 49.7 ;
+    qudt:unit "%" ;
+    lova:stdDev 8.1 ;
+    lova:timePoint "48h" ;
+    lova:medium "Conditioned media (DMEM + 10% FBS)" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.05.007/release-biotin-cm-48h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.05.007/release-kinetics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> ;
+    rdfs:label "% DNA released, biotinylated complex, conditioned media, 48h" ;
+    lova:measurementType "DNA release" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 49.2 ;
+    qudt:unit "%" ;
+    lova:stdDev 2.9 ;
+    lova:timePoint "48h" ;
+    lova:medium "Conditioned media (DMEM + 10% FBS)" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.05.007/luc-not-contact> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.05.007/cell-contact-control> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> ;
+    rdfs:label "Luciferase expression, cells not in contact with hydrogel" ;
+    lova:measurementType "Luciferase transgene expression" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "<1 RLU/10,000 cells" ;
+    lova:comparisonGroup "Cells cultured directly on hydrogel" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.05.007/luc-contact> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.05.007/cell-contact-control> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> ;
+    rdfs:label "Luciferase expression, cells cultured directly on hydrogel" ;
+    lova:measurementType "Luciferase transgene expression" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString ">10^5 RLU/10,000 cells" ;
+    lova:comparisonGroup "Cells not in contact with hydrogel" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.05.007/luc-rgd-0pct> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.05.007/rgd-dose-response> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> ;
+    rdfs:label "Luciferase expression, 0% RGD-PEI" ;
+    lova:measurementType "Luciferase transgene expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 124000.0 ;
+    qudt:unit "RLU/10,000 cells" ;
+    lova:stdDev 8000.0 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.05.007/luc-rgd-10-25pct> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.05.007/rgd-dose-response> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> ;
+    rdfs:label "Luciferase expression, 10% and 25% RGD-PEI" ;
+    lova:measurementType "Luciferase transgene expression" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "~7×10^4 RLU/10,000 cells" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.05.007/luc-rgd-50-75pct> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.05.007/rgd-dose-response> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> ;
+    rdfs:label "Luciferase expression, 50% and 75% RGD-PEI" ;
+    lova:measurementType "Luciferase transgene expression" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "<2×10^4 RLU/10,000 cells" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.05.007/spatial-pattern-alignment> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.05.007/spatial-patterning> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> ;
+    rdfs:label "Spatial orientation of GFP-expressing cells aligned to hydrogel pattern" ;
+    lova:measurementType "Spatial transfection pattern" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "GFP-positive cells align with phalloidin-stained cytoskeleton along topographical pattern" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.05.007/gfp-nuclei-overlay> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.05.007/gfp-transfection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> ;
+    rdfs:label "GFP-positive spindle-shaped cells relative to total Hoechst-stained nuclei" ;
+    lova:measurementType "Qualitative transfection visualization" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Sparse GFP-positive elongated cells among dense Hoechst-stained nuclei field" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2004.05.007/luc-large-vs-small> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> ;
+    rdfs:label "Luciferase expression higher with large vs small diameter complexes" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.05.007/luc-large> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.05.007/luc-small> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:foldChange 5.0 .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2004.05.007/pct-small-vs-large> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> ;
+    rdfs:label "Percentage transfected cells higher with small vs large diameter complexes" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.05.007/pct-transfected-small> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.05.007/pct-transfected-large> ;
+    lova:direction "higher" ;
+    lova:pValue 0.0001 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2004.05.007/release-biotin-vs-nonbiotin-haase> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> ;
+    rdfs:label "DNA release in hyaluronidase higher for biotinylated vs non-biotinylated complexes at 8 days" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.05.007/release-biotin-haase-8d> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.05.007/release-nonbiotin-haase-8d> ;
+    lova:direction "higher" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2004.05.007/luc-contact-vs-notcontact> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> ;
+    rdfs:label "Luciferase expression substantially higher for cells cultured on hydrogel vs not in contact" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.05.007/luc-contact> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.05.007/luc-not-contact> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2004.05.007/luc-rgd0-vs-rgd50-75> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.05.007> ;
+    rdfs:label "Luciferase expression lower with increased RGD-PEI content (50-75%) vs no RGD" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.05.007/luc-rgd-50-75pct> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.05.007/luc-rgd-0pct> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .

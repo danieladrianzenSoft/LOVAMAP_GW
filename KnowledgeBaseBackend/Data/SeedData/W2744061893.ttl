@@ -1,0 +1,837 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1038-nmat4954> a bibo:AcademicArticle ;
+    rdfs:label "Li et al., 2017 — Hydrogels with precisely controlled integrin activation dictate vascular patterning and permeability" ;
+    dc:title "Hydrogels with precisely controlled integrin activation dictate vascular patterning and permeability" ;
+    dc:identifier "10.1038/nmat4954" ;
+    dc:date "2017"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/nature-materials> ;
+    dc:creator <https://lovamap.com/ontology#author/li-shuoran> ,
+               <https://lovamap.com/ontology#author/nih-lina> ,
+               <https://lovamap.com/ontology#author/bachman-haylee> ,
+               <https://lovamap.com/ontology#author/fei-peng> ,
+               <https://lovamap.com/ontology#author/li-yilei> ,
+               <https://lovamap.com/ontology#author/nam-eunwoo> ,
+               <https://lovamap.com/ontology#author/dimatteo-robert> ,
+               <https://lovamap.com/ontology#author/carmichael-stanley> ,
+               <https://lovamap.com/ontology#author/barker-thomas> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/li-shuoran>
+                       <https://lovamap.com/ontology#author/nih-lina>
+                       <https://lovamap.com/ontology#author/bachman-haylee>
+                       <https://lovamap.com/ontology#author/fei-peng>
+                       <https://lovamap.com/ontology#author/li-yilei>
+                       <https://lovamap.com/ontology#author/nam-eunwoo>
+                       <https://lovamap.com/ontology#author/dimatteo-robert>
+                       <https://lovamap.com/ontology#author/carmichael-stanley>
+                       <https://lovamap.com/ontology#author/barker-thomas>
+                       <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    dc:bibliographicCitation "Li et al., 2017" ;
+    lova:focusMaterial "Fibronectin-fragment-modified fibrin and hyaluronic acid hydrogels promoting α3/α5β1 or αvβ3 integrin binding, studied for endothelial sprouting in vitro and vascular patterning/permeability in vivo (skin implant and ischemic stroke models)" .
+
+<https://lovamap.com/ontology#author/li-shuoran> a foaf:Person ;
+    foaf:familyName "Li" ; foaf:givenName "Shuoran" ; foaf:name "Shuoran Li" .
+<https://lovamap.com/ontology#author/nih-lina> a foaf:Person ;
+    foaf:familyName "Nih" ; foaf:givenName "Lina R." ; foaf:name "Lina R. Nih" .
+<https://lovamap.com/ontology#author/bachman-haylee> a foaf:Person ;
+    foaf:familyName "Bachman" ; foaf:givenName "Haylee N." ; foaf:name "Haylee N. Bachman" .
+<https://lovamap.com/ontology#author/fei-peng> a foaf:Person ;
+    foaf:familyName "Fei" ; foaf:givenName "Peng" ; foaf:name "Peng Fei" .
+<https://lovamap.com/ontology#author/li-yilei> a foaf:Person ;
+    foaf:familyName "Li" ; foaf:givenName "Yilei" ; foaf:name "Yilei Li" .
+<https://lovamap.com/ontology#author/nam-eunwoo> a foaf:Person ;
+    foaf:familyName "Nam" ; foaf:givenName "Eunwoo" ; foaf:name "Eunwoo Nam" .
+<https://lovamap.com/ontology#author/dimatteo-robert> a foaf:Person ;
+    foaf:familyName "Dimatteo" ; foaf:givenName "Robert" ; foaf:name "Robert Dimatteo" .
+<https://lovamap.com/ontology#author/carmichael-stanley> a foaf:Person ;
+    foaf:familyName "Carmichael" ; foaf:givenName "Stanley Thomas" ; foaf:name "Stanley Thomas Carmichael" ;
+    schema:affiliation "University of California, Los Angeles" .
+<https://lovamap.com/ontology#author/barker-thomas> a foaf:Person ;
+    foaf:familyName "Barker" ; foaf:givenName "Thomas Harrison" ; foaf:name "Thomas Harrison Barker" .
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ; foaf:givenName "Tatiana" ; foaf:name "Tatiana Segura" ;
+    schema:affiliation "University of California, Los Angeles" .
+
+<https://lovamap.com/ontology#journal/nature-materials> a bibo:Journal ;
+    dc:title "Nature Materials" ;
+    bibo:issn "1476-1122" .
+
+<https://lovamap.com/ontology#material/10.1038-nmat4954/fib1-matrix> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "Fibrinogen containing native fibronectin (Fib1) fibrin gel" ;
+    lova:particleMaterial "Fibrin (fibronectin-containing fibrinogen, Fib1)" .
+
+<https://lovamap.com/ontology#material/10.1038-nmat4954/fib3-matrix> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "Fibronectin-depleted fibrin gel (Fib3), blank" ;
+    lova:particleMaterial "Fibrin (fibronectin-depleted fibrinogen, Fib3)" .
+
+<https://lovamap.com/ontology#material/10.1038-nmat4954/fib3-fn-rescue> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "Fib3 fibrin gel + exogenous full-length fibronectin (1μM)" ;
+    lova:particleMaterial "Fibrin + full-length fibronectin" .
+
+<https://lovamap.com/ontology#material/10.1038-nmat4954/fib3-a3a5b1-specific> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "α3/α5β1-specific Fib3 matrix (Fib3 + 2μM Fn9*10)" ;
+    lova:particleMaterial "Fibrin + Fn9*10 fragment" ;
+    lova:surfaceModification "Fn9*10 (α3/α5β1 specific)" .
+
+<https://lovamap.com/ontology#material/10.1038-nmat4954/fib3-avb3-specific> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "αvβ3-specific Fib3 matrix (Fib3 + 2μM Fn9(4G)10)" ;
+    lova:particleMaterial "Fibrin + Fn9(4G)10 fragment" ;
+    lova:surfaceModification "Fn9(4G)10 (αvβ3 specific)" .
+
+<https://lovamap.com/ontology#material/10.1038-nmat4954/fib1-a3a5b1-specific> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "α3/α5β1-specific Fib1 matrix (Fib1 + 2μM Fn9*10)" ;
+    lova:particleMaterial "Fibrin (Fib1) + Fn9*10 fragment" .
+
+<https://lovamap.com/ontology#material/10.1038-nmat4954/fib1-avb3-specific> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "αvβ3-specific Fib1 matrix (Fib1 + 2μM Fn9(4G)10)" ;
+    lova:particleMaterial "Fibrin (Fib1) + Fn9(4G)10 fragment" .
+
+<https://lovamap.com/ontology#material/10.1038-nmat4954/fib3-rgd> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "RGD-modified Fib3 matrix (200-1000μM α2PI1-8-RGD)" ;
+    lova:particleMaterial "Fibrin + RGD peptide" ;
+    lova:surfaceModification "RGD (200, 500, 1000 μM)" .
+
+<https://lovamap.com/ontology#material/10.1038-nmat4954/ha-blank> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "Blank HA hydrogel (no fibronectin fragment)" ;
+    lova:particleMaterial "Hyaluronic acid (HA-ADH-Ac)" ;
+    lova:reportedPorosity 0.0 ;
+    lova:scaffoldDimensions "8 mm diameter × 1 mm thickness" .
+
+<https://lovamap.com/ontology#material/10.1038-nmat4954/ha-a3a5b1-specific> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "α3/α5β1-specific HA hydrogel (HA + 10μM Fn9*10 + 200ng VEGF nanocapsules)" ;
+    lova:particleMaterial "Hyaluronic acid (HA-ADH-Ac)" ;
+    lova:surfaceModification "Fn9*10 (10μM)" ;
+    lova:scaffoldDimensions "8 mm diameter × 1 mm thickness" .
+
+<https://lovamap.com/ontology#material/10.1038-nmat4954/ha-avb3-specific> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "αvβ3-specific HA hydrogel (HA + 10μM Fn9(4G)10 + 200ng VEGF nanocapsules)" ;
+    lova:particleMaterial "Hyaluronic acid (HA-ADH-Ac)" ;
+    lova:surfaceModification "Fn9(4G)10 (10μM)" ;
+    lova:scaffoldDimensions "8 mm diameter × 1 mm thickness" .
+
+<https://lovamap.com/ontology#material/10.1038-nmat4954/gold-surface-a3a5b1> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "α3/α5β1-specific gold surface (Fn9*10 immobilized)" ;
+    lova:surfaceModification "Fn9*10 immobilized (1000ng/slide, 53.3ng/cm2)" .
+
+<https://lovamap.com/ontology#material/10.1038-nmat4954/gold-surface-avb3> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "αvβ3-specific gold surface (Fn9(4G)10 immobilized)" ;
+    lova:surfaceModification "Fn9(4G)10 immobilized (1000ng/slide, 53.3ng/cm2)" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1038-nmat4954/fibrin-gel-formation> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "Fibrin bead-sprouting gel formation (thrombin-catalyzed fibrinogen clotting with FXIIIa crosslinking)" ;
+    lova:chemistry "Thrombin-catalyzed fibrin polymerization; FXIIIa transglutamination crosslinking" ;
+    lova:manufacturingMethod "Bead assay — fibrinogen/HUVEC-coated bead solution clotted with thrombin" ;
+    lova:annealingChemistry "Enzymatic (Factor XIIIa transglutamination)" ;
+    lova:annealingConditions "5 min room temperature, then 37°C 5% CO2 for 20 min" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1038-nmat4954/fn9star10> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-nmat4954/fn9-4g-10> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-nmat4954/rgd-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-nmat4954/full-length-fn> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-nmat4954/factor-xiii> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-nmat4954/aprotinin> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-nmat4954/thrombin> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-nmat4954/fibrinogen> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1038-nmat4954/ha-hydrogel-michael-addition> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "HA hydrogel crosslinking via Michael-type addition" ;
+    lova:chemistry "Michael-type addition (acrylamide/acrylate-thiol)" ;
+    lova:manufacturingMethod "Solution crosslinking in HEPES buffer, gelation 30 min at 37°C" ;
+    lova:annealingConditions "30 min, 37°C" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1038-nmat4954/ha-adh-ac> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-nmat4954/peg-dithiol> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-nmat4954/mmp-crosslinker> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-nmat4954/fn9star10> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-nmat4954/fn9-4g-10> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-nmat4954/vegf> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1038-nmat4954/vegf-nanocapsule-synthesis> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "VEGF nanocapsule synthesis via in situ radical polymerization" ;
+    lova:chemistry "Radical polymerization (acrylate/acrylamide monomers with peptide crosslinkers)" ;
+    lova:manufacturingMethod "In situ radical polymerization around protein core" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1038-nmat4954/vegf> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1038-nmat4954/gold-surface-functionalization> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "Gold surface SAM functionalization with heparin and Fn fragment immobilization" ;
+    lova:chemistry "EDC/NHS carbodiimide coupling; self-assembled monolayer formation" ;
+    lova:manufacturingMethod "E-beam evaporation of Ti/Au on glass slides, SAM formation, heparin conjugation" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1038-nmat4954/heparin> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-nmat4954/emch> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-nmat4954/nhs> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-nmat4954/edc> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-nmat4954/eg6-nh2-thiol> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-nmat4954/eg4-oh-thiol> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-nmat4954/fn9star10> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-nmat4954/fn9-4g-10> .
+
+<https://lovamap.com/ontology#reagent/10.1038-nmat4954/fn9star10> a lova:Reagent ;
+    rdfs:label "Fn9*10 fragment (α3/α5β1-specific, Leu-Pro stabilized Fn III9-10)" ;
+    lova:reagentRole "peptide" ;
+    lova:concentration "2 μM (fibrin); 10 μM (HA); 1000ng/slide, 53.3ng/cm2 (gold surface)" ;
+    lova:reagentFunction "Preferential α3/α5β1 integrin binding via synergy site stabilization" .
+
+<https://lovamap.com/ontology#reagent/10.1038-nmat4954/fn9-4g-10> a lova:Reagent ;
+    rdfs:label "Fn9(4G)10 fragment (αvβ3-specific, 4xGly-linker Fn III9-10)" ;
+    lova:reagentRole "peptide" ;
+    lova:concentration "2 μM (fibrin); 10 μM (HA); 1000ng/slide, 53.3ng/cm2 (gold surface)" ;
+    lova:reagentFunction "Preferential αvβ3 integrin binding via RGD site, disrupted synergy binding" .
+
+<https://lovamap.com/ontology#reagent/10.1038-nmat4954/rgd-peptide> a lova:Reagent ;
+    rdfs:label "RGD peptide (α2PI1-8-RGD, H-NQEQVSPLRGDSPG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "NQEQVSPLRGDSPG" ;
+    lova:concentration "200, 500, 1000 μM" ;
+    lova:supplier "GenScript" ;
+    lova:reagentFunction "αvβ3 integrin binding (RGD)" .
+
+<https://lovamap.com/ontology#reagent/10.1038-nmat4954/full-length-fn> a lova:Reagent ;
+    rdfs:label "Full length fibronectin" ;
+    lova:reagentRole "other" ;
+    lova:concentration "0.54 μM (1 μM rescue experiments)" ;
+    lova:supplier "Millipore" ;
+    lova:catalogNumber "FC010" ;
+    lova:reagentFunction "Native fibronectin sprouting rescue" .
+
+<https://lovamap.com/ontology#reagent/10.1038-nmat4954/factor-xiii> a lova:Reagent ;
+    rdfs:label "Factor XIII (FXIIIa)" ;
+    lova:reagentRole "enzyme" ;
+    lova:concentration "1 U/ml" ;
+    lova:reagentFunction "Enzymatic crosslinking (fibrin stabilization, Fn fragment conjugation)" .
+
+<https://lovamap.com/ontology#reagent/10.1038-nmat4954/aprotinin> a lova:Reagent ;
+    rdfs:label "Aprotinin" ;
+    lova:reagentRole "other" ;
+    lova:concentration "0.04 U/ml" ;
+    lova:reagentFunction "Protease inhibitor (prevents fibrin degradation)" .
+
+<https://lovamap.com/ontology#reagent/10.1038-nmat4954/thrombin> a lova:Reagent ;
+    rdfs:label "Thrombin" ;
+    lova:reagentRole "other" ;
+    lova:concentration "0.16 units" ;
+    lova:reagentFunction "Catalyzes fibrinogen to fibrin conversion" .
+
+<https://lovamap.com/ontology#reagent/10.1038-nmat4954/fibrinogen> a lova:Reagent ;
+    rdfs:label "Fibrinogen (Fib1 or Fib3)" ;
+    lova:reagentRole "monomer" ;
+    lova:concentration "2 mg/ml" ;
+    lova:reagentFunction "Forms fibrin matrix backbone" .
+
+<https://lovamap.com/ontology#reagent/10.1038-nmat4954/ha-adh-ac> a lova:Reagent ;
+    rdfs:label "HA-ADH-Ac (hyaluronic acid modified with acrylate functionalities, ADH 65.62%, Ac 13.33%)" ;
+    lova:reagentRole "monomer" ;
+    lova:concentration "0.08 mg/ml in 0.3M HEPES; final 3.5% HA" ;
+    lova:reagentFunction "Hydrogel backbone" .
+
+<https://lovamap.com/ontology#reagent/10.1038-nmat4954/peg-dithiol> a lova:Reagent ;
+    rdfs:label "Poly(ethylene glycol) dithiol (MW 1000)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:molecularWeight "1000" ;
+    lova:concentration "10 μM (as SH-PEG-AF555)" ;
+    lova:supplier "Sigma-Aldrich" ;
+    lova:catalogNumber "717142" ;
+    lova:reagentFunction "Crosslinker conjugated with Alexa Fluor 555 for gel visualization" .
+
+<https://lovamap.com/ontology#reagent/10.1038-nmat4954/mmp-crosslinker> a lova:Reagent ;
+    rdfs:label "Di-cysteine modified MMP-sensitive crosslinker (Ac-GCRDGPQGIWGQDRCG-NH2)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:sequence "GCRDGPQGIWGQDRCG" ;
+    lova:concentration "3.335 mM" ;
+    lova:supplier "GenScript" ;
+    lova:reagentFunction "Protease (MMP) degradable crosslink initiating gelation" .
+
+<https://lovamap.com/ontology#reagent/10.1038-nmat4954/vegf> a lova:Reagent ;
+    rdfs:label "Vascular endothelial growth factor (VEGF)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "2 ng/ml (2D assays); 200 ng/50 μL or 200 ng/6 μL gel (in vivo)" ;
+    lova:reagentFunction "Master regulator of angiogenesis / inducer of endothelial sprouting" .
+
+<https://lovamap.com/ontology#reagent/10.1038-nmat4954/heparin> a lova:Reagent ;
+    rdfs:label "Heparin" ;
+    lova:reagentRole "other" ;
+    lova:concentration "5 mg/ml" ;
+    lova:supplier "Alfa Aesar" ;
+    lova:catalogNumber "A16198" .
+
+<https://lovamap.com/ontology#reagent/10.1038-nmat4954/emch> a lova:Reagent ;
+    rdfs:label "EMCH (N-[ε-Maleimidocaproic acid]hydrazide)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "50 mM stock" ;
+    lova:supplier "Fisher Scientific" ;
+    lova:catalogNumber "PI-22106" .
+
+<https://lovamap.com/ontology#reagent/10.1038-nmat4954/nhs> a lova:Reagent ;
+    rdfs:label "N-Hydroxysuccinimide (NHS)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Sigma-Aldrich" .
+
+<https://lovamap.com/ontology#reagent/10.1038-nmat4954/edc> a lova:Reagent ;
+    rdfs:label "1-(3-Dimethylaminopropyl)-3-ethylcarbodiimide hydrochloride (EDC)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Fisher Scientific" .
+
+<https://lovamap.com/ontology#reagent/10.1038-nmat4954/eg6-nh2-thiol> a lova:Reagent ;
+    rdfs:label "HS-C11-EG6-NH2 ((11-Mercaptoundecyl)hexa(ethylene glycol) amine)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "1%" ;
+    lova:supplier "ProChimia Surfaces" .
+
+<https://lovamap.com/ontology#reagent/10.1038-nmat4954/eg4-oh-thiol> a lova:Reagent ;
+    rdfs:label "HS-C11-EG4-OH ((11-Mercaptoundecyl)tetra(ethylene glycol))" ;
+    lova:reagentRole "other" ;
+    lova:concentration "99%" ;
+    lova:supplier "Sigma-Aldrich" .
+
+<https://lovamap.com/ontology#experiment/10.1038-nmat4954/sprouting-fib1-fib3> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-nmat4954/fib1-matrix> ,
+                      <https://lovamap.com/ontology#material/10.1038-nmat4954/fib3-matrix> ,
+                      <https://lovamap.com/ontology#material/10.1038-nmat4954/fib3-fn-rescue> ,
+                      <https://lovamap.com/ontology#material/10.1038-nmat4954/fib3-a3a5b1-specific> ,
+                      <https://lovamap.com/ontology#material/10.1038-nmat4954/fib3-avb3-specific> ,
+                      <https://lovamap.com/ontology#material/10.1038-nmat4954/fib1-a3a5b1-specific> ,
+                      <https://lovamap.com/ontology#material/10.1038-nmat4954/fib1-avb3-specific> ;
+    rdfs:label "HUVEC bead sprouting assay in Fib1 vs Fib3 fibrin matrices with VEGF" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Angiogenic sprouting" ;
+    lova:assayOrMethod "Fibrin bead sprouting assay" ;
+    lova:cellType "HUVEC" ;
+    lova:cellSource "Human umbilical vein" ;
+    lova:cultureDuration "7 days" ;
+    lova:temperature "37°C" ;
+    lova:atmosphere "5% CO2" ;
+    lova:pH "7.4" ;
+    lova:sampleSize 15 .
+
+<https://lovamap.com/ontology#experiment/10.1038-nmat4954/branch-cluster-quantification> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-nmat4954/fib3-a3a5b1-specific> ,
+                      <https://lovamap.com/ontology#material/10.1038-nmat4954/fib3-avb3-specific> ;
+    rdfs:label "Quantification of intra-loop/intra-joint branch cluster formation" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Angiogenic sprouting morphology" ;
+    lova:assayOrMethod "Confocal z-stack imaging and cluster quantification" ;
+    lova:cellType "HUVEC" ;
+    lova:cultureDuration "7 days" .
+
+<https://lovamap.com/ontology#experiment/10.1038-nmat4954/integrin-blocking-sprouting> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-nmat4954/fib3-a3a5b1-specific> ,
+                      <https://lovamap.com/ontology#material/10.1038-nmat4954/fib3-avb3-specific> ;
+    rdfs:label "Function-blocking antibody sprouting assay (αv, α5, β1, β3)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Integrin function blocking" ;
+    lova:assayOrMethod "Fibrin bead sprouting assay with blocking antibodies" ;
+    lova:cellType "HUVEC" ;
+    lova:cultureDuration "7 days" .
+
+<https://lovamap.com/ontology#experiment/10.1038-nmat4954/rgd-sprouting-assay> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-nmat4954/fib3-rgd> ;
+    rdfs:label "RGD concentration-dependent sprouting assay" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Angiogenic sprouting" ;
+    lova:assayOrMethod "Fibrin bead sprouting assay" ;
+    lova:cellType "HUVEC" ;
+    lova:sampleSize 15 .
+
+<https://lovamap.com/ontology#experiment/10.1038-nmat4954/ve-cadherin-2d> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-nmat4954/gold-surface-a3a5b1> ,
+                      <https://lovamap.com/ontology#material/10.1038-nmat4954/gold-surface-avb3> ;
+    rdfs:label "VE-cadherin distribution on HUVECs seeded on integrin-specific surfaces" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immunofluorescence" ;
+    lova:assayOrMethod "VE-cadherin immunostaining and grey value analysis" ;
+    lova:cellType "HUVEC" ;
+    lova:cultureDuration "< 24 hours" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#experiment/10.1038-nmat4954/ve-cadherin-3d> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-nmat4954/fib3-a3a5b1-specific> ,
+                      <https://lovamap.com/ontology#material/10.1038-nmat4954/fib3-avb3-specific> ;
+    rdfs:label "VE-cadherin staining on HUVEC sprouts in integrin-specific fibrin matrices" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immunofluorescence" ;
+    lova:assayOrMethod "VE-cadherin immunostaining of 3D sprout structures" ;
+    lova:cellType "HUVEC" .
+
+<https://lovamap.com/ontology#experiment/10.1038-nmat4954/subq-mice-model> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-nmat4954/ha-blank> ,
+                      <https://lovamap.com/ontology#material/10.1038-nmat4954/ha-a3a5b1-specific> ,
+                      <https://lovamap.com/ontology#material/10.1038-nmat4954/ha-avb3-specific> ;
+    rdfs:label "Modified Matrigel plug assay using subcutaneous HA hydrogel implants in mice" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "In vivo angiogenesis" ;
+    lova:assayOrMethod "Isolectin perfusion, confocal and light sheet microscopy" ;
+    lova:cultureDuration "14 days" ;
+    lova:sampleSize 6 .
+
+<https://lovamap.com/ontology#experiment/10.1038-nmat4954/stroke-model> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-nmat4954/ha-a3a5b1-specific> ,
+                      <https://lovamap.com/ontology#material/10.1038-nmat4954/ha-avb3-specific> ;
+    rdfs:label "Ischemic stroke (MCAo) model with intracranial HA hydrogel injection" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "In vivo vascular patterning and permeability" ;
+    lova:assayOrMethod "Glut-1/tomato lectin staining, Ter-119 staining" ;
+    lova:cultureDuration "10 days post-injection" ;
+    lova:sampleSize 8 .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4954/sprouts-fib3-blk> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4954/sprouting-fib1-fib3> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "Sprouts number per bead, Fib3 blank" ;
+    lova:measurementType "Sprout number per bead" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 3.5 ; qudt:unit "sprouts/bead" ;
+    lova:isSignificant true ;
+    lova:scope "Per-pore" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4954/sprouts-fib3-a3a5b1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4954/sprouting-fib1-fib3> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "Sprouts number per bead, Fib3 α3/α5β1-specific" ;
+    lova:measurementType "Sprout number per bead" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 7.0 ; qudt:unit "sprouts/bead" ;
+    lova:scope "Per-pore" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4954/sprouts-fib3-avb3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4954/sprouting-fib1-fib3> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "Sprouts number per bead, Fib3 αvβ3-specific" ;
+    lova:measurementType "Sprout number per bead" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 7.5 ; qudt:unit "sprouts/bead" ;
+    lova:scope "Per-pore" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4954/sprouts-fib1-a3a5b1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4954/sprouting-fib1-fib3> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "Sprouts number per bead, Fib1 α3/α5β1-specific" ;
+    lova:measurementType "Sprout number per bead" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 11.0 ; qudt:unit "sprouts/bead" ;
+    lova:scope "Per-pore" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4954/sprouts-fib1-avb3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4954/sprouting-fib1-fib3> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "Sprouts number per bead, Fib1 αvβ3-specific" ;
+    lova:measurementType "Sprout number per bead" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 9.0 ; qudt:unit "sprouts/bead" ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 ;
+    lova:scope "Per-pore" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-nmat4954/sprouts-fib1-a3a5b1-vs-avb3> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "Sprout number lower in Fib1 αvβ3-specific vs α3/α5β1-specific matrices" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-nmat4954/sprouts-fib1-avb3> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-nmat4954/sprouts-fib1-a3a5b1> ;
+    lova:direction "lower" ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4954/cluster-per-bead-blk> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4954/branch-cluster-quantification> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "Branch cluster per bead, blank Fib3 matrix" ;
+    lova:measurementType "Branch cluster number per bead" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.05 ; qudt:unit "clusters/bead" ;
+    lova:scope "Per-pore" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4954/cluster-per-bead-avb3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4954/branch-cluster-quantification> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "Branch cluster per bead, αvβ3-specific Fib3 matrix" ;
+    lova:measurementType "Branch cluster number per bead" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.5 ; qudt:unit "clusters/bead" ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 ;
+    lova:scope "Per-pore" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-nmat4954/cluster-avb3-vs-blk> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "Branch cluster per bead higher in αvβ3-specific matrix vs blank" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-nmat4954/cluster-per-bead-avb3> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-nmat4954/cluster-per-bead-blk> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4954/sprouting-abolished-a5-block> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4954/integrin-blocking-sprouting> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "Sprouting completely blocked by α5 or β1 function-blocking antibodies in α3/α5β1-specific matrices" ;
+    lova:measurementType "Sprouting (qualitative)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Sprouting completely inhibited" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4954/sprouting-unaffected-av-block> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4954/integrin-blocking-sprouting> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "Sprouting not affected by αv function-blocking antibody in αvβ3-specific matrices" ;
+    lova:measurementType "Sprouting (qualitative)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Sprouting not impacted" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4954/sprouting-abolished-b3-block> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4954/integrin-blocking-sprouting> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "Sprouting completely blocked by β3 function-blocking antibody in αvβ3-specific matrices" ;
+    lova:measurementType "Sprouting (qualitative)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Sprouting completely inhibited" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4954/cluster-avbeta3-withoutblock> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4954/integrin-blocking-sprouting> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "Branch cluster/bead, αvβ3-specific matrix without αv blocking" ;
+    lova:measurementType "Branch cluster number per bead" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.65 ; qudt:unit "clusters/bead" ;
+    lova:scope "Per-pore" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4954/cluster-avbeta3-withblock> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4954/integrin-blocking-sprouting> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "Branch cluster/bead, αvβ3-specific matrix with αv blocking" ;
+    lova:measurementType "Branch cluster number per bead" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.3 ; qudt:unit "clusters/bead" ;
+    lova:isSignificant true ;
+    lova:pValue 0.001 ;
+    lova:scope "Per-pore" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-nmat4954/cluster-avblock-vs-noblock> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "Branch cluster per bead lower with αv blocking vs without blocking in αvβ3-specific matrix" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-nmat4954/cluster-avbeta3-withblock> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-nmat4954/cluster-avbeta3-withoutblock> ;
+    lova:direction "lower" ;
+    lova:isSignificant true ;
+    lova:pValue 0.001 .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4954/rgd-sprouts-0um> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4954/rgd-sprouting-assay> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "Sprouts number per bead, 0 μM RGD" ;
+    lova:measurementType "Sprout number per bead" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 3.5 ; qudt:unit "sprouts/bead" ;
+    lova:scope "Per-pore" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4954/rgd-sprouts-1000um> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4954/rgd-sprouting-assay> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "Sprouts number per bead, 1000 μM RGD" ;
+    lova:measurementType "Sprout number per bead" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 7.5 ; qudt:unit "sprouts/bead" ;
+    lova:isSignificant true ;
+    lova:pValue 0.0001 ;
+    lova:scope "Per-pore" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-nmat4954/rgd-sprouts-1000-vs-0> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "Sprout number higher at 1000μM RGD vs 0μM RGD" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-nmat4954/rgd-sprouts-1000um> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-nmat4954/rgd-sprouts-0um> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:pValue 0.0001 .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4954/rgd-cluster-1000um> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4954/rgd-sprouting-assay> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "Branch cluster per bead, 1000 μM RGD" ;
+    lova:measurementType "Branch cluster number per bead" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.35 ; qudt:unit "clusters/bead" ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 ;
+    lova:scope "Per-pore" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4954/vecadherin-a3a5b1-surface> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4954/ve-cadherin-2d> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "VE-cadherin/nuclei area ratio, α3/α5β1-specific surface" ;
+    lova:measurementType "VE-cadherin to nuclei area ratio" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.53 ; qudt:unit "ratio" ;
+    lova:stdDev 0.08 ;
+    lova:scope "Bulk/global" ;
+    lova:timePoint "< 24h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4954/vecadherin-avb3-surface> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4954/ve-cadherin-2d> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "VE-cadherin/nuclei area ratio, αvβ3-specific surface" ;
+    lova:measurementType "VE-cadherin to nuclei area ratio" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.3 ; qudt:unit "ratio" ;
+    lova:stdDev 0.05 ;
+    lova:isSignificant true ;
+    lova:pValue 0.01 ;
+    lova:scope "Bulk/global" ;
+    lova:timePoint "< 24h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-nmat4954/vecadherin-a3a5b1-vs-avb3> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "VE-cadherin/nuclei area ratio higher on α3/α5β1-specific surfaces vs αvβ3-specific surfaces" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-nmat4954/vecadherin-a3a5b1-surface> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-nmat4954/vecadherin-avb3-surface> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:pValue 0.01 .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4954/vecadherin-3d-reduced-avb3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4954/ve-cadherin-3d> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "Reduced/missing VE-cadherin signal on sprout shunts in αvβ3-specific matrices" ;
+    lova:measurementType "VE-cadherin staining (qualitative)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Reduced and missing VE-cadherin signal" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4954/vecadherin-3d-rescue-avblock> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4954/ve-cadherin-3d> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "VE-cadherin signal rescued with αv blocking in αvβ3-specific matrices" ;
+    lova:measurementType "VE-cadherin staining (qualitative)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Increased, coherent VE-cadherin signal similar to α3/α5β1-specific matrix" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4954/tortuosity-blank> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4954/subq-mice-model> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "Vessel tortuosity ratio, blank HA gel" ;
+    lova:measurementType "Vessel tortuosity ratio" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.1 ; qudt:unit "ratio" ;
+    lova:sampleSize 4 ;
+    lova:scope "Regional" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4954/tortuosity-a3a5b1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4954/subq-mice-model> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "Vessel tortuosity ratio, α3/α5β1-specific HA gel" ;
+    lova:measurementType "Vessel tortuosity ratio" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.1 ; qudt:unit "ratio" ;
+    lova:sampleSize 4 ;
+    lova:scope "Regional" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4954/tortuosity-avb3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4954/subq-mice-model> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "Vessel tortuosity ratio, αvβ3-specific HA gel" ;
+    lova:measurementType "Vessel tortuosity ratio" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.65 ; qudt:unit "ratio" ;
+    lova:isSignificant true ;
+    lova:pValue 0.01 ;
+    lova:sampleSize 4 ;
+    lova:scope "Regional" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-nmat4954/tortuosity-avb3-vs-blank> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "Vessel tortuosity higher in αvβ3-specific HA gel vs blank gel" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-nmat4954/tortuosity-avb3> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-nmat4954/tortuosity-blank> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:pValue 0.01 .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4954/vasc-area-infarct-nv-a3a5b1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4954/stroke-model> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "Glut-1/Lectin positive vascular area %, infarct region, nV+α3/α5β1 condition" ;
+    lova:measurementType "Vascular area percentage" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 42.0 ; qudt:unit "%" ;
+    lova:isSignificant true ;
+    lova:pValue 0.001 ;
+    lova:scope "Regional" ;
+    lova:timePoint "10 days post-injection" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4954/vasc-area-infarct-nv-avb3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4954/stroke-model> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "Glut-1/Lectin positive vascular area %, infarct region, nV+αvβ3 condition" ;
+    lova:measurementType "Vascular area percentage" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 27.0 ; qudt:unit "%" ;
+    lova:scope "Regional" ;
+    lova:timePoint "10 days post-injection" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-nmat4954/vasc-area-infarct-a3a5b1-vs-avb3> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "Vascular area in infarct region higher for nV+α3/α5β1 vs nV+αvβ3 condition" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-nmat4954/vasc-area-infarct-nv-a3a5b1> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-nmat4954/vasc-area-infarct-nv-avb3> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:pValue 0.001 .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4954/vasc-area-periinfarct-nv-a3a5b1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4954/stroke-model> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "Glut-1/Lectin positive vascular area %, peri-infarct region, nV+α3/α5β1 condition" ;
+    lova:measurementType "Vascular area percentage" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 33.0 ; qudt:unit "%" ;
+    lova:isSignificant true ;
+    lova:pValue 0.01 ;
+    lova:scope "Regional" ;
+    lova:timePoint "10 days post-injection" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4954/vasc-area-periinfarct-nv-avb3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4954/stroke-model> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "Glut-1/Lectin positive vascular area %, peri-infarct region, nV+αvβ3 condition" ;
+    lova:measurementType "Vascular area percentage" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 25.0 ; qudt:unit "%" ;
+    lova:scope "Regional" ;
+    lova:timePoint "10 days post-injection" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-nmat4954/vasc-area-periinfarct-a3a5b1-vs-avb3> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "Vascular area in peri-infarct region higher for nV+α3/α5β1 vs nV+αvβ3 condition" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-nmat4954/vasc-area-periinfarct-nv-a3a5b1> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-nmat4954/vasc-area-periinfarct-nv-avb3> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:pValue 0.01 .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4954/ter119-avb3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4954/stroke-model> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "Ter-119 positive red blood cell area, αvβ3-specific gel" ;
+    lova:measurementType "Ter-119 positive area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 28000.0 ; qudt:unit "μm²" ;
+    lova:scope "Regional" ;
+    lova:timePoint "10 days post-injection" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4954/ter119-a3a5b1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4954/stroke-model> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "Ter-119 positive red blood cell area, α3/α5β1-specific gel" ;
+    lova:measurementType "Ter-119 positive area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 16000.0 ; qudt:unit "μm²" ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 ;
+    lova:scope "Regional" ;
+    lova:timePoint "10 days post-injection" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-nmat4954/ter119-a3a5b1-vs-avb3> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "Ter-119 positive red blood cell area lower in α3/α5β1-specific gel vs αvβ3-specific gel" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-nmat4954/ter119-a3a5b1> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-nmat4954/ter119-avb3> ;
+    lova:direction "lower" ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4954/ramification-avb3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4954/stroke-model> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "Vessel ramification number per mm², αvβ3-specific gel" ;
+    lova:measurementType "Vessel ramification number" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 130.0 ; qudt:unit "number/mm²" ;
+    lova:scope "Regional" ;
+    lova:timePoint "10 days post-injection" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4954/ramification-a3a5b1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4954/stroke-model> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "Vessel ramification number per mm², α3/α5β1-specific gel" ;
+    lova:measurementType "Vessel ramification number" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 190.0 ; qudt:unit "number/mm²" ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 ;
+    lova:scope "Regional" ;
+    lova:timePoint "10 days post-injection" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-nmat4954/ramification-a3a5b1-vs-avb3> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "Vessel ramification higher in α3/α5β1-specific gel vs αvβ3-specific gel" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-nmat4954/ramification-a3a5b1> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-nmat4954/ramification-avb3> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4954/ha-storage-modulus> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4954/subq-mice-model> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4954> ;
+    rdfs:label "Optimized HA hydrogel storage modulus (G')" ;
+    lova:measurementType "Storage modulus" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 350.0 ; qudt:unit "Pa" ;
+    lova:dataSource "[TEXT]" .

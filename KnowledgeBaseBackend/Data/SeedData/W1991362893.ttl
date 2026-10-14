@@ -1,0 +1,988 @@
+@prefix bibo: <http://purl.org/ontology/bibo/> .
+@prefix dc1: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix lova: <https://lovamap.com/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#comparison/10.1083-jcb.200906044/clustering-vb-vs-control> a lova:ComparisonResult ;
+    rdfs:label "VEGFR2 clustering higher with Vb vs control/Vs/Col" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/vegfr2-clustering-vb> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/vegfr2-distribution-no-diff> .
+
+<https://lovamap.com/ontology#comparison/10.1083-jcb.200906044/internalization-vb-vs> a lova:ComparisonResult ;
+    rdfs:label "Internalized VEGFR2 counts higher with Vb vs Vs at 15 min" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    lova:direction "higher" ;
+    lova:foldChange 1.8 ;
+    lova:isSignificant true ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/internalization-counts-vb> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/internalization-counts-vs> .
+
+<https://lovamap.com/ontology#comparison/10.1083-jcb.200906044/phospho-10min-vb-vs> a lova:ComparisonResult ;
+    rdfs:label "VEGFR2 phosphorylation higher with Vb vs Vs at 10 min" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/phospho-ratio-10min> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/pan-phospho-ratio-5min> ;
+    lova:pValue 0.05 .
+
+<https://lovamap.com/ontology#comparison/10.1083-jcb.200906044/pla-vb-vs-control> a lova:ComparisonResult ;
+    rdfs:label "VEGFR2/β1 integrin PLA signal higher with Vb vs control/Vs/Col" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    lova:direction "higher" ;
+    lova:foldChange 8.8 ;
+    lova:isSignificant true ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/plaquant-vb> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/plaquant-control> .
+
+<https://lovamap.com/ontology#comparison/10.1083-jcb.200906044/pp38-b1blocking-vb> a lova:ComparisonResult ;
+    rdfs:label "pP38 lower in Vb with β1 blocking antibody vs without" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    lova:direction "lower" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/pp38-withabs-vb> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/pp38-noabs-vb> .
+
+<https://lovamap.com/ontology#comparison/10.1083-jcb.200906044/pp38-vb-vs-165> a lova:ComparisonResult ;
+    rdfs:label "pP38 higher with Vb vs Vs (VEGF165) at 15 min" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    lova:direction "higher" ;
+    lova:foldChange 3.1 ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/pp38-vb165> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/pp38-vs165> .
+
+<https://lovamap.com/ontology#comparison/10.1083-jcb.200906044/py1214-165-vs-121> a lova:ComparisonResult ;
+    rdfs:label "pY1214 activation higher for VEGF165-Vb than VEGF121-Vb" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    lova:direction "higher" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/py1214-vb165> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/py1214-vb121> .
+
+<https://lovamap.com/ontology#comparison/10.1083-jcb.200906044/py1214-b1blocking-vb> a lova:ComparisonResult ;
+    rdfs:label "pY1214 lower in Vb with β1 blocking antibody vs without" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    lova:direction "lower" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/py1214-withabs-vb> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/py1214-noabs-vb> .
+
+<https://lovamap.com/ontology#comparison/10.1083-jcb.200906044/py1214-b1ko-vb> a lova:ComparisonResult ;
+    rdfs:label "pY1214 lower in Vb with β1 integrin genetic knockout (adeno-Cre) vs control virus" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    lova:direction "lower" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/py1214-adenocre-vb> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/py1214-controlvirus-vb> .
+
+<https://lovamap.com/ontology#comparison/10.1083-jcb.200906044/py1214-vb-vs-165> a lova:ComparisonResult ;
+    rdfs:label "pY1214 higher with Vb vs Vs (VEGF165) at 15 min" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    lova:direction "higher" ;
+    lova:foldChange 2.1 ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/py1214-vb165> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/py1214-vs165> .
+
+<https://lovamap.com/ontology#comparison/10.1083-jcb.200906044/vegf165-vs-113-retention> a lova:ComparisonResult ;
+    rdfs:label "VEGF165 retention in collagen gel higher than VEGF113" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    lova:direction "higher" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/vegf165-retention> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/vegf113-retention> .
+
+<https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/293nr-ratio-15min> a lova:Outcome ;
+    rdfs:label "293NR native VEGFR2 Vb/Vs phospho ratio at 15 min" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    qudt:numericValue 2.3 ;
+    qudt:unit "fold" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/hek293-293nr> ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType "VEGFR2 pan-phospho ratio (Vb/Vs), native receptor" ;
+    lova:timePoint "15 min" .
+
+<https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/293nr-ratio-5min> a lova:Outcome ;
+    rdfs:label "293NR native VEGFR2 Vb/Vs phospho ratio at 5 min" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    qudt:numericValue 1.0 ;
+    qudt:unit "fold" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/hek293-293nr> ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType "VEGFR2 pan-phospho ratio (Vb/Vs), native receptor" ;
+    lova:timePoint "5 min" .
+
+<https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/dose-100ngml> a lova:Outcome ;
+    rdfs:label "4G10 phospho intensity at 100 ng/ml VEGF165, 15 min" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    qudt:numericValue 1.0 ;
+    qudt:unit "fold" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/dose-response> ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType "VEGFR2 pan-phospho intensity" ;
+    lova:timePoint "15 min" .
+
+<https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/dose-150ngml> a lova:Outcome ;
+    rdfs:label "4G10 phospho intensity at 150 ng/ml VEGF165, 15 min" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    qudt:numericValue 0.8 ;
+    qudt:unit "fold" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/dose-response> ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType "VEGFR2 pan-phospho intensity" ;
+    lova:timePoint "15 min" .
+
+<https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/dose-200ngml> a lova:Outcome ;
+    rdfs:label "4G10 phospho intensity at 200 ng/ml VEGF165, 15 min" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    qudt:numericValue 0.9 ;
+    qudt:unit "fold" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/dose-response> ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType "VEGFR2 pan-phospho intensity" ;
+    lova:timePoint "15 min" .
+
+<https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/internalization-fold-vb> a lova:Outcome ;
+    rdfs:label "Densitometric fold of internalized VEGFR2 (Vb)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    qudt:numericValue 1.5 ;
+    qudt:unit "fold" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/vegfr2-internalization> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Internalized VEGFR2 fold (normalized)" ;
+    lova:timePoint "15 min" .
+
+<https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/internalization-fold-vs> a lova:Outcome ;
+    rdfs:label "Densitometric fold of internalized VEGFR2 (Vs)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    qudt:numericValue 1.0 ;
+    qudt:unit "fold" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/vegfr2-internalization> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Internalized VEGFR2 fold (normalized)" ;
+    lova:timePoint "15 min" .
+
+<https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/pan-phospho-ratio-15min> a lova:Outcome ;
+    rdfs:label "Pan-phosphotyrosine (4G10) Vb/Vs ratio at 15 min" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    qudt:numericValue 2.0 ;
+    qudt:unit "fold" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/phosphosite-specific-analysis> ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType "VEGFR2 pan-phospho ratio (Vb/Vs)" ;
+    lova:timePoint "15 min" .
+
+<https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/phospho-ratio-20min> a lova:Outcome ;
+    rdfs:label "pVEGFR2 Vb/Vs fold ratio at 20 min" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    qudt:numericValue 1.8 ;
+    qudt:unit "fold" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/vegfr2-phospho-kinetics-huvec> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType "VEGFR2 phosphorylation fold ratio (Vb/Vs)" ;
+    lova:pValue 0.05 ;
+    lova:sampleSize 5 ;
+    lova:timePoint "20 min" .
+
+<https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/plaquant-col> a lova:Outcome ;
+    rdfs:label "PLA counts/cell, Col" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    qudt:numericValue 25.0 ;
+    qudt:unit "counts/cell" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/proximity-ligation-assay> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "VEGFR2/β1 integrin PLA signal count" ;
+    lova:sampleSize 4 .
+
+<https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/plaquant-vs> a lova:Outcome ;
+    rdfs:label "PLA counts/cell, Vs" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    qudt:numericValue 25.0 ;
+    qudt:unit "counts/cell" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/proximity-ligation-assay> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "VEGFR2/β1 integrin PLA signal count" ;
+    lova:sampleSize 4 .
+
+<https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/pp38-noabs-baseline> a lova:Outcome ;
+    rdfs:label "pP38 intensity, baseline, no β1 blocking abs" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    qudt:numericValue 1.0 ;
+    qudt:unit "fold" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/b1-blocking-antibody> ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType "p38 phosphorylation intensity" ;
+    lova:timePoint "15 min" .
+
+<https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/pp38-vb121> a lova:Outcome ;
+    rdfs:label "pP38 intensity, Vb VEGF121 at 15 min" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    qudt:numericValue 1.0 ;
+    qudt:unit "fold" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/isoform-comparison> ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType "p38 phosphorylation intensity" ;
+    lova:timePoint "15 min" .
+
+<https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/py1214-vs121> a lova:Outcome ;
+    rdfs:label "pY1214 intensity, Vs VEGF121 at 15 min" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    qudt:numericValue 1.0 ;
+    qudt:unit "fold" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/isoform-comparison> ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType "pY1214 phosphorylation intensity" ;
+    lova:timePoint "15 min" .
+
+<https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/source-vb165> a lova:Outcome ;
+    rdfs:label "VEGFR2 phosphorylation intensity, Source 1 Vs" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    qudt:numericValue 3.4 ;
+    qudt:unit "fold" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/vegfr2-phospho-pae-kdr> ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType "VEGFR2 phospho intensity" .
+
+<https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/vegf-half-life-soluble> a lova:Outcome ;
+    rdfs:label "Half-life of soluble VEGF165 in solution" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    qudt:numericValue 100.0 ;
+    qudt:unit "min" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/vegf-stability-carrier> ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType "Protein half-life" .
+
+<https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/y1214f-ratio-15min> a lova:Outcome ;
+    rdfs:label "Y1214F mutant Vb/Vs phospho ratio at 15 min" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    qudt:numericValue 1.2 ;
+    qudt:unit "fold" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/hek293-y1214f-mutant> ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType "VEGFR2 pan-phospho ratio (Vb/Vs), Y1214F mutant" ;
+    lova:timePoint "15 min" .
+
+<https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/y1214f-ratio-5min> a lova:Outcome ;
+    rdfs:label "Y1214F mutant Vb/Vs phospho ratio at 5 min" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    qudt:numericValue 1.0 ;
+    qudt:unit "fold" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/hek293-y1214f-mutant> ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType "VEGFR2 pan-phospho ratio (Vb/Vs), Y1214F mutant" ;
+    lova:timePoint "5 min" .
+
+<https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/coip-vegfr2-b1integrin> a lova:Experiment ;
+    rdfs:label "Co-immunoprecipitation of VEGFR2 and β1 integrin in HUVECs" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    lova:assayOrMethod "IP VEGFR2, blot β1 integrin" ;
+    lova:cellType "HUVEC" ;
+    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000115> ;
+    lova:cultureDuration "5, 15, 30 min" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Co-immunoprecipitation" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1083-jcb.200906044/vb-vegf165>,
+        <https://lovamap.com/ontology#material/10.1083-jcb.200906044/vs-vegf165> .
+
+<https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/collagen-type-comparison> a lova:Experiment ;
+    rdfs:label "Comparison of collagen types (I, IV, V, VIII) for VEGF anchorage and pY1214 activation" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    lova:assayOrMethod "Western blot, pY1214" ;
+    lova:cellType "HUVEC" ;
+    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000115> ;
+    lova:cultureDuration "15 min" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Matrix type comparison" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1083-jcb.200906044/vb-vegf165> .
+
+<https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/internalization-b1-blocking> a lova:Experiment ;
+    rdfs:label "VEGFR2 internalization with β1 integrin blocking" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    lova:assayOrMethod "scFvA7 uptake assay, Western blot" ;
+    lova:cellType "HUVEC" ;
+    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000115> ;
+    lova:cultureDuration "15 min pretreatment + 15 min treatment" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Receptor internalization with blocking antibody" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1083-jcb.200906044/vb-vegf165>,
+        <https://lovamap.com/ontology#material/10.1083-jcb.200906044/vs-vegf165> .
+
+<https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/p38-akt-kinetics> a lova:Experiment ;
+    rdfs:label "p38 and Akt phosphorylation kinetics in HUVECs" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    lova:assayOrMethod "Western blot, phospho-p38, phospho-Akt(S473)" ;
+    lova:cellType "HUVEC" ;
+    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000115> ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Downstream signaling kinetics" ;
+    lova:sampleSize 6 ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1083-jcb.200906044/vb-vegf165>,
+        <https://lovamap.com/ontology#material/10.1083-jcb.200906044/vs-vegf165> .
+
+<https://lovamap.com/ontology#journal/journal-of-cell-biology> a bibo:Journal ;
+    dc1:title "The Journal of Cell Biology" ;
+    bibo:issn "0021-9525" .
+
+<https://lovamap.com/ontology#material/10.1083-jcb.200906044/vb-vegf113> a lova:Material ;
+    rdfs:label "Matrix-bound VEGF113 (mutant lacking ECM binding domain)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1083-jcb.200906044/matrix-bound-vegf-prep> .
+
+<https://lovamap.com/ontology#material/10.1083-jcb.200906044/vb-vegf121> a lova:Material ;
+    rdfs:label "Matrix-bound VEGF121" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1083-jcb.200906044/matrix-bound-vegf-prep> .
+
+<https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/internalization-counts-vb> a lova:Outcome ;
+    rdfs:label "Internalized VEGFR2 counts/nucleus (Vb)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    qudt:numericValue 27.0 ;
+    qudt:unit "counts/nucleus" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/vegfr2-internalization> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Internalized VEGFR2 counts per nucleus" ;
+    lova:timePoint "15 min" .
+
+<https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/internalization-counts-vs> a lova:Outcome ;
+    rdfs:label "Internalized VEGFR2 counts/nucleus (Vs)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    qudt:numericValue 15.0 ;
+    qudt:unit "counts/nucleus" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/vegfr2-internalization> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Internalized VEGFR2 counts per nucleus" ;
+    lova:timePoint "15 min" .
+
+<https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/pan-phospho-ratio-5min> a lova:Outcome ;
+    rdfs:label "Pan-phosphotyrosine (4G10) Vb/Vs ratio at 5 min" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    qudt:numericValue 0.9 ;
+    qudt:unit "fold" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/phosphosite-specific-analysis> ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType "VEGFR2 pan-phospho ratio (Vb/Vs)" ;
+    lova:timePoint "5 min" .
+
+<https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/phospho-ratio-10min> a lova:Outcome ;
+    rdfs:label "pVEGFR2 Vb/Vs fold ratio at 10 min" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    qudt:numericValue 2.3 ;
+    qudt:unit "fold" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/vegfr2-phospho-kinetics-huvec> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType "VEGFR2 phosphorylation fold ratio (Vb/Vs)" ;
+    lova:pValue 0.05 ;
+    lova:sampleSize 5 ;
+    lova:timePoint "10 min" .
+
+<https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/plaquant-control> a lova:Outcome ;
+    rdfs:label "PLA counts/cell, vehicle control" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    qudt:numericValue 25.0 ;
+    qudt:unit "counts/cell" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/proximity-ligation-assay> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "VEGFR2/β1 integrin PLA signal count" ;
+    lova:sampleSize 4 .
+
+<https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/plaquant-vb> a lova:Outcome ;
+    rdfs:label "PLA counts/cell, Vb" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    qudt:numericValue 220.0 ;
+    qudt:unit "counts/cell" ;
+    lova:comparisonGroup "Vehicle, Vs, Col" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/proximity-ligation-assay> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "VEGFR2/β1 integrin PLA signal count" ;
+    lova:sampleSize 4 .
+
+<https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/pp38-noabs-vb> a lova:Outcome ;
+    rdfs:label "pP38 intensity, Vb, no β1 blocking abs" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    qudt:numericValue 1.4 ;
+    qudt:unit "fold" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/b1-blocking-antibody> ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType "p38 phosphorylation intensity" ;
+    lova:timePoint "15 min" .
+
+<https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/pp38-vb165> a lova:Outcome ;
+    rdfs:label "pP38 intensity, Vb VEGF165 at 15 min" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    qudt:numericValue 3.1 ;
+    qudt:unit "fold" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/isoform-comparison> ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType "p38 phosphorylation intensity" ;
+    lova:timePoint "15 min" .
+
+<https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/pp38-vs165> a lova:Outcome ;
+    rdfs:label "pP38 intensity, Vs VEGF165 at 15 min" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    qudt:numericValue 1.0 ;
+    qudt:unit "fold" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/isoform-comparison> ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType "p38 phosphorylation intensity" ;
+    lova:timePoint "15 min" .
+
+<https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/pp38-withabs-vb> a lova:Outcome ;
+    rdfs:label "pP38 intensity, Vb, with β1 blocking abs" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    qudt:numericValue 0.7 ;
+    qudt:unit "fold" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/b1-blocking-antibody> ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType "p38 phosphorylation intensity" ;
+    lova:timePoint "15 min" .
+
+<https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/py1214-adenocre-vb> a lova:Outcome ;
+    rdfs:label "pY1214 intensity, Vb, +adeno-Cre (β1 KO)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    qudt:numericValue 1.0 ;
+    qudt:unit "fold" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/b1-knockout-mlec> ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType "pY1214 phosphorylation intensity" ;
+    lova:timePoint "15 min" .
+
+<https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/py1214-controlvirus-vb> a lova:Outcome ;
+    rdfs:label "pY1214 intensity, Vb, control virus (WT β1)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    qudt:numericValue 1.7 ;
+    qudt:unit "fold" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/b1-knockout-mlec> ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType "pY1214 phosphorylation intensity" ;
+    lova:timePoint "15 min" .
+
+<https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/py1214-noabs-vb> a lova:Outcome ;
+    rdfs:label "pY1214 intensity, Vb, no β1 blocking abs" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    qudt:numericValue 4.2 ;
+    qudt:unit "fold" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/b1-blocking-antibody> ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType "pY1214 phosphorylation intensity" ;
+    lova:timePoint "15 min" .
+
+<https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/py1214-vb121> a lova:Outcome ;
+    rdfs:label "pY1214 intensity, Vb VEGF121 at 15 min" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    qudt:numericValue 1.1 ;
+    qudt:unit "fold" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/isoform-comparison> ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType "pY1214 phosphorylation intensity" ;
+    lova:timePoint "15 min" .
+
+<https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/py1214-vs165> a lova:Outcome ;
+    rdfs:label "pY1214 intensity, Vs VEGF165 at 15 min" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    qudt:numericValue 1.0 ;
+    qudt:unit "fold" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/isoform-comparison> ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType "pY1214 phosphorylation intensity" ;
+    lova:timePoint "15 min" .
+
+<https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/py1214-withabs-vb> a lova:Outcome ;
+    rdfs:label "pY1214 intensity, Vb, with β1 blocking abs" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    qudt:numericValue 0.7 ;
+    qudt:unit "fold" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/b1-blocking-antibody> ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType "pY1214 phosphorylation intensity" ;
+    lova:timePoint "15 min" .
+
+<https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/vegf113-retention> a lova:Outcome ;
+    rdfs:label "VEGF113 retention within collagen gel after washes" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/vegfr2-phospho-pae-kdr> ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType "Protein retention in matrix" ;
+    lova:valueString "20-30% retained" .
+
+<https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/vegf165-retention> a lova:Outcome ;
+    rdfs:label "VEGF165 retention within collagen gel after washes" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/vegfr2-phospho-pae-kdr> ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType "Protein retention in matrix" ;
+    lova:valueString ">80% retained" .
+
+<https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/vegfr2-clustering-vb> a lova:Outcome ;
+    rdfs:label "VEGFR2 clustering fold over control (Vb, 15 min)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    qudt:numericValue 1.5 ;
+    qudt:unit "fold" ;
+    lova:comparisonGroup "Vehicle, Vs, Col" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/vegfr2-clustering-distribution> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "VEGFR2 cluster size fold over control" ;
+    lova:timePoint "15 min" .
+
+<https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/vegfr2-distribution-no-diff> a lova:Outcome ;
+    rdfs:label "VEGFR2 distribution (positive staining) across conditions" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    lova:dataSource "[FIG-E]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/vegfr2-clustering-distribution> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "VEGFR2 positive staining count" ;
+    lova:timePoint "15 min" ;
+    lova:valueString "No significant difference in positive staining counts between -, Vs, Vb, Col" .
+
+<https://lovamap.com/ontology#reagent/10.1083-jcb.200906044/collagen-purecol> a lova:Reagent ;
+    rdfs:label "Purecol collagen matrix (type I)" ;
+    lova:concentration "3.0 mg/ml" ;
+    lova:reagentFunction "ECM scaffold for VEGF matrix anchorage" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Advanced Biomatrix" .
+
+<https://lovamap.com/ontology#reagent/10.1083-jcb.200906044/dynosore> a lova:Reagent ;
+    rdfs:label "Dynosore" ;
+    lova:reagentFunction "Dynamin inhibitor used to block endocytosis" ;
+    lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#reagent/10.1083-jcb.200906044/vegf113> a lova:Reagent ;
+    rdfs:label "mVEGF113" ;
+    lova:reagentFunction "Mutant VEGF isoform lacking ECM binding domain, generated per Lee et al., 2005" ;
+    lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#reagent/10.1083-jcb.200906044/vegf121> a lova:Reagent ;
+    rdfs:label "VEGF121" ;
+    lova:reagentFunction "VEGF isoform lacking ECM binding domain" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Gera Neufeld; R&D Systems" .
+
+<https://lovamap.com/ontology#reagent/10.1083-jcb.200906044/vegf165> a lova:Reagent ;
+    rdfs:label "Human VEGF165" ;
+    lova:reagentFunction "Growth factor ligand for VEGFR2" ;
+    lova:reagentRole "other" ;
+    lova:supplier "NIH Repository; Genentech; R&D Systems" .
+
+<https://lovamap.com/ontology#author/anderson-sean> a foaf:Person ;
+    foaf:familyName "Anderson" ;
+    foaf:givenName "Sean M." ;
+    foaf:name "Sean M. Anderson" .
+
+<https://lovamap.com/ontology#author/chen-tom> a foaf:Person ;
+    foaf:familyName "Chen" ;
+    foaf:givenName "Tom T." ;
+    foaf:name "Tom T. Chen" .
+
+<https://lovamap.com/ontology#author/lee-sun-young> a foaf:Person ;
+    foaf:familyName "Lee" ;
+    foaf:givenName "Sun-Young" ;
+    foaf:name "Sun-Young Lee" .
+
+<https://lovamap.com/ontology#author/luque-alfonso> a foaf:Person ;
+    foaf:familyName "Luque" ;
+    foaf:givenName "Alfonso" ;
+    foaf:name "Alfonso Luque" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" .
+
+<https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/b1-knockout-mlec> a lova:Experiment ;
+    rdfs:label "β1 integrin genetic knockout (Cre) in mouse liver endothelial cells (MLECs)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    lova:assayOrMethod "Adeno-Cre virus-mediated deletion, Western blot, cell-based ELISA" ;
+    lova:cellSource "β1 fl/fl mouse liver" ;
+    lova:cellType "Mouse liver endothelial cells (MLEC), β1 fl/fl" ;
+    lova:cultureDuration "3 d post Cre induction; 5, 15, 30 min treatment" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Genetic knockout functional assay" ;
+    lova:sampleSize 4 ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1083-jcb.200906044/vb-vegf165>,
+        <https://lovamap.com/ontology#material/10.1083-jcb.200906044/vs-vegf165> .
+
+<https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/hek293-293nr> a lova:Experiment ;
+    rdfs:label "Native VEGFR2 (293NR) phosphorylation assay" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    lova:assayOrMethod "4G10 Western blot" ;
+    lova:cellType "HEK 293 (stably transfected native VEGFR2, 293NR)" ;
+    lova:cultureDuration "5, 15 min" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Receptor phosphorylation" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1083-jcb.200906044/vb-vegf165>,
+        <https://lovamap.com/ontology#material/10.1083-jcb.200906044/vs-vegf165> .
+
+<https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/hek293-y1214f-mutant> a lova:Experiment ;
+    rdfs:label "VEGFR2 Y1214F mutant phosphorylation assay in HEK293 cells" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    lova:assayOrMethod "4G10 Western blot" ;
+    lova:cellType "HEK 293 (Y1214F VEGFR2 mutant)" ;
+    lova:cultureDuration "5, 15 min" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Mutant receptor phosphorylation" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1083-jcb.200906044/vb-vegf165>,
+        <https://lovamap.com/ontology#material/10.1083-jcb.200906044/vs-vegf165> .
+
+<https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/icc-b1integrin-paxillin> a lova:Experiment ;
+    rdfs:label "Immunocytochemistry for β1 integrin and paxillin redistribution to focal adhesions" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    lova:assayOrMethod "Confocal microscopy" ;
+    lova:assayURI <http://purl.obolibrary.org/obo/OBI_0400149> ;
+    lova:cellType "HUVEC" ;
+    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000115> ;
+    lova:cultureDuration "15 min" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immunofluorescence localization" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1083-jcb.200906044/collagen-gel>,
+        <https://lovamap.com/ontology#material/10.1083-jcb.200906044/vb-vegf165>,
+        <https://lovamap.com/ontology#material/10.1083-jcb.200906044/vs-vegf165> .
+
+<https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/vegf-stability-carrier> a lova:Experiment ;
+    rdfs:label "VEGF165 stability/carrier (BSA) effect on VEGFR2 phosphorylation kinetics" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    lova:assayOrMethod "4G10 Western blot" ;
+    lova:cellType "HUVEC" ;
+    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000115> ;
+    lova:cultureDuration "5, 15, 30 min" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Stability control experiment" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1083-jcb.200906044/vs-vegf165> .
+
+<https://lovamap.com/ontology#outcome/10.1083-jcb.200906044/py1214-vb165> a lova:Outcome ;
+    rdfs:label "pY1214 intensity, Vb VEGF165 at 15 min" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    qudt:numericValue 2.1 ;
+    qudt:unit "fold" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/isoform-comparison> ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType "pY1214 phosphorylation intensity" ;
+    lova:timePoint "15 min" .
+
+<https://lovamap.com/ontology#reagent/10.1083-jcb.200906044/bb94> a lova:Reagent ;
+    rdfs:label "BB94 (MMP inhibitor)" ;
+    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_195398> ;
+    lova:concentration "2 µM" ;
+    lova:reagentFunction "Broad-spectrum matrix metalloproteinase inhibitor" ;
+    lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#author/iruela-arispe-luisa> a foaf:Person ;
+    owl:sameAs <https://orcid.org/0000-0003-3758-9464> ;
+    foaf:familyName "Iruela-Arispe" ;
+    foaf:givenName "M. Luisa" ;
+    foaf:name "M. Luisa Iruela-Arispe" .
+
+<https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/phosphosite-specific-analysis> a lova:Experiment ;
+    rdfs:label "Site-specific VEGFR2 tyrosine phosphorylation analysis in HUVECs" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    lova:assayOrMethod "Phospho-specific antibodies (pY801, pY951, pY1054, pY1059, pY1175, pY1214)" ;
+    lova:cellType "HUVEC" ;
+    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000115> ;
+    lova:cultureDuration "5, 15 min" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Phosphosite-specific Western blot" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1083-jcb.200906044/vb-vegf165>,
+        <https://lovamap.com/ontology#material/10.1083-jcb.200906044/vs-vegf165> .
+
+<https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/vegfr2-clustering-distribution> a lova:Experiment ;
+    rdfs:label "VEGFR2 surface distribution and clustering in HUVECs" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    lova:assayOrMethod "Confocal microscopy, ImageJ particle analysis" ;
+    lova:cellType "HUVEC" ;
+    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000115> ;
+    lova:cultureDuration "15 min" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immunofluorescence clustering analysis" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1083-jcb.200906044/collagen-gel>,
+        <https://lovamap.com/ontology#material/10.1083-jcb.200906044/vb-vegf165>,
+        <https://lovamap.com/ontology#material/10.1083-jcb.200906044/vs-vegf165> .
+
+<https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/vegfr2-phospho-kinetics-huvec> a lova:Experiment ;
+    rdfs:label "VEGFR2 phosphorylation kinetics in HUVECs, Vb vs Vs over time" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    lova:assayOrMethod "Western blot, 4G10" ;
+    lova:cellSource "Human umbilical vein" ;
+    lova:cellType "HUVEC" ;
+    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000115> ;
+    lova:cultureDuration "1, 3, 5, 10, 20, 30 min" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Receptor phosphorylation time course" ;
+    lova:sampleSize 5 ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1083-jcb.200906044/vb-vegf165>,
+        <https://lovamap.com/ontology#material/10.1083-jcb.200906044/vs-vegf165> .
+
+<https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/vegfr2-phospho-pae-kdr> a lova:Experiment ;
+    rdfs:label "VEGFR2 phosphorylation in PAE-KDR cells by Vb vs Vs" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    lova:assayOrMethod "Western blot, phosphotyrosine antibody 4G10" ;
+    lova:cellType "PAE-KDR (porcine aortic endothelial cells transfected with VEGFR2)" ;
+    lova:cultureDuration "5 min" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Receptor phosphorylation" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1083-jcb.200906044/vb-vegf165>,
+        <https://lovamap.com/ontology#material/10.1083-jcb.200906044/vs-vegf165> .
+
+<https://lovamap.com/ontology#material/10.1083-jcb.200906044/collagen-gel> a lova:Material ;
+    rdfs:label "Polymerized collagen gel control (no VEGF)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1083-jcb.200906044/matrix-bound-vegf-prep> .
+
+<https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/dose-response> a lova:Experiment ;
+    rdfs:label "Dose-response of soluble VEGF165 concentration on VEGFR2 phosphorylation" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    lova:assayOrMethod "4G10 Western blot" ;
+    lova:cellType "HUVEC" ;
+    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000115> ;
+    lova:cultureDuration "5', 15', 30'" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Dose-response" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1083-jcb.200906044/vs-vegf165> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1083-jcb.200906044/matrix-bound-vegf-prep> a lova:FabricationMethod ;
+    rdfs:label "Matrix-bound VEGF165 preparation via collagen gel polymerization" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    lova:annealingConditions "37°C, 1 h polymerization" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1083-jcb.200906044/bb94>,
+        <https://lovamap.com/ontology#reagent/10.1083-jcb.200906044/collagen-purecol>,
+        <https://lovamap.com/ontology#reagent/10.1083-jcb.200906044/dynosore>,
+        <https://lovamap.com/ontology#reagent/10.1083-jcb.200906044/vegf113>,
+        <https://lovamap.com/ontology#reagent/10.1083-jcb.200906044/vegf121>,
+        <https://lovamap.com/ontology#reagent/10.1083-jcb.200906044/vegf165> ;
+    lova:manufacturingMethod "Mixing VEGF with neutralized Purecol collagen gel, polymerized at 37°C for 1 h, washed 6x in PBS" .
+
+<https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/proximity-ligation-assay> a lova:Experiment ;
+    rdfs:label "Proximity ligation assay for VEGFR2/β1 integrin interaction" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    lova:assayOrMethod "Duolink PLA" ;
+    lova:cellType "HUVEC" ;
+    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000115> ;
+    lova:cultureDuration "20 min" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Proximity ligation assay" ;
+    lova:sampleSize 4 ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1083-jcb.200906044/collagen-gel>,
+        <https://lovamap.com/ontology#material/10.1083-jcb.200906044/vb-vegf165>,
+        <https://lovamap.com/ontology#material/10.1083-jcb.200906044/vs-vegf165> .
+
+<https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/vegfr2-internalization> a lova:Experiment ;
+    rdfs:label "VEGFR2 internalization in HUVECs" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    lova:assayOrMethod "scFvA7 antibody uptake assay, immunofluorescence & Western blot" ;
+    lova:cellType "HUVEC" ;
+    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000115> ;
+    lova:cultureDuration "15 min" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Receptor internalization" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1083-jcb.200906044/vb-vegf165>,
+        <https://lovamap.com/ontology#material/10.1083-jcb.200906044/vs-vegf165> .
+
+<https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/b1-blocking-antibody> a lova:Experiment ;
+    rdfs:label "β1 integrin inhibitory antibody blocking experiment" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    lova:assayOrMethod "β1 inhibitory antibody pretreatment + Western blot" ;
+    lova:cellType "HUVEC" ;
+    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000115> ;
+    lova:cultureDuration "15 min pretreatment + 15 min treatment" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Functional blocking assay" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1083-jcb.200906044/vb-vegf165>,
+        <https://lovamap.com/ontology#material/10.1083-jcb.200906044/vs-vegf165> .
+
+<https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/isoform-comparison> a lova:Experiment ;
+    rdfs:label "VEGF isoform comparison for VEGFR2/p38/Y1214 activation" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    lova:assayOrMethod "Western blot (4G10, pY1214, pP38)" ;
+    lova:assayURI <http://purl.obolibrary.org/obo/OBI_0000714> ;
+    lova:cellType "HUVEC" ;
+    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000115> ;
+    lova:cultureDuration "5, 15 min" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Isoform comparison phosphorylation assay" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1083-jcb.200906044/vb-vegf113>,
+        <https://lovamap.com/ontology#material/10.1083-jcb.200906044/vb-vegf121>,
+        <https://lovamap.com/ontology#material/10.1083-jcb.200906044/vb-vegf165> .
+
+<https://lovamap.com/ontology#material/10.1083-jcb.200906044/vb-vegf165> a lova:Material ;
+    rdfs:label "Matrix-bound VEGF165 (Vb), collagen-anchored" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1083-jcb.200906044/matrix-bound-vegf-prep> ;
+    lova:particleMaterial "VEGF165 polymerized with type I collagen (Purecol)" .
+
+<https://lovamap.com/ontology#material/10.1083-jcb.200906044/vs-vegf165> a lova:Material ;
+    rdfs:label "Soluble VEGF165 (Vs) diluted in 1x PBS" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1083-jcb.200906044> .
+
+<https://lovamap.com/ontology#agent/rdf_enrichment> a prov:SoftwareAgent ;
+    rdfs:label "rdf_enrichment pipeline" .
+
+<https://lovamap.com/ontology#paper/10.1083-jcb.200906044> a bibo:AcademicArticle ;
+    rdfs:label "Chen et al., 2010 — Anchorage of VEGF to the ECM conveys differential signaling responses" ;
+    dc1:bibliographicCitation "Chen et al., 2010" ;
+    dc1:creator <https://lovamap.com/ontology#author/anderson-sean>,
+        <https://lovamap.com/ontology#author/chen-tom>,
+        <https://lovamap.com/ontology#author/iruela-arispe-luisa>,
+        <https://lovamap.com/ontology#author/lee-sun-young>,
+        <https://lovamap.com/ontology#author/luque-alfonso>,
+        <https://lovamap.com/ontology#author/segura-tatiana> ;
+    dc1:date "2010"^^xsd:gYear ;
+    dc1:identifier "10.1083/jcb.200906044" ;
+    dc1:title "Anchorage of VEGF to the extracellular matrix conveys differential signaling responses to endothelial cells" ;
+    dc1:type "Research Article" ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/chen-tom> <https://lovamap.com/ontology#author/luque-alfonso> <https://lovamap.com/ontology#author/lee-sun-young> <https://lovamap.com/ontology#author/anderson-sean> <https://lovamap.com/ontology#author/segura-tatiana> <https://lovamap.com/ontology#author/iruela-arispe-luisa> ) ;
+    lova:focusMaterial "Soluble vs. collagen matrix-bound VEGF165 and its differential signaling through VEGFR2 and β1 integrin in endothelial cells" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/journal-of-cell-biology> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CL_0000115> ;
+    rdf:predicate lova:cellTypeURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/isoform-comparison> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CL_0000115> ;
+    rdf:predicate lova:cellTypeURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/internalization-b1-blocking> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CL_0000115> ;
+    rdf:predicate lova:cellTypeURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/b1-blocking-antibody> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CL_0000115> ;
+    rdf:predicate lova:cellTypeURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/collagen-type-comparison> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CL_0000115> ;
+    rdf:predicate lova:cellTypeURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/coip-vegfr2-b1integrin> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CL_0000115> ;
+    rdf:predicate lova:cellTypeURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/p38-akt-kinetics> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CL_0000115> ;
+    rdf:predicate lova:cellTypeURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/vegf-stability-carrier> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/OBI_0400149> ;
+    rdf:predicate lova:assayURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/icc-b1integrin-paxillin> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CL_0000115> ;
+    rdf:predicate lova:cellTypeURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/proximity-ligation-assay> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CL_0000115> ;
+    rdf:predicate lova:cellTypeURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/vegfr2-internalization> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <https://orcid.org/0000-0003-3758-9464> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#author/iruela-arispe-luisa> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CL_0000115> ;
+    rdf:predicate lova:cellTypeURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/vegfr2-clustering-distribution> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CHEBI_195398> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1083-jcb.200906044/bb94> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CL_0000115> ;
+    rdf:predicate lova:cellTypeURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/icc-b1integrin-paxillin> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CL_0000115> ;
+    rdf:predicate lova:cellTypeURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/dose-response> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/OBI_0000714> ;
+    rdf:predicate lova:assayURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/isoform-comparison> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CL_0000115> ;
+    rdf:predicate lova:cellTypeURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/vegfr2-phospho-kinetics-huvec> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CL_0000115> ;
+    rdf:predicate lova:cellTypeURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1083-jcb.200906044/phosphosite-specific-analysis> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+

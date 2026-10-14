@@ -1,0 +1,736 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1002-adhm.201400783> a bibo:AcademicArticle ;
+    rdfs:label "Tokatlian et al., 2015 — Porous HA Hydrogels for Nonviral DNA Delivery in Diabetic Wound Healing" ;
+    dc:title "Porous Hyaluronic Acid Hydrogels for Localized Nonviral DNA Delivery in a Diabetic Wound Healing Model" ;
+    dc:identifier "10.1002/adhm.201400783" ;
+    dc:date "2015"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/advanced-healthcare-materials> ;
+    dc:creator <https://lovamap.com/ontology#author/tokatlian-talar> ,
+               <https://lovamap.com/ontology#author/cam-cynthia> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/tokatlian-talar>
+                       <https://lovamap.com/ontology#author/cam-cynthia>
+                       <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    dc:bibliographicCitation "Tokatlian et al., 2015" ;
+    lova:focusMaterial "Porous and non-porous hyaluronic acid-MMP (HA-MMP) hydrogels loaded with pGFPluc or pVEGF DNA/PEI polyplexes for diabetic wound healing" .
+
+<https://lovamap.com/ontology#author/tokatlian-talar> a foaf:Person ;
+    foaf:familyName "Tokatlian" ;
+    foaf:givenName "Talar" ;
+    foaf:name "Talar Tokatlian" ;
+    schema:affiliation "University of California, Los Angeles" .
+
+<https://lovamap.com/ontology#author/cam-cynthia> a foaf:Person ;
+    foaf:familyName "Cam" ;
+    foaf:givenName "Cynthia" ;
+    foaf:name "Cynthia Cam" ;
+    schema:affiliation "University of California, Los Angeles" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" ;
+    schema:affiliation "University of California, Los Angeles" .
+
+<https://lovamap.com/ontology#journal/advanced-healthcare-materials> a bibo:Journal ;
+    dc:title "Advanced Healthcare Materials" ;
+    bibo:issn "2192-2640" .
+
+<https://lovamap.com/ontology#material/10.1002-adhm.201400783/mat-100um-porous> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    rdfs:label "100 μm porous HA-MMP hydrogel" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Hyaluronic acid (HA)-MMP hydrogel" ;
+    lova:particleSizeMin 90.0 ;
+    lova:particleSizeMax 106.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:sizeDistribution "Polydisperse 90-106μm (PMMA microsphere template)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adhm.201400783/fab-porous-100> ;
+    lova:packingConfiguration "Hexagonal close-packed (theoretical)" ;
+    lova:reportedPorosity 0.76 ;
+    lova:reportedPoreSize "100 μm" ;
+    lova:scaffoldDimensions "6 mm diameter × 1 mm height" .
+
+<https://lovamap.com/ontology#material/10.1002-adhm.201400783/mat-60um-porous> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    rdfs:label "60 μm porous HA-MMP hydrogel" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Hyaluronic acid (HA)-MMP hydrogel" ;
+    lova:particleSizeMin 53.0 ;
+    lova:particleSizeMax 63.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:sizeDistribution "Polydisperse 53-63μm (PMMA microsphere template)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adhm.201400783/fab-porous-60> ;
+    lova:packingConfiguration "Hexagonal close-packed (theoretical)" ;
+    lova:reportedPorosity 0.76 ;
+    lova:reportedPoreSize "60 μm" ;
+    lova:scaffoldDimensions "6 mm diameter × 1 mm height" .
+
+<https://lovamap.com/ontology#material/10.1002-adhm.201400783/mat-npore> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    rdfs:label "Non-porous (n-pore) HA-MMP hydrogel" ;
+    lova:particleMaterial "Hyaluronic acid (HA)-MMP hydrogel" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adhm.201400783/fab-npore> ;
+    lova:packingConfiguration "None (solid, non-porous)" ;
+    lova:scaffoldDimensions "6 mm diameter × 1 mm height" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-adhm.201400783/fab-porous-100> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    rdfs:label "100 μm porous HA-MMP hydrogel fabrication via PMMA microsphere templating" ;
+    lova:chemistry "Michael-type addition (thiol-acrylate)" ;
+    lova:manufacturingMethod "PMMA microsphere (90-106 μm) templating, centrifugation perfusion at 1500 rpm, template dissolved in acetone" ;
+    lova:annealingConditions "37°C, 30-45 min" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-adhm.201400783/ha> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.201400783/adh> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.201400783/edc> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.201400783/nhs-ac> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.201400783/hs-mmp-sh> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.201400783/rgd> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.201400783/pei> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.201400783/pgfpluc> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.201400783/pvegf> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.201400783/sucrose> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.201400783/agarose> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.201400783/pmma-microspheres> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-adhm.201400783/fab-porous-60> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    rdfs:label "60 μm porous HA-MMP hydrogel fabrication via PMMA microsphere templating" ;
+    lova:chemistry "Michael-type addition (thiol-acrylate)" ;
+    lova:manufacturingMethod "PMMA microsphere (53-63 μm) templating, centrifugation perfusion at 1500 rpm, template dissolved in acetone" ;
+    lova:annealingConditions "37°C, 30-45 min" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-adhm.201400783/ha> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.201400783/adh> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.201400783/edc> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.201400783/nhs-ac> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.201400783/hs-mmp-sh> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.201400783/rgd> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.201400783/pei> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.201400783/pgfpluc> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.201400783/pvegf> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.201400783/sucrose> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.201400783/agarose> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.201400783/pmma-microspheres> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-adhm.201400783/fab-npore> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    rdfs:label "Non-porous HA-MMP hydrogel fabrication (no porogen)" ;
+    lova:chemistry "Michael-type addition (thiol-acrylate)" ;
+    lova:manufacturingMethod "Sandwiched between Sigmacoted slides with 1 mm plastic spacers, no templating" ;
+    lova:annealingConditions "37°C, 30-45 min" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-adhm.201400783/ha> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.201400783/adh> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.201400783/edc> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.201400783/nhs-ac> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.201400783/hs-mmp-sh> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.201400783/rgd> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.201400783/pei> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.201400783/pgfpluc> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.201400783/pvegf> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.201400783/sucrose> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.201400783/agarose> .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.201400783/ha> a lova:Reagent ;
+    rdfs:label "Sodium hyaluronan (HA, 60 kDa)" ;
+    lova:reagentRole "monomer" ;
+    lova:molecularWeight "60 kDa" ;
+    lova:concentration "3.0 w/v% (final gel)" ;
+    lova:supplier "Genzyme Corporation" ;
+    lova:reagentFunction "Hydrogel backbone polymer (acrylate-functionalized)" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.201400783/adh> a lova:Reagent ;
+    rdfs:label "Adipic acid dihydrazide (ADH)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "36.77 g (211.07 mmol)" ;
+    lova:reagentFunction "HA modification to acrylate-functionalized intermediate (HA-ADH)" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.201400783/edc> a lova:Reagent ;
+    rdfs:label "1-ethyl-3-[3-dimethylaminopropyl] carbodiimide hydrochloride (EDC)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "4.00 g (20.84 mmol)" ;
+    lova:reagentFunction "Coupling reagent for HA-ADH conjugation" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.201400783/nhs-ac> a lova:Reagent ;
+    rdfs:label "N-Acryloxysuccinimide (NHS-Ac)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "4.46 g (26.38 mmol)" ;
+    lova:reagentFunction "Acrylation of HA-ADH intermediate" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.201400783/hs-mmp-sh> a lova:Reagent ;
+    rdfs:label "MMP-degradable peptide crosslinker (Ac-GCRDGPQGIWGQDRCG-NH2)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:sequence "GCRDGPQGIWGQDRCG" ;
+    lova:supplier "Genscript" ;
+    lova:reagentFunction "MMP-degradable crosslinking of HA-Ac" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.201400783/rgd> a lova:Reagent ;
+    rdfs:label "RGD peptide (Ac-GCGYGRGDSPG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "GCGYGRGDSPG" ;
+    lova:concentration "100 μM" ;
+    lova:supplier "Genscript" ;
+    lova:reagentFunction "Cell adhesion" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.201400783/pei> a lova:Reagent ;
+    rdfs:label "Linear poly(ethylene imine) (L-PEI, 25 kDa)" ;
+    lova:reagentRole "other" ;
+    lova:molecularWeight "25 kDa" ;
+    lova:concentration "228.3 μg (N/P = 7)" ;
+    lova:supplier "Polysciences" ;
+    lova:reagentFunction "DNA condensation (polyplex formation) for non-viral gene delivery" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.201400783/pgfpluc> a lova:Reagent ;
+    rdfs:label "Plasmid encoding GFP-firefly luciferase (pGFPluc)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "250 μg plasmid DNA per aliquot" ;
+    lova:supplier "New England Biolabs" ;
+    lova:reagentFunction "Reporter gene expression (GFP-luciferase)" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.201400783/pvegf> a lova:Reagent ;
+    rdfs:label "Plasmid encoding human VEGF-165 (pVEGF)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "250 μg plasmid DNA per aliquot" ;
+    lova:supplier "New England Biolabs" ;
+    lova:reagentFunction "Pro-angiogenic gene delivery (VEGF-165 expression)" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.201400783/sucrose> a lova:Reagent ;
+    rdfs:label "Sucrose (Ultra pure)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "35 mg (0.10 mmol) per 100 μL hydrogel aliquot" ;
+    lova:supplier "MP Biomedicals" ;
+    lova:reagentFunction "Lyophilization cryoprotectant for polyplex encapsulation (caged nanoparticle encapsulation)" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.201400783/agarose> a lova:Reagent ;
+    rdfs:label "Low-melting point agarose (UltraPure Agarose, Tm = 34.5-37.5°C)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "1.0 mg per 100 μL hydrogel aliquot" ;
+    lova:supplier "Invitrogen" ;
+    lova:reagentFunction "Polyplex encapsulation matrix (caged nanoparticle encapsulation)" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.201400783/pmma-microspheres> a lova:Reagent ;
+    rdfs:label "PMMA microspheres (53-63 μm and 90-106 μm)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "20 mg per 100 μL (1.19 mg/μL)" ;
+    lova:supplier "Cospheric" ;
+    lova:reagentFunction "Sacrificial porogen/template for porous hydrogel formation" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.201400783/exp-matrix-components> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.201400783/mat-100um-porous> ;
+    rdfs:label "Matrix component assessment: granulation tissue formation with/without agarose/sucrose and/or pDNA/PEI polyplexes" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Granulation tissue quantification" ;
+    lova:assayOrMethod "H&E staining, ImageJ quantification" ;
+    lova:cellType "Host infiltrating cells (db/db mouse wound)" ;
+    lova:cellSource "db/db mouse wound tissue" ;
+    lova:cultureDuration "14 days" ;
+    lova:sampleSize 4 .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.201400783/exp-granulation-gfp> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.201400783/mat-100um-porous> ,
+                      <https://lovamap.com/ontology#material/10.1002-adhm.201400783/mat-60um-porous> ,
+                      <https://lovamap.com/ontology#material/10.1002-adhm.201400783/mat-npore> ;
+    rdfs:label "Granulation tissue formation and transfection of pGFPluc/PEI loaded hydrogels" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Granulation tissue quantification, GFP immunofluorescence" ;
+    lova:assayOrMethod "H&E staining, GFP immunofluorescence" ;
+    lova:cellType "Host infiltrating cells (db/db mouse wound)" ;
+    lova:cellSource "db/db mouse wound tissue" ;
+    lova:cultureDuration "14 days" ;
+    lova:sampleSize 5 .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.201400783/exp-wound-closure> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.201400783/mat-100um-porous> ,
+                      <https://lovamap.com/ontology#material/10.1002-adhm.201400783/mat-60um-porous> ,
+                      <https://lovamap.com/ontology#material/10.1002-adhm.201400783/mat-npore> ;
+    rdfs:label "Wound closure measurement in db/db mice with pDNA-loaded hydrogels" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Wound closure monitoring" ;
+    lova:assayOrMethod "Live imaging, ImageJ wound area measurement" ;
+    lova:cellSource "db/db mouse full-thickness splinted wound" ;
+    lova:cultureDuration "14 days" ;
+    lova:sampleSize 5 .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.201400783/exp-angiogenesis> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.201400783/mat-100um-porous> ,
+                      <https://lovamap.com/ontology#material/10.1002-adhm.201400783/mat-60um-porous> ,
+                      <https://lovamap.com/ontology#material/10.1002-adhm.201400783/mat-npore> ;
+    rdfs:label "Angiogenesis assessment via CD31 staining in pVEGF and pGFPluc loaded hydrogels" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Vessel density and diameter quantification" ;
+    lova:assayOrMethod "CD31 immunofluorescence, Zen imaging analysis" ;
+    lova:cellSource "db/db mouse wound granulation tissue" ;
+    lova:cultureDuration "14 days" ;
+    lova:sampleSize 5 .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/gta-noAS-noDNA> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400783/exp-matrix-components> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    rdfs:label "Granulation tissue area, 100 μm porous, -A/S -DNA" ;
+    lova:measurementType "Granulation tissue area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.25 ;
+    qudt:unit "mm^2" ;
+    lova:timePoint "Day 14" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/gta-AS-noDNA> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400783/exp-matrix-components> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    rdfs:label "Granulation tissue area, 100 μm porous, +A/S -DNA" ;
+    lova:measurementType "Granulation tissue area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.78 ;
+    qudt:unit "mm^2" ;
+    lova:timePoint "Day 14" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/gta-AS-DNA> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400783/exp-matrix-components> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    rdfs:label "Granulation tissue area, 100 μm porous, +A/S +DNA" ;
+    lova:measurementType "Granulation tissue area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.73 ;
+    qudt:unit "mm^2" ;
+    lova:timePoint "Day 14" ;
+    lova:scope "Bulk/global" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.201400783/gta-AS-DNA-vs-noDNA> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    rdfs:label "Granulation tissue area higher with +DNA than -DNA (both +A/S), 100 μm porous" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/gta-AS-DNA> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/gta-AS-noDNA> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/gta-npore-fig2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400783/exp-granulation-gfp> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    rdfs:label "Granulation tissue area, n-pore hydrogel, 14 days" ;
+    lova:measurementType "Granulation tissue area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.47 ;
+    qudt:unit "mm^2" ;
+    lova:timePoint "Day 14" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/gta-60um-fig2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400783/exp-granulation-gfp> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    rdfs:label "Granulation tissue area, 60 μm porous hydrogel, 14 days" ;
+    lova:measurementType "Granulation tissue area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.62 ;
+    qudt:unit "mm^2" ;
+    lova:timePoint "Day 14" ;
+    lova:scope "Bulk/global" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/gta-100um-fig2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400783/exp-granulation-gfp> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    rdfs:label "Granulation tissue area, 100 μm porous hydrogel, 14 days" ;
+    lova:measurementType "Granulation tissue area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.75 ;
+    qudt:unit "mm^2" ;
+    lova:timePoint "Day 14" ;
+    lova:scope "Bulk/global" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.201400783/gta-npore-vs-60um> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    rdfs:label "Granulation tissue area lower in n-pore vs 60 μm porous hydrogel" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/gta-npore-fig2> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/gta-60um-fig2> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.201400783/gta-npore-vs-100um> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    rdfs:label "Granulation tissue area lower in n-pore vs 100 μm porous hydrogel" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/gta-npore-fig2> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/gta-100um-fig2> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/gfp-total-npore> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400783/exp-granulation-gfp> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    rdfs:label "Total GFP+ cells per cross-sectional area, n-pore" ;
+    lova:measurementType "Total GFP+ cells per cross-sectional area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 65.0 ;
+    qudt:unit "cells" ;
+    lova:timePoint "Day 14" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/gfp-total-60um> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400783/exp-granulation-gfp> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    rdfs:label "Total GFP+ cells per cross-sectional area, 60 μm porous" ;
+    lova:measurementType "Total GFP+ cells per cross-sectional area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 128.0 ;
+    qudt:unit "cells" ;
+    lova:timePoint "Day 14" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/gfp-total-100um> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400783/exp-granulation-gfp> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    rdfs:label "Total GFP+ cells per cross-sectional area, 100 μm porous" ;
+    lova:measurementType "Total GFP+ cells per cross-sectional area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 108.0 ;
+    qudt:unit "cells" ;
+    lova:timePoint "Day 14" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/gfp-density-npore> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400783/exp-granulation-gfp> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    rdfs:label "GFP+ cells density, n-pore" ;
+    lova:measurementType "GFP+ cells density" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 138.0 ;
+    qudt:unit "cells/mm^2" ;
+    lova:timePoint "Day 14" ;
+    lova:scope "Bulk/global" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/gfp-density-60um> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400783/exp-granulation-gfp> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    rdfs:label "GFP+ cells density, 60 μm porous" ;
+    lova:measurementType "GFP+ cells density" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 68.0 ;
+    qudt:unit "cells/mm^2" ;
+    lova:timePoint "Day 14" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/gfp-density-100um> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400783/exp-granulation-gfp> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    rdfs:label "GFP+ cells density, 100 μm porous" ;
+    lova:measurementType "GFP+ cells density" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 63.0 ;
+    qudt:unit "cells/mm^2" ;
+    lova:timePoint "Day 14" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.201400783/gfp-density-npore-vs-60um> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    rdfs:label "GFP+ cell density higher in n-pore vs 60 μm porous hydrogel" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/gfp-density-npore> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/gfp-density-60um> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.201400783/gfp-density-npore-vs-100um> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    rdfs:label "GFP+ cell density higher in n-pore vs 100 μm porous hydrogel" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/gfp-density-npore> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/gfp-density-100um> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.201400783/gfp-density-60um-vs-100um> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    rdfs:label "GFP+ cell density no difference between 60 and 100 μm porous hydrogels" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/gfp-density-60um> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/gfp-density-100um> ;
+    lova:direction "no difference" ;
+    lova:isSignificant false .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/wound-day8-npore> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400783/exp-wound-closure> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    rdfs:label "% Wound area at day 8, n-pore" ;
+    lova:measurementType "% Wound area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 80.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 8" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/wound-day8-60um> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400783/exp-wound-closure> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    rdfs:label "% Wound area at day 8, 60 μm porous" ;
+    lova:measurementType "% Wound area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 57.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 8" ;
+    lova:scope "Bulk/global" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/wound-day8-100um> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400783/exp-wound-closure> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    rdfs:label "% Wound area at day 8, 100 μm porous" ;
+    lova:measurementType "% Wound area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 82.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 8" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.201400783/wound-day8-npore-vs-60um> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    rdfs:label "% Wound area at day 8 higher in n-pore vs 60 μm porous" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/wound-day8-npore> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/wound-day8-60um> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.201400783/wound-day8-60um-vs-100um> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    rdfs:label "% Wound area at day 8 lower in 60 μm vs 100 μm porous" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/wound-day8-60um> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/wound-day8-100um> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.201400783/wound-day8-npore-vs-100um> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    rdfs:label "% Wound area at day 8 no difference between n-pore and 100 μm porous" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/wound-day8-npore> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/wound-day8-100um> ;
+    lova:direction "no difference" ;
+    lova:isSignificant false .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/wound-day14-npore> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400783/exp-wound-closure> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    rdfs:label "% Wound area at day 14, n-pore" ;
+    lova:measurementType "% Wound area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 70.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 14" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/wound-day14-60um> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400783/exp-wound-closure> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    rdfs:label "% Wound area at day 14, 60 μm porous" ;
+    lova:measurementType "% Wound area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 23.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 14" ;
+    lova:scope "Bulk/global" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/wound-day14-100um> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400783/exp-wound-closure> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    rdfs:label "% Wound area at day 14, 100 μm porous" ;
+    lova:measurementType "% Wound area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 34.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 14" ;
+    lova:scope "Bulk/global" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.201400783/wound-day14-npore-vs-60um> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    rdfs:label "% Wound area at day 14 higher in n-pore vs 60 μm porous" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/wound-day14-npore> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/wound-day14-60um> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.201400783/wound-day14-npore-vs-100um> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    rdfs:label "% Wound area at day 14 higher in n-pore vs 100 μm porous" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/wound-day14-npore> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/wound-day14-100um> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.201400783/wound-day14-60um-vs-100um> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    rdfs:label "% Wound area at day 14 no difference between 60 and 100 μm porous" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/wound-day14-60um> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/wound-day14-100um> ;
+    lova:direction "no difference" ;
+    lova:isSignificant false .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/vessel-density-npore-pvegf> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400783/exp-angiogenesis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    rdfs:label "Vessel density, n-pore, pVEGF loaded" ;
+    lova:measurementType "Vessel density" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 25.0 ;
+    qudt:unit "vessels/mm^2" ;
+    lova:timePoint "Day 14" ;
+    lova:scope "Regional" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/vessel-density-npore-pgfpluc> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400783/exp-angiogenesis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    rdfs:label "Vessel density, n-pore, pGFPluc loaded" ;
+    lova:measurementType "Vessel density" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 25.0 ;
+    qudt:unit "vessels/mm^2" ;
+    lova:timePoint "Day 14" ;
+    lova:scope "Regional" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/vessel-density-60um-pvegf> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400783/exp-angiogenesis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    rdfs:label "Vessel density, 60 μm porous, pVEGF loaded" ;
+    lova:measurementType "Vessel density" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 70.0 ;
+    qudt:unit "vessels/mm^2" ;
+    lova:timePoint "Day 14" ;
+    lova:scope "Regional" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/vessel-density-60um-pgfpluc> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400783/exp-angiogenesis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    rdfs:label "Vessel density, 60 μm porous, pGFPluc loaded" ;
+    lova:measurementType "Vessel density" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 115.0 ;
+    qudt:unit "vessels/mm^2" ;
+    lova:timePoint "Day 14" ;
+    lova:scope "Regional" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/vessel-density-100um-pvegf> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400783/exp-angiogenesis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    rdfs:label "Vessel density, 100 μm porous, pVEGF loaded" ;
+    lova:measurementType "Vessel density" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 50.0 ;
+    qudt:unit "vessels/mm^2" ;
+    lova:timePoint "Day 14" ;
+    lova:scope "Regional" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/vessel-density-100um-pgfpluc> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400783/exp-angiogenesis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    rdfs:label "Vessel density, 100 μm porous, pGFPluc loaded" ;
+    lova:measurementType "Vessel density" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 55.0 ;
+    qudt:unit "vessels/mm^2" ;
+    lova:timePoint "Day 14" ;
+    lova:scope "Regional" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.201400783/vessel-density-npore-vs-60um-pgfpluc> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    rdfs:label "Vessel density lower in n-pore vs 60 μm porous (pGFPluc)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/vessel-density-npore-pgfpluc> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/vessel-density-60um-pgfpluc> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.201400783/vessel-density-60um-vs-100um-pgfpluc> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    rdfs:label "Vessel density no difference 60 vs 100 μm porous (pGFPluc)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/vessel-density-60um-pgfpluc> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/vessel-density-100um-pgfpluc> ;
+    lova:direction "no difference" ;
+    lova:isSignificant false .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.201400783/vessel-density-npore-vs-100um-pgfpluc> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    rdfs:label "Vessel density no difference n-pore vs 100 μm porous (pGFPluc)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/vessel-density-npore-pgfpluc> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/vessel-density-100um-pgfpluc> ;
+    lova:direction "no difference" ;
+    lova:isSignificant false .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/vessel-size-small-all> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400783/exp-angiogenesis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    rdfs:label "% total vessels <6 μm diameter, all samples" ;
+    lova:measurementType "% total vessels <6 μm diameter" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "~40-50% of all vessels" ;
+    lova:timePoint "Day 14" ;
+    lova:scope "Regional" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/vessel-size-med-all> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400783/exp-angiogenesis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    rdfs:label "% total vessels 6-12 μm diameter, all samples" ;
+    lova:measurementType "% total vessels 6-12 μm diameter" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "~30-40% of all vessels" ;
+    lova:timePoint "Day 14" ;
+    lova:scope "Regional" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/vessel-size-pvegf-vs-pgfpluc> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400783/exp-angiogenesis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    rdfs:label "pVEGF hydrogels show ~10% fewer small capillaries (<6μm) and more large vessels (>12μm) vs pGFPluc (not significant)" ;
+    lova:measurementType "Vessel size distribution shift" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "~10% fewer <6μm vessels, increased >12μm vessels in pVEGF vs pGFPluc" ;
+    lova:isSignificant false ;
+    lova:timePoint "Day 14" ;
+    lova:scope "Regional" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400783/actual-porosity> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400783/exp-wound-closure> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400783> ;
+    rdfs:label "Actual porosity of hexagonal close-packed bead templated porous hydrogels" ;
+    lova:measurementType "Actual porosity" ;
+    lova:measurementCategory "Material characterization" ;
+    lova:valueString "45-65% (theoretical hexagonal close-packed = 76%)" ;
+    lova:dataSource "[TEXT]" .

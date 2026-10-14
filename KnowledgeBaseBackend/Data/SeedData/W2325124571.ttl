@@ -1,0 +1,918 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1021-bm101354a> a bibo:AcademicArticle ;
+    rdfs:label "Zhang et al., 2011 — Protein-Polymer Nanoparticles for Nonviral Gene Delivery" ;
+    dc:title "Protein−Polymer Nanoparticles for Nonviral Gene Delivery" ;
+    dc:identifier "10.1021/bm101354a" ;
+    dc:date "2011"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/biomacromolecules> ;
+    dc:creator <https://lovamap.com/ontology#author/zhang-jianjun> ,
+               <https://lovamap.com/ontology#author/lei-yuguo> ,
+               <https://lovamap.com/ontology#author/dhaliwal-anandika> ,
+               <https://lovamap.com/ontology#author/ng-quinn> ,
+               <https://lovamap.com/ontology#author/du-juanjuan> ,
+               <https://lovamap.com/ontology#author/yan-ming> ,
+               <https://lovamap.com/ontology#author/lu-yunfeng> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/zhang-jianjun>
+                       <https://lovamap.com/ontology#author/lei-yuguo>
+                       <https://lovamap.com/ontology#author/dhaliwal-anandika>
+                       <https://lovamap.com/ontology#author/ng-quinn>
+                       <https://lovamap.com/ontology#author/du-juanjuan>
+                       <https://lovamap.com/ontology#author/yan-ming>
+                       <https://lovamap.com/ontology#author/lu-yunfeng>
+                       <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    dc:bibliographicCitation "Zhang et al., 2011" ;
+    lova:focusMaterial "BSA-poly(dimethylamino)ethyl methacrylate (PDMA) nanoparticles (nBSA) as nonviral gene delivery vectors, synthesized by in situ ATRP, complexed with plasmid DNA" .
+
+<https://lovamap.com/ontology#author/zhang-jianjun> a foaf:Person ;
+    foaf:familyName "Zhang" ;
+    foaf:givenName "Jianjun" ;
+    foaf:name "Jianjun Zhang" ;
+    schema:affiliation "Chemical and Biomolecular Engineering Department, University of California at Los Angeles" .
+
+<https://lovamap.com/ontology#author/lei-yuguo> a foaf:Person ;
+    foaf:familyName "Lei" ;
+    foaf:givenName "Yuguo" ;
+    foaf:name "Yuguo Lei" ;
+    schema:affiliation "Chemical and Biomolecular Engineering Department, University of California at Los Angeles" .
+
+<https://lovamap.com/ontology#author/dhaliwal-anandika> a foaf:Person ;
+    foaf:familyName "Dhaliwal" ;
+    foaf:givenName "Anandika" ;
+    foaf:name "Anandika Dhaliwal" ;
+    schema:affiliation "Biomedical Engineering Interdepartmental Program, University of California at Los Angeles" .
+
+<https://lovamap.com/ontology#author/ng-quinn> a foaf:Person ;
+    foaf:familyName "Ng" ;
+    foaf:givenName "Quinn K. T." ;
+    foaf:name "Quinn K. T. Ng" ;
+    schema:affiliation "Chemical and Biomolecular Engineering Department, University of California at Los Angeles" .
+
+<https://lovamap.com/ontology#author/du-juanjuan> a foaf:Person ;
+    foaf:familyName "Du" ;
+    foaf:givenName "Juanjuan" ;
+    foaf:name "Juanjuan Du" ;
+    schema:affiliation "Chemical and Biomolecular Engineering Department, University of California at Los Angeles" .
+
+<https://lovamap.com/ontology#author/yan-ming> a foaf:Person ;
+    foaf:familyName "Yan" ;
+    foaf:givenName "Ming" ;
+    foaf:name "Ming Yan" ;
+    schema:affiliation "Chemical and Biomolecular Engineering Department, University of California at Los Angeles" .
+
+<https://lovamap.com/ontology#author/lu-yunfeng> a foaf:Person ;
+    foaf:familyName "Lu" ;
+    foaf:givenName "Yunfeng" ;
+    foaf:name "Yunfeng Lu" ;
+    schema:affiliation "Chemical and Biomolecular Engineering Department, University of California at Los Angeles" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" ;
+    schema:affiliation "Chemical and Biomolecular Engineering Department, University of California at Los Angeles" ;
+    schema:affiliation "Biomedical Engineering Interdepartmental Program, University of California at Los Angeles" .
+
+<https://lovamap.com/ontology#journal/biomacromolecules> a bibo:Journal ;
+    dc:title "Biomacromolecules" ;
+    bibo:issn "1525-7797" .
+
+<https://lovamap.com/ontology#material/10.1021-bm101354a/native-bsa> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "Native BSA (unmodified)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "BSA" ;
+    lova:particleSizeMin 4.5 ;
+    lova:particleSizeMax 4.5 ;
+    lova:particleSizeUnit "nm" ;
+    lova:sizeDistribution "Monodisperse" .
+
+<https://lovamap.com/ontology#material/10.1021-bm101354a/nbsa-5.8nm> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "nBSA nanoparticle, 5.8 nm (1 h ATRP)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "BSA-PDMA conjugate" ;
+    lova:particleSizeMin 5.8 ;
+    lova:particleSizeMax 5.8 ;
+    lova:particleSizeUnit "nm" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-bm101354a/insitu-atrp-nbsa> .
+
+<https://lovamap.com/ontology#material/10.1021-bm101354a/nbsa-7.6nm> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "nBSA nanoparticle, 7.6 nm (2 h ATRP)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "BSA-PDMA conjugate" ;
+    lova:particleSizeMin 7.6 ;
+    lova:particleSizeMax 7.6 ;
+    lova:particleSizeUnit "nm" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-bm101354a/insitu-atrp-nbsa> .
+
+<https://lovamap.com/ontology#material/10.1021-bm101354a/nbsa-13.1nm> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "nBSA nanoparticle, 13.1 nm (4 h ATRP)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "BSA-PDMA conjugate" ;
+    lova:particleSizeMin 13.1 ;
+    lova:particleSizeMax 13.1 ;
+    lova:particleSizeUnit "nm" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-bm101354a/insitu-atrp-nbsa> .
+
+<https://lovamap.com/ontology#material/10.1021-bm101354a/lpei> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "Linear poly(ethylene imine) (LPEI, 25 kDa) comparator" ;
+    lova:particleMaterial "Linear PEI" ;
+    lova:stiffnessQualitative "N/A (cationic polymer, not particle)" .
+
+<https://lovamap.com/ontology#material/10.1021-bm101354a/bpei> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "Branched poly(ethylene imine) (BPEI, 25 kDa) comparator" ;
+    lova:particleMaterial "Branched PEI" .
+
+<https://lovamap.com/ontology#material/10.1021-bm101354a/pdma-comparator> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "PDMA comparator polymer" ;
+    lova:particleMaterial "Poly(2-(dimethylamino)ethyl methacrylate) (PDMA)" .
+
+<https://lovamap.com/ontology#material/10.1021-bm101354a/nbsa-pdna-polyplex> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "nBSA/pDNA polyplex" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "BSA-PDMA/pDNA complex" ;
+    lova:particleSizeMin 30.0 ;
+    lova:particleSizeMax 100.0 ;
+    lova:particleSizeUnit "nm" ;
+    lova:packingConfiguration "Self-assembled electrostatic complex" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1021-bm101354a/insitu-atrp-nbsa> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "In situ ATRP synthesis of cationic BSA-PDMA nanoparticles (nBSA)" ;
+    lova:chemistry "Atom transfer radical polymerization (ATRP)" ;
+    lova:manufacturingMethod "BSA macroinitiator modification followed by in situ ATRP grafting of PDMA from the BSA surface" ;
+    lova:annealingConditions "35 °C water bath, 1, 2, or 4 h reaction time" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1021-bm101354a/bsa> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-bm101354a/2-bromoisobutyryl-bromide> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-bm101354a/cubr> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-bm101354a/bpy> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-bm101354a/sodium-hydrogencarbonate> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-bm101354a/dma-monomer> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-bm101354a/2-propanol> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-bm101354a/dmf> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-bm101354a/pdma-reagent> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-bm101354a/pdna> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-bm101354a/lpei-reagent> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-bm101354a/bpei-reagent> .
+
+<https://lovamap.com/ontology#reagent/10.1021-bm101354a/bsa> a lova:Reagent ;
+    rdfs:label "Bovine serum albumin (BSA)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "5 mg, 0.000075 mmol" ;
+    lova:supplier "Sigma-Aldrich (St Louis, MO)" ;
+    lova:reagentFunction "Protein macroinitiator core for ATRP" .
+
+<https://lovamap.com/ontology#reagent/10.1021-bm101354a/2-bromoisobutyryl-bromide> a lova:Reagent ;
+    rdfs:label "2-Bromoisobutyryl bromide" ;
+    lova:reagentRole "initiator" ;
+    lova:molecularWeight "195 Da" ;
+    lova:concentration "2 mg" ;
+    lova:supplier "Sigma-Aldrich (St Louis, MO)" ;
+    lova:reagentFunction "Converts BSA into ATRP macroinitiator by reacting with primary amines" .
+
+<https://lovamap.com/ontology#reagent/10.1021-bm101354a/cubr> a lova:Reagent ;
+    rdfs:label "Copper(I) bromide (CuBr)" ;
+    lova:reagentRole "other" ;
+    lova:casNumber "" ;
+    lova:concentration "0.7 mg, 4.9 mmol" ;
+    lova:supplier "Sigma-Aldrich (St Louis, MO)" ;
+    lova:reagentFunction "ATRP catalyst" .
+
+<https://lovamap.com/ontology#reagent/10.1021-bm101354a/bpy> a lova:Reagent ;
+    rdfs:label "2,2'-Bipyridine (bpy)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "1.5 mg, 9.6 mmol" ;
+    lova:supplier "Sigma-Aldrich (St Louis, MO)" ;
+    lova:reagentFunction "ATRP ligand" .
+
+<https://lovamap.com/ontology#reagent/10.1021-bm101354a/sodium-hydrogencarbonate> a lova:Reagent ;
+    rdfs:label "Sodium hydrogencarbonate" ;
+    lova:reagentRole "other" ;
+    lova:concentration "100 mM, pH 9.3" ;
+    lova:supplier "Sigma-Aldrich (St Louis, MO)" ;
+    lova:reagentFunction "Buffer for BSA macroinitiator synthesis" .
+
+<https://lovamap.com/ontology#reagent/10.1021-bm101354a/dma-monomer> a lova:Reagent ;
+    rdfs:label "2-(Dimethylamino)ethyl methacrylate (DMA) monomer" ;
+    lova:reagentRole "monomer" ;
+    lova:concentration "1 mL, 6.8 mmol" ;
+    lova:supplier "Sigma-Aldrich (St Louis, MO)" ;
+    lova:reagentFunction "Cationic monomer forming PDMA shell via ATRP" .
+
+<https://lovamap.com/ontology#reagent/10.1021-bm101354a/2-propanol> a lova:Reagent ;
+    rdfs:label "2-Propanol (99.9%)" ;
+    lova:reagentRole "solvent" ;
+    lova:concentration "99.9%, 5 mL" ;
+    lova:supplier "Fisher Scientific" .
+
+<https://lovamap.com/ontology#reagent/10.1021-bm101354a/dmf> a lova:Reagent ;
+    rdfs:label "Dimethylformamide (DMF)" ;
+    lova:reagentRole "solvent" ;
+    lova:concentration "0.1 mL" .
+
+<https://lovamap.com/ontology#reagent/10.1021-bm101354a/pdma-reagent> a lova:Reagent ;
+    rdfs:label "Poly(2-(dimethylamino)ethyl methacrylate) (PDMA)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Sigma-Aldrich" ;
+    lova:catalogNumber "657670" ;
+    lova:reagentFunction "Cationic polymer comparator for gene delivery" .
+
+<https://lovamap.com/ontology#reagent/10.1021-bm101354a/pdna> a lova:Reagent ;
+    rdfs:label "Plasmid pEGFP-luciferase (pDNA)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Clontech (Palo Alto, CA)" ;
+    lova:reagentFunction "Reporter plasmid DNA for transfection, purified using Qiagen EndoFree Plasmid Purification Kit" .
+
+<https://lovamap.com/ontology#reagent/10.1021-bm101354a/lpei-reagent> a lova:Reagent ;
+    rdfs:label "Linear poly(ethylene imine) (LPEI, 25 kDa)" ;
+    lova:reagentRole "other" ;
+    lova:molecularWeight "25 kDa" ;
+    lova:supplier "Polysciences (Warrington, PA)" ;
+    lova:reagentFunction "Cationic polymer comparator for gene delivery" .
+
+<https://lovamap.com/ontology#reagent/10.1021-bm101354a/bpei-reagent> a lova:Reagent ;
+    rdfs:label "Branched poly(ethylene imine) (BPEI, 25 kDa)" ;
+    lova:reagentRole "other" ;
+    lova:molecularWeight "25 kDa" ;
+    lova:supplier "Sigma (St Louis, MO)" ;
+    lova:reagentFunction "Cationic polymer comparator for gene delivery" .
+
+<https://lovamap.com/ontology#experiment/10.1021-bm101354a/synthesis-characterization> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-bm101354a/native-bsa> ,
+                       <https://lovamap.com/ontology#material/10.1021-bm101354a/nbsa-5.8nm> ,
+                       <https://lovamap.com/ontology#material/10.1021-bm101354a/nbsa-7.6nm> ,
+                       <https://lovamap.com/ontology#material/10.1021-bm101354a/nbsa-13.1nm> ;
+    rdfs:label "Characterization of nBSA zeta potential and particle size vs ATRP reaction time" ;
+    lova:experimentCategory "Physicochemical" ;
+    lova:experimentType "Nanoparticle characterization" ;
+    lova:assayOrMethod "Dynamic light scattering and zeta potential measurement" ;
+    lova:equipment "MALVERN NANO-ZS Zeta-Sizer" ;
+    lova:medium "10 mM NaCl, pH 7.4" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm101354a/zeta-native-bsa> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm101354a/synthesis-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "Zeta potential of native BSA (0 h reaction)" ;
+    lova:measurementType "Zeta potential" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue -29.4 ;
+    qudt:unit "mV" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm101354a/zeta-nbsa-5.8nm> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm101354a/synthesis-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "Zeta potential of nBSA 5.8 nm (1 h reaction)" ;
+    lova:measurementType "Zeta potential" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 8.9 ;
+    qudt:unit "mV" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm101354a/zeta-nbsa-7.6nm> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm101354a/synthesis-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "Zeta potential of nBSA 7.6 nm (2 h reaction)" ;
+    lova:measurementType "Zeta potential" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 15.7 ;
+    qudt:unit "mV" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm101354a/zeta-nbsa-13.1nm> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm101354a/synthesis-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "Zeta potential of nBSA 13.1 nm (4 h reaction)" ;
+    lova:measurementType "Zeta potential" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 22.5 ;
+    qudt:unit "mV" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm101354a/size-native-bsa> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm101354a/synthesis-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "Particle diameter of native BSA" ;
+    lova:measurementType "Particle diameter" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 4.5 ;
+    qudt:unit "nm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm101354a/size-nbsa-5.8nm> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm101354a/synthesis-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "Particle diameter of nBSA, 1 h reaction" ;
+    lova:measurementType "Particle diameter" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 5.8 ;
+    qudt:unit "nm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm101354a/size-nbsa-7.6nm> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm101354a/synthesis-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "Particle diameter of nBSA, 2 h reaction" ;
+    lova:measurementType "Particle diameter" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 7.6 ;
+    qudt:unit "nm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm101354a/size-nbsa-13.1nm> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm101354a/synthesis-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "Particle diameter of nBSA, 4 h reaction" ;
+    lova:measurementType "Particle diameter" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 13.1 ;
+    qudt:unit "nm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm101354a/thickness-5.8nm> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm101354a/synthesis-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "PDMA shell thickness, 5.8 nm nBSA" ;
+    lova:measurementType "PDMA shell thickness" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 0.65 ;
+    qudt:unit "nm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm101354a/thickness-7.6nm> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm101354a/synthesis-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "PDMA shell thickness, 7.6 nm nBSA" ;
+    lova:measurementType "PDMA shell thickness" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 1.55 ;
+    qudt:unit "nm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm101354a/thickness-13.1nm> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm101354a/synthesis-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "PDMA shell thickness, 13.1 nm nBSA" ;
+    lova:measurementType "PDMA shell thickness" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 4.3 ;
+    qudt:unit "nm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm101354a/mw-pdma-5.8nm> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm101354a/synthesis-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "Estimated PDMA chain molecular weight, 5.8 nm nBSA" ;
+    lova:measurementType "PDMA chain molecular weight" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 510.0 ;
+    qudt:unit "Da" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm101354a/mw-pdma-7.6nm> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm101354a/synthesis-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "Estimated PDMA chain molecular weight, 7.6 nm nBSA" ;
+    lova:measurementType "PDMA chain molecular weight" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 1216.0 ;
+    qudt:unit "Da" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm101354a/mw-pdma-13.1nm> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm101354a/synthesis-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "Estimated PDMA chain molecular weight, 13.1 nm nBSA" ;
+    lova:measurementType "PDMA chain molecular weight" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 3375.0 ;
+    qudt:unit "Da" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm101354a/initiator-molecules-bsa> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm101354a/synthesis-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "Number of initiator molecules per BSA (MALDI MS)" ;
+    lova:measurementType "Initiator molecules per protein" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 15.3 ;
+    qudt:unit "molecules/BSA" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm101354a/maldi-bsa-mass> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm101354a/synthesis-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "MALDI MS mass of native BSA" ;
+    lova:measurementType "Protein molecular weight (MALDI MS)" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 67946.0 ;
+    qudt:unit "Da" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm101354a/maldi-bsabr-mass> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm101354a/synthesis-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "MALDI MS mass of BSA macroinitiator (BSA-Br)" ;
+    lova:measurementType "Protein molecular weight (MALDI MS)" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 70443.0 ;
+    qudt:unit "Da" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm101354a/sdspage-native-bsa> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm101354a/synthesis-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "SDS-PAGE apparent molecular weight of native BSA" ;
+    lova:measurementType "Apparent molecular weight (SDS-PAGE)" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 66.0 ;
+    qudt:unit "kDa" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm101354a/sdspage-nbsa-4h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm101354a/synthesis-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "SDS-PAGE apparent molecular weight of nBSA, 4 h ATRP reaction" ;
+    lova:measurementType "Apparent molecular weight (SDS-PAGE)" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 220.0 ;
+    qudt:unit "kDa" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1021-bm101354a/zeta-1h-vs-4h> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "Zeta potential higher for nBSA at 4 h (13.1 nm) vs 1 h (5.8 nm) reaction" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-bm101354a/zeta-nbsa-13.1nm> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-bm101354a/zeta-nbsa-5.8nm> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1021-bm101354a/size-1h-vs-4h> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "Particle size higher for nBSA at 4 h (13.1 nm) vs 1 h (5.8 nm) reaction" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-bm101354a/size-nbsa-13.1nm> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-bm101354a/size-nbsa-5.8nm> ;
+    lova:direction "higher" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1021-bm101354a/pdna-condensation-etbr> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-bm101354a/nbsa-5.8nm> ,
+                       <https://lovamap.com/ontology#material/10.1021-bm101354a/nbsa-7.6nm> ,
+                       <https://lovamap.com/ontology#material/10.1021-bm101354a/nbsa-13.1nm> ,
+                       <https://lovamap.com/ontology#material/10.1021-bm101354a/lpei> ,
+                       <https://lovamap.com/ontology#material/10.1021-bm101354a/bpei> ;
+    rdfs:label "pDNA condensation by nBSA (ethidium bromide exclusion assay)" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "DNA condensation assay" ;
+    lova:assayOrMethod "Ethidium bromide exclusion assay" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm101354a/etbr-50pct-decrease> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm101354a/pdna-condensation-etbr> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "50% decrease in EtBr fluorescence after nBSA addition" ;
+    lova:measurementType "EtBr fluorescence intensity decrease" ;
+    lova:measurementCategory "Biochemical" ;
+    lova:valueString "50% decrease in fluorescence intensity after 3.3 μg nBSA added to 1.65 μg pDNA" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm101354a/etbr-60pct-plateau> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm101354a/pdna-condensation-etbr> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "EtBr fluorescence plateau at 40-60% residual for nBSA" ;
+    lova:measurementType "EtBr fluorescence intensity decrease" ;
+    lova:measurementCategory "Biochemical" ;
+    lova:valueString "Fluorescence decreased to ~40% residual at mass ratio 2-8, remaining at further increase in mass ratio" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm101354a/etbr-pei-plateau> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm101354a/pdna-condensation-etbr> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "EtBr fluorescence plateau near 0-10% residual for LPEI/BPEI" ;
+    lova:measurementType "EtBr fluorescence intensity decrease" ;
+    lova:measurementCategory "Biochemical" ;
+    lova:valueString "Fluorescence decreased to near 0-10% residual by N/P ~4-9 for LPEI and BPEI" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1021-bm101354a/etbr-nbsa-vs-pei> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "Residual EtBr fluorescence higher for nBSA than for PEI at saturating ratios" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-bm101354a/etbr-60pct-plateau> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-bm101354a/etbr-pei-plateau> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#experiment/10.1021-bm101354a/pdna-condensation-gel> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-bm101354a/nbsa-5.8nm> ,
+                       <https://lovamap.com/ontology#material/10.1021-bm101354a/nbsa-7.6nm> ,
+                       <https://lovamap.com/ontology#material/10.1021-bm101354a/nbsa-13.1nm> ;
+    rdfs:label "Agarose gel electrophoresis retardation assay for nBSA/pDNA complexation" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Gel retardation assay" ;
+    lova:assayOrMethod "0.8% agarose gel electrophoresis, 140 V, 1 h" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm101354a/gel-complexation-ratio> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm101354a/pdna-condensation-gel> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "Complete pDNA complexation achieved at mass ratio 1.4 for all nBSA sizes" ;
+    lova:measurementType "Mass ratio for complete pDNA complexation" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 1.4 ;
+    qudt:unit "mass ratio (nBSA/pDNA)" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#experiment/10.1021-bm101354a/polyplex-size-zeta> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-bm101354a/nbsa-pdna-polyplex> ;
+    rdfs:label "Size and zeta potential of nBSA/pDNA polyplexes vs mass ratio" ;
+    lova:experimentCategory "Physicochemical" ;
+    lova:experimentType "Polyplex characterization" ;
+    lova:assayOrMethod "Dynamic light scattering / zeta potential" ;
+    lova:equipment "MALVERN NANO-ZS Zeta-Sizer" ;
+    lova:medium "10 mM NaCl, pH 7.4" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm101354a/polyplex-peak-size> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm101354a/polyplex-size-zeta> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "Peak polyplex particle size near mass ratio 2" ;
+    lova:measurementType "Particle size" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 300.0 ;
+    qudt:unit "nm" ;
+    lova:valueString "Size increased dramatically up to ~300 nm at mass ratio ~2" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm101354a/polyplex-stable-size> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm101354a/polyplex-size-zeta> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "Stable polyplex size at mass ratio greater than 2" ;
+    lova:measurementType "Particle size" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 50.0 ;
+    qudt:unit "nm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm101354a/polyplex-stable-zeta> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm101354a/polyplex-size-zeta> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "Stable polyplex zeta potential at mass ratio greater than 2" ;
+    lova:measurementType "Zeta potential" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 20.0 ;
+    qudt:unit "mV" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1021-bm101354a/polyplex-size-peak-vs-stable> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "Polyplex size higher at mass ratio ~2 (peak/aggregation) vs mass ratio >2 (stable)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-bm101354a/polyplex-peak-size> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-bm101354a/polyplex-stable-size> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#experiment/10.1021-bm101354a/polyplex-tem> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-bm101354a/nbsa-pdna-polyplex> ;
+    rdfs:label "TEM imaging of negatively stained nBSA/pDNA polyplexes at mass ratio 4" ;
+    lova:experimentCategory "Physicochemical" ;
+    lova:experimentType "Electron microscopy" ;
+    lova:assayOrMethod "TEM with 1% phosphotungstic acid negative staining" ;
+    lova:equipment "Philips EM120 TEM, 100000X" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm101354a/tem-polyplex-size-range> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm101354a/polyplex-tem> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "TEM-observed polyplex size range at mass ratio 4" ;
+    lova:measurementType "Particle size range" ;
+    lova:measurementCategory "Physicochemical" ;
+    lova:valueString "30-100 nm, well-defined spherical nanoparticles" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#experiment/10.1021-bm101354a/polyplex-internalization> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-bm101354a/nbsa-7.6nm> ,
+                       <https://lovamap.com/ontology#material/10.1021-bm101354a/nbsa-pdna-polyplex> ;
+    rdfs:label "Cellular internalization of rhodamine-B-labeled nBSA/pDNA polyplexes in NIH/3T3 cells" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cellular uptake / endosomal trafficking" ;
+    lova:assayOrMethod "Confocal fluorescence microscopy, EEA1/Rab7 immunostaining" ;
+    lova:equipment "Leica TCS SP2 AOBS confocal microscope" ;
+    lova:cellType "NIH/3T3" ;
+    lova:seedingDensity "18750 cells/well" ;
+    lova:temperature "37 °C" ;
+    lova:atmosphere "5% CO2" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm101354a/internalization-eea1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm101354a/polyplex-internalization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "Colocalization of polyplexes with early endosome marker EEA1" ;
+    lova:measurementType "Endosomal colocalization" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Colocalization observed at all time points (20, 40, 120 min) with maximum at 20 and 40 min" ;
+    lova:isTimeSeries true ;
+    lova:timePoint "20, 40, 120 min" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm101354a/internalization-rab7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm101354a/polyplex-internalization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "Colocalization of polyplexes with late endosome/lysosome marker Rab7" ;
+    lova:measurementType "Endosomal colocalization" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Colocalization primarily observed at 120 min post-exposure" ;
+    lova:isTimeSeries true ;
+    lova:timePoint "20, 40, 120 min" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#experiment/10.1021-bm101354a/cytotoxicity-mtt> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-bm101354a/nbsa-5.8nm> ,
+                       <https://lovamap.com/ontology#material/10.1021-bm101354a/nbsa-7.6nm> ,
+                       <https://lovamap.com/ontology#material/10.1021-bm101354a/nbsa-13.1nm> ,
+                       <https://lovamap.com/ontology#material/10.1021-bm101354a/lpei> ,
+                       <https://lovamap.com/ontology#material/10.1021-bm101354a/bpei> ,
+                       <https://lovamap.com/ontology#material/10.1021-bm101354a/pdma-comparator> ;
+    rdfs:label "Cytotoxicity of nBSA/pDNA polyplexes (MTT assay) in HEK293T, NIH/3T3, D1 cells" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell viability" ;
+    lova:assayOrMethod "MTT assay" ;
+    lova:cellType "HEK293T, NIH/3T3, D1 (mMSC)" ;
+    lova:seedingDensity "7000 cells/well (96-well plate)" ;
+    lova:cultureDuration "24 h" ;
+    lova:temperature "37 °C" ;
+    lova:atmosphere "5% CO2" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm101354a/viability-hek293t-mr25> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm101354a/cytotoxicity-mtt> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "HEK293T cell viability at nBSA/pDNA mass ratio 25" ;
+    lova:measurementType "Cell viability" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 50.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "Untreated cells" ;
+    lova:timePoint "24 h" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm101354a/viability-nih3t3-mr25> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm101354a/cytotoxicity-mtt> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "NIH/3T3 cell viability at nBSA/pDNA mass ratio 25" ;
+    lova:measurementType "Cell viability" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 70.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "Untreated cells" ;
+    lova:timePoint "24 h" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm101354a/viability-d1-mr25> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm101354a/cytotoxicity-mtt> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "D1 (mMSC) cell viability at nBSA/pDNA mass ratio 25" ;
+    lova:measurementType "Cell viability" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 80.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "Untreated cells" ;
+    lova:timePoint "24 h" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm101354a/viability-low-ratio> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm101354a/cytotoxicity-mtt> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "Cell viability at mass ratios lower than 12" ;
+    lova:measurementType "Cell viability" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString ">80% metabolic activity relative to untreated cells" ;
+    lova:timePoint "24 h" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1021-bm101354a/viability-hek293t-vs-d1> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "Cell viability at mass ratio 25 lower in HEK293T than D1 (mMSC)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-bm101354a/viability-hek293t-mr25> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-bm101354a/viability-d1-mr25> ;
+    lova:direction "lower" .
+
+<https://lovamap.com/ontology#experiment/10.1021-bm101354a/cytotoxicity-livedead> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-bm101354a/nbsa-pdna-polyplex> ,
+                       <https://lovamap.com/ontology#material/10.1021-bm101354a/lpei> ,
+                       <https://lovamap.com/ontology#material/10.1021-bm101354a/bpei> ;
+    rdfs:label "Live/Dead assay of nBSA/pDNA and PEI/pDNA polyplex-treated cells" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Membrane integrity assay" ;
+    lova:assayOrMethod "Calcein AM / Ethidium homodimer-1 Live-Dead staining" ;
+    lova:equipment "Zeiss AxioObserver Z1 inverted microscope" ;
+    lova:cellType "HEK293T, NIH/3T3, D1" ;
+    lova:cultureDuration "24 h" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm101354a/livedead-ratio> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm101354a/cytotoxicity-livedead> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "Green to red fluorescence ratio for all mass ratios tested" ;
+    lova:measurementType "Live/Dead fluorescence ratio" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "80% or more of untreated cell fluorescence ratio for all mass ratios tested" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1021-bm101354a/transfection-gfp> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-bm101354a/nbsa-pdna-polyplex> ,
+                       <https://lovamap.com/ontology#material/10.1021-bm101354a/lpei> ,
+                       <https://lovamap.com/ontology#material/10.1021-bm101354a/bpei> ;
+    rdfs:label "GFP transfection of HEK293T cells with nBSA/pDNA polyplexes" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transfection efficiency" ;
+    lova:assayOrMethod "Fluorescence microscopy (GFP expression)" ;
+    lova:cellType "HEK293T" ;
+    lova:seedingDensity "25000 cells/well (48-well plate)" ;
+    lova:cultureDuration "48 h" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm101354a/gfp-expression-trend> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm101354a/transfection-gfp> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "GFP expression increases with increasing nBSA/pDNA mass ratio" ;
+    lova:measurementType "GFP expression" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "More efficient GFP expression observed with increasing mass ratio compared to PEI" ;
+    lova:timePoint "48 h" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#experiment/10.1021-bm101354a/transfection-luciferase-hek293t> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-bm101354a/nbsa-5.8nm> ,
+                       <https://lovamap.com/ontology#material/10.1021-bm101354a/nbsa-7.6nm> ,
+                       <https://lovamap.com/ontology#material/10.1021-bm101354a/nbsa-13.1nm> ,
+                       <https://lovamap.com/ontology#material/10.1021-bm101354a/lpei> ,
+                       <https://lovamap.com/ontology#material/10.1021-bm101354a/bpei> ,
+                       <https://lovamap.com/ontology#material/10.1021-bm101354a/pdma-comparator> ;
+    rdfs:label "Luciferase transfection efficiency of nBSA/pDNA polyplexes in HEK293T cells" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transfection efficiency" ;
+    lova:assayOrMethod "Luciferase assay (Promega kit), Bradford protein assay" ;
+    lova:equipment "Turner Biosystems Modulus 20/20 Luminometer" ;
+    lova:cellType "HEK293T" ;
+    lova:seedingDensity "25000 cells/well (48-well plate)" ;
+    lova:cultureDuration "48 h" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm101354a/luc-hek293t-mr4> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm101354a/transfection-luciferase-hek293t> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "HEK293T luciferase expression, nBSA mass ratio 4" ;
+    lova:measurementType "Luciferase expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 9000000.0 ;
+    qudt:unit "RLU/mg protein" ;
+    lova:timePoint "48 h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm101354a/luc-hek293t-mr25> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm101354a/transfection-luciferase-hek293t> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "HEK293T luciferase expression, nBSA mass ratio 25" ;
+    lova:measurementType "Luciferase expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 300000000.0 ;
+    qudt:unit "RLU/mg protein" ;
+    lova:timePoint "48 h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1021-bm101354a/luc-hek293t-mr4-vs-mr25> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "Luciferase expression higher at mass ratio 25 vs mass ratio 4 in HEK293T" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-bm101354a/luc-hek293t-mr25> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-bm101354a/luc-hek293t-mr4> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1021-bm101354a/transfection-luciferase-nih3t3> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-bm101354a/nbsa-5.8nm> ,
+                       <https://lovamap.com/ontology#material/10.1021-bm101354a/nbsa-7.6nm> ,
+                       <https://lovamap.com/ontology#material/10.1021-bm101354a/nbsa-13.1nm> ,
+                       <https://lovamap.com/ontology#material/10.1021-bm101354a/lpei> ,
+                       <https://lovamap.com/ontology#material/10.1021-bm101354a/bpei> ,
+                       <https://lovamap.com/ontology#material/10.1021-bm101354a/pdma-comparator> ;
+    rdfs:label "Luciferase transfection efficiency of nBSA/pDNA polyplexes in NIH/3T3 cells" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transfection efficiency" ;
+    lova:assayOrMethod "Luciferase assay" ;
+    lova:cellType "NIH/3T3" ;
+    lova:cultureDuration "48 h" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm101354a/luc-nih3t3-mr4> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm101354a/transfection-luciferase-nih3t3> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "NIH/3T3 luciferase expression, nBSA mass ratio 4" ;
+    lova:measurementType "Luciferase expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 500000.0 ;
+    qudt:unit "RLU/mg protein" ;
+    lova:timePoint "48 h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm101354a/luc-nih3t3-mr25> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm101354a/transfection-luciferase-nih3t3> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "NIH/3T3 luciferase expression, nBSA mass ratio 25" ;
+    lova:measurementType "Luciferase expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 30000000.0 ;
+    qudt:unit "RLU/mg protein" ;
+    lova:timePoint "48 h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1021-bm101354a/luc-nih3t3-mr4-vs-mr25> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "Luciferase expression higher at mass ratio 25 vs mass ratio 4 in NIH/3T3" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-bm101354a/luc-nih3t3-mr25> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-bm101354a/luc-nih3t3-mr4> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1021-bm101354a/transfection-luciferase-d1> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-bm101354a/nbsa-5.8nm> ,
+                       <https://lovamap.com/ontology#material/10.1021-bm101354a/nbsa-7.6nm> ,
+                       <https://lovamap.com/ontology#material/10.1021-bm101354a/nbsa-13.1nm> ,
+                       <https://lovamap.com/ontology#material/10.1021-bm101354a/lpei> ,
+                       <https://lovamap.com/ontology#material/10.1021-bm101354a/bpei> ,
+                       <https://lovamap.com/ontology#material/10.1021-bm101354a/pdma-comparator> ;
+    rdfs:label "Luciferase transfection efficiency of nBSA/pDNA polyplexes in D1 (mMSC) cells" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transfection efficiency" ;
+    lova:assayOrMethod "Luciferase assay" ;
+    lova:cellType "D1 (mMSC)" ;
+    lova:cellSource "Mouse bone marrow cloned mesenchymal stem cells" ;
+    lova:cultureDuration "48 h" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm101354a/luc-d1-mr4> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm101354a/transfection-luciferase-d1> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "D1 luciferase expression, nBSA mass ratio 4" ;
+    lova:measurementType "Luciferase expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 250000.0 ;
+    qudt:unit "RLU/mg protein" ;
+    lova:timePoint "48 h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm101354a/luc-d1-mr25> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm101354a/transfection-luciferase-d1> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "D1 luciferase expression, nBSA mass ratio 25" ;
+    lova:measurementType "Luciferase expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2000000.0 ;
+    qudt:unit "RLU/mg protein" ;
+    lova:timePoint "48 h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1021-bm101354a/luc-d1-mr4-vs-mr25> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "Luciferase expression higher at mass ratio 25 vs mass ratio 4 in D1" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-bm101354a/luc-d1-mr25> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-bm101354a/luc-d1-mr4> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1021-bm101354a/luc-hek293t-vs-nih3t3> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "Luciferase expression higher in HEK293T than NIH/3T3 at mass ratio 25" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-bm101354a/luc-hek293t-mr25> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-bm101354a/luc-nih3t3-mr25> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#comparison/10.1021-bm101354a/luc-nih3t3-vs-d1> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm101354a> ;
+    rdfs:label "Luciferase expression higher in NIH/3T3 than D1 at mass ratio 25" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-bm101354a/luc-nih3t3-mr25> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-bm101354a/luc-d1-mr25> ;
+    lova:direction "higher" .

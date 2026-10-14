@@ -1,0 +1,1025 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> a bibo:AcademicArticle ;
+    rdfs:label "Truong et al., 2018 — PEI Polyplex Transfection in MAP Scaffolds" ;
+    dc:title "Pathways Governing Polyethylenimine Polyplex Transfection in Microporous Annealed Particle Scaffolds" ;
+    dc:identifier "10.1021/acs.bioconjchem.8b00696" ;
+    dc:date "2018"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/bioconjugate-chemistry> ;
+    dc:creator <https://lovamap.com/ontology#author/truong-norman> ,
+               <https://lovamap.com/ontology#author/lesher-perez-sasha> ,
+               <https://lovamap.com/ontology#author/kurt-evan> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/truong-norman>
+                       <https://lovamap.com/ontology#author/lesher-perez-sasha>
+                       <https://lovamap.com/ontology#author/kurt-evan>
+                       <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    dc:bibliographicCitation "Truong et al., 2018" ;
+    lova:focusMaterial "HA-norbornene microporous annealed particle (MAP) hydrogel scaffolds for polyethylenimine (PEI)-mediated plasmid DNA polyplex gene transfer to human dermal fibroblasts" .
+
+<https://lovamap.com/ontology#author/truong-norman> a foaf:Person ;
+    foaf:familyName "Truong" ;
+    foaf:givenName "Norman F." ;
+    foaf:name "Norman F. Truong" .
+
+<https://lovamap.com/ontology#author/lesher-perez-sasha> a foaf:Person ;
+    foaf:familyName "Lesher-Pérez" ;
+    foaf:givenName "Sasha Cai" ;
+    foaf:name "Sasha Cai Lesher-Pérez" .
+
+<https://lovamap.com/ontology#author/kurt-evan> a foaf:Person ;
+    foaf:familyName "Kurt" ;
+    foaf:givenName "Evan" ;
+    foaf:name "Evan Kurt" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" .
+
+<https://lovamap.com/ontology#journal/bioconjugate-chemistry> a bibo:Journal ;
+    dc:title "Bioconjugate Chemistry" ;
+    bibo:issn "1043-1802" .
+
+<https://lovamap.com/ontology#material/10.1021-acs.bioconjchem.8b00696/map-scaffold> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Annealed HA-Norb MAP scaffold (60-100 μm microgels)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "HA-Norb (hyaluronic acid-norbornene)" ;
+    lova:particleSizeMin 60.0 ;
+    lova:particleSizeMax 100.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:sizeDistribution "Polydisperse, sieved 60-100 μm, mean diameter 86.0 ± 20.3 μm" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:stiffnessValue 223.0 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-acs.bioconjchem.8b00696/ha-norb-map-fabrication> ;
+    lova:packingConfiguration "Annealed random jammed packing" ;
+    lova:reportedPorosity 0.22 .
+
+<https://lovamap.com/ontology#material/10.1021-acs.bioconjchem.8b00696/nonporous-ha-norb-gel> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Nonporous bulk HA-Norb hydrogel (control)" ;
+    lova:particleMaterial "HA-Norb (hyaluronic acid-norbornene)" ;
+    lova:stiffnessQualitative "Hydrogel" ;
+    lova:stiffnessValue 1813.0 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-acs.bioconjchem.8b00696/ha-norb-map-fabrication> ;
+    lova:packingConfiguration "Nonporous bulk gel" .
+
+<https://lovamap.com/ontology#material/10.1021-acs.bioconjchem.8b00696/tcp-2d> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "2-D tissue culture plastic (HDF monolayer control)" ;
+    lova:stiffnessQualitative "Rigid" ;
+    lova:packingConfiguration "2-D monolayer" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1021-acs.bioconjchem.8b00696/ha-norb-map-fabrication> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "HA-Norb microgel formation via water-in-hexane emulsion and thiol-ene crosslinking, annealed with PEG-Tet click chemistry" ;
+    lova:chemistry "Thiol-ene (norbornene-thiol UV crosslinking); strain-promoted tetrazine-norbornene click annealing" ;
+    lova:manufacturingMethod "Batch water-in-hexane inverse emulsion" ;
+    lova:annealingChemistry "Tetrazine-norbornene click reaction (4-arm PEG-tetrazine crosslinker)" ;
+    lova:annealingConditions "37°C, 1 hour" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1021-acs.bioconjchem.8b00696/ha-sodium-hyaluronan> ,
+                    <https://lovamap.com/ontology#reagent/10.1021-acs.bioconjchem.8b00696/dmtmm> ,
+                    <https://lovamap.com/ontology#reagent/10.1021-acs.bioconjchem.8b00696/norbornene-methylamine> ,
+                    <https://lovamap.com/ontology#reagent/10.1021-acs.bioconjchem.8b00696/peg-thiol> ,
+                    <https://lovamap.com/ontology#reagent/10.1021-acs.bioconjchem.8b00696/methyltetrazine-peg4-maleimide> ,
+                    <https://lovamap.com/ontology#reagent/10.1021-acs.bioconjchem.8b00696/lap> ,
+                    <https://lovamap.com/ontology#reagent/10.1021-acs.bioconjchem.8b00696/rgd-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1021-acs.bioconjchem.8b00696/tcep> ,
+                    <https://lovamap.com/ontology#reagent/10.1021-acs.bioconjchem.8b00696/dtt> ,
+                    <https://lovamap.com/ontology#reagent/10.1021-acs.bioconjchem.8b00696/peg-tet> .
+
+<https://lovamap.com/ontology#reagent/10.1021-acs.bioconjchem.8b00696/ha-sodium-hyaluronan> a lova:Reagent ;
+    rdfs:label "Sodium hyaluronan (60 kDa)" ;
+    lova:reagentRole "monomer" ;
+    lova:molecularWeight "60 kDa" ;
+    lova:supplier "Genzyme, Cambridge, MA" ;
+    lova:reagentFunction "Backbone polymer for HA-Norb microgels" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acs.bioconjchem.8b00696/dmtmm> a lova:Reagent ;
+    rdfs:label "4-(4,6-dimethoxy-1,3,5-triazin-2-yl)-4-methyl-morpholinium chloride (DMTMM)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Thermo Fisher Scientific, Waltham, MA" ;
+    lova:reagentFunction "Carboxylic acid activation for amine coupling" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acs.bioconjchem.8b00696/norbornene-methylamine> a lova:Reagent ;
+    rdfs:label "5-norbornene-2-methylamine" ;
+    lova:reagentRole "other" ;
+    lova:supplier "TCI America, Portland, OR" ;
+    lova:reagentFunction "Norbornene functionalization of HA" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acs.bioconjchem.8b00696/peg-thiol> a lova:Reagent ;
+    rdfs:label "4-arm 20 kDa PEG-thiol" ;
+    lova:reagentRole "crosslinker" ;
+    lova:molecularWeight "20 kDa" ;
+    lova:supplier "NOF America, White Plains, NY" ;
+    lova:reagentFunction "Precursor for PEG-tetrazine synthesis" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acs.bioconjchem.8b00696/methyltetrazine-peg4-maleimide> a lova:Reagent ;
+    rdfs:label "Methyltetrazine-PEG4-maleimide" ;
+    lova:reagentRole "crosslinker" ;
+    lova:supplier "Kerafast, Boston, MA" ;
+    lova:reagentFunction "Tetrazine functionalization of PEG-thiol" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acs.bioconjchem.8b00696/lap> a lova:Reagent ;
+    rdfs:label "Lithium phenyl(2,4,6-trimethylbenzoyl)phosphinate (LAP)" ;
+    lova:reagentRole "photoinitiator" ;
+    lova:concentration "2.2 mM" ;
+    lova:supplier "TCI America" ;
+    lova:reagentFunction "UV photoinitiator for thiol-ene crosslinking" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acs.bioconjchem.8b00696/rgd-peptide> a lova:Reagent ;
+    rdfs:label "Thiolated RGD peptide (RGDSPGERCG)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "RGDSPGERCG" ;
+    lova:concentration "500 μM" ;
+    lova:supplier "Genscript, Piscataway, NJ" ;
+    lova:reagentFunction "Cell adhesion ligand" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acs.bioconjchem.8b00696/tcep> a lova:Reagent ;
+    rdfs:label "Tris(2-carboxyethyl)phosphine (TCEP)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "25% of total thiol molarity (mmol TCEP:mmol thiols = 1:4)" ;
+    lova:reagentFunction "Reducing agent to prevent premature thiol oxidation" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acs.bioconjchem.8b00696/dtt> a lova:Reagent ;
+    rdfs:label "Dithiothreitol (DTT)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:concentration "50 mM stock, crosslinking ratio 14 mmol SH/mmol HA" ;
+    lova:supplier "Thermo Fisher Scientific" ;
+    lova:reagentFunction "Dithiolated crosslinker for HA-Norb microgel thiol-ene reaction" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acs.bioconjchem.8b00696/peg-tet> a lova:Reagent ;
+    rdfs:label "4-arm PEG-tetrazine (PEG-Tet, 20 kDa)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:molecularWeight "20 kDa" ;
+    lova:concentration "5.32 mM" ;
+    lova:reagentFunction "Inter-microgel annealing crosslinker via tetrazine-norbornene click reaction" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acs.bioconjchem.8b00696/jetpei> a lova:Reagent ;
+    rdfs:label "jetPEI (linear polyethylenimine)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Polyplus-Transfection, Illkirch, France" ;
+    lova:reagentFunction "Cationic polymer for plasmid DNA condensation into polyplexes" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acs.bioconjchem.8b00696/amiloride> a lova:Reagent ;
+    rdfs:label "Amiloride" ;
+    lova:reagentRole "other" ;
+    lova:concentration "100 μM" ;
+    lova:supplier "Sigma-Aldrich" ;
+    lova:reagentFunction "Macropinocytosis inhibitor" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acs.bioconjchem.8b00696/genistein> a lova:Reagent ;
+    rdfs:label "Genistein" ;
+    lova:reagentRole "other" ;
+    lova:concentration "200 μM" ;
+    lova:supplier "Sigma-Aldrich" ;
+    lova:reagentFunction "Caveolae-mediated endocytosis inhibitor" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acs.bioconjchem.8b00696/methyl-beta-cyclodextrin> a lova:Reagent ;
+    rdfs:label "Methyl-β-cyclodextrin" ;
+    lova:reagentRole "other" ;
+    lova:concentration "0.1 mM" ;
+    lova:supplier "Sigma-Aldrich" ;
+    lova:reagentFunction "Caveolae-mediated endocytosis inhibitor" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acs.bioconjchem.8b00696/chlorpromazine> a lova:Reagent ;
+    rdfs:label "Chlorpromazine" ;
+    lova:reagentRole "other" ;
+    lova:concentration "10 μg/mL" ;
+    lova:supplier "Sigma-Aldrich" ;
+    lova:reagentFunction "Clathrin-mediated endocytosis inhibitor" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acs.bioconjchem.8b00696/dynasore> a lova:Reagent ;
+    rdfs:label "Dynasore" ;
+    lova:reagentRole "other" ;
+    lova:concentration "50 μM" ;
+    lova:supplier "Sigma-Aldrich" ;
+    lova:reagentFunction "Dynamin inhibitor (indirect clathrin pathway inhibition)" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acs.bioconjchem.8b00696/cytochalasin-d> a lova:Reagent ;
+    rdfs:label "Cytochalasin D" ;
+    lova:reagentRole "other" ;
+    lova:concentration "20 μM" ;
+    lova:supplier "Sigma-Aldrich" ;
+    lova:reagentFunction "Actin polymerization inhibitor" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acs.bioconjchem.8b00696/nocodazole> a lova:Reagent ;
+    rdfs:label "Nocodazole" ;
+    lova:reagentRole "other" ;
+    lova:concentration "10 μM" ;
+    lova:supplier "Sigma-Aldrich" ;
+    lova:reagentFunction "Microtubule depolymerization agent" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acs.bioconjchem.8b00696/bdm> a lova:Reagent ;
+    rdfs:label "Butanedione monoxime (BDM)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "10 mM" ;
+    lova:supplier "Sigma-Aldrich" ;
+    lova:reagentFunction "Myosin ATPase inhibitor" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acs.bioconjchem.8b00696/endothelin-i> a lova:Reagent ;
+    rdfs:label "Endothelin I" ;
+    lova:reagentRole "other" ;
+    lova:concentration "20 nM" ;
+    lova:supplier "Sigma-Aldrich" ;
+    lova:reagentFunction "Actin/myosin activator" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acs.bioconjchem.8b00696/jasplakinolide> a lova:Reagent ;
+    rdfs:label "Jasplakinolide" ;
+    lova:reagentRole "other" ;
+    lova:concentration "500 nM" ;
+    lova:supplier "Sigma-Aldrich" ;
+    lova:reagentFunction "Actin nucleation activator" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acs.bioconjchem.8b00696/paclitaxel> a lova:Reagent ;
+    rdfs:label "Paclitaxel" ;
+    lova:reagentRole "other" ;
+    lova:concentration "10 μM" ;
+    lova:supplier "Sigma-Aldrich" ;
+    lova:reagentFunction "Microtubule stabilizer/activator" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acs.bioconjchem.8b00696/c3-transferase> a lova:Reagent ;
+    rdfs:label "C3 transferase" ;
+    lova:reagentRole "enzyme" ;
+    lova:concentration "1 μg/mL" ;
+    lova:supplier "Cytoskeleton, Inc." ;
+    lova:reagentFunction "RhoA/B/C inhibitor" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acs.bioconjchem.8b00696/y27632> a lova:Reagent ;
+    rdfs:label "Y27632" ;
+    lova:reagentRole "other" ;
+    lova:concentration "10 μM" ;
+    lova:supplier "Selleck Chemicals, Houston, TX" ;
+    lova:reagentFunction "ROCK inhibitor" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acs.bioconjchem.8b00696/ipa-3> a lova:Reagent ;
+    rdfs:label "IPA-3" ;
+    lova:reagentRole "other" ;
+    lova:concentration "10 μM" ;
+    lova:supplier "Sigma-Aldrich" ;
+    lova:reagentFunction "PAK1 inhibitor" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acs.bioconjchem.8b00696/rho-rac-cdc42-activator> a lova:Reagent ;
+    rdfs:label "Rho/Rac/Cdc42 activator" ;
+    lova:reagentRole "other" ;
+    lova:concentration "1 μg/mL" ;
+    lova:supplier "Cytoskeleton, Inc." ;
+    lova:reagentFunction "Activator of Rho, Rac, and Cdc42 GTPases" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acs.bioconjchem.8b00696/rho-activator-ii> a lova:Reagent ;
+    rdfs:label "Rho Activator II" ;
+    lova:reagentRole "other" ;
+    lova:concentration "1 μg/mL" ;
+    lova:supplier "Cytoskeleton, Inc." ;
+    lova:reagentFunction "RhoA/B/C activator" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acs.bioconjchem.8b00696/verteporfin> a lova:Reagent ;
+    rdfs:label "Verteporfin" ;
+    lova:reagentRole "other" ;
+    lova:concentration "3 μM" ;
+    lova:supplier "Sigma-Aldrich" ;
+    lova:reagentFunction "YAP inhibitor" .
+
+<https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/ha-norb-nmr> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-acs.bioconjchem.8b00696/map-scaffold> ;
+    rdfs:label "1H-NMR characterization of HA-Norb modification extent" ;
+    lova:experimentCategory "Chemical characterization" ;
+    lova:experimentType "NMR spectrometry" ;
+    lova:assayOrMethod "1H-NMR" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/ha-norb-modification> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/ha-norb-nmr> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Percent HA monomers modified with norbornene" ;
+    lova:measurementType "Degree of substitution" ;
+    lova:measurementCategory "Chemical" ;
+    qudt:numericValue 41.9 ;
+    qudt:unit "%" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/microgel-sizing> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-acs.bioconjchem.8b00696/map-scaffold> ;
+    rdfs:label "Microgel size distribution measurement" ;
+    lova:experimentCategory "Physical characterization" ;
+    lova:experimentType "Particle size analysis" ;
+    lova:assayOrMethod "Confocal microscopy + ImageJ particle analysis" ;
+    lova:sampleSize 1300 .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/microgel-mean-diameter> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/microgel-sizing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Mean microgel diameter after sieving (60-100 μm)" ;
+    lova:measurementType "Particle diameter" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 86.0 ;
+    qudt:unit "μm" ;
+    lova:stdDev 20.3 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/microgel-size-histogram-peak> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/microgel-sizing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Peak relative frequency of microgel diameter distribution" ;
+    lova:measurementType "Particle diameter distribution peak" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 85.0 ;
+    qudt:unit "μm" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/void-space-analysis> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-acs.bioconjchem.8b00696/map-scaffold> ;
+    rdfs:label "Void space quantification of annealed MAP scaffold" ;
+    lova:experimentCategory "Physical characterization" ;
+    lova:experimentType "Void fraction analysis" ;
+    lova:assayOrMethod "TRITC-dextran labeling + confocal microscopy + IMARIS surface render" ;
+    lova:sampleSize 4 .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/void-fraction> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/void-space-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Average void fraction of MAP scaffold" ;
+    lova:measurementType "Void fraction" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 0.22 ;
+    qudt:unit "fraction" ;
+    lova:stdDev 0.06 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/rheology> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-acs.bioconjchem.8b00696/map-scaffold> ,
+                      <https://lovamap.com/ontology#material/10.1021-acs.bioconjchem.8b00696/nonporous-ha-norb-gel> ;
+    rdfs:label "Oscillation rheometry of nonporous gel and annealed MAP scaffold" ;
+    lova:experimentCategory "Rheological" ;
+    lova:experimentType "Frequency sweep" ;
+    lova:equipment "Physica MCR plate-to-plate rheometer, Anton Paar" ;
+    lova:frequency "Angular frequency 0.5-10 rad/s" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/storage-modulus-nonporous> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Storage modulus (G') of nonporous HA-Norb hydrogel" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 1813.0 ;
+    qudt:unit "Pa" ;
+    lova:stdDev 315.0 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/storage-modulus-map> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Storage modulus (G') of annealed MAP scaffold" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 223.0 ;
+    qudt:unit "Pa" ;
+    lova:stdDev 67.0 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1021-acs.bioconjchem.8b00696/storage-modulus-map-vs-nonporous> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Storage modulus lower in annealed MAP scaffold vs nonporous HA-Norb gel" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/storage-modulus-map> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/storage-modulus-nonporous> ;
+    lova:direction "lower" .
+
+<https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/cell-spreading> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-acs.bioconjchem.8b00696/map-scaffold> ;
+    rdfs:label "HDF cell spreading in MAP scaffold at day 2" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell spreading/morphology" ;
+    lova:assayOrMethod "Confocal imaging, phalloidin/DAPI staining, IMARIS volume rendering" ;
+    lova:cellType "HDF" ;
+    lova:cellSource "Human dermis" ;
+    lova:cultureDuration "2 days" ;
+    lova:cultureMedium "DMEM + 10% FBS" ;
+    lova:temperature "37°C" ;
+    lova:atmosphere "5% CO2" .
+
+<https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/polyplex-colocalization> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-acs.bioconjchem.8b00696/map-scaffold> ;
+    rdfs:label "Polyplex distribution and colocalization with cell actin in MAP gels" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Polyplex distribution/colocalization" ;
+    lova:assayOrMethod "YOYO-1 labeling, confocal z-stack, IMARIS Manders coefficient analysis" ;
+    lova:cellType "HDF" ;
+    lova:cellSource "Human dermis" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/colocalization-total> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/polyplex-colocalization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Total polyplex-cell colocalization area across MAP gel" ;
+    lova:measurementType "Co-localization area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 35.1 ;
+    qudt:unit "%" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/colocalization-average> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/polyplex-colocalization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Average polyplex-cell colocalization across z-stack" ;
+    lova:measurementType "Co-localization area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 18.0 ;
+    qudt:unit "%" ;
+    lova:stdDev 5.1 ;
+    lova:scope "Regional" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/bolus-transfection-efficiency> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-acs.bioconjchem.8b00696/map-scaffold> ,
+                      <https://lovamap.com/ontology#material/10.1021-acs.bioconjchem.8b00696/tcp-2d> ;
+    rdfs:label "Luciferase-based transgene expression comparison, 2-D vs MAP bolus transfection" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transfection efficiency" ;
+    lova:assayOrMethod "BioLux Gaussia Luciferase assay" ;
+    lova:cellType "HDF" ;
+    lova:cultureDuration "2 days" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/luciferase-2d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/bolus-transfection-efficiency> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Gaussia luciferase relative luminescence units, 2-D bolus transfection" ;
+    lova:measurementType "Transgene expression (RLU)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Baseline RLU (2-D), approximately 10-fold higher than MAP" ;
+    lova:timePoint "Day 2" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/luciferase-map> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/bolus-transfection-efficiency> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Gaussia luciferase relative luminescence units, MAP bolus transfection" ;
+    lova:measurementType "Transgene expression (RLU)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Approximately 10-fold lower RLU than 2-D" ;
+    lova:timePoint "Day 2" ;
+    lova:comparisonGroup "2-D tissue culture plastic" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1021-acs.bioconjchem.8b00696/luciferase-map-vs-2d> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Transgene expression approximately 10-fold lower in MAP vs 2-D bolus transfection" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/luciferase-map> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/luciferase-2d> ;
+    lova:direction "lower" ;
+    lova:foldChange 0.1 .
+
+<https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/endocytic-2d> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-acs.bioconjchem.8b00696/tcp-2d> ;
+    rdfs:label "Endocytic pathway inhibition and transgene expression, 2-D culture" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transfection with endocytic pathway inhibitors" ;
+    lova:assayOrMethod "BioLux Gaussia Luciferase assay" ;
+    lova:cellType "HDF" ;
+    lova:cultureDuration "2 days" .
+
+<https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/endocytic-map> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-acs.bioconjchem.8b00696/map-scaffold> ;
+    rdfs:label "Endocytic pathway inhibition and transgene expression, MAP culture" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transfection with endocytic pathway inhibitors" ;
+    lova:assayOrMethod "BioLux Gaussia Luciferase assay" ;
+    lova:cellType "HDF" ;
+    lova:cultureDuration "2 days" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/amiloride-2d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/endocytic-2d> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Normalized transgene expression, 2-D, amiloride (-macropinocytosis)" ;
+    lova:measurementType "Normalized transgene expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.15 ;
+    qudt:unit "fold (normalized to no treatment)" ;
+    lova:comparisonGroup "No treatment" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/amiloride-map> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/endocytic-map> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Normalized transgene expression, MAP, amiloride (-macropinocytosis)" ;
+    lova:measurementType "Normalized transgene expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.3 ;
+    qudt:unit "fold (normalized to no treatment)" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "No treatment" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1021-acs.bioconjchem.8b00696/amiloride-2d-vs-map> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Amiloride treatment: higher expression in 2-D vs MAP" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/amiloride-2d> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/amiloride-map> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/genistein-2d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/endocytic-2d> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Normalized transgene expression, 2-D, genistein (-caveolae)" ;
+    lova:measurementType "Normalized transgene expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.95 ;
+    qudt:unit "fold (normalized to no treatment)" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "No treatment" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/genistein-map> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/endocytic-map> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Normalized transgene expression, MAP, genistein (-caveolae)" ;
+    lova:measurementType "Normalized transgene expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.4 ;
+    qudt:unit "fold (normalized to no treatment)" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "No treatment" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1021-acs.bioconjchem.8b00696/genistein-2d-vs-map> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Genistein treatment: higher expression in 2-D vs MAP" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/genistein-2d> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/genistein-map> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/mbcd-2d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/endocytic-2d> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Normalized transgene expression, 2-D, methyl-β-cyclodextrin (-caveolae)" ;
+    lova:measurementType "Normalized transgene expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.78 ;
+    qudt:unit "fold (normalized to no treatment)" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "No treatment" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/mbcd-map> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/endocytic-map> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Normalized transgene expression, MAP, methyl-β-cyclodextrin (-caveolae)" ;
+    lova:measurementType "Normalized transgene expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.22 ;
+    qudt:unit "fold (normalized to no treatment)" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "No treatment" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1021-acs.bioconjchem.8b00696/mbcd-2d-vs-map> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Methyl-β-cyclodextrin treatment: higher expression in 2-D vs MAP" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/mbcd-2d> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/mbcd-map> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/chlorpromazine-2d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/endocytic-2d> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Normalized transgene expression, 2-D, chlorpromazine (-clathrin)" ;
+    lova:measurementType "Normalized transgene expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.02 ;
+    qudt:unit "fold (normalized to no treatment)" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "No treatment" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/chlorpromazine-map> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/endocytic-map> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Normalized transgene expression, MAP, chlorpromazine (-clathrin)" ;
+    lova:measurementType "Normalized transgene expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.1 ;
+    qudt:unit "fold (normalized to no treatment)" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "No treatment" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1021-acs.bioconjchem.8b00696/chlorpromazine-2d-vs-map> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Chlorpromazine decreases expression significantly in both 2-D and MAP" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/chlorpromazine-2d> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/chlorpromazine-map> ;
+    lova:direction "no difference" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/dynasore-2d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/endocytic-2d> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Normalized transgene expression, 2-D, dynasore (-clathrin, indirect)" ;
+    lova:measurementType "Normalized transgene expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.15 ;
+    qudt:unit "fold (normalized to no treatment)" ;
+    lova:isSignificant false ;
+    lova:comparisonGroup "No treatment" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/dynasore-map> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/endocytic-map> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Normalized transgene expression, MAP, dynasore (-clathrin, indirect)" ;
+    lova:measurementType "Normalized transgene expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.47 ;
+    qudt:unit "fold (normalized to no treatment)" ;
+    lova:isSignificant false ;
+    lova:comparisonGroup "No treatment" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1021-acs.bioconjchem.8b00696/dynasore-2d-vs-map> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Dynasore treatment: no significant difference 2-D vs MAP" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/dynasore-2d> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/dynasore-map> ;
+    lova:direction "no difference" ;
+    lova:isSignificant false .
+
+<https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/cytoskeletal-2d> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-acs.bioconjchem.8b00696/tcp-2d> ;
+    rdfs:label "Cytoskeletal inhibitor/activator treatment and transgene expression, 2-D culture" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transfection with cytoskeletal inhibitors/activators" ;
+    lova:assayOrMethod "BioLux Gaussia Luciferase assay" ;
+    lova:cellType "HDF" ;
+    lova:cultureDuration "2 days" .
+
+<https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/cytoskeletal-map> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-acs.bioconjchem.8b00696/map-scaffold> ;
+    rdfs:label "Cytoskeletal inhibitor/activator treatment and transgene expression, MAP culture" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transfection with cytoskeletal inhibitors/activators" ;
+    lova:assayOrMethod "BioLux Gaussia Luciferase assay" ;
+    lova:cellType "HDF" ;
+    lova:cultureDuration "2 days" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/bdm-2d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/cytoskeletal-2d> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Normalized transgene expression, 2-D, BDM (-actin/myosin)" ;
+    lova:measurementType "Normalized transgene expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 3.32 ;
+    qudt:unit "fold (normalized to no treatment)" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "No treatment" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/bdm-map> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/cytoskeletal-map> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Normalized transgene expression, MAP, BDM (-actin/myosin)" ;
+    lova:measurementType "Normalized transgene expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.18 ;
+    qudt:unit "fold (normalized to no treatment)" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "No treatment" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1021-acs.bioconjchem.8b00696/bdm-2d-vs-map> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "BDM treatment: higher expression in 2-D vs MAP" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/bdm-2d> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/bdm-map> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/jasplakinolide-map> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/cytoskeletal-map> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Normalized transgene expression, MAP, jasplakinolide (+actin, disorganized)" ;
+    lova:measurementType "Normalized transgene expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.03 ;
+    qudt:unit "fold (normalized to no treatment)" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "No treatment" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/jasplakinolide-2d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/cytoskeletal-2d> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Normalized transgene expression, 2-D, jasplakinolide" ;
+    lova:measurementType "Normalized transgene expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.05 ;
+    qudt:unit "fold (normalized to no treatment)" ;
+    lova:isSignificant false ;
+    lova:comparisonGroup "No treatment" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1021-acs.bioconjchem.8b00696/jasplakinolide-2d-vs-map> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Jasplakinolide decreases expression in MAP but not significantly in 2-D" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/jasplakinolide-2d> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/jasplakinolide-map> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/paclitaxel-2d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/cytoskeletal-2d> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Normalized transgene expression, 2-D, paclitaxel (+microtubule)" ;
+    lova:measurementType "Normalized transgene expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 3.95 ;
+    qudt:unit "fold (normalized to no treatment)" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "No treatment" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/paclitaxel-map> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/cytoskeletal-map> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Normalized transgene expression, MAP, paclitaxel (+microtubule)" ;
+    lova:measurementType "Normalized transgene expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.72 ;
+    qudt:unit "fold (normalized to no treatment)" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "No treatment" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1021-acs.bioconjchem.8b00696/paclitaxel-2d-vs-map> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Paclitaxel treatment: higher expression increase in 2-D vs MAP" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/paclitaxel-2d> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/paclitaxel-map> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/nocodazole-2d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/cytoskeletal-2d> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Normalized transgene expression, 2-D, nocodazole (-microtubule)" ;
+    lova:measurementType "Normalized transgene expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.27 ;
+    qudt:unit "fold (normalized to no treatment)" ;
+    lova:comparisonGroup "No treatment" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/nocodazole-map> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/cytoskeletal-map> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Normalized transgene expression, MAP, nocodazole (-microtubule)" ;
+    lova:measurementType "Normalized transgene expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.18 ;
+    qudt:unit "fold (normalized to no treatment)" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "No treatment" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1021-acs.bioconjchem.8b00696/nocodazole-2d-vs-map> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Nocodazole decreases transgene expression in both 2-D and MAP" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/nocodazole-2d> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/nocodazole-map> ;
+    lova:direction "no difference" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/rhogtpase-2d> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-acs.bioconjchem.8b00696/tcp-2d> ;
+    rdfs:label "RhoGTPase/YAP inhibitor and activator treatment and transgene expression, 2-D culture" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transfection with RhoGTPase/YAP inhibitors and activators" ;
+    lova:assayOrMethod "BioLux Gaussia Luciferase assay" ;
+    lova:cellType "HDF" ;
+    lova:cultureDuration "2 days" .
+
+<https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/rhogtpase-map> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-acs.bioconjchem.8b00696/map-scaffold> ;
+    rdfs:label "RhoGTPase/YAP inhibitor and activator treatment and transgene expression, MAP culture" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transfection with RhoGTPase/YAP inhibitors and activators" ;
+    lova:assayOrMethod "BioLux Gaussia Luciferase assay" ;
+    lova:cellType "HDF" ;
+    lova:cultureDuration "2 days" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/c3-transferase-2d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/rhogtpase-2d> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Normalized transgene expression, 2-D, C3 transferase (-RhoA/B/C)" ;
+    lova:measurementType "Normalized transgene expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.62 ;
+    qudt:unit "fold (normalized to no treatment)" ;
+    lova:isSignificant false ;
+    lova:comparisonGroup "No treatment" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/c3-transferase-map> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/rhogtpase-map> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Normalized transgene expression, MAP, C3 transferase (-RhoA/B/C)" ;
+    lova:measurementType "Normalized transgene expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.1 ;
+    qudt:unit "fold (normalized to no treatment)" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "No treatment" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1021-acs.bioconjchem.8b00696/c3-transferase-2d-vs-map> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "C3 transferase significantly decreases MAP expression but not 2-D expression" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/c3-transferase-2d> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/c3-transferase-map> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/y27632-2d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/rhogtpase-2d> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Normalized transgene expression, 2-D, Y27632 (-ROCK)" ;
+    lova:measurementType "Normalized transgene expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.68 ;
+    qudt:unit "fold (normalized to no treatment)" ;
+    lova:isSignificant false ;
+    lova:comparisonGroup "No treatment" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/y27632-map> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/rhogtpase-map> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Normalized transgene expression, MAP, Y27632 (-ROCK)" ;
+    lova:measurementType "Normalized transgene expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.25 ;
+    qudt:unit "fold (normalized to no treatment)" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "No treatment" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1021-acs.bioconjchem.8b00696/y27632-2d-vs-map> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Y27632 significantly decreases MAP expression but not 2-D expression" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/y27632-2d> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/y27632-map> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/ipa3-2d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/rhogtpase-2d> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Normalized transgene expression, 2-D, IPA-3 (-PAK1)" ;
+    lova:measurementType "Normalized transgene expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.15 ;
+    qudt:unit "fold (normalized to no treatment)" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "No treatment" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/ipa3-map> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/rhogtpase-map> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Normalized transgene expression, MAP, IPA-3 (-PAK1)" ;
+    lova:measurementType "Normalized transgene expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.25 ;
+    qudt:unit "fold (normalized to no treatment)" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "No treatment" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1021-acs.bioconjchem.8b00696/ipa3-2d-vs-map> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "IPA-3 increases expression in 2-D but decreases it in MAP" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/ipa3-2d> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/ipa3-map> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/activator-i-2d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/rhogtpase-2d> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Normalized transgene expression, 2-D, Rho/Rac/Cdc42 activator" ;
+    lova:measurementType "Normalized transgene expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.6 ;
+    qudt:unit "fold (normalized to no treatment)" ;
+    lova:isSignificant false ;
+    lova:comparisonGroup "No treatment" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/activator-i-map> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/rhogtpase-map> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Normalized transgene expression, MAP, Rho/Rac/Cdc42 activator" ;
+    lova:measurementType "Normalized transgene expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.45 ;
+    qudt:unit "fold (normalized to no treatment)" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "No treatment" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1021-acs.bioconjchem.8b00696/activator-i-2d-vs-map> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Rho/Rac/Cdc42 activator significantly increases expression in MAP, not in 2-D" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/activator-i-map> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/activator-i-2d> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/activator-ii-2d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/rhogtpase-2d> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Normalized transgene expression, 2-D, Rho Activator II (+RhoA/B/C)" ;
+    lova:measurementType "Normalized transgene expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.25 ;
+    qudt:unit "fold (normalized to no treatment)" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "No treatment" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/activator-ii-map> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/rhogtpase-map> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Normalized transgene expression, MAP, Rho Activator II (+RhoA/B/C)" ;
+    lova:measurementType "Normalized transgene expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.25 ;
+    qudt:unit "fold (normalized to no treatment)" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "No treatment" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1021-acs.bioconjchem.8b00696/activator-ii-2d-vs-map> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Rho Activator II decreases expression similarly in both 2-D and MAP" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/activator-ii-2d> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/activator-ii-map> ;
+    lova:direction "no difference" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/verteporfin-2d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/rhogtpase-2d> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Normalized transgene expression, 2-D, verteporfin (-YAP)" ;
+    lova:measurementType "Normalized transgene expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.02 ;
+    qudt:unit "fold (normalized to no treatment)" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "No treatment" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/verteporfin-map> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.bioconjchem.8b00696/rhogtpase-map> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Normalized transgene expression, MAP, verteporfin (-YAP)" ;
+    lova:measurementType "Normalized transgene expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.02 ;
+    qudt:unit "fold (normalized to no treatment)" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "No treatment" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1021-acs.bioconjchem.8b00696/verteporfin-2d-vs-map> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.bioconjchem.8b00696> ;
+    rdfs:label "Verteporfin dramatically decreases transgene expression to near-zero in both 2-D and MAP" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/verteporfin-2d> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-acs.bioconjchem.8b00696/verteporfin-map> ;
+    lova:direction "no difference" ;
+    lova:isSignificant true .

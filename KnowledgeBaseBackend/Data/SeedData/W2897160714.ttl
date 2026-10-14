@@ -1,0 +1,748 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1002-advs.201801046> a bibo:AcademicArticle ;
+    rdfs:label "Darling et al., 2018 — Injectable Spatially Patterned MAP Hydrogels" ;
+    dc:title "Injectable and Spatially Patterned Microporous Annealed Particle (MAP) Hydrogels for Tissue Repair Applications" ;
+    dc:identifier "10.1002/advs.201801046" ;
+    dc:date "2018"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/advanced-science> ;
+    dc:creator <https://lovamap.com/ontology#author/darling-nicole> ,
+               <https://lovamap.com/ontology#author/sideris-elias> ,
+               <https://lovamap.com/ontology#author/hamada-naomi> ,
+               <https://lovamap.com/ontology#author/carmichael-thomas> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/darling-nicole>
+                       <https://lovamap.com/ontology#author/sideris-elias>
+                       <https://lovamap.com/ontology#author/hamada-naomi>
+                       <https://lovamap.com/ontology#author/carmichael-thomas>
+                       <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    dc:bibliographicCitation "Darling et al., 2018" ;
+    lova:focusMaterial "Hyaluronic acid (HA)-based microporous annealed particle (MAP) hydrogels, spatially patterned via sequential/layered injection for skin wound, subcutaneous, and stroke models" .
+
+<https://lovamap.com/ontology#author/darling-nicole> a foaf:Person ;
+    foaf:familyName "Darling" ;
+    foaf:givenName "Nicole J." ;
+    foaf:name "Nicole J. Darling" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California, Los Angeles" .
+
+<https://lovamap.com/ontology#author/sideris-elias> a foaf:Person ;
+    foaf:familyName "Sideris" ;
+    foaf:givenName "Elias" ;
+    foaf:name "Elias Sideris" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California, Los Angeles" .
+
+<https://lovamap.com/ontology#author/hamada-naomi> a foaf:Person ;
+    foaf:familyName "Hamada" ;
+    foaf:givenName "Naomi" ;
+    foaf:name "Naomi Hamada" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California, Los Angeles" .
+
+<https://lovamap.com/ontology#author/carmichael-thomas> a foaf:Person ;
+    foaf:familyName "Carmichael" ;
+    foaf:givenName "S. Thomas" ;
+    foaf:name "S. Thomas Carmichael" ;
+    schema:affiliation "Department of Neurology, David Geffen School of Medicine, University of California, Los Angeles" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California, Los Angeles" ;
+    schema:affiliation "Department of Biomedical Engineering, Duke University" .
+
+<https://lovamap.com/ontology#journal/advanced-science> a bibo:Journal ;
+    dc:title "Advanced Science" ;
+    bibo:issn "2198-3844" .
+
+<https://lovamap.com/ontology#material/10.1002-advs.201801046/ha-map-microgel> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.201801046> ;
+    rdfs:label "HA-based MAP hydrogel microgel (≈100 µm) building block" ;
+    lova:particleMaterial "Hyaluronic acid (HA), acrylate-modified (HA-AM)" ;
+    lova:particleSizeMin 100.0 ;
+    lova:particleSizeMax 100.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:packingConfiguration "Jammed" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-advs.201801046/ha-map-microfluidic-fxiii> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-advs.201801046/ha-map-microfluidic-fxiii> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.201801046> ;
+    rdfs:label "Microfluidic HA-acrylate microgel fabrication with FXIIIa enzymatic annealing" ;
+    lova:chemistry "Michael-type addition (thiol-acrylate)" ;
+    lova:manufacturingMethod "Microfluidic water-in-oil flow focusing" ;
+    lova:annealingChemistry "Enzymatic (Factor XIIIa transglutamination)" ;
+    lova:annealingConditions "37 °C, 90 min" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-advs.201801046/ha-60kda> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-advs.201801046/adh> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-advs.201801046/edc> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-advs.201801046/nhs-am> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-advs.201801046/ha-acrylate> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-advs.201801046/teoa> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-advs.201801046/k-peptide> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-advs.201801046/q-peptide> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-advs.201801046/rgd-peptide> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-advs.201801046/mmp-crosslinker-peptide> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-advs.201801046/alexa488-maleimide> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-advs.201801046/alexa555-maleimide> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-advs.201801046/alexa647-maleimide> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-advs.201801046/fxiiia> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-advs.201801046/span80-inner> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-advs.201801046/span80-outer> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-advs.201801046/mineral-oil> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-advs.201801046/hepes-buffer> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-advs.201801046/cacl2> .
+
+<https://lovamap.com/ontology#reagent/10.1002-advs.201801046/ha-60kda> a lova:Reagent ;
+    rdfs:label "Hyaluronic acid (60,000 Da)" ;
+    lova:reagentRole "monomer" ;
+    lova:molecularWeight "60000 Da" ;
+    lova:concentration "2.0 g, 5.28 mmol" ;
+    lova:supplier "Genzyme Corporation" ;
+    lova:reagentFunction "Hydrogel backbone polymer" .
+
+<https://lovamap.com/ontology#reagent/10.1002-advs.201801046/adh> a lova:Reagent ;
+    rdfs:label "Adipic dihydrazide (ADH)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "18.0 g, 105.5 mmol" ;
+    lova:reagentFunction "Hydrazide functionalization of HA" .
+
+<https://lovamap.com/ontology#reagent/10.1002-advs.201801046/edc> a lova:Reagent ;
+    rdfs:label "1-ethyl-3-(dimethylaminopropyl) carbodiimide hydrochloride (EDC)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "4.0 g, 20 mmol" ;
+    lova:reagentFunction "Carbodiimide coupling reagent for HA-ADH synthesis" .
+
+<https://lovamap.com/ontology#reagent/10.1002-advs.201801046/nhs-am> a lova:Reagent ;
+    rdfs:label "N-acryloxysuccinimide (NHS-AM)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "1.33 g, 4.4 mmol" ;
+    lova:reagentFunction "Acrylation of HA-ADH to form HA-acrylate" .
+
+<https://lovamap.com/ontology#reagent/10.1002-advs.201801046/ha-acrylate> a lova:Reagent ;
+    rdfs:label "HA-acrylate (HA-AM)" ;
+    lova:reagentRole "monomer" ;
+    lova:concentration "7% w/v (HA solution); 3.5 wt% (final microgel composition)" ;
+    lova:reagentFunction "Michael-addition donor, hydrogel network backbone" .
+
+<https://lovamap.com/ontology#reagent/10.1002-advs.201801046/teoa> a lova:Reagent ;
+    rdfs:label "Triethanolamine (TEOA) buffer" ;
+    lova:reagentRole "solvent" ;
+    lova:concentration "0.3 m, pH 8.8" ;
+    lova:reagentFunction "Buffer for HA solution preparation" .
+
+<https://lovamap.com/ontology#reagent/10.1002-advs.201801046/k-peptide> a lova:Reagent ;
+    rdfs:label "K-peptide (Ac-FKGGERCG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "FKGGERCG" ;
+    lova:concentration "500 × 10−6 m (HA solution); 250 × 10−6 m (final microgel composition)" ;
+    lova:reagentFunction "FXIIIa substrate for enzymatic annealing" .
+
+<https://lovamap.com/ontology#reagent/10.1002-advs.201801046/q-peptide> a lova:Reagent ;
+    rdfs:label "Q-peptide (Ac-NQEQVSPLGGERCG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "NQEQVSPLGGERCG" ;
+    lova:concentration "500 × 10−6 m (HA solution); 250 × 10−6 m (final microgel composition)" ;
+    lova:reagentFunction "FXIIIa substrate for enzymatic annealing" .
+
+<https://lovamap.com/ontology#reagent/10.1002-advs.201801046/rgd-peptide> a lova:Reagent ;
+    rdfs:label "RGD peptide (Ac-RGDSPGERCG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "RGDSPGERCG" ;
+    lova:concentration "1000 × 10−6 m (HA solution); 500 × 10−6 m (final microgel composition)" ;
+    lova:reagentFunction "Cell adhesion" .
+
+<https://lovamap.com/ontology#reagent/10.1002-advs.201801046/mmp-crosslinker-peptide> a lova:Reagent ;
+    rdfs:label "Dithiol MMP-sensitive crosslinker peptide (Ac-GCRDGPQGIWGQDRCG-NH2)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:sequence "GCRDGPQGIWGQDRCG" ;
+    lova:concentration "7.8 × 10−3 m (cross-linker solution); 3.9 × 10−3 m (final microgel; thiol:acrylamide ratio 0.8)" ;
+    lova:supplier "Genscript" ;
+    lova:reagentFunction "MMP-degradable crosslink between HA-acrylate chains" .
+
+<https://lovamap.com/ontology#reagent/10.1002-advs.201801046/alexa488-maleimide> a lova:Reagent ;
+    rdfs:label "Alexa-Fluor 488-maleimide" ;
+    lova:reagentRole "other" ;
+    lova:concentration "10 × 10−6 m (reaction); 5 × 10−6 m (final microgel composition)" ;
+    lova:supplier "LifeTechnologies" ;
+    lova:reagentFunction "Fluorescent labeling (green µgels)" .
+
+<https://lovamap.com/ontology#reagent/10.1002-advs.201801046/alexa555-maleimide> a lova:Reagent ;
+    rdfs:label "Alexa-Fluor 555-maleimide" ;
+    lova:reagentRole "other" ;
+    lova:concentration "10 × 10−6 m (reaction); 5 × 10−6 m (final microgel composition)" ;
+    lova:reagentFunction "Fluorescent labeling (red µgels)" .
+
+<https://lovamap.com/ontology#reagent/10.1002-advs.201801046/alexa647-maleimide> a lova:Reagent ;
+    rdfs:label "Alexa-Fluor 647-maleimide" ;
+    lova:reagentRole "other" ;
+    lova:concentration "10 × 10−6 m (reaction); 5 × 10−6 m (final microgel composition)" ;
+    lova:reagentFunction "Fluorescent labeling (white µgels)" .
+
+<https://lovamap.com/ontology#reagent/10.1002-advs.201801046/fxiiia> a lova:Reagent ;
+    rdfs:label "Factor XIIIa (FXIIIa)" ;
+    lova:reagentRole "enzyme" ;
+    lova:concentration "200 units mL−1" ;
+    lova:reagentFunction "Annealing (transglutamination between K- and Q-peptides)" .
+
+<https://lovamap.com/ontology#reagent/10.1002-advs.201801046/span80-inner> a lova:Reagent ;
+    rdfs:label "Span-80 (inner pinching oil, 1% v/v in heavy mineral oil)" ;
+    lova:reagentRole "surfactant" ;
+    lova:concentration "1% v/v" ;
+    lova:reagentFunction "Inner pinching oil surfactant for microfluidic droplet generation" .
+
+<https://lovamap.com/ontology#reagent/10.1002-advs.201801046/span80-outer> a lova:Reagent ;
+    rdfs:label "Span-80 (outer oil, 5% v/v in heavy mineral oil)" ;
+    lova:reagentRole "surfactant" ;
+    lova:concentration "5% v/v" ;
+    lova:reagentFunction "Outer oil surfactant for microfluidic droplet generation" .
+
+<https://lovamap.com/ontology#reagent/10.1002-advs.201801046/mineral-oil> a lova:Reagent ;
+    rdfs:label "Heavy mineral oil" ;
+    lova:reagentRole "carrier oil" ;
+    lova:reagentFunction "Continuous oil phase for water-in-oil emulsion droplet generation" .
+
+<https://lovamap.com/ontology#reagent/10.1002-advs.201801046/hepes-buffer> a lova:Reagent ;
+    rdfs:label "HEPES buffer / HEPES buffered saline" ;
+    lova:reagentRole "solvent" ;
+    lova:concentration "10 × 10−3 m HEPES, 150 × 10−3 m NaCl, 10 × 10−3 m EDTA, pH 7.4 (synthesis); HEPES buffered saline with 10 × 10−3 m CaCl2, pH 7.4 (purification)" ;
+    lova:reagentFunction "Buffer for HA-acrylate synthesis and microgel purification" .
+
+<https://lovamap.com/ontology#reagent/10.1002-advs.201801046/cacl2> a lova:Reagent ;
+    rdfs:label "Calcium chloride (CaCl2)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "10 × 10−3 m" ;
+    lova:reagentFunction "Calcium cofactor supplementation in purification buffer for FXIIIa activity" .
+
+<https://lovamap.com/ontology#experiment/10.1002-advs.201801046/e1-in-vitro-wound-mold-patterning> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.201801046> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-advs.201801046/ha-map-microgel> ;
+    rdfs:label "In vitro linear layered patterning (PDMS mold, sequential pipette injection)" ;
+    lova:experimentCategory "Patterning" ;
+    lova:experimentType "Spatial patterning assay (in vitro, linear)" ;
+    lova:assayOrMethod "Confocal microscopy + ImageJ intensity profile/color composition analysis" ;
+    lova:equipment "Nikon Ti Eclipse C2 LED confocal microscope" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.201801046/e1-panelB-white> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.201801046/e1-in-vitro-wound-mold-patterning> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.201801046> ;
+    rdfs:label "Percent of total white µgels within white region (in vitro linear pattern)" ;
+    lova:measurementType "Percent of total µgels of a color within its respective color region" ;
+    lova:measurementCategory "Patterning" ;
+    qudt:numericValue 74.15 ;
+    qudt:unit "%" ;
+    lova:sampleSize 3 ;
+    lova:scope "Regional" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.201801046/e1-panelB-red> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.201801046/e1-in-vitro-wound-mold-patterning> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.201801046> ;
+    rdfs:label "Percent of total red µgels within red region (in vitro linear pattern)" ;
+    lova:measurementType "Percent of total µgels of a color within its respective color region" ;
+    lova:measurementCategory "Patterning" ;
+    qudt:numericValue 72.74 ;
+    qudt:unit "%" ;
+    lova:sampleSize 3 ;
+    lova:scope "Regional" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.201801046/e1-panelB-green> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.201801046/e1-in-vitro-wound-mold-patterning> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.201801046> ;
+    rdfs:label "Percent of total green µgels within green region (in vitro linear pattern)" ;
+    lova:measurementType "Percent of total µgels of a color within its respective color region" ;
+    lova:measurementCategory "Patterning" ;
+    qudt:numericValue 91.33 ;
+    qudt:unit "%" ;
+    lova:sampleSize 3 ;
+    lova:scope "Regional" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.201801046/e1-panelC-white> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.201801046/e1-in-vitro-wound-mold-patterning> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.201801046> ;
+    rdfs:label "White region composition dominated by white µgels (in vitro linear pattern)" ;
+    lova:measurementType "Color region µgel composition dominated by region color" ;
+    lova:measurementCategory "Patterning" ;
+    qudt:numericValue 68.84 ;
+    qudt:unit "%" ;
+    lova:sampleSize 3 ;
+    lova:scope "Regional" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.201801046/e1-panelC-red> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.201801046/e1-in-vitro-wound-mold-patterning> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.201801046> ;
+    rdfs:label "Red region composition dominated by red µgels (in vitro linear pattern)" ;
+    lova:measurementType "Color region µgel composition dominated by region color" ;
+    lova:measurementCategory "Patterning" ;
+    qudt:numericValue 80.34 ;
+    qudt:unit "%" ;
+    lova:sampleSize 3 ;
+    lova:scope "Regional" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.201801046/e1-panelC-green> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.201801046/e1-in-vitro-wound-mold-patterning> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.201801046> ;
+    rdfs:label "Green region composition dominated by green µgels (in vitro linear pattern)" ;
+    lova:measurementType "Color region µgel composition dominated by region color" ;
+    lova:measurementCategory "Patterning" ;
+    qudt:numericValue 88.59 ;
+    qudt:unit "%" ;
+    lova:sampleSize 3 ;
+    lova:scope "Regional" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1002-advs.201801046/e2-in-vivo-wound-healing-patterning> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.201801046> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-advs.201801046/ha-map-microgel> ;
+    rdfs:label "In vivo radial patterning in full-thickness skin wound model (mouse)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Spatial patterning in vivo — skin wound" ;
+    lova:assayOrMethod "Confocal microscopy + ImageJ intensity profile/color composition analysis" ;
+    lova:equipment "Nikon Ti Eclipse C2 LED confocal microscope" ;
+    lova:cellSource "Mouse (CLR:Skh1-Hrhr)" ;
+    lova:cultureDuration "3 days" ;
+    lova:scaffoldDimensions"≈6 mm diameter × 1 mm high wound" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.201801046/e2-panelE-white> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.201801046/e2-in-vivo-wound-healing-patterning> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.201801046> ;
+    rdfs:label "Percent of total white µgels within white region (in vivo skin wound radial pattern)" ;
+    lova:measurementType "Percent of total µgels of a color within its respective color region" ;
+    lova:measurementCategory "Patterning" ;
+    qudt:numericValue 74.19 ;
+    qudt:unit "%" ;
+    lova:sampleSize 3 ;
+    lova:scope "Regional" ;
+    lova:timePoint "Day 3" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.201801046/e2-panelE-red> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.201801046/e2-in-vivo-wound-healing-patterning> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.201801046> ;
+    rdfs:label "Percent of total red µgels within red region (in vivo skin wound radial pattern)" ;
+    lova:measurementType "Percent of total µgels of a color within its respective color region" ;
+    lova:measurementCategory "Patterning" ;
+    qudt:numericValue 67.33 ;
+    qudt:unit "%" ;
+    lova:sampleSize 3 ;
+    lova:scope "Regional" ;
+    lova:timePoint "Day 3" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.201801046/e2-panelE-green> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.201801046/e2-in-vivo-wound-healing-patterning> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.201801046> ;
+    rdfs:label "Percent of total green µgels within green region (in vivo skin wound radial pattern)" ;
+    lova:measurementType "Percent of total µgels of a color within its respective color region" ;
+    lova:measurementCategory "Patterning" ;
+    qudt:numericValue 70.97 ;
+    qudt:unit "%" ;
+    lova:sampleSize 3 ;
+    lova:scope "Regional" ;
+    lova:timePoint "Day 3" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.201801046/e2-panelF-white> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.201801046/e2-in-vivo-wound-healing-patterning> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.201801046> ;
+    rdfs:label "White region composition dominated by white µgels (in vivo skin wound radial pattern)" ;
+    lova:measurementType "Color region µgel composition dominated by region color" ;
+    lova:measurementCategory "Patterning" ;
+    qudt:numericValue 88.23 ;
+    qudt:unit "%" ;
+    lova:sampleSize 3 ;
+    lova:scope "Regional" ;
+    lova:timePoint "Day 3" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.201801046/e2-panelF-red> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.201801046/e2-in-vivo-wound-healing-patterning> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.201801046> ;
+    rdfs:label "Red region composition dominated by red µgels (in vivo skin wound radial pattern)" ;
+    lova:measurementType "Color region µgel composition dominated by region color" ;
+    lova:measurementCategory "Patterning" ;
+    qudt:numericValue 61.72 ;
+    qudt:unit "%" ;
+    lova:stdDev 18.84 ;
+    lova:sampleSize 3 ;
+    lova:scope "Regional" ;
+    lova:timePoint "Day 3" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.201801046/e2-panelF-green> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.201801046/e2-in-vivo-wound-healing-patterning> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.201801046> ;
+    rdfs:label "Green region composition dominated by green µgels (in vivo skin wound radial pattern)" ;
+    lova:measurementType "Color region µgel composition dominated by region color" ;
+    lova:measurementCategory "Patterning" ;
+    qudt:numericValue 68.69 ;
+    qudt:unit "%" ;
+    lova:sampleSize 3 ;
+    lova:scope "Regional" ;
+    lova:timePoint "Day 3" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1002-advs.201801046/e3-in-vitro-subq-bolus-patterning> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.201801046> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-advs.201801046/ha-map-microgel> ;
+    rdfs:label "In vitro subcutaneous (Sub-Q) model bolus injection patterning (between coverslips)" ;
+    lova:experimentCategory "Patterning" ;
+    lova:experimentType "Spatial patterning assay (in vitro, Sub-Q model, bolus injection)" ;
+    lova:assayOrMethod "Confocal microscopy + ImageJ intensity profile/color composition analysis" ;
+    lova:equipment "Nikon Ti Eclipse C2 LED confocal microscope" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.201801046/e3-panelB-white> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.201801046/e3-in-vitro-subq-bolus-patterning> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.201801046> ;
+    rdfs:label "Percent of total white µgels within white region (bolus Sub-Q)" ;
+    lova:measurementType "Percent of total µgels of a color within its respective color region" ;
+    lova:measurementCategory "Patterning" ;
+    qudt:numericValue 83.21 ;
+    qudt:unit "%" ;
+    lova:sampleSize 3 ;
+    lova:scope "Regional" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.201801046/e3-panelB-red> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.201801046/e3-in-vitro-subq-bolus-patterning> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.201801046> ;
+    rdfs:label "Percent of total red µgels within red region (bolus Sub-Q)" ;
+    lova:measurementType "Percent of total µgels of a color within its respective color region" ;
+    lova:measurementCategory "Patterning" ;
+    qudt:numericValue 62.26 ;
+    qudt:unit "%" ;
+    lova:sampleSize 3 ;
+    lova:scope "Regional" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.201801046/e3-panelB-green> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.201801046/e3-in-vitro-subq-bolus-patterning> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.201801046> ;
+    rdfs:label "Percent of total green µgels within green region (bolus Sub-Q)" ;
+    lova:measurementType "Percent of total µgels of a color within its respective color region" ;
+    lova:measurementCategory "Patterning" ;
+    qudt:numericValue 78.53 ;
+    qudt:unit "%" ;
+    lova:sampleSize 3 ;
+    lova:scope "Regional" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.201801046/e3-panelC-white> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.201801046/e3-in-vitro-subq-bolus-patterning> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.201801046> ;
+    rdfs:label "White region composition dominated by white µgels (bolus Sub-Q)" ;
+    lova:measurementType "Color region µgel composition dominated by region color" ;
+    lova:measurementCategory "Patterning" ;
+    qudt:numericValue 71.59 ;
+    qudt:unit "%" ;
+    lova:sampleSize 3 ;
+    lova:scope "Regional" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.201801046/e3-panelC-red> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.201801046/e3-in-vitro-subq-bolus-patterning> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.201801046> ;
+    rdfs:label "Red region composition dominated by red µgels (bolus Sub-Q)" ;
+    lova:measurementType "Color region µgel composition dominated by region color" ;
+    lova:measurementCategory "Patterning" ;
+    qudt:numericValue 86.04 ;
+    qudt:unit "%" ;
+    lova:sampleSize 3 ;
+    lova:scope "Regional" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.201801046/e3-panelC-green> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.201801046/e3-in-vitro-subq-bolus-patterning> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.201801046> ;
+    rdfs:label "Green region composition dominated by green µgels (bolus Sub-Q)" ;
+    lova:measurementType "Color region µgel composition dominated by region color" ;
+    lova:measurementCategory "Patterning" ;
+    qudt:numericValue 69.03 ;
+    qudt:unit "%" ;
+    lova:sampleSize 3 ;
+    lova:scope "Regional" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1002-advs.201801046/e4-in-vitro-stroke-continuous-patterning> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.201801046> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-advs.201801046/ha-map-microgel> ;
+    rdfs:label "In vitro PT stroke model patterning via continuous-rate syringe pump injection (between coverslips)" ;
+    lova:experimentCategory "Patterning" ;
+    lova:experimentType "Spatial patterning assay (in vitro, continuous injection rate)" ;
+    lova:assayOrMethod "Confocal microscopy + ImageJ intensity profile/color composition analysis" ;
+    lova:equipment "Nikon Ti Eclipse C2 LED confocal microscope; syringe pump" ;
+    lova:strainRate "1 µL min−1 injection rate" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.201801046/e4-panelE-white> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.201801046/e4-in-vitro-stroke-continuous-patterning> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.201801046> ;
+    rdfs:label "Percent of total white µgels within white region (continuous-rate injection)" ;
+    lova:measurementType "Percent of total µgels of a color within its respective color region" ;
+    lova:measurementCategory "Patterning" ;
+    qudt:numericValue 80.79 ;
+    qudt:unit "%" ;
+    lova:sampleSize 3 ;
+    lova:scope "Regional" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.201801046/e4-panelE-red> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.201801046/e4-in-vitro-stroke-continuous-patterning> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.201801046> ;
+    rdfs:label "Percent of total red µgels within red region (continuous-rate injection)" ;
+    lova:measurementType "Percent of total µgels of a color within its respective color region" ;
+    lova:measurementCategory "Patterning" ;
+    qudt:numericValue 76.29 ;
+    qudt:unit "%" ;
+    lova:sampleSize 3 ;
+    lova:scope "Regional" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.201801046/e4-panelE-green> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.201801046/e4-in-vitro-stroke-continuous-patterning> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.201801046> ;
+    rdfs:label "Percent of total green µgels within green region (continuous-rate injection)" ;
+    lova:measurementType "Percent of total µgels of a color within its respective color region" ;
+    lova:measurementCategory "Patterning" ;
+    qudt:numericValue 90.67 ;
+    qudt:unit "%" ;
+    lova:sampleSize 3 ;
+    lova:scope "Regional" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.201801046/e4-panelF-white> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.201801046/e4-in-vitro-stroke-continuous-patterning> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.201801046> ;
+    rdfs:label "White region composition dominated by white µgels (continuous-rate injection)" ;
+    lova:measurementType "Color region µgel composition dominated by region color" ;
+    lova:measurementCategory "Patterning" ;
+    qudt:numericValue 83.22 ;
+    qudt:unit "%" ;
+    lova:sampleSize 3 ;
+    lova:scope "Regional" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.201801046/e4-panelF-red> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.201801046/e4-in-vitro-stroke-continuous-patterning> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.201801046> ;
+    rdfs:label "Red region composition dominated by red µgels (continuous-rate injection)" ;
+    lova:measurementType "Color region µgel composition dominated by region color" ;
+    lova:measurementCategory "Patterning" ;
+    qudt:numericValue 91.17 ;
+    qudt:unit "%" ;
+    lova:sampleSize 3 ;
+    lova:scope "Regional" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.201801046/e4-panelF-green> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.201801046/e4-in-vitro-stroke-continuous-patterning> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.201801046> ;
+    rdfs:label "Green region composition dominated by green µgels (continuous-rate injection)" ;
+    lova:measurementType "Color region µgel composition dominated by region color" ;
+    lova:measurementCategory "Patterning" ;
+    qudt:numericValue 79.55 ;
+    qudt:unit "%" ;
+    lova:sampleSize 3 ;
+    lova:scope "Regional" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1002-advs.201801046/e5-in-vivo-subq-implant-patterning> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.201801046> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-advs.201801046/ha-map-microgel> ;
+    rdfs:label "In vivo subcutaneous implant patterning (mouse hind skin)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Spatial patterning in vivo — subcutaneous implant" ;
+    lova:assayOrMethod "Confocal microscopy + ImageJ intensity profile/color composition analysis" ;
+    lova:equipment "Nikon Ti Eclipse C2 LED confocal microscope" ;
+    lova:cultureDuration "3 days" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.201801046/e5-panelB-white> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.201801046/e5-in-vivo-subq-implant-patterning> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.201801046> ;
+    rdfs:label "Percent of total white µgels within white region (in vivo Sub-Q implant)" ;
+    lova:measurementType "Percent of total µgels of a color within its respective color region" ;
+    lova:measurementCategory "Patterning" ;
+    qudt:numericValue 74.69 ;
+    qudt:unit "%" ;
+    lova:sampleSize 3 ;
+    lova:scope "Regional" ;
+    lova:timePoint "Day 3" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.201801046/e5-panelB-red> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.201801046/e5-in-vivo-subq-implant-patterning> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.201801046> ;
+    rdfs:label "Percent of total red µgels within red region (in vivo Sub-Q implant)" ;
+    lova:measurementType "Percent of total µgels of a color within its respective color region" ;
+    lova:measurementCategory "Patterning" ;
+    qudt:numericValue 66.11 ;
+    qudt:unit "%" ;
+    lova:sampleSize 3 ;
+    lova:scope "Regional" ;
+    lova:timePoint "Day 3" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.201801046/e5-panelB-green> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.201801046/e5-in-vivo-subq-implant-patterning> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.201801046> ;
+    rdfs:label "Percent of total green µgels within green region (in vivo Sub-Q implant)" ;
+    lova:measurementType "Percent of total µgels of a color within its respective color region" ;
+    lova:measurementCategory "Patterning" ;
+    qudt:numericValue 46.25 ;
+    qudt:unit "%" ;
+    lova:sampleSize 3 ;
+    lova:scope "Regional" ;
+    lova:timePoint "Day 3" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.201801046/e5-panelC-white> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.201801046/e5-in-vivo-subq-implant-patterning> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.201801046> ;
+    rdfs:label "White region composition dominated by white µgels (in vivo Sub-Q implant)" ;
+    lova:measurementType "Color region µgel composition dominated by region color" ;
+    lova:measurementCategory "Patterning" ;
+    qudt:numericValue 65.29 ;
+    qudt:unit "%" ;
+    lova:sampleSize 3 ;
+    lova:scope "Regional" ;
+    lova:timePoint "Day 3" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.201801046/e5-panelC-red> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.201801046/e5-in-vivo-subq-implant-patterning> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.201801046> ;
+    rdfs:label "Red region composition dominated by red µgels (in vivo Sub-Q implant)" ;
+    lova:measurementType "Color region µgel composition dominated by region color" ;
+    lova:measurementCategory "Patterning" ;
+    qudt:numericValue 69.30 ;
+    qudt:unit "%" ;
+    lova:sampleSize 3 ;
+    lova:scope "Regional" ;
+    lova:timePoint "Day 3" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.201801046/e5-panelC-green> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.201801046/e5-in-vivo-subq-implant-patterning> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.201801046> ;
+    rdfs:label "Green region composition dominated by green µgels (in vivo Sub-Q implant)" ;
+    lova:measurementType "Color region µgel composition dominated by region color" ;
+    lova:measurementCategory "Patterning" ;
+    qudt:numericValue 54.76 ;
+    qudt:unit "%" ;
+    lova:sampleSize 3 ;
+    lova:scope "Regional" ;
+    lova:timePoint "Day 3" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1002-advs.201801046/e6-in-vivo-stroke-patterning> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.201801046> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-advs.201801046/ha-map-microgel> ;
+    rdfs:label "In vivo photothrombotic (PT) stroke model patterning (mouse motor cortex)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Spatial patterning in vivo — stroke cavity" ;
+    lova:assayOrMethod "Confocal microscopy + ImageJ intensity profile/color composition analysis" ;
+    lova:equipment "Nikon Ti Eclipse C2 LED confocal microscope; Nexus 3000 syringe pump" ;
+    lova:cellSource "Mouse (C57BL/6, 8–12 week male)" ;
+    lova:strainRate "1 µL min−1 injection rate" ;
+    lova:cultureDuration "10 days postinjection (2 weeks post stroke)" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.201801046/e6-panelE-white> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.201801046/e6-in-vivo-stroke-patterning> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.201801046> ;
+    rdfs:label "Percent of total white µgels within white region (in vivo stroke)" ;
+    lova:measurementType "Percent of total µgels of a color within its respective color region" ;
+    lova:measurementCategory "Patterning" ;
+    qudt:numericValue 87.86 ;
+    qudt:unit "%" ;
+    lova:sampleSize 3 ;
+    lova:scope "Regional" ;
+    lova:timePoint "10 days postinjection" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.201801046/e6-panelE-red> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.201801046/e6-in-vivo-stroke-patterning> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.201801046> ;
+    rdfs:label "Percent of total red µgels within red region (in vivo stroke)" ;
+    lova:measurementType "Percent of total µgels of a color within its respective color region" ;
+    lova:measurementCategory "Patterning" ;
+    qudt:numericValue 60.98 ;
+    qudt:unit "%" ;
+    lova:sampleSize 3 ;
+    lova:scope "Regional" ;
+    lova:timePoint "10 days postinjection" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.201801046/e6-panelE-green> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.201801046/e6-in-vivo-stroke-patterning> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.201801046> ;
+    rdfs:label "Percent of total green µgels within green region (in vivo stroke)" ;
+    lova:measurementType "Percent of total µgels of a color within its respective color region" ;
+    lova:measurementCategory "Patterning" ;
+    qudt:numericValue 58.42 ;
+    qudt:unit "%" ;
+    lova:sampleSize 3 ;
+    lova:scope "Regional" ;
+    lova:timePoint "10 days postinjection" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.201801046/e6-panelF-white> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.201801046/e6-in-vivo-stroke-patterning> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.201801046> ;
+    rdfs:label "White region composition dominated by white µgels (in vivo stroke)" ;
+    lova:measurementType "Color region µgel composition dominated by region color" ;
+    lova:measurementCategory "Patterning" ;
+    qudt:numericValue 76.11 ;
+    qudt:unit "%" ;
+    lova:sampleSize 3 ;
+    lova:scope "Regional" ;
+    lova:timePoint "10 days postinjection" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.201801046/e6-panelF-red> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.201801046/e6-in-vivo-stroke-patterning> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.201801046> ;
+    rdfs:label "Red region composition dominated by red µgels (in vivo stroke)" ;
+    lova:measurementType "Color region µgel composition dominated by region color" ;
+    lova:measurementCategory "Patterning" ;
+    qudt:numericValue 54.29 ;
+    qudt:unit "%" ;
+    lova:sampleSize 3 ;
+    lova:scope "Regional" ;
+    lova:timePoint "10 days postinjection" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.201801046/e6-panelF-green> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.201801046/e6-in-vivo-stroke-patterning> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.201801046> ;
+    rdfs:label "Green region composition dominated by green µgels (in vivo stroke)" ;
+    lova:measurementType "Color region µgel composition dominated by region color" ;
+    lova:measurementCategory "Patterning" ;
+    qudt:numericValue 75.90 ;
+    qudt:unit "%" ;
+    lova:sampleSize 3 ;
+    lova:scope "Regional" ;
+    lova:timePoint "10 days postinjection" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-advs.201801046/red-retention-bolus-vs-continuous> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.201801046> ;
+    rdfs:label "Middle red layer retention higher with continuous slow injection rate vs bolus injection" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-advs.201801046/e4-panelF-red> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-advs.201801046/e3-panelC-red> ;
+    lova:direction "higher" .

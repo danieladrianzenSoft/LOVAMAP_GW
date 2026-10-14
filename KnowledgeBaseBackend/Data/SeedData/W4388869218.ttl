@@ -1,0 +1,569 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> a bibo:AcademicArticle ;
+    rdfs:label "Riley et al., 2023 — Identification and analysis of 3D pores in packed particulate materials" ;
+    dc:title "Identification and analysis of 3D pores in packed particulate materials" ;
+    dc:identifier "10.1038/s43588-023-00551-x" ;
+    dc:date "2023"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/nature-computational-science> ;
+    dc:creator <https://lovamap.com/ontology#author/riley-lindsay> ,
+               <https://lovamap.com/ontology#author/cheng-peter> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/riley-lindsay>
+                       <https://lovamap.com/ontology#author/cheng-peter>
+                       <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    dc:bibliographicCitation "Riley et al., 2023" ;
+    lova:focusMaterial "Simulated packed particle domains (spheres, ellipsoids, rods, nuggets, deformable spheres) used to develop and validate LOVAMAP 3D pore segmentation software" .
+
+<https://lovamap.com/ontology#author/riley-lindsay> a foaf:Person ;
+    foaf:familyName "Riley" ;
+    foaf:givenName "Lindsay" ;
+    foaf:name "Lindsay Riley" ;
+    schema:affiliation "Department of Biomedical Engineering, Duke University, Durham, NC, USA" .
+
+<https://lovamap.com/ontology#author/cheng-peter> a foaf:Person ;
+    foaf:familyName "Cheng" ;
+    foaf:givenName "Peter" ;
+    foaf:name "Peter Cheng" ;
+    schema:affiliation "Ninjabyte Computing, Sunnyvale, CA, USA" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" ;
+    schema:affiliation "Department of Biomedical Engineering, Duke University, Durham, NC, USA" ;
+    schema:affiliation "Department of Medicine, Neurology, Dermatology, Duke University, Durham, NC, USA" .
+
+<https://lovamap.com/ontology#journal/nature-computational-science> a bibo:Journal ;
+    dc:title "Nature Computational Science" ;
+    bibo:issn "2662-8457" .
+
+<https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/square-packing-spheres> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    rdfs:label "Rigid spheres in square packing" ;
+    lova:particleShape "Sphere" ;
+    lova:stiffnessQualitative "Rigid" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:packingConfiguration "Square" .
+
+<https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/hexagonal-packing-spheres> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    rdfs:label "Rigid spheres in hexagonal packing" ;
+    lova:particleShape "Sphere" ;
+    lova:stiffnessQualitative "Rigid" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:packingConfiguration "Hexagonal" .
+
+<https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/bidisperse-spheres> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    rdfs:label "Random close packing of bidisperse rigid spheres (binary mixtures)" ;
+    lova:particleShape "Sphere" ;
+    lova:stiffnessQualitative "Rigid" ;
+    lova:sizeDistribution "Bidisperse" ;
+    lova:particleSizeMin 40.0 ;
+    lova:particleSizeMax 100.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:packingConfiguration "Random" ;
+    lova:scaffoldDimensions "600 × 600 × 600 µm3 container" .
+
+<https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/ellipsoids-monodisperse> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    rdfs:label "Monodisperse ellipsoids (prolate spheroids), random packing" ;
+    lova:particleShape "Ellipsoid" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:packingConfiguration "Random" .
+
+<https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/rods-monodisperse> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    rdfs:label "Monodisperse rods (cylinders), random packing" ;
+    lova:particleShape "Cylinder" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:packingConfiguration "Random" .
+
+<https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/nuggets-monodisperse> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    rdfs:label "Monodisperse nugget-shaped particles, random packing" ;
+    lova:particleShape "Nugget (flattened-egg shape)" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:packingConfiguration "Random" ;
+    rdfs:comment "Inspired by hydrogel microparticles fabricated using a microfluidic device" .
+
+<https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/deformable-spheres-semisoft> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    rdfs:label "Deformable spheres, semi-soft (λ=1000, μ=250)" ;
+    lova:particleShape "Sphere" ;
+    lova:stiffnessQualitative "Semi-soft" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:packingConfiguration "Random" .
+
+<https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/deformable-spheres-soft> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    rdfs:label "Deformable spheres, soft (λ=400, μ=50)" ;
+    lova:particleShape "Sphere" ;
+    lova:stiffnessQualitative "Soft" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:packingConfiguration "Random" .
+
+<https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/rigid-spheres-100um> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    rdfs:label "Rigid 100-µm-diameter spheres, random packing" ;
+    lova:particleShape "Sphere" ;
+    lova:stiffnessQualitative "Rigid" ;
+    lova:particleSizeMin 100.0 ;
+    lova:particleSizeMax 100.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:packingConfiguration "Random" .
+
+<https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/polydisperse-spheres> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    rdfs:label "Polydisperse rigid spheres (8 distributions)" ;
+    lova:particleShape "Sphere" ;
+    lova:stiffnessQualitative "Rigid" ;
+    lova:sizeDistribution "Uniform U(40,100), Normal N(100,5), N(100,20), N(100,25), Bidisperse B(40,100) 50:50, B(50,100) 70:30, B(80,100) 50:50, N(70,15)" ;
+    lova:packingConfiguration "Random" .
+
+<https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/ellipsoids-isotropic> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    rdfs:label "Ellipsoids, random packing (isotropic)" ;
+    lova:particleShape "Ellipsoid" ;
+    lova:packingConfiguration "Random" .
+
+<https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/ellipsoids-anisotropic> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    rdfs:label "Ellipsoids, semi-aligned packing (anisotropic)" ;
+    lova:particleShape "Ellipsoid" ;
+    lova:packingConfiguration "Semi-aligned" .
+
+<https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/ellipsoids-square-packing> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    rdfs:label "Ellipsoids, square packing" ;
+    lova:particleShape "Ellipsoid" ;
+    lova:packingConfiguration "Square" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1038-s43588-023-00551-x/perfect-packing-matlab> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    rdfs:label "Procedural generation of perfect packing domains (MATLAB)" ;
+    lova:manufacturingMethod "Procedural generation using MATLAB R2023a" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1038-s43588-023-00551-x/houdini-rigid-body> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    rdfs:label "Random packing simulation of rigid particles (Houdini rigid-body solver)" ;
+    lova:manufacturingMethod "SideFX Houdini native rigid-body physics solver simulating particle falling, collision, and settling" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1038-s43588-023-00551-x/houdini-fem-nonrigid> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    rdfs:label "Random packing simulation of non-rigid (deformable) particles (Houdini FEM solver)" ;
+    lova:manufacturingMethod "SideFX Houdini native finite element physics solver (soft-body simulation)" ;
+    lova:chemistry "Lamé's first (λ) and second (μ) parameters used to adjust particle deformability" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1038-s43588-023-00551-x/houdini-nonspherical> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    rdfs:label "Modeling of non-spherical particle shapes (Houdini)" ;
+    lova:manufacturingMethod "SideFX Houdini modeling of ellipsoids (prolate spheroids), rods (cylinders), and nuggets (extruded parametric egg-shaped curve)" .
+
+<https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/square-packing-spheres> lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1038-s43588-023-00551-x/perfect-packing-matlab> .
+<https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/hexagonal-packing-spheres> lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1038-s43588-023-00551-x/perfect-packing-matlab> .
+<https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/ellipsoids-square-packing> lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1038-s43588-023-00551-x/perfect-packing-matlab> .
+<https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/bidisperse-spheres> lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1038-s43588-023-00551-x/houdini-rigid-body> .
+<https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/rigid-spheres-100um> lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1038-s43588-023-00551-x/houdini-rigid-body> .
+<https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/polydisperse-spheres> lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1038-s43588-023-00551-x/houdini-rigid-body> .
+<https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/deformable-spheres-semisoft> lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1038-s43588-023-00551-x/houdini-fem-nonrigid> .
+<https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/deformable-spheres-soft> lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1038-s43588-023-00551-x/houdini-fem-nonrigid> .
+<https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/ellipsoids-monodisperse> lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1038-s43588-023-00551-x/houdini-nonspherical> .
+<https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/rods-monodisperse> lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1038-s43588-023-00551-x/houdini-nonspherical> .
+<https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/nuggets-monodisperse> lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1038-s43588-023-00551-x/houdini-nonspherical> .
+<https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/ellipsoids-isotropic> lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1038-s43588-023-00551-x/houdini-nonspherical> .
+<https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/ellipsoids-anisotropic> lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1038-s43588-023-00551-x/houdini-nonspherical> .
+
+<https://lovamap.com/ontology#experiment/10.1038-s43588-023-00551-x/square-hex-pore-volume> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/square-packing-spheres> ,
+                       <https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/hexagonal-packing-spheres> ;
+    rdfs:label "3D pore volume quantification for square and hexagonal packing" ;
+    lova:experimentCategory "Computational geometry" ;
+    lova:experimentType "3D pore volume quantification" ;
+    lova:assayOrMethod "LOVAMAP segmentation" .
+
+<https://lovamap.com/ontology#experiment/10.1038-s43588-023-00551-x/binary-mixture-pore-count> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/bidisperse-spheres> ;
+    rdfs:label "Number and volume of 3D pores for binary sphere mixtures" ;
+    lova:experimentCategory "Computational geometry" ;
+    lova:experimentType "3D pore count and volume quantification" ;
+    lova:assayOrMethod "LOVAMAP segmentation" ;
+    lova:sampleSize 10 .
+
+<https://lovamap.com/ontology#experiment/10.1038-s43588-023-00551-x/shape-comparison> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/rigid-spheres-100um> ,
+                       <https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/ellipsoids-monodisperse> ,
+                       <https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/rods-monodisperse> ,
+                       <https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/nuggets-monodisperse> ,
+                       <https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/deformable-spheres-semisoft> ;
+    rdfs:label "Comparison of 3D pore counts across particle shape and stiffness at equivalent volume" ;
+    lova:experimentCategory "Computational geometry" ;
+    lova:experimentType "Pore count comparison across particle shapes" ;
+    lova:assayOrMethod "LOVAMAP segmentation" .
+
+<https://lovamap.com/ontology#experiment/10.1038-s43588-023-00551-x/pore-prediction-monodisperse> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/rigid-spheres-100um> ,
+                       <https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/ellipsoids-monodisperse> ,
+                       <https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/rods-monodisperse> ,
+                       <https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/nuggets-monodisperse> ,
+                       <https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/deformable-spheres-semisoft> ;
+    rdfs:label "Fitting predictive equations for total number of 3D pores and median pore volume (monodisperse packings)" ;
+    lova:experimentCategory "Computational modeling" ;
+    lova:experimentType "Model fitting" ;
+    lova:sampleSize 10 .
+
+<https://lovamap.com/ontology#experiment/10.1038-s43588-023-00551-x/pore-prediction-polydisperse> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/polydisperse-spheres> ;
+    rdfs:label "Fitting predictive equations with variance term for polydisperse spherical packings" ;
+    lova:experimentCategory "Computational modeling" ;
+    lova:experimentType "Model fitting" .
+
+<https://lovamap.com/ontology#experiment/10.1038-s43588-023-00551-x/2d-vs-3d-comparison> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/rigid-spheres-100um> ,
+                       <https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/deformable-spheres-semisoft> ,
+                       <https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/deformable-spheres-soft> ;
+    rdfs:label "Comparison of pore diameter measured by 2D-slice approximation versus 3D LOVAMAP analysis" ;
+    lova:experimentCategory "Computational geometry" ;
+    lova:experimentType "2D slice vs 3D pore diameter comparison" ;
+    lova:assayOrMethod "Largest enclosed circle (2D) vs largest enclosed sphere (3D)" ;
+    lova:sampleSize 10 .
+
+<https://lovamap.com/ontology#experiment/10.1038-s43588-023-00551-x/isotropy-analysis> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/rigid-spheres-100um> ,
+                       <https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/ellipsoids-isotropic> ,
+                       <https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/ellipsoids-anisotropic> ,
+                       <https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/ellipsoids-square-packing> ;
+    rdfs:label "Void space isotropy/anisotropy analysis using PCA pore orientation" ;
+    lova:experimentCategory "Computational geometry" ;
+    lova:experimentType "Pore orientation/isotropy analysis" ;
+    lova:assayOrMethod "Principal component analysis (PCA)" .
+
+<https://lovamap.com/ontology#experiment/10.1038-s43588-023-00551-x/particles-surrounding-pore> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/rigid-spheres-100um> ,
+                       <https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/bidisperse-spheres> ,
+                       <https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/ellipsoids-monodisperse> ,
+                       <https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/rods-monodisperse> ,
+                       <https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/nuggets-monodisperse> ;
+    rdfs:label "3D-pore volume plotted by number of surrounding particles" ;
+    lova:experimentCategory "Computational geometry" ;
+    lova:experimentType "Pore volume vs number of surrounding particles" ;
+    lova:sampleSize 5 .
+
+<https://lovamap.com/ontology#experiment/10.1038-s43588-023-00551-x/pore-distribution-analysis> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/rigid-spheres-100um> ,
+                       <https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/bidisperse-spheres> ,
+                       <https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/ellipsoids-monodisperse> ,
+                       <https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/rods-monodisperse> ,
+                       <https://lovamap.com/ontology#material/10.1038-s43588-023-00551-x/nuggets-monodisperse> ;
+    rdfs:label "3D-pore volume and length distribution and aspect ratio analysis" ;
+    lova:experimentCategory "Computational geometry" ;
+    lova:experimentType "Pore volume/length distribution and aspect ratio" ;
+    lova:sampleSize 5 .
+
+<https://lovamap.com/ontology#outcome/10.1038-s43588-023-00551-x/eq1-r2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s43588-023-00551-x/pore-prediction-monodisperse> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    rdfs:label "R² for exponential decay equation predicting total number of 3D pores (monodisperse)" ;
+    lova:measurementType "Model fit R²" ;
+    lova:measurementCategory "Computational modeling" ;
+    qudt:numericValue 0.9827 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s43588-023-00551-x/eq1-nrmse-testa> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s43588-023-00551-x/pore-prediction-monodisperse> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    rdfs:label "NRMSE of equation 1 fit against test dataset a (softer deformable spheres)" ;
+    lova:measurementType "NRMSE" ;
+    lova:measurementCategory "Computational modeling" ;
+    qudt:numericValue 0.0715 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s43588-023-00551-x/eq1-nrmse-testb> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s43588-023-00551-x/pore-prediction-monodisperse> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    rdfs:label "NRMSE of equation 1 fit against test dataset b (spherical container)" ;
+    lova:measurementType "NRMSE" ;
+    lova:measurementCategory "Computational modeling" ;
+    qudt:numericValue 0.127 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s43588-023-00551-x/eq2-r2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s43588-023-00551-x/pore-prediction-monodisperse> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    rdfs:label "R² for second-order polynomial predicting median interior 3D pore volume" ;
+    lova:measurementType "Model fit R²" ;
+    lova:measurementCategory "Computational modeling" ;
+    qudt:numericValue 0.9402 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s43588-023-00551-x/eq2-nrmse-testa> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s43588-023-00551-x/pore-prediction-monodisperse> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    rdfs:label "NRMSE of equation 2 fit against test dataset a" ;
+    lova:measurementType "NRMSE" ;
+    lova:measurementCategory "Computational modeling" ;
+    qudt:numericValue 0.178 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s43588-023-00551-x/eq2-nrmse-testb> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s43588-023-00551-x/pore-prediction-monodisperse> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    rdfs:label "NRMSE of equation 2 fit against test dataset b" ;
+    lova:measurementType "NRMSE" ;
+    lova:measurementCategory "Computational modeling" ;
+    qudt:numericValue 0.000933 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s43588-023-00551-x/quad-r2-40um> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s43588-023-00551-x/particles-surrounding-pore> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    rdfs:label "Quadratic fit R² for 40-µm-diameter sphere domain (pore volume vs surrounding particle count)" ;
+    lova:measurementType "Model fit R²" ;
+    qudt:numericValue 0.9606 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s43588-023-00551-x/quad-r2-110um> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s43588-023-00551-x/particles-surrounding-pore> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    rdfs:label "Quadratic fit R² for 110-µm-diameter sphere domain (pore volume vs surrounding particle count)" ;
+    lova:measurementType "Model fit R²" ;
+    qudt:numericValue 0.9727 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s43588-023-00551-x/coeff-a-r2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s43588-023-00551-x/particles-surrounding-pore> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    rdfs:label "R² of exponential trend for coefficient A" ;
+    lova:measurementType "Model fit R²" ;
+    qudt:numericValue 0.9573 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s43588-023-00551-x/coeff-b-r2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s43588-023-00551-x/particles-surrounding-pore> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    rdfs:label "R² of exponential trend for coefficient B" ;
+    lova:measurementType "Model fit R²" ;
+    qudt:numericValue 0.9791 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s43588-023-00551-x/coeff-c-r2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s43588-023-00551-x/particles-surrounding-pore> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    rdfs:label "R² of exponential trend for coefficient C" ;
+    lova:measurementType "Model fit R²" ;
+    qudt:numericValue 0.9799 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s43588-023-00551-x/mannwhitney-2d3d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s43588-023-00551-x/2d-vs-3d-comparison> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    rdfs:label "Mann-Whitney test p-value for 2D-slice vs LOVAMAP pore diameter, rigid and semi-soft domains" ;
+    lova:measurementType "Statistical test p-value" ;
+    lova:valueString "P < 0.0001" ;
+    lova:pValue 0.0001 ;
+    lova:isSignificant true ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s43588-023-00551-x/ks-2d3d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s43588-023-00551-x/2d-vs-3d-comparison> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    rdfs:label "Kolmogorov-Smirnov test p-value for 2D-slice vs LOVAMAP pore diameter, rigid/semi-soft/soft domains" ;
+    lova:measurementType "Statistical test p-value" ;
+    lova:valueString "P < 0.0001" ;
+    lova:pValue 0.0001 ;
+    lova:isSignificant true ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s43588-023-00551-x/kruskalwallis-aspect> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s43588-023-00551-x/pore-distribution-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    rdfs:label "Kruskal-Wallis test p-value for aspect ratio comparisons across particle groups" ;
+    lova:measurementType "Statistical test p-value" ;
+    lova:valueString "P < 0.0001" ;
+    lova:pValue 0.0001 ;
+    lova:isSignificant true ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s43588-023-00551-x/welch-anova-shapecount> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s43588-023-00551-x/shape-comparison> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    rdfs:label "Welch's ANOVA p-value for number of 3D pores per picoliter across sp/ell/rd/ng groups (equal volume)" ;
+    lova:measurementType "Statistical test p-value" ;
+    lova:valueString "P < 0.0001" ;
+    lova:pValue 0.0001 ;
+    lova:isSignificant true ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s43588-023-00551-x/aspect-ratio-sq-sp-len> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s43588-023-00551-x/pore-distribution-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    rdfs:label "Aspect ratio (longest length/average internal diameter) reference value for square packing of spheres" ;
+    lova:measurementType "Pore aspect ratio" ;
+    qudt:numericValue 1.72 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s43588-023-00551-x/aspect-ratio-sq-ell-len> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s43588-023-00551-x/pore-distribution-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    rdfs:label "Aspect ratio (longest length/average internal diameter) reference value for square packing of ellipsoids" ;
+    lova:measurementType "Pore aspect ratio" ;
+    qudt:numericValue 2.47 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s43588-023-00551-x/aspect-ratio-sq-sp-pca> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s43588-023-00551-x/pore-distribution-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    rdfs:label "Aspect ratio (PCA ellipsoid axis 1/axis 3) reference value for square packing of spheres" ;
+    lova:measurementType "Pore aspect ratio (PCA)" ;
+    qudt:numericValue 1.00 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s43588-023-00551-x/aspect-ratio-sq-ell-pca> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s43588-023-00551-x/pore-distribution-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    rdfs:label "Aspect ratio (PCA ellipsoid axis 1/axis 3) reference value for square packing of ellipsoids" ;
+    lova:measurementType "Pore aspect ratio (PCA)" ;
+    qudt:numericValue 2.00 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s43588-023-00551-x/max-particles-sp> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s43588-023-00551-x/particles-surrounding-pore> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    rdfs:label "Maximum number of particles surrounding a 3D pore, monodisperse spheres" ;
+    lova:measurementType "Maximum particles surrounding pore" ;
+    qudt:numericValue 17 ;
+    qudt:unit "particles" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s43588-023-00551-x/max-particles-bidisperse> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s43588-023-00551-x/particles-surrounding-pore> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    rdfs:label "Maximum number of particles surrounding a 3D pore, bidisperse spheres (2.5:1 diameter ratio)" ;
+    lova:measurementType "Maximum particles surrounding pore" ;
+    qudt:numericValue 23 ;
+    qudt:unit "particles" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s43588-023-00551-x/max-particles-ell> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s43588-023-00551-x/particles-surrounding-pore> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    rdfs:label "Maximum number of particles surrounding a 3D pore, monodisperse ellipsoids" ;
+    lova:measurementType "Maximum particles surrounding pore" ;
+    qudt:numericValue 18 ;
+    qudt:unit "particles" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s43588-023-00551-x/max-particles-rd> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s43588-023-00551-x/particles-surrounding-pore> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    rdfs:label "Maximum number of particles surrounding a 3D pore, monodisperse rods" ;
+    lova:measurementType "Maximum particles surrounding pore" ;
+    qudt:numericValue 29 ;
+    qudt:unit "particles" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s43588-023-00551-x/max-particles-ng> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s43588-023-00551-x/particles-surrounding-pore> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    rdfs:label "Maximum number of particles surrounding a 3D pore, monodisperse nuggets" ;
+    lova:measurementType "Maximum particles surrounding pore" ;
+    qudt:numericValue 24 ;
+    qudt:unit "particles" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s43588-023-00551-x/porecount-ell-eqvol> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s43588-023-00551-x/shape-comparison> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    rdfs:label "Number of 3D pores per picoliter, ellipsoids (equal particle volume to 60-µm sphere)" ;
+    lova:measurementType "Number of 3D pores per picoliter" ;
+    lova:valueString "Statistically higher than spheres, rods, and nuggets of equal volume" ;
+    lova:comparisonGroup "spheres, rods, nuggets (equal volume)" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s43588-023-00551-x/porecount-sp-eqvol> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s43588-023-00551-x/shape-comparison> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    rdfs:label "Number of 3D pores per picoliter, spheres (60-µm-diameter equivalent volume)" ;
+    lova:measurementType "Number of 3D pores per picoliter" ;
+    lova:valueString "Baseline value for equal-volume shape comparison" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s43588-023-00551-x/porecount-defsp> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s43588-023-00551-x/shape-comparison> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    rdfs:label "Number of 3D pores per picoliter, deformable spheres (λ=1000, μ=250)" ;
+    lova:measurementType "Number of 3D pores per picoliter" ;
+    lova:valueString "Higher than rigid spheres due to tighter packing in fixed container" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s43588-023-00551-x/porecount-rigidsp> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s43588-023-00551-x/shape-comparison> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    rdfs:label "Number of 3D pores per picoliter, rigid spheres" ;
+    lova:measurementType "Number of 3D pores per picoliter" ;
+    lova:valueString "Baseline for rigid vs deformable comparison" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s43588-023-00551-x/porediam-2d-rigid> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s43588-023-00551-x/2d-vs-3d-comparison> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    rdfs:label "Pore diameter (largest enclosed circle, 2D slice), rigid 100-µm spheres" ;
+    lova:measurementType "Pore diameter (2D)" ;
+    lova:valueString "Underestimates pore size relative to 3D approximation" ;
+    lova:comparisonGroup "LOVAMAP 3D pore diameter" ;
+    lova:sampleSize 10 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s43588-023-00551-x/porediam-3d-rigid> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s43588-023-00551-x/2d-vs-3d-comparison> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    rdfs:label "Pore diameter (largest enclosed sphere, LOVAMAP 3D), rigid 100-µm spheres" ;
+    lova:measurementType "Pore diameter (3D)" ;
+    lova:valueString "Larger and less variable than 2D slice approximation" ;
+    lova:sampleSize 10 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-s43588-023-00551-x/ell-vs-sp-count> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    rdfs:label "Number of 3D pores per picoliter higher in ellipsoids vs spheres of equal volume" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-s43588-023-00551-x/porecount-ell-eqvol> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-s43588-023-00551-x/porecount-sp-eqvol> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:pValue 0.0001 .
+
+<https://lovamap.com/ontology#comparison/10.1038-s43588-023-00551-x/defsp-vs-rigidsp-count> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    rdfs:label "Number of 3D pores per picoliter higher in deformable spheres vs rigid spheres" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-s43588-023-00551-x/porecount-defsp> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-s43588-023-00551-x/porecount-rigidsp> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#comparison/10.1038-s43588-023-00551-x/2d-vs-3d-rigid> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s43588-023-00551-x> ;
+    rdfs:label "Pore diameter lower in 2D-slice approximation vs 3D LOVAMAP analysis, rigid spheres" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-s43588-023-00551-x/porediam-2d-rigid> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-s43588-023-00551-x/porediam-3d-rigid> ;
+    lova:direction "lower" ;
+    lova:isSignificant true ;
+    lova:pValue 0.0001 .

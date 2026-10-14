@@ -1,0 +1,576 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1021-acs.analchem.3c00494> a bibo:AcademicArticle ;
+    rdfs:label "Samal et al., 2023 — Enhanced Detection of Charged N-Glycans in the Brain by IR-MALDESI MSI" ;
+    dc:title "Enhanced Detection of Charged N-Glycans in the Brain by Infrared Matrix-Assisted Laser Desorption Electrospray Ionization Mass Spectrometric Imaging" ;
+    dc:identifier "10.1021/acs.analchem.3c00494" ;
+    dc:date "2023"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/analytical-chemistry> ;
+    dc:creator <https://lovamap.com/ontology#author/samal-juhi> ,
+               <https://lovamap.com/ontology#author/palomino-tana> ,
+               <https://lovamap.com/ontology#author/chen-judy> ,
+               <https://lovamap.com/ontology#author/muddiman-david> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/samal-juhi>
+                       <https://lovamap.com/ontology#author/palomino-tana>
+                       <https://lovamap.com/ontology#author/chen-judy>
+                       <https://lovamap.com/ontology#author/muddiman-david>
+                       <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    dc:bibliographicCitation "Samal et al., 2023" ;
+    lova:focusMaterial "FFPE mouse brain tissue sections analyzed by IR-MALDESI MSI for N-linked glycan spatial profiling" .
+
+<https://lovamap.com/ontology#author/samal-juhi> a foaf:Person ;
+    foaf:familyName "Samal" ;
+    foaf:givenName "Juhi" ;
+    foaf:name "Juhi Samal" .
+
+<https://lovamap.com/ontology#author/palomino-tana> a foaf:Person ;
+    foaf:familyName "Palomino" ;
+    foaf:givenName "Tana V." ;
+    foaf:name "Tana V. Palomino" .
+
+<https://lovamap.com/ontology#author/chen-judy> a foaf:Person ;
+    foaf:familyName "Chen" ;
+    foaf:givenName "Judy Y.-C." ;
+    foaf:name "Judy Y.-C. Chen" .
+
+<https://lovamap.com/ontology#author/muddiman-david> a foaf:Person ;
+    foaf:familyName "Muddiman" ;
+    foaf:givenName "David C." ;
+    foaf:name "David C. Muddiman" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" .
+
+<https://lovamap.com/ontology#journal/analytical-chemistry> a bibo:Journal ;
+    dc:title "Analytical Chemistry" ;
+    bibo:issn "0003-2700" .
+
+<https://lovamap.com/ontology#material/10.1021-acs.analchem.3c00494/brain-section-3um> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.analchem.3c00494> ;
+    rdfs:label "3 μm FFPE C57BL/6 mouse brain coronal tissue section" ;
+    lova:particleMaterial "Mouse brain tissue (formalin-fixed, paraffin-embedded)" ;
+    lova:scaffoldDimensions "3 μm thickness" .
+
+<https://lovamap.com/ontology#material/10.1021-acs.analchem.3c00494/brain-section-5um> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.analchem.3c00494> ;
+    rdfs:label "5 μm FFPE C57BL/6 mouse brain coronal tissue section" ;
+    lova:particleMaterial "Mouse brain tissue (formalin-fixed, paraffin-embedded)" ;
+    lova:scaffoldDimensions "5 μm thickness" .
+
+<https://lovamap.com/ontology#material/10.1021-acs.analchem.3c00494/brain-section-7um> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.analchem.3c00494> ;
+    rdfs:label "7 μm FFPE C57BL/6 mouse brain coronal tissue section" ;
+    lova:particleMaterial "Mouse brain tissue (formalin-fixed, paraffin-embedded)" ;
+    lova:scaffoldDimensions "7 μm thickness" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1021-acs.analchem.3c00494/ffpe-sample-prep> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.analchem.3c00494> ;
+    rdfs:label "FFPE mouse brain tissue preparation for IR-MALDESI N-glycan imaging (dewaxing, antigen retrieval, PNGase F application)" ;
+    lova:chemistry "Enzymatic N-glycan release (PNGase F digestion)" ;
+    lova:manufacturingMethod "FFPE tissue sectioning via rotary microtome, dewaxing/rehydration, antigen retrieval, pneumatic PNGase F spray application" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1021-acs.analchem.3c00494/xylene> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acs.analchem.3c00494/ethanol-100> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acs.analchem.3c00494/ethanol-95> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acs.analchem.3c00494/ethanol-70> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acs.analchem.3c00494/lcms-water> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acs.analchem.3c00494/citraconic-anhydride> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acs.analchem.3c00494/hcl> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acs.analchem.3c00494/pngase-f> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acs.analchem.3c00494/acetonitrile> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acs.analchem.3c00494/acetic-acid> .
+
+<https://lovamap.com/ontology#reagent/10.1021-acs.analchem.3c00494/xylene> a lova:Reagent ;
+    rdfs:label "Xylene" ;
+    lova:reagentRole "solvent" ;
+    lova:reagentFunction "Deparaffinization (dewaxing)" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acs.analchem.3c00494/ethanol-100> a lova:Reagent ;
+    rdfs:label "100% Ethanol" ;
+    lova:reagentRole "solvent" ;
+    lova:concentration "100%" ;
+    lova:reagentFunction "Dewaxing/rehydration wash" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acs.analchem.3c00494/ethanol-95> a lova:Reagent ;
+    rdfs:label "95% Ethanol" ;
+    lova:reagentRole "solvent" ;
+    lova:concentration "95%" ;
+    lova:reagentFunction "Dewaxing/rehydration wash" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acs.analchem.3c00494/ethanol-70> a lova:Reagent ;
+    rdfs:label "70% Ethanol" ;
+    lova:reagentRole "solvent" ;
+    lova:concentration "70%" ;
+    lova:reagentFunction "Dewaxing/rehydration wash" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acs.analchem.3c00494/lcms-water> a lova:Reagent ;
+    rdfs:label "LC-MS Grade Water" ;
+    lova:reagentRole "solvent" ;
+    lova:reagentFunction "Rehydration/washing" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acs.analchem.3c00494/citraconic-anhydride> a lova:Reagent ;
+    rdfs:label "Citraconic anhydride" ;
+    lova:reagentRole "other" ;
+    lova:concentration "25 μL citraconic anhydride in 50 mL water" ;
+    lova:reagentFunction "Antigen retrieval buffer component, pH≈3.5" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acs.analchem.3c00494/hcl> a lova:Reagent ;
+    rdfs:label "Hydrochloric acid (HCl)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "2 μL" ;
+    lova:reagentFunction "pH adjustment of antigen retrieval buffer (pH=3)" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acs.analchem.3c00494/pngase-f> a lova:Reagent ;
+    rdfs:label "PNGase F PRIME-LY" ;
+    lova:reagentRole "enzyme" ;
+    lova:concentration "100 μg/mL" ;
+    lova:supplier "Bulldog Bio" ;
+    lova:catalogNumber "PRIME-LY" ;
+    lova:reagentFunction "Enzymatic release of N-linked glycans" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acs.analchem.3c00494/acetonitrile> a lova:Reagent ;
+    rdfs:label "Acetonitrile" ;
+    lova:reagentRole "solvent" ;
+    lova:concentration "50%" ;
+    lova:reagentFunction "Electrospray solution component" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acs.analchem.3c00494/acetic-acid> a lova:Reagent ;
+    rdfs:label "Acetic acid" ;
+    lova:reagentRole "other" ;
+    lova:concentration "1 mM" ;
+    lova:supplier "Fischer Scientific" ;
+    lova:reagentFunction "Electrospray solution additive" .
+
+<https://lovamap.com/ontology#experiment/10.1021-acs.analchem.3c00494/glycan-imaging-irmaldesi> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.analchem.3c00494> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-acs.analchem.3c00494/brain-section-5um> ;
+    rdfs:label "IR-MALDESI MSI analysis of brain N-linked glycans" ;
+    lova:experimentCategory "Analytical/Imaging" ;
+    lova:experimentType "Mass spectrometry imaging of N-glycans" ;
+    lova:assayOrMethod "IR-MALDESI" ;
+    lova:equipment "Orbitrap Exploris 240 mass spectrometer (Thermo Fisher Scientific, Bremen, Germany)" ;
+    lova:temperature "-8°C (Peltier-cooled stage)" ;
+    lova:atmosphere "Nitrogen gas purge, <12% relative humidity" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.analchem.3c00494/total-nglycans-identified> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.analchem.3c00494/glycan-imaging-irmaldesi> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.analchem.3c00494> ;
+    rdfs:label "Total unique N-linked glycans confidently identified in mouse brain" ;
+    lova:measurementType "N-glycan count" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 136.0 ;
+    qudt:unit "count" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.analchem.3c00494/additional-unreported-nglycans> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.analchem.3c00494/glycan-imaging-irmaldesi> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.analchem.3c00494> ;
+    rdfs:label "Additional unique N-glycans not reported in GlyConnect" ;
+    lova:measurementType "N-glycan count" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 132.0 ;
+    qudt:unit "count" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.analchem.3c00494/sialylated-fraction-current> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.analchem.3c00494/glycan-imaging-irmaldesi> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.analchem.3c00494> ;
+    rdfs:label "Fraction of total N-glycans containing sialic acid residues" ;
+    lova:measurementType "Sialylated glycan fraction" ;
+    lova:measurementCategory "Analytical" ;
+    lova:valueString "more than 50%" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.analchem.3c00494/sialylated-fraction-new-glycans> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.analchem.3c00494/glycan-imaging-irmaldesi> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.analchem.3c00494> ;
+    rdfs:label "Fraction of newly-detected (unreported) N-glycans that are sialylated" ;
+    lova:measurementType "Sialylated glycan fraction" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 70.68 ;
+    qudt:unit "%" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.analchem.3c00494/spatial-resolution> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.analchem.3c00494/glycan-imaging-irmaldesi> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.analchem.3c00494> ;
+    rdfs:label "Spatial resolution of IR-MALDESI ablation" ;
+    lova:measurementType "Spatial resolution" ;
+    lova:measurementCategory "Instrumental" ;
+    qudt:numericValue 150.0 ;
+    qudt:unit "μm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.analchem.3c00494/mass-measurement-accuracy> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.analchem.3c00494/glycan-imaging-irmaldesi> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.analchem.3c00494> ;
+    rdfs:label "Mass measurement accuracy of N-glycan identifications" ;
+    lova:measurementType "Mass measurement accuracy" ;
+    lova:measurementCategory "Instrumental" ;
+    lova:valueString "<5 ppm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.analchem.3c00494/foldchange-abstract> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.analchem.3c00494/glycan-imaging-irmaldesi> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.analchem.3c00494> ;
+    rdfs:label "Fold increase in total brain N-glycan detection vs positive-mode MALDI-MSI gold standard" ;
+    lova:measurementType "N-glycan detection fold increase" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 2.5 ;
+    qudt:unit "fold" ;
+    lova:comparisonGroup "Positive mode MALDI-MSI" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1021-acs.analchem.3c00494/section-thickness-comparison> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.analchem.3c00494> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-acs.analchem.3c00494/brain-section-3um> ,
+                       <https://lovamap.com/ontology#material/10.1021-acs.analchem.3c00494/brain-section-5um> ,
+                       <https://lovamap.com/ontology#material/10.1021-acs.analchem.3c00494/brain-section-7um> ;
+    rdfs:label "Comparison of tissue section thickness on N-glycan detection by IR-MALDESI" ;
+    lova:experimentCategory "Analytical/Imaging" ;
+    lova:experimentType "Comparative N-glycan detection by section thickness" ;
+    lova:assayOrMethod "IR-MALDESI" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.analchem.3c00494/nglycans-3um> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.analchem.3c00494/section-thickness-comparison> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.analchem.3c00494> ;
+    rdfs:label "N-glycans detected in 3 μm section" ;
+    lova:measurementType "N-glycan count" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 118.0 ;
+    qudt:unit "count" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.analchem.3c00494/nglycans-5um> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.analchem.3c00494/section-thickness-comparison> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.analchem.3c00494> ;
+    rdfs:label "N-glycans detected in 5 μm section" ;
+    lova:measurementType "N-glycan count" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 136.0 ;
+    qudt:unit "count" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.analchem.3c00494/nglycans-7um> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.analchem.3c00494/section-thickness-comparison> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.analchem.3c00494> ;
+    rdfs:label "N-glycans detected in 7 μm section" ;
+    lova:measurementType "N-glycan count" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 126.0 ;
+    qudt:unit "count" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.analchem.3c00494/ion-abundance-3um-qualitative> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.analchem.3c00494/section-thickness-comparison> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.analchem.3c00494> ;
+    rdfs:label "Ion abundance of representative N-glycan (m/z 924.3004) across section thicknesses" ;
+    lova:measurementType "Ion abundance" ;
+    lova:measurementCategory "Analytical" ;
+    lova:valueString "3 μm section shows more abundant detection than 5 and 7 μm sections" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#comparison/10.1021-acs.analchem.3c00494/thickness-5-vs-3> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.analchem.3c00494> ;
+    rdfs:label "No significant difference in N-glycan count detection: 5 μm vs 3 μm section" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-acs.analchem.3c00494/nglycans-5um> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-acs.analchem.3c00494/nglycans-3um> ;
+    lova:direction "no difference" ;
+    lova:isSignificant false .
+
+<https://lovamap.com/ontology#comparison/10.1021-acs.analchem.3c00494/thickness-5-vs-7> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.analchem.3c00494> ;
+    rdfs:label "No significant difference in N-glycan count detection: 5 μm vs 7 μm section" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-acs.analchem.3c00494/nglycans-5um> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-acs.analchem.3c00494/nglycans-7um> ;
+    lova:direction "no difference" ;
+    lova:isSignificant false .
+
+<https://lovamap.com/ontology#experiment/10.1021-acs.analchem.3c00494/literature-comparison> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.analchem.3c00494> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-acs.analchem.3c00494/brain-section-5um> ;
+    rdfs:label "Comparison of N-glycan detection with prior MALDI-MSI brain glycan studies" ;
+    lova:experimentCategory "Analytical/Imaging" ;
+    lova:experimentType "Literature comparison of N-glycan detection across MSI platforms" ;
+    lova:assayOrMethod "MALDI-MSI vs IR-MALDESI" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.analchem.3c00494/nglycans-current-study-fig2a> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.analchem.3c00494/literature-comparison> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.analchem.3c00494> ;
+    rdfs:label "N-glycans detected, current study (IR-MALDESI)" ;
+    lova:measurementType "N-glycan count" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 136.0 ;
+    qudt:unit "count" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.analchem.3c00494/nglycans-shi-2019> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.analchem.3c00494/literature-comparison> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.analchem.3c00494> ;
+    rdfs:label "N-glycans detected, Shi et al., 2019 (Sub-AP/MALDI MSI)" ;
+    lova:measurementType "N-glycan count" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 55.0 ;
+    qudt:unit "count" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.analchem.3c00494/nglycans-toghi-2014> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.analchem.3c00494/literature-comparison> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.analchem.3c00494> ;
+    rdfs:label "N-glycans detected, Toghi et al., 2014 (MALDI-MSI)" ;
+    lova:measurementType "N-glycan count" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 42.0 ;
+    qudt:unit "count" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.analchem.3c00494/nglycans-powers-2013> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.analchem.3c00494/literature-comparison> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.analchem.3c00494> ;
+    rdfs:label "N-glycans detected, Powers et al., 2013 (MALDI-MSI)" ;
+    lova:measurementType "N-glycan count" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 26.0 ;
+    qudt:unit "count" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1021-acs.analchem.3c00494/current-vs-shi> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.analchem.3c00494> ;
+    rdfs:label "N-glycan detection higher in current study vs Shi et al., 2019" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-acs.analchem.3c00494/nglycans-current-study-fig2a> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-acs.analchem.3c00494/nglycans-shi-2019> ;
+    lova:direction "higher" ;
+    lova:foldChange 2.5 .
+
+<https://lovamap.com/ontology#comparison/10.1021-acs.analchem.3c00494/current-vs-toghi> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.analchem.3c00494> ;
+    rdfs:label "N-glycan detection higher in current study vs Toghi et al., 2014" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-acs.analchem.3c00494/nglycans-current-study-fig2a> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-acs.analchem.3c00494/nglycans-toghi-2014> ;
+    lova:direction "higher" ;
+    lova:foldChange 3.0 .
+
+<https://lovamap.com/ontology#comparison/10.1021-acs.analchem.3c00494/current-vs-powers> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.analchem.3c00494> ;
+    rdfs:label "N-glycan detection higher in current study vs Powers et al., 2013" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-acs.analchem.3c00494/nglycans-current-study-fig2a> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-acs.analchem.3c00494/nglycans-powers-2013> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#experiment/10.1021-acs.analchem.3c00494/chlorinated-adduct-detection> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.analchem.3c00494> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-acs.analchem.3c00494/brain-section-5um> ;
+    rdfs:label "Detection of chlorinated N-glycan adducts by IR-MALDESI" ;
+    lova:experimentCategory "Analytical/Imaging" ;
+    lova:experimentType "Isotopic distribution goodness-of-fit analysis" ;
+    lova:assayOrMethod "IR-MALDESI negative ionization" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.analchem.3c00494/chisq-panelA-deprotonated> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.analchem.3c00494/chlorinated-adduct-detection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.analchem.3c00494> ;
+    rdfs:label "Chi-squared goodness-of-fit, [M-2H]2- adduct, Hex6HexNAc5Fuc1NeuAc2 (C104H177N7O76)" ;
+    lova:measurementType "Chi-squared goodness-of-fit" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 5.5 ;
+    qudt:unit "dimensionless" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.analchem.3c00494/chisq-panelA-chloride> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.analchem.3c00494/chlorinated-adduct-detection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.analchem.3c00494> ;
+    rdfs:label "Chi-squared goodness-of-fit, [M-H+Cl]2- adduct, Hex6HexNAc5Fuc1NeuAc2 (C104H177N7O76)" ;
+    lova:measurementType "Chi-squared goodness-of-fit" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 50.7 ;
+    qudt:unit "dimensionless" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.analchem.3c00494/chisq-panelB-chloride> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.analchem.3c00494/chlorinated-adduct-detection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.analchem.3c00494> ;
+    rdfs:label "Chi-squared goodness-of-fit, [M-H+Cl]2- adduct, Hex7HexNAc6Fuc1NeuAc1 (C127H177N7O78)" ;
+    lova:measurementType "Chi-squared goodness-of-fit" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 5.4 ;
+    qudt:unit "dimensionless" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.analchem.3c00494/chisq-panelB-deprotonated> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.analchem.3c00494/chlorinated-adduct-detection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.analchem.3c00494> ;
+    rdfs:label "Chi-squared goodness-of-fit, [M-2H]2- adduct, Hex7HexNAc6Fuc1NeuAc1 (C127H177N7O78)" ;
+    lova:measurementType "Chi-squared goodness-of-fit" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 38.4 ;
+    qudt:unit "dimensionless" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.analchem.3c00494/chisq-panelC-dichloride> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.analchem.3c00494/chlorinated-adduct-detection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.analchem.3c00494> ;
+    rdfs:label "Chi-squared goodness-of-fit, [M+2Cl]2- adduct, Hex4HexNAc5Fuc2 (C76H127N5O54)" ;
+    lova:measurementType "Chi-squared goodness-of-fit" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 7.3 ;
+    qudt:unit "dimensionless" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.analchem.3c00494/chisq-panelC-deprotonated> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.analchem.3c00494/chlorinated-adduct-detection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.analchem.3c00494> ;
+    rdfs:label "Chi-squared goodness-of-fit, [M-2H]2- adduct, Hex4HexNAc5Fuc2 (C76H127N5O54)" ;
+    lova:measurementType "Chi-squared goodness-of-fit" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 338.6 ;
+    qudt:unit "dimensionless" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1021-acs.analchem.3c00494/glycan-classification> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.analchem.3c00494> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-acs.analchem.3c00494/brain-section-5um> ;
+    rdfs:label "Biosynthetic classification and glycosylation trait quantification of brain N-glycans" ;
+    lova:experimentCategory "Analytical/Imaging" ;
+    lova:experimentType "N-glycan biosynthetic class and trait quantification" ;
+    lova:assayOrMethod "IR-MALDESI MSI" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.analchem.3c00494/highmannose-fraction> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.analchem.3c00494/glycan-classification> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.analchem.3c00494> ;
+    rdfs:label "High mannose N-glycan fraction" ;
+    lova:measurementType "Biosynthetic class fraction" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 21.43 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.analchem.3c00494/hybrid-fraction> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.analchem.3c00494/glycan-classification> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.analchem.3c00494> ;
+    rdfs:label "Hybrid N-glycan fraction" ;
+    lova:measurementType "Biosynthetic class fraction" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 1.53 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.analchem.3c00494/complex-fraction> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.analchem.3c00494/glycan-classification> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.analchem.3c00494> ;
+    rdfs:label "Complex N-glycan fraction" ;
+    lova:measurementType "Biosynthetic class fraction" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 77.04 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.analchem.3c00494/fucosylation-fraction> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.analchem.3c00494/glycan-classification> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.analchem.3c00494> ;
+    rdfs:label "Fucosylation fraction of total N-glycans" ;
+    lova:measurementType "Glycosylation trait fraction" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 65.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.analchem.3c00494/psa-fraction> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.analchem.3c00494/glycan-classification> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.analchem.3c00494> ;
+    rdfs:label "Polysialylation (PSA) fraction of total N-glycans" ;
+    lova:measurementType "Glycosylation trait fraction" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 1.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.analchem.3c00494/sialylation-fraction-fig5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.analchem.3c00494/glycan-classification> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.analchem.3c00494> ;
+    rdfs:label "Overall sialylation fraction of total N-glycans" ;
+    lova:measurementType "Glycosylation trait fraction" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 47.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.analchem.3c00494/sialylated-fraction-shi> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.analchem.3c00494/glycan-classification> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.analchem.3c00494> ;
+    rdfs:label "Sialylated glycan fraction detected by Shi et al." ;
+    lova:measurementType "Sialylated glycan fraction" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 13.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1021-acs.analchem.3c00494/sialylation-current-vs-shi> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.analchem.3c00494> ;
+    rdfs:label "Sialylated N-glycan fraction higher in current study than Shi et al." ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-acs.analchem.3c00494/sialylation-fraction-fig5> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-acs.analchem.3c00494/sialylated-fraction-shi> ;
+    lova:direction "higher" ;
+    lova:foldChange 3.0 .
+
+<https://lovamap.com/ontology#experiment/10.1021-acs.analchem.3c00494/sulfated-glycan-detection> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.analchem.3c00494> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-acs.analchem.3c00494/brain-section-5um> ;
+    rdfs:label "Detection of sulfated N-glycans in mouse brain by IR-MALDESI" ;
+    lova:experimentCategory "Analytical/Imaging" ;
+    lova:experimentType "Sulfoglycan detection and spatial localization" ;
+    lova:assayOrMethod "IR-MALDESI MSI" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.analchem.3c00494/sulfoglycan-1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.analchem.3c00494/sulfated-glycan-detection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.analchem.3c00494> ;
+    rdfs:label "Sulfated N-glycan Hex5HexNAc4Fuc1NeuAc1Sulph1, m/z 1077.8435 (z=2)" ;
+    lova:measurementType "m/z of sulfated N-glycan" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 1077.8435 ;
+    qudt:unit "Th" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.analchem.3c00494/sulfoglycan-2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.analchem.3c00494/sulfated-glycan-detection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.analchem.3c00494> ;
+    rdfs:label "Sulfated N-glycan Hex6HexNAc5Fuc1Sulph2, m/z 1154.8429 (z=2)" ;
+    lova:measurementType "m/z of sulfated N-glycan" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 1154.8429 ;
+    qudt:unit "Th" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.analchem.3c00494/sulfoglycan-3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.analchem.3c00494/sulfated-glycan-detection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.analchem.3c00494> ;
+    rdfs:label "Sulfated N-glycan Hex5HexNAc4Fuc1NeuAc2Sulph1, m/z 1223.3947 (z=2)" ;
+    lova:measurementType "m/z of sulfated N-glycan" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 1223.3947 ;
+    qudt:unit "Th" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acs.analchem.3c00494/sulfoglycan-spatial-localization> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.analchem.3c00494/sulfated-glycan-detection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acs.analchem.3c00494> ;
+    rdfs:label "Sulfated N-glycans show higher concentration in myelin-enriched corpus callosum" ;
+    lova:measurementType "Spatial glycan localization" ;
+    lova:measurementCategory "Analytical" ;
+    lova:valueString "Higher concentration and enhanced detection in corpus callosum" ;
+    lova:scope "Regional" ;
+    lova:dataSource "[FIG-E]" .

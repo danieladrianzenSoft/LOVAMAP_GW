@@ -1,0 +1,884 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1021-mp200171d> a bibo:AcademicArticle ;
+    rdfs:label "Gojgini et al., 2011 — HA Hydrogel Gene Transfer" ;
+    dc:title "Utilizing Cell–Matrix Interactions To Modulate Gene Transfer to Stem Cells Inside Hyaluronic Acid Hydrogels" ;
+    dc:identifier "10.1021/mp200171d" ;
+    dc:date "2011"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/molecular-pharmaceutics> ;
+    dc:creator <https://lovamap.com/ontology#author/gojgini-shiva> ,
+               <https://lovamap.com/ontology#author/tokatlian-talar> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/gojgini-shiva>
+                       <https://lovamap.com/ontology#author/tokatlian-talar>
+                       <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    dc:bibliographicCitation "Gojgini et al., 2011" ;
+    lova:focusMaterial "MMP-degradable hyaluronic acid (HA) hydrogel scaffolds loaded with DNA/PEI polyplexes for 3D stem cell gene transfer" .
+
+<https://lovamap.com/ontology#author/gojgini-shiva> a foaf:Person ;
+    foaf:familyName "Gojgini" ;
+    foaf:givenName "Shiva" ;
+    foaf:name "Shiva Gojgini" .
+
+<https://lovamap.com/ontology#author/tokatlian-talar> a foaf:Person ;
+    foaf:familyName "Tokatlian" ;
+    foaf:givenName "Talar" ;
+    foaf:name "Talar Tokatlian" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" .
+
+<https://lovamap.com/ontology#journal/molecular-pharmaceutics> a bibo:Journal ;
+    dc:title "Molecular Pharmaceutics" ;
+    bibo:issn "1543-8384" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1021-mp200171d/ha-mmp-michael-addition> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "HA-RGD hydrogel crosslinked by MMP-degradable peptide via Michael-type addition" ;
+    lova:chemistry "Michael-type addition" ;
+    lova:manufacturingMethod "Batch casting between sigmacoted glass slides" ;
+    lova:annealingChemistry "MMP-degradable peptide crosslinking (Michael-type addition)" ;
+    lova:annealingConditions "37°C, 30 min" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1021-mp200171d/ha> ,
+                    <https://lovamap.com/ontology#reagent/10.1021-mp200171d/adh> ,
+                    <https://lovamap.com/ontology#reagent/10.1021-mp200171d/edc> ,
+                    <https://lovamap.com/ontology#reagent/10.1021-mp200171d/nhs-ac> ,
+                    <https://lovamap.com/ontology#reagent/10.1021-mp200171d/mmpxl> ,
+                    <https://lovamap.com/ontology#reagent/10.1021-mp200171d/rgd> ,
+                    <https://lovamap.com/ontology#reagent/10.1021-mp200171d/pei> ,
+                    <https://lovamap.com/ontology#reagent/10.1021-mp200171d/pgluc> ,
+                    <https://lovamap.com/ontology#reagent/10.1021-mp200171d/teoa> ,
+                    <https://lovamap.com/ontology#reagent/10.1021-mp200171d/col1> ,
+                    <https://lovamap.com/ontology#reagent/10.1021-mp200171d/haase> ,
+                    <https://lovamap.com/ontology#reagent/10.1021-mp200171d/trypsin> .
+
+<https://lovamap.com/ontology#reagent/10.1021-mp200171d/ha> a lova:Reagent ;
+    rdfs:label "Sodium hyaluronan (60,000 Da)" ;
+    lova:reagentRole "monomer" ;
+    lova:molecularWeight "60,000 Da" ;
+    lova:concentration "2.0 g, 5.28 mmole" ;
+    lova:supplier "Genzyme Corporation" ;
+    lova:reagentFunction "HA backbone for hydrogel network" .
+
+<https://lovamap.com/ontology#reagent/10.1021-mp200171d/adh> a lova:Reagent ;
+    rdfs:label "Adipic dihydrazide (ADH)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "18.0 g, 105.5 mmole" ;
+    lova:reagentFunction "Modification of HA carboxyl groups to hydrazide groups (40.46% of carboxyls modified)" .
+
+<https://lovamap.com/ontology#reagent/10.1021-mp200171d/edc> a lova:Reagent ;
+    rdfs:label "1-ethyl-3-[3-dimethylaminopropyl] carbodiimide hydrochloride (EDC)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "4.0 g, 20 mmole" ;
+    lova:reagentFunction "Carbodiimide coupling agent for HA-ADH conjugation" .
+
+<https://lovamap.com/ontology#reagent/10.1021-mp200171d/nhs-ac> a lova:Reagent ;
+    rdfs:label "N-Acryloxysuccinimide (NHS-AC)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "1.33 g, 4.4 mmole" ;
+    lova:reagentFunction "Acrylation of HA-ADH hydrazide groups (10% acrylation achieved)" .
+
+<https://lovamap.com/ontology#reagent/10.1021-mp200171d/mmpxl> a lova:Reagent ;
+    rdfs:label "MMP-degradable crosslinker peptide (Ac-GCRDGPQGIWGQDRCG-NH2)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:sequence "GCRDGPQGIWGQDRCG" ;
+    lova:supplier "Genescript" ;
+    lova:concentration "0.91 mg per gel aliquot" ;
+    lova:reagentFunction "MMP-degradable inter-chain crosslinking of HA-RGD hydrogel" .
+
+<https://lovamap.com/ontology#reagent/10.1021-mp200171d/rgd> a lova:Reagent ;
+    rdfs:label "RGD adhesion peptide (Ac-GCGWGRGDSPG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "GCGWGRGDSPG" ;
+    lova:supplier "Genescript" ;
+    lova:concentration "10-400 µM (final gel concentration)" ;
+    lova:reagentFunction "Cell adhesion via integrin binding" .
+
+<https://lovamap.com/ontology#reagent/10.1021-mp200171d/pei> a lova:Reagent ;
+    rdfs:label "Linear PEI (25 kg/mol)" ;
+    lova:reagentRole "other" ;
+    lova:molecularWeight "25 kg/mol" ;
+    lova:supplier "Polysciences" ;
+    lova:concentration "4.57 µg per 5 µg plasmid DNA" ;
+    lova:reagentFunction "DNA condensation to form polyplexes" .
+
+<https://lovamap.com/ontology#reagent/10.1021-mp200171d/pgluc> a lova:Reagent ;
+    rdfs:label "Gaussia luciferase expression vector (pGluc)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "New England BioLabs" ;
+    lova:concentration "5 µg plasmid DNA per polyplex; 0.05 µg DNA/µL hydrogel" ;
+    lova:reagentFunction "Reporter plasmid for transgene expression quantification" .
+
+<https://lovamap.com/ontology#reagent/10.1021-mp200171d/teoa> a lova:Reagent ;
+    rdfs:label "Triethanolamine (TEOA) buffer" ;
+    lova:reagentRole "solvent" ;
+    lova:concentration "0.3 M, pH 8.2-8.7" .
+
+<https://lovamap.com/ontology#reagent/10.1021-mp200171d/col1> a lova:Reagent ;
+    rdfs:label "Collagenase I (Col I)" ;
+    lova:reagentRole "enzyme" ;
+    lova:concentration "0.50 U/ml (increased to 1 U/ml after 192 h)" ;
+    lova:reagentFunction "Enzymatic hydrogel degradation in release assay" .
+
+<https://lovamap.com/ontology#reagent/10.1021-mp200171d/haase> a lova:Reagent ;
+    rdfs:label "Hyaluronidase (HAase)" ;
+    lova:reagentRole "enzyme" ;
+    lova:concentration "10 U/ml" ;
+    lova:reagentFunction "Enzymatic hydrogel degradation in release assay" .
+
+<https://lovamap.com/ontology#reagent/10.1021-mp200171d/trypsin> a lova:Reagent ;
+    rdfs:label "Trypsin/EDTA" ;
+    lova:reagentRole "enzyme" ;
+    lova:concentration "0.25%" ;
+    lova:reagentFunction "Complete hydrogel degradation / polyplex release" .
+
+<https://lovamap.com/ontology#material/10.1021-mp200171d/np-base-hydrogel> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "3% MMP-degradable HA hydrogel (r ratio 0.3) for N/P ratio study" ;
+    lova:particleMaterial "Hyaluronic acid (HA)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-mp200171d/ha-mmp-michael-addition> .
+
+<https://lovamap.com/ontology#material/10.1021-mp200171d/gel-1> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "Gel ID 1 HA hydrogel (softest, 100 Pa)" ;
+    lova:particleMaterial "Hyaluronic acid (HA)" ;
+    lova:stiffnessValue 100.0 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-mp200171d/ha-mmp-michael-addition> .
+
+<https://lovamap.com/ontology#material/10.1021-mp200171d/gel-2> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "Gel ID 2 HA hydrogel (260 Pa)" ;
+    lova:particleMaterial "Hyaluronic acid (HA)" ;
+    lova:stiffnessValue 260.0 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-mp200171d/ha-mmp-michael-addition> .
+
+<https://lovamap.com/ontology#material/10.1021-mp200171d/gel-3> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "Gel ID 3 HA hydrogel (839 Pa)" ;
+    lova:particleMaterial "Hyaluronic acid (HA)" ;
+    lova:stiffnessValue 839.0 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-mp200171d/ha-mmp-michael-addition> .
+
+<https://lovamap.com/ontology#material/10.1021-mp200171d/gel-4> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "Gel ID 4 HA hydrogel (1360 Pa)" ;
+    lova:particleMaterial "Hyaluronic acid (HA)" ;
+    lova:stiffnessValue 1360.0 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:stiffnessQualitative "Stiff hydrogel" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-mp200171d/ha-mmp-michael-addition> .
+
+<https://lovamap.com/ontology#material/10.1021-mp200171d/gel-5> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "Gel ID 5 HA hydrogel (stiffest, 1730 Pa)" ;
+    lova:particleMaterial "Hyaluronic acid (HA)" ;
+    lova:stiffnessValue 1730.0 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:stiffnessQualitative "Stiff hydrogel" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-mp200171d/ha-mmp-michael-addition> .
+
+<https://lovamap.com/ontology#material/10.1021-mp200171d/rgd-10um> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "HA hydrogel with 10 µM RGD" ;
+    lova:particleMaterial "Hyaluronic acid (HA)" ;
+    lova:surfaceModification "RGD peptide, 10 µM" ;
+    lova:stiffnessValue 516.0 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-mp200171d/ha-mmp-michael-addition> .
+
+<https://lovamap.com/ontology#material/10.1021-mp200171d/rgd-100um> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "HA hydrogel with 100 µM RGD" ;
+    lova:particleMaterial "Hyaluronic acid (HA)" ;
+    lova:surfaceModification "RGD peptide, 100 µM" ;
+    lova:stiffnessValue 541.0 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-mp200171d/ha-mmp-michael-addition> .
+
+<https://lovamap.com/ontology#material/10.1021-mp200171d/rgd-400um> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "HA hydrogel with 400 µM RGD" ;
+    lova:particleMaterial "Hyaluronic acid (HA)" ;
+    lova:surfaceModification "RGD peptide, 400 µM" ;
+    lova:stiffnessValue 360.0 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-mp200171d/ha-mmp-michael-addition> .
+
+<https://lovamap.com/ontology#material/10.1021-mp200171d/rgd-presentation-02> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "HA hydrogel, homogeneous RGD presentation (0.2 RGD/HA molecule)" ;
+    lova:particleMaterial "Hyaluronic acid (HA)" ;
+    lova:surfaceModification "RGD, homogeneously distributed, 0.2 RGD/HA molecule, 100% HA-AC modified" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-mp200171d/ha-mmp-michael-addition> .
+
+<https://lovamap.com/ontology#material/10.1021-mp200171d/rgd-presentation-04> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "HA hydrogel, intermediate RGD clustering (0.4 RGD/HA molecule)" ;
+    lova:particleMaterial "Hyaluronic acid (HA)" ;
+    lova:surfaceModification "RGD clustering, 0.4 RGD/HA molecule" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-mp200171d/ha-mmp-michael-addition> .
+
+<https://lovamap.com/ontology#material/10.1021-mp200171d/rgd-presentation-47> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "HA hydrogel, most clustered RGD presentation (4.7 RGD/HA molecule)" ;
+    lova:particleMaterial "Hyaluronic acid (HA)" ;
+    lova:surfaceModification "RGD clustering, 4.7 RGD/HA molecule, 4.3% HA-AC modified" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-mp200171d/ha-mmp-michael-addition> .
+
+<https://lovamap.com/ontology#experiment/10.1021-mp200171d/rheometry-stiffness> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-mp200171d/gel-1> ,
+                      <https://lovamap.com/ontology#material/10.1021-mp200171d/gel-2> ,
+                      <https://lovamap.com/ontology#material/10.1021-mp200171d/gel-3> ,
+                      <https://lovamap.com/ontology#material/10.1021-mp200171d/gel-4> ,
+                      <https://lovamap.com/ontology#material/10.1021-mp200171d/gel-5> ;
+    rdfs:label "Plate-to-plate rheometry of HA hydrogels with varying stiffness" ;
+    lova:experimentCategory "Mechanical" ;
+    lova:experimentType "Rheometry" ;
+    lova:assayOrMethod "Plate-to-plate rheometry" ;
+    lova:equipment "Physica MCR, Anton Paar" ;
+    lova:strainRate "constant strain 0.03" ;
+    lova:frequency "0.1 to 10 rad/s" ;
+    lova:temperature "37°C" .
+
+<https://lovamap.com/ontology#outcome/10.1021-mp200171d/g-prime-gel1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-mp200171d/rheometry-stiffness> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "Storage modulus, Gel ID 1" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 100.0 ;
+    qudt:unit "Pa" ;
+    lova:stdDev 2.11 ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-mp200171d/g-prime-gel2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-mp200171d/rheometry-stiffness> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "Storage modulus, Gel ID 2" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 260.0 ;
+    qudt:unit "Pa" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-mp200171d/g-prime-gel3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-mp200171d/rheometry-stiffness> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "Storage modulus, Gel ID 3" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 839.0 ;
+    qudt:unit "Pa" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-mp200171d/g-prime-gel4> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-mp200171d/rheometry-stiffness> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "Storage modulus, Gel ID 4" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 1360.0 ;
+    qudt:unit "Pa" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-mp200171d/g-prime-gel5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-mp200171d/rheometry-stiffness> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "Storage modulus, Gel ID 5" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 1730.0 ;
+    qudt:unit "Pa" ;
+    lova:stdDev 45.62 ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1021-mp200171d/rheometry-rgd> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-mp200171d/rgd-10um> ,
+                      <https://lovamap.com/ontology#material/10.1021-mp200171d/rgd-100um> ,
+                      <https://lovamap.com/ontology#material/10.1021-mp200171d/rgd-400um> ;
+    rdfs:label "Rheometry of HA hydrogels with varying RGD concentration" ;
+    lova:experimentCategory "Mechanical" ;
+    lova:experimentType "Rheometry" ;
+    lova:assayOrMethod "Plate-to-plate rheometry" ;
+    lova:equipment "Physica MCR, Anton Paar" ;
+    lova:strainRate "constant strain 0.03" ;
+    lova:frequency "0.1 to 10 rad/s" ;
+    lova:temperature "37°C" .
+
+<https://lovamap.com/ontology#outcome/10.1021-mp200171d/g-prime-rgd10> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-mp200171d/rheometry-rgd> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "Storage modulus, 10 µM RGD hydrogel" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 516.0 ;
+    qudt:unit "Pa" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-mp200171d/g-prime-rgd100> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-mp200171d/rheometry-rgd> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "Storage modulus, 100 µM RGD hydrogel" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 541.0 ;
+    qudt:unit "Pa" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-mp200171d/g-prime-rgd400> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-mp200171d/rheometry-rgd> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "Storage modulus, 400 µM RGD hydrogel" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 360.0 ;
+    qudt:unit "Pa" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1021-mp200171d/polyplex-activity> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-mp200171d/np-base-hydrogel> ;
+    rdfs:label "Polyplex activity assay post hydrogel degradation" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Bolus transfection" ;
+    lova:assayOrMethod "Gaussia Luciferase Assay" ;
+    lova:cellType "mMSC (D1, CRL-12424)" ;
+    lova:cellSource "Mouse bone marrow" ;
+    lova:cultureDuration "48 h" .
+
+<https://lovamap.com/ontology#outcome/10.1021-mp200171d/rlu-fresh> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-mp200171d/polyplex-activity> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "Transfection activity, fresh polyplexes" ;
+    lova:measurementType "Gaussia luciferase activity" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 230000.0 ;
+    qudt:unit "RLU" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-mp200171d/rlu-trypsin> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-mp200171d/polyplex-activity> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "Transfection activity, fresh polyplexes with trypsin added" ;
+    lova:measurementType "Gaussia luciferase activity" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 22000.0 ;
+    qudt:unit "RLU" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-mp200171d/rlu-gel> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-mp200171d/polyplex-activity> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "Transfection activity, fresh polyplexes with gel degradation products" ;
+    lova:measurementType "Gaussia luciferase activity" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 30000.0 ;
+    qudt:unit "RLU" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-mp200171d/rlu-released> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-mp200171d/polyplex-activity> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "Transfection activity, polyplexes released from degraded hydrogel" ;
+    lova:measurementType "Gaussia luciferase activity" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 18000.0 ;
+    qudt:unit "RLU" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1021-mp200171d/release-kinetics> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-mp200171d/gel-1> ,
+                      <https://lovamap.com/ontology#material/10.1021-mp200171d/gel-2> ,
+                      <https://lovamap.com/ontology#material/10.1021-mp200171d/gel-3> ,
+                      <https://lovamap.com/ontology#material/10.1021-mp200171d/gel-4> ,
+                      <https://lovamap.com/ontology#material/10.1021-mp200171d/gel-5> ;
+    rdfs:label "DNA/PEI polyplex release kinetics in PBS, Collagenase I, and Hyaluronidase" ;
+    lova:experimentCategory "Release" ;
+    lova:experimentType "Radiolabeled DNA release" ;
+    lova:assayOrMethod "Scintillation counting" ;
+    lova:medium "PBS, 10 U/ml HAase, 0.50-1 U/ml Col I" .
+
+<https://lovamap.com/ontology#outcome/10.1021-mp200171d/release-pbs-gel1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-mp200171d/release-kinetics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "Cumulative % DNA release in PBS at 320h, Gel ID 1 (100 Pa)" ;
+    lova:measurementType "Cumulative % DNA release" ;
+    lova:measurementCategory "Release" ;
+    qudt:numericValue 70.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "320 h" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-mp200171d/release-pbs-gel2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-mp200171d/release-kinetics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "Cumulative % DNA release in PBS at 320h, Gel ID 2 (260 Pa)" ;
+    lova:measurementType "Cumulative % DNA release" ;
+    lova:measurementCategory "Release" ;
+    qudt:numericValue 59.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "320 h" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-mp200171d/release-pbs-gel3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-mp200171d/release-kinetics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "Cumulative % DNA release in PBS at 320h, Gel ID 3 (839 Pa)" ;
+    lova:measurementType "Cumulative % DNA release" ;
+    lova:measurementCategory "Release" ;
+    qudt:numericValue 46.4 ;
+    qudt:unit "%" ;
+    lova:timePoint "320 h" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-mp200171d/release-pbs-gel4> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-mp200171d/release-kinetics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "Cumulative % DNA release in PBS at 320h, Gel ID 4 (1360 Pa)" ;
+    lova:measurementType "Cumulative % DNA release" ;
+    lova:measurementCategory "Release" ;
+    qudt:numericValue 50.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "320 h" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-mp200171d/release-pbs-gel5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-mp200171d/release-kinetics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "Cumulative % DNA release in PBS at 320h, Gel ID 5 (1730 Pa)" ;
+    lova:measurementType "Cumulative % DNA release" ;
+    lova:measurementCategory "Release" ;
+    qudt:numericValue 58.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "320 h" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-mp200171d/release-coli-gel3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-mp200171d/release-kinetics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "Cumulative % DNA release in Collagenase I at 312h, Gel ID 3 (839 Pa)" ;
+    lova:measurementType "Cumulative % DNA release" ;
+    lova:measurementCategory "Release" ;
+    qudt:numericValue 81.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "312 h" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-mp200171d/release-coli-gel4> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-mp200171d/release-kinetics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "Cumulative % DNA release in Collagenase I at 312h, Gel ID 4 (1360 Pa)" ;
+    lova:measurementType "Cumulative % DNA release" ;
+    lova:measurementCategory "Release" ;
+    qudt:numericValue 92.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "312 h" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-mp200171d/release-coli-gel5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-mp200171d/release-kinetics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "Cumulative % DNA release in Collagenase I at 312h, Gel ID 5 (1730 Pa)" ;
+    lova:measurementType "Cumulative % DNA release" ;
+    lova:measurementCategory "Release" ;
+    qudt:numericValue 68.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "312 h" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1021-mp200171d/np-viability> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-mp200171d/np-base-hydrogel> ;
+    rdfs:label "Cell viability, spreading and metabolic activity vs N/P ratio" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell viability / spreading / proliferation" ;
+    lova:assayOrMethod "LIVE/DEAD, phalloidin staining, MTT assay" ;
+    lova:cellType "mMSC (D1, CRL-12424)" ;
+    lova:cellSource "Mouse bone marrow" ;
+    lova:cultureDuration "1, 2, 4, 6, 8 days" ;
+    lova:temperature "37°C" ;
+    lova:atmosphere "5% CO2" .
+
+<https://lovamap.com/ontology#outcome/10.1021-mp200171d/mtt-np12-day2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-mp200171d/np-viability> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "MTT normalized absorbance, N/P 12, Day 2 (statistically lower than other conditions)" ;
+    lova:measurementType "Metabolic activity (normalized absorbance)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "statistically lower cell number vs other N/P conditions" ;
+    lova:timePoint "Day 2" ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#experiment/10.1021-mp200171d/np-genetransfer> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-mp200171d/np-base-hydrogel> ;
+    rdfs:label "Transgene expression as function of N/P ratio" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Gene transfer" ;
+    lova:assayOrMethod "Gaussia Luciferase Assay" ;
+    lova:cellType "mMSC (D1, CRL-12424)" ;
+    lova:cellSource "Mouse bone marrow" ;
+    lova:cultureDuration "2 and 8 days" .
+
+<https://lovamap.com/ontology#outcome/10.1021-mp200171d/rlu-np5-day2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-mp200171d/np-genetransfer> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "Cumulative RLU, N/P 5, Day 2" ;
+    lova:measurementType "Cumulative Gaussia luciferase RLU" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 10000.0 ;
+    qudt:unit "RLU" ;
+    lova:timePoint "Day 2" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-mp200171d/rlu-np7-day2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-mp200171d/np-genetransfer> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "Cumulative RLU, N/P 7, Day 2" ;
+    lova:measurementType "Cumulative Gaussia luciferase RLU" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 30000.0 ;
+    qudt:unit "RLU" ;
+    lova:timePoint "Day 2" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-mp200171d/rlu-np9-day2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-mp200171d/np-genetransfer> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "Cumulative RLU, N/P 9, Day 2" ;
+    lova:measurementType "Cumulative Gaussia luciferase RLU" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 700000.0 ;
+    qudt:unit "RLU" ;
+    lova:timePoint "Day 2" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-mp200171d/rlu-np12-day2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-mp200171d/np-genetransfer> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "Cumulative RLU, N/P 12, Day 2" ;
+    lova:measurementType "Cumulative Gaussia luciferase RLU" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 500000.0 ;
+    qudt:unit "RLU" ;
+    lova:timePoint "Day 2" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-mp200171d/rlu-np5-day8> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-mp200171d/np-genetransfer> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "Cumulative RLU, N/P 5, Day 8" ;
+    lova:measurementType "Cumulative Gaussia luciferase RLU" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 20000.0 ;
+    qudt:unit "RLU" ;
+    lova:timePoint "Day 8" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-mp200171d/rlu-np7-day8> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-mp200171d/np-genetransfer> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "Cumulative RLU, N/P 7, Day 8" ;
+    lova:measurementType "Cumulative Gaussia luciferase RLU" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 50000.0 ;
+    qudt:unit "RLU" ;
+    lova:timePoint "Day 8" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-mp200171d/rlu-np9-day8> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-mp200171d/np-genetransfer> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "Cumulative RLU, N/P 9, Day 8" ;
+    lova:measurementType "Cumulative Gaussia luciferase RLU" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1200000.0 ;
+    qudt:unit "RLU" ;
+    lova:timePoint "Day 8" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-mp200171d/rlu-np12-day8> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-mp200171d/np-genetransfer> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "Cumulative RLU, N/P 12, Day 8" ;
+    lova:measurementType "Cumulative Gaussia luciferase RLU" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1400000.0 ;
+    qudt:unit "RLU" ;
+    lova:timePoint "Day 8" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1021-mp200171d/np9-vs-np5-day2> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "Transgene expression higher for N/P 9 vs N/P 5 at Day 2" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-mp200171d/rlu-np9-day2> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-mp200171d/rlu-np5-day2> ;
+    lova:direction "higher" ;
+    lova:pValue 0.01 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1021-mp200171d/np9-vs-np12-day2> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "Transgene expression higher for N/P 9 vs N/P 12 at Day 2" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-mp200171d/rlu-np9-day2> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-mp200171d/rlu-np12-day2> ;
+    lova:direction "higher" ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1021-mp200171d/np9-vs-np5-day8> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "Transgene expression higher for N/P 9 vs N/P 5 at Day 8" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-mp200171d/rlu-np9-day8> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-mp200171d/rlu-np5-day8> ;
+    lova:direction "higher" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1021-mp200171d/np7-vs-np5-day8> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "Transgene expression higher for N/P 7 vs N/P 5 at Day 8" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-mp200171d/rlu-np7-day8> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-mp200171d/rlu-np5-day8> ;
+    lova:direction "higher" ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1021-mp200171d/np9-vs-np12-day8> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "No significant difference N/P 9 vs N/P 12 at Day 8" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-mp200171d/rlu-np9-day8> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-mp200171d/rlu-np12-day8> ;
+    lova:direction "no difference" ;
+    lova:isSignificant false .
+
+<https://lovamap.com/ontology#experiment/10.1021-mp200171d/stiffness-viability> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-mp200171d/gel-1> ,
+                      <https://lovamap.com/ontology#material/10.1021-mp200171d/gel-2> ,
+                      <https://lovamap.com/ontology#material/10.1021-mp200171d/gel-3> ,
+                      <https://lovamap.com/ontology#material/10.1021-mp200171d/gel-4> ,
+                      <https://lovamap.com/ontology#material/10.1021-mp200171d/gel-5> ;
+    rdfs:label "Cell viability, spreading, and metabolic activity vs hydrogel stiffness" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell viability / spreading / proliferation" ;
+    lova:assayOrMethod "LIVE/DEAD, phalloidin staining, MTT assay" ;
+    lova:cellType "mMSC (D1, CRL-12424)" ;
+    lova:cellSource "Mouse bone marrow" ;
+    lova:cultureDuration "1, 2, 4, 5, 6, 8 days" .
+
+<https://lovamap.com/ontology#experiment/10.1021-mp200171d/stiffness-genetransfer> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-mp200171d/gel-1> ,
+                      <https://lovamap.com/ontology#material/10.1021-mp200171d/gel-2> ,
+                      <https://lovamap.com/ontology#material/10.1021-mp200171d/gel-3> ,
+                      <https://lovamap.com/ontology#material/10.1021-mp200171d/gel-4> ,
+                      <https://lovamap.com/ontology#material/10.1021-mp200171d/gel-5> ;
+    rdfs:label "Transgene expression as a function of hydrogel stiffness" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Gene transfer" ;
+    lova:assayOrMethod "Gaussia Luciferase Assay" ;
+    lova:cellType "mMSC (D1, CRL-12424)" ;
+    lova:cellSource "Mouse bone marrow" ;
+    lova:cultureDuration "2 and 8 days" .
+
+<https://lovamap.com/ontology#outcome/10.1021-mp200171d/rlu-gel1-day2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-mp200171d/stiffness-genetransfer> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "Cumulative RLU, Gel ID 1 (100 Pa), Day 2" ;
+    lova:measurementType "Cumulative Gaussia luciferase RLU" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 320000.0 ;
+    qudt:unit "RLU" ;
+    lova:timePoint "Day 2" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-mp200171d/rlu-gel4-day2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-mp200171d/stiffness-genetransfer> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "Cumulative RLU, Gel ID 4 (1360 Pa), Day 2" ;
+    lova:measurementType "Cumulative Gaussia luciferase RLU" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 60000.0 ;
+    qudt:unit "RLU" ;
+    lova:timePoint "Day 2" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-mp200171d/rlu-gel2-day8> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-mp200171d/stiffness-genetransfer> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "Cumulative RLU, Gel ID 2 (260 Pa), Day 8" ;
+    lova:measurementType "Cumulative Gaussia luciferase RLU" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 390000.0 ;
+    qudt:unit "RLU" ;
+    lova:timePoint "Day 8" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-mp200171d/rlu-gel4-day8> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-mp200171d/stiffness-genetransfer> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "Cumulative RLU, Gel ID 4 (1360 Pa), Day 8" ;
+    lova:measurementType "Cumulative Gaussia luciferase RLU" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 160000.0 ;
+    qudt:unit "RLU" ;
+    lova:timePoint "Day 8" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1021-mp200171d/gel1-vs-gel4-day2> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "Transgene expression higher in Gel ID 1 (100 Pa) vs Gel ID 4 (1360 Pa) at Day 2" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-mp200171d/rlu-gel1-day2> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-mp200171d/rlu-gel4-day2> ;
+    lova:direction "higher" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1021-mp200171d/gel2-vs-gel4-day8> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "Transgene expression higher in Gel ID 2 (260 Pa) vs Gel ID 4 (1360 Pa) at Day 8" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-mp200171d/rlu-gel2-day8> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-mp200171d/rlu-gel4-day8> ;
+    lova:direction "higher" ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1021-mp200171d/rgd-conc-viability> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-mp200171d/rgd-10um> ,
+                      <https://lovamap.com/ontology#material/10.1021-mp200171d/rgd-100um> ,
+                      <https://lovamap.com/ontology#material/10.1021-mp200171d/rgd-400um> ;
+    rdfs:label "Cell viability and metabolic activity vs RGD concentration" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell viability / spreading / proliferation" ;
+    lova:assayOrMethod "LIVE/DEAD, phalloidin staining, MTT assay" ;
+    lova:cellType "mMSC (D1, CRL-12424)" ;
+    lova:cellSource "Mouse bone marrow" ;
+    lova:cultureDuration "1, 2, 4, 6, 8 days" .
+
+<https://lovamap.com/ontology#experiment/10.1021-mp200171d/rgd-conc-genetransfer> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-mp200171d/rgd-10um> ,
+                      <https://lovamap.com/ontology#material/10.1021-mp200171d/rgd-100um> ,
+                      <https://lovamap.com/ontology#material/10.1021-mp200171d/rgd-400um> ;
+    rdfs:label "Transgene expression as a function of RGD concentration" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Gene transfer" ;
+    lova:assayOrMethod "Gaussia Luciferase Assay" ;
+    lova:cellType "mMSC (D1, CRL-12424)" ;
+    lova:cellSource "Mouse bone marrow" ;
+    lova:cultureDuration "2 and 8 days" .
+
+<https://lovamap.com/ontology#outcome/10.1021-mp200171d/rlu-rgd100-day8> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-mp200171d/rgd-conc-genetransfer> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "Cumulative RLU, 100 µM RGD, Day 8" ;
+    lova:measurementType "Cumulative Gaussia luciferase RLU" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 570000.0 ;
+    qudt:unit "RLU" ;
+    lova:timePoint "Day 8" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-mp200171d/rlu-rgd400-day8> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-mp200171d/rgd-conc-genetransfer> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "Cumulative RLU, 400 µM RGD, Day 8" ;
+    lova:measurementType "Cumulative Gaussia luciferase RLU" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 420000.0 ;
+    qudt:unit "RLU" ;
+    lova:timePoint "Day 8" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1021-mp200171d/rgd100-vs-rgd400-day8> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "Transgene expression higher at 100 µM RGD vs 400 µM RGD at Day 8" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-mp200171d/rlu-rgd100-day8> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-mp200171d/rlu-rgd400-day8> ;
+    lova:direction "higher" ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1021-mp200171d/rgd-presentation-viability> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-mp200171d/rgd-presentation-02> ,
+                      <https://lovamap.com/ontology#material/10.1021-mp200171d/rgd-presentation-04> ,
+                      <https://lovamap.com/ontology#material/10.1021-mp200171d/rgd-presentation-47> ;
+    rdfs:label "Cell viability and metabolic activity vs RGD presentation/clustering" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell viability / spreading / proliferation" ;
+    lova:assayOrMethod "LIVE/DEAD, phalloidin staining, MTT assay" ;
+    lova:cellType "mMSC (D1, CRL-12424)" ;
+    lova:cellSource "Mouse bone marrow" ;
+    lova:cultureDuration "1, 2, 4, 6, 8 days" .
+
+<https://lovamap.com/ontology#experiment/10.1021-mp200171d/rgd-presentation-genetransfer> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-mp200171d/rgd-presentation-02> ,
+                      <https://lovamap.com/ontology#material/10.1021-mp200171d/rgd-presentation-04> ,
+                      <https://lovamap.com/ontology#material/10.1021-mp200171d/rgd-presentation-47> ;
+    rdfs:label "Transgene expression as a function of RGD presentation/clustering" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Gene transfer" ;
+    lova:assayOrMethod "Gaussia Luciferase Assay" ;
+    lova:cellType "mMSC (D1, CRL-12424)" ;
+    lova:cellSource "Mouse bone marrow" ;
+    lova:cultureDuration "2 and 8 days" .
+
+<https://lovamap.com/ontology#outcome/10.1021-mp200171d/rlu-rgd04-day8> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-mp200171d/rgd-presentation-genetransfer> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "Cumulative RLU, 0.4 RGD/HA, Day 8" ;
+    lova:measurementType "Cumulative Gaussia luciferase RLU" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 570000.0 ;
+    qudt:unit "RLU" ;
+    lova:timePoint "Day 8" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-mp200171d/rlu-rgd02-day8> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-mp200171d/rgd-presentation-genetransfer> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "Cumulative RLU, 0.2 RGD/HA (homogeneous), Day 8" ;
+    lova:measurementType "Cumulative Gaussia luciferase RLU" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 400000.0 ;
+    qudt:unit "RLU" ;
+    lova:timePoint "Day 8" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1021-mp200171d/rgd04-vs-rgd02-day8> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-mp200171d> ;
+    rdfs:label "Transgene expression higher at 0.4 RGD/HA vs 0.2 RGD/HA (homogeneous) at Day 8" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-mp200171d/rlu-rgd04-day8> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-mp200171d/rlu-rgd02-day8> ;
+    lova:direction "higher" ;
+    lova:pValue 0.01 ;
+    lova:isSignificant true .

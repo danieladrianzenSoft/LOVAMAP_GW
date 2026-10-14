@@ -1,0 +1,951 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1002-smll.202309911> a bibo:AcademicArticle ;
+    rdfs:label "Kurt et al., 2024 — Gene Delivery From Granular Scaffolds for Tunable Biologics Manufacturing" ;
+    dc:title "Gene Delivery From Granular Scaffolds for Tunable Biologics Manufacturing" ;
+    dc:identifier "10.1002/smll.202309911" ;
+    dc:date "2024"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/small> ;
+    dc:creator <https://lovamap.com/ontology#author/kurt-evan> ,
+               <https://lovamap.com/ontology#author/devlin-garth> ,
+               <https://lovamap.com/ontology#author/asokan-aravind> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/kurt-evan>
+                       <https://lovamap.com/ontology#author/devlin-garth>
+                       <https://lovamap.com/ontology#author/asokan-aravind>
+                       <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    dc:bibliographicCitation "Kurt et al., 2024" ;
+    lova:focusMaterial "Hyaluronic acid (HA)-based granular hydrogel (FLIP) scaffolds loaded with DNA nanoparticles for continuous biologics manufacturing (proteins, antibodies, AAV)" .
+
+<https://lovamap.com/ontology#author/kurt-evan> a foaf:Person ;
+    foaf:familyName "Kurt" ;
+    foaf:givenName "Evan" ;
+    foaf:name "Evan Kurt" ;
+    schema:affiliation "Duke University" .
+
+<https://lovamap.com/ontology#author/devlin-garth> a foaf:Person ;
+    foaf:familyName "Devlin" ;
+    foaf:givenName "Garth" ;
+    foaf:name "Garth Devlin" ;
+    schema:affiliation "Duke University" .
+
+<https://lovamap.com/ontology#author/asokan-aravind> a foaf:Person ;
+    foaf:familyName "Asokan" ;
+    foaf:givenName "Aravind" ;
+    foaf:name "Aravind Asokan" ;
+    schema:affiliation "Duke University School of Medicine" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" ;
+    schema:affiliation "Duke University" .
+
+<https://lovamap.com/ontology#journal/small> a bibo:Journal ;
+    dc:title "Small" ;
+    bibo:issn "1613-6810" .
+
+<https://lovamap.com/ontology#material/10.1002-smll.202309911/flip-embedded> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "FLIP scaffold, embedded nanoparticle delivery (static culture)" ;
+    lova:particleShape "Irregular" ;
+    lova:particleMaterial "HA-AC (acrylated hyaluronic acid) crosslinked with MMP-dithiol peptide" ;
+    lova:particleSizeMax 70.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:packingConfiguration "Random" ;
+    lova:scaffoldDimensions "50 μL FLIP scaffold aliquots" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-smll.202309911/flip-base> ,
+                              <https://lovamap.com/ontology#fabrication-method/10.1002-smll.202309911/embedded-loading> .
+
+<https://lovamap.com/ontology#material/10.1002-smll.202309911/flip-soluble> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "FLIP scaffold, soluble (bolus) nanoparticle delivery (static culture)" ;
+    lova:particleShape "Irregular" ;
+    lova:particleMaterial "HA-AC (acrylated hyaluronic acid) crosslinked with MMP-dithiol peptide" ;
+    lova:particleSizeMax 70.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:packingConfiguration "Random" ;
+    lova:scaffoldDimensions "50 μL FLIP scaffold aliquots" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-smll.202309911/flip-base> ,
+                              <https://lovamap.com/ontology#fabrication-method/10.1002-smll.202309911/soluble-loading> .
+
+<https://lovamap.com/ontology#material/10.1002-smll.202309911/flip-suspension-embedded> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "FLIP scaffold microcarriers, embedded nanoparticle delivery (suspension culture)" ;
+    lova:particleShape "Irregular" ;
+    lova:particleMaterial "HA-AC (acrylated hyaluronic acid)" ;
+    lova:particleSizeMax 70.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:packingConfiguration "Clustered (10μL gel clusters)" ;
+    lova:scaffoldDimensions "30μL FLIP scaffold in 300μL media (1:10 scaffold-to-media)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-smll.202309911/flip-base> ,
+                              <https://lovamap.com/ontology#fabrication-method/10.1002-smll.202309911/embedded-loading> .
+
+<https://lovamap.com/ontology#material/10.1002-smll.202309911/flip-suspension-soluble> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "FLIP scaffold microcarriers, soluble nanoparticle delivery (suspension culture)" ;
+    lova:particleShape "Irregular" ;
+    lova:particleMaterial "HA-AC (acrylated hyaluronic acid)" ;
+    lova:particleSizeMax 70.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:packingConfiguration "Clustered (10μL gel clusters)" ;
+    lova:scaffoldDimensions "30μL FLIP scaffold in 300μL media (1:10 scaffold-to-media)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-smll.202309911/flip-base> ,
+                              <https://lovamap.com/ontology#fabrication-method/10.1002-smll.202309911/soluble-loading> .
+
+<https://lovamap.com/ontology#material/10.1002-smll.202309911/flip-perfusion-embedded> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "FLIP scaffold, embedded nanoparticle delivery (perfusion bioreactor)" ;
+    lova:particleShape "Irregular" ;
+    lova:particleMaterial "HA-AC (acrylated hyaluronic acid)" ;
+    lova:particleSizeMax 70.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:packingConfiguration "Random, annealed in-device" ;
+    lova:scaffoldDimensions "60μL FLIP scaffold per perfusion device, 40μL media per μL FLIP" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-smll.202309911/flip-base> ,
+                              <https://lovamap.com/ontology#fabrication-method/10.1002-smll.202309911/embedded-loading> ,
+                              <https://lovamap.com/ontology#fabrication-method/10.1002-smll.202309911/perfusion-device> .
+
+<https://lovamap.com/ontology#material/10.1002-smll.202309911/alginate-scaffold> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "Alginate (alginic acid) granular scaffold, scaled-up (10x, 3mL)" ;
+    lova:particleShape "Irregular" ;
+    lova:particleMaterial "Alginate (alginic acid)" ;
+    lova:scaffoldDimensions "3 mL granular scaffold culture" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-smll.202309911/alginate-fab> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-smll.202309911/flip-base> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "HA-AC bulk hydrogel fragmentation and FXIII/Thrombin annealing into FLIP granular scaffold" ;
+    lova:chemistry "Michael addition (thiol-ene)" ;
+    lova:manufacturingMethod "Bulk hydrogel fragmentation via 70μm sieve to produce shredded hydrogel microparticles (sHMP)" ;
+    lova:annealingChemistry "Enzymatic (Factor XIII/Thrombin transamination)" ;
+    lova:annealingConditions "37°C, 1 hour, humidified conditions" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-smll.202309911/ha-ac> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-smll.202309911/adh> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-smll.202309911/edac> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-smll.202309911/nhs-ac> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-smll.202309911/mmp-crosslinker> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-smll.202309911/rgd-sp> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-smll.202309911/q-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-smll.202309911/k-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-smll.202309911/fxiii> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-smll.202309911/thrombin> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-smll.202309911/teoa> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-smll.202309911/embedded-loading> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "Lyophilized DNA/PEI nanoparticle embedding in HA-AC gel precursor prior to annealing" ;
+    lova:manufacturingMethod "Lyophilized nanoparticle reconstitution and embedding in gel precursor, up to 5μg/μL scaffold; AAV loading at 1μg/μL scaffold" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-smll.202309911/pei> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-smll.202309911/ha-nb> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-smll.202309911/nacl> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-smll.202309911/soluble-loading> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "Soluble bolus DNA/PEI nanoparticle delivery onto pre-formed FLIP scaffold surface" ;
+    lova:manufacturingMethod "Electrostatic surface binding of nanoparticles to microgel surface" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-smll.202309911/pei> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-smll.202309911/ha-nb> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-smll.202309911/nacl> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-smll.202309911/perfusion-device> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "PDMS in-line perfusion bioreactor device fabrication for FLIP scaffold culture" ;
+    lova:manufacturingMethod "3D printed reverse mold casting of PDMS channels, PES membrane separation of gel and media side" ;
+    lova:annealingConditions "37°C, 1 hour (in-device annealing)" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-smll.202309911/alginate-fab> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "Alginate scaffold fabrication embedding nanoparticles, scaled 10-fold" ;
+    lova:manufacturingMethod "Nanoparticle-embedded alginate granular scaffold formation" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.202309911/ha-ac> a lova:Reagent ;
+    rdfs:label "Hyaluronic acid-acrylamide (HA-AC), 3.5 wt%" ;
+    lova:reagentRole "monomer" ;
+    lova:molecularWeight "70 kDa (50-90 kDa)" ;
+    lova:concentration "3.5 wt%" ;
+    lova:supplier "Contipro" ;
+    lova:reagentFunction "Scaffold backbone polymer" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.202309911/adh> a lova:Reagent ;
+    rdfs:label "Adipic dihydrazide (ADH)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "1:40 molar ratio with HA" ;
+    lova:supplier "Fisher Scientific" ;
+    lova:reagentFunction "HA hydrazide functionalization" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.202309911/edac> a lova:Reagent ;
+    rdfs:label "N-(3-Dimethylaminopropyl)-N'-ethylcarbodiimide hydrochloride (EDAC HCl)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "1:4 molar ratio for HA" ;
+    lova:supplier "VWR" ;
+    lova:reagentFunction "Carbodiimide coupling agent for HA modification" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.202309911/nhs-ac> a lova:Reagent ;
+    rdfs:label "N-Succinimidyl Acrylate (NHS-AC)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "1:5 molar ratio to HA" ;
+    lova:supplier "TCI Chemicals" ;
+    lova:reagentFunction "HA acrylation for acrylamide functional groups" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.202309911/mmp-crosslinker> a lova:Reagent ;
+    rdfs:label "MMP dithiol crosslinker (Ac-GCRDGPQGIWGQDRCG-NH2)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:sequence "GCRDGPQGIWGQDRCG" ;
+    lova:concentration "SH/HA monomer ratio of 19.00" ;
+    lova:supplier "Genscript" ;
+    lova:reagentFunction "Proteinase-labile crosslinking for Michael addition hydrogel" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.202309911/rgd-sp> a lova:Reagent ;
+    rdfs:label "RGDSP adhesion peptide" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "RGDSP" ;
+    lova:concentration "1 mM" ;
+    lova:reagentFunction "Cell adhesion" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.202309911/q-peptide> a lova:Reagent ;
+    rdfs:label "Q-peptide (Ac-NQEQVSPLGGERCG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "NQEQVSPLGGERCG" ;
+    lova:concentration "0.75 mM" ;
+    lova:reagentFunction "Factor XIII substrate for microgel annealing" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.202309911/k-peptide> a lova:Reagent ;
+    rdfs:label "K-peptide (Ac-FKGGERCG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "FKGGERCG" ;
+    lova:concentration "0.75 mM" ;
+    lova:reagentFunction "Factor XIII substrate for microgel annealing" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.202309911/fxiii> a lova:Reagent ;
+    rdfs:label "Factor XIII (Fibrogammin 1250)" ;
+    lova:reagentRole "enzyme" ;
+    lova:concentration "0.01 U/μL gel" ;
+    lova:supplier "CSL Behring" ;
+    lova:catalogNumber "Fibrogammin 1250" ;
+    lova:reagentFunction "Annealing (transamination) of microgels into FLIP scaffold" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.202309911/thrombin> a lova:Reagent ;
+    rdfs:label "Thrombin (with calcium, from bovine plasma)" ;
+    lova:reagentRole "enzyme" ;
+    lova:concentration "0.002 U/μL gel" ;
+    lova:supplier "Sigma Life Science" ;
+    lova:reagentFunction "Activation of Factor XIII for annealing" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.202309911/teoa> a lova:Reagent ;
+    rdfs:label "Triethanolamine (TeOA)" ;
+    lova:reagentRole "solvent" ;
+    lova:concentration "0.3 M, pH 8.8" ;
+    lova:reagentFunction "Buffer for HA-AC dissolution" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.202309911/ha-nb> a lova:Reagent ;
+    rdfs:label "Hyaluronic acid-norbornene (HA-NB)" ;
+    lova:reagentRole "other" ;
+    lova:molecularWeight "70 kDa (50-90 kDa)" ;
+    lova:concentration "w/w ratio (HA to PEI) of 5" ;
+    lova:supplier "Contipro" ;
+    lova:reagentFunction "Electrostatic coating/stabilization of DNA/PEI nanoparticles" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.202309911/dmtmm> a lova:Reagent ;
+    rdfs:label "4-(4,6-dimethoxy-1,3,5-triazin-2-yl)-4-methyl-morpholinium chloride (DMTMM)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "~1:633 molar ratio HA to DMTMM" ;
+    lova:supplier "Thermo Fisher Scientific" ;
+    lova:reagentFunction "Activation reagent for HA-NB coupling" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.202309911/nma> a lova:Reagent ;
+    rdfs:label "5-norbornene-2-methylamine (NMA)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "~1:343 molar ratio activated HA to NMA" ;
+    lova:supplier "TCI America" ;
+    lova:reagentFunction "Norbornene functionalization of HA" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.202309911/pei> a lova:Reagent ;
+    rdfs:label "Linear polyethylenimine (L-PEI, 25 kDa)" ;
+    lova:reagentRole "other" ;
+    lova:molecularWeight "25 kDa" ;
+    lova:concentration "N/P ratio of 20 (15-20 for AAV)" ;
+    lova:supplier "Polyscience" ;
+    lova:reagentFunction "DNA complexation carrier for nanoparticle formation" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.202309911/nacl> a lova:Reagent ;
+    rdfs:label "Sodium chloride solution" ;
+    lova:reagentRole "solvent" ;
+    lova:concentration "150 mM" ;
+    lova:reagentFunction "Dilution buffer for DNA and PEI complexation" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.202309911/p-vegf> a lova:Reagent ;
+    rdfs:label "VEGF165 encoding plasmid" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Encodes VEGF (45 kDa) for therapeutic protein production" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.202309911/p-il4> a lova:Reagent ;
+    rdfs:label "IL-4 (primary isoform) encoding plasmid" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Encodes IL-4 (15 kDa) for therapeutic protein production" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.202309911/p-antigfp> a lova:Reagent ;
+    rdfs:label "Anti-GFP [N86/38.1R] plasmid" ;
+    lova:reagentRole "other" ;
+    lova:catalogNumber "Addgene Plasmid #11449" ;
+    lova:reagentFunction "Encodes anti-GFP antibody (150 kDa)" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.202309911/p-dcas9vp64> a lova:Reagent ;
+    rdfs:label "pJK52-dCas9-VP64-GFP plasmid" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Encodes dead Cas9 fused with VP64 activation domain for endogenous gene activation" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.202309911/p-grna> a lova:Reagent ;
+    rdfs:label "pTK59-U6-gRNA-UbC-DsRed plasmid" ;
+    lova:reagentRole "other" ;
+    lova:concentration "2:1 molar ratio (pTK59:pJK52)" ;
+    lova:reagentFunction "Encodes guide RNA targeting VEGF/IL-4 promoter regions" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.202309911/p-helper> a lova:Reagent ;
+    rdfs:label "Helper plasmid (p5AdDelta6)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "2 parts (mass ratio 2:1:1)" ;
+    lova:reagentFunction "AAV helper functions for triple-plasmid AAV production" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.202309911/p-repcap> a lova:Reagent ;
+    rdfs:label "Rep/Cap plasmid (pAAV2/2 or pAAV2/9n)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "1 part (mass ratio 2:1:1)" ;
+    lova:reagentFunction "AAV replication and capsid genes" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.202309911/p-itr> a lova:Reagent ;
+    rdfs:label "Insert/ITR plasmid (pITR-GFP-P2A-GLuc)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "1 part (mass ratio 2:1:1)" ;
+    lova:reagentFunction "Transgene cassette packaged into AAV capsid" .
+
+<https://lovamap.com/ontology#experiment/10.1002-smll.202309911/reporter-hek> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-smll.202309911/flip-embedded> ,
+                      <https://lovamap.com/ontology#material/10.1002-smll.202309911/flip-soluble> ;
+    rdfs:label "Reporter plasmid transfection time study in HEK293 cells (embedded vs soluble FLIP)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transfection" ;
+    lova:assayOrMethod "Luciferase reporter assay" ;
+    lova:cellType "HEK293" ;
+    lova:cultureDuration "30 days" ;
+    lova:sampleSize 5 .
+
+<https://lovamap.com/ontology#experiment/10.1002-smll.202309911/reporter-cho> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-smll.202309911/flip-embedded> ,
+                      <https://lovamap.com/ontology#material/10.1002-smll.202309911/flip-soluble> ;
+    rdfs:label "Reporter plasmid transfection time study in CHO-K1 cells (embedded vs soluble FLIP)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transfection" ;
+    lova:assayOrMethod "Luciferase reporter assay" ;
+    lova:cellType "CHO-K1" ;
+    lova:cultureDuration "30 days" ;
+    lova:sampleSize 5 .
+
+<https://lovamap.com/ontology#experiment/10.1002-smll.202309911/vegf-production> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-smll.202309911/flip-embedded> ,
+                      <https://lovamap.com/ontology#material/10.1002-smll.202309911/flip-soluble> ;
+    rdfs:label "VEGF production time study from HEK293 in embedded vs soluble FLIP scaffolds" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Protein production" ;
+    lova:assayOrMethod "ELISA (DuoSet, R&D Systems)" ;
+    lova:cellType "HEK293" ;
+    lova:cultureDuration "30 days" ;
+    lova:sampleSize 6 .
+
+<https://lovamap.com/ontology#experiment/10.1002-smll.202309911/antigfp-production> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-smll.202309911/flip-embedded> ,
+                      <https://lovamap.com/ontology#material/10.1002-smll.202309911/flip-soluble> ;
+    rdfs:label "Anti-GFP antibody production time study from CHO in embedded vs soluble FLIP scaffolds" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Antibody production" ;
+    lova:assayOrMethod "Inverse ELISA" ;
+    lova:cellType "CHO-K1" ;
+    lova:cultureDuration "30 days" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#experiment/10.1002-smll.202309911/dual-plasmid-vegf> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-smll.202309911/flip-embedded> ,
+                      <https://lovamap.com/ontology#material/10.1002-smll.202309911/flip-soluble> ;
+    rdfs:label "Dual-plasmid dCas9-VP64/gRNA endogenous VEGF activation time study in HEK293" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Gene activation (CRISPRa)" ;
+    lova:assayOrMethod "ELISA" ;
+    lova:cellType "HEK293" ;
+    lova:cultureDuration "3 weeks" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#experiment/10.1002-smll.202309911/aav-static> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-smll.202309911/flip-embedded> ,
+                      <https://lovamap.com/ontology#material/10.1002-smll.202309911/flip-soluble> ;
+    rdfs:label "AAV9 production from static FLIP scaffold culture (HEK293T) over 30 days" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Virus production" ;
+    lova:assayOrMethod "qPCR titer, ELISA capsid, Gaussia luciferase infectivity in D1 MSC" ;
+    lova:cellType "HEK293T" ;
+    lova:cellSource "Human embryonic kidney" ;
+    lova:cultureDuration "30 days" ;
+    lova:sampleSize 5 .
+
+<https://lovamap.com/ontology#experiment/10.1002-smll.202309911/aav-suspension> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-smll.202309911/flip-suspension-embedded> ,
+                      <https://lovamap.com/ontology#material/10.1002-smll.202309911/flip-suspension-soluble> ;
+    rdfs:label "AAV production from suspension FLIP scaffold culture (HEK293T) over 21-30 days" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Virus production" ;
+    lova:assayOrMethod "qPCR titer, ELISA capsid, Gaussia luciferase infectivity in D1 MSC" ;
+    lova:cellType "HEK293T" ;
+    lova:cultureDuration "21 days" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#experiment/10.1002-smll.202309911/aav-perfusion> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-smll.202309911/flip-perfusion-embedded> ;
+    rdfs:label "AAV production from perfusion FLIP bioreactor over 30 days" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Virus production" ;
+    lova:assayOrMethod "qPCR titer, ELISA capsid, Gaussia luciferase infectivity in D1 MSC" ;
+    lova:cellType "HEK293T" ;
+    lova:cultureDuration "30 days" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#experiment/10.1002-smll.202309911/seeding-density> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-smll.202309911/flip-suspension-embedded> ;
+    rdfs:label "Cell seeding density optimization for FLIP suspension scaffolds (HEK293T and HEK293F)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Metabolic activity / proliferation assay" ;
+    lova:assayOrMethod "PrestoBlue, CFSE flow cytometry" ;
+    lova:cellType "HEK293T, HEK293F" ;
+    lova:cultureDuration "5 days" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#experiment/10.1002-smll.202309911/cluster-size> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-smll.202309911/flip-suspension-embedded> ;
+    rdfs:label "Gel cluster size/number optimization for FLIP suspension culture surface area" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Metabolic activity / viability assay" ;
+    lova:assayOrMethod "PrestoBlue, Zombie viability stain, flow cytometry" ;
+    lova:cellType "HEK293T" ;
+    lova:cultureDuration "5 days" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#experiment/10.1002-smll.202309911/rheology> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-smll.202309911/flip-embedded> ;
+    rdfs:label "Rheological characterization of HA-AC bulk gels and annealed FLIP scaffolds" ;
+    lova:experimentCategory "Mechanical" ;
+    lova:experimentType "Rheology (frequency sweep)" ;
+    lova:equipment "Physica MCR plate-to-plate rheometer (Anton Paar)" ;
+    lova:strainRate "0.2% strain (bulk), 1% strain (FLIP)" ;
+    lova:frequency "0.1 to 10 rad/s" ;
+    lova:temperature "37°C" .
+
+<https://lovamap.com/ontology#experiment/10.1002-smll.202309911/alginate-scaleup> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-smll.202309911/alginate-scaffold> ;
+    rdfs:label "Scale-up test of alginate granular scaffold for AAV production" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Virus production" ;
+    lova:assayOrMethod "qPCR titer, infectivity assay" ;
+    lova:cellType "HEK293T" ;
+    lova:cultureDuration "1 week+" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202309911/storage-modulus> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202309911/rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "Storage modulus (G') of annealed FLIP scaffold" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Mechanical" ;
+    lova:valueString "400-500 Pa" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202309911/hek-reporter-embedded-vs-soluble> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202309911/reporter-hek> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "HEK293 cumulative reporter expression, embedded FLIP, higher than soluble long-term" ;
+    lova:measurementType "Luciferase reporter transfection" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Higher cumulative expression long-term (>20 days)" ;
+    lova:pValue 0.0152 ;
+    lova:isSignificant true ;
+    lova:timePoint ">20 days" ;
+    lova:comparisonGroup "FLIP soluble" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202309911/cho-reporter-embedded-vs-soluble> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202309911/reporter-cho> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "CHO cumulative reporter expression, embedded vs soluble FLIP, no significant difference" ;
+    lova:measurementType "Luciferase reporter transfection" ;
+    lova:measurementCategory "Biological" ;
+    lova:pValue 0.1043 ;
+    lova:isSignificant false ;
+    lova:timePoint "Endpoint (30 days)" ;
+    lova:comparisonGroup "FLIP soluble" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202309911/vegf-cumulative-soluble-higher> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202309911/vegf-production> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "Cumulative VEGF yield higher for soluble vs embedded delivery" ;
+    lova:measurementType "Cumulative VEGF production" ;
+    lova:measurementCategory "Biochemical" ;
+    lova:pValue 0.0216 ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "FLIP embedded" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202309911/il4-cumulative-ns> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202309911/vegf-production> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "Cumulative IL-4 yield, embedded vs soluble, no significant difference" ;
+    lova:measurementType "Cumulative IL-4 production" ;
+    lova:measurementCategory "Biochemical" ;
+    lova:pValue 0.1782 ;
+    lova:isSignificant false ;
+    lova:comparisonGroup "FLIP embedded" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202309911/antigfp-cumulative-soluble-higher> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202309911/antigfp-production> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "Cumulative anti-GFP antibody yield higher for soluble vs embedded delivery" ;
+    lova:measurementType "Cumulative antibody production" ;
+    lova:measurementCategory "Biochemical" ;
+    lova:pValue 0.0231 ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "FLIP embedded" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202309911/vegf-endogenous-embedded-higher> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202309911/dual-plasmid-vegf> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "Endogenous VEGF activation at 3 weeks higher for embedded vs soluble delivery" ;
+    lova:measurementType "Endogenous VEGF expression" ;
+    lova:measurementCategory "Biological" ;
+    lova:pValue 0.0096 ;
+    lova:isSignificant true ;
+    lova:timePoint "3 weeks" ;
+    lova:comparisonGroup "FLIP soluble" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202309911/il4-endogenous-ns> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202309911/dual-plasmid-vegf> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "Endogenous IL-4 activation, embedded vs soluble, no significant difference" ;
+    lova:measurementType "Endogenous IL-4 expression" ;
+    lova:measurementCategory "Biological" ;
+    lova:pValue 0.6838 ;
+    lova:isSignificant false ;
+    lova:comparisonGroup "FLIP soluble" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202309911/transfection-efficiency-2d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202309911/aav-static> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "Percent transfected cells, 2D plate (AAV triple plasmid), Day 5" ;
+    lova:measurementType "Transfection efficiency" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 45.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 5" ;
+    lova:comparisonGroup "FLIP embedded scaffold" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202309911/transfection-efficiency-scaffold> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202309911/aav-static> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "Percent transfected cells, FLIP embedded scaffold (AAV triple plasmid), Day 5" ;
+    lova:measurementType "Transfection efficiency" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 30.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 5" ;
+    lova:comparisonGroup "2D plate" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-smll.202309911/transfection-2d-vs-scaffold> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "Transfection efficiency higher in 2D plate vs FLIP embedded scaffold at Day 5" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-smll.202309911/transfection-efficiency-2d> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-smll.202309911/transfection-efficiency-scaffold> ;
+    lova:direction "higher" ;
+    lova:pValue 0.002 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202309911/aav-cumulative-titer-static-embedded> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202309911/aav-static> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "Cumulative AAV titer, static FLIP embedded scaffold, 30 days" ;
+    lova:measurementType "Cumulative AAV titer" ;
+    lova:measurementCategory "Biological" ;
+    qudt:unit "vg" ;
+    lova:valueString "~10^12-10^13 vg (cumulative)" ;
+    lova:timePoint "30 days" ;
+    lova:comparisonGroup "Static FLIP soluble" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202309911/aav-cumulative-titer-static-soluble> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202309911/aav-static> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "Cumulative AAV titer, static FLIP soluble scaffold, 30 days" ;
+    lova:measurementType "Cumulative AAV titer" ;
+    lova:measurementCategory "Biological" ;
+    qudt:unit "vg" ;
+    lova:valueString "~10^12-10^13 vg (cumulative)" ;
+    lova:timePoint "30 days" ;
+    lova:comparisonGroup "Static FLIP embedded" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-smll.202309911/aav-static-embedded-vs-soluble-cumulative> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "No significant difference in cumulative AAV titer, static embedded vs soluble FLIP, 30 days" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-smll.202309911/aav-cumulative-titer-static-embedded> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-smll.202309911/aav-cumulative-titer-static-soluble> ;
+    lova:direction "no difference" ;
+    lova:isSignificant false .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202309911/infectivity-embedded-day10> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202309911/aav-static> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "AAV infectivity from embedded static scaffold, Day 10, slightly higher than other methods" ;
+    lova:measurementType "AAV infectivity (reporter luciferase expression)" ;
+    lova:measurementCategory "Biological" ;
+    lova:timePoint "Day 10" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "Static FLIP soluble / 2D" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202309911/aav-suspension-titer-week1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202309911/aav-suspension> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "AAV titer peak at week 1, suspension cells alone (bolus)" ;
+    lova:measurementType "AAV titer" ;
+    lova:measurementCategory "Biological" ;
+    qudt:unit "vg" ;
+    lova:timePoint "Week 1" ;
+    lova:comparisonGroup "FLIP embedded / soluble suspension scaffold" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202309911/aav-suspension-embedded-titer-week1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202309911/aav-suspension> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "AAV titer at week 1, FLIP embedded suspension scaffold" ;
+    lova:measurementType "AAV titer" ;
+    lova:measurementCategory "Biological" ;
+    qudt:unit "vg" ;
+    lova:timePoint "Week 1" ;
+    lova:comparisonGroup "Suspension cells alone" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-smll.202309911/aav-suspension-week1-cells-higher> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "AAV titer higher in suspension cells alone vs FLIP embedded at week 1" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-smll.202309911/aav-suspension-titer-week1> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-smll.202309911/aav-suspension-embedded-titer-week1> ;
+    lova:direction "higher" ;
+    lova:pValue 0.0062 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202309911/aav-suspension-soluble-titer-week1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202309911/aav-suspension> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "AAV titer at week 1, FLIP soluble suspension scaffold" ;
+    lova:measurementType "AAV titer" ;
+    lova:measurementCategory "Biological" ;
+    qudt:unit "vg" ;
+    lova:timePoint "Week 1" ;
+    lova:comparisonGroup "Suspension cells alone" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-smll.202309911/aav-suspension-week1-cells-vs-soluble> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "AAV titer higher in suspension cells alone vs FLIP soluble at week 1" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-smll.202309911/aav-suspension-titer-week1> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-smll.202309911/aav-suspension-soluble-titer-week1> ;
+    lova:direction "higher" ;
+    lova:pValue 0.0065 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202309911/aav-suspension-cumulative-embedded-day21> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202309911/aav-suspension> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "Cumulative AAV titer, FLIP embedded suspension scaffold, Day 21" ;
+    lova:measurementType "Cumulative AAV titer" ;
+    lova:measurementCategory "Biological" ;
+    qudt:unit "vg" ;
+    lova:timePoint "Day 21" ;
+    lova:comparisonGroup "Suspension cells alone" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202309911/aav-suspension-cumulative-bolus-day21> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202309911/aav-suspension> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "Cumulative AAV titer, suspension cells alone (bolus), Day 21" ;
+    lova:measurementType "Cumulative AAV titer" ;
+    lova:measurementCategory "Biological" ;
+    qudt:unit "vg" ;
+    lova:timePoint "Day 21" ;
+    lova:comparisonGroup "FLIP embedded suspension scaffold" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-smll.202309911/aav-suspension-cumulative-embedded-higher> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "Cumulative AAV titer over following weeks higher in FLIP embedded suspension vs cells alone" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-smll.202309911/aav-suspension-cumulative-embedded-day21> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-smll.202309911/aav-suspension-cumulative-bolus-day21> ;
+    lova:direction "higher" ;
+    lova:pValue 0.0217 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202309911/capsid-loading-suspension-embedded> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202309911/aav-suspension> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "Capsid loading efficiency, FLIP embedded suspension scaffold" ;
+    lova:measurementType "Capsid loading (P:I ratio)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "FLIP soluble suspension scaffold" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202309911/capsid-loading-suspension-soluble> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202309911/aav-suspension> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "Capsid loading efficiency, FLIP soluble suspension scaffold, lower than embedded" ;
+    lova:measurementType "Capsid loading (P:I ratio)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "FLIP embedded suspension scaffold" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-smll.202309911/capsid-loading-suspension-embedded-vs-soluble> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "Capsid loading lower in FLIP soluble vs embedded in suspension culture" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-smll.202309911/capsid-loading-suspension-soluble> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-smll.202309911/capsid-loading-suspension-embedded> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202309911/perfusion-metabolic-activity-early> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202309911/aav-perfusion> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "Metabolic activity, perfusion FLIP culture, early timepoints, improved vs static" ;
+    lova:measurementType "Metabolic activity" ;
+    lova:measurementCategory "Biological" ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "Static FLIP embedded" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202309911/static-metabolic-activity-early> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202309911/aav-static> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "Metabolic activity, static FLIP embedded culture, early timepoints" ;
+    lova:measurementType "Metabolic activity" ;
+    lova:measurementCategory "Biological" ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "Perfusion FLIP embedded" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-smll.202309911/perfusion-vs-static-metabolic-activity> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "Metabolic activity higher in perfusion vs static FLIP culture at earlier time points" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-smll.202309911/perfusion-metabolic-activity-early> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-smll.202309911/static-metabolic-activity-early> ;
+    lova:direction "higher" ;
+    lova:pValue 0.0093 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202309911/perfusion-cumulative-titer> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202309911/aav-perfusion> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "Cumulative AAV titer after 30 days, perfusion FLIP culture" ;
+    lova:measurementType "Cumulative AAV titer" ;
+    lova:measurementCategory "Biological" ;
+    qudt:unit "vg" ;
+    lova:timePoint "30 days" ;
+    lova:comparisonGroup "Static FLIP embedded" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202309911/static-cumulative-titer-30days> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202309911/aav-static> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "Cumulative AAV titer after 30 days, static FLIP embedded culture" ;
+    lova:measurementType "Cumulative AAV titer" ;
+    lova:measurementCategory "Biological" ;
+    qudt:unit "vg" ;
+    lova:timePoint "30 days" ;
+    lova:comparisonGroup "Perfusion FLIP embedded" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-smll.202309911/perfusion-vs-static-cumulative-titer> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "No significant difference in cumulative AAV titer, perfusion vs static FLIP culture, 30 days" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-smll.202309911/perfusion-cumulative-titer> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-smll.202309911/static-cumulative-titer-30days> ;
+    lova:direction "no difference" ;
+    lova:pValue 0.4825 ;
+    lova:isSignificant false .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202309911/perfusion-capsid-loading> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202309911/aav-perfusion> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "Capsid loading efficiency, perfusion FLIP culture" ;
+    lova:measurementType "Capsid loading (P:I ratio)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "Static FLIP embedded" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202309911/static-capsid-loading> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202309911/aav-static> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "Capsid loading efficiency, static FLIP embedded culture" ;
+    lova:measurementType "Capsid loading (P:I ratio)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "Perfusion FLIP embedded" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-smll.202309911/perfusion-vs-static-capsid-loading> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "No significant difference in capsid loading, perfusion vs static FLIP culture" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-smll.202309911/perfusion-capsid-loading> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-smll.202309911/static-capsid-loading> ;
+    lova:direction "no difference" ;
+    lova:pValue 0.4828 ;
+    lova:isSignificant false .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202309911/perfusion-infectivity> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202309911/aav-perfusion> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "AAV infectivity, perfusion FLIP culture" ;
+    lova:measurementType "AAV infectivity (reporter luciferase expression in D1 MSC)" ;
+    lova:measurementCategory "Biological" ;
+    lova:comparisonGroup "Static FLIP embedded" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202309911/static-infectivity> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202309911/aav-static> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "AAV infectivity, static FLIP embedded culture" ;
+    lova:measurementType "AAV infectivity (reporter luciferase expression in D1 MSC)" ;
+    lova:measurementCategory "Biological" ;
+    lova:comparisonGroup "Perfusion FLIP embedded" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-smll.202309911/perfusion-vs-static-infectivity> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "No significant difference in AAV infectivity, perfusion vs static FLIP culture" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-smll.202309911/perfusion-infectivity> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-smll.202309911/static-infectivity> ;
+    lova:direction "no difference" ;
+    lova:pValue 0.4437 ;
+    lova:isSignificant false .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202309911/industry-yield-comparison> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202309911/aav-static> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "FLIP scaffold systems achieved higher yield per cell compared to industry (iCELLis) processes" ;
+    lova:measurementType "AAV yield per cell relative to industry process" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "<100x more yield per cell" ;
+    lova:comparisonGroup "iCELLis industry bioreactor system" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202309911/batch-run-length-comparison> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202309911/aav-static> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "FLIP scaffold batch runs 2-3x longer than industry processes" ;
+    lova:measurementType "Batch run duration relative to industry process" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "2-3x longer batch runs" ;
+    lova:comparisonGroup "iCELLis industry bioreactor system" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202309911/alginate-transfection-failure> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202309911/alginate-scaleup> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "Alginate scaffold failed to give sustained transfection, scale-up 10-fold" ;
+    lova:measurementType "Sustained transfection" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Failed to sustain transfection past one week" ;
+    lova:comparisonGroup "HA-AC FLIP scaffold" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202309911/seeding-density-metabolic-fig3c> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202309911/seeding-density> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "Metabolic activity per cell decreases with increasing seeding density (100 to 10,000 cells/μL) in suspension and adherent HEK with FLIP" ;
+    lova:measurementType "Metabolic activity (% per cell)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Highest at 100 cells/μL, decreasing at 3000 and 10,000 cells/μL" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202309911/cluster-size-optimal> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202309911/cluster-size> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "Optimal cluster configuration: 3 gel clusters of 10μL each (30μL total) at 6000 cells/μL" ;
+    lova:measurementType "Metabolic activity / proliferation (optimal cluster condition)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Best balance of metabolic activity and proliferation at 3x10μL clusters, 6000 cells/μL" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202309911/transfection-toxicity-bolus-dose> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202309911/aav-suspension> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "Significant toxicity when treating suspension cells with same nanoparticle mass as embedded scaffold (0.1μg/μL culture)" ;
+    lova:measurementType "Toxicity" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Significant toxicity at 0.1μg/μL culture dose" ;
+    lova:pValue 0.0307 ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "Suspension-only cells at 0.01μg/μL culture" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202309911/viability-suspension-embedded-higher> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202309911/aav-suspension> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "Viability higher in FLIP embedded suspension scaffold vs suspension cells alone" ;
+    lova:measurementType "Viability" ;
+    lova:measurementCategory "Biological" ;
+    lova:pValue 0.0387 ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "Suspension cells alone" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202309911/viability-suspension-bolus-higher> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202309911/aav-suspension> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202309911> ;
+    rdfs:label "Viability higher in FLIP soluble (bolus) suspension scaffold vs suspension cells alone" ;
+    lova:measurementType "Viability" ;
+    lova:measurementCategory "Biological" ;
+    lova:pValue 0.0206 ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "Suspension cells alone" ;
+    lova:dataSource "[TEXT]" .

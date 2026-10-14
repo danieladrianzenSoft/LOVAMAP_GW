@@ -1,0 +1,1036 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> a bibo:AcademicArticle ;
+    rdfs:label "Stefanelli et al., 2019 — Citrullination of Fibronectin" ;
+    dc:title "Citrullination of fibronectin alters integrin clustering and focal adhesion stability promoting stromal cell invasion" ;
+    dc:identifier "10.1016/j.matbio.2019.04.002" ;
+    dc:date "2019"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/matrix-biology> ;
+    dc:creator <https://lovamap.com/ontology#author/stefanelli-victoria> ,
+               <https://lovamap.com/ontology#author/choudhury-shilpa> ,
+               <https://lovamap.com/ontology#author/hu-ping> ,
+               <https://lovamap.com/ontology#author/liu-yining> ,
+               <https://lovamap.com/ontology#author/schwenzer-anja> ,
+               <https://lovamap.com/ontology#author/yeh-chiuanren> ,
+               <https://lovamap.com/ontology#author/chambers-dwight> ,
+               <https://lovamap.com/ontology#author/vonbeck-kelly> ,
+               <https://lovamap.com/ontology#author/li-wei> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ,
+               <https://lovamap.com/ontology#author/midwood-kim> ,
+               <https://lovamap.com/ontology#author/torres-matthew> ,
+               <https://lovamap.com/ontology#author/barker-thomas> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/stefanelli-victoria>
+                      <https://lovamap.com/ontology#author/choudhury-shilpa>
+                      <https://lovamap.com/ontology#author/hu-ping>
+                      <https://lovamap.com/ontology#author/liu-yining>
+                      <https://lovamap.com/ontology#author/schwenzer-anja>
+                      <https://lovamap.com/ontology#author/yeh-chiuanren>
+                      <https://lovamap.com/ontology#author/chambers-dwight>
+                      <https://lovamap.com/ontology#author/vonbeck-kelly>
+                      <https://lovamap.com/ontology#author/li-wei>
+                      <https://lovamap.com/ontology#author/segura-tatiana>
+                      <https://lovamap.com/ontology#author/midwood-kim>
+                      <https://lovamap.com/ontology#author/torres-matthew>
+                      <https://lovamap.com/ontology#author/barker-thomas> ) ;
+    dc:bibliographicCitation "Stefanelli et al., 2019" ;
+    lova:focusMaterial "Native and citrullinated plasma fibronectin (FN/cFN), fibrinogen, and the 9-10 FNIII integrin-binding fragment studied for effects on integrin clustering, focal adhesion stability, fibroblast migration, and wound healing" .
+
+<https://lovamap.com/ontology#author/stefanelli-victoria> a foaf:Person ;
+    foaf:familyName "Stefanelli" ; foaf:givenName "Victoria" ; foaf:name "Victoria L. Stefanelli" .
+<https://lovamap.com/ontology#author/choudhury-shilpa> a foaf:Person ;
+    foaf:familyName "Choudhury" ; foaf:givenName "Shilpa" ; foaf:name "Shilpa Choudhury" .
+<https://lovamap.com/ontology#author/hu-ping> a foaf:Person ;
+    foaf:familyName "Hu" ; foaf:givenName "Ping" ; foaf:name "Ping Hu" .
+<https://lovamap.com/ontology#author/liu-yining> a foaf:Person ;
+    foaf:familyName "Liu" ; foaf:givenName "Yining" ; foaf:name "Yining Liu" .
+<https://lovamap.com/ontology#author/schwenzer-anja> a foaf:Person ;
+    foaf:familyName "Schwenzer" ; foaf:givenName "Anja" ; foaf:name "Anja Schwenzer" .
+<https://lovamap.com/ontology#author/yeh-chiuanren> a foaf:Person ;
+    foaf:familyName "Yeh" ; foaf:givenName "Chiuan-Ren" ; foaf:name "Chiuan‐Ren Yeh" .
+<https://lovamap.com/ontology#author/chambers-dwight> a foaf:Person ;
+    foaf:familyName "Chambers" ; foaf:givenName "Dwight" ; foaf:name "Dwight M. Chambers" .
+<https://lovamap.com/ontology#author/vonbeck-kelly> a foaf:Person ;
+    foaf:familyName "von Beck" ; foaf:givenName "Kelly" ; foaf:name "Kelly von Beck" .
+<https://lovamap.com/ontology#author/li-wei> a foaf:Person ;
+    foaf:familyName "Li" ; foaf:givenName "Wei" ; foaf:name "Wei Li" .
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ; foaf:givenName "Tatiana" ; foaf:name "Tatiana Segura" .
+<https://lovamap.com/ontology#author/midwood-kim> a foaf:Person ;
+    foaf:familyName "Midwood" ; foaf:givenName "Kim" ; foaf:name "Kim S. Midwood" .
+<https://lovamap.com/ontology#author/torres-matthew> a foaf:Person ;
+    foaf:familyName "Torres" ; foaf:givenName "Matthew" ; foaf:name "Matthew P. Torres" .
+<https://lovamap.com/ontology#author/barker-thomas> a foaf:Person ;
+    foaf:familyName "Barker" ; foaf:givenName "Thomas" ; foaf:name "Thomas Harrison Barker" .
+
+<https://lovamap.com/ontology#journal/matrix-biology> a bibo:Journal ;
+    dc:title "Matrix Biology" ;
+    bibo:issn "0945-053X" .
+
+<https://lovamap.com/ontology#material/10.1016-j.matbio.2019.04.002/fn> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "Native human plasma fibronectin (FN)" ;
+    lova:particleMaterial "Fibronectin" ;
+    lova:surfaceModification "Unmodified (native)" .
+
+<https://lovamap.com/ontology#material/10.1016-j.matbio.2019.04.002/cfn> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "Citrullinated fibronectin (cFN, PAD2+PAD4 treated)" ;
+    lova:particleMaterial "Fibronectin" ;
+    lova:surfaceModification "Citrullinated (PAD2+PAD4 treated)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.matbio.2019.04.002/pad-citrullination> .
+
+<https://lovamap.com/ontology#material/10.1016-j.matbio.2019.04.002/fibrinogen> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "Fibrinogen (Fib, FIB3)" ;
+    lova:particleMaterial "Fibrinogen" ;
+    lova:surfaceModification "Unmodified (native)" .
+
+<https://lovamap.com/ontology#material/10.1016-j.matbio.2019.04.002/citrullinated-fibrinogen> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "Citrullinated fibrinogen" ;
+    lova:particleMaterial "Fibrinogen" ;
+    lova:surfaceModification "Citrullinated (PAD-treated)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.matbio.2019.04.002/pad-citrullination> .
+
+<https://lovamap.com/ontology#material/10.1016-j.matbio.2019.04.002/fniii-9-10> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "Native 9-10 FNIII integrin-binding fragment" ;
+    lova:particleMaterial "Fibronectin fragment (9-10 FNIII)" ;
+    lova:surfaceModification "Unmodified (native)" .
+
+<https://lovamap.com/ontology#material/10.1016-j.matbio.2019.04.002/citrullinated-fniii-9-10> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "Citrullinated 9-10 FNIII integrin-binding fragment" ;
+    lova:particleMaterial "Fibronectin fragment (9-10 FNIII)" ;
+    lova:surfaceModification "Citrullinated (PAD-treated)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.matbio.2019.04.002/pad-citrullination> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.matbio.2019.04.002/pad-citrullination> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "In vitro enzymatic citrullination of FN/fibrinogen/fragments by PAD2 and PAD4" ;
+    lova:chemistry "Enzymatic deimination (citrullination of arginine residues)" ;
+    lova:manufacturingMethod "Incubation in PAD reaction buffer (100mM Tris-HCl, 5mM CaCl2, 0.3mg/mL protein, pH 7.4) with PAD2/PAD4 overnight at room temperature, 200 rpm shaking, quenched with 20mM EDTA" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.matbio.2019.04.002/pad4> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.matbio.2019.04.002/pad2> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.matbio.2019.04.002/cacl2> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.matbio.2019.04.002/tris-hcl> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.matbio.2019.04.002/edta> .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.matbio.2019.04.002/pad4> a lova:Reagent ;
+    rdfs:label "Peptidylarginine deiminase 4 (PAD4)" ;
+    lova:reagentRole "enzyme" ;
+    lova:concentration "10 U/mL" ;
+    lova:supplier "Cayman Chemical" ;
+    lova:reagentFunction "Catalyzes citrullination (conversion of arginine to citrulline)" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.matbio.2019.04.002/pad2> a lova:Reagent ;
+    rdfs:label "Peptidylarginine deiminase 2 (PAD2)" ;
+    lova:reagentRole "enzyme" ;
+    lova:concentration "5.6 μg/mL" ;
+    lova:supplier "SignalChem" ;
+    lova:reagentFunction "Catalyzes citrullination (conversion of arginine to citrulline)" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.matbio.2019.04.002/cacl2> a lova:Reagent ;
+    rdfs:label "Calcium Chloride (CaCl2)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "5mM (reaction buffer)" ;
+    lova:reagentFunction "Required cofactor for PAD enzyme activation" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.matbio.2019.04.002/tris-hcl> a lova:Reagent ;
+    rdfs:label "Tris-HCl" ;
+    lova:reagentRole "other" ;
+    lova:concentration "100mM" ;
+    lova:reagentFunction "Reaction buffer" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.matbio.2019.04.002/edta> a lova:Reagent ;
+    rdfs:label "EDTA" ;
+    lova:reagentRole "other" ;
+    lova:concentration "20mM" ;
+    lova:reagentFunction "Quenching of citrullination reaction" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.matbio.2019.04.002/fibrin-hydrogel> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "Fibrin hydrogel formation for in vivo wound application" ;
+    lova:chemistry "Thrombin-catalyzed fibrinogen polymerization with Factor XIII crosslinking" ;
+    lova:manufacturingMethod "Mixing fibrinogen, FN/cFN, Factor XIII, thrombin, and CaCl2 and polymerizing in wound bed" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.matbio.2019.04.002/fibrinogen-reagent> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.matbio.2019.04.002/thrombin> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.matbio.2019.04.002/factor-xiii> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.matbio.2019.04.002/cacl2-vwr> .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.matbio.2019.04.002/fibrinogen-reagent> a lova:Reagent ;
+    rdfs:label "Human Fibrinogen (FIB3)" ;
+    lova:reagentRole "other" ;
+    lova:catalogNumber "FIB3" ;
+    lova:supplier "Enzyme Research Laboratories" ;
+    lova:reagentFunction "Matrix for fibrin hydrogel" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.matbio.2019.04.002/thrombin> a lova:Reagent ;
+    rdfs:label "Thrombin from bovine plasma" ;
+    lova:reagentRole "enzyme" ;
+    lova:catalogNumber "T4648-1KU" ;
+    lova:supplier "Sigma-Aldrich" ;
+    lova:reagentFunction "Catalyzes fibrinogen polymerization into fibrin" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.matbio.2019.04.002/factor-xiii> a lova:Reagent ;
+    rdfs:label "Factor XIII (FXIIIa)" ;
+    lova:reagentRole "enzyme" ;
+    lova:reagentFunction "Crosslinking of fibrin gel" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.matbio.2019.04.002/cacl2-vwr> a lova:Reagent ;
+    rdfs:label "Calcium Chloride (VWR)" ;
+    lova:reagentRole "other" ;
+    lova:catalogNumber "97062-590" ;
+    lova:supplier "VWR" ;
+    lova:reagentFunction "Cofactor for fibrin gel polymerization/Factor XIII activity" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/ms-mapping> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.matbio.2019.04.002/cfn> ;
+    rdfs:label "LC-MS/MS mapping of citrullination sites in FN" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Post-translational modification site mapping" ;
+    lova:assayOrMethod "LC-MS/MS, Proteome Discoverer 2.1 / SEQUEST" ;
+    lova:equipment "UltiMate 3000 RSLCnano UPLC; Q-Exactive Plus Orbitrap (Thermo Scientific)" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/n-sites> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/ms-mapping> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "Number of unique FN citrullination sites identified" ;
+    lova:measurementType "Citrullination site count" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 24.0 ;
+    qudt:unit "sites" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/protein-coverage> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/ms-mapping> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "Aggregate protein coverage of MS analysis" ;
+    lova:measurementType "Protein sequence coverage" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 81.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/sites-functional-regions> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/ms-mapping> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "Citrullination sites within fibrin/collagen/heparin binding regions" ;
+    lova:measurementType "Citrullination site count (functional region)" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 14.0 ;
+    qudt:unit "sites" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/sites-cell-binding-domain> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/ms-mapping> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "Citrullination sites within primary cell-binding domain (9-10 FNIII)" ;
+    lova:measurementType "Citrullination site count (cell-binding domain)" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 5.0 ;
+    qudt:unit "sites" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/sites-prev-reported> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/ms-mapping> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "Previously reported citrullination sites confirmed (R1035, R1036, R2356)" ;
+    lova:measurementType "Citrullination site count (previously reported)" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 3.0 ;
+    qudt:unit "sites" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/sites-both-pads> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/ms-mapping> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "Citrullination sites modified by both PAD2 and PAD4" ;
+    lova:measurementType "Citrullination site count (shared)" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 10.0 ;
+    qudt:unit "sites" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/sites-pad4-unique> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/ms-mapping> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "PAD4-unique citrullination sites" ;
+    lova:measurementType "Citrullination site count (PAD4-unique)" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 6.0 ;
+    qudt:unit "sites" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/sites-pad2-unique> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/ms-mapping> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "PAD2-unique citrullination sites" ;
+    lova:measurementType "Citrullination site count (PAD2-unique)" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 4.0 ;
+    qudt:unit "sites" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/cho-adhesion> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.matbio.2019.04.002/fn> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.matbio.2019.04.002/cfn> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.matbio.2019.04.002/fibrinogen> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.matbio.2019.04.002/citrullinated-fibrinogen> ;
+    rdfs:label "CHO cell adhesion assay on FN/cFN/fibrinogen substrates" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell adhesion assay" ;
+    lova:cellType "CHO-B2 (αvβ3-transfected), CHO-K1 (intrinsic α5β1)" ;
+    lova:assayOrMethod "Fluorescent phalloidin/hoescht staining, cell count microscopy" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/cho-avb3-cfn> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/cho-adhesion> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "CHO-B2.αvβ3 adhesion reduced by about half on cFN vs FN" ;
+    lova:measurementType "Cell adhesion" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "reduced by about half" ;
+    lova:comparisonGroup "FN" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/cho-avb3-citfib> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/cho-adhesion> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "CHO-B2.αvβ3 adhesion eliminated on citrullinated fibrinogen" ;
+    lova:measurementType "Cell adhesion" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "adhesion eliminated" ;
+    lova:comparisonGroup "Fibrinogen" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/cho-k1-cfn> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/cho-adhesion> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "No difference in CHO-K1 adhesion between cFN and FN" ;
+    lova:measurementType "Cell adhesion" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "no difference" ;
+    lova:comparisonGroup "FN" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/integrin-if> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.matbio.2019.04.002/fn> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.matbio.2019.04.002/cfn> ;
+    rdfs:label "Confocal IF quantification of integrins within FAs of HFFs on FN/cFN" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immunofluorescence integrin quantification" ;
+    lova:cellType "Human Foreskin Fibroblasts (HFF)" ;
+    lova:assayOrMethod "Confocal immunofluorescence imaging" ;
+    lova:sampleSize 20 .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/beta1-fn> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/integrin-if> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "β1 integrin fluorescent intensity within FAs on FN" ;
+    lova:measurementType "Integrin fluorescence intensity" ;
+    lova:measurementCategory "Biological" ;
+    lova:comparisonGroup "cFN" ;
+    lova:sampleSize 20 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/beta1-cfn> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/integrin-if> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "β1 integrin fluorescent intensity within FAs on cFN" ;
+    lova:measurementType "Integrin fluorescence intensity" ;
+    lova:measurementCategory "Biological" ;
+    lova:comparisonGroup "FN" ;
+    lova:pValue 0.01 ;
+    lova:isSignificant true ;
+    lova:sampleSize 20 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.matbio.2019.04.002/beta1-cfn-vs-fn> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "β1 integrin intensity higher on cFN vs FN" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/beta1-cfn> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/beta1-fn> ;
+    lova:direction "higher" ;
+    lova:pValue 0.01 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/alpha5-fn> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/integrin-if> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "α5 integrin fluorescent intensity within FAs on FN" ;
+    lova:measurementType "Integrin fluorescence intensity" ;
+    lova:measurementCategory "Biological" ;
+    lova:comparisonGroup "cFN" ;
+    lova:sampleSize 20 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/alpha5-cfn> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/integrin-if> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "α5 integrin fluorescent intensity within FAs on cFN" ;
+    lova:measurementType "Integrin fluorescence intensity" ;
+    lova:measurementCategory "Biological" ;
+    lova:comparisonGroup "FN" ;
+    lova:pValue 0.04 ;
+    lova:isSignificant true ;
+    lova:sampleSize 20 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.matbio.2019.04.002/alpha5-cfn-vs-fn> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "α5 integrin intensity higher on cFN vs FN" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/alpha5-cfn> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/alpha5-fn> ;
+    lova:direction "higher" ;
+    lova:pValue 0.04 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/av-fn> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/integrin-if> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "αv integrin fluorescent intensity within FAs on FN" ;
+    lova:measurementType "Integrin fluorescence intensity" ;
+    lova:measurementCategory "Biological" ;
+    lova:comparisonGroup "cFN" ;
+    lova:sampleSize 20 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/av-cfn> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/integrin-if> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "αv integrin fluorescent intensity within FAs on cFN" ;
+    lova:measurementType "Integrin fluorescence intensity" ;
+    lova:measurementCategory "Biological" ;
+    lova:comparisonGroup "FN" ;
+    lova:pValue 0.5 ;
+    lova:isSignificant false ;
+    lova:sampleSize 20 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.matbio.2019.04.002/av-cfn-vs-fn> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "αv integrin intensity no difference between cFN and FN" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/av-cfn> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/av-fn> ;
+    lova:direction "no difference" ;
+    lova:pValue 0.5 ;
+    lova:isSignificant false .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/avb3-fn> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/integrin-if> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "αvβ3 integrin fluorescent intensity within FAs on FN" ;
+    lova:measurementType "Integrin fluorescence intensity" ;
+    lova:measurementCategory "Biological" ;
+    lova:comparisonGroup "cFN" ;
+    lova:sampleSize 20 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/avb3-cfn> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/integrin-if> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "αvβ3 integrin fluorescent intensity within FAs on cFN" ;
+    lova:measurementType "Integrin fluorescence intensity" ;
+    lova:measurementCategory "Biological" ;
+    lova:comparisonGroup "FN" ;
+    lova:pValue 0.6 ;
+    lova:isSignificant false ;
+    lova:sampleSize 20 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.matbio.2019.04.002/avb3-cfn-vs-fn> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "αvβ3 integrin intensity no difference between cFN and FN" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/avb3-cfn> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/avb3-fn> ;
+    lova:direction "no difference" ;
+    lova:pValue 0.6 ;
+    lova:isSignificant false .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/ratio-b1avb3-fn> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/integrin-if> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "β1:αvβ3 integrin intensity ratio within FAs on FN" ;
+    lova:measurementType "Integrin intensity ratio" ;
+    lova:measurementCategory "Biological" ;
+    lova:comparisonGroup "cFN" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/ratio-b1avb3-cfn> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/integrin-if> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "β1:αvβ3 integrin intensity ratio within FAs on cFN" ;
+    lova:measurementType "Integrin intensity ratio" ;
+    lova:measurementCategory "Biological" ;
+    lova:comparisonGroup "FN" ;
+    lova:pValue 0.01 ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.matbio.2019.04.002/ratio-b1avb3-cfn-vs-fn> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "β1:αvβ3 ratio higher on cFN vs FN" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/ratio-b1avb3-cfn> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/ratio-b1avb3-fn> ;
+    lova:direction "higher" ;
+    lova:pValue 0.01 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/ratio-a5avb3-fn> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/integrin-if> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "α5:αvβ3 integrin intensity ratio within FAs on FN" ;
+    lova:measurementType "Integrin intensity ratio" ;
+    lova:measurementCategory "Biological" ;
+    lova:comparisonGroup "cFN" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/ratio-a5avb3-cfn> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/integrin-if> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "α5:αvβ3 integrin intensity ratio within FAs on cFN" ;
+    lova:measurementType "Integrin intensity ratio" ;
+    lova:measurementCategory "Biological" ;
+    lova:comparisonGroup "FN" ;
+    lova:pValue 0.02 ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.matbio.2019.04.002/ratio-a5avb3-cfn-vs-fn> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "α5:αvβ3 ratio higher on cFN vs FN" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/ratio-a5avb3-cfn> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/ratio-a5avb3-fn> ;
+    lova:direction "higher" ;
+    lova:pValue 0.02 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/afm-stiffness> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.matbio.2019.04.002/fn> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.matbio.2019.04.002/cfn> ;
+    rdfs:label "AFM measurement of HFF cell stiffness on FN/cFN-coated glass" ;
+    lova:experimentCategory "Mechanical" ;
+    lova:experimentType "Atomic force microscopy (single-cell stiffness)" ;
+    lova:cellType "Human Foreskin Fibroblasts (HFF)" ;
+    lova:equipment "Asylum MFP-3D AFM, Bruker MCLT-O10 beaded tips (2.73 μm)" ;
+    lova:sampleSize 50 .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/stiffness-fn> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/afm-stiffness> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "HFF cell bulk modulus on FN" ;
+    lova:measurementType "Cell stiffness (Young's modulus)" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 4.536 ;
+    qudt:unit "kPa" ;
+    lova:sampleSize 50 ;
+    lova:comparisonGroup "cFN" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/stiffness-cfn> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/afm-stiffness> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "HFF cell bulk modulus on cFN" ;
+    lova:measurementType "Cell stiffness (Young's modulus)" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 5.773 ;
+    qudt:unit "kPa" ;
+    lova:sampleSize 50 ;
+    lova:pValue 0.0076 ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "FN" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.matbio.2019.04.002/stiffness-cfn-vs-fn> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "HFF cell stiffness higher on cFN vs FN" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/stiffness-cfn> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/stiffness-fn> ;
+    lova:direction "higher" ;
+    lova:pValue 0.0076 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/actin-content> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.matbio.2019.04.002/fn> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.matbio.2019.04.002/cfn> ;
+    rdfs:label "Quantification of F-actin content normalized to cell volume on FN/cFN" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "F-actin content quantification" ;
+    lova:cellType "Human Foreskin Fibroblasts (HFF)" ;
+    lova:assayOrMethod "Confocal z-stack phalloidin staining" ;
+    lova:sampleSize 20 .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/actin-fn> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/actin-content> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "F-actin content normalized to cell volume on FN" ;
+    lova:measurementType "F-actin content (normalized)" ;
+    lova:measurementCategory "Biological" ;
+    lova:comparisonGroup "cFN" ;
+    lova:sampleSize 20 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/actin-cfn> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/actin-content> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "F-actin content normalized to cell volume on cFN" ;
+    lova:measurementType "F-actin content (normalized)" ;
+    lova:measurementCategory "Biological" ;
+    lova:comparisonGroup "FN" ;
+    lova:isSignificant true ;
+    lova:sampleSize 20 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.matbio.2019.04.002/actin-cfn-vs-fn> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "F-actin content higher on cFN vs FN" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/actin-cfn> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/actin-fn> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/tfm> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.matbio.2019.04.002/fn> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.matbio.2019.04.002/cfn> ;
+    rdfs:label "Traction force microscopy of HFFs on FN/cFN patterned PAA gels" ;
+    lova:experimentCategory "Mechanical" ;
+    lova:experimentType "Traction force microscopy" ;
+    lova:cellType "Human Foreskin Fibroblasts (HFF)" ;
+    lova:equipment "Spinning disk confocal microscope (Perkin Elmer), 40x 1.25 N.A. water immersion objective" ;
+    lova:sampleSize 30 .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/tfm-fn> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/tfm> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "Average total contractile force per cell on FN" ;
+    lova:measurementType "Average total force (ΣT in 25min)" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:unit "nN" ;
+    lova:comparisonGroup "cFN" ;
+    lova:sampleSize 30 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/tfm-cfn> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/tfm> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "Average total contractile force per cell on cFN" ;
+    lova:measurementType "Average total force (ΣT in 25min)" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:unit "nN" ;
+    lova:pValue 0.00001 ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "FN" ;
+    lova:sampleSize 30 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.matbio.2019.04.002/tfm-fn-vs-cfn> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "Contractile force higher on FN compared to cFN" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/tfm-fn> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/tfm-cfn> ;
+    lova:direction "higher" ;
+    lova:pValue 0.00001 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/force-ip> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.matbio.2019.04.002/fn> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.matbio.2019.04.002/cfn> ;
+    rdfs:label "Force-inducible magnetic bead Co-IP signaling in HFFs" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Force-inducible immunoprecipitation and western blot/IF" ;
+    lova:cellType "Human Foreskin Fibroblasts (HFF)" ;
+    lova:assayOrMethod "Western blot (pFAK/FAK, pSRC/SRC, pILK/ILK), immunofluorescence" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/pfak-fas> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/force-ip> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "Total pFAK signal within FAs higher on cFN vs FN" ;
+    lova:measurementType "Phospho-FAK signal within FAs" ;
+    lova:measurementCategory "Biological" ;
+    lova:isSignificant true ;
+    lova:sampleSize 70 ;
+    lova:comparisonGroup "FN" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/psrc-fas> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/force-ip> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "Total pSrc signal within FAs higher on cFN vs FN" ;
+    lova:measurementType "Phospho-Src signal within FAs" ;
+    lova:measurementCategory "Biological" ;
+    lova:isSignificant true ;
+    lova:sampleSize 70 ;
+    lova:comparisonGroup "FN" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/pilk-total> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/force-ip> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "Total pILK signal per cell higher on cFN vs FN" ;
+    lova:measurementType "Phospho-ILK content" ;
+    lova:measurementCategory "Biological" ;
+    lova:isSignificant true ;
+    lova:sampleSize 50 ;
+    lova:comparisonGroup "FN" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/pgsk-ratio> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/force-ip> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "pGSK/GSK ratio higher on cFN vs FN" ;
+    lova:measurementType "Phospho-GSK/GSK ratio" ;
+    lova:measurementCategory "Biological" ;
+    lova:isSignificant true ;
+    lova:sampleSize 70 ;
+    lova:comparisonGroup "FN" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/nuclear-pgsk-ratio> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/force-ip> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "Nuclear pGSK/cellular GSK ratio higher on cFN vs FN" ;
+    lova:measurementType "Nuclear pGSK / cellular GSK ratio" ;
+    lova:measurementCategory "Biological" ;
+    lova:isSignificant true ;
+    lova:sampleSize 70 ;
+    lova:comparisonGroup "FN" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/alpha-actinin> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.matbio.2019.04.002/fn> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.matbio.2019.04.002/cfn> ;
+    rdfs:label "Alpha-actinin/paxillin focal adhesion stability assay" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Focal adhesion stability assay (α-actinin/paxillin colocalization)" ;
+    lova:cellType "Human Foreskin Fibroblasts (HFF)" ;
+    lova:assayOrMethod "Spinning disk confocal microscopy" ;
+    lova:sampleSize 75 .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/pearson-fn> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/alpha-actinin> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "Pearson's r between paxillin and α-actinin on FN" ;
+    lova:measurementType "Pearson's correlation coefficient (paxillin vs α-actinin)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.822 ;
+    qudt:unit "unitless" ;
+    lova:comparisonGroup "cFN" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/pearson-cfn> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/alpha-actinin> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "Pearson's r between paxillin and α-actinin on cFN" ;
+    lova:measurementType "Pearson's correlation coefficient (paxillin vs α-actinin)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.523 ;
+    qudt:unit "unitless" ;
+    lova:comparisonGroup "FN" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.matbio.2019.04.002/pearson-cfn-vs-fn> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "FA stability (paxillin/α-actinin colocalization) lower on cFN vs FN" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/pearson-cfn> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/pearson-fn> ;
+    lova:direction "lower" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/fa-turnover> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.matbio.2019.04.002/fn> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.matbio.2019.04.002/cfn> ;
+    rdfs:label "Real-time RFP-paxillin FA turnover analysis via TIRF microscopy" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Focal adhesion turnover analysis" ;
+    lova:cellType "Human Foreskin Fibroblasts (HFF) transfected with RFP-paxillin" ;
+    lova:assayOrMethod "TIRF confocal microscopy" ;
+    lova:sampleSize 14 .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/fa-lifetime-fn> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/fa-turnover> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "Average FA lifetime on FN" ;
+    lova:measurementType "FA lifetime" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 229.2 ;
+    qudt:unit "seconds" ;
+    lova:comparisonGroup "cFN" ;
+    lova:sampleSize 14 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/fa-lifetime-cfn> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/fa-turnover> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "Average FA lifetime on cFN" ;
+    lova:measurementType "FA lifetime" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 196.5 ;
+    qudt:unit "seconds" ;
+    lova:comparisonGroup "FN" ;
+    lova:sampleSize 14 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.matbio.2019.04.002/fa-lifetime-cfn-vs-fn> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "FA lifetime shorter on cFN vs FN" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/fa-lifetime-cfn> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/fa-lifetime-fn> ;
+    lova:direction "lower" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/fa-displacement-fn> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/fa-turnover> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "FA displacement rate on FN" ;
+    lova:measurementType "FA displacement rate" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.01247 ;
+    qudt:unit "μm/sec" ;
+    lova:comparisonGroup "cFN" ;
+    lova:sampleSize 14 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/fa-displacement-cfn> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/fa-turnover> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "FA displacement rate on cFN" ;
+    lova:measurementType "FA displacement rate" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.0187 ;
+    qudt:unit "μm/sec" ;
+    lova:comparisonGroup "FN" ;
+    lova:sampleSize 14 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.matbio.2019.04.002/fa-displacement-cfn-vs-fn> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "FA displacement rate higher on cFN vs FN" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/fa-displacement-cfn> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/fa-displacement-fn> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/random-migration> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.matbio.2019.04.002/fn> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.matbio.2019.04.002/cfn> ;
+    rdfs:label "Random migration assay of HFFs on FN/cFN" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell migration (time-lapse)" ;
+    lova:cellType "Human Foreskin Fibroblasts (HFF)" ;
+    lova:assayOrMethod "Nikon Biostation time-lapse imaging, Image J cell tracking" ;
+    lova:cultureDuration "20 hours" ;
+    lova:sampleSize 90 .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/velocity-fn> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/random-migration> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "Average cell velocity on FN" ;
+    lova:measurementType "Average cell migration velocity" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.1606 ;
+    qudt:unit "μm/min" ;
+    lova:comparisonGroup "cFN" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/velocity-cfn> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/random-migration> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "Average cell velocity on cFN" ;
+    lova:measurementType "Average cell migration velocity" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.1887 ;
+    qudt:unit "μm/min" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "FN" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.matbio.2019.04.002/velocity-cfn-vs-fn> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "Cell velocity higher on cFN vs FN" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/velocity-cfn> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/velocity-fn> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/persistence-fn> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/random-migration> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "Average persistence distance on FN" ;
+    lova:measurementType "Average persistence distance" ;
+    lova:measurementCategory "Biological" ;
+    qudt:unit "μm" ;
+    lova:comparisonGroup "cFN" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/persistence-cfn> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/random-migration> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "Average persistence distance on cFN" ;
+    lova:measurementType "Average persistence distance" ;
+    lova:measurementCategory "Biological" ;
+    qudt:unit "μm" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "FN" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.matbio.2019.04.002/persistence-cfn-vs-fn> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "Persistence distance higher on cFN vs FN" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/persistence-cfn> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/persistence-fn> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/wound-healing-invitro> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.matbio.2019.04.002/fn> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.matbio.2019.04.002/cfn> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.matbio.2019.04.002/fibrinogen> ;
+    rdfs:label "In vitro wound healing (scratch/insert) assay of HFFs on FN/cFN/Fib" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Wound healing assay" ;
+    lova:cellType "Human Foreskin Fibroblasts (HFF)" ;
+    lova:assayOrMethod "CytoSelect 24-well Wound Healing Assay, brightfield microscopy" ;
+    lova:cultureDuration "13 hours" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/wound-coverage-fn> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/wound-healing-invitro> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "Percent cell coverage within wound defect on FN" ;
+    lova:measurementType "Percent cell coverage (wound closure)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "cFN" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/wound-coverage-cfn> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/wound-healing-invitro> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "Percent cell coverage within wound defect on cFN" ;
+    lova:measurementType "Percent cell coverage (wound closure)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:unit "%" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "FN" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.matbio.2019.04.002/wound-coverage-cfn-vs-fn> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "In vitro wound coverage higher on cFN vs FN" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/wound-coverage-cfn> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/wound-coverage-fn> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/invivo-wound> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.matbio.2019.04.002/fn> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.matbio.2019.04.002/cfn> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.matbio.2019.04.002/fniii-9-10> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.matbio.2019.04.002/citrullinated-fniii-9-10> ;
+    rdfs:label "SKH-1 mouse excisional splinted dermal wound healing assay" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "In vivo dermal wound healing" ;
+    lova:cellSource "SKH-1 Elite mice (Charles River)" ;
+    lova:assayOrMethod "Excisional splinted wound model, H&E and Trichrome staining" ;
+    lova:cultureDuration "Day 0, 3, 5, 7" ;
+    lova:temperature "N/A (in vivo)" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/invivo-wound-closure-fn> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/invivo-wound> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "Remaining wound area at day 7 in FN-treated wounds" ;
+    lova:measurementType "Percent remaining wound area" ;
+    lova:measurementCategory "Biological" ;
+    lova:timePoint "Day 7" ;
+    lova:comparisonGroup "CitFn" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/invivo-wound-closure-citfn> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/invivo-wound> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "Remaining wound area at day 7 in CitFn-treated wounds" ;
+    lova:measurementType "Percent remaining wound area" ;
+    lova:measurementCategory "Biological" ;
+    lova:timePoint "Day 7" ;
+    lova:pValue 0.01 ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "FN" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.matbio.2019.04.002/invivo-wound-citfn-vs-fn> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "Wound closure faster (lower remaining wound area) in CitFn vs Fn at day 7" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/invivo-wound-closure-citfn> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/invivo-wound-closure-fn> ;
+    lova:direction "lower" ;
+    lova:pValue 0.01 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/ra-elisa> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.matbio.2019.04.002/cfn> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.matbio.2019.04.002/fn> ;
+    rdfs:label "ELISA screening of IgG response to citFN1410 peptide in RA patients and healthy controls" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Autoantibody screening (ELISA)" ;
+    lova:assayOrMethod "ELISA (96-well Nunc Maxisorp, HRP-conjugated anti-human IgGFc)" ;
+    lova:sampleSize 45 .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/ra-cit-positivity> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/ra-elisa> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "Percent RA patients positive for anti-citFN1410 IgG" ;
+    lova:measurementType "Antibody positivity rate" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 55.0 ;
+    qudt:unit "%" ;
+    lova:sampleSize 22 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/ra-arg-positivity> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/ra-elisa> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "Percent RA patients positive for anti-FN1410(ARG) IgG" ;
+    lova:measurementType "Antibody positivity rate" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 4.0 ;
+    qudt:unit "%" ;
+    lova:sampleSize 22 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.matbio.2019.04.002/ra-cit-vs-arg> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "Anti-citFN1410 (CIT) positivity higher than anti-FN1410 (ARG) in RA patients" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/ra-cit-positivity> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/ra-arg-positivity> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.matbio.2019.04.002/ra-arg-correlation> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.matbio.2019.04.002/ra-elisa> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.matbio.2019.04.002> ;
+    rdfs:label "Spearman correlation between OD450 ARG and OD450 CIT in RA sera" ;
+    lova:measurementType "Spearman correlation coefficient" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.2776 ;
+    qudt:unit "unitless" ;
+    lova:pValue 0.2109 ;
+    lova:isSignificant false ;
+    lova:dataSource "[TEXT]" .

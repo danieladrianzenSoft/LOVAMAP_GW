@@ -1,0 +1,912 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> a bibo:AcademicArticle ;
+    rdfs:label "Moshayedi et al., 2016 — Engineered HA Hydrogel for Stroke NSC Transplant" ;
+    dc:title "Systematic optimization of an engineered hydrogel allows for selective control of human neural stem cell survival and differentiation after transplantation in the stroke brain" ;
+    dc:identifier "10.1016/j.biomaterials.2016.07.028" ;
+    dc:date "2016"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/biomaterials> ;
+    dc:creator <https://lovamap.com/ontology#author/moshayedi-pouria> ,
+               <https://lovamap.com/ontology#author/nih-lina> ,
+               <https://lovamap.com/ontology#author/lorenzo-llorente-irene> ,
+               <https://lovamap.com/ontology#author/berg-andrew> ,
+               <https://lovamap.com/ontology#author/cinkornpumin-jessica> ,
+               <https://lovamap.com/ontology#author/lowry-william> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ,
+               <https://lovamap.com/ontology#author/carmichael-stanley> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/moshayedi-pouria>
+                       <https://lovamap.com/ontology#author/nih-lina>
+                       <https://lovamap.com/ontology#author/lorenzo-llorente-irene>
+                       <https://lovamap.com/ontology#author/berg-andrew>
+                       <https://lovamap.com/ontology#author/cinkornpumin-jessica>
+                       <https://lovamap.com/ontology#author/lowry-william>
+                       <https://lovamap.com/ontology#author/segura-tatiana>
+                       <https://lovamap.com/ontology#author/carmichael-stanley> ) ;
+    dc:bibliographicCitation "Moshayedi et al., 2016" ;
+    lova:focusMaterial "Hyaluronic acid (HA)-based self-polymerizing hydrogel for encapsulation and transplantation of human iPS-derived neural progenitor cells into the stroke cavity" .
+
+<https://lovamap.com/ontology#author/moshayedi-pouria> a foaf:Person ;
+    foaf:familyName "Moshayedi" ; foaf:givenName "Pouria" ; foaf:name "Pouria Moshayedi" .
+<https://lovamap.com/ontology#author/nih-lina> a foaf:Person ;
+    foaf:familyName "Nih" ; foaf:givenName "Lina R." ; foaf:name "Lina R. Nih" .
+<https://lovamap.com/ontology#author/lorenzo-llorente-irene> a foaf:Person ;
+    foaf:familyName "Lorenzo Llorente" ; foaf:givenName "Irene" ; foaf:name "Irene Lorenzo Llorente" .
+<https://lovamap.com/ontology#author/berg-andrew> a foaf:Person ;
+    foaf:familyName "Berg" ; foaf:givenName "Andrew R." ; foaf:name "Andrew R. Berg" .
+<https://lovamap.com/ontology#author/cinkornpumin-jessica> a foaf:Person ;
+    foaf:familyName "Cinkornpumin" ; foaf:givenName "Jessica K." ; foaf:name "Jessica K. Cinkornpumin" .
+<https://lovamap.com/ontology#author/lowry-william> a foaf:Person ;
+    foaf:familyName "Lowry" ; foaf:givenName "William E." ; foaf:name "William E. Lowry" .
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ; foaf:givenName "Tatiana" ; foaf:name "Tatiana Segura" .
+<https://lovamap.com/ontology#author/carmichael-stanley> a foaf:Person ;
+    foaf:familyName "Carmichael" ; foaf:givenName "Stanley Thomas" ; foaf:name "Stanley Thomas Carmichael" .
+
+<https://lovamap.com/ontology#journal/biomaterials> a bibo:Journal ;
+    dc:title "Biomaterials" ;
+    bibo:issn "0142-9612" .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.07.028/ha-100pa> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "HA hydrogel, 100 Pa stiffness" ;
+    lova:particleMaterial "Acrylated hyaluronic acid (HA-AC)" ;
+    lova:stiffnessValue 100.0 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:stiffnessQualitative "Soft hydrogel" .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.07.028/ha-350pa> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "HA hydrogel, 350 Pa stiffness (matches brain cortex)" ;
+    lova:particleMaterial "Acrylated hyaluronic acid (HA-AC)" ;
+    lova:stiffnessValue 350.0 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:stiffnessQualitative "Soft hydrogel" .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.07.028/ha-1kpa> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "HA hydrogel, 1 kPa stiffness" ;
+    lova:particleMaterial "Acrylated hyaluronic acid (HA-AC)" ;
+    lova:stiffnessValue 1000.0 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:stiffnessQualitative "Soft hydrogel" .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.07.028/ha-mmp-in> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "HA hydrogel with MMP-insensitive crosslinker (MMP-In)" ;
+    lova:particleMaterial "Acrylated hyaluronic acid (HA-AC)" ;
+    lova:stiffnessValue 350.0 ;
+    lova:stiffnessUnit "Pa" .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.07.028/ha-mmp-sen> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "HA hydrogel with MMP-sensitive crosslinker (MMP-Sen)" ;
+    lova:particleMaterial "Acrylated hyaluronic acid (HA-AC)" ;
+    lova:stiffnessValue 350.0 ;
+    lova:stiffnessUnit "Pa" .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.07.028/ha-empty> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "HA gel — empty, no adhesion peptide or growth factor, MMP-In crosslinker" ;
+    lova:particleMaterial "Acrylated hyaluronic acid (HA-AC)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2016.07.028/ha-gel-fab> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.07.028/ha-nopt> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "HA Nopt — non-optimized gel, equimolar RGD/YIGSR/IKVAV (100 μM each), no GF, MMP-sen crosslinker" ;
+    lova:particleMaterial "Acrylated hyaluronic acid (HA-AC)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2016.07.028/ha-gel-fab> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.07.028/ha-min> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "HA Min — DOE-optimized gel for minimized iPS-NPC survival (BDNF 0 ng/mL, BMP-4 37.22 ng/mL, RGD 100 μM, YIGSR 48 μM, IKVAV 300 μM, MMP-sen crosslinker)" ;
+    lova:particleMaterial "Acrylated hyaluronic acid (HA-AC)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2016.07.028/ha-gel-fab> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.07.028/ha-max> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "HA Max — DOE-optimized gel for maximized iPS-NPC survival (BDNF 200 ng/mL, BMP-4 155.28 ng/mL, RGD 100 μM, YIGSR 45 μM, IKVAV 43 μM, MMP-sen crosslinker)" ;
+    lova:particleMaterial "Acrylated hyaluronic acid (HA-AC)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2016.07.028/ha-gel-fab> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.07.028/gf-max> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "GF Max — bound growth factor condition for max cell survival (BMP-4 37.22 ng/mL, BDNF 0 ng/mL, RGD 300 μM constant)" ;
+    lova:particleMaterial "Acrylated hyaluronic acid (HA-AC) with heparin-bound growth factors" .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.07.028/gf-min> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "GF Min — bound growth factor condition for min cell survival (BDNF 200 ng/mL, BMP-4 155.28 ng/mL, RGD 300 μM constant)" ;
+    lova:particleMaterial "Acrylated hyaluronic acid (HA-AC) with heparin-bound growth factors" .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.07.028/pept-max> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "Pept Max — adhesion peptide condition for max cell survival (RGD 100 μM, IKVAV 48 μM, YIGSR 300 μM)" .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.07.028/pept-min> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "Pept Min — adhesion peptide condition for min cell survival (RGD 0 μM, IKVAV 100 μM, YIGSR 45 μM)" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2016.07.028/ha-gel-fab> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "Injectable self-polymerizing HA hydrogel via thiol-acrylate Michael-type addition" ;
+    lova:chemistry "Michael-type addition (thiol-acrylate)" ;
+    lova:manufacturingMethod "Two-step chemical synthesis (HA acrylation) followed by in situ gelation and syringe injection" ;
+    lova:annealingChemistry "MMP-degradable or MMP-nondegradable peptide crosslinking" ;
+    lova:annealingConditions "30 minutes at 37°C (in vitro); gelation in Hamilton syringe for in vivo injection, liquid for ≥10 minutes after mixing" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.07.028/ha-raw> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.07.028/adh> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.07.028/edc> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.07.028/nhs-ac> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.07.028/hepes> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.07.028/nhs-biotin> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.07.028/heparin> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.07.028/cysteamine> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.07.028/dtt> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.07.028/ellmans> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.07.028/rgd> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.07.028/yigsr> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.07.028/ikvav> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.07.028/mmp-deg-crosslinker> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.07.028/mmp-nondeg-crosslinker> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.07.028/bdnf> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.07.028/bmp4> .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.07.028/ha-raw> a lova:Reagent ;
+    rdfs:label "Hyaluronic acid (60,000 Da)" ;
+    lova:reagentRole "monomer" ;
+    lova:molecularWeight "60,000 Da" ;
+    lova:supplier "Genzyme, Cambridge, MA" ;
+    lova:concentration "2.0 g, 5.28 mmol" ;
+    lova:reagentFunction "Backbone polymer, acrylated to form HA-AC" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.07.028/adh> a lova:Reagent ;
+    rdfs:label "Adipic dihydrazide (ADH)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "18.0 g, 105.5 mmol" ;
+    lova:reagentFunction "Hydrazide modification of HA (HA-ADH)" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.07.028/edc> a lova:Reagent ;
+    rdfs:label "1-ethyl-3-(dimethylaminopropyl) carbodiimide hydrochloride (EDC)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:concentration "4.0 g, 20 mmol" ;
+    lova:reagentFunction "Carbodiimide coupling reagent" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.07.028/nhs-ac> a lova:Reagent ;
+    rdfs:label "N-acryloxysuccinimide (NHS-AC)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "1.33 g, 4.4 mmol" ;
+    lova:reagentFunction "Acrylation of HA-ADH to form HA-AC" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.07.028/hepes> a lova:Reagent ;
+    rdfs:label "4-(2-hydroxyethyl)-1-piperazine ethane-sulfonic acid (HEPES) buffer" ;
+    lova:reagentRole "solvent" ;
+    lova:concentration "10 mM HEPES, 150 mM NaCl, 10 mM EDTA, pH 7.4 (modification); 0.3 M HEPES (gelation)" ;
+    lova:reagentFunction "Buffer for reaction and gel precursor dissolution" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.07.028/nhs-biotin> a lova:Reagent ;
+    rdfs:label "Sulfo-NHS-LC-biotin (NHS-biotin)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "100 mg added to 300 mg HA-AC (3 mg/mL in PBS)" ;
+    lova:reagentFunction "Biotin tagging of HA-AC gel for visualization" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.07.028/heparin> a lova:Reagent ;
+    rdfs:label "Heparin (carboxylic acid groups)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Alfa Caesar, Ward Hill, MA" ;
+    lova:concentration "2 mg/mL" ;
+    lova:reagentFunction "Thiolated and incorporated into HA backbone for growth factor binding/retention" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.07.028/cysteamine> a lova:Reagent ;
+    rdfs:label "Cysteamine" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Thiolation of heparin carboxylic acid groups" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.07.028/dtt> a lova:Reagent ;
+    rdfs:label "DTT (dithiothreitol)" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Reduces oxidized disulfide groups to release thiols on heparin" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.07.028/ellmans> a lova:Reagent ;
+    rdfs:label "Ellman's reagent" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Measurement of thiol group content on heparin (412 nm absorbance)" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.07.028/rgd> a lova:Reagent ;
+    rdfs:label "RGD adhesion peptide (Ac-GCGYGRGDSPG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "GCGYGRGDSPG" ;
+    lova:supplier "Genscript, Piscataway, NJ" ;
+    lova:reagentFunction "Fibronectin-derived cell adhesion motif" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.07.028/yigsr> a lova:Reagent ;
+    rdfs:label "YIGSR adhesion peptide (Ac-GCGYGYIGSR-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "GCGYGYIGSR" ;
+    lova:supplier "Genscript" ;
+    lova:reagentFunction "Laminin-derived cell adhesion motif" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.07.028/ikvav> a lova:Reagent ;
+    rdfs:label "IKVAV adhesion peptide (Ac-IKVAVGYGCG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "IKVAVGYGCG" ;
+    lova:supplier "Genscript" ;
+    lova:reagentFunction "Laminin-derived cell adhesion motif" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.07.028/mmp-deg-crosslinker> a lova:Reagent ;
+    rdfs:label "MMP-degradable crosslinker peptide (Ac-GCRDGPQGIWGQDRCG-NH2)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:sequence "GCRDGPQGIWGQDRCG" ;
+    lova:supplier "Genscript" ;
+    lova:reagentFunction "MMP-sensitive inter-particle gel crosslinking, promotes vascularization" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.07.028/mmp-nondeg-crosslinker> a lova:Reagent ;
+    rdfs:label "MMP-nondegradable crosslinker peptide (Ac-GCRE[PGQIWGQ]ERCG-NH2)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:sequence "GCREPGQIWGQERCG" ;
+    lova:reagentFunction "MMP-insensitive inter-particle gel crosslinking" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.07.028/bdnf> a lova:Reagent ;
+    rdfs:label "Brain-derived neurotrophic factor (BDNF)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "0-200 ng/mL" ;
+    lova:reagentFunction "Promotes NPC survival/differentiation; delivered soluble or heparin-bound" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.07.028/bmp4> a lova:Reagent ;
+    rdfs:label "Bone morphogenic protein-4 (BMP-4)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "0-200 ng/mL" ;
+    lova:reagentFunction "Promotes NPC survival/differentiation; delivered soluble or heparin-bound" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.07.028/rheometry> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.07.028/ha-100pa> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.07.028/ha-350pa> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.07.028/ha-1kpa> ;
+    rdfs:label "Rheometry of HA gel stiffness" ;
+    lova:experimentCategory "Mechanical" ;
+    lova:experimentType "Oscillatory rheometry" ;
+    lova:equipment "Physica MCR 301, Anton Paar" ;
+    lova:frequency "0.1-10 rad/s" ;
+    lova:strainRate "1% constant strain" ;
+    lova:temperature "37°C" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.07.028/in-vivo-gel-volume> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.07.028/ha-100pa> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.07.028/ha-350pa> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.07.028/ha-1kpa> ;
+    rdfs:label "In vivo gel volume and infarcted tissue quantification after stroke cavity injection" ;
+    lova:experimentCategory "Histological" ;
+    lova:experimentType "TTC staining" ;
+    lova:assayOrMethod "Triphenyl tetrazolium chloride (TTC) staining" ;
+    lova:timePoint "24h post-injection" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.07.028/mmp-vascularization> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.07.028/ha-mmp-in> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.07.028/ha-mmp-sen> ;
+    rdfs:label "Vascular ingrowth in MMP-sensitive vs MMP-insensitive crosslinked HA gels" ;
+    lova:experimentCategory "Histological" ;
+    lova:experimentType "Immunohistochemistry" ;
+    lova:assayOrMethod "Laminin/collagen staining" ;
+    lova:timePoint "2 weeks post-injection" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.07.028/doe-soluble-gf> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.07.028/ha-max> ;
+    rdfs:label "DOE optimization of soluble BDNF/BMP-4 concentration for iPS-NPC survival in vitro" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell survival (DOE/RSM)" ;
+    lova:assayOrMethod "CyQUANT cell proliferation assay" ;
+    lova:cellType "iPS-NPC" ;
+    lova:cellSource "Human iPS-derived neural progenitor cells" ;
+    lova:cultureDuration "1 and 7 days" ;
+    lova:temperature "37°C" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.07.028/doe-bound-gf> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.07.028/gf-max> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.07.028/gf-min> ;
+    rdfs:label "DOE optimization of heparin-bound BDNF/BMP-4 concentration for iPS-NPC survival in vitro" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell survival (DOE/RSM)" ;
+    lova:assayOrMethod "CyQUANT cell proliferation assay" ;
+    lova:cellType "iPS-NPC" ;
+    lova:cultureDuration "1 and 7 days" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.07.028/combination-optimal> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.07.028/ha-max> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.07.028/ha-min> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.07.028/gf-max> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.07.028/gf-min> ;
+    rdfs:label "In vitro validation of combined optimal (HA Max) and minimal (HA Min) gel formulations" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell survival, sprouting, differentiation" ;
+    lova:assayOrMethod "Immunofluorescence staining and flow cytometry" ;
+    lova:cellType "iPS-NPC" ;
+    lova:cultureDuration "1 week" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.07.028/gel-resorption-mri> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.07.028/ha-max> ;
+    rdfs:label "In vivo HA Max gel degradation/resorption with and without encapsulated iPS-NPCs" ;
+    lova:experimentCategory "Imaging" ;
+    lova:experimentType "T2-weighted MRI" ;
+    lova:equipment "7T Bruker BioSpin MRI" ;
+    lova:cellType "iPS-NPC" ;
+    lova:seedingDensity "50,000 or 100,000 cells/scaffold" ;
+    lova:timePoint "2, 6, 9 weeks post-transplant" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.07.028/proliferation-in-vivo> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.07.028/ha-empty> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.07.028/ha-nopt> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.07.028/ha-max> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.07.028/ha-min> ;
+    rdfs:label "iPS-NPC proliferation (HuNu/Ki67) after transplantation into stroke cavity" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Proliferation" ;
+    lova:assayOrMethod "Immunohistochemistry (HuNu/Ki67)" ;
+    lova:cellType "iPS-NPC" ;
+    lova:seedingDensity "100,000 cells/scaffold" ;
+    lova:timePoint "2 and 6 weeks post-transplant" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.07.028/differentiation-in-vivo> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.07.028/ha-empty> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.07.028/ha-nopt> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.07.028/ha-max> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.07.028/ha-min> ;
+    rdfs:label "iPS-NPC differentiation (SOX2, NF200) after transplantation into stroke cavity" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Differentiation" ;
+    lova:assayOrMethod "Immunohistochemistry (SOX2/HuNu, NF200/GFP)" ;
+    lova:cellType "iPS-NPC" ;
+    lova:timePoint "2 and 6 weeks post-transplant" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.07.028/astrocytic-differentiation> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.07.028/ha-empty> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.07.028/ha-nopt> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.07.028/ha-max> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.07.028/ha-min> ;
+    rdfs:label "Astrocytic differentiation of iPS-NPCs (GFAP, S100b) at 6 weeks" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Differentiation" ;
+    lova:assayOrMethod "Immunohistochemistry (GFP/GFAP/S100b)" ;
+    lova:cellType "iPS-NPC" ;
+    lova:timePoint "6 weeks post-transplant" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.07.028/survival-in-vivo> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.07.028/ha-empty> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.07.028/ha-max> ;
+    rdfs:label "iPS-NPC survival with/without HA Max encapsulation in C57BL/6 wild-type mice (single agent immunosuppression)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell survival" ;
+    lova:assayOrMethod "GFP fluorescence quantification" ;
+    lova:cellType "iPS-NPC" ;
+    lova:timePoint "2 weeks post-transplant" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/gelvol-100pa> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.07.028/in-vivo-gel-volume> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "Remaining gel volume, 100 Pa gel, 24h" ;
+    lova:measurementType "Remaining gel volume" ;
+    lova:measurementCategory "Histological" ;
+    qudt:numericValue 0.6 ;
+    qudt:unit "μL" ;
+    lova:timePoint "24h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/gelvol-350pa> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.07.028/in-vivo-gel-volume> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "Remaining gel volume, 350 Pa gel, 24h" ;
+    lova:measurementType "Remaining gel volume" ;
+    lova:measurementCategory "Histological" ;
+    qudt:numericValue 1.6 ;
+    qudt:unit "μL" ;
+    lova:timePoint "24h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/gelvol-1kpa> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.07.028/in-vivo-gel-volume> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "Remaining gel volume, 1 kPa gel, 24h" ;
+    lova:measurementType "Remaining gel volume" ;
+    lova:measurementCategory "Histological" ;
+    qudt:numericValue 2.1 ;
+    qudt:unit "μL" ;
+    lova:timePoint "24h" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2016.07.028/gelvol-350-vs-100> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "Remaining gel volume higher for 350 Pa gel than 100 Pa gel" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/gelvol-350pa> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/gelvol-100pa> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/infarct-stroke> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.07.028/in-vivo-gel-volume> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "Remaining infarcted tissue, Stroke only, 24h" ;
+    lova:measurementType "Remaining infarcted tissue" ;
+    lova:measurementCategory "Histological" ;
+    qudt:numericValue 1.7 ;
+    qudt:unit "μL" ;
+    lova:timePoint "24h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/infarct-pbs> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.07.028/in-vivo-gel-volume> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "Remaining infarcted tissue, PBS injection, 24h" ;
+    lova:measurementType "Remaining infarcted tissue" ;
+    lova:measurementCategory "Histological" ;
+    qudt:numericValue 3.0 ;
+    qudt:unit "μL" ;
+    lova:timePoint "24h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/infarct-100pa> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.07.028/in-vivo-gel-volume> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "Remaining infarcted tissue, 100 Pa gel, 24h" ;
+    lova:measurementType "Remaining infarcted tissue" ;
+    lova:measurementCategory "Histological" ;
+    qudt:numericValue 2.9 ;
+    qudt:unit "μL" ;
+    lova:timePoint "24h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/infarct-350pa> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.07.028/in-vivo-gel-volume> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "Remaining infarcted tissue, 350 Pa gel, 24h (lowest)" ;
+    lova:measurementType "Remaining infarcted tissue" ;
+    lova:measurementCategory "Histological" ;
+    qudt:numericValue 1.2 ;
+    qudt:unit "μL" ;
+    lova:timePoint "24h" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/infarct-1kpa> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.07.028/in-vivo-gel-volume> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "Remaining infarcted tissue, 1 kPa gel, 24h" ;
+    lova:measurementType "Remaining infarcted tissue" ;
+    lova:measurementCategory "Histological" ;
+    qudt:numericValue 2.5 ;
+    qudt:unit "μL" ;
+    lova:timePoint "24h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2016.07.028/infarct-350-vs-1kpa> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "Remaining infarcted tissue lower for 350 Pa gel vs 1 kPa gel" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/infarct-350pa> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/infarct-1kpa> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/vessel-mmp-in> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.07.028/mmp-vascularization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "Vessel length, MMP-insensitive crosslinked gel, 2 weeks" ;
+    lova:measurementType "Vessel length" ;
+    lova:measurementCategory "Histological" ;
+    qudt:numericValue 0.1 ;
+    qudt:unit "mm" ;
+    lova:timePoint "2 weeks" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/vessel-mmp-sen> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.07.028/mmp-vascularization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "Vessel length, MMP-sensitive crosslinked gel, 2 weeks" ;
+    lova:measurementType "Vessel length" ;
+    lova:measurementCategory "Histological" ;
+    qudt:numericValue 0.65 ;
+    qudt:unit "mm" ;
+    lova:timePoint "2 weeks" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2016.07.028/vessel-sen-vs-in> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "Vessel length higher in MMP-sensitive vs MMP-insensitive crosslinked gel" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/vessel-mmp-sen> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/vessel-mmp-in> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/soluble-gf-max-condition> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.07.028/doe-soluble-gf> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "DOE-predicted optimal soluble GF formulation for greatest cell survival (BDNF 200 ng/mL, BMP-4 0 ng/mL)" ;
+    lova:measurementType "Optimal soluble growth factor concentration" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "BDNF: 200 ng/mL, BMP-4: 0 ng/mL" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/soluble-gf-min-condition> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.07.028/doe-soluble-gf> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "DOE-predicted optimal soluble GF formulation for least cell survival (BDNF 0 ng/mL, BMP-4 26.52 ng/mL)" ;
+    lova:measurementType "Optimal soluble growth factor concentration" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "BDNF: 0 ng/mL, BMP-4: 26.52 ng/mL" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/bound-gf-max-condition> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.07.028/doe-bound-gf> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "DOE-predicted optimal bound GF formulation for greatest survival (GF Max: BMP-4 37.22 ng/mL, BDNF 0 ng/mL)" ;
+    lova:measurementType "Optimal bound growth factor concentration" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "BMP-4: 37.22 ng/mL, BDNF: 0 ng/mL" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/bound-gf-min-condition> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.07.028/doe-bound-gf> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "DOE-predicted optimal bound GF formulation for least survival (GF Min: BDNF 200 ng/mL, BMP-4 155.28 ng/mL)" ;
+    lova:measurementType "Optimal bound growth factor concentration" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "BDNF: 200 ng/mL, BMP-4: 155.28 ng/mL" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/cellnum-rgd> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.07.028/combination-optimal> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "Normalized cell number, RGD-only control gel, 1 week" ;
+    lova:measurementType "Normalized cell number" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.3 ;
+    qudt:unit "dimensionless" ;
+    lova:timePoint "1 week" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/cellnum-hamax> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.07.028/combination-optimal> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "Normalized cell number, HA Max, 1 week" ;
+    lova:measurementType "Normalized cell number" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.6 ;
+    qudt:unit "dimensionless" ;
+    lova:timePoint "1 week" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "RGD" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2016.07.028/cellnum-hamax-vs-rgd> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "Normalized cell number higher in HA Max than RGD-only control" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/cellnum-hamax> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/cellnum-rgd> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/axonal-rgd> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.07.028/combination-optimal> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "Axonal length, RGD-only control gel, 1 week" ;
+    lova:measurementType "Axonal length" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.0 ;
+    qudt:unit "μm" ;
+    lova:timePoint "1 week" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/axonal-hamax> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.07.028/combination-optimal> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "Axonal length, HA Max, 1 week" ;
+    lova:measurementType "Axonal length" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 180.0 ;
+    qudt:unit "μm" ;
+    lova:timePoint "1 week" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "RGD" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2016.07.028/axonal-hamax-vs-rgd> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "Axonal length higher in HA Max than RGD-only control" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/axonal-hamax> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/axonal-rgd> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/dcx-rgd> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.07.028/combination-optimal> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "Dcx percent, RGD-only control gel, 1 week" ;
+    lova:measurementType "Dcx-positive percent" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "1 week" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/dcx-hamax> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.07.028/combination-optimal> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "Dcx percent, HA Max, 1 week" ;
+    lova:measurementType "Dcx-positive percent" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 3.8 ;
+    qudt:unit "%" ;
+    lova:timePoint "1 week" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "RGD" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2016.07.028/dcx-hamax-vs-rgd> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "Dcx percent higher in HA Max than RGD-only control" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/dcx-hamax> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/dcx-rgd> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/gelvol-hamax-nocells> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.07.028/gel-resorption-mri> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "Remaining gel volume, HA Max (no cells), 9 weeks (MRI)" ;
+    lova:measurementType "Remaining gel volume" ;
+    lova:measurementCategory "Imaging" ;
+    qudt:numericValue 1.1 ;
+    qudt:unit "μL" ;
+    lova:stdDev 0.4 ;
+    lova:timePoint "9 weeks" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/gelvol-hamax-withcells> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.07.028/gel-resorption-mri> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "Remaining gel volume, HA Max + 100,000 cells, 9 weeks (MRI)" ;
+    lova:measurementType "Remaining gel volume" ;
+    lova:measurementCategory "Imaging" ;
+    qudt:numericValue 0.3 ;
+    qudt:unit "μL" ;
+    lova:stdDev 0.1 ;
+    lova:timePoint "9 weeks" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "HA Max (no cells)" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2016.07.028/gelvol-hamax-cells-vs-nocells> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "Remaining gel volume lower when HA Max loaded with 100,000 cells vs cell-free HA Max at 9 weeks" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/gelvol-hamax-withcells> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/gelvol-hamax-nocells> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/proliferation-hamax-wk2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.07.028/proliferation-in-vivo> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "Proliferation (HuNu/Ki67), HA Max, 2 weeks" ;
+    lova:measurementType "Proliferation" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 30.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Week 2" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/proliferation-hamax-wk6> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.07.028/proliferation-in-vivo> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "Proliferation (HuNu/Ki67), HA Max, 6 weeks" ;
+    lova:measurementType "Proliferation" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 8.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Week 6" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2016.07.028/prolif-hamax-wk2-vs-wk6> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "Proliferation higher in HA Max at week 2 than at week 6" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/proliferation-hamax-wk2> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/proliferation-hamax-wk6> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/sox2-noha> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.07.028/differentiation-in-vivo> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "SOX2/HuNu ratio, No HA condition" ;
+    lova:measurementType "SOX2/HuNu ratio" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 75.0 ;
+    qudt:unit "%" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/sox2-hamax> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.07.028/differentiation-in-vivo> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "SOX2/HuNu ratio, HA Max condition" ;
+    lova:measurementType "SOX2/HuNu ratio" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 45.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2016.07.028/sox2-noha-vs-hamax> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "SOX2/HuNu ratio higher in No HA condition than HA Max" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/sox2-noha> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/sox2-hamax> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/nf200-hanopt> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.07.028/differentiation-in-vivo> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "NF200/GFP ratio, HA Nopt condition" ;
+    lova:measurementType "NF200/GFP ratio" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 58.0 ;
+    qudt:unit "%" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/nf200-hamax> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.07.028/differentiation-in-vivo> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "NF200/GFP ratio, HA Max condition" ;
+    lova:measurementType "NF200/GFP ratio" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 30.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2016.07.028/nf200-hanopt-vs-hamax> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "NF200/GFP ratio higher in HA Nopt than HA Max" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/nf200-hanopt> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/nf200-hamax> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/survival-gfp-noha> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.07.028/survival-in-vivo> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "iPS-NPC survival (GFP fluorescence), No HA condition, 2 weeks" ;
+    lova:measurementType "GFP fluorescence (survival)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 8.0 ;
+    qudt:unit "A.U." ;
+    lova:timePoint "2 weeks" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/survival-gfp-hamax> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.07.028/survival-in-vivo> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "iPS-NPC survival (GFP fluorescence), HA Max condition, 2 weeks" ;
+    lova:measurementType "GFP fluorescence (survival)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 40.0 ;
+    qudt:unit "A.U." ;
+    lova:timePoint "2 weeks" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2016.07.028/survival-noha-vs-hamax> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "iPS-NPC survival lower without HA Max encapsulation than with it" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/survival-gfp-noha> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/survival-gfp-hamax> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/gfp-gfap-hamax> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.07.028/astrocytic-differentiation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "GFP/GFAP (%, normalized to GFP), HA Max, 6 weeks" ;
+    lova:measurementType "GFP/GFAP percent" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 75.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "6 weeks" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/gfp-gfap-noha> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.07.028/astrocytic-differentiation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "GFP/GFAP (%, normalized to GFP), No HA, 6 weeks" ;
+    lova:measurementType "GFP/GFAP percent" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 12.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "6 weeks" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2016.07.028/gfp-gfap-hamax-vs-noha> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "GFP/GFAP percent higher in HA Max than No HA" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/gfp-gfap-hamax> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/gfp-gfap-noha> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/gfp-gfap-s100b-hamax> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.07.028/astrocytic-differentiation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "GFP/GFAP/S100b (%, normalized to GFP), HA Max, 6 weeks" ;
+    lova:measurementType "GFP/GFAP/S100b percent" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 62.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "6 weeks" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/gfp-gfap-s100b-noha> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.07.028/astrocytic-differentiation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "GFP/GFAP/S100b (%, normalized to GFP), No HA, 6 weeks" ;
+    lova:measurementType "GFP/GFAP/S100b percent" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 10.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "6 weeks" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2016.07.028/gfp-gfap-s100b-hamax-vs-noha> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "GFP/GFAP/S100b percent higher in HA Max than No HA" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/gfp-gfap-s100b-hamax> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/gfp-gfap-s100b-noha> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/degree-acrylation> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.07.028/rheometry> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "Degree of acrylation of HA-AC" ;
+    lova:measurementType "Degree of acrylation" ;
+    lova:measurementCategory "Chemical" ;
+    qudt:numericValue 14.9 ;
+    qudt:unit "%" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/cell-viability-transplant> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.07.028/survival-in-vivo> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "iPS-NPC viability throughout transplantation process" ;
+    lova:measurementType "Cell viability" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "above 95-97% (Trypan blue exclusion)" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.07.028/injection-volume> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.07.028/gel-resorption-mri> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.07.028> ;
+    rdfs:label "Injected gel/cell volume into stroke cavity" ;
+    lova:measurementType "Injection volume" ;
+    lova:measurementCategory "Procedural" ;
+    qudt:numericValue 2.0 ;
+    qudt:unit "μL" ;
+    lova:dataSource "[TEXT]" .

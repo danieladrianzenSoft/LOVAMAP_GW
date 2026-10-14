@@ -1,0 +1,807 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> a bibo:AcademicArticle ;
+    rdfs:label "Wang et al., 2024 — Optimizing neurotransmitter pathway detection by IR-MALDESI-MSI in mouse brain" ;
+    dc:title "Optimizing neurotransmitter pathway detection by IR-MALDESI-MSI in mouse brain" ;
+    dc:identifier "10.1007/s00216-024-05354-1" ;
+    dc:date "2024"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/analytical-and-bioanalytical-chemistry> ;
+    dc:creator <https://lovamap.com/ontology#author/wang-mary> ,
+               <https://lovamap.com/ontology#author/ouyang-yunxin> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ,
+               <https://lovamap.com/ontology#author/muddiman-david> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/wang-mary>
+                       <https://lovamap.com/ontology#author/ouyang-yunxin>
+                       <https://lovamap.com/ontology#author/segura-tatiana>
+                       <https://lovamap.com/ontology#author/muddiman-david> ) ;
+    dc:bibliographicCitation "Wang et al., 2024" ;
+    lova:focusMaterial "Mouse brain striatal tissue sections prepared by sucrose-embedding, PFA-fixation, sucrose-embedding/PFA-fixation, or fresh-freezing, imaged with and without ice matrix by IR-MALDESI-MSI for neurotransmitter detection" .
+
+<https://lovamap.com/ontology#author/wang-mary> a foaf:Person ;
+    foaf:familyName "Wang" ;
+    foaf:givenName "Mary F." ;
+    foaf:name "Mary F. Wang" .
+
+<https://lovamap.com/ontology#author/ouyang-yunxin> a foaf:Person ;
+    foaf:familyName "Ouyang" ;
+    foaf:givenName "Yunxin" ;
+    foaf:name "Yunxin Ouyang" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" ;
+    schema:affiliation "Duke University, Department of Biomedical Engineering" .
+
+<https://lovamap.com/ontology#author/muddiman-david> a foaf:Person ;
+    foaf:familyName "Muddiman" ;
+    foaf:givenName "David C." ;
+    foaf:name "David C. Muddiman" .
+
+<https://lovamap.com/ontology#journal/analytical-and-bioanalytical-chemistry> a bibo:Journal ;
+    dc:title "Analytical and Bioanalytical Chemistry" ;
+    bibo:issn "1618-2642" .
+
+<https://lovamap.com/ontology#material/10.1007-s00216-024-05354-1/sucrose-ice> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "Sucrose-embedded mouse brain, with ice matrix (Sucrose/Ice)" ;
+    lova:particleMaterial "Mouse brain tissue (C57BL/6J)" ;
+    lova:surfaceModification "Sucrose-embedded (30% sucrose), with exogenous ice matrix" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1007-s00216-024-05354-1/fab-sucrose> .
+
+<https://lovamap.com/ontology#material/10.1007-s00216-024-05354-1/sucrose-noice> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "Sucrose-embedded mouse brain, without ice matrix (Sucrose/No-Ice)" ;
+    lova:particleMaterial "Mouse brain tissue (C57BL/6J)" ;
+    lova:surfaceModification "Sucrose-embedded (30% sucrose), no ice matrix" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1007-s00216-024-05354-1/fab-sucrose> .
+
+<https://lovamap.com/ontology#material/10.1007-s00216-024-05354-1/fresh-ice> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "Fresh-frozen mouse brain, with ice matrix (Fresh/Ice)" ;
+    lova:particleMaterial "Mouse brain tissue (C57BL/6J)" ;
+    lova:surfaceModification "Fresh-frozen, no fixation/embedding, with exogenous ice matrix" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1007-s00216-024-05354-1/fab-fresh> .
+
+<https://lovamap.com/ontology#material/10.1007-s00216-024-05354-1/fresh-noice> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "Fresh-frozen mouse brain, without ice matrix (Fresh/No-Ice)" ;
+    lova:particleMaterial "Mouse brain tissue (C57BL/6J)" ;
+    lova:surfaceModification "Fresh-frozen, no fixation/embedding, no ice matrix" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1007-s00216-024-05354-1/fab-fresh> .
+
+<https://lovamap.com/ontology#material/10.1007-s00216-024-05354-1/sucrose-pfa-ice> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "Sucrose-embedded, PFA-fixed mouse brain, with ice matrix (Sucrose/PFA/Ice)" ;
+    lova:particleMaterial "Mouse brain tissue (C57BL/6J)" ;
+    lova:surfaceModification "PFA-fixed (4%), then sucrose-embedded (30%), with exogenous ice matrix" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1007-s00216-024-05354-1/fab-sucrose-pfa> .
+
+<https://lovamap.com/ontology#material/10.1007-s00216-024-05354-1/sucrose-pfa-noice> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "Sucrose-embedded, PFA-fixed mouse brain, without ice matrix (Sucrose/PFA/No-Ice)" ;
+    lova:particleMaterial "Mouse brain tissue (C57BL/6J)" ;
+    lova:surfaceModification "PFA-fixed (4%), then sucrose-embedded (30%), no ice matrix" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1007-s00216-024-05354-1/fab-sucrose-pfa> .
+
+<https://lovamap.com/ontology#material/10.1007-s00216-024-05354-1/pfa-ice> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "PFA-fixed mouse brain, with ice matrix (PFA/Ice)" ;
+    lova:particleMaterial "Mouse brain tissue (C57BL/6J)" ;
+    lova:surfaceModification "PFA-fixed (4%), no sucrose-embedding, with exogenous ice matrix" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1007-s00216-024-05354-1/fab-pfa> .
+
+<https://lovamap.com/ontology#material/10.1007-s00216-024-05354-1/pfa-noice> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "PFA-fixed mouse brain, without ice matrix (PFA/No-Ice)" ;
+    lova:particleMaterial "Mouse brain tissue (C57BL/6J)" ;
+    lova:surfaceModification "PFA-fixed (4%), no sucrose-embedding, no ice matrix" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1007-s00216-024-05354-1/fab-pfa> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1007-s00216-024-05354-1/fab-sucrose> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "Sucrose-embedding (no fixation) tissue preparation" ;
+    lova:chemistry "None (no chemical fixation)" ;
+    lova:manufacturingMethod "PBS transcardiac perfusion, 30% sucrose-embedding until tissue sinks, flash-freezing in liquid nitrogen, storage at -80°C" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1007-s00216-024-05354-1/pbs> ,
+                    <https://lovamap.com/ontology#reagent/10.1007-s00216-024-05354-1/sucrose-reagent> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1007-s00216-024-05354-1/fab-sucrose-pfa> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "Sucrose-embedding with PFA-fixation tissue preparation" ;
+    lova:chemistry "Aldehyde crosslinking (methylene bridge formation)" ;
+    lova:manufacturingMethod "PBS transcardiac perfusion, 4% PFA transcardiac perfusion, 4h post-fixation in 4% PFA, 30% sucrose-embedding until tissue sinks at 4°C, equilibration at -20°C" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1007-s00216-024-05354-1/pbs> ,
+                    <https://lovamap.com/ontology#reagent/10.1007-s00216-024-05354-1/paraformaldehyde> ,
+                    <https://lovamap.com/ontology#reagent/10.1007-s00216-024-05354-1/sucrose-reagent> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1007-s00216-024-05354-1/fab-pfa> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "PFA-fixation (no sucrose-embedding) tissue preparation" ;
+    lova:chemistry "Aldehyde crosslinking (methylene bridge formation)" ;
+    lova:manufacturingMethod "PBS transcardiac perfusion, 4% PFA transcardiac perfusion, post-fixation in 4% PFA, stored at 4°C, equilibrated at -20°C in cryostat" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1007-s00216-024-05354-1/pbs> ,
+                    <https://lovamap.com/ontology#reagent/10.1007-s00216-024-05354-1/paraformaldehyde> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1007-s00216-024-05354-1/fab-fresh> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "Fresh-frozen (no fixation, no cryoprotection) tissue preparation" ;
+    lova:chemistry "None (no fixation)" ;
+    lova:manufacturingMethod "Rapid immersion in liquid nitrogen (flash-freezing) following extraction, stored at -80°C" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1007-s00216-024-05354-1/fab-histology> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "Hematoxylin and eosin (H&E) staining protocol" ;
+    lova:chemistry "H&E staining" ;
+    lova:manufacturingMethod "10% natural buffered formalin fixation, ethanol dehydration series, hematoxylin and eosin staining, xylenes clearing, Permount mounting" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1007-s00216-024-05354-1/formalin> ,
+                    <https://lovamap.com/ontology#reagent/10.1007-s00216-024-05354-1/ethanol> ,
+                    <https://lovamap.com/ontology#reagent/10.1007-s00216-024-05354-1/hematoxylin> ,
+                    <https://lovamap.com/ontology#reagent/10.1007-s00216-024-05354-1/eosin> ,
+                    <https://lovamap.com/ontology#reagent/10.1007-s00216-024-05354-1/xylenes> ,
+                    <https://lovamap.com/ontology#reagent/10.1007-s00216-024-05354-1/water> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1007-s00216-024-05354-1/fab-electrospray> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "Electrospray solvent preparation for IR-MALDESI-MSI" ;
+    lova:chemistry "Electrospray ionization solvent" ;
+    lova:manufacturingMethod "50:50 MeOH:H2O with 0.2% formic acid, electrospray stabilized 3300-3700V, flow rate 1.8-2.0 μL/min" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1007-s00216-024-05354-1/mecn> ,
+                    <https://lovamap.com/ontology#reagent/10.1007-s00216-024-05354-1/water> ,
+                    <https://lovamap.com/ontology#reagent/10.1007-s00216-024-05354-1/formic-acid> .
+
+<https://lovamap.com/ontology#reagent/10.1007-s00216-024-05354-1/mecn> a lova:Reagent ;
+    rdfs:label "Acetonitrile (MeCN)" ;
+    lova:reagentRole "solvent" ;
+    lova:supplier "Fisher Scientific" .
+
+<https://lovamap.com/ontology#reagent/10.1007-s00216-024-05354-1/water> a lova:Reagent ;
+    rdfs:label "LC-MS-grade water (H2O)" ;
+    lova:reagentRole "solvent" ;
+    lova:supplier "Fisher Scientific" .
+
+<https://lovamap.com/ontology#reagent/10.1007-s00216-024-05354-1/formic-acid> a lova:Reagent ;
+    rdfs:label "Formic acid (FA)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Fisher Scientific" ;
+    lova:concentration "0.2%" ;
+    lova:reagentFunction "Electrospray solvent modifier" .
+
+<https://lovamap.com/ontology#reagent/10.1007-s00216-024-05354-1/ethanol> a lova:Reagent ;
+    rdfs:label "Ethanol (EtOH)" ;
+    lova:reagentRole "solvent" ;
+    lova:supplier "Fisher Scientific" ;
+    lova:concentration "70%, 95%, 100%" ;
+    lova:reagentFunction "Dehydration series for H&E staining" .
+
+<https://lovamap.com/ontology#reagent/10.1007-s00216-024-05354-1/sucrose-reagent> a lova:Reagent ;
+    rdfs:label "Sucrose" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Fisher Scientific" ;
+    lova:concentration "30%" ;
+    lova:reagentFunction "Cryoprotectant during flash-freezing; permeative energy-absorbing matrix for IR-MALDESI-MSI" .
+
+<https://lovamap.com/ontology#reagent/10.1007-s00216-024-05354-1/xylenes> a lova:Reagent ;
+    rdfs:label "Xylenes" ;
+    lova:reagentRole "solvent" ;
+    lova:supplier "Fisher Scientific" ;
+    lova:reagentFunction "Clearing agent in H&E staining" .
+
+<https://lovamap.com/ontology#reagent/10.1007-s00216-024-05354-1/hematoxylin> a lova:Reagent ;
+    rdfs:label "Hematoxylin staining solution (modified Harris formulation, mercury free nuclear stain)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "BICCA" ;
+    lova:reagentFunction "Nuclear stain for H&E histology" .
+
+<https://lovamap.com/ontology#reagent/10.1007-s00216-024-05354-1/eosin> a lova:Reagent ;
+    rdfs:label "Eosin Y solution (alcoholic)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Sigma-Aldrich" ;
+    lova:reagentFunction "Cytoplasmic/counter stain for H&E histology" .
+
+<https://lovamap.com/ontology#reagent/10.1007-s00216-024-05354-1/pbs> a lova:Reagent ;
+    rdfs:label "Phosphate buffered saline (PBS), pH 7.4" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Bio Basic" ;
+    lova:reagentFunction "Transcardiac perfusion buffer" .
+
+<https://lovamap.com/ontology#reagent/10.1007-s00216-024-05354-1/paraformaldehyde> a lova:Reagent ;
+    rdfs:label "Paraformaldehyde (PFA)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:supplier "Electron Microscopy Sciences" ;
+    lova:concentration "4%" ;
+    lova:reagentFunction "Tissue fixation via methylene bridge covalent cross-linking of proteins" .
+
+<https://lovamap.com/ontology#reagent/10.1007-s00216-024-05354-1/formalin> a lova:Reagent ;
+    rdfs:label "Natural buffered formalin" ;
+    lova:reagentRole "other" ;
+    lova:concentration "10%" ;
+    lova:reagentFunction "Secondary fixation of sections prior to H&E staining" .
+
+<https://lovamap.com/ontology#experiment/10.1007-s00216-024-05354-1/nt-detection> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1007-s00216-024-05354-1/sucrose-ice> ,
+                      <https://lovamap.com/ontology#material/10.1007-s00216-024-05354-1/sucrose-noice> ,
+                      <https://lovamap.com/ontology#material/10.1007-s00216-024-05354-1/fresh-ice> ,
+                      <https://lovamap.com/ontology#material/10.1007-s00216-024-05354-1/fresh-noice> ,
+                      <https://lovamap.com/ontology#material/10.1007-s00216-024-05354-1/sucrose-pfa-ice> ,
+                      <https://lovamap.com/ontology#material/10.1007-s00216-024-05354-1/sucrose-pfa-noice> ,
+                      <https://lovamap.com/ontology#material/10.1007-s00216-024-05354-1/pfa-ice> ,
+                      <https://lovamap.com/ontology#material/10.1007-s00216-024-05354-1/pfa-noice> ;
+    rdfs:label "IR-MALDESI-MSI neurotransmitter and metabolite detection across tissue conditions" ;
+    lova:experimentCategory "Analytical" ;
+    lova:experimentType "Neurotransmitter detection by mass spectrometry imaging" ;
+    lova:assayOrMethod "IR-MALDESI-MSI" ;
+    lova:equipment "Orbitrap Exploris 240 mass spectrometer coupled to NextGen IR-MALDESI source" ;
+    lova:temperature "Sample stage cooled to -10°C for ice matrix formation" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#experiment/10.1007-s00216-024-05354-1/anova> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1007-s00216-024-05354-1/sucrose-ice> ,
+                      <https://lovamap.com/ontology#material/10.1007-s00216-024-05354-1/sucrose-noice> ,
+                      <https://lovamap.com/ontology#material/10.1007-s00216-024-05354-1/fresh-ice> ,
+                      <https://lovamap.com/ontology#material/10.1007-s00216-024-05354-1/fresh-noice> ,
+                      <https://lovamap.com/ontology#material/10.1007-s00216-024-05354-1/sucrose-pfa-ice> ,
+                      <https://lovamap.com/ontology#material/10.1007-s00216-024-05354-1/sucrose-pfa-noice> ,
+                      <https://lovamap.com/ontology#material/10.1007-s00216-024-05354-1/pfa-ice> ,
+                      <https://lovamap.com/ontology#material/10.1007-s00216-024-05354-1/pfa-noice> ;
+    rdfs:label "2x4 factor ANOVA comparing NT count and log P value across tissue conditions" ;
+    lova:experimentCategory "Statistical" ;
+    lova:experimentType "Analysis of variance" ;
+    lova:assayOrMethod "2x4 factor ANOVA (R v4.3.2)" .
+
+<https://lovamap.com/ontology#experiment/10.1007-s00216-024-05354-1/histology> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1007-s00216-024-05354-1/sucrose-ice> ,
+                      <https://lovamap.com/ontology#material/10.1007-s00216-024-05354-1/fresh-ice> ,
+                      <https://lovamap.com/ontology#material/10.1007-s00216-024-05354-1/sucrose-pfa-ice> ,
+                      <https://lovamap.com/ontology#material/10.1007-s00216-024-05354-1/pfa-ice> ;
+    rdfs:label "H&E staining and histology of twelve mouse brain sections" ;
+    lova:experimentCategory "Histological" ;
+    lova:experimentType "Histology staining" ;
+    lova:assayOrMethod "H&E staining" ;
+    lova:equipment "Leica LMD 7000 microscope" ;
+    lova:sampleSize 12 .
+
+<https://lovamap.com/ontology#experiment/10.1007-s00216-024-05354-1/dopamine-pathway> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1007-s00216-024-05354-1/sucrose-pfa-noice> ,
+                      <https://lovamap.com/ontology#material/10.1007-s00216-024-05354-1/sucrose-noice> ,
+                      <https://lovamap.com/ontology#material/10.1007-s00216-024-05354-1/fresh-noice> ,
+                      <https://lovamap.com/ontology#material/10.1007-s00216-024-05354-1/pfa-noice> ;
+    rdfs:label "Dopaminergic metabolic pathway coverage analysis" ;
+    lova:experimentCategory "Analytical" ;
+    lova:experimentType "Pathway coverage analysis" ;
+    lova:assayOrMethod "KEGG pathway mapping" .
+
+<https://lovamap.com/ontology#experiment/10.1007-s00216-024-05354-1/glutamate-pathway> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1007-s00216-024-05354-1/sucrose-ice> ,
+                      <https://lovamap.com/ontology#material/10.1007-s00216-024-05354-1/fresh-ice> ,
+                      <https://lovamap.com/ontology#material/10.1007-s00216-024-05354-1/sucrose-pfa-ice> ,
+                      <https://lovamap.com/ontology#material/10.1007-s00216-024-05354-1/sucrose-pfa-noice> ;
+    rdfs:label "Glutamatergic metabolic pathway coverage analysis" ;
+    lova:experimentCategory "Analytical" ;
+    lova:experimentType "Pathway coverage analysis" ;
+    lova:assayOrMethod "KEGG pathway mapping" .
+
+<https://lovamap.com/ontology#experiment/10.1007-s00216-024-05354-1/tic-monitoring> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1007-s00216-024-05354-1/sucrose-ice> ,
+                      <https://lovamap.com/ontology#material/10.1007-s00216-024-05354-1/sucrose-noice> ,
+                      <https://lovamap.com/ontology#material/10.1007-s00216-024-05354-1/fresh-ice> ,
+                      <https://lovamap.com/ontology#material/10.1007-s00216-024-05354-1/fresh-noice> ,
+                      <https://lovamap.com/ontology#material/10.1007-s00216-024-05354-1/sucrose-pfa-ice> ,
+                      <https://lovamap.com/ontology#material/10.1007-s00216-024-05354-1/sucrose-pfa-noice> ,
+                      <https://lovamap.com/ontology#material/10.1007-s00216-024-05354-1/pfa-ice> ,
+                      <https://lovamap.com/ontology#material/10.1007-s00216-024-05354-1/pfa-noice> ;
+    rdfs:label "Total ion current monitoring across experiment days" ;
+    lova:experimentCategory "Analytical" ;
+    lova:experimentType "TIC monitoring" ;
+    lova:assayOrMethod "IR-MALDESI-MSI" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s00216-024-05354-1/nt-count-sucrose-ice-r1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s00216-024-05354-1/nt-detection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "Number of NTs detected - Sucrose/Ice replicate 1" ;
+    lova:measurementType "Number of neurotransmitters/metabolites detected" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 40.0 ;
+    qudt:unit "count" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s00216-024-05354-1/nt-count-sucrose-ice-r2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s00216-024-05354-1/nt-detection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "Number of NTs detected - Sucrose/Ice replicate 2" ;
+    lova:measurementType "Number of neurotransmitters/metabolites detected" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 46.0 ;
+    qudt:unit "count" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s00216-024-05354-1/nt-count-sucrose-ice-r3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s00216-024-05354-1/nt-detection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "Number of NTs detected - Sucrose/Ice replicate 3" ;
+    lova:measurementType "Number of neurotransmitters/metabolites detected" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 32.0 ;
+    qudt:unit "count" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s00216-024-05354-1/nt-count-sucrose-noice-r1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s00216-024-05354-1/nt-detection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "Number of NTs detected - Sucrose/No-Ice replicate 1" ;
+    lova:measurementType "Number of neurotransmitters/metabolites detected" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 50.0 ;
+    qudt:unit "count" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s00216-024-05354-1/nt-count-sucrose-noice-r2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s00216-024-05354-1/nt-detection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "Number of NTs detected - Sucrose/No-Ice replicate 2" ;
+    lova:measurementType "Number of neurotransmitters/metabolites detected" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 38.0 ;
+    qudt:unit "count" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s00216-024-05354-1/nt-count-sucrose-noice-r3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s00216-024-05354-1/nt-detection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "Number of NTs detected - Sucrose/No-Ice replicate 3" ;
+    lova:measurementType "Number of neurotransmitters/metabolites detected" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 45.0 ;
+    qudt:unit "count" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s00216-024-05354-1/nt-count-fresh-ice-r1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s00216-024-05354-1/nt-detection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "Number of NTs detected - Fresh/Ice replicate 1" ;
+    lova:measurementType "Number of neurotransmitters/metabolites detected" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 38.0 ;
+    qudt:unit "count" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s00216-024-05354-1/nt-count-fresh-ice-r2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s00216-024-05354-1/nt-detection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "Number of NTs detected - Fresh/Ice replicate 2" ;
+    lova:measurementType "Number of neurotransmitters/metabolites detected" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 30.0 ;
+    qudt:unit "count" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s00216-024-05354-1/nt-count-fresh-ice-r3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s00216-024-05354-1/nt-detection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "Number of NTs detected - Fresh/Ice replicate 3 (highest single detection)" ;
+    lova:measurementType "Number of neurotransmitters/metabolites detected" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 58.0 ;
+    qudt:unit "count" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s00216-024-05354-1/nt-count-fresh-noice-r1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s00216-024-05354-1/nt-detection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "Number of NTs detected - Fresh/No-Ice replicate 1" ;
+    lova:measurementType "Number of neurotransmitters/metabolites detected" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 52.0 ;
+    qudt:unit "count" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s00216-024-05354-1/nt-count-fresh-noice-r2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s00216-024-05354-1/nt-detection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "Number of NTs detected - Fresh/No-Ice replicate 2" ;
+    lova:measurementType "Number of neurotransmitters/metabolites detected" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 40.0 ;
+    qudt:unit "count" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s00216-024-05354-1/nt-count-fresh-noice-r3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s00216-024-05354-1/nt-detection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "Number of NTs detected - Fresh/No-Ice replicate 3" ;
+    lova:measurementType "Number of neurotransmitters/metabolites detected" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 44.0 ;
+    qudt:unit "count" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s00216-024-05354-1/nt-count-sucrose-pfa-ice-r1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s00216-024-05354-1/nt-detection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "Number of NTs detected - Sucrose/PFA/Ice replicate 1" ;
+    lova:measurementType "Number of neurotransmitters/metabolites detected" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 12.0 ;
+    qudt:unit "count" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s00216-024-05354-1/nt-count-sucrose-pfa-ice-r2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s00216-024-05354-1/nt-detection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "Number of NTs detected - Sucrose/PFA/Ice replicate 2" ;
+    lova:measurementType "Number of neurotransmitters/metabolites detected" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 36.0 ;
+    qudt:unit "count" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s00216-024-05354-1/nt-count-sucrose-pfa-ice-r3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s00216-024-05354-1/nt-detection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "Number of NTs detected - Sucrose/PFA/Ice replicate 3" ;
+    lova:measurementType "Number of neurotransmitters/metabolites detected" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 15.0 ;
+    qudt:unit "count" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s00216-024-05354-1/nt-count-sucrose-pfa-noice-r1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s00216-024-05354-1/nt-detection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "Number of NTs detected - Sucrose/PFA/No-Ice replicate 1" ;
+    lova:measurementType "Number of neurotransmitters/metabolites detected" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 51.0 ;
+    qudt:unit "count" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s00216-024-05354-1/nt-count-sucrose-pfa-noice-r2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s00216-024-05354-1/nt-detection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "Number of NTs detected - Sucrose/PFA/No-Ice replicate 2" ;
+    lova:measurementType "Number of neurotransmitters/metabolites detected" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 52.0 ;
+    qudt:unit "count" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s00216-024-05354-1/nt-count-sucrose-pfa-noice-r3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s00216-024-05354-1/nt-detection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "Number of NTs detected - Sucrose/PFA/No-Ice replicate 3" ;
+    lova:measurementType "Number of neurotransmitters/metabolites detected" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 48.0 ;
+    qudt:unit "count" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s00216-024-05354-1/nt-count-pfa-ice-r1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s00216-024-05354-1/nt-detection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "Number of NTs detected - PFA/Ice replicate 1" ;
+    lova:measurementType "Number of neurotransmitters/metabolites detected" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 32.0 ;
+    qudt:unit "count" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s00216-024-05354-1/nt-count-pfa-ice-r2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s00216-024-05354-1/nt-detection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "Number of NTs detected - PFA/Ice replicate 2" ;
+    lova:measurementType "Number of neurotransmitters/metabolites detected" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 18.0 ;
+    qudt:unit "count" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s00216-024-05354-1/nt-count-pfa-ice-r3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s00216-024-05354-1/nt-detection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "Number of NTs detected - PFA/Ice replicate 3" ;
+    lova:measurementType "Number of neurotransmitters/metabolites detected" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 16.0 ;
+    qudt:unit "count" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s00216-024-05354-1/nt-count-pfa-noice-r1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s00216-024-05354-1/nt-detection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "Number of NTs detected - PFA/No-Ice replicate 1" ;
+    lova:measurementType "Number of neurotransmitters/metabolites detected" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 39.0 ;
+    qudt:unit "count" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s00216-024-05354-1/nt-count-pfa-noice-r2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s00216-024-05354-1/nt-detection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "Number of NTs detected - PFA/No-Ice replicate 2" ;
+    lova:measurementType "Number of neurotransmitters/metabolites detected" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 41.0 ;
+    qudt:unit "count" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s00216-024-05354-1/nt-count-pfa-noice-r3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s00216-024-05354-1/nt-detection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "Number of NTs detected - PFA/No-Ice replicate 3" ;
+    lova:measurementType "Number of neurotransmitters/metabolites detected" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 40.0 ;
+    qudt:unit "count" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s00216-024-05354-1/total-nts-study> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s00216-024-05354-1/nt-detection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "Total number of NTs and metabolites detected across the entire study" ;
+    lova:measurementType "Total number of neurotransmitters/metabolites detected" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 82.0 ;
+    qudt:unit "count" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s00216-024-05354-1/avg-nt-count-sucrose-pfa-noice> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s00216-024-05354-1/nt-detection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "Average number of NTs detected across three biological replicates - Sucrose/PFA/No-Ice" ;
+    lova:measurementType "Average number of neurotransmitters/metabolites detected" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 50.0 ;
+    qudt:unit "count" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s00216-024-05354-1/avg-nt-count-sucrose-noice-conclusion> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s00216-024-05354-1/nt-detection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "Highest average detection of NTs and related metabolites reported in Conclusions - Sucrose/No-Ice" ;
+    lova:measurementType "Average number of neurotransmitters/metabolites detected" ;
+    lova:measurementCategory "Analytical" ;
+    lova:valueString "Reported in Conclusions as the condition with the highest average detection of NTs and related metabolites across three biological replicates" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s00216-024-05354-1/anova-ice-ntcount-p> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s00216-024-05354-1/anova> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "ANOVA p-value: effect of ice matrix usage on number of NTs detected" ;
+    lova:measurementType "ANOVA p-value (ice matrix effect on NT count)" ;
+    lova:measurementCategory "Statistical" ;
+    qudt:numericValue 0.001 ;
+    qudt:unit "p-value" ;
+    lova:isSignificant true ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s00216-024-05354-1/anova-prep-ntcount-p> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s00216-024-05354-1/anova> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "ANOVA significance level: effect of tissue preparation on number of NTs detected" ;
+    lova:measurementType "ANOVA significance level (tissue preparation effect on NT count)" ;
+    lova:measurementCategory "Statistical" ;
+    qudt:numericValue 0.05 ;
+    qudt:unit "significance level" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s00216-024-05354-1/anova-combined-ntcount-p> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s00216-024-05354-1/anova> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "ANOVA significance level: combined effect of preparation and ice matrix on number of NTs detected" ;
+    lova:measurementType "ANOVA significance level (combined effect on NT count)" ;
+    lova:measurementCategory "Statistical" ;
+    qudt:numericValue 0.05 ;
+    qudt:unit "significance level" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s00216-024-05354-1/anova-ice-logp-p> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s00216-024-05354-1/anova> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "ANOVA p-value: effect of ice matrix usage on log P value of detected NTs" ;
+    lova:measurementType "ANOVA p-value (ice matrix effect on log P)" ;
+    lova:measurementCategory "Statistical" ;
+    qudt:numericValue 0.0 ;
+    qudt:unit "p-value" ;
+    lova:isSignificant true ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s00216-024-05354-1/anova-prep-logp-p> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s00216-024-05354-1/anova> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "ANOVA p-value: effect of tissue preparation on log P value of detected NTs" ;
+    lova:measurementType "ANOVA p-value (tissue preparation effect on log P)" ;
+    lova:measurementCategory "Statistical" ;
+    qudt:numericValue 0.001 ;
+    qudt:unit "p-value" ;
+    lova:isSignificant true ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s00216-024-05354-1/anova-combined-logp-p> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s00216-024-05354-1/anova> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "ANOVA significance level: combined effect of preparation and matrix on log P value" ;
+    lova:measurementType "ANOVA significance level (combined effect on log P)" ;
+    lova:measurementCategory "Statistical" ;
+    qudt:numericValue 0.05 ;
+    qudt:unit "significance level" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s00216-024-05354-1/dopamine-pathway-coverage> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s00216-024-05354-1/dopamine-pathway> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "Dopaminergic pathway metabolites detected in positive-ion mode" ;
+    lova:measurementType "Dopaminergic pathway coverage" ;
+    lova:measurementCategory "Analytical" ;
+    lova:valueString "11/16 designated pathway metabolites detected in positive-ion mode; Sucrose/PFA/No-Ice had the highest pathway coverage" ;
+    lova:scope "Regional" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s00216-024-05354-1/glutamine-logp> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s00216-024-05354-1/glutamate-pathway> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "log P value of L-glutamine" ;
+    lova:measurementType "log P value" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue -3.1 ;
+    qudt:unit "log P" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s00216-024-05354-1/glutamate-logp> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s00216-024-05354-1/glutamate-pathway> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "log P value of glutamate" ;
+    lova:measurementType "log P value" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue -3.7 ;
+    qudt:unit "log P" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s00216-024-05354-1/aspartate-logp> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s00216-024-05354-1/glutamate-pathway> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "log P value of aspartate" ;
+    lova:measurementType "log P value" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue -2.8 ;
+    qudt:unit "log P" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s00216-024-05354-1/glutamate-abundance-sucrose-ice> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s00216-024-05354-1/glutamate-pathway> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "Glutamatergic pathway ion abundance - Sucrose/Ice (decreased)" ;
+    lova:measurementType "Ion abundance of glutamatergic pathway metabolites (L-glutamine, glutamate, aspartate)" ;
+    lova:measurementCategory "Analytical" ;
+    lova:valueString "Decreased ion abundance for L-glutamine, glutamate, and aspartate compared to Fresh/Ice" ;
+    lova:scope "Regional" ;
+    lova:comparisonGroup "Fresh/Ice" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s00216-024-05354-1/glutamate-abundance-fresh-ice> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s00216-024-05354-1/glutamate-pathway> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "Glutamatergic pathway ion abundance - Fresh/Ice (highest, consistent, with localization to CTX and HY)" ;
+    lova:measurementType "Ion abundance of glutamatergic pathway metabolites (L-glutamine, glutamate, aspartate)" ;
+    lova:measurementCategory "Analytical" ;
+    lova:valueString "Highest ion abundance in glutamatergic metabolic pathway, highest average detection, optimal localization to cerebral cortex (CTX) and hypothalamus (HY)" ;
+    lova:scope "Regional" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1007-s00216-024-05354-1/glutamate-sucroseice-vs-freshice> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "Glutamatergic pathway ion abundance lower in Sucrose/Ice vs Fresh/Ice" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1007-s00216-024-05354-1/glutamate-abundance-sucrose-ice> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1007-s00216-024-05354-1/glutamate-abundance-fresh-ice> ;
+    lova:direction "lower" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s00216-024-05354-1/histology-pfa> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s00216-024-05354-1/histology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "Histology staining quality - PFA (no sucrose-embedding)" ;
+    lova:measurementType "Histology staining quality" ;
+    lova:measurementCategory "Histological" ;
+    lova:valueString "Unable to be properly stained without loss of tissue; tissue became brittle" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s00216-024-05354-1/histology-sucrose-pfa> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s00216-024-05354-1/histology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "Histology staining quality - Sucrose/PFA (optimal)" ;
+    lova:measurementType "Histology staining quality" ;
+    lova:measurementCategory "Histological" ;
+    lova:valueString "Optimal results for histology and tissue staining" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1007-s00216-024-05354-1/histology-pfa-vs-sucrosepfa> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "Histology staining quality higher for Sucrose/PFA vs PFA alone" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1007-s00216-024-05354-1/histology-sucrose-pfa> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1007-s00216-024-05354-1/histology-pfa> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s00216-024-05354-1/tic-day1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s00216-024-05354-1/tic-monitoring> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "Average TIC - Day 1" ;
+    lova:measurementType "Average Total Ion Current (TIC)" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 203000000.0 ;
+    qudt:unit "counts" ;
+    lova:timePoint "Day 1" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s00216-024-05354-1/tic-day2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s00216-024-05354-1/tic-monitoring> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "Average TIC - Day 2" ;
+    lova:measurementType "Average Total Ion Current (TIC)" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 138000000.0 ;
+    qudt:unit "counts" ;
+    lova:timePoint "Day 2" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s00216-024-05354-1/tic-day3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s00216-024-05354-1/tic-monitoring> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "Average TIC - Day 3" ;
+    lova:measurementType "Average Total Ion Current (TIC)" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 275000000.0 ;
+    qudt:unit "counts" ;
+    lova:timePoint "Day 3" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s00216-024-05354-1/tic-day4> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s00216-024-05354-1/tic-monitoring> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s00216-024-05354-1> ;
+    rdfs:label "Average TIC - Day 4" ;
+    lova:measurementType "Average Total Ion Current (TIC)" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 148000000.0 ;
+    qudt:unit "counts" ;
+    lova:timePoint "Day 4" ;
+    lova:dataSource "[FIG-Q]" .

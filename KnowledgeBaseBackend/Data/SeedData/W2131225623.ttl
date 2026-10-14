@@ -1,0 +1,1106 @@
+@prefix bibo: <http://purl.org/ontology/bibo/> .
+@prefix dc1: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix lova: <https://lovamap.com/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#comparison/10.1039-c3ib40086g/activator-i-transgene-2d-vs-3d> a lova:ComparisonResult ;
+    rdfs:label "Rho/Rac/Cdc42 activation increases transgene expression more in 2-D than 3-D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    lova:direction "higher" ;
+    lova:foldChange 2.78 ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1039-c3ib40086g/activator-i-2d-transgene> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1039-c3ib40086g/activator-i-3d-transgene> .
+
+<https://lovamap.com/ontology#comparison/10.1039-c3ib40086g/chlorpromazine-internalization-3d-vs-2d> a lova:ComparisonResult ;
+    rdfs:label "Chlorpromazine-induced internalization decrease greater in 3-D vs 2-D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    lova:direction "lower" ;
+    lova:isSignificant true ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1039-c3ib40086g/chlorpromazine-3d-internalization> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1039-c3ib40086g/chlorpromazine-2d-internalization> .
+
+<https://lovamap.com/ontology#comparison/10.1039-c3ib40086g/genistein-transgene-3d-vs-2d> a lova:ComparisonResult ;
+    rdfs:label "Genistein-induced transgene expression decrease greater in 3-D vs 2-D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    lova:direction "lower" ;
+    lova:isSignificant true ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1039-c3ib40086g/genistein-3d-transgene> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1039-c3ib40086g/genistein-2d-transgene> ;
+    lova:pValue 0.01 .
+
+<https://lovamap.com/ontology#comparison/10.1039-c3ib40086g/ipa3-transgene-2d-vs-3d> a lova:ComparisonResult ;
+    rdfs:label "PAK1 inhibition increases transgene expression more in 3-D than 2-D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    lova:direction "lower" ;
+    lova:foldChange 0.51 ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1039-c3ib40086g/ipa3-2d-transgene> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1039-c3ib40086g/ipa3-3d-transgene> .
+
+<https://lovamap.com/ontology#comparison/10.1039-c3ib40086g/nocodazole-transgene-2d-vs-3d> a lova:ComparisonResult ;
+    rdfs:label "Microtubule inhibition increases transgene expression in 2-D but decreases it in 3-D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    lova:direction "higher" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1039-c3ib40086g/nocodazole-2d-transgene> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1039-c3ib40086g/nocodazole-3d-transgene> .
+
+<https://lovamap.com/ontology#comparison/10.1039-c3ib40086g/paclitaxel-transgene-2d-vs-3d> a lova:ComparisonResult ;
+    rdfs:label "Paclitaxel-induced transgene expression increase greater in 3-D than 2-D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    lova:direction "lower" ;
+    lova:foldChange 0.214 ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1039-c3ib40086g/paclitaxel-2d-transgene> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1039-c3ib40086g/paclitaxel-3d-transgene> .
+
+<https://lovamap.com/ontology#outcome/10.1039-c3ib40086g/activator-i-2d-internalization> a lova:Outcome ;
+    rdfs:label "Polyplex internalization increase — Rho/Rac/Cdc42 activator I — 2-D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    qudt:numericValue 1.8 ;
+    qudt:unit "fold" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/rhogtpase-2d> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Polyplex internalization fold change" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c3ib40086g/baseline-rlu-2d> a lova:Outcome ;
+    rdfs:label "Baseline transgene expression — untreated 2-D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    qudt:numericValue 2400000.0 ;
+    qudt:unit "RLU per 20,000 cells" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/endocytosis-2d> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Transgene expression (RLU)" ;
+    lova:scope "Bulk/global" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c3ib40086g/baseline-rlu-3d> a lova:Outcome ;
+    rdfs:label "Baseline transgene expression — untreated 3-D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    qudt:numericValue 370000.0 ;
+    qudt:unit "RLU per 50,000 cells" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/endocytosis-3d> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Transgene expression (RLU)" ;
+    lova:scope "Bulk/global" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c3ib40086g/c3-transferase-transgene-2d3d> a lova:Outcome ;
+    rdfs:label "Transgene expression decrease — C3 transferase (-RhoA,B,C) — 2-D/3-D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/rhogtpase-2d> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Transgene expression decrease" ;
+    lova:valueString "≥95% decrease in both 2-D and 3-D" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c3ib40086g/caveolae-contribution-2d> a lova:Outcome ;
+    rdfs:label "Caveolae-mediated pathway contribution to overall gene transfer — 2-D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    qudt:numericValue 49.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/endocytosis-2d> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Pathway contribution to gene transfer" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c3ib40086g/clathrin-2d-transgene> a lova:Outcome ;
+    rdfs:label "Transgene expression decrease — clathrin inhibition (chlorpromazine/dynasore) — 2-D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    lova:comparisonGroup "No treatment" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/endocytosis-2d> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Transgene expression decrease" ;
+    lova:valueString "≥69% decrease" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c3ib40086g/clathrin-3d-transgene> a lova:Outcome ;
+    rdfs:label "Transgene expression decrease — clathrin inhibition (chlorpromazine/dynasore) — 3-D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    lova:comparisonGroup "No treatment" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/endocytosis-3d> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Transgene expression decrease" ;
+    lova:valueString "≥94% decrease" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c3ib40086g/clathrin-contribution-2d> a lova:Outcome ;
+    rdfs:label "Clathrin-mediated pathway contribution to overall gene transfer — 2-D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    qudt:numericValue 67.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/endocytosis-2d> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Pathway contribution to gene transfer" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c3ib40086g/cyclodextrin-transgene-2d3d> a lova:Outcome ;
+    rdfs:label "Transgene expression decrease — methyl-cyclodextrin (caveolae inhibition) — 2-D/3-D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    lova:comparisonGroup "No treatment" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/endocytosis-2d> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Transgene expression decrease" ;
+    lova:valueString ">90% decrease in both 2-D and 3-D" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c3ib40086g/cytochalasin-3d-transgene> a lova:Outcome ;
+    rdfs:label "Transgene expression decrease — cytochalasin D (actin inhibition) — 3-D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/cytoskeleton-3d> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Transgene expression decrease" ;
+    lova:valueString "≥90% decrease" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c3ib40086g/dynasore-2d-internalization> a lova:Outcome ;
+    rdfs:label "Polyplex internalization decrease — dynasore — 2-D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    qudt:numericValue 17.5 ;
+    qudt:unit "%" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/endocytosis-2d> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Polyplex internalization decrease" ;
+    lova:pValue 0.05 .
+
+<https://lovamap.com/ontology#outcome/10.1039-c3ib40086g/g-prime-day1> a lova:Outcome ;
+    rdfs:label "Average storage modulus (G') of 3% HA gel, day 1" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    qudt:numericValue 225.0 ;
+    qudt:unit "Pa" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/rheology> ;
+    lova:measurementCategory "Rheological" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:timePoint "Day 1" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c3ib40086g/genistein-2d-internalization> a lova:Outcome ;
+    rdfs:label "Polyplex internalization decrease — genistein — 2-D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    qudt:numericValue 73.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/endocytosis-2d> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Polyplex internalization decrease" ;
+    lova:pValue 0.001 .
+
+<https://lovamap.com/ontology#outcome/10.1039-c3ib40086g/genistein-3d-internalization> a lova:Outcome ;
+    rdfs:label "Polyplex internalization decrease — genistein — 3-D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    qudt:numericValue 49.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/endocytosis-3d> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Polyplex internalization decrease" ;
+    lova:pValue 0.001 .
+
+<https://lovamap.com/ontology#outcome/10.1039-c3ib40086g/jasplakinolide-2d-transgene> a lova:Outcome ;
+    rdfs:label "Transgene expression decrease — jasplakinolide (actin activation) — 2-D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    qudt:numericValue 67.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/cytoskeleton-2d> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Transgene expression decrease" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c3ib40086g/jasplakinolide-3d-transgene> a lova:Outcome ;
+    rdfs:label "Transgene expression decrease — jasplakinolide (actin activation) — 3-D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    qudt:numericValue 70.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/cytoskeleton-3d> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Transgene expression decrease" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c3ib40086g/mesh-size-day1> a lova:Outcome ;
+    rdfs:label "HA hydrogel mesh size, day 1" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    qudt:numericValue 330.0 ;
+    qudt:unit "nm" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/rheology> ;
+    lova:measurementCategory "Biophysical" ;
+    lova:measurementType "Mesh size" ;
+    lova:timePoint "Day 1" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c3ib40086g/mesh-size-day4> a lova:Outcome ;
+    rdfs:label "HA hydrogel mesh size, day 4" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    qudt:numericValue 777.0 ;
+    qudt:unit "nm" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/rheology> ;
+    lova:measurementCategory "Biophysical" ;
+    lova:measurementType "Mesh size" ;
+    lova:timePoint "Day 4" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c3ib40086g/polyplex-size-np12> a lova:Outcome ;
+    rdfs:label "LPEI-DNA complex size, N/P 12" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    qudt:numericValue 73.48 ;
+    qudt:unit "nm" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/polyplex-size> ;
+    lova:measurementCategory "Biophysical" ;
+    lova:measurementType "Hydrodynamic diameter" ;
+    lova:stdDev 0.04 .
+
+<https://lovamap.com/ontology#outcome/10.1039-c3ib40086g/polyplex-size-np6-7> a lova:Outcome ;
+    rdfs:label "LPEI-DNA complex size, N/P 6.7" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    qudt:numericValue 75.86 ;
+    qudt:unit "nm" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/polyplex-size> ;
+    lova:measurementCategory "Biophysical" ;
+    lova:measurementType "Hydrodynamic diameter" ;
+    lova:stdDev 1.09 .
+
+<https://lovamap.com/ontology#outcome/10.1039-c3ib40086g/tcdb-3d-transgene> a lova:Outcome ;
+    rdfs:label "Transgene expression decrease — difficile toxin B (-Rho,Rac,Cdc42) — 3-D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    qudt:numericValue 64.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/rhogtpase-3d> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Transgene expression decrease" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c3ib40086g/y27632-3d-internalization> a lova:Outcome ;
+    rdfs:label "Polyplex internalization decrease — Y27632 (-ROCK) — 3-D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/rhogtpase-3d> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Polyplex internalization decrease" ;
+    lova:pValue 0.001 ;
+    lova:valueString ">90% decrease" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c3ib40086g/y27632-3d-transgene> a lova:Outcome ;
+    rdfs:label "Transgene expression decrease — Y27632 (-ROCK) — 3-D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    qudt:numericValue 81.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/rhogtpase-3d> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Transgene expression decrease" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/activator-i> a lova:Reagent ;
+    rdfs:label "Rho/Rac/Cdc42 activator I" ;
+    lova:concentration "1 μg/ml" ;
+    lova:reagentFunction "Rho, Rac, Cdc42 activator" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Cytoskeleton Inc (Denver, CO)" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/activator-ii> a lova:Reagent ;
+    rdfs:label "Rho direct activator II" ;
+    lova:concentration "1 μg/ml" ;
+    lova:reagentFunction "RhoA, RhoB, RhoC activator" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Cytoskeleton Inc (Denver, CO)" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/tcdb> a lova:Reagent ;
+    rdfs:label "Clostridium difficile toxin B (TcdB)" ;
+    lova:concentration "200 ng/ml" ;
+    lova:reagentFunction "Rho, Rac, Cdc42 inhibitor" ;
+    lova:reagentRole "other" ;
+    lova:supplier "List Biologicals (Campbell, CA)" .
+
+<https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/morphology-2d> a lova:Experiment ;
+    rdfs:label "Cell spreading analysis — 2-D TCP" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    lova:assayOrMethod "Alexa488-phalloidin / Hoechst staining, fluorescence microscopy" ;
+    lova:cellSource "Mouse bone marrow" ;
+    lova:cellType "Mouse mesenchymal stem cells (D1, CRL12424)" ;
+    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000134> ;
+    lova:cultureDuration "14 hours" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell morphology/spreading" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1039-c3ib40086g/tcp-2d> .
+
+<https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/morphology-3d> a lova:Experiment ;
+    rdfs:label "Cell spreading analysis — 3-D HA-RGD hydrogel" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    lova:assayOrMethod "Alexa488-phalloidin / Hoechst staining, confocal microscopy" ;
+    lova:cellSource "Mouse bone marrow" ;
+    lova:cellType "Mouse mesenchymal stem cells (D1, CRL12424)" ;
+    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000134> ;
+    lova:cultureDuration "2 days" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell morphology/spreading" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1039-c3ib40086g/ha-rgd-hydrogel-3d> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1039-c3ib40086g/polyplex-formation> a lova:FabricationMethod ;
+    rdfs:label "LPEI/DNA polyplex formation" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    lova:chemistry "Electrostatic complexation (polyelectrolyte)" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/linear-pei>,
+        <https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/nacl>,
+        <https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/pgluc-plasmid>,
+        <https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/yoyo-1> ;
+    lova:manufacturingMethod "Bolus mixing, vortex, incubation at room temperature" .
+
+<https://lovamap.com/ontology#journal/integrative-biology> a bibo:Journal ;
+    dc1:title "Integrative Biology" ;
+    bibo:issn "1757-9694" .
+
+<https://lovamap.com/ontology#material/10.1039-c3ib40086g/lpei-dna-polyplex> a lova:Material ;
+    rdfs:label "Linear PEI/DNA polyplex" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1039-c3ib40086g/polyplex-formation> ;
+    lova:particleMaterial "Linear PEI / plasmid DNA complex" ;
+    lova:particleShape "Sphere" ;
+    lova:particleSizeMax 75.86 ;
+    lova:particleSizeMin 73.48 ;
+    lova:particleSizeUnit "nm" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c3ib40086g/activator-i-2d-transgene> a lova:Outcome ;
+    rdfs:label "Transgene expression increase — Rho/Rac/Cdc42 activator I — 2-D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    qudt:numericValue 15.0 ;
+    qudt:unit "fold" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/rhogtpase-2d> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Transgene expression fold change" ;
+    lova:pValue 0.05 .
+
+<https://lovamap.com/ontology#outcome/10.1039-c3ib40086g/activator-i-3d-transgene> a lova:Outcome ;
+    rdfs:label "Transgene expression increase — Rho/Rac/Cdc42 activator I — 3-D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    qudt:numericValue 5.4 ;
+    qudt:unit "fold" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/rhogtpase-3d> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Transgene expression fold change" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c3ib40086g/chlorpromazine-2d-internalization> a lova:Outcome ;
+    rdfs:label "Polyplex internalization decrease — chlorpromazine — 2-D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    qudt:numericValue 28.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/endocytosis-2d> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Polyplex internalization decrease" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c3ib40086g/chlorpromazine-3d-internalization> a lova:Outcome ;
+    rdfs:label "Polyplex internalization decrease — chlorpromazine — 3-D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    qudt:numericValue 89.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/endocytosis-3d> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Polyplex internalization decrease" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c3ib40086g/genistein-2d-transgene> a lova:Outcome ;
+    rdfs:label "Transgene expression decrease — genistein (caveolae inhibition) — 2-D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    qudt:numericValue 49.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "No treatment" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/endocytosis-2d> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Transgene expression decrease" ;
+    lova:pValue 0.001 .
+
+<https://lovamap.com/ontology#outcome/10.1039-c3ib40086g/genistein-3d-transgene> a lova:Outcome ;
+    rdfs:label "Transgene expression decrease — genistein (caveolae inhibition) — 3-D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    lova:comparisonGroup "No treatment" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/endocytosis-3d> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Transgene expression decrease" ;
+    lova:pValue 0.001 ;
+    lova:valueString ">99% decrease" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c3ib40086g/ipa3-2d-transgene> a lova:Outcome ;
+    rdfs:label "Transgene expression increase — IPA3 (-PAK1) — 2-D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    qudt:numericValue 2.0 ;
+    qudt:unit "fold" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/rhogtpase-2d> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Transgene expression fold change" ;
+    lova:pValue 0.05 .
+
+<https://lovamap.com/ontology#outcome/10.1039-c3ib40086g/ipa3-3d-transgene> a lova:Outcome ;
+    rdfs:label "Transgene expression increase — IPA3 (-PAK1) — 3-D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    qudt:numericValue 3.9 ;
+    qudt:unit "fold" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/rhogtpase-3d> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Transgene expression fold change" ;
+    lova:pValue 0.05 .
+
+<https://lovamap.com/ontology#outcome/10.1039-c3ib40086g/nocodazole-2d-transgene> a lova:Outcome ;
+    rdfs:label "Transgene expression increase — nocodazole (microtubule inhibition) — 2-D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    qudt:numericValue 10.0 ;
+    qudt:unit "fold" ;
+    lova:comparisonGroup "No treatment" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/cytoskeleton-2d> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Transgene expression fold change" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c3ib40086g/nocodazole-3d-transgene> a lova:Outcome ;
+    rdfs:label "Transgene expression decrease — nocodazole (microtubule inhibition) — 3-D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    lova:comparisonGroup "No treatment" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/cytoskeleton-3d> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Transgene expression decrease" ;
+    lova:valueString ">90% decrease" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c3ib40086g/paclitaxel-2d-transgene> a lova:Outcome ;
+    rdfs:label "Transgene expression increase — paclitaxel (microtubule activation) — 2-D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    qudt:numericValue 7.5 ;
+    qudt:unit "fold" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/cytoskeleton-2d> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Transgene expression fold change" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c3ib40086g/paclitaxel-3d-transgene> a lova:Outcome ;
+    rdfs:label "Transgene expression increase — paclitaxel (microtubule activation) — 3-D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    qudt:numericValue 35.0 ;
+    qudt:unit "fold" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/cytoskeleton-3d> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Transgene expression fold change" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/bdm> a lova:Reagent ;
+    rdfs:label "Butanedione monoxime (BDM)" ;
+    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_4480> ;
+    lova:concentration "10 mM" ;
+    lova:reagentFunction "Actin-myosin interaction inhibitor (myosin ATPase inhibitor)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Sigma Aldrich (St Louis, MO)" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/c3-transferase> a lova:Reagent ;
+    rdfs:label "C3 transferase" ;
+    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_137692> ;
+    lova:concentration "1 μg/ml" ;
+    lova:reagentFunction "RhoA, RhoB, RhoC inhibitor" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Cytoskeleton Inc (Denver, CO)" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/edc> a lova:Reagent ;
+    rdfs:label "1-Ethyl-3-(3-dimethylaminopropyl)carbodiimide hydrochloride (EDC)" ;
+    lova:concentration "4.0 g, 20 mmol" ;
+    lova:reagentFunction "Carbodiimide coupling agent" ;
+    lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/ha-ac> a lova:Reagent ;
+    rdfs:label "Acrylated hyaluronic acid (HA-AC)" ;
+    lova:concentration "3% HA, 0.08 mg/μl" ;
+    lova:reagentFunction "Acrylate-functionalized HA for Michael addition crosslinking" ;
+    lova:reagentRole "monomer" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/linear-pei> a lova:Reagent ;
+    rdfs:label "Linear polyethylenimine (LPEI, 25 kg/mol)" ;
+    lova:molecularWeight "25 kg/mol" ;
+    lova:reagentFunction "Cationic polymer vector for DNA complexation" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Polysciences (Warrington, PA)" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/methyl-cyclodextrin> a lova:Reagent ;
+    rdfs:label "Methyl-β-cyclodextrin" ;
+    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_133151> ;
+    lova:concentration "0.5-1 mM" ;
+    lova:reagentFunction "Caveolae-mediated endocytosis inhibitor (cholesterol depletion)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Sigma Aldrich (St Louis, MO)" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/mmpxl-peptide> a lova:Reagent ;
+    rdfs:label "MMP-degradable crosslinker peptide (MMPxl)" ;
+    lova:concentration "0.91 mg per gel aliquot" ;
+    lova:reagentFunction "Biscysteine MMP-degradable crosslinker for HA network" ;
+    lova:reagentRole "crosslinker" ;
+    lova:sequence "Ac-GCRDGPQGIWGQDRCG-NH2" ;
+    lova:supplier "Genescript (Piscataway, NJ)" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/pgluc-plasmid> a lova:Reagent ;
+    rdfs:label "Gaussia luciferase expression vector (pGluc)" ;
+    lova:reagentFunction "Reporter plasmid for transgene expression" ;
+    lova:reagentRole "other" ;
+    lova:supplier "New England BioLabs (Ipswich, MA)" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/rgd-peptide> a lova:Reagent ;
+    rdfs:label "RGD cell adhesion peptide" ;
+    lova:concentration "100 μM" ;
+    lova:reagentFunction "Cell adhesion ligand" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "Ac-GCGWGRGDSPG-NH2" ;
+    lova:supplier "Genescript (Piscataway, NJ)" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/yoyo-1> a lova:Reagent ;
+    rdfs:label "YOYO-1 DNA intercalator dye" ;
+    lova:concentration "1 molecule per 50 base pairs" ;
+    lova:reagentFunction "Fluorescent labeling of DNA for internalization tracking" ;
+    lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#author/dhaliwal-anandika> a foaf:Person ;
+    foaf:familyName "Dhaliwal" ;
+    foaf:givenName "Anandika" ;
+    foaf:name "Anandika Dhaliwal" .
+
+<https://lovamap.com/ontology#author/oshita-victor> a foaf:Person ;
+    foaf:familyName "Oshita" ;
+    foaf:givenName "Victor" ;
+    foaf:name "Victor Oshita" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" .
+
+<https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/polyplex-size> a lova:Experiment ;
+    rdfs:label "Dynamic light scattering sizing of LPEI-DNA polyplexes" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    lova:equipment "Malvern Zetasizer Nano ZS" ;
+    lova:experimentCategory "Biophysical" ;
+    lova:experimentType "Dynamic light scattering" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1039-c3ib40086g/lpei-dna-polyplex> .
+
+<https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/adh> a lova:Reagent ;
+    rdfs:label "Adipic dihydrazide (ADH)" ;
+    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_141243> ;
+    lova:concentration "18.0 g, 105.5 mmol" ;
+    lova:reagentFunction "HA carboxyl group modification" ;
+    lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/amiloride> a lova:Reagent ;
+    rdfs:label "Amiloride hydrochloride hydrate" ;
+    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_2640> ;
+    lova:concentration "100 μM" ;
+    lova:inchiKey "ACHKKGDWZVCSNH-UHFFFAOYSA-N" ;
+    lova:reagentFunction "Macropinocytosis inhibitor" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Sigma Aldrich (St Louis, MO)" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/chlorpromazine> a lova:Reagent ;
+    rdfs:label "Chlorpromazine hydrochloride" ;
+    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_3649> ;
+    lova:concentration "10 μg/ml" ;
+    lova:inchiKey "FBSMERQALIEGJT-UHFFFAOYSA-N" ;
+    lova:reagentFunction "Clathrin-mediated endocytosis inhibitor" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Fisher Scientific" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/cytochalasin-d> a lova:Reagent ;
+    rdfs:label "Cytochalasin D" ;
+    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_529996> ;
+    lova:concentration "20 μM" ;
+    lova:inchiKey "SDZRWUKZFQQKKV-JHADDHBZSA-N" ;
+    lova:reagentFunction "Actin polymerization inhibitor" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Sigma Aldrich (St Louis, MO)" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/dynasore> a lova:Reagent ;
+    rdfs:label "Dynasore" ;
+    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_132754> ;
+    lova:concentration "50 μM" ;
+    lova:inchiKey "SYNDQCRDGGCQRZ-VXLYETTFSA-N" ;
+    lova:reagentFunction "Dynamin inhibitor (indirect clathrin-mediated endocytosis inhibitor)" ;
+    lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/endothelin-i> a lova:Reagent ;
+    rdfs:label "Endothelin I" ;
+    owl:sameAs <https://pubchem.ncbi.nlm.nih.gov/compound/16212950> ;
+    lova:concentration "20 nM" ;
+    lova:inchiKey "ZUBDGKVDJUIMQQ-ZTNLKOGPSA-N" ;
+    lova:reagentFunction "Actin-myosin interaction inducer" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Calbiochem (EMD Biosciences, San Diego, CA)" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/genistein> a lova:Reagent ;
+    rdfs:label "Genistein" ;
+    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_28088> ;
+    lova:concentration "200 μM" ;
+    lova:inchiKey "TZBJGXHYKVUXJN-UHFFFAOYSA-N" ;
+    lova:reagentFunction "Caveolae-mediated endocytosis inhibitor (tyrosine kinase inhibitor)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Fisher Scientific" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/ipa3> a lova:Reagent ;
+    rdfs:label "IPA-3" ;
+    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_30802> ;
+    lova:concentration "10 μM" ;
+    lova:inchiKey "RFAXLXKIAKIUDT-UHFFFAOYSA-N" ;
+    lova:reagentFunction "PAK1 inhibitor" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Sigma Aldrich (St Louis, MO)" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/jasplakinolide> a lova:Reagent ;
+    rdfs:label "Jasplakinolide" ;
+    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_68271> ;
+    lova:concentration "500 nM" ;
+    lova:inchiKey "GQWYWHOHRVVHAP-DHKPLNAMSA-N" ;
+    lova:reagentFunction "Actin polymerization inducer" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Invitrogen (Grand Island, NY)" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/nhs-ac> a lova:Reagent ;
+    rdfs:label "N-acryloxysuccinimide (NHS-Ac)" ;
+    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_61358> ;
+    lova:concentration "5 molar excess" ;
+    lova:reagentFunction "Acrylation of HA-ADH" ;
+    lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/nocodazole> a lova:Reagent ;
+    rdfs:label "Nocodazole" ;
+    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_34892> ;
+    lova:concentration "10 μM" ;
+    lova:inchiKey "KYRVNWMVYQXFEU-UHFFFAOYSA-N" ;
+    lova:reagentFunction "Microtubule polymerization inhibitor" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Sigma Aldrich (St Louis, MO)" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/paclitaxel> a lova:Reagent ;
+    rdfs:label "Paclitaxel" ;
+    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_45863> ;
+    lova:concentration "10 μM" ;
+    lova:inchiKey "RCINICONZNJXQF-MZXODVADSA-N" ;
+    lova:reagentFunction "Microtubule polymerization inducer" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Cytoskeleton Inc (Denver, CO)" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/sodium-hyaluronan> a lova:Reagent ;
+    rdfs:label "Sodium hyaluronan (60,000 Da)" ;
+    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_757753> ;
+    lova:molecularWeight "60,000 Da" ;
+    lova:reagentFunction "Backbone polymer for hydrogel" ;
+    lova:reagentRole "monomer" ;
+    lova:supplier "Genzyme Corp. (Boston, MA)" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/y27632> a lova:Reagent ;
+    rdfs:label "Y27632" ;
+    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_75393> ;
+    lova:inchiKey "IYOZTVGMEWJPKR-VOMCLLRMSA-N" ;
+    lova:reagentFunction "ROCK inhibitor" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Sigma Aldrich (St Louis, MO)" .
+
+<https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/rheology> a lova:Experiment ;
+    rdfs:label "Oscillatory rheometry of HA-RGD hydrogels" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    lova:equipment "Physica MCR, Anton Paar (8 mm plate)" ;
+    lova:experimentCategory "Rheological" ;
+    lova:experimentType "Oscillatory shear rheometry" ;
+    lova:frequency "0.1-10 rad/s" ;
+    lova:temperature "37°C" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1039-c3ib40086g/ha-rgd-hydrogel-3d> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1039-c3ib40086g/ha-hydrogel-synthesis> a lova:FabricationMethod ;
+    rdfs:label "HA-RGD hydrogel synthesis via Michael-type addition" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    lova:annealingChemistry "Thiol-acrylate Michael addition crosslinking" ;
+    lova:annealingConditions "37°C, 30 min" ;
+    lova:chemistry "Michael-type addition (thiol-ene)" ;
+    lova:chemistryURI <http://purl.obolibrary.org/obo/RXNO_0000009> ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/adh>,
+        <https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/edc>,
+        <https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/ha-ac>,
+        <https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/mmpxl-peptide>,
+        <https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/nhs-ac>,
+        <https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/rgd-peptide>,
+        <https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/sodium-hyaluronan> ;
+    lova:manufacturingMethod "Batch gelation between sigmacote-coated glass slides" ;
+    lova:manufacturingMethodURI <http://purl.obolibrary.org/obo/CHMO_0001646> .
+
+<https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/nacl> a lova:Reagent ;
+    rdfs:label "Sodium chloride (NaCl)" ;
+    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_26710> ;
+    lova:concentration "150 mM final concentration" ;
+    lova:inchiKey "FAPWRFPIFSIZLT-UHFFFAOYSA-M" ;
+    lova:reagentFunction "Polyplex solution salt" ;
+    lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/cytoskeleton-2d> a lova:Experiment ;
+    rdfs:label "Cytoskeletal inhibitor/activator study — 2-D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    lova:assayOrMethod "Gaussia luciferase assay; flow cytometry (YOYO-1)" ;
+    lova:cellType "Mouse mesenchymal stem cells (D1)" ;
+    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000134> ;
+    lova:cultureDuration "13-14 hours before pretreatment" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cytoskeletal dynamics modulation" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1039-c3ib40086g/tcp-2d> .
+
+<https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/cytoskeleton-3d> a lova:Experiment ;
+    rdfs:label "Cytoskeletal inhibitor/activator study — 3-D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    lova:assayOrMethod "Gaussia luciferase assay; flow cytometry (YOYO-1)" ;
+    lova:cellType "Mouse mesenchymal stem cells (D1)" ;
+    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000134> ;
+    lova:cultureDuration "2 days before pretreatment" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cytoskeletal dynamics modulation" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1039-c3ib40086g/ha-rgd-hydrogel-3d> .
+
+<https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/rhogtpase-2d> a lova:Experiment ;
+    rdfs:label "RhoGTPase inhibitor/activator study — 2-D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    lova:assayOrMethod "Gaussia luciferase assay; flow cytometry (YOYO-1)" ;
+    lova:cellType "Mouse mesenchymal stem cells (D1)" ;
+    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000134> ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "RhoGTPase signaling modulation" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1039-c3ib40086g/tcp-2d> .
+
+<https://lovamap.com/ontology#material/10.1039-c3ib40086g/ha-rgd-hydrogel-3d> a lova:Material ;
+    rdfs:label "HA-RGD hydrogel 3-D scaffold (3% HA, MMPxl crosslinked, 100 μM RGD)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1039-c3ib40086g/ha-hydrogel-synthesis> ;
+    lova:packingConfiguration "3-D hydrogel encapsulation" ;
+    lova:particleMaterial "Hyaluronic acid (HA)" ;
+    lova:reportedPoreSize "~330 nm to ~800 nm (mesh size, day 1 to day 4)" ;
+    lova:scaffoldDimensions "8.0 mm diameter disc (rheometry); 10 μl gel per well (cell culture)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:stiffnessUnit "Pa" ;
+    lova:stiffnessValue 225.0 ;
+    lova:surfaceModification "RGD-functionalized (100 μM, 0.53 degree of clustering)" .
+
+<https://lovamap.com/ontology#material/10.1039-c3ib40086g/tcp-2d> a lova:Material ;
+    rdfs:label "Tissue culture polystyrene (TCP) 2-D surface" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    lova:packingConfiguration "2-D flat surface" ;
+    lova:particleMaterial "Polystyrene" ;
+    lova:particleMaterialURI <http://purl.obolibrary.org/obo/CHEBI_53545> ;
+    lova:stiffnessQualitative "Rigid" .
+
+<https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/endocytosis-3d> a lova:Experiment ;
+    rdfs:label "Endocytosis pathway inhibition — transgene expression & internalization, 3-D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    lova:assayOrMethod "Gaussia luciferase assay; flow cytometry (YOYO-1)" ;
+    lova:cellType "Mouse mesenchymal stem cells (D1)" ;
+    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000134> ;
+    lova:cultureDuration "2 days before pretreatment" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Endocytosis pathway inhibition" ;
+    lova:sampleSize 5000 ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1039-c3ib40086g/ha-rgd-hydrogel-3d> .
+
+<https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/rhogtpase-3d> a lova:Experiment ;
+    rdfs:label "RhoGTPase inhibitor/activator study — 3-D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    lova:assayOrMethod "Gaussia luciferase assay; flow cytometry (YOYO-1)" ;
+    lova:cellType "Mouse mesenchymal stem cells (D1)" ;
+    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000134> ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "RhoGTPase signaling modulation" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1039-c3ib40086g/ha-rgd-hydrogel-3d> .
+
+<https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/endocytosis-2d> a lova:Experiment ;
+    rdfs:label "Endocytosis pathway inhibition — transgene expression & internalization, 2-D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1039-c3ib40086g> ;
+    lova:assayOrMethod "Gaussia luciferase assay; flow cytometry (YOYO-1)" ;
+    lova:cellType "Mouse mesenchymal stem cells (D1)" ;
+    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000134> ;
+    lova:cultureDuration "13-14 hours before pretreatment" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Endocytosis pathway inhibition" ;
+    lova:sampleSize 7000 ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1039-c3ib40086g/tcp-2d> .
+
+<https://lovamap.com/ontology#agent/rdf_enrichment> a prov:SoftwareAgent ;
+    rdfs:label "rdf_enrichment pipeline" .
+
+<https://lovamap.com/ontology#paper/10.1039-c3ib40086g> a bibo:AcademicArticle ;
+    rdfs:label "Dhaliwal et al., 2013 — Transfection in the third dimension" ;
+    dc1:bibliographicCitation "Dhaliwal et al., 2013" ;
+    dc1:creator <https://lovamap.com/ontology#author/dhaliwal-anandika>,
+        <https://lovamap.com/ontology#author/oshita-victor>,
+        <https://lovamap.com/ontology#author/segura-tatiana> ;
+    dc1:date "2013"^^xsd:gYear ;
+    dc1:identifier "10.1039/c3ib40086g" ;
+    dc1:title "Transfection in the third dimension" ;
+    dc1:type "Research Article" ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/dhaliwal-anandika> <https://lovamap.com/ontology#author/oshita-victor> <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    lova:focusMaterial "Hyaluronic acid (HA-RGD) hydrogels vs. tissue culture polystyrene for studying non-viral gene transfer mechanisms in mouse mesenchymal stem cells" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/integrative-biology> .
+
+[] a rdf:Statement ;
+    rdf:object "TZBJGXHYKVUXJN-UHFFFAOYSA-N" ;
+    rdf:predicate lova:inchiKey ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/genistein> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CHEBI_75393> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/y27632> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CL_0000134> ;
+    rdf:predicate lova:cellTypeURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/rhogtpase-2d> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CL_0000134> ;
+    rdf:predicate lova:cellTypeURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/endocytosis-3d> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object "FAPWRFPIFSIZLT-UHFFFAOYSA-M" ;
+    rdf:predicate lova:inchiKey ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/nacl> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CHEBI_53545> ;
+    rdf:predicate lova:particleMaterialURI ;
+    rdf:subject <https://lovamap.com/ontology#material/10.1039-c3ib40086g/tcp-2d> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object "ACHKKGDWZVCSNH-UHFFFAOYSA-N" ;
+    rdf:predicate lova:inchiKey ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/amiloride> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CHEBI_133151> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/methyl-cyclodextrin> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CHMO_0001646> ;
+    rdf:predicate lova:manufacturingMethodURI ;
+    rdf:subject <https://lovamap.com/ontology#fabrication-method/10.1039-c3ib40086g/ha-hydrogel-synthesis> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CHEBI_26710> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/nacl> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CHEBI_68271> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/jasplakinolide> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CHEBI_34892> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/nocodazole> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CHEBI_3649> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/chlorpromazine> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CL_0000134> ;
+    rdf:predicate lova:cellTypeURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/morphology-3d> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object "RCINICONZNJXQF-MZXODVADSA-N" ;
+    rdf:predicate lova:inchiKey ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/paclitaxel> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CL_0000134> ;
+    rdf:predicate lova:cellTypeURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/cytoskeleton-2d> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object "SYNDQCRDGGCQRZ-VXLYETTFSA-N" ;
+    rdf:predicate lova:inchiKey ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/dynasore> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object "KYRVNWMVYQXFEU-UHFFFAOYSA-N" ;
+    rdf:predicate lova:inchiKey ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/nocodazole> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object "RFAXLXKIAKIUDT-UHFFFAOYSA-N" ;
+    rdf:predicate lova:inchiKey ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/ipa3> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CHEBI_30802> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/ipa3> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CL_0000134> ;
+    rdf:predicate lova:cellTypeURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/rhogtpase-3d> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CHEBI_28088> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/genistein> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object "IYOZTVGMEWJPKR-VOMCLLRMSA-N" ;
+    rdf:predicate lova:inchiKey ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/y27632> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CL_0000134> ;
+    rdf:predicate lova:cellTypeURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/endocytosis-2d> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CL_0000134> ;
+    rdf:predicate lova:cellTypeURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/cytoskeleton-3d> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CHEBI_141243> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/adh> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CHEBI_137692> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/c3-transferase> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CHEBI_529996> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/cytochalasin-d> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CHEBI_132754> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/dynasore> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object "ZUBDGKVDJUIMQQ-ZTNLKOGPSA-N" ;
+    rdf:predicate lova:inchiKey ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/endothelin-i> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <https://pubchem.ncbi.nlm.nih.gov/compound/16212950> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/endothelin-i> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object "SDZRWUKZFQQKKV-JHADDHBZSA-N" ;
+    rdf:predicate lova:inchiKey ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/cytochalasin-d> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CHEBI_45863> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/paclitaxel> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CHEBI_2640> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/amiloride> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/RXNO_0000009> ;
+    rdf:predicate lova:chemistryURI ;
+    rdf:subject <https://lovamap.com/ontology#fabrication-method/10.1039-c3ib40086g/ha-hydrogel-synthesis> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CHEBI_4480> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/bdm> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object "GQWYWHOHRVVHAP-DHKPLNAMSA-N" ;
+    rdf:predicate lova:inchiKey ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/jasplakinolide> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object "FBSMERQALIEGJT-UHFFFAOYSA-N" ;
+    rdf:predicate lova:inchiKey ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/chlorpromazine> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CL_0000134> ;
+    rdf:predicate lova:cellTypeURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1039-c3ib40086g/morphology-2d> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CHEBI_757753> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/sodium-hyaluronan> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CHEBI_61358> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1039-c3ib40086g/nhs-ac> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+

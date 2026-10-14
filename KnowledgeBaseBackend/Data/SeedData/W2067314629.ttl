@@ -1,0 +1,775 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1002-adma.201103349> a bibo:AcademicArticle ;
+    rdfs:label "Zhang et al., 2011 — Physically Associated Synthetic Hydrogels" ;
+    dc:title "Physically Associated Synthetic Hydrogels with Long-Term Covalent Stabilization for Cell Culture and Stem Cell Transplantation" ;
+    dc:identifier "10.1002/adma.201103349" ;
+    dc:date "2011"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/advanced-materials> ;
+    dc:creator <https://lovamap.com/ontology#author/zhang-jianjun> ,
+               <https://lovamap.com/ontology#author/tokatlian-talar> ,
+               <https://lovamap.com/ontology#author/zhong-jin> ,
+               <https://lovamap.com/ontology#author/ng-quinn> ,
+               <https://lovamap.com/ontology#author/patterson-michaela> ,
+               <https://lovamap.com/ontology#author/lowry-william> ,
+               <https://lovamap.com/ontology#author/carmichael-stanley> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/zhang-jianjun>
+                      <https://lovamap.com/ontology#author/tokatlian-talar>
+                      <https://lovamap.com/ontology#author/zhong-jin>
+                      <https://lovamap.com/ontology#author/ng-quinn>
+                      <https://lovamap.com/ontology#author/patterson-michaela>
+                      <https://lovamap.com/ontology#author/lowry-william>
+                      <https://lovamap.com/ontology#author/carmichael-stanley>
+                      <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    dc:bibliographicCitation "Zhang et al., 2011" ;
+    lova:focusMaterial "Physically self-assembled PEG-PPS (four-arm, (PEG113-PPS5)4) branched copolymer hydrogels stabilized by disulfide exchange, for cell culture and stem cell transplantation" .
+
+<https://lovamap.com/ontology#author/zhang-jianjun> a foaf:Person ;
+    foaf:familyName "Zhang" ;
+    foaf:givenName "Jianjun" ;
+    foaf:name "Jianjun Zhang" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California, Los Angeles" .
+
+<https://lovamap.com/ontology#author/tokatlian-talar> a foaf:Person ;
+    foaf:familyName "Tokatlian" ;
+    foaf:givenName "Talar" ;
+    foaf:name "Talar Tokatlian" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California, Los Angeles" .
+
+<https://lovamap.com/ontology#author/zhong-jin> a foaf:Person ;
+    foaf:familyName "Zhong" ;
+    foaf:givenName "Jin" ;
+    foaf:name "Jin Zhong" ;
+    schema:affiliation "Department of Neurology, University of California, Los Angeles" .
+
+<https://lovamap.com/ontology#author/ng-quinn> a foaf:Person ;
+    foaf:familyName "Ng" ;
+    foaf:givenName "Quinn K. T." ;
+    foaf:name "Quinn K. T. Ng" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California, Los Angeles" .
+
+<https://lovamap.com/ontology#author/patterson-michaela> a foaf:Person ;
+    foaf:familyName "Patterson" ;
+    foaf:givenName "Michaela" ;
+    foaf:name "Michaela Patterson" ;
+    schema:affiliation "Department of Molecular, Cell and Developmental Biology, University of California, Los Angeles" .
+
+<https://lovamap.com/ontology#author/lowry-william> a foaf:Person ;
+    foaf:familyName "Lowry" ;
+    foaf:givenName "William E." ;
+    foaf:name "William E. Lowry" ;
+    schema:affiliation "Department of Molecular, Cell and Developmental Biology, University of California, Los Angeles" .
+
+<https://lovamap.com/ontology#author/carmichael-stanley> a foaf:Person ;
+    foaf:familyName "Carmichael" ;
+    foaf:givenName "S. Thomas" ;
+    foaf:name "S. Thomas Carmichael" ;
+    schema:affiliation "Department of Neurology, University of California, Los Angeles" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California, Los Angeles" .
+
+<https://lovamap.com/ontology#journal/advanced-materials> a bibo:Journal ;
+    dc:title "Advanced Materials" ;
+    bibo:issn "0935-9648" .
+
+<https://lovamap.com/ontology#material/10.1002-adma.201103349/peg-pps-micelle> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    rdfs:label "(PEG113-PPS5)4 self-assembled micelles (0.1% in water)" ;
+    lova:particleShape "Micelle" ;
+    lova:particleMaterial "(PEG113-PPS5)4 four-arm PEG-PPS branched copolymer" ;
+    lova:particleSizeMin 20.0 ;
+    lova:particleSizeMax 30.0 ;
+    lova:particleSizeUnit "nm" ;
+    lova:sizeDistribution "Uniform" .
+
+<https://lovamap.com/ontology#material/10.1002-adma.201103349/peg-pps-1pct> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    rdfs:label "1% PEG-PPS aqueous solution" ;
+    lova:particleMaterial "(PEG113-PPS5)4 four-arm PEG-PPS branched copolymer" ;
+    lova:stiffnessQualitative "High fluid properties (sol)" .
+
+<https://lovamap.com/ontology#material/10.1002-adma.201103349/peg-pps-3pct-injectable> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    rdfs:label "3% PEG-PPS hydrogel (injectable)" ;
+    lova:particleMaterial "(PEG113-PPS5)4 four-arm PEG-PPS branched copolymer" ;
+    lova:stiffnessQualitative "Network, no flow under gravity, injectable" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adma.201103349/peg-pps-synthesis> .
+
+<https://lovamap.com/ontology#material/10.1002-adma.201103349/peg-pps-2pct-norgd> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    rdfs:label "2% PEG-PPS hydrogel (no RGD)" ;
+    lova:particleMaterial "(PEG113-PPS5)4 four-arm PEG-PPS branched copolymer" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adma.201103349/peg-pps-synthesis> .
+
+<https://lovamap.com/ontology#material/10.1002-adma.201103349/peg-pps-2pct-rgd> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    rdfs:label "2% PEG-PPS-RGD hydrogel" ;
+    lova:particleMaterial "(PEG113-PPS5)4 four-arm PEG-PPS branched copolymer" ;
+    lova:surfaceModification "RGD-modified (Ac-GCGYGRGDSPG-NH2)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adma.201103349/peg-pps-synthesis> .
+
+<https://lovamap.com/ontology#material/10.1002-adma.201103349/peg-pps-2.66pct-rgd> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    rdfs:label "2.66% PEG-PPS-RGD hydrogel" ;
+    lova:particleMaterial "(PEG113-PPS5)4 four-arm PEG-PPS branched copolymer" ;
+    lova:surfaceModification "RGD-modified (Ac-GCGYGRGDSPG-NH2)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adma.201103349/peg-pps-synthesis> .
+
+<https://lovamap.com/ontology#material/10.1002-adma.201103349/peg-pps-3.33pct-rgd> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    rdfs:label "3.33% PEG-PPS-RGD hydrogel" ;
+    lova:particleMaterial "(PEG113-PPS5)4 four-arm PEG-PPS branched copolymer" ;
+    lova:surfaceModification "RGD-modified (Ac-GCGYGRGDSPG-NH2)" ;
+    lova:stiffnessQualitative "Stiff hydrogel" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adma.201103349/peg-pps-synthesis> .
+
+<https://lovamap.com/ontology#material/10.1002-adma.201103349/peg-pps-2pct-invivo> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    rdfs:label "2% PEG-PPS hydrogel (in vivo transplant vehicle)" ;
+    lova:particleMaterial "(PEG113-PPS5)4 four-arm PEG-PPS branched copolymer" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adma.201103349/peg-pps-synthesis> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-adma.201103349/peg-pps-synthesis> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    rdfs:label "Anionic polymerization of propylene sulfide with pyridine dithione end-capping and disulfide exchange crosslinking" ;
+    lova:chemistry "Thiol-disulfide exchange (pyridine dithione)" ;
+    lova:manufacturingMethod "Anionic polymerization of propylene sulfide; physical self-assembly via hydrophobic PPS association" ;
+    lova:annealingChemistry "Disulfide exchange crosslinking via pyridine dithione end groups" ;
+    lova:annealingConditions "Physiological pH (7.4), aqueous solution, incubation in cDMEM with cells" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-adma.201103349/peg-four-arm> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adma.201103349/propylene-sulfide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adma.201103349/dipyridine-dithione> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adma.201103349/rgd-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adma.201103349/aibn> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adma.201103349/naome> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adma.201103349/nah> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adma.201103349/allyl-bromide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adma.201103349/dtt> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adma.201103349/nahco3> .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.201103349/peg-four-arm> a lova:Reagent ;
+    rdfs:label "Four-arm PEG (PEG113 per arm)" ;
+    lova:reagentRole "monomer" ;
+    lova:reagentFunction "Water-soluble polymer backbone" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.201103349/propylene-sulfide> a lova:Reagent ;
+    rdfs:label "Propylene sulfide" ;
+    lova:reagentRole "monomer" ;
+    lova:reagentFunction "Hydrophobic PPS block component" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.201103349/dipyridine-dithione> a lova:Reagent ;
+    rdfs:label "2,2'-Dipyridine dithione (end-capping agent)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:reagentFunction "Disulfide exchange end-capping and physical/covalent crosslinking trigger" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.201103349/rgd-peptide> a lova:Reagent ;
+    rdfs:label "RGD (Ac-GCGYGRGDSPG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "GCGYGRGDSPG" ;
+    lova:reagentFunction "Integrin binding / cell adhesion" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.201103349/aibn> a lova:Reagent ;
+    rdfs:label "AIBN" ;
+    lova:reagentRole "initiator" ;
+    lova:reagentFunction "Radical initiator in PEG-thioacetate synthesis" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.201103349/naome> a lova:Reagent ;
+    rdfs:label "Sodium methoxide (NaOMe)" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Deprotection/activation step in PEG-PPS synthesis" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.201103349/nah> a lova:Reagent ;
+    rdfs:label "Sodium hydride (NaH)" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Base used in PEG-allyl synthesis" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.201103349/allyl-bromide> a lova:Reagent ;
+    rdfs:label "Allyl bromide" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Allylation agent in PEG-allyl synthesis" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.201103349/dtt> a lova:Reagent ;
+    rdfs:label "Dithiothreitol (DTT)" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Reducing agent used to cleave disulfide crosslinks" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.201103349/nahco3> a lova:Reagent ;
+    rdfs:label "NaHCO3 buffer (pH 9.3)" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Alternative gelation buffer promoting disulfide exchange" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adma.201103349/tem-micelle> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adma.201103349/peg-pps-micelle> ;
+    rdfs:label "TEM imaging of PEG-PPS micelles" ;
+    lova:experimentCategory "Characterization" ;
+    lova:experimentType "Transmission electron microscopy" ;
+    lova:assayOrMethod "TEM, 100,000× magnification" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adma.201103349/rheology-concentration-t0> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adma.201103349/peg-pps-2pct-rgd> ,
+                      <https://lovamap.com/ontology#material/10.1002-adma.201103349/peg-pps-2.66pct-rgd> ,
+                      <https://lovamap.com/ontology#material/10.1002-adma.201103349/peg-pps-3.33pct-rgd> ;
+    rdfs:label "Oscillatory rheology at t=0h as a function of copolymer concentration" ;
+    lova:experimentCategory "Rheological" ;
+    lova:experimentType "Oscillatory shear rheology" ;
+    lova:assayOrMethod "Frequency sweep" ;
+    lova:medium "cDMEM" ;
+    lova:cultureDuration "0 h" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adma.201103349/rheology-concentration-t336> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adma.201103349/peg-pps-2pct-rgd> ,
+                      <https://lovamap.com/ontology#material/10.1002-adma.201103349/peg-pps-2.66pct-rgd> ,
+                      <https://lovamap.com/ontology#material/10.1002-adma.201103349/peg-pps-3.33pct-rgd> ;
+    rdfs:label "Oscillatory rheology at t=336h as a function of copolymer concentration" ;
+    lova:experimentCategory "Rheological" ;
+    lova:experimentType "Oscillatory shear rheology" ;
+    lova:assayOrMethod "Frequency sweep" ;
+    lova:medium "cDMEM" ;
+    lova:cultureDuration "336 h" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adma.201103349/rheology-timecourse-2.66pct> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adma.201103349/peg-pps-2.66pct-rgd> ;
+    rdfs:label "Time-course rheology of 2.66% PEG-PPS hydrogels in presence of cells" ;
+    lova:experimentCategory "Rheological" ;
+    lova:experimentType "Oscillatory shear rheology (time course)" ;
+    lova:medium "cDMEM" ;
+    lova:cultureDuration "0, 12, 72, 168, 336 h" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adma.201103349/dtt-treatment> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adma.201103349/peg-pps-2.66pct-rgd> ;
+    rdfs:label "DTT reduction treatment of 336h-incubated 2.66% hydrogel" ;
+    lova:experimentCategory "Rheological" ;
+    lova:experimentType "Reducing agent treatment / rheology" ;
+    lova:assayOrMethod "Oscillatory shear rheology after DTT addition" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adma.201103349/live-dead-nih3t3> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adma.201103349/peg-pps-2pct-norgd> ,
+                      <https://lovamap.com/ontology#material/10.1002-adma.201103349/peg-pps-2pct-rgd> ,
+                      <https://lovamap.com/ontology#material/10.1002-adma.201103349/peg-pps-2.66pct-rgd> ,
+                      <https://lovamap.com/ontology#material/10.1002-adma.201103349/peg-pps-3.33pct-rgd> ;
+    rdfs:label "Live-dead staining of NIH/3T3 cells in PEG-PPS hydrogels" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell viability / spreading" ;
+    lova:assayOrMethod "Live-dead staining" ;
+    lova:cellType "NIH/3T3 mouse fibroblast" ;
+    lova:cultureDuration "4, 14 days" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adma.201103349/live-dead-mmsc> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adma.201103349/peg-pps-2.66pct-rgd> ;
+    rdfs:label "Live-dead staining of mMSCs in 2.66% PEG-PPS-RGD hydrogel" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell viability / spreading" ;
+    lova:assayOrMethod "Live-dead staining" ;
+    lova:cellType "mMSC (mouse mesenchymal stem cell)" ;
+    lova:cultureDuration "4, 14 days" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adma.201103349/alamarblue-nih3t3> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adma.201103349/peg-pps-2pct-norgd> ,
+                      <https://lovamap.com/ontology#material/10.1002-adma.201103349/peg-pps-2pct-rgd> ,
+                      <https://lovamap.com/ontology#material/10.1002-adma.201103349/peg-pps-2.66pct-rgd> ,
+                      <https://lovamap.com/ontology#material/10.1002-adma.201103349/peg-pps-3.33pct-rgd> ;
+    rdfs:label "AlamarBlue metabolic activity assay on NIH/3T3 cells" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Metabolic activity" ;
+    lova:assayOrMethod "AlamarBlue" ;
+    lova:cellType "NIH/3T3 mouse fibroblast" ;
+    lova:cultureDuration "2, 4, 8, 14 days" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adma.201103349/alamarblue-mmsc> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adma.201103349/peg-pps-2.66pct-rgd> ;
+    rdfs:label "AlamarBlue metabolic activity assay on mMSCs" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Metabolic activity" ;
+    lova:assayOrMethod "AlamarBlue" ;
+    lova:cellType "mMSC (mouse mesenchymal stem cell)" ;
+    lova:cultureDuration "2, 4, 8, 14 days" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adma.201103349/live-dead-ipsnpc> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adma.201103349/peg-pps-2.66pct-rgd> ;
+    rdfs:label "Live-dead staining of iPS-NPCs in 2.66% PEG-PPS-RGD hydrogel" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell viability / spreading" ;
+    lova:assayOrMethod "Live-dead staining" ;
+    lova:cellType "iPS-NPC (human induced pluripotent stem cell-derived neural progenitor cell)" ;
+    lova:cultureDuration "4, 14 days" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adma.201103349/invivo-transplant> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adma.201103349/peg-pps-2pct-invivo> ;
+    rdfs:label "In vivo transplantation of iPS-NPCs within PEG-PPS hydrogel into mouse brain" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "In vivo cell transplantation" ;
+    lova:cellType "iPS-NPC (human induced pluripotent stem cell-derived neural progenitor cell)" ;
+    lova:cultureDuration "14 days" ;
+    lova:comparisonGroup "PBS (cells only)" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201103349/micelle-size> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201103349/tem-micelle> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    rdfs:label "PEG-PPS micelle size in dilute aqueous solution" ;
+    lova:measurementType "Particle size (micelle diameter)" ;
+    lova:measurementCategory "Characterization" ;
+    lova:valueString "20-30 nm" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201103349/peg-arm-modification> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201103349/tem-micelle> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    rdfs:label "Percentage of PEG arms modified with PPS" ;
+    lova:measurementType "Degree of modification" ;
+    lova:measurementCategory "Characterization" ;
+    qudt:numericValue 96.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201103349/pps-units-per-arm> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201103349/tem-micelle> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    rdfs:label "PPS units per PEG arm" ;
+    lova:measurementType "Degree of polymerization" ;
+    lova:measurementCategory "Characterization" ;
+    qudt:numericValue 5.0 ;
+    qudt:unit "units" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201103349/mc-covalent-stabilized> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201103349/rheology-concentration-t336> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    rdfs:label "Mc (molecular weight between crosslinks) of covalently stabilized PEG-PSS hydrogel" ;
+    lova:measurementType "Molecular weight between crosslinks (Mc)" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 5000.0 ;
+    qudt:unit "g/mol" ;
+    lova:comparisonGroup "Purely covalently crosslinked PEG network of same molecular weight" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201103349/mc-purely-covalent> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201103349/rheology-concentration-t336> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    rdfs:label "Mc of purely covalently crosslinked PEG network of same molecular weight" ;
+    lova:measurementType "Molecular weight between crosslinks (Mc)" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 66500.0 ;
+    qudt:unit "g/mol" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201103349/gprime-2.66pct-t0h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201103349/rheology-timecourse-2.66pct> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    rdfs:label "Storage modulus G' of 2.66% PEG-PPS hydrogel at t=0h" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 30.0 ;
+    qudt:unit "Pa" ;
+    lova:timePoint "0 h" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201103349/gprime-2.66pct-t12h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201103349/rheology-timecourse-2.66pct> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    rdfs:label "Storage modulus G' of 2.66% PEG-PPS hydrogel at t=12h" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 100.0 ;
+    qudt:unit "Pa" ;
+    lova:timePoint "12 h" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201103349/gprime-2.66pct-t72h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201103349/rheology-timecourse-2.66pct> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    rdfs:label "Storage modulus G' of 2.66% PEG-PPS hydrogel at t=72h (plateau)" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 1000.0 ;
+    qudt:unit "Pa" ;
+    lova:timePoint "72 h" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adma.201103349/gprime-2.66pct-t0-vs-t72> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    rdfs:label "Storage modulus (G') of 2.66% PEG-PPS hydrogel higher at 72h than at 0h" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adma.201103349/gprime-2.66pct-t72h> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adma.201103349/gprime-2.66pct-t0h> ;
+    lova:direction "higher" ;
+    lova:pValue 0.01 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201103349/gprime-2pct-t0h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201103349/rheology-concentration-t0> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    rdfs:label "Storage modulus G' of 2% PEG-PPS hydrogel at t=0h" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 15.0 ;
+    qudt:unit "Pa" ;
+    lova:timePoint "0 h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201103349/gdoubleprime-2pct-t0h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201103349/rheology-concentration-t0> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    rdfs:label "Loss modulus G'' of 2% PEG-PPS hydrogel at t=0h" ;
+    lova:measurementType "Loss modulus (G'')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 13.0 ;
+    qudt:unit "Pa" ;
+    lova:timePoint "0 h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201103349/gprime-2.66pct-t0h-fig> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201103349/rheology-concentration-t0> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    rdfs:label "Storage modulus G' of 2.66% PEG-PPS hydrogel at t=0h (concentration study)" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 27.0 ;
+    qudt:unit "Pa" ;
+    lova:timePoint "0 h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201103349/gdoubleprime-2.66pct-t0h-fig> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201103349/rheology-concentration-t0> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    rdfs:label "Loss modulus G'' of 2.66% PEG-PPS hydrogel at t=0h (concentration study)" ;
+    lova:measurementType "Loss modulus (G'')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 22.0 ;
+    qudt:unit "Pa" ;
+    lova:timePoint "0 h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201103349/gprime-3.33pct-t0h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201103349/rheology-concentration-t0> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    rdfs:label "Storage modulus G' of 3.33% PEG-PPS hydrogel at t=0h" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 170.0 ;
+    qudt:unit "Pa" ;
+    lova:timePoint "0 h" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201103349/gdoubleprime-3.33pct-t0h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201103349/rheology-concentration-t0> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    rdfs:label "Loss modulus G'' of 3.33% PEG-PPS hydrogel at t=0h" ;
+    lova:measurementType "Loss modulus (G'')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 95.0 ;
+    qudt:unit "Pa" ;
+    lova:timePoint "0 h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201103349/gprime-2pct-t336h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201103349/rheology-concentration-t336> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    rdfs:label "Storage modulus G' of 2% PEG-PPS hydrogel at t=336h" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 620.0 ;
+    qudt:unit "Pa" ;
+    lova:timePoint "336 h" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201103349/gdoubleprime-2pct-t336h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201103349/rheology-concentration-t336> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    rdfs:label "Loss modulus G'' of 2% PEG-PPS hydrogel at t=336h" ;
+    lova:measurementType "Loss modulus (G'')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 85.0 ;
+    qudt:unit "Pa" ;
+    lova:timePoint "336 h" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201103349/gprime-2.66pct-t336h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201103349/rheology-concentration-t336> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    rdfs:label "Storage modulus G' of 2.66% PEG-PPS hydrogel at t=336h" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 850.0 ;
+    qudt:unit "Pa" ;
+    lova:timePoint "336 h" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201103349/gdoubleprime-2.66pct-t336h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201103349/rheology-concentration-t336> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    rdfs:label "Loss modulus G'' of 2.66% PEG-PPS hydrogel at t=336h" ;
+    lova:measurementType "Loss modulus (G'')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 130.0 ;
+    qudt:unit "Pa" ;
+    lova:timePoint "336 h" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201103349/gprime-3.33pct-t336h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201103349/rheology-concentration-t336> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    rdfs:label "Storage modulus G' of 3.33% PEG-PPS hydrogel at t=336h" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 1350.0 ;
+    qudt:unit "Pa" ;
+    lova:timePoint "336 h" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201103349/gdoubleprime-3.33pct-t336h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201103349/rheology-concentration-t336> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    rdfs:label "Loss modulus G'' of 3.33% PEG-PPS hydrogel at t=336h" ;
+    lova:measurementType "Loss modulus (G'')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 180.0 ;
+    qudt:unit "Pa" ;
+    lova:timePoint "336 h" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adma.201103349/gprime-3.33pct-t0-vs-t336> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    rdfs:label "Storage modulus of 3.33% PEG-PPS hydrogel higher at 336h vs 0h" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adma.201103349/gprime-3.33pct-t336h> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adma.201103349/gprime-3.33pct-t0h> ;
+    lova:direction "higher" ;
+    lova:pValue 0.01 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201103349/dtt-reduced-moduli> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201103349/dtt-treatment> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    rdfs:label "Storage and loss moduli decreased upon DTT addition to 2.66% hydrogel (336h)" ;
+    lova:measurementType "Storage/loss modulus response to reduction" ;
+    lova:measurementCategory "Rheological" ;
+    lova:valueString "Moduli decreased with time until initial physical hydrogel properties were recovered" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201103349/spreading-2.66pct-higher-than-2pct> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201103349/live-dead-nih3t3> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    rdfs:label "NIH/3T3 cell spreading in 2.66% gels" ;
+    lova:measurementType "Cell spreading (qualitative)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Cells spread more in 2.66% gels than in 2% gels with identical RGD concentrations" ;
+    lova:comparisonGroup "2% PEG-PPS-RGD hydrogel" ;
+    lova:timePoint "14 days" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201103349/spreading-2pct> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201103349/live-dead-nih3t3> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    rdfs:label "NIH/3T3 cell spreading in 2% gels" ;
+    lova:measurementType "Cell spreading (qualitative)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Less cell spreading compared to 2.66% gels" ;
+    lova:timePoint "14 days" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adma.201103349/spreading-2.66-vs-2> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    rdfs:label "NIH/3T3 spreading higher in 2.66% vs 2% PEG-PPS-RGD hydrogel" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adma.201103349/spreading-2.66pct-higher-than-2pct> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adma.201103349/spreading-2pct> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201103349/spreading-3.33pct> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201103349/live-dead-nih3t3> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    rdfs:label "NIH/3T3 cell spreading in 3.33% gels at 14 days" ;
+    lova:measurementType "Cell spreading (qualitative)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "NIH/3T3 cells spread significantly less in 3.33% hydrogels compared with 2.66% gels after 14 days" ;
+    lova:timePoint "14 days" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adma.201103349/spreading-2.66-vs-3.33> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    rdfs:label "NIH/3T3 spreading higher in 2.66% vs 3.33% PEG-PPS-RGD hydrogel at 14 days" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adma.201103349/spreading-2.66pct-higher-than-2pct> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adma.201103349/spreading-3.33pct> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201103349/metabolic-2pct-norgd-d14> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201103349/alamarblue-nih3t3> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    rdfs:label "NIH/3T3 metabolic activity (% reduction) at 14 days, 2%-no RGD" ;
+    lova:measurementType "Metabolic activity (% reduction)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 18.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 14" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201103349/metabolic-2pct-d14> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201103349/alamarblue-nih3t3> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    rdfs:label "NIH/3T3 metabolic activity (% reduction) at 14 days, 2%" ;
+    lova:measurementType "Metabolic activity (% reduction)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 57.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 14" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201103349/metabolic-2.66pct-d14> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201103349/alamarblue-nih3t3> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    rdfs:label "NIH/3T3 metabolic activity (% reduction) at 14 days, 2.66%" ;
+    lova:measurementType "Metabolic activity (% reduction)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 68.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 14" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201103349/metabolic-3.33pct-d14> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201103349/alamarblue-nih3t3> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    rdfs:label "NIH/3T3 metabolic activity (% reduction) at 14 days, 3.33%" ;
+    lova:measurementType "Metabolic activity (% reduction)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 38.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 14" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adma.201103349/metabolic-norgd-vs-2pct> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    rdfs:label "Metabolic activity lower in 2%-no RGD vs 2% at day 14" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adma.201103349/metabolic-2pct-norgd-d14> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adma.201103349/metabolic-2pct-d14> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-adma.201103349/metabolic-2pct-vs-2.66pct> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    rdfs:label "Metabolic activity lower in 2% vs 2.66% at day 14" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adma.201103349/metabolic-2pct-d14> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adma.201103349/metabolic-2.66pct-d14> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-adma.201103349/metabolic-2.66pct-vs-3.33pct> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    rdfs:label "Metabolic activity higher in 2.66% vs 3.33% at day 14" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adma.201103349/metabolic-2.66pct-d14> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adma.201103349/metabolic-3.33pct-d14> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201103349/metabolic-mmsc-d2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201103349/alamarblue-mmsc> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    rdfs:label "mMSC metabolic activity (% reduction) at day 2 in 2.66% hydrogel" ;
+    lova:measurementType "Metabolic activity (% reduction)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 38.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 2" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201103349/metabolic-mmsc-d4> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201103349/alamarblue-mmsc> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    rdfs:label "mMSC metabolic activity (% reduction) at day 4 in 2.66% hydrogel" ;
+    lova:measurementType "Metabolic activity (% reduction)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 42.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 4" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201103349/metabolic-mmsc-d8> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201103349/alamarblue-mmsc> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    rdfs:label "mMSC metabolic activity (% reduction) at day 8 in 2.66% hydrogel" ;
+    lova:measurementType "Metabolic activity (% reduction)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 44.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 8" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201103349/metabolic-mmsc-d14> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201103349/alamarblue-mmsc> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    rdfs:label "mMSC metabolic activity (% reduction) at day 14 in 2.66% hydrogel" ;
+    lova:measurementType "Metabolic activity (% reduction)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 56.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 14" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201103349/ipsnpc-survival-hydrogel> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201103349/invivo-transplant> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    rdfs:label "iPS-NPC survival in PEG-PPS hydrogel, 14 days post-transplant" ;
+    lova:measurementType "Cell survival (% of injected cells)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.2 ;
+    qudt:unit "%" ;
+    lova:sampleSize 3 ;
+    lova:timePoint "Day 14" ;
+    lova:comparisonGroup "PBS (cells only)" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201103349/ipsnpc-survival-pbs> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201103349/invivo-transplant> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    rdfs:label "iPS-NPC survival in PBS (cells only), 14 days post-transplant" ;
+    lova:measurementType "Cell survival (% of injected cells)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "No detectable surviving cells" ;
+    lova:sampleSize 3 ;
+    lova:timePoint "Day 14" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adma.201103349/ipsnpc-survival-hydrogel-vs-pbs> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201103349> ;
+    rdfs:label "iPS-NPC survival higher in PEG-PPS hydrogel vs PBS at 14 days" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adma.201103349/ipsnpc-survival-hydrogel> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adma.201103349/ipsnpc-survival-pbs> ;
+    lova:direction "higher" .

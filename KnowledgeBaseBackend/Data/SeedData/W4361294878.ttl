@@ -1,0 +1,727 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> a bibo:AcademicArticle ;
+    rdfs:label "Wang et al., 2023 — Lipidomic Analysis of Mouse Brain by IR-MALDESI-MSI" ;
+    dc:title "Lipidomic Analysis of Mouse Brain to Evaluate the Efficacy and Preservation of Different Tissue Preparatory Techniques by IR-MALDESI-MSI" ;
+    dc:identifier "10.1021/jasms.2c00353" ;
+    dc:date "2023"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/journal-of-the-american-society-for-mass-spectrometry> ;
+    dc:creator <https://lovamap.com/ontology#author/wang-mary> ,
+               <https://lovamap.com/ontology#author/sohn-alexandria> ,
+               <https://lovamap.com/ontology#author/samal-juhi> ,
+               <https://lovamap.com/ontology#author/erning-kevin> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ,
+               <https://lovamap.com/ontology#author/muddiman-david> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/wang-mary>
+                       <https://lovamap.com/ontology#author/sohn-alexandria>
+                       <https://lovamap.com/ontology#author/samal-juhi>
+                       <https://lovamap.com/ontology#author/erning-kevin>
+                       <https://lovamap.com/ontology#author/segura-tatiana>
+                       <https://lovamap.com/ontology#author/muddiman-david> ) ;
+    dc:bibliographicCitation "Wang et al., 2023" ;
+    lova:focusMaterial "Mouse brain tissue sections prepared by fresh-frozen vs. sucrose-embedded/PFA-fixed methods, with and without exogenous ice matrix, analyzed by IR-MALDESI-MSI lipidomics" .
+
+<https://lovamap.com/ontology#author/wang-mary> a foaf:Person ;
+    foaf:familyName "Wang" ;
+    foaf:givenName "Mary F." ;
+    foaf:name "Mary F. Wang" ;
+    schema:affiliation "Department of Chemistry, North Carolina State University, Raleigh, North Carolina 27695, United States" .
+
+<https://lovamap.com/ontology#author/sohn-alexandria> a foaf:Person ;
+    foaf:familyName "Sohn" ;
+    foaf:givenName "Alexandria L." ;
+    foaf:name "Alexandria L. Sohn" ;
+    schema:affiliation "Department of Chemistry, North Carolina State University, Raleigh, North Carolina 27695, United States" .
+
+<https://lovamap.com/ontology#author/samal-juhi> a foaf:Person ;
+    foaf:familyName "Samal" ;
+    foaf:givenName "Juhi" ;
+    foaf:name "Juhi Samal" ;
+    schema:affiliation "Department of Biomedical Engineering, Duke University, Durham, North Carolina 27708, United States" .
+
+<https://lovamap.com/ontology#author/erning-kevin> a foaf:Person ;
+    foaf:familyName "Erning" ;
+    foaf:givenName "Kevin" ;
+    foaf:name "Kevin Erning" ;
+    schema:affiliation "Department of Biomedical Engineering, Duke University, Durham, North Carolina 27708, United States" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" ;
+    schema:affiliation "Department of Biomedical Engineering, Duke University, Durham, North Carolina 27708, United States" .
+
+<https://lovamap.com/ontology#author/muddiman-david> a foaf:Person ;
+    foaf:familyName "Muddiman" ;
+    foaf:givenName "David C." ;
+    foaf:name "David C. Muddiman" ;
+    schema:affiliation "Department of Chemistry, North Carolina State University, Raleigh, North Carolina 27695, United States" ;
+    schema:affiliation "Molecular Education, Technology and Research Innovation Center, North Carolina State University, Raleigh, North Carolina 27695, United States" .
+
+<https://lovamap.com/ontology#journal/journal-of-the-american-society-for-mass-spectrometry> a bibo:Journal ;
+    dc:title "Journal of the American Society for Mass Spectrometry" ;
+    bibo:issn "1044-0305" .
+
+<https://lovamap.com/ontology#material/10.1021-jasms.2c00353/fresh-frozen-no-ice> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Fresh-Frozen mouse brain, No Ice Matrix" ;
+    lova:particleMaterial "Mouse brain tissue" ;
+    lova:scaffoldDimensions "20 μm thick coronal section" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-jasms.2c00353/fresh-frozen> .
+
+<https://lovamap.com/ontology#material/10.1021-jasms.2c00353/sucrose-no-ice> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Sucrose-Embedded, PFA-Fixed mouse brain, No Ice Matrix" ;
+    lova:particleMaterial "Mouse brain tissue" ;
+    lova:scaffoldDimensions "20 μm thick coronal section" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-jasms.2c00353/sucrose-pfa-fixation> .
+
+<https://lovamap.com/ontology#material/10.1021-jasms.2c00353/fresh-frozen-ice> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Fresh-Frozen mouse brain, With Ice Matrix (gold-standard)" ;
+    lova:particleMaterial "Mouse brain tissue" ;
+    lova:scaffoldDimensions "20 μm thick coronal section" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-jasms.2c00353/fresh-frozen> .
+
+<https://lovamap.com/ontology#material/10.1021-jasms.2c00353/sucrose-ice> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Sucrose-Embedded, PFA-Fixed mouse brain, With Ice Matrix" ;
+    lova:particleMaterial "Mouse brain tissue" ;
+    lova:scaffoldDimensions "20 μm thick coronal section" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-jasms.2c00353/sucrose-pfa-fixation> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1021-jasms.2c00353/sucrose-pfa-fixation> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Sucrose-embedding with PFA fixation protocol" ;
+    lova:chemistry "Paraformaldehyde-mediated protein-protein cross-linking" ;
+    lova:manufacturingMethod "Transcardiac PBS/PFA perfusion, 4% PFA post-fixation, 30% sucrose cryoprotective embedding, flash-freezing in isopentane cooled by dry ice pellets" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1021-jasms.2c00353/pfa> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-jasms.2c00353/sucrose> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-jasms.2c00353/pbs> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-jasms.2c00353/isopentane> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1021-jasms.2c00353/fresh-frozen> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Fresh-frozen tissue preparation protocol" ;
+    lova:manufacturingMethod "Tissue removal followed by flash-freezing by immersion in isopentane cooled with liquid nitrogen" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1021-jasms.2c00353/isopentane> .
+
+<https://lovamap.com/ontology#reagent/10.1021-jasms.2c00353/pfa> a lova:Reagent ;
+    rdfs:label "Paraformaldehyde (PFA)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "4% (w/v)" ;
+    lova:reagentFunction "Tissue fixation via protein-protein cross-linking" .
+
+<https://lovamap.com/ontology#reagent/10.1021-jasms.2c00353/sucrose> a lova:Reagent ;
+    rdfs:label "Sucrose" ;
+    lova:reagentRole "other" ;
+    lova:concentration "30% sucrose solution" ;
+    lova:reagentFunction "Cryoprotectant; inhibits ice crystal formation and preserves cell morphology during flash-freezing" .
+
+<https://lovamap.com/ontology#reagent/10.1021-jasms.2c00353/pbs> a lova:Reagent ;
+    rdfs:label "Phosphate-buffered saline (PBS)" ;
+    lova:reagentRole "solvent" ;
+    lova:concentration "pH = 7.4" ;
+    lova:reagentFunction "Transcardiac perfusion buffer" .
+
+<https://lovamap.com/ontology#reagent/10.1021-jasms.2c00353/isopentane> a lova:Reagent ;
+    rdfs:label "Isopentane" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Fisher Scientific" ;
+    lova:reagentFunction "Flash-freezing medium" .
+
+<https://lovamap.com/ontology#reagent/10.1021-jasms.2c00353/acetonitrile> a lova:Reagent ;
+    rdfs:label "Acetonitrile (ACN), LC-MS grade" ;
+    lova:reagentRole "solvent" ;
+    lova:supplier "Fisher Scientific" ;
+    lova:reagentFunction "Electrospray solvent component" .
+
+<https://lovamap.com/ontology#reagent/10.1021-jasms.2c00353/formic-acid> a lova:Reagent ;
+    rdfs:label "Formic acid (FA)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "0.2%" ;
+    lova:supplier "Fisher Scientific" ;
+    lova:reagentFunction "Electrospray solvent modifier (positive-ion mode)" .
+
+<https://lovamap.com/ontology#reagent/10.1021-jasms.2c00353/acetic-acid> a lova:Reagent ;
+    rdfs:label "Acetic acid" ;
+    lova:reagentRole "other" ;
+    lova:concentration "1 mM" ;
+    lova:supplier "Fisher Scientific" ;
+    lova:reagentFunction "Electrospray solvent modifier (negative-ion mode)" .
+
+<https://lovamap.com/ontology#reagent/10.1021-jasms.2c00353/water> a lova:Reagent ;
+    rdfs:label "LC-MS-grade water" ;
+    lova:reagentRole "solvent" ;
+    lova:supplier "Fisher Scientific" ;
+    lova:reagentFunction "Electrospray solvent component" .
+
+<https://lovamap.com/ontology#reagent/10.1021-jasms.2c00353/fluoranthene> a lova:Reagent ;
+    rdfs:label "Fluoranthene" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Lock mass standard for EASY-IC calibration ([M•+] m/z 202.0777, [M•−] m/z 202.0788)" .
+
+<https://lovamap.com/ontology#experiment/10.1021-jasms.2c00353/positive-ion-msi> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-jasms.2c00353/fresh-frozen-no-ice> ,
+                       <https://lovamap.com/ontology#material/10.1021-jasms.2c00353/sucrose-no-ice> ,
+                       <https://lovamap.com/ontology#material/10.1021-jasms.2c00353/fresh-frozen-ice> ,
+                       <https://lovamap.com/ontology#material/10.1021-jasms.2c00353/sucrose-ice> ;
+    rdfs:label "IR-MALDESI-MSI lipidomic analysis, positive-ion mode" ;
+    lova:experimentCategory "Mass Spectrometry Imaging" ;
+    lova:experimentType "Lipidomic imaging" ;
+    lova:assayOrMethod "IR-MALDESI-MSI, positive-ion mode" ;
+    lova:equipment "Orbitrap Exploris 240 (Thermo Fisher Scientific, Bremen, Germany) coupled to IR-MALDESI source" .
+
+<https://lovamap.com/ontology#experiment/10.1021-jasms.2c00353/negative-ion-msi> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-jasms.2c00353/fresh-frozen-no-ice> ,
+                       <https://lovamap.com/ontology#material/10.1021-jasms.2c00353/sucrose-no-ice> ,
+                       <https://lovamap.com/ontology#material/10.1021-jasms.2c00353/fresh-frozen-ice> ,
+                       <https://lovamap.com/ontology#material/10.1021-jasms.2c00353/sucrose-ice> ;
+    rdfs:label "IR-MALDESI-MSI lipidomic analysis, negative-ion mode" ;
+    lova:experimentCategory "Mass Spectrometry Imaging" ;
+    lova:experimentType "Lipidomic imaging" ;
+    lova:assayOrMethod "IR-MALDESI-MSI, negative-ion mode" ;
+    lova:equipment "Orbitrap Exploris 240 (Thermo Fisher Scientific, Bremen, Germany) coupled to IR-MALDESI source" .
+
+<https://lovamap.com/ontology#experiment/10.1021-jasms.2c00353/lipid-overlap-analysis> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-jasms.2c00353/fresh-frozen-no-ice> ,
+                       <https://lovamap.com/ontology#material/10.1021-jasms.2c00353/sucrose-no-ice> ,
+                       <https://lovamap.com/ontology#material/10.1021-jasms.2c00353/fresh-frozen-ice> ,
+                       <https://lovamap.com/ontology#material/10.1021-jasms.2c00353/sucrose-ice> ;
+    rdfs:label "Overlap analysis of unique lipid identifications between positive- and negative-ion modes" ;
+    lova:experimentCategory "Mass Spectrometry Imaging" ;
+    lova:experimentType "Lipid identification mode overlap analysis" ;
+    lova:assayOrMethod "LIPID MAPS/METASPACE annotation overlap (Venn analysis)" .
+
+<https://lovamap.com/ontology#experiment/10.1021-jasms.2c00353/ir-maldesi-instrument-parameters> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-jasms.2c00353/fresh-frozen-no-ice> ,
+                       <https://lovamap.com/ontology#material/10.1021-jasms.2c00353/sucrose-no-ice> ,
+                       <https://lovamap.com/ontology#material/10.1021-jasms.2c00353/fresh-frozen-ice> ,
+                       <https://lovamap.com/ontology#material/10.1021-jasms.2c00353/sucrose-ice> ;
+    rdfs:label "IR-MALDESI-MSI instrument operating parameters" ;
+    lova:experimentCategory "Mass Spectrometry Imaging" ;
+    lova:experimentType "Instrument calibration/parameters" ;
+    lova:equipment "2940 nm mid-IR laser (JGMA, Burlington, MA, USA); Orbitrap Exploris 240" .
+
+<https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/annotations-pos-ff-noice> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-jasms.2c00353/positive-ion-msi> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Fresh-Frozen, No Ice Matrix — 98 putative lipid annotations (positive-ion mode)" ;
+    lova:measurementType "Number of unique putative lipid identifications" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 98.0 ;
+    qudt:unit "count" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/annotations-pos-sucrose-noice> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-jasms.2c00353/positive-ion-msi> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Sucrose-Embedded/PFA-Fixed, No Ice Matrix — 304 putative lipid annotations (positive-ion mode)" ;
+    lova:measurementType "Number of unique putative lipid identifications" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 304.0 ;
+    qudt:unit "count" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/annotations-pos-ff-ice> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-jasms.2c00353/positive-ion-msi> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Fresh-Frozen, With Ice Matrix — 120 putative lipid annotations (positive-ion mode)" ;
+    lova:measurementType "Number of unique putative lipid identifications" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 120.0 ;
+    qudt:unit "count" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/annotations-pos-sucrose-ice> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-jasms.2c00353/positive-ion-msi> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Sucrose-Embedded/PFA-Fixed, With Ice Matrix — 131 putative lipid annotations (positive-ion mode)" ;
+    lova:measurementType "Number of unique putative lipid identifications" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 131.0 ;
+    qudt:unit "count" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/annotations-neg-ff-noice> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-jasms.2c00353/negative-ion-msi> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Fresh-Frozen, No Ice Matrix — 80 putative lipid annotations (negative-ion mode)" ;
+    lova:measurementType "Number of unique putative lipid identifications" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 80.0 ;
+    qudt:unit "count" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/annotations-neg-sucrose-noice> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-jasms.2c00353/negative-ion-msi> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Sucrose-Embedded/PFA-Fixed, No Ice Matrix — 70 putative lipid annotations (negative-ion mode)" ;
+    lova:measurementType "Number of unique putative lipid identifications" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 70.0 ;
+    qudt:unit "count" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/annotations-neg-ff-ice> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-jasms.2c00353/negative-ion-msi> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Fresh-Frozen, With Ice Matrix — 43 putative lipid annotations (negative-ion mode)" ;
+    lova:measurementType "Number of unique putative lipid identifications" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 43.0 ;
+    qudt:unit "count" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/annotations-neg-sucrose-ice> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-jasms.2c00353/negative-ion-msi> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Sucrose-Embedded/PFA-Fixed, With Ice Matrix — 31 putative lipid annotations (negative-ion mode)" ;
+    lova:measurementType "Number of unique putative lipid identifications" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 31.0 ;
+    qudt:unit "count" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1021-jasms.2c00353/pos-annotations-sucrose-vs-ff> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Positive-ion mode putative lipid annotations higher in Sucrose/No-Ice vs. Fresh-Frozen/Ice (2.5-fold)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/annotations-pos-sucrose-noice> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/annotations-pos-ff-ice> ;
+    lova:direction "higher" ;
+    lova:foldChange 2.5 .
+
+<https://lovamap.com/ontology#comparison/10.1021-jasms.2c00353/neg-annotations-sucrose-vs-ff> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Negative-ion mode putative lipid annotations higher in Sucrose/No-Ice vs. Fresh-Frozen/Ice (1.6-fold)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/annotations-neg-sucrose-noice> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/annotations-neg-ff-ice> ;
+    lova:direction "higher" ;
+    lova:foldChange 1.6 .
+
+<https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/abundance-fold-mz300-325> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-jasms.2c00353/positive-ion-msi> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Ion abundance fold-increase for m/z 300-325 lipid species, Sucrose/No-Ice vs Fresh-Frozen/Ice" ;
+    lova:measurementType "Ion abundance fold-increase" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 5.24 ;
+    qudt:unit "fold" ;
+    lova:comparisonGroup "Fresh-Frozen/Ice" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/abundance-fold-mz545-570> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-jasms.2c00353/positive-ion-msi> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Ion abundance fold-increase for m/z 545-570 lipid species, Sucrose/No-Ice vs Fresh-Frozen/Ice" ;
+    lova:measurementType "Ion abundance fold-increase" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 13.16 ;
+    qudt:unit "fold" ;
+    lova:comparisonGroup "Fresh-Frozen/Ice" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/abundance-fold-mz745-770> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-jasms.2c00353/positive-ion-msi> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Ion abundance fold-increase for m/z 745-770 lipid species (Sphingolipids/GP), Sucrose/No-Ice vs Fresh-Frozen/Ice; 7 of 9 ions preferred Fresh-Frozen/Ice" ;
+    lova:measurementType "Ion abundance fold-increase" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 1.82 ;
+    qudt:unit "fold" ;
+    lova:comparisonGroup "Fresh-Frozen/Ice" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/common-ions-pos> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-jasms.2c00353/positive-ion-msi> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Number of common on-tissue putative lipid identifications between Sucrose/No-Ice and Fresh-Frozen/Ice (positive-ion mode)" ;
+    lova:measurementType "Number of common putative lipid identifications" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 55.0 ;
+    qudt:unit "count" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/preferred-sucrose-pos> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-jasms.2c00353/positive-ion-msi> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Number of common ions showing preference for Sucrose/No-Ice (positive-ion mode)" ;
+    lova:measurementType "Number of ions with preference" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 32.0 ;
+    qudt:unit "count" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/fa01-slope> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-jasms.2c00353/positive-ion-msi> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Correlation slope for FA01 (m/z 357.2999) abundance, Sucrose/No-Ice vs Fresh-Frozen/Ice" ;
+    lova:measurementType "Abundance correlation slope" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 6.79 ;
+    qudt:unit "slope (m)" ;
+    lova:valueString "R² = 0.96" ;
+    lova:scope "Regional" ;
+    lova:comparisonGroup "Fresh-Frozen/Ice" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/gp06-slope> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-jasms.2c00353/negative-ion-msi> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Correlation slope for GP06 (m/z 885.5498) abundance, Sucrose/No-Ice vs Fresh-Frozen/Ice" ;
+    lova:measurementType "Abundance correlation slope" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 1.27 ;
+    qudt:unit "slope (m)" ;
+    lova:valueString "R² = 0.94" ;
+    lova:scope "Regional" ;
+    lova:comparisonGroup "Fresh-Frozen/Ice" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/overlap-neg-only-ff-ice> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-jasms.2c00353/lipid-overlap-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Fresh-Frozen/With-Ice — unique lipid IDs negative-ion mode only" ;
+    lova:measurementType "Unique lipid IDs (negative-ion mode only)" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 26.0 ;
+    qudt:unit "count" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/overlap-both-ff-ice> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-jasms.2c00353/lipid-overlap-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Fresh-Frozen/With-Ice — unique lipid IDs detected in both ion modes" ;
+    lova:measurementType "Unique lipid IDs (both ion modes)" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 17.0 ;
+    qudt:unit "count" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/overlap-pos-only-ff-ice> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-jasms.2c00353/lipid-overlap-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Fresh-Frozen/With-Ice — unique lipid IDs positive-ion mode only" ;
+    lova:measurementType "Unique lipid IDs (positive-ion mode only)" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 103.0 ;
+    qudt:unit "count" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/overlap-neg-only-sucrose-ice> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-jasms.2c00353/lipid-overlap-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Sucrose/With-Ice — unique lipid IDs negative-ion mode only" ;
+    lova:measurementType "Unique lipid IDs (negative-ion mode only)" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 19.0 ;
+    qudt:unit "count" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/overlap-both-sucrose-ice> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-jasms.2c00353/lipid-overlap-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Sucrose/With-Ice — unique lipid IDs detected in both ion modes" ;
+    lova:measurementType "Unique lipid IDs (both ion modes)" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 12.0 ;
+    qudt:unit "count" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/overlap-pos-only-sucrose-ice> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-jasms.2c00353/lipid-overlap-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Sucrose/With-Ice — unique lipid IDs positive-ion mode only" ;
+    lova:measurementType "Unique lipid IDs (positive-ion mode only)" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 119.0 ;
+    qudt:unit "count" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/overlap-neg-only-ff-noice> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-jasms.2c00353/lipid-overlap-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Fresh-Frozen/No-Ice — unique lipid IDs negative-ion mode only" ;
+    lova:measurementType "Unique lipid IDs (negative-ion mode only)" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 56.0 ;
+    qudt:unit "count" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/overlap-both-ff-noice> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-jasms.2c00353/lipid-overlap-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Fresh-Frozen/No-Ice — unique lipid IDs detected in both ion modes" ;
+    lova:measurementType "Unique lipid IDs (both ion modes)" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 24.0 ;
+    qudt:unit "count" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/overlap-pos-only-ff-noice> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-jasms.2c00353/lipid-overlap-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Fresh-Frozen/No-Ice — unique lipid IDs positive-ion mode only" ;
+    lova:measurementType "Unique lipid IDs (positive-ion mode only)" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 74.0 ;
+    qudt:unit "count" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/overlap-neg-only-sucrose-noice> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-jasms.2c00353/lipid-overlap-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Sucrose/No-Ice — unique lipid IDs negative-ion mode only" ;
+    lova:measurementType "Unique lipid IDs (negative-ion mode only)" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 38.0 ;
+    qudt:unit "count" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/overlap-both-sucrose-noice> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-jasms.2c00353/lipid-overlap-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Sucrose/No-Ice — unique lipid IDs detected in both ion modes" ;
+    lova:measurementType "Unique lipid IDs (both ion modes)" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 32.0 ;
+    qudt:unit "count" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/overlap-pos-only-sucrose-noice> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-jasms.2c00353/lipid-overlap-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Sucrose/No-Ice — unique lipid IDs positive-ion mode only" ;
+    lova:measurementType "Unique lipid IDs (positive-ion mode only)" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 272.0 ;
+    qudt:unit "count" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/mass-resolution> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-jasms.2c00353/ir-maldesi-instrument-parameters> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Mass resolution at m/z 200" ;
+    lova:measurementType "Mass resolution" ;
+    lova:measurementCategory "Instrumental" ;
+    qudt:numericValue 240000.0 ;
+    qudt:unit "FWHM at m/z 200" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/mass-accuracy> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-jasms.2c00353/ir-maldesi-instrument-parameters> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Mass measurement accuracy" ;
+    lova:measurementType "Mass accuracy" ;
+    lova:measurementCategory "Instrumental" ;
+    qudt:numericValue 2.5 ;
+    qudt:unit "ppm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/laser-wavelength> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-jasms.2c00353/ir-maldesi-instrument-parameters> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Mid-IR laser wavelength" ;
+    lova:measurementType "Laser wavelength" ;
+    lova:measurementCategory "Instrumental" ;
+    qudt:numericValue 2940.0 ;
+    qudt:unit "nm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/laser-energy> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-jasms.2c00353/ir-maldesi-instrument-parameters> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Laser energy per burst (4 pulses-per-burst)" ;
+    lova:measurementType "Laser energy" ;
+    lova:measurementCategory "Instrumental" ;
+    qudt:numericValue 1.3 ;
+    qudt:unit "mJ/burst" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/laser-rep-rate> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-jasms.2c00353/ir-maldesi-instrument-parameters> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Laser repetition rate" ;
+    lova:measurementType "Laser repetition rate" ;
+    lova:measurementCategory "Instrumental" ;
+    qudt:numericValue 10.0 ;
+    qudt:unit "kHz" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/spatial-resolution> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-jasms.2c00353/ir-maldesi-instrument-parameters> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Imaging spatial resolution" ;
+    lova:measurementType "Spatial resolution" ;
+    lova:measurementCategory "Instrumental" ;
+    qudt:numericValue 200.0 ;
+    qudt:unit "μm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/injection-time> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-jasms.2c00353/ir-maldesi-instrument-parameters> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Fixed injection (accumulation) time" ;
+    lova:measurementType "Injection time" ;
+    lova:measurementCategory "Instrumental" ;
+    qudt:numericValue 15.0 ;
+    qudt:unit "ms" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/fdr-threshold> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-jasms.2c00353/ir-maldesi-instrument-parameters> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "False discovery rate threshold for METASPACE annotation" ;
+    lova:measurementType "False discovery rate" ;
+    lova:measurementCategory "Instrumental" ;
+    qudt:numericValue 10.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/gp-percent-pos-ff-noice> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-jasms.2c00353/positive-ion-msi> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Glycerophospholipid (GP) share of annotations, Fresh-Frozen/No-Ice, positive-ion mode" ;
+    lova:measurementType "Lipid category percentage (Glycerophospholipids)" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 67.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/gp-percent-pos-sucrose-noice> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-jasms.2c00353/positive-ion-msi> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Glycerophospholipid (GP) share of annotations, Sucrose/No-Ice, positive-ion mode" ;
+    lova:measurementType "Lipid category percentage (Glycerophospholipids)" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 44.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/gp-percent-pos-ff-ice> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-jasms.2c00353/positive-ion-msi> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Glycerophospholipid (GP) share of annotations, Fresh-Frozen/With-Ice, positive-ion mode" ;
+    lova:measurementType "Lipid category percentage (Glycerophospholipids)" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 77.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/gp-percent-pos-sucrose-ice> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-jasms.2c00353/positive-ion-msi> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Glycerophospholipid (GP) share of annotations, Sucrose/With-Ice, positive-ion mode" ;
+    lova:measurementType "Lipid category percentage (Glycerophospholipids)" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 54.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/fa-percent-pos-sucrose-noice> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-jasms.2c00353/positive-ion-msi> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Fatty acyl (FA) share of annotations, Sucrose/No-Ice, positive-ion mode" ;
+    lova:measurementType "Lipid category percentage (Fatty Acyls)" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 28.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/gl-percent-pos-sucrose-noice> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-jasms.2c00353/positive-ion-msi> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Glycerolipid (GL) share of annotations, Sucrose/No-Ice, positive-ion mode" ;
+    lova:measurementType "Lipid category percentage (Glycerolipids)" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 8.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/st-percent-pos-sucrose-noice> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-jasms.2c00353/positive-ion-msi> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Sterol lipid (ST) share of annotations, Sucrose/No-Ice, positive-ion mode" ;
+    lova:measurementType "Lipid category percentage (Sterol Lipids)" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 8.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/pk-percent-pos-sucrose-noice> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-jasms.2c00353/positive-ion-msi> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Polyketide (PK) share of annotations, Sucrose/No-Ice, positive-ion mode — only condition detecting polyketide species" ;
+    lova:measurementType "Lipid category percentage (Polyketides)" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 1.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/gp-percent-neg-ff-noice> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-jasms.2c00353/negative-ion-msi> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Glycerophospholipid (GP) share of annotations, Fresh-Frozen/No-Ice, negative-ion mode" ;
+    lova:measurementType "Lipid category percentage (Glycerophospholipids)" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 71.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/gp-percent-neg-sucrose-noice> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-jasms.2c00353/negative-ion-msi> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Glycerophospholipid (GP) share of annotations, Sucrose/No-Ice, negative-ion mode" ;
+    lova:measurementType "Lipid category percentage (Glycerophospholipids)" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 44.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/gp-percent-neg-ff-ice> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-jasms.2c00353/negative-ion-msi> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Glycerophospholipid (GP) share of annotations, Fresh-Frozen/With-Ice, negative-ion mode" ;
+    lova:measurementType "Lipid category percentage (Glycerophospholipids)" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 65.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/gp-percent-neg-sucrose-ice> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-jasms.2c00353/negative-ion-msi> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "Glycerophospholipid (GP) share of annotations, Sucrose/With-Ice, negative-ion mode" ;
+    lova:measurementType "Lipid category percentage (Glycerophospholipids)" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 35.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1021-jasms.2c00353/fa01-vs-gp06-preference> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-jasms.2c00353> ;
+    rdfs:label "FA01 strongly favors Sucrose/No-Ice (slope 6.79) while GP06 shows weaker preference (slope 1.27) relative to Fresh-Frozen/Ice" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/fa01-slope> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-jasms.2c00353/gp06-slope> ;
+    lova:direction "higher" .

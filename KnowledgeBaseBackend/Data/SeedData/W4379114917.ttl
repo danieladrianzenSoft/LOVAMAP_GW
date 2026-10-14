@@ -1,0 +1,1010 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1002-smll.202303466> a bibo:AcademicArticle ;
+    rdfs:label "Riley et al., 2023 — Void Volume Fraction of Granular Scaffolds" ;
+    dc:title "Void Volume Fraction of Granular Scaffolds" ;
+    dc:identifier "10.1002/smll.202303466" ;
+    dc:date "2023"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/small> ;
+    dc:creator <https://lovamap.com/ontology#author/riley-lindsay> ,
+               <https://lovamap.com/ontology#author/wei-grace> ,
+               <https://lovamap.com/ontology#author/bao-yijun> ,
+               <https://lovamap.com/ontology#author/cheng-peter> ,
+               <https://lovamap.com/ontology#author/wilson-katrina> ,
+               <https://lovamap.com/ontology#author/liu-yining> ,
+               <https://lovamap.com/ontology#author/gong-yiyang> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/riley-lindsay>
+                       <https://lovamap.com/ontology#author/wei-grace>
+                       <https://lovamap.com/ontology#author/bao-yijun>
+                       <https://lovamap.com/ontology#author/cheng-peter>
+                       <https://lovamap.com/ontology#author/wilson-katrina>
+                       <https://lovamap.com/ontology#author/liu-yining>
+                       <https://lovamap.com/ontology#author/gong-yiyang>
+                       <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    dc:bibliographicCitation "Riley et al., 2023" ;
+    lova:focusMaterial "Simulated and real granular hydrogel scaffolds (PEG-VS and HA-NB microgels); void volume fraction analysis across particle shapes, sizes, magnifications, and software" .
+
+<https://lovamap.com/ontology#author/riley-lindsay> a foaf:Person ;
+    foaf:familyName "Riley" ;
+    foaf:givenName "Lindsay" ;
+    foaf:name "Lindsay Riley" .
+
+<https://lovamap.com/ontology#author/wei-grace> a foaf:Person ;
+    foaf:familyName "Wei" ;
+    foaf:givenName "Grace" ;
+    foaf:name "Grace Wei" .
+
+<https://lovamap.com/ontology#author/bao-yijun> a foaf:Person ;
+    foaf:familyName "Bao" ;
+    foaf:givenName "Yijun" ;
+    foaf:name "Yijun Bao" .
+
+<https://lovamap.com/ontology#author/cheng-peter> a foaf:Person ;
+    foaf:familyName "Cheng" ;
+    foaf:givenName "Peter" ;
+    foaf:name "Peter Cheng" .
+
+<https://lovamap.com/ontology#author/wilson-katrina> a foaf:Person ;
+    foaf:familyName "Wilson" ;
+    foaf:givenName "Katrina L." ;
+    foaf:name "Katrina L. Wilson" .
+
+<https://lovamap.com/ontology#author/liu-yining> a foaf:Person ;
+    foaf:familyName "Liu" ;
+    foaf:givenName "Yining" ;
+    foaf:name "Yining Liu" .
+
+<https://lovamap.com/ontology#author/gong-yiyang> a foaf:Person ;
+    foaf:familyName "Gong" ;
+    foaf:givenName "Yiyang" ;
+    foaf:name "Yiyang Gong" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" .
+
+<https://lovamap.com/ontology#journal/small> a bibo:Journal ;
+    dc:title "Small" ;
+    bibo:issn "1613-6810" .
+
+<https://lovamap.com/ontology#material/10.1002-smll.202303466/monodisperse-spheres-square> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "Simulated monodisperse spheres, square packing (60-120 μm)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleSizeMin 60.0 ;
+    lova:particleSizeMax 120.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:packingConfiguration "Square" ;
+    lova:reportedPorosity 0.47 .
+
+<https://lovamap.com/ontology#material/10.1002-smll.202303466/monodisperse-spheres-hexagonal> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "Simulated monodisperse spheres, hexagonal packing (60-120 μm)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleSizeMin 60.0 ;
+    lova:particleSizeMax 120.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:packingConfiguration "Hexagonal" ;
+    lova:reportedPorosity 0.26 .
+
+<https://lovamap.com/ontology#material/10.1002-smll.202303466/monodisperse-spheres-random> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "Simulated monodisperse spheres, random packing (60-120 μm)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleSizeMin 60.0 ;
+    lova:particleSizeMax 120.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:packingConfiguration "Random" ;
+    lova:reportedPorosity 0.39 .
+
+<https://lovamap.com/ontology#material/10.1002-smll.202303466/bidisperse-spheres> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "Simulated bidisperse spheres (40-90 μm mixed with 100 μm)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleSizeMin 40.0 ;
+    lova:particleSizeMax 100.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:sizeDistribution "Bidisperse" ;
+    lova:packingConfiguration "Random" .
+
+<https://lovamap.com/ontology#material/10.1002-smll.202303466/polydisperse-spheres> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "Simulated polydisperse spheres, normal distribution mean 100 μm, σ 0-25 μm" ;
+    lova:particleShape "Sphere" ;
+    lova:particleSizeUnit "μm" ;
+    lova:sizeDistribution "Polydisperse, normal distribution mean=100μm, σ=0-25μm" ;
+    lova:packingConfiguration "Random" .
+
+<https://lovamap.com/ontology#material/10.1002-smll.202303466/monodisperse-ellipsoids> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "Simulated monodisperse ellipsoids (60-120 μm equivalent diameter)" ;
+    lova:particleShape "Ellipsoid" ;
+    lova:particleSizeMin 60.0 ;
+    lova:particleSizeMax 120.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:packingConfiguration "Random" ;
+    lova:reportedPorosity 0.36 .
+
+<https://lovamap.com/ontology#material/10.1002-smll.202303466/monodisperse-rods> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "Simulated monodisperse rods (cylinders, 60-120 μm equivalent diameter)" ;
+    lova:particleShape "Cylinder" ;
+    lova:particleSizeMin 60.0 ;
+    lova:particleSizeMax 120.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:packingConfiguration "Random" ;
+    lova:reportedPorosity 0.45 .
+
+<https://lovamap.com/ontology#material/10.1002-smll.202303466/monodisperse-nuggets> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "Simulated monodisperse nuggets (flattened egg-like, 60-120 μm equivalent diameter)" ;
+    lova:particleShape "Nugget" ;
+    lova:particleSizeMin 60.0 ;
+    lova:particleSizeMax 120.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:packingConfiguration "Random" ;
+    lova:reportedPorosity 0.41 .
+
+<https://lovamap.com/ontology#material/10.1002-smll.202303466/peg-vs-map-scaffold-70um> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "~70 μm diameter PEG-VS MAP scaffold microgels" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "PEG-VS (8-arm PEG-Vinylsulfone)" ;
+    lova:particleSizeMin 70.0 ;
+    lova:particleSizeMax 70.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-smll.202303466/peg-vs-microfluidic> ;
+    lova:packingConfiguration "Random" .
+
+<https://lovamap.com/ontology#material/10.1002-smll.202303466/ha-nb-map-scaffold-100um> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "~100 μm diameter HA-NB MAP scaffold microgels" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Hyaluronic acid-norbornene (HA-NB)" ;
+    lova:particleSizeMin 100.0 ;
+    lova:particleSizeMax 100.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-smll.202303466/ha-nb-microfluidic> ;
+    lova:packingConfiguration "Random" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-smll.202303466/peg-vs-microfluidic> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "Microfluidic PEG-VS microgel production with thrombin/Factor XIII annealing" ;
+    lova:chemistry "Michael-type addition (thiol-vinylsulfone)" ;
+    lova:manufacturingMethod "Microfluidic water-in-oil emulsion" ;
+    lova:annealingChemistry "Enzymatic (thrombin-activated Factor XIII crosslinking)" ;
+    lova:annealingConditions "37°C, 30 minutes" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-smll.202303466/peg-vs-8arm> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-smll.202303466/k-peptide> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-smll.202303466/q-peptide> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-smll.202303466/rgd-peg> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-smll.202303466/mmp-crosslinker-peg> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-smll.202303466/alexa647-maleimide> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-smll.202303466/triethanolamine> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-smll.202303466/span80-1pct> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-smll.202303466/span80-5pct-tea> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-smll.202303466/heavy-mineral-oil-peg> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-smll.202303466/thrombin> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-smll.202303466/factor-xiii> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-smll.202303466/hepes-buffer-peg> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-smll.202303466/ha-nb-microfluidic> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "Microfluidic HA-norbornene microgel production with photoinitiated thiol-ene crosslinking and tetrazine-click annealing" ;
+    lova:chemistry "Thiol-norbornene photopolymerization" ;
+    lova:manufacturingMethod "Planar flow-focusing microfluidic water-in-oil emulsion" ;
+    lova:annealingChemistry "Tetrazine-norbornene click reaction (4-arm PEG-Tetrazine)" ;
+    lova:annealingConditions "365 nm UV, 30% power (20 mW/cm2)" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-smll.202303466/ha-raw> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-smll.202303466/dmtmm> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-smll.202303466/nma> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-smll.202303466/mmp-linker-ha> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-smll.202303466/tcep> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-smll.202303466/lap> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-smll.202303466/hepes-buffer-ha> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-smll.202303466/span80-5pct-ha> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-smll.202303466/pbs-ha> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-smll.202303466/alexafluor488-tetrazine> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-smll.202303466/peg-tetrazine> .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.202303466/peg-vs-8arm> a lova:Reagent ;
+    rdfs:label "8-arm Polyethylene glycol Vinylsulfone (PEG-VS)" ;
+    lova:reagentRole "monomer" ;
+    lova:reagentFunction "Microgel backbone polymer" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.202303466/k-peptide> a lova:Reagent ;
+    rdfs:label "K-peptide (Ac-FKGGERCG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "FKGGERCG" ;
+    lova:supplier "GenScript" ;
+    lova:reagentFunction "Transglutamination substrate for Factor XIII annealing" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.202303466/q-peptide> a lova:Reagent ;
+    rdfs:label "Q-peptide (Ac-NQEQVSPLGGERCG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "NQEQVSPLGGERCG" ;
+    lova:supplier "GenScript" ;
+    lova:reagentFunction "Transglutamination substrate for Factor XIII annealing" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.202303466/rgd-peg> a lova:Reagent ;
+    rdfs:label "RGD (Ac-RGDSPGERCG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "RGDSPGERCG" ;
+    lova:supplier "GenScript" ;
+    lova:reagentFunction "Cell adhesion" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.202303466/mmp-crosslinker-peg> a lova:Reagent ;
+    rdfs:label "Di-thiol MMP sensitive peptide crosslinker" ;
+    lova:reagentRole "crosslinker" ;
+    lova:concentration "12 mM" ;
+    lova:supplier "GenScript" ;
+    lova:reagentFunction "Enzymatically degradable crosslink" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.202303466/alexa647-maleimide> a lova:Reagent ;
+    rdfs:label "Alexa-Fluor 647-maleimide" ;
+    lova:reagentRole "other" ;
+    lova:concentration "10 μM" ;
+    lova:reagentFunction "Fluorescent labeling of crosslinker" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.202303466/triethanolamine> a lova:Reagent ;
+    rdfs:label "Triethanolamine" ;
+    lova:reagentRole "solvent" ;
+    lova:concentration "0.3 M, pH 8.8" ;
+    lova:supplier "Sigma" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.202303466/span80-1pct> a lova:Reagent ;
+    rdfs:label "Span-80 (1% v/v, pinching oil phase)" ;
+    lova:reagentRole "surfactant" ;
+    lova:concentration "1% v/v" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.202303466/span80-5pct-tea> a lova:Reagent ;
+    rdfs:label "Span-80 (5% v/v) with Triethylamine (3% v/v), second oil inlet" ;
+    lova:reagentRole "surfactant" ;
+    lova:concentration "5% v/v Span-80, 3% v/v Triethylamine" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.202303466/heavy-mineral-oil-peg> a lova:Reagent ;
+    rdfs:label "Heavy mineral oil (pinching oil phase)" ;
+    lova:reagentRole "carrier oil" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.202303466/thrombin> a lova:Reagent ;
+    rdfs:label "Thrombin" ;
+    lova:reagentRole "enzyme" ;
+    lova:concentration "4 U/ml (200 U/mL stock in 200 mM Tris-HCl, 150 mM NaCl, 20 mM CaCl2)" ;
+    lova:reagentFunction "Activates Factor XIII for annealing" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.202303466/factor-xiii> a lova:Reagent ;
+    rdfs:label "Factor XIII" ;
+    lova:reagentRole "enzyme" ;
+    lova:concentration "10 U/ml (250 U/mL stock)" ;
+    lova:reagentFunction "Inter-particle annealing via transglutamination" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.202303466/hepes-buffer-peg> a lova:Reagent ;
+    rdfs:label "HEPES buffer (pH 8.3, 1% Antibiotic-Antimycotic, 10 mM CaCl2)" ;
+    lova:reagentRole "solvent" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.202303466/ha-raw> a lova:Reagent ;
+    rdfs:label "Hyaluronic acid (HA, MW 79,000 Da)" ;
+    lova:reagentRole "monomer" ;
+    lova:molecularWeight "79,000 Da" ;
+    lova:supplier "Contipro" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.202303466/dmtmm> a lova:Reagent ;
+    rdfs:label "4-(4,6-Dimethoxy[1.3.5]triazin-2-yl)-4-methylmorpholinium chloride (DMTMM)" ;
+    lova:reagentRole "other" ;
+    lova:molecularWeight "294.74 Da" ;
+    lova:concentration "4 molar equivalents" ;
+    lova:supplier "TCI America" ;
+    lova:reagentFunction "Carboxylic acid activation for norbornene functionalization" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.202303466/nma> a lova:Reagent ;
+    rdfs:label "5-Norbornene-2-methanamine (NMA, mixture of isomers)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "2 molar equivalents" ;
+    lova:supplier "TCI America" ;
+    lova:reagentFunction "Norbornene functionalization of HA" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.202303466/mmp-linker-ha> a lova:Reagent ;
+    rdfs:label "Di-thiol MMP sensitive linker peptide (Ac-GCRDGPQGIWGQDRCG-NH2)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:sequence "GCRDGPQGIWGQDRCG" ;
+    lova:concentration "SH/HA ratio of 14" ;
+    lova:supplier "GenScript" ;
+    lova:reagentFunction "Enzymatically degradable crosslink" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.202303466/tcep> a lova:Reagent ;
+    rdfs:label "Tris(2-carboxyethyl)phosphine (TCEP)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "TCEP/SH ratio of 0.25" ;
+    lova:supplier "Sigma-Aldrich" ;
+    lova:reagentFunction "Disulfide reducing agent" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.202303466/lap> a lova:Reagent ;
+    rdfs:label "Lithium phenyl(2,4,6-trimethylbenzoyl)phosphinate (LAP)" ;
+    lova:reagentRole "photoinitiator" ;
+    lova:concentration "9.90 mM" ;
+    lova:supplier "TCI America" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.202303466/hepes-buffer-ha> a lova:Reagent ;
+    rdfs:label "HEPES buffer (50 mM, pH 7.5)" ;
+    lova:reagentRole "solvent" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.202303466/span80-5pct-ha> a lova:Reagent ;
+    rdfs:label "Span-80 (5% v/v) in heavy mineral oil" ;
+    lova:reagentRole "surfactant" ;
+    lova:concentration "5% v/v" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.202303466/pbs-ha> a lova:Reagent ;
+    rdfs:label "1x PBS buffer" ;
+    lova:reagentRole "solvent" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.202303466/alexafluor488-tetrazine> a lova:Reagent ;
+    rdfs:label "AlexaFluor 488-tetrazine conjugate" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Fluorescent labeling of microgels" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.202303466/peg-tetrazine> a lova:Reagent ;
+    rdfs:label "4-arm PEG-Tetrazine" ;
+    lova:reagentRole "crosslinker" ;
+    lova:concentration "7 Tet/HA ratio" ;
+    lova:reagentFunction "Inter-particle annealing via tetrazine-norbornene click reaction" .
+
+<https://lovamap.com/ontology#experiment/10.1002-smll.202303466/sim-monodisperse-spheres> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-smll.202303466/monodisperse-spheres-square> ,
+                       <https://lovamap.com/ontology#material/10.1002-smll.202303466/monodisperse-spheres-hexagonal> ,
+                       <https://lovamap.com/ontology#material/10.1002-smll.202303466/monodisperse-spheres-random> ;
+    rdfs:label "Simulated VVF of monodisperse spheres across packing configurations" ;
+    lova:experimentCategory "Computational" ;
+    lova:experimentType "VVF simulation" ;
+    lova:assayOrMethod "Houdini rigid-body simulation + simple linear regression / one-phase decay" ;
+    lova:sampleSize 10 .
+
+<https://lovamap.com/ontology#experiment/10.1002-smll.202303466/sim-bidisperse-spheres> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-smll.202303466/bidisperse-spheres> ;
+    rdfs:label "Simulated VVF of bidisperse sphere mixtures" ;
+    lova:experimentCategory "Computational" ;
+    lova:experimentType "VVF simulation" ;
+    lova:sampleSize 10 .
+
+<https://lovamap.com/ontology#experiment/10.1002-smll.202303466/sim-polydisperse-spheres> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-smll.202303466/polydisperse-spheres> ;
+    rdfs:label "Simulated VVF of polydisperse sphere mixtures" ;
+    lova:experimentCategory "Computational" ;
+    lova:experimentType "VVF simulation" ;
+    lova:sampleSize 10 .
+
+<https://lovamap.com/ontology#experiment/10.1002-smll.202303466/sim-nonspherical> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-smll.202303466/monodisperse-ellipsoids> ,
+                       <https://lovamap.com/ontology#material/10.1002-smll.202303466/monodisperse-rods> ,
+                       <https://lovamap.com/ontology#material/10.1002-smll.202303466/monodisperse-nuggets> ;
+    rdfs:label "Simulated VVF of non-spherical monodisperse particles (ellipsoids, rods, nuggets)" ;
+    lova:experimentCategory "Computational" ;
+    lova:experimentType "VVF simulation" ;
+    lova:sampleSize 5 .
+
+<https://lovamap.com/ontology#experiment/10.1002-smll.202303466/sim-magnification> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-smll.202303466/monodisperse-spheres-random> ;
+    rdfs:label "Simulated effect of microscope magnification on VVF accuracy" ;
+    lova:experimentCategory "Computational" ;
+    lova:experimentType "Magnification simulation" ;
+    lova:sampleSize 5 .
+
+<https://lovamap.com/ontology#experiment/10.1002-smll.202303466/sim-zgap-zslices> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-smll.202303466/monodisperse-spheres-random> ;
+    rdfs:label "Simulated effect of z-gap and number of z-slices on VVF accuracy" ;
+    lova:experimentCategory "Computational" ;
+    lova:experimentType "Z-slice sampling simulation" ;
+    lova:sampleSize 5 .
+
+<https://lovamap.com/ontology#experiment/10.1002-smll.202303466/real-peg-vvf-analysis> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-smll.202303466/peg-vs-map-scaffold-70um> ;
+    rdfs:label "VVF analysis of 70 μm PEG MAP scaffold using Fiji, MATLAB, Imaris, 3-D Particle Segmentation" ;
+    lova:experimentCategory "Image Analysis" ;
+    lova:experimentType "VVF measurement" ;
+    lova:assayOrMethod "Confocal microscopy z-stack, multiple software binarization methods" ;
+    lova:equipment "Nikon Ti Eclipse scanning confocal microscope, C2 laser, 20x air objective, NA 0.75" .
+
+<https://lovamap.com/ontology#experiment/10.1002-smll.202303466/real-ha-vvf-analysis> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-smll.202303466/ha-nb-map-scaffold-100um> ;
+    rdfs:label "VVF analysis of 100 μm HA MAP scaffold using Fiji, MATLAB, Imaris, 3-D Particle Segmentation" ;
+    lova:experimentCategory "Image Analysis" ;
+    lova:experimentType "VVF measurement" ;
+    lova:assayOrMethod "Confocal microscopy z-stack, multiple software binarization methods" ;
+    lova:equipment "Nikon Ti Eclipse scanning confocal microscope, C2 laser, 20x air objective, NA 0.75" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202303466/vvf-square-avg> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202303466/sim-monodisperse-spheres> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "Average VVF for square packing of monodisperse spheres" ;
+    lova:measurementType "Void volume fraction" ;
+    lova:measurementCategory "Structural" ;
+    qudt:numericValue 0.47 ;
+    qudt:unit "dimensionless" ;
+    lova:pValue 0.1443 ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202303466/vvf-hexagonal-avg> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202303466/sim-monodisperse-spheres> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "Average VVF for hexagonal packing of monodisperse spheres" ;
+    lova:measurementType "Void volume fraction" ;
+    lova:measurementCategory "Structural" ;
+    qudt:numericValue 0.26 ;
+    qudt:unit "dimensionless" ;
+    lova:pValue 0.2727 ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202303466/vvf-random-avg> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202303466/sim-monodisperse-spheres> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "Average VVF for random packing of monodisperse spheres" ;
+    lova:measurementType "Void volume fraction" ;
+    lova:measurementCategory "Structural" ;
+    qudt:numericValue 0.39 ;
+    qudt:unit "dimensionless" ;
+    lova:pValue 0.0002 ;
+    lova:isSignificant true ;
+    lova:valueString "slope = 3.1e-5" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202303466/particles-per-pl-square-eq> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202303466/sim-monodisperse-spheres> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "Exponential decay fit: particles per pL vs diameter, square packing" ;
+    lova:measurementType "Number of particles per picoliter" ;
+    lova:measurementCategory "Structural" ;
+    lova:valueString "y = 0.18e^-0.063x + 0.00042, R2 = 0.9967" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202303466/particles-per-pl-hex-eq> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202303466/sim-monodisperse-spheres> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "Exponential decay fit: particles per pL vs diameter, hexagonal packing" ;
+    lova:measurementType "Number of particles per picoliter" ;
+    lova:measurementCategory "Structural" ;
+    lova:valueString "y = 0.15e^-0.057x + 0.00041, R2 = 0.9988" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202303466/particles-per-pl-random-eq> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202303466/sim-monodisperse-spheres> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "Exponential decay fit: particles per pL vs diameter, random packing" ;
+    lova:measurementType "Number of particles per picoliter" ;
+    lova:measurementCategory "Structural" ;
+    lova:valueString "y = 0.15e^-0.058x + 0.00045, R2 = 0.9992" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202303466/vvf-bidisperse-minimum> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202303466/sim-bidisperse-spheres> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "VVF minimized around 35% of smaller particle population by volume" ;
+    lova:measurementType "Void volume fraction" ;
+    lova:measurementCategory "Structural" ;
+    lova:valueString "VVF minimized around 35% of smaller particle population (by volume) for all particle diameters" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202303466/vvf-polydisperse-no-relationship> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202303466/sim-polydisperse-spheres> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "No clear relationship between standard deviation and VVF for polydisperse spheres" ;
+    lova:measurementType "Void volume fraction" ;
+    lova:measurementCategory "Structural" ;
+    lova:valueString "No clear relationship between σ and VVF" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202303466/particles-per-pl-polydisperse-eq> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202303466/sim-polydisperse-spheres> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "Fit: particles per pL vs standard deviation (polydisperse spheres)" ;
+    lova:measurementType "Number of particles per picoliter" ;
+    lova:measurementCategory "Structural" ;
+    lova:valueString "y = -0.00021x^2 - 0.00058x + 0.93, R2 = 0.6247" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202303466/vvf-ellipsoids-avg> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202303466/sim-nonspherical> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "Average VVF for monodisperse ellipsoids" ;
+    lova:measurementType "Void volume fraction" ;
+    lova:measurementCategory "Structural" ;
+    qudt:numericValue 0.36 ;
+    qudt:unit "dimensionless" ;
+    lova:valueString "slope = 1.6e-4, R2 = 0.4530" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202303466/vvf-rods-avg> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202303466/sim-nonspherical> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "Average VVF for monodisperse rods" ;
+    lova:measurementType "Void volume fraction" ;
+    lova:measurementCategory "Structural" ;
+    qudt:numericValue 0.45 ;
+    qudt:unit "dimensionless" ;
+    lova:valueString "slope = 5.8e-4, R2 = 0.7161" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202303466/vvf-nuggets-avg> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202303466/sim-nonspherical> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "Average VVF for monodisperse nuggets" ;
+    lova:measurementType "Void volume fraction" ;
+    lova:measurementCategory "Structural" ;
+    qudt:numericValue 0.41 ;
+    qudt:unit "dimensionless" ;
+    lova:valueString "slope = 3.6e-4, R2 = 0.7432" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202303466/particles-per-pl-ellipsoids-eq> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202303466/sim-nonspherical> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "Fit: particles per pL vs diameter, ellipsoids" ;
+    lova:measurementType "Number of particles per picoliter" ;
+    lova:measurementCategory "Structural" ;
+    lova:valueString "y = 0.11e^-0.051x + 0.00044, R2 = 0.9996" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202303466/particles-per-pl-rods-eq> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202303466/sim-nonspherical> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "Fit: particles per pL vs diameter, rods" ;
+    lova:measurementType "Number of particles per picoliter" ;
+    lova:measurementCategory "Structural" ;
+    lova:valueString "y = 0.099e^-0.050x + 0.00037, R2 = 0.9991" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202303466/particles-per-pl-nuggets-eq> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202303466/sim-nonspherical> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "Fit: particles per pL vs diameter, nuggets" ;
+    lova:measurementType "Number of particles per picoliter" ;
+    lova:measurementCategory "Structural" ;
+    lova:valueString "y = 0.099e^-0.050x + 0.00037, R2 = 0.9997" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202303466/vvf-magnification-10x> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202303466/sim-magnification> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "Simulated VVF at 10x magnification" ;
+    lova:measurementType "Void volume fraction" ;
+    lova:measurementCategory "Structural" ;
+    qudt:numericValue 0.371 ;
+    qudt:unit "dimensionless" ;
+    lova:valueString "mean # particles = 2722" ;
+    lova:scope "Regional" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202303466/vvf-magnification-20x> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202303466/sim-magnification> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "Simulated VVF at 20x magnification" ;
+    lova:measurementType "Void volume fraction" ;
+    lova:measurementCategory "Structural" ;
+    qudt:numericValue 0.367 ;
+    qudt:unit "dimensionless" ;
+    lova:valueString "mean # particles = 405" ;
+    lova:scope "Regional" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202303466/vvf-magnification-40x> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202303466/sim-magnification> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "Simulated VVF at 40x magnification" ;
+    lova:measurementType "Void volume fraction" ;
+    lova:measurementCategory "Structural" ;
+    qudt:numericValue 0.372 ;
+    qudt:unit "dimensionless" ;
+    lova:valueString "mean # particles = 77" ;
+    lova:scope "Regional" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202303466/vvf-10x-vs-40x-reldiff> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202303466/sim-magnification> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "Relative difference in VVF between 10x and 40x magnification" ;
+    lova:measurementType "Void volume fraction relative difference" ;
+    lova:measurementCategory "Structural" ;
+    lova:valueString "greater than 5% relative difference" ;
+    lova:scope "Regional" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202303466/vvf-resolution-foldchange> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202303466/sim-magnification> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "VVF fold change from dx=0.8 to dx=5 voxel size" ;
+    lova:measurementType "Void volume fraction fold change" ;
+    lova:measurementCategory "Structural" ;
+    qudt:numericValue 1.002 ;
+    qudt:unit "fold" ;
+    lova:scope "Regional" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202303466/zgap-accuracy-threshold> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202303466/sim-zgap-zslices> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "Z-gap threshold for stable VVF approximation" ;
+    lova:measurementType "Relative accuracy of VVF approximation" ;
+    lova:measurementCategory "Structural" ;
+    lova:valueString "z-gap < ~15 μm ensures VVF approximation within 7% accuracy for all scaffolds across all magnifications" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202303466/zslices-accuracy-threshold> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202303466/sim-zgap-zslices> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "Number of z-slices threshold for stable VVF approximation" ;
+    lova:measurementType "Relative accuracy of VVF approximation" ;
+    lova:measurementCategory "Structural" ;
+    lova:valueString "Sampling 20 or more z-slices (at 13 μm z-gap) ensures VVF approximation within 4% accuracy for all scaffolds across all magnifications" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202303466/peg-vvf-fiji-10x> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202303466/real-peg-vvf-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "PEG scaffold VVF, Fiji, 10x, middle setting" ;
+    lova:measurementType "Void volume fraction" ;
+    lova:measurementCategory "Structural" ;
+    qudt:numericValue 0.48 ;
+    qudt:unit "dimensionless" ;
+    lova:comparisonGroup "MATLAB, Imaris, 3-D Particle Segmentation" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202303466/peg-vvf-fiji-20x> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202303466/real-peg-vvf-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "PEG scaffold VVF, Fiji, 20x, middle setting" ;
+    lova:measurementType "Void volume fraction" ;
+    lova:measurementCategory "Structural" ;
+    qudt:numericValue 0.38 ;
+    qudt:unit "dimensionless" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202303466/peg-vvf-fiji-40x> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202303466/real-peg-vvf-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "PEG scaffold VVF, Fiji, 40x, middle setting" ;
+    lova:measurementType "Void volume fraction" ;
+    lova:measurementCategory "Structural" ;
+    qudt:numericValue 0.35 ;
+    qudt:unit "dimensionless" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202303466/peg-vvf-matlab-10x> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202303466/real-peg-vvf-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "PEG scaffold VVF, MATLAB, 10x, middle setting" ;
+    lova:measurementType "Void volume fraction" ;
+    lova:measurementCategory "Structural" ;
+    qudt:numericValue 0.17 ;
+    qudt:unit "dimensionless" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202303466/peg-vvf-matlab-20x> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202303466/real-peg-vvf-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "PEG scaffold VVF, MATLAB, 20x, middle setting" ;
+    lova:measurementType "Void volume fraction" ;
+    lova:measurementCategory "Structural" ;
+    qudt:numericValue 0.18 ;
+    qudt:unit "dimensionless" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202303466/peg-vvf-matlab-40x> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202303466/real-peg-vvf-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "PEG scaffold VVF, MATLAB, 40x, middle setting" ;
+    lova:measurementType "Void volume fraction" ;
+    lova:measurementCategory "Structural" ;
+    qudt:numericValue 0.22 ;
+    qudt:unit "dimensionless" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202303466/peg-vvf-imaris-10x> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202303466/real-peg-vvf-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "PEG scaffold VVF, Imaris, 10x, middle setting" ;
+    lova:measurementType "Void volume fraction" ;
+    lova:measurementCategory "Structural" ;
+    qudt:numericValue 0.37 ;
+    qudt:unit "dimensionless" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202303466/peg-vvf-imaris-20x> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202303466/real-peg-vvf-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "PEG scaffold VVF, Imaris, 20x, middle setting" ;
+    lova:measurementType "Void volume fraction" ;
+    lova:measurementCategory "Structural" ;
+    qudt:numericValue 0.38 ;
+    qudt:unit "dimensionless" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202303466/peg-vvf-imaris-40x> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202303466/real-peg-vvf-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "PEG scaffold VVF, Imaris, 40x, middle setting" ;
+    lova:measurementType "Void volume fraction" ;
+    lova:measurementCategory "Structural" ;
+    qudt:numericValue 0.35 ;
+    qudt:unit "dimensionless" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202303466/peg-vvf-3dseg-10x> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202303466/real-peg-vvf-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "PEG scaffold VVF, 3-D Particle Segmentation, 10x, middle setting" ;
+    lova:measurementType "Void volume fraction" ;
+    lova:measurementCategory "Structural" ;
+    qudt:numericValue 0.58 ;
+    qudt:unit "dimensionless" ;
+    lova:valueString "# particles ≈ 2419" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202303466/peg-vvf-3dseg-20x> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202303466/real-peg-vvf-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "PEG scaffold VVF, 3-D Particle Segmentation, 20x, middle setting" ;
+    lova:measurementType "Void volume fraction" ;
+    lova:measurementCategory "Structural" ;
+    qudt:numericValue 0.62 ;
+    qudt:unit "dimensionless" ;
+    lova:valueString "# particles ≈ 647" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202303466/peg-vvf-3dseg-40x> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202303466/real-peg-vvf-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "PEG scaffold VVF, 3-D Particle Segmentation, 40x, middle setting" ;
+    lova:measurementType "Void volume fraction" ;
+    lova:measurementCategory "Structural" ;
+    qudt:numericValue 0.42 ;
+    qudt:unit "dimensionless" ;
+    lova:valueString "# particles ≈ 171" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202303466/ha-vvf-fiji-10x> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202303466/real-ha-vvf-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "HA scaffold VVF, Fiji, 10x, middle setting" ;
+    lova:measurementType "Void volume fraction" ;
+    lova:measurementCategory "Structural" ;
+    qudt:numericValue 0.33 ;
+    qudt:unit "dimensionless" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202303466/ha-vvf-fiji-20x> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202303466/real-ha-vvf-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "HA scaffold VVF, Fiji, 20x, middle setting" ;
+    lova:measurementType "Void volume fraction" ;
+    lova:measurementCategory "Structural" ;
+    qudt:numericValue 0.35 ;
+    qudt:unit "dimensionless" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202303466/ha-vvf-fiji-40x> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202303466/real-ha-vvf-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "HA scaffold VVF, Fiji, 40x, middle setting" ;
+    lova:measurementType "Void volume fraction" ;
+    lova:measurementCategory "Structural" ;
+    qudt:numericValue 0.46 ;
+    qudt:unit "dimensionless" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202303466/ha-vvf-matlab-10x> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202303466/real-ha-vvf-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "HA scaffold VVF, MATLAB, 10x, middle setting" ;
+    lova:measurementType "Void volume fraction" ;
+    lova:measurementCategory "Structural" ;
+    qudt:numericValue 0.25 ;
+    qudt:unit "dimensionless" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202303466/ha-vvf-matlab-20x> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202303466/real-ha-vvf-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "HA scaffold VVF, MATLAB, 20x, middle setting" ;
+    lova:measurementType "Void volume fraction" ;
+    lova:measurementCategory "Structural" ;
+    qudt:numericValue 0.33 ;
+    qudt:unit "dimensionless" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202303466/ha-vvf-matlab-40x> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202303466/real-ha-vvf-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "HA scaffold VVF, MATLAB, 40x, middle setting" ;
+    lova:measurementType "Void volume fraction" ;
+    lova:measurementCategory "Structural" ;
+    qudt:numericValue 0.46 ;
+    qudt:unit "dimensionless" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202303466/ha-vvf-imaris-10x> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202303466/real-ha-vvf-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "HA scaffold VVF, Imaris, 10x, middle setting" ;
+    lova:measurementType "Void volume fraction" ;
+    lova:measurementCategory "Structural" ;
+    qudt:numericValue 0.22 ;
+    qudt:unit "dimensionless" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202303466/ha-vvf-imaris-20x> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202303466/real-ha-vvf-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "HA scaffold VVF, Imaris, 20x, middle setting" ;
+    lova:measurementType "Void volume fraction" ;
+    lova:measurementCategory "Structural" ;
+    qudt:numericValue 0.34 ;
+    qudt:unit "dimensionless" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202303466/ha-vvf-imaris-40x> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202303466/real-ha-vvf-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "HA scaffold VVF, Imaris, 40x, middle setting" ;
+    lova:measurementType "Void volume fraction" ;
+    lova:measurementCategory "Structural" ;
+    qudt:numericValue 0.47 ;
+    qudt:unit "dimensionless" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202303466/ha-vvf-3dseg-10x> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202303466/real-ha-vvf-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "HA scaffold VVF, 3-D Particle Segmentation, 10x, middle setting" ;
+    lova:measurementType "Void volume fraction" ;
+    lova:measurementCategory "Structural" ;
+    qudt:numericValue 0.28 ;
+    qudt:unit "dimensionless" ;
+    lova:valueString "# particles ≈ 1905" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202303466/ha-vvf-3dseg-20x> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202303466/real-ha-vvf-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "HA scaffold VVF, 3-D Particle Segmentation, 20x, middle setting" ;
+    lova:measurementType "Void volume fraction" ;
+    lova:measurementCategory "Structural" ;
+    qudt:numericValue 0.38 ;
+    qudt:unit "dimensionless" ;
+    lova:valueString "# particles ≈ 134" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202303466/ha-vvf-3dseg-40x> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202303466/real-ha-vvf-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "HA scaffold VVF, 3-D Particle Segmentation, 40x, middle setting" ;
+    lova:measurementType "Void volume fraction" ;
+    lova:measurementCategory "Structural" ;
+    qudt:numericValue 0.46 ;
+    qudt:unit "dimensionless" ;
+    lova:valueString "# particles ≈ 56" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.202303466/ha-vvf-range-10x> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.202303466/real-ha-vvf-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "Range in VVF among software outputs at 10x magnification for HA scaffold" ;
+    lova:measurementType "Void volume fraction range among software" ;
+    lova:measurementCategory "Structural" ;
+    lova:valueString "~20% range (absolute measure) in VVF among software outputs for 10x magnification" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-smll.202303466/random-vs-square-vvf> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "VVF lower for random packing vs square packing of monodisperse spheres" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-smll.202303466/vvf-random-avg> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-smll.202303466/vvf-square-avg> ;
+    lova:direction "lower" .
+
+<https://lovamap.com/ontology#comparison/10.1002-smll.202303466/random-vs-hexagonal-vvf> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "VVF higher for random packing vs hexagonal packing of monodisperse spheres" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-smll.202303466/vvf-random-avg> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-smll.202303466/vvf-hexagonal-avg> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#comparison/10.1002-smll.202303466/rods-vs-spheres-vvf> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "VVF higher for rods vs spheres in random packing" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-smll.202303466/vvf-rods-avg> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-smll.202303466/vvf-random-avg> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#comparison/10.1002-smll.202303466/ellipsoids-vs-spheres-vvf> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "VVF lower for ellipsoids vs spheres (tighter packing of ellipsoids)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-smll.202303466/vvf-ellipsoids-avg> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-smll.202303466/vvf-random-avg> ;
+    lova:direction "lower" .
+
+<https://lovamap.com/ontology#comparison/10.1002-smll.202303466/vvf-10x-vs-40x-magnification> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "VVF comparison between 10x and 40x magnification (simulated spheres)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-smll.202303466/vvf-magnification-10x> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-smll.202303466/vvf-magnification-40x> ;
+    lova:direction "no difference" .
+
+<https://lovamap.com/ontology#comparison/10.1002-smll.202303466/peg-vvf-fiji-vs-matlab-10x> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "VVF higher with Fiji vs MATLAB at 10x for PEG scaffold" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-smll.202303466/peg-vvf-fiji-10x> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-smll.202303466/peg-vvf-matlab-10x> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#comparison/10.1002-smll.202303466/peg-vvf-3dseg-vs-matlab-10x> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.202303466> ;
+    rdfs:label "VVF higher with 3-D Particle Segmentation vs MATLAB at 10x for PEG scaffold" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-smll.202303466/peg-vvf-3dseg-10x> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-smll.202303466/peg-vvf-matlab-10x> ;
+    lova:direction "higher" .

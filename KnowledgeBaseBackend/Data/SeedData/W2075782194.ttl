@@ -1,0 +1,957 @@
+@prefix bibo: <http://purl.org/ontology/bibo/> .
+@prefix dc1: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix lova: <https://lovamap.com/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#comparison/10.1371-journal.pone.0035046/rac1-vs-cdc42-collagen> a lova:ComparisonResult ;
+    rdfs:label "Constitutively active Cdc42 produced higher transgene fold-increase than Rac1 on collagen I" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0035046> ;
+    lova:direction "higher" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1371-journal.pone.0035046/transgene-ca-cdc42-collagen> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1371-journal.pone.0035046/transgene-ca-rac1-collagen> .
+
+<https://lovamap.com/ontology#comparison/10.1371-journal.pone.0035046/rho-fn-vs-collagen> a lova:ComparisonResult ;
+    rdfs:label "Rho activation higher on fibronectin (4-fold) vs collagen I (1.5-fold)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0035046> ;
+    lova:direction "higher" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1371-journal.pone.0035046/rhoa-fn-fold-text> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1371-journal.pone.0035046/rhoa-collagen-fold> .
+
+<https://lovamap.com/ontology#comparison/10.1371-journal.pone.0035046/stress-fiber-fn-vs-uncoated> a lova:ComparisonResult ;
+    rdfs:label "Stress fibers higher in mMSCs on fibronectin vs uncoated" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0035046> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1371-journal.pone.0035046/stress-fiber-fn> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1371-journal.pone.0035046/stress-fiber-uncoated> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1371-journal.pone.0035046/pdms-functionalization> a lova:FabricationMethod ;
+    rdfs:label "PDMS sheet amine-functionalization for cell sheet transfer assay" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0035046> ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/aptes>,
+        <https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/sylgard-184> ;
+    lova:manufacturingMethod "Oxygen plasma treatment followed by APTES silanization" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1371-journal.pone.0035046/polyplex-formation> a lova:FabricationMethod ;
+    rdfs:label "DNA/PEI polyplex formation for non-viral gene transfer" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0035046> ;
+    lova:chemistry "Electrostatic complexation" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/pegfp-luc>,
+        <https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/pei>,
+        <https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/yoyo1>,
+        <https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/yoyo3> .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0035046/c3-viability> a lova:Outcome ;
+    rdfs:label "Cell viability maintained after C3 transferase treatment" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0035046> ;
+    qudt:numericValue 60.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0035046/tcdb-c3-inhibition> ;
+    lova:measurementType "Cell viability" ;
+    lova:valueString ">60%" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0035046/ca-transgene-fn-nodiff> a lova:Outcome ;
+    rdfs:label "No enhancement of transgene expression with constitutively active RhoGTPases on fibronectin" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0035046> ;
+    lova:comparisonGroup "pEGFP control" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0035046/ca-fn-transfection> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Transgene expression (RLU/mg)" ;
+    lova:valueString "no further enhancement vs EGFP control" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0035046/cdc42-collagen-inhibit> a lova:Outcome ;
+    rdfs:label "Cdc42 inhibited by 50% on collagen I" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0035046> ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0035046/collagen-glisa> ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType "Active Cdc42 (% change)" ;
+    lova:valueString "inhibited by 50%" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0035046/cdc42-fn-1hr> a lova:Outcome ;
+    rdfs:label "Active Cdc42 fold change at 1 hour on fibronectin" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0035046> ;
+    qudt:numericValue 2.2 ;
+    qudt:unit "fold change" ;
+    lova:comparisonGroup "Uncoated" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0035046/glisa-fn-exposure> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType "Active Cdc42 (fold change in abs 490nm)" ;
+    lova:timePoint "1 hour" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0035046/cdc42-fn-20min> a lova:Outcome ;
+    rdfs:label "Active Cdc42 fold change at 20 min on fibronectin" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0035046> ;
+    qudt:numericValue 0.85 ;
+    qudt:unit "fold change" ;
+    lova:comparisonGroup "Uncoated" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0035046/glisa-fn-exposure> ;
+    lova:isSignificant false ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType "Active Cdc42 (fold change in abs 490nm)" ;
+    lova:timePoint "20 minutes" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0035046/internalization-dn-decrease> a lova:Outcome ;
+    rdfs:label "Polyplex internalization decrease with dominant negative RhoGTPases" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0035046> ;
+    lova:comparisonGroup "pEGFP control" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0035046/dn-transfection> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Polyplex internalization (mean fluorescence)" ;
+    lova:pValue 0.01 ;
+    lova:timePoint "2 hours" ;
+    lova:valueString "significantly decreased" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0035046/internalization-rock-pkc-decrease> a lova:Outcome ;
+    rdfs:label "Polyplex internalization decrease after ROCK and PKC inhibition" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0035046> ;
+    lova:comparisonGroup "Untreated" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0035046/rock-pkc-inhibition> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Polyplex internalization (mean fluorescence)" ;
+    lova:pValue 0.01 ;
+    lova:valueString "significant decrease" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0035046/internalization-tcdb-c3-increase> a lova:Outcome ;
+    rdfs:label "Polyplex internalization increase after TcdB/C3 transferase treatment" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0035046> ;
+    lova:comparisonGroup "Untreated control" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0035046/tcdb-c3-inhibition> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Polyplex internalization (mean fluorescence)" ;
+    lova:timePoint "2 hours" ;
+    lova:valueString "significant increase" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0035046/rac-cdc42-egf-increase> a lova:Outcome ;
+    rdfs:label "Active Rac1,2,3 and Cdc42 significant increase after EGF treatment" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0035046> ;
+    lova:comparisonGroup "Untreated on fibronectin" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0035046/cp-egf-activation> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType "Active Rac1,2,3 / Cdc42 (fold change)" ;
+    lova:pValue 0.01 ;
+    lova:valueString "significant increase" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0035046/rac-collagen-inhibit> a lova:Outcome ;
+    rdfs:label "Rac inhibited by 50% on collagen I" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0035046> ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0035046/collagen-glisa> ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType "Active Rac1,2,3 (% change)" ;
+    lova:valueString "inhibited by 50%" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0035046/rac-fn-1hr> a lova:Outcome ;
+    rdfs:label "Active Rac fold change at 1 hour on fibronectin" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0035046> ;
+    qudt:numericValue 1.6 ;
+    qudt:unit "fold change" ;
+    lova:comparisonGroup "Uncoated" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0035046/glisa-fn-exposure> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType "Active Rac1,2,3 (fold change in abs 490nm)" ;
+    lova:timePoint "1 hour" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0035046/rac-fn-20min> a lova:Outcome ;
+    rdfs:label "Active Rac fold change at 20 min on fibronectin" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0035046> ;
+    qudt:numericValue 0.6 ;
+    qudt:unit "fold change" ;
+    lova:comparisonGroup "Uncoated" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0035046/glisa-fn-exposure> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType "Active Rac1,2,3 (fold change in abs 490nm)" ;
+    lova:timePoint "20 minutes" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0035046/rhoa-cp-fold> a lova:Outcome ;
+    rdfs:label "Active RhoA fold increase after calpeptin treatment" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0035046> ;
+    qudt:numericValue 2.5 ;
+    qudt:unit "fold change" ;
+    lova:comparisonGroup "Untreated on fibronectin" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0035046/cp-egf-activation> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType "Active RhoA (fold change)" ;
+    lova:pValue 0.01 .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0035046/rhoa-fn-1hr> a lova:Outcome ;
+    rdfs:label "Active RhoA fold change at 1 hour on fibronectin" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0035046> ;
+    qudt:numericValue 0.95 ;
+    qudt:unit "fold change" ;
+    lova:comparisonGroup "Uncoated" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0035046/glisa-fn-exposure> ;
+    lova:isSignificant false ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType "Active RhoA (fold change in abs 490nm)" ;
+    lova:timePoint "1 hour" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0035046/rhoa-fn-20min> a lova:Outcome ;
+    rdfs:label "Active RhoA fold change at 20 min on fibronectin" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0035046> ;
+    qudt:numericValue 3.6 ;
+    qudt:unit "fold change" ;
+    lova:comparisonGroup "Uncoated" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0035046/glisa-fn-exposure> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType "Active RhoA (fold change in abs 490nm)" ;
+    lova:pValue 0.05 ;
+    lova:timePoint "20 minutes" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0035046/staurosporine-viability-decrease> a lova:Outcome ;
+    rdfs:label "Cell viability significantly reduced 48h post staurosporine treatment" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0035046> ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0035046/rock-pkc-inhibition> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Cell viability" ;
+    lova:pValue 0.05 ;
+    lova:timePoint "48 hours" ;
+    lova:valueString "significantly reduced" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0035046/stress-fiber-c3> a lova:Outcome ;
+    rdfs:label "Stress fibers per cell — 1 µg/mL C3 transferase" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0035046> ;
+    qudt:numericValue 6.0 ;
+    qudt:unit "fibers/cell" ;
+    lova:comparisonGroup "No treatment" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0035046/tcdb-c3-inhibition> ;
+    lova:isSignificant true ;
+    lova:measurementType "Stress fibers per cell" ;
+    lova:pValue 0.01 .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0035046/stress-fiber-notreat> a lova:Outcome ;
+    rdfs:label "Stress fibers per cell — no treatment" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0035046> ;
+    qudt:numericValue 27.0 ;
+    qudt:unit "fibers/cell" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0035046/tcdb-c3-inhibition> ;
+    lova:measurementType "Stress fibers per cell" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0035046/stress-fiber-tcdb> a lova:Outcome ;
+    rdfs:label "Stress fibers per cell — 200 ng/mL TcdB" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0035046> ;
+    qudt:numericValue 7.0 ;
+    qudt:unit "fibers/cell" ;
+    lova:comparisonGroup "No treatment" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0035046/tcdb-c3-inhibition> ;
+    lova:isSignificant true ;
+    lova:measurementType "Stress fibers per cell" ;
+    lova:pValue 0.01 .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0035046/transgene-ca-rhoa-collagen-nodiff> a lova:Outcome ;
+    rdfs:label "No change in transgene expression with constitutively active RhoA on collagen I" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0035046> ;
+    lova:comparisonGroup "pEGFP control" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0035046/ca-collagen-transfection> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Transgene expression (fold change)" ;
+    lova:timePoint "48 hours" ;
+    lova:valueString "no difference" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0035046/transgene-cp-egf-nodiff> a lova:Outcome ;
+    rdfs:label "No significant difference in transgene expression after CP or EGF treatment" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0035046> ;
+    lova:comparisonGroup "Untreated on fibronectin" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0035046/cp-egf-activation> ;
+    lova:isSignificant false ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Transgene expression (RLU/mg)" ;
+    lova:valueString "no significant difference" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0035046/transgene-dn-decrease> a lova:Outcome ;
+    rdfs:label "Transgene expression decrease with dominant negative RhoA, Rac1, Cdc42" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0035046> ;
+    lova:comparisonGroup "pEGFP control" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0035046/dn-transfection> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Transgene expression (RLU/mg)" ;
+    lova:pValue 0.05 ;
+    lova:timePoint "48 hours" ;
+    lova:valueString "significantly reduced" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0035046/transgene-staurosporine-decrease> a lova:Outcome ;
+    rdfs:label "Transgene expression severe decrease after staurosporine (PKC inhibitor) treatment" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0035046> ;
+    lova:comparisonGroup "Untreated" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0035046/rock-pkc-inhibition> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Transgene expression (RLU/mg)" ;
+    lova:pValue 0.01 ;
+    lova:valueString "severe decrease" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0035046/transgene-tcdb-decrease> a lova:Outcome ;
+    rdfs:label "Transgene expression decrease after TcdB/C3 transferase treatment" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0035046> ;
+    lova:comparisonGroup "Untreated control" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0035046/tcdb-c3-inhibition> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Transgene expression" ;
+    lova:pValue 0.001 ;
+    lova:timePoint "48 hours" ;
+    lova:valueString ">90% decrease" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0035046/transgene-y27632-decrease> a lova:Outcome ;
+    rdfs:label "Transgene expression decrease after Y27632 (ROCK inhibitor) treatment" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0035046> ;
+    lova:comparisonGroup "Untreated" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0035046/rock-pkc-inhibition> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Transgene expression (RLU/mg)" ;
+    lova:pValue 0.01 ;
+    lova:valueString "significant decrease" .
+
+<https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/bgs> a lova:Reagent ;
+    rdfs:label "Bovine growth serum (BGS)" ;
+    lova:concentration "10%" ;
+    lova:reagentFunction "Serum supplement for culture medium" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Hyclone" .
+
+<https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/ca-cdc42> a lova:Reagent ;
+    rdfs:label "Constitutively active Cdc42 (pcDNA-EGFP-Cdc42-Q61L)" ;
+    lova:reagentFunction "Constitutive Cdc42 activation plasmid" ;
+    lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/ca-rac1> a lova:Reagent ;
+    rdfs:label "Constitutively active Rac1 (pcDNA-EGFP-RhoA-Q61L)" ;
+    lova:reagentFunction "Constitutive Rac1 activation plasmid" ;
+    lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/ca-rhoa> a lova:Reagent ;
+    rdfs:label "Constitutively active RhoA (pcDNA-EGFP-RhoA-Q63L)" ;
+    lova:reagentFunction "Constitutive RhoA activation plasmid" ;
+    lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/dmem> a lova:Reagent ;
+    rdfs:label "Dulbecco's modified eagle's medium (DMEM)" ;
+    lova:reagentFunction "Base culture medium" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Sigma-Aldrich" .
+
+<https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/dn-cdc42> a lova:Reagent ;
+    rdfs:label "Dominant negative Cdc42 (pcDNA-EGFP-Cdc42-T17N)" ;
+    lova:reagentFunction "Dominant negative Cdc42 inhibition plasmid" ;
+    lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/dn-rac1> a lova:Reagent ;
+    rdfs:label "Dominant negative Rac1 (pcDNA3-EGFP-Rac1-T17N)" ;
+    lova:reagentFunction "Dominant negative Rac1 inhibition plasmid" ;
+    lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/dn-rhoa> a lova:Reagent ;
+    rdfs:label "Dominant negative RhoA (pcDNA-EGFP-RhoA-T19N)" ;
+    lova:reagentFunction "Dominant negative RhoA inhibition plasmid" ;
+    lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#journal/plos-one> a bibo:Journal ;
+    dc1:title "PLoS ONE" ;
+    bibo:issn "1932-6203" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0035046/rhoa-collagen-fold> a lova:Outcome ;
+    rdfs:label "Rho activation fold change on collagen I" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0035046> ;
+    qudt:numericValue 1.5 ;
+    qudt:unit "fold change" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0035046/collagen-glisa> ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType "Active RhoA (fold change)" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0035046/rhoa-fn-fold-text> a lova:Outcome ;
+    rdfs:label "Rho activation fold change on fibronectin (text summary)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0035046> ;
+    qudt:numericValue 4.0 ;
+    qudt:unit "fold change" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0035046/glisa-fn-exposure> ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType "Active RhoA (fold change)" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0035046/stress-fiber-fn> a lova:Outcome ;
+    rdfs:label "Stress fibers per cell — fibronectin" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0035046> ;
+    qudt:numericValue 23.0 ;
+    qudt:unit "fibers/cell" ;
+    lova:comparisonGroup "Uncoated" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0035046/stress-fiber-fn> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Stress fibers per cell" ;
+    lova:scope "Bulk/global" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0035046/stress-fiber-uncoated> a lova:Outcome ;
+    rdfs:label "Stress fibers per cell — uncoated" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0035046> ;
+    qudt:numericValue 13.0 ;
+    qudt:unit "fibers/cell" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0035046/stress-fiber-fn> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Stress fibers per cell" ;
+    lova:scope "Bulk/global" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0035046/transgene-ca-cdc42-collagen> a lova:Outcome ;
+    rdfs:label "Transgene expression fold increase with constitutively active Cdc42 on collagen I" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0035046> ;
+    qudt:numericValue 6.7 ;
+    qudt:unit "fold change" ;
+    lova:comparedToControl 6.7 ;
+    lova:comparisonGroup "pEGFP control" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0035046/ca-collagen-transfection> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Transgene expression (fold change)" ;
+    lova:timePoint "48 hours" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0035046/transgene-ca-rac1-collagen> a lova:Outcome ;
+    rdfs:label "Transgene expression fold increase with constitutively active Rac1 on collagen I" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0035046> ;
+    qudt:numericValue 4.1 ;
+    qudt:unit "fold change" ;
+    lova:comparedToControl 4.1 ;
+    lova:comparisonGroup "pEGFP control" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0035046/ca-collagen-transfection> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Transgene expression (fold change)" ;
+    lova:timePoint "48 hours" .
+
+<https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/aptes> a lova:Reagent ;
+    rdfs:label "Amino-propyl triethoxysilane (APTES)" ;
+    lova:concentration "5% v/v in ethanol" ;
+    lova:reagentFunction "Amine functionalization of PDMS surface" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Sigma-Aldrich" .
+
+<https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/c3-transferase> a lova:Reagent ;
+    rdfs:label "C3 transferase" ;
+    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_137692> ;
+    lova:concentration "0-1 µg/mL" ;
+    lova:reagentFunction "Selective ADP-ribosylation inactivation of RhoA, RhoB, RhoC" ;
+    lova:reagentRole "enzyme" ;
+    lova:supplier "Cytoskeleton, Inc." .
+
+<https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/calpeptin> a lova:Reagent ;
+    rdfs:label "Calpeptin (CP)" ;
+    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_3330> ;
+    lova:concentration "25 µg/mL (10 min); 0-100 µg/mL range tested" ;
+    lova:reagentFunction "Cell permeable calpain inhibitor that activates RhoA" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Cytoskeleton, Inc." .
+
+<https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/collagen-i> a lova:Reagent ;
+    rdfs:label "Collagen I" ;
+    lova:reagentFunction "ECM coating protein; comparator surface that inhibits gene transfer" ;
+    lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/egf> a lova:Reagent ;
+    rdfs:label "Epidermal growth factor (EGF)" ;
+    owl:sameAs <https://www.uniprot.org/uniprot/P01133> ;
+    lova:concentration "50 ng/mL (2 min); 0-100 ng/mL range tested" ;
+    lova:reagentFunction "Activator of Rac1,2,3 and Cdc42" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Cytoskeleton" .
+
+<https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/pegfp-luc> a lova:Reagent ;
+    rdfs:label "pEGFP-luc plasmid" ;
+    lova:reagentFunction "Reporter plasmid for luciferase/GFP transgene expression" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Clontech" .
+
+<https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/pen-strep> a lova:Reagent ;
+    rdfs:label "Penicillin/streptomycin" ;
+    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_201577> ;
+    lova:concentration "1%" ;
+    lova:reagentFunction "Antibiotic supplement" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Invitrogen" .
+
+<https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/pmsf> a lova:Reagent ;
+    rdfs:label "Phenylmethylsulfonyl fluoride (PMSF)" ;
+    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_8102> ;
+    lova:concentration "0.5 mM" ;
+    lova:reagentFunction "Protease inhibitor in lysis buffer" ;
+    lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/staurosporine> a lova:Reagent ;
+    rdfs:label "Staurosporine (ST)" ;
+    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_15738> ;
+    lova:concentration "100 nM" ;
+    lova:reagentFunction "PKC inhibitor" ;
+    lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/sylgard-184> a lova:Reagent ;
+    rdfs:label "Sylgard 184 PDMS prepolymer" ;
+    lova:concentration "10:1 elastomer to curing agent" ;
+    lova:reagentFunction "Substrate for cell sheet transfer assay" ;
+    lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/tcdb> a lova:Reagent ;
+    rdfs:label "Clostridium difficile toxin B (TcdB)" ;
+    owl:sameAs <https://www.uniprot.org/uniprot/Q9EXR0> ;
+    lova:concentration "0-300 ng/mL" ;
+    lova:reagentFunction "Irreversible glycosylation-based inactivation of Rho, Rac and Cdc42" ;
+    lova:reagentRole "enzyme" ;
+    lova:supplier "List Biologicals" .
+
+<https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/yoyo1> a lova:Reagent ;
+    rdfs:label "YOYO-1 DNA intercalator dye" ;
+    lova:concentration "1 dye molecule per 50 base pairs" ;
+    lova:reagentFunction "Fluorescent labeling of polyplex DNA for flow cytometry internalization assay" ;
+    lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/yoyo3> a lova:Reagent ;
+    rdfs:label "YOYO-3 DNA intercalator dye" ;
+    lova:concentration "1 dye molecule per 50 base pairs" ;
+    lova:reagentFunction "Fluorescent labeling of polyplex DNA for flow cytometry internalization assay (GFP+ cells)" ;
+    lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#author/dhaliwal-anandika> a foaf:Person ;
+    foaf:familyName "Dhaliwal" ;
+    foaf:givenName "Anandika" ;
+    foaf:name "Anandika Dhaliwal" .
+
+<https://lovamap.com/ontology#author/lin-clayton> a foaf:Person ;
+    foaf:familyName "Lin" ;
+    foaf:givenName "Clayton" ;
+    foaf:name "Clayton Lin" .
+
+<https://lovamap.com/ontology#author/maldonado-maricela> a foaf:Person ;
+    foaf:familyName "Maldonado" ;
+    foaf:givenName "Maricela" ;
+    foaf:name "Maricela Maldonado" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" .
+
+<https://lovamap.com/ontology#experiment/10.1371-journal.pone.0035046/ca-fn-transfection> a lova:Experiment ;
+    rdfs:label "Constitutively active RhoGTPase mutant transfection on fibronectin (Fig.5)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0035046> ;
+    lova:assayOrMethod "GLISA; Luciferase assay; Flow cytometry" ;
+    lova:cellType "mMSC (D1, CRL12424)" ;
+    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000134> ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transient transfection / gene transfer assay" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1371-journal.pone.0035046/mmsc-fibronectin> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1371-journal.pone.0035046/protein-coating> a lova:FabricationMethod ;
+    rdfs:label "ECM protein coating of tissue culture plastic (fibronectin or collagen I)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0035046> ;
+    lova:chemistry "Physical adsorption" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/bsa>,
+        <https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/collagen-i>,
+        <https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/fibronectin> ;
+    lova:manufacturingMethod "Overnight 4°C protein adsorption followed by 37°C incubation and BSA blocking" .
+
+<https://lovamap.com/ontology#material/10.1371-journal.pone.0035046/mmsc-collagen-i> a lova:Material ;
+    rdfs:label "mMSCs plated on collagen I coated surface" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0035046> ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1371-journal.pone.0035046/protein-coating> ;
+    lova:surfaceModification "Collagen I coated" .
+
+<https://lovamap.com/ontology#material/10.1371-journal.pone.0035046/mmsc-uncoated> a lova:Material ;
+    rdfs:label "mMSCs plated on uncoated tissue culture plastic" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0035046> .
+
+<https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/bsa> a lova:Reagent ;
+    rdfs:label "Bovine serum albumin (BSA)" ;
+    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_749447> ;
+    lova:concentration "1% in PBS" ;
+    lova:reagentFunction "Blocking agent after protein coating" ;
+    lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/lipofectamine> a lova:Reagent ;
+    rdfs:label "Lipofectamine 2000" ;
+    owl:sameAs <https://pubchem.ncbi.nlm.nih.gov/compound/100984821> ;
+    lova:inchiKey "SDUUFYGDEZFXCY-WRBBJXAJSA-O" ;
+    lova:reagentFunction "Transfection reagent for plasmid delivery" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Invitrogen" .
+
+<https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/pei> a lova:Reagent ;
+    rdfs:label "Linear poly(ethylene imine) (PEI, 25 kDa)" ;
+    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_59515> ;
+    lova:molecularWeight "25 kDa" ;
+    lova:reagentFunction "Cationic polymer for DNA complexation (N/P 12)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Polysciences" .
+
+<https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/sodium-fluoride> a lova:Reagent ;
+    rdfs:label "Sodium fluoride" ;
+    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_28741> ;
+    lova:concentration "50 mM" ;
+    lova:inchiKey "PUZPDOWCWNUUKD-UHFFFAOYSA-M" ;
+    lova:reagentFunction "Phosphatase inhibitor in lysis buffer" ;
+    lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/sodium-orthovanadate> a lova:Reagent ;
+    rdfs:label "Sodium orthovanadate" ;
+    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_35607> ;
+    lova:concentration "0.1 mM (media), 0.2-5 mM (wash/lysis buffer)" ;
+    lova:inchiKey "IHIXIJGXTJIKRB-UHFFFAOYSA-N" ;
+    lova:reagentFunction "Protein tyrosine phosphatase inhibitor to preserve RhoGTPase phosphorylation" ;
+    lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/y27632> a lova:Reagent ;
+    rdfs:label "Y27632" ;
+    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_75393> ;
+    lova:concentration "10 µM" ;
+    lova:inchiKey "IYOZTVGMEWJPKR-VOMCLLRMSA-N" ;
+    lova:reagentFunction "Specific ROCK inhibitor" ;
+    lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#experiment/10.1371-journal.pone.0035046/dn-transfection> a lova:Experiment ;
+    rdfs:label "Dominant negative RhoGTPase transfection experiment (Fig.3)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0035046> ;
+    lova:assayOrMethod "GLISA; Luciferase assay; Flow cytometry" ;
+    lova:cellType "mMSC (D1, CRL12424)" ;
+    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000134> ;
+    lova:cultureDuration "24 hours post-transfection, 16 hours replating on fibronectin" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transient transfection / gene transfer assay" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1371-journal.pone.0035046/mmsc-fibronectin> .
+
+<https://lovamap.com/ontology#experiment/10.1371-journal.pone.0035046/stress-fiber-fn> a lova:Experiment ;
+    rdfs:label "Stress fiber quantification — mMSCs on fibronectin vs uncoated (Fig.1A,B)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0035046> ;
+    lova:assayOrMethod "Alexa488-phalloidin/Hoechst 33258 staining" ;
+    lova:cellSource "Mouse bone marrow" ;
+    lova:cellType "mMSC (D1, CRL12424)" ;
+    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000134> ;
+    lova:cultureDuration "16 hours" ;
+    lova:equipment "Zeiss AxioObserver Z1" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immunofluorescence microscopy" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1371-journal.pone.0035046/mmsc-fibronectin>,
+        <https://lovamap.com/ontology#material/10.1371-journal.pone.0035046/mmsc-uncoated> .
+
+<https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/fibronectin> a lova:Reagent ;
+    rdfs:label "Fibronectin" ;
+    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_5058> ;
+    lova:concentration "40 µg/mL (coating), stock 1 mg/mL" ;
+    lova:inchiKey "KBKUVMOUCKJDBE-LURJTMIESA-N" ;
+    lova:reagentFunction "ECM coating protein to activate RhoGTPases and enhance gene transfer" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Millipore" .
+
+<https://lovamap.com/ontology#experiment/10.1371-journal.pone.0035046/ca-collagen-transfection> a lova:Experiment ;
+    rdfs:label "Constitutively active RhoGTPase mutant transfection on collagen I (Fig.6B)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0035046> ;
+    lova:assayOrMethod "Luciferase assay" ;
+    lova:cellType "mMSC (D1, CRL12424)" ;
+    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000134> ;
+    lova:cultureDuration "16 hours on collagen I, 48 hours post-transfection" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transient transfection / gene transfer assay" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1371-journal.pone.0035046/mmsc-collagen-i> .
+
+<https://lovamap.com/ontology#experiment/10.1371-journal.pone.0035046/cp-egf-activation> a lova:Experiment ;
+    rdfs:label "Chemical activation of RhoGTPases using calpeptin and EGF (Fig.4)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0035046> ;
+    lova:assayOrMethod "GLISA; Luciferase assay; Flow cytometry" ;
+    lova:cellType "mMSC (D1, CRL12424)" ;
+    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000134> ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Chemical activation / gene transfer assay" ;
+    lova:medium "Serum free media" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1371-journal.pone.0035046/mmsc-fibronectin> .
+
+<https://lovamap.com/ontology#experiment/10.1371-journal.pone.0035046/collagen-glisa> a lova:Experiment ;
+    rdfs:label "RhoGTPase activation GLISA — mMSCs exposed to collagen I (Fig.6A)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0035046> ;
+    lova:assayOrMethod "GLISA (Cytoskeleton, Inc.)" ;
+    lova:assayURI <http://purl.obolibrary.org/obo/OBI_0000661> ;
+    lova:cellType "mMSC (D1, CRL12424)" ;
+    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000134> ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "RhoGTPase activity assay" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1371-journal.pone.0035046/mmsc-collagen-i> .
+
+<https://lovamap.com/ontology#experiment/10.1371-journal.pone.0035046/rock-pkc-inhibition> a lova:Experiment ;
+    rdfs:label "ROCK and PKC inhibition on gene transfer in fibronectin-plated mMSCs (Fig.7)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0035046> ;
+    lova:assayOrMethod "Luciferase assay; Flow cytometry" ;
+    lova:cellType "mMSC (D1, CRL12424)" ;
+    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000134> ;
+    lova:cultureDuration "16 hours pre-treatment, 2 hours treatment" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Chemical inhibition / gene transfer assay" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1371-journal.pone.0035046/mmsc-fibronectin> .
+
+<https://lovamap.com/ontology#experiment/10.1371-journal.pone.0035046/tcdb-c3-inhibition> a lova:Experiment ;
+    rdfs:label "RhoGTPase inhibition with TcdB and C3 transferase on fibronectin-plated mMSCs (Fig.2)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0035046> ;
+    lova:assayOrMethod "GLISA; Luciferase assay; Flow cytometry" ;
+    lova:cellType "mMSC (D1, CRL12424)" ;
+    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000134> ;
+    lova:cultureDuration "16 hours pre-treatment, 4 hours treatment" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Chemical inhibition / gene transfer assay" ;
+    lova:medium "Serum free media" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1371-journal.pone.0035046/mmsc-fibronectin> .
+
+<https://lovamap.com/ontology#material/10.1371-journal.pone.0035046/mmsc-fibronectin> a lova:Material ;
+    rdfs:label "mMSCs plated on fibronectin-coated surface" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0035046> ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1371-journal.pone.0035046/protein-coating> ;
+    lova:surfaceModification "Fibronectin coated (40 µg/mL)" .
+
+<https://lovamap.com/ontology#experiment/10.1371-journal.pone.0035046/glisa-fn-exposure> a lova:Experiment ;
+    rdfs:label "RhoGTPase activation GLISA — mMSCs exposed to fibronectin at 20 min and 1 hour (Fig.1C,D)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0035046> ;
+    lova:assayOrMethod "GLISA (Cytoskeleton, Inc.)" ;
+    lova:assayURI <http://purl.obolibrary.org/obo/OBI_0000661> ;
+    lova:cellSource "Mouse bone marrow" ;
+    lova:cellType "mMSC (D1, CRL12424)" ;
+    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000134> ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "RhoGTPase activity assay" ;
+    lova:sampleSize 3 ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1371-journal.pone.0035046/mmsc-fibronectin>,
+        <https://lovamap.com/ontology#material/10.1371-journal.pone.0035046/mmsc-uncoated> .
+
+<https://lovamap.com/ontology#agent/rdf_enrichment> a prov:SoftwareAgent ;
+    rdfs:label "rdf_enrichment pipeline" .
+
+<https://lovamap.com/ontology#paper/10.1371-journal.pone.0035046> a bibo:AcademicArticle ;
+    rdfs:label "Dhaliwal et al., 2012 — Cellular Cytoskeleton Dynamics Modulates Non-Viral Gene Delivery through RhoGTPases" ;
+    dc1:bibliographicCitation "Dhaliwal et al., 2012" ;
+    dc1:creator <https://lovamap.com/ontology#author/dhaliwal-anandika>,
+        <https://lovamap.com/ontology#author/lin-clayton>,
+        <https://lovamap.com/ontology#author/maldonado-maricela>,
+        <https://lovamap.com/ontology#author/segura-tatiana> ;
+    dc1:date "2012"^^xsd:gYear ;
+    dc1:identifier "10.1371/journal.pone.0035046" ;
+    dc1:title "Cellular Cytoskeleton Dynamics Modulates Non-Viral Gene Delivery through RhoGTPases" ;
+    dc1:type "Research Article" ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/dhaliwal-anandika> <https://lovamap.com/ontology#author/maldonado-maricela> <https://lovamap.com/ontology#author/lin-clayton> <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    lova:focusMaterial "Mouse mesenchymal stem cells (mMSCs) plated on fibronectin or collagen I coated surfaces, role of RhoGTPases (RhoA, Rac1, Cdc42) in non-viral (DNA/PEI polyplex) gene delivery" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/plos-one> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CHEBI_201577> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/pen-strep> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CHEBI_15738> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/staurosporine> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object "PUZPDOWCWNUUKD-UHFFFAOYSA-M" ;
+    rdf:predicate lova:inchiKey ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/sodium-fluoride> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/OBI_0000661> ;
+    rdf:predicate lova:assayURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0035046/glisa-fn-exposure> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CHEBI_3330> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/calpeptin> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object "SDUUFYGDEZFXCY-WRBBJXAJSA-O" ;
+    rdf:predicate lova:inchiKey ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/lipofectamine> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CHEBI_28741> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/sodium-fluoride> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CL_0000134> ;
+    rdf:predicate lova:cellTypeURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0035046/collagen-glisa> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <https://www.uniprot.org/uniprot/Q9EXR0> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/tcdb> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CL_0000134> ;
+    rdf:predicate lova:cellTypeURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0035046/glisa-fn-exposure> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CL_0000134> ;
+    rdf:predicate lova:cellTypeURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0035046/ca-fn-transfection> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CHEBI_749447> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/bsa> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object "IHIXIJGXTJIKRB-UHFFFAOYSA-N" ;
+    rdf:predicate lova:inchiKey ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/sodium-orthovanadate> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CL_0000134> ;
+    rdf:predicate lova:cellTypeURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0035046/rock-pkc-inhibition> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CL_0000134> ;
+    rdf:predicate lova:cellTypeURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0035046/tcdb-c3-inhibition> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object "KBKUVMOUCKJDBE-LURJTMIESA-N" ;
+    rdf:predicate lova:inchiKey ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/fibronectin> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CL_0000134> ;
+    rdf:predicate lova:cellTypeURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0035046/ca-collagen-transfection> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CHEBI_8102> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/pmsf> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <https://www.uniprot.org/uniprot/P01133> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/egf> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CHEBI_35607> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/sodium-orthovanadate> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object "IYOZTVGMEWJPKR-VOMCLLRMSA-N" ;
+    rdf:predicate lova:inchiKey ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/y27632> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CL_0000134> ;
+    rdf:predicate lova:cellTypeURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0035046/dn-transfection> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CHEBI_137692> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/c3-transferase> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CHEBI_75393> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/y27632> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CHEBI_59515> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/pei> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CL_0000134> ;
+    rdf:predicate lova:cellTypeURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0035046/cp-egf-activation> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/OBI_0000661> ;
+    rdf:predicate lova:assayURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0035046/collagen-glisa> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CHEBI_5058> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/fibronectin> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <https://pubchem.ncbi.nlm.nih.gov/compound/100984821> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1371-journal.pone.0035046/lipofectamine> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CL_0000134> ;
+    rdf:predicate lova:cellTypeURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0035046/stress-fiber-fn> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+

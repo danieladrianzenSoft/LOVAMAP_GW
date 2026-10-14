@@ -1,0 +1,972 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> a bibo:AcademicArticle ;
+    rdfs:label "Lam & Segura, 2013 — The modulation of MSC integrin expression by RGD presentation" ;
+    dc:title "The modulation of MSC integrin expression by RGD presentation" ;
+    dc:identifier "10.1016/j.biomaterials.2013.01.091" ;
+    dc:date "2013"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/biomaterials> ;
+    dc:creator <https://lovamap.com/ontology#author/lam-jonathan> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/lam-jonathan>
+                       <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    dc:bibliographicCitation "Lam & Segura, 2013" ;
+    lova:focusMaterial "Mouse mesenchymal stem cells encapsulated in MMP-degradable hyaluronic acid hydrogels with varying RGD peptide concentration and clustering" .
+
+<https://lovamap.com/ontology#author/lam-jonathan> a foaf:Person ;
+    foaf:familyName "Lam" ;
+    foaf:givenName "Jonathan" ;
+    foaf:name "Jonathan Lam" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" .
+
+<https://lovamap.com/ontology#journal/biomaterials> a bibo:Journal ;
+    dc:title "Biomaterials" ;
+    bibo:issn "0142-9612" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2013.01.091/ha-rgd-mmp-hydrogel> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "Acrylated hyaluronic acid hydrogel with MMP-degradable peptide crosslinker and RGD adhesion peptide" ;
+    lova:chemistry "Michael-type addition (thiol-acrylate)" ;
+    lova:manufacturingMethod "Solution casting between Sigmacote-functionalized glass coverslips, gelation 30 min at 37°C" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.01.091/ha-ac> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.01.091/adh> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.01.091/edc> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.01.091/nhs-ac> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.01.091/mmp-peptide> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.01.091/rgd-peptide> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.01.091/teoa> .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.01.091/ha-ac> a lova:Reagent ;
+    rdfs:label "Acrylated hyaluronic acid (HA-AC)" ;
+    lova:reagentRole "monomer" ;
+    lova:molecularWeight "60,000 Da" ;
+    lova:supplier "Genzyme Corporation" ;
+    lova:reagentFunction "Hydrogel backbone, acrylated for crosslinking (16% degree of acrylation)" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.01.091/adh> a lova:Reagent ;
+    rdfs:label "Adipic dihydrazide (ADH)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "18.0 g, 105.5 mmol" ;
+    lova:reagentFunction "Hydrazide modification of hyaluronic acid (HA-ADH synthesis)" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.01.091/edc> a lova:Reagent ;
+    rdfs:label "1-Ethyl-3-(dimethylaminopropyl) carbodiimide hydrochloride (EDC)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "4.0 g, 20 mmol" ;
+    lova:reagentFunction "Carbodiimide coupling agent for HA-ADH synthesis" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.01.091/nhs-ac> a lova:Reagent ;
+    rdfs:label "N-acryloxysuccinimide (NHS-AC)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "1.33 g, 4.4 mmol" ;
+    lova:reagentFunction "Acrylation of hydrazide-modified hyaluronic acid" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.01.091/mmp-peptide> a lova:Reagent ;
+    rdfs:label "MMP-degradable peptide crosslinker (Ac-GCRDGPQGIWGQDRCG-NH2)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:sequence "GCRDGPQGIWGQDRCG" ;
+    lova:supplier "Genscript" ;
+    lova:reagentFunction "MMP-degradable inter-chain crosslinking of HA-AC" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.01.091/rgd-peptide> a lova:Reagent ;
+    rdfs:label "RGD adhesion peptide (Ac-GCGYGRGDSPG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "GCGYGRGDSPG" ;
+    lova:supplier "Genscript" ;
+    lova:reagentFunction "Cell adhesion via integrin binding" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.01.091/teoa> a lova:Reagent ;
+    rdfs:label "Triethanolamine (TEOA)" ;
+    lova:reagentRole "solvent" ;
+    lova:concentration "0.3 M" ;
+    lova:reagentFunction "Reaction buffer for HA-AC, RGD, and crosslinker peptide" .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.01.091/a1> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "Hydrogel A1 (10 μM RGD, homogeneous distribution)" ;
+    lova:particleMaterial "Acrylated hyaluronic acid (HA-AC)" ;
+    lova:surfaceModification "RGD 10 μM, homogeneous (condition 1, least clustered)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2013.01.091/ha-rgd-mmp-hydrogel> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.01.091/a2> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "Hydrogel A2 (10 μM RGD, condition 2)" ;
+    lova:particleMaterial "Acrylated hyaluronic acid (HA-AC)" ;
+    lova:surfaceModification "RGD 10 μM, condition 2" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2013.01.091/ha-rgd-mmp-hydrogel> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.01.091/a3> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "Hydrogel A3 (10 μM RGD, condition 3, 21% of HA-AC reacted with RGD)" ;
+    lova:particleMaterial "Acrylated hyaluronic acid (HA-AC)" ;
+    lova:surfaceModification "RGD 10 μM, 21% of total HA-AC reacted with RGD" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2013.01.091/ha-rgd-mmp-hydrogel> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.01.091/a4> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "Hydrogel A4 (10 μM RGD, condition 4)" ;
+    lova:particleMaterial "Acrylated hyaluronic acid (HA-AC)" ;
+    lova:surfaceModification "RGD 10 μM, condition 4" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2013.01.091/ha-rgd-mmp-hydrogel> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.01.091/a5> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "Hydrogel A5 (10 μM RGD, most clustered, 1.4% of HA-AC reacted with RGD)" ;
+    lova:particleMaterial "Acrylated hyaluronic acid (HA-AC)" ;
+    lova:surfaceModification "RGD 10 μM, 1.4% of total HA-AC reacted with RGD, 1.8 mmol RGD/mmol HA-RGD" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2013.01.091/ha-rgd-mmp-hydrogel> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.01.091/b1> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "Hydrogel B1 (100 μM RGD, homogeneous distribution)" ;
+    lova:particleMaterial "Acrylated hyaluronic acid (HA-AC)" ;
+    lova:surfaceModification "RGD 100 μM, condition 1 (least clustered)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2013.01.091/ha-rgd-mmp-hydrogel> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.01.091/b2> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "Hydrogel B2 (100 μM RGD, condition 2)" ;
+    lova:particleMaterial "Acrylated hyaluronic acid (HA-AC)" ;
+    lova:surfaceModification "RGD 100 μM, condition 2" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2013.01.091/ha-rgd-mmp-hydrogel> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.01.091/b3> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "Hydrogel B3 (100 μM RGD, condition 3, optimal clustering)" ;
+    lova:particleMaterial "Acrylated hyaluronic acid (HA-AC)" ;
+    lova:surfaceModification "RGD 100 μM, 1.2 mmol RGD/mmol HA-RGD" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2013.01.091/ha-rgd-mmp-hydrogel> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.01.091/b4> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "Hydrogel B4 (100 μM RGD, condition 4)" ;
+    lova:particleMaterial "Acrylated hyaluronic acid (HA-AC)" ;
+    lova:surfaceModification "RGD 100 μM, condition 4" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2013.01.091/ha-rgd-mmp-hydrogel> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.01.091/b5> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "Hydrogel B5 (100 μM RGD, most clustered)" ;
+    lova:particleMaterial "Acrylated hyaluronic acid (HA-AC)" ;
+    lova:surfaceModification "RGD 100 μM, condition 5 (most clustered)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2013.01.091/ha-rgd-mmp-hydrogel> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.01.091/c1> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "Hydrogel C1 (1000 μM RGD, homogeneous distribution)" ;
+    lova:particleMaterial "Acrylated hyaluronic acid (HA-AC)" ;
+    lova:surfaceModification "RGD 1000 μM, condition 1 (least clustered)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2013.01.091/ha-rgd-mmp-hydrogel> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.01.091/c2> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "Hydrogel C2 (1000 μM RGD, condition 2)" ;
+    lova:particleMaterial "Acrylated hyaluronic acid (HA-AC)" ;
+    lova:surfaceModification "RGD 1000 μM, condition 2" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2013.01.091/ha-rgd-mmp-hydrogel> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.01.091/c3> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "Hydrogel C3 (1000 μM RGD, condition 3, optimal clustering)" ;
+    lova:particleMaterial "Acrylated hyaluronic acid (HA-AC)" ;
+    lova:surfaceModification "RGD 1000 μM, 12 mmol RGD/mmol HA-RGD" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2013.01.091/ha-rgd-mmp-hydrogel> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.01.091/c4> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "Hydrogel C4 (1000 μM RGD, condition 4)" ;
+    lova:particleMaterial "Acrylated hyaluronic acid (HA-AC)" ;
+    lova:surfaceModification "RGD 1000 μM, condition 4" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2013.01.091/ha-rgd-mmp-hydrogel> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.01.091/c5> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "Hydrogel C5 (1000 μM RGD, most clustered)" ;
+    lova:particleMaterial "Acrylated hyaluronic acid (HA-AC)" ;
+    lova:surfaceModification "RGD 1000 μM, condition 5 (most clustered)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2013.01.091/ha-rgd-mmp-hydrogel> .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.01.091/rheology> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.01.091/a1> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.01.091/a3> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.01.091/a5> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.01.091/b1> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.01.091/b3> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.01.091/b5> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.01.091/c1> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.01.091/c3> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.01.091/c5> ;
+    rdfs:label "Rheological characterization of hydrogel storage modulus" ;
+    lova:experimentCategory "Mechanical" ;
+    lova:experimentType "Oscillatory shear rheology" ;
+    lova:equipment "Physica MCR 301 (Anton Paar), 8 mm plate" ;
+    lova:strainRate "Constant strain 1%" ;
+    lova:frequency "0.1-10 rad/s" ;
+    lova:temperature "37°C" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.01.091/spreading-10um> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.01.091/a1> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.01.091/a2> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.01.091/a3> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.01.091/a4> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.01.091/a5> ;
+    rdfs:label "mMSC spreading in 10 μM RGD hydrogels (phalloidin staining)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell spreading" ;
+    lova:assayOrMethod "Phalloidin staining / fluorescence microscopy" ;
+    lova:cellType "mMSC (D1, CRL12424)" ;
+    lova:cellSource "Mouse bone marrow" ;
+    lova:cultureDuration "1, 4, 7 days" ;
+    lova:equipment "Zeiss Axio Observer inverted fluorescence microscope" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.01.091/spreading-100um> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.01.091/b1> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.01.091/b2> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.01.091/b3> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.01.091/b4> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.01.091/b5> ;
+    rdfs:label "mMSC spreading in 100 μM RGD hydrogels (phalloidin staining)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell spreading" ;
+    lova:assayOrMethod "Phalloidin staining / fluorescence microscopy" ;
+    lova:cellType "mMSC (D1, CRL12424)" ;
+    lova:cellSource "Mouse bone marrow" ;
+    lova:cultureDuration "1, 4, 7 days" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.01.091/spreading-1000um> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.01.091/c1> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.01.091/c2> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.01.091/c3> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.01.091/c4> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.01.091/c5> ;
+    rdfs:label "mMSC spreading in 1000 μM RGD hydrogels (phalloidin staining)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell spreading" ;
+    lova:assayOrMethod "Phalloidin staining / fluorescence microscopy" ;
+    lova:cellType "mMSC (D1, CRL12424)" ;
+    lova:cellSource "Mouse bone marrow" ;
+    lova:cultureDuration "1, 4, 7 days" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.01.091/proliferation> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.01.091/a1> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.01.091/b1> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.01.091/c1> ;
+    rdfs:label "mMSC proliferation (DNA content) across RGD conditions" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Proliferation / DNA quantification" ;
+    lova:assayOrMethod "CyQUANT cell proliferation assay" ;
+    lova:cellType "mMSC (D1, CRL12424)" ;
+    lova:cultureDuration "1, 4, 7, 10 days" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.01.091/flow-cytometry-integrin> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.01.091/a1> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.01.091/a3> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.01.091/a5> ;
+    rdfs:label "Integrin expression by flow cytometry (A1, A3, A5) at day 4" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Integrin expression" ;
+    lova:assayOrMethod "Flow cytometry (FACS)" ;
+    lova:equipment "FACScan X, FlowJo analysis" ;
+    lova:cellType "mMSC (D1, CRL12424)" ;
+    lova:cultureDuration "4 days" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.01.091/cd105-timecourse> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.01.091/a1> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.01.091/a3> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.01.091/a5> ;
+    rdfs:label "CD105 (MSC marker) expression time course" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Marker expression time course" ;
+    lova:assayOrMethod "Flow cytometry (FACS)" ;
+    lova:cellType "mMSC (D1, CRL12424)" ;
+    lova:cultureDuration "0, 1, 4, 7 days" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.01.091/gel-degradation-timecourse> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.01.091/a5> ;
+    rdfs:label "Time course of gel degradation (storage modulus) for hydrogel A5" ;
+    lova:experimentCategory "Mechanical" ;
+    lova:experimentType "Oscillatory shear rheology" ;
+    lova:equipment "Physica MCR 301 (Anton Paar)" ;
+    lova:cultureDuration "1, 4, 7 days" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/cell-length-a1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.01.091/spreading-10um> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "Cell length, hydrogel A1, day 4" ;
+    lova:measurementType "Cell length" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 15.16 ;
+    qudt:unit "μm" ;
+    lova:stdDev 1.75 ;
+    lova:timePoint "Day 4" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/cell-length-a2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.01.091/spreading-10um> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "Cell length, hydrogel A2, day 4" ;
+    lova:measurementType "Cell length" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 31.49 ;
+    qudt:unit "μm" ;
+    lova:stdDev 8.66 ;
+    lova:timePoint "Day 4" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/cell-length-a3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.01.091/spreading-10um> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "Cell length, hydrogel A3, day 4" ;
+    lova:measurementType "Cell length" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 27.33 ;
+    qudt:unit "μm" ;
+    lova:stdDev 5.44 ;
+    lova:timePoint "Day 4" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/cell-length-a4> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.01.091/spreading-10um> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "Cell length, hydrogel A4, day 4" ;
+    lova:measurementType "Cell length" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 36.50 ;
+    qudt:unit "μm" ;
+    lova:stdDev 5.74 ;
+    lova:timePoint "Day 4" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/cell-length-a5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.01.091/spreading-10um> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "Cell length, hydrogel A5, day 4 (highest spreading)" ;
+    lova:measurementType "Cell length" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 70.19 ;
+    qudt:unit "μm" ;
+    lova:stdDev 14.49 ;
+    lova:timePoint "Day 4" ;
+    lova:isSignificant true ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/cell-length-b1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.01.091/spreading-100um> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "Cell length, hydrogel B1, day 4" ;
+    lova:measurementType "Cell length" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 42.69 ;
+    qudt:unit "μm" ;
+    lova:stdDev 10.22 ;
+    lova:timePoint "Day 4" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/cell-length-b2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.01.091/spreading-100um> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "Cell length, hydrogel B2, day 4" ;
+    lova:measurementType "Cell length" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 48.55 ;
+    qudt:unit "μm" ;
+    lova:stdDev 10.02 ;
+    lova:timePoint "Day 4" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/cell-length-b3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.01.091/spreading-100um> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "Cell length, hydrogel B3, day 4 (highest spreading)" ;
+    lova:measurementType "Cell length" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 64.27 ;
+    qudt:unit "μm" ;
+    lova:stdDev 13.23 ;
+    lova:timePoint "Day 4" ;
+    lova:isSignificant true ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/cell-length-b4> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.01.091/spreading-100um> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "Cell length, hydrogel B4, day 4" ;
+    lova:measurementType "Cell length" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 37.69 ;
+    qudt:unit "μm" ;
+    lova:stdDev 9.52 ;
+    lova:timePoint "Day 4" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/cell-length-b5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.01.091/spreading-100um> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "Cell length, hydrogel B5, day 4" ;
+    lova:measurementType "Cell length" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 32.18 ;
+    qudt:unit "μm" ;
+    lova:stdDev 9.14 ;
+    lova:timePoint "Day 4" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/cell-length-c1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.01.091/spreading-1000um> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "Cell length, hydrogel C1, day 4" ;
+    lova:measurementType "Cell length" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 31.98 ;
+    qudt:unit "μm" ;
+    lova:stdDev 9.74 ;
+    lova:timePoint "Day 4" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/cell-length-c2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.01.091/spreading-1000um> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "Cell length, hydrogel C2, day 4" ;
+    lova:measurementType "Cell length" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 41.21 ;
+    qudt:unit "μm" ;
+    lova:stdDev 12.61 ;
+    lova:timePoint "Day 4" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/cell-length-c3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.01.091/spreading-1000um> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "Cell length, hydrogel C3, day 4 (highest spreading)" ;
+    lova:measurementType "Cell length" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 73.66 ;
+    qudt:unit "μm" ;
+    lova:stdDev 11.28 ;
+    lova:timePoint "Day 4" ;
+    lova:isSignificant true ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/cell-length-c4> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.01.091/spreading-1000um> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "Cell length, hydrogel C4, day 4" ;
+    lova:measurementType "Cell length" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 38.45 ;
+    qudt:unit "μm" ;
+    lova:stdDev 12.27 ;
+    lova:timePoint "Day 4" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/cell-length-c5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.01.091/spreading-1000um> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "Cell length, hydrogel C5, day 4" ;
+    lova:measurementType "Cell length" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 41.92 ;
+    qudt:unit "μm" ;
+    lova:stdDev 17.47 ;
+    lova:timePoint "Day 4" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/dna-a-no-diff> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.01.091/proliferation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "DNA content, 10 μM RGD conditions (A1-A5) — no statistical difference" ;
+    lova:measurementType "DNA content (proliferation)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "No significant difference between conditions at each time point" ;
+    lova:isSignificant false ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/dna-b-no-diff> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.01.091/proliferation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "DNA content, 100 μM RGD conditions (B1-B5) — no statistical difference" ;
+    lova:measurementType "DNA content (proliferation)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "No significant difference between conditions at each time point" ;
+    lova:isSignificant false ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/dna-c-no-diff> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.01.091/proliferation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "DNA content, 1000 μM RGD conditions (C1-C5) — no statistical difference" ;
+    lova:measurementType "DNA content (proliferation)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "No significant difference between conditions at each time point" ;
+    lova:isSignificant false ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/storage-modulus-a> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.01.091/rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "Storage modulus, 10 μM RGD hydrogels (A1, A3, A5), average" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 345.0 ;
+    qudt:unit "Pa" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/storage-modulus-b> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.01.091/rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "Storage modulus, 100 μM RGD hydrogels (B1, B3, B5), average" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 155.0 ;
+    qudt:unit "Pa" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/storage-modulus-c> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.01.091/rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "Storage modulus, 1000 μM RGD hydrogels (C1, C3, C5), average" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 75.0 ;
+    qudt:unit "Pa" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/alpha2-pctgated-a1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.01.091/flow-cytometry-integrin> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "α2 integrin percent gated, A1, day 4" ;
+    lova:measurementType "α2 integrin percent positive" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 37.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 4" ;
+    lova:sampleSize 3 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/alpha2-pctgated-a3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.01.091/flow-cytometry-integrin> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "α2 integrin percent gated, A3, day 4" ;
+    lova:measurementType "α2 integrin percent positive" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 17.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 4" ;
+    lova:sampleSize 3 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/alpha2-pctgated-a5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.01.091/flow-cytometry-integrin> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "α2 integrin percent gated, A5, day 4" ;
+    lova:measurementType "α2 integrin percent positive" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 14.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 4" ;
+    lova:sampleSize 3 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/alpha3-mfi-a1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.01.091/flow-cytometry-integrin> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "α3 integrin normalized mean fluorescence, A1, day 4" ;
+    lova:measurementType "α3 integrin normalized mean fluorescence" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.5 ;
+    qudt:unit "ratio" ;
+    lova:timePoint "Day 4" ;
+    lova:sampleSize 3 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/alpha3-mfi-a3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.01.091/flow-cytometry-integrin> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "α3 integrin normalized mean fluorescence, A3, day 4" ;
+    lova:measurementType "α3 integrin normalized mean fluorescence" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.9 ;
+    qudt:unit "ratio" ;
+    lova:timePoint "Day 4" ;
+    lova:sampleSize 3 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/alpha3-mfi-a5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.01.091/flow-cytometry-integrin> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "α3 integrin normalized mean fluorescence, A5, day 4" ;
+    lova:measurementType "α3 integrin normalized mean fluorescence" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.8 ;
+    qudt:unit "ratio" ;
+    lova:timePoint "Day 4" ;
+    lova:sampleSize 3 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/alpha3-pctgated-a1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.01.091/flow-cytometry-integrin> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "α3 integrin percent gated, A1, day 4" ;
+    lova:measurementType "α3 integrin percent positive" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 40.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 4" ;
+    lova:sampleSize 3 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/alpha3-pctgated-a3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.01.091/flow-cytometry-integrin> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "α3 integrin percent gated, A3, day 4" ;
+    lova:measurementType "α3 integrin percent positive" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 60.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 4" ;
+    lova:sampleSize 3 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/alpha3-pctgated-a5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.01.091/flow-cytometry-integrin> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "α3 integrin percent gated, A5, day 4" ;
+    lova:measurementType "α3 integrin percent positive" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 57.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 4" ;
+    lova:sampleSize 3 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/beta1-mfi-a1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.01.091/flow-cytometry-integrin> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "β1 integrin normalized mean fluorescence, A1, day 4" ;
+    lova:measurementType "β1 integrin normalized mean fluorescence" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.9 ;
+    qudt:unit "ratio" ;
+    lova:timePoint "Day 4" ;
+    lova:sampleSize 3 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/beta1-mfi-a3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.01.091/flow-cytometry-integrin> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "β1 integrin normalized mean fluorescence, A3, day 4" ;
+    lova:measurementType "β1 integrin normalized mean fluorescence" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 3.3 ;
+    qudt:unit "ratio" ;
+    lova:timePoint "Day 4" ;
+    lova:sampleSize 3 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/beta1-mfi-a5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.01.091/flow-cytometry-integrin> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "β1 integrin normalized mean fluorescence, A5, day 4" ;
+    lova:measurementType "β1 integrin normalized mean fluorescence" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 3.6 ;
+    qudt:unit "ratio" ;
+    lova:timePoint "Day 4" ;
+    lova:sampleSize 3 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/beta1-pctgated-a1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.01.091/flow-cytometry-integrin> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "β1 integrin percent gated, A1, day 4" ;
+    lova:measurementType "β1 integrin percent positive" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 70.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 4" ;
+    lova:sampleSize 3 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/beta1-pctgated-a3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.01.091/flow-cytometry-integrin> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "β1 integrin percent gated, A3, day 4" ;
+    lova:measurementType "β1 integrin percent positive" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 84.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 4" ;
+    lova:sampleSize 3 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/beta1-pctgated-a5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.01.091/flow-cytometry-integrin> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "β1 integrin percent gated, A5, day 4" ;
+    lova:measurementType "β1 integrin percent positive" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 87.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 4" ;
+    lova:sampleSize 3 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/cd105-day0> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.01.091/cd105-timecourse> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "CD105 percent positive, day 0 (flask control)" ;
+    lova:measurementType "CD105 percent positive" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 87.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 0" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/cd105-day7-a1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.01.091/cd105-timecourse> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "CD105 percent positive, A1, day 7" ;
+    lova:measurementType "CD105 percent positive" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 17.3 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 7" ;
+    lova:isSignificant false ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/cd105-day7-a3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.01.091/cd105-timecourse> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "CD105 percent positive, A3, day 7" ;
+    lova:measurementType "CD105 percent positive" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 17.2 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 7" ;
+    lova:isSignificant false ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/cd105-day7-a5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.01.091/cd105-timecourse> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "CD105 percent positive, A5, day 7" ;
+    lova:measurementType "CD105 percent positive" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 7.6 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 7" ;
+    lova:isSignificant false ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/gel-degradation-day1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.01.091/gel-degradation-timecourse> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "Storage modulus, hydrogel A5, day 1" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 160.0 ;
+    qudt:unit "Pa" ;
+    lova:timePoint "Day 1" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/gel-degradation-day4> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.01.091/gel-degradation-timecourse> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "Storage modulus, hydrogel A5, day 4" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 40.0 ;
+    qudt:unit "Pa" ;
+    lova:timePoint "Day 4" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/gel-degradation-day7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.01.091/gel-degradation-timecourse> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "Storage modulus, hydrogel A5, day 7" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 15.0 ;
+    qudt:unit "Pa" ;
+    lova:timePoint "Day 7" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2013.01.091/cell-length-a1-vs-a5> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "Cell length lower in A1 (homogeneous) vs A5 (most clustered), 10 μM RGD" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/cell-length-a1> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/cell-length-a5> ;
+    lova:direction "lower" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2013.01.091/cell-length-a3-vs-a4> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "Cell length lower in A3 vs A4, 10 μM RGD" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/cell-length-a3> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/cell-length-a4> ;
+    lova:direction "lower" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2013.01.091/cell-length-b3-vs-b1> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "Cell length higher in B3 vs B1, 100 μM RGD" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/cell-length-b3> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/cell-length-b1> ;
+    lova:direction "higher" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2013.01.091/cell-length-b2-vs-b4> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "Cell length different B2 vs B4, 100 μM RGD" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/cell-length-b2> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/cell-length-b4> ;
+    lova:direction "higher" ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2013.01.091/cell-length-b2-vs-b5> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "Cell length different B2 vs B5, 100 μM RGD" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/cell-length-b2> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/cell-length-b5> ;
+    lova:direction "higher" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2013.01.091/cell-length-c3-vs-c1> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "Cell length higher in C3 vs C1, 1000 μM RGD" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/cell-length-c3> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/cell-length-c1> ;
+    lova:direction "higher" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2013.01.091/alpha2-pctgated-a1-vs-a3> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "α2 integrin percent gated higher in A1 vs A3" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/alpha2-pctgated-a1> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/alpha2-pctgated-a3> ;
+    lova:direction "higher" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2013.01.091/alpha2-pctgated-a1-vs-a5> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "α2 integrin percent gated higher in A1 vs A5" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/alpha2-pctgated-a1> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/alpha2-pctgated-a5> ;
+    lova:direction "higher" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2013.01.091/alpha3-mfi-a1-vs-a3> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "α3 integrin normalized mean fluorescence lower in A1 vs A3" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/alpha3-mfi-a1> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/alpha3-mfi-a3> ;
+    lova:direction "lower" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2013.01.091/alpha3-mfi-a1-vs-a5> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "α3 integrin normalized mean fluorescence lower in A1 vs A5" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/alpha3-mfi-a1> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/alpha3-mfi-a5> ;
+    lova:direction "lower" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2013.01.091/alpha3-pctgated-a1-vs-a3> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "α3 integrin percent gated lower in A1 vs A3" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/alpha3-pctgated-a1> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/alpha3-pctgated-a3> ;
+    lova:direction "lower" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2013.01.091/alpha3-pctgated-a1-vs-a5> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "α3 integrin percent gated lower in A1 vs A5" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/alpha3-pctgated-a1> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/alpha3-pctgated-a5> ;
+    lova:direction "lower" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2013.01.091/beta1-mfi-a1-vs-a5> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "β1 integrin normalized mean fluorescence lower in A1 vs A5" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/beta1-mfi-a1> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/beta1-mfi-a5> ;
+    lova:direction "lower" ;
+    lova:pValue 0.01 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2013.01.091/beta1-pctgated-a1-vs-a3> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "β1 integrin percent gated lower in A1 vs A3" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/beta1-pctgated-a1> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/beta1-pctgated-a3> ;
+    lova:direction "lower" ;
+    lova:pValue 0.01 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2013.01.091/beta1-pctgated-a1-vs-a5> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "β1 integrin percent gated lower in A1 vs A5" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/beta1-pctgated-a1> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/beta1-pctgated-a5> ;
+    lova:direction "lower" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2013.01.091/storage-modulus-a-vs-b> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "Storage modulus lower in 100 μM RGD gels vs 10 μM RGD gels" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/storage-modulus-b> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/storage-modulus-a> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2013.01.091/storage-modulus-b-vs-c> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.01.091> ;
+    rdfs:label "Storage modulus lower in 1000 μM RGD gels vs 100 μM RGD gels" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/storage-modulus-c> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.01.091/storage-modulus-b> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .

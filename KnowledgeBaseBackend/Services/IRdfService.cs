@@ -14,5 +14,7 @@ namespace KnowledgeBaseApi.Services
 		Task<List<OutcomeDto>> GetOutcomesAsync(CancellationToken ct = default);
 		Task<List<FabricationMethodDto>> GetFabricationMethodsAsync(CancellationToken ct = default);
 		Task<List<GeometryProfileDto>> GetGeometryProfilesAsync(CancellationToken ct = default);
+		Task<List<ReagentDto>> GetReagentsAsync(CancellationToken ct = default);
+		Task<List<ComparisonResultDto>> GetComparisonResultsAsync(CancellationToken ct = default);
 	}
 }

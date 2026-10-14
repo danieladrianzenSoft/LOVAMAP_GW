@@ -1,0 +1,814 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> a bibo:AcademicArticle ;
+    rdfs:label "Darling et al., 2016 — Controlling thiol-maleimide gelation kinetics" ;
+    dc:title "Controlling the kinetics of thiol-maleimide Michael-type addition gelation kinetics for the generation of homogenous poly(ethylene glycol) hydrogels" ;
+    dc:identifier "10.1016/j.biomaterials.2016.05.053" ;
+    dc:date "2016"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/biomaterials> ;
+    dc:creator <https://lovamap.com/ontology#author/darling-nicole> ,
+               <https://lovamap.com/ontology#author/hung-yiu-sun> ,
+               <https://lovamap.com/ontology#author/sharma-shruti> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/darling-nicole>
+                       <https://lovamap.com/ontology#author/hung-yiu-sun>
+                       <https://lovamap.com/ontology#author/sharma-shruti>
+                       <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    dc:bibliographicCitation "Darling et al., 2016" ;
+    lova:focusMaterial "PEG-maleimide (PEG-8Mal, PEG-4Mal, PEG-4VS) and PEG-norbornene Michael-type addition hydrogels, bulk and micro-scale homogeneity" .
+
+<https://lovamap.com/ontology#author/darling-nicole> a foaf:Person ;
+    foaf:familyName "Darling" ;
+    foaf:givenName "Nicole J." ;
+    foaf:name "Nicole J. Darling" ;
+    schema:affiliation "Chemical and Biomolecular Engineering Department, University of California Los Angeles, 420 Westwood Plaza, Los Angeles, CA 90095, USA" .
+
+<https://lovamap.com/ontology#author/hung-yiu-sun> a foaf:Person ;
+    foaf:familyName "Hung" ;
+    foaf:givenName "Yiu-Sun" ;
+    foaf:name "Yiu-Sun Hung" ;
+    schema:affiliation "Chemical and Biomolecular Engineering Department, University of California Los Angeles, 420 Westwood Plaza, Los Angeles, CA 90095, USA" .
+
+<https://lovamap.com/ontology#author/sharma-shruti> a foaf:Person ;
+    foaf:familyName "Sharma" ;
+    foaf:givenName "Shruti" ;
+    foaf:name "Shruti Sharma" ;
+    schema:affiliation "Chemical and Biomolecular Engineering Department, University of California Los Angeles, 420 Westwood Plaza, Los Angeles, CA 90095, USA" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" ;
+    schema:affiliation "Chemical and Biomolecular Engineering Department, University of California Los Angeles, 420 Westwood Plaza, Los Angeles, CA 90095, USA" .
+
+<https://lovamap.com/ontology#journal/biomaterials> a bibo:Journal ;
+    dc:title "Biomaterials" ;
+    bibo:issn "0142-9612" .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.05.053/peg8mal-crd> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "PEG-8Mal/MMPCRD hydrogel (CRD)" ;
+    lova:particleMaterial "8-arm PEG-maleimide (40 kDa)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2016.05.053/fm-crd> ;
+    lova:scaffoldDimensions "4 mm diameter PDMS well or 2 mm thick between glass slides" .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.05.053/peg4mal-crd> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "PEG-4Mal/MMPCRD hydrogel" ;
+    lova:particleMaterial "4-arm PEG-maleimide (20 kDa)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2016.05.053/fm-peg4mal> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.05.053/peg4vs-crd> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "PEG-4VS/MMPCRD hydrogel (slower Michael-type addition)" ;
+    lova:particleMaterial "4-arm PEG-vinylsulfone (20 kDa)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2016.05.053/fm-peg4vs> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.05.053/peg8n-crd> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "PEG-8N/MMPCRD hydrogel (homogeneous control, step-growth)" ;
+    lova:particleMaterial "8-arm PEG-Norbornene" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2016.05.053/fm-peg8n> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.05.053/malpq> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "PEG-8Mal pre-quenched maleimide hydrogel (MalPQ)" ;
+    lova:particleMaterial "8-arm PEG-maleimide (40 kDa), 2 mM maleimide pre-reacted with RDG, 8 mM remaining" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2016.05.053/fm-malpq> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.05.053/zincic50> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "PEG-8Mal/MMPCRD hydrogel with zinc chloride (ZincIC50)" ;
+    lova:particleMaterial "8-arm PEG-maleimide (40 kDa) with 0.16 mM ZnCl2" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2016.05.053/fm-zincic50> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.05.053/dcdd> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "PEG-8Mal/MMPDCDD hydrogel (DCDD, pKa-tuned)" ;
+    lova:particleMaterial "8-arm PEG-maleimide (40 kDa) crosslinked with DCDD-tagged MMP peptide" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2016.05.053/fm-dcdd> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.05.053/ecee> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "PEG-8Mal/MMPECEE hydrogel (ECEE, pKa-tuned)" ;
+    lova:particleMaterial "8-arm PEG-maleimide (40 kDa) crosslinked with ECEE-tagged MMP peptide" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2016.05.053/fm-ecee> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2016.05.053/fm-crd> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "Michael-type addition thiol-maleimide gelation (PEG-8Mal/MMPCRD)" ;
+    lova:chemistry "Michael-type addition (thiol-maleimide)" ;
+    lova:manufacturingMethod "Manual pipette mixing, in situ gelation between glass slides or PDMS well" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.05.053/peg8mal> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.05.053/rgd> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.05.053/mmpcrd> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.05.053/alexa350-maleimide> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.05.053/alexa555-maleimide> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.05.053/hepes> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2016.05.053/fm-peg4mal> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "Michael-type addition thiol-maleimide gelation (PEG-4Mal/MMPCRD)" ;
+    lova:chemistry "Michael-type addition (thiol-maleimide)" ;
+    lova:manufacturingMethod "Manual pipette mixing, in situ gelation between glass slides" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.05.053/peg4mal> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.05.053/mmpcrd> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.05.053/hepes> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2016.05.053/fm-peg4vs> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "Michael-type addition thiol-vinylsulfone gelation (PEG-4VS/MMPCRD)" ;
+    lova:chemistry "Michael-type addition (thiol-vinylsulfone)" ;
+    lova:manufacturingMethod "Manual pipette mixing, in situ gelation" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.05.053/peg4vs> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.05.053/mmpcrd> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.05.053/teoa> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2016.05.053/fm-peg8n> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "Thiol-norbornene step-growth photopolymerization (PEG-8N)" ;
+    lova:chemistry "Radical thiol-ene step-growth photopolymerization" ;
+    lova:manufacturingMethod "Visible light photopolymerization with Eosin-Y photoinitiator" ;
+    lova:annealingChemistry "Photoinitiated thiol-ene" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.05.053/peg8n> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.05.053/mmpcrd> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.05.053/eosiny> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2016.05.053/fm-malpq> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "Michael-type addition gelation with maleimide pre-quenching (MalPQ)" ;
+    lova:chemistry "Michael-type addition (thiol-maleimide), maleimide functional group reduction" ;
+    lova:manufacturingMethod "Pre-reaction of maleimide with scrambled RDG peptide before crosslinking" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.05.053/peg8mal> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.05.053/mmpcrd> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.05.053/rdg> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2016.05.053/fm-zincic50> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "Michael-type addition gelation with zinc chloride reversible thiol binding" ;
+    lova:chemistry "Zinc-catalyzed/modulated Michael-type addition (thiol-maleimide)" ;
+    lova:manufacturingMethod "Zinc chloride added to crosslinker prior to mixing with PEG-Mal" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.05.053/peg8mal> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.05.053/mmpcrd> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.05.053/zncl2> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2016.05.053/fm-dcdd> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "Michael-type addition gelation with pKa-tuned DCDD peptide tag" ;
+    lova:chemistry "Michael-type addition (thiol-maleimide), pKa-modulated thiolate" ;
+    lova:manufacturingMethod "Manual pipette mixing, in situ gelation" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.05.053/peg8mal> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.05.053/mmpdcdd> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2016.05.053/fm-ecee> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "Michael-type addition gelation with pKa-tuned ECEE peptide tag" ;
+    lova:chemistry "Michael-type addition (thiol-maleimide), pKa-modulated thiolate" ;
+    lova:manufacturingMethod "Manual pipette mixing, in situ gelation" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.05.053/peg8mal> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.05.053/mmpecee> .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.05.053/peg8mal> a lova:Reagent ;
+    rdfs:label "PEG-8Mal (40 kDa)" ;
+    lova:reagentRole "monomer" ;
+    lova:molecularWeight "40 kDa" ;
+    lova:supplier "JenKem Technology USA" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.05.053/peg4mal> a lova:Reagent ;
+    rdfs:label "PEG-4Mal (20 kDa)" ;
+    lova:reagentRole "monomer" ;
+    lova:molecularWeight "20 kDa" ;
+    lova:supplier "JenKem Technology USA" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.05.053/peg4vs> a lova:Reagent ;
+    rdfs:label "PEG-4VS (20 kDa)" ;
+    lova:reagentRole "monomer" ;
+    lova:molecularWeight "20 kDa" ;
+    lova:supplier "JenKem Technology USA" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.05.053/peg8n> a lova:Reagent ;
+    rdfs:label "PEG-8N (8-arm PEG-Norbornene)" ;
+    lova:reagentRole "monomer" ;
+    lova:reagentFunction "Step-growth thiol-ene network backbone" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.05.053/rgd> a lova:Reagent ;
+    rdfs:label "RGD adhesive peptide (GCGYGRGDSPG)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "GCGYGRGDSPG" ;
+    lova:concentration "1 mM" ;
+    lova:reagentFunction "Cell adhesion" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.05.053/mmpcrd> a lova:Reagent ;
+    rdfs:label "MMPCRD degradable linker peptide (Ac-GCRD-GPQGIWGQ-DRCG-NH2)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:sequence "Ac-GCRD-GPQGIWGQ-DRCG-NH2" ;
+    lova:reagentFunction "MMP-degradable, protease-cleavable inter-arm crosslinker" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.05.053/mmpdcdd> a lova:Reagent ;
+    rdfs:label "MMPDCDD degradable linker peptide (DCDD tag variant, Ac-GXCXX-GPQGIWGQ-XXCXG-NH2)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:reagentFunction "MMP-degradable crosslinker with pKa-tuned thiol (DCDD, 3- charge)" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.05.053/mmpecee> a lova:Reagent ;
+    rdfs:label "MMPECEE degradable linker peptide (ECEE tag variant, Ac-GXCXX-GPQGIWGQ-XXCXG-NH2)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:reagentFunction "MMP-degradable crosslinker with pKa-tuned thiol (ECEE, 3- charge)" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.05.053/crd-pka-peptide> a lova:Reagent ;
+    rdfs:label "CRD pKa test peptide (Ac-GCRDG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "Ac-GCRDG-NH2" ;
+    lova:supplier "Genscript, Piscataway, NJ" ;
+    lova:reagentFunction "pKa determination of sulfhydryl group" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.05.053/dcdd-pka-peptide> a lova:Reagent ;
+    rdfs:label "DCDD pKa test peptide (Ac-GDCDDG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "Ac-GDCDDG-NH2" ;
+    lova:supplier "Genscript, Piscataway, NJ" ;
+    lova:reagentFunction "pKa determination of sulfhydryl group" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.05.053/ecee-pka-peptide> a lova:Reagent ;
+    rdfs:label "ECEE pKa test peptide (Ac-GECEEG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "Ac-GECEEG-NH2" ;
+    lova:supplier "Genscript, Piscataway, NJ" ;
+    lova:reagentFunction "pKa determination of sulfhydryl group" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.05.053/rdg> a lova:Reagent ;
+    rdfs:label "RDG scrambled peptide" ;
+    lova:reagentRole "other" ;
+    lova:concentration "2 mM (pre-reacted with maleimide)" ;
+    lova:reagentFunction "Pre-quenching of maleimide functional groups to reduce reactive group concentration" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.05.053/alexa350-maleimide> a lova:Reagent ;
+    rdfs:label "Alexa Fluor 350 maleimide" ;
+    lova:reagentRole "other" ;
+    lova:concentration "0.005 mM" ;
+    lova:supplier "Life Technologies" ;
+    lova:reagentFunction "Fluorescent visualization of crosslinker distribution during gelation" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.05.053/alexa555-maleimide> a lova:Reagent ;
+    rdfs:label "Alexa Fluor 555 maleimide" ;
+    lova:reagentRole "other" ;
+    lova:concentration "0.005 mM" ;
+    lova:supplier "Life Technologies" ;
+    lova:reagentFunction "Fluorescent visualization of crosslinker distribution after gelation" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.05.053/zncl2> a lova:Reagent ;
+    rdfs:label "Zinc chloride (ZnCl2)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "16 mM (gelation), 0.159 mM (IC50)" ;
+    lova:reagentFunction "Reversible binding of thiolate to slow gelation kinetics" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.05.053/eosiny> a lova:Reagent ;
+    rdfs:label "Eosin-Y" ;
+    lova:reagentRole "photoinitiator" ;
+    lova:concentration "0.1 mM" ;
+    lova:reagentFunction "Visible-light photoinitiator for thiol-ene step-growth polymerization" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.05.053/hepes> a lova:Reagent ;
+    rdfs:label "HEPES buffer" ;
+    lova:reagentRole "solvent" ;
+    lova:concentration "100 mM, pH 7.4" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.05.053/teoa> a lova:Reagent ;
+    rdfs:label "TEOA buffer" ;
+    lova:reagentRole "solvent" ;
+    lova:concentration "0.3 M, pH 8.2" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.05.053/pfa> a lova:Reagent ;
+    rdfs:label "Paraformaldehyde (4%)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "4%" ;
+    lova:supplier "Fisher Scientific" ;
+    lova:reagentFunction "Fixation of encapsulated cells" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.05.053/phalloidin> a lova:Reagent ;
+    rdfs:label "Alexa Fluor 488 phalloidin" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Invitrogen" ;
+    lova:reagentFunction "F-actin staining" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2016.05.053/pdms> a lova:Reagent ;
+    rdfs:label "Sylgard 184 Silicone Kit (PDMS)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Ellsworth Adhesives" ;
+    lova:reagentFunction "Well mold for hydrogel casting" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.05.053/bulk-rheology> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.05.053/peg8mal-crd> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.05.053/malpq> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.05.053/zincic50> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.05.053/dcdd> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.05.053/ecee> ;
+    rdfs:label "Oscillation rheology time sweep of PEG-Mal/MMPCRD gelation kinetics" ;
+    lova:experimentCategory "Rheological" ;
+    lova:experimentType "Time sweep oscillation rheology" ;
+    lova:equipment "Parallel plate rheometer" ;
+    lova:temperature "4 °C, 25 °C, 37 °C" ;
+    lova:frequency "1 rad*s-1" ;
+    lova:strainRate "40% strain" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.05.053/microstructure-imaging> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.05.053/peg8mal-crd> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.05.053/peg4vs-crd> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.05.053/peg8n-crd> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.05.053/dcdd> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.05.053/ecee> ;
+    rdfs:label "Confocal/fluorescent imaging of crosslinker microdomain distribution" ;
+    lova:experimentCategory "Imaging" ;
+    lova:experimentType "Fluorescent microstructure imaging" ;
+    lova:assayOrMethod "Confocal microscopy, Alexa 350/555 fluorescence intensity mapping" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.05.053/cell-spreading> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.05.053/peg8mal-crd> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.05.053/peg8n-crd> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.05.053/dcdd> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.05.053/ecee> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.05.053/malpq> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.05.053/zincic50> ;
+    rdfs:label "HDF cell encapsulation and spreading assay in PEG hydrogels" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell spreading / morphology" ;
+    lova:assayOrMethod "F-actin/nucleus confocal imaging (phalloidin/DAPI-ToPro3)" ;
+    lova:cellType "HDF" ;
+    lova:cellSource "Human dermal fibroblasts" ;
+    lova:seedingDensity "3000 cells/mL" ;
+    lova:cultureDuration "4, 7, 14, 21, 28 days" ;
+    lova:cultureMedium "DMEM + 5% FBS + 1% penicillin/streptomycin" ;
+    lova:sampleSize 40 .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.05.053/zinc-ic50-assay> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.05.053/zincic50> ;
+    rdfs:label "Zinc chloride cytotoxicity IC50 assay on HDFs" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cytotoxicity assay" ;
+    lova:assayOrMethod "CellTiter 96 AQueous MTS/PMS cell proliferation assay" ;
+    lova:cellType "HDF" ;
+    lova:cellSource "Human dermal fibroblasts" ;
+    lova:seedingDensity "5000 cells/well" ;
+    lova:cultureDuration "24 h pre-exposure, 4 h ZnCl2 exposure" ;
+    lova:temperature "37 °C" ;
+    lova:atmosphere "5% CO2" ;
+    lova:sampleSize 6 .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.05.053/pka-determination> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.05.053/peg8mal-crd> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.05.053/dcdd> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2016.05.053/ecee> ;
+    rdfs:label "pKa determination of thiol-tag peptides (CRD, DCDD, ECEE)" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "pKa titration" ;
+    lova:assayOrMethod "Absorbance at 240 nm vs pH, fit to Henderson-Hasselbalch equation" ;
+    lova:equipment "NanoDrop 2000c spectrophotometer" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.05.053/gprime-bulk-crd> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.05.053/bulk-rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "Bulk storage modulus (G') of CRD hydrogel, stable over frequency sweep" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 400.0 ;
+    qudt:unit "Pa" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.05.053/gprime-24s-4c> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.05.053/bulk-rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "G' at 24 sec, 4°C" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 25.0 ;
+    qudt:unit "Pa" ;
+    lova:timePoint "24 sec" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.05.053/gprime-24s-25c> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.05.053/bulk-rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "G' at 24 sec, 25°C" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 80.0 ;
+    qudt:unit "Pa" ;
+    lova:timePoint "24 sec" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.05.053/gprime-24s-37c> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.05.053/bulk-rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "G' at 24 sec, 37°C" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 175.0 ;
+    qudt:unit "Pa" ;
+    lova:timePoint "24 sec" ;
+    lova:scope "Bulk/global" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.05.053/gprime-24s-rdg-plus> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.05.053/bulk-rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "G' at 24 sec, +RDG (MalPQ)" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 25.0 ;
+    qudt:unit "Pa" ;
+    lova:timePoint "24 sec" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.05.053/gprime-24s-rdg-minus> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.05.053/bulk-rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "G' at 24 sec, -RDG (CRD)" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 80.0 ;
+    qudt:unit "Pa" ;
+    lova:timePoint "24 sec" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.05.053/gprime-96s-ph8.05> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.05.053/bulk-rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "G' at 96 sec, pH 8.05" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 620.0 ;
+    qudt:unit "Pa" ;
+    lova:timePoint "96 sec" ;
+    lova:pH "8.05" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.05.053/gprime-96s-ph6.17> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.05.053/bulk-rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "G' at 96 sec, pH 6.17" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 180.0 ;
+    qudt:unit "Pa" ;
+    lova:timePoint "96 sec" ;
+    lova:pH "6.17" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.05.053/percolation-ph6.17> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.05.053/bulk-rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "Percolation point at pH 6.17" ;
+    lova:measurementType "Percolation point (gelation time)" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 19.16 ;
+    qudt:unit "sec" ;
+    lova:pH "6.17" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.05.053/percolation-ph5.05> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.05.053/bulk-rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "Percolation point at pH 5.05" ;
+    lova:measurementType "Percolation point (gelation time)" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 85.99 ;
+    qudt:unit "sec" ;
+    lova:pH "5.05" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.05.053/percolation-ph3.11> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.05.053/bulk-rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "Percolation point at pH 3.11" ;
+    lova:measurementType "Percolation point (gelation time)" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 786.66 ;
+    qudt:unit "sec" ;
+    lova:pH "3.11" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.05.053/percolation-dcdd> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.05.053/bulk-rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "Percolation point for DCDD hydrogel at 25°C" ;
+    lova:measurementType "Percolation point (gelation time)" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 8.65 ;
+    qudt:unit "sec" ;
+    lova:temperature "25 °C" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.05.053/percolation-ecee> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.05.053/bulk-rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "Percolation point for ECEE hydrogel at 25°C" ;
+    lova:measurementType "Percolation point (gelation time)" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 62.39 ;
+    qudt:unit "sec" ;
+    lova:temperature "25 °C" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.05.053/gprime-36s-crd> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.05.053/bulk-rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "G' at 36 sec, CRD" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 110.0 ;
+    qudt:unit "Pa" ;
+    lova:timePoint "36 sec" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.05.053/gprime-36s-dcdd> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.05.053/bulk-rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "G' at 36 sec, DCDD" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 65.0 ;
+    qudt:unit "Pa" ;
+    lova:timePoint "36 sec" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.05.053/gprime-36s-ecee> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.05.053/bulk-rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "G' at 36 sec, ECEE" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 10.0 ;
+    qudt:unit "Pa" ;
+    lova:timePoint "36 sec" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.05.053/gprime-60s-zn16mm> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.05.053/bulk-rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "G' at 60 sec, 16 mM ZnCl2" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 0.5 ;
+    qudt:unit "Pa" ;
+    lova:timePoint "60 sec" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.05.053/gprime-60s-zn0.16mm> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.05.053/bulk-rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "G' at 60 sec, 0.159 mM ZnCl2 (IC50)" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 125.0 ;
+    qudt:unit "Pa" ;
+    lova:timePoint "60 sec" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.05.053/gprime-60s-zn0mm> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.05.053/bulk-rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "G' at 60 sec, 0 mM ZnCl2 control" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 200.0 ;
+    qudt:unit "Pa" ;
+    lova:timePoint "60 sec" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.05.053/zinc-ic50> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.05.053/zinc-ic50-assay> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "Zinc chloride IC50 toward HDFs" ;
+    lova:measurementType "IC50 (cell viability)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 159.0 ;
+    qudt:unit "µM" ;
+    lova:sampleSize 6 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.05.053/pka-crd> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.05.053/pka-determination> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "pKa of CRD sulfhydryl group" ;
+    lova:measurementType "pKa of sulfhydryl group" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 8.656 ;
+    qudt:unit "pH units" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.05.053/pka-dcdd> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.05.053/pka-determination> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "pKa of DCDD sulfhydryl group" ;
+    lova:measurementType "pKa of sulfhydryl group" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 9.243 ;
+    qudt:unit "pH units" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.05.053/pka-ecee> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.05.053/pka-determination> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "pKa of ECEE sulfhydryl group" ;
+    lova:measurementType "pKa of sulfhydryl group" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 9.412 ;
+    qudt:unit "pH units" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.05.053/pixel-intensity-crd-vs-norb> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.05.053/microstructure-imaging> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "Pixel intensity variance, CRD gel (F=12.89 vs Norb)" ;
+    lova:measurementType "Fluorescence pixel intensity" ;
+    lova:measurementCategory "Imaging" ;
+    qudt:numericValue 22.0 ;
+    qudt:unit "pixel intensity (0-100 scale)" ;
+    lova:pValue 12.89 ;
+    lova:comparisonGroup "PEG-8N" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.05.053/pixel-intensity-norb> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.05.053/microstructure-imaging> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "Pixel intensity, PEG-8N (Norb) homogeneous control" ;
+    lova:measurementType "Fluorescence pixel intensity" ;
+    lova:measurementCategory "Imaging" ;
+    qudt:numericValue 20.0 ;
+    qudt:unit "pixel intensity (0-100 scale)" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.05.053/pixel-intensity-crd> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.05.053/microstructure-imaging> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "Pixel intensity, CRD gel (F=8.97 vs DCDD)" ;
+    lova:measurementType "Fluorescence pixel intensity" ;
+    lova:measurementCategory "Imaging" ;
+    qudt:numericValue 22.0 ;
+    qudt:unit "pixel intensity (0-100 scale)" ;
+    lova:pValue 8.97 ;
+    lova:comparisonGroup "DCDD" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.05.053/pixel-intensity-dcdd> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.05.053/microstructure-imaging> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "Pixel intensity, DCDD gel" ;
+    lova:measurementType "Fluorescence pixel intensity" ;
+    lova:measurementCategory "Imaging" ;
+    qudt:numericValue 15.0 ;
+    qudt:unit "pixel intensity (0-100 scale)" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.05.053/pixel-intensity-ecee> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.05.053/microstructure-imaging> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "Pixel intensity, ECEE gel (F=5.25 vs CRD)" ;
+    lova:measurementType "Fluorescence pixel intensity" ;
+    lova:measurementCategory "Imaging" ;
+    qudt:numericValue 20.5 ;
+    qudt:unit "pixel intensity (0-100 scale)" ;
+    lova:pValue 5.25 ;
+    lova:comparisonGroup "CRD" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.05.053/factin-day4-high-gprime> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.05.053/cell-spreading> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "Normalized F-actin area, High G' zone, Day 7 CRD gel" ;
+    lova:measurementType "Normalized F-actin area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 5.6 ;
+    qudt:unit "ratio (F-actin/nucleus area)" ;
+    lova:timePoint "Day 7" ;
+    lova:comparisonGroup "Low G' zone" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.05.053/factin-day4-low-gprime> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.05.053/cell-spreading> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "Normalized F-actin area, Low G' zone, Day 7 CRD gel" ;
+    lova:measurementType "Normalized F-actin area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.1 ;
+    qudt:unit "ratio (F-actin/nucleus area)" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.05.053/factin-day4-crd> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.05.053/cell-spreading> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "Normalized F-actin area, CRD, Day 4 (F=6.03 vs DCDD)" ;
+    lova:measurementType "Normalized F-actin area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.0 ;
+    qudt:unit "ratio (F-actin/nucleus area)" ;
+    lova:timePoint "Day 4" ;
+    lova:pValue 6.03 ;
+    lova:comparisonGroup "DCDD" ;
+    lova:sampleSize 40 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.05.053/factin-day4-dcdd> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.05.053/cell-spreading> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "Normalized F-actin area, DCDD, Day 4" ;
+    lova:measurementType "Normalized F-actin area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.1 ;
+    qudt:unit "ratio (F-actin/nucleus area)" ;
+    lova:timePoint "Day 4" ;
+    lova:sampleSize 40 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.05.053/factin-day4-ecee> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2016.05.053/cell-spreading> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "Normalized F-actin area, ECEE, Day 4 (F=1.03 vs DCDD)" ;
+    lova:measurementType "Normalized F-actin area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.6 ;
+    qudt:unit "ratio (F-actin/nucleus area)" ;
+    lova:timePoint "Day 4" ;
+    lova:pValue 1.03 ;
+    lova:comparisonGroup "DCDD" ;
+    lova:sampleSize 40 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2016.05.053/percolation-dcdd-vs-ecee> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "Percolation point longer in ECEE vs DCDD at 25°C" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.05.053/percolation-ecee> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.05.053/percolation-dcdd> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2016.05.053/pka-crd-vs-dcdd> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "pKa higher in DCDD vs CRD" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.05.053/pka-dcdd> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.05.053/pka-crd> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2016.05.053/pka-dcdd-vs-ecee> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "pKa higher in ECEE vs DCDD" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.05.053/pka-ecee> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.05.053/pka-dcdd> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2016.05.053/factin-high-vs-low-gprime> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "F-actin spreading area higher in High G' zone vs Low G' zone within same CRD gel" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.05.053/factin-day4-high-gprime> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.05.053/factin-day4-low-gprime> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2016.05.053/factin-crd-vs-dcdd> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "F-actin area higher in CRD vs DCDD at Day 4 (F=6.03)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.05.053/factin-day4-crd> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.05.053/factin-day4-dcdd> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2016.05.053/pixel-intensity-crd-vs-dcdd> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "Pixel intensity variance higher in CRD vs DCDD (F=8.97)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.05.053/pixel-intensity-crd> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.05.053/pixel-intensity-dcdd> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2016.05.053/gprime-pH8.05-vs-pH6.17> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2016.05.053> ;
+    rdfs:label "Storage modulus at 96 sec higher at pH 8.05 vs pH 6.17" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.05.053/gprime-96s-ph8.05> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2016.05.053/gprime-96s-ph6.17> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .

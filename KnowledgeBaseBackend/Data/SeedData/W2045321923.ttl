@@ -1,0 +1,866 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1021-bc015575f> a bibo:AcademicArticle ;
+    rdfs:label "Segura & Shea, 2002 — Surface-Tethered DNA Complexes for Enhanced Gene Delivery" ;
+    dc:title "Surface-Tethered DNA Complexes for Enhanced Gene Delivery" ;
+    dc:identifier "10.1021/bc015575f" ;
+    dc:date "2002"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/bioconjugate-chemistry> ;
+    dc:creator <https://lovamap.com/ontology#author/segura-tatiana> ,
+               <https://lovamap.com/ontology#author/shea-lonnied> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/segura-tatiana>
+                       <https://lovamap.com/ontology#author/shea-lonnied> ) ;
+    dc:bibliographicCitation "Segura & Shea, 2002" ;
+    lova:focusMaterial "Biotinylated polylysine (K19, K150)/plasmid DNA complexes tethered to neutravidin-coated surfaces for enhanced non-viral gene delivery" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" ;
+    schema:affiliation "Department of Chemical Engineering, Northwestern University" .
+
+<https://lovamap.com/ontology#author/shea-lonnied> a foaf:Person ;
+    foaf:familyName "Shea" ;
+    foaf:givenName "Lonnie D." ;
+    foaf:name "Lonnie D. Shea" ;
+    schema:affiliation "Department of Chemical Engineering, Northwestern University" ;
+    schema:affiliation "Department of Biomedical Engineering, Northwestern University" .
+
+<https://lovamap.com/ontology#journal/bioconjugate-chemistry> a bibo:Journal ;
+    dc:title "Bioconjugate Chemistry" ;
+    bibo:issn "1043-1802" .
+
+<https://lovamap.com/ontology#material/10.1021-bc015575f/k19> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "K19 (nonbiotinylated, Cys-Trp-Lys19)" ;
+    lova:particleMaterial "Poly-L-lysine (Cys-Trp-Lys19)" .
+
+<https://lovamap.com/ontology#material/10.1021-bc015575f/k19-b> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "K19-B (biotinylated K19)" ;
+    lova:particleMaterial "Poly-L-lysine (Cys-Trp-Lys19), biotinylated" ;
+    lova:surfaceModification "Single biotin group via cysteine-iodoacetyl conjugation" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-bc015575f/k19-biotinylation> .
+
+<https://lovamap.com/ontology#material/10.1021-bc015575f/k150> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "K150 (nonbiotinylated, Lys150, MW 20000)" ;
+    lova:particleMaterial "Poly-L-lysine (Lys150)" .
+
+<https://lovamap.com/ontology#material/10.1021-bc015575f/k150-b> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "K150-B (biotinylated K150, 3.1:1 biotin:K150)" ;
+    lova:particleMaterial "Poly-L-lysine (Lys150), biotinylated" ;
+    lova:surfaceModification "Multiple biotin groups via NHS-ester/amine conjugation, 3.1:1 molar ratio" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-bc015575f/k150-biotinylation> .
+
+<https://lovamap.com/ontology#material/10.1021-bc015575f/complex-k150b-surface> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "Surface-tethered DNA/K150-B complex (1705 mol biotin/mol DNA)" ;
+    lova:particleMaterial "DNA/K150-B complex" ;
+    lova:surfaceModification "Neutravidin-coated surface tethering via biotin" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-bc015575f/complex-tethering> .
+
+<https://lovamap.com/ontology#material/10.1021-bc015575f/complex-k19b-surface> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "Surface-tethered DNA/K19-B complex (4342 mol biotin/mol DNA)" ;
+    lova:particleMaterial "DNA/K19-B complex" ;
+    lova:surfaceModification "Neutravidin-coated surface tethering via biotin" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-bc015575f/complex-tethering> .
+
+<https://lovamap.com/ontology#material/10.1021-bc015575f/complex-853> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "Surface-tethered DNA/K150-B+K19 complex (853 mol biotin/mol DNA)" ;
+    lova:particleMaterial "DNA/K150-B/K19 mixed complex" ;
+    lova:surfaceModification "Neutravidin-coated surface tethering via biotin" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-bc015575f/complex-tethering> .
+
+<https://lovamap.com/ontology#material/10.1021-bc015575f/complex-426> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "Surface-tethered DNA/K150-B+K19 complex (426 mol biotin/mol DNA)" ;
+    lova:particleMaterial "DNA/K150-B/K19 mixed complex" ;
+    lova:surfaceModification "Neutravidin-coated surface tethering via biotin" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-bc015575f/complex-tethering> .
+
+<https://lovamap.com/ontology#material/10.1021-bc015575f/complex-28> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "Surface-tethered DNA/K150-B+K19 complex (28 mol biotin/mol DNA)" ;
+    lova:particleMaterial "DNA/K150-B/K19 mixed complex" ;
+    lova:surfaceModification "Neutravidin-coated surface tethering via biotin" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-bc015575f/complex-tethering> .
+
+<https://lovamap.com/ontology#material/10.1021-bc015575f/complex-k19b-2171> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "Surface-tethered DNA/K19-B+K19 complex (2171 mol biotin/mol DNA)" ;
+    lova:particleMaterial "DNA/K19-B/K19 mixed complex" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-bc015575f/complex-tethering> .
+
+<https://lovamap.com/ontology#material/10.1021-bc015575f/complex-k19b-1086> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "Surface-tethered DNA/K19-B+K19 complex (1086 mol biotin/mol DNA)" ;
+    lova:particleMaterial "DNA/K19-B/K19 mixed complex" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-bc015575f/complex-tethering> .
+
+<https://lovamap.com/ontology#material/10.1021-bc015575f/complex-k19b-217> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "Surface-tethered DNA/K19-B+K19 complex (217 mol biotin/mol DNA)" ;
+    lova:particleMaterial "DNA/K19-B/K19 mixed complex" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-bc015575f/complex-tethering> .
+
+<https://lovamap.com/ontology#material/10.1021-bc015575f/bulk-k150-dna> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "Bulk delivery K150/DNA complex control (0.7 µg DNA)" ;
+    lova:particleMaterial "DNA/K150 complex (not surface-tethered)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-bc015575f/complex-tethering> .
+
+<https://lovamap.com/ontology#material/10.1021-bc015575f/bulk-k19-dna> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "Bulk delivery K19/DNA complex control (0.16 µg DNA)" ;
+    lova:particleMaterial "DNA/K19 complex (not surface-tethered)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-bc015575f/complex-tethering> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1021-bc015575f/k19-biotinylation> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "K19 biotinylation via cysteine-iodoacetyl chemistry" ;
+    lova:chemistry "Thiol-iodoacetyl conjugation" ;
+    lova:manufacturingMethod "Solution-phase peptide biotinylation with sephadex G15 purification" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1021-bc015575f/k19> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-bc015575f/ezlink-peo-iodoacetyl-biotin> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1021-bc015575f/k150-biotinylation> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "K150 biotinylation via NHS ester/amine chemistry" ;
+    lova:chemistry "NHS ester-amine conjugation" ;
+    lova:manufacturingMethod "Solution-phase peptide biotinylation with dialysis and monomeric avidin column purification" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1021-bc015575f/k150> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-bc015575f/ezlink-sulfo-nhs-lc-biotin> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-bc015575f/haba> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-bc015575f/biotin-elution> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1021-bc015575f/complex-tethering> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "DNA/PLL complex formation and biotin-neutravidin surface tethering" ;
+    lova:chemistry "Electrostatic polyelectrolyte complexation and biotin-neutravidin affinity binding" ;
+    lova:manufacturingMethod "Stepwise addition of PLL to DNA solution; incubation on neutravidin-coated surfaces" ;
+    lova:annealingChemistry "Biotin-neutravidin noncovalent binding" ;
+    lova:annealingConditions "30 min mixing at room temperature, then 2 h surface binding" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1021-bc015575f/plasmid-dna> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-bc015575f/fl-beta-gal> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-bc015575f/neutravidin> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-bc015575f/trypsin> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-bc015575f/pei> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-bc015575f/hoechst-dye> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-bc015575f/xgal> .
+
+<https://lovamap.com/ontology#reagent/10.1021-bc015575f/k19> a lova:Reagent ;
+    rdfs:label "Cys-Trp-Lys19 (K19)" ;
+    lova:reagentRole "peptide" ;
+    lova:supplier "BioPeptide" ;
+    lova:reagentFunction "DNA condensation agent" .
+
+<https://lovamap.com/ontology#reagent/10.1021-bc015575f/k150> a lova:Reagent ;
+    rdfs:label "Lys150 (K150)" ;
+    lova:reagentRole "peptide" ;
+    lova:molecularWeight "20000 (average)" ;
+    lova:supplier "Sigma" ;
+    lova:reagentFunction "DNA condensation agent" .
+
+<https://lovamap.com/ontology#reagent/10.1021-bc015575f/ezlink-peo-iodoacetyl-biotin> a lova:Reagent ;
+    rdfs:label "EZ-link-PEO-iodoacetyl-biotin" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Pierce" ;
+    lova:reagentFunction "Biotinylation reagent for cysteine conjugation" .
+
+<https://lovamap.com/ontology#reagent/10.1021-bc015575f/ezlink-sulfo-nhs-lc-biotin> a lova:Reagent ;
+    rdfs:label "EZ-link-Sulfo-NHS-LC-biotin" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Pierce" ;
+    lova:reagentFunction "Biotinylation reagent for amine conjugation" .
+
+<https://lovamap.com/ontology#reagent/10.1021-bc015575f/haba> a lova:Reagent ;
+    rdfs:label "2-(4'-hydroxyazobenzene)benzoic acid (HABA)" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Quantification of biotin incorporation via avidin displacement assay" .
+
+<https://lovamap.com/ontology#reagent/10.1021-bc015575f/biotin-elution> a lova:Reagent ;
+    rdfs:label "Biotin (10 mM elution solution)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Pierce" ;
+    lova:concentration "10 mM" ;
+    lova:reagentFunction "Elution of biotinylated K150 from monomeric avidin column" .
+
+<https://lovamap.com/ontology#reagent/10.1021-bc015575f/plasmid-dna> a lova:Reagent ;
+    rdfs:label "Plasmid DNA encoding β-galactosidase (pNGVL1-β-gal)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "purified using Qiagen reagents" ;
+    lova:reagentFunction "Reporter gene cargo for transfection" .
+
+<https://lovamap.com/ontology#reagent/10.1021-bc015575f/fl-beta-gal> a lova:Reagent ;
+    rdfs:label "Fluorescein-tagged β-galactosidase vector (Fl-β-gal)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Gene Therapy Systems" ;
+    lova:reagentFunction "Visualization of surface-tethered DNA via fluorescence microscopy" .
+
+<https://lovamap.com/ontology#reagent/10.1021-bc015575f/neutravidin> a lova:Reagent ;
+    rdfs:label "Neutravidin (nonglycosylated avidin)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Pierce" ;
+    lova:reagentFunction "Surface coating for biotin-mediated DNA complex tethering" .
+
+<https://lovamap.com/ontology#reagent/10.1021-bc015575f/trypsin> a lova:Reagent ;
+    rdfs:label "Trypsin" ;
+    lova:reagentRole "enzyme" ;
+    lova:reagentFunction "Digestion of polylysine to release DNA for quantification and gel assays" .
+
+<https://lovamap.com/ontology#reagent/10.1021-bc015575f/pei> a lova:Reagent ;
+    rdfs:label "Polyethyleneimine (PEI, 22 kDa)" ;
+    lova:reagentRole "other" ;
+    lova:molecularWeight "22 kDa" ;
+    lova:supplier "MBI-Fermentas" ;
+    lova:concentration "0.5 µL of 10 µM" ;
+    lova:reagentFunction "Added to DNA-modified surfaces prior to cell seeding to enhance transfection" .
+
+<https://lovamap.com/ontology#reagent/10.1021-bc015575f/hoechst-dye> a lova:Reagent ;
+    rdfs:label "Hoechst dye" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Fluorometric quantification of surface-bound DNA" .
+
+<https://lovamap.com/ontology#reagent/10.1021-bc015575f/xgal> a lova:Reagent ;
+    rdfs:label "X-gal" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Histochemical staining to localize β-galactosidase-transfected cells" .
+
+<https://lovamap.com/ontology#experiment/10.1021-bc015575f/hplc-k19> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-bc015575f/k19> ,
+                       <https://lovamap.com/ontology#material/10.1021-bc015575f/k19-b> ;
+    rdfs:label "HPLC analysis of K19 biotinylation reaction" ;
+    lova:experimentCategory "Analytical Chemistry" ;
+    lova:experimentType "Chromatography" ;
+    lova:assayOrMethod "C18 reverse-phase HPLC" ;
+    lova:equipment "C18 RP-HPLC column" .
+
+<https://lovamap.com/ontology#experiment/10.1021-bc015575f/mass-spec-k19b> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-bc015575f/k19-b> ;
+    rdfs:label "Mass spectrometry of purified K19-B" ;
+    lova:experimentCategory "Analytical Chemistry" ;
+    lova:experimentType "Mass spectrometry" .
+
+<https://lovamap.com/ontology#experiment/10.1021-bc015575f/haba-assay> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-bc015575f/k150-b> ;
+    rdfs:label "HABA assay for degree of biotinylation of K150-B" ;
+    lova:experimentCategory "Analytical Chemistry" ;
+    lova:experimentType "Colorimetric assay" ;
+    lova:assayOrMethod "HABA/avidin absorbance at 500 nm" .
+
+<https://lovamap.com/ontology#experiment/10.1021-bc015575f/gel-electrophoresis> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-bc015575f/k19> ,
+                       <https://lovamap.com/ontology#material/10.1021-bc015575f/k19-b> ,
+                       <https://lovamap.com/ontology#material/10.1021-bc015575f/k150> ,
+                       <https://lovamap.com/ontology#material/10.1021-bc015575f/k150-b> ;
+    rdfs:label "Gel electrophoresis retardation assay of DNA/PLL complexation" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Gel electrophoresis" ;
+    lova:assayOrMethod "Agarose gel electrophoresis with trypsin digestion control" .
+
+<https://lovamap.com/ontology#experiment/10.1021-bc015575f/surface-density> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-bc015575f/complex-k150b-surface> ,
+                       <https://lovamap.com/ontology#material/10.1021-bc015575f/complex-k19b-surface> ,
+                       <https://lovamap.com/ontology#material/10.1021-bc015575f/complex-853> ,
+                       <https://lovamap.com/ontology#material/10.1021-bc015575f/complex-426> ,
+                       <https://lovamap.com/ontology#material/10.1021-bc015575f/complex-28> ,
+                       <https://lovamap.com/ontology#material/10.1021-bc015575f/complex-k19b-2171> ,
+                       <https://lovamap.com/ontology#material/10.1021-bc015575f/complex-k19b-1086> ,
+                       <https://lovamap.com/ontology#material/10.1021-bc015575f/complex-k19b-217> ;
+    rdfs:label "Fluorometric quantification of surface-associated DNA density" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Fluorometric DNA quantification" ;
+    lova:assayOrMethod "Hoechst dye fluorometry" ;
+    lova:equipment "Turner Designs TD-360 fluorometer" .
+
+<https://lovamap.com/ontology#experiment/10.1021-bc015575f/fluor-microscopy> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-bc015575f/complex-k150b-surface> ;
+    rdfs:label "Fluorescence photomicrography of surface-associated DNA before/after washing" ;
+    lova:experimentCategory "Imaging" ;
+    lova:experimentType "Fluorescence microscopy" .
+
+<https://lovamap.com/ontology#experiment/10.1021-bc015575f/transfection-hek293t-48h> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-bc015575f/complex-k150b-surface> ,
+                       <https://lovamap.com/ontology#material/10.1021-bc015575f/complex-853> ,
+                       <https://lovamap.com/ontology#material/10.1021-bc015575f/complex-426> ,
+                       <https://lovamap.com/ontology#material/10.1021-bc015575f/complex-28> ,
+                       <https://lovamap.com/ontology#material/10.1021-bc015575f/bulk-k150-dna> ,
+                       <https://lovamap.com/ontology#material/10.1021-bc015575f/bulk-k19-dna> ;
+    rdfs:label "Transfection of HEK293T cells on DNA-modified surfaces at 48 h" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transfection" ;
+    lova:assayOrMethod "β-galactosidase enzyme activity assay" ;
+    lova:cellType "HEK293T" ;
+    lova:cultureDuration "48 h" ;
+    lova:temperature "37°C" ;
+    lova:atmosphere "5% CO2" ;
+    lova:cultureMedium "DMEM + 10% FBS + 1% penicillin/streptomycin" .
+
+<https://lovamap.com/ontology#experiment/10.1021-bc015575f/transfection-nih3t3-48h> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-bc015575f/complex-k150b-surface> ,
+                       <https://lovamap.com/ontology#material/10.1021-bc015575f/complex-853> ,
+                       <https://lovamap.com/ontology#material/10.1021-bc015575f/complex-426> ,
+                       <https://lovamap.com/ontology#material/10.1021-bc015575f/complex-28> ,
+                       <https://lovamap.com/ontology#material/10.1021-bc015575f/bulk-k150-dna> ,
+                       <https://lovamap.com/ontology#material/10.1021-bc015575f/bulk-k19-dna> ;
+    rdfs:label "Transfection of NIH/3T3 cells on DNA-modified surfaces at 48 h" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transfection" ;
+    lova:assayOrMethod "β-galactosidase enzyme activity assay" ;
+    lova:cellType "NIH/3T3" ;
+    lova:cultureDuration "48 h" ;
+    lova:temperature "37°C" ;
+    lova:atmosphere "5% CO2" ;
+    lova:cultureMedium "DMEM + 10% FBS + 1% penicillin/streptomycin" .
+
+<https://lovamap.com/ontology#experiment/10.1021-bc015575f/transfection-hek293t-96h> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-bc015575f/complex-k150b-surface> ,
+                       <https://lovamap.com/ontology#material/10.1021-bc015575f/complex-853> ,
+                       <https://lovamap.com/ontology#material/10.1021-bc015575f/complex-426> ,
+                       <https://lovamap.com/ontology#material/10.1021-bc015575f/complex-28> ,
+                       <https://lovamap.com/ontology#material/10.1021-bc015575f/bulk-k150-dna> ,
+                       <https://lovamap.com/ontology#material/10.1021-bc015575f/bulk-k19-dna> ;
+    rdfs:label "Transfection of HEK293T cells on DNA-modified surfaces at 96 h" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transfection" ;
+    lova:assayOrMethod "β-galactosidase enzyme activity assay" ;
+    lova:cellType "HEK293T" ;
+    lova:cultureDuration "96 h" ;
+    lova:temperature "37°C" ;
+    lova:atmosphere "5% CO2" ;
+    lova:cultureMedium "DMEM + 10% FBS + 1% penicillin/streptomycin" .
+
+<https://lovamap.com/ontology#experiment/10.1021-bc015575f/transfection-nih3t3-96h> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-bc015575f/complex-k150b-surface> ,
+                       <https://lovamap.com/ontology#material/10.1021-bc015575f/complex-853> ,
+                       <https://lovamap.com/ontology#material/10.1021-bc015575f/complex-426> ,
+                       <https://lovamap.com/ontology#material/10.1021-bc015575f/complex-28> ,
+                       <https://lovamap.com/ontology#material/10.1021-bc015575f/bulk-k150-dna> ,
+                       <https://lovamap.com/ontology#material/10.1021-bc015575f/bulk-k19-dna> ;
+    rdfs:label "Transfection of NIH/3T3 cells on DNA-modified surfaces at 96 h" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transfection" ;
+    lova:assayOrMethod "β-galactosidase enzyme activity assay" ;
+    lova:cellType "NIH/3T3" ;
+    lova:cultureDuration "96 h" ;
+    lova:temperature "37°C" ;
+    lova:atmosphere "5% CO2" ;
+    lova:cultureMedium "DMEM + 10% FBS + 1% penicillin/streptomycin" .
+
+<https://lovamap.com/ontology#experiment/10.1021-bc015575f/xgal-staining> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-bc015575f/complex-k150b-surface> ,
+                       <https://lovamap.com/ontology#material/10.1021-bc015575f/complex-28> ;
+    rdfs:label "X-gal staining to localize transfected cells (HEK293T and NIH/3T3)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Histochemical staining" ;
+    lova:assayOrMethod "X-gal staining" ;
+    lova:cellType "HEK293T, NIH/3T3" ;
+    lova:cultureDuration "48 h" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bc015575f/k19b-mw-theoretical> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bc015575f/mass-spec-k19b> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "Theoretical molecular weight of K19 modified with single biotin" ;
+    lova:measurementType "Molecular weight" ;
+    lova:measurementCategory "Analytical Chemistry" ;
+    qudt:numericValue 3158.0 ;
+    qudt:unit "Da" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bc015575f/k19b-mw-experimental> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bc015575f/mass-spec-k19b> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "Experimentally obtained molecular weight of K19-B" ;
+    lova:measurementType "Molecular weight" ;
+    lova:measurementCategory "Analytical Chemistry" ;
+    qudt:numericValue 3157.66 ;
+    qudt:unit "Da" ;
+    lova:stdDev 0.77 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bc015575f/k19b-mw-figure> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bc015575f/mass-spec-k19b> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "Mass spectrometry measured mass of peak A (K19-B)" ;
+    lova:measurementType "Molecular weight" ;
+    lova:measurementCategory "Analytical Chemistry" ;
+    qudt:numericValue 3158.0 ;
+    qudt:unit "Da" ;
+    lova:stdDev 0.53 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bc015575f/ms-peak-a7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bc015575f/mass-spec-k19b> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "Mass spectrometry peak A7 m/z" ;
+    lova:measurementType "Mass spectrometry peak m/z" ;
+    lova:measurementCategory "Analytical Chemistry" ;
+    qudt:numericValue 452.0 ;
+    qudt:unit "m/z" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bc015575f/ms-peak-a6> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bc015575f/mass-spec-k19b> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "Mass spectrometry peak A6 m/z" ;
+    lova:measurementType "Mass spectrometry peak m/z" ;
+    lova:measurementCategory "Analytical Chemistry" ;
+    qudt:numericValue 528.0 ;
+    qudt:unit "m/z" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bc015575f/ms-peak-a5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bc015575f/mass-spec-k19b> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "Mass spectrometry peak A5 m/z" ;
+    lova:measurementType "Mass spectrometry peak m/z" ;
+    lova:measurementCategory "Analytical Chemistry" ;
+    qudt:numericValue 633.0 ;
+    qudt:unit "m/z" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bc015575f/ms-peak-a4> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bc015575f/mass-spec-k19b> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "Mass spectrometry peak A4 m/z" ;
+    lova:measurementType "Mass spectrometry peak m/z" ;
+    lova:measurementCategory "Analytical Chemistry" ;
+    qudt:numericValue 790.0 ;
+    qudt:unit "m/z" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bc015575f/k150b-biotin-ratio> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bc015575f/haba-assay> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "Molar ratio of biotin to K150 in K150-B" ;
+    lova:measurementType "Biotin:peptide molar ratio" ;
+    lova:measurementCategory "Analytical Chemistry" ;
+    qudt:numericValue 3.1 ;
+    qudt:unit "mol biotin/mol K150" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bc015575f/charge-ratio-k19> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bc015575f/gel-electrophoresis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "Charge ratio eliminating electrophoretic mobility — K19" ;
+    lova:measurementType "Charge ratio for DNA complex saturation" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 3.1 ;
+    qudt:unit "N:P charge ratio" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bc015575f/charge-ratio-k150> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bc015575f/gel-electrophoresis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "Charge ratio eliminating electrophoretic mobility — K150" ;
+    lova:measurementType "Charge ratio for DNA complex saturation" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 1.2 ;
+    qudt:unit "N:P charge ratio" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bc015575f/charge-ratio-k19b> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bc015575f/gel-electrophoresis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "Charge ratio eliminating electrophoretic mobility — K19-B" ;
+    lova:measurementType "Charge ratio for DNA complex saturation" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 4.6 ;
+    qudt:unit "N:P charge ratio" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bc015575f/charge-ratio-k150b> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bc015575f/gel-electrophoresis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "Charge ratio eliminating electrophoretic mobility — K150-B" ;
+    lova:measurementType "Charge ratio for DNA complex saturation" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 4.9 ;
+    qudt:unit "N:P charge ratio" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bc015575f/surface-density-nonbiotin> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bc015575f/surface-density> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "Surface DNA density — nonbiotinylated peptides (nonspecific adsorption)" ;
+    lova:measurementType "Surface-associated DNA density" ;
+    lova:measurementCategory "Biochemical" ;
+    lova:valueString "<0.1 µg DNA/cm2" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bc015575f/surface-density-k150b> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bc015575f/surface-density> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "Surface DNA density — K150-B (1705 biotin groups)" ;
+    lova:measurementType "Surface-associated DNA density" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 2.9 ;
+    qudt:unit "µg/cm2" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bc015575f/surface-density-k19b> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bc015575f/surface-density> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "Surface DNA density — K19-B (4342 biotin groups)" ;
+    lova:measurementType "Surface-associated DNA density" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 4.3 ;
+    qudt:unit "µg/cm2" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bc015575f/tethering-efficiency-k150> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bc015575f/surface-density> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "Tethering efficiency — K150-B" ;
+    lova:measurementType "Tethering efficiency (mass DNA on surface/mass DNA added)" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 24.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bc015575f/tethering-efficiency-k19> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bc015575f/surface-density> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "Tethering efficiency — K19-B" ;
+    lova:measurementType "Tethering efficiency (mass DNA on surface/mass DNA added)" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 35.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bc015575f/surface-density-853> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bc015575f/surface-density> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "Surface DNA density — K150-B/K19 mixture (853 biotin groups)" ;
+    lova:measurementType "Surface-associated DNA density" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 1.45 ;
+    qudt:unit "µg/cm2" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bc015575f/surface-density-426> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bc015575f/surface-density> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "Surface DNA density — K150-B/K19 mixture (426 biotin groups)" ;
+    lova:measurementType "Surface-associated DNA density" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 0.4 ;
+    qudt:unit "µg/cm2" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bc015575f/surface-density-28> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bc015575f/surface-density> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "Surface DNA density — K150-B/K19 mixture (28 biotin groups)" ;
+    lova:measurementType "Surface-associated DNA density" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 0.6 ;
+    qudt:unit "µg/cm2" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bc015575f/surface-density-k19b-2171> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bc015575f/surface-density> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "Surface DNA density — K19-B/K19 mixture (2171 biotin groups)" ;
+    lova:measurementType "Surface-associated DNA density" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 1.6 ;
+    qudt:unit "µg/cm2" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bc015575f/bulk-dna-k150-amount> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bc015575f/transfection-hek293t-48h> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "Bulk delivery DNA amount — K150/DNA control" ;
+    lova:measurementType "DNA amount delivered" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 0.7 ;
+    qudt:unit "µg" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bc015575f/bulk-dna-k19-amount> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bc015575f/transfection-hek293t-48h> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "Bulk delivery DNA amount — K19/DNA control" ;
+    lova:measurementType "DNA amount delivered" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 0.16 ;
+    qudt:unit "µg" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bc015575f/hek48-1705> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bc015575f/transfection-hek293t-48h> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "β-gal expression, HEK293T, 48h, 1705 biotin groups" ;
+    lova:measurementType "β-galactosidase activity" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 45000.0 ;
+    qudt:unit "Units/mg protein" ;
+    lova:timePoint "48 h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bc015575f/hek48-853> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bc015575f/transfection-hek293t-48h> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "β-gal expression, HEK293T, 48h, 853 biotin groups" ;
+    lova:measurementType "β-galactosidase activity" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 60000.0 ;
+    qudt:unit "Units/mg protein" ;
+    lova:timePoint "48 h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bc015575f/hek48-426> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bc015575f/transfection-hek293t-48h> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "β-gal expression, HEK293T, 48h, 426 biotin groups" ;
+    lova:measurementType "β-galactosidase activity" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 240000.0 ;
+    qudt:unit "Units/mg protein" ;
+    lova:timePoint "48 h" ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bc015575f/hek48-28> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bc015575f/transfection-hek293t-48h> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "β-gal expression, HEK293T, 48h, 28 biotin groups" ;
+    lova:measurementType "β-galactosidase activity" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 340000.0 ;
+    qudt:unit "Units/mg protein" ;
+    lova:timePoint "48 h" ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bc015575f/hek48-bulk-k150> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bc015575f/transfection-hek293t-48h> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "β-gal expression, HEK293T, 48h, bulk K150 control" ;
+    lova:measurementType "β-galactosidase activity" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 70000.0 ;
+    qudt:unit "Units/mg protein" ;
+    lova:timePoint "48 h" ;
+    lova:comparisonGroup "Bulk delivery K150/DNA" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bc015575f/hek48-bulk-k19> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bc015575f/transfection-hek293t-48h> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "β-gal expression, HEK293T, 48h, bulk K19 control" ;
+    lova:measurementType "β-galactosidase activity" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 60000.0 ;
+    qudt:unit "Units/mg protein" ;
+    lova:timePoint "48 h" ;
+    lova:comparisonGroup "Bulk delivery K19/DNA" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bc015575f/hek96-1705> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bc015575f/transfection-hek293t-96h> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "β-gal expression, HEK293T, 96h, 1705 biotin groups" ;
+    lova:measurementType "β-galactosidase activity" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 700000.0 ;
+    qudt:unit "Units/mg protein" ;
+    lova:timePoint "96 h" ;
+    lova:isSignificant true ;
+    lova:pValue 0.01 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bc015575f/hek96-853> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bc015575f/transfection-hek293t-96h> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "β-gal expression, HEK293T, 96h, 853 biotin groups" ;
+    lova:measurementType "β-galactosidase activity" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1400000.0 ;
+    qudt:unit "Units/mg protein" ;
+    lova:timePoint "96 h" ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bc015575f/hek96-426> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bc015575f/transfection-hek293t-96h> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "β-gal expression, HEK293T, 96h, 426 biotin groups" ;
+    lova:measurementType "β-galactosidase activity" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 3400000.0 ;
+    qudt:unit "Units/mg protein" ;
+    lova:timePoint "96 h" ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bc015575f/hek96-28> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bc015575f/transfection-hek293t-96h> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "β-gal expression, HEK293T, 96h, 28 biotin groups (maximal)" ;
+    lova:measurementType "β-galactosidase activity" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 5300000.0 ;
+    qudt:unit "Units/mg protein" ;
+    lova:timePoint "96 h" ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bc015575f/hek96-bulk-k150> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bc015575f/transfection-hek293t-96h> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "β-gal expression, HEK293T, 96h, bulk K150 control" ;
+    lova:measurementType "β-galactosidase activity" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 50000.0 ;
+    qudt:unit "Units/mg protein" ;
+    lova:timePoint "96 h" ;
+    lova:comparisonGroup "Bulk delivery K150/DNA" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bc015575f/hek96-bulk-k19> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bc015575f/transfection-hek293t-96h> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "β-gal expression, HEK293T, 96h, bulk K19 control" ;
+    lova:measurementType "β-galactosidase activity" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 50000.0 ;
+    qudt:unit "Units/mg protein" ;
+    lova:timePoint "96 h" ;
+    lova:comparisonGroup "Bulk delivery K19/DNA" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bc015575f/nih48-28> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bc015575f/transfection-nih3t3-48h> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "β-gal expression, NIH/3T3, 48h, 28 biotin groups" ;
+    lova:measurementType "β-galactosidase activity" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 420000.0 ;
+    qudt:unit "Units/mg protein" ;
+    lova:timePoint "48 h" ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bc015575f/nih48-1705> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bc015575f/transfection-nih3t3-48h> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "β-gal expression, NIH/3T3, 48h, 1705 biotin groups" ;
+    lova:measurementType "β-galactosidase activity" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 160000.0 ;
+    qudt:unit "Units/mg protein" ;
+    lova:timePoint "48 h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1021-bc015575f/charge-ratio-k19-vs-k19b> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "Charge ratio for DNA saturation is higher for biotinylated K19-B vs nonbiotinylated K19" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-bc015575f/charge-ratio-k19b> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-bc015575f/charge-ratio-k19> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#comparison/10.1021-bc015575f/charge-ratio-k150-vs-k150b> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "Charge ratio for DNA saturation is higher for biotinylated K150-B vs nonbiotinylated K150" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-bc015575f/charge-ratio-k150b> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-bc015575f/charge-ratio-k150> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#comparison/10.1021-bc015575f/surface-density-biotin-vs-nonbiotin> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "Surface DNA density higher for biotinylated K150-B vs nonbiotinylated peptides" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-bc015575f/surface-density-k150b> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-bc015575f/surface-density-nonbiotin> ;
+    lova:direction "higher" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1021-bc015575f/surface-density-k19b-vs-k150b> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "Surface DNA density higher for K19-B than K150-B" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-bc015575f/surface-density-k19b> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-bc015575f/surface-density-k150b> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#comparison/10.1021-bc015575f/hek48-28-vs-1705> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "HEK293T 48h transfection higher with 28 biotin groups vs 1705 biotin groups" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-bc015575f/hek48-28> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-bc015575f/hek48-1705> ;
+    lova:direction "higher" ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1021-bc015575f/hek96-28-vs-bulk-k19> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "HEK293T 96h transfection with 28 biotin groups higher than bulk K19 delivery" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-bc015575f/hek96-28> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-bc015575f/hek96-bulk-k19> ;
+    lova:direction "higher" ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1021-bc015575f/hek96-1705-vs-bulk-k150> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "HEK293T 96h transfection with 1705 biotin groups (surface) higher than bulk K150 delivery" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-bc015575f/hek96-1705> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-bc015575f/hek96-bulk-k150> ;
+    lova:direction "higher" ;
+    lova:pValue 0.01 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1021-bc015575f/hek-96h-vs-48h-28> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "HEK293T expression at 96h higher than at 48h for 28 biotin group complex" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-bc015575f/hek96-28> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-bc015575f/hek48-28> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#comparison/10.1021-bc015575f/nih48-28-vs-1705> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bc015575f> ;
+    rdfs:label "NIH/3T3 48h transfection higher with 28 biotin groups vs 1705 biotin groups" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-bc015575f/nih48-28> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-bc015575f/nih48-1705> ;
+    lova:direction "higher" ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true .

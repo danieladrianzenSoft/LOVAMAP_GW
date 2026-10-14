@@ -1,0 +1,807 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> a bibo:AcademicArticle ;
+    rdfs:label "Riley et al., 2026 — Metrics for Studying the Porous Void Space of Packed Particles" ;
+    dc:title "Metrics for Studying the Porous Void Space of Packed Particles" ;
+    dc:identifier "10.1002/ppsc.202500163" ;
+    dc:date "2026"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/particle-particle-systems-characterization> ;
+    dc:creator <https://lovamap.com/ontology#author/riley-lindsay> ,
+               <https://lovamap.com/ontology#author/lee-emma> ,
+               <https://lovamap.com/ontology#author/cheng-peter> ,
+               <https://lovamap.com/ontology#author/adrianzen-alvarez-daniel> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/riley-lindsay>
+                      <https://lovamap.com/ontology#author/lee-emma>
+                      <https://lovamap.com/ontology#author/cheng-peter>
+                      <https://lovamap.com/ontology#author/adrianzen-alvarez-daniel>
+                      <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    dc:bibliographicCitation "Riley et al., 2026" ;
+    lova:focusMaterial "Simulated monodisperse packed particles (spheres, ellipsoids, rods, nuggets, deformable spheres) analyzed with LOVAMAP software to characterize 3D pore and void-space metrics" .
+
+<https://lovamap.com/ontology#author/riley-lindsay> a foaf:Person ;
+    foaf:familyName "Riley" ;
+    foaf:givenName "Lindsay" ;
+    foaf:name "Lindsay Riley" ;
+    schema:affiliation "Department of Biomedical Engineering, Duke University, Durham, North Carolina, USA" .
+
+<https://lovamap.com/ontology#author/lee-emma> a foaf:Person ;
+    foaf:familyName "Lee" ;
+    foaf:givenName "Emma C." ;
+    foaf:name "Emma C. Lee" ;
+    schema:affiliation "Yale University, New Haven, Connecticut, USA" .
+
+<https://lovamap.com/ontology#author/cheng-peter> a foaf:Person ;
+    foaf:familyName "Cheng" ;
+    foaf:givenName "Peter" ;
+    foaf:name "Peter Cheng" ;
+    schema:affiliation "Ninjabyte Computing, Sunnyvale, California, USA" .
+
+<https://lovamap.com/ontology#author/adrianzen-alvarez-daniel> a foaf:Person ;
+    foaf:familyName "Adrianzen Alvarez" ;
+    foaf:givenName "Daniel" ;
+    foaf:name "Daniel Adrianzen Alvarez" ;
+    schema:affiliation "Department of Biomedical Engineering, Duke University, Durham, North Carolina, USA" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" ;
+    schema:affiliation "Department of Biomedical Engineering, Duke University, Durham, North Carolina, USA" ;
+    schema:affiliation "Department of Medicine, Neurology, Dermatology, Duke University, Durham, North Carolina, USA" .
+
+<https://lovamap.com/ontology#journal/particle-particle-systems-characterization> a bibo:Journal ;
+    dc:title "Particle & Particle Systems Characterization" ;
+    bibo:issn "0934-0866" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-ppsc.202500163/houdini-packing-simulation> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Simulated random packing via rigid body dynamics (SideFx Houdini)" ;
+    lova:manufacturingMethod "Particles dropped into a 600×600×600 µm3 container and settled via rigid body dynamics at default settings; domain discretized on uniform Cartesian grid with mesh size dx = 2" .
+
+<https://lovamap.com/ontology#material/10.1002-ppsc.202500163/sp> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Monodisperse rigid spheres (sp)" ;
+    lova:particleShape "Sphere" ;
+    lova:stiffnessQualitative "Rigid" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:packingConfiguration "Random" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-ppsc.202500163/houdini-packing-simulation> .
+
+<https://lovamap.com/ontology#material/10.1002-ppsc.202500163/ell> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Monodisperse ellipsoids / prolate spheroids (ell)" ;
+    lova:particleShape "Ellipsoid (prolate spheroid)" ;
+    lova:stiffnessQualitative "Rigid" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:packingConfiguration "Random" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-ppsc.202500163/houdini-packing-simulation> .
+
+<https://lovamap.com/ontology#material/10.1002-ppsc.202500163/rd> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Monodisperse rods / cylinders (rd)" ;
+    lova:particleShape "Cylinder" ;
+    lova:stiffnessQualitative "Rigid" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:packingConfiguration "Random" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-ppsc.202500163/houdini-packing-simulation> .
+
+<https://lovamap.com/ontology#material/10.1002-ppsc.202500163/ng> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Monodisperse nuggets (ng)" ;
+    lova:particleShape "Irregular (nugget)" ;
+    lova:stiffnessQualitative "Rigid" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:packingConfiguration "Random" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-ppsc.202500163/houdini-packing-simulation> .
+
+<https://lovamap.com/ontology#material/10.1002-ppsc.202500163/def-sp> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Deformable spheres (def sp), Lamé parameters λ=1000, µ=250" ;
+    lova:particleShape "Sphere" ;
+    lova:stiffnessQualitative "Semi-rigid (deformable)" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:packingConfiguration "Random" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-ppsc.202500163/houdini-packing-simulation> .
+
+<https://lovamap.com/ontology#material/10.1002-ppsc.202500163/test-a> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Test dataset (test a): softer deformable spheres, δ=100 µm, λ=400, µ=50" ;
+    lova:particleShape "Sphere" ;
+    lova:particleSizeMin 100.0 ;
+    lova:particleSizeMax 100.0 ;
+    lova:particleSizeUnit "µm" ;
+    lova:stiffnessQualitative "Soft (deformable)" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:packingConfiguration "Random" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-ppsc.202500163/houdini-packing-simulation> .
+
+<https://lovamap.com/ontology#material/10.1002-ppsc.202500163/rigid-path> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Rigid monodisperse spheres (path study)" ;
+    lova:particleShape "Sphere" ;
+    lova:stiffnessQualitative "Rigid" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:packingConfiguration "Random" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-ppsc.202500163/houdini-packing-simulation> .
+
+<https://lovamap.com/ontology#material/10.1002-ppsc.202500163/semi-soft-path> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Semi-soft monodisperse spheres (path study), Lamé λ=1000, µ=250" ;
+    lova:particleShape "Sphere" ;
+    lova:stiffnessQualitative "Semi-rigid (deformable)" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:packingConfiguration "Random" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-ppsc.202500163/houdini-packing-simulation> .
+
+<https://lovamap.com/ontology#material/10.1002-ppsc.202500163/soft-path> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Soft monodisperse spheres (path study), Lamé λ=400, µ=50" ;
+    lova:particleShape "Sphere" ;
+    lova:stiffnessQualitative "Soft hydrogel-like (deformable)" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:packingConfiguration "Random" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-ppsc.202500163/houdini-packing-simulation> .
+
+<https://lovamap.com/ontology#material/10.1002-ppsc.202500163/60um-mixed-shapes> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "60 µm diameter monodisperse particles (spheres, ellipsoids, rods, nuggets)" ;
+    lova:particleSizeMin 60.0 ;
+    lova:particleSizeMax 60.0 ;
+    lova:particleSizeUnit "µm" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:packingConfiguration "Random" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-ppsc.202500163/houdini-packing-simulation> .
+
+<https://lovamap.com/ontology#material/10.1002-ppsc.202500163/rigid-sp-40um> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Monodisperse rigid spheres, 40 µm diameter" ;
+    lova:particleShape "Sphere" ;
+    lova:particleSizeMin 40.0 ;
+    lova:particleSizeMax 40.0 ;
+    lova:particleSizeUnit "µm" ;
+    lova:stiffnessQualitative "Rigid" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:packingConfiguration "Random" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-ppsc.202500163/houdini-packing-simulation> .
+
+<https://lovamap.com/ontology#material/10.1002-ppsc.202500163/rigid-sp-70um> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Monodisperse rigid spheres, 70 µm diameter" ;
+    lova:particleShape "Sphere" ;
+    lova:particleSizeMin 70.0 ;
+    lova:particleSizeMax 70.0 ;
+    lova:particleSizeUnit "µm" ;
+    lova:stiffnessQualitative "Rigid" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:packingConfiguration "Random" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-ppsc.202500163/houdini-packing-simulation> .
+
+<https://lovamap.com/ontology#material/10.1002-ppsc.202500163/rigid-sp-100um> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Monodisperse rigid spheres, 100 µm diameter" ;
+    lova:particleShape "Sphere" ;
+    lova:particleSizeMin 100.0 ;
+    lova:particleSizeMax 100.0 ;
+    lova:particleSizeUnit "µm" ;
+    lova:stiffnessQualitative "Rigid" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:packingConfiguration "Random" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-ppsc.202500163/houdini-packing-simulation> .
+
+<https://lovamap.com/ontology#material/10.1002-ppsc.202500163/rigid-sp-40-200um> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Monodisperse rigid spheres, diameter range 40–200 µm" ;
+    lova:particleShape "Sphere" ;
+    lova:particleSizeMin 40.0 ;
+    lova:particleSizeMax 200.0 ;
+    lova:particleSizeUnit "µm" ;
+    lova:stiffnessQualitative "Rigid" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:packingConfiguration "Random" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-ppsc.202500163/houdini-packing-simulation> .
+
+<https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/interior-pore-size-regression> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-ppsc.202500163/sp> ,
+                       <https://lovamap.com/ontology#material/10.1002-ppsc.202500163/ell> ,
+                       <https://lovamap.com/ontology#material/10.1002-ppsc.202500163/rd> ,
+                       <https://lovamap.com/ontology#material/10.1002-ppsc.202500163/ng> ,
+                       <https://lovamap.com/ontology#material/10.1002-ppsc.202500163/def-sp> ,
+                       <https://lovamap.com/ontology#material/10.1002-ppsc.202500163/test-a> ;
+    rdfs:label "Regression analysis of interior 3D pore size descriptors vs particle diameter and void volume fraction" ;
+    lova:experimentCategory "Computational/Geometric" ;
+    lova:experimentType "Regression analysis" ;
+    lova:assayOrMethod "LOVAMAP 3D pore segmentation and curve fitting" .
+
+<https://lovamap.com/ontology#outcome/10.1002-ppsc.202500163/eq1-surface-area> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/interior-pore-size-regression> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Regression for median pore surface area (µm²/1000) vs δ√ϕ" ;
+    lova:measurementType "Median pore surface area" ;
+    lova:measurementCategory "Geometric" ;
+    lova:valueString "y = 0.00356x² - 0.0345, where x = δ√ϕ (R²=0.9381, NRMSE test a=0.0355)" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-ppsc.202500163/eq2-longest-length> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/interior-pore-size-regression> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Regression for median pore longest length (µm) vs δ√ϕ" ;
+    lova:measurementType "Median pore longest length" ;
+    lova:measurementCategory "Geometric" ;
+    lova:valueString "y = 1.32x, where x = δ√ϕ (R²=0.9492, NRMSE test a=0.00450)" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-ppsc.202500163/eq3-avg-internal-diameter> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/interior-pore-size-regression> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Regression for median pore average internal diameter (µm) vs δ√ϕ" ;
+    lova:measurementType "Median pore average internal diameter" ;
+    lova:measurementCategory "Geometric" ;
+    lova:valueString "y = 0.473x, where x = δ√ϕ (R²=0.9862, NRMSE test a=0.00331)" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-ppsc.202500163/eq4-largest-enclosed-sphere> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/interior-pore-size-regression> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Regression for median largest enclosed sphere diameter (µm) vs δ√ϕ" ;
+    lova:measurementType "Median largest enclosed sphere diameter" ;
+    lova:measurementCategory "Geometric" ;
+    lova:valueString "y = 0.490x, where x = δ√ϕ (R²=0.9802, NRMSE test a=0.00805)" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-ppsc.202500163/eq5-mean-local-thickness> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/interior-pore-size-regression> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Regression for median mean local thickness (µm) vs δ√ϕ" ;
+    lova:measurementType "Median mean local thickness" ;
+    lova:measurementCategory "Geometric" ;
+    lova:valueString "y = 0.307x, where x = δ√ϕ (R²=0.9677, NRMSE test a=0.0715)" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/ligand-interior-regression> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-ppsc.202500163/sp> ,
+                       <https://lovamap.com/ontology#material/10.1002-ppsc.202500163/ell> ,
+                       <https://lovamap.com/ontology#material/10.1002-ppsc.202500163/rd> ,
+                       <https://lovamap.com/ontology#material/10.1002-ppsc.202500163/ng> ,
+                       <https://lovamap.com/ontology#material/10.1002-ppsc.202500163/def-sp> ,
+                       <https://lovamap.com/ontology#material/10.1002-ppsc.202500163/test-a> ;
+    rdfs:label "Regression analysis of interior pore ligand availability descriptors" ;
+    lova:experimentCategory "Computational/Biological-relevance" ;
+    lova:experimentType "Ligand heatmap simulation and regression" ;
+    lova:assayOrMethod "Spherical averaging-filter ligand heatmap (LOVAMAP)" .
+
+<https://lovamap.com/ontology#outcome/10.1002-ppsc.202500163/eq6-accessible-ligand-interior> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/ligand-interior-regression> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Regression for median accessible ligand (µmoles) of interior pores vs δ√ϕ" ;
+    lova:measurementType "Median accessible ligand (interior pores)" ;
+    lova:measurementCategory "Biological-relevance" ;
+    lova:valueString "y = 4.64×10⁻¹² x², where x = δ√ϕ (R²=0.9113, NRMSE=0.04)" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-ppsc.202500163/eq7-ligand-concentration-interior> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/ligand-interior-regression> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Regression for median ligand concentration (µmoles/L) of interior pores vs δ*ϕ" ;
+    lova:measurementType "Median ligand concentration (interior pores)" ;
+    lova:measurementCategory "Biological-relevance" ;
+    lova:valueString "y = 197e^(-0.0676x) + 34.2, where x = δ*ϕ (R²=0.9730, NRMSE test=0.000973)" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/door-connectivity-regression> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-ppsc.202500163/sp> ,
+                       <https://lovamap.com/ontology#material/10.1002-ppsc.202500163/ell> ,
+                       <https://lovamap.com/ontology#material/10.1002-ppsc.202500163/rd> ,
+                       <https://lovamap.com/ontology#material/10.1002-ppsc.202500163/ng> ,
+                       <https://lovamap.com/ontology#material/10.1002-ppsc.202500163/def-sp> ,
+                       <https://lovamap.com/ontology#material/10.1002-ppsc.202500163/test-a> ;
+    rdfs:label "Regression analysis of interior door and connectivity descriptors" ;
+    lova:experimentCategory "Computational/Geometric" ;
+    lova:experimentType "Regression analysis" ;
+    lova:assayOrMethod "LOVAMAP door and adjacency-matrix analysis" .
+
+<https://lovamap.com/ontology#outcome/10.1002-ppsc.202500163/eq8-num-interior-doors> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/door-connectivity-regression> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Regression for number of interior doors per picoliter vs δe^ϕ" ;
+    lova:measurementType "Number of interior doors per picoliter" ;
+    lova:measurementCategory "Geometric" ;
+    lova:valueString "y = 1.14e^(-0.0423x), where x = δe^ϕ (R²=0.9888, NRMSE=0.0462)" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-ppsc.202500163/eq9-median-interior-door-diameter> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/door-connectivity-regression> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Regression for median interior door diameter vs δ√ϕ" ;
+    lova:measurementType "Median interior door diameter" ;
+    lova:measurementCategory "Geometric" ;
+    lova:valueString "y = 0.364x, where x = δ√ϕ (R²=0.9515, NRMSE=0.0870)" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-ppsc.202500163/eq10-largest-door-per-pore> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/door-connectivity-regression> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Regression for median largest door diameter per pore vs δ√ϕ" ;
+    lova:measurementType "Median largest door diameter (per pore)" ;
+    lova:measurementCategory "Geometric" ;
+    lova:valueString "y = 0.447x, where x = δ√ϕ (R²=0.9650, NRMSE=0.0289)" ;
+    lova:scope "Per-pore" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-ppsc.202500163/eq11-smallest-door-per-pore> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/door-connectivity-regression> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Regression for median smallest door diameter per pore vs δ√ϕ" ;
+    lova:measurementType "Median smallest door diameter (per pore)" ;
+    lova:measurementCategory "Geometric" ;
+    lova:valueString "y = 0.245x, where x = δ√ϕ (R²=0.7177, NRMSE=0.0253)" ;
+    lova:scope "Per-pore" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-ppsc.202500163/eq12-pore-adjacency-eigenvalue> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/door-connectivity-regression> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Regression for 3D pore adjacency matrix maximum eigenvalue vs δ/ϕ" ;
+    lova:measurementType "3D pore adjacency matrix maximum eigenvalue" ;
+    lova:measurementCategory "Geometric" ;
+    lova:valueString "y = 0.000173e^(-0.00704x) + 0.0000235, where x = δ/ϕ (R²=0.7487, NRMSE=0.0678)" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/surface-descriptor-regression> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-ppsc.202500163/sp> ,
+                       <https://lovamap.com/ontology#material/10.1002-ppsc.202500163/ell> ,
+                       <https://lovamap.com/ontology#material/10.1002-ppsc.202500163/rd> ,
+                       <https://lovamap.com/ontology#material/10.1002-ppsc.202500163/ng> ,
+                       <https://lovamap.com/ontology#material/10.1002-ppsc.202500163/def-sp> ,
+                       <https://lovamap.com/ontology#material/10.1002-ppsc.202500163/test-a> ;
+    rdfs:label "Regression analysis of surface entrance door and surface ligand descriptors" ;
+    lova:experimentCategory "Computational/Geometric" ;
+    lova:experimentType "Regression analysis" ;
+    lova:assayOrMethod "LOVAMAP surface 2D/3D pore analysis" .
+
+<https://lovamap.com/ontology#outcome/10.1002-ppsc.202500163/eq13-num-entrance-doors> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/surface-descriptor-regression> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Regression for number of entrance doors per picoliter vs δ⁵√ϕ" ;
+    lova:measurementType "Number of entrance doors per picoliter" ;
+    lova:measurementCategory "Geometric" ;
+    lova:valueString "y = 8000e^(-0.0444x), where x = δ⁵√ϕ (R²=0.9789, NRMSE=0.0317)" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-ppsc.202500163/eq14-median-entrance-door-diameter> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/surface-descriptor-regression> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Regression for median entrance door diameter vs δ√ϕ" ;
+    lova:measurementType "Median entrance door diameter" ;
+    lova:measurementCategory "Geometric" ;
+    lova:valueString "y = 0.604x, where x = δ√ϕ (R²=0.7919, NRMSE=0.528)" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-ppsc.202500163/eq15-surface-accessible-ligand> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/surface-descriptor-regression> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Regression for median accessible ligand of surface 2D pores vs δ√ϕ" ;
+    lova:measurementType "Median accessible ligand (surface 2D pores)" ;
+    lova:measurementCategory "Biological-relevance" ;
+    lova:valueString "y = 5.85×10⁻¹⁴x² + 9.63×10⁻¹²x, where x = δ√ϕ (R²=0.6836, NRMSE=0.8078)" ;
+    lova:scope "Regional" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-ppsc.202500163/eq16-surface-ligand-concentration> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/surface-descriptor-regression> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Regression for median ligand concentration of surface 2D pores vs δ*ϕ" ;
+    lova:measurementType "Median ligand concentration (surface 2D pores)" ;
+    lova:measurementCategory "Biological-relevance" ;
+    lova:valueString "y = 6.84×10⁻¹³e^(-9.89×10⁻¹⁵x) + 9.56×10⁻¹⁴, where x = δ*ϕ (R²=0.8276, NRMSE=0.00429)" ;
+    lova:scope "Regional" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/path-descriptor-regression> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-ppsc.202500163/rigid-path> ,
+                       <https://lovamap.com/ontology#material/10.1002-ppsc.202500163/semi-soft-path> ,
+                       <https://lovamap.com/ontology#material/10.1002-ppsc.202500163/soft-path> ;
+    rdfs:label "Path (shortest route through void space) descriptor regression analysis" ;
+    lova:experimentCategory "Computational/Geometric" ;
+    lova:experimentType "Regression analysis" ;
+    lova:assayOrMethod "LOVAMAP 1D-ridge path tracing" ;
+    lova:sampleSize 10 .
+
+<https://lovamap.com/ontology#outcome/10.1002-ppsc.202500163/eq17-path-length> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/path-descriptor-regression> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Regression for median path length (µm) vs δe^ϕ" ;
+    lova:measurementType "Median path length" ;
+    lova:measurementCategory "Geometric" ;
+    lova:valueString "y = -1.03x + 591, where x = δe^ϕ (R²=0.9730)" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-ppsc.202500163/eq18-tortuosity-by-length> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/path-descriptor-regression> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Regression for median tortuosity-by-length vs δe^ϕ" ;
+    lova:measurementType "Median tortuosity-by-length" ;
+    lova:measurementCategory "Geometric" ;
+    lova:valueString "y = 1.20e^(-0.0380x) + 1.40, where x = δe^ϕ (R²=0.9077)" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-ppsc.202500163/eq19-tortuosity-by-volume> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/path-descriptor-regression> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Regression for median tortuosity-by-volume (pL) vs δ/ϕ" ;
+    lova:measurementType "Median tortuosity-by-volume" ;
+    lova:measurementCategory "Geometric" ;
+    lova:valueString "y = -173e^(-0.00703x) + 302, where x = δ/ϕ (R²=0.7993)" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/vertex-edge-face-analysis> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-ppsc.202500163/60um-mixed-shapes> ;
+    rdfs:label "Analysis of number of vertices, edges, and faces of 3D pores (60 µm particles)" ;
+    lova:experimentCategory "Computational/Geometric" ;
+    lova:experimentType "Topological histogram analysis" ;
+    lova:assayOrMethod "LOVAMAP 1D/2D ridge based V/E/F computation" .
+
+<https://lovamap.com/ontology#outcome/10.1002-ppsc.202500163/vef-vertices-spikes> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/vertex-edge-face-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Frequency spikes for number of vertices per pore (60 µm particles)" ;
+    lova:measurementType "Number of vertices (per pore)" ;
+    lova:measurementCategory "Geometric" ;
+    lova:valueString "Combinatorial frequency spikes at 6, 9, 12, 15, 18, 21 vertices; tallest bin at 6 (most common pore type)" ;
+    lova:scope "Per-pore" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-ppsc.202500163/vef-edges-spikes> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/vertex-edge-face-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Frequency spikes for number of edges per pore (60 µm particles)" ;
+    lova:measurementType "Number of edges (per pore)" ;
+    lova:measurementCategory "Geometric" ;
+    lova:valueString "Combinatorial frequency spikes at 12, 18, 24, 30, 36, 42 edges; tallest bin at 12 (most common pore type)" ;
+    lova:scope "Per-pore" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-ppsc.202500163/vef-faces-spikes> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/vertex-edge-face-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Frequency spikes for number of faces per pore (60 µm particles)" ;
+    lova:measurementType "Number of faces (per pore)" ;
+    lova:measurementCategory "Geometric" ;
+    lova:valueString "Combinatorial frequency spikes at 8, 11, 14, 17, 20, 23 faces; tallest bin at 8 (most common pore type)" ;
+    lova:scope "Per-pore" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-ppsc.202500163/octahedron-pore-type> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/vertex-edge-face-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Smallest/most common pore type (4-particle pore) matches octahedron topology" ;
+    lova:measurementType "Topology (V, E, F) of most common pore type" ;
+    lova:measurementCategory "Geometric" ;
+    lova:valueString "V=6, E=12, F=8; Euler characteristic = 2; matches octahedron V/E/F counts" ;
+    lova:scope "Per-pore" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/hallway-crawlspace-analysis> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-ppsc.202500163/60um-mixed-shapes> ;
+    rdfs:label "Analysis of number of hallways and crawl spaces per pore (60 µm particles)" ;
+    lova:experimentCategory "Computational/Geometric" ;
+    lova:experimentType "Connectivity histogram analysis" ;
+    lova:assayOrMethod "LOVAMAP hallway (1D-ridge) and crawl-space (2D-ridge) computation" .
+
+<https://lovamap.com/ontology#outcome/10.1002-ppsc.202500163/hallway-spikes> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/hallway-crawlspace-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Frequency spikes for number of hallways per pore (60 µm particles)" ;
+    lova:measurementType "Number of hallways (per pore)" ;
+    lova:measurementCategory "Geometric" ;
+    lova:valueString "Combinatorial frequency spikes at 4, 6, 8, 10, 12, 14 hallways; tallest bin at 4 (most common pore type)" ;
+    lova:scope "Per-pore" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-ppsc.202500163/crawlspace-spikes> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/hallway-crawlspace-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Frequency spikes for number of crawl spaces per pore (60 µm particles)" ;
+    lova:measurementType "Number of crawl spaces (per pore)" ;
+    lova:measurementCategory "Geometric" ;
+    lova:valueString "Combinatorial frequency spikes at 6, 9, 12, 15, 18, 21 crawl spaces; tallest bin at 6 (most common pore type)" ;
+    lova:scope "Per-pore" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-ppsc.202500163/nc-formula> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/hallway-crawlspace-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Empirical formula for particle-particle contacts (crawl spaces) in an n-particle cluster" ;
+    lova:measurementType "Number of particle-particle contacts formula" ;
+    lova:measurementCategory "Geometric" ;
+    lova:valueString "Nc = 3n - 6 (isostatic rigid-particle clusters), where n = number of particles surrounding the pore" ;
+    lova:scope "Per-pore" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-ppsc.202500163/nt-formula> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/hallway-crawlspace-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Empirical formula for triangular cliques (hallways) in an n-particle cluster" ;
+    lova:measurementType "Number of triangular cliques formula" ;
+    lova:measurementCategory "Geometric" ;
+    lova:valueString "NT = 2n - 4, where n = number of particles surrounding the pore" ;
+    lova:scope "Per-pore" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/coordination-number-analysis> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-ppsc.202500163/60um-mixed-shapes> ;
+    rdfs:label "Coordination number (touching particles) analysis for 60 µm particles" ;
+    lova:experimentCategory "Computational/Geometric" ;
+    lova:experimentType "Coordination number analysis" ;
+    lova:assayOrMethod "LOVAMAP particle-contact detection" .
+
+<https://lovamap.com/ontology#outcome/10.1002-ppsc.202500163/coord-touching-median-friction> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/coordination-number-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Median coordination number (touching particles) with friction in simulation" ;
+    lova:measurementType "Coordination number (touching particles), median" ;
+    lova:measurementCategory "Geometric" ;
+    qudt:numericValue 7.0 ;
+    qudt:unit "count" ;
+    lova:scope "Bulk/global" ;
+    lova:comparisonGroup "Randomly packed frictionless spheres (literature, median 6)" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-ppsc.202500163/coord-touching-median-frictionless-lit> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/coordination-number-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Median coordination number (touching particles), randomly packed frictionless spheres (literature)" ;
+    lova:measurementType "Coordination number (touching particles), median" ;
+    lova:measurementCategory "Geometric" ;
+    qudt:numericValue 6.0 ;
+    qudt:unit "count" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-ppsc.202500163/coordination-friction-vs-frictionless> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Coordination number (touching particles) higher with friction (median 7) than frictionless literature value (median 6)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-ppsc.202500163/coord-touching-median-friction> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-ppsc.202500163/coord-touching-median-frictionless-lit> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/particle-door-diameter-relationship> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-ppsc.202500163/sp> ;
+    rdfs:label "Relationship between particle diameter and door diameter for four-touching-sphere pore" ;
+    lova:experimentCategory "Computational/Geometric" ;
+    lova:experimentType "Geometric derivation" ;
+    lova:assayOrMethod "Analytical geometry of four touching spheres" .
+
+<https://lovamap.com/ontology#outcome/10.1002-ppsc.202500163/particle-door-relationship> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/particle-door-diameter-relationship> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Particle diameter to door diameter relationship for smallest (4-sphere) pore type" ;
+    lova:measurementType "Particle diameter / door diameter relationship" ;
+    lova:measurementCategory "Geometric" ;
+    lova:valueString "d_particle = d_door × (3 + 2√3) for four touching monodisperse spheres (smallest pore type)" ;
+    lova:scope "Per-pore" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/accessible-regions-analysis> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-ppsc.202500163/rigid-sp-40um> ,
+                       <https://lovamap.com/ontology#material/10.1002-ppsc.202500163/rigid-sp-70um> ,
+                       <https://lovamap.com/ontology#material/10.1002-ppsc.202500163/rigid-sp-100um> ,
+                       <https://lovamap.com/ontology#material/10.1002-ppsc.202500163/rigid-sp-40-200um> ;
+    rdfs:label "Size-dependent accessible region analysis for spherical traveling objects of 0, 10, 30, 60 µm diameter" ;
+    lova:experimentCategory "Computational/Geometric" ;
+    lova:experimentType "Accessible region analysis" ;
+    lova:assayOrMethod "Connected-components analysis of void-space backbone with EDT thresholding" ;
+    lova:sampleSize 10 .
+
+<https://lovamap.com/ontology#outcome/10.1002-ppsc.202500163/threshold-10um-object> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/accessible-regions-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Minimum particle diameter for unimpeded 10 µm object movement" ;
+    lova:measurementType "Minimum particle diameter for unimpeded movement" ;
+    lova:measurementCategory "Geometric" ;
+    qudt:numericValue 65.0 ;
+    qudt:unit "µm" ;
+    lova:comparisonGroup "10 µm diameter object (cell)" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-ppsc.202500163/threshold-30um-object> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/accessible-regions-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Minimum particle diameter for unimpeded 30 µm object movement" ;
+    lova:measurementType "Minimum particle diameter for unimpeded movement" ;
+    lova:measurementCategory "Geometric" ;
+    qudt:numericValue 194.0 ;
+    qudt:unit "µm" ;
+    lova:comparisonGroup "30 µm diameter object (3-cell cluster)" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-ppsc.202500163/threshold-60um-object> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/accessible-regions-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Minimum particle diameter for unimpeded 60 µm object movement" ;
+    lova:measurementType "Minimum particle diameter for unimpeded movement" ;
+    lova:measurementCategory "Geometric" ;
+    qudt:numericValue 388.0 ;
+    qudt:unit "µm" ;
+    lova:comparisonGroup "60 µm diameter object (6-cell cluster)" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-ppsc.202500163/access-40um-0um> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/accessible-regions-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Cumulative accessible void space for 0 µm object, 40 µm particles" ;
+    lova:measurementType "Cumulative accessible void space percentage" ;
+    lova:measurementCategory "Geometric" ;
+    qudt:numericValue 100.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "40 µm particles / 0 µm object" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-ppsc.202500163/access-40um-10um> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/accessible-regions-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Cumulative accessible void space for 10 µm object, 40 µm particles" ;
+    lova:measurementType "Cumulative accessible void space percentage" ;
+    lova:measurementCategory "Geometric" ;
+    qudt:numericValue 75.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "40 µm particles / 10 µm object" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-ppsc.202500163/access-40um-30um> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/accessible-regions-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Cumulative accessible void space for 30 µm object, 40 µm particles" ;
+    lova:measurementType "Cumulative accessible void space percentage" ;
+    lova:measurementCategory "Geometric" ;
+    qudt:numericValue 3.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "40 µm particles / 30 µm object" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-ppsc.202500163/access-40um-60um> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/accessible-regions-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Cumulative accessible void space for 60 µm object, 40 µm particles" ;
+    lova:measurementType "Cumulative accessible void space percentage" ;
+    lova:measurementCategory "Geometric" ;
+    qudt:numericValue 0.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "40 µm particles / 60 µm object" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-ppsc.202500163/access-70um-0um> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/accessible-regions-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Cumulative accessible void space for 0 µm object, 70 µm particles" ;
+    lova:measurementType "Cumulative accessible void space percentage" ;
+    lova:measurementCategory "Geometric" ;
+    qudt:numericValue 100.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "70 µm particles / 0 µm object" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-ppsc.202500163/access-70um-10um> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/accessible-regions-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Cumulative accessible void space for 10 µm object, 70 µm particles" ;
+    lova:measurementType "Cumulative accessible void space percentage" ;
+    lova:measurementCategory "Geometric" ;
+    qudt:numericValue 99.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "70 µm particles / 10 µm object" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-ppsc.202500163/access-70um-30um> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/accessible-regions-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Cumulative accessible void space for 30 µm object, 70 µm particles" ;
+    lova:measurementType "Cumulative accessible void space percentage" ;
+    lova:measurementCategory "Geometric" ;
+    qudt:numericValue 48.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "70 µm particles / 30 µm object" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-ppsc.202500163/access-70um-60um> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/accessible-regions-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Cumulative accessible void space for 60 µm object, 70 µm particles" ;
+    lova:measurementType "Cumulative accessible void space percentage" ;
+    lova:measurementCategory "Geometric" ;
+    qudt:numericValue 4.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "70 µm particles / 60 µm object" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-ppsc.202500163/access-100um-0um> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/accessible-regions-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Cumulative accessible void space for 0 µm object, 100 µm particles" ;
+    lova:measurementType "Cumulative accessible void space percentage" ;
+    lova:measurementCategory "Geometric" ;
+    qudt:numericValue 100.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "100 µm particles / 0 µm object" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-ppsc.202500163/access-100um-10um> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/accessible-regions-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Cumulative accessible void space for 10 µm object, 100 µm particles" ;
+    lova:measurementType "Cumulative accessible void space percentage" ;
+    lova:measurementCategory "Geometric" ;
+    qudt:numericValue 100.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "100 µm particles / 10 µm object" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-ppsc.202500163/access-100um-30um> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/accessible-regions-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Cumulative accessible void space for 30 µm object, 100 µm particles" ;
+    lova:measurementType "Cumulative accessible void space percentage" ;
+    lova:measurementCategory "Geometric" ;
+    qudt:numericValue 68.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "100 µm particles / 30 µm object" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-ppsc.202500163/access-100um-60um> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-ppsc.202500163/accessible-regions-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Cumulative accessible void space for 60 µm object, 100 µm particles" ;
+    lova:measurementType "Cumulative accessible void space percentage" ;
+    lova:measurementCategory "Geometric" ;
+    qudt:numericValue 15.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "100 µm particles / 60 µm object" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-ppsc.202500163/access-30um-object-40-vs-100> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Accessible void space for 30 µm object is lower in 40 µm particle packing than in 100 µm particle packing" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-ppsc.202500163/access-40um-30um> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-ppsc.202500163/access-100um-30um> ;
+    lova:direction "lower" .
+
+<https://lovamap.com/ontology#comparison/10.1002-ppsc.202500163/access-60um-object-40-vs-100> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-ppsc.202500163> ;
+    rdfs:label "Accessible void space for 60 µm object is lower in 40 µm particle packing than in 100 µm particle packing" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-ppsc.202500163/access-40um-60um> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-ppsc.202500163/access-100um-60um> ;
+    lova:direction "lower" .

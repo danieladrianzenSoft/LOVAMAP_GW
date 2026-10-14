@@ -1,0 +1,659 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.2106-jbjs.15.01273> a bibo:AcademicArticle ;
+    rdfs:label "Stavrakis et al., 2016 — In Vivo Efficacy of a Smart Antimicrobial Implant Coating" ;
+    dc:title "In Vivo Efficacy of a \"Smart\" Antimicrobial Implant Coating" ;
+    dc:identifier "10.2106/jbjs.15.01273" ;
+    dc:date "2016"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/journal-of-bone-and-joint-surgery> ;
+    dc:creator <https://lovamap.com/ontology#author/stavrakis-alexandra> ,
+               <https://lovamap.com/ontology#author/zhu-suwei> ,
+               <https://lovamap.com/ontology#author/hegde-vishal> ,
+               <https://lovamap.com/ontology#author/loftin-amanda> ,
+               <https://lovamap.com/ontology#author/ashbaugh-alyssa> ,
+               <https://lovamap.com/ontology#author/niska-jared> ,
+               <https://lovamap.com/ontology#author/miller-lloyd> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ,
+               <https://lovamap.com/ontology#author/bernthal-nicholas> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/stavrakis-alexandra>
+                       <https://lovamap.com/ontology#author/zhu-suwei>
+                       <https://lovamap.com/ontology#author/hegde-vishal>
+                       <https://lovamap.com/ontology#author/loftin-amanda>
+                       <https://lovamap.com/ontology#author/ashbaugh-alyssa>
+                       <https://lovamap.com/ontology#author/niska-jared>
+                       <https://lovamap.com/ontology#author/miller-lloyd>
+                       <https://lovamap.com/ontology#author/segura-tatiana>
+                       <https://lovamap.com/ontology#author/bernthal-nicholas> ) ;
+    dc:bibliographicCitation "Stavrakis et al., 2016" ;
+    lova:focusMaterial "Biodegradable PEG-PPS polymer coating on titanium implants delivering vancomycin or tigecycline, tested in a mouse post-arthroplasty infection model" .
+
+<https://lovamap.com/ontology#author/stavrakis-alexandra> a foaf:Person ;
+    foaf:familyName "Stavrakis" ;
+    foaf:givenName "Alexandra" ;
+    foaf:name "Alexandra I. Stavrakis" ;
+    schema:affiliation "Department of Orthopaedic Surgery, Orthopaedic Hospital Research Center, David Geffen School of Medicine at University of California, Los Angeles, Los Angeles, California" .
+
+<https://lovamap.com/ontology#author/zhu-suwei> a foaf:Person ;
+    foaf:familyName "Zhu" ;
+    foaf:givenName "Suwei" ;
+    foaf:name "Suwei Zhu" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California, Los Angeles, Los Angeles, California" .
+
+<https://lovamap.com/ontology#author/hegde-vishal> a foaf:Person ;
+    foaf:familyName "Hegde" ;
+    foaf:givenName "Vishal" ;
+    foaf:name "Vishal Hegde" ;
+    schema:affiliation "Department of Orthopaedic Surgery, Orthopaedic Hospital Research Center, David Geffen School of Medicine at University of California, Los Angeles, Los Angeles, California" .
+
+<https://lovamap.com/ontology#author/loftin-amanda> a foaf:Person ;
+    foaf:familyName "Loftin" ;
+    foaf:givenName "Amanda" ;
+    foaf:name "Amanda H. Loftin" ;
+    schema:affiliation "Department of Orthopaedic Surgery, Orthopaedic Hospital Research Center, David Geffen School of Medicine at University of California, Los Angeles, Los Angeles, California" .
+
+<https://lovamap.com/ontology#author/ashbaugh-alyssa> a foaf:Person ;
+    foaf:familyName "Ashbaugh" ;
+    foaf:givenName "Alyssa" ;
+    foaf:name "Alyssa G. Ashbaugh" ;
+    schema:affiliation "Department of Dermatology, Johns Hopkins University School of Medicine, Baltimore, Maryland" .
+
+<https://lovamap.com/ontology#author/niska-jared> a foaf:Person ;
+    foaf:familyName "Niska" ;
+    foaf:givenName "Jared" ;
+    foaf:name "Jared A. Niska" ;
+    schema:affiliation "Department of Orthopaedic Surgery, Orthopaedic Hospital Research Center, David Geffen School of Medicine at University of California, Los Angeles, Los Angeles, California" .
+
+<https://lovamap.com/ontology#author/miller-lloyd> a foaf:Person ;
+    foaf:familyName "Miller" ;
+    foaf:givenName "Lloyd" ;
+    foaf:name "Lloyd S. Miller" ;
+    schema:affiliation "Department of Dermatology, Johns Hopkins University School of Medicine, Baltimore, Maryland" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California, Los Angeles, Los Angeles, California" .
+
+<https://lovamap.com/ontology#author/bernthal-nicholas> a foaf:Person ;
+    foaf:familyName "Bernthal" ;
+    foaf:givenName "Nicholas" ;
+    foaf:name "Nicholas M. Bernthal" ;
+    schema:affiliation "Department of Orthopaedic Surgery, Orthopaedic Hospital Research Center, David Geffen School of Medicine at University of California, Los Angeles, Los Angeles, California" .
+
+<https://lovamap.com/ontology#journal/journal-of-bone-and-joint-surgery> a bibo:Journal ;
+    dc:title "Journal of Bone and Joint Surgery" ;
+    bibo:issn "0021-9355" .
+
+<https://lovamap.com/ontology#material/10.2106-jbjs.15.01273/titanium-kirschner-wire> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.2106-jbjs.15.01273> ;
+    rdfs:label "Titanium Kirschner-wire implant (uncoated)" ;
+    lova:particleMaterial "Titanium" ;
+    lova:scaffoldDimensions "0.8 mm diameter × 8 mm length, surface area 44.2 mm2" .
+
+<https://lovamap.com/ontology#material/10.2106-jbjs.15.01273/pegpps-3wv> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.2106-jbjs.15.01273> ;
+    rdfs:label "3% w/v PEG-PPS coating on titanium Kirschner wire" ;
+    lova:particleMaterial "PEG-PPS" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.2106-jbjs.15.01273/pegpps-coating> .
+
+<https://lovamap.com/ontology#material/10.2106-jbjs.15.01273/pegpps-6wv> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.2106-jbjs.15.01273> ;
+    rdfs:label "6% w/v PEG-PPS coating on titanium Kirschner wire" ;
+    lova:particleMaterial "PEG-PPS" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.2106-jbjs.15.01273/pegpps-coating> .
+
+<https://lovamap.com/ontology#material/10.2106-jbjs.15.01273/pegpps-vancomycin> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.2106-jbjs.15.01273> ;
+    rdfs:label "PEG-PPS coating encapsulating vancomycin on titanium Kirschner wire implant" ;
+    lova:particleMaterial "PEG-PPS" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.2106-jbjs.15.01273/pegpps-coating> .
+
+<https://lovamap.com/ontology#material/10.2106-jbjs.15.01273/pegpps-tigecycline> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.2106-jbjs.15.01273> ;
+    rdfs:label "PEG-PPS coating encapsulating tigecycline on titanium Kirschner wire implant" ;
+    lova:particleMaterial "PEG-PPS" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.2106-jbjs.15.01273/pegpps-coating> .
+
+<https://lovamap.com/ontology#material/10.2106-jbjs.15.01273/pegpps-alone> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.2106-jbjs.15.01273> ;
+    rdfs:label "PEG-PPS coating alone (no antibiotic) on titanium Kirschner wire implant (control)" ;
+    lova:particleMaterial "PEG-PPS" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.2106-jbjs.15.01273/pegpps-coating> .
+
+<https://lovamap.com/ontology#fabrication-method/10.2106-jbjs.15.01273/pegpps-synthesis> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.2106-jbjs.15.01273> ;
+    rdfs:label "Synthesis of 4-arm PEG-PPS polymer" ;
+    lova:chemistry "3-step chemical reaction: PEG-allylation, thiol-acetate radical thiol-ene addition, PPS ring-opening polymerization with pyridyl disulfide end-capping" ;
+    lova:manufacturingMethod "Solution-phase synthesis under argon, dialysis, lyophilization" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.2106-jbjs.15.01273/peg-4arm> ,
+                     <https://lovamap.com/ontology#reagent/10.2106-jbjs.15.01273/sodium-hydride> ,
+                     <https://lovamap.com/ontology#reagent/10.2106-jbjs.15.01273/allyl-bromide> ,
+                     <https://lovamap.com/ontology#reagent/10.2106-jbjs.15.01273/aibn> ,
+                     <https://lovamap.com/ontology#reagent/10.2106-jbjs.15.01273/pps> ,
+                     <https://lovamap.com/ontology#reagent/10.2106-jbjs.15.01273/dithioldipyridine> ,
+                     <https://lovamap.com/ontology#reagent/10.2106-jbjs.15.01273/sodium-methoxide> .
+
+<https://lovamap.com/ontology#fabrication-method/10.2106-jbjs.15.01273/pegpps-coating> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.2106-jbjs.15.01273> ;
+    rdfs:label "Coating of titanium Kirschner wires with antibiotic-loaded PEG-PPS via wet-dry dip coating" ;
+    lova:chemistry "Silane surface functionalization followed by physical encapsulation of PEG-PPS polymer" ;
+    lova:manufacturingMethod "Oxygen plasma treatment, silanization, repeated dip-coating (wet-dry cycling, 10 cycles)" ;
+    lova:annealingConditions "Submerged in coating solution at 4°C, dried at 50°C, 10 repeated cycles" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.2106-jbjs.15.01273/mercaptopropyl-trimethoxysilane> ,
+                     <https://lovamap.com/ontology#reagent/10.2106-jbjs.15.01273/vancomycin> ,
+                     <https://lovamap.com/ontology#reagent/10.2106-jbjs.15.01273/tigecycline> ,
+                     <https://lovamap.com/ontology#reagent/10.2106-jbjs.15.01273/rhodamine> ,
+                     <https://lovamap.com/ontology#reagent/10.2106-jbjs.15.01273/nir-dye> .
+
+<https://lovamap.com/ontology#reagent/10.2106-jbjs.15.01273/peg-4arm> a lova:Reagent ;
+    rdfs:label "4-armed PEG (MW 20,000)" ;
+    lova:reagentRole "monomer" ;
+    lova:molecularWeight "20,000" ;
+    lova:reagentFunction "Core polymer backbone for PEG-PPS synthesis" .
+
+<https://lovamap.com/ontology#reagent/10.2106-jbjs.15.01273/sodium-hydride> a lova:Reagent ;
+    rdfs:label "Sodium hydride" ;
+    lova:reagentRole "other" ;
+    lova:concentration "0.6 g" ;
+    lova:reagentFunction "Deprotonation agent in PEG-allyl synthesis" .
+
+<https://lovamap.com/ontology#reagent/10.2106-jbjs.15.01273/allyl-bromide> a lova:Reagent ;
+    rdfs:label "Allyl bromide" ;
+    lova:reagentRole "other" ;
+    lova:concentration "1.6 mL" ;
+    lova:reagentFunction "Allylation of PEG" .
+
+<https://lovamap.com/ontology#reagent/10.2106-jbjs.15.01273/aibn> a lova:Reagent ;
+    rdfs:label "2,2'-azobis(2-methylpropionitrile) (AIBN)" ;
+    lova:reagentRole "initiator" ;
+    lova:concentration "1.5 g" ;
+    lova:reagentFunction "Radical initiator for thiol-ene reaction" .
+
+<https://lovamap.com/ontology#reagent/10.2106-jbjs.15.01273/pps> a lova:Reagent ;
+    rdfs:label "Poly(propylene sulfide) (PPS)" ;
+    lova:reagentRole "monomer" ;
+    lova:concentration "5x molar equivalent of PEG-PPS arms" ;
+    lova:reagentFunction "Hydrophobic/oxidation-sensitive block of PEG-PPS copolymer" .
+
+<https://lovamap.com/ontology#reagent/10.2106-jbjs.15.01273/dithioldipyridine> a lova:Reagent ;
+    rdfs:label "2,2'-dithioldipyridine" ;
+    lova:reagentRole "other" ;
+    lova:concentration "10x molar equivalent" ;
+    lova:reagentFunction "End-capping reagent for PEG-PPS arms" .
+
+<https://lovamap.com/ontology#reagent/10.2106-jbjs.15.01273/sodium-methoxide> a lova:Reagent ;
+    rdfs:label "Sodium methoxide" ;
+    lova:reagentRole "other" ;
+    lova:concentration "82 mg" ;
+    lova:reagentFunction "Deprotection/activation agent for thiol" .
+
+<https://lovamap.com/ontology#reagent/10.2106-jbjs.15.01273/mercaptopropyl-trimethoxysilane> a lova:Reagent ;
+    rdfs:label "(3-mercaptopropyl) trimethoxysilane" ;
+    lova:reagentRole "other" ;
+    lova:concentration "1% (v/v)" ;
+    lova:reagentFunction "Silane coupling agent for covalent attachment of PEG-PPS to titanium surface" .
+
+<https://lovamap.com/ontology#reagent/10.2106-jbjs.15.01273/vancomycin> a lova:Reagent ;
+    rdfs:label "Vancomycin" ;
+    lova:reagentRole "other" ;
+    lova:concentration "20 mg/mL (coating solution); 10 mg antibiotic/mL PEG-PPS solution for release study" ;
+    lova:reagentFunction "Antibiotic payload for implant coating" .
+
+<https://lovamap.com/ontology#reagent/10.2106-jbjs.15.01273/tigecycline> a lova:Reagent ;
+    rdfs:label "Tigecycline" ;
+    lova:reagentRole "other" ;
+    lova:concentration "20 mg/mL (coating solution); 10 mg antibiotic/mL PEG-PPS solution for release study" ;
+    lova:reagentFunction "Antibiotic payload for implant coating" .
+
+<https://lovamap.com/ontology#reagent/10.2106-jbjs.15.01273/rhodamine> a lova:Reagent ;
+    rdfs:label "Rhodamine" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Model molecule for visualization of PEG-PPS coating" .
+
+<https://lovamap.com/ontology#reagent/10.2106-jbjs.15.01273/nir-dye> a lova:Reagent ;
+    rdfs:label "Near-infrared (NIR) dye" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Tag for noninvasive in vivo tracking of PEG-PPS coating biodegradation" .
+
+<https://lovamap.com/ontology#reagent/10.2106-jbjs.15.01273/buprenorphine> a lova:Reagent ;
+    rdfs:label "Sustained-release buprenorphine" ;
+    lova:reagentRole "other" ;
+    lova:concentration "2.5 mg/kg" ;
+    lova:supplier "Zoopharm" ;
+    lova:reagentFunction "Perioperative analgesia in mouse model" .
+
+<https://lovamap.com/ontology#experiment/10.2106-jbjs.15.01273/in-vitro-release-loading> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.2106-jbjs.15.01273> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.2106-jbjs.15.01273/pegpps-3wv> ,
+                       <https://lovamap.com/ontology#material/10.2106-jbjs.15.01273/pegpps-6wv> ;
+    rdfs:label "In vitro vancomycin release kinetics from 3% vs 6% PEG-PPS coating" ;
+    lova:experimentCategory "Pharmacokinetic" ;
+    lova:experimentType "Drug release" ;
+    lova:assayOrMethod "HPLC" ;
+    lova:temperature "37°C" ;
+    lova:medium "PBS" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#experiment/10.2106-jbjs.15.01273/oxidative-release> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.2106-jbjs.15.01273> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.2106-jbjs.15.01273/pegpps-vancomycin> ;
+    rdfs:label "Active release of vancomycin from PEG-PPS coating in oxidative (5% H2O2) vs PBS environment" ;
+    lova:experimentCategory "Pharmacokinetic" ;
+    lova:experimentType "Drug release under oxidative challenge" ;
+    lova:assayOrMethod "HPLC" ;
+    lova:medium "PBS or 5% (v/v) H2O2" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#experiment/10.2106-jbjs.15.01273/in-vivo-bioluminescence> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.2106-jbjs.15.01273> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.2106-jbjs.15.01273/pegpps-alone> ,
+                       <https://lovamap.com/ontology#material/10.2106-jbjs.15.01273/pegpps-vancomycin> ,
+                       <https://lovamap.com/ontology#material/10.2106-jbjs.15.01273/pegpps-tigecycline> ;
+    rdfs:label "In vivo bioluminescence imaging of bacterial burden in mouse post-arthroplasty infection model" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Bacterial burden imaging" ;
+    lova:assayOrMethod "Bioluminescence imaging (IVIS Lumina II)" ;
+    lova:cellType "Staphylococcus aureus Xen36 (bioluminescent)" ;
+    lova:cellSource "Bioluminescent S. aureus Xen36 strain" ;
+    lova:cultureDuration "21 days" ;
+    lova:equipment "IVIS Lumina II in vivo imaging system (PerkinElmer)" .
+
+<https://lovamap.com/ontology#experiment/10.2106-jbjs.15.01273/cfu-quantification> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.2106-jbjs.15.01273> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.2106-jbjs.15.01273/pegpps-alone> ,
+                       <https://lovamap.com/ontology#material/10.2106-jbjs.15.01273/pegpps-vancomycin> ,
+                       <https://lovamap.com/ontology#material/10.2106-jbjs.15.01273/pegpps-tigecycline> ;
+    rdfs:label "CFU quantification from implants and surrounding tissue on POD 21" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Colony-forming unit quantification" ;
+    lova:assayOrMethod "Sonication and CFU counting" ;
+    lova:timePoint "Postoperative day 21" .
+
+<https://lovamap.com/ontology#experiment/10.2106-jbjs.15.01273/radiography> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.2106-jbjs.15.01273> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.2106-jbjs.15.01273/pegpps-alone> ,
+                       <https://lovamap.com/ontology#material/10.2106-jbjs.15.01273/pegpps-vancomycin> ,
+                       <https://lovamap.com/ontology#material/10.2106-jbjs.15.01273/pegpps-tigecycline> ;
+    rdfs:label "Radiographic assessment of osseointegration and bone resorption" ;
+    lova:experimentCategory "Imaging" ;
+    lova:experimentType "Radiographic assessment" ;
+    lova:assayOrMethod "Faxitron LX-60 Cabinet radiography" ;
+    lova:equipment "Quados Faxitron LX-60 Cabinet radiography system (Cross Technologies)" .
+
+<https://lovamap.com/ontology#experiment/10.2106-jbjs.15.01273/nir-biodegradation> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.2106-jbjs.15.01273> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.2106-jbjs.15.01273/pegpps-6wv> ;
+    rdfs:label "NIR imaging of in vivo PEG-PPS coating biodegradation" ;
+    lova:experimentCategory "Imaging" ;
+    lova:experimentType "In vivo fluorescence imaging" ;
+    lova:assayOrMethod "NIR imaging (IVIS)" ;
+    lova:timePoint "POD 0, 3, 7, 14" .
+
+<https://lovamap.com/ontology#outcome/10.2106-jbjs.15.01273/cumulative-release-3wv> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.2106-jbjs.15.01273/in-vitro-release-loading> ;
+    dc:source <https://lovamap.com/ontology#paper/10.2106-jbjs.15.01273> ;
+    rdfs:label "Cumulative vancomycin release per pin, 3% w/v PEG-PPS, 7 days" ;
+    lova:measurementType "Cumulative antibiotic release" ;
+    lova:measurementCategory "Pharmacokinetic" ;
+    qudt:numericValue 10.2 ;
+    qudt:unit "mg" ;
+    lova:stdDev 4.1 ;
+    lova:sampleSize 3 ;
+    lova:timePoint "7 days" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.2106-jbjs.15.01273/cumulative-release-6wv> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.2106-jbjs.15.01273/in-vitro-release-loading> ;
+    dc:source <https://lovamap.com/ontology#paper/10.2106-jbjs.15.01273> ;
+    rdfs:label "Cumulative vancomycin release per pin, 6% w/v PEG-PPS, 7 days" ;
+    lova:measurementType "Cumulative antibiotic release" ;
+    lova:measurementCategory "Pharmacokinetic" ;
+    qudt:numericValue 22.8 ;
+    qudt:unit "mg" ;
+    lova:stdDev 5.4 ;
+    lova:sampleSize 3 ;
+    lova:timePoint "7 days" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.2106-jbjs.15.01273/cumulative-release-6-vs-3> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.2106-jbjs.15.01273> ;
+    rdfs:label "Cumulative vancomycin release higher for 6% w/v vs 3% w/v PEG-PPS" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.2106-jbjs.15.01273/cumulative-release-6wv> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.2106-jbjs.15.01273/cumulative-release-3wv> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#outcome/10.2106-jbjs.15.01273/mic-duration-3wv> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.2106-jbjs.15.01273/in-vitro-release-loading> ;
+    dc:source <https://lovamap.com/ontology#paper/10.2106-jbjs.15.01273> ;
+    rdfs:label "Duration of daily release above MIC, 3% w/v PEG-PPS" ;
+    lova:measurementType "Duration above MIC" ;
+    lova:measurementCategory "Pharmacokinetic" ;
+    lova:valueString "7 days above MIC (2 mg/mL)" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.2106-jbjs.15.01273/mic-duration-6wv> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.2106-jbjs.15.01273/in-vitro-release-loading> ;
+    dc:source <https://lovamap.com/ontology#paper/10.2106-jbjs.15.01273> ;
+    rdfs:label "Duration of daily release above MIC, 6% w/v PEG-PPS" ;
+    lova:measurementType "Duration above MIC" ;
+    lova:measurementCategory "Pharmacokinetic" ;
+    lova:valueString "4 days above MIC (2 mg/mL)" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.2106-jbjs.15.01273/daily-release-6wv-day1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.2106-jbjs.15.01273/in-vitro-release-loading> ;
+    dc:source <https://lovamap.com/ontology#paper/10.2106-jbjs.15.01273> ;
+    rdfs:label "Daily vancomycin release, 6% w/v PEG-PPS, day 1" ;
+    lova:measurementType "Daily antibiotic release" ;
+    lova:measurementCategory "Pharmacokinetic" ;
+    qudt:numericValue 140.0 ;
+    qudt:unit "μg/mL" ;
+    lova:timePoint "Day 1" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.2106-jbjs.15.01273/daily-release-3wv-day1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.2106-jbjs.15.01273/in-vitro-release-loading> ;
+    dc:source <https://lovamap.com/ontology#paper/10.2106-jbjs.15.01273> ;
+    rdfs:label "Daily vancomycin release, 3% w/v PEG-PPS, day 1" ;
+    lova:measurementType "Daily antibiotic release" ;
+    lova:measurementCategory "Pharmacokinetic" ;
+    qudt:numericValue 55.0 ;
+    qudt:unit "μg/mL" ;
+    lova:timePoint "Day 1" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.2106-jbjs.15.01273/oxidative-release-rapid> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.2106-jbjs.15.01273/oxidative-release> ;
+    dc:source <https://lovamap.com/ontology#paper/10.2106-jbjs.15.01273> ;
+    rdfs:label "Rapid vancomycin release in 5% H2O2 within 3 days" ;
+    lova:measurementType "Antibiotic release rate" ;
+    lova:measurementCategory "Pharmacokinetic" ;
+    lova:valueString "All vancomycin released within 3 days in 5% (v/v) H2O2" ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 ;
+    lova:comparisonGroup "PBS (nonoxidative)" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.2106-jbjs.15.01273/pbs-release-slow> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.2106-jbjs.15.01273/oxidative-release> ;
+    dc:source <https://lovamap.com/ontology#paper/10.2106-jbjs.15.01273> ;
+    rdfs:label "Slow vancomycin release in PBS from POD 1 to 5" ;
+    lova:measurementType "Antibiotic release rate" ;
+    lova:measurementCategory "Pharmacokinetic" ;
+    lova:valueString "Slow, sustained vancomycin release from POD 1 to 5 in PBS" ;
+    lova:comparisonGroup "5% H2O2 (oxidative)" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.2106-jbjs.15.01273/oxidative-vs-pbs-release> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.2106-jbjs.15.01273> ;
+    rdfs:label "Vancomycin release faster in oxidative (5% H2O2) vs PBS environment" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.2106-jbjs.15.01273/oxidative-release-rapid> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.2106-jbjs.15.01273/pbs-release-slow> ;
+    lova:direction "higher" ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.2106-jbjs.15.01273/cfu-implant-pegpps> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.2106-jbjs.15.01273/cfu-quantification> ;
+    dc:source <https://lovamap.com/ontology#paper/10.2106-jbjs.15.01273> ;
+    rdfs:label "CFUs cultured from implants, PEG-PPS alone group, POD 21" ;
+    lova:measurementType "Colony-forming units (implant)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 260.0 ;
+    qudt:unit "CFU" ;
+    lova:timePoint "POD 21" ;
+    lova:comparisonGroup "Vancomycin and Tigecycline groups" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.2106-jbjs.15.01273/cfu-implant-vanco> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.2106-jbjs.15.01273/cfu-quantification> ;
+    dc:source <https://lovamap.com/ontology#paper/10.2106-jbjs.15.01273> ;
+    rdfs:label "CFUs cultured from implants, vancomycin group, POD 21" ;
+    lova:measurementType "Colony-forming units (implant)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 9.0 ;
+    qudt:unit "CFU" ;
+    lova:timePoint "POD 21" ;
+    lova:comparisonGroup "PEG-PPS alone" ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.2106-jbjs.15.01273/cfu-implant-tigec> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.2106-jbjs.15.01273/cfu-quantification> ;
+    dc:source <https://lovamap.com/ontology#paper/10.2106-jbjs.15.01273> ;
+    rdfs:label "CFUs cultured from implants, tigecycline group, POD 21" ;
+    lova:measurementType "Colony-forming units (implant)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.0 ;
+    qudt:unit "CFU" ;
+    lova:timePoint "POD 21" ;
+    lova:comparisonGroup "PEG-PPS alone" ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.2106-jbjs.15.01273/cfu-implant-vanco-vs-pegpps> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.2106-jbjs.15.01273> ;
+    rdfs:label "Implant CFUs lower in vancomycin group vs PEG-PPS alone" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.2106-jbjs.15.01273/cfu-implant-vanco> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.2106-jbjs.15.01273/cfu-implant-pegpps> ;
+    lova:direction "lower" ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 .
+
+<https://lovamap.com/ontology#comparison/10.2106-jbjs.15.01273/cfu-implant-tigec-vs-pegpps> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.2106-jbjs.15.01273> ;
+    rdfs:label "Implant CFUs lower in tigecycline group vs PEG-PPS alone" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.2106-jbjs.15.01273/cfu-implant-tigec> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.2106-jbjs.15.01273/cfu-implant-pegpps> ;
+    lova:direction "lower" ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 .
+
+<https://lovamap.com/ontology#comparison/10.2106-jbjs.15.01273/cfu-implant-tigec-vs-vanco> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.2106-jbjs.15.01273> ;
+    rdfs:label "Implant CFUs lower in tigecycline group vs vancomycin group" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.2106-jbjs.15.01273/cfu-implant-tigec> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.2106-jbjs.15.01273/cfu-implant-vanco> ;
+    lova:direction "lower" .
+
+<https://lovamap.com/ontology#outcome/10.2106-jbjs.15.01273/cfu-tissue-pegpps> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.2106-jbjs.15.01273/cfu-quantification> ;
+    dc:source <https://lovamap.com/ontology#paper/10.2106-jbjs.15.01273> ;
+    rdfs:label "CFUs cultured from surrounding tissue, PEG-PPS alone group, POD 21" ;
+    lova:measurementType "Colony-forming units (tissue)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 59000.0 ;
+    qudt:unit "CFU" ;
+    lova:timePoint "POD 21" ;
+    lova:comparisonGroup "Vancomycin and Tigecycline groups" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.2106-jbjs.15.01273/cfu-tissue-vanco> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.2106-jbjs.15.01273/cfu-quantification> ;
+    dc:source <https://lovamap.com/ontology#paper/10.2106-jbjs.15.01273> ;
+    rdfs:label "CFUs cultured from surrounding tissue, vancomycin group, POD 21" ;
+    lova:measurementType "Colony-forming units (tissue)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 4300.0 ;
+    qudt:unit "CFU" ;
+    lova:timePoint "POD 21" ;
+    lova:comparisonGroup "PEG-PPS alone" ;
+    lova:isSignificant true ;
+    lova:pValue 0.01 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.2106-jbjs.15.01273/cfu-tissue-tigec> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.2106-jbjs.15.01273/cfu-quantification> ;
+    dc:source <https://lovamap.com/ontology#paper/10.2106-jbjs.15.01273> ;
+    rdfs:label "CFUs cultured from surrounding tissue, tigecycline group, POD 21" ;
+    lova:measurementType "Colony-forming units (tissue)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 120.0 ;
+    qudt:unit "CFU" ;
+    lova:timePoint "POD 21" ;
+    lova:comparisonGroup "PEG-PPS alone" ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.2106-jbjs.15.01273/cfu-tissue-vanco-vs-pegpps> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.2106-jbjs.15.01273> ;
+    rdfs:label "Tissue CFUs lower in vancomycin group vs PEG-PPS alone" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.2106-jbjs.15.01273/cfu-tissue-vanco> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.2106-jbjs.15.01273/cfu-tissue-pegpps> ;
+    lova:direction "lower" ;
+    lova:isSignificant true ;
+    lova:pValue 0.01 .
+
+<https://lovamap.com/ontology#comparison/10.2106-jbjs.15.01273/cfu-tissue-tigec-vs-pegpps> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.2106-jbjs.15.01273> ;
+    rdfs:label "Tissue CFUs lower in tigecycline group vs PEG-PPS alone" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.2106-jbjs.15.01273/cfu-tissue-tigec> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.2106-jbjs.15.01273/cfu-tissue-pegpps> ;
+    lova:direction "lower" ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 .
+
+<https://lovamap.com/ontology#comparison/10.2106-jbjs.15.01273/cfu-tissue-tigec-vs-vanco> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.2106-jbjs.15.01273> ;
+    rdfs:label "Tissue CFUs lower in tigecycline group vs vancomycin group" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.2106-jbjs.15.01273/cfu-tissue-tigec> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.2106-jbjs.15.01273/cfu-tissue-vanco> ;
+    lova:direction "lower" .
+
+<https://lovamap.com/ontology#outcome/10.2106-jbjs.15.01273/biolum-pegpps-peak> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.2106-jbjs.15.01273/in-vivo-bioluminescence> ;
+    dc:source <https://lovamap.com/ontology#paper/10.2106-jbjs.15.01273> ;
+    rdfs:label "Peak bioluminescence signal, PEG-PPS alone group, ~POD 3-5" ;
+    lova:measurementType "Bacterial bioluminescence (maximum flux)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1200000.0 ;
+    qudt:unit "photons/sec/cm2/sr" ;
+    lova:timePoint "POD 3-5" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.2106-jbjs.15.01273/biolum-vanco-peak> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.2106-jbjs.15.01273/in-vivo-bioluminescence> ;
+    dc:source <https://lovamap.com/ontology#paper/10.2106-jbjs.15.01273> ;
+    rdfs:label "Peak bioluminescence signal, vancomycin group, ~POD 3" ;
+    lova:measurementType "Bacterial bioluminescence (maximum flux)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 250000.0 ;
+    qudt:unit "photons/sec/cm2/sr" ;
+    lova:timePoint "POD 3" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.2106-jbjs.15.01273/biolum-tigec-peak> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.2106-jbjs.15.01273/in-vivo-bioluminescence> ;
+    dc:source <https://lovamap.com/ontology#paper/10.2106-jbjs.15.01273> ;
+    rdfs:label "Peak bioluminescence signal, tigecycline group, ~POD 3" ;
+    lova:measurementType "Bacterial bioluminescence (maximum flux)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 150000.0 ;
+    qudt:unit "photons/sec/cm2/sr" ;
+    lova:timePoint "POD 3" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.2106-jbjs.15.01273/biolum-vanco-vs-pegpps> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.2106-jbjs.15.01273> ;
+    rdfs:label "Bioluminescence lower in vancomycin group vs PEG-PPS alone at POD 1,3,5,7" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.2106-jbjs.15.01273/biolum-vanco-peak> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.2106-jbjs.15.01273/biolum-pegpps-peak> ;
+    lova:direction "lower" ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 .
+
+<https://lovamap.com/ontology#comparison/10.2106-jbjs.15.01273/biolum-tigec-vs-pegpps> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.2106-jbjs.15.01273> ;
+    rdfs:label "Bioluminescence lower in tigecycline group vs PEG-PPS alone at all time points" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.2106-jbjs.15.01273/biolum-tigec-peak> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.2106-jbjs.15.01273/biolum-pegpps-peak> ;
+    lova:direction "lower" ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 .
+
+<https://lovamap.com/ontology#outcome/10.2106-jbjs.15.01273/nir-signal-day0> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.2106-jbjs.15.01273/nir-biodegradation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.2106-jbjs.15.01273> ;
+    rdfs:label "In vivo NIR fluorescence total radiant efficiency, day 0" ;
+    lova:measurementType "NIR fluorescence (total radiant efficiency)" ;
+    lova:measurementCategory "Imaging" ;
+    qudt:numericValue 7.5E8 ;
+    qudt:unit "(photons/sec)/(μW/cm2)" ;
+    lova:timePoint "Day 0" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.2106-jbjs.15.01273/nir-signal-day3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.2106-jbjs.15.01273/nir-biodegradation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.2106-jbjs.15.01273> ;
+    rdfs:label "In vivo NIR fluorescence total radiant efficiency, day 3" ;
+    lova:measurementType "NIR fluorescence (total radiant efficiency)" ;
+    lova:measurementCategory "Imaging" ;
+    qudt:numericValue 5.7E8 ;
+    qudt:unit "(photons/sec)/(μW/cm2)" ;
+    lova:timePoint "Day 3" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.2106-jbjs.15.01273/nir-signal-day7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.2106-jbjs.15.01273/nir-biodegradation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.2106-jbjs.15.01273> ;
+    rdfs:label "In vivo NIR fluorescence total radiant efficiency, day 7" ;
+    lova:measurementType "NIR fluorescence (total radiant efficiency)" ;
+    lova:measurementCategory "Imaging" ;
+    qudt:numericValue 4.8E8 ;
+    qudt:unit "(photons/sec)/(μW/cm2)" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.2106-jbjs.15.01273/nir-signal-day14> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.2106-jbjs.15.01273/nir-biodegradation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.2106-jbjs.15.01273> ;
+    rdfs:label "In vivo NIR fluorescence total radiant efficiency, day 14 (complete biodegradation)" ;
+    lova:measurementType "NIR fluorescence (total radiant efficiency)" ;
+    lova:measurementCategory "Imaging" ;
+    qudt:numericValue 0.6E8 ;
+    qudt:unit "(photons/sec)/(μW/cm2)" ;
+    lova:timePoint "Day 14" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.2106-jbjs.15.01273/radiographic-osteolysis-pegpps> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.2106-jbjs.15.01273/radiography> ;
+    dc:source <https://lovamap.com/ontology#paper/10.2106-jbjs.15.01273> ;
+    rdfs:label "Periprosthetic osteolysis observed radiographically in PEG-PPS alone group by POD 7" ;
+    lova:measurementType "Periprosthetic osteolysis" ;
+    lova:measurementCategory "Imaging" ;
+    lova:valueString "Dramatic periprosthetic osteolysis evident by POD 7, progressing over time" ;
+    lova:timePoint "POD 7-28" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.2106-jbjs.15.01273/radiographic-osteolysis-antibiotic> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.2106-jbjs.15.01273/radiography> ;
+    dc:source <https://lovamap.com/ontology#paper/10.2106-jbjs.15.01273> ;
+    rdfs:label "No detectable radiographic osteolysis in antibiotic-encapsulated PEG-PPS groups" ;
+    lova:measurementType "Periprosthetic osteolysis" ;
+    lova:measurementCategory "Imaging" ;
+    lova:valueString "No detectable radiographic periprosthetic osteolysis" ;
+    lova:timePoint "POD 0-28" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#comparison/10.2106-jbjs.15.01273/osteolysis-pegpps-vs-antibiotic> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.2106-jbjs.15.01273> ;
+    rdfs:label "Radiographic osteolysis higher in PEG-PPS alone vs antibiotic-loaded groups" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.2106-jbjs.15.01273/radiographic-osteolysis-pegpps> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.2106-jbjs.15.01273/radiographic-osteolysis-antibiotic> ;
+    lova:direction "higher" .

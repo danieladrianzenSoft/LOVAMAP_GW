@@ -1,0 +1,964 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> a bibo:AcademicArticle ;
+    rdfs:label "Dhaliwal et al., 2010 — Differential uptake of DNA–PEI polyplexes on Col I and Fn surfaces" ;
+    dc:title "Differential uptake of DNA–poly(ethylenimine) polyplexes in cells cultured on collagen and fibronectin surfaces" ;
+    dc:identifier "10.1016/j.actbio.2010.03.038" ;
+    dc:date "2010"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/acta-biomaterialia> ;
+    dc:creator <https://lovamap.com/ontology#author/dhaliwal-anandika> ,
+               <https://lovamap.com/ontology#author/maldonado-maricela> ,
+               <https://lovamap.com/ontology#author/han-zenas> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/dhaliwal-anandika>
+                      <https://lovamap.com/ontology#author/maldonado-maricela>
+                      <https://lovamap.com/ontology#author/han-zenas>
+                      <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    dc:bibliographicCitation "Dhaliwal et al., 2010" ;
+    lova:focusMaterial "Mouse mesenchymal stem cells (mMSCs) plated on Collagen I- or Fibronectin-coated surfaces, transfected with DNA/PEI polyplexes" .
+
+<https://lovamap.com/ontology#author/dhaliwal-anandika> a foaf:Person ;
+    foaf:familyName "Dhaliwal" ;
+    foaf:givenName "Anandika" ;
+    foaf:name "Anandika Dhaliwal" ;
+    schema:affiliation "Biomedical Engineering Interdepartmental Program, University of California, Los Angeles, CA, USA" .
+
+<https://lovamap.com/ontology#author/maldonado-maricela> a foaf:Person ;
+    foaf:familyName "Maldonado" ;
+    foaf:givenName "Maricela" ;
+    foaf:name "Maricela Maldonado" ;
+    schema:affiliation "Chemical and Biomolecular Engineering Department, University of California, Los Angeles, CA, USA" .
+
+<https://lovamap.com/ontology#author/han-zenas> a foaf:Person ;
+    foaf:familyName "Han" ;
+    foaf:givenName "Zenas" ;
+    foaf:name "Zenas Han" ;
+    schema:affiliation "Chemical and Biomolecular Engineering Department, University of California, Los Angeles, CA, USA" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" ;
+    schema:affiliation "Biomedical Engineering Interdepartmental Program, University of California, Los Angeles, CA, USA" ;
+    schema:affiliation "Chemical and Biomolecular Engineering Department, University of California, Los Angeles, CA, USA" .
+
+<https://lovamap.com/ontology#journal/acta-biomaterialia> a bibo:Journal ;
+    dc:title "Acta Biomaterialia" ;
+    bibo:issn "1742-7061" .
+
+<https://lovamap.com/ontology#material/10.1016-j.actbio.2010.03.038/uncoated-surface> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "Uncoated tissue culture surface" ;
+    lova:surfaceModification "None (uncoated)" .
+
+<https://lovamap.com/ontology#material/10.1016-j.actbio.2010.03.038/col1-coated-surface> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "Collagen I-coated tissue culture surface (20-100 µg/ml)" ;
+    lova:surfaceModification "Collagen I (Col I) adsorption coating" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2010.03.038/protein-coating> .
+
+<https://lovamap.com/ontology#material/10.1016-j.actbio.2010.03.038/fn-coated-surface> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "Fibronectin-coated tissue culture surface (10-40 µg/ml)" ;
+    lova:surfaceModification "Fibronectin (Fn) adsorption coating" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2010.03.038/protein-coating> .
+
+<https://lovamap.com/ontology#material/10.1016-j.actbio.2010.03.038/dna-pei-polyplex> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "DNA/PEI polyplex (N/P ratio 12)" ;
+    lova:particleShape "Spherical nanoparticle" ;
+    lova:particleSizeMin 50.0 ;
+    lova:particleSizeMax 200.0 ;
+    lova:particleSizeUnit "nm" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2010.03.038/polyplex-formation> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2010.03.038/protein-coating> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "ECM protein surface coating method (Kruger-Krasagakes protocol)" ;
+    lova:chemistry "Passive adsorption" ;
+    lova:manufacturingMethod "Overnight incubation at 4°C followed by 2h at 37°C, BSA blocking" ;
+    lova:annealingConditions "4°C overnight, then 37°C 2h; BSA block 1% 30 min at 37°C" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2010.03.038/col-i> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2010.03.038/fn> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2010.03.038/bsa> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2010.03.038/polyplex-formation> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "DNA/PEI polyplex formation" ;
+    lova:chemistry "Electrostatic condensation (polyelectrolyte complexation)" ;
+    lova:manufacturingMethod "Bulk mixing of plasmid DNA with linear PEI (N/P ratio 12), vortexed 15 s, 15 min RT incubation" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2010.03.038/plasmid-pegfp-luc> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2010.03.038/pei-25kda> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2010.03.038/nacl> .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2010.03.038/col-i> a lova:Reagent ;
+    rdfs:label "Collagen I (Col I)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "R&D Systems" ;
+    lova:concentration "20, 25, 50, 100 µg/ml" ;
+    lova:reagentFunction "ECM surface coating, integrin ligand" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2010.03.038/fn> a lova:Reagent ;
+    rdfs:label "Fibronectin (Fn)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Sigma" ;
+    lova:concentration "10, 20, 40 µg/ml" ;
+    lova:reagentFunction "ECM surface coating, integrin ligand" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2010.03.038/bsa> a lova:Reagent ;
+    rdfs:label "Bovine serum albumin (BSA)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "1% in PBS" ;
+    lova:reagentFunction "Blocking agent" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2010.03.038/plasmid-pegfp-luc> a lova:Reagent ;
+    rdfs:label "Plasmid pEGFP-luc" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Clontech" ;
+    lova:reagentFunction "Reporter plasmid DNA for transfection (luciferase/GFP fusion)" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2010.03.038/pei-25kda> a lova:Reagent ;
+    rdfs:label "Linear poly(ethylenimine) (PEI, 25 kg/mol)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:supplier "Polysciences" ;
+    lova:molecularWeight "25 kDa (25 kg mol-1)" ;
+    lova:concentration "1.65 µg PEI per 1 µg DNA (N/P ratio 12)" ;
+    lova:reagentFunction "DNA condensation agent for non-viral gene delivery" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2010.03.038/nacl> a lova:Reagent ;
+    rdfs:label "Sodium chloride (NaCl)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "150 mM final concentration" ;
+    lova:reagentFunction "Salt addition to transfection solution" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2010.03.038/amiloride> a lova:Reagent ;
+    rdfs:label "Amiloride hydrochloride hydrate" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Sigma-Aldrich" ;
+    lova:concentration "100 µM" ;
+    lova:reagentFunction "Macropinocytosis inhibitor" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2010.03.038/cytochalasin-d> a lova:Reagent ;
+    rdfs:label "Cytochalasin D (CD)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Sigma-Aldrich" ;
+    lova:concentration "20 µM" ;
+    lova:reagentFunction "Actin polymerization inhibitor" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2010.03.038/nocodazole> a lova:Reagent ;
+    rdfs:label "Nocodazole (Noc)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Sigma-Aldrich" ;
+    lova:concentration "10 µM" ;
+    lova:reagentFunction "Microtubule depolymerization agent" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2010.03.038/bdm> a lova:Reagent ;
+    rdfs:label "Butanedione monoxime (BDM)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Sigma-Aldrich" ;
+    lova:concentration "10 mM" ;
+    lova:reagentFunction "Myosin ATPase inhibitor (actin-myosin disruption)" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2010.03.038/endothelin-i> a lova:Reagent ;
+    rdfs:label "Endothelin I" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Calbiochem" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2010.03.038/genistein> a lova:Reagent ;
+    rdfs:label "Genistein" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Fisher Scientific" ;
+    lova:concentration "200 µM" ;
+    lova:reagentFunction "Caveolae-mediated endocytosis inhibitor (tyrosine kinase inhibitor)" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2010.03.038/chlorpromazine> a lova:Reagent ;
+    rdfs:label "Chlorpromazine hydrochloride" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Fisher Scientific" ;
+    lova:concentration "10 µg/ml" ;
+    lova:reagentFunction "Clathrin-mediated endocytosis inhibitor" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2010.03.038/chloroquine> a lova:Reagent ;
+    rdfs:label "Chloroquine diphosphate salt" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Fisher Scientific" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2010.03.038/yoyo-1> a lova:Reagent ;
+    rdfs:label "YOYO-1 fluorescent DNA intercalator" ;
+    lova:reagentRole "other" ;
+    lova:concentration "1 molecule per 50 base pairs" ;
+    lova:reagentFunction "Fluorescent labeling of DNA for internalization tracking" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/protein-coating-quantification> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2010.03.038/col1-coated-surface> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2010.03.038/fn-coated-surface> ;
+    rdfs:label "NanoOrange quantification of immobilized ECM protein" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Protein quantification" ;
+    lova:assayOrMethod "NanoOrange Protein Quantitation Kit, Typhoon scanner" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/fn-fluor-0> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/protein-coating-quantification> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "NanoOrange fluorescence, Fn 0 µg/ml" ;
+    lova:measurementType "Immobilized protein fluorescence" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 950.0 ;
+    qudt:unit "fluorescence (a.u.)" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/fn-fluor-10> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/protein-coating-quantification> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "NanoOrange fluorescence, Fn 10 µg/ml" ;
+    lova:measurementType "Immobilized protein fluorescence" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 2620.0 ;
+    qudt:unit "fluorescence (a.u.)" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/fn-fluor-20> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/protein-coating-quantification> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "NanoOrange fluorescence, Fn 20 µg/ml" ;
+    lova:measurementType "Immobilized protein fluorescence" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 3080.0 ;
+    qudt:unit "fluorescence (a.u.)" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/fn-fluor-40> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/protein-coating-quantification> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "NanoOrange fluorescence, Fn 40 µg/ml" ;
+    lova:measurementType "Immobilized protein fluorescence" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 3900.0 ;
+    qudt:unit "fluorescence (a.u.)" ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/col1-fluor-0> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/protein-coating-quantification> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "NanoOrange fluorescence, Col I 0 µg/ml" ;
+    lova:measurementType "Immobilized protein fluorescence" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 350.0 ;
+    qudt:unit "fluorescence (a.u.)" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/col1-fluor-20> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/protein-coating-quantification> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "NanoOrange fluorescence, Col I 20 µg/ml" ;
+    lova:measurementType "Immobilized protein fluorescence" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 990.0 ;
+    qudt:unit "fluorescence (a.u.)" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/col1-fluor-50> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/protein-coating-quantification> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "NanoOrange fluorescence, Col I 50 µg/ml" ;
+    lova:measurementType "Immobilized protein fluorescence" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 1090.0 ;
+    qudt:unit "fluorescence (a.u.)" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/col1-fluor-100> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/protein-coating-quantification> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "NanoOrange fluorescence, Col I 100 µg/ml" ;
+    lova:measurementType "Immobilized protein fluorescence" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 1110.0 ;
+    qudt:unit "fluorescence (a.u.)" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/transfection-dose-response> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2010.03.038/uncoated-surface> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2010.03.038/col1-coated-surface> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2010.03.038/fn-coated-surface> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2010.03.038/dna-pei-polyplex> ;
+    rdfs:label "DNA/PEI transfection dose-response on Col I and Fn surfaces" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transfection (luciferase reporter assay)" ;
+    lova:assayOrMethod "Promega Luciferase Assay System" ;
+    lova:cellType "mouse mesenchymal stem cells (D1, mMSCs)" ;
+    lova:cellSource "Mouse bone marrow" ;
+    lova:seedingDensity "20,000 cells per well (48-well plate)" ;
+    lova:cultureMedium "DMEM + 10% bovine growth serum + 1% penicillin/streptomycin" ;
+    lova:temperature "37°C" ;
+    lova:atmosphere "5% CO2" ;
+    lova:cultureDuration "16h attachment, transfection quantified at 48h" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/transgene-uncoated> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/transfection-dose-response> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "Luciferase RLU, uncoated surface" ;
+    lova:measurementType "Transgene expression (luciferase RLU)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 8500.0 ;
+    qudt:unit "RLU" ;
+    lova:timePoint "48h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/transgene-col1-25> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/transfection-dose-response> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "Fold change transgene expression, Col I 25 µg/ml vs uncoated" ;
+    lova:measurementType "Fold change in transgene expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.3 ;
+    qudt:unit "fold change" ;
+    lova:isSignificant true ;
+    lova:pValue 0.001 ;
+    lova:comparisonGroup "Uncoated surface" ;
+    lova:timePoint "48h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/transgene-col1-50> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/transfection-dose-response> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "Fold change transgene expression, Col I 50 µg/ml vs uncoated" ;
+    lova:measurementType "Fold change in transgene expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.2 ;
+    qudt:unit "fold change" ;
+    lova:isSignificant true ;
+    lova:pValue 0.001 ;
+    lova:comparisonGroup "Uncoated surface" ;
+    lova:timePoint "48h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/transgene-col1-100> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/transfection-dose-response> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "Fold change transgene expression, Col I 100 µg/ml vs uncoated" ;
+    lova:measurementType "Fold change in transgene expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.12 ;
+    qudt:unit "fold change" ;
+    lova:isSignificant true ;
+    lova:pValue 0.001 ;
+    lova:comparisonGroup "Uncoated surface" ;
+    lova:timePoint "48h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/transgene-fn-10> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/transfection-dose-response> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "Fold change transgene expression, Fn 10 µg/ml vs uncoated" ;
+    lova:measurementType "Fold change in transgene expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 3.5 ;
+    qudt:unit "fold change" ;
+    lova:isSignificant true ;
+    lova:pValue 0.001 ;
+    lova:comparisonGroup "Uncoated surface" ;
+    lova:timePoint "48h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/transgene-fn-20> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/transfection-dose-response> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "Fold change transgene expression, Fn 20 µg/ml vs uncoated" ;
+    lova:measurementType "Fold change in transgene expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 6.5 ;
+    qudt:unit "fold change" ;
+    lova:isSignificant true ;
+    lova:pValue 0.001 ;
+    lova:comparisonGroup "Uncoated surface" ;
+    lova:timePoint "48h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/transgene-fn-40> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/transfection-dose-response> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "Fold change transgene expression, Fn 40 µg/ml vs uncoated" ;
+    lova:measurementType "Fold change in transgene expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 9.2 ;
+    qudt:unit "fold change" ;
+    lova:isSignificant true ;
+    lova:pValue 0.001 ;
+    lova:comparisonGroup "Uncoated surface" ;
+    lova:timePoint "48h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2010.03.038/transgene-col1-vs-uncoated> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "Transgene expression lower on Col I vs uncoated" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/transgene-col1-50> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/transgene-uncoated> ;
+    lova:direction "lower" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2010.03.038/transgene-fn-vs-uncoated> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "Transgene expression higher on Fn vs uncoated" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/transgene-fn-40> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/transgene-uncoated> ;
+    lova:direction "higher" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2010.03.038/transgene-fn20-vs-fn40> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "Transgene expression lower at Fn 20 µg/ml vs Fn 40 µg/ml" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/transgene-fn-20> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/transgene-fn-40> ;
+    lova:direction "lower" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/proliferation-col1> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2010.03.038/col1-coated-surface> ;
+    rdfs:label "Cell proliferation on Col I-coated surfaces" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell proliferation" ;
+    lova:assayOrMethod "Cell Titer 96 Aqueous One Solution Cell Proliferation Assay" ;
+    lova:cellType "mouse mesenchymal stem cells (D1, mMSCs)" ;
+    lova:cultureDuration "24, 48, 96 hours" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/prolif-col1-0-96h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/proliferation-col1> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "% cell number, Col I 0 µg/ml, 96h" ;
+    lova:measurementType "Cell proliferation (% cell number)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 168.0 ;
+    qudt:unit "% cell number" ;
+    lova:timePoint "96 hours" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/prolif-col1-20-96h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/proliferation-col1> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "% cell number, Col I 20 µg/ml, 96h" ;
+    lova:measurementType "Cell proliferation (% cell number)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 218.0 ;
+    qudt:unit "% cell number" ;
+    lova:timePoint "96 hours" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/prolif-col1-50-96h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/proliferation-col1> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "% cell number, Col I 50 µg/ml, 96h" ;
+    lova:measurementType "Cell proliferation (% cell number)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 233.0 ;
+    qudt:unit "% cell number" ;
+    lova:timePoint "96 hours" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/prolif-col1-100-96h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/proliferation-col1> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "% cell number, Col I 100 µg/ml, 96h" ;
+    lova:measurementType "Cell proliferation (% cell number)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 185.0 ;
+    qudt:unit "% cell number" ;
+    lova:timePoint "96 hours" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/proliferation-fn> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2010.03.038/fn-coated-surface> ;
+    rdfs:label "Cell proliferation on Fn-coated surfaces" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell proliferation" ;
+    lova:assayOrMethod "Cell Titer 96 Aqueous One Solution Cell Proliferation Assay" ;
+    lova:cellType "mouse mesenchymal stem cells (D1, mMSCs)" ;
+    lova:cultureDuration "24, 48, 96 hours" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/prolif-fn-0-96h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/proliferation-fn> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "% cell number, Fn 0 µg/ml, 96h" ;
+    lova:measurementType "Cell proliferation (% cell number)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 168.0 ;
+    qudt:unit "% cell number" ;
+    lova:timePoint "96 hours" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/prolif-fn-10-96h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/proliferation-fn> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "% cell number, Fn 10 µg/ml, 96h" ;
+    lova:measurementType "Cell proliferation (% cell number)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 250.0 ;
+    qudt:unit "% cell number" ;
+    lova:timePoint "96 hours" ;
+    lova:isSignificant true ;
+    lova:pValue 0.001 ;
+    lova:comparisonGroup "Uncoated surface" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/prolif-fn-20-96h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/proliferation-fn> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "% cell number, Fn 20 µg/ml, 96h" ;
+    lova:measurementType "Cell proliferation (% cell number)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 230.0 ;
+    qudt:unit "% cell number" ;
+    lova:timePoint "96 hours" ;
+    lova:isSignificant true ;
+    lova:pValue 0.001 ;
+    lova:comparisonGroup "Uncoated surface" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/prolif-fn-40-96h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/proliferation-fn> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "% cell number, Fn 40 µg/ml, 96h" ;
+    lova:measurementType "Cell proliferation (% cell number)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 232.0 ;
+    qudt:unit "% cell number" ;
+    lova:timePoint "96 hours" ;
+    lova:isSignificant true ;
+    lova:pValue 0.001 ;
+    lova:comparisonGroup "Uncoated surface" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/internalization-dose> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2010.03.038/uncoated-surface> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2010.03.038/col1-coated-surface> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2010.03.038/fn-coated-surface> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2010.03.038/dna-pei-polyplex> ;
+    rdfs:label "Polyplex internalization by flow cytometry (YOYO-1-labeled DNA)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Polyplex internalization" ;
+    lova:assayOrMethod "Flow cytometry (FACScan X, CELLQuest)" ;
+    lova:cellType "mouse mesenchymal stem cells (D1, mMSCs)" ;
+    lova:cultureDuration "2 hours exposure" ;
+    lova:sampleSize 7000 .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/internal-uncoated> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/internalization-dose> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "Fold change mean fluorescence (internalization), uncoated" ;
+    lova:measurementType "Polyplex internalization (fold change in mean fluorescence)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.0 ;
+    qudt:unit "fold change" ;
+    lova:timePoint "2 hours" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/internal-col1-50> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/internalization-dose> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "Fold change mean fluorescence, Col I 50 µg/ml" ;
+    lova:measurementType "Polyplex internalization (fold change in mean fluorescence)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.15 ;
+    qudt:unit "fold change" ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 ;
+    lova:comparisonGroup "Uncoated surface" ;
+    lova:timePoint "2 hours" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/internal-col1-100> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/internalization-dose> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "Fold change mean fluorescence, Col I 100 µg/ml" ;
+    lova:measurementType "Polyplex internalization (fold change in mean fluorescence)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.25 ;
+    qudt:unit "fold change" ;
+    lova:isSignificant true ;
+    lova:pValue 0.01 ;
+    lova:comparisonGroup "Uncoated surface" ;
+    lova:timePoint "2 hours" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/internal-fn-10> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/internalization-dose> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "Fold change mean fluorescence, Fn 10 µg/ml" ;
+    lova:measurementType "Polyplex internalization (fold change in mean fluorescence)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.6 ;
+    qudt:unit "fold change" ;
+    lova:isSignificant true ;
+    lova:pValue 0.001 ;
+    lova:comparisonGroup "Uncoated surface" ;
+    lova:timePoint "2 hours" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/internal-fn-20> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/internalization-dose> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "Fold change mean fluorescence, Fn 20 µg/ml" ;
+    lova:measurementType "Polyplex internalization (fold change in mean fluorescence)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.5 ;
+    qudt:unit "fold change" ;
+    lova:isSignificant true ;
+    lova:pValue 0.001 ;
+    lova:comparisonGroup "Uncoated surface" ;
+    lova:timePoint "2 hours" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/internal-fn-40> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/internalization-dose> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "Fold change mean fluorescence, Fn 40 µg/ml" ;
+    lova:measurementType "Polyplex internalization (fold change in mean fluorescence)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.65 ;
+    qudt:unit "fold change" ;
+    lova:isSignificant true ;
+    lova:pValue 0.001 ;
+    lova:comparisonGroup "Uncoated surface" ;
+    lova:timePoint "2 hours" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2010.03.038/internal-fn-vs-uncoated> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "Polyplex internalization lower on Fn vs uncoated" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/internal-fn-20> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/internal-uncoated> ;
+    lova:direction "lower" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2010.03.038/internal-col1-vs-uncoated> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "Polyplex internalization higher on Col I vs uncoated" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/internal-col1-100> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/internal-uncoated> ;
+    lova:direction "higher" ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/viability-endocytosis-inhibitors> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2010.03.038/uncoated-surface> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2010.03.038/col1-coated-surface> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2010.03.038/fn-coated-surface> ;
+    rdfs:label "Cell viability after endocytosis inhibitor treatment" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell viability (MTT assay)" ;
+    lova:assayOrMethod "Cell Titer 96 Aqueous One Solution (MTT)" ;
+    lova:cellType "mouse mesenchymal stem cells (D1, mMSCs)" ;
+    lova:cultureDuration "4 and 48 hours post-treatment" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/viab-uncoated-caveole-48h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/viability-endocytosis-inhibitors> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "% cell number, uncoated + caveole inhibitor, 48h" ;
+    lova:measurementType "Cell viability (% cell number)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 72.0 ;
+    qudt:unit "% cell number" ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 ;
+    lova:timePoint "48 hours" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/viab-col1-caveole-48h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/viability-endocytosis-inhibitors> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "% cell number, Col I + caveole inhibitor, 48h" ;
+    lova:measurementType "Cell viability (% cell number)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 68.0 ;
+    qudt:unit "% cell number" ;
+    lova:isSignificant true ;
+    lova:pValue 0.01 ;
+    lova:timePoint "48 hours" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/viab-fn-caveole-48h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/viability-endocytosis-inhibitors> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "% cell number, Fn + caveole inhibitor, 48h" ;
+    lova:measurementType "Cell viability (% cell number)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 68.0 ;
+    qudt:unit "% cell number" ;
+    lova:isSignificant true ;
+    lova:pValue 0.01 ;
+    lova:timePoint "48 hours" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/endocytosis-pathway-effect> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2010.03.038/uncoated-surface> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2010.03.038/col1-coated-surface> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2010.03.038/fn-coated-surface> ;
+    rdfs:label "Effect of endocytotic pathway inhibition on transgene expression and internalization" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transfection with endocytosis inhibitors" ;
+    lova:assayOrMethod "Luciferase assay; flow cytometry" ;
+    lova:cellType "mouse mesenchymal stem cells (D1, mMSCs)" ;
+    lova:preconditioning "30 min inhibitor pretreatment, polyplex incubation 2 or 4h" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/endo-colI-macropino-fold> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/endocytosis-pathway-effect> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "Fold increase in transgene expression, Col I, macropinocytosis inhibition" ;
+    lova:measurementType "Fold change in transgene expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 10.0 ;
+    qudt:unit "fold change" ;
+    lova:isSignificant true ;
+    lova:pValue 0.001 ;
+    lova:comparisonGroup "No treatment" ;
+    lova:timePoint "48 hours" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/endo-colI-caveole-fold> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/endocytosis-pathway-effect> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "Fold increase in transgene expression, Col I, caveolae-mediated endocytosis inhibition" ;
+    lova:measurementType "Fold change in transgene expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 13.2 ;
+    qudt:unit "fold change" ;
+    lova:comparisonGroup "No treatment" ;
+    lova:timePoint "48 hours" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/endo-fn-clathrin-decrease> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/endocytosis-pathway-effect> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "Percent decrease in transgene expression, Fn, clathrin-mediated endocytosis inhibition" ;
+    lova:measurementType "Percent decrease in transgene expression" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "92% decrease" ;
+    lova:comparisonGroup "No treatment" ;
+    lova:isSignificant true ;
+    lova:pValue 0.01 ;
+    lova:timePoint "48 hours" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/endo-mf-uncoated-nt> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/endocytosis-pathway-effect> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "Mean fluorescence (internalization), uncoated, no treatment" ;
+    lova:measurementType "Mean fluorescence (internalization)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 80.0 ;
+    qudt:unit "mean fluorescence (a.u.)" ;
+    lova:timePoint "2 hours" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/endo-mf-uncoated-caveole> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/endocytosis-pathway-effect> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "Mean fluorescence (internalization), uncoated, caveole inhibitor" ;
+    lova:measurementType "Mean fluorescence (internalization)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 27.0 ;
+    qudt:unit "mean fluorescence (a.u.)" ;
+    lova:isSignificant true ;
+    lova:pValue 0.001 ;
+    lova:timePoint "2 hours" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/cytoskeleton-staining-fn> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2010.03.038/fn-coated-surface> ;
+    rdfs:label "Cytoskeleton staining (actin, tubulin, DNA) on Fn-coated surfaces after inhibitor treatment" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immunofluorescence microscopy" ;
+    lova:assayOrMethod "Rhodamine-phalloidin, Alexa488 anti-tubulin, Hoechst staining; Zeiss AxioObserver Z1" ;
+    lova:cellType "mouse mesenchymal stem cells (D1, mMSCs)" ;
+    lova:sampleSize 4 .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/fn-actinmyosin-redblue> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/cytoskeleton-staining-fn> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "Mean gray value ratio (actin/DNA), Fn, actin-myosin inhibitor" ;
+    lova:measurementType "Normalized actin fluorescence (red/blue)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.72 ;
+    qudt:unit "ratio" ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 ;
+    lova:sampleSize 4 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/fn-microtubule-redblue> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/cytoskeleton-staining-fn> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "Mean gray value ratio (actin/DNA), Fn, microtubule inhibitor" ;
+    lova:measurementType "Normalized actin fluorescence (red/blue)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.71 ;
+    qudt:unit "ratio" ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 ;
+    lova:sampleSize 4 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/cytoskeleton-staining-col1> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2010.03.038/col1-coated-surface> ;
+    rdfs:label "Cytoskeleton staining (actin, tubulin, DNA) on Col I-coated surfaces after inhibitor treatment" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immunofluorescence microscopy" ;
+    lova:assayOrMethod "Rhodamine-phalloidin, Alexa488 anti-tubulin, Hoechst staining; Zeiss AxioObserver Z1" ;
+    lova:cellType "mouse mesenchymal stem cells (D1, mMSCs)" ;
+    lova:sampleSize 4 .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/col1-actinmyosin-redblue> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/cytoskeleton-staining-col1> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "Mean gray value ratio (actin/DNA), Col I, actin-myosin inhibitor" ;
+    lova:measurementType "Normalized actin fluorescence (red/blue)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.56 ;
+    qudt:unit "ratio" ;
+    lova:isSignificant false ;
+    lova:sampleSize 4 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/viability-cytoskeleton-inhibitors> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2010.03.038/uncoated-surface> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2010.03.038/col1-coated-surface> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2010.03.038/fn-coated-surface> ;
+    rdfs:label "Cell viability after cytoskeleton inhibitor treatment" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell viability (MTT assay)" ;
+    lova:assayOrMethod "Cell Titer 96 Aqueous One Solution (MTT)" ;
+    lova:cellType "mouse mesenchymal stem cells (D1, mMSCs)" ;
+    lova:cultureDuration "4 and 48 hours post-treatment" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/viab-uncoated-microtubule-48h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/viability-cytoskeleton-inhibitors> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "% cell number, uncoated + microtubule inhibitor (Noc), 48h" ;
+    lova:measurementType "Cell viability (% cell number)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 50.0 ;
+    qudt:unit "% cell number" ;
+    lova:isSignificant true ;
+    lova:pValue 0.01 ;
+    lova:timePoint "48 hours" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/cytoskeleton-effect-transfection> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2010.03.038/uncoated-surface> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2010.03.038/col1-coated-surface> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2010.03.038/fn-coated-surface> ;
+    rdfs:label "Effect of cytoskeletal inhibitors on transgene expression and polyplex internalization" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transfection with cytoskeletal inhibitors" ;
+    lova:assayOrMethod "Luciferase assay; flow cytometry" ;
+    lova:cellType "mouse mesenchymal stem cells (D1, mMSCs)" ;
+    lova:preconditioning "30 min inhibitor treatment before transfection" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/cyto-fn-actin-transgene> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/cytoskeleton-effect-transfection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "Transgene expression, Fn, actin inhibitor (CD)" ;
+    lova:measurementType "Fold change in transgene expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.8 ;
+    qudt:unit "fold change" ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 ;
+    lova:comparisonGroup "No treatment" ;
+    lova:timePoint "48 hours" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/cyto-col1-actin-transgene> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/cytoskeleton-effect-transfection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "Transgene expression, Col I, actin inhibitor (CD)" ;
+    lova:measurementType "Fold change in transgene expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.1 ;
+    qudt:unit "fold change" ;
+    lova:isSignificant true ;
+    lova:pValue 0.01 ;
+    lova:comparisonGroup "No treatment" ;
+    lova:timePoint "48 hours" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/cyto-uncoated-microtubule-transgene> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/cytoskeleton-effect-transfection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "Transgene expression, uncoated, microtubule inhibitor (Noc)" ;
+    lova:measurementType "Fold change in transgene expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 47.0 ;
+    qudt:unit "fold change" ;
+    lova:isSignificant true ;
+    lova:pValue 0.001 ;
+    lova:comparisonGroup "No treatment" ;
+    lova:timePoint "48 hours" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/cyto-fn-actinmyosin-internal> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/cytoskeleton-effect-transfection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "Mean fluorescence (internalization), Fn, actin-myosin inhibitor (BDM)" ;
+    lova:measurementType "Mean fluorescence (internalization)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 76.0 ;
+    qudt:unit "mean fluorescence (a.u.)" ;
+    lova:isSignificant true ;
+    lova:pValue 0.001 ;
+    lova:comparisonGroup "No treatment" ;
+    lova:timePoint "2 hours" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/cyto-fn-actin-internal> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2010.03.038/cytoskeleton-effect-transfection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "Mean fluorescence (internalization), Fn, actin inhibitor (CD)" ;
+    lova:measurementType "Mean fluorescence (internalization)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 126.0 ;
+    qudt:unit "mean fluorescence (a.u.)" ;
+    lova:isSignificant true ;
+    lova:pValue 0.01 ;
+    lova:comparisonGroup "No treatment" ;
+    lova:timePoint "2 hours" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2010.03.038/colI-vs-fn-actin-inhibition> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2010.03.038> ;
+    rdfs:label "Actin disruption decreases transgene expression on Col I but increases it on Fn" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/cyto-col1-actin-transgene> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2010.03.038/cyto-fn-actin-transgene> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .

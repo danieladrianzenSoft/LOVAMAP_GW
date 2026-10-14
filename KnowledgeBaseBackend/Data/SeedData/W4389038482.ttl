@@ -1,0 +1,975 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1002-adhm.202302081> a bibo:AcademicArticle ;
+    rdfs:label "Wilson et al., 2023 — SDF-1 Bound Heparin Nanoparticles for Stroke" ;
+    dc:title "SDF‐1 Bound Heparin Nanoparticles Recruit Progenitor Cells for Their Differentiation and Promotion of Angiogenesis after Stroke" ;
+    dc:identifier "10.1002/adhm.202302081" ;
+    dc:date "2023"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/advanced-healthcare-materials> ;
+    dc:creator <https://lovamap.com/ontology#author/wilson-katrina> ,
+               <https://lovamap.com/ontology#author/joseph-neica> ,
+               <https://lovamap.com/ontology#author/onweller-lauren> ,
+               <https://lovamap.com/ontology#author/anderson-alexa> ,
+               <https://lovamap.com/ontology#author/darling-nicole> ,
+               <https://lovamap.com/ontology#author/david-bercholz-jennifer> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/wilson-katrina>
+                       <https://lovamap.com/ontology#author/joseph-neica>
+                       <https://lovamap.com/ontology#author/onweller-lauren>
+                       <https://lovamap.com/ontology#author/anderson-alexa>
+                       <https://lovamap.com/ontology#author/darling-nicole>
+                       <https://lovamap.com/ontology#author/david-bercholz-jennifer>
+                       <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    dc:bibliographicCitation "Wilson et al., 2023" ;
+    lova:focusMaterial "Granular hyaluronic acid hydrogel (MAP) scaffolds, porous Cryo microgels, and heparin-norbornene nanoparticles with covalently bound SDF-1α for stroke tissue regeneration" .
+
+<https://lovamap.com/ontology#author/wilson-katrina> a foaf:Person ;
+    foaf:familyName "Wilson" ;
+    foaf:givenName "Katrina L." ;
+    foaf:name "Katrina L. Wilson" .
+
+<https://lovamap.com/ontology#author/joseph-neica> a foaf:Person ;
+    foaf:familyName "Joseph" ;
+    foaf:givenName "Neica I." ;
+    foaf:name "Neica I. Joseph" .
+
+<https://lovamap.com/ontology#author/onweller-lauren> a foaf:Person ;
+    foaf:familyName "Onweller" ;
+    foaf:givenName "Lauren A." ;
+    foaf:name "Lauren A. Onweller" .
+
+<https://lovamap.com/ontology#author/anderson-alexa> a foaf:Person ;
+    foaf:familyName "Anderson" ;
+    foaf:givenName "Alexa R." ;
+    foaf:name "Alexa R. Anderson" .
+
+<https://lovamap.com/ontology#author/darling-nicole> a foaf:Person ;
+    foaf:familyName "Darling" ;
+    foaf:givenName "Nicole J." ;
+    foaf:name "Nicole J. Darling" .
+
+<https://lovamap.com/ontology#author/david-bercholz-jennifer> a foaf:Person ;
+    foaf:familyName "David-Bercholz" ;
+    foaf:givenName "Jennifer" ;
+    foaf:name "Jennifer David-Bercholz" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" ;
+    schema:affiliation "Duke University" .
+
+<https://lovamap.com/ontology#journal/advanced-healthcare-materials> a bibo:Journal ;
+    dc:title "Advanced Healthcare Materials" ;
+    bibo:issn "2192-2640" .
+
+<https://lovamap.com/ontology#material/10.1002-adhm.202302081/map-scaffold-rgd> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "MAP scaffold (HA-NB microgels, RGD-modified)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Hyaluronic acid-norbornene (HA-NB)" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:surfaceModification "RGD-modified" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adhm.202302081/map-fabrication> ;
+    lova:packingConfiguration "Jammed" ;
+    lova:reportedPorosity 0.287 .
+
+<https://lovamap.com/ontology#material/10.1002-adhm.202302081/cryo-map-scaffold-rgd> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "Cryo-MAP scaffold (HA-NB cryogel microgels, RGD-modified)" ;
+    lova:particleShape "Irregular" ;
+    lova:particleMaterial "Hyaluronic acid-norbornene (HA-NB) cryogel" ;
+    lova:surfaceModification "RGD-modified" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adhm.202302081/cryo-fabrication> ;
+    lova:packingConfiguration "Jammed" ;
+    lova:reportedPorosity 0.4407 .
+
+<https://lovamap.com/ontology#material/10.1002-adhm.202302081/cryo-scaffold-ikvav-yigsr-rgd> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "Cryo scaffold (HA-NB cryogel microgels, IKVAV/YIGSR/RGD-modified, no SDF-1 nH)" ;
+    lova:particleShape "Irregular" ;
+    lova:particleMaterial "Hyaluronic acid-norbornene (HA-NB) cryogel" ;
+    lova:surfaceModification "IKVAV, YIGSR, RGD-modified" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adhm.202302081/cryo-fabrication> ;
+    lova:packingConfiguration "Jammed" .
+
+<https://lovamap.com/ontology#material/10.1002-adhm.202302081/cryo-scaffold-sdf1nh> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "Cryo scaffold with SDF-1 heparin nanoparticles (IKVAV/YIGSR/RGD-modified)" ;
+    lova:particleShape "Irregular" ;
+    lova:particleMaterial "Hyaluronic acid-norbornene (HA-NB) cryogel" ;
+    lova:surfaceModification "IKVAV, YIGSR, RGD-modified; SDF-1 bound heparin nanoparticles" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adhm.202302081/cryo-sdf1nh-fabrication> ;
+    lova:packingConfiguration "Jammed" .
+
+<https://lovamap.com/ontology#material/10.1002-adhm.202302081/heparin-nanoparticle> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "Heparin-norbornene nanoparticle (nH)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Heparin-norbornene (Hep-NB)" ;
+    lova:particleSizeMin 93.0 ;
+    lova:particleSizeMax 142.0 ;
+    lova:particleSizeUnit "nm" ;
+    lova:sizeDistribution "Monodisperse (PDI ≤0.21-0.23)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adhm.202302081/nh-fabrication> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-adhm.202302081/map-fabrication> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "HA-NB microgel fabrication and tetrazine-norbornene annealing (MAP)" ;
+    lova:chemistry "Thiol-ene Michael addition; tetrazine-norbornene click chemistry" ;
+    lova:manufacturingMethod "Microfluidic planar flow-focusing water-in-oil emulsion" ;
+    lova:annealingChemistry "Tetrazine-norbornene click chemistry (4arm-PEG-Tet)" ;
+    lova:annealingConditions "37°C, 2 hours" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/ha> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/dmtmm> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/nma> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/mmp-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/tcep> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/lap> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/span80> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/tetra-peg-sh> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/methyltetrazine-peg4-maleimide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/rgd-peptide> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-adhm.202302081/cryo-fabrication> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "Cryogel formation via lyophilization/ice-templating of HA-NB microgels" ;
+    lova:chemistry "Tetrazine-norbornene click chemistry; ice-crystal templating" ;
+    lova:manufacturingMethod "Flash-freezing in liquid nitrogen and lyophilization in Tris HCl/NaCl/CaCl2 buffer" ;
+    lova:annealingChemistry "Tetrazine-norbornene click chemistry (4arm-PEG-Tet)" ;
+    lova:annealingConditions "37°C, 2 hours" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/ha> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/cryo-buffer> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/tetra-peg-sh> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/methyltetrazine-peg4-maleimide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/rgd-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/ikvav-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/yigsr-peptide> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-adhm.202302081/cryo-sdf1nh-fabrication> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "Cryo scaffold post-modified with SDF-1 bound heparin nanoparticles" ;
+    lova:chemistry "Tetrazine-norbornene click chemistry; thiol-ene photoconjugation" ;
+    lova:manufacturingMethod "Flash-freezing/lyophilization; incorporation of SDF-1 nH prior to injection" ;
+    lova:annealingChemistry "Tetrazine-norbornene click chemistry (4arm-PEG-Tet)" ;
+    lova:annealingConditions "37°C, 2 hours" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/ha> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/cryo-buffer> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/rgd-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/ikvav-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/yigsr-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/sdf1> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/heparin> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-adhm.202302081/nh-fabrication> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "Heparin-norbornene nanoparticle synthesis and SDF-1 covalent binding" ;
+    lova:chemistry "Carbodiimide-mediated norbornene functionalization; free-radical inverse emulsion polymerization; thiol-ene UV photoconjugation" ;
+    lova:manufacturingMethod "Sonication-based inverse emulsion in hexane/surfactant" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/heparin> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/dmtmm> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/nma> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/dtt> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/tcep> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/aps> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/temed> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/span80> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/tween80> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/lap> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/sdf1> .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/ha> a lova:Reagent ;
+    rdfs:label "Hyaluronic acid (HA, 79,000 Da)" ;
+    lova:reagentRole "monomer" ;
+    lova:molecularWeight "79,000 Da" ;
+    lova:supplier "Contipro" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/dmtmm> a lova:Reagent ;
+    rdfs:label "4-(4,6-Dimethoxy[1.3.5]triazin-2-yl)-4-methylmorpholinium chloride (DMTMM)" ;
+    lova:reagentRole "other" ;
+    lova:molecularWeight "294.74 Da" ;
+    lova:supplier "TCI America" ;
+    lova:reagentFunction "Carboxylic acid activation for norbornene conjugation" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/nma> a lova:Reagent ;
+    rdfs:label "5-Norbornene-2-methanamine (NMA)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "TCI America" ;
+    lova:reagentFunction "Norbornene functionalization of HA/heparin" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/mmp-peptide> a lova:Reagent ;
+    rdfs:label "MMP-sensitive di-thiol linker peptide (Ac-GCRDGPQGIWGQDRCG-NH2)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:sequence "GCRDGPQGIWGQDRCG" ;
+    lova:supplier "Genscript" ;
+    lova:reagentFunction "Enzymatically degradable intra-microgel crosslink" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/tcep> a lova:Reagent ;
+    rdfs:label "Tris(2-carboxyethyl)phosphine (TCEP)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Sigma-Aldrich" ;
+    lova:reagentFunction "Reducing agent" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/lap> a lova:Reagent ;
+    rdfs:label "Lithium phenyl(2,4,6-trimethylbenzoyl)phosphinate (LAP)" ;
+    lova:reagentRole "photoinitiator" ;
+    lova:concentration "9.90 mM" ;
+    lova:supplier "TCI America" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/span80> a lova:Reagent ;
+    rdfs:label "Span-80" ;
+    lova:reagentRole "surfactant" ;
+    lova:concentration "5% (v/v) in heavy mineral oil / hexane" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/tween80> a lova:Reagent ;
+    rdfs:label "Tween-80" ;
+    lova:reagentRole "surfactant" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/tetra-peg-sh> a lova:Reagent ;
+    rdfs:label "Tetra-PEG-thiol (tetra-PEG-SH, 20,000 Da)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:molecularWeight "20,000 Da" ;
+    lova:supplier "NOF America" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/methyltetrazine-peg4-maleimide> a lova:Reagent ;
+    rdfs:label "Methyltetrazine-PEG4-maleimide" ;
+    lova:reagentRole "crosslinker" ;
+    lova:molecularWeight "514.53 Da" ;
+    lova:supplier "Kerafast" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/hs-peg-sh> a lova:Reagent ;
+    rdfs:label "HS-PEG-SH (3500 Da)" ;
+    lova:reagentRole "other" ;
+    lova:molecularWeight "3500 Da" ;
+    lova:supplier "JenKem Technology USA" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/alexa488-maleimide> a lova:Reagent ;
+    rdfs:label "Alexa Fluor 488 C2 maleimide" ;
+    lova:reagentRole "other" ;
+    lova:molecularWeight "1250 Da" ;
+    lova:supplier "Thermo Fisher Scientific" ;
+    lova:reagentFunction "Fluorescent labeling of microgels" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/rgd-peptide> a lova:Reagent ;
+    rdfs:label "RGD peptide (Ac-RGDSPGERCG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "RGDSPGERCG" ;
+    lova:concentration "1 mM" ;
+    lova:reagentFunction "Cell adhesion" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/ikvav-peptide> a lova:Reagent ;
+    rdfs:label "IKVAV peptide" ;
+    lova:reagentRole "peptide" ;
+    lova:concentration "0.3 mM" ;
+    lova:reagentFunction "Laminin-derived neurite outgrowth/NPC differentiation" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/yigsr-peptide> a lova:Reagent ;
+    rdfs:label "YIGSR peptide" ;
+    lova:reagentRole "peptide" ;
+    lova:concentration "0.048 mM" ;
+    lova:reagentFunction "Laminin-derived cell adhesion/NPC differentiation" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/heparin> a lova:Reagent ;
+    rdfs:label "Heparin sodium salt (14,000 Da)" ;
+    lova:reagentRole "other" ;
+    lova:molecularWeight "14,000 Da" ;
+    lova:supplier "EMD Millipore" ;
+    lova:catalogNumber "375095-500KU" ;
+    lova:reagentFunction "Nanoparticle backbone for SDF-1 growth factor binding" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/dtt> a lova:Reagent ;
+    rdfs:label "Dithiothreitol (DTT)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "VWR" ;
+    lova:catalogNumber "97061-338" ;
+    lova:reagentFunction "Reducing agent" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/aps> a lova:Reagent ;
+    rdfs:label "Ammonium persulfate (APS)" ;
+    lova:reagentRole "initiator" ;
+    lova:supplier "VWR" ;
+    lova:catalogNumber "97064-592" ;
+    lova:reagentFunction "Free radical polymerization initiator" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/temed> a lova:Reagent ;
+    rdfs:label "N,N,N',N'-Tetramethylethylenediamine (TEMED)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "VWR" ;
+    lova:catalogNumber "97064-684" ;
+    lova:reagentFunction "Polymerization accelerator" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/sdf1> a lova:Reagent ;
+    rdfs:label "SDF-1α growth factor" ;
+    lova:reagentRole "other" ;
+    lova:concentration "200 ng per 6 μL scaffold volume" ;
+    lova:reagentFunction "Chemoattractant for NPC/EPC recruitment via CXCR4 signaling" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202302081/cryo-buffer> a lova:Reagent ;
+    rdfs:label "Cryogel buffer (200 mM Tris HCl, 150 mM NaCl, 20 mM CaCl2)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "200 mM Tris HCl, 150 mM NaCl, 20 mM CaCl2" ;
+    lova:reagentFunction "Ice-crystal templating buffer for cryogel formation" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.202302081/void-fraction-analysis> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.202302081/map-scaffold-rgd> ,
+                      <https://lovamap.com/ontology#material/10.1002-adhm.202302081/cryo-map-scaffold-rgd> ;
+    rdfs:label "Percent void volume analysis of MAP vs Cryo-MAP scaffolds" ;
+    lova:experimentCategory "Material characterization" ;
+    lova:experimentType "Void volume fraction (porosity) analysis" ;
+    lova:assayOrMethod "Confocal imaging with dextran labeling and IMARIS surface rendering" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/void-fraction-map> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202302081/void-fraction-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "Void volume fraction - MAP scaffold" ;
+    lova:measurementType "Void volume fraction" ;
+    lova:measurementCategory "Material characterization" ;
+    qudt:numericValue 0.287 ;
+    qudt:unit "fraction" ;
+    lova:stdDev 0.02 ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/void-fraction-cryo> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202302081/void-fraction-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "Void volume fraction - Cryo-MAP scaffold" ;
+    lova:measurementType "Void volume fraction" ;
+    lova:measurementCategory "Material characterization" ;
+    qudt:numericValue 0.4407 ;
+    qudt:unit "fraction" ;
+    lova:stdDev 0.015 ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.202302081/void-fraction-cryo-vs-map> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "Void volume fraction higher in Cryo-MAP vs MAP scaffold" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/void-fraction-cryo> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/void-fraction-map> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.202302081/rheology-frequency-sweep> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.202302081/map-scaffold-rgd> ,
+                      <https://lovamap.com/ontology#material/10.1002-adhm.202302081/cryo-map-scaffold-rgd> ;
+    rdfs:label "Rheological frequency sweep of MAP vs Cryo-MAP scaffolds" ;
+    lova:experimentCategory "Rheological" ;
+    lova:experimentType "Frequency sweep" ;
+    lova:equipment "Physica MCR, Anton Paar" ;
+    lova:frequency "0.5-10 rad/s" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/storage-modulus-map> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202302081/rheology-frequency-sweep> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "Storage modulus - MAP scaffold" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 374.0 ;
+    qudt:unit "Pa" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/storage-modulus-cryo> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202302081/rheology-frequency-sweep> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "Storage modulus - Cryo-MAP scaffold" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 394.0 ;
+    qudt:unit "Pa" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.202302081/storage-modulus-map-vs-cryo> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "Storage modulus no difference between MAP and Cryo-MAP scaffold" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/storage-modulus-map> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/storage-modulus-cryo> ;
+    lova:direction "no difference" ;
+    lova:isSignificant false .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.202302081/compression-testing> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.202302081/map-scaffold-rgd> ,
+                      <https://lovamap.com/ontology#material/10.1002-adhm.202302081/cryo-map-scaffold-rgd> ;
+    rdfs:label "Compression testing of MAP vs Cryo-MAP scaffolds" ;
+    lova:experimentCategory "Mechanical" ;
+    lova:experimentType "Compression" ;
+    lova:equipment "MicroStrain Analyzer" ;
+    lova:strainRate "1 mm/min" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/max-stress-map> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202302081/compression-testing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "Maximum compressive stress - MAP scaffold" ;
+    lova:measurementType "Maximum stress (compressive strength)" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 2350.0 ;
+    qudt:unit "Pa" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/max-stress-cryo> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202302081/compression-testing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "Maximum compressive stress - Cryo-MAP scaffold" ;
+    lova:measurementType "Maximum stress (compressive strength)" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 716.6 ;
+    qudt:unit "Pa" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.202302081/max-stress-map-vs-cryo> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "Maximum stress higher in MAP vs Cryo-MAP scaffold" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/max-stress-map> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/max-stress-cryo> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.202302081/in-vivo-porosity-comparison> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.202302081/map-scaffold-rgd> ,
+                      <https://lovamap.com/ontology#material/10.1002-adhm.202302081/cryo-map-scaffold-rgd> ;
+    rdfs:label "In vivo comparison of MAP vs Cryo-MAP scaffolds after photothrombotic stroke" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immunohistochemistry - in vivo stroke model" ;
+    lova:assayOrMethod "Immunofluorescence (GFAP, Iba1, Glut1, NF200) on 5x5 tile large image scans" ;
+    lova:cellType "Astrocytes, microglia/macrophages, vascular endothelium, neurons" ;
+    lova:cellSource "Mouse brain tissue" ;
+    lova:cultureDuration "10 days post-injection (15 days post-stroke)" ;
+    lova:sampleSize 5 .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/glut1-infarct-map> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202302081/in-vivo-porosity-comparison> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "Glut1+ vessel area in infarct - MAP scaffold" ;
+    lova:measurementType "Glut1+ vessel positive area (%)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.6 ;
+    qudt:unit "%" ;
+    lova:scope "Regional" ;
+    lova:timePoint "10 days post-injection" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/glut1-infarct-cryo> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202302081/in-vivo-porosity-comparison> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "Glut1+ vessel area in infarct - Cryo-MAP scaffold" ;
+    lova:measurementType "Glut1+ vessel positive area (%)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.5 ;
+    qudt:unit "%" ;
+    lova:scope "Regional" ;
+    lova:timePoint "10 days post-injection" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.202302081/glut1-cryo-vs-map> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "Glut1+ vessel infiltration higher in Cryo-MAP vs MAP in infarct" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/glut1-infarct-cryo> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/glut1-infarct-map> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/nf200-infarct-map> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202302081/in-vivo-porosity-comparison> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "NF200+ neuron area in infarct - MAP scaffold" ;
+    lova:measurementType "NF200+ positive area (%)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 6.0 ;
+    qudt:unit "%" ;
+    lova:scope "Regional" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/nf200-infarct-cryo> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202302081/in-vivo-porosity-comparison> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "NF200+ neuron area in infarct - Cryo-MAP scaffold" ;
+    lova:measurementType "NF200+ positive area (%)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 3.5 ;
+    qudt:unit "%" ;
+    lova:scope "Regional" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.202302081/nf200-map-vs-cryo> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "NF200+ positive area lower in Cryo-MAP vs MAP in infarct" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/nf200-infarct-cryo> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/nf200-infarct-map> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/gfap-iba1-ns> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202302081/in-vivo-porosity-comparison> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "GFAP and Iba1 immune response - no significant difference MAP vs Cryo-MAP" ;
+    lova:measurementType "GFAP+/Iba1+ positive area" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "No significant differences between MAP and Cryo-MAP scaffolds" ;
+    lova:isSignificant false ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.202302081/nh-characterization> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.202302081/heparin-nanoparticle> ;
+    rdfs:label "Heparin nanoparticle (nH) and SDF-1 binding characterization" ;
+    lova:experimentCategory "Material characterization" ;
+    lova:experimentType "Nanoparticle characterization" ;
+    lova:assayOrMethod "SEM, DLS, ELISA, release assay" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/nh-avg-diameter-dls> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202302081/nh-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "Average nH diameter (DLS)" ;
+    lova:measurementType "Nanoparticle diameter" ;
+    lova:measurementCategory "Material characterization" ;
+    qudt:numericValue 100.0 ;
+    qudt:unit "nm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/nh-avg-diameter-sem> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202302081/nh-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "Average nH diameter (SEM)" ;
+    lova:measurementType "Nanoparticle diameter" ;
+    lova:measurementCategory "Material characterization" ;
+    qudt:numericValue 109.0 ;
+    qudt:unit "nm" ;
+    lova:stdDev 24.0 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/nh-pdi> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202302081/nh-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "Polydispersity index (PDI) of nH" ;
+    lova:measurementType "Polydispersity index" ;
+    lova:measurementCategory "Material characterization" ;
+    qudt:numericValue 0.23 ;
+    qudt:unit "unitless" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/sdf1-binding-efficiency> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202302081/nh-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "SDF-1 binding efficiency to nH" ;
+    lova:measurementType "SDF-1 binding efficiency" ;
+    lova:measurementCategory "Material characterization" ;
+    qudt:numericValue 85.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/sdf1-nh-ratio> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202302081/nh-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "Ratio of SDF-1 to nH" ;
+    lova:measurementType "SDF-1:nH ratio" ;
+    lova:measurementCategory "Material characterization" ;
+    qudt:numericValue 9.90 ;
+    qudt:unit "ng SDF-1/ng nH" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/sdf1-nh-ratio-alt> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202302081/nh-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "SDF-1 bound per heparin nanoparticle (alternate measurement)" ;
+    lova:measurementType "SDF-1:nH ratio" ;
+    lova:measurementCategory "Material characterization" ;
+    qudt:numericValue 19.7 ;
+    qudt:unit "ng SDF-1/ng heparin-NB nanoparticle" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/sdf1-release-assay> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202302081/nh-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "SDF-1 nH release from MAP scaffold over 11 days" ;
+    lova:measurementType "SDF-1 release" ;
+    lova:measurementCategory "Material characterization" ;
+    lova:valueString "No release observed over 11 days, indicating stable covalent binding" ;
+    lova:timePoint "11 days" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.202302081/cxcr4-rtpcr> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.202302081/heparin-nanoparticle> ;
+    rdfs:label "CXCR4 gene expression in NPCs following SDF-1 exposure" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Gene expression (RT-PCR)" ;
+    lova:assayOrMethod "RT-PCR (TaqMan)" ;
+    lova:cellType "Neural progenitor cells (NPCs), P2" ;
+    lova:cellSource "NPCs gifted from Dr. Chay Kuo's lab, Duke University" ;
+    lova:cultureDuration "6, 24, 48 hours" ;
+    lova:cultureMedium "N5 media with 20 ng/ml EGF/FGF" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/cxcr4-200ng-6h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202302081/cxcr4-rtpcr> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "CXCR4 gene expression after 200 ng SDF-1 exposure at 6 hours" ;
+    lova:measurementType "CXCR4 gene expression (normalized)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "More than 2-fold increase compared to housekeeping genes" ;
+    lova:comparisonGroup "Housekeeping genes (GAPDH, 18S rRNA)" ;
+    lova:timePoint "6 hours" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.202302081/npc-spreading-assay> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.202302081/heparin-nanoparticle> ;
+    rdfs:label "NPC spreading assay in MAP scaffolds with SDF-1 nH" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell spreading assay" ;
+    lova:assayOrMethod "Live/dead staining (Calcein AM/EthD-III), confocal imaging, Fiji quantification" ;
+    lova:cellType "Neural progenitor cells (NPCs)" ;
+    lova:seedingDensity "10,000 cells/μL microgel" ;
+    lova:cultureDuration "4 days" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/spreading-2hr-untreated> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202302081/npc-spreading-assay> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "NPC total cell area at 2 hours - Untreated" ;
+    lova:measurementType "Total cell area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 10000.0 ;
+    qudt:unit "μm²" ;
+    lova:timePoint "2 hours" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/spreading-2hr-soluble-sdf1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202302081/npc-spreading-assay> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "NPC total cell area at 2 hours - Soluble SDF-1" ;
+    lova:measurementType "Total cell area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 17000.0 ;
+    qudt:unit "μm²" ;
+    lova:timePoint "2 hours" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/spreading-2hr-new-sdf1nh> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202302081/npc-spreading-assay> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "NPC total cell area at 2 hours - New SDF-1 nH" ;
+    lova:measurementType "Total cell area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 18000.0 ;
+    qudt:unit "μm²" ;
+    lova:timePoint "2 hours" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.202302081/spreading-2hr-newsdf1nh-vs-soluble> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "NPC spreading at 2 hours higher in New SDF-1 nH vs Soluble SDF-1" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/spreading-2hr-new-sdf1nh> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/spreading-2hr-soluble-sdf1> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.202302081/in-vivo-sox2-tuj1> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.202302081/cryo-scaffold-ikvav-yigsr-rgd> ,
+                      <https://lovamap.com/ontology#material/10.1002-adhm.202302081/cryo-scaffold-sdf1nh> ;
+    rdfs:label "SOX2+ and Tuj1+ cell recruitment in Cryo scaffold vs Cryo scaffold SDF-1 nH" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immunohistochemistry - NPC/neuronal marker staining" ;
+    lova:assayOrMethod "Immunofluorescence (SOX2, Tuj1), large image scan quantification" ;
+    lova:cellType "SOX2+ neural progenitor cells; Tuj1+ immature neurons" ;
+    lova:cultureDuration "10 days post-injection (15 days post-stroke)" ;
+    lova:sampleSize 5 .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/sox2-cryo> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202302081/in-vivo-sox2-tuj1> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "%SOX2+ cells - Cryo scaffold" ;
+    lova:measurementType "Percent SOX2+ cells" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 13.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "10 days post-injection" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/sox2-sdf1nh> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202302081/in-vivo-sox2-tuj1> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "%SOX2+ cells - Cryo scaffold SDF-1 nH" ;
+    lova:measurementType "Percent SOX2+ cells" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 36.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "10 days post-injection" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.202302081/sox2-sdf1nh-vs-cryo> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "SOX2+ cells higher in Cryo scaffold SDF-1 nH vs Cryo scaffold" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/sox2-sdf1nh> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/sox2-cryo> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/tuj1-cryo> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202302081/in-vivo-sox2-tuj1> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "Tuj1+ percent area - Cryo scaffold" ;
+    lova:measurementType "Tuj1+ positive area (%)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 4.3 ;
+    qudt:unit "%" ;
+    lova:timePoint "10 days post-injection" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/tuj1-sdf1nh> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202302081/in-vivo-sox2-tuj1> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "Tuj1+ percent area - Cryo scaffold SDF-1 nH" ;
+    lova:measurementType "Tuj1+ positive area (%)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 10.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "10 days post-injection" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.202302081/tuj1-sdf1nh-vs-cryo> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "Tuj1+ positive area higher in Cryo scaffold SDF-1 nH vs Cryo scaffold" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/tuj1-sdf1nh> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/tuj1-cryo> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.202302081/in-vivo-perfused-vasculature> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.202302081/cryo-scaffold-ikvav-yigsr-rgd> ,
+                      <https://lovamap.com/ontology#material/10.1002-adhm.202302081/cryo-scaffold-sdf1nh> ;
+    rdfs:label "Perfused vasculature and Nestin+ cell analysis in Cryo scaffold vs Cryo scaffold SDF-1 nH" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Vascular perfusion analysis (tomato lectin)" ;
+    lova:assayOrMethod "Tomato-lectin perfusion, immunofluorescence vessel tracing" ;
+    lova:cellType "Nestin+ cells, vascular endothelium" ;
+    lova:cultureDuration "10 days post-injection (15 days post-stroke)" ;
+    lova:sampleSize 5 .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/perfused-vessel-infarct-cryo> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202302081/in-vivo-perfused-vasculature> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "Perfused vessel area in infarct - Cryo scaffold" ;
+    lova:measurementType "Perfused vessel area (%)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.0 ;
+    qudt:unit "%" ;
+    lova:scope "Regional" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/perfused-vessel-infarct-sdf1nh> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202302081/in-vivo-perfused-vasculature> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "Perfused vessel area in infarct - Cryo scaffold SDF-1 nH" ;
+    lova:measurementType "Perfused vessel area (%)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 28.0 ;
+    qudt:unit "%" ;
+    lova:scope "Regional" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.202302081/perfused-vessel-infarct-sdf1nh-vs-cryo> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "Perfused vessel area in infarct higher in Cryo scaffold SDF-1 nH vs Cryo scaffold" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/perfused-vessel-infarct-sdf1nh> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/perfused-vessel-infarct-cryo> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/furthest-vessel-infiltration-sdf1nh> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202302081/in-vivo-perfused-vasculature> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "Furthest perfused vessel infiltration - Cryo scaffold SDF-1 nH" ;
+    lova:measurementType "Furthest perfused vessel infiltration" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 500.0 ;
+    qudt:unit "μm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/furthest-vessel-infiltration-norm-sdf1nh> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202302081/in-vivo-perfused-vasculature> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "Furthest perfused vessel infiltration normalized to infarct length - Cryo scaffold SDF-1 nH" ;
+    lova:measurementType "Furthest perfused vessel infiltration (% of infarct distance)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 45.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/nestin-area-infarct-cryo> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202302081/in-vivo-perfused-vasculature> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "Nestin+ area in infarct - Cryo scaffold" ;
+    lova:measurementType "Nestin+ positive area (%)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 4.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/nestin-area-infarct-sdf1nh> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202302081/in-vivo-perfused-vasculature> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "Nestin+ area in infarct - Cryo scaffold SDF-1 nH" ;
+    lova:measurementType "Nestin+ positive area (%)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 12.0 ;
+    qudt:unit "%" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.202302081/nestin-area-sdf1nh-vs-cryo> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "Nestin+ area in infarct higher in Cryo scaffold SDF-1 nH vs Cryo scaffold" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/nestin-area-infarct-sdf1nh> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/nestin-area-infarct-cryo> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/total-vessel-length-cryo> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202302081/in-vivo-perfused-vasculature> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "Total perfused vessel length - Cryo scaffold" ;
+    lova:measurementType "Total perfused vessel length" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 400.0 ;
+    qudt:unit "μm" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/total-vessel-length-sdf1nh> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202302081/in-vivo-perfused-vasculature> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "Total perfused vessel length - Cryo scaffold SDF-1 nH" ;
+    lova:measurementType "Total perfused vessel length" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2500.0 ;
+    qudt:unit "μm" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.202302081/total-vessel-length-sdf1nh-vs-cryo> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "Total perfused vessel length higher in Cryo scaffold SDF-1 nH vs Cryo scaffold" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/total-vessel-length-sdf1nh> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/total-vessel-length-cryo> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/branches-cryo> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202302081/in-vivo-perfused-vasculature> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "Number of vessel branches per area - Cryo scaffold" ;
+    lova:measurementType "Number of branches per area (%)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/branches-sdf1nh> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202302081/in-vivo-perfused-vasculature> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "Number of vessel branches per area - Cryo scaffold SDF-1 nH" ;
+    lova:measurementType "Number of branches per area (%)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 9.0 ;
+    qudt:unit "%" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.202302081/branches-sdf1nh-vs-cryo> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "Number of vessel branches higher in Cryo scaffold SDF-1 nH vs Cryo scaffold" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/branches-sdf1nh> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/branches-cryo> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.202302081/in-vivo-glial-scar-sdf1> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.202302081/cryo-scaffold-ikvav-yigsr-rgd> ,
+                      <https://lovamap.com/ontology#material/10.1002-adhm.202302081/cryo-scaffold-sdf1nh> ;
+    rdfs:label "Glial scar and inflammatory response analysis - Cryo scaffold vs Cryo scaffold SDF-1 nH" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immunohistochemistry - glial scar/inflammatory markers" ;
+    lova:assayOrMethod "Immunofluorescence (GFAP, Iba1)" ;
+    lova:cellType "Astrocytes (GFAP+), microglia/macrophages (Iba1+)" ;
+    lova:cultureDuration "10 days post-injection (15 days post-stroke)" ;
+    lova:sampleSize 5 .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/scar-thickness-cryo> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202302081/in-vivo-glial-scar-sdf1> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "Astrocyte scar thickness - Cryo scaffold" ;
+    lova:measurementType "GFAP+ scar thickness" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 37.0 ;
+    qudt:unit "μm" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/scar-thickness-sdf1nh> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202302081/in-vivo-glial-scar-sdf1> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "Astrocyte scar thickness - Cryo scaffold SDF-1 nH" ;
+    lova:measurementType "GFAP+ scar thickness" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 68.0 ;
+    qudt:unit "μm" ;
+    lova:isSignificant false ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.202302081/scar-thickness-sdf1nh-vs-cryo> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "No difference in GFAP+ scar thickness between Cryo scaffold and Cryo scaffold SDF-1 nH" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/scar-thickness-sdf1nh> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/scar-thickness-cryo> ;
+    lova:direction "no difference" ;
+    lova:isSignificant false .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/iba1-area-cryo> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202302081/in-vivo-glial-scar-sdf1> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "Iba1+ percent area - Cryo scaffold" ;
+    lova:measurementType "Iba1+ positive area (%)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 30.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/iba1-area-sdf1nh> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202302081/in-vivo-glial-scar-sdf1> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "Iba1+ percent area - Cryo scaffold SDF-1 nH" ;
+    lova:measurementType "Iba1+ positive area (%)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 30.0 ;
+    qudt:unit "%" ;
+    lova:isSignificant false ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.202302081/iba1-area-sdf1nh-vs-cryo> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202302081> ;
+    rdfs:label "No difference in Iba1+ percent area between Cryo scaffold and Cryo scaffold SDF-1 nH" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/iba1-area-sdf1nh> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.202302081/iba1-area-cryo> ;
+    lova:direction "no difference" ;
+    lova:isSignificant false .

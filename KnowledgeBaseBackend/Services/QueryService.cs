@@ -31,6 +31,8 @@ public sealed class QueryService
 		PREFIX rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 		PREFIX xsd:    <http://www.w3.org/2001/XMLSchema#>
 		PREFIX text:   <http://jena.apache.org/text#>
+		PREFIX bibo:   <http://purl.org/ontology/bibo/>
+		PREFIX qudt:   <http://qudt.org/schema/qudt/>
 		""";
 
 	// ── Public API ──
@@ -422,62 +424,84 @@ public sealed class QueryService
 		PREFIX rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 		PREFIX xsd:    <http://www.w3.org/2001/XMLSchema#>
 		PREFIX text:   <http://jena.apache.org/text#>
+		PREFIX bibo:   <http://purl.org/ontology/bibo/>
+		PREFIX qudt:   <http://qudt.org/schema/qudt/>
 
 		## Ontology Schema
 
 		### Classes and their properties:
 
-		**lova:Paper**
+		**bibo:AcademicArticle** (Paper)
 		- dc:title (string) — paper title
 		- dc:identifier (string) — DOI
 		- dc:date (xsd:gYear) — publication year
-		- schema:isPartOf → lova:Journal
-		- dc:creator → lova:Author (multiple)
-		- lova:paperType (string) — e.g. "Research Article"
+		- schema:isPartOf → bibo:Journal
+		- dc:creator → foaf:Person (multiple)
+		- dc:type (string) — e.g. "Research Article"
+		- dc:bibliographicCitation (string) — formatted citation
 		- lova:focusMaterial (string) — description of focus material
 		- lova:hasLabData (boolean)
 
-		**lova:Author**
+		**foaf:Person** (Author)
 		- foaf:familyName, foaf:givenName, foaf:name (strings)
 		- schema:affiliation (string)
 
-		**lova:Journal**
+		**bibo:Journal**
 		- dc:title (string)
+		- bibo:issn (string)
 
 		**lova:Material**
 		- rdfs:label (string)
-		- lova:describedIn → lova:Paper
+		- dc:source → bibo:AcademicArticle
 		- lova:particleShape, lova:particleMaterial (strings)
 		- lova:particleSizeMin, lova:particleSizeMax (doubles, in units of lova:particleSizeUnit)
 		- lova:particleSizeUnit (string, e.g. "μm")
 		- lova:sizeDistribution, lova:stiffnessQualitative, lova:packingConfiguration, lova:reportedPoreSize (strings)
+		- lova:stiffnessValue (double), lova:stiffnessUnit (string)
+		- lova:surfaceModification (string)
 		- lova:hasFabricationMethod → lova:FabricationMethod
 		- lova:hasGeometryProfile → lova:GeometryProfile
 
 		**lova:Experiment**
 		- rdfs:label (string)
-		- lova:describedIn → lova:Paper
+		- dc:source → bibo:AcademicArticle
 		- lova:experimentCategory, lova:experimentType, lova:assayOrMethod (strings)
 		- lova:cellType, lova:cellSource, lova:cultureDuration (strings)
 		- lova:equipment, lova:temperature (strings)
+		- lova:seedingDensity (string), lova:cultureMedium (string), lova:sampleSize (integer)
 		- lova:usedMaterial → lova:Material (multiple)
 
 		**lova:Outcome**
 		- rdfs:label (string)
-		- lova:describedIn → lova:Paper
+		- dc:source → bibo:AcademicArticle
 		- lova:fromExperiment → lova:Experiment
 		- lova:measurementCategory, lova:measurementType (strings)
-		- lova:value (double), lova:unit (string)
+		- qudt:numericValue (double), qudt:unit (string)
+		- lova:valueString (string) — text representation of value
 		- lova:scope, lova:direction, lova:comparedTo, lova:dataSource (strings)
-		- lova:significant (boolean)
+		- lova:isSignificant (boolean)
+		- lova:comparisonGroup (string), lova:timePoint (string), lova:stdDev (double)
 
 		**lova:FabricationMethod**
 		- rdfs:label (string)
-		- lova:describedIn → lova:Paper
+		- dc:source → bibo:AcademicArticle
 		- lova:chemistry, lova:manufacturingMethod (strings)
 		- lova:annealingChemistry, lova:annealingConditions (strings)
-		- lova:monomer, lova:crosslinker, lova:surfactant, lova:enzyme (strings)
-		- lova:peptide (string, multiple), lova:additionalReagent (string, multiple)
+		- lova:hasReagent → lova:Reagent (multiple)
+
+		**lova:Reagent**
+		- rdfs:label (string)
+		- lova:reagentRole (string) — e.g. "monomer", "crosslinker", "surfactant"
+		- lova:reagentFunction (string)
+		- lova:concentration (string), lova:supplier (string)
+		- lova:molecularWeight (string), lova:sequence (string)
+
+		**lova:ComparisonResult**
+		- rdfs:label (string)
+		- dc:source → bibo:AcademicArticle
+		- lova:outcomeA → lova:Outcome, lova:outcomeB → lova:Outcome
+		- lova:direction (string) — e.g. "increase", "decrease"
+		- lova:isSignificant (boolean), lova:pValue (double), lova:foldChange (double)
 
 		**lova:GeometryProfile**
 		- rdfs:label (string)
@@ -488,13 +512,17 @@ public sealed class QueryService
 		## Key Relationships
 		- Paper → Author: dc:creator
 		- Paper → Journal: schema:isPartOf
-		- Material → Paper: lova:describedIn
+		- Material → Paper: dc:source
 		- Material → FabricationMethod: lova:hasFabricationMethod
 		- Material → GeometryProfile: lova:hasGeometryProfile
-		- Experiment → Paper: lova:describedIn
+		- Experiment → Paper: dc:source
 		- Experiment → Material: lova:usedMaterial
-		- Outcome → Paper: lova:describedIn
+		- Outcome → Paper: dc:source
 		- Outcome → Experiment: lova:fromExperiment
+		- FabricationMethod → Paper: dc:source
+		- FabricationMethod → Reagent: lova:hasReagent
+		- ComparisonResult → Paper: dc:source
+		- ComparisonResult → Outcome: lova:outcomeA, lova:outcomeB
 
 		## Full-Text Search
 		The knowledge base has Lucene full-text indexing enabled on key properties.
@@ -514,6 +542,9 @@ public sealed class QueryService
 		- "particleMaterial" → lova:particleMaterial
 		- "focusMaterial" → lova:focusMaterial
 		- "assayOrMethod" → lova:assayOrMethod
+		- "reagentRole" → lova:reagentRole
+		- "reagentFunction" → lova:reagentFunction
+		- "direction" → lova:direction
 
 		Syntax: (?subject ?score) text:query (property "search terms") .
 		- Use * for wildcard: "viabil*" matches "viability"
@@ -527,10 +558,10 @@ public sealed class QueryService
 
 		Q: "List all papers"
 		```sparql
-		PREFIX lova: <https://lovamap.com/ontology#>
+		PREFIX bibo: <http://purl.org/ontology/bibo/>
 		PREFIX dc:   <http://purl.org/dc/terms/>
 		SELECT ?paper ?title ?doi ?year WHERE {
-		  ?paper a lova:Paper ;
+		  ?paper a bibo:AcademicArticle ;
 		         dc:title ?title ;
 		         dc:identifier ?doi .
 		  OPTIONAL { ?paper dc:date ?year }
@@ -543,11 +574,12 @@ public sealed class QueryService
 		PREFIX lova: <https://lovamap.com/ontology#>
 		PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 		PREFIX text: <http://jena.apache.org/text#>
+		PREFIX qudt: <http://qudt.org/schema/qudt/>
 		SELECT ?material ?materialLabel ?outcomeLabel ?value ?unit WHERE {
 		  (?outcome ?score) text:query (lova:measurementType "viabil*") .
 		  ?outcome a lova:Outcome ;
-		           lova:value ?value ;
-		           lova:unit ?unit ;
+		           qudt:numericValue ?value ;
+		           qudt:unit ?unit ;
 		           rdfs:label ?outcomeLabel ;
 		           lova:fromExperiment ?exp .
 		  ?exp lova:usedMaterial ?material .
@@ -577,6 +609,7 @@ public sealed class QueryService
 		PREFIX lova: <https://lovamap.com/ontology#>
 		PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 		PREFIX text: <http://jena.apache.org/text#>
+		PREFIX qudt: <http://qudt.org/schema/qudt/>
 		SELECT ?exp ?expLabel ?cellType ?outcome ?outcomeLabel ?value ?unit WHERE {
 		  (?exp ?score) text:query (lova:cellType "MC3T3*") .
 		  ?exp a lova:Experiment ;
@@ -586,8 +619,8 @@ public sealed class QueryService
 		    ?outcome a lova:Outcome ;
 		             lova:fromExperiment ?exp ;
 		             rdfs:label ?outcomeLabel .
-		    OPTIONAL { ?outcome lova:value ?value }
-		    OPTIONAL { ?outcome lova:unit ?unit }
+		    OPTIONAL { ?outcome qudt:numericValue ?value }
+		    OPTIONAL { ?outcome qudt:unit ?unit }
 		  }
 		}
 		ORDER BY DESC(?score)

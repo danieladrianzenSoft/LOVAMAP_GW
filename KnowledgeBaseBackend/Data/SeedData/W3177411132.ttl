@@ -1,0 +1,957 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> a bibo:AcademicArticle ;
+    rdfs:label "Escuin-Ordinas et al., 2021 — Topical BRAF inhibitor wound healing" ;
+    dc:title "Wound healing with topical BRAF inhibitor therapy in a diabetic model suggests tissue regenerative effects" ;
+    dc:identifier "10.1371/journal.pone.0252597" ;
+    dc:date "2021"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/plos-one> ;
+    dc:creator <https://lovamap.com/ontology#author/escuin-ordinas-helena> ,
+               <https://lovamap.com/ontology#author/liu-yining> ,
+               <https://lovamap.com/ontology#author/sun-lu> ,
+               <https://lovamap.com/ontology#author/hugo-willy> ,
+               <https://lovamap.com/ontology#author/dimatteo-robert> ,
+               <https://lovamap.com/ontology#author/huang-rong> ,
+               <https://lovamap.com/ontology#author/krystofinski-paige> ,
+               <https://lovamap.com/ontology#author/azhdam-ariel> ,
+               <https://lovamap.com/ontology#author/lee-jordan> ,
+               <https://lovamap.com/ontology#author/comin-anduix-begona> ,
+               <https://lovamap.com/ontology#author/cochran-alistair> ,
+               <https://lovamap.com/ontology#author/lo-roger> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ,
+               <https://lovamap.com/ontology#author/scumpia-philip> ,
+               <https://lovamap.com/ontology#author/ribas-antoni> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/escuin-ordinas-helena>
+                      <https://lovamap.com/ontology#author/liu-yining>
+                      <https://lovamap.com/ontology#author/sun-lu>
+                      <https://lovamap.com/ontology#author/hugo-willy>
+                      <https://lovamap.com/ontology#author/dimatteo-robert>
+                      <https://lovamap.com/ontology#author/huang-rong>
+                      <https://lovamap.com/ontology#author/krystofinski-paige>
+                      <https://lovamap.com/ontology#author/azhdam-ariel>
+                      <https://lovamap.com/ontology#author/lee-jordan>
+                      <https://lovamap.com/ontology#author/comin-anduix-begona>
+                      <https://lovamap.com/ontology#author/cochran-alistair>
+                      <https://lovamap.com/ontology#author/lo-roger>
+                      <https://lovamap.com/ontology#author/segura-tatiana>
+                      <https://lovamap.com/ontology#author/scumpia-philip>
+                      <https://lovamap.com/ontology#author/ribas-antoni> ) ;
+    dc:bibliographicCitation "Escuin-Ordinas et al., 2021" ;
+    lova:focusMaterial "Topical vemurafenib (BRAF inhibitor) treatment of excisional and incisional wounds in db/db diabetic, Balb/c, and C3H mice, and HEKa human keratinocytes in vitro" .
+
+<https://lovamap.com/ontology#author/escuin-ordinas-helena> a foaf:Person ;
+    foaf:familyName "Escuin-Ordinas" ; foaf:givenName "Helena" ; foaf:name "Helena Escuin-Ordinas" .
+<https://lovamap.com/ontology#author/liu-yining> a foaf:Person ;
+    foaf:familyName "Liu" ; foaf:givenName "Yining" ; foaf:name "Yining Liu" .
+<https://lovamap.com/ontology#author/sun-lu> a foaf:Person ;
+    foaf:familyName "Sun" ; foaf:givenName "Lu" ; foaf:name "Lu Sun" .
+<https://lovamap.com/ontology#author/hugo-willy> a foaf:Person ;
+    foaf:familyName "Hugo" ; foaf:givenName "Willy" ; foaf:name "Willy Hugo" .
+<https://lovamap.com/ontology#author/dimatteo-robert> a foaf:Person ;
+    foaf:familyName "Dimatteo" ; foaf:givenName "Robert" ; foaf:name "Robert Dimatteo" .
+<https://lovamap.com/ontology#author/huang-rong> a foaf:Person ;
+    foaf:familyName "Huang" ; foaf:givenName "Rong" ; foaf:name "Rong Huang" .
+<https://lovamap.com/ontology#author/krystofinski-paige> a foaf:Person ;
+    foaf:familyName "Krystofinski" ; foaf:givenName "Paige E." ; foaf:name "Paige E. Krystofinski" .
+<https://lovamap.com/ontology#author/azhdam-ariel> a foaf:Person ;
+    foaf:familyName "Azhdam" ; foaf:givenName "Ariel M." ; foaf:name "Ariel M. Azhdam" .
+<https://lovamap.com/ontology#author/lee-jordan> a foaf:Person ;
+    foaf:familyName "Lee" ; foaf:givenName "Jordan J." ; foaf:name "Jordan J. Lee" .
+<https://lovamap.com/ontology#author/comin-anduix-begona> a foaf:Person ;
+    foaf:familyName "Comín-Anduix" ; foaf:givenName "Begoña" ; foaf:name "Begoña Comín-Anduix" .
+<https://lovamap.com/ontology#author/cochran-alistair> a foaf:Person ;
+    foaf:familyName "Cochran" ; foaf:givenName "Alistair J." ; foaf:name "Alistair J. Cochran" .
+<https://lovamap.com/ontology#author/lo-roger> a foaf:Person ;
+    foaf:familyName "Lo" ; foaf:givenName "Roger S." ; foaf:name "Roger S. Lo" .
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ; foaf:givenName "Tatiana" ; foaf:name "Tatiana Segura" .
+<https://lovamap.com/ontology#author/scumpia-philip> a foaf:Person ;
+    foaf:familyName "Scumpia" ; foaf:givenName "Philip O." ; foaf:name "Philip O. Scumpia" .
+<https://lovamap.com/ontology#author/ribas-antoni> a foaf:Person ;
+    foaf:familyName "Ribas" ; foaf:givenName "Antoni" ; foaf:name "Antoni Ribas" .
+
+<https://lovamap.com/ontology#journal/plos-one> a bibo:Journal ;
+    dc:title "PLoS ONE" ;
+    bibo:issn "1932-6203" .
+
+<https://lovamap.com/ontology#material/10.1371-journal.pone.0252597/dbdb-wound-model> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "db/db diabetic mouse excisional splinted wound model" ;
+    lova:scaffoldDimensions "6-mm round excisional wound with 8-mm splinting ring window" .
+
+<https://lovamap.com/ontology#material/10.1371-journal.pone.0252597/balbc-wound-model> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "Balb/c non-diabetic mouse excisional splinted wound model" ;
+    lova:scaffoldDimensions "6-mm round excisional wound with splinting ring" .
+
+<https://lovamap.com/ontology#material/10.1371-journal.pone.0252597/c3h-incisional-model> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "C3Hf/Kam (H2-k) mouse full-thickness incisional wound model" ;
+    lova:scaffoldDimensions "Full-thickness incisional wound ~2.5 cm long" .
+
+<https://lovamap.com/ontology#material/10.1371-journal.pone.0252597/heka-keratinocytes> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "Human adult epidermal keratinocytes (HEKa)" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1371-journal.pone.0252597/dbdb-topical-treatment> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "Topical vemurafenib treatment protocol in db/db excisional wound model" ;
+    lova:manufacturingMethod "Topical application to wound before suturing splinting rings; reapplied on days 2 and 4" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1371-journal.pone.0252597/vemurafenib> ,
+                    <https://lovamap.com/ontology#reagent/10.1371-journal.pone.0252597/dmso> ,
+                    <https://lovamap.com/ontology#reagent/10.1371-journal.pone.0252597/buprenorphine> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1371-journal.pone.0252597/c3h-topical-treatment> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "Topical vemurafenib and/or trametinib treatment protocol in C3H incisional wound model" ;
+    lova:manufacturingMethod "Topical application to wound site on days 2, 4, 6, 8, 10 and 12 after clip removal" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1371-journal.pone.0252597/vemurafenib> ,
+                    <https://lovamap.com/ontology#reagent/10.1371-journal.pone.0252597/trametinib> ,
+                    <https://lovamap.com/ontology#reagent/10.1371-journal.pone.0252597/dmso> .
+
+<https://lovamap.com/ontology#reagent/10.1371-journal.pone.0252597/vemurafenib> a lova:Reagent ;
+    rdfs:label "Vemurafenib (Zelboraf)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "1.5 μM (in vitro HEKa treatment)" ;
+    lova:concentration "0.1 mg/μl, 20 μl applied topically (db/db excisional model)" ;
+    lova:concentration "40 μg/μl, 50 μl applied topically; 2 mg per application (C3H incisional model)" ;
+    lova:supplier "Genentech" ;
+    lova:catalogNumber "Zelboraf" ;
+    lova:reagentFunction "V600-mutant specific BRAF inhibitor; induces paradoxical MAPK (MEK/ERK) activation to accelerate wound healing and hair follicle regeneration" .
+
+<https://lovamap.com/ontology#reagent/10.1371-journal.pone.0252597/trametinib> a lova:Reagent ;
+    rdfs:label "Trametinib" ;
+    lova:reagentRole "other" ;
+    lova:concentration "0.2 mg per topical application" ;
+    lova:supplier "Genentech" ;
+    lova:reagentFunction "MEK inhibitor; blocks downstream MAPK signaling, prevents hair follicle formation induced by vemurafenib" .
+
+<https://lovamap.com/ontology#reagent/10.1371-journal.pone.0252597/dmso> a lova:Reagent ;
+    rdfs:label "Dimethylsulfoxide (DMSO)" ;
+    lova:reagentRole "solvent" ;
+    lova:supplier "Fisher Scientific" ;
+    lova:reagentFunction "Vehicle control / carrier solvent for topical drug application" .
+
+<https://lovamap.com/ontology#reagent/10.1371-journal.pone.0252597/buprenorphine> a lova:Reagent ;
+    rdfs:label "Buprenorphine" ;
+    lova:reagentRole "other" ;
+    lova:concentration "2.5 mg/kg subcutaneous" ;
+    lova:reagentFunction "Post-surgical analgesia" .
+
+<https://lovamap.com/ontology#experiment/10.1371-journal.pone.0252597/western-blot-heka> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1371-journal.pone.0252597/heka-keratinocytes> ;
+    rdfs:label "Western blot of HEKa cells treated with vemurafenib or vehicle" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Western blot" ;
+    lova:assayOrMethod "Western blotting with ECL-Plus detection" ;
+    lova:cellType "Human adult epidermal keratinocytes (HEKa)" ;
+    lova:cellSource "Human epidermis" .
+
+<https://lovamap.com/ontology#experiment/10.1371-journal.pone.0252597/dbdb-wound-closure-d7> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1371-journal.pone.0252597/dbdb-wound-model> ;
+    rdfs:label "db/db excisional wound closure and pERK/Ki67 staining at Day 7" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Wound healing assay" ;
+    lova:assayOrMethod "Wound closure scoring; IHC pERK and Ki67 with HALO digital pathology" ;
+    lova:timePoint "Day 7" ;
+    lova:sampleSize 6 .
+
+<https://lovamap.com/ontology#experiment/10.1371-journal.pone.0252597/dbdb-wound-closure-d16> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1371-journal.pone.0252597/dbdb-wound-model> ;
+    rdfs:label "db/db excisional wound thickness, pERK/Ki67 staining at Day 16" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Wound healing assay" ;
+    lova:assayOrMethod "Skin thickness measurement; IHC pERK and Ki67" ;
+    lova:timePoint "Day 16" ;
+    lova:sampleSize 5 .
+
+<https://lovamap.com/ontology#experiment/10.1371-journal.pone.0252597/dbdb-rnaseq-d16> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1371-journal.pone.0252597/dbdb-wound-model> ;
+    rdfs:label "RNAseq of db/db wounds at Day 16" ;
+    lova:experimentCategory "Transcriptomic" ;
+    lova:experimentType "RNA sequencing" ;
+    lova:assayOrMethod "Illumina HiSeq3000, HISAT2 alignment, htseq-count, DESeq2 differential expression, ENRICHR gene set enrichment" ;
+    lova:timePoint "Day 16" .
+
+<https://lovamap.com/ontology#experiment/10.1371-journal.pone.0252597/dbdb-hair-follicle-d16> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1371-journal.pone.0252597/dbdb-wound-model> ;
+    rdfs:label "Hair follicle regeneration quantification in db/db wounds at Day 16" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Histological quantification" ;
+    lova:assayOrMethod "H&E hair follicle counting, Sox-9 IHC, CD34/K15 immunofluorescence with HALO software" ;
+    lova:timePoint "Day 16" ;
+    lova:sampleSize 6 .
+
+<https://lovamap.com/ontology#experiment/10.1371-journal.pone.0252597/balbc-hair-follicle-d14> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1371-journal.pone.0252597/balbc-wound-model> ;
+    rdfs:label "Hair follicle regeneration quantification in Balb/c wounds at Day 14" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Histological quantification" ;
+    lova:assayOrMethod "H&E hair follicle counting, Sox-9 IHC, CD34/K15 immunofluorescence" ;
+    lova:timePoint "Day 14" ;
+    lova:sampleSize 4 .
+
+<https://lovamap.com/ontology#experiment/10.1371-journal.pone.0252597/fzd7-staining-d16> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1371-journal.pone.0252597/dbdb-wound-model> ,
+                      <https://lovamap.com/ontology#material/10.1371-journal.pone.0252597/balbc-wound-model> ;
+    rdfs:label "Frizzled-7 (FZD7) immunohistochemistry in db/db and Balb/c wounds at Day 16" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "IHC quantification" ;
+    lova:assayOrMethod "Frizzled-7 IHC with HALO software" ;
+    lova:timePoint "Day 16" ;
+    lova:sampleSize 4 .
+
+<https://lovamap.com/ontology#experiment/10.1371-journal.pone.0252597/c3h-wnt-signaling-d6> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1371-journal.pone.0252597/c3h-incisional-model> ;
+    rdfs:label "Sox-9, β-catenin, active β-catenin and TCF1/TCF7 IHC in C3H incisional wounds at Day 6 (vehicle, VEM, VEM+trametinib, trametinib)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "IHC quantification" ;
+    lova:assayOrMethod "Sox-9, β-catenin, active β-catenin, TCF1/TCF7 IHC with HALO software" ;
+    lova:timePoint "Day 6" ;
+    lova:sampleSize 4 .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/wound-closure-vehicle-d7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0252597/dbdb-wound-closure-d7> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "Wound closure score, vehicle, Day 7" ;
+    lova:measurementType "Wound closure score" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.3 ;
+    qudt:unit "score (0-4 scale)" ;
+    lova:sampleSize 6 ;
+    lova:timePoint "Day 7" ;
+    lova:comparisonGroup "vemurafenib-treated wounds" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/wound-closure-vem-d7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0252597/dbdb-wound-closure-d7> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "Wound closure score, vemurafenib, Day 7" ;
+    lova:measurementType "Wound closure score" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.7 ;
+    qudt:unit "score (0-4 scale)" ;
+    lova:sampleSize 6 ;
+    lova:pValue 0.04 ;
+    lova:isSignificant true ;
+    lova:timePoint "Day 7" ;
+    lova:comparisonGroup "vehicle-treated wounds" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1371-journal.pone.0252597/wound-closure-d7> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "Wound closure score higher in vemurafenib vs vehicle at Day 7" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/wound-closure-vem-d7> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/wound-closure-vehicle-d7> ;
+    lova:direction "higher" ;
+    lova:pValue 0.04 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/perk-vehicle-d7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0252597/dbdb-wound-closure-d7> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "pERK+ cells, vehicle, Day 7" ;
+    lova:measurementType "pERK+ cells" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 80.0 ;
+    qudt:unit "cells" ;
+    lova:sampleSize 6 ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/perk-vem-d7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0252597/dbdb-wound-closure-d7> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "pERK+ cells, vemurafenib, Day 7" ;
+    lova:measurementType "pERK+ cells" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 400.0 ;
+    qudt:unit "cells" ;
+    lova:sampleSize 6 ;
+    lova:pValue 0.01 ;
+    lova:isSignificant true ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1371-journal.pone.0252597/perk-d7> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "pERK+ cells higher in vemurafenib vs vehicle at Day 7" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/perk-vem-d7> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/perk-vehicle-d7> ;
+    lova:direction "higher" ;
+    lova:pValue 0.01 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/ki67-vehicle-d7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0252597/dbdb-wound-closure-d7> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "Ki67+ cells, vehicle, Day 7" ;
+    lova:measurementType "Ki67+ cells" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 700.0 ;
+    qudt:unit "cells" ;
+    lova:sampleSize 6 ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/ki67-vem-d7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0252597/dbdb-wound-closure-d7> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "Ki67+ cells, vemurafenib, Day 7" ;
+    lova:measurementType "Ki67+ cells" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1150.0 ;
+    qudt:unit "cells" ;
+    lova:sampleSize 6 ;
+    lova:isSignificant false ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1371-journal.pone.0252597/ki67-d7> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "Ki67+ cells no significant difference, vemurafenib vs vehicle at Day 7" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/ki67-vem-d7> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/ki67-vehicle-d7> ;
+    lova:direction "no difference" ;
+    lova:isSignificant false .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/thickness-vehicle-d16> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0252597/dbdb-wound-closure-d16> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "Epidermal+dermal thickness, vehicle, Day 16" ;
+    lova:measurementType "Epidermal+dermal (skin) thickness" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 50.0 ;
+    qudt:unit "μm" ;
+    lova:sampleSize 5 ;
+    lova:timePoint "Day 16" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/thickness-vem-d16> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0252597/dbdb-wound-closure-d16> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "Epidermal+dermal thickness, vemurafenib, Day 16" ;
+    lova:measurementType "Epidermal+dermal (skin) thickness" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 68.0 ;
+    qudt:unit "μm" ;
+    lova:sampleSize 5 ;
+    lova:pValue 0.02 ;
+    lova:isSignificant true ;
+    lova:timePoint "Day 16" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1371-journal.pone.0252597/thickness-d16> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "Skin thickness higher in vemurafenib vs vehicle at Day 16" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/thickness-vem-d16> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/thickness-vehicle-d16> ;
+    lova:direction "higher" ;
+    lova:pValue 0.02 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/perk-vehicle-d16> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0252597/dbdb-wound-closure-d16> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "pERK+ cells, vehicle, Day 16" ;
+    lova:measurementType "pERK+ cells" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 150.0 ;
+    qudt:unit "cells" ;
+    lova:sampleSize 5 ;
+    lova:timePoint "Day 16" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/perk-vem-d16> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0252597/dbdb-wound-closure-d16> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "pERK+ cells, vemurafenib, Day 16" ;
+    lova:measurementType "pERK+ cells" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 550.0 ;
+    qudt:unit "cells" ;
+    lova:sampleSize 5 ;
+    lova:pValue 0.04 ;
+    lova:isSignificant true ;
+    lova:timePoint "Day 16" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1371-journal.pone.0252597/perk-d16> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "pERK+ cells higher in vemurafenib vs vehicle at Day 16" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/perk-vem-d16> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/perk-vehicle-d16> ;
+    lova:direction "higher" ;
+    lova:pValue 0.04 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/ki67-vehicle-d16> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0252597/dbdb-wound-closure-d16> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "Ki67+ cells, vehicle, Day 16" ;
+    lova:measurementType "Ki67+ cells" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 220.0 ;
+    qudt:unit "cells" ;
+    lova:sampleSize 5 ;
+    lova:timePoint "Day 16" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/ki67-vem-d16> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0252597/dbdb-wound-closure-d16> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "Ki67+ cells, vemurafenib, Day 16" ;
+    lova:measurementType "Ki67+ cells" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 650.0 ;
+    qudt:unit "cells" ;
+    lova:sampleSize 5 ;
+    lova:pValue 0.015 ;
+    lova:isSignificant true ;
+    lova:timePoint "Day 16" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1371-journal.pone.0252597/ki67-d16> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "Ki67+ cells higher in vemurafenib vs vehicle at Day 16" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/ki67-vem-d16> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/ki67-vehicle-d16> ;
+    lova:direction "higher" ;
+    lova:pValue 0.015 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/pecam1-vehicle-d16> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0252597/dbdb-wound-closure-d16> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "PECAM-1+ cells, vehicle, Day 16" ;
+    lova:measurementType "PECAM-1+ cells" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 750.0 ;
+    qudt:unit "cells" ;
+    lova:timePoint "Day 16" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/pecam1-vem-d16> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0252597/dbdb-wound-closure-d16> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "PECAM-1+ cells, vemurafenib, Day 16" ;
+    lova:measurementType "PECAM-1+ cells" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1150.0 ;
+    qudt:unit "cells" ;
+    lova:isSignificant false ;
+    lova:timePoint "Day 16" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1371-journal.pone.0252597/pecam1-d16> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "PECAM-1+ cells no significant difference, vemurafenib vs vehicle at Day 16" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/pecam1-vem-d16> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/pecam1-vehicle-d16> ;
+    lova:direction "no difference" ;
+    lova:isSignificant false .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/degs-heatmap-d16> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0252597/dbdb-rnaseq-d16> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "Differentially expressed genes between vehicle and vemurafenib-treated wounds, Day 16" ;
+    lova:measurementType "Differential gene expression" ;
+    lova:measurementCategory "Transcriptomic" ;
+    lova:valueString "Klk7, Krt79, Krt17, Dsc3, Ppl, Slc27a4, Scd1, Bmp2k, Klf4, Foxc1, Zfp423, Spink5 up-regulated ≥1.5-fold in vemurafenib-treated wounds vs vehicle" ;
+    lova:timePoint "Day 16" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/enrich-stratified-epithelium> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0252597/dbdb-rnaseq-d16> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "Gene set enrichment: Stratified epithelium (Jensen)" ;
+    lova:measurementType "Gene set enrichment -log10(adjusted P value)" ;
+    lova:measurementCategory "Transcriptomic" ;
+    qudt:numericValue 4.3 ;
+    qudt:unit "-log10(adjusted P value)" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/enrich-epidermis-mga> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0252597/dbdb-rnaseq-d16> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "Gene set enrichment: Epidermis (MGA)" ;
+    lova:measurementType "Gene set enrichment -log10(adjusted P value)" ;
+    lova:measurementCategory "Transcriptomic" ;
+    qudt:numericValue 3.7 ;
+    qudt:unit "-log10(adjusted P value)" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/enrich-keratinocyte-archs4> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0252597/dbdb-rnaseq-d16> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "Gene set enrichment: Keratinocyte (ARCHS4)" ;
+    lova:measurementType "Gene set enrichment -log10(adjusted P value)" ;
+    lova:measurementCategory "Transcriptomic" ;
+    qudt:numericValue 1.7 ;
+    qudt:unit "-log10(adjusted P value)" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/enrich-cornification-go> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0252597/dbdb-rnaseq-d16> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "Gene set enrichment: Cornification (GO:0070268)" ;
+    lova:measurementType "Gene set enrichment -log10(adjusted P value)" ;
+    lova:measurementCategory "Transcriptomic" ;
+    qudt:numericValue 1.0 ;
+    qudt:unit "-log10(adjusted P value)" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/hairfollicle-vehicle-dbdb-d16> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0252597/dbdb-hair-follicle-d16> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "Hair follicle number, vehicle, db/db, Day 16" ;
+    lova:measurementType "Hair follicle number" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.0 ;
+    qudt:unit "follicles per wound area" ;
+    lova:timePoint "Day 16" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/hairfollicle-vem-dbdb-d16> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0252597/dbdb-hair-follicle-d16> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "Hair follicle number, vemurafenib, db/db, Day 16" ;
+    lova:measurementType "Hair follicle number" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 4.2 ;
+    qudt:unit "follicles per wound area" ;
+    lova:pValue 0.0001 ;
+    lova:isSignificant true ;
+    lova:timePoint "Day 16" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1371-journal.pone.0252597/hairfollicle-dbdb-d16> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "Hair follicle number higher in vemurafenib vs vehicle, db/db, Day 16" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/hairfollicle-vem-dbdb-d16> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/hairfollicle-vehicle-dbdb-d16> ;
+    lova:direction "higher" ;
+    lova:pValue 0.0001 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/sox9-vehicle-dbdb-d16> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0252597/dbdb-hair-follicle-d16> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "Sox-9+ cells, vehicle, db/db, Day 16" ;
+    lova:measurementType "Sox-9+ cells" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 110.0 ;
+    qudt:unit "cells" ;
+    lova:sampleSize 4 ;
+    lova:timePoint "Day 16" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/sox9-vem-dbdb-d16> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0252597/dbdb-hair-follicle-d16> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "Sox-9+ cells, vemurafenib, db/db, Day 16" ;
+    lova:measurementType "Sox-9+ cells" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 480.0 ;
+    qudt:unit "cells" ;
+    lova:sampleSize 4 ;
+    lova:pValue 0.02 ;
+    lova:isSignificant true ;
+    lova:timePoint "Day 16" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1371-journal.pone.0252597/sox9-dbdb-d16> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "Sox-9+ cells higher in vemurafenib vs vehicle, db/db, Day 16" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/sox9-vem-dbdb-d16> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/sox9-vehicle-dbdb-d16> ;
+    lova:direction "higher" ;
+    lova:pValue 0.02 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/cd34k15-vehicle-dbdb-d16> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0252597/dbdb-hair-follicle-d16> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "CD34+K15+ cells, vehicle, db/db, Day 16" ;
+    lova:measurementType "CD34+K15+ cells" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.0 ;
+    qudt:unit "cells" ;
+    lova:timePoint "Day 16" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/cd34k15-vem-dbdb-d16> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0252597/dbdb-hair-follicle-d16> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "CD34+K15+ cells, vemurafenib, db/db, Day 16" ;
+    lova:measurementType "CD34+K15+ cells" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 55.0 ;
+    qudt:unit "cells" ;
+    lova:pValue 0.02 ;
+    lova:isSignificant true ;
+    lova:timePoint "Day 16" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1371-journal.pone.0252597/cd34k15-dbdb-d16> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "CD34+K15+ cells higher in vemurafenib vs vehicle, db/db, Day 16" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/cd34k15-vem-dbdb-d16> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/cd34k15-vehicle-dbdb-d16> ;
+    lova:direction "higher" ;
+    lova:pValue 0.02 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/hairfollicle-vehicle-balbc-d14> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0252597/balbc-hair-follicle-d14> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "Hair follicle number, vehicle, Balb/c, Day 14" ;
+    lova:measurementType "Hair follicle number" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.0 ;
+    qudt:unit "follicles per wound area" ;
+    lova:timePoint "Day 14" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/hairfollicle-vem-balbc-d14> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0252597/balbc-hair-follicle-d14> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "Hair follicle number, vemurafenib, Balb/c, Day 14" ;
+    lova:measurementType "Hair follicle number" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 7.5 ;
+    qudt:unit "follicles per wound area" ;
+    lova:pValue 0.02 ;
+    lova:isSignificant true ;
+    lova:timePoint "Day 14" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1371-journal.pone.0252597/hairfollicle-balbc-d14> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "Hair follicle number higher in vemurafenib vs vehicle, Balb/c, Day 14" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/hairfollicle-vem-balbc-d14> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/hairfollicle-vehicle-balbc-d14> ;
+    lova:direction "higher" ;
+    lova:pValue 0.02 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/sox9-vehicle-balbc-d14> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0252597/balbc-hair-follicle-d14> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "Sox-9+ cells, vehicle, Balb/c, Day 14" ;
+    lova:measurementType "Sox-9+ cells" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 200.0 ;
+    qudt:unit "cells" ;
+    lova:sampleSize 4 ;
+    lova:timePoint "Day 14" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/sox9-vem-balbc-d14> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0252597/balbc-hair-follicle-d14> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "Sox-9+ cells, vemurafenib, Balb/c, Day 14" ;
+    lova:measurementType "Sox-9+ cells" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 460.0 ;
+    qudt:unit "cells" ;
+    lova:sampleSize 4 ;
+    lova:pValue 0.02 ;
+    lova:isSignificant true ;
+    lova:timePoint "Day 14" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1371-journal.pone.0252597/sox9-balbc-d14> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "Sox-9+ cells higher in vemurafenib vs vehicle, Balb/c, Day 14" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/sox9-vem-balbc-d14> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/sox9-vehicle-balbc-d14> ;
+    lova:direction "higher" ;
+    lova:pValue 0.02 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/cd34k15-vehicle-balbc-d14> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0252597/balbc-hair-follicle-d14> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "K15+CD34+ stroma cells, vehicle, Balb/c, Day 14" ;
+    lova:measurementType "K15+ cells with surrounding CD34+ stroma" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 5.0 ;
+    qudt:unit "cells" ;
+    lova:timePoint "Day 14" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/cd34k15-vem-balbc-d14> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0252597/balbc-hair-follicle-d14> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "K15+CD34+ stroma cells, vemurafenib, Balb/c, Day 14" ;
+    lova:measurementType "K15+ cells with surrounding CD34+ stroma" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 150.0 ;
+    qudt:unit "cells" ;
+    lova:pValue 0.02 ;
+    lova:isSignificant true ;
+    lova:timePoint "Day 14" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1371-journal.pone.0252597/cd34k15-balbc-d14> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "K15+CD34+ cells higher in vemurafenib vs vehicle, Balb/c, Day 14" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/cd34k15-vem-balbc-d14> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/cd34k15-vehicle-balbc-d14> ;
+    lova:direction "higher" ;
+    lova:pValue 0.02 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/fzd7-vehicle-dbdb-d16> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0252597/fzd7-staining-d16> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "FZD7+ cells, vehicle, db/db, Day 16" ;
+    lova:measurementType "Frizzled-7 (FZD7)+ cells" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 200.0 ;
+    qudt:unit "cells" ;
+    lova:sampleSize 4 ;
+    lova:timePoint "Day 16" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/fzd7-vem-dbdb-d16> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0252597/fzd7-staining-d16> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "FZD7+ cells, vemurafenib, db/db, Day 16" ;
+    lova:measurementType "Frizzled-7 (FZD7)+ cells" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2100.0 ;
+    qudt:unit "cells" ;
+    lova:sampleSize 4 ;
+    lova:pValue 0.02 ;
+    lova:isSignificant true ;
+    lova:timePoint "Day 16" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1371-journal.pone.0252597/fzd7-dbdb-d16> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "FZD7+ cells higher in vemurafenib vs vehicle, db/db, Day 16" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/fzd7-vem-dbdb-d16> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/fzd7-vehicle-dbdb-d16> ;
+    lova:direction "higher" ;
+    lova:pValue 0.02 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/fzd7-vehicle-balbc-d16> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0252597/fzd7-staining-d16> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "FZD7+ cells, vehicle, Balb/c, Day 16" ;
+    lova:measurementType "Frizzled-7 (FZD7)+ cells" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 500.0 ;
+    qudt:unit "cells" ;
+    lova:sampleSize 4 ;
+    lova:timePoint "Day 16" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/fzd7-vem-balbc-d16> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0252597/fzd7-staining-d16> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "FZD7+ cells, vemurafenib, Balb/c, Day 16" ;
+    lova:measurementType "Frizzled-7 (FZD7)+ cells" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2500.0 ;
+    qudt:unit "cells" ;
+    lova:sampleSize 4 ;
+    lova:isSignificant false ;
+    lova:timePoint "Day 16" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1371-journal.pone.0252597/fzd7-balbc-d16> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "FZD7+ cells higher (not significant) in vemurafenib vs vehicle, Balb/c, Day 16" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/fzd7-vem-balbc-d16> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/fzd7-vehicle-balbc-d16> ;
+    lova:direction "higher" ;
+    lova:isSignificant false .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/sox9-vehicle-c3h-d6> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0252597/c3h-wnt-signaling-d6> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "Sox-9+ cells, vehicle, C3H, Day 6" ;
+    lova:measurementType "Sox-9+ cells" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Low Sox-9+ cell counts observed" ;
+    lova:sampleSize 4 ;
+    lova:timePoint "Day 6" ;
+    lova:comparisonGroup "vemurafenib" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/sox9-vem-c3h-d6> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0252597/c3h-wnt-signaling-d6> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "Sox-9+ cells, vemurafenib, C3H, Day 6" ;
+    lova:measurementType "Sox-9+ cells" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Increased Sox-9+ cell counts, hair bud formation observed" ;
+    lova:sampleSize 4 ;
+    lova:pValue 0.02 ;
+    lova:isSignificant true ;
+    lova:timePoint "Day 6" ;
+    lova:comparisonGroup "vehicle" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/sox9-vt-c3h-d6> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0252597/c3h-wnt-signaling-d6> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "Sox-9+ cells, vemurafenib plus trametinib, C3H, Day 6" ;
+    lova:measurementType "Sox-9+ cells" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Decreased Sox-9+ cell counts, prevented hair bud formation" ;
+    lova:sampleSize 4 ;
+    lova:pValue 0.02 ;
+    lova:isSignificant true ;
+    lova:timePoint "Day 6" ;
+    lova:comparisonGroup "vemurafenib" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#comparison/10.1371-journal.pone.0252597/sox9-c3h-veh-vs-vem-d6> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "Sox-9+ cells higher in vemurafenib vs vehicle, C3H, Day 6" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/sox9-vem-c3h-d6> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/sox9-vehicle-c3h-d6> ;
+    lova:direction "higher" ;
+    lova:pValue 0.02 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1371-journal.pone.0252597/sox9-c3h-vem-vs-vt-d6> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "Sox-9+ cells lower in vemurafenib+trametinib vs vemurafenib alone, C3H, Day 6" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/sox9-vt-c3h-d6> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/sox9-vem-c3h-d6> ;
+    lova:direction "lower" ;
+    lova:pValue 0.02 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/activebetacat-vehicle-c3h-d6> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0252597/c3h-wnt-signaling-d6> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "Active β-catenin+ cells, vehicle, C3H, Day 6" ;
+    lova:measurementType "Active β-catenin+ cells" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Baseline active β-catenin staining" ;
+    lova:sampleSize 4 ;
+    lova:timePoint "Day 6" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/activebetacat-vem-c3h-d6> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0252597/c3h-wnt-signaling-d6> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "Active β-catenin+ cells, vemurafenib, C3H, Day 6" ;
+    lova:measurementType "Active β-catenin+ cells" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Increased active β-catenin staining in hair follicle buds" ;
+    lova:sampleSize 4 ;
+    lova:pValue 0.02 ;
+    lova:isSignificant true ;
+    lova:timePoint "Day 6" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/activebetacat-vt-c3h-d6> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0252597/c3h-wnt-signaling-d6> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "Active β-catenin+ cells, vemurafenib plus trametinib, C3H, Day 6" ;
+    lova:measurementType "Active β-catenin+ cells" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Decreased active β-catenin staining, below vehicle levels" ;
+    lova:sampleSize 4 ;
+    lova:pValue 0.02 ;
+    lova:isSignificant true ;
+    lova:timePoint "Day 6" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#comparison/10.1371-journal.pone.0252597/activebetacat-c3h-veh-vs-vem-d6> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "Active β-catenin+ cells higher in vemurafenib vs vehicle, C3H, Day 6" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/activebetacat-vem-c3h-d6> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/activebetacat-vehicle-c3h-d6> ;
+    lova:direction "higher" ;
+    lova:pValue 0.02 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1371-journal.pone.0252597/activebetacat-c3h-vem-vs-vt-d6> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "Active β-catenin+ cells lower in vemurafenib+trametinib vs vemurafenib alone, C3H, Day 6" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/activebetacat-vt-c3h-d6> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/activebetacat-vem-c3h-d6> ;
+    lova:direction "lower" ;
+    lova:pValue 0.02 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/tcf1-7-vehicle-c3h-d6> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0252597/c3h-wnt-signaling-d6> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "TCF1/TCF7+ cells, vehicle, C3H, Day 6" ;
+    lova:measurementType "TCF1/TCF7+ cells" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Baseline TCF1/TCF7 staining" ;
+    lova:sampleSize 4 ;
+    lova:timePoint "Day 6" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/tcf1-7-vem-c3h-d6> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0252597/c3h-wnt-signaling-d6> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "TCF1/TCF7+ cells, vemurafenib, C3H, Day 6" ;
+    lova:measurementType "TCF1/TCF7+ cells" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Increased TCF1/TCF7 staining" ;
+    lova:sampleSize 4 ;
+    lova:pValue 0.02 ;
+    lova:isSignificant true ;
+    lova:timePoint "Day 6" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/tcf1-7-vt-c3h-d6> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1371-journal.pone.0252597/c3h-wnt-signaling-d6> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "TCF1/TCF7+ cells, vemurafenib plus trametinib, C3H, Day 6" ;
+    lova:measurementType "TCF1/TCF7+ cells" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Decreased TCF1/TCF7 staining, below vehicle levels" ;
+    lova:sampleSize 4 ;
+    lova:pValue 0.02 ;
+    lova:isSignificant true ;
+    lova:timePoint "Day 6" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#comparison/10.1371-journal.pone.0252597/tcf1-7-c3h-veh-vs-vem-d6> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "TCF1/TCF7+ cells higher in vemurafenib vs vehicle, C3H, Day 6" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/tcf1-7-vem-c3h-d6> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/tcf1-7-vehicle-c3h-d6> ;
+    lova:direction "higher" ;
+    lova:pValue 0.02 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1371-journal.pone.0252597/tcf1-7-c3h-vem-vs-vt-d6> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1371-journal.pone.0252597> ;
+    rdfs:label "TCF1/TCF7+ cells lower in vemurafenib+trametinib vs vemurafenib alone, C3H, Day 6" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/tcf1-7-vt-c3h-d6> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1371-journal.pone.0252597/tcf1-7-vem-c3h-d6> ;
+    lova:direction "lower" ;
+    lova:pValue 0.02 ;
+    lova:isSignificant true .

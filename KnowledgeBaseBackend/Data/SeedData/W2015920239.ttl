@@ -1,0 +1,738 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1038-mt.2009.11> a bibo:AcademicArticle ;
+    rdfs:label "Ng et al., 2009 — Engineering Clustered Ligand Binding Into Nonviral Vectors" ;
+    dc:title "Engineering Clustered Ligand Binding Into Nonviral Vectors: αvβ3 Targeting as an Example" ;
+    dc:identifier "10.1038/mt.2009.11" ;
+    dc:date "2009"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/molecular-therapy> ;
+    dc:creator <https://lovamap.com/ontology#author/ng-quinn> ,
+               <https://lovamap.com/ontology#author/sutton-marie> ,
+               <https://lovamap.com/ontology#author/soonsawad-pan> ,
+               <https://lovamap.com/ontology#author/li-xing> ,
+               <https://lovamap.com/ontology#author/cheng-holland> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/ng-quinn>
+                       <https://lovamap.com/ontology#author/sutton-marie>
+                       <https://lovamap.com/ontology#author/soonsawad-pan>
+                       <https://lovamap.com/ontology#author/li-xing>
+                       <https://lovamap.com/ontology#author/cheng-holland>
+                       <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    dc:bibliographicCitation "Ng et al., 2009" ;
+    lova:focusMaterial "RGD-nanocluster-modified DNA/PEI polyplexes for integrin-targeted nonviral gene delivery" .
+
+<https://lovamap.com/ontology#author/ng-quinn> a foaf:Person ;
+    foaf:familyName "Ng" ;
+    foaf:givenName "Quinn K. T." ;
+    foaf:name "Quinn K. T. Ng" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California at Los Angeles, Los Angeles, California, USA" .
+
+<https://lovamap.com/ontology#author/sutton-marie> a foaf:Person ;
+    foaf:familyName "Sutton" ;
+    foaf:givenName "Marie K" ;
+    foaf:name "Marie K Sutton" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California at Los Angeles, Los Angeles, California, USA" .
+
+<https://lovamap.com/ontology#author/soonsawad-pan> a foaf:Person ;
+    foaf:familyName "Soonsawad" ;
+    foaf:givenName "Pan" ;
+    foaf:name "Pan Soonsawad" ;
+    schema:affiliation "Department of Molecular and Cell Biology, University of California at Davis, Davis, California, USA" .
+
+<https://lovamap.com/ontology#author/li-xing> a foaf:Person ;
+    foaf:familyName "Li" ;
+    foaf:givenName "Xing" ;
+    foaf:name "Xing Li" ;
+    schema:affiliation "Department of Molecular and Cell Biology, University of California at Davis, Davis, California, USA" .
+
+<https://lovamap.com/ontology#author/cheng-holland> a foaf:Person ;
+    foaf:familyName "Cheng" ;
+    foaf:givenName "Holland R." ;
+    foaf:name "Holland R. Cheng" ;
+    schema:affiliation "Department of Molecular and Cell Biology, University of California at Davis, Davis, California, USA" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California at Los Angeles, Los Angeles, California, USA" .
+
+<https://lovamap.com/ontology#journal/molecular-therapy> a bibo:Journal ;
+    dc:title "Molecular Therapy" ;
+    bibo:issn "1525-0016" .
+
+<https://lovamap.com/ontology#material/10.1038-mt.2009.11/au-unmodified-np> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    rdfs:label "5 nm unmodified gold nanoparticle" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Gold" ;
+    lova:particleSizeMin 5.0 ;
+    lova:particleSizeMax 5.0 ;
+    lova:particleSizeUnit "nm" .
+
+<https://lovamap.com/ontology#material/10.1038-mt.2009.11/au-cap-np> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    rdfs:label "5 nm Au-Cap nanoparticle (peptide monolayer-protected cluster)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Gold nanoparticle capped with CCVVVT peptide" ;
+    lova:particleSizeMin 9.0 ;
+    lova:particleSizeMax 10.0 ;
+    lova:particleSizeUnit "nm" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1038-mt.2009.11/rgd-nanocluster-synthesis> .
+
+<https://lovamap.com/ontology#material/10.1038-mt.2009.11/au-cap-rgd-np> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    rdfs:label "5 nm Au-Cap-RGD nanocluster (RGD-modified gold nanoparticle)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Gold nanoparticle capped with mixed CCVVVT/CCVVVT-RGD peptides" ;
+    lova:particleSizeMin 5.0 ;
+    lova:particleSizeMax 5.0 ;
+    lova:particleSizeUnit "nm" ;
+    lova:surfaceModification "RGD-peptide functionalized (90:10 Cap:Cap-RGD)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1038-mt.2009.11/rgd-nanocluster-synthesis> .
+
+<https://lovamap.com/ontology#material/10.1038-mt.2009.11/dna-pei-polyplex> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    rdfs:label "Unmodified DNA/PEI polyplex (N/P 10)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Plasmid DNA / branched PEI (25 kDa) complex" ;
+    lova:packingConfiguration "Random" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1038-mt.2009.11/dna-pei-polyplex-formation> .
+
+<https://lovamap.com/ontology#material/10.1038-mt.2009.11/dna-pei-au-cap-rgd-asa> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    rdfs:label "DNA/PEI-Au-Cap-RGD-ASA polyplex (covalently RGD-nanocluster-modified, targeted)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Plasmid DNA / PEI / RGD-gold-nanocluster conjugate" ;
+    lova:particleSizeMin 32.0 ;
+    lova:particleSizeMax 203.0 ;
+    lova:particleSizeUnit "nm" ;
+    lova:surfaceModification "Covalently attached Au-Cap-RGD nanoclusters via photoreactive ASA group" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1038-mt.2009.11/photoreactive-conjugation> .
+
+<https://lovamap.com/ontology#material/10.1038-mt.2009.11/dna-pei-au-cap-rgd> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    rdfs:label "DNA/PEI-Au-Cap-RGD polyplex (electrostatically mixed, no covalent linker)" ;
+    lova:particleMaterial "Plasmid DNA / PEI mixed with Au-Cap-RGD nanoparticles (no ASA)" ;
+    lova:surfaceModification "Non-covalent (electrostatic) association with Au-Cap-RGD nanoclusters" .
+
+<https://lovamap.com/ontology#material/10.1038-mt.2009.11/dna-pei-au-cap> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    rdfs:label "DNA/PEI-Au-Cap polyplex (no RGD, electrostatic)" ;
+    lova:particleMaterial "Plasmid DNA / PEI mixed with Au-Cap nanoparticles (no RGD)" .
+
+<https://lovamap.com/ontology#material/10.1038-mt.2009.11/dna-pei-au-cap-asa> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    rdfs:label "DNA/PEI-Au-Cap-ASA polyplex (covalent, no RGD)" ;
+    lova:particleMaterial "Plasmid DNA / PEI covalently conjugated to Au-Cap-ASA (no RGD)" .
+
+<https://lovamap.com/ontology#material/10.1038-mt.2009.11/jetpei> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    rdfs:label "Unmodified commercial jetPEI polyplex" ;
+    lova:particleMaterial "Commercial PEI" .
+
+<https://lovamap.com/ontology#material/10.1038-mt.2009.11/jetpei-rgd> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    rdfs:label "Commercial jetPEI-RGD polyplex (non-clustered RGD ligand)" ;
+    lova:particleMaterial "Commercial PEI conjugated to RGD ligand" ;
+    lova:surfaceModification "RGD-conjugated, non-clustered" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1038-mt.2009.11/rgd-nanocluster-synthesis> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    rdfs:label "Synthesis of RGD-nanocluster gold nanoparticles via peptide monolayer-protected cluster formation" ;
+    lova:chemistry "Thiol/gold chemisorption" ;
+    lova:manufacturingMethod "Self-assembled peptide monolayer-protected cluster (MPC) formation on 5 nm gold nanoparticles" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1038-mt.2009.11/au-nanoparticle-5nm> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-mt.2009.11/cap-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-mt.2009.11/cap-rgd-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-mt.2009.11/cap-rgd-asa-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-mt.2009.11/cap-asa-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-mt.2009.11/nhs-asa> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-mt.2009.11/p-azidobenzoyl-hydrazide> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-mt.2009.11/edc> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-mt.2009.11/nhs> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1038-mt.2009.11/dna-pei-polyplex-formation> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    rdfs:label "DNA/PEI polyplex formation via electrostatic complexation" ;
+    lova:chemistry "Electrostatic complexation" ;
+    lova:manufacturingMethod "Mixing plasmid DNA with branched PEI at N/P ratio 10, vortex and incubation" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1038-mt.2009.11/plasmid-dna> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-mt.2009.11/pei-25kda> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-mt.2009.11/nacl> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1038-mt.2009.11/photoreactive-conjugation> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    rdfs:label "Photoreactive ASA-mediated conjugation of RGD nanoclusters to DNA/PEI polyplex surface" ;
+    lova:chemistry "Photoreactive aryl azide (ASA) crosslinking" ;
+    lova:manufacturingMethod "Addition of Au-Cap-RGD-ASA nanoparticles to preformed DNA/PEI polyplexes" ;
+    lova:annealingChemistry "UV/ambient light-induced photo-crosslinking" ;
+    lova:annealingConditions "Ambient light exposure, 15 minutes" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1038-mt.2009.11/nhs-asa> .
+
+<https://lovamap.com/ontology#reagent/10.1038-mt.2009.11/plasmid-dna> a lova:Reagent ;
+    rdfs:label "Plasmid DNA (pEGFP-Luc)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Clontech" ;
+    lova:reagentFunction "Gene delivery payload" .
+
+<https://lovamap.com/ontology#reagent/10.1038-mt.2009.11/pei-25kda> a lova:Reagent ;
+    rdfs:label "Branched polyethyleneimine (PEI), 25 kDa" ;
+    lova:reagentRole "carrier" ;
+    lova:molecularWeight "25 kDa" ;
+    lova:concentration "1 mg/ml" ;
+    lova:supplier "Sigma" ;
+    lova:reagentFunction "Condenses DNA into polyplexes" .
+
+<https://lovamap.com/ontology#reagent/10.1038-mt.2009.11/au-nanoparticle-5nm> a lova:Reagent ;
+    rdfs:label "5 nm gold nanoparticles" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Ted Pella" ;
+    lova:reagentFunction "Core scaffold for RGD nanocluster formation" .
+
+<https://lovamap.com/ontology#reagent/10.1038-mt.2009.11/cap-peptide> a lova:Reagent ;
+    rdfs:label "CCVVVT-COOH (Cap) peptide" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "CCVVVT" ;
+    lova:supplier "Genscript" ;
+    lova:concentration "98.5% purity" ;
+    lova:reagentFunction "Self-assembling capping peptide preventing gold nanoparticle aggregation" .
+
+<https://lovamap.com/ontology#reagent/10.1038-mt.2009.11/cap-rgd-peptide> a lova:Reagent ;
+    rdfs:label "Ac-CCVVVTGRGDSPSSK-COOH (Cap-RGD) peptide" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "CCVVVTGRGDSPSSK" ;
+    lova:supplier "Genscript" ;
+    lova:concentration ">95% purity" ;
+    lova:reagentFunction "Introduces RGD integrin-binding ligand to gold nanoparticle surface" .
+
+<https://lovamap.com/ontology#reagent/10.1038-mt.2009.11/cap-rgd-asa-peptide> a lova:Reagent ;
+    rdfs:label "Cap-RGD-Azidosalicylic Acid (Cap-RGD-ASA) peptide" ;
+    lova:reagentRole "peptide" ;
+    lova:reagentFunction "Photoreactive RGD-presenting peptide for covalent polyplex conjugation" .
+
+<https://lovamap.com/ontology#reagent/10.1038-mt.2009.11/cap-asa-peptide> a lova:Reagent ;
+    rdfs:label "Cap-Azidosalicylic Acid (Cap-ASA) peptide" ;
+    lova:reagentRole "peptide" ;
+    lova:reagentFunction "Photoreactive non-RGD control peptide" .
+
+<https://lovamap.com/ontology#reagent/10.1038-mt.2009.11/nhs-asa> a lova:Reagent ;
+    rdfs:label "N-Hydroxysuccinimidyl-4-azidosalicylic acid (NHS-ASA)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:supplier "Pierce" ;
+    lova:reagentFunction "Photoreactive crosslinking reagent" .
+
+<https://lovamap.com/ontology#reagent/10.1038-mt.2009.11/p-azidobenzoyl-hydrazide> a lova:Reagent ;
+    rdfs:label "p-Azidobenzoyl hydrazide" ;
+    lova:reagentRole "crosslinker" ;
+    lova:supplier "Pierce" ;
+    lova:concentration "5 mmol/l" ;
+    lova:reagentFunction "Photoreactive crosslinking reagent for Cap-ASA synthesis" .
+
+<https://lovamap.com/ontology#reagent/10.1038-mt.2009.11/edc> a lova:Reagent ;
+    rdfs:label "EDC (1-ethyl-3-(3-dimethylaminopropyl)carbodiimide)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Advanced ChemTech" ;
+    lova:concentration "0.2 mg" ;
+    lova:reagentFunction "Carbodiimide coupling reagent" .
+
+<https://lovamap.com/ontology#reagent/10.1038-mt.2009.11/nhs> a lova:Reagent ;
+    rdfs:label "NHS (N-Hydroxysuccinimide)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Pierce" ;
+    lova:concentration "0.3 mg" ;
+    lova:reagentFunction "Coupling reagent" .
+
+<https://lovamap.com/ontology#reagent/10.1038-mt.2009.11/free-rgd-peptide> a lova:Reagent ;
+    rdfs:label "Free RGD peptide (Ac-GCGYGRGDSPSSK-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "GCGYGRGDSPSSK" ;
+    lova:supplier "Stanford PAN" ;
+    lova:concentration "100 µmol/l (competition assay)" ;
+    lova:reagentFunction "Competitive inhibitor of integrin binding" .
+
+<https://lovamap.com/ontology#reagent/10.1038-mt.2009.11/nacl> a lova:Reagent ;
+    rdfs:label "Sodium chloride (NaCl)" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Salt stability testing / polyplex stabilization" .
+
+<https://lovamap.com/ontology#experiment/10.1038-mt.2009.11/salt-stability> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-mt.2009.11/au-unmodified-np> ,
+                      <https://lovamap.com/ontology#material/10.1038-mt.2009.11/au-cap-np> ;
+    rdfs:label "Salt stability of Au and Au-Cap nanoparticles via UV-Vis absorbance" ;
+    lova:experimentCategory "Physicochemical" ;
+    lova:experimentType "Nanoparticle aggregation / salt stability" ;
+    lova:assayOrMethod "UV-Vis absorbance spectroscopy" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#outcome/10.1038-mt.2009.11/salt-stability-au> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-mt.2009.11/salt-stability> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    rdfs:label "Maximum NaCl concentration before aggregation — unmodified 5 nm Au" ;
+    lova:measurementType "Salt stability threshold" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 15.0 ;
+    qudt:unit "mmol/l" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-mt.2009.11/salt-stability-au-cap> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-mt.2009.11/salt-stability> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    rdfs:label "Maximum NaCl concentration before aggregation — Au-Cap" ;
+    lova:measurementType "Salt stability threshold" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 500.0 ;
+    qudt:unit "mmol/l" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-mt.2009.11/salt-stability-comparison> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    rdfs:label "Au-Cap nanoparticles stable at much higher NaCl concentrations than unmodified Au" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-mt.2009.11/salt-stability-au-cap> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-mt.2009.11/salt-stability-au> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#experiment/10.1038-mt.2009.11/dls-size-au-cap> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-mt.2009.11/au-cap-np> ,
+                      <https://lovamap.com/ontology#material/10.1038-mt.2009.11/au-unmodified-np> ;
+    rdfs:label "DLS size measurement of Au-Cap vs unmodified Au nanoparticles" ;
+    lova:experimentCategory "Physicochemical" ;
+    lova:experimentType "Particle sizing" ;
+    lova:assayOrMethod "Dynamic light scattering" ;
+    lova:equipment "Malvern Zetasizer nano ZS" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#outcome/10.1038-mt.2009.11/dls-size-au-cap-increase> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-mt.2009.11/dls-size-au-cap> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    rdfs:label "Size increase of gold nanoparticles after Cap peptide modification" ;
+    lova:measurementType "Particle size increase" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 4.0 ;
+    qudt:unit "nm" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1038-mt.2009.11/etbr-exclusion> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-mt.2009.11/dna-pei-polyplex> ;
+    rdfs:label "Ethidium bromide exclusion assay for DNA/PEI complexation" ;
+    lova:experimentCategory "Physicochemical" ;
+    lova:experimentType "DNA condensation assay" ;
+    lova:assayOrMethod "Ethidium bromide exclusion" ;
+    lova:equipment "Modulus 20/20 Fluorimeter/Luminometer" .
+
+<https://lovamap.com/ontology#outcome/10.1038-mt.2009.11/np-ratio-plateau> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-mt.2009.11/etbr-exclusion> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    rdfs:label "N/P ratio at which EtBr exclusion plateaus (full complexation)" ;
+    lova:measurementType "Nitrogen to phosphate ratio (N/P)" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 5.0 ;
+    qudt:unit "N/P ratio" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1038-mt.2009.11/dls-polyplex-size> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-mt.2009.11/dna-pei-au-cap-rgd-asa> ;
+    rdfs:label "DLS sizing of DNA/PEI-Au-Cap-RGD polyplexes vs Au nanoparticle concentration" ;
+    lova:experimentCategory "Physicochemical" ;
+    lova:experimentType "Particle sizing" ;
+    lova:assayOrMethod "Dynamic light scattering" ;
+    lova:equipment "Malvern Zetasizer nano ZS" .
+
+<https://lovamap.com/ontology#outcome/10.1038-mt.2009.11/polyplex-size-low-conc> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-mt.2009.11/dls-polyplex-size> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    rdfs:label "Polyplex size range, low DNA concentration (13.3 µg/ml), 0–35×10^10 Au particles/µg DNA" ;
+    lova:measurementType "Hydrodynamic diameter" ;
+    lova:measurementCategory "Physicochemical" ;
+    lova:valueString "32 to 76 nm" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-mt.2009.11/polyplex-size-high-conc> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-mt.2009.11/dls-polyplex-size> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    rdfs:label "Polyplex size range, high DNA concentration (40 µg/ml), 0–22×10^10 then 22–31×10^10 Au particles/µg DNA" ;
+    lova:measurementType "Hydrodynamic diameter" ;
+    lova:measurementCategory "Physicochemical" ;
+    lova:valueString "35 to 72 nm, increasing to 203 nm at highest Au concentration" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1038-mt.2009.11/tem-polyplex> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-mt.2009.11/dna-pei-au-cap-rgd-asa> ;
+    rdfs:label "TEM analysis of Au nanoparticle distribution on polyplex surface" ;
+    lova:experimentCategory "Physicochemical" ;
+    lova:experimentType "Electron microscopy" ;
+    lova:assayOrMethod "Negative-stain TEM" ;
+    lova:equipment "JEM-1230 TEM" ;
+    lova:sampleSize 17 .
+
+<https://lovamap.com/ontology#outcome/10.1038-mt.2009.11/tem-max-clusters> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-mt.2009.11/tem-polyplex> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    rdfs:label "Maximum number of Au nanoparticle clusters observed in one polyplex" ;
+    lova:measurementType "Au nanoparticles per polyplex" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 49.0 ;
+    qudt:unit "count" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-mt.2009.11/tem-avg-density> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-mt.2009.11/tem-polyplex> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    rdfs:label "Average Au nanoparticle density on polyplex surface" ;
+    lova:measurementType "Au nanoparticle surface density" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 262.0 ;
+    qudt:unit "nanoparticles/µm^2" ;
+    lova:sampleSize 17 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1038-mt.2009.11/toxicity-assay> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-mt.2009.11/au-cap-np> ,
+                      <https://lovamap.com/ontology#material/10.1038-mt.2009.11/dna-pei-au-cap-rgd-asa> ;
+    rdfs:label "Cell proliferation/toxicity assay for Au-Cap and DNA/PEI-Au-Cap-RGD-ASA" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell proliferation / toxicity" ;
+    lova:cellType "HeLa" ;
+    lova:cultureDuration "12 hours pre-exposure" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#outcome/10.1038-mt.2009.11/toxicity-aucap-max> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-mt.2009.11/toxicity-assay> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    rdfs:label "Au-Cap non-toxic up to 17.9×10^10 particles/well" ;
+    lova:measurementType "Cell viability (max non-toxic dose)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 17.9 ;
+    qudt:unit "×10^10 particles/well" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-mt.2009.11/toxicity-polyplex-high-dose> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-mt.2009.11/toxicity-assay> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    rdfs:label "Proliferation rate of DNA/PEI-Au polyplexes at highest Au nanoparticle concentration" ;
+    lova:measurementType "Cell viability" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 72.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "Untreated cells" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1038-mt.2009.11/flow-cytometry-integrin> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-mt.2009.11/dna-pei-polyplex> ;
+    rdfs:label "Flow cytometry quantification of αvβ3 integrin expression on HeLa cells" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Flow cytometry" ;
+    lova:assayOrMethod "Alexa488 anti-αvβ3 (MAb 23C6) staining" ;
+    lova:cellType "HeLa" ;
+    lova:cellSource "Human cervical carcinoma cell line" ;
+    lova:cultureDuration "12 hours post-plating" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#outcome/10.1038-mt.2009.11/integrin-trypsin> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-mt.2009.11/flow-cytometry-integrin> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    rdfs:label "αvβ3 integrin positive % — trypsinized HeLa cells" ;
+    lova:measurementType "αvβ3 integrin density" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Low integrin density" ;
+    lova:pValue 0.0001 ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-mt.2009.11/integrin-scraping> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-mt.2009.11/flow-cytometry-integrin> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    rdfs:label "αvβ3 integrin positive % — scrapped HeLa cells" ;
+    lova:measurementType "αvβ3 integrin density" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "High integrin density" ;
+    lova:pValue 0.0001 ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-mt.2009.11/integrin-density-comparison> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    rdfs:label "Scraped HeLa cells have higher αvβ3 integrin density than trypsinized cells" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-mt.2009.11/integrin-scraping> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-mt.2009.11/integrin-trypsin> ;
+    lova:direction "higher" ;
+    lova:pValue 0.0001 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1038-mt.2009.11/antiadhesion-assay> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-mt.2009.11/au-cap-rgd-np> ;
+    rdfs:label "Antiadhesion assay of RGD peptide, Au-Cap, Au-Cap-RGD on vitronectin-coated plates" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell adhesion inhibition" ;
+    lova:assayOrMethod "Vitronectin-coated plate antiadhesion assay with crystal violet staining" ;
+    lova:cellType "HeLa" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#outcome/10.1038-mt.2009.11/ic50-free-rgd> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-mt.2009.11/antiadhesion-assay> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    rdfs:label "IC50 of free RGD peptide for cell adhesion inhibition" ;
+    lova:measurementType "IC50" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 102.0 ;
+    qudt:unit "µmol/l" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-mt.2009.11/ic50-au-rgd> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-mt.2009.11/antiadhesion-assay> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    rdfs:label "IC50 of Au-RGD nanoclusters (RGD-equivalent concentration) for cell adhesion inhibition" ;
+    lova:measurementType "IC50" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.1 ;
+    qudt:unit "µmol/l" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-mt.2009.11/ic50-comparison> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    rdfs:label "Au-RGD nanoclusters achieve antiadhesion IC50 at lower RGD-equivalent concentration than free RGD peptide" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-mt.2009.11/ic50-au-rgd> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-mt.2009.11/ic50-free-rgd> ;
+    lova:direction "lower" .
+
+<https://lovamap.com/ontology#experiment/10.1038-mt.2009.11/transfection-low-integrin> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-mt.2009.11/dna-pei-au-cap-rgd-asa> ,
+                      <https://lovamap.com/ontology#material/10.1038-mt.2009.11/dna-pei-polyplex> ;
+    rdfs:label "Transfection efficiency of RGD-nanocluster polyplexes in low-αvβ3-density HeLa cells" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transfection / luciferase reporter assay" ;
+    lova:assayOrMethod "Luciferase assay (Promega)" ;
+    lova:cellType "HeLa (low αvβ3 density, trypsinized)" ;
+    lova:cultureDuration "48 hours" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#outcome/10.1038-mt.2009.11/low-integrin-fold-increase> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-mt.2009.11/transfection-low-integrin> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    rdfs:label "Fold increase in gene transfer, RGD nanocluster polyplex vs unmodified, low-integrin cells" ;
+    lova:measurementType "Transfection fold increase" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 5.4 ;
+    qudt:unit "fold" ;
+    lova:comparisonGroup "Unmodified DNA/PEI polyplex" ;
+    lova:comparedToControl 5.4 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1038-mt.2009.11/transfection-high-integrin> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-mt.2009.11/dna-pei-au-cap-rgd-asa> ,
+                      <https://lovamap.com/ontology#material/10.1038-mt.2009.11/dna-pei-polyplex> ;
+    rdfs:label "Transfection efficiency of RGD-nanocluster polyplexes in high-αvβ3-density HeLa cells" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transfection / luciferase reporter assay" ;
+    lova:assayOrMethod "Luciferase assay (Promega)" ;
+    lova:cellType "HeLa (high αvβ3 density, scrapped)" ;
+    lova:cultureDuration "48 hours" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#outcome/10.1038-mt.2009.11/high-integrin-fold-increase> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-mt.2009.11/transfection-high-integrin> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    rdfs:label "Fold increase in gene transfer, RGD nanocluster polyplex vs unmodified, high-integrin cells" ;
+    lova:measurementType "Transfection fold increase" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 35.0 ;
+    qudt:unit "fold" ;
+    lova:comparisonGroup "Unmodified DNA/PEI polyplex" ;
+    lova:comparedToControl 35.0 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-mt.2009.11/low-vs-high-integrin-fold> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    rdfs:label "RGD nanocluster polyplex transfection enhancement greater in high-integrin than low-integrin cells" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-mt.2009.11/high-integrin-fold-increase> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-mt.2009.11/low-integrin-fold-increase> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#experiment/10.1038-mt.2009.11/transfection-controls> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-mt.2009.11/dna-pei-au-cap-rgd> ,
+                      <https://lovamap.com/ontology#material/10.1038-mt.2009.11/dna-pei-au-cap> ,
+                      <https://lovamap.com/ontology#material/10.1038-mt.2009.11/dna-pei-au-cap-asa> ,
+                      <https://lovamap.com/ontology#material/10.1038-mt.2009.11/dna-pei-au-cap-rgd-asa> ;
+    rdfs:label "Control transfections: electrostatic (no ASA) vs covalent RGD nanocluster polyplexes" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transfection / luciferase reporter assay" ;
+    lova:cellType "HeLa (high αvβ3 density)" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#outcome/10.1038-mt.2009.11/electrostatic-rgd-fold-highintegrin> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-mt.2009.11/transfection-controls> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    rdfs:label "Fold increase, electrostatic (no ASA) Au-Cap-RGD polyplex vs unmodified, high-integrin cells" ;
+    lova:measurementType "Transfection fold increase" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 8.0 ;
+    qudt:unit "fold" ;
+    lova:comparisonGroup "Unmodified DNA/PEI polyplex" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-mt.2009.11/covalent-vs-electrostatic> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    rdfs:label "Covalently-linked RGD nanocluster polyplex (35-fold) shows greater transfection enhancement than electrostatically-mixed polyplex (8-fold) in high-integrin cells" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-mt.2009.11/high-integrin-fold-increase> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-mt.2009.11/electrostatic-rgd-fold-highintegrin> ;
+    lova:direction "higher" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1038-mt.2009.11/competitive-binding> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-mt.2009.11/dna-pei-au-cap-rgd-asa> ;
+    rdfs:label "Competitive binding transfection assay with free RGD peptide" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transfection with competitive inhibitor" ;
+    lova:assayOrMethod "Luciferase assay with free RGD peptide competition" ;
+    lova:cellType "HeLa (high αvβ3 density)" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#outcome/10.1038-mt.2009.11/competitive-binding-decrease> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-mt.2009.11/competitive-binding> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    rdfs:label "Decrease in transfection with 100 µmol/l free RGD peptide competition" ;
+    lova:measurementType "Transfection decrease" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 40.0 ;
+    qudt:unit "%" ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1038-mt.2009.11/jetpei-comparison-high> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-mt.2009.11/jetpei> ,
+                      <https://lovamap.com/ontology#material/10.1038-mt.2009.11/jetpei-rgd> ,
+                      <https://lovamap.com/ontology#material/10.1038-mt.2009.11/dna-pei-au-cap-rgd-asa> ;
+    rdfs:label "Transfection comparison jetPEI vs jetPEI-RGD vs RGD nanocluster polyplex in high-integrin cells" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transfection / luciferase reporter assay" ;
+    lova:cellType "HeLa (high αvβ3 density)" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#outcome/10.1038-mt.2009.11/jetpei-rgd-fold-high> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-mt.2009.11/jetpei-comparison-high> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    rdfs:label "Fold increase, jetPEI-RGD vs jetPEI, high-integrin cells" ;
+    lova:measurementType "Transfection fold increase" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.2 ;
+    qudt:unit "fold" ;
+    lova:comparisonGroup "Unmodified jetPEI" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-mt.2009.11/nanocluster-vs-jetpei-rgd-high> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    rdfs:label "RGD nanocluster polyplex (35-fold) outperforms jetPEI-RGD (1.2-fold) in high-integrin cells" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-mt.2009.11/high-integrin-fold-increase> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-mt.2009.11/jetpei-rgd-fold-high> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#experiment/10.1038-mt.2009.11/jetpei-comparison-low> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-mt.2009.11/jetpei> ,
+                      <https://lovamap.com/ontology#material/10.1038-mt.2009.11/jetpei-rgd> ,
+                      <https://lovamap.com/ontology#material/10.1038-mt.2009.11/dna-pei-au-cap-rgd-asa> ;
+    rdfs:label "Transfection comparison jetPEI vs jetPEI-RGD vs RGD nanocluster polyplex in low-integrin cells" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transfection / luciferase reporter assay" ;
+    lova:cellType "HeLa (low αvβ3 density)" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#outcome/10.1038-mt.2009.11/jetpei-rgd-fold-low> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-mt.2009.11/jetpei-comparison-low> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    rdfs:label "No increase in transfection for jetPEI-RGD vs jetPEI, low-integrin cells" ;
+    lova:measurementType "Transfection fold increase" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "No increase" ;
+    lova:comparisonGroup "Unmodified jetPEI" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1038-mt.2009.11/integrin-sensitivity-factor> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-mt.2009.11/dna-pei-au-cap-rgd-asa> ,
+                      <https://lovamap.com/ontology#material/10.1038-mt.2009.11/jetpei-rgd> ;
+    rdfs:label "Integrin sensitivity factor (ISF) comparison between vectors" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Derived ratio analysis of transfection efficiency" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#outcome/10.1038-mt.2009.11/isf-nanocluster> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-mt.2009.11/integrin-sensitivity-factor> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    rdfs:label "Integrin sensitivity factor for RGD nanocluster polyplex" ;
+    lova:measurementType "Integrin sensitivity factor (ISF)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 60.0 ;
+    qudt:unit "ratio" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-mt.2009.11/isf-jetpei-rgd> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-mt.2009.11/integrin-sensitivity-factor> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    rdfs:label "Integrin sensitivity factor for jetPEI-RGD" ;
+    lova:measurementType "Integrin sensitivity factor (ISF)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 20.0 ;
+    qudt:unit "ratio" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-mt.2009.11/isf-comparison> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    rdfs:label "RGD nanocluster polyplex has higher integrin sensitivity factor than jetPEI-RGD" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-mt.2009.11/isf-nanocluster> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-mt.2009.11/isf-jetpei-rgd> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#outcome/10.1038-mt.2009.11/amino-acid-ratio-99-1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-mt.2009.11/dls-size-au-cap> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    rdfs:label "Surface Cap:Cap-RGD ratio for 99:1 solution mixture (20 nm particles)" ;
+    lova:measurementType "Surface peptide ratio" ;
+    lova:measurementCategory "Physicochemical" ;
+    lova:valueString "97.2:2.8 ± 0.2 (%Cap:%Cap-RGD)" ;
+    lova:sampleSize 3 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-mt.2009.11/amino-acid-ratio-90-10> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-mt.2009.11/dls-size-au-cap> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    rdfs:label "Surface Cap:Cap-RGD ratio for 90:10 solution mixture (20 nm particles)" ;
+    lova:measurementType "Surface peptide ratio" ;
+    lova:measurementCategory "Physicochemical" ;
+    lova:valueString "91.6:8.4 ± 1.0 (%Cap:%Cap-RGD)" ;
+    lova:sampleSize 3 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-mt.2009.11/amino-acid-ratio-80-20> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-mt.2009.11/dls-size-au-cap> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-mt.2009.11> ;
+    rdfs:label "Surface Cap:Cap-RGD ratio for 80:20 solution mixture (20 nm particles)" ;
+    lova:measurementType "Surface peptide ratio" ;
+    lova:measurementCategory "Physicochemical" ;
+    lova:valueString "89.8:10.2 ± 4.7 (%Cap:%Cap-RGD)" ;
+    lova:sampleSize 3 ;
+    lova:dataSource "[TEXT]" .

@@ -1,0 +1,866 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1039-c6cc05099a> a bibo:AcademicArticle ;
+    rdfs:label "Li et al., 2016 — Glutathione-responsive Protein Nanocapsules" ;
+    dc:title "An intracellular protein delivery platform based on glutathione-responsive protein nanocapsules" ;
+    dc:identifier "10.1039/c6cc05099a" ;
+    dc:date "2016"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/chemical-communications> ;
+    dc:creator <https://lovamap.com/ontology#author/li-jie> ,
+               <https://lovamap.com/ontology#author/zhang-linlin> ,
+               <https://lovamap.com/ontology#author/liu-yang> ,
+               <https://lovamap.com/ontology#author/wen-jing> ,
+               <https://lovamap.com/ontology#author/wu-di> ,
+               <https://lovamap.com/ontology#author/xu-duo> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ,
+               <https://lovamap.com/ontology#author/jin-jing> ,
+               <https://lovamap.com/ontology#author/lu-yunfeng> ,
+               <https://lovamap.com/ontology#author/wang-hui> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/li-jie>
+                      <https://lovamap.com/ontology#author/zhang-linlin>
+                      <https://lovamap.com/ontology#author/liu-yang>
+                      <https://lovamap.com/ontology#author/wen-jing>
+                      <https://lovamap.com/ontology#author/wu-di>
+                      <https://lovamap.com/ontology#author/xu-duo>
+                      <https://lovamap.com/ontology#author/segura-tatiana>
+                      <https://lovamap.com/ontology#author/jin-jing>
+                      <https://lovamap.com/ontology#author/lu-yunfeng>
+                      <https://lovamap.com/ontology#author/wang-hui> ) ;
+    dc:bibliographicCitation "Li et al., 2016" ;
+    lova:focusMaterial "Protein nanocapsules formed by disulfide-crosslinked PAH-PEG shells around protein cores (BSA, GOX, HRP, Cat, UOX, AOX, Cas3) for glutathione-responsive intracellular delivery" .
+
+<https://lovamap.com/ontology#journal/chemical-communications> a bibo:Journal ;
+    dc:title "Chemical Communications" ;
+    bibo:issn "1359-7345" .
+
+<https://lovamap.com/ontology#author/li-jie> a foaf:Person ;
+    foaf:familyName "Li" ;
+    foaf:givenName "Jie" ;
+    foaf:name "Jie Li" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California, Los Angeles, Los Angeles, CA 90095, USA" .
+
+<https://lovamap.com/ontology#author/zhang-linlin> a foaf:Person ;
+    foaf:familyName "Zhang" ;
+    foaf:givenName "Linlin" ;
+    foaf:name "Linlin Zhang" ;
+    schema:affiliation "Department of Nuclear Medicine, Xinhua Hospital Affiliated to Shanghai Jiao Tong University, Shanghai Jiao Tong University, Shanghai 200092, China" .
+
+<https://lovamap.com/ontology#author/liu-yang> a foaf:Person ;
+    foaf:familyName "Liu" ;
+    foaf:givenName "Yang" ;
+    foaf:name "Yang Liu" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California, Los Angeles, Los Angeles, CA 90095, USA" ;
+    schema:affiliation "Key Laboratory of Functional Polymer Materials of Ministry of Education and State Key Laboratory of Medicinal Chemical Biology, Institute of Polymer Chemistry, Nankai University, Tianjin 300071, China" .
+
+<https://lovamap.com/ontology#author/wen-jing> a foaf:Person ;
+    foaf:familyName "Wen" ;
+    foaf:givenName "Jing" ;
+    foaf:name "Jing Wen" ;
+    schema:affiliation "Department of Microbiology, Immunology, and Molecular Genetics, University of California, Los Angeles, CA 90095, USA" .
+
+<https://lovamap.com/ontology#author/wu-di> a foaf:Person ;
+    foaf:familyName "Wu" ;
+    foaf:givenName "Di" ;
+    foaf:name "Di Wu" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California, Los Angeles, Los Angeles, CA 90095, USA" .
+
+<https://lovamap.com/ontology#author/xu-duo> a foaf:Person ;
+    foaf:familyName "Xu" ;
+    foaf:givenName "Duo" ;
+    foaf:name "Duo Xu" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California, Los Angeles, Los Angeles, CA 90095, USA" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California, Los Angeles, Los Angeles, CA 90095, USA" .
+
+<https://lovamap.com/ontology#author/jin-jing> a foaf:Person ;
+    foaf:familyName "Jin" ;
+    foaf:givenName "Jing" ;
+    foaf:name "Jing Jin" ;
+    schema:affiliation "Diagnosis Biotech Co., Ltd, No. 3 Hengda Road, Qixia District, Nanjing, Jiangsu 210038, China" .
+
+<https://lovamap.com/ontology#author/lu-yunfeng> a foaf:Person ;
+    foaf:familyName "Lu" ;
+    foaf:givenName "Yunfeng" ;
+    foaf:name "Yunfeng Lu" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California, Los Angeles, Los Angeles, CA 90095, USA" .
+
+<https://lovamap.com/ontology#author/wang-hui> a foaf:Person ;
+    foaf:familyName "Wang" ;
+    foaf:givenName "Hui" ;
+    foaf:name "Hui Wang" ;
+    schema:affiliation "Department of Nuclear Medicine, Xinhua Hospital Affiliated to Shanghai Jiao Tong University, Shanghai Jiao Tong University, Shanghai 200092, China" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1039-c6cc05099a/pah-peg-disulfide-crosslinking> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "PAH-PEG-thiol self-crosslinkable polymer vector for protein nanoencapsulation" ;
+    lova:chemistry "Electrostatic self-assembly followed by disulfide (thiol oxidation) crosslinking" ;
+    lova:manufacturingMethod "In situ growth of polymer shell around individual protein molecules via electrostatic assembly and oxidative thiol crosslinking (radical-free)" ;
+    lova:annealingChemistry "Disulfide bond formation via oxidation of thiol moieties introduced by Traut's reagent" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1039-c6cc05099a/pah> ,
+                    <https://lovamap.com/ontology#reagent/10.1039-c6cc05099a/peg-nhs> ,
+                    <https://lovamap.com/ontology#reagent/10.1039-c6cc05099a/traut-reagent> ,
+                    <https://lovamap.com/ontology#reagent/10.1039-c6cc05099a/gsh> ,
+                    <https://lovamap.com/ontology#reagent/10.1039-c6cc05099a/heparin> .
+
+<https://lovamap.com/ontology#reagent/10.1039-c6cc05099a/pah> a lova:Reagent ;
+    rdfs:label "Poly(allylamine hydrochloride) (PAH)" ;
+    lova:reagentRole "monomer" ;
+    lova:reagentFunction "Cationic polymer backbone for electrostatic assembly with negatively charged proteins" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c6cc05099a/peg-nhs> a lova:Reagent ;
+    rdfs:label "N-hydroxysuccinimide (NHS) ester of poly(ethylene glycol) (PEG-NHS)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:reagentFunction "PEGylation of PAH to reduce cytotoxicity" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c6cc05099a/traut-reagent> a lova:Reagent ;
+    rdfs:label "2-Iminothiolane hydrochloride (Traut's reagent)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:reagentFunction "Introduces thiol groups onto PAH for subsequent disulfide crosslinking" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c6cc05099a/gsh> a lova:Reagent ;
+    rdfs:label "Glutathione (GSH)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "10 mM" ;
+    lova:reagentFunction "Triggers cleavage of disulfide bonds to release encapsulated protein cargo" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c6cc05099a/heparin> a lova:Reagent ;
+    rdfs:label "Heparin" ;
+    lova:reagentRole "other" ;
+    lova:concentration "10 mg ml-1" ;
+    lova:reagentFunction "Polyanion challenge agent to test nanocapsule stability / competitive displacement of encapsulated protein" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c6cc05099a/trypsin> a lova:Reagent ;
+    rdfs:label "Trypsin" ;
+    lova:reagentRole "enzyme" ;
+    lova:concentration "0.5 mg ml-1" ;
+    lova:reagentFunction "Protease digestion challenge to test nanocapsule protective effect" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c6cc05099a/pepsin> a lova:Reagent ;
+    rdfs:label "Pepsin" ;
+    lova:reagentRole "enzyme" ;
+    lova:concentration "0.5 mg ml-1" ;
+    lova:reagentFunction "Protease digestion challenge under acidic conditions (pH 2.7 glycine-HCl buffer)" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c6cc05099a/tmb> a lova:Reagent ;
+    rdfs:label "3,3',5,5'-Tetramethylbenzidine (TMB)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "0.5 mM" ;
+    lova:reagentFunction "Colorimetric substrate for HRP activity detection" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c6cc05099a/h2o2> a lova:Reagent ;
+    rdfs:label "Hydrogen peroxide (H2O2)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "10 mM" ;
+    lova:reagentFunction "Co-substrate for HRP colorimetric activity assay" .
+
+<https://lovamap.com/ontology#material/10.1039-c6cc05099a/nbsa> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "nBSA (disulfide-crosslinked BSA protein nanocapsule)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "BSA core with PAH-PEG shell" ;
+    lova:particleSizeMin 20.0 ;
+    lova:particleSizeMax 25.0 ;
+    lova:particleSizeUnit "nm" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1039-c6cc05099a/pah-peg-disulfide-crosslinking> .
+
+<https://lovamap.com/ontology#material/10.1039-c6cc05099a/native-bsa> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "Native BSA (bovine serum albumin, uncoated)" ;
+    lova:particleMaterial "BSA" ;
+    lova:particleSizeMin 5.0 ;
+    lova:particleSizeMax 5.0 ;
+    lova:particleSizeUnit "nm" .
+
+<https://lovamap.com/ontology#material/10.1039-c6cc05099a/ngox> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "nGOX (glucose oxidase nanocapsule)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Glucose oxidase core with PAH-PEG shell" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1039-c6cc05099a/pah-peg-disulfide-crosslinking> .
+
+<https://lovamap.com/ontology#material/10.1039-c6cc05099a/native-gox> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "Native GOX (glucose oxidase)" ;
+    lova:particleMaterial "Glucose oxidase" .
+
+<https://lovamap.com/ontology#material/10.1039-c6cc05099a/nhrp> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "nHRP (horseradish peroxidase nanocapsule)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Horseradish peroxidase core with PAH-PEG shell" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1039-c6cc05099a/pah-peg-disulfide-crosslinking> .
+
+<https://lovamap.com/ontology#material/10.1039-c6cc05099a/native-hrp> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "Native HRP (horseradish peroxidase)" ;
+    lova:particleMaterial "Horseradish peroxidase" .
+
+<https://lovamap.com/ontology#material/10.1039-c6cc05099a/ncat> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "nCat (catalase nanocapsule)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Catalase core with PAH-PEG shell" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1039-c6cc05099a/pah-peg-disulfide-crosslinking> .
+
+<https://lovamap.com/ontology#material/10.1039-c6cc05099a/native-cat> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "Native Cat (catalase)" ;
+    lova:particleMaterial "Catalase" .
+
+<https://lovamap.com/ontology#material/10.1039-c6cc05099a/nuox> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "nUOX (urate oxidase nanocapsule)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Urate oxidase core with PAH-PEG shell" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1039-c6cc05099a/pah-peg-disulfide-crosslinking> .
+
+<https://lovamap.com/ontology#material/10.1039-c6cc05099a/naox> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "nAOX (alcohol oxidase nanocapsule)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Alcohol oxidase core with PAH-PEG shell" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1039-c6cc05099a/pah-peg-disulfide-crosslinking> .
+
+<https://lovamap.com/ontology#material/10.1039-c6cc05099a/ncas3> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "nCas3 (caspase-3 nanocapsule)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Caspase-3 core with PAH-PEG shell" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1039-c6cc05099a/pah-peg-disulfide-crosslinking> .
+
+<https://lovamap.com/ontology#material/10.1039-c6cc05099a/native-cas3> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "Native Cas3 (caspase-3)" ;
+    lova:particleMaterial "Caspase-3" .
+
+<https://lovamap.com/ontology#material/10.1039-c6cc05099a/nbsa-pegpah0> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "nBSA made with PAH vector, PEG/PAH molar ratio 0" ;
+    lova:particleMaterial "BSA core with PAH shell (no PEG)" ;
+    lova:surfaceModification "PEG/PAH molar ratio 0" .
+
+<https://lovamap.com/ontology#material/10.1039-c6cc05099a/nbsa-pegpah0-5> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "nBSA made with PAH vector, PEG/PAH molar ratio 0.5" ;
+    lova:particleMaterial "BSA core with PAH-PEG shell" ;
+    lova:surfaceModification "PEG/PAH molar ratio 0.5" .
+
+<https://lovamap.com/ontology#material/10.1039-c6cc05099a/nbsa-pegpah1> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "nBSA made with PAH vector, PEG/PAH molar ratio 1" ;
+    lova:particleMaterial "BSA core with PAH-PEG shell" ;
+    lova:surfaceModification "PEG/PAH molar ratio 1" .
+
+<https://lovamap.com/ontology#material/10.1039-c6cc05099a/nbsa-pegpah3> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "nBSA made with PAH vector, PEG/PAH molar ratio 3" ;
+    lova:particleMaterial "BSA core with PAH-PEG shell" ;
+    lova:surfaceModification "PEG/PAH molar ratio 3" .
+
+<https://lovamap.com/ontology#material/10.1039-c6cc05099a/nbsa-pegpah4> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "nBSA made with PAH vector, PEG/PAH molar ratio 4" ;
+    lova:particleMaterial "BSA core with PAH-PEG shell" ;
+    lova:surfaceModification "PEG/PAH molar ratio 4" .
+
+<https://lovamap.com/ontology#experiment/10.1039-c6cc05099a/dls-size> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1039-c6cc05099a/nbsa> ,
+                       <https://lovamap.com/ontology#material/10.1039-c6cc05099a/native-bsa> ;
+    rdfs:label "Dynamic light scattering size distribution of native BSA and nBSA" ;
+    lova:experimentCategory "Physicochemical" ;
+    lova:experimentType "Particle size (DLS)" ;
+    lova:assayOrMethod "Dynamic light scattering" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/nbsa-dls-size> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c6cc05099a/dls-size> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "nBSA DLS size ~20 nm" ;
+    lova:measurementType "Particle diameter" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 20.0 ;
+    qudt:unit "nm" ;
+    lova:scope "Bulk/global" ;
+    lova:comparisonGroup "Native BSA" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/native-bsa-dls-size> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c6cc05099a/dls-size> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "Native BSA DLS size ~5 nm" ;
+    lova:measurementType "Particle diameter" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 5.0 ;
+    qudt:unit "nm" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1039-c6cc05099a/size-nbsa-vs-native> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "nBSA size higher than native BSA" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/nbsa-dls-size> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/native-bsa-dls-size> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#experiment/10.1039-c6cc05099a/zeta-potential> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1039-c6cc05099a/nbsa> ,
+                       <https://lovamap.com/ontology#material/10.1039-c6cc05099a/native-bsa> ;
+    rdfs:label "Zeta potential measurement of native BSA and nBSA" ;
+    lova:experimentCategory "Physicochemical" ;
+    lova:experimentType "Zeta potential" ;
+    lova:assayOrMethod "Electrophoretic light scattering" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/nbsa-zeta> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c6cc05099a/zeta-potential> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "nBSA zeta potential +14 mV" ;
+    lova:measurementType "Zeta potential" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 14.0 ;
+    qudt:unit "mV" ;
+    lova:comparisonGroup "Native BSA" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/native-bsa-zeta> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c6cc05099a/zeta-potential> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "Native BSA zeta potential -7 mV" ;
+    lova:measurementType "Zeta potential" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue -7.0 ;
+    qudt:unit "mV" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1039-c6cc05099a/zeta-nbsa-vs-native> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "nBSA zeta potential higher (more positive) than native BSA" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/nbsa-zeta> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/native-bsa-zeta> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#experiment/10.1039-c6cc05099a/tem-imaging> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1039-c6cc05099a/nbsa> ;
+    rdfs:label "TEM imaging of nBSA" ;
+    lova:experimentCategory "Physicochemical" ;
+    lova:experimentType "Microscopy" ;
+    lova:assayOrMethod "Transmission electron microscopy" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/nbsa-tem-size> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c6cc05099a/tem-imaging> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "nBSA particle size by TEM 20-25 nm" ;
+    lova:measurementType "Particle diameter" ;
+    lova:measurementCategory "Physicochemical" ;
+    lova:valueString "20-25 nm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1039-c6cc05099a/gel-electrophoresis-stability> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1039-c6cc05099a/nbsa> ,
+                       <https://lovamap.com/ontology#material/10.1039-c6cc05099a/native-bsa> ;
+    rdfs:label "Agarose gel electrophoresis stability/release assay of nBSA" ;
+    lova:experimentCategory "Physicochemical" ;
+    lova:experimentType "Gel electrophoresis" ;
+    lova:assayOrMethod "Agarose gel electrophoresis, pH 7.0, 0.1 M TAE buffer" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/gel-no-crosslink-leak> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c6cc05099a/gel-electrophoresis-stability> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "Non-crosslinked BSA nanocapsule shows significant free BSA leakage" ;
+    lova:measurementType "Protein leakage" ;
+    lova:measurementCategory "Physicochemical" ;
+    lova:valueString "Significant leakage of free BSA observed" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/gel-crosslinked-stable> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c6cc05099a/gel-electrophoresis-stability> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "Disulfide-crosslinked nBSA shows no free BSA release, even with heparin challenge" ;
+    lova:measurementType "Protein leakage" ;
+    lova:measurementCategory "Physicochemical" ;
+    lova:valueString "No free BSA release observed" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/gel-gsh-release> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c6cc05099a/gel-electrophoresis-stability> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "GSH treatment (10 mM) dissociates crosslinked nBSA, complete BSA release with heparin" ;
+    lova:measurementType "Protein release" ;
+    lova:measurementCategory "Physicochemical" ;
+    lova:valueString "Complete release of BSA observed after GSH treatment and heparin challenge" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#experiment/10.1039-c6cc05099a/enzyme-activity-retention> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1039-c6cc05099a/ngox> ,
+                       <https://lovamap.com/ontology#material/10.1039-c6cc05099a/nhrp> ,
+                       <https://lovamap.com/ontology#material/10.1039-c6cc05099a/ncat> ,
+                       <https://lovamap.com/ontology#material/10.1039-c6cc05099a/nuox> ,
+                       <https://lovamap.com/ontology#material/10.1039-c6cc05099a/naox> ;
+    rdfs:label "Relative enzymatic activity of nanocapsules vs. native enzymes" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Enzyme activity assay" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/ngox-activity> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c6cc05099a/enzyme-activity-retention> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "nGOX relative activity vs native ~98%" ;
+    lova:measurementType "Relative enzyme activity" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 98.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "Native GOX" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/nhrp-activity> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c6cc05099a/enzyme-activity-retention> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "nHRP relative activity vs native ~101%" ;
+    lova:measurementType "Relative enzyme activity" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 101.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "Native HRP" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/ncat-activity> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c6cc05099a/enzyme-activity-retention> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "nCat relative activity vs native ~97%" ;
+    lova:measurementType "Relative enzyme activity" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 97.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "Native Cat" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/nuox-activity> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c6cc05099a/enzyme-activity-retention> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "nUOX relative activity vs native ~90%" ;
+    lova:measurementType "Relative enzyme activity" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 90.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "Native UOX" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/naox-activity> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c6cc05099a/enzyme-activity-retention> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "nAOX relative activity vs native ~87%" ;
+    lova:measurementType "Relative enzyme activity" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 87.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "Native AOX" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1039-c6cc05099a/protease-stability> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1039-c6cc05099a/ncat> ,
+                       <https://lovamap.com/ontology#material/10.1039-c6cc05099a/native-cat> ;
+    rdfs:label "Protease (trypsin) stability of native Cat vs nCat" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Protease digestion stability" ;
+    lova:assayOrMethod "Enzyme activity assay after trypsin incubation" ;
+    lova:temperature "37 °C" ;
+    lova:cultureDuration "100 min" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/native-cat-activity-retained-100min> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c6cc05099a/protease-stability> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "Native Cat loses >95% activity after 100 min trypsin treatment" ;
+    lova:measurementType "Relative activity retained" ;
+    lova:measurementCategory "Biochemical" ;
+    lova:valueString "<5% activity retained" ;
+    lova:timePoint "100 min" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/ncat-activity-retained-100min> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c6cc05099a/protease-stability> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "nCat retains >84% activity after 100 min trypsin treatment" ;
+    lova:measurementType "Relative activity retained" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 84.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "100 min" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1039-c6cc05099a/protease-stability-ncat-vs-native> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "nCat retains higher activity than native Cat after trypsin incubation" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/ncat-activity-retained-100min> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/native-cat-activity-retained-100min> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#experiment/10.1039-c6cc05099a/pepsin-stability> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1039-c6cc05099a/ngox> ,
+                       <https://lovamap.com/ontology#material/10.1039-c6cc05099a/native-gox> ;
+    rdfs:label "Pepsin digestion stability of native GOX vs nGOX under acidic conditions" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Protease digestion stability" ;
+    lova:assayOrMethod "Enzyme activity assay after pepsin incubation" ;
+    lova:pH "2.7" ;
+    lova:temperature "37 °C" ;
+    lova:cultureDuration "120 min" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/ngox-activity-retained-pepsin> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c6cc05099a/pepsin-stability> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "nGOX retains ~53% activity after 120 min pepsin treatment at pH 2.7" ;
+    lova:measurementType "Relative activity retained" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 53.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "120 min" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/native-gox-activity-retained-pepsin> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c6cc05099a/pepsin-stability> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "Native GOX loses all activity after 120 min pepsin treatment" ;
+    lova:measurementType "Relative activity retained" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 0.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "120 min" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1039-c6cc05099a/pepsin-stability-ngox-vs-native> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "nGOX retains higher activity than native GOX after pepsin treatment" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/ngox-activity-retained-pepsin> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/native-gox-activity-retained-pepsin> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#experiment/10.1039-c6cc05099a/cytotoxicity-pegpah-ratio> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1039-c6cc05099a/nbsa-pegpah0> ,
+                       <https://lovamap.com/ontology#material/10.1039-c6cc05099a/nbsa-pegpah0-5> ,
+                       <https://lovamap.com/ontology#material/10.1039-c6cc05099a/nbsa-pegpah1> ,
+                       <https://lovamap.com/ontology#material/10.1039-c6cc05099a/nbsa-pegpah3> ,
+                       <https://lovamap.com/ontology#material/10.1039-c6cc05099a/nbsa-pegpah4> ;
+    rdfs:label "HeLa cell viability vs PEG/PAH molar ratio (10 µg/ml nBSA, 24h)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cytotoxicity" ;
+    lova:assayOrMethod "Cell viability assay" ;
+    lova:cellType "HeLa" ;
+    lova:cultureDuration "24 hours" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/viability-pegpah0> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c6cc05099a/cytotoxicity-pegpah-ratio> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "Cell viability 19% with nBSA PEG/PAH 0" ;
+    lova:measurementType "Cell viability" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 19.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "24 hours" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/viability-pegpah0-5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c6cc05099a/cytotoxicity-pegpah-ratio> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "Cell viability ~28% with nBSA PEG/PAH 0.5" ;
+    lova:measurementType "Cell viability" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 28.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "24 hours" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/viability-pegpah1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c6cc05099a/cytotoxicity-pegpah-ratio> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "Cell viability ~56% with nBSA PEG/PAH 1" ;
+    lova:measurementType "Cell viability" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 56.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "24 hours" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/viability-pegpah3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c6cc05099a/cytotoxicity-pegpah-ratio> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "Cell viability ~97% with nBSA PEG/PAH 3" ;
+    lova:measurementType "Cell viability" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 97.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "24 hours" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/viability-pegpah4> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c6cc05099a/cytotoxicity-pegpah-ratio> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "Cell viability ~101% with nBSA PEG/PAH 4" ;
+    lova:measurementType "Cell viability" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 101.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "24 hours" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1039-c6cc05099a/viability-pegpah4-vs-pegpah0> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "Cell viability higher with PEG/PAH ratio 4 compared to ratio 0" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/viability-pegpah4> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/viability-pegpah0> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#experiment/10.1039-c6cc05099a/cytotoxicity-concentration> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1039-c6cc05099a/nbsa-pegpah4> ;
+    rdfs:label "Concentration-dependent HeLa cell viability with nBSA (PEG/PAH 4)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cytotoxicity" ;
+    lova:assayOrMethod "Cell viability assay" ;
+    lova:cellType "HeLa" ;
+    lova:cultureDuration "24 hours" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/viability-10ugml> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c6cc05099a/cytotoxicity-concentration> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "Cell viability ~103% at 10 µg/ml nBSA (PEG/PAH4)" ;
+    lova:measurementType "Cell viability" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 103.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "24 hours" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/viability-20ugml> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c6cc05099a/cytotoxicity-concentration> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "Cell viability ~101% at 20 µg/ml nBSA (PEG/PAH4)" ;
+    lova:measurementType "Cell viability" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 101.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "24 hours" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/viability-50ugml> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c6cc05099a/cytotoxicity-concentration> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "Cell viability ~97% at 50 µg/ml nBSA (PEG/PAH4)" ;
+    lova:measurementType "Cell viability" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 97.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "24 hours" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/viability-100ugml> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c6cc05099a/cytotoxicity-concentration> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "Cell viability >94% at 100 µg/ml nBSA (PEG/PAH4)" ;
+    lova:measurementType "Cell viability" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 94.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "24 hours" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1039-c6cc05099a/cellular-uptake-imaging> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1039-c6cc05099a/nbsa-pegpah4> ,
+                       <https://lovamap.com/ontology#material/10.1039-c6cc05099a/native-bsa> ;
+    rdfs:label "Fluorescence imaging of cellular uptake of nBSA-FITC and nBSA-RhITC vs native BSA" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cellular uptake" ;
+    lova:assayOrMethod "Fluorescence microscopy" ;
+    lova:cellType "HeLa" ;
+    lova:cultureDuration "4 hours" ;
+    lova:medium "cell culture medium" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/uptake-nbsa-fluorescence> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c6cc05099a/cellular-uptake-imaging> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "Obvious fluorescence signal from cells treated with nBSA-FITC/RhITC" ;
+    lova:measurementType "Cellular uptake (qualitative fluorescence)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Strong co-localized FITC/RhITC fluorescence observed within cells" ;
+    lova:timePoint "4 hours" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/uptake-native-bsa-fluorescence> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c6cc05099a/cellular-uptake-imaging> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "No fluorescence signal observed from cells treated with native BSA-FITC/RhITC" ;
+    lova:measurementType "Cellular uptake (qualitative fluorescence)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "No fluorescence signal observed" ;
+    lova:timePoint "4 hours" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#experiment/10.1039-c6cc05099a/flow-cytometry-uptake> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1039-c6cc05099a/nbsa-pegpah4> ,
+                       <https://lovamap.com/ontology#material/10.1039-c6cc05099a/native-bsa> ;
+    rdfs:label "Flow cytometry quantification of cellular uptake of nBSA-FITC" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Flow cytometry" ;
+    lova:assayOrMethod "Fluorescence activated cell sorting" ;
+    lova:cellType "HeLa" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/fci-2ugml-nbsa> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c6cc05099a/flow-cytometry-uptake> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "2 µg/ml nBSA-FITC shows ~100-fold higher fluorescence intensity than control" ;
+    lova:measurementType "Fluorescence intensity fold change" ;
+    lova:measurementCategory "Biological" ;
+    lova:comparedToControl 100.0 ;
+    lova:comparisonGroup "Untreated control cells" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/fci-50ugml-nbsa> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c6cc05099a/flow-cytometry-uptake> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "50 µg/ml nBSA-FITC shows ~3000-fold higher fluorescence intensity than control" ;
+    lova:measurementType "Fluorescence intensity fold change" ;
+    lova:measurementCategory "Biological" ;
+    lova:comparedToControl 3000.0 ;
+    lova:comparisonGroup "Untreated control cells" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1039-c6cc05099a/hrp-intracellular-activity> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1039-c6cc05099a/nhrp> ,
+                       <https://lovamap.com/ontology#material/10.1039-c6cc05099a/native-hrp> ;
+    rdfs:label "Intracellular HRP activity colorimetric assay (TMB/H2O2)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Enzyme activity (intracellular)" ;
+    lova:assayOrMethod "Colorimetric assay (TMB/H2O2)" ;
+    lova:cellType "HeLa" ;
+    lova:cultureDuration "3 hours" ;
+    lova:medium "PBS containing 10 mg ml-1 heparin (wash)" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/nhrp-intracellular-activity> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c6cc05099a/hrp-intracellular-activity> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "Cells treated with nHRP show bluish color (active HRP delivered) at 1 µM, 200 nM, 50 nM" ;
+    lova:measurementType "Intracellular HRP activity (qualitative colorimetric)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Bluish color intensifying with increasing nHRP concentration (1 µM, 200 nM, 50 nM)" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/native-hrp-no-activity> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c6cc05099a/hrp-intracellular-activity> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "Cells treated with native HRP show no color change" ;
+    lova:measurementType "Intracellular HRP activity (qualitative colorimetric)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "No color observed" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#comparison/10.1039-c6cc05099a/hrp-nhrp-vs-native> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "nHRP shows intracellular activity while native HRP does not" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/nhrp-intracellular-activity> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/native-hrp-no-activity> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#experiment/10.1039-c6cc05099a/apoptosis-assay> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1039-c6cc05099a/ncas3> ,
+                       <https://lovamap.com/ontology#material/10.1039-c6cc05099a/native-cas3> ,
+                       <https://lovamap.com/ontology#material/10.1039-c6cc05099a/nbsa> ;
+    rdfs:label "Flow cytometry apoptosis assay (FITC-Annexin-V/PI) after nCas3 delivery" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Apoptosis assay" ;
+    lova:assayOrMethod "FITC–Annexin-V/propidium iodide staining, flow cytometry" ;
+    lova:cellType "HeLa" ;
+    lova:cultureDuration "48 hours" ;
+    lova:temperature "37 °C" ;
+    lova:seedingDensity "5 µg ml-1 of protein treatment" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/apoptosis-untreated-live> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c6cc05099a/apoptosis-assay> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "Untreated cells, live population (Q4) 91.3%" ;
+    lova:measurementType "Live cell population (Annexin-V-/PI-)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 91.3 ;
+    qudt:unit "%" ;
+    lova:timePoint "48 hours" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/apoptosis-native-cas3-live> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c6cc05099a/apoptosis-assay> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "Native Cas3-treated cells, live population (Q4) 91.1%" ;
+    lova:measurementType "Live cell population (Annexin-V-/PI-)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 91.1 ;
+    qudt:unit "%" ;
+    lova:timePoint "48 hours" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/apoptosis-nbsa-live> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c6cc05099a/apoptosis-assay> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "nBSA-treated cells (control), live population (Q4) 88.1%" ;
+    lova:measurementType "Live cell population (Annexin-V-/PI-)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 88.1 ;
+    qudt:unit "%" ;
+    lova:timePoint "48 hours" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/apoptosis-ncas3-apoptotic> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c6cc05099a/apoptosis-assay> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "nCas3-treated cells, apoptotic population (Q2) 77.2%" ;
+    lova:measurementType "Apoptotic cell population (Annexin-V+/PI+)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 77.2 ;
+    qudt:unit "%" ;
+    lova:timePoint "48 hours" ;
+    lova:comparisonGroup "nBSA control" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/apoptosis-ncas3-live> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c6cc05099a/apoptosis-assay> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "nCas3-treated cells, live population (Q4) 3.31%" ;
+    lova:measurementType "Live cell population (Annexin-V-/PI-)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 3.31 ;
+    qudt:unit "%" ;
+    lova:timePoint "48 hours" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1039-c6cc05099a/apoptosis-ncas3-vs-nbsa-live> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "Live cell fraction lower with nCas3 treatment than nBSA control, consistent with Cas3-induced apoptosis" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/apoptosis-ncas3-live> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/apoptosis-nbsa-live> ;
+    lova:direction "lower" .
+
+<https://lovamap.com/ontology#comparison/10.1039-c6cc05099a/apoptosis-untreated-vs-native-cas3> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c6cc05099a> ;
+    rdfs:label "Live cell fraction no difference between untreated cells and native Cas3-treated cells" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/apoptosis-untreated-live> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1039-c6cc05099a/apoptosis-native-cas3-live> ;
+    lova:direction "no difference" .

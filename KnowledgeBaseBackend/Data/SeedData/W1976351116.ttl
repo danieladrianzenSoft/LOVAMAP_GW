@@ -1,0 +1,516 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1021-ja104299t> a bibo:AcademicArticle ;
+    rdfs:label "Du et al., 2010 — Quantum-Dot-Decorated Bioluminescent Nanocapsules" ;
+    dc:title "Quantum-Dot-Decorated Robust Transductable Bioluminescent Nanocapsules" ;
+    dc:identifier "10.1021/ja104299t" ;
+    dc:date "2010"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/journal-of-the-american-chemical-society> ;
+    dc:creator <https://lovamap.com/ontology#author/du-juanjuan> ,
+               <https://lovamap.com/ontology#author/yu-changming> ,
+               <https://lovamap.com/ontology#author/pan-daocheng> ,
+               <https://lovamap.com/ontology#author/li-jianmin> ,
+               <https://lovamap.com/ontology#author/chen-wei> ,
+               <https://lovamap.com/ontology#author/yan-ming> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ,
+               <https://lovamap.com/ontology#author/lu-yunfeng> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/du-juanjuan>
+                       <https://lovamap.com/ontology#author/yu-changming>
+                       <https://lovamap.com/ontology#author/pan-daocheng>
+                       <https://lovamap.com/ontology#author/li-jianmin>
+                       <https://lovamap.com/ontology#author/chen-wei>
+                       <https://lovamap.com/ontology#author/yan-ming>
+                       <https://lovamap.com/ontology#author/segura-tatiana>
+                       <https://lovamap.com/ontology#author/lu-yunfeng> ) ;
+    dc:bibliographicCitation "Du et al., 2010" ;
+    lova:focusMaterial "Quantum-dot-decorated bioluminescent nanocapsules with HRP enzyme core, crosslinked polymer shell, and CdTe quantum dots for tunable BRET-based bioluminescence" .
+
+<https://lovamap.com/ontology#author/du-juanjuan> a foaf:Person ;
+    foaf:familyName "Du" ; foaf:givenName "Juanjuan" ; foaf:name "Juanjuan Du" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California, Los Angeles, California 90095" .
+
+<https://lovamap.com/ontology#author/yu-changming> a foaf:Person ;
+    foaf:familyName "Yu" ; foaf:givenName "Changming" ; foaf:name "Changming Yu" ;
+    schema:affiliation "Laboratory of Applied Molecular Biology, Beijing Institute of Microbiology and Epidermology, 20 FengTai Dongdajie Street, Beijing 100071, P.R. China" .
+
+<https://lovamap.com/ontology#author/pan-daocheng> a foaf:Person ;
+    foaf:familyName "Pan" ; foaf:givenName "Daocheng" ; foaf:name "Daocheng Pan" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California, Los Angeles, California 90095" .
+
+<https://lovamap.com/ontology#author/li-jianmin> a foaf:Person ;
+    foaf:familyName "Li" ; foaf:givenName "Jianmin" ; foaf:name "Jianmin Li" ;
+    schema:affiliation "Laboratory of Applied Molecular Biology, Beijing Institute of Microbiology and Epidermology, 20 FengTai Dongdajie Street, Beijing 100071, P.R. China" .
+
+<https://lovamap.com/ontology#author/chen-wei> a foaf:Person ;
+    foaf:familyName "Chen" ; foaf:givenName "Wei" ; foaf:name "Wei Chen" ;
+    schema:affiliation "Laboratory of Applied Molecular Biology, Beijing Institute of Microbiology and Epidermology, 20 FengTai Dongdajie Street, Beijing 100071, P.R. China" .
+
+<https://lovamap.com/ontology#author/yan-ming> a foaf:Person ;
+    foaf:familyName "Yan" ; foaf:givenName "Ming" ; foaf:name "Ming Yan" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California, Los Angeles, California 90095" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ; foaf:givenName "Tatiana" ; foaf:name "Tatiana Segura" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California, Los Angeles, California 90095" .
+
+<https://lovamap.com/ontology#author/lu-yunfeng> a foaf:Person ;
+    foaf:familyName "Lu" ; foaf:givenName "Yunfeng" ; foaf:name "Yunfeng Lu" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California, Los Angeles, California 90095" .
+
+<https://lovamap.com/ontology#journal/journal-of-the-american-chemical-society> a bibo:Journal ;
+    dc:title "Journal of the American Chemical Society" ;
+    bibo:issn "0002-7863" .
+
+<https://lovamap.com/ontology#material/10.1021-ja104299t/hrp-native> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-ja104299t> ;
+    rdfs:label "Native horseradish peroxidase (HRP)" ;
+    lova:particleMaterial "Horseradish peroxidase (HRP)" .
+
+<https://lovamap.com/ontology#material/10.1021-ja104299t/nhrp> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-ja104299t> ;
+    rdfs:label "HRP-polymer conjugate (nHRP) nanocapsule" ;
+    lova:particleMaterial "HRP core with poly(AAm-co-APMAAm) shell" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-ja104299t/in-situ-polymerization> .
+
+<https://lovamap.com/ontology#material/10.1021-ja104299t/qd-544> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-ja104299t> ;
+    rdfs:label "CdTe quantum dot (QD-544)" ;
+    lova:particleMaterial "CdTe" ;
+    lova:particleSizeMin 2.0 ;
+    lova:particleSizeMax 3.0 ;
+    lova:particleSizeUnit "nm" ;
+    lova:sizeDistribution "Monodisperse" .
+
+<https://lovamap.com/ontology#material/10.1021-ja104299t/bn-517> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-ja104299t> ;
+    rdfs:label "Bioluminescent nanocapsule BN-517 (QD-517 conjugated)" ;
+    lova:particleMaterial "HRP core with poly(AAm-co-APMAAm) shell" ;
+    lova:surfaceModification "QD-517 conjugated" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-ja104299t/in-situ-polymerization> .
+
+<https://lovamap.com/ontology#material/10.1021-ja104299t/bn-544> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-ja104299t> ;
+    rdfs:label "Bioluminescent nanocapsule BN-544 (QD-544 conjugated)" ;
+    lova:particleMaterial "HRP core with poly(AAm-co-APMAAm) shell" ;
+    lova:particleSizeMin 17.0 ;
+    lova:particleSizeMax 17.0 ;
+    lova:particleSizeUnit "nm" ;
+    lova:surfaceModification "QD-544 conjugated" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-ja104299t/in-situ-polymerization> .
+
+<https://lovamap.com/ontology#material/10.1021-ja104299t/bn-579> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-ja104299t> ;
+    rdfs:label "Bioluminescent nanocapsule BN-579 (QD-579 conjugated)" ;
+    lova:particleMaterial "HRP core with poly(AAm-co-APMAAm) shell" ;
+    lova:surfaceModification "QD-579 conjugated" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-ja104299t/in-situ-polymerization> .
+
+<https://lovamap.com/ontology#material/10.1021-ja104299t/bn-696> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-ja104299t> ;
+    rdfs:label "Bioluminescent nanocapsule BN-696 (QD-696 conjugated)" ;
+    lova:particleMaterial "HRP core with poly(AAm-co-APMAAm) shell" ;
+    lova:surfaceModification "QD-696 conjugated" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-ja104299t/in-situ-polymerization> .
+
+<https://lovamap.com/ontology#material/10.1021-ja104299t/bn-724> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-ja104299t> ;
+    rdfs:label "Bioluminescent nanocapsule BN-724 (QD-724 conjugated)" ;
+    lova:particleMaterial "HRP core with poly(AAm-co-APMAAm) shell" ;
+    lova:surfaceModification "QD-724 conjugated" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-ja104299t/in-situ-polymerization> .
+
+<https://lovamap.com/ontology#material/10.1021-ja104299t/bn-754> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-ja104299t> ;
+    rdfs:label "Bioluminescent nanocapsule BN-754 (QD-754 conjugated)" ;
+    lova:particleMaterial "HRP core with poly(AAm-co-APMAAm) shell" ;
+    lova:surfaceModification "QD-754 conjugated" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-ja104299t/in-situ-polymerization> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1021-ja104299t/in-situ-polymerization> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-ja104299t> ;
+    rdfs:label "Aqueous in situ polymerization forming HRP-core polymer-shell nanocapsules decorated with quantum dots" ;
+    lova:chemistry "Free radical polymerization (vinyl-group polymerization)" ;
+    lova:manufacturingMethod "Aqueous in situ polymerization on vinyl-modified protein, followed by QD conjugation" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1021-ja104299t/hrp> ,
+                    <https://lovamap.com/ontology#reagent/10.1021-ja104299t/aam> ,
+                    <https://lovamap.com/ontology#reagent/10.1021-ja104299t/apmaam> ,
+                    <https://lovamap.com/ontology#reagent/10.1021-ja104299t/cdte-qd> ,
+                    <https://lovamap.com/ontology#reagent/10.1021-ja104299t/luminol> ,
+                    <https://lovamap.com/ontology#reagent/10.1021-ja104299t/h2o2> ,
+                    <https://lovamap.com/ontology#reagent/10.1021-ja104299t/p-iodophenol> .
+
+<https://lovamap.com/ontology#reagent/10.1021-ja104299t/hrp> a lova:Reagent ;
+    rdfs:label "Horseradish peroxidase (HRP), vinyl-modified" ;
+    lova:reagentRole "enzyme" ;
+    lova:reagentFunction "Bioluminescent catalytic core of nanocapsule" .
+
+<https://lovamap.com/ontology#reagent/10.1021-ja104299t/aam> a lova:Reagent ;
+    rdfs:label "Acrylamide (AAm)" ;
+    lova:reagentRole "monomer" ;
+    lova:reagentFunction "Neutral monomer forming crosslinked polymer shell" .
+
+<https://lovamap.com/ontology#reagent/10.1021-ja104299t/apmaam> a lova:Reagent ;
+    rdfs:label "N-(3-aminopropyl)methacrylamide (APMAAm)" ;
+    lova:reagentRole "monomer" ;
+    lova:reagentFunction "Cationic monomer enabling cell transduction and conjugation sites" .
+
+<https://lovamap.com/ontology#reagent/10.1021-ja104299t/cdte-qd> a lova:Reagent ;
+    rdfs:label "CdTe quantum dots (water-soluble)" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "BRET acceptor fluorophore, enables tunable emission wavelength" .
+
+<https://lovamap.com/ontology#reagent/10.1021-ja104299t/luminol> a lova:Reagent ;
+    rdfs:label "Luminol" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Chemiluminescent substrate for HRP-mediated oxidation" .
+
+<https://lovamap.com/ontology#reagent/10.1021-ja104299t/h2o2> a lova:Reagent ;
+    rdfs:label "Hydrogen peroxide (H2O2)" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Oxidant substrate for HRP-mediated luminescence reaction" .
+
+<https://lovamap.com/ontology#reagent/10.1021-ja104299t/p-iodophenol> a lova:Reagent ;
+    rdfs:label "p-iodophenol" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Enhancer of HRP-mediated luminescence" .
+
+<https://lovamap.com/ontology#experiment/10.1021-ja104299t/tem-characterization> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-ja104299t> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-ja104299t/qd-544> ,
+                       <https://lovamap.com/ontology#material/10.1021-ja104299t/bn-544> ;
+    rdfs:label "TEM characterization of QD-544 and BN-544" ;
+    lova:experimentCategory "Structural characterization" ;
+    lova:experimentType "Transmission electron microscopy" ;
+    lova:assayOrMethod "TEM imaging" .
+
+<https://lovamap.com/ontology#outcome/10.1021-ja104299t/qd544-diameter> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-ja104299t/tem-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-ja104299t> ;
+    rdfs:label "Average diameter of QD-544" ;
+    lova:measurementType "Particle diameter" ;
+    lova:measurementCategory "Structural" ;
+    lova:valueString "2-3 nm" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-ja104299t/bn544-diameter> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-ja104299t/tem-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-ja104299t> ;
+    rdfs:label "Average diameter of BN-544" ;
+    lova:measurementType "Particle diameter" ;
+    lova:measurementCategory "Structural" ;
+    qudt:numericValue 17.0 ;
+    qudt:unit "nm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-ja104299t/bn544-qd-count> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-ja104299t/tem-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-ja104299t> ;
+    rdfs:label "Number of QDs per BN-544 nanocapsule" ;
+    lova:measurementType "QDs per nanocapsule" ;
+    lova:measurementCategory "Structural" ;
+    lova:valueString "3-4 QDs" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1021-ja104299t/zeta-potential> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-ja104299t> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-ja104299t/bn-544> ;
+    rdfs:label "Zeta potential measurement of BNs" ;
+    lova:experimentCategory "Physicochemical characterization" ;
+    lova:experimentType "Zeta potential measurement" .
+
+<https://lovamap.com/ontology#outcome/10.1021-ja104299t/zeta-potential> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-ja104299t/zeta-potential> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-ja104299t> ;
+    rdfs:label "Zeta potential of bioluminescent nanocapsules" ;
+    lova:measurementType "Zeta potential" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 9.0 ;
+    qudt:unit "mV" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1021-ja104299t/luminescence-spectra> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-ja104299t> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-ja104299t/hrp-native> ,
+                       <https://lovamap.com/ontology#material/10.1021-ja104299t/nhrp> ,
+                       <https://lovamap.com/ontology#material/10.1021-ja104299t/qd-544> ,
+                       <https://lovamap.com/ontology#material/10.1021-ja104299t/bn-517> ,
+                       <https://lovamap.com/ontology#material/10.1021-ja104299t/bn-544> ,
+                       <https://lovamap.com/ontology#material/10.1021-ja104299t/bn-579> ,
+                       <https://lovamap.com/ontology#material/10.1021-ja104299t/bn-696> ,
+                       <https://lovamap.com/ontology#material/10.1021-ja104299t/bn-724> ,
+                       <https://lovamap.com/ontology#material/10.1021-ja104299t/bn-754> ;
+    rdfs:label "Luminescence/fluorescence spectroscopy of HRP and BNs" ;
+    lova:experimentCategory "Optical characterization" ;
+    lova:experimentType "Luminescence spectroscopy" ;
+    lova:assayOrMethod "Fluorescence/bioluminescence spectrophotometry" .
+
+<https://lovamap.com/ontology#outcome/10.1021-ja104299t/hrp-peak> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-ja104299t/luminescence-spectra> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-ja104299t> ;
+    rdfs:label "Native HRP bioluminescence peak wavelength" ;
+    lova:measurementType "Bioluminescence emission peak" ;
+    lova:measurementCategory "Optical" ;
+    qudt:numericValue 425.0 ;
+    qudt:unit "nm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-ja104299t/bn517-peak> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-ja104299t/luminescence-spectra> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-ja104299t> ;
+    rdfs:label "BN-517 emission peak wavelength" ;
+    lova:measurementType "Bioluminescence emission peak" ;
+    lova:measurementCategory "Optical" ;
+    qudt:numericValue 517.0 ;
+    qudt:unit "nm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-ja104299t/bn544-peak> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-ja104299t/luminescence-spectra> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-ja104299t> ;
+    rdfs:label "BN-544 emission peak wavelength" ;
+    lova:measurementType "Bioluminescence emission peak" ;
+    lova:measurementCategory "Optical" ;
+    qudt:numericValue 544.0 ;
+    qudt:unit "nm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-ja104299t/bn579-peak> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-ja104299t/luminescence-spectra> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-ja104299t> ;
+    rdfs:label "BN-579 emission peak wavelength" ;
+    lova:measurementType "Bioluminescence emission peak" ;
+    lova:measurementCategory "Optical" ;
+    qudt:numericValue 579.0 ;
+    qudt:unit "nm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-ja104299t/bn696-peak> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-ja104299t/luminescence-spectra> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-ja104299t> ;
+    rdfs:label "BN-696 emission peak wavelength" ;
+    lova:measurementType "Bioluminescence emission peak" ;
+    lova:measurementCategory "Optical" ;
+    qudt:numericValue 696.0 ;
+    qudt:unit "nm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-ja104299t/bn724-peak> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-ja104299t/luminescence-spectra> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-ja104299t> ;
+    rdfs:label "BN-724 emission peak wavelength" ;
+    lova:measurementType "Bioluminescence emission peak" ;
+    lova:measurementCategory "Optical" ;
+    qudt:numericValue 724.0 ;
+    qudt:unit "nm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-ja104299t/bn754-peak> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-ja104299t/luminescence-spectra> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-ja104299t> ;
+    rdfs:label "BN-754 emission peak wavelength" ;
+    lova:measurementType "Bioluminescence emission peak" ;
+    lova:measurementCategory "Optical" ;
+    qudt:numericValue 754.0 ;
+    qudt:unit "nm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-ja104299t/color-tunability> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-ja104299t/luminescence-spectra> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-ja104299t> ;
+    rdfs:label "Visible bioluminescence color tunability from blue to red" ;
+    lova:measurementType "Bioluminescence color" ;
+    lova:measurementCategory "Optical" ;
+    lova:valueString "Bioluminescence color visibly tunable from blue (HRP) through green/yellow/orange to red (BN-754) in presence of H2O2, luminol, and p-iodophenol" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-ja104299t/mixture-emission> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-ja104299t/luminescence-spectra> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-ja104299t> ;
+    rdfs:label "Emission intensity at 544 nm of physically mixed nHRP + QD-544" ;
+    lova:measurementType "Luminescence intensity at 544 nm" ;
+    lova:measurementCategory "Optical" ;
+    lova:valueString "Much weaker emission intensity than BN-544 at the same HRP:QD ratio" ;
+    lova:comparisonGroup "BN-544" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1021-ja104299t/bret-ratio> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-ja104299t> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-ja104299t/bn-544> ;
+    rdfs:label "BRET ratio measurement for BN-544 with varying QD/HRP ratios" ;
+    lova:experimentCategory "Optical characterization" ;
+    lova:experimentType "BRET ratio measurement" .
+
+<https://lovamap.com/ontology#outcome/10.1021-ja104299t/bret-1-2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-ja104299t/bret-ratio> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-ja104299t> ;
+    rdfs:label "BRET ratio at QD/HRP ratio = 1.2" ;
+    lova:measurementType "BRET ratio" ;
+    lova:measurementCategory "Optical" ;
+    qudt:numericValue 0.48 ;
+    qudt:unit "unitless" ;
+    lova:comparisonGroup "QD/HRP ratio = 1.2" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-ja104299t/bret-2-3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-ja104299t/bret-ratio> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-ja104299t> ;
+    rdfs:label "BRET ratio at QD/HRP ratio = 2.3" ;
+    lova:measurementType "BRET ratio" ;
+    lova:measurementCategory "Optical" ;
+    qudt:numericValue 1.39 ;
+    qudt:unit "unitless" ;
+    lova:comparisonGroup "QD/HRP ratio = 2.3" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-ja104299t/bret-4-9> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-ja104299t/bret-ratio> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-ja104299t> ;
+    rdfs:label "BRET ratio at QD/HRP ratio = 4.9" ;
+    lova:measurementType "BRET ratio" ;
+    lova:measurementCategory "Optical" ;
+    qudt:numericValue 5.06 ;
+    qudt:unit "unitless" ;
+    lova:comparisonGroup "QD/HRP ratio = 4.9" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-ja104299t/bret-9-6> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-ja104299t/bret-ratio> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-ja104299t> ;
+    rdfs:label "BRET ratio at QD/HRP ratio = 9.6" ;
+    lova:measurementType "BRET ratio" ;
+    lova:measurementCategory "Optical" ;
+    qudt:numericValue 8.92 ;
+    qudt:unit "unitless" ;
+    lova:comparisonGroup "QD/HRP ratio = 9.6" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-ja104299t/literature-luciferase-qd-bret> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-ja104299t/bret-ratio> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-ja104299t> ;
+    rdfs:label "Literature BRET ratio for direct luciferase-QD conjugates" ;
+    lova:measurementType "BRET ratio" ;
+    lova:measurementCategory "Optical" ;
+    lova:valueString "<0.5" ;
+    lova:comparisonGroup "Luciferase-QD direct conjugates (literature)" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1021-ja104299t/bret-vs-literature> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-ja104299t> ;
+    rdfs:label "BRET ratio of BN-544 (QD/HRP=9.6) higher than literature direct luciferase-QD conjugates" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-ja104299t/bret-9-6> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-ja104299t/literature-luciferase-qd-bret> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#comparison/10.1021-ja104299t/bn544-vs-mixture> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-ja104299t> ;
+    rdfs:label "BN-544 emission intensity at 544 nm higher than physically mixed nHRP + QD-544" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-ja104299t/bn544-peak> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-ja104299t/mixture-emission> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#experiment/10.1021-ja104299t/stability-test> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-ja104299t> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-ja104299t/hrp-native> ,
+                       <https://lovamap.com/ontology#material/10.1021-ja104299t/bn-544> ;
+    rdfs:label "Luminescence stability test of HRP and BN-544 under incubation" ;
+    lova:experimentCategory "Stability assay" ;
+    lova:experimentType "Thermal stability assay" ;
+    lova:temperature "37°C" ;
+    lova:cultureDuration "0, 24, 48 h" .
+
+<https://lovamap.com/ontology#outcome/10.1021-ja104299t/hrp-loss-24h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-ja104299t/stability-test> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-ja104299t> ;
+    rdfs:label "Native HRP luminescence intensity loss at 24 h" ;
+    lova:measurementType "Luminescence intensity loss" ;
+    lova:measurementCategory "Stability" ;
+    qudt:numericValue 52.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "24 h" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-ja104299t/hrp-loss-48h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-ja104299t/stability-test> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-ja104299t> ;
+    rdfs:label "Native HRP luminescence intensity loss at 48 h" ;
+    lova:measurementType "Luminescence intensity loss" ;
+    lova:measurementCategory "Stability" ;
+    qudt:numericValue 73.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "48 h" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-ja104299t/bn544-retention-24h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-ja104299t/stability-test> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-ja104299t> ;
+    rdfs:label "BN-544 luminescence intensity retention at 24 h" ;
+    lova:measurementType "Luminescence intensity retention" ;
+    lova:measurementCategory "Stability" ;
+    qudt:numericValue 99.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "24 h" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-ja104299t/bn544-retention-48h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-ja104299t/stability-test> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-ja104299t> ;
+    rdfs:label "BN-544 luminescence intensity retention at 48 h" ;
+    lova:measurementType "Luminescence intensity retention" ;
+    lova:measurementCategory "Stability" ;
+    qudt:numericValue 98.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "48 h" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1021-ja104299t/bn544-vs-hrp-24h> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-ja104299t> ;
+    rdfs:label "BN-544 luminescence retention higher than native HRP at 24 h" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-ja104299t/bn544-retention-24h> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-ja104299t/hrp-loss-24h> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#comparison/10.1021-ja104299t/bn544-vs-hrp-48h> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-ja104299t> ;
+    rdfs:label "BN-544 luminescence retention higher than native HRP at 48 h" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-ja104299t/bn544-retention-48h> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-ja104299t/hrp-loss-48h> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#experiment/10.1021-ja104299t/cell-uptake> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-ja104299t> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-ja104299t/bn-696> ;
+    rdfs:label "Cellular uptake and bioluminescence assay of BN-696 in HeLa cells" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cellular uptake / bioluminescence assay" ;
+    lova:assayOrMethod "Fluorescence microscopy, luminescence measurement" ;
+    lova:cellType "HeLa" ;
+    lova:cultureDuration "3 h" .
+
+<https://lovamap.com/ontology#outcome/10.1021-ja104299t/cell-uptake-image> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-ja104299t/cell-uptake> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-ja104299t> ;
+    rdfs:label "Fluorescent microscopy evidence of BN-696 cellular uptake in HeLa cells" ;
+    lova:measurementType "Cellular uptake (fluorescence imaging)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Positive intracellular fluorescence indicating cellular uptake of BN-696 after 3 h incubation" ;
+    lova:timePoint "3 h" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-ja104299t/rlu-vs-concentration> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-ja104299t/cell-uptake> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-ja104299t> ;
+    rdfs:label "Relative luminescence unit (RLU) of HeLa cells increases with BN-696 concentration" ;
+    lova:measurementType "Relative luminescence unit (RLU)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "RLU increases from approximately 10^3 to over 10^5 as BN-696 concentration increases from 0 to ~50 nM, with saturation approached at higher concentrations" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .

@@ -1,0 +1,885 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> a bibo:AcademicArticle ;
+    rdfs:label "Lei et al., 2010 — Spreading, migration and proliferation of mMSC in HA hydrogels" ;
+    dc:title "The spreading, migration and proliferation of mouse mesenchymal stem cells cultured inside hyaluronic acid hydrogels" ;
+    dc:identifier "10.1016/j.biomaterials.2010.08.103" ;
+    dc:date "2010"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/biomaterials> ;
+    dc:creator <https://lovamap.com/ontology#author/lei-yuguo> ,
+               <https://lovamap.com/ontology#author/gojgini-shiva> ,
+               <https://lovamap.com/ontology#author/lam-jonathan> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/lei-yuguo>
+                       <https://lovamap.com/ontology#author/gojgini-shiva>
+                       <https://lovamap.com/ontology#author/lam-jonathan>
+                       <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    dc:bibliographicCitation "Lei et al., 2010" ;
+    lova:focusMaterial "Hyaluronic acid (HA) hydrogels crosslinked via Michael addition with DTT, plasmin-degradable or MMP-degradable peptide crosslinkers, functionalized with RGD, cultured with mouse mesenchymal stem cells (mMSC)" .
+
+<https://lovamap.com/ontology#author/lei-yuguo> a foaf:Person ;
+    foaf:familyName "Lei" ;
+    foaf:givenName "Yuguo" ;
+    foaf:name "Yuguo Lei" ;
+    schema:affiliation "University of California, Los Angeles, Chemical and Biomolecular Engineering Department, Los Angeles, CA, USA" .
+
+<https://lovamap.com/ontology#author/gojgini-shiva> a foaf:Person ;
+    foaf:familyName "Gojgini" ;
+    foaf:givenName "Shiva" ;
+    foaf:name "Shiva Gojgini" ;
+    schema:affiliation "University of California, Los Angeles, Chemical and Biomolecular Engineering Department, Los Angeles, CA, USA" .
+
+<https://lovamap.com/ontology#author/lam-jonathan> a foaf:Person ;
+    foaf:familyName "Lam" ;
+    foaf:givenName "Jonathan" ;
+    foaf:name "Jonathan G. T. Lam" ;
+    schema:affiliation "University of California, Los Angeles, Chemical and Biomolecular Engineering Department, Los Angeles, CA, USA" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" ;
+    schema:affiliation "University of California, Los Angeles, Chemical and Biomolecular Engineering Department, Los Angeles, CA, USA" .
+
+<https://lovamap.com/ontology#journal/biomaterials> a bibo:Journal ;
+    dc:title "Biomaterials" ;
+    bibo:issn "0142-9612" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.103/ha-60kda> a lova:Reagent ;
+    rdfs:label "Sodium hyaluronan (HA, 60 kDa)" ;
+    lova:reagentRole "monomer" ;
+    lova:molecularWeight "60 kDa" ;
+    lova:supplier "Genzyme Corporation" ;
+    lova:reagentFunction "Hydrogel backbone polysaccharide" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.103/adh> a lova:Reagent ;
+    rdfs:label "Adipic dihydrazide (ADH)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "18.0 g (105.5 mmole)" ;
+    lova:supplier "Fisher Scientific" ;
+    lova:reagentFunction "Conjugated to HA carboxyl groups to form HA-ADH intermediate" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.103/edc> a lova:Reagent ;
+    rdfs:label "1-ethyl-3-[3-dimethylaminopropyl] carbodiimide hydrochloride (EDC)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "2.0 g (10.41 mmole)" ;
+    lova:supplier "Fisher Scientific" ;
+    lova:reagentFunction "Carbodiimide coupling reagent for HA-ADH conjugation" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.103/nhs-ac> a lova:Reagent ;
+    rdfs:label "N-Acryloxysuccinimide (NHS-AC)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "0.75 g (4.4 mmole)" ;
+    lova:supplier "Fisher Scientific" ;
+    lova:reagentFunction "Acrylation of HA-ADH primary amines to form HA-AC" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.103/dtt> a lova:Reagent ;
+    rdfs:label "DTT (dithiothreitol) crosslinker" ;
+    lova:reagentRole "crosslinker" ;
+    lova:reagentFunction "Non-degradable bis-thiol crosslinker for HA-AC Michael addition" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.103/hs-plasmin-sh> a lova:Reagent ;
+    rdfs:label "HS-Plasmin-SH peptide (GCRE-NRV-ERCG)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:sequence "GCRE-NRV-ERCG" ;
+    lova:supplier "Genscript" ;
+    lova:reagentFunction "Plasmin-degradable crosslinker" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.103/hs-mmp-sh> a lova:Reagent ;
+    rdfs:label "HS-MMP-SH peptide (GCRE-PQGIWGQ-ERCG)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:sequence "GCRE-PQGIWGQ-ERCG" ;
+    lova:supplier "Genscript" ;
+    lova:reagentFunction "MMP-degradable crosslinker" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.103/rgd> a lova:Reagent ;
+    rdfs:label "RGD peptide (Ac-GCGYG-RGDSPG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "GCGYG-RGDSPG" ;
+    lova:supplier "Genscript" ;
+    lova:reagentFunction "Cell adhesion via integrin binding" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.103/thrombin> a lova:Reagent ;
+    rdfs:label "Bovine plasma thrombin" ;
+    lova:reagentRole "other" ;
+    lova:concentration "2 U/mL" ;
+    lova:supplier "Sigma-Aldrich" ;
+    lova:reagentFunction "Fibrin clot formation for cell cluster encapsulation" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.103/fibrinogen> a lova:Reagent ;
+    rdfs:label "Human fibrinogen (plasminogen depleted)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "2 mg/mL" ;
+    lova:supplier "Enzyme Research Laboratories" ;
+    lova:reagentFunction "Fibrin clot formation for cell cluster encapsulation" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.08.103/ha-dtt> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "HA-AC crosslinked with DTT via Michael addition" ;
+    lova:chemistry "Michael addition" ;
+    lova:manufacturingMethod "Bulk mixing between Teflon plates, 37°C 30 min gelation" ;
+    lova:annealingChemistry "Non-covalent/non-degradable (thiol-acrylate Michael addition)" ;
+    lova:annealingConditions "37°C, 30 min" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.103/ha-60kda> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.103/adh> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.103/edc> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.103/nhs-ac> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.103/dtt> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.103/rgd> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.08.103/ha-plasmin> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "HA-AC crosslinked with HS-Plasmin-SH via Michael addition" ;
+    lova:chemistry "Michael addition" ;
+    lova:manufacturingMethod "Bulk mixing between Teflon plates, 37°C 30 min gelation" ;
+    lova:annealingChemistry "Plasmin-degradable peptide crosslinking" ;
+    lova:annealingConditions "37°C, 30 min" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.103/ha-60kda> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.103/adh> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.103/edc> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.103/nhs-ac> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.103/hs-plasmin-sh> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.103/rgd> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.08.103/ha-mmp> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "HA-AC crosslinked with HS-MMP-SH via Michael addition" ;
+    lova:chemistry "Michael addition" ;
+    lova:manufacturingMethod "Bulk mixing between Teflon plates, 37°C 30 min gelation" ;
+    lova:annealingChemistry "MMP-degradable peptide crosslinking" ;
+    lova:annealingConditions "37°C, 30 min" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.103/ha-60kda> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.103/adh> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.103/edc> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.103/nhs-ac> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.103/hs-mmp-sh> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.103/rgd> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.103/mat-dtt-rgd100> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "HA-DTT hydrogel, 3.5% HA, r=0.4, 100 μM RGD" ;
+    lova:particleMaterial "Hyaluronic acid (HA)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:surfaceModification "RGD peptide 100 μM" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.08.103/ha-dtt> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.103/mat-dtt-rgd1000> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "HA-DTT hydrogel, 3.5% HA, r=0.4, 1000 μM RGD" ;
+    lova:particleMaterial "Hyaluronic acid (HA)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:surfaceModification "RGD peptide 1000 μM" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.08.103/ha-dtt> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.103/mat-plasmin-rgd100> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "HA-Plasmin hydrogel, 3.5% HA, r=0.4, 100 μM RGD" ;
+    lova:particleMaterial "Hyaluronic acid (HA)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:surfaceModification "RGD peptide 100 μM" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.08.103/ha-plasmin> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.103/mat-plasmin-rgd1000> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "HA-Plasmin hydrogel, 3.5% HA, r=0.4, 1000 μM RGD" ;
+    lova:particleMaterial "Hyaluronic acid (HA)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:surfaceModification "RGD peptide 1000 μM" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.08.103/ha-plasmin> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.103/mat-mmp35-rgd100> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "HA-MMP hydrogel, 3.5% HA, r=0.4, 100 μM RGD" ;
+    lova:particleMaterial "Hyaluronic acid (HA)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:surfaceModification "RGD peptide 100 μM" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.08.103/ha-mmp> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.103/mat-mmp35-rgd1000> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "HA-MMP hydrogel, 3.5% HA, r=0.4, 1000 μM RGD" ;
+    lova:particleMaterial "Hyaluronic acid (HA)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:surfaceModification "RGD peptide 1000 μM" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.08.103/ha-mmp> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.103/mat-mmp-r04-rgd0> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "HA-MMP hydrogel, 3% HA, r=0.4, 0 μM RGD" ;
+    lova:particleMaterial "Hyaluronic acid (HA)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:stiffnessValue 305.4 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:surfaceModification "No RGD" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.08.103/ha-mmp> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.103/mat-mmp-r04-rgd100> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "HA-MMP hydrogel, 3% HA, r=0.4, 100 μM RGD" ;
+    lova:particleMaterial "Hyaluronic acid (HA)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:stiffnessValue 305.4 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:surfaceModification "RGD peptide 100 μM" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.08.103/ha-mmp> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.103/mat-mmp-r04-rgd250> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "HA-MMP hydrogel, 3% HA, r=0.4, 250 μM RGD" ;
+    lova:particleMaterial "Hyaluronic acid (HA)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:surfaceModification "RGD peptide 250 μM" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.08.103/ha-mmp> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.103/mat-mmp-r04-rgd500> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "HA-MMP hydrogel, 3% HA, r=0.4, 500 μM RGD" ;
+    lova:particleMaterial "Hyaluronic acid (HA)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:surfaceModification "RGD peptide 500 μM" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.08.103/ha-mmp> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.103/mat-mmp-r04-rgd750> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "HA-MMP hydrogel, 3% HA, r=0.4, 750 μM RGD" ;
+    lova:particleMaterial "Hyaluronic acid (HA)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:surfaceModification "RGD peptide 750 μM" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.08.103/ha-mmp> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.103/mat-mmp-r04-rgd1000> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "HA-MMP hydrogel, 3% HA, r=0.4, 1000 μM RGD" ;
+    lova:particleMaterial "Hyaluronic acid (HA)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:stiffnessValue 305.4 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:surfaceModification "RGD peptide 1000 μM" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.08.103/ha-mmp> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.103/mat-mmp-r025-rgd100> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "HA-MMP hydrogel, 3% HA, r=0.25, 100 μM RGD" ;
+    lova:particleMaterial "Hyaluronic acid (HA)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:stiffnessValue 177.1 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:surfaceModification "RGD peptide 100 μM" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.08.103/ha-mmp> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.103/mat-mmp-r025-rgd1000> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "HA-MMP hydrogel, 3% HA, r=0.25, 1000 μM RGD" ;
+    lova:particleMaterial "Hyaluronic acid (HA)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:stiffnessValue 177.1 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:surfaceModification "RGD peptide 1000 μM" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.08.103/ha-mmp> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.103/mat-mmp-r05-rgd100> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "HA-MMP hydrogel, 3% HA, r=0.5, 100 μM RGD" ;
+    lova:particleMaterial "Hyaluronic acid (HA)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:stiffnessValue 387.4 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:surfaceModification "RGD peptide 100 μM" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.08.103/ha-mmp> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.103/mat-mmp-r05-rgd1000> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "HA-MMP hydrogel, 3% HA, r=0.5, 1000 μM RGD" ;
+    lova:particleMaterial "Hyaluronic acid (HA)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:stiffnessValue 387.4 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:surfaceModification "RGD peptide 1000 μM" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.08.103/ha-mmp> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.103/mat-mmp-4pct-r025-rgd100> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "HA-MMP hydrogel, 4% HA, r=0.25, 100 μM RGD" ;
+    lova:particleMaterial "Hyaluronic acid (HA)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:stiffnessValue 817.7 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:surfaceModification "RGD peptide 100 μM" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.08.103/ha-mmp> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.103/mat-mmp-4pct-r025-rgd1000> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "HA-MMP hydrogel, 4% HA, r=0.25, 1000 μM RGD" ;
+    lova:particleMaterial "Hyaluronic acid (HA)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:stiffnessValue 817.7 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:surfaceModification "RGD peptide 1000 μM" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.08.103/ha-mmp> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.103/mat-mmp-5pct-r025-rgd100> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "HA-MMP hydrogel, 5% HA, r=0.25, 100 μM RGD" ;
+    lova:particleMaterial "Hyaluronic acid (HA)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:stiffnessValue 1920.0 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:surfaceModification "RGD peptide 100 μM" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.08.103/ha-mmp> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.103/mat-mmp-5pct-r025-rgd1000> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "HA-MMP hydrogel, 5% HA, r=0.25, 1000 μM RGD" ;
+    lova:particleMaterial "Hyaluronic acid (HA)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:stiffnessValue 1920.0 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:surfaceModification "RGD peptide 1000 μM" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.08.103/ha-mmp> .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.103/rheology> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.103/mat-mmp-r025-rgd100> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.103/mat-mmp-r04-rgd100> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.103/mat-mmp-r05-rgd100> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.103/mat-mmp-4pct-r025-rgd100> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.103/mat-mmp-5pct-r025-rgd100> ;
+    rdfs:label "Rheological characterization of HA-MMP hydrogels" ;
+    lova:experimentCategory "Mechanical" ;
+    lova:experimentType "Oscillatory shear rheology" ;
+    lova:equipment "Physica MCR rheometer (Anton Paar), 8mm plate" ;
+    lova:strainRate "constant strain 0.05" ;
+    lova:frequency "0.1 rad/s to 10 rad/s" ;
+    lova:temperature "25°C" ;
+    lova:scaffoldDimensions "8 mm diameter" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.103/gprime-3pct-r025> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.103/rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "Storage modulus (G') of 3% HA gel, r=0.25" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 177.1 ;
+    qudt:unit "Pa" ;
+    lova:stdDev 0.5 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.103/gprime-3pct-r04> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.103/rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "Storage modulus (G') of 3% HA gel, r=0.4" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 305.4 ;
+    qudt:unit "Pa" ;
+    lova:stdDev 1.8 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.103/gprime-3pct-r05> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.103/rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "Storage modulus (G') of 3% HA gel, r=0.5" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 387.4 ;
+    qudt:unit "Pa" ;
+    lova:stdDev 1.9 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.103/gprime-4pct-r025> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.103/rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "Storage modulus (G') of 4% HA gel, r=0.25" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 817.7 ;
+    qudt:unit "Pa" ;
+    lova:stdDev 16.5 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.103/gprime-5pct-r025> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.103/rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "Storage modulus (G') of 5% HA gel, r=0.25" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 1920.0 ;
+    qudt:unit "Pa" ;
+    lova:stdDev 12.1 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.103/loss-tangent> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.103/rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "Loss tangent (G''/G') of all hydrogels tested" ;
+    lova:measurementType "Loss tangent" ;
+    lova:measurementCategory "Mechanical" ;
+    lova:valueString "< 0.06 for all hydrogels tested" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.103/ha-modification> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.103/rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "Percent of HA carboxyl groups modified with ADH" ;
+    lova:measurementType "Degree of HA modification (TNBSA assay)" ;
+    lova:measurementCategory "Chemical" ;
+    qudt:numericValue 38.8 ;
+    qudt:unit "%" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.103/acrylates-per-chain> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.103/rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "Approximate acrylates per HA chain" ;
+    lova:measurementType "Acrylation degree" ;
+    lova:measurementCategory "Chemical" ;
+    qudt:numericValue 61.0 ;
+    qudt:unit "acrylates/chain" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.103/crosslinker-proliferation> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.103/mat-dtt-rgd100> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.103/mat-plasmin-rgd100> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.103/mat-mmp35-rgd100> ;
+    rdfs:label "Proliferation of D1 mMSC in hydrogels with 100 μM RGD, varying crosslinker type" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell proliferation" ;
+    lova:assayOrMethod "Alamar Blue" ;
+    lova:cellType "D1 mouse bone marrow mesenchymal stem cells (mMSC, CRL12424)" ;
+    lova:cellSource "Mouse bone marrow" ;
+    lova:cultureMedium "DMEM + 10% bovine growth serum + 1% penicillin/streptomycin" ;
+    lova:cultureDuration "1, 2, 3 days" ;
+    lova:temperature "37°C" ;
+    lova:atmosphere "5% CO2" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.103/prolif-dtt-day2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.103/crosslinker-proliferation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "Normalized proliferation of mMSC in HA-DTT gel at day 2" ;
+    lova:measurementType "Normalized proliferation" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.9 ;
+    qudt:unit "fold increase" ;
+    lova:timePoint "Day 2" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.103/prolif-dtt-day3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.103/crosslinker-proliferation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "Normalized proliferation of mMSC in HA-DTT gel at day 3" ;
+    lova:measurementType "Normalized proliferation" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.75 ;
+    qudt:unit "fold increase" ;
+    lova:timePoint "Day 3" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.103/prolif-plasmin-day2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.103/crosslinker-proliferation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "Normalized proliferation of mMSC in HA-Plasmin gel at day 2" ;
+    lova:measurementType "Normalized proliferation" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.65 ;
+    qudt:unit "fold increase" ;
+    lova:timePoint "Day 2" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.103/prolif-plasmin-day3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.103/crosslinker-proliferation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "Normalized proliferation of mMSC in HA-Plasmin gel at day 3" ;
+    lova:measurementType "Normalized proliferation" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.4 ;
+    qudt:unit "fold increase" ;
+    lova:timePoint "Day 3" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.103/prolif-mmp-day2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.103/crosslinker-proliferation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "Normalized proliferation of mMSC in HA-MMP gel at day 2" ;
+    lova:measurementType "Normalized proliferation" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.05 ;
+    qudt:unit "fold increase" ;
+    lova:timePoint "Day 2" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.103/prolif-mmp-day3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.103/crosslinker-proliferation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "Normalized proliferation of mMSC in HA-MMP gel at day 3" ;
+    lova:measurementType "Normalized proliferation" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.6 ;
+    qudt:unit "fold increase" ;
+    lova:timePoint "Day 3" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.103/crosslinker-spreading-migration> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.103/mat-dtt-rgd100> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.103/mat-dtt-rgd1000> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.103/mat-plasmin-rgd100> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.103/mat-plasmin-rgd1000> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.103/mat-mmp35-rgd100> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.103/mat-mmp35-rgd1000> ;
+    rdfs:label "Cell viability, spreading, and migration (fibrin clot assay) by crosslinker type" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell spreading and migration" ;
+    lova:assayOrMethod "LIVE/DEAD staining; phase microscopy migration quantification" ;
+    lova:cellType "D1 mouse bone marrow mesenchymal stem cells (mMSC, CRL12424)" ;
+    lova:cultureDuration "3 days" ;
+    lova:temperature "37°C" ;
+    lova:atmosphere "5% CO2" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.103/spreading-dtt> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.103/crosslinker-spreading-migration> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "Cell morphology in HA-DTT hydrogels" ;
+    lova:measurementType "Cell morphology" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Spherical morphology, no spreading, no migration observed" ;
+    lova:timePoint "Day 3" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.103/spreading-plasmin> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.103/crosslinker-spreading-migration> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "Cell morphology in HA-Plasmin hydrogels" ;
+    lova:measurementType "Cell morphology" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Spherical morphology, no spreading, no migration observed" ;
+    lova:timePoint "Day 3" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.103/spreading-mmp> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.103/crosslinker-spreading-migration> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "Cell morphology in HA-MMP hydrogels" ;
+    lova:measurementType "Cell morphology" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Spindle-like morphology, extensive spreading and migration observed, faster migration at 1000 μM RGD" ;
+    lova:timePoint "Day 3" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.103/rgd-effect> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.103/mat-mmp-r04-rgd0> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.103/mat-mmp-r04-rgd100> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.103/mat-mmp-r04-rgd250> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.103/mat-mmp-r04-rgd500> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.103/mat-mmp-r04-rgd750> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.103/mat-mmp-r04-rgd1000> ;
+    rdfs:label "Effect of RGD concentration on mMSC spreading, proliferation and migration in HA-MMP hydrogels" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell spreading, proliferation, migration" ;
+    lova:assayOrMethod "LIVE/DEAD staining; Alamar Blue; phase microscopy migration assay" ;
+    lova:cellType "D1 mouse bone marrow mesenchymal stem cells (mMSC, CRL12424)" ;
+    lova:cultureDuration "1, 3, 5 days" ;
+    lova:temperature "37°C" ;
+    lova:atmosphere "5% CO2" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.103/migration-rgd0> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.103/rgd-effect> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "Migration rate of mMSC in HA-MMP gel with 0 μM RGD" ;
+    lova:measurementType "Cell migration rate" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.0 ;
+    qudt:unit "μm/day" ;
+    lova:timePoint "Day 5" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.103/migration-rgd100> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.103/rgd-effect> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "Migration rate of mMSC in HA-MMP gel with 100 μM RGD" ;
+    lova:measurementType "Cell migration rate" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 55.0 ;
+    qudt:unit "μm/day" ;
+    lova:timePoint "Day 5" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.103/migration-rgd250> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.103/rgd-effect> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "Migration rate of mMSC in HA-MMP gel with 250 μM RGD" ;
+    lova:measurementType "Cell migration rate" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 68.0 ;
+    qudt:unit "μm/day" ;
+    lova:timePoint "Day 5" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.103/migration-rgd500> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.103/rgd-effect> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "Migration rate of mMSC in HA-MMP gel with 500 μM RGD" ;
+    lova:measurementType "Cell migration rate" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 77.0 ;
+    qudt:unit "μm/day" ;
+    lova:timePoint "Day 5" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.103/migration-rgd750> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.103/rgd-effect> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "Migration rate of mMSC in HA-MMP gel with 750 μM RGD" ;
+    lova:measurementType "Cell migration rate" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 72.0 ;
+    qudt:unit "μm/day" ;
+    lova:timePoint "Day 5" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.103/migration-rgd1000> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.103/rgd-effect> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "Migration rate of mMSC in HA-MMP gel with 1000 μM RGD" ;
+    lova:measurementType "Cell migration rate" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 87.0 ;
+    qudt:unit "μm/day" ;
+    lova:timePoint "Day 5" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.103/prolif-rgd-general> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.103/rgd-effect> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "Proliferation trend across RGD concentrations" ;
+    lova:measurementType "Normalized proliferation" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Low RGD concentration (100, 250 μM) resulted in enhanced proliferation compared to high RGD concentrations (500, 750, 1000 μM); 0 μM RGD proliferated similarly to low RGD" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.103/ha-concentration-effect> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.103/mat-mmp-r025-rgd100> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.103/mat-mmp-r025-rgd1000> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.103/mat-mmp-4pct-r025-rgd100> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.103/mat-mmp-4pct-r025-rgd1000> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.103/mat-mmp-5pct-r025-rgd100> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.103/mat-mmp-5pct-r025-rgd1000> ;
+    rdfs:label "Effect of HA concentration (3%, 4%, 5%) on mMSC spreading, proliferation and migration" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell spreading, proliferation, migration" ;
+    lova:assayOrMethod "LIVE/DEAD staining; Alamar Blue; phase microscopy migration assay" ;
+    lova:cellType "D1 mouse bone marrow mesenchymal stem cells (mMSC, CRL12424)" ;
+    lova:cultureDuration "1, 2, 6 days" ;
+    lova:temperature "37°C" ;
+    lova:atmosphere "5% CO2" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.103/migration-3pct-100> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.103/ha-concentration-effect> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "Migration rate, 3% HA, 100 μM RGD" ;
+    lova:measurementType "Cell migration rate" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 95.0 ;
+    qudt:unit "μm/day" ;
+    lova:timePoint "Day 6" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.103/migration-4pct-100> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.103/ha-concentration-effect> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "Migration rate, 4% HA, 100 μM RGD" ;
+    lova:measurementType "Cell migration rate" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 50.0 ;
+    qudt:unit "μm/day" ;
+    lova:timePoint "Day 6" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.103/migration-5pct-100> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.103/ha-concentration-effect> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "Migration rate, 5% HA, 100 μM RGD" ;
+    lova:measurementType "Cell migration rate" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.0 ;
+    qudt:unit "μm/day" ;
+    lova:timePoint "Day 6" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.103/migration-3pct-1000> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.103/ha-concentration-effect> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "Migration rate, 3% HA, 1000 μM RGD" ;
+    lova:measurementType "Cell migration rate" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 99.0 ;
+    qudt:unit "μm/day" ;
+    lova:timePoint "Day 6" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.103/migration-4pct-1000> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.103/ha-concentration-effect> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "Migration rate, 4% HA, 1000 μM RGD" ;
+    lova:measurementType "Cell migration rate" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 88.0 ;
+    qudt:unit "μm/day" ;
+    lova:timePoint "Day 6" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.103/migration-5pct-1000> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.103/ha-concentration-effect> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "Migration rate, 5% HA, 1000 μM RGD" ;
+    lova:measurementType "Cell migration rate" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.0 ;
+    qudt:unit "μm/day" ;
+    lova:timePoint "Day 6" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.103/prolif-ha-conc-trend> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.103/ha-concentration-effect> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "Proliferation trend across HA concentrations" ;
+    lova:measurementType "Normalized proliferation" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Cells proliferated slower at higher HA concentrations (3% > 4% > 5%) with 100 μM RGD" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.103/crosslink-density-effect> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.103/mat-mmp-r025-rgd100> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.103/mat-mmp-r025-rgd1000> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.103/mat-mmp-r04-rgd100> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.103/mat-mmp-r04-rgd1000> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.103/mat-mmp-r05-rgd100> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.103/mat-mmp-r05-rgd1000> ;
+    rdfs:label "Effect of crosslinking density (r=0.25, 0.4, 0.5) on mMSC spreading, proliferation and migration" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell spreading, proliferation, migration" ;
+    lova:assayOrMethod "LIVE/DEAD staining; Alamar Blue; phase microscopy migration assay" ;
+    lova:cellType "D1 mouse bone marrow mesenchymal stem cells (mMSC, CRL12424)" ;
+    lova:cultureDuration "1, 2, 3 days" ;
+    lova:temperature "37°C" ;
+    lova:atmosphere "5% CO2" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.103/migration-r025-100> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.103/crosslink-density-effect> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "Migration rate, r=0.25, 100 μM RGD" ;
+    lova:measurementType "Cell migration rate" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 220.0 ;
+    qudt:unit "μm/day" ;
+    lova:timePoint "Day 3" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.103/migration-r04-100> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.103/crosslink-density-effect> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "Migration rate, r=0.4, 100 μM RGD" ;
+    lova:measurementType "Cell migration rate" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 220.0 ;
+    qudt:unit "μm/day" ;
+    lova:timePoint "Day 3" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.103/migration-r05-100> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.103/crosslink-density-effect> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "Migration rate, r=0.5, 100 μM RGD" ;
+    lova:measurementType "Cell migration rate" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 210.0 ;
+    qudt:unit "μm/day" ;
+    lova:timePoint "Day 3" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.103/migration-r025-1000> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.103/crosslink-density-effect> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "Migration rate, r=0.25, 1000 μM RGD" ;
+    lova:measurementType "Cell migration rate" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 240.0 ;
+    qudt:unit "μm/day" ;
+    lova:timePoint "Day 3" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.103/migration-r04-1000> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.103/crosslink-density-effect> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "Migration rate, r=0.4, 1000 μM RGD" ;
+    lova:measurementType "Cell migration rate" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 160.0 ;
+    qudt:unit "μm/day" ;
+    lova:timePoint "Day 3" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.103/migration-r05-1000> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.103/crosslink-density-effect> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "Migration rate, r=0.5, 1000 μM RGD" ;
+    lova:measurementType "Cell migration rate" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 160.0 ;
+    qudt:unit "μm/day" ;
+    lova:timePoint "Day 3" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2010.08.103/migration-mmp-vs-dtt> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "Cell migration higher in HA-MMP hydrogels vs HA-DTT hydrogels" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.103/spreading-mmp> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.103/spreading-dtt> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2010.08.103/migration-mmp-vs-plasmin> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "Cell migration higher in HA-MMP hydrogels vs HA-Plasmin hydrogels" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.103/spreading-mmp> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.103/spreading-plasmin> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2010.08.103/migration-rgd1000-vs-rgd100> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "Migration rate higher at 1000 μM RGD vs 100 μM RGD" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.103/migration-rgd1000> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.103/migration-rgd100> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2010.08.103/migration-3pct-vs-5pct> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "Migration rate lower in 5% HA vs 3% HA at 100 μM RGD" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.103/migration-5pct-100> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.103/migration-3pct-100> ;
+    lova:direction "lower" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2010.08.103/gprime-5pct-vs-3pct> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "Storage modulus higher in 5% HA vs 3% HA at r=0.25" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.103/gprime-5pct-r025> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.103/gprime-3pct-r025> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2010.08.103/prolif-rgd100-vs-rgd1000> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.103> ;
+    rdfs:label "Proliferation higher at low RGD (100 μM) vs high RGD (1000 μM)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.103/prolif-rgd-general> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.103/prolif-ha-conc-trend> ;
+    lova:direction "higher" .

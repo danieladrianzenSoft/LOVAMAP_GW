@@ -1,0 +1,503 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.3390-mi11080731> a bibo:AcademicArticle ;
+    rdfs:label "McMillan et al., 2020 — Membrane-Integrated TPE Microfluidic Devices" ;
+    dc:title "Rapid Fabrication of Membrane-Integrated Thermoplastic Elastomer Microfluidic Devices" ;
+    dc:identifier "10.3390/mi11080731" ;
+    dc:date "2020"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/micromachines> ;
+    dc:creator <https://lovamap.com/ontology#author/mcmillan-alexander> ,
+               <https://lovamap.com/ontology#author/thomee-emma> ,
+               <https://lovamap.com/ontology#author/dellaquila-alessandra> ,
+               <https://lovamap.com/ontology#author/nassman-hussam> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ,
+               <https://lovamap.com/ontology#author/lesher-perez-sasha> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/mcmillan-alexander>
+                       <https://lovamap.com/ontology#author/thomee-emma>
+                       <https://lovamap.com/ontology#author/dellaquila-alessandra>
+                       <https://lovamap.com/ontology#author/nassman-hussam>
+                       <https://lovamap.com/ontology#author/segura-tatiana>
+                       <https://lovamap.com/ontology#author/lesher-perez-sasha> ) ;
+    dc:bibliographicCitation "McMillan et al., 2020" ;
+    lova:focusMaterial "Flexdym (soft thermoplastic elastomer) and polycarbonate membrane composite microfluidic devices for cell culture" .
+
+<https://lovamap.com/ontology#author/mcmillan-alexander> a foaf:Person ;
+    foaf:familyName "McMillan" ;
+    foaf:givenName "Alexander H." ;
+    foaf:name "Alexander H. McMillan" .
+
+<https://lovamap.com/ontology#author/thomee-emma> a foaf:Person ;
+    foaf:familyName "Thomée" ;
+    foaf:givenName "Emma" ;
+    foaf:name "Emma Thomée" .
+
+<https://lovamap.com/ontology#author/dellaquila-alessandra> a foaf:Person ;
+    foaf:familyName "Dellaquila" ;
+    foaf:givenName "Alessandra" ;
+    foaf:name "Alessandra Dellaquila" .
+
+<https://lovamap.com/ontology#author/nassman-hussam> a foaf:Person ;
+    foaf:familyName "Nassman" ;
+    foaf:givenName "Hussam" ;
+    foaf:name "Hussam Nassman" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" .
+
+<https://lovamap.com/ontology#author/lesher-perez-sasha> a foaf:Person ;
+    foaf:familyName "Lesher-Pérez" ;
+    foaf:givenName "Sasha Cai" ;
+    foaf:name "Sasha Cai Lesher-Pérez" .
+
+<https://lovamap.com/ontology#journal/micromachines> a bibo:Journal ;
+    dc:title "Micromachines" ;
+    bibo:issn "2072-666X" .
+
+<https://lovamap.com/ontology#material/10.3390-mi11080731/fd-pc-fd-cell-culture> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.3390-mi11080731> ;
+    rdfs:label "FD-PC-FD composite cell culture device" ;
+    lova:particleMaterial "Flexdym (sTPE)" ;
+    lova:stiffnessQualitative "Soft thermoplastic elastomer" ;
+    lova:stiffnessValue 1.0 ;
+    lova:stiffnessUnit "MPa" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.3390-mi11080731/composite-device> ;
+    lova:scaffoldDimensions "800 µm × 110 µm (width × height) channel cross section, 27 mm length" .
+
+<https://lovamap.com/ontology#material/10.3390-mi11080731/fd-fd-delamination> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.3390-mi11080731> ;
+    rdfs:label "FD-FD delamination test device (no PC membrane)" ;
+    lova:particleMaterial "Flexdym (sTPE)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.3390-mi11080731/fd-fd-device> ;
+    lova:scaffoldDimensions "Gap distances 100–1000 µm" .
+
+<https://lovamap.com/ontology#material/10.3390-mi11080731/fd-pc-delamination> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.3390-mi11080731> ;
+    rdfs:label "FD-PC delamination test device" ;
+    lova:particleMaterial "Flexdym (sTPE) + polycarbonate membrane" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.3390-mi11080731/composite-device> ;
+    lova:scaffoldDimensions "Gap distances 100–1000 µm; fixed 400 µm gap variant used for aging tests" .
+
+<https://lovamap.com/ontology#material/10.3390-mi11080731/fd-pc-flow-200um> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.3390-mi11080731> ;
+    rdfs:label "FD-PC flow test device, 200 µm channel width" ;
+    lova:particleMaterial "Flexdym (sTPE) + polycarbonate membrane" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.3390-mi11080731/composite-device> ;
+    lova:scaffoldDimensions "200 µm width × 55 µm height × 27 mm length" .
+
+<https://lovamap.com/ontology#material/10.3390-mi11080731/fd-pc-flow-400um> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.3390-mi11080731> ;
+    rdfs:label "FD-PC flow test device, 400 µm channel width" ;
+    lova:particleMaterial "Flexdym (sTPE) + polycarbonate membrane" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.3390-mi11080731/composite-device> ;
+    lova:scaffoldDimensions "400 µm width × 55 µm height × 27 mm length" .
+
+<https://lovamap.com/ontology#material/10.3390-mi11080731/fd-pc-flow-800um> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.3390-mi11080731> ;
+    rdfs:label "FD-PC flow test device, 800 µm channel width" ;
+    lova:particleMaterial "Flexdym (sTPE) + polycarbonate membrane" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.3390-mi11080731/composite-device> ;
+    lova:scaffoldDimensions "800 µm width × 55 µm height × 27 mm length" .
+
+<https://lovamap.com/ontology#fabrication-method/10.3390-mi11080731/composite-device> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.3390-mi11080731> ;
+    rdfs:label "Hot embossing and FD-PC bonding composite device fabrication" ;
+    lova:chemistry "Thermoplastic elastomer self-bonding (EB block polymer chain mobility)" ;
+    lova:manufacturingMethod "Vacuum-assisted isothermal hot embossing" ;
+    lova:annealingChemistry "Thermal self-bonding via mobility of ethylene-butylene (EB) soft block" ;
+    lova:annealingConditions "80°C, 2 h bake" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.3390-mi11080731/flexdym> ,
+                    <https://lovamap.com/ontology#reagent/10.3390-mi11080731/isopore-pc-membrane> ,
+                    <https://lovamap.com/ontology#reagent/10.3390-mi11080731/ordyl-photoresist> ,
+                    <https://lovamap.com/ontology#reagent/10.3390-mi11080731/fibronectin> ,
+                    <https://lovamap.com/ontology#reagent/10.3390-mi11080731/calcein-am> ,
+                    <https://lovamap.com/ontology#reagent/10.3390-mi11080731/phalloidin> ,
+                    <https://lovamap.com/ontology#reagent/10.3390-mi11080731/dapi> ,
+                    <https://lovamap.com/ontology#reagent/10.3390-mi11080731/pfa> ,
+                    <https://lovamap.com/ontology#reagent/10.3390-mi11080731/triton-x> ,
+                    <https://lovamap.com/ontology#reagent/10.3390-mi11080731/dmem> ,
+                    <https://lovamap.com/ontology#reagent/10.3390-mi11080731/fbs> ,
+                    <https://lovamap.com/ontology#reagent/10.3390-mi11080731/pen-strep> .
+
+<https://lovamap.com/ontology#fabrication-method/10.3390-mi11080731/fd-fd-device> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.3390-mi11080731> ;
+    rdfs:label "Hot embossing FD-FD bonding device fabrication (no PC membrane)" ;
+    lova:chemistry "Thermoplastic elastomer self-bonding (EB block polymer chain mobility)" ;
+    lova:manufacturingMethod "Vacuum-assisted isothermal hot embossing" ;
+    lova:annealingChemistry "Thermal self-bonding via mobility of ethylene-butylene (EB) soft block" ;
+    lova:annealingConditions "80°C, 2 h bake" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.3390-mi11080731/flexdym> ,
+                    <https://lovamap.com/ontology#reagent/10.3390-mi11080731/ordyl-photoresist> .
+
+<https://lovamap.com/ontology#reagent/10.3390-mi11080731/flexdym> a lova:Reagent ;
+    rdfs:label "Flexdym sTPE sheet (1.3 mm thickness)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Eden Microfluidics SAS" ;
+    lova:reagentFunction "Device substrate material, self-bonding thermoplastic elastomer" .
+
+<https://lovamap.com/ontology#reagent/10.3390-mi11080731/isopore-pc-membrane> a lova:Reagent ;
+    rdfs:label "Isopore track-etched polycarbonate membrane (2 μm pores, 5.6% porosity, 23 μm thickness)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Merck KGaA" ;
+    lova:reagentFunction "Porous membrane substrate for cell culture and barrier model" .
+
+<https://lovamap.com/ontology#reagent/10.3390-mi11080731/ordyl-photoresist> a lova:Reagent ;
+    rdfs:label "Ordyl SY 300 dry film negative photoresist (55 μm thickness)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "ElgaEurope s.r.l." ;
+    lova:reagentFunction "Photoresist for microfluidic mould fabrication" .
+
+<https://lovamap.com/ontology#reagent/10.3390-mi11080731/fibronectin> a lova:Reagent ;
+    rdfs:label "Fibronectin" ;
+    lova:reagentRole "other" ;
+    lova:concentration "10 µg/mL" ;
+    lova:supplier "MilliporeSigma" ;
+    lova:reagentFunction "Cell adhesion coating" .
+
+<https://lovamap.com/ontology#reagent/10.3390-mi11080731/calcein-am> a lova:Reagent ;
+    rdfs:label "Calcein AM" ;
+    lova:reagentRole "other" ;
+    lova:concentration "4 µM" ;
+    lova:supplier "Sigma-Aldrich" ;
+    lova:reagentFunction "Live cell staining" .
+
+<https://lovamap.com/ontology#reagent/10.3390-mi11080731/phalloidin> a lova:Reagent ;
+    rdfs:label "Alexa Fluor 488 Phalloidin" ;
+    lova:reagentRole "other" ;
+    lova:concentration "0.66 µM" ;
+    lova:supplier "Thermo Fisher Scientific" ;
+    lova:reagentFunction "F-actin staining" .
+
+<https://lovamap.com/ontology#reagent/10.3390-mi11080731/dapi> a lova:Reagent ;
+    rdfs:label "DAPI" ;
+    lova:reagentRole "other" ;
+    lova:concentration "1 µg/mL" ;
+    lova:supplier "Sigma-Aldrich" ;
+    lova:reagentFunction "Nuclear staining" .
+
+<https://lovamap.com/ontology#reagent/10.3390-mi11080731/pfa> a lova:Reagent ;
+    rdfs:label "Paraformaldehyde (PFA)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "4%" ;
+    lova:reagentFunction "Cell fixation" .
+
+<https://lovamap.com/ontology#reagent/10.3390-mi11080731/triton-x> a lova:Reagent ;
+    rdfs:label "Triton-X" ;
+    lova:reagentRole "other" ;
+    lova:concentration "0.3%" ;
+    lova:supplier "Sigma-Aldrich" ;
+    lova:reagentFunction "Cell permeabilization" .
+
+<https://lovamap.com/ontology#reagent/10.3390-mi11080731/dmem> a lova:Reagent ;
+    rdfs:label "Dulbecco's Modified Eagle Medium (DMEM, high glucose, GlutaMAX)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Thermo Fisher Scientific" ;
+    lova:reagentFunction "Cell culture medium" .
+
+<https://lovamap.com/ontology#reagent/10.3390-mi11080731/fbs> a lova:Reagent ;
+    rdfs:label "Fetal Bovine Serum (FBS)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "10%" ;
+    lova:supplier "Corning Inc." ;
+    lova:reagentFunction "Culture medium supplement" .
+
+<https://lovamap.com/ontology#reagent/10.3390-mi11080731/pen-strep> a lova:Reagent ;
+    rdfs:label "Penicillin/Streptomycin" ;
+    lova:reagentRole "other" ;
+    lova:concentration "1%" ;
+    lova:supplier "Gibco" ;
+    lova:reagentFunction "Antimicrobial culture medium supplement" .
+
+<https://lovamap.com/ontology#experiment/10.3390-mi11080731/delamination-gap-test> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.3390-mi11080731> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.3390-mi11080731/fd-pc-delamination> ,
+                       <https://lovamap.com/ontology#material/10.3390-mi11080731/fd-fd-delamination> ;
+    rdfs:label "Automated delamination pressure testing across gap distances (FD-FD vs FD-PC)" ;
+    lova:experimentCategory "Mechanical" ;
+    lova:experimentType "Delamination/burst pressure testing" ;
+    lova:equipment "OB1 MK3+ pressure controller; MFS3 flow sensor; MPS3 pressure sensor" ;
+    lova:medium "Water" ;
+    lova:sampleSize 5 .
+
+<https://lovamap.com/ontology#experiment/10.3390-mi11080731/delamination-aging-test> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.3390-mi11080731> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.3390-mi11080731/fd-pc-delamination> ;
+    rdfs:label "Delamination pressure testing over time and incubation conditions (400 µm gap)" ;
+    lova:experimentCategory "Mechanical" ;
+    lova:experimentType "Delamination pressure testing (aging)" ;
+    lova:equipment "OB1 MK3+ pressure controller; MFS3 flow sensor; MPS3 pressure sensor" ;
+    lova:temperature "37°C" ;
+    lova:atmosphere "High humidity" ;
+    lova:sampleSize 5 .
+
+<https://lovamap.com/ontology#experiment/10.3390-mi11080731/long-term-pressure-test> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.3390-mi11080731> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.3390-mi11080731/fd-pc-delamination> ;
+    rdfs:label "Long-term static and cyclic pressure stability testing (400 µm gap)" ;
+    lova:experimentCategory "Mechanical" ;
+    lova:experimentType "Static and cyclic pressure durability testing" ;
+    lova:sampleSize 5 .
+
+<https://lovamap.com/ontology#experiment/10.3390-mi11080731/flow-pressure-correlation> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.3390-mi11080731> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.3390-mi11080731/fd-pc-flow-200um> ,
+                       <https://lovamap.com/ontology#material/10.3390-mi11080731/fd-pc-flow-400um> ,
+                       <https://lovamap.com/ontology#material/10.3390-mi11080731/fd-pc-flow-800um> ;
+    rdfs:label "Flow rate and shear stress vs pressure correlation testing" ;
+    lova:experimentCategory "Fluidic/Mechanical" ;
+    lova:experimentType "Flow rate measurement" ;
+    lova:equipment "MFS3 flow sensor; MPS3 pressure sensor; PEEK tubing resistance element" ;
+    lova:medium "Water" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#experiment/10.3390-mi11080731/hdf-cell-culture> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.3390-mi11080731> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.3390-mi11080731/fd-pc-fd-cell-culture> ;
+    rdfs:label "HDF culture in FD-PC-FD composite devices" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell culture" ;
+    lova:assayOrMethod "Calcein AM live imaging; Alexa Fluor 488 Phalloidin/DAPI immunofluorescence" ;
+    lova:cellType "Human dermal fibroblasts (HDF)" ;
+    lova:cellSource "ATCC" ;
+    lova:seedingDensity "2×10^5 cells/mL" ;
+    lova:cultureDuration "7 days" ;
+    lova:cultureMedium "DMEM (high glucose, GlutaMAX) + 10% FBS + 1% penicillin/streptomycin" ;
+    lova:temperature "37°C" .
+
+<https://lovamap.com/ontology#outcome/10.3390-mi11080731/fdpc-pressure-100um> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3390-mi11080731/delamination-gap-test> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3390-mi11080731> ;
+    rdfs:label "FD-PC pressure withstood at 100 µm gap distance" ;
+    lova:measurementType "Pressure withstood (delamination)" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 529.0 ;
+    qudt:unit "mbar" ;
+    lova:stdDev 318.0 ;
+    lova:sampleSize 5 ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.3390-mi11080731/fdpc-pressure-1000um> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3390-mi11080731/delamination-gap-test> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3390-mi11080731> ;
+    rdfs:label "FD-PC pressure withstood at 1000 µm gap distance" ;
+    lova:measurementType "Pressure withstood (delamination)" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 1802.0 ;
+    qudt:unit "mbar" ;
+    lova:stdDev 186.0 ;
+    lova:sampleSize 5 ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.3390-mi11080731/fdfd-pressure-100um> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3390-mi11080731/delamination-gap-test> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3390-mi11080731> ;
+    rdfs:label "FD-FD pressure withstood at 100 µm gap distance (estimated)" ;
+    lova:measurementType "Pressure withstood (delamination)" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 1650.0 ;
+    qudt:unit "mbar" ;
+    lova:stdDev 500.0 ;
+    lova:sampleSize 5 ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.3390-mi11080731/fdfd-pressure-1000um> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3390-mi11080731/delamination-gap-test> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3390-mi11080731> ;
+    rdfs:label "FD-FD pressure withstood at 1000 µm gap distance (estimated)" ;
+    lova:measurementType "Pressure withstood (delamination)" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 1850.0 ;
+    qudt:unit "mbar" ;
+    lova:stdDev 100.0 ;
+    lova:sampleSize 5 ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.3390-mi11080731/fdpc-day1-noincubation> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3390-mi11080731/delamination-aging-test> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3390-mi11080731> ;
+    rdfs:label "FD-PC pressure withstood, Day 1, no incubation (400 µm gap)" ;
+    lova:measurementType "Pressure withstood (delamination)" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 1319.0 ;
+    qudt:unit "mbar" ;
+    lova:stdDev 382.0 ;
+    lova:sampleSize 5 ;
+    lova:timePoint "Day 1" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.3390-mi11080731/fdpc-day1-incubation> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3390-mi11080731/delamination-aging-test> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3390-mi11080731> ;
+    rdfs:label "FD-PC pressure withstood, Day 1, incubation conditions (400 µm gap)" ;
+    lova:measurementType "Pressure withstood (delamination)" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 1280.0 ;
+    qudt:unit "mbar" ;
+    lova:stdDev 241.0 ;
+    lova:sampleSize 5 ;
+    lova:timePoint "Day 1" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.3390-mi11080731/fdpc-day14-incubation> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3390-mi11080731/delamination-aging-test> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3390-mi11080731> ;
+    rdfs:label "FD-PC pressure withstood, Day 14, incubation conditions (400 µm gap)" ;
+    lova:measurementType "Pressure withstood (delamination)" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 1274.0 ;
+    qudt:unit "mbar" ;
+    lova:stdDev 225.0 ;
+    lova:sampleSize 5 ;
+    lova:timePoint "Day 14" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.3390-mi11080731/static-10h-test> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3390-mi11080731/long-term-pressure-test> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3390-mi11080731> ;
+    rdfs:label "No delamination at 500 mbar static pressure for 10 h (400 µm gap)" ;
+    lova:measurementType "Delamination occurrence" ;
+    lova:measurementCategory "Mechanical" ;
+    lova:valueString "No delamination" ;
+    lova:sampleSize 5 ;
+    lova:timePoint "10 h" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.3390-mi11080731/cyclic-10000-test> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3390-mi11080731/long-term-pressure-test> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3390-mi11080731> ;
+    rdfs:label "No delamination after 10,000 cycles (0–500 mbar, 0.2 Hz, 400 µm gap)" ;
+    lova:measurementType "Delamination occurrence" ;
+    lova:measurementCategory "Mechanical" ;
+    lova:valueString "No delamination" ;
+    lova:sampleSize 5 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.3390-mi11080731/flowrate-800um-500mbar> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3390-mi11080731/flow-pressure-correlation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3390-mi11080731> ;
+    rdfs:label "Flow rate at 800 µm channel width, 500 mbar device pressure" ;
+    lova:measurementType "Flow rate" ;
+    lova:measurementCategory "Fluidic" ;
+    qudt:numericValue 150.0 ;
+    qudt:unit "µL/min" ;
+    lova:sampleSize 3 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.3390-mi11080731/flowrate-400um-500mbar> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3390-mi11080731/flow-pressure-correlation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3390-mi11080731> ;
+    rdfs:label "Flow rate at 400 µm channel width, 500 mbar device pressure" ;
+    lova:measurementType "Flow rate" ;
+    lova:measurementCategory "Fluidic" ;
+    qudt:numericValue 130.0 ;
+    qudt:unit "µL/min" ;
+    lova:sampleSize 3 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.3390-mi11080731/flowrate-200um-500mbar> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3390-mi11080731/flow-pressure-correlation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3390-mi11080731> ;
+    rdfs:label "Flow rate at 200 µm channel width, 500 mbar device pressure" ;
+    lova:measurementType "Flow rate" ;
+    lova:measurementCategory "Fluidic" ;
+    qudt:numericValue 95.0 ;
+    qudt:unit "µL/min" ;
+    lova:sampleSize 3 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.3390-mi11080731/shearstress-200um-500mbar> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3390-mi11080731/flow-pressure-correlation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3390-mi11080731> ;
+    rdfs:label "Shear stress at 200 µm channel width, 500 mbar device pressure" ;
+    lova:measurementType "Wall shear stress" ;
+    lova:measurementCategory "Fluidic" ;
+    qudt:numericValue 140.0 ;
+    qudt:unit "dyne/cm2" ;
+    lova:sampleSize 3 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.3390-mi11080731/shearstress-400um-500mbar> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3390-mi11080731/flow-pressure-correlation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3390-mi11080731> ;
+    rdfs:label "Shear stress at 400 µm channel width, 500 mbar device pressure" ;
+    lova:measurementType "Wall shear stress" ;
+    lova:measurementCategory "Fluidic" ;
+    qudt:numericValue 100.0 ;
+    qudt:unit "dyne/cm2" ;
+    lova:sampleSize 3 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.3390-mi11080731/shearstress-800um-500mbar> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3390-mi11080731/flow-pressure-correlation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3390-mi11080731> ;
+    rdfs:label "Shear stress at 800 µm channel width, 500 mbar device pressure" ;
+    lova:measurementType "Wall shear stress" ;
+    lova:measurementCategory "Fluidic" ;
+    qudt:numericValue 55.0 ;
+    qudt:unit "dyne/cm2" ;
+    lova:sampleSize 3 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.3390-mi11080731/hdf-morphology-day7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3390-mi11080731/hdf-cell-culture> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3390-mi11080731> ;
+    rdfs:label "HDF morphology and adhesion on polycarbonate membrane after 7 days" ;
+    lova:measurementType "Cell morphology/adhesion" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Primarily spindle geometry, sustained adhesion and F-actin/DAPI positive staining" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#comparison/10.3390-mi11080731/pressure-100um-fdpc-vs-fdfd> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.3390-mi11080731> ;
+    rdfs:label "FD-PC pressure lower than FD-FD at 100 µm gap distance" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.3390-mi11080731/fdpc-pressure-100um> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.3390-mi11080731/fdfd-pressure-100um> ;
+    lova:direction "lower" .
+
+<https://lovamap.com/ontology#comparison/10.3390-mi11080731/pressure-1000um-fdpc-vs-fdfd> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.3390-mi11080731> ;
+    rdfs:label "FD-PC vs FD-FD pressure withstood at 1000 µm gap — no difference" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.3390-mi11080731/fdpc-pressure-1000um> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.3390-mi11080731/fdfd-pressure-1000um> ;
+    lova:direction "no difference" .
+
+<https://lovamap.com/ontology#comparison/10.3390-mi11080731/day14-vs-day1-fdpc> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.3390-mi11080731> ;
+    rdfs:label "FD-PC bonding pressure Day 14 incubated vs Day 1 non-incubated — no significant difference" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.3390-mi11080731/fdpc-day14-incubation> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.3390-mi11080731/fdpc-day1-noincubation> ;
+    lova:direction "no difference" ;
+    lova:pValue 0.69 ;
+    lova:isSignificant false .
+
+<https://lovamap.com/ontology#comparison/10.3390-mi11080731/flowrate-800-vs-200um> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.3390-mi11080731> ;
+    rdfs:label "Flow rate higher in 800 µm channel vs 200 µm channel at 500 mbar" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.3390-mi11080731/flowrate-800um-500mbar> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.3390-mi11080731/flowrate-200um-500mbar> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#comparison/10.3390-mi11080731/shearstress-200-vs-800um> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.3390-mi11080731> ;
+    rdfs:label "Shear stress higher in 200 µm channel vs 800 µm channel at 500 mbar" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.3390-mi11080731/shearstress-200um-500mbar> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.3390-mi11080731/shearstress-800um-500mbar> ;
+    lova:direction "higher" .

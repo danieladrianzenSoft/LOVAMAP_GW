@@ -1,0 +1,1045 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1002-smll.201903147> a bibo:AcademicArticle ;
+    rdfs:label "Koh et al., 2019 — Enhanced In Vivo Delivery of Stem Cells using MAP Scaffolds" ;
+    dc:title "Enhanced In Vivo Delivery of Stem Cells using Microporous Annealed Particle Scaffolds" ;
+    dc:identifier "10.1002/smll.201903147" ;
+    dc:date "2019"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/small> ;
+    dc:creator <https://lovamap.com/ontology#author/koh-jaekyung> ,
+               <https://lovamap.com/ontology#author/griffin-donald> ,
+               <https://lovamap.com/ontology#author/archang-maani> ,
+               <https://lovamap.com/ontology#author/feng-an-chieh> ,
+               <https://lovamap.com/ontology#author/horn-thomas> ,
+               <https://lovamap.com/ontology#author/margolis-michael> ,
+               <https://lovamap.com/ontology#author/zalazar-david> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ,
+               <https://lovamap.com/ontology#author/scumpia-philip> ,
+               <https://lovamap.com/ontology#author/di-carlo-dino> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/koh-jaekyung>
+                      <https://lovamap.com/ontology#author/griffin-donald>
+                      <https://lovamap.com/ontology#author/archang-maani>
+                      <https://lovamap.com/ontology#author/feng-an-chieh>
+                      <https://lovamap.com/ontology#author/horn-thomas>
+                      <https://lovamap.com/ontology#author/margolis-michael>
+                      <https://lovamap.com/ontology#author/zalazar-david>
+                      <https://lovamap.com/ontology#author/segura-tatiana>
+                      <https://lovamap.com/ontology#author/scumpia-philip>
+                      <https://lovamap.com/ontology#author/di-carlo-dino> ) ;
+    dc:bibliographicCitation "Koh et al., 2019" ;
+    lova:focusMaterial "Microporous annealed particle (MAP) scaffolds made of 4-arm PEG-VS hydrogel microparticles used for subcutaneous delivery and retention of mesenchymal stem cells, with four formulations (SoN1, StN1, StN5, SoD1) varying stiffness, degradability, and RGD concentration" .
+
+<https://lovamap.com/ontology#author/koh-jaekyung> a foaf:Person ;
+    foaf:familyName "Koh" ; foaf:givenName "Jaekyung" ; foaf:name "Jaekyung Koh" .
+<https://lovamap.com/ontology#author/griffin-donald> a foaf:Person ;
+    foaf:familyName "Griffin" ; foaf:givenName "Donald Richieri" ; foaf:name "Donald Richieri Griffin" .
+<https://lovamap.com/ontology#author/archang-maani> a foaf:Person ;
+    foaf:familyName "Archang" ; foaf:givenName "Maani M." ; foaf:name "Maani M. Archang" .
+<https://lovamap.com/ontology#author/feng-an-chieh> a foaf:Person ;
+    foaf:familyName "Feng" ; foaf:givenName "An-Chieh" ; foaf:name "An-Chieh Feng" .
+<https://lovamap.com/ontology#author/horn-thomas> a foaf:Person ;
+    foaf:familyName "Horn" ; foaf:givenName "Thomas D" ; foaf:name "Thomas D Horn" .
+<https://lovamap.com/ontology#author/margolis-michael> a foaf:Person ;
+    foaf:familyName "Margolis" ; foaf:givenName "Michael P." ; foaf:name "Michael P. Margolis" .
+<https://lovamap.com/ontology#author/zalazar-david> a foaf:Person ;
+    foaf:familyName "Zalazar" ; foaf:givenName "David" ; foaf:name "David Zalazar" .
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ; foaf:givenName "Tatiana" ; foaf:name "Tatiana Segura" .
+<https://lovamap.com/ontology#author/scumpia-philip> a foaf:Person ;
+    foaf:familyName "Scumpia" ; foaf:givenName "Philip O." ; foaf:name "Philip O. Scumpia" .
+<https://lovamap.com/ontology#author/di-carlo-dino> a foaf:Person ;
+    foaf:familyName "Di Carlo" ; foaf:givenName "Dino" ; foaf:name "Dino Di Carlo" .
+
+<https://lovamap.com/ontology#journal/small> a bibo:Journal ;
+    dc:title "Small" ;
+    bibo:issn "1613-6810" .
+
+<https://lovamap.com/ontology#material/10.1002-smll.201903147/map-m> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "MAP scaffold (M) — original enzymatically-degradable formulation" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "4-arm PEG-VS MW 20,000" ;
+    lova:sizeDistribution "Monodisperse (CV < 5%)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:stiffnessValue 500.0 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:packingConfiguration "Random" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-smll.201903147/map-mmp-degradable> .
+
+<https://lovamap.com/ontology#material/10.1002-smll.201903147/non-porous-n> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "Non-porous scaffold (N) — bulk PEG-VS gel, chemically matched" ;
+    lova:particleMaterial "4-arm PEG-VS" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:packingConfiguration "Bulk (non-porous)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-smll.201903147/non-porous-bulk> .
+
+<https://lovamap.com/ontology#material/10.1002-smll.201903147/son1> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "SoN1 — Soft, NonDegradable, 1x RGD" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "4-arm PEG-VS MW 20,000" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:stiffnessValue 500.0 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-smll.201903147/fab-son1> .
+
+<https://lovamap.com/ontology#material/10.1002-smll.201903147/stn1> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "StN1 — Stiff, NonDegradable, 1x RGD" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "4-arm PEG-VS MW 20,000" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:stiffnessQualitative "Stiff hydrogel" ;
+    lova:stiffnessValue 2500.0 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-smll.201903147/fab-stn1> .
+
+<https://lovamap.com/ontology#material/10.1002-smll.201903147/stn5> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "StN5 — Stiff, NonDegradable, 5x RGD" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "4-arm PEG-VS MW 20,000" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:stiffnessQualitative "Stiff hydrogel" ;
+    lova:stiffnessValue 2500.0 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-smll.201903147/fab-stn5> .
+
+<https://lovamap.com/ontology#material/10.1002-smll.201903147/sod1> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "SoD1 — Soft, Degradable, 1x RGD (original MAP formulation)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "4-arm PEG-VS MW 20,000" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:stiffnessValue 500.0 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-smll.201903147/map-mmp-degradable> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-smll.201903147/map-mmp-degradable> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "Microfluidic PEG-VS microgel, MMP-degradable crosslinker, FXIII/thrombin annealing" ;
+    lova:chemistry "Michael-type addition (thiol-ene, vinyl sulfone + thiol)" ;
+    lova:manufacturingMethod "Microfluidic water-in-oil emulsion droplet generation" ;
+    lova:annealingChemistry "Enzymatic (Factor XIII transglutamination / thrombin fibrin-like crosslinking)" ;
+    lova:annealingConditions "37°C, 90 minutes" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-smll.201903147/peg-vs> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-smll.201903147/k-peptide> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-smll.201903147/q-peptide> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-smll.201903147/rgd-500> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-smll.201903147/mmp-crosslinker> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-smll.201903147/fxiii> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-smll.201903147/thrombin> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-smll.201903147/alexa488-maleimide> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-smll.201903147/novec7500> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-smll.201903147/picosurf> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-smll.201903147/pfo> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-smll.201903147/aquapel> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-smll.201903147/teoa> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-smll.201903147/non-porous-bulk> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "Bulk PEG-VS gel formation (non-porous)" ;
+    lova:chemistry "Michael-type addition (thiol-ene)" ;
+    lova:manufacturingMethod "Bulk casting between glass slides" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-smll.201903147/peg-vs> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-smll.201903147/k-peptide> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-smll.201903147/q-peptide> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-smll.201903147/rgd-500> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-smll.201903147/mmp-crosslinker> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-smll.201903147/teoa> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-smll.201903147/fab-son1> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "Microfluidic PEG-VS microgel, non-degradable PEG-dithiol crosslinker, standard RGD (SoN1)" ;
+    lova:chemistry "Michael-type addition (thiol-ene)" ;
+    lova:manufacturingMethod "Microfluidic water-in-oil emulsion droplet generation" ;
+    lova:annealingChemistry "Enzymatic (Factor XIII / thrombin)" ;
+    lova:annealingConditions "37°C, 90 minutes" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-smll.201903147/peg-vs> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-smll.201903147/rgd-500> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-smll.201903147/peg-dithiol> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-smll.201903147/fxiii> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-smll.201903147/thrombin> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-smll.201903147/fab-stn1> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "Microfluidic PEG-VS microgel, higher crosslinking density, standard RGD (StN1)" ;
+    lova:chemistry "Michael-type addition (thiol-ene)" ;
+    lova:manufacturingMethod "Microfluidic water-in-oil emulsion droplet generation" ;
+    lova:annealingChemistry "Enzymatic (Factor XIII / thrombin)" ;
+    lova:annealingConditions "37°C, 90 minutes" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-smll.201903147/peg-vs> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-smll.201903147/rgd-500> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-smll.201903147/peg-dithiol> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-smll.201903147/fxiii> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-smll.201903147/thrombin> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-smll.201903147/fab-stn5> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "Microfluidic PEG-VS microgel, higher crosslinking density, 5x RGD concentration (StN5)" ;
+    lova:chemistry "Michael-type addition (thiol-ene)" ;
+    lova:manufacturingMethod "Microfluidic water-in-oil emulsion droplet generation" ;
+    lova:annealingChemistry "Enzymatic (Factor XIII / thrombin)" ;
+    lova:annealingConditions "37°C, 90 minutes" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-smll.201903147/peg-vs> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-smll.201903147/rgd-2500> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-smll.201903147/peg-dithiol> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-smll.201903147/fxiii> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-smll.201903147/thrombin> .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.201903147/peg-vs> a lova:Reagent ;
+    rdfs:label "4-arm PEG-VS MW 20,000" ;
+    lova:reagentRole "monomer" ;
+    lova:molecularWeight "20,000 Da" ;
+    lova:concentration "8, 10, 20, 24 % (w/v)" ;
+    lova:supplier "NOF" ;
+    lova:catalogNumber "PTE-200VS" ;
+    lova:reagentFunction "Backbone monomer for hydrogel microparticle formation" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.201903147/k-peptide> a lova:Reagent ;
+    rdfs:label "K-peptide (Ac-FKGGERCG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "Ac-FKGGERCG-NH2" ;
+    lova:concentration "250 µM" ;
+    lova:reagentFunction "Peptide crosslinking motif" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.201903147/q-peptide> a lova:Reagent ;
+    rdfs:label "Q-peptide (Ac-NQEQVSPLGGERCG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "Ac-NQEQVSPLGGERCG-NH2" ;
+    lova:concentration "250 µM" ;
+    lova:reagentFunction "Peptide crosslinking motif" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.201903147/rgd-500> a lova:Reagent ;
+    rdfs:label "RGD peptide (Ac-RGDSPGERCG-NH2), standard concentration" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "Ac-RGDSPGERCG-NH2" ;
+    lova:concentration "500 µM" ;
+    lova:reagentFunction "Cell adhesion motif" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.201903147/rgd-2500> a lova:Reagent ;
+    rdfs:label "RGD peptide (Ac-RGDSPGERCG-NH2), high concentration" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "Ac-RGDSPGERCG-NH2" ;
+    lova:concentration "2.5 mM" ;
+    lova:reagentFunction "Cell adhesion motif (5x concentration)" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.201903147/mmp-crosslinker> a lova:Reagent ;
+    rdfs:label "Di-cysteine modified MMP peptide (Ac-GCRDGPQGIWGQDRCG-NH2)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:sequence "Ac-GCRDGPQGIWGQDRCG-NH2" ;
+    lova:concentration "8 mM" ;
+    lova:supplier "Genscript" ;
+    lova:reagentFunction "Enzymatically degradable crosslinker" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.201903147/peg-dithiol> a lova:Reagent ;
+    rdfs:label "Poly(ethylene glycol) dithiol MW 1,000" ;
+    lova:reagentRole "crosslinker" ;
+    lova:molecularWeight "1,000 Da" ;
+    lova:concentration "6 mM, 18 mM, or 20 mM" ;
+    lova:supplier "Sigma-Aldrich" ;
+    lova:catalogNumber "717142-1G" ;
+    lova:reagentFunction "Non-degradable crosslinker" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.201903147/alexa488-maleimide> a lova:Reagent ;
+    rdfs:label "Alexa-fluor 488/568-maleimide" ;
+    lova:reagentRole "other" ;
+    lova:concentration "10 µM" ;
+    lova:supplier "Life Technologies" ;
+    lova:reagentFunction "Fluorescent labeling of microgels" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.201903147/fxiii> a lova:Reagent ;
+    rdfs:label "Factor XIII (FXIII)" ;
+    lova:reagentRole "enzyme" ;
+    lova:concentration "10 U/mL" ;
+    lova:reagentFunction "Annealing (inter-particle crosslinking)" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.201903147/thrombin> a lova:Reagent ;
+    rdfs:label "Thrombin" ;
+    lova:reagentRole "enzyme" ;
+    lova:concentration "2 U/mL" ;
+    lova:reagentFunction "Annealing (inter-particle crosslinking)" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.201903147/novec7500> a lova:Reagent ;
+    rdfs:label "Novec 7500" ;
+    lova:reagentRole "carrier oil" ;
+    lova:supplier "3M" ;
+    lova:catalogNumber "9802122937" ;
+    lova:reagentFunction "Oil phase for microfluidic droplet generation" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.201903147/picosurf> a lova:Reagent ;
+    rdfs:label "Pico-Surf" ;
+    lova:reagentRole "surfactant" ;
+    lova:concentration "0.1%" ;
+    lova:supplier "Sphere Fluidics" ;
+    lova:catalogNumber "SF-000149" ;
+    lova:reagentFunction "Stabilizes water-in-oil emulsion droplets" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.201903147/pfo> a lova:Reagent ;
+    rdfs:label "1H,1H,2H,2H-Perfluoro-1-octanol (PFO)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "20%" ;
+    lova:supplier "Sigma-Aldrich" ;
+    lova:catalogNumber "370533-25G" ;
+    lova:reagentFunction "Emulsion breaking to release microgels from oil phase" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.201903147/aquapel> a lova:Reagent ;
+    rdfs:label "Aquapel" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Aquapel" ;
+    lova:catalogNumber "88625-47100" ;
+    lova:reagentFunction "Surface treatment of microfluidic channels for fluorophilic surface" .
+
+<https://lovamap.com/ontology#reagent/10.1002-smll.201903147/teoa> a lova:Reagent ;
+    rdfs:label "Triethyloamine (TEOA) buffer, 0.3 M, pH 8.25" ;
+    lova:reagentRole "solvent" ;
+    lova:concentration "0.3 M" ;
+    lova:reagentFunction "pH buffer for pre-gel solution" .
+
+<https://lovamap.com/ontology#experiment/10.1002-smll.201903147/frap-diffusion> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-smll.201903147/map-m> ,
+                       <https://lovamap.com/ontology#material/10.1002-smll.201903147/non-porous-n> ;
+    rdfs:label "FRAP diffusion measurement of 70 kDa dextran-FITC and 0.3 kDa fluorescein in MAP vs non-porous gel vs PBS" ;
+    lova:experimentCategory "Biophysical" ;
+    lova:experimentType "Diffusivity measurement" ;
+    lova:assayOrMethod "Fluorescence recovery after photobleaching (FRAP)" ;
+    lova:equipment "Leica TCS SP5 confocal microscope" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.201903147/diffusivity-70kda-n> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.201903147/frap-diffusion> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "Diffusivity of 70 kDa dextran in non-porous scaffold (N)" ;
+    lova:measurementType "Diffusivity" ;
+    lova:measurementCategory "Biophysical" ;
+    qudt:numericValue 10.0 ;
+    qudt:unit "µm²/s" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.201903147/diffusivity-70kda-m> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.201903147/frap-diffusion> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "Diffusivity of 70 kDa dextran in MAP scaffold (M)" ;
+    lova:measurementType "Diffusivity" ;
+    lova:measurementCategory "Biophysical" ;
+    qudt:numericValue 20.0 ;
+    qudt:unit "µm²/s" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.201903147/diffusivity-03kda-n> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.201903147/frap-diffusion> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "Diffusivity of 0.3 kDa fluorescein in non-porous scaffold (N)" ;
+    lova:measurementType "Diffusivity" ;
+    lova:measurementCategory "Biophysical" ;
+    qudt:numericValue 140.0 ;
+    qudt:unit "µm²/s" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.201903147/diffusivity-03kda-m> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.201903147/frap-diffusion> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "Diffusivity of 0.3 kDa fluorescein in MAP scaffold (M)" ;
+    lova:measurementType "Diffusivity" ;
+    lova:measurementCategory "Biophysical" ;
+    qudt:numericValue 180.0 ;
+    qudt:unit "µm²/s" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.201903147/diffusivity-03kda-pbs> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.201903147/frap-diffusion> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "Diffusivity of 0.3 kDa fluorescein in PBS" ;
+    lova:measurementType "Diffusivity" ;
+    lova:measurementCategory "Biophysical" ;
+    qudt:numericValue 250.0 ;
+    qudt:unit "µm²/s" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.201903147/diffusivity-70kda-pbs-text> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.201903147/frap-diffusion> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "Diffusivity of 70 kDa dextran in PBS (macroscale gel comparison)" ;
+    lova:measurementType "Diffusivity" ;
+    lova:measurementCategory "Biophysical" ;
+    qudt:numericValue 0.42 ;
+    qudt:unit "µm²/s" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-smll.201903147/diffusivity-macroscale-vs-pbs> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "Macroscale non-porous gel diffusivity 50-fold lower than PBS (70 kDa dextran)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-smll.201903147/diffusivity-70kda-n> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-smll.201903147/diffusivity-70kda-pbs-text> ;
+    lova:direction "lower" ;
+    lova:foldChange 0.02 .
+
+<https://lovamap.com/ontology#experiment/10.1002-smll.201903147/hydraulic-conductivity> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-smll.201903147/map-m> ,
+                       <https://lovamap.com/ontology#material/10.1002-smll.201903147/non-porous-n> ;
+    rdfs:label "Hydraulic conductivity measurement through MAP vs non-porous scaffold" ;
+    lova:experimentCategory "Biophysical" ;
+    lova:experimentType "Hydraulic conductivity" ;
+    lova:assayOrMethod "Gravity-driven Darcy flow device" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.201903147/conductivity-n> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.201903147/hydraulic-conductivity> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "Hydraulic conductivity of non-porous scaffold (N)" ;
+    lova:measurementType "Hydraulic conductivity" ;
+    lova:measurementCategory "Biophysical" ;
+    qudt:numericValue 0.0016 ;
+    qudt:unit "µm/s" ;
+    lova:sampleSize 3 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.201903147/conductivity-m> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.201903147/hydraulic-conductivity> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "Hydraulic conductivity of MAP scaffold (M)" ;
+    lova:measurementType "Hydraulic conductivity" ;
+    lova:measurementCategory "Biophysical" ;
+    qudt:numericValue 1.0 ;
+    qudt:unit "µm/s" ;
+    lova:sampleSize 3 ;
+    lova:isSignificant true ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-smll.201903147/conductivity-m-vs-n> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "Hydraulic conductivity ~600-fold higher in MAP scaffold vs non-porous scaffold" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-smll.201903147/conductivity-m> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-smll.201903147/conductivity-n> ;
+    lova:direction "higher" ;
+    lova:foldChange 600.0 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1002-smll.201903147/invitro-proliferation> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-smll.201903147/map-m> ,
+                       <https://lovamap.com/ontology#material/10.1002-smll.201903147/non-porous-n> ;
+    rdfs:label "In vitro proliferation of RFP-MSCs in MAP vs non-porous scaffold over 2 weeks" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell proliferation" ;
+    lova:assayOrMethod "RFP fluorescence intensity plate reader" ;
+    lova:cellType "Mouse mesenchymal stem cells (RFP-MSC)" ;
+    lova:cellSource "C57BL/6 mouse bone marrow" ;
+    lova:cultureDuration "14 days" ;
+    lova:seedingDensity "1,000 cells/µL" ;
+    lova:atmosphere "5% CO2" ;
+    lova:temperature "37°C" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.201903147/proliferation-fold-n> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.201903147/invitro-proliferation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "Fold increase in RFP-MSC fluorescence in non-porous gel over 2 weeks" ;
+    lova:measurementType "Cell expansion fold increase" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.3 ;
+    qudt:unit "fold" ;
+    lova:timePoint "14 days" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.201903147/proliferation-fold-m> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.201903147/invitro-proliferation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "Fold increase in RFP-MSC fluorescence in MAP scaffold over 2 weeks" ;
+    lova:measurementType "Cell expansion fold increase" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 17.0 ;
+    qudt:unit "fold" ;
+    lova:timePoint "14 days" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-smll.201903147/proliferation-m-vs-n> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "MSC proliferation ~7-fold higher in MAP scaffold vs non-porous scaffold" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-smll.201903147/proliferation-fold-m> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-smll.201903147/proliferation-fold-n> ;
+    lova:direction "higher" ;
+    lova:foldChange 7.4 .
+
+<https://lovamap.com/ontology#experiment/10.1002-smll.201903147/ivis-retention> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-smll.201903147/map-m> ,
+                       <https://lovamap.com/ontology#material/10.1002-smll.201903147/non-porous-n> ;
+    rdfs:label "In vivo retention of RFP-MSCs delivered in MAP, non-porous gel, or PBS" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell retention" ;
+    lova:assayOrMethod "In Vivo Imaging System (IVIS)" ;
+    lova:cellType "Mouse mesenchymal stem cells (RFP-MSC)" ;
+    lova:cellSource "C57BL/6 mouse" ;
+    lova:cultureDuration "14 days" ;
+    lova:seedingDensity "1,000,000 cells per injection" ;
+    lova:sampleSize 11 .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.201903147/retention-day7-m> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.201903147/ivis-retention> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "Cell retention at day 7 relative to day 0 — MAP scaffold" ;
+    lova:measurementType "Cell retention" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 42.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 7" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.201903147/retention-day7-n> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.201903147/ivis-retention> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "Cell retention at day 7 relative to day 0 — non-porous scaffold" ;
+    lova:measurementType "Cell retention" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 8.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.201903147/retention-day7-pbs> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.201903147/ivis-retention> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "Cell retention at day 7 relative to day 0 — PBS" ;
+    lova:measurementType "Cell retention" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 5.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-smll.201903147/retention-m-vs-n> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "MSC retention at day 7 significantly higher in MAP vs non-porous scaffold" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-smll.201903147/retention-day7-m> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-smll.201903147/retention-day7-n> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.201903147/cellarea-day7-m> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.201903147/ivis-retention> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "Cell area retention at day 7 relative to day 0 — MAP scaffold" ;
+    lova:measurementType "Cell area retention" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 55.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 7" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.201903147/cellarea-day7-n> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.201903147/ivis-retention> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "Cell area retention at day 7 relative to day 0 — non-porous scaffold" ;
+    lova:measurementType "Cell area retention" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 28.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.201903147/halflife-m> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.201903147/ivis-retention> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "MSC half-life in MAP scaffold" ;
+    lova:measurementType "Cell half-life" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 6.13 ;
+    qudt:unit "days" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.201903147/halflife-n> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.201903147/ivis-retention> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "MSC half-life in non-porous gel" ;
+    lova:measurementType "Cell half-life" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.35 ;
+    qudt:unit "days" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.201903147/halflife-pbs> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.201903147/ivis-retention> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "MSC half-life in PBS" ;
+    lova:measurementType "Cell half-life" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.91 ;
+    qudt:unit "days" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-smll.201903147/halflife-m-vs-n> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "MSC half-life longer in MAP scaffold vs non-porous gel" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-smll.201903147/halflife-m> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-smll.201903147/halflife-n> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#experiment/10.1002-smll.201903147/fig3-proliferation> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-smll.201903147/son1> ,
+                       <https://lovamap.com/ontology#material/10.1002-smll.201903147/stn1> ,
+                       <https://lovamap.com/ontology#material/10.1002-smll.201903147/stn5> ,
+                       <https://lovamap.com/ontology#material/10.1002-smll.201903147/sod1> ;
+    rdfs:label "In vitro relative proliferation of MSCs on four MAP formulations at 7 days" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell proliferation" ;
+    lova:cellType "Mouse mesenchymal stem cells (MSC)" ;
+    lova:cultureDuration "7 days" ;
+    lova:sampleSize 5 .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.201903147/proliferation-son1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.201903147/fig3-proliferation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "Relative proliferation (%) SoN1 at 7 days" ;
+    lova:measurementType "Relative proliferation" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 100.0 ;
+    qudt:unit "%" ;
+    lova:sampleSize 5 ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.201903147/proliferation-stn1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.201903147/fig3-proliferation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "Relative proliferation (%) StN1 at 7 days" ;
+    lova:measurementType "Relative proliferation" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 260.0 ;
+    qudt:unit "%" ;
+    lova:sampleSize 5 ;
+    lova:timePoint "Day 7" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.201903147/proliferation-stn5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.201903147/fig3-proliferation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "Relative proliferation (%) StN5 at 7 days" ;
+    lova:measurementType "Relative proliferation" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 400.0 ;
+    qudt:unit "%" ;
+    lova:sampleSize 5 ;
+    lova:timePoint "Day 7" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.201903147/proliferation-sod1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.201903147/fig3-proliferation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "Relative proliferation (%) SoD1 at 7 days" ;
+    lova:measurementType "Relative proliferation" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 380.0 ;
+    qudt:unit "%" ;
+    lova:sampleSize 5 ;
+    lova:timePoint "Day 7" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-smll.201903147/proliferation-sod1-vs-son1> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "SoD1 higher proliferation than SoN1" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-smll.201903147/proliferation-sod1> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-smll.201903147/proliferation-son1> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-smll.201903147/proliferation-stn1-vs-son1> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "StN1 higher proliferation than SoN1 (stiffness effect)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-smll.201903147/proliferation-stn1> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-smll.201903147/proliferation-son1> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-smll.201903147/proliferation-stn5-vs-stn1> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "StN5 higher proliferation than StN1 (RGD concentration effect)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-smll.201903147/proliferation-stn5> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-smll.201903147/proliferation-stn1> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#experiment/10.1002-smll.201903147/fig3-actin> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-smll.201903147/son1> ,
+                       <https://lovamap.com/ontology#material/10.1002-smll.201903147/stn1> ,
+                       <https://lovamap.com/ontology#material/10.1002-smll.201903147/stn5> ,
+                       <https://lovamap.com/ontology#material/10.1002-smll.201903147/sod1> ;
+    rdfs:label "Average actin spread area per cell for four MAP formulations in vitro" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell morphology" ;
+    lova:assayOrMethod "Actin/nucleus immunofluorescence imaging" ;
+    lova:cellType "Mouse mesenchymal stem cells (MSC)" ;
+    lova:cultureDuration "14 days" ;
+    lova:sampleSize 5 .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.201903147/actin-son1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.201903147/fig3-actin> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "Average actin area (µm²/cell) — SoN1" ;
+    lova:measurementType "Average actin area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 100.0 ;
+    qudt:unit "µm²/cells" ;
+    lova:sampleSize 5 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.201903147/actin-stn1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.201903147/fig3-actin> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "Average actin area (µm²/cell) — StN1" ;
+    lova:measurementType "Average actin area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 320.0 ;
+    qudt:unit "µm²/cells" ;
+    lova:sampleSize 5 ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.201903147/actin-stn5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.201903147/fig3-actin> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "Average actin area (µm²/cell) — StN5" ;
+    lova:measurementType "Average actin area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 430.0 ;
+    qudt:unit "µm²/cells" ;
+    lova:sampleSize 5 ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.201903147/actin-sod1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.201903147/fig3-actin> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "Average actin area (µm²/cell) — SoD1" ;
+    lova:measurementType "Average actin area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 430.0 ;
+    qudt:unit "µm²/cells" ;
+    lova:sampleSize 5 ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-smll.201903147/actin-stn5-vs-stn1> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "StN5 slightly larger actin spread area per cell than StN1" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-smll.201903147/actin-stn5> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-smll.201903147/actin-stn1> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#experiment/10.1002-smll.201903147/fig3-cd29> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-smll.201903147/son1> ,
+                       <https://lovamap.com/ontology#material/10.1002-smll.201903147/stn1> ,
+                       <https://lovamap.com/ontology#material/10.1002-smll.201903147/stn5> ,
+                       <https://lovamap.com/ontology#material/10.1002-smll.201903147/sod1> ;
+    rdfs:label "CD29+ MSC density and fraction in MAP scaffolds in vivo at week 2" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immunofluorescence cell quantification" ;
+    lova:assayOrMethod "CD29/GFP immunofluorescence staining" ;
+    lova:cellType "GFP-MSC" ;
+    lova:cellSource "C57BL/6 mouse" ;
+    lova:cultureDuration "2 weeks" ;
+    lova:sampleSize 5 .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.201903147/cd29density-son1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.201903147/fig3-cd29> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "CD29+ density (cells/mm²) — SoN1" ;
+    lova:measurementType "CD29+ cell density" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 5.0 ;
+    qudt:unit "cells/mm²" ;
+    lova:sampleSize 5 ;
+    lova:timePoint "Week 2" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.201903147/cd29density-stn1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.201903147/fig3-cd29> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "CD29+ density (cells/mm²) — StN1" ;
+    lova:measurementType "CD29+ cell density" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 90.0 ;
+    qudt:unit "cells/mm²" ;
+    lova:sampleSize 5 ;
+    lova:timePoint "Week 2" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.201903147/cd29density-stn5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.201903147/fig3-cd29> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "CD29+ density (cells/mm²) — StN5 (highest)" ;
+    lova:measurementType "CD29+ cell density" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 145.0 ;
+    qudt:unit "cells/mm²" ;
+    lova:sampleSize 5 ;
+    lova:timePoint "Week 2" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.201903147/cd29density-sod1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.201903147/fig3-cd29> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "CD29+ density (cells/mm²) — SoD1" ;
+    lova:measurementType "CD29+ cell density" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 65.0 ;
+    qudt:unit "cells/mm²" ;
+    lova:sampleSize 5 ;
+    lova:timePoint "Week 2" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-smll.201903147/cd29density-stn5-vs-sod1> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "CD29+ density higher in StN5 than SoD1 at week 2" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-smll.201903147/cd29density-stn5> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-smll.201903147/cd29density-sod1> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.201903147/cd29fraction-son1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.201903147/fig3-cd29> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "CD29+ cell fraction (%) — SoN1" ;
+    lova:measurementType "CD29+ cell fraction" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 6.0 ;
+    qudt:unit "%" ;
+    lova:sampleSize 5 ;
+    lova:timePoint "Week 2" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.201903147/cd29fraction-stn1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.201903147/fig3-cd29> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "CD29+ cell fraction (%) — StN1" ;
+    lova:measurementType "CD29+ cell fraction" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 25.0 ;
+    qudt:unit "%" ;
+    lova:sampleSize 5 ;
+    lova:timePoint "Week 2" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.201903147/cd29fraction-stn5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.201903147/fig3-cd29> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "CD29+ cell fraction (%) — StN5" ;
+    lova:measurementType "CD29+ cell fraction" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 35.0 ;
+    qudt:unit "%" ;
+    lova:sampleSize 5 ;
+    lova:timePoint "Week 2" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.201903147/cd29fraction-sod1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.201903147/fig3-cd29> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "CD29+ cell fraction (%) — SoD1" ;
+    lova:measurementType "CD29+ cell fraction" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 12.0 ;
+    qudt:unit "%" ;
+    lova:sampleSize 5 ;
+    lova:timePoint "Week 2" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1002-smll.201903147/fig4-tissue-ingrowth> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-smll.201903147/son1> ,
+                       <https://lovamap.com/ontology#material/10.1002-smll.201903147/stn1> ,
+                       <https://lovamap.com/ontology#material/10.1002-smll.201903147/stn5> ,
+                       <https://lovamap.com/ontology#material/10.1002-smll.201903147/sod1> ;
+    rdfs:label "Tissue ingrowth measured as cell density vs distance from scaffold boundary" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Tissue integration" ;
+    lova:assayOrMethod "Immunofluorescence tissue section imaging" ;
+    lova:cultureDuration "2 weeks" ;
+    lova:sampleSize 5 .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.201903147/celldensity-boundary> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.201903147/fig4-tissue-ingrowth> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "Cell density within 200 µm region at scaffold-tissue boundary" ;
+    lova:measurementType "Cell density" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1580.0 ;
+    qudt:unit "cells/mm²" ;
+    lova:scope "Regional" ;
+    lova:timePoint "Week 2" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.201903147/celldensity-core> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.201903147/fig4-tissue-ingrowth> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "Cell density at 1.5 mm depth within scaffold (most formulations)" ;
+    lova:measurementType "Cell density" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 500.0 ;
+    qudt:unit "cells/mm²" ;
+    lova:scope "Regional" ;
+    lova:timePoint "Week 2" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.201903147/seeding-density-initial> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.201903147/fig4-tissue-ingrowth> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "Initial seeding density in scaffold" ;
+    lova:measurementType "Seeding density" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 125.0 ;
+    qudt:unit "cells/mm²" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1002-smll.201903147/fig4-cd31> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-smll.201903147/son1> ,
+                       <https://lovamap.com/ontology#material/10.1002-smll.201903147/stn1> ,
+                       <https://lovamap.com/ontology#material/10.1002-smll.201903147/stn5> ,
+                       <https://lovamap.com/ontology#material/10.1002-smll.201903147/sod1> ;
+    rdfs:label "CD31+ (PECAM-1) endothelial cell density and fraction in MAP scaffolds at week 2" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Vascularization" ;
+    lova:assayOrMethod "PECAM-1/CD31 immunofluorescence staining" ;
+    lova:cultureDuration "2 weeks" ;
+    lova:sampleSize 5 .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.201903147/cd31density-son1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.201903147/fig4-cd31> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "CD31+ density (cells/mm²) — SoN1" ;
+    lova:measurementType "CD31+ cell density" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 30.0 ;
+    qudt:unit "cells/mm²" ;
+    lova:sampleSize 5 ;
+    lova:timePoint "Week 2" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.201903147/cd31density-stn1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.201903147/fig4-cd31> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "CD31+ density (cells/mm²) — StN1" ;
+    lova:measurementType "CD31+ cell density" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 240.0 ;
+    qudt:unit "cells/mm²" ;
+    lova:sampleSize 5 ;
+    lova:timePoint "Week 2" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.201903147/cd31density-stn5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.201903147/fig4-cd31> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "CD31+ density (cells/mm²) — StN5" ;
+    lova:measurementType "CD31+ cell density" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 260.0 ;
+    qudt:unit "cells/mm²" ;
+    lova:sampleSize 5 ;
+    lova:timePoint "Week 2" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.201903147/cd31density-sod1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.201903147/fig4-cd31> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "CD31+ density (cells/mm²) — SoD1" ;
+    lova:measurementType "CD31+ cell density" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 180.0 ;
+    qudt:unit "cells/mm²" ;
+    lova:sampleSize 5 ;
+    lova:timePoint "Week 2" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-smll.201903147/cd31density-stn1-vs-son1> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "CD31+ density higher in StN1 than SoN1" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-smll.201903147/cd31density-stn1> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-smll.201903147/cd31density-son1> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-smll.201903147/cd31density-stn5-vs-son1> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "CD31+ density higher in StN5 than SoN1" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-smll.201903147/cd31density-stn5> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-smll.201903147/cd31density-son1> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-smll.201903147/cd31density-sod1-vs-son1> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "CD31+ density higher in SoD1 than SoN1" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-smll.201903147/cd31density-sod1> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-smll.201903147/cd31density-son1> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1002-smll.201903147/rheology-storage-modulus> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-smll.201903147/son1> ,
+                       <https://lovamap.com/ontology#material/10.1002-smll.201903147/stn1> ,
+                       <https://lovamap.com/ontology#material/10.1002-smll.201903147/stn5> ,
+                       <https://lovamap.com/ontology#material/10.1002-smll.201903147/sod1> ;
+    rdfs:label "Storage modulus measurement of MAP building block disc gels" ;
+    lova:experimentCategory "Mechanical" ;
+    lova:experimentType "Rheology" ;
+    lova:equipment "Anton Paar Physica MCR 301 Rheometer" ;
+    lova:frequency "0.5–5 Hz" ;
+    lova:sampleSize 4 .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.201903147/modulus-soft> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.201903147/rheology-storage-modulus> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "Storage modulus of soft building blocks (SoN1/SoD1)" ;
+    lova:measurementType "Storage modulus" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 500.0 ;
+    qudt:unit "Pa" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-smll.201903147/modulus-stiff> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-smll.201903147/rheology-storage-modulus> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "Storage modulus of stiff building blocks (StN1/StN5)" ;
+    lova:measurementType "Storage modulus" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 2500.0 ;
+    qudt:unit "Pa" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-smll.201903147/modulus-stiff-vs-soft> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-smll.201903147> ;
+    rdfs:label "Stiff building blocks have 5-fold higher storage modulus than soft building blocks" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-smll.201903147/modulus-stiff> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-smll.201903147/modulus-soft> ;
+    lova:direction "higher" ;
+    lova:foldChange 5.0 .

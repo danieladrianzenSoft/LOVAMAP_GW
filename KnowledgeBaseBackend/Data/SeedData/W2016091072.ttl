@@ -1,0 +1,338 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1007-s10456-014-9440-7> a bibo:AcademicArticle ;
+    rdfs:label "Nowak-Sliwinska et al., 2014 — The chicken chorioallantoic membrane model" ;
+    dc:title "The chicken chorioallantoic membrane model in biology, medicine and bioengineering" ;
+    dc:identifier "10.1007/s10456-014-9440-7" ;
+    dc:date "2014"^^xsd:gYear ;
+    dc:type "Review" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/angiogenesis> ;
+    dc:creator <https://lovamap.com/ontology#author/nowak-sliwinska-patrycja> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ,
+               <https://lovamap.com/ontology#author/iruela-arispe-luisa> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/nowak-sliwinska-patrycja>
+                       <https://lovamap.com/ontology#author/segura-tatiana>
+                       <https://lovamap.com/ontology#author/iruela-arispe-luisa> ) ;
+    dc:bibliographicCitation "Nowak-Sliwinska et al., 2014" ;
+    lova:focusMaterial "Chicken chorioallantoic membrane (CAM) as a vascular biology, drug screening, and tissue engineering model" .
+
+<https://lovamap.com/ontology#author/nowak-sliwinska-patrycja> a foaf:Person ;
+    foaf:familyName "Nowak-Sliwinska" ;
+    foaf:givenName "Patrycja M." ;
+    foaf:name "Patrycja M. Nowak-Sliwinska" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" .
+
+<https://lovamap.com/ontology#author/iruela-arispe-luisa> a foaf:Person ;
+    foaf:familyName "Iruela-Arispe" ;
+    foaf:givenName "M. Luisa" ;
+    foaf:name "M. Luisa Iruela-Arispe" .
+
+<https://lovamap.com/ontology#journal/angiogenesis> a bibo:Journal ;
+    dc:title "Angiogenesis" ;
+    bibo:issn "0969-6970" .
+
+<https://lovamap.com/ontology#material/10.1007-s10456-014-9440-7/cam> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10456-014-9440-7> ;
+    rdfs:label "Chick embryo chorioallantoic membrane (CAM)" ;
+    lova:particleMaterial "Chorioallantoic membrane tissue" .
+
+<https://lovamap.com/ontology#experiment/10.1007-s10456-014-9440-7/cam-area-growth> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10456-014-9440-7> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1007-s10456-014-9440-7/cam> ;
+    rdfs:label "Daily measurement of CAM expansion area after plating in petri dish" ;
+    lova:experimentCategory "Developmental" ;
+    lova:experimentType "Morphometric" ;
+    lova:assayOrMethod "CAM area measurement" ;
+    lova:cultureDuration "Days 0-19 post-fertilization" ;
+    lova:sampleSize 6 .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10456-014-9440-7/cam-area-day3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10456-014-9440-7/cam-area-growth> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10456-014-9440-7> ;
+    rdfs:label "CAM area at day 3" ;
+    lova:measurementType "CAM area" ;
+    lova:measurementCategory "Developmental" ;
+    qudt:numericValue 0.1 ;
+    qudt:unit "cm" ;
+    lova:timePoint "Day 3" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10456-014-9440-7/cam-area-day4> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10456-014-9440-7/cam-area-growth> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10456-014-9440-7> ;
+    rdfs:label "CAM area at day 4" ;
+    lova:measurementType "CAM area" ;
+    lova:measurementCategory "Developmental" ;
+    qudt:numericValue 0.5 ;
+    qudt:unit "cm" ;
+    lova:timePoint "Day 4" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10456-014-9440-7/cam-area-day5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10456-014-9440-7/cam-area-growth> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10456-014-9440-7> ;
+    rdfs:label "CAM area at day 5" ;
+    lova:measurementType "CAM area" ;
+    lova:measurementCategory "Developmental" ;
+    qudt:numericValue 1.0 ;
+    qudt:unit "cm" ;
+    lova:timePoint "Day 5" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10456-014-9440-7/cam-area-day6> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10456-014-9440-7/cam-area-growth> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10456-014-9440-7> ;
+    rdfs:label "CAM area at day 6" ;
+    lova:measurementType "CAM area" ;
+    lova:measurementCategory "Developmental" ;
+    qudt:numericValue 2.0 ;
+    qudt:unit "cm" ;
+    lova:timePoint "Day 6" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10456-014-9440-7/cam-area-day7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10456-014-9440-7/cam-area-growth> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10456-014-9440-7> ;
+    rdfs:label "CAM area at day 7" ;
+    lova:measurementType "CAM area" ;
+    lova:measurementCategory "Developmental" ;
+    qudt:numericValue 4.7 ;
+    qudt:unit "cm" ;
+    lova:timePoint "Day 7" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10456-014-9440-7/cam-area-day8> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10456-014-9440-7/cam-area-growth> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10456-014-9440-7> ;
+    rdfs:label "CAM area at day 8" ;
+    lova:measurementType "CAM area" ;
+    lova:measurementCategory "Developmental" ;
+    qudt:numericValue 5.8 ;
+    qudt:unit "cm" ;
+    lova:timePoint "Day 8" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10456-014-9440-7/cam-area-day9> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10456-014-9440-7/cam-area-growth> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10456-014-9440-7> ;
+    rdfs:label "CAM area at day 9" ;
+    lova:measurementType "CAM area" ;
+    lova:measurementCategory "Developmental" ;
+    qudt:numericValue 7.6 ;
+    qudt:unit "cm" ;
+    lova:timePoint "Day 9" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10456-014-9440-7/cam-area-day10> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10456-014-9440-7/cam-area-growth> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10456-014-9440-7> ;
+    rdfs:label "CAM area at day 10" ;
+    lova:measurementType "CAM area" ;
+    lova:measurementCategory "Developmental" ;
+    qudt:numericValue 7.8 ;
+    qudt:unit "cm" ;
+    lova:timePoint "Day 10" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10456-014-9440-7/cam-area-day13> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10456-014-9440-7/cam-area-growth> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10456-014-9440-7> ;
+    rdfs:label "CAM area at day 13 (plateau onset)" ;
+    lova:measurementType "CAM area" ;
+    lova:measurementCategory "Developmental" ;
+    qudt:numericValue 8.4 ;
+    qudt:unit "cm" ;
+    lova:timePoint "Day 13" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10456-014-9440-7/cam-area-day19> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10456-014-9440-7/cam-area-growth> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10456-014-9440-7> ;
+    rdfs:label "CAM area at day 19 (plateau)" ;
+    lova:measurementType "CAM area" ;
+    lova:measurementCategory "Developmental" ;
+    qudt:numericValue 8.4 ;
+    qudt:unit "cm" ;
+    lova:timePoint "Day 19" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1007-s10456-014-9440-7/brdu-proliferation> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10456-014-9440-7> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1007-s10456-014-9440-7/cam> ;
+    rdfs:label "BrdU incorporation in CAM vessels across development days" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Proliferation" ;
+    lova:assayOrMethod "BrdU incorporation" ;
+    lova:cultureDuration "Days 4-18 post-fertilization" ;
+    lova:sampleSize 4 .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10456-014-9440-7/brdu-day4> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10456-014-9440-7/brdu-proliferation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10456-014-9440-7> ;
+    rdfs:label "Positive endothelial nuclei (BrdU) at day 4" ;
+    lova:measurementType "BrdU-positive endothelial nuclei count" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 150.0 ;
+    qudt:unit "count" ;
+    lova:timePoint "Day 4" ;
+    lova:scope "Regional" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10456-014-9440-7/brdu-day6> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10456-014-9440-7/brdu-proliferation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10456-014-9440-7> ;
+    rdfs:label "Positive endothelial nuclei (BrdU) at day 6" ;
+    lova:measurementType "BrdU-positive endothelial nuclei count" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 290.0 ;
+    qudt:unit "count" ;
+    lova:timePoint "Day 6" ;
+    lova:scope "Regional" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10456-014-9440-7/brdu-day8> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10456-014-9440-7/brdu-proliferation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10456-014-9440-7> ;
+    rdfs:label "Positive endothelial nuclei (BrdU) at day 8 (peak)" ;
+    lova:measurementType "BrdU-positive endothelial nuclei count" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 570.0 ;
+    qudt:unit "count" ;
+    lova:timePoint "Day 8" ;
+    lova:scope "Regional" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10456-014-9440-7/brdu-day10> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10456-014-9440-7/brdu-proliferation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10456-014-9440-7> ;
+    rdfs:label "Positive endothelial nuclei (BrdU) at day 10" ;
+    lova:measurementType "BrdU-positive endothelial nuclei count" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 320.0 ;
+    qudt:unit "count" ;
+    lova:timePoint "Day 10" ;
+    lova:scope "Regional" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10456-014-9440-7/brdu-day12> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10456-014-9440-7/brdu-proliferation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10456-014-9440-7> ;
+    rdfs:label "Positive endothelial nuclei (BrdU) at day 12" ;
+    lova:measurementType "BrdU-positive endothelial nuclei count" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 110.0 ;
+    qudt:unit "count" ;
+    lova:timePoint "Day 12" ;
+    lova:scope "Regional" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10456-014-9440-7/brdu-day14> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10456-014-9440-7/brdu-proliferation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10456-014-9440-7> ;
+    rdfs:label "Positive endothelial nuclei (BrdU) at day 14" ;
+    lova:measurementType "BrdU-positive endothelial nuclei count" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 85.0 ;
+    qudt:unit "count" ;
+    lova:timePoint "Day 14" ;
+    lova:scope "Regional" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10456-014-9440-7/brdu-day16> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10456-014-9440-7/brdu-proliferation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10456-014-9440-7> ;
+    rdfs:label "Positive endothelial nuclei (BrdU) at day 16" ;
+    lova:measurementType "BrdU-positive endothelial nuclei count" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 40.0 ;
+    qudt:unit "count" ;
+    lova:timePoint "Day 16" ;
+    lova:scope "Regional" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10456-014-9440-7/brdu-day18> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10456-014-9440-7/brdu-proliferation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10456-014-9440-7> ;
+    rdfs:label "Positive endothelial nuclei (BrdU) at day 18" ;
+    lova:measurementType "BrdU-positive endothelial nuclei count" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 15.0 ;
+    qudt:unit "count" ;
+    lova:timePoint "Day 18" ;
+    lova:scope "Regional" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1007-s10456-014-9440-7/lymphatic-angiography> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10456-014-9440-7> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1007-s10456-014-9440-7/cam> ;
+    rdfs:label "Fluorescence angiography of CAM lymphatic vessels using FITC-dextran" ;
+    lova:experimentCategory "Imaging" ;
+    lova:experimentType "Fluorescence angiography" ;
+    lova:assayOrMethod "FITC-dextran fluorescence angiography" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10456-014-9440-7/fitc-dextran-params> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10456-014-9440-7/lymphatic-angiography> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10456-014-9440-7> ;
+    rdfs:label "FITC-dextran dosing and imaging parameters for lymphatic visualization" ;
+    lova:measurementType "Imaging agent dose and wavelength" ;
+    lova:measurementCategory "Imaging" ;
+    lova:valueString "25 mg/kg FITC-dextran, 20 kDa, λex = 470 ± 20 nm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1007-s10456-014-9440-7/calcium-transport> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10456-014-9440-7> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1007-s10456-014-9440-7/cam> ;
+    rdfs:label "Transepithelial calcium transport rate through chorionic epithelium" ;
+    lova:experimentCategory "Physiological" ;
+    lova:experimentType "Ion transport" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10456-014-9440-7/calcium-transport-rate> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10456-014-9440-7/calcium-transport> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10456-014-9440-7> ;
+    rdfs:label "Calcium transport rate across CAM surface" ;
+    lova:measurementType "Calcium transport rate" ;
+    lova:measurementCategory "Physiological" ;
+    qudt:numericValue 100.0 ;
+    qudt:unit "nmoles/hour/cm2" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1007-s10456-014-9440-7/ex-ovo-survival> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10456-014-9440-7> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1007-s10456-014-9440-7/cam> ;
+    rdfs:label "Ex ovo cultivation embryo survival assessment" ;
+    lova:experimentCategory "Developmental" ;
+    lova:experimentType "Survival assay" ;
+    lova:cultureDuration "Day 14" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10456-014-9440-7/ex-ovo-survival-day14> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10456-014-9440-7/ex-ovo-survival> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10456-014-9440-7> ;
+    rdfs:label "Ex ovo embryo survival rate at day 14" ;
+    lova:measurementType "Embryo survival rate" ;
+    lova:measurementCategory "Developmental" ;
+    qudt:numericValue 50.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 14" ;
+    lova:dataSource "[TEXT]" .

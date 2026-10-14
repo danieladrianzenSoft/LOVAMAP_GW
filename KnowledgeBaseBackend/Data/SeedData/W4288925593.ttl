@@ -1,0 +1,1041 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> a bibo:AcademicArticle ;
+    rdfs:label "Anderson et al., 2022 — Particle fraction is a bioactive cue in granular scaffolds" ;
+    dc:title "Particle fraction is a bioactive cue in granular scaffolds" ;
+    dc:identifier "10.1016/j.actbio.2022.07.051" ;
+    dc:date "2022"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/acta-biomaterialia> ;
+    dc:creator <https://lovamap.com/ontology#author/anderson-alexa> ,
+               <https://lovamap.com/ontology#author/nicklow-ethan> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/anderson-alexa>
+                       <https://lovamap.com/ontology#author/nicklow-ethan>
+                       <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    dc:bibliographicCitation "Anderson et al., 2022" ;
+    lova:focusMaterial "HA-NB and PEG-NB MAP microgel scaffolds; particle fraction control via lyophilization" .
+
+<https://lovamap.com/ontology#author/anderson-alexa> a foaf:Person ;
+    foaf:familyName "Anderson" ;
+    foaf:givenName "Alexa R." ;
+    foaf:name "Alexa R. Anderson" .
+
+<https://lovamap.com/ontology#author/nicklow-ethan> a foaf:Person ;
+    foaf:familyName "Nicklow" ;
+    foaf:givenName "Ethan" ;
+    foaf:name "Ethan Nicklow" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" .
+
+<https://lovamap.com/ontology#journal/acta-biomaterialia> a bibo:Journal ;
+    dc:title "Acta Biomaterialia" ;
+    bibo:issn "1742-7061" .
+
+<https://lovamap.com/ontology#material/10.1016-j.actbio.2022.07.051/ha-nb-microgel> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "HA-NB microgel" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Hyaluronic acid-norbornene (HA-NB)" ;
+    lova:particleSizeMin 92.0 ;
+    lova:particleSizeMax 92.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:sizeDistribution "Monodisperse, PDI 1.01" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2022.07.051/microfluidic-ha-nb> .
+
+<https://lovamap.com/ontology#material/10.1016-j.actbio.2022.07.051/peg-nb-microgel> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "8arm-PEG-NB microgel" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "8arm-PEG-NB (20 kDa)" ;
+    lova:particleSizeMin 118.0 ;
+    lova:particleSizeMax 118.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:sizeDistribution "Monodisperse, PDI 1.00" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2022.07.051/microfluidic-peg-nb> .
+
+<https://lovamap.com/ontology#material/10.1016-j.actbio.2022.07.051/map-nonlyo> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Non-lyophilized MAP scaffold (centrifugation-concentrated HA-NB microgels)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "HA-NB" ;
+    lova:packingConfiguration "Random, jammed, variable particle fraction" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2022.07.051/tetrazine-annealing-hatet> .
+
+<https://lovamap.com/ontology#material/10.1016-j.actbio.2022.07.051/map-lyo-3.4wt> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "MAP scaffold from lyo-microgels rehydrated at 3.4 wt%" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "HA-NB" ;
+    lova:packingConfiguration "Random, jammed" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2022.07.051/lyophilization-70eth> .
+
+<https://lovamap.com/ontology#material/10.1016-j.actbio.2022.07.051/map-lyo-5wt> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "MAP scaffold from lyo-microgels rehydrated at 5 wt%" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "HA-NB" ;
+    lova:packingConfiguration "Random, jammed, higher particle fraction" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2022.07.051/lyophilization-70eth> .
+
+<https://lovamap.com/ontology#material/10.1016-j.actbio.2022.07.051/map-lyo-7wt> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "MAP scaffold from lyo-microgels rehydrated at 7 wt%" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "HA-NB" ;
+    lova:packingConfiguration "Random, jammed, highest particle fraction" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2022.07.051/lyophilization-70eth> .
+
+<https://lovamap.com/ontology#material/10.1016-j.actbio.2022.07.051/nanoporous-3.4wt> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Nanoporous (bulk, non-granular) gel 3.4 wt%" ;
+    lova:particleMaterial "HA-NB precursor (bulk gel, same composition as microgels)" ;
+    lova:packingConfiguration "N/A (bulk continuous gel)" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2022.07.051/microfluidic-ha-nb> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Microfluidic generation of HA-NB microgels" ;
+    lova:chemistry "Thiol-ene (Michael-type) photopolymerization" ;
+    lova:manufacturingMethod "Microfluidic water-in-oil emulsion, flow-focusing device" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2022.07.051/ha-contipro> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2022.07.051/nb-tci> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2022.07.051/mmp-crosslinker> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2022.07.051/tcep> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2022.07.051/lap> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2022.07.051/span80> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2022.07.051/mineral-oil> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2022.07.051/pluronic-f127> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2022.07.051/hepes-buffer> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2022.07.051/nacl> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2022.07.051/cacl2> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2022.07.051/ethanol-70-wash> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2022.07.051/microfluidic-peg-nb> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Microfluidic generation of 8arm-PEG-NB microgels" ;
+    lova:chemistry "Thiol-ene (Michael-type) photopolymerization" ;
+    lova:manufacturingMethod "Microfluidic water-in-oil emulsion, flow-focusing device" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2022.07.051/peg-nb-jenkem> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2022.07.051/mmp-crosslinker> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2022.07.051/tcep> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2022.07.051/lap> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2022.07.051/tetrazine-annealing-hatet> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Inter-particle annealing with linear HA-tetrazine (HA-Tet) linker" ;
+    lova:chemistry "Inverse electron-demand Diels-Alder (tetrazine-norbornene click chemistry)" ;
+    lova:annealingChemistry "HA-Tet to NB click reaction" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2022.07.051/ha-tet> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2022.07.051/dmtmm> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2022.07.051/tetrazine-amine> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2022.07.051/rgd-peptide> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2022.07.051/tetrazine-annealing-pegtet> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Inter-particle annealing with 4arm-PEG-Tetrazine linker" ;
+    lova:chemistry "Inverse electron-demand Diels-Alder (tetrazine-norbornene click chemistry)" ;
+    lova:annealingChemistry "4arm-PEG-Tet to NB click reaction" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2022.07.051/4arm-peg-tet> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2022.07.051/lyophilization-70eth> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Lyophilization of microgels in 70% ethanol and rehydration to controlled wt%" ;
+    lova:manufacturingMethod "Freeze-drying (lyophilization) in 70% EtOH medium, flash-frozen in liquid nitrogen, rehydrated at defined wt%" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2022.07.051/ethanol-70-wash> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2022.07.051/ha-tet> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2022.07.051/rgd-peptide> .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2022.07.051/ha-contipro> a lova:Reagent ;
+    rdfs:label "Hyaluronic acid (HA), pharmaceutical grade, 79 kDa" ;
+    lova:reagentRole "monomer" ;
+    lova:molecularWeight "79 kDa" ;
+    lova:supplier "Contipro" ;
+    lova:reagentFunction "Microgel backbone material" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2022.07.051/nb-tci> a lova:Reagent ;
+    rdfs:label "5-norbornene-2-methylamine (NB)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "TCI Chemicals" ;
+    lova:reagentFunction "Functionalizes HA backbone for click chemistry (~31% HA repeat units modified)" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2022.07.051/peg-nb-jenkem> a lova:Reagent ;
+    rdfs:label "8arm-PEG-NB (20 kDa)" ;
+    lova:reagentRole "monomer" ;
+    lova:molecularWeight "20 kDa" ;
+    lova:concentration "10 wt% (w/v)" ;
+    lova:supplier "JenKem" ;
+    lova:reagentFunction "Microgel backbone material" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2022.07.051/mmp-crosslinker> a lova:Reagent ;
+    rdfs:label "MMP-cleavable crosslinker (Ac-GCRDGPQGIWGQDRCG-NH2)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:sequence "GCRDGPQGIWGQDRCG" ;
+    lova:concentration "3.5 mM" ;
+    lova:supplier "GenScript" ;
+    lova:reagentFunction "Enzymatically degradable intra-microgel crosslink" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2022.07.051/tcep> a lova:Reagent ;
+    rdfs:label "Tris(2-carboxyethyl)phosphine hydrochloride (TCEP)" ;
+    lova:reagentRole "reducing agent" ;
+    lova:concentration "1.75 mM" ;
+    lova:supplier "Millipore Sigma" ;
+    lova:reagentFunction "Maintains free thiols during crosslinking" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2022.07.051/lap> a lova:Reagent ;
+    rdfs:label "Lithium phenyl-2,4,6-trimethylbenzoylphosphinate (LAP)" ;
+    lova:reagentRole "photoinitiator" ;
+    lova:concentration "9.9 mM" ;
+    lova:supplier "TCI Chemicals" ;
+    lova:reagentFunction "UV photoinitiation of thiol-ene reaction" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2022.07.051/span80> a lova:Reagent ;
+    rdfs:label "Span-80" ;
+    lova:reagentRole "surfactant" ;
+    lova:concentration "5% (v/v)" ;
+    lova:supplier "Millipore Sigma" ;
+    lova:reagentFunction "Stabilizes water-in-oil emulsion" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2022.07.051/mineral-oil> a lova:Reagent ;
+    rdfs:label "Heavy white mineral oil" ;
+    lova:reagentRole "carrier oil" ;
+    lova:supplier "Avantor" ;
+    lova:reagentFunction "Continuous oil phase for microfluidic emulsion" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2022.07.051/pluronic-f127> a lova:Reagent ;
+    rdfs:label "Pluronic F-127" ;
+    lova:reagentRole "surfactant" ;
+    lova:concentration "2% (w/v)" ;
+    lova:supplier "Sigma-Aldrich" ;
+    lova:reagentFunction "Microgel washing/purification" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2022.07.051/hepes-buffer> a lova:Reagent ;
+    rdfs:label "HEPES washing buffer" ;
+    lova:reagentRole "solvent" ;
+    lova:concentration "300 mM" ;
+    lova:reagentFunction "Washing buffer component" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2022.07.051/nacl> a lova:Reagent ;
+    rdfs:label "Sodium chloride (NaCl, washing buffer)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "50 mM" ;
+    lova:reagentFunction "Washing buffer component" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2022.07.051/cacl2> a lova:Reagent ;
+    rdfs:label "Calcium chloride (CaCl2, washing buffer)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "50 mM" ;
+    lova:reagentFunction "Washing buffer component" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2022.07.051/ethanol-70-wash> a lova:Reagent ;
+    rdfs:label "70% ethanol" ;
+    lova:reagentRole "solvent" ;
+    lova:concentration "70% (v/v)" ;
+    lova:reagentFunction "Sterilization wash / lyophilization medium preventing cryogel formation" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2022.07.051/4arm-peg-tet> a lova:Reagent ;
+    rdfs:label "4arm-PEG-Tetrazine (20 kDa)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:molecularWeight "20 kDa" ;
+    lova:reagentFunction "Star-shaped inter-particle crosslinker" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2022.07.051/ha-tet> a lova:Reagent ;
+    rdfs:label "Linear HA-tetrazine (HA-Tet)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:molecularWeight "79 kDa (HA backbone)" ;
+    lova:concentration "0.02 mg mL-1 (lyo-microgel annealing)" ;
+    lova:reagentFunction "Linear inter-particle crosslinker (~11% HA repeat units modified, ~23 functional groups per chain)" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2022.07.051/dmtmm> a lova:Reagent ;
+    rdfs:label "4-(4,6-dimethoxy-1,3,5-triazin-2-yl)-4-methylmorpholinium chloride (DMTMM)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Thermo Fisher Scientific" ;
+    lova:reagentFunction "Coupling agent for HA-Tet synthesis" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2022.07.051/tetrazine-amine> a lova:Reagent ;
+    rdfs:label "Tetrazine-amine" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Chem-Impex" ;
+    lova:reagentFunction "Tetrazine functional group donor for HA-Tet synthesis" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2022.07.051/alexa488-maleimide> a lova:Reagent ;
+    rdfs:label "Alexa Fluor 488 C5 maleimide" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Invitrogen" ;
+    lova:reagentFunction "Fluorophore for microgel labeling" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2022.07.051/methyltetrazine-peg4-maleimide> a lova:Reagent ;
+    rdfs:label "Methyltetrazine-PEG4-maleimide" ;
+    lova:reagentRole "other" ;
+    lova:molecularWeight "514.53 Da" ;
+    lova:supplier "Kerafast" ;
+    lova:reagentFunction "Tetrazine fluorophore conjugate synthesis" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2022.07.051/hs-peg-sh> a lova:Reagent ;
+    rdfs:label "HS-PEG-SH" ;
+    lova:reagentRole "crosslinker" ;
+    lova:molecularWeight "3500 Da" ;
+    lova:supplier "JenKem Technology USA" ;
+    lova:reagentFunction "Dithiol linker for Alexa488-Tet synthesis" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2022.07.051/tea> a lova:Reagent ;
+    rdfs:label "Triethylamine (TEA)" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Base catalyst in thiol-Michael addition" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2022.07.051/rgd-peptide> a lova:Reagent ;
+    rdfs:label "RGD peptide (Ac-RGDSPGERCG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "RGDSPGERCG" ;
+    lova:concentration "1 mM" ;
+    lova:supplier "GenScript" ;
+    lova:reagentFunction "Cell adhesion via integrin binding" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2022.07.051/dapi> a lova:Reagent ;
+    rdfs:label "DAPI" ;
+    lova:reagentRole "other" ;
+    lova:concentration "1:1000" ;
+    lova:supplier "Sigma-Aldrich" ;
+    lova:reagentFunction "Nuclear stain" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2022.07.051/alexa647-phalloidin> a lova:Reagent ;
+    rdfs:label "Alexa Fluor 647 Phalloidin" ;
+    lova:reagentRole "other" ;
+    lova:concentration "1:40" ;
+    lova:supplier "Invitrogen" ;
+    lova:reagentFunction "F-actin stain" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/rheology-strain-sweep> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2022.07.051/ha-nb-microgel> ;
+    rdfs:label "Complex modulus vs strain for microgels, PEG-Tet, HA-Tet MAP" ;
+    lova:experimentCategory "Rheological" ;
+    lova:experimentType "Amplitude sweep" ;
+    lova:equipment "Anton Paar Physica MCR 301 parallel plate rheometer" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/rheology-gelation-kinetics> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2022.07.051/map-nonlyo> ;
+    rdfs:label "Time-sweep gelation kinetics of MAP annealing" ;
+    lova:experimentCategory "Rheological" ;
+    lova:experimentType "Time sweep" ;
+    lova:equipment "Anton Paar Physica MCR 301 parallel plate rheometer" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/gelation-time-hatet> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/rheology-gelation-kinetics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Gelation time for HA-Tet crosslinked MAP" ;
+    lova:measurementType "Gelation time" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 35.0 ;
+    qudt:unit "min" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/gelation-time-pegtet> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/rheology-gelation-kinetics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Gelation time for 4arm-PEG-Tet crosslinked MAP" ;
+    lova:measurementType "Gelation time" ;
+    lova:measurementCategory "Rheological" ;
+    lova:valueString "more than 75 min" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2022.07.051/gelation-hatet-vs-pegtet> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "HA-Tet gelation faster than 4arm-PEG-Tet gelation" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/gelation-time-hatet> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/gelation-time-pegtet> ;
+    lova:direction "lower" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/rheology-freq-sweep-pegtet> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2022.07.051/map-nonlyo> ;
+    rdfs:label "Frequency sweep of MAP gels annealed with 4arm-PEG-Tet at varying Tet/HA ratios" ;
+    lova:experimentCategory "Rheological" ;
+    lova:experimentType "Frequency sweep" ;
+    lova:equipment "Anton Paar Physica MCR 301 parallel plate rheometer" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/storage-pegtet-5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/rheology-freq-sweep-pegtet> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Storage modulus, 4arm-PEG-Tet, 5 Tet/HA" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 395.0 ;
+    qudt:unit "Pa" ;
+    lova:sampleSize 3 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/storage-pegtet-10> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/rheology-freq-sweep-pegtet> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Storage modulus, 4arm-PEG-Tet, 10 Tet/HA" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 410.0 ;
+    qudt:unit "Pa" ;
+    lova:sampleSize 3 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/storage-pegtet-20> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/rheology-freq-sweep-pegtet> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Storage modulus, 4arm-PEG-Tet, 20 Tet/HA" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 744.0 ;
+    qudt:unit "Pa" ;
+    lova:sampleSize 3 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/rheology-freq-sweep-hatet> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2022.07.051/map-nonlyo> ;
+    rdfs:label "Frequency sweep of MAP gels annealed with HA-Tet at varying Tet/HA ratios" ;
+    lova:experimentCategory "Rheological" ;
+    lova:experimentType "Frequency sweep" ;
+    lova:equipment "Anton Paar Physica MCR 301 parallel plate rheometer" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/storage-hatet-2.5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/rheology-freq-sweep-hatet> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Storage modulus, HA-Tet, 2.5 Tet/HA" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 181.0 ;
+    qudt:unit "Pa" ;
+    lova:sampleSize 3 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/storage-hatet-5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/rheology-freq-sweep-hatet> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Storage modulus, HA-Tet, 5 Tet/HA" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 724.0 ;
+    qudt:unit "Pa" ;
+    lova:sampleSize 3 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/storage-hatet-20> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/rheology-freq-sweep-hatet> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Storage modulus, HA-Tet, 20 Tet/HA" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 1030.0 ;
+    qudt:unit "Pa" ;
+    lova:sampleSize 3 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2022.07.051/stiffness-hatet5-vs-pegtet20> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Comparable bulk stiffness achieved with HA-Tet at 5 Tet/HA vs 4arm-PEG-Tet at 20 Tet/HA" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/storage-hatet-5> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/storage-pegtet-20> ;
+    lova:direction "no difference" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/centrifugation-time> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2022.07.051/ha-nb-microgel> ;
+    rdfs:label "Microgel concentration achieved by centrifugation time" ;
+    lova:experimentCategory "Material characterization" ;
+    lova:experimentType "Centrifugation concentration" ;
+    lova:sampleSize 8 .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/ugels-per-ul-5min> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/centrifugation-time> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Microgels per μL after 5 min centrifugation" ;
+    lova:measurementType "Microgel concentration" ;
+    lova:measurementCategory "Material characterization" ;
+    qudt:numericValue 1700.0 ;
+    qudt:unit "μgels/μL" ;
+    lova:sampleSize 8 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/ugels-per-ul-15min> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/centrifugation-time> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Microgels per μL after 15 min centrifugation" ;
+    lova:measurementType "Microgel concentration" ;
+    lova:measurementCategory "Material characterization" ;
+    qudt:numericValue 1850.0 ;
+    qudt:unit "μgels/μL" ;
+    lova:sampleSize 8 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/ugels-per-ul-15min-x2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/centrifugation-time> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Microgels per μL after 15 min x2 centrifugation" ;
+    lova:measurementType "Microgel concentration" ;
+    lova:measurementCategory "Material characterization" ;
+    qudt:numericValue 5800.0 ;
+    qudt:unit "μgels/μL" ;
+    lova:sampleSize 8 ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2022.07.051/centrifugation-15min-x2-vs-15min> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Microgel concentration higher after 15 min x2 centrifugation vs 15 min" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/ugels-per-ul-15min-x2> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/ugels-per-ul-15min> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/particle-fraction-nonlyo> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2022.07.051/map-nonlyo> ;
+    rdfs:label "Particle fraction measured across 12 non-lyo MAP scaffolds (15 min x2 centrifugation)" ;
+    lova:experimentCategory "Material characterization" ;
+    lova:experimentType "Particle fraction quantification (IMARIS volume rendering)" ;
+    lova:assayOrMethod "Confocal microscopy, 3D volume rendering" ;
+    lova:sampleSize 12 .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/pf-nonlyo-mean-range> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/particle-fraction-nonlyo> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Particle fraction range across 12 non-lyo MAP scaffolds" ;
+    lova:measurementType "Particle fraction" ;
+    lova:measurementCategory "Material characterization" ;
+    lova:valueString "0.67–0.92" ;
+    lova:sampleSize 12 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/cell-culture-nonlyo> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2022.07.051/map-nonlyo> ;
+    rdfs:label "D1 mouse mesenchymal cell culture in non-lyo MAP scaffolds" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell culture, confocal imaging" ;
+    lova:cellType "D1 mouse mesenchymal cells (D1 ORL UVA)" ;
+    lova:cellSource "Mouse bone marrow" ;
+    lova:seedingDensity "10,000 cells μL-1" ;
+    lova:assayOrMethod "F-actin/DAPI confocal staining, IMARIS volume rendering" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/cell-volume-vs-pf-trend> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/cell-culture-nonlyo> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Total cell volume decreases with increasing particle fraction" ;
+    lova:measurementType "Cell volume vs particle fraction correlation" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "negative correlation: cell volume ~4.8e6 to ~0.7e6 μm3 as particle fraction increases ~0.67 to ~0.85" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/normalized-intensity-replicates> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/particle-fraction-nonlyo> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Normalized scaffold intensity differs significantly between biological replicates" ;
+    lova:measurementType "Normalized MAP scaffold fluorescence intensity" ;
+    lova:measurementCategory "Material characterization" ;
+    lova:valueString "replicate 1 ~0.77, replicate 2 ~0.78, replicate 3 ~0.70" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/factin-intensity-replicates-nonlyo> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/cell-culture-nonlyo> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Average F-actin intensity differs significantly between biological replicates (non-lyo)" ;
+    lova:measurementType "Average F-actin intensity" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "replicate 1 ~20, replicate 2 ~16, replicate 3 ~25" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/lyo-medium-screen> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2022.07.051/ha-nb-microgel> ;
+    rdfs:label "Screen of lyophilization mediums for cryogel formation in HA-NB microgels" ;
+    lova:experimentCategory "Material characterization" ;
+    lova:experimentType "Fraction of positive fluorescent pixels, sphericity" ;
+    lova:assayOrMethod "Confocal imaging, IMARIS 3D sphericity analysis" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/70etoh-positive-pixels> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/lyo-medium-screen> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Fraction of positive pixels for 70% EtOH lyophilization condition (comparable to non-lyo)" ;
+    lova:measurementType "Fraction of positive fluorescent pixels" ;
+    lova:measurementCategory "Material characterization" ;
+    lova:valueString "~0.95, not significant vs non-lyo" ;
+    lova:isSignificant false ;
+    lova:comparisonGroup "Non-lyo" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/70ipa-ha-defects> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/lyo-medium-screen> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "HA-NB microgels show internal defects (cryogel formation) when lyophilized in 70% IPA or water" ;
+    lova:measurementType "Internal defect/cryogel formation" ;
+    lova:measurementCategory "Material characterization" ;
+    lova:valueString "positive observation of internal defects" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/peg-vs-ha-lyo-comparison> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2022.07.051/peg-nb-microgel> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2022.07.051/ha-nb-microgel> ;
+    rdfs:label "Comparison of PEG-NB and HA-NB microgel integrity after lyophilization in IPA and water" ;
+    lova:experimentCategory "Material characterization" ;
+    lova:experimentType "Confocal fluorescence intensity profile" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/peg-nb-no-defects> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/peg-vs-ha-lyo-comparison> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "PEG-NB microgels retain physical integrity after lyophilization in water and 70% IPA" ;
+    lova:measurementType "Internal defect/cryogel formation" ;
+    lova:measurementCategory "Material characterization" ;
+    lova:valueString "no evidence of cryogel formation" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/cell-viability-lyo> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2022.07.051/ha-nb-microgel> ;
+    rdfs:label "Cell viability of D1 cells with non-lyo vs lyo-microgels over 5 days" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell viability" ;
+    lova:assayOrMethod "CellTiter-Glo luminescence assay" ;
+    lova:cellType "D1 mouse mesenchymal cells" ;
+    lova:cultureDuration "1, 3, 5 days" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/viability-day1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/cell-viability-lyo> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Luminescence (viability) at day 1, non-lyo vs lyo-microgels, no significant difference" ;
+    lova:measurementType "Cell viability (luminescence)" ;
+    lova:measurementCategory "Biological" ;
+    lova:timePoint "Day 1" ;
+    lova:isSignificant false ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/viability-day5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/cell-viability-lyo> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Luminescence (viability) at day 5, non-lyo vs lyo-microgels, no significant difference" ;
+    lova:measurementType "Cell viability (luminescence)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2400000.0 ;
+    qudt:unit "RLU" ;
+    lova:timePoint "Day 5" ;
+    lova:isSignificant false ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/particle-fraction-vs-wtpercent> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2022.07.051/map-lyo-3.4wt> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2022.07.051/map-lyo-5wt> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2022.07.051/map-lyo-7wt> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2022.07.051/map-nonlyo> ;
+    rdfs:label "Particle fraction of MAP scaffolds vs lyo-microgel rehydration wt%" ;
+    lova:experimentCategory "Material characterization" ;
+    lova:experimentType "Particle fraction quantification (IMARIS)" ;
+    lova:sampleSize 12 .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/pf-3.4wt> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/particle-fraction-vs-wtpercent> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Particle fraction, 3.4 wt% lyo-microgel MAP" ;
+    lova:measurementType "Particle fraction" ;
+    lova:measurementCategory "Material characterization" ;
+    qudt:numericValue 0.86 ;
+    qudt:unit "dimensionless" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/pf-5wt> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/particle-fraction-vs-wtpercent> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Particle fraction, 5 wt% lyo-microgel MAP" ;
+    lova:measurementType "Particle fraction" ;
+    lova:measurementCategory "Material characterization" ;
+    qudt:numericValue 0.92 ;
+    qudt:unit "dimensionless" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/pf-7wt> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/particle-fraction-vs-wtpercent> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Particle fraction, 7 wt% lyo-microgel MAP" ;
+    lova:measurementType "Particle fraction" ;
+    lova:measurementCategory "Material characterization" ;
+    qudt:numericValue 0.95 ;
+    qudt:unit "dimensionless" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2022.07.051/pf-7wt-vs-nonlyo> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Particle fraction higher and less variable in 7 wt% lyo-microgel MAP vs non-lyo MAP" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/pf-7wt> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/pf-nonlyo-mean-range> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/pore-area-analysis> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2022.07.051/map-lyo-3.4wt> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2022.07.051/map-lyo-5wt> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2022.07.051/map-lyo-7wt> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2022.07.051/map-nonlyo> ;
+    rdfs:label "2D pore area frequency distribution analysis" ;
+    lova:experimentCategory "Material characterization" ;
+    lova:experimentType "Pore area distribution" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/pore-area-trend> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/pore-area-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Increasing wt% MAP decreases average pore area and increases frequency of small pores" ;
+    lova:measurementType "Pore area distribution" ;
+    lova:measurementCategory "Material characterization" ;
+    lova:valueString "non-lyo: wider range up to ~2500μm²; 7wt%: majority <1000μm²" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/rheology-freq-sweep-lyo-wtpercent> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2022.07.051/map-lyo-3.4wt> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2022.07.051/map-lyo-5wt> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2022.07.051/map-lyo-7wt> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2022.07.051/nanoporous-3.4wt> ;
+    rdfs:label "Frequency sweep of lyo-microgel MAP at varying wt% MAP, 1 Hz" ;
+    lova:experimentCategory "Rheological" ;
+    lova:experimentType "Frequency sweep" ;
+    lova:frequency "1 Hz" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/storage-np-3wt> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/rheology-freq-sweep-lyo-wtpercent> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Storage modulus, nanoporous gel 3 wt%" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 200.0 ;
+    qudt:unit "Pa" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/storage-lyo-3.4wt> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/rheology-freq-sweep-lyo-wtpercent> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Storage modulus, lyo-microgel MAP 3.4 wt%" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 290.0 ;
+    qudt:unit "Pa" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/storage-lyo-5wt> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/rheology-freq-sweep-lyo-wtpercent> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Storage modulus, lyo-microgel MAP 5 wt%" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 600.0 ;
+    qudt:unit "Pa" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/storage-lyo-7wt> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/rheology-freq-sweep-lyo-wtpercent> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Storage modulus, lyo-microgel MAP 7 wt%" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 1100.0 ;
+    qudt:unit "Pa" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2022.07.051/storage-7wt-vs-3wt-np> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Storage modulus of 7 wt% lyo-microgel MAP approaches nanoporous gel storage modulus" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/storage-lyo-7wt> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/storage-np-3wt> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/afm-local-stiffness> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2022.07.051/map-lyo-3.4wt> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2022.07.051/nanoporous-3.4wt> ;
+    rdfs:label "AFM local stiffness and bulk compression stiffness, nanoporous vs lyo-microgel MAP" ;
+    lova:experimentCategory "Mechanical" ;
+    lova:experimentType "AFM force mapping / compression testing" ;
+    lova:equipment "Asylum Cypher Atomic Force Microscope; TA Instruments RSA III" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/youngs-modulus-np-local> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/afm-local-stiffness> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Local Young's Modulus, nanoporous gel" ;
+    lova:measurementType "Young's Modulus (local, AFM)" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 9.0 ;
+    qudt:unit "kPa" ;
+    lova:scope "Regional" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/youngs-modulus-map-local> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/afm-local-stiffness> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Local Young's Modulus, lyo-microgel MAP" ;
+    lova:measurementType "Young's Modulus (local, AFM)" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 9.0 ;
+    qudt:unit "kPa" ;
+    lova:scope "Per-pore" ;
+    lova:isSignificant false ;
+    lova:comparisonGroup "Nonporous gel" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/youngs-modulus-map-bulk> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/afm-local-stiffness> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Bulk Young's Modulus (compression), lyo-microgel MAP" ;
+    lova:measurementType "Young's Modulus (bulk, compression)" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 1.5 ;
+    qudt:unit "kPa" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2022.07.051/local-vs-bulk-map-stiffness> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Bulk MAP scaffold stiffness significantly lower than local microgel stiffness" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/youngs-modulus-map-bulk> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/youngs-modulus-map-local> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/cell-culture-lyo-wtpercent> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2022.07.051/map-lyo-3.4wt> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2022.07.051/map-lyo-5wt> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2022.07.051/map-lyo-7wt> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2022.07.051/map-nonlyo> ;
+    rdfs:label "D1 cell culture in MAP scaffolds comprised of non-lyo and lyo-microgels (3.4, 5, 7 wt%) over 5 days" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell count and cell volume quantification" ;
+    lova:assayOrMethod "IMARIS volume rendering of F-actin/DAPI staining" ;
+    lova:cellType "D1 mouse mesenchymal cells" ;
+    lova:cultureDuration "1, 3, 5 days" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/cellcount-day5-nl> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/cell-culture-lyo-wtpercent> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Cell count day 5, non-lyo MAP" ;
+    lova:measurementType "Cell count" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1350.0 ;
+    qudt:unit "cells" ;
+    lova:timePoint "Day 5" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/cellcount-day5-7wt> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/cell-culture-lyo-wtpercent> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Cell count day 5, 7 wt% lyo-microgel MAP" ;
+    lova:measurementType "Cell count" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 400.0 ;
+    qudt:unit "cells" ;
+    lova:timePoint "Day 5" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2022.07.051/cellcount-7wt-vs-nonlyo-day5> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Cell count at day 5 lower in 7 wt% MAP vs non-lyo MAP" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/cellcount-day5-7wt> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/cellcount-day5-nl> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/cellvolume-day5-nl> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/cell-culture-lyo-wtpercent> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Cell volume day 5, non-lyo MAP" ;
+    lova:measurementType "Cell volume" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 8800000.0 ;
+    qudt:unit "μm3" ;
+    lova:timePoint "Day 5" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/cellvolume-day5-7wt> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/cell-culture-lyo-wtpercent> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Cell volume day 5, 7 wt% lyo-microgel MAP" ;
+    lova:measurementType "Cell volume" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2200000.0 ;
+    qudt:unit "μm3" ;
+    lova:timePoint "Day 5" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2022.07.051/cellvolume-7wt-vs-nonlyo-day5> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Cell volume at day 5 lower in 7 wt% MAP vs non-lyo MAP" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/cellvolume-day5-7wt> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/cellvolume-day5-nl> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/f-actin-homogeneity> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2022.07.051/map-lyo-3.4wt> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2022.07.051/map-lyo-5wt> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2022.07.051/map-lyo-7wt> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2022.07.051/map-nonlyo> ;
+    rdfs:label "Regional F-actin intensity heatmap uniformity across MAP scaffold conditions" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "F-actin intensity heatmap quantification" ;
+    lova:cellType "D1 mouse mesenchymal cells" ;
+    lova:cultureDuration "Day 5" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/factin-avg-nl> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/f-actin-homogeneity> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Average F-actin intensity, non-lyo MAP" ;
+    lova:measurementType "Average F-actin intensity" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 20.0 ;
+    qudt:unit "AU" ;
+    lova:timePoint "Day 5" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/factin-avg-3.4wt> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/f-actin-homogeneity> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Average F-actin intensity, 3.4 wt% lyo-microgel MAP" ;
+    lova:measurementType "Average F-actin intensity" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 13.5 ;
+    qudt:unit "AU" ;
+    lova:timePoint "Day 5" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/factin-avg-5wt> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/f-actin-homogeneity> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Average F-actin intensity, 5 wt% lyo-microgel MAP" ;
+    lova:measurementType "Average F-actin intensity" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 11.5 ;
+    qudt:unit "AU" ;
+    lova:timePoint "Day 5" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/factin-avg-7wt> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/f-actin-homogeneity> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Average F-actin intensity, 7 wt% lyo-microgel MAP" ;
+    lova:measurementType "Average F-actin intensity" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 8.2 ;
+    qudt:unit "AU" ;
+    lova:timePoint "Day 5" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2022.07.051/factin-7wt-vs-nonlyo> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Average F-actin intensity lower in 7 wt% MAP compared to non-lyo MAP" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/factin-avg-7wt> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/factin-avg-nl> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/diffusion-assay> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2022.07.051/nanoporous-3.4wt> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2022.07.051/map-nonlyo> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2022.07.051/map-lyo-3.4wt> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2022.07.051/map-lyo-5wt> ;
+    rdfs:label "Macromolecular diffusion of fluorescent dextran through nanoporous and MAP scaffolds" ;
+    lova:experimentCategory "Diffusion" ;
+    lova:experimentType "Fluorescent dextran diffusion imaging" ;
+    lova:assayOrMethod "Confocal time-lapse imaging, non-linear curve fitting (Fick's second law)" ;
+    lova:medium "PBS" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/deff-np> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/diffusion-assay> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Effective diffusion coefficient (Deff), nanoporous gel (3.4 wt%)" ;
+    lova:measurementType "Effective diffusion coefficient (10 kDa dextran)" ;
+    lova:measurementCategory "Diffusion" ;
+    qudt:numericValue 5.0 ;
+    qudt:unit "μm2/s" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/deff-nonlyo> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/diffusion-assay> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Effective diffusion coefficient (Deff), non-lyo MAP" ;
+    lova:measurementType "Effective diffusion coefficient (10 kDa dextran)" ;
+    lova:measurementCategory "Diffusion" ;
+    qudt:numericValue 80.0 ;
+    qudt:unit "μm2/s" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/deff-3.4wt> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/diffusion-assay> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Effective diffusion coefficient (Deff), 3.4 wt% lyo-microgel MAP" ;
+    lova:measurementType "Effective diffusion coefficient (10 kDa dextran)" ;
+    lova:measurementCategory "Diffusion" ;
+    qudt:numericValue 73.0 ;
+    qudt:unit "μm2/s" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/deff-5wt> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/diffusion-assay> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Effective diffusion coefficient (Deff), 5 wt% lyo-microgel MAP" ;
+    lova:measurementType "Effective diffusion coefficient (10 kDa dextran)" ;
+    lova:measurementCategory "Diffusion" ;
+    qudt:numericValue 53.0 ;
+    qudt:unit "μm2/s" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/deff-water> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2022.07.051/diffusion-assay> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Free diffusion coefficient of 10 kDa dextran in water (Dw)" ;
+    lova:measurementType "Free diffusion coefficient in water" ;
+    lova:measurementCategory "Diffusion" ;
+    qudt:numericValue 125.0 ;
+    qudt:unit "μm2/s" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2022.07.051/deff-np-vs-nonlyo> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Diffusion significantly impeded in nanoporous gel compared to non-lyo MAP" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/deff-np> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/deff-nonlyo> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2022.07.051/deff-5wt-vs-nonlyo> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2022.07.051> ;
+    rdfs:label "Diffusion coefficient decreases as particle fraction increases (5 wt% vs non-lyo)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/deff-5wt> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2022.07.051/deff-nonlyo> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .

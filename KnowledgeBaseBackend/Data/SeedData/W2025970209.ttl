@@ -1,0 +1,991 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1002-adfm.201401483> a bibo:AcademicArticle ;
+    rdfs:label "Lam et al., 2014 — iPS-NPC Delivery in HA Hydrogel to Stroke Cavity" ;
+    dc:title "Delivery of iPS‐NPCs to the Stroke Cavity within a Hyaluronic Acid Matrix Promotes the Differentiation of Transplanted Cells" ;
+    dc:identifier "10.1002/adfm.201401483" ;
+    dc:date "2014"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/advanced-functional-materials> ;
+    dc:creator <https://lovamap.com/ontology#author/lam-jonathan> ,
+               <https://lovamap.com/ontology#author/lowry-william> ,
+               <https://lovamap.com/ontology#author/carmichael-stanley> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/lam-jonathan>
+                      <https://lovamap.com/ontology#author/lowry-william>
+                      <https://lovamap.com/ontology#author/carmichael-stanley>
+                      <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    dc:bibliographicCitation "Lam et al., 2014" ;
+    lova:focusMaterial "Hyaluronic acid hydrogel (MMP-degradable or non-degradable crosslinked, RGD-modified) for iPS-NPC delivery to stroke infarct cavity" .
+
+<https://lovamap.com/ontology#author/lam-jonathan> a foaf:Person ;
+    foaf:familyName "Lam" ;
+    foaf:givenName "Jonathan G. T." ;
+    foaf:name "Jonathan G. T. Lam" .
+
+<https://lovamap.com/ontology#author/lowry-william> a foaf:Person ;
+    foaf:familyName "Lowry" ;
+    foaf:givenName "William E." ;
+    foaf:name "William E. Lowry" .
+
+<https://lovamap.com/ontology#author/carmichael-stanley> a foaf:Person ;
+    foaf:familyName "Carmichael" ;
+    foaf:givenName "Stanley Thomas" ;
+    foaf:name "Stanley Thomas Carmichael" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" .
+
+<https://lovamap.com/ontology#journal/advanced-functional-materials> a bibo:Journal ;
+    dc:title "Advanced Functional Materials" ;
+    bibo:issn "1616-301X" .
+
+<https://lovamap.com/ontology#material/10.1002-adfm.201401483/hydrogel-d> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "HA hydrogel 'd.' (MMP-degradable crosslinker, ~300 Pa)" ;
+    lova:particleMaterial "Acrylated hyaluronic acid (HA-Ac)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:stiffnessValue 330.6 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adfm.201401483/fab-d> .
+
+<https://lovamap.com/ontology#material/10.1002-adfm.201401483/hydrogel-nd-soft> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "HA hydrogel 'nd. soft' (MMP-nondegradable crosslinker, ~300 Pa)" ;
+    lova:particleMaterial "Acrylated hyaluronic acid (HA-Ac)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:stiffnessValue 293.9 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adfm.201401483/fab-nd-soft> .
+
+<https://lovamap.com/ontology#material/10.1002-adfm.201401483/hydrogel-nd-stiff> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "HA hydrogel 'nd. stiff' (MMP-nondegradable crosslinker, >1000 Pa)" ;
+    lova:particleMaterial "Acrylated hyaluronic acid (HA-Ac)" ;
+    lova:stiffnessQualitative "Stiff hydrogel" ;
+    lova:stiffnessValue 1302.0 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adfm.201401483/fab-nd-stiff> .
+
+<https://lovamap.com/ontology#material/10.1002-adfm.201401483/ips-npc> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "GFP-labeled iPS-NPCs" ;
+    lova:particleMaterial "iPS-derived neural progenitor cells (iPS-NPC)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adfm.201401483/fab-ips-npc-culture> .
+
+<https://lovamap.com/ontology#material/10.1002-adfm.201401483/cell-only-transplant> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "100,000 iPS-NPCs transplanted in buffer (cell only)" ;
+    lova:particleMaterial "iPS-derived neural progenitor cells (iPS-NPC)" .
+
+<https://lovamap.com/ontology#material/10.1002-adfm.201401483/cell-hydrogel-transplant> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "100,000 iPS-NPCs transplanted in 'd.' HA hydrogel with 300 μM RGD" ;
+    lova:particleMaterial "iPS-derived neural progenitor cells (iPS-NPC) encapsulated in HA-Ac hydrogel" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adfm.201401483/fab-d> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-adfm.201401483/fab-d> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "HA-Ac hydrogel crosslinked with MMP-degradable peptide" ;
+    lova:chemistry "Michael addition (acrylate-thiol)" ;
+    lova:manufacturingMethod "Bulk cast, in situ gelation" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-adfm.201401483/reagent-ha> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adfm.201401483/reagent-adh> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adfm.201401483/reagent-edc> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adfm.201401483/reagent-nhs-ac> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adfm.201401483/reagent-rgd> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adfm.201401483/reagent-mmp-degradable-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adfm.201401483/reagent-hepes> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-adfm.201401483/fab-nd-soft> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "HA-Ac hydrogel crosslinked with MMP-nondegradable peptide ('soft')" ;
+    lova:chemistry "Michael addition (acrylate-thiol)" ;
+    lova:manufacturingMethod "Bulk cast, in situ gelation" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-adfm.201401483/reagent-ha> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adfm.201401483/reagent-rgd> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adfm.201401483/reagent-mmp-nondegradable-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adfm.201401483/reagent-hepes> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-adfm.201401483/fab-nd-stiff> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "HA-Ac hydrogel crosslinked with MMP-nondegradable peptide ('stiff', higher concentration)" ;
+    lova:chemistry "Michael addition (acrylate-thiol)" ;
+    lova:manufacturingMethod "Bulk cast, in situ gelation" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-adfm.201401483/reagent-ha> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adfm.201401483/reagent-rgd> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adfm.201401483/reagent-mmp-nondegradable-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adfm.201401483/reagent-hepes> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-adfm.201401483/fab-ips-npc-culture> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "iPS-NPC culture protocol" ;
+    lova:manufacturingMethod "Standard monolayer cell culture, 37°C, 5% CO2" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-adfm.201401483/reagent-dmem-f12> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adfm.201401483/reagent-b27> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adfm.201401483/reagent-n2> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adfm.201401483/reagent-egf> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adfm.201401483/reagent-bfgf> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adfm.201401483/reagent-pen-strep> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adfm.201401483/reagent-primocin> .
+
+<https://lovamap.com/ontology#reagent/10.1002-adfm.201401483/reagent-ha> a lova:Reagent ;
+    rdfs:label "Hyaluronic acid (60,000 Da)" ;
+    lova:reagentRole "monomer" ;
+    lova:molecularWeight "60,000 Da" ;
+    lova:concentration "2.0 g, 5.28 mmol" ;
+    lova:supplier "Genzyme, Cambridge, MA" ;
+    lova:reagentFunction "Polymer backbone for hydrogel" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adfm.201401483/reagent-adh> a lova:Reagent ;
+    rdfs:label "Adipic dihydrazide (ADH)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "18.0 g, 105.5 mmol" ;
+    lova:reagentFunction "Hydrazide modification of HA" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adfm.201401483/reagent-edc> a lova:Reagent ;
+    rdfs:label "1-ethyl-3-(dimethylaminopropyl) carbodiimide hydrochloride (EDC)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "4.0 g, 20 mmol" ;
+    lova:reagentFunction "Carbodiimide coupling reagent for HA-ADH synthesis" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adfm.201401483/reagent-nhs-ac> a lova:Reagent ;
+    rdfs:label "N-acryloxysuccinimide (NHS-AC)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "1.33 g, 4.4 mmol" ;
+    lova:reagentFunction "Acrylate functionalization of HA-ADH" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adfm.201401483/reagent-rgd> a lova:Reagent ;
+    rdfs:label "RGD adhesion peptide (Ac-GCGYGRGDSPG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "GCGYGRGDSPG" ;
+    lova:concentration "500 μM" ;
+    lova:supplier "Genscript, Piscataway, NJ" ;
+    lova:reagentFunction "Cell adhesion" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adfm.201401483/reagent-mmp-degradable-peptide> a lova:Reagent ;
+    rdfs:label "MMP-degradable crosslinking peptide (Ac-GCREGPQGIWGQERCG-NH2)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:sequence "GCREGPQGIWGQERCG" ;
+    lova:reagentFunction "MMP-degradable inter-chain crosslinking" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adfm.201401483/reagent-mmp-nondegradable-peptide> a lova:Reagent ;
+    rdfs:label "MMP-nondegradable crosslinking peptide (Ac-GCREGDQGIAGFERCG-NH2)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:sequence "GCREGDQGIAGFERCG" ;
+    lova:reagentFunction "Non-degradable inter-chain crosslinking" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adfm.201401483/reagent-hepes> a lova:Reagent ;
+    rdfs:label "HEPES buffer" ;
+    lova:reagentRole "solvent" ;
+    lova:concentration "0.3 M" ;
+    lova:reagentFunction "Hydrogel precursor buffer / comparative control injection" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adfm.201401483/reagent-collagenase> a lova:Reagent ;
+    rdfs:label "Collagenase I" ;
+    lova:reagentRole "enzyme" ;
+    lova:concentration "1500 U/mL" ;
+    lova:supplier "Worthington, Lakewood, NJ" ;
+    lova:reagentFunction "Hydrogel degradation for viability assay" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adfm.201401483/reagent-dmem-f12> a lova:Reagent ;
+    rdfs:label "DMEM:F12" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Sigma-Aldrich" ;
+    lova:reagentFunction "Base culture medium" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adfm.201401483/reagent-b27> a lova:Reagent ;
+    rdfs:label "B27 supplement" ;
+    lova:reagentRole "other" ;
+    lova:concentration "1x" ;
+    lova:supplier "Sigma-Aldrich, St. Louis, MO" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adfm.201401483/reagent-n2> a lova:Reagent ;
+    rdfs:label "N2 supplement" ;
+    lova:reagentRole "other" ;
+    lova:concentration "1x" ;
+    lova:supplier "Sigma-Aldrich" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adfm.201401483/reagent-egf> a lova:Reagent ;
+    rdfs:label "Epidermal growth factor (EGF)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "50 ng/mL" ;
+    lova:supplier "Sigma-Aldrich" ;
+    lova:reagentFunction "Growth factor supplement" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adfm.201401483/reagent-bfgf> a lova:Reagent ;
+    rdfs:label "Basic fibroblast growth factor (bFGF)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "20 ng/mL" ;
+    lova:supplier "Sigma-Aldrich" ;
+    lova:reagentFunction "Growth factor supplement" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adfm.201401483/reagent-pen-strep> a lova:Reagent ;
+    rdfs:label "Penicillin/streptomycin" ;
+    lova:reagentRole "other" ;
+    lova:concentration "1%" ;
+    lova:supplier "Invitrogen, Grand Island, NY" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adfm.201401483/reagent-primocin> a lova:Reagent ;
+    rdfs:label "Primocin" ;
+    lova:reagentRole "other" ;
+    lova:concentration "0.1%" ;
+    lova:supplier "InVivoGen, San Diego, CA" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adfm.201401483/exp-rheology> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adfm.201401483/hydrogel-d> ,
+                      <https://lovamap.com/ontology#material/10.1002-adfm.201401483/hydrogel-nd-soft> ,
+                      <https://lovamap.com/ontology#material/10.1002-adfm.201401483/hydrogel-nd-stiff> ;
+    rdfs:label "Plate-to-plate rheometry of hydrogel formulations" ;
+    lova:experimentCategory "Rheological" ;
+    lova:experimentType "Oscillatory rheometry" ;
+    lova:equipment "Physica MCR 301, Anton Paar" ;
+    lova:frequency "0.1–10 Hz" ;
+    lova:strainRate "1% constant strain" ;
+    lova:temperature "37°C" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/storage-modulus-d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.201401483/exp-rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "Storage modulus of 'd.' hydrogel" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 330.6 ;
+    qudt:unit "Pa" ;
+    lova:stdDev 65.96 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/loss-modulus-d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.201401483/exp-rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "Loss modulus of 'd.' hydrogel" ;
+    lova:measurementType "Loss modulus (G'')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 5.748 ;
+    qudt:unit "Pa" ;
+    lova:stdDev 5.80 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/storage-modulus-nd-soft> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.201401483/exp-rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "Storage modulus of 'nd. soft' hydrogel" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 293.9 ;
+    qudt:unit "Pa" ;
+    lova:stdDev 19.32 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/loss-modulus-nd-soft> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.201401483/exp-rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "Loss modulus of 'nd. soft' hydrogel" ;
+    lova:measurementType "Loss modulus (G'')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 2.441 ;
+    qudt:unit "Pa" ;
+    lova:stdDev 3.57 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/storage-modulus-nd-stiff> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.201401483/exp-rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "Storage modulus of 'nd. stiff' hydrogel" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 1302.0 ;
+    qudt:unit "Pa" ;
+    lova:stdDev 53.17 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/loss-modulus-nd-stiff> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.201401483/exp-rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "Loss modulus of 'nd. stiff' hydrogel" ;
+    lova:measurementType "Loss modulus (G'')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 15.45 ;
+    qudt:unit "Pa" ;
+    lova:stdDev 5.58 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adfm.201401483/storage-modulus-d-vs-ndsoft> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "Storage modulus 'd.' vs 'nd. soft': no difference" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/storage-modulus-d> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/storage-modulus-nd-soft> ;
+    lova:direction "no difference" ;
+    lova:isSignificant false .
+
+<https://lovamap.com/ontology#experiment/10.1002-adfm.201401483/exp-naive-inflammation> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adfm.201401483/hydrogel-d> ,
+                      <https://lovamap.com/ontology#material/10.1002-adfm.201401483/hydrogel-nd-soft> ,
+                      <https://lovamap.com/ontology#material/10.1002-adfm.201401483/hydrogel-nd-stiff> ;
+    rdfs:label "Inflammatory response to hydrogel injection in naïve mouse striatum" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immunohistochemistry (GFAP, IBA1)" ;
+    lova:assayOrMethod "Immunofluorescence staining and image quantification" ;
+    lova:cellSource "C57BL/6 mouse striatum" ;
+    lova:cultureDuration "2 weeks" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/gfap-naive-hepes> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.201401483/exp-naive-inflammation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "GFAP relative signal, naive model, HEPES control" ;
+    lova:measurementType "Reactive astrocyte signal (GFAP)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "low relative GFAP signal" ;
+    lova:scope "Regional" ;
+    lova:timePoint "2 weeks" ;
+    lova:comparisonGroup "HEPES buffer control" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/gfap-naive-d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.201401483/exp-naive-inflammation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "GFAP relative signal, naive model, 'd.' hydrogel" ;
+    lova:measurementType "Reactive astrocyte signal (GFAP)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "low relative GFAP signal" ;
+    lova:scope "Regional" ;
+    lova:timePoint "2 weeks" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/gfap-naive-ndsoft> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.201401483/exp-naive-inflammation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "GFAP relative signal, naive model, 'nd. soft' hydrogel" ;
+    lova:measurementType "Reactive astrocyte signal (GFAP)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "low relative GFAP signal" ;
+    lova:scope "Regional" ;
+    lova:timePoint "2 weeks" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/gfap-naive-ndstiff> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.201401483/exp-naive-inflammation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "GFAP relative signal, naive model, 'nd. stiff' hydrogel" ;
+    lova:measurementType "Reactive astrocyte signal (GFAP)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "elevated relative GFAP signal (up to ~2000-2500 relative units)" ;
+    lova:scope "Regional" ;
+    lova:timePoint "2 weeks" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adfm.201401483/gfap-ndstiff-vs-hepes> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "GFAP higher in nd. stiff vs HEPES (naïve model)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/gfap-naive-ndstiff> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/gfap-naive-hepes> ;
+    lova:direction "higher" ;
+    lova:pValue 0.01 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-adfm.201401483/gfap-ndstiff-vs-d> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "GFAP higher in nd. stiff vs d. (naïve model)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/gfap-naive-ndstiff> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/gfap-naive-d> ;
+    lova:direction "higher" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-adfm.201401483/gfap-ndstiff-vs-ndsoft> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "GFAP higher in nd. stiff vs nd. soft (naïve model)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/gfap-naive-ndstiff> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/gfap-naive-ndsoft> ;
+    lova:direction "higher" ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1002-adfm.201401483/exp-stroke-inflammation> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adfm.201401483/hydrogel-d> ,
+                      <https://lovamap.com/ontology#material/10.1002-adfm.201401483/hydrogel-nd-soft> ,
+                      <https://lovamap.com/ontology#material/10.1002-adfm.201401483/hydrogel-nd-stiff> ;
+    rdfs:label "Inflammatory response to hydrogel injection in stroke cavity (photothrombotic model)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immunohistochemistry (GFAP, IBA1)" ;
+    lova:assayOrMethod "Immunofluorescence staining and image quantification" ;
+    lova:cellSource "C57BL/6 mouse cortical photothrombotic stroke" ;
+    lova:cultureDuration "2 weeks post-implantation (1 week post-stroke)" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/gfap-stroke-all> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.201401483/exp-stroke-inflammation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "GFAP relative signal across conditions, stroke model" ;
+    lova:measurementType "Reactive astrocyte signal (GFAP)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "no significant difference between conditions" ;
+    lova:scope "Regional" ;
+    lova:isSignificant false ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/iba1-stroke-hepes> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.201401483/exp-stroke-inflammation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "IBA1 relative signal, stroke model, HEPES control" ;
+    lova:measurementType "Microglia signal (IBA1)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "low relative IBA1 signal" ;
+    lova:scope "Regional" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/iba1-stroke-d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.201401483/exp-stroke-inflammation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "IBA1 relative signal, stroke model, 'd.' hydrogel" ;
+    lova:measurementType "Microglia signal (IBA1)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "low relative IBA1 signal" ;
+    lova:scope "Regional" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/iba1-stroke-ndsoft> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.201401483/exp-stroke-inflammation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "IBA1 relative signal, stroke model, 'nd. soft' hydrogel" ;
+    lova:measurementType "Microglia signal (IBA1)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "low relative IBA1 signal" ;
+    lova:scope "Regional" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/iba1-stroke-ndstiff> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.201401483/exp-stroke-inflammation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "IBA1 relative signal, stroke model, 'nd. stiff' hydrogel" ;
+    lova:measurementType "Microglia signal (IBA1)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "elevated relative IBA1 signal" ;
+    lova:scope "Regional" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adfm.201401483/iba1-ndstiff-vs-hepes-stroke> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "IBA1 higher in nd. stiff vs HEPES (stroke model)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/iba1-stroke-ndstiff> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/iba1-stroke-hepes> ;
+    lova:direction "higher" ;
+    lova:pValue 0.01 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-adfm.201401483/iba1-ndstiff-vs-d-stroke> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "IBA1 higher in nd. stiff vs d. (stroke model)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/iba1-stroke-ndstiff> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/iba1-stroke-d> ;
+    lova:direction "higher" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-adfm.201401483/iba1-ndstiff-vs-ndsoft-stroke> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "IBA1 higher in nd. stiff vs nd. soft (stroke model)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/iba1-stroke-ndstiff> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/iba1-stroke-ndsoft> ;
+    lova:direction "higher" ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1002-adfm.201401483/exp-viability-injection> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adfm.201401483/hydrogel-d> ,
+                      <https://lovamap.com/ontology#material/10.1002-adfm.201401483/ips-npc> ;
+    rdfs:label "iPS-NPC viability during simulated injection process" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell viability post-injection" ;
+    lova:assayOrMethod "Trypan Blue staining, hemocytometer count" ;
+    lova:equipment "Hamilton syringe + syringe pump" ;
+    lova:cellType "iPS-NPC" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/viability-speed-03-nogel> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.201401483/exp-viability-injection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "Live cell fraction, 0.3 μL/min infusion, without gel" ;
+    lova:measurementType "Live cell fraction" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.95 ;
+    qudt:unit "fraction" ;
+    lova:comparisonGroup "without gel" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/viability-speed-03-gel> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.201401483/exp-viability-injection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "Live cell fraction, 0.3 μL/min infusion, with gel" ;
+    lova:measurementType "Live cell fraction" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.89 ;
+    qudt:unit "fraction" ;
+    lova:comparisonGroup "with gel" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/viability-speed-06-nogel> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.201401483/exp-viability-injection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "Live cell fraction, 0.6 μL/min infusion, without gel" ;
+    lova:measurementType "Live cell fraction" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.945 ;
+    qudt:unit "fraction" ;
+    lova:comparisonGroup "without gel" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/viability-speed-06-gel> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.201401483/exp-viability-injection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "Live cell fraction, 0.6 μL/min infusion, with gel" ;
+    lova:measurementType "Live cell fraction" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.915 ;
+    qudt:unit "fraction" ;
+    lova:comparisonGroup "with gel" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/viability-speed-09-nogel> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.201401483/exp-viability-injection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "Live cell fraction, 0.9 μL/min infusion, without gel" ;
+    lova:measurementType "Live cell fraction" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.93 ;
+    qudt:unit "fraction" ;
+    lova:comparisonGroup "without gel" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/viability-speed-09-gel> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.201401483/exp-viability-injection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "Live cell fraction, 0.9 μL/min infusion, with gel" ;
+    lova:measurementType "Live cell fraction" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.86 ;
+    qudt:unit "fraction" ;
+    lova:comparisonGroup "with gel" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/viability-28g-nogel> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.201401483/exp-viability-injection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "Live cell fraction, 28 gauge needle, without gel" ;
+    lova:measurementType "Live cell fraction" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.95 ;
+    qudt:unit "fraction" ;
+    lova:comparisonGroup "without gel" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/viability-30g-nogel> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.201401483/exp-viability-injection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "Live cell fraction, 30 gauge needle, without gel" ;
+    lova:measurementType "Live cell fraction" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.945 ;
+    qudt:unit "fraction" ;
+    lova:comparisonGroup "without gel" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/viability-33g-nogel> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.201401483/exp-viability-injection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "Live cell fraction, 33 gauge needle, without gel" ;
+    lova:measurementType "Live cell fraction" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.865 ;
+    qudt:unit "fraction" ;
+    lova:comparisonGroup "without gel" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/viability-28g-gel> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.201401483/exp-viability-injection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "Live cell fraction, 28 gauge needle, with gel" ;
+    lova:measurementType "Live cell fraction" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.925 ;
+    qudt:unit "fraction" ;
+    lova:comparisonGroup "with gel" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/viability-33g-gel> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.201401483/exp-viability-injection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "Live cell fraction, 33 gauge needle, with gel" ;
+    lova:measurementType "Live cell fraction" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.835 ;
+    qudt:unit "fraction" ;
+    lova:comparisonGroup "with gel" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adfm.201401483/viability-33g-vs-28-30g-nogel> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "Viability lower at 33 gauge vs 28/30 gauge (without gel)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/viability-33g-nogel> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/viability-28g-nogel> ;
+    lova:direction "lower" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-adfm.201401483/viability-33g-vs-28g-gel> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "Viability lower at 33 gauge vs 28 gauge (with gel)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/viability-33g-gel> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/viability-28g-gel> ;
+    lova:direction "lower" ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/viability-10k-nogel> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.201401483/exp-viability-injection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "Live cell fraction, 10k cells/μL, without gel" ;
+    lova:measurementType "Live cell fraction" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.93 ;
+    qudt:unit "fraction" ;
+    lova:comparisonGroup "without gel" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/viability-33k-nogel> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.201401483/exp-viability-injection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "Live cell fraction, 33k cells/μL, without gel" ;
+    lova:measurementType "Live cell fraction" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.945 ;
+    qudt:unit "fraction" ;
+    lova:comparisonGroup "without gel" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/viability-60k-nogel> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.201401483/exp-viability-injection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "Live cell fraction, 60k cells/μL, without gel" ;
+    lova:measurementType "Live cell fraction" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.88 ;
+    qudt:unit "fraction" ;
+    lova:comparisonGroup "without gel" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/viability-90k-nogel> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.201401483/exp-viability-injection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "Live cell fraction, 90k cells/μL, without gel" ;
+    lova:measurementType "Live cell fraction" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.77 ;
+    qudt:unit "fraction" ;
+    lova:comparisonGroup "without gel" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/viability-90k-gel> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.201401483/exp-viability-injection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "Live cell fraction, 90k cells/μL, with gel" ;
+    lova:measurementType "Live cell fraction" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.885 ;
+    qudt:unit "fraction" ;
+    lova:comparisonGroup "with gel" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adfm.201401483/viability-60k-vs-10k-nogel> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "Viability lower at 60k vs 10k cells/μL (without gel)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/viability-60k-nogel> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/viability-10k-nogel> ;
+    lova:direction "lower" ;
+    lova:pValue 0.01 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-adfm.201401483/viability-90k-vs-10k-nogel> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "Viability lower at 90k vs 10k cells/μL (without gel)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/viability-90k-nogel> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/viability-10k-nogel> ;
+    lova:direction "lower" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-adfm.201401483/viability-60k-vs-33k-nogel> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "Viability lower at 60k vs 33k cells/μL (without gel)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/viability-60k-nogel> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/viability-33k-nogel> ;
+    lova:direction "lower" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-adfm.201401483/viability-90k-vs-60k-nogel> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "Viability lower at 90k vs 60k cells/μL (without gel)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/viability-90k-nogel> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/viability-60k-nogel> ;
+    lova:direction "lower" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-adfm.201401483/viability-90k-gel-vs-nogel> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "Viability higher with gel vs without gel at 90k cells/μL" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/viability-90k-gel> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/viability-90k-nogel> ;
+    lova:direction "higher" ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1002-adfm.201401483/exp-transplant-viability-nsg> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adfm.201401483/cell-only-transplant> ,
+                      <https://lovamap.com/ontology#material/10.1002-adfm.201401483/cell-hydrogel-transplant> ;
+    rdfs:label "iPS-NPC transplantation to stroke cavity of NSG mice (viability and inflammation)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "In vivo transplantation" ;
+    lova:assayOrMethod "Immunohistochemistry (GFAP, IBA1, human nuclei staining)" ;
+    lova:cellType "iPS-NPC" ;
+    lova:cellSource "NSG immune-compromised mouse, stroke cavity" ;
+    lova:seedingDensity "100,000 cells/3 μL" ;
+    lova:cultureDuration "1 week post-transplantation" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/iba1-cellonly> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.201401483/exp-transplant-viability-nsg> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "IBA1 relative signal, cell only transplant" ;
+    lova:measurementType "Microglia signal (IBA1)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "relative IBA1 signal ~4" ;
+    lova:scope "Regional" ;
+    lova:timePoint "1 week" ;
+    lova:comparisonGroup "cell only" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/iba1-cellhydrogel> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.201401483/exp-transplant-viability-nsg> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "IBA1 relative signal, cell + hydrogel transplant" ;
+    lova:measurementType "Microglia signal (IBA1)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "relative IBA1 signal ~2.5, decreased" ;
+    lova:scope "Regional" ;
+    lova:timePoint "1 week" ;
+    lova:comparisonGroup "cell + hydrogel" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adfm.201401483/iba1-cellhydrogel-vs-cellonly> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "IBA1 lower in cell+hydrogel vs cell only" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/iba1-cellhydrogel> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/iba1-cellonly> ;
+    lova:direction "lower" ;
+    lova:pValue 0.01 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/gfap-cellonly> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.201401483/exp-transplant-viability-nsg> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "GFAP relative signal, cell only transplant" ;
+    lova:measurementType "Reactive astrocyte signal (GFAP)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "no significant difference vs cell+hydrogel" ;
+    lova:scope "Regional" ;
+    lova:timePoint "1 week" ;
+    lova:comparisonGroup "cell only" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/gfap-cellhydrogel> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.201401483/exp-transplant-viability-nsg> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "GFAP relative signal, cell + hydrogel transplant" ;
+    lova:measurementType "Reactive astrocyte signal (GFAP)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "no significant difference vs cell only" ;
+    lova:scope "Regional" ;
+    lova:timePoint "1 week" ;
+    lova:comparisonGroup "cell + hydrogel" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/viable-cells-cellonly> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.201401483/exp-transplant-viability-nsg> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "Viable transplanted cells, cell only" ;
+    lova:measurementType "Viable transplanted human cells" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 30000.0 ;
+    qudt:unit "cells" ;
+    lova:timePoint "1 week" ;
+    lova:comparisonGroup "cell only" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/viable-cells-cellhydrogel> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.201401483/exp-transplant-viability-nsg> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "Viable transplanted cells, cell + hydrogel" ;
+    lova:measurementType "Viable transplanted human cells" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 38000.0 ;
+    qudt:unit "cells" ;
+    lova:timePoint "1 week" ;
+    lova:comparisonGroup "cell + hydrogel" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adfm.201401483/viable-cells-hydrogel-vs-cellonly> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "Viable cell count: no difference between cell+hydrogel and cell only" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/viable-cells-cellhydrogel> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/viable-cells-cellonly> ;
+    lova:direction "no difference" ;
+    lova:isSignificant false .
+
+<https://lovamap.com/ontology#experiment/10.1002-adfm.201401483/exp-differentiation> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adfm.201401483/cell-only-transplant> ,
+                      <https://lovamap.com/ontology#material/10.1002-adfm.201401483/cell-hydrogel-transplant> ;
+    rdfs:label "Differentiation of transplanted iPS-NPCs (SOX2, DCX, NF200)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immunohistochemistry (differentiation markers)" ;
+    lova:assayOrMethod "Immunofluorescence staining normalized to human nuclei count" ;
+    lova:cellType "iPS-NPC" ;
+    lova:cultureDuration "1 week post-transplantation" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/sox2-cellonly> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.201401483/exp-differentiation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "Normalized SOX2 area fraction, cell only" ;
+    lova:measurementType "SOX2 signal (progenitor marker)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.045 ;
+    qudt:unit "normalized area fraction" ;
+    lova:comparisonGroup "cell only" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/sox2-cellhydrogel> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.201401483/exp-differentiation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "Normalized SOX2 area fraction, cell + hydrogel" ;
+    lova:measurementType "SOX2 signal (progenitor marker)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.047 ;
+    qudt:unit "normalized area fraction" ;
+    lova:comparisonGroup "cell + hydrogel" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adfm.201401483/sox2-cellhydrogel-vs-cellonly> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "SOX2 signal: no difference between conditions" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/sox2-cellhydrogel> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/sox2-cellonly> ;
+    lova:direction "no difference" ;
+    lova:isSignificant false .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/dcx-cellonly> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.201401483/exp-differentiation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "Normalized DCX area fraction, cell only" ;
+    lova:measurementType "DOUBLECORTIN (DCX) signal (neuroblast marker)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.075 ;
+    qudt:unit "normalized area fraction" ;
+    lova:comparisonGroup "cell only" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/dcx-cellhydrogel> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.201401483/exp-differentiation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "Normalized DCX area fraction, cell + hydrogel" ;
+    lova:measurementType "DOUBLECORTIN (DCX) signal (neuroblast marker)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.10 ;
+    qudt:unit "normalized area fraction" ;
+    lova:comparisonGroup "cell + hydrogel" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adfm.201401483/dcx-cellhydrogel-vs-cellonly> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "DCX signal higher in cell+hydrogel vs cell only" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/dcx-cellhydrogel> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/dcx-cellonly> ;
+    lova:direction "higher" ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/nf200-cellonly> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.201401483/exp-differentiation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "NF200 staining, cell only" ;
+    lova:measurementType "NF200 signal (mature neuron marker)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "negative staining" ;
+    lova:comparisonGroup "cell only" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/nf200-cellhydrogel> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.201401483/exp-differentiation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "NF200 staining, cell + hydrogel" ;
+    lova:measurementType "NF200 signal (mature neuron marker)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "negative staining" ;
+    lova:comparisonGroup "cell + hydrogel" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adfm.201401483/exp-colocalization> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adfm.201401483/cell-only-transplant> ,
+                      <https://lovamap.com/ontology#material/10.1002-adfm.201401483/cell-hydrogel-transplant> ;
+    rdfs:label "Colocalization analysis of GFP and DCX signal" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Colocalization analysis" ;
+    lova:assayOrMethod "Manders coefficient, confocal 3D reconstruction" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/coloc-cellonly> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.201401483/exp-colocalization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "Colocalization coefficient, cell only" ;
+    lova:measurementType "Manders colocalization coefficient (GFP/DCX)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.46 ;
+    qudt:unit "coefficient" ;
+    lova:comparisonGroup "cell only" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/coloc-cellhydrogel> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.201401483/exp-colocalization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "Colocalization coefficient, cell + hydrogel" ;
+    lova:measurementType "Manders colocalization coefficient (GFP/DCX)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.78 ;
+    qudt:unit "coefficient" ;
+    lova:comparisonGroup "cell + hydrogel" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adfm.201401483/coloc-cellhydrogel-vs-cellonly> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.201401483> ;
+    rdfs:label "Colocalization coefficient higher in cell+hydrogel vs cell only" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/coloc-cellhydrogel> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adfm.201401483/coloc-cellonly> ;
+    lova:direction "higher" ;
+    lova:pValue 0.0001 ;
+    lova:isSignificant true .

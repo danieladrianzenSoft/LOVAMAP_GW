@@ -27,6 +27,7 @@ With only 3 papers loaded, this is the cheapest possible time to make breaking c
 | Reagents | Flat string pairs (`lova:monomer` + `lova:monomerCAS`) | `lova:Reagent` entity nodes with `rdfs:label`, `lova:casNumber`, `lova:molecularWeight`, `lova:concentration`, `lova:supplier`, optional ChEBI/PubChem link |
 | Chemical/biological identifiers | Not present | ChEBI, PubChem, Cell Ontology, UniProt, ORCID — as supplementary links (post-processing) |
 | Fabrication process mappings | Not present | `lova:chemistryURI` → RXNO, `lova:manufacturingMethodURI` → CHMO (post-processing) |
+| Assay/method standardization | Not present | `lova:assayURI` → OBI (post-processing via curated mapping table) |
 | FAIR enrichment pipeline | Not present | Two-phase architecture: LLM extracts text identifiers, post-processing resolves to standard URIs |
 | Experiment→Material link | `lova:usedMaterial` | Kept (no readable standard equivalent) |
 | Domain-specific properties | `lova:` | Kept as `lova:` — no standard covers scaffold geometry, annealing, packing |
@@ -43,6 +44,7 @@ With only 3 papers loaded, this is the cheapest possible time to make breaking c
 | `qudt:` | `http://qudt.org/schema/qudt/` | Measurement values and units |
 | `unit:` | `http://qudt.org/vocab/unit/` | Specific QUDT unit instances (e.g. `unit:KiloPA`, `unit:MicroM`) |
 | `stato:` | `http://purl.obolibrary.org/obo/STATO_` | Statistical terms (referenced via `owl:equivalentProperty` in ontology header, not used directly in triples) |
+| `obi:` | `http://purl.obolibrary.org/obo/OBI_` | Ontology for Biomedical Investigations — assay and method types (ELISA, flow cytometry, qPCR) |
 | `obo:` | `http://purl.obolibrary.org/obo/` | OBO Foundry ontology terms — ChEBI chemicals, Cell Ontology cell types, RXNO reactions, CHMO methods |
 | `rxno:` | `http://purl.obolibrary.org/obo/RXNO_` | Named Reaction Ontology — reaction types (Michael addition, thiol-ene, radical polymerization) |
 | `chmo:` | `http://purl.obolibrary.org/obo/CHMO_` | Chemical Methods Ontology — fabrication/manufacturing techniques (emulsion, electrospray, photopolymerization) |
@@ -57,6 +59,7 @@ With only 3 papers loaded, this is the cheapest possible time to make breaking c
 ### New in v2
 - **`qudt:` / `unit:`** — replaces `lova:value` + `lova:unit` string pairs with structured measurement representation
 - **`stato:`** — FAIR equivalence target for statistical properties. Not used directly in triples — instead, `lova:stdDev`, `lova:pValue`, `lova:sampleSize` are declared `owl:equivalentProperty` to their STATO counterparts in the ontology header. This keeps SPARQL readable for LLMs while maintaining interoperability.
+- **`obi:`** — Ontology for Biomedical Investigations. Used to map free-text assay/method descriptions to standard terms (e.g., "ELISA" → `OBI:0000661`, "flow cytometry" → `OBI:0000916`). Populated by post-processing enrichment via curated mapping table, not by the extraction LLM.
 - **`obo:`** — umbrella prefix for OBO Foundry ontologies (ChEBI for chemicals, CL for cell types, RXNO for reactions, CHMO for methods)
 - **`rxno:` / `chmo:`** — Named Reaction Ontology and Chemical Methods Ontology. Used to map free-text chemistry and fabrication process descriptions to standard terms. Populated by post-processing enrichment, not by the extraction LLM.
 - **`pubchem:`** — PubChem compound identifiers. Fallback for chemicals where ChEBI lacks a specific entry (common for functionalized polymers like PEG-VS, GelMA, PEGDA).
@@ -240,6 +243,7 @@ An experimental protocol linking a material to outcomes. Kept as `lova:Experimen
 | `lova:experimentCategory` | `xsd:string` | Broad category | "Mechanical", "Biological", "Rheological" |
 | `lova:experimentType` | `xsd:string` | Specific type | "Compression", "Cell viability", "qPCR" |
 | `lova:assayOrMethod` | `xsd:string` | Specific assay/technique | "AlamarBlue", "MicroCT", "Flow cytometry" |
+| `lova:assayURI` | URI | OBI term for the assay/method (**post-processing**) | `obo:OBI_0000661` (ELISA) |
 | `lova:equipment` | `xsd:string` | Instrument used | "TA Instruments DHR-2" |
 
 **Biological Experiment Details**
@@ -266,7 +270,7 @@ An experimental protocol linking a material to outcomes. Kept as `lova:Experimen
 | `lova:preconditioning` | `xsd:string` | Sample prep before test | "Swollen in PBS 24h" |
 | `lova:sampleSize` | `xsd:integer` | n | 5 |
 
-**Changes from v1:** `lova:describedIn` → `dc:source`. Added optional `lova:cellTypeURI` for Cell Ontology links.
+**Changes from v1:** `lova:describedIn` → `dc:source`. Added optional `lova:cellTypeURI` for Cell Ontology links. Added optional `lova:assayURI` for OBI assay/method links.
 
 ### 7. Outcome — `lova:Outcome`
 
@@ -495,6 +499,7 @@ Ontology URIs are always **optional** — a Reagent or Experiment is valid witho
 | Enzymes / Proteins | UniProt | `uniprot:` | Specific protein/enzyme entries | `uniprot:P00488` (Factor XIII) | Post-processing |
 | Reactions | RXNO | `obo:RXNO_` | Named reaction types (Michael addition, thiol-ene click) | `obo:RXNO_0000017` | Post-processing |
 | Techniques | CHMO | `obo:CHMO_` | Fabrication/manufacturing techniques (emulsion, electrospray) | `obo:CHMO_0001054` | Post-processing |
+| Assays/Methods | OBI | `obo:OBI_` | Biomedical investigation assay types (ELISA, flow cytometry, qPCR, Western blot) | `obo:OBI_0000661` (ELISA) | Post-processing |
 | People | ORCID | Full ORCID URI | Author persistent identifiers | `<https://orcid.org/0000-0002-1234-5678>` | Post-processing |
 
 ### How URIs attach to entities
@@ -510,6 +515,7 @@ Ontology URIs are always **optional** — a Reagent or Experiment is valid witho
 | Fabrication chemistry | `lova:chemistry` | `lova:chemistryURI` → RXNO | Reaction type mapped to Named Reaction Ontology |
 | Manufacturing technique | `lova:manufacturingMethod` | `lova:manufacturingMethodURI` → CHMO | Technique mapped to Chemical Methods Ontology |
 | Annealing chemistry | `lova:annealingChemistry` | `lova:annealingChemistryURI` → RXNO/CHMO | Annealing process mapped to standard term |
+| Assay/method | `lova:assayOrMethod` | `lova:assayURI` → OBI | Assay type mapped to Ontology for Biomedical Investigations |
 
 ### For the SPARQL system prompt
 
@@ -526,7 +532,7 @@ The LOVAMAP data pipeline has two distinct phases. This separation exists becaus
 
 The extraction LLM reads a paper and produces TTL triples. It should extract **every identifier and descriptor that appears in the paper text**, because this raw information is what the enrichment pipeline uses to resolve external URIs.
 
-**The LLM extraction prompt must explicitly state:** *"Do not attempt to generate ChEBI, PubChem, UniProt, Cell Ontology, RXNO, or CHMO URIs. Only extract identifiers that appear literally in the paper text."*
+**The LLM extraction prompt must explicitly state:** *"Do not attempt to generate ChEBI, PubChem, UniProt, Cell Ontology, RXNO, CHMO, or OBI URIs. Only extract identifiers that appear literally in the paper text."*
 
 **What the LLM extracts per entity type:**
 
@@ -534,7 +540,7 @@ The extraction LLM reads a paper and produces TTL triples. It should extract **e
 |--------|---------------------------------|-------------------------------|
 | **Reagent** | `rdfs:label` (name as written), `lova:reagentRole`, `lova:casNumber`, `lova:ecNumber`, `lova:sequence`, `lova:molecularWeight`, `lova:concentration`, `lova:reagentFunction`, `lova:supplier`, `lova:catalogNumber` | Name + CAS is the primary lookup key for ChEBI/PubChem. MW helps disambiguate (e.g., "PEG 2kDa" vs "PEG 20kDa"). Supplier + catalog number can resolve exact product. |
 | **FabricationMethod** | `lova:chemistry` (reaction description), `lova:manufacturingMethod` (technique description), `lova:annealingChemistry` (bonding method), `lova:annealingConditions` | Free-text chemistry/method descriptions are matched against RXNO/CHMO term labels. The more descriptive, the better the match. |
-| **Experiment** | `lova:cellType` (name), `lova:cellSource` (species/tissue), `lova:assayOrMethod` | Cell name + source species enables unambiguous Cell Ontology lookup. |
+| **Experiment** | `lova:cellType` (name), `lova:cellSource` (species/tissue), `lova:assayOrMethod` | Cell name + source species enables unambiguous Cell Ontology lookup. Assay/method name is the lookup key for OBI mapping. |
 | **Material** | `lova:particleMaterial` (polymer name), `lova:particleSizeMin/Max`, `lova:stiffnessValue` | Polymer name is the lookup key for ChEBI/PubChem. |
 | **Author** | `foaf:name`, `foaf:familyName`, `foaf:givenName`, `schema:affiliation` | Name + affiliation enables ORCID lookup via the ORCID API. |
 
@@ -557,6 +563,7 @@ A programmatic script (not an LLM) takes the TTL output from Phase 1 and resolve
 | `lova:chemistryURI` (on FabricationMethod) | `lova:chemistry` string | OLS API (`/search?q=&ontology=rxno`) | Fuzzy match reaction name against RXNO labels. |
 | `lova:manufacturingMethodURI` (on FabricationMethod) | `lova:manufacturingMethod` string | OLS API (`/search?q=&ontology=chmo`) | Fuzzy match technique name against CHMO labels. |
 | `lova:annealingChemistryURI` (on FabricationMethod) | `lova:annealingChemistry` string | OLS API (RXNO or CHMO) | Try RXNO first (for reaction type), then CHMO (for technique). |
+| `lova:assayURI` (on Experiment) | `lova:assayOrMethod` string | Curated mapping table (`obi_mappings.json`) | Match free-text assay name against curated table of ~30-40 common assay→OBI mappings. Same approach as RXNO/CHMO. |
 | `owl:sameAs` → ORCID (on Author) | `foaf:name` + `schema:affiliation` | ORCID public API (`/search`) | Name + affiliation search. Only add if single unambiguous match. |
 
 **Enrichment rules:**
@@ -610,8 +617,9 @@ This is why Phase 1 extraction must be thorough — every piece of identifying i
            supplier)     │
            ↓ *           │
      owl:sameAs →  lova:Experiment
-     ChEBI/PubChem       │  (cellTypeURI* → CL)
-     inchiKey*    lova:fromExperiment
+     ChEBI/PubChem       │  (cellTypeURI* → CL
+     inchiKey*           │   assayURI* → OBI)
+                  lova:fromExperiment
                          │
                   lova:Outcome
                    (qudt:numericValue,
@@ -691,7 +699,7 @@ Update `OntologyDtos.cs` to match new property names:
 - [ ] Update extraction schema/template with v2 classes and properties
 - [ ] Update TTL generation to produce `lova:Reagent` entity nodes
 - [ ] Update extraction prompt to include all new Reagent properties (`lova:casNumber`, `lova:molecularWeight`, `lova:concentration`, `lova:supplier`, `lova:catalogNumber`)
-- [ ] Update extraction prompt to explicitly prohibit LLM from generating external DB URIs (ChEBI, PubChem, UniProt, RXNO, CHMO, CL, ORCID)
+- [ ] Update extraction prompt to explicitly prohibit LLM from generating external DB URIs (ChEBI, PubChem, UniProt, RXNO, CHMO, CL, OBI, ORCID)
 - [ ] Re-extract the 3 existing papers with the new schema
 
 ### 7. Enrichment Pipeline (Phase 2)
@@ -705,10 +713,12 @@ Build a post-processing script that takes Phase 1 TTL output and adds external U
 - [ ] Implement RXNO lookup (chemistry description → RXNO term)
 - [ ] Implement CHMO lookup (manufacturing method description → CHMO term)
 - [ ] Implement UniProt lookup (EC number → UniProt entry for enzymes)
+- [ ] Implement OBI lookup (assay/method name → OBI term via curated mapping table `obi_mappings.json`)
 - [ ] Implement ORCID lookup (author name + affiliation → ORCID)
 - [ ] Add enrichment manifest/log output for auditing
 - [ ] Add `lova:particleMaterialURI` on Materials (using same ChEBI/PubChem lookup)
 - [ ] Add `lova:cellTypeURI` on Experiments
+- [ ] Add `lova:assayURI` on Experiments (using OBI mapping table)
 - [ ] Add `lova:chemistryURI`, `lova:manufacturingMethodURI`, `lova:annealingChemistryURI` on FabricationMethods
 - [ ] Add `owl:sameAs` on Reagents and Authors
 - [ ] Add `lova:inchiKey` on Reagents
@@ -848,7 +858,8 @@ lova:experiment/10.1002-adhm.202300823/tnf-secretion  a  lova:Experiment ;
     rdfs:label             "TNF-α secretion by BMDMs on 40 μm MAP" ;
     lova:experimentCategory "Biochemical" ;
     lova:experimentType    "Cytokine secretion" ;
-    lova:assayOrMethod     "ELISA" ;
+    lova:assayOrMethod     "ELISA" ;                                         # [LLM]
+    lova:assayURI          obo:OBI_0000661 ;                                  # [ENRICH] — ELISA
     lova:cellType          "BMDM" ;
     lova:cellTypeURI       obo:CL_0000235 ;
     lova:cellSource        "Murine bone marrow" ;
@@ -890,4 +901,4 @@ lova:geometry-profile/10.1002-adhm.202300823/map-40um-profile  a  lova:GeometryP
 3. **Measurements**: `qudt:numericValue` + `qudt:unit` — not `lova:value` + `lova:unit`
 4. **Statistics**: `lova:stdDev`, `lova:pValue`, `lova:sampleSize` — same readable names as v1, now backed by `owl:equivalentProperty` → STATO for FAIR interoperability
 5. **Reagents**: Entity nodes via `lova:hasReagent` — not flat `lova:monomer` + `lova:monomerCAS` pairs
-6. **Cross-references**: `owl:sameAs` ChEBI/ORCID, `lova:cellTypeURI` CL, `lova:particleMaterialURI` ChEBI
+6. **Cross-references**: `owl:sameAs` ChEBI/ORCID, `lova:cellTypeURI` CL, `lova:particleMaterialURI` ChEBI, `lova:assayURI` OBI

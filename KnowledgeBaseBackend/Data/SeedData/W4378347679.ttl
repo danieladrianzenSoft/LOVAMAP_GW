@@ -1,0 +1,592 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.3389-fbioe.2023.1181795> a bibo:AcademicArticle ;
+    rdfs:label "Wang et al., 2023 — Nanoenhancer for improving naked DNA electrotransfection In vivo" ;
+    dc:title "Nanoenhancer for improving naked DNA electrotransfection In vivo" ;
+    dc:identifier "10.3389/fbioe.2023.1181795" ;
+    dc:date "2023"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/frontiers-in-bioengineering-and-biotechnology> ;
+    dc:creator <https://lovamap.com/ontology#author/wang-yifei> ,
+               <https://lovamap.com/ontology#author/wang-chunxi> ,
+               <https://lovamap.com/ontology#author/sylvers-justin> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ,
+               <https://lovamap.com/ontology#author/yuan-fan> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/wang-yifei>
+                       <https://lovamap.com/ontology#author/wang-chunxi>
+                       <https://lovamap.com/ontology#author/sylvers-justin>
+                       <https://lovamap.com/ontology#author/segura-tatiana>
+                       <https://lovamap.com/ontology#author/yuan-fan> ) ;
+    dc:bibliographicCitation "Wang et al., 2023" ;
+    lova:focusMaterial "Alginate-chitosan and alginate-chitosan-PEI nanoparticles (nanoenhancers) used to improve electrotransfection of naked plasmid DNA in vitro and in vivo" .
+
+<https://lovamap.com/ontology#author/wang-yifei> a foaf:Person ;
+    foaf:familyName "Wang" ;
+    foaf:givenName "Yifei" ;
+    foaf:name "Yifei Wang" .
+
+<https://lovamap.com/ontology#author/wang-chunxi> a foaf:Person ;
+    foaf:familyName "Wang" ;
+    foaf:givenName "Chunxi" ;
+    foaf:name "Chunxi Wang" .
+
+<https://lovamap.com/ontology#author/sylvers-justin> a foaf:Person ;
+    foaf:familyName "Sylvers" ;
+    foaf:givenName "Justin" ;
+    foaf:name "Justin Sylvers" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" .
+
+<https://lovamap.com/ontology#author/yuan-fan> a foaf:Person ;
+    foaf:familyName "Yuan" ;
+    foaf:givenName "Fan" ;
+    foaf:name "Fan Yuan" .
+
+<https://lovamap.com/ontology#journal/frontiers-in-bioengineering-and-biotechnology> a bibo:Journal ;
+    dc:title "Frontiers in Bioengineering and Biotechnology" ;
+    bibo:issn "2296-4185" .
+
+<https://lovamap.com/ontology#material/10.3389-fbioe.2023.1181795/alg-chi-pei-np> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fbioe.2023.1181795> ;
+    rdfs:label "Alginate-chitosan-PEI nanoparticle (Alg-Chi-PEI NP, nanoenhancer)" ;
+    lova:particleShape "Spherical" ;
+    lova:particleMaterial "Alginate-Chitosan-PEI" ;
+    lova:particleSizeMin 20.0 ;
+    lova:particleSizeMax 50.0 ;
+    lova:particleSizeUnit "nm" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.3389-fbioe.2023.1181795/alg-chi-pei-synthesis> .
+
+<https://lovamap.com/ontology#material/10.3389-fbioe.2023.1181795/alg-chi-np> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fbioe.2023.1181795> ;
+    rdfs:label "Alginate-chitosan nanoparticle (Alg-Chi NP)" ;
+    lova:particleShape "Spherical" ;
+    lova:particleMaterial "Alginate-Chitosan" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.3389-fbioe.2023.1181795/alg-chi-synthesis> .
+
+<https://lovamap.com/ontology#material/10.3389-fbioe.2023.1181795/pi-loaded-alg-chi-pei-np> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fbioe.2023.1181795> ;
+    rdfs:label "PI-loaded Alg-Chi-PEI nanoparticle" ;
+    lova:particleShape "Spherical" ;
+    lova:particleMaterial "Alginate-Chitosan-PEI loaded with propidium iodide" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.3389-fbioe.2023.1181795/pi-loaded-np-synthesis> .
+
+<https://lovamap.com/ontology#fabrication-method/10.3389-fbioe.2023.1181795/alg-chi-pei-synthesis> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fbioe.2023.1181795> ;
+    rdfs:label "Alginate-chitosan-PEI nanoparticle synthesis via ionic pre-gelation and polyelectrolyte complexation" ;
+    lova:chemistry "Ionic gelation / polyelectrolyte complexation" ;
+    lova:manufacturingMethod "Dropwise ionic gelation with Ca2+, polycation complexation, bath sonication, ultra-centrifugal filtration" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.3389-fbioe.2023.1181795/sodium-alginate> ,
+                    <https://lovamap.com/ontology#reagent/10.3389-fbioe.2023.1181795/chitosan> ,
+                    <https://lovamap.com/ontology#reagent/10.3389-fbioe.2023.1181795/pei> ,
+                    <https://lovamap.com/ontology#reagent/10.3389-fbioe.2023.1181795/calcium-chloride> ,
+                    <https://lovamap.com/ontology#reagent/10.3389-fbioe.2023.1181795/sodium-hydroxide> ,
+                    <https://lovamap.com/ontology#reagent/10.3389-fbioe.2023.1181795/hydrochloric-acid> ,
+                    <https://lovamap.com/ontology#reagent/10.3389-fbioe.2023.1181795/acetic-acid> .
+
+<https://lovamap.com/ontology#fabrication-method/10.3389-fbioe.2023.1181795/alg-chi-synthesis> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fbioe.2023.1181795> ;
+    rdfs:label "Alginate-chitosan nanoparticle synthesis via ionic pre-gelation and polyelectrolyte complexation" ;
+    lova:chemistry "Ionic gelation / polyelectrolyte complexation" ;
+    lova:manufacturingMethod "Dropwise ionic gelation with Ca2+, chitosan complexation, bath sonication, ultra-centrifugal filtration" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.3389-fbioe.2023.1181795/sodium-alginate> ,
+                    <https://lovamap.com/ontology#reagent/10.3389-fbioe.2023.1181795/chitosan> ,
+                    <https://lovamap.com/ontology#reagent/10.3389-fbioe.2023.1181795/calcium-chloride> ,
+                    <https://lovamap.com/ontology#reagent/10.3389-fbioe.2023.1181795/sodium-hydroxide> ,
+                    <https://lovamap.com/ontology#reagent/10.3389-fbioe.2023.1181795/hydrochloric-acid> ,
+                    <https://lovamap.com/ontology#reagent/10.3389-fbioe.2023.1181795/acetic-acid> .
+
+<https://lovamap.com/ontology#fabrication-method/10.3389-fbioe.2023.1181795/pi-loaded-np-synthesis> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fbioe.2023.1181795> ;
+    rdfs:label "PI-loaded Alg-Chi-PEI nanoparticle synthesis" ;
+    lova:chemistry "Ionic gelation / polyelectrolyte complexation" ;
+    lova:manufacturingMethod "Propidium iodide pre-mixed with alginate solution prior to CaCl2 and chitosan/PEI addition, bath sonication, ultra-centrifugal filtration" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.3389-fbioe.2023.1181795/sodium-alginate> ,
+                    <https://lovamap.com/ontology#reagent/10.3389-fbioe.2023.1181795/chitosan> ,
+                    <https://lovamap.com/ontology#reagent/10.3389-fbioe.2023.1181795/pei> ,
+                    <https://lovamap.com/ontology#reagent/10.3389-fbioe.2023.1181795/calcium-chloride> ,
+                    <https://lovamap.com/ontology#reagent/10.3389-fbioe.2023.1181795/pi> .
+
+<https://lovamap.com/ontology#reagent/10.3389-fbioe.2023.1181795/sodium-alginate> a lova:Reagent ;
+    rdfs:label "Sodium alginate (low viscosity)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "0.2% w/v" ;
+    lova:supplier "Sigma-Aldrich" ;
+    lova:reagentFunction "Polyanion forming nanoparticle matrix" .
+
+<https://lovamap.com/ontology#reagent/10.3389-fbioe.2023.1181795/chitosan> a lova:Reagent ;
+    rdfs:label "Chitosan (75%-85% deacetylated)" ;
+    lova:reagentRole "other" ;
+    lova:molecularWeight "50-190 kDa" ;
+    lova:concentration "0.1% w/v (0.05% w/v in final mixture)" ;
+    lova:supplier "Sigma-Aldrich" ;
+    lova:reagentFunction "Polycation for complexation with alginate" .
+
+<https://lovamap.com/ontology#reagent/10.3389-fbioe.2023.1181795/pei> a lova:Reagent ;
+    rdfs:label "Branched polyethyleneimine (PEI, 25 kDa)" ;
+    lova:reagentRole "other" ;
+    lova:molecularWeight "25 kDa" ;
+    lova:concentration "0.1% w/v (0.05% w/v in final mixture)" ;
+    lova:supplier "Sigma-Aldrich" ;
+    lova:reagentFunction "Cationic polymer providing proton sponge effect and lysosomal enlargement" .
+
+<https://lovamap.com/ontology#reagent/10.3389-fbioe.2023.1181795/calcium-chloride> a lova:Reagent ;
+    rdfs:label "Calcium chloride (dihydrate)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:concentration "0.2% w/v" ;
+    lova:supplier "Mallinckrodt Chemicals" ;
+    lova:reagentFunction "Ionic pre-gelation of alginate via Ca2+ crosslinking" .
+
+<https://lovamap.com/ontology#reagent/10.3389-fbioe.2023.1181795/sodium-hydroxide> a lova:Reagent ;
+    rdfs:label "Sodium hydroxide solution (1N)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "1N" ;
+    lova:supplier "Sigma-Aldrich" ;
+    lova:reagentFunction "pH adjustment" .
+
+<https://lovamap.com/ontology#reagent/10.3389-fbioe.2023.1181795/hydrochloric-acid> a lova:Reagent ;
+    rdfs:label "Hydrochloric acid solution (1N)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "1N" ;
+    lova:supplier "Thermo Fisher Scientific" ;
+    lova:reagentFunction "pH adjustment" .
+
+<https://lovamap.com/ontology#reagent/10.3389-fbioe.2023.1181795/acetic-acid> a lova:Reagent ;
+    rdfs:label "Acetic acid (ACS reagent)" ;
+    lova:reagentRole "solvent" ;
+    lova:supplier "Sigma-Aldrich" ;
+    lova:reagentFunction "Dissolution of chitosan powder (1% v/v solution)" .
+
+<https://lovamap.com/ontology#reagent/10.3389-fbioe.2023.1181795/pi> a lova:Reagent ;
+    rdfs:label "Propidium Iodide (PI)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "0.04 mM" ;
+    lova:supplier "Invitrogen" ;
+    lova:reagentFunction "Fluorescent cargo for nanoparticle uptake tracking / cell viability dye" .
+
+<https://lovamap.com/ontology#reagent/10.3389-fbioe.2023.1181795/pegfp-n1> a lova:Reagent ;
+    rdfs:label "pEGFP-N1 plasmid" ;
+    lova:reagentRole "other" ;
+    lova:catalogNumber "#6085-1" ;
+    lova:supplier "Clontech" ;
+    lova:reagentFunction "Plasmid encoding enhanced green fluorescent protein (EGFP) for electrotransfection" .
+
+<https://lovamap.com/ontology#reagent/10.3389-fbioe.2023.1181795/pcdna3-luciferase> a lova:Reagent ;
+    rdfs:label "pcDNA3-luciferase plasmid" ;
+    lova:reagentRole "other" ;
+    lova:catalogNumber "#18964" ;
+    lova:supplier "Addgene" ;
+    lova:reagentFunction "Plasmid encoding Firefly Luciferase for in vivo electrotransfection" .
+
+<https://lovamap.com/ontology#reagent/10.3389-fbioe.2023.1181795/lamp1-mcherry-plasmid> a lova:Reagent ;
+    rdfs:label "LAMP1-mCherry plasmid" ;
+    lova:reagentRole "other" ;
+    lova:catalogNumber "#45147" ;
+    lova:supplier "Addgene" ;
+    lova:reagentFunction "Red fluorescent marker for lysosomes" .
+
+<https://lovamap.com/ontology#reagent/10.3389-fbioe.2023.1181795/d-luciferin> a lova:Reagent ;
+    rdfs:label "D-Luciferin" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Xenogen" ;
+    lova:reagentFunction "Substrate for luciferase bioluminescence imaging" .
+
+<https://lovamap.com/ontology#experiment/10.3389-fbioe.2023.1181795/tem-characterization> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fbioe.2023.1181795> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.3389-fbioe.2023.1181795/alg-chi-pei-np> ;
+    rdfs:label "TEM characterization of Alg-Chi-PEI NPs" ;
+    lova:experimentCategory "Physicochemical" ;
+    lova:experimentType "Nanoparticle morphology characterization" ;
+    lova:assayOrMethod "Transmission electron microscopy (TEM)" ;
+    lova:equipment "FEI Tecnai G2 Twin" .
+
+<https://lovamap.com/ontology#experiment/10.3389-fbioe.2023.1181795/dls-characterization> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fbioe.2023.1181795> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.3389-fbioe.2023.1181795/alg-chi-pei-np> ,
+                      <https://lovamap.com/ontology#material/10.3389-fbioe.2023.1181795/alg-chi-np> ,
+                      <https://lovamap.com/ontology#material/10.3389-fbioe.2023.1181795/pi-loaded-alg-chi-pei-np> ;
+    rdfs:label "Hydrodynamic size and zeta potential characterization by DLS/electrophoretic light scattering" ;
+    lova:experimentCategory "Physicochemical" ;
+    lova:experimentType "Particle size and zeta potential measurement" ;
+    lova:assayOrMethod "Dynamic light scattering (DLS)" ;
+    lova:equipment "Litesizer 500 (Anton Paar)" ;
+    lova:temperature "Room temperature" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#experiment/10.3389-fbioe.2023.1181795/cellular-uptake> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fbioe.2023.1181795> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.3389-fbioe.2023.1181795/pi-loaded-alg-chi-pei-np> ;
+    rdfs:label "Cellular uptake of PI-loaded Alg-Chi-PEI NPs in HCT116 cells" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cellular uptake" ;
+    lova:assayOrMethod "Fluorescence microscopy" ;
+    lova:cellType "HCT116" ;
+    lova:cellSource "Human colon cancer cell line" ;
+    lova:cultureDuration "1 h" ;
+    lova:temperature "37°C" ;
+    lova:equipment "Axio Vert A1 inverted microscope (Carl Zeiss)" .
+
+<https://lovamap.com/ontology#experiment/10.3389-fbioe.2023.1181795/et-c2c12> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fbioe.2023.1181795> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.3389-fbioe.2023.1181795/alg-chi-pei-np> ,
+                      <https://lovamap.com/ontology#material/10.3389-fbioe.2023.1181795/alg-chi-np> ;
+    rdfs:label "In vitro electrotransfection of pEGFP in C2C12 cells after nanoenhancer pretreatment" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Electrotransfection" ;
+    lova:assayOrMethod "Flow cytometry" ;
+    lova:cellType "C2C12" ;
+    lova:cellSource "Mouse myoblast cell line" ;
+    lova:cultureMedium "DMEM + 10% BCS + 1% Pen-Strep" ;
+    lova:cultureDuration "12 h NP pretreatment; 24 h post-ET analysis" ;
+    lova:temperature "37°C" ;
+    lova:atmosphere "5% CO2" ;
+    lova:sampleSize 7 .
+
+<https://lovamap.com/ontology#experiment/10.3389-fbioe.2023.1181795/et-hct116> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fbioe.2023.1181795> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.3389-fbioe.2023.1181795/alg-chi-pei-np> ,
+                      <https://lovamap.com/ontology#material/10.3389-fbioe.2023.1181795/alg-chi-np> ;
+    rdfs:label "In vitro electrotransfection of pEGFP in HCT116 cells after nanoenhancer pretreatment" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Electrotransfection" ;
+    lova:assayOrMethod "Flow cytometry" ;
+    lova:cellType "HCT116" ;
+    lova:cellSource "Human colon cancer cell line" ;
+    lova:cultureMedium "McCoy's medium + 10% BCS + 1% Pen-Strep" ;
+    lova:cultureDuration "12 h NP pretreatment; 24 h post-ET analysis" ;
+    lova:temperature "37°C" ;
+    lova:atmosphere "5% CO2" ;
+    lova:sampleSize 5 .
+
+<https://lovamap.com/ontology#experiment/10.3389-fbioe.2023.1181795/lysosome-analysis> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fbioe.2023.1181795> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.3389-fbioe.2023.1181795/alg-chi-pei-np> ;
+    rdfs:label "Lysosomal size and acidity analysis in nanoenhancer-treated C2C12 cells" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Lysosome imaging" ;
+    lova:assayOrMethod "Confocal microscopy with LAMP1-mCherry, Lysotracker Green, Hoechst staining" ;
+    lova:cellType "C2C12" ;
+    lova:cellSource "Mouse myoblast cell line" ;
+    lova:cultureDuration "24 h NP treatment" ;
+    lova:equipment "Andor Dragonfly spinning disk confocal microscope" ;
+    lova:sampleSize 50 .
+
+<https://lovamap.com/ontology#experiment/10.3389-fbioe.2023.1181795/in-vivo-et> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fbioe.2023.1181795> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.3389-fbioe.2023.1181795/alg-chi-pei-np> ;
+    rdfs:label "In vivo electrotransfection of luciferase pDNA in mouse muscle after nanoenhancer pretreatment" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Electrotransfection" ;
+    lova:assayOrMethod "In vivo bioluminescence imaging (IVIS)" ;
+    lova:cellType "Mouse gastrocnemius muscle" ;
+    lova:cellSource "CD1 mice (Charles River Labs)" ;
+    lova:cultureDuration "24 h NP pretreatment; 24 h post-ET imaging" ;
+    lova:sampleSize 12 .
+
+<https://lovamap.com/ontology#outcome/10.3389-fbioe.2023.1181795/tem-size-alg-chi-pei> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3389-fbioe.2023.1181795/tem-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fbioe.2023.1181795> ;
+    rdfs:label "Alg-Chi-PEI NP diameter (TEM)" ;
+    lova:measurementType "Particle diameter" ;
+    lova:measurementCategory "Physicochemical" ;
+    lova:valueString "20-50 nm" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.3389-fbioe.2023.1181795/dls-size-alg-chi-pei> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3389-fbioe.2023.1181795/dls-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fbioe.2023.1181795> ;
+    rdfs:label "Hydrodynamic diameter of Alg-Chi-PEI NP (DLS)" ;
+    lova:measurementType "Hydrodynamic diameter" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 218.4 ;
+    qudt:unit "nm" ;
+    lova:stdDev 7.1 ;
+    lova:sampleSize 3 ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.3389-fbioe.2023.1181795/zeta-alg-chi-pei> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3389-fbioe.2023.1181795/dls-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fbioe.2023.1181795> ;
+    rdfs:label "Zeta potential of Alg-Chi-PEI NP" ;
+    lova:measurementType "Zeta potential" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue -7.6 ;
+    qudt:unit "mV" ;
+    lova:stdDev 1.2 ;
+    lova:sampleSize 3 ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.3389-fbioe.2023.1181795/dls-size-alg-chi> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3389-fbioe.2023.1181795/dls-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fbioe.2023.1181795> ;
+    rdfs:label "Hydrodynamic diameter of Alg-Chi NP (DLS)" ;
+    lova:measurementType "Hydrodynamic diameter" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 205.0 ;
+    qudt:unit "nm" ;
+    lova:stdDev 25.3 ;
+    lova:sampleSize 3 ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.3389-fbioe.2023.1181795/zeta-alg-chi> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3389-fbioe.2023.1181795/dls-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fbioe.2023.1181795> ;
+    rdfs:label "Zeta potential of Alg-Chi NP" ;
+    lova:measurementType "Zeta potential" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue -18.2 ;
+    qudt:unit "mV" ;
+    lova:stdDev 7.7 ;
+    lova:sampleSize 3 ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.3389-fbioe.2023.1181795/dls-size-pi-loaded> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3389-fbioe.2023.1181795/dls-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fbioe.2023.1181795> ;
+    rdfs:label "Hydrodynamic diameter of PI-loaded Alg-Chi-PEI NP" ;
+    lova:measurementType "Hydrodynamic diameter" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 167.0 ;
+    qudt:unit "nm" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.3389-fbioe.2023.1181795/apparent-expr-c2c12-ntc> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3389-fbioe.2023.1181795/et-c2c12> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fbioe.2023.1181795> ;
+    rdfs:label "Apparent expression level - C2C12 non-treated control (NTC), normalized" ;
+    lova:measurementType "Apparent expression level" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 100.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "NTC" ;
+    lova:timePoint "24 h post-ET" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.3389-fbioe.2023.1181795/apparent-expr-c2c12-algchipei> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3389-fbioe.2023.1181795/et-c2c12> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fbioe.2023.1181795> ;
+    rdfs:label "Apparent expression level - C2C12 Alg-Chi-PEI NP treated, normalized to NTC" ;
+    lova:measurementType "Apparent expression level" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 220.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "NTC" ;
+    lova:timePoint "24 h post-ET" ;
+    lova:isSignificant true ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.3389-fbioe.2023.1181795/apparent-expr-hct116-ntc> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3389-fbioe.2023.1181795/et-hct116> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fbioe.2023.1181795> ;
+    rdfs:label "Apparent expression level - HCT116 non-treated control (NTC), normalized" ;
+    lova:measurementType "Apparent expression level" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 100.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "NTC" ;
+    lova:timePoint "24 h post-ET" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.3389-fbioe.2023.1181795/apparent-expr-hct116-algchipei> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3389-fbioe.2023.1181795/et-hct116> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fbioe.2023.1181795> ;
+    rdfs:label "Apparent expression level - HCT116 Alg-Chi-PEI NP treated, normalized to NTC" ;
+    lova:measurementType "Apparent expression level" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 170.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "NTC" ;
+    lova:timePoint "24 h post-ET" ;
+    lova:isSignificant true ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.3389-fbioe.2023.1181795/lamp1-area-ctrl> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3389-fbioe.2023.1181795/lysosome-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fbioe.2023.1181795> ;
+    rdfs:label "LAMP1+ vesicle projection area - untreated control" ;
+    lova:measurementType "LAMP1+ vesicle area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 76.0 ;
+    qudt:unit "pixel" ;
+    lova:sampleSize 50 ;
+    lova:scope "Per-pore" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.3389-fbioe.2023.1181795/lamp1-area-np> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3389-fbioe.2023.1181795/lysosome-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fbioe.2023.1181795> ;
+    rdfs:label "LAMP1+ vesicle projection area - Alg-Chi-PEI NP treated (increased 43% vs control)" ;
+    lova:measurementType "LAMP1+ vesicle area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 109.0 ;
+    qudt:unit "pixel" ;
+    lova:sampleSize 50 ;
+    lova:isSignificant true ;
+    lova:pValue 0.0001 ;
+    lova:comparedToControl 1.43 ;
+    lova:comparisonGroup "Untreated control" ;
+    lova:scope "Per-pore" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.3389-fbioe.2023.1181795/lamp1-number-ctrl> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3389-fbioe.2023.1181795/lysosome-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fbioe.2023.1181795> ;
+    rdfs:label "LAMP1+ vesicle number per cell - untreated control" ;
+    lova:measurementType "LAMP1+ vesicle number" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 97.0 ;
+    qudt:unit "count/cell" ;
+    lova:sampleSize 50 ;
+    lova:scope "Per-pore" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.3389-fbioe.2023.1181795/lamp1-number-np> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3389-fbioe.2023.1181795/lysosome-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fbioe.2023.1181795> ;
+    rdfs:label "LAMP1+ vesicle number per cell - Alg-Chi-PEI NP treated (increased 214% vs control)" ;
+    lova:measurementType "LAMP1+ vesicle number" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 305.0 ;
+    qudt:unit "count/cell" ;
+    lova:sampleSize 50 ;
+    lova:isSignificant true ;
+    lova:pValue 0.0001 ;
+    lova:comparedToControl 3.14 ;
+    lova:comparisonGroup "Untreated control" ;
+    lova:scope "Per-pore" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.3389-fbioe.2023.1181795/colocalization-ctrl> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3389-fbioe.2023.1181795/lysosome-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fbioe.2023.1181795> ;
+    rdfs:label "Colocalization coefficient (LAMP1/LTG) - untreated control" ;
+    lova:measurementType "Colocalization coefficient" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 18.3 ;
+    qudt:unit "%" ;
+    lova:sampleSize 50 ;
+    lova:scope "Per-pore" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.3389-fbioe.2023.1181795/colocalization-np> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3389-fbioe.2023.1181795/lysosome-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fbioe.2023.1181795> ;
+    rdfs:label "Colocalization coefficient (LAMP1/LTG) - Alg-Chi-PEI NP treated (reduced ~50% vs control)" ;
+    lova:measurementType "Colocalization coefficient" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 8.2 ;
+    qudt:unit "%" ;
+    lova:sampleSize 50 ;
+    lova:isSignificant true ;
+    lova:pValue 0.0001 ;
+    lova:comparedToControl 0.5 ;
+    lova:comparisonGroup "Untreated control" ;
+    lova:scope "Per-pore" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.3389-fbioe.2023.1181795/luciferase-ratio-pbs> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3389-fbioe.2023.1181795/in-vivo-et> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fbioe.2023.1181795> ;
+    rdfs:label "Luciferase bioluminescence ratio - PBS control leg (normalized to itself)" ;
+    lova:measurementType "Luciferase expression ratio" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.0 ;
+    qudt:unit "ratio" ;
+    lova:sampleSize 12 ;
+    lova:timePoint "24 h post-ET" ;
+    lova:comparisonGroup "PBS leg" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.3389-fbioe.2023.1181795/luciferase-ratio-np> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3389-fbioe.2023.1181795/in-vivo-et> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fbioe.2023.1181795> ;
+    rdfs:label "Luciferase bioluminescence ratio - Alg-Chi-PEI NP treated leg vs PBS leg (approximately doubled)" ;
+    lova:measurementType "Luciferase expression ratio" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.0 ;
+    qudt:unit "ratio" ;
+    lova:sampleSize 12 ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "PBS leg" ;
+    lova:timePoint "24 h post-ET" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.3389-fbioe.2023.1181795/apparent-expr-c2c12-np-vs-ntc> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fbioe.2023.1181795> ;
+    rdfs:label "Apparent expression level higher in Alg-Chi-PEI NP treated vs NTC (C2C12)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.3389-fbioe.2023.1181795/apparent-expr-c2c12-algchipei> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.3389-fbioe.2023.1181795/apparent-expr-c2c12-ntc> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:foldChange 2.2 .
+
+<https://lovamap.com/ontology#comparison/10.3389-fbioe.2023.1181795/apparent-expr-hct116-np-vs-ntc> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fbioe.2023.1181795> ;
+    rdfs:label "Apparent expression level higher in Alg-Chi-PEI NP treated vs NTC (HCT116)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.3389-fbioe.2023.1181795/apparent-expr-hct116-algchipei> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.3389-fbioe.2023.1181795/apparent-expr-hct116-ntc> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:foldChange 1.7 .
+
+<https://lovamap.com/ontology#comparison/10.3389-fbioe.2023.1181795/lamp1-area-np-vs-ctrl> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fbioe.2023.1181795> ;
+    rdfs:label "LAMP1+ vesicle area higher in NP treated vs control" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.3389-fbioe.2023.1181795/lamp1-area-np> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.3389-fbioe.2023.1181795/lamp1-area-ctrl> ;
+    lova:direction "higher" ;
+    lova:pValue 0.0001 ;
+    lova:isSignificant true ;
+    lova:foldChange 1.43 .
+
+<https://lovamap.com/ontology#comparison/10.3389-fbioe.2023.1181795/lamp1-number-np-vs-ctrl> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fbioe.2023.1181795> ;
+    rdfs:label "LAMP1+ vesicle number higher in NP treated vs control" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.3389-fbioe.2023.1181795/lamp1-number-np> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.3389-fbioe.2023.1181795/lamp1-number-ctrl> ;
+    lova:direction "higher" ;
+    lova:pValue 0.0001 ;
+    lova:isSignificant true ;
+    lova:foldChange 3.14 .
+
+<https://lovamap.com/ontology#comparison/10.3389-fbioe.2023.1181795/colocalization-np-vs-ctrl> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fbioe.2023.1181795> ;
+    rdfs:label "Colocalization coefficient lower in NP treated vs control" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.3389-fbioe.2023.1181795/colocalization-np> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.3389-fbioe.2023.1181795/colocalization-ctrl> ;
+    lova:direction "lower" ;
+    lova:pValue 0.0001 ;
+    lova:isSignificant true ;
+    lova:foldChange 0.5 .
+
+<https://lovamap.com/ontology#comparison/10.3389-fbioe.2023.1181795/luciferase-np-vs-pbs> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fbioe.2023.1181795> ;
+    rdfs:label "Luciferase expression higher in Alg-Chi-PEI NP treated leg vs PBS control leg" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.3389-fbioe.2023.1181795/luciferase-ratio-np> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.3389-fbioe.2023.1181795/luciferase-ratio-pbs> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:foldChange 2.0 .

@@ -1,0 +1,1439 @@
+@prefix bibo: <http://purl.org/ontology/bibo/> .
+@prefix dc1: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix lova: <https://lovamap.com/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.202300823/cd11c-40-vs-2d> a lova:ComparisonResult ;
+    rdfs:label "CD11c expression higher in 40 μm MAP scaffold vs 2D culture upon M1 activation" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/cd11c-40um> .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.202300823/cd206-70-vs-130> a lova:ComparisonResult ;
+    rdfs:label "CD206 expression higher in 70 μm vs 130 μm MAP scaffold upon M1 activation" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/cd206-70um> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/cd206-130um> .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.202300823/macrophage-pct-130-vs-40> a lova:ComparisonResult ;
+    rdfs:label "Macrophage percentage higher in 130 μm vs 40 μm MAP scaffold implant at day 7" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/macrophage-pct-130um> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/macrophage-pct-40um> .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.202300823/sphericity-70-vs-40-130> a lova:ComparisonResult ;
+    rdfs:label "Cell sphericity higher in 70 μm MAP scaffold compared to both 40 μm and 130 μm" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/sphericity-70um> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/sphericity-130um> .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.202300823/tnf-40-vs-130> a lova:ComparisonResult ;
+    rdfs:label "TNF secretion lower in 40 μm vs 130 μm MAP scaffold upon M1 activation" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    lova:direction "lower" ;
+    lova:isSignificant true ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/tnf-40um> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/tnf-130um> .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.202300823/velocity-130-vs-70> a lova:ComparisonResult ;
+    rdfs:label "Median velocity higher in 130 μm vs 70 μm MAP scaffold upon M1 activation" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/velocity-m1-130um> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/velocity-m1-70um> .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/bmdm-lps-volume> a lova:Outcome ;
+    rdfs:label "Reported LPS-activated BMDM cell volume (from literature, used as reference)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 51.0 ;
+    qudt:unit "pL" ;
+    lova:dataSource "[TEXT]" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Cell volume" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/bmdm-untreated-volume> a lova:Outcome ;
+    rdfs:label "Reported untreated BMDM cell volume (from literature, used as reference)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 17.0 ;
+    qudt:unit "pL" ;
+    lova:dataSource "[TEXT]" ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Cell volume" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/cd11c-130um> a lova:Outcome ;
+    rdfs:label "CD11c fold change MFI, 130 μm MAP scaffold vs 2D, M1 activation" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 1.65 ;
+    qudt:unit "fold change" ;
+    lova:comparisonGroup "2D culture (M1)" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/flow-cytometry-markers> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "CD11c expression fold change (MFI)" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/cd206-40um> a lova:Outcome ;
+    rdfs:label "CD206 fold change MFI, 40 μm MAP scaffold, M1 activation" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 1.23 ;
+    qudt:unit "fold change" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/flow-cytometry-markers> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "CD206 expression fold change (MFI)" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/cd86-40um> a lova:Outcome ;
+    rdfs:label "CD86 fold change MFI, 40 μm MAP scaffold vs 2D, M1 activation" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 0.53 ;
+    qudt:unit "fold change" ;
+    lova:comparisonGroup "2D culture (M1)" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/flow-cytometry-markers> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "CD86 expression fold change (MFI)" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/cell-surf-area-130um> a lova:Outcome ;
+    rdfs:label "BMDM surface area per cell, 130 μm MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 3400.0 ;
+    qudt:unit "μm²/cell" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/cell-morphology> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Surface area per cell" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/cell-surf-area-40um> a lova:Outcome ;
+    rdfs:label "BMDM surface area per cell, 40 μm MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 2700.0 ;
+    qudt:unit "μm²/cell" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/cell-morphology> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Surface area per cell" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/cell-surf-area-70um> a lova:Outcome ;
+    rdfs:label "BMDM surface area per cell, 70 μm MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 2500.0 ;
+    qudt:unit "μm²/cell" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/cell-morphology> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Surface area per cell" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/cell-volume-130um> a lova:Outcome ;
+    rdfs:label "BMDM volume per cell, 130 μm MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 7900.0 ;
+    qudt:unit "μm³/cell" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/cell-morphology> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Volume per cell" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/cell-volume-40um> a lova:Outcome ;
+    rdfs:label "BMDM volume per cell, 40 μm MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 5700.0 ;
+    qudt:unit "μm³/cell" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/cell-morphology> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Volume per cell" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/cell-volume-70um> a lova:Outcome ;
+    rdfs:label "BMDM volume per cell, 70 μm MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 6100.0 ;
+    qudt:unit "μm³/cell" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/cell-morphology> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Volume per cell" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/ellipticity-prolate-130um> a lova:Outcome ;
+    rdfs:label "BMDM ellipticity (prolate), 130 μm MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 0.26 ;
+    qudt:unit "unitless" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/cell-morphology> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Ellipticity (prolate)" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/ellipticity-prolate-40um> a lova:Outcome ;
+    rdfs:label "BMDM ellipticity (prolate), 40 μm MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 0.41 ;
+    qudt:unit "unitless" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/cell-morphology> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Ellipticity (prolate)" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/ellipticity-prolate-70um> a lova:Outcome ;
+    rdfs:label "BMDM ellipticity (prolate), 70 μm MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 0.41 ;
+    qudt:unit "unitless" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/cell-morphology> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Ellipticity (prolate)" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/il6-130um> a lova:Outcome ;
+    rdfs:label "IL-6 secretion fold change, 130 μm MAP scaffold vs 2D control, M1 activation" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 0.60 ;
+    qudt:unit "fold change" ;
+    lova:comparisonGroup "2D culture (M1)" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/elisa-cytokine> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "IL-6 secretion fold change" ;
+    lova:timePoint "24h" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/il6-40um> a lova:Outcome ;
+    rdfs:label "IL-6 secretion fold change, 40 μm MAP scaffold vs 2D control, M1 activation" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 0.35 ;
+    qudt:unit "fold change" ;
+    lova:comparisonGroup "2D culture (M1)" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/elisa-cytokine> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "IL-6 secretion fold change" ;
+    lova:timePoint "24h" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/il6-70um> a lova:Outcome ;
+    rdfs:label "IL-6 secretion fold change, 70 μm MAP scaffold vs 2D control, M1 activation" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 0.70 ;
+    qudt:unit "fold change" ;
+    lova:comparisonGroup "2D culture (M1)" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/elisa-cytokine> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "IL-6 secretion fold change" ;
+    lova:timePoint "24h" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/inos-40um> a lova:Outcome ;
+    rdfs:label "iNOS fold change MFI, 40 μm MAP scaffold vs 2D, M1 activation" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 0.35 ;
+    qudt:unit "fold change" ;
+    lova:comparisonGroup "2D culture (M1)" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/flow-cytometry-markers> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "iNOS expression fold change (MFI)" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/inos-70um> a lova:Outcome ;
+    rdfs:label "iNOS fold change MFI, 70 μm MAP scaffold vs 2D, M1 activation" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 0.68 ;
+    qudt:unit "fold change" ;
+    lova:comparisonGroup "2D culture (M1)" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/flow-cytometry-markers> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "iNOS expression fold change (MFI)" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/inos-cd206-40um> a lova:Outcome ;
+    rdfs:label "iNOS+CD206+ double-positive cells, 40 μm MAP scaffold vs 2D, M1 activation" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 20.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "2D culture (M1)" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/flow-cytometry-double-positive> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "iNOS+CD206+ % positive cells" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/inos-cd86-2d> a lova:Outcome ;
+    rdfs:label "iNOS+CD86+ double-positive cells, 2D culture, M1 activation" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 59.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/flow-cytometry-double-positive> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "iNOS+CD86+ % positive cells" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/inos-cd86-40um> a lova:Outcome ;
+    rdfs:label "iNOS+CD86+ double-positive cells, 40 μm MAP scaffold vs 2D, M1 activation" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 15.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "2D culture (M1)" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/flow-cytometry-double-positive> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "iNOS+CD86+ % positive cells" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/invivo-cd206-130um> a lova:Outcome ;
+    rdfs:label "CD206+ MFI, 130 μm MAP scaffold implant, day 7" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 1150.0 ;
+    qudt:unit "MFI" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/in-vivo-flow-cytometry> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "CD206+ MFI" ;
+    lova:timePoint "Day 7" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/invivo-cd206-40um> a lova:Outcome ;
+    rdfs:label "CD206+ MFI, 40 μm MAP scaffold implant, day 7" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 1500.0 ;
+    qudt:unit "MFI" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/in-vivo-flow-cytometry> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "CD206+ MFI" ;
+    lova:timePoint "Day 7" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/invivo-cd206-70um> a lova:Outcome ;
+    rdfs:label "CD206+ MFI, 70 μm MAP scaffold implant, day 7" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 1880.0 ;
+    qudt:unit "MFI" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/in-vivo-flow-cytometry> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "CD206+ MFI" ;
+    lova:timePoint "Day 7" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/live-cell-number-130um> a lova:Outcome ;
+    rdfs:label "Live cell number, 130 μm MAP scaffold implant, day 7" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 55000.0 ;
+    qudt:unit "cells" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/in-vivo-flow-cytometry> ;
+    lova:isSignificant false ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Live cell number" ;
+    lova:timePoint "Day 7" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/live-cell-number-40um> a lova:Outcome ;
+    rdfs:label "Live cell number, 40 μm MAP scaffold implant, day 7" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 30000.0 ;
+    qudt:unit "cells" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/in-vivo-flow-cytometry> ;
+    lova:isSignificant false ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Live cell number" ;
+    lova:timePoint "Day 7" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/live-cell-number-70um> a lova:Outcome ;
+    rdfs:label "Live cell number, 70 μm MAP scaffold implant, day 7" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 20000.0 ;
+    qudt:unit "cells" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/in-vivo-flow-cytometry> ;
+    lova:isSignificant false ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Live cell number" ;
+    lova:timePoint "Day 7" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/maxdist-m1-130um> a lova:Outcome ;
+    rdfs:label "Max travel distance, M1 BMDM, 130 μm MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 79.0 ;
+    qudt:unit "μm" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/live-cell-motility> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Max travel distance" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/maxdist-m1-40um> a lova:Outcome ;
+    rdfs:label "Max travel distance, M1 BMDM, 40 μm MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 47.0 ;
+    qudt:unit "μm" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/live-cell-motility> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Max travel distance" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/maxdist-m1-70um> a lova:Outcome ;
+    rdfs:label "Max travel distance, M1 BMDM, 70 μm MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 33.0 ;
+    qudt:unit "μm" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/live-cell-motility> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Max travel distance" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/microgel-size-130um> a lova:Outcome ;
+    rdfs:label "Measured 130 μm microgel diameter" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 130.8 ;
+    qudt:unit "μm" ;
+    lova:dataSource "[TEXT]" ;
+    lova:measurementCategory "Structural" ;
+    lova:measurementType "Particle diameter" ;
+    lova:stdDev 9.2 .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/microgel-size-40um> a lova:Outcome ;
+    rdfs:label "Measured 40 μm microgel diameter" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 40.0 ;
+    qudt:unit "μm" ;
+    lova:dataSource "[TEXT]" ;
+    lova:measurementCategory "Structural" ;
+    lova:measurementType "Particle diameter" ;
+    lova:stdDev 2.9 .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/microgel-size-70um> a lova:Outcome ;
+    rdfs:label "Measured 70 μm microgel diameter" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 70.0 ;
+    qudt:unit "μm" ;
+    lova:dataSource "[TEXT]" ;
+    lova:measurementCategory "Structural" ;
+    lova:measurementType "Particle diameter" ;
+    lova:stdDev 3.3 .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/nuclei-area-130um> a lova:Outcome ;
+    rdfs:label "Nuclei surface area per nuclei, 130 μm MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 545.0 ;
+    qudt:unit "μm²/nuclei" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/nuclei-morphology> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Nuclei surface area" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/nuclei-area-40um> a lova:Outcome ;
+    rdfs:label "Nuclei surface area per nuclei, 40 μm MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 410.0 ;
+    qudt:unit "μm²/nuclei" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/nuclei-morphology> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Nuclei surface area" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/nuclei-area-70um> a lova:Outcome ;
+    rdfs:label "Nuclei surface area per nuclei, 70 μm MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 385.0 ;
+    qudt:unit "μm²/nuclei" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/nuclei-morphology> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Nuclei surface area" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/nuclei-aspect-ratio-130um> a lova:Outcome ;
+    rdfs:label "Nuclei aspect ratio, 130 μm MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 1.27 ;
+    qudt:unit "unitless" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/nuclei-morphology> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Nuclei aspect ratio" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/nuclei-aspect-ratio-40um> a lova:Outcome ;
+    rdfs:label "Nuclei aspect ratio, 40 μm MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 1.33 ;
+    qudt:unit "unitless" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/nuclei-morphology> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Nuclei aspect ratio" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/nuclei-aspect-ratio-70um> a lova:Outcome ;
+    rdfs:label "Nuclei aspect ratio, 70 μm MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 1.17 ;
+    qudt:unit "unitless" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/nuclei-morphology> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Nuclei aspect ratio" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/nuclei-roundness-130um> a lova:Outcome ;
+    rdfs:label "Nuclei roundness, 130 μm MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 0.80 ;
+    qudt:unit "unitless" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/nuclei-morphology> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Nuclei roundness" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/nuclei-roundness-40um> a lova:Outcome ;
+    rdfs:label "Nuclei roundness, 40 μm MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 0.78 ;
+    qudt:unit "unitless" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/nuclei-morphology> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Nuclei roundness" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/nuclei-roundness-70um> a lova:Outcome ;
+    rdfs:label "Nuclei roundness, 70 μm MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 0.87 ;
+    qudt:unit "unitless" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/nuclei-morphology> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Nuclei roundness" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/pore-vol-130um-lab> a lova:Outcome ;
+    rdfs:label "Median 3D-pore volume, lab-derived 130 μm MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 71.8 ;
+    qudt:unit "pL" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/lovamap-pore-analysis-lab> ;
+    lova:measurementCategory "Structural" ;
+    lova:measurementType "3D-pore volume" ;
+    lova:scope "Per-pore" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/pore-vol-130um-sim> a lova:Outcome ;
+    rdfs:label "Median 3D-pore volume, simulated 130 μm MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 96.2 ;
+    qudt:unit "pL" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/lovamap-pore-analysis-simulated> ;
+    lova:measurementCategory "Structural" ;
+    lova:measurementType "3D-pore volume" ;
+    lova:scope "Per-pore" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/pore-vol-40um-lab> a lova:Outcome ;
+    rdfs:label "Median 3D-pore volume, lab-derived 40 μm MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 4.2 ;
+    qudt:unit "pL" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/lovamap-pore-analysis-lab> ;
+    lova:measurementCategory "Structural" ;
+    lova:measurementType "3D-pore volume" ;
+    lova:scope "Per-pore" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/pore-vol-40um-sim> a lova:Outcome ;
+    rdfs:label "Median 3D-pore volume, simulated 40 μm MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 3.2 ;
+    qudt:unit "pL" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/lovamap-pore-analysis-simulated> ;
+    lova:measurementCategory "Structural" ;
+    lova:measurementType "3D-pore volume" ;
+    lova:scope "Per-pore" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/pore-vol-70um-lab> a lova:Outcome ;
+    rdfs:label "Median 3D-pore volume, lab-derived 70 μm MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 11.5 ;
+    qudt:unit "pL" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/lovamap-pore-analysis-lab> ;
+    lova:measurementCategory "Structural" ;
+    lova:measurementType "3D-pore volume" ;
+    lova:scope "Per-pore" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/pore-vol-70um-sim> a lova:Outcome ;
+    rdfs:label "Median 3D-pore volume, simulated 70 μm MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 15.8 ;
+    qudt:unit "pL" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/lovamap-pore-analysis-simulated> ;
+    lova:measurementCategory "Structural" ;
+    lova:measurementType "3D-pore volume" ;
+    lova:scope "Per-pore" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/sav-130um> a lova:Outcome ;
+    rdfs:label "BMDM surface area-to-volume ratio, 130 μm MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 0.45 ;
+    qudt:unit "unitless" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/cell-morphology> ;
+    lova:isSignificant false ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Surface area-to-volume ratio (SA/V)" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/sav-40um> a lova:Outcome ;
+    rdfs:label "BMDM surface area-to-volume ratio, 40 μm MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 0.47 ;
+    qudt:unit "unitless" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/cell-morphology> ;
+    lova:isSignificant false ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Surface area-to-volume ratio (SA/V)" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/sav-70um> a lova:Outcome ;
+    rdfs:label "BMDM surface area-to-volume ratio, 70 μm MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 0.42 ;
+    qudt:unit "unitless" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/cell-morphology> ;
+    lova:isSignificant false ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Surface area-to-volume ratio (SA/V)" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/sphericity-40um> a lova:Outcome ;
+    rdfs:label "BMDM sphericity, 40 μm MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 0.56 ;
+    qudt:unit "unitless" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/cell-morphology> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Sphericity" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/storage-modulus-130um> a lova:Outcome ;
+    rdfs:label "Storage modulus, 130 μm MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 580.0 ;
+    qudt:unit "Pa" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/rheology> ;
+    lova:isSignificant false ;
+    lova:measurementCategory "Mechanical" ;
+    lova:measurementType "Storage modulus (G')" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/storage-modulus-40um> a lova:Outcome ;
+    rdfs:label "Storage modulus, 40 μm MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 580.0 ;
+    qudt:unit "Pa" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/rheology> ;
+    lova:isSignificant false ;
+    lova:measurementCategory "Mechanical" ;
+    lova:measurementType "Storage modulus (G')" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/storage-modulus-70um> a lova:Outcome ;
+    rdfs:label "Storage modulus, 70 μm MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 720.0 ;
+    qudt:unit "Pa" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/rheology> ;
+    lova:isSignificant false ;
+    lova:measurementCategory "Mechanical" ;
+    lova:measurementType "Storage modulus (G')" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/tnf-70um> a lova:Outcome ;
+    rdfs:label "TNF secretion fold change, 70 μm MAP scaffold vs 2D control, M1 activation" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 0.52 ;
+    qudt:unit "fold change" ;
+    lova:comparisonGroup "2D culture (M1)" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/elisa-cytokine> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "TNF secretion fold change" ;
+    lova:timePoint "24h" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/velocity-m1-40um> a lova:Outcome ;
+    rdfs:label "Median velocity, M1 BMDM, 40 μm MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 0.37 ;
+    qudt:unit "μm/min" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/live-cell-motility> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Median velocity" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/void-fraction-130um> a lova:Outcome ;
+    rdfs:label "Void fraction, 130 μm MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 28.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/void-fraction> ;
+    lova:isSignificant false ;
+    lova:measurementCategory "Structural" ;
+    lova:measurementType "Void fraction" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/void-fraction-40um> a lova:Outcome ;
+    rdfs:label "Void fraction, 40 μm MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 27.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/void-fraction> ;
+    lova:isSignificant false ;
+    lova:measurementCategory "Structural" ;
+    lova:measurementType "Void fraction" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/void-fraction-70um> a lova:Outcome ;
+    rdfs:label "Void fraction, 70 μm MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 34.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/void-fraction> ;
+    lova:isSignificant false ;
+    lova:measurementCategory "Structural" ;
+    lova:measurementType "Void fraction" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/in-vivo-histology> a lova:Experiment ;
+    rdfs:label "In vivo subcutaneous implantation H&E histology at day 21" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    lova:assayOrMethod "H&E staining" ;
+    lova:assayURI <http://purl.obolibrary.org/obo/OBI_0001032> ;
+    lova:cellSource "C57BL/6 mouse subcutaneous implant" ;
+    lova:cultureDuration "Day 21 post-implantation" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Histology" ;
+    lova:sampleSize 5 ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.202300823/map-130um>,
+        <https://lovamap.com/ontology#material/10.1002-adhm.202300823/map-40um>,
+        <https://lovamap.com/ontology#material/10.1002-adhm.202300823/map-70um> .
+
+<https://lovamap.com/ontology#journal/advanced-healthcare-materials> a bibo:Journal ;
+    dc1:title "Advanced Healthcare Materials" ;
+    bibo:issn "2192-2640" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/cd11c-40um> a lova:Outcome ;
+    rdfs:label "CD11c fold change MFI, 40 μm MAP scaffold vs 2D, M1 activation" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 2.08 ;
+    qudt:unit "fold change" ;
+    lova:comparisonGroup "2D culture (M1)" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/flow-cytometry-markers> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "CD11c expression fold change (MFI)" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/cd206-130um> a lova:Outcome ;
+    rdfs:label "CD206 fold change MFI, 130 μm MAP scaffold, M1 activation" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 0.97 ;
+    qudt:unit "fold change" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/flow-cytometry-markers> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "CD206 expression fold change (MFI)" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/cd206-70um> a lova:Outcome ;
+    rdfs:label "CD206 fold change MFI, 70 μm MAP scaffold, M1 activation" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 1.77 ;
+    qudt:unit "fold change" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/flow-cytometry-markers> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "CD206 expression fold change (MFI)" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/macrophage-pct-130um> a lova:Outcome ;
+    rdfs:label "Macrophage percentage of CD45+ cells, 130 μm MAP scaffold implant, day 7" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 68.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/in-vivo-flow-cytometry> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Macrophage percentage (CD11b+F4/80+ of CD45+)" ;
+    lova:timePoint "Day 7" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/macrophage-pct-40um> a lova:Outcome ;
+    rdfs:label "Macrophage percentage of CD45+ cells, 40 μm MAP scaffold implant, day 7" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 44.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/in-vivo-flow-cytometry> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Macrophage percentage (CD11b+F4/80+ of CD45+)" ;
+    lova:timePoint "Day 7" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/sphericity-130um> a lova:Outcome ;
+    rdfs:label "BMDM sphericity, 130 μm MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 0.56 ;
+    qudt:unit "unitless" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/cell-morphology> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Sphericity" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/sphericity-70um> a lova:Outcome ;
+    rdfs:label "BMDM sphericity, 70 μm MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 0.63 ;
+    qudt:unit "unitless" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/cell-morphology> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Sphericity" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/tnf-130um> a lova:Outcome ;
+    rdfs:label "TNF secretion fold change, 130 μm MAP scaffold vs 2D control, M1 activation" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 0.54 ;
+    qudt:unit "fold change" ;
+    lova:comparisonGroup "2D culture (M1)" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/elisa-cytokine> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "TNF secretion fold change" ;
+    lova:timePoint "24h" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/tnf-40um> a lova:Outcome ;
+    rdfs:label "TNF secretion fold change, 40 μm MAP scaffold vs 2D control, M1 activation" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 0.27 ;
+    qudt:unit "fold change" ;
+    lova:comparisonGroup "2D culture (M1)" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/elisa-cytokine> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "TNF secretion fold change" ;
+    lova:timePoint "24h" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/velocity-m1-130um> a lova:Outcome ;
+    rdfs:label "Median velocity, M1 BMDM, 130 μm MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 0.62 ;
+    qudt:unit "μm/min" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/live-cell-motility> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Median velocity" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202300823/velocity-m1-70um> a lova:Outcome ;
+    rdfs:label "Median velocity, M1 BMDM, 70 μm MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    qudt:numericValue 0.21 ;
+    qudt:unit "μm/min" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/live-cell-motility> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Median velocity" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202300823/ifn-gamma> a lova:Reagent ;
+    rdfs:label "IFN-γ" ;
+    owl:sameAs <https://www.uniprot.org/uniprot/P15260> ;
+    lova:concentration "20 ng/mL" ;
+    lova:reagentFunction "M1 macrophage activation stimulus" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Peprotech" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202300823/il-4> a lova:Reagent ;
+    rdfs:label "IL-4" ;
+    owl:sameAs <https://www.uniprot.org/uniprot/P42226> ;
+    lova:concentration "20 ng/mL" ;
+    lova:reagentFunction "M2 macrophage activation stimulus" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Peprotech" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202300823/k-peptide> a lova:Reagent ;
+    rdfs:label "K-peptide (Ac-FKGGERCG-NH2)" ;
+    lova:concentration "500 μM" ;
+    lova:reagentFunction "Factor XIII substrate for annealing" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "FKGGERCG" ;
+    lova:supplier "GenScript" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202300823/lps> a lova:Reagent ;
+    rdfs:label "Lipopolysaccharide (LPS)" ;
+    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_16412> ;
+    lova:concentration "20 ng/mL" ;
+    lova:reagentFunction "M1 macrophage activation stimulus" ;
+    lova:reagentRole "other" ;
+    lova:supplier "ThermoFisher" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202300823/m-csf> a lova:Reagent ;
+    rdfs:label "Macrophage colony-stimulating factor (M-CSF)" ;
+    owl:sameAs <https://www.uniprot.org/uniprot/P09603> ;
+    lova:concentration "15 ng/mL" ;
+    lova:reagentFunction "BMDM differentiation" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Peprotech" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202300823/mmp-peptide> a lova:Reagent ;
+    rdfs:label "MMP-sensitive di-thiol crosslinker peptide (Ac-GCRDGPQGIWGQDRCG-NH2)" ;
+    lova:concentration "12 mM" ;
+    lova:reagentFunction "Enzymatically degradable crosslink" ;
+    lova:reagentRole "crosslinker" ;
+    lova:sequence "GCRDGPQGIWGQDRCG" ;
+    lova:supplier "GenScript" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202300823/peg-vs> a lova:Reagent ;
+    rdfs:label "8-arm PEG Vinylsulfone" ;
+    lova:concentration "5% (w/v)" ;
+    lova:reagentFunction "Microgel matrix backbone" ;
+    lova:reagentRole "monomer" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202300823/q-peptide> a lova:Reagent ;
+    rdfs:label "Q-peptide (Ac-NQEQVSPLGGERCG-NH2)" ;
+    lova:concentration "500 μM" ;
+    lova:reagentFunction "Factor XIII substrate for annealing" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "NQEQVSPLGGERCG" ;
+    lova:supplier "GenScript" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202300823/rgd-peptide> a lova:Reagent ;
+    rdfs:label "RGD (Ac-RGDSPGERCG-NH2)" ;
+    lova:concentration "500 μM" ;
+    lova:reagentFunction "Cell adhesion" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "RGDSPGERCG" ;
+    lova:supplier "GenScript" .
+
+<https://lovamap.com/ontology#author/liu-yining> a foaf:Person ;
+    foaf:familyName "Liu" ;
+    foaf:givenName "Yining" ;
+    foaf:name "Yining Liu" ;
+    schema:affiliation "Duke University" .
+
+<https://lovamap.com/ontology#author/miley-tasman> a foaf:Person ;
+    foaf:familyName "Miley" ;
+    foaf:givenName "Tasman" ;
+    foaf:name "Tasman Miley" ;
+    schema:affiliation "Duke University" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" ;
+    schema:affiliation "Duke University" .
+
+<https://lovamap.com/ontology#author/suarez-arnedo-alejandra> a foaf:Person ;
+    foaf:familyName "Suarez-Arnedo" ;
+    foaf:givenName "Alejandra" ;
+    foaf:name "Alejandra Suarez-Arnedo" ;
+    schema:affiliation "Duke University" .
+
+<https://lovamap.com/ontology#author/xia-jingyi> a foaf:Person ;
+    foaf:familyName "Xia" ;
+    foaf:givenName "Jingyi" ;
+    foaf:name "Jingyi Xia" ;
+    schema:affiliation "Duke University" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202300823/factor-xiii> a lova:Reagent ;
+    rdfs:label "Factor XIII" ;
+    owl:sameAs <https://www.uniprot.org/uniprot/P00488> ;
+    lova:concentration "250 U/mL" ;
+    lova:reagentFunction "Transglutamination annealing of microgels into scaffold" ;
+    lova:reagentRole "enzyme" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202300823/hepes-buffer> a lova:Reagent ;
+    rdfs:label "HEPES buffer (0.3 M, pH 8.3)" ;
+    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_42334> ;
+    lova:concentration "0.3 M, pH 8.3" ;
+    lova:reagentFunction "Microgel purification and storage buffer" ;
+    lova:reagentRole "solvent" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202300823/mineral-oil> a lova:Reagent ;
+    rdfs:label "Heavy mineral oil" ;
+    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_754044> ;
+    lova:reagentFunction "Continuous oil phase for microfluidic emulsion" ;
+    lova:reagentRole "carrier oil" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202300823/thrombin> a lova:Reagent ;
+    rdfs:label "Thrombin" ;
+    owl:sameAs <https://www.uniprot.org/uniprot/P00734> ;
+    lova:concentration "200 U/mL" ;
+    lova:reagentFunction "Activates Factor XIII for annealing" ;
+    lova:reagentRole "enzyme" .
+
+<https://lovamap.com/ontology#author/riley-lindsay> a foaf:Person ;
+    owl:sameAs <https://orcid.org/0009-0003-0503-7136> ;
+    foaf:familyName "Riley" ;
+    foaf:givenName "Lindsay" ;
+    foaf:name "Lindsay Riley" ;
+    schema:affiliation "Duke University" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/lovamap-pore-analysis-lab> a lova:Experiment ;
+    rdfs:label "LOVAMAP 3D-pore volume analysis of lab-derived MAP scaffolds" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    lova:assayOrMethod "Confocal imaging + LOVAMAP" ;
+    lova:equipment "Nikon C2 confocal microscope" ;
+    lova:experimentCategory "Imaging/Computational" ;
+    lova:experimentType "3D-pore volume analysis" ;
+    lova:sampleSize 6 ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.202300823/map-130um>,
+        <https://lovamap.com/ontology#material/10.1002-adhm.202300823/map-40um>,
+        <https://lovamap.com/ontology#material/10.1002-adhm.202300823/map-70um> .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/lovamap-pore-analysis-simulated> a lova:Experiment ;
+    rdfs:label "LOVAMAP 3D-pore volume analysis of simulated MAP scaffolds" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    lova:assayOrMethod "LOVAMAP (SideFX Houdini simulation + medial axis segmentation)" ;
+    lova:experimentCategory "Computational" ;
+    lova:experimentType "3D-pore volume analysis" ;
+    lova:sampleSize 10 ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.202300823/map-130um>,
+        <https://lovamap.com/ontology#material/10.1002-adhm.202300823/map-40um>,
+        <https://lovamap.com/ontology#material/10.1002-adhm.202300823/map-70um> .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/rheology> a lova:Experiment ;
+    rdfs:label "Rheological characterization of MAP scaffolds (storage/loss modulus)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    lova:equipment "Anton-Parr MCR301 rotational rheometer" ;
+    lova:experimentCategory "Mechanical" ;
+    lova:experimentType "Rheology (frequency sweep)" ;
+    lova:frequency "10^-1 to 10^2 rad/s" ;
+    lova:sampleSize 6 ;
+    lova:strainRate "1% strain amplitude" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.202300823/map-130um>,
+        <https://lovamap.com/ontology#material/10.1002-adhm.202300823/map-40um>,
+        <https://lovamap.com/ontology#material/10.1002-adhm.202300823/map-70um> .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/void-fraction> a lova:Experiment ;
+    rdfs:label "Void fraction measurement in MAP scaffolds" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    lova:experimentCategory "Structural" ;
+    lova:experimentType "Void fraction" ;
+    lova:sampleSize 6 ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.202300823/map-130um>,
+        <https://lovamap.com/ontology#material/10.1002-adhm.202300823/map-40um>,
+        <https://lovamap.com/ontology#material/10.1002-adhm.202300823/map-70um> .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202300823/af647-maleimide> a lova:Reagent ;
+    rdfs:label "Alexa-Fluor 647-maleimide" ;
+    owl:sameAs <https://pubchem.ncbi.nlm.nih.gov/compound/177794446> ;
+    lova:concentration "10 μM" ;
+    lova:inchiKey "DWGFRMIASUGRKA-UHFFFAOYSA-N" ;
+    lova:reagentFunction "Fluorescent labeling of microgels" ;
+    lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202300823/cacl2> a lova:Reagent ;
+    rdfs:label "Calcium chloride (CaCl2)" ;
+    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_86158> ;
+    lova:concentration "10 mM (storage buffer); 20 mM (thrombin buffer)" ;
+    lova:inchiKey "UXVMQQNJUSDDNG-UHFFFAOYSA-L" ;
+    lova:reagentFunction "Cofactor for Factor XIII activity" ;
+    lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202300823/span-80> a lova:Reagent ;
+    rdfs:label "Span-80" ;
+    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_183688> ;
+    lova:concentration "1% v/v (pinching oil phase), 5% v/v (gelation/large microgel oil phase)" ;
+    lova:inchiKey "NWGKJDSIEKMTRX-AAZCQSIUSA-N" ;
+    lova:reagentFunction "Emulsion stabilization in water-in-oil microfluidics" ;
+    lova:reagentRole "surfactant" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202300823/triethylamine> a lova:Reagent ;
+    rdfs:label "Triethylamine" ;
+    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_35026> ;
+    lova:concentration "0.3 M buffer; 3% v/v in oil phase" ;
+    lova:inchiKey "ZMANZCXQSJIPKH-UHFFFAOYSA-N" ;
+    lova:reagentFunction "Buffer / catalyst for gelation" ;
+    lova:reagentRole "solvent" ;
+    lova:supplier "Sigma" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/flow-cytometry-double-positive> a lova:Experiment ;
+    rdfs:label "Flow cytometry double-positive subpopulation analysis of BMDM upon M1 activation in MAP scaffolds" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    lova:assayOrMethod "Flow cytometry contour plot analysis" ;
+    lova:cellSource "Murine bone marrow" ;
+    lova:cellType "BMDM" ;
+    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000235> ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Flow cytometry (co-expression)" ;
+    lova:sampleSize 3 ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.202300823/map-130um>,
+        <https://lovamap.com/ontology#material/10.1002-adhm.202300823/map-40um>,
+        <https://lovamap.com/ontology#material/10.1002-adhm.202300823/map-70um> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-adhm.202300823/microfluidic-pegvs-fxiii> a lova:FabricationMethod ;
+    rdfs:label "Microfluidic PEG-VS microgel generation with Factor XIII/Thrombin annealing" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    lova:annealingChemistry "Enzymatic (Factor XIII transglutamination with Thrombin activation)" ;
+    lova:annealingConditions "37°C, 30-45 minutes" ;
+    lova:chemistry "Michael-type addition (thiol-ene)" ;
+    lova:chemistryURI <http://purl.obolibrary.org/obo/RXNO_0000009> ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-adhm.202300823/af647-maleimide>,
+        <https://lovamap.com/ontology#reagent/10.1002-adhm.202300823/cacl2>,
+        <https://lovamap.com/ontology#reagent/10.1002-adhm.202300823/factor-xiii>,
+        <https://lovamap.com/ontology#reagent/10.1002-adhm.202300823/hepes-buffer>,
+        <https://lovamap.com/ontology#reagent/10.1002-adhm.202300823/k-peptide>,
+        <https://lovamap.com/ontology#reagent/10.1002-adhm.202300823/mineral-oil>,
+        <https://lovamap.com/ontology#reagent/10.1002-adhm.202300823/mmp-peptide>,
+        <https://lovamap.com/ontology#reagent/10.1002-adhm.202300823/peg-vs>,
+        <https://lovamap.com/ontology#reagent/10.1002-adhm.202300823/q-peptide>,
+        <https://lovamap.com/ontology#reagent/10.1002-adhm.202300823/rgd-peptide>,
+        <https://lovamap.com/ontology#reagent/10.1002-adhm.202300823/span-80>,
+        <https://lovamap.com/ontology#reagent/10.1002-adhm.202300823/thrombin>,
+        <https://lovamap.com/ontology#reagent/10.1002-adhm.202300823/triethylamine> ;
+    lova:manufacturingMethod "Microfluidic water-in-oil emulsion" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/live-cell-motility> a lova:Experiment ;
+    rdfs:label "Live cell imaging and motility tracking of BMDM in MAP scaffolds" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    lova:assayOrMethod "Manual tracking (Fiji ImageJ)" ;
+    lova:cellSource "Murine bone marrow" ;
+    lova:cellType "BMDM" ;
+    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000235> ;
+    lova:cultureDuration "20 hours post-activation" ;
+    lova:equipment "Olympus VivaView FL Incubator microscope" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell motility tracking" ;
+    lova:sampleSize 3 ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.202300823/map-130um>,
+        <https://lovamap.com/ontology#material/10.1002-adhm.202300823/map-40um>,
+        <https://lovamap.com/ontology#material/10.1002-adhm.202300823/map-70um> .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/elisa-cytokine> a lova:Experiment ;
+    rdfs:label "ELISA cytokine secretion of BMDM upon M1(LPS/IFNγ) activation in MAP scaffolds" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    lova:assayOrMethod "ELISA" ;
+    lova:assayURI <http://purl.obolibrary.org/obo/OBI_0000661> ;
+    lova:cellSource "Murine bone marrow" ;
+    lova:cellType "BMDM" ;
+    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000235> ;
+    lova:cultureDuration "24h" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cytokine secretion" ;
+    lova:sampleSize 3 ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.202300823/map-130um>,
+        <https://lovamap.com/ontology#material/10.1002-adhm.202300823/map-40um>,
+        <https://lovamap.com/ontology#material/10.1002-adhm.202300823/map-70um> .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/in-vivo-flow-cytometry> a lova:Experiment ;
+    rdfs:label "In vivo subcutaneous implantation flow cytometry analysis at day 7" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    lova:assayOrMethod "Flow cytometry (Cytek NL-3000)" ;
+    lova:assayURI <http://purl.obolibrary.org/obo/OBI_0000916> ;
+    lova:cellSource "C57BL/6 mouse subcutaneous implant" ;
+    lova:cellType "Infiltrating macrophages (CD11b+F4/80+)" ;
+    lova:cultureDuration "Day 7 post-implantation" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "In vivo flow cytometry" ;
+    lova:sampleSize 5 ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.202300823/map-130um>,
+        <https://lovamap.com/ontology#material/10.1002-adhm.202300823/map-40um>,
+        <https://lovamap.com/ontology#material/10.1002-adhm.202300823/map-70um> .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/flow-cytometry-markers> a lova:Experiment ;
+    rdfs:label "Flow cytometry phenotypic marker expression of BMDM upon M1(LPS/IFNγ) activation in MAP scaffolds" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    lova:assayOrMethod "Flow cytometry (Cytek NL-3000)" ;
+    lova:assayURI <http://purl.obolibrary.org/obo/OBI_0000916> ;
+    lova:cellSource "Murine bone marrow" ;
+    lova:cellType "BMDM" ;
+    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000235> ;
+    lova:cultureDuration "24h" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Flow cytometry" ;
+    lova:sampleSize 3 ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.202300823/map-130um>,
+        <https://lovamap.com/ontology#material/10.1002-adhm.202300823/map-40um>,
+        <https://lovamap.com/ontology#material/10.1002-adhm.202300823/map-70um> .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/nuclei-morphology> a lova:Experiment ;
+    rdfs:label "BMDM nuclear shape analysis in MAP scaffolds" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    lova:assayOrMethod "Fiji/ImageJ Z-stack projection analysis" ;
+    lova:cellSource "Murine bone marrow" ;
+    lova:cellType "BMDM" ;
+    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000235> ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Nuclei morphology" ;
+    lova:sampleSize 3 ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.202300823/map-130um>,
+        <https://lovamap.com/ontology#material/10.1002-adhm.202300823/map-40um>,
+        <https://lovamap.com/ontology#material/10.1002-adhm.202300823/map-70um> .
+
+<https://lovamap.com/ontology#material/10.1002-adhm.202300823/map-130um> a lova:Material ;
+    rdfs:label "130 μm PEG-VS MAP scaffold (unconfined)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adhm.202300823/microfluidic-pegvs-fxiii> ;
+    lova:packingConfiguration "Random packing (jammed)" ;
+    lova:particleMaterial "8-arm PEG Vinylsulfone" ;
+    lova:particleShape "Sphere" ;
+    lova:particleSizeMax 140.0 ;
+    lova:particleSizeMin 121.6 ;
+    lova:particleSizeUnit "μm" ;
+    lova:reportedPoreSize "median 3D-pore volume 96.2 pL (simulated), 71.8 pL (lab-derived)" ;
+    lova:reportedPorosity 0.28 ;
+    lova:sizeDistribution "Monodisperse (130.8 ± 9.2 μm)" .
+
+<https://lovamap.com/ontology#material/10.1002-adhm.202300823/map-40um> a lova:Material ;
+    rdfs:label "40 μm PEG-VS MAP scaffold (most confined)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adhm.202300823/microfluidic-pegvs-fxiii> ;
+    lova:packingConfiguration "Random packing (jammed)" ;
+    lova:particleMaterial "8-arm PEG Vinylsulfone" ;
+    lova:particleShape "Sphere" ;
+    lova:particleSizeMax 42.9 ;
+    lova:particleSizeMin 37.1 ;
+    lova:particleSizeUnit "μm" ;
+    lova:reportedPoreSize "median 3D-pore volume 3.2 pL (simulated), 4.2 pL (lab-derived)" ;
+    lova:reportedPorosity 0.27 ;
+    lova:sizeDistribution "Monodisperse (40 ± 2.9 μm)" .
+
+<https://lovamap.com/ontology#material/10.1002-adhm.202300823/map-70um> a lova:Material ;
+    rdfs:label "70 μm PEG-VS MAP scaffold (less confined)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adhm.202300823/microfluidic-pegvs-fxiii> ;
+    lova:packingConfiguration "Random packing (jammed)" ;
+    lova:particleMaterial "8-arm PEG Vinylsulfone" ;
+    lova:particleShape "Sphere" ;
+    lova:particleSizeMax 73.3 ;
+    lova:particleSizeMin 66.7 ;
+    lova:particleSizeUnit "μm" ;
+    lova:reportedPoreSize "median 3D-pore volume 15.8 pL (simulated), 11.5 pL (lab-derived)" ;
+    lova:reportedPorosity 0.34 ;
+    lova:sizeDistribution "Monodisperse (70 ± 3.3 μm)" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/cell-morphology> a lova:Experiment ;
+    rdfs:label "BMDM cell morphology analysis (IMARIS) in MAP scaffolds" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.202300823> ;
+    lova:assayOrMethod "IMARIS 3D confocal rendering" ;
+    lova:cellSource "Murine bone marrow" ;
+    lova:cellType "BMDM" ;
+    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000235> ;
+    lova:equipment "Nikon C2 confocal microscope, IMARIS x64 software" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell morphology" ;
+    lova:sampleSize 9 ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.202300823/map-130um>,
+        <https://lovamap.com/ontology#material/10.1002-adhm.202300823/map-40um>,
+        <https://lovamap.com/ontology#material/10.1002-adhm.202300823/map-70um> .
+
+<https://lovamap.com/ontology#agent/rdf_enrichment> a prov:SoftwareAgent ;
+    rdfs:label "rdf_enrichment pipeline" .
+
+<https://lovamap.com/ontology#paper/10.1002-adhm.202300823> a bibo:AcademicArticle ;
+    rdfs:label "Liu et al., 2023 — Spatial Confinement Modulates Macrophage Response in MAP Scaffolds" ;
+    dc1:bibliographicCitation "Liu et al., 2023" ;
+    dc1:creator <https://lovamap.com/ontology#author/liu-yining>,
+        <https://lovamap.com/ontology#author/miley-tasman>,
+        <https://lovamap.com/ontology#author/riley-lindsay>,
+        <https://lovamap.com/ontology#author/segura-tatiana>,
+        <https://lovamap.com/ontology#author/suarez-arnedo-alejandra>,
+        <https://lovamap.com/ontology#author/xia-jingyi> ;
+    dc1:date "2023"^^xsd:gYear ;
+    dc1:identifier "10.1002/adhm.202300823" ;
+    dc1:title "Spatial Confinement Modulates Macrophage Response in Microporous Annealed Particle (MAP) Scaffolds" ;
+    dc1:type "Research Article" ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/liu-yining> <https://lovamap.com/ontology#author/suarez-arnedo-alejandra> <https://lovamap.com/ontology#author/riley-lindsay> <https://lovamap.com/ontology#author/miley-tasman> <https://lovamap.com/ontology#author/xia-jingyi> <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    lova:focusMaterial "Microporous annealed particle (MAP) hydrogel scaffolds comprising 40, 70, and 130 μm diameter PEG-VS microgels, used to study macrophage spatial confinement" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/advanced-healthcare-materials> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CL_0000235> ;
+    rdf:predicate lova:cellTypeURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/elisa-cytokine> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/OBI_0000916> ;
+    rdf:predicate lova:assayURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/in-vivo-flow-cytometry> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/OBI_0000916> ;
+    rdf:predicate lova:assayURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/flow-cytometry-markers> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CL_0000235> ;
+    rdf:predicate lova:cellTypeURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/flow-cytometry-markers> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CL_0000235> ;
+    rdf:predicate lova:cellTypeURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/nuclei-morphology> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <https://www.uniprot.org/uniprot/P00734> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1002-adhm.202300823/thrombin> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <https://www.uniprot.org/uniprot/P15260> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1002-adhm.202300823/ifn-gamma> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <https://www.uniprot.org/uniprot/P09603> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1002-adhm.202300823/m-csf> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CHEBI_86158> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1002-adhm.202300823/cacl2> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object "DWGFRMIASUGRKA-UHFFFAOYSA-N" ;
+    rdf:predicate lova:inchiKey ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1002-adhm.202300823/af647-maleimide> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CL_0000235> ;
+    rdf:predicate lova:cellTypeURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/cell-morphology> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CHEBI_42334> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1002-adhm.202300823/hepes-buffer> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <https://www.uniprot.org/uniprot/P42226> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1002-adhm.202300823/il-4> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CHEBI_183688> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1002-adhm.202300823/span-80> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object "ZMANZCXQSJIPKH-UHFFFAOYSA-N" ;
+    rdf:predicate lova:inchiKey ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1002-adhm.202300823/triethylamine> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/OBI_0000661> ;
+    rdf:predicate lova:assayURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/elisa-cytokine> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CL_0000235> ;
+    rdf:predicate lova:cellTypeURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/live-cell-motility> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CHEBI_16412> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1002-adhm.202300823/lps> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CL_0000235> ;
+    rdf:predicate lova:cellTypeURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/flow-cytometry-double-positive> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object "NWGKJDSIEKMTRX-AAZCQSIUSA-N" ;
+    rdf:predicate lova:inchiKey ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1002-adhm.202300823/span-80> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CHEBI_35026> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1002-adhm.202300823/triethylamine> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CHEBI_754044> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1002-adhm.202300823/mineral-oil> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <https://www.uniprot.org/uniprot/P00488> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1002-adhm.202300823/factor-xiii> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <https://pubchem.ncbi.nlm.nih.gov/compound/177794446> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1002-adhm.202300823/af647-maleimide> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/OBI_0001032> ;
+    rdf:predicate lova:assayURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1002-adhm.202300823/in-vivo-histology> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object "UXVMQQNJUSDDNG-UHFFFAOYSA-L" ;
+    rdf:predicate lova:inchiKey ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1002-adhm.202300823/cacl2> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/RXNO_0000009> ;
+    rdf:predicate lova:chemistryURI ;
+    rdf:subject <https://lovamap.com/ontology#fabrication-method/10.1002-adhm.202300823/microfluidic-pegvs-fxiii> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <https://orcid.org/0009-0003-0503-7136> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#author/riley-lindsay> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+

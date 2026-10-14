@@ -1,0 +1,560 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1016-j.jconrel.2011.01.028> a bibo:AcademicArticle ;
+    rdfs:label "Lei et al., 2011 — HA and Fibrin Hydrogels with CnE DNA/PEI Polyplexes" ;
+    dc:title "Hyaluronic acid and fibrin hydrogels with concentrated DNA/PEI polyplexes for local gene delivery" ;
+    dc:identifier "10.1016/j.jconrel.2011.01.028" ;
+    dc:date "2011"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/journal-of-controlled-release> ;
+    dc:creator <https://lovamap.com/ontology#author/lei-yuguo> ,
+               <https://lovamap.com/ontology#author/rahim-maha> ,
+               <https://lovamap.com/ontology#author/ng-quinn> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/lei-yuguo>
+                      <https://lovamap.com/ontology#author/rahim-maha>
+                      <https://lovamap.com/ontology#author/ng-quinn>
+                      <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    dc:bibliographicCitation "Lei et al., 2011" ;
+    lova:focusMaterial "Hyaluronic acid and fibrin hydrogels loaded with concentrated, unaggregated DNA/PEI polyplexes via caged nanoparticle encapsulation (CnE) for local gene delivery" .
+
+<https://lovamap.com/ontology#author/lei-yuguo> a foaf:Person ;
+    foaf:familyName "Lei" ;
+    foaf:givenName "Yuguo" ;
+    foaf:name "Yuguo Lei" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California, Los Angeles, 420 Westwood Plaza, BH5531, Los Angeles, CA 90095, USA" .
+
+<https://lovamap.com/ontology#author/rahim-maha> a foaf:Person ;
+    foaf:familyName "Rahim" ;
+    foaf:givenName "Maha" ;
+    foaf:name "Maha Rahim" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California, Los Angeles, 420 Westwood Plaza, BH5531, Los Angeles, CA 90095, USA" .
+
+<https://lovamap.com/ontology#author/ng-quinn> a foaf:Person ;
+    foaf:familyName "Ng" ;
+    foaf:givenName "Quinn K. T." ;
+    foaf:name "Quinn K. T. Ng" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California, Los Angeles, 420 Westwood Plaza, BH5531, Los Angeles, CA 90095, USA" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California, Los Angeles, 420 Westwood Plaza, BH5531, Los Angeles, CA 90095, USA" .
+
+<https://lovamap.com/ontology#journal/journal-of-controlled-release> a bibo:Journal ;
+    dc:title "Journal of Controlled Release" ;
+    bibo:issn "0168-3659" .
+
+<https://lovamap.com/ontology#material/10.1016-j.jconrel.2011.01.028/ha-hydrogel> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2011.01.028> ;
+    rdfs:label "Acrylated hyaluronic acid (HA-AC) hydrogel with DNA/PEI polyplexes" ;
+    lova:particleMaterial "Acrylated hyaluronic acid (HA-AC), 60 kDa" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.jconrel.2011.01.028/cne-ha> ;
+    lova:scaffoldDimensions "100 μL gel" .
+
+<https://lovamap.com/ontology#material/10.1016-j.jconrel.2011.01.028/fibrin-hydrogel-5mgml> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2011.01.028> ;
+    rdfs:label "Fibrin hydrogel (5 mg/mL fibrinogen) with DNA/PEI polyplexes" ;
+    lova:particleMaterial "Fibrin (fibrinogen-thrombin)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.jconrel.2011.01.028/cne-fibrin> ;
+    lova:scaffoldDimensions "100 μL gel" .
+
+<https://lovamap.com/ontology#material/10.1016-j.jconrel.2011.01.028/fibrin-hydrogel-15mgml> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2011.01.028> ;
+    rdfs:label "Fibrin hydrogel (15 mg/mL fibrinogen) with DNA/PEI polyplexes" ;
+    lova:particleMaterial "Fibrin (fibrinogen-thrombin)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.jconrel.2011.01.028/cne-fibrin> ;
+    lova:scaffoldDimensions "100 μL gel" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.jconrel.2011.01.028/ha-ac-synthesis> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2011.01.028> ;
+    rdfs:label "Acrylated hyaluronic acid (HA-AC) chemical synthesis" ;
+    lova:chemistry "Carbodiimide-mediated amidation followed by N-hydroxysuccinimide ester acrylation" ;
+    lova:manufacturingMethod "Chemical modification via dialysis purification" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2011.01.028/sodium-hyaluronan> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2011.01.028/adh> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2011.01.028/edc> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2011.01.028/n-acryloxysuccinimide> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2011.01.028/tnbsa> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.jconrel.2011.01.028/cne-ha> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2011.01.028> ;
+    rdfs:label "Caged nanoparticle encapsulation (CnE) of DNA/PEI polyplexes into HA-AC hydrogel" ;
+    lova:chemistry "Michael-type addition (thiol-acrylate)" ;
+    lova:manufacturingMethod "Lyophilization of polyplexes with sucrose/agarose, reconstitution in HA-AC/TEOA solution with DTT crosslinker, gelation at 37°C for 30 min" ;
+    lova:annealingChemistry "Michael addition crosslinking" ;
+    lova:annealingConditions "37°C, 30 min" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2011.01.028/pei-25kda> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2011.01.028/pvegf> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2011.01.028/pbgal> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2011.01.028/sucrose> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2011.01.028/agarose> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2011.01.028/dtt> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2011.01.028/teoa> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.jconrel.2011.01.028/cne-fibrin> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2011.01.028> ;
+    rdfs:label "Caged nanoparticle encapsulation (CnE) of DNA/PEI polyplexes into fibrin hydrogel" ;
+    lova:chemistry "Enzymatic fibrin polymerization" ;
+    lova:manufacturingMethod "Lyophilization of polyplexes with sucrose/agarose, reconstitution with fibrinogen solution, thrombin-initiated gelation at 37°C for 20 min" ;
+    lova:annealingChemistry "Thrombin-catalyzed fibrinogen to fibrin polymerization" ;
+    lova:annealingConditions "37°C, 20 min, thrombin 2 U/mL" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2011.01.028/fibrinogen> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2011.01.028/thrombin> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2011.01.028/pei-25kda> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2011.01.028/pvegf> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2011.01.028/pbgal> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2011.01.028/sucrose> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2011.01.028/agarose> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.jconrel.2011.01.028/regular-encapsulation> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2011.01.028> ;
+    rdfs:label "Regular (direct) encapsulation of DNA/PEI polyplexes without CnE" ;
+    lova:manufacturingMethod "Direct mixing of DNA and PEI with hydrogel precursor solution before gelation" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2011.01.028/pei-25kda> .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2011.01.028/fibrinogen> a lova:Reagent ;
+    rdfs:label "Human fibrinogen" ;
+    lova:reagentRole "monomer" ;
+    lova:concentration "5 mg/mL" ;
+    lova:supplier "Enzyme Research Laboratories" ;
+    lova:reagentFunction "Precursor for fibrin hydrogel formation" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2011.01.028/thrombin> a lova:Reagent ;
+    rdfs:label "Bovine plasma thrombin" ;
+    lova:reagentRole "enzyme" ;
+    lova:concentration "2 U/mL" ;
+    lova:supplier "Sigma" ;
+    lova:reagentFunction "Catalyzes fibrinogen polymerization to form fibrin hydrogel" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2011.01.028/pei-25kda> a lova:Reagent ;
+    rdfs:label "Linear poly(ethylene imine) (25 kDa, PEI)" ;
+    lova:reagentRole "other" ;
+    lova:molecularWeight "25 kDa" ;
+    lova:supplier "Polysciences" ;
+    lova:reagentFunction "Cationic polymer for DNA condensation to form polyplexes" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2011.01.028/pvegf> a lova:Reagent ;
+    rdfs:label "Plasmid encoding vascular endothelial growth factor (pVEGF)" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Gene encoding VEGF for angiogenic gene delivery" ;
+    rdfs:comment "pVEGF has VEGF gene inserted in a pcD3.1 vector with CMV promoter; gift from Lonnie Shea's laboratory, Northwestern University" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2011.01.028/pbgal> a lova:Reagent ;
+    rdfs:label "Plasmid encoding beta-galactosidase (pβgal)" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Reporter gene for gene transfer assay" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2011.01.028/sodium-hyaluronan> a lova:Reagent ;
+    rdfs:label "Sodium hyaluronan (HA)" ;
+    lova:reagentRole "monomer" ;
+    lova:molecularWeight "60 kDa" ;
+    lova:supplier "Genzyme Corporation" ;
+    lova:reagentFunction "Base polymer for HA hydrogel scaffold" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2011.01.028/adh> a lova:Reagent ;
+    rdfs:label "Adipic dihydrazide (ADH)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:concentration "18.0 g" ;
+    lova:reagentFunction "Modifies HA carboxyl groups for subsequent acrylation" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2011.01.028/edc> a lova:Reagent ;
+    rdfs:label "1-ethyl-3-[3-dimethylaminopropyl] carbodiimide hydrochloride (EDC)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "2.0 g" ;
+    lova:reagentFunction "Carbodiimide coupling agent for HA-ADH conjugation" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2011.01.028/n-acryloxysuccinimide> a lova:Reagent ;
+    rdfs:label "N-acryloxysuccinimide" ;
+    lova:reagentRole "other" ;
+    lova:concentration "0.75 g" ;
+    lova:reagentFunction "Acrylation agent for HA-ADH to yield HA-AC" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2011.01.028/tnbsa> a lova:Reagent ;
+    rdfs:label "2,4,6-trinitrobenzene sulfonic acid (TNBSA)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Thermo Scientific" ;
+    lova:reagentFunction "Assay for quantification of primary amines/acrylation" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2011.01.028/sucrose> a lova:Reagent ;
+    rdfs:label "Sucrose (Ultra pure)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "35 mg (0.10 mmol) in 3.5 mL water" ;
+    lova:supplier "MP Biomedicals" ;
+    lova:reagentFunction "Protects DNA/PEI polyplexes from aggregation and inactivation during lyophilization" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2011.01.028/agarose> a lova:Reagent ;
+    rdfs:label "UltraPure Agarose" ;
+    lova:reagentRole "other" ;
+    lova:concentration "1.0 mg in 1.5 mL water" ;
+    lova:supplier "Invitrogen" ;
+    lova:molecularWeight "Tm=34.5 to 37.5 °C" ;
+    lova:reagentFunction "Prevents polyplex aggregation during hydrogel gelation via caging effect and increased viscosity" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2011.01.028/dtt> a lova:Reagent ;
+    rdfs:label "Dithiothreitol (DTT)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:reagentFunction "Crosslinker for HA-AC Michael addition gelation" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2011.01.028/teoa> a lova:Reagent ;
+    rdfs:label "Triethanolamine (TEOA)" ;
+    lova:reagentRole "solvent" ;
+    lova:concentration "0.3 M, pH 8.0" ;
+    lova:reagentFunction "Buffer for HA-AC reconstitution and gelation" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2011.01.028/ethidium-bromide> a lova:Reagent ;
+    rdfs:label "Ethidium bromide" ;
+    lova:reagentRole "other" ;
+    lova:concentration "12 μM" ;
+    lova:reagentFunction "Staining of DNA for fluorescence visualization" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2011.01.028/hoechst> a lova:Reagent ;
+    rdfs:label "HOECHST dye (H33258)" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Quantification of released DNA" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2011.01.028/x-gal> a lova:Reagent ;
+    rdfs:label "X-Gal" ;
+    lova:reagentRole "other" ;
+    lova:concentration "1 mg/mL" ;
+    lova:supplier "Gold Biotechnology" ;
+    lova:reagentFunction "Substrate for beta-galactosidase histochemical staining" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2011.01.028/fitc-dextran> a lova:Reagent ;
+    rdfs:label "FITC-dextran" ;
+    lova:reagentRole "other" ;
+    lova:concentration "0.5 mg/mL in PBS" ;
+    lova:supplier "Sigma" ;
+    lova:reagentFunction "Vascular perfusion marker for fluorescent imaging of CAM vessels" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2011.01.028/dls-aggregation> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2011.01.028> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.jconrel.2011.01.028/ha-hydrogel> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.jconrel.2011.01.028/fibrin-hydrogel-5mgml> ;
+    rdfs:label "DLS measurement of DNA/PEI polyplex aggregation in water, 1% HA, and fibrin solution" ;
+    lova:experimentCategory "Physicochemical" ;
+    lova:experimentType "Particle size measurement" ;
+    lova:assayOrMethod "Dynamic light scattering (DLS)" ;
+    lova:medium "Water, 1% HA solution, or 5 mg/mL fibrinogen solution" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2011.01.028/size-water-5ug> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2011.01.028/dls-aggregation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2011.01.028> ;
+    rdfs:label "Polyplex diameter, 5 μg DNA in water (N/P=15)" ;
+    lova:measurementType "Particle diameter" ;
+    lova:measurementCategory "Physicochemical" ;
+    lova:valueString "50-100 nm" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2011.01.028/size-ha-5ug> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2011.01.028/dls-aggregation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2011.01.028> ;
+    rdfs:label "Polyplex diameter, 5 μg DNA in 1% HA (N/P=15)" ;
+    lova:measurementType "Particle diameter" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 1.0 ;
+    qudt:unit "μm" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2011.01.028/size-ha-50ug> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2011.01.028/dls-aggregation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2011.01.028> ;
+    rdfs:label "Polyplex aggregation, 50 μg DNA in 1% HA (N/P=15)" ;
+    lova:measurementType "Particle aggregation" ;
+    lova:measurementCategory "Physicochemical" ;
+    lova:valueString "Severe aggregation with precipitate formation, particles disappeared from solution" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2011.01.028/size-fibrin-5ug> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2011.01.028/dls-aggregation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2011.01.028> ;
+    rdfs:label "Polyplex diameter, 5 μg DNA in 5 mg/mL fibrin solution (N/P=15)" ;
+    lova:measurementType "Particle diameter" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 4.1 ;
+    qudt:unit "μm" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2011.01.028/size-fibrin-50ug> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2011.01.028/dls-aggregation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2011.01.028> ;
+    rdfs:label "Polyplex diameter, 50 μg DNA in 5 mg/mL fibrin solution (N/P=15)" ;
+    lova:measurementType "Particle diameter" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 5.5 ;
+    qudt:unit "μm" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.jconrel.2011.01.028/size-water-vs-ha> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2011.01.028> ;
+    rdfs:label "Polyplex diameter higher in 1% HA vs water (5 μg DNA)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2011.01.028/size-ha-5ug> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2011.01.028/size-water-5ug> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.jconrel.2011.01.028/size-water-vs-fibrin> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2011.01.028> ;
+    rdfs:label "Polyplex diameter higher in fibrin solution vs water (5 μg DNA)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2011.01.028/size-fibrin-5ug> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2011.01.028/size-water-5ug> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2011.01.028/polyplex-distribution-imaging> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2011.01.028> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.jconrel.2011.01.028/ha-hydrogel> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.jconrel.2011.01.028/fibrin-hydrogel-5mgml> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.jconrel.2011.01.028/fibrin-hydrogel-15mgml> ;
+    rdfs:label "Fluorescence and confocal microscopy of polyplex distribution in HA and fibrin hydrogels via CnE" ;
+    lova:experimentCategory "Imaging" ;
+    lova:experimentType "Polyplex distribution visualization" ;
+    lova:assayOrMethod "Fluorescence microscopy (ethidium bromide staining) and confocal microscopy" ;
+    lova:equipment "Observer Z1, Zeiss; Leica TCS SP MP confocal microscope" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2011.01.028/cne-ha-no-aggregation> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2011.01.028/polyplex-distribution-imaging> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2011.01.028> ;
+    rdfs:label "Up to 300 μg DNA loaded into 100 μL HA hydrogel via CnE without aggregation" ;
+    lova:measurementType "DNA loading capacity" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 300.0 ;
+    qudt:unit "μg DNA per 100 μL gel" ;
+    lova:valueString "Unaggregated nanoparticles distributed throughout hydrogel, with some microdomains of dense polyplex concentration" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2011.01.028/regular-encapsulation-ha-clot> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2011.01.028/polyplex-distribution-imaging> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2011.01.028> ;
+    rdfs:label "Polyplexes (100 μg DNA) aggregated into one large clot in HA hydrogel via regular encapsulation" ;
+    lova:measurementType "Polyplex aggregation" ;
+    lova:measurementCategory "Physicochemical" ;
+    lova:valueString "One large aggregated clot observed" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2011.01.028/regular-encapsulation-fibrin-aggregates> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2011.01.028/polyplex-distribution-imaging> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2011.01.028> ;
+    rdfs:label "Large polyplex aggregates (100 μg DNA) in fibrin hydrogel via regular encapsulation" ;
+    lova:measurementType "Polyplex aggregation" ;
+    lova:measurementCategory "Physicochemical" ;
+    lova:valueString "Large aggregates found" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2011.01.028/dna-release-ha> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2011.01.028> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.jconrel.2011.01.028/ha-hydrogel> ;
+    rdfs:label "DNA release from HA hydrogel loaded through CnE (100 μg DNA, N/P=15)" ;
+    lova:experimentCategory "Release kinetics" ;
+    lova:experimentType "DNA release" ;
+    lova:assayOrMethod "HOECHST dye quantification" ;
+    lova:temperature "37°C" ;
+    lova:pH "7.4" ;
+    lova:medium "PBS" ;
+    lova:cultureDuration "3 days" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2011.01.028/dna-release-ha-3days> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2011.01.028/dna-release-ha> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2011.01.028> ;
+    rdfs:label "DNA release from HA hydrogel, 3-day cumulative" ;
+    lova:measurementType "Cumulative DNA release" ;
+    lova:measurementCategory "Release kinetics" ;
+    lova:valueString "<1% DNA released" ;
+    lova:timePoint "3 days" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2011.01.028/dna-release-fibrin> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2011.01.028> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.jconrel.2011.01.028/fibrin-hydrogel-5mgml> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.jconrel.2011.01.028/fibrin-hydrogel-15mgml> ;
+    rdfs:label "DNA release from fibrin hydrogels loaded through CnE (50 μg DNA, N/P=15)" ;
+    lova:experimentCategory "Release kinetics" ;
+    lova:experimentType "DNA release" ;
+    lova:assayOrMethod "HOECHST dye quantification" ;
+    lova:temperature "37°C" ;
+    lova:pH "7.4" ;
+    lova:medium "PBS" ;
+    lova:cultureDuration "3 days" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2011.01.028/dna-release-fibrin-3days> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2011.01.028/dna-release-fibrin> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2011.01.028> ;
+    rdfs:label "DNA release from fibrin hydrogels (5 and 15 mg/mL), 3-day cumulative" ;
+    lova:measurementType "Cumulative DNA release" ;
+    lova:measurementCategory "Release kinetics" ;
+    lova:valueString "No DNA released" ;
+    lova:timePoint "3 days" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2011.01.028/cam-gene-transfer-ha> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2011.01.028> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.jconrel.2011.01.028/ha-hydrogel> ;
+    rdfs:label "CAM assay gene transfer with HA hydrogel loaded with pβgal or pVEGF (100 μg DNA, N/P=15)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Gene transfer (in vivo)" ;
+    lova:assayOrMethod "X-gal staining, chorioallantoic membrane (CAM) assay" ;
+    lova:cellSource "Fertilized chicken egg CAM" ;
+    lova:cultureDuration "3 days" ;
+    lova:temperature "37-38°C" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2011.01.028/ha-pbgal-xgal> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2011.01.028/cam-gene-transfer-ha> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2011.01.028> ;
+    rdfs:label "Extensive blue X-gal staining with HA hydrogel loaded with pβgal (100 μg)" ;
+    lova:measurementType "Beta-galactosidase gene expression" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Extensive blue X-gal staining indicating gene expression" ;
+    lova:timePoint "3 days" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2011.01.028/ha-pvegf-xgal> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2011.01.028/cam-gene-transfer-ha> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2011.01.028> ;
+    rdfs:label "No X-gal staining with HA hydrogel loaded with pVEGF (100 μg)" ;
+    lova:measurementType "Beta-galactosidase gene expression" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "No blue staining (negative control, no reporter gene)" ;
+    lova:timePoint "3 days" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2011.01.028/cam-angiogenesis-ha> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2011.01.028> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.jconrel.2011.01.028/ha-hydrogel> ;
+    rdfs:label "CAM assay angiogenesis with HA hydrogel loaded with pVEGF (100 or 300 μg, N/P=15)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Angiogenesis assay" ;
+    lova:assayOrMethod "FITC-dextran perfusion, chorioallantoic membrane (CAM) assay" ;
+    lova:cellSource "Fertilized chicken egg CAM" ;
+    lova:cultureDuration "3 days" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2011.01.028/ha-novessel-nodna> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2011.01.028/cam-angiogenesis-ha> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2011.01.028> ;
+    rdfs:label "No enhanced blood vessel formation with HA hydrogel, no DNA" ;
+    lova:measurementType "Blood vessel formation" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "No enhanced vessel formation" ;
+    lova:timePoint "3 days" ;
+    lova:comparisonGroup "No DNA" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2011.01.028/ha-angiogenesis-pvegf> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2011.01.028/cam-angiogenesis-ha> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2011.01.028> ;
+    rdfs:label "Enhanced blood vessel formation with HA hydrogel, pVEGF (100 or 300 μg)" ;
+    lova:measurementType "Blood vessel formation" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Enhanced hyperbranched neovessels at gel area and radial neovessels around gel" ;
+    lova:timePoint "3 days" ;
+    lova:comparisonGroup "No DNA / pβgal" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.jconrel.2011.01.028/ha-vegf-vs-nodna> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2011.01.028> ;
+    rdfs:label "Blood vessel formation higher with pVEGF-loaded HA hydrogel vs no DNA control" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2011.01.028/ha-angiogenesis-pvegf> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2011.01.028/ha-novessel-nodna> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2011.01.028/cam-gene-transfer-fibrin> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2011.01.028> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.jconrel.2011.01.028/fibrin-hydrogel-5mgml> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.jconrel.2011.01.028/fibrin-hydrogel-15mgml> ;
+    rdfs:label "CAM assay gene transfer with fibrin hydrogels loaded with pβgal (50 μg, N/P=15)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Gene transfer (in vivo)" ;
+    lova:assayOrMethod "X-gal staining, chorioallantoic membrane (CAM) assay" ;
+    lova:cellSource "Fertilized chicken egg CAM" ;
+    lova:cultureDuration "3 days" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2011.01.028/fibrin-xgal-nodna> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2011.01.028/cam-gene-transfer-fibrin> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2011.01.028> ;
+    rdfs:label "Stained nuclei count, fibrin hydrogel, no DNA" ;
+    lova:measurementType "X-gal stained nuclei count" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.0 ;
+    qudt:unit "nuclei per field" ;
+    lova:timePoint "3 days" ;
+    lova:comparisonGroup "No DNA" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2011.01.028/fibrin-xgal-5mgml> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2011.01.028/cam-gene-transfer-fibrin> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2011.01.028> ;
+    rdfs:label "Stained nuclei count, 5 mg/mL fibrin hydrogel with pβgal" ;
+    lova:measurementType "X-gal stained nuclei count" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 9.0 ;
+    qudt:unit "nuclei per field" ;
+    lova:timePoint "3 days" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2011.01.028/fibrin-xgal-15mgml> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2011.01.028/cam-gene-transfer-fibrin> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2011.01.028> ;
+    rdfs:label "Stained nuclei count, 15 mg/mL fibrin hydrogel with pβgal" ;
+    lova:measurementType "X-gal stained nuclei count" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 11.0 ;
+    qudt:unit "nuclei per field" ;
+    lova:timePoint "3 days" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.jconrel.2011.01.028/fibrin-5-vs-15mgml-nuclei> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2011.01.028> ;
+    rdfs:label "No significant difference in stained nuclei between 5 and 15 mg/mL fibrin hydrogels over larger area" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2011.01.028/fibrin-xgal-5mgml> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2011.01.028/fibrin-xgal-15mgml> ;
+    lova:direction "no difference" ;
+    lova:isSignificant false .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2011.01.028/cam-angiogenesis-fibrin> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2011.01.028> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.jconrel.2011.01.028/fibrin-hydrogel-5mgml> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.jconrel.2011.01.028/fibrin-hydrogel-15mgml> ;
+    rdfs:label "CAM assay angiogenesis with fibrin hydrogels loaded with pVEGF (50 μg, N/P=15)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Angiogenesis assay" ;
+    lova:assayOrMethod "FITC-dextran perfusion, chorioallantoic membrane (CAM) assay" ;
+    lova:cellSource "Fertilized chicken egg CAM" ;
+    lova:cultureDuration "3 days" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2011.01.028/fibrin-novessel-nodna> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2011.01.028/cam-angiogenesis-fibrin> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2011.01.028> ;
+    rdfs:label "No enhanced blood vessel formation with fibrin hydrogel, no DNA" ;
+    lova:measurementType "Blood vessel formation" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "No enhanced vessel formation" ;
+    lova:timePoint "3 days" ;
+    lova:comparisonGroup "No DNA" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2011.01.028/fibrin-angiogenesis-pvegf> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2011.01.028/cam-angiogenesis-fibrin> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2011.01.028> ;
+    rdfs:label "Enhanced blood vessel formation with fibrin hydrogel (5 or 15 mg/mL), pVEGF" ;
+    lova:measurementType "Blood vessel formation" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Enhanced hyperbranched neovessels at gel area and radial neovessels around gel" ;
+    lova:timePoint "3 days" ;
+    lova:comparisonGroup "No DNA" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.jconrel.2011.01.028/fibrin-vegf-vs-nodna> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2011.01.028> ;
+    rdfs:label "Blood vessel formation higher with pVEGF-loaded fibrin hydrogel vs no DNA control" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2011.01.028/fibrin-angiogenesis-pvegf> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2011.01.028/fibrin-novessel-nodna> ;
+    lova:direction "higher" .

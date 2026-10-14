@@ -1,0 +1,550 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1186-s13036-017-0055-6> a bibo:AcademicArticle ;
+    rdfs:label "Zhu et al., 2017 — VMC Self-Organization in HA Hydrogels" ;
+    dc:title "Directing three-dimensional multicellular morphogenesis by self-organization of vascular mesenchymal cells in hyaluronic acid hydrogels" ;
+    dc:identifier "10.1186/s13036-017-0055-6" ;
+    dc:date "2017"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/journal-of-biological-engineering> ;
+    dc:creator <https://lovamap.com/ontology#author/zhu-xiaolu> ,
+               <https://lovamap.com/ontology#author/gojgini-shiva> ,
+               <https://lovamap.com/ontology#author/chen-ting-hsuan> ,
+               <https://lovamap.com/ontology#author/fei-peng> ,
+               <https://lovamap.com/ontology#author/dong-siyan> ,
+               <https://lovamap.com/ontology#author/ho-chih-ming> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/zhu-xiaolu>
+                       <https://lovamap.com/ontology#author/gojgini-shiva>
+                       <https://lovamap.com/ontology#author/chen-ting-hsuan>
+                       <https://lovamap.com/ontology#author/fei-peng>
+                       <https://lovamap.com/ontology#author/dong-siyan>
+                       <https://lovamap.com/ontology#author/ho-chih-ming>
+                       <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    dc:bibliographicCitation "Zhu et al., 2017" ;
+    lova:focusMaterial "VMC-laden modified hyaluronic acid (HA) hydrogel system for 3D self-organized multicellular morphogenesis" .
+
+<https://lovamap.com/ontology#author/zhu-xiaolu> a foaf:Person ;
+    foaf:familyName "Zhu" ;
+    foaf:givenName "Xiaolu" ;
+    foaf:name "Xiaolu Zhu" .
+
+<https://lovamap.com/ontology#author/gojgini-shiva> a foaf:Person ;
+    foaf:familyName "Gojgini" ;
+    foaf:givenName "Shiva" ;
+    foaf:name "Shiva Gojgini" .
+
+<https://lovamap.com/ontology#author/chen-ting-hsuan> a foaf:Person ;
+    foaf:familyName "Chen" ;
+    foaf:givenName "Ting-Hsuan" ;
+    foaf:name "Ting-Hsuan Chen" .
+
+<https://lovamap.com/ontology#author/fei-peng> a foaf:Person ;
+    foaf:familyName "Fei" ;
+    foaf:givenName "Peng" ;
+    foaf:name "Peng Fei" .
+
+<https://lovamap.com/ontology#author/dong-siyan> a foaf:Person ;
+    foaf:familyName "Dong" ;
+    foaf:givenName "Siyan" ;
+    foaf:name "Siyan Dong" .
+
+<https://lovamap.com/ontology#author/ho-chih-ming> a foaf:Person ;
+    foaf:familyName "Ho" ;
+    foaf:givenName "Chih-Ming" ;
+    foaf:name "Chih-Ming Ho" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" .
+
+<https://lovamap.com/ontology#journal/journal-of-biological-engineering> a bibo:Journal ;
+    dc:title "Journal of Biological Engineering" ;
+    bibo:issn "1754-1611" .
+
+<https://lovamap.com/ontology#material/10.1186-s13036-017-0055-6/ha-hydrogel-control> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1186-s13036-017-0055-6> ;
+    rdfs:label "VMC-HA hydrogel, control (thin network structure); 3.5% HA, 100 μM RGD, r=0.5" ;
+    lova:particleMaterial "Hyaluronic acid (HA), acrylated (HA-AC)" ;
+    lova:stiffnessQualitative "Soft hydrogel, highly elastic (loss tangent < 0.05)" ;
+    lova:scaffoldDimensions "8 mm diameter (rheology sample)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1186-s13036-017-0055-6/michael-addition-ha> .
+
+<https://lovamap.com/ontology#material/10.1186-s13036-017-0055-6/ha-hydrogel-noggin> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1186-s13036-017-0055-6> ;
+    rdfs:label "VMC-HA hydrogel + Noggin (3D thicker network structure); 3.5% HA, 100 μM RGD" ;
+    lova:particleMaterial "Hyaluronic acid (HA), acrylated (HA-AC)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1186-s13036-017-0055-6/michael-addition-ha> .
+
+<https://lovamap.com/ontology#material/10.1186-s13036-017-0055-6/ha-hydrogel-bmp2> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1186-s13036-017-0055-6> ;
+    rdfs:label "VMC-HA hydrogel + BMP-2 (3D spheroid structure)" ;
+    lova:particleMaterial "Hyaluronic acid (HA), acrylated (HA-AC)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1186-s13036-017-0055-6/michael-addition-ha> .
+
+<https://lovamap.com/ontology#material/10.1186-s13036-017-0055-6/ha-hydrogel-noggin-bmp2> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1186-s13036-017-0055-6> ;
+    rdfs:label "VMC-HA hydrogel + Noggin + BMP-2 (combined treatment); 3.5% HA, 100 μM RGD, r=0.55" ;
+    lova:particleMaterial "Hyaluronic acid (HA), acrylated (HA-AC)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1186-s13036-017-0055-6/michael-addition-ha> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1186-s13036-017-0055-6/michael-addition-ha> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1186-s13036-017-0055-6> ;
+    rdfs:label "Two-step HA-AC synthesis and Michael-addition VMC-laden hydrogel formation" ;
+    lova:chemistry "Michael Addition (thiol-acrylate)" ;
+    lova:manufacturingMethod "Chemical acrylation of HA, pre-functionalization with RGD peptide, crosslinking with MMP-degradable peptide, casting between sigmacoted glass slides for gelation" ;
+    lova:annealingConditions "30 min at 37°C for gelation" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1186-s13036-017-0055-6/ha> ,
+                     <https://lovamap.com/ontology#reagent/10.1186-s13036-017-0055-6/adh> ,
+                     <https://lovamap.com/ontology#reagent/10.1186-s13036-017-0055-6/edc> ,
+                     <https://lovamap.com/ontology#reagent/10.1186-s13036-017-0055-6/ha-adh> ,
+                     <https://lovamap.com/ontology#reagent/10.1186-s13036-017-0055-6/nhs-ac> ,
+                     <https://lovamap.com/ontology#reagent/10.1186-s13036-017-0055-6/ha-ac> ,
+                     <https://lovamap.com/ontology#reagent/10.1186-s13036-017-0055-6/rgd-peptide> ,
+                     <https://lovamap.com/ontology#reagent/10.1186-s13036-017-0055-6/mmp-crosslinker> ,
+                     <https://lovamap.com/ontology#reagent/10.1186-s13036-017-0055-6/teoa-buffer> ,
+                     <https://lovamap.com/ontology#reagent/10.1186-s13036-017-0055-6/noggin> ,
+                     <https://lovamap.com/ontology#reagent/10.1186-s13036-017-0055-6/bmp2> ,
+                     <https://lovamap.com/ontology#reagent/10.1186-s13036-017-0055-6/dapi> ,
+                     <https://lovamap.com/ontology#reagent/10.1186-s13036-017-0055-6/phalloidin> ,
+                     <https://lovamap.com/ontology#reagent/10.1186-s13036-017-0055-6/pfa> ,
+                     <https://lovamap.com/ontology#reagent/10.1186-s13036-017-0055-6/bsa> ,
+                     <https://lovamap.com/ontology#reagent/10.1186-s13036-017-0055-6/trypsin-edta> ,
+                     <https://lovamap.com/ontology#reagent/10.1186-s13036-017-0055-6/dmem> ,
+                     <https://lovamap.com/ontology#reagent/10.1186-s13036-017-0055-6/fbs> ,
+                     <https://lovamap.com/ontology#reagent/10.1186-s13036-017-0055-6/pen-strep> ,
+                     <https://lovamap.com/ontology#reagent/10.1186-s13036-017-0055-6/agarose> .
+
+<https://lovamap.com/ontology#reagent/10.1186-s13036-017-0055-6/ha> a lova:Reagent ;
+    rdfs:label "Hyaluronic acid (60 kDa)" ;
+    lova:reagentRole "monomer" ;
+    lova:molecularWeight "60 kDa" ;
+    lova:concentration "2.0 g, 5.28 mmol carboxylic acids" ;
+    lova:supplier "Genzyme Corporation, Cambridge, MA" .
+
+<https://lovamap.com/ontology#reagent/10.1186-s13036-017-0055-6/adh> a lova:Reagent ;
+    rdfs:label "Adipic dihydrazide (ADH)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:concentration "36.8 g (211.1 mmol)" ;
+    lova:reagentFunction "Reacted with HA carboxylic acids to form HA-ADH" .
+
+<https://lovamap.com/ontology#reagent/10.1186-s13036-017-0055-6/edc> a lova:Reagent ;
+    rdfs:label "1-Ethyl-3-[3-dimethylaminopropyl] carbodiimide hydrochloride (EDC)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "4.0 g (20 mmol)" ;
+    lova:reagentFunction "Carbodiimide coupling catalyst for HA-ADH synthesis" .
+
+<https://lovamap.com/ontology#reagent/10.1186-s13036-017-0055-6/ha-adh> a lova:Reagent ;
+    rdfs:label "HA-ADH (hyaluronic acid adipic dihydrazide intermediate)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "1.9 g re-suspended for second reaction step" ;
+    lova:reagentFunction "Intermediate for HA-AC synthesis, purified by dialysis (8000 MWCO)" .
+
+<https://lovamap.com/ontology#reagent/10.1186-s13036-017-0055-6/nhs-ac> a lova:Reagent ;
+    rdfs:label "N-acryloxysuccinimide (NHS-AC)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:concentration "1.33 g (4.4 mmol)" ;
+    lova:reagentFunction "Introduces acrylate groups onto HA-ADH to form HA-AC" .
+
+<https://lovamap.com/ontology#reagent/10.1186-s13036-017-0055-6/ha-ac> a lova:Reagent ;
+    rdfs:label "Acrylated hyaluronic acid (HA-AC), 16% degree of acrylation" ;
+    lova:reagentRole "monomer" ;
+    lova:concentration "8 mg lyophilized HA-AC dissolved in 100 μL 0.3 M TEOA buffer" ;
+    lova:reagentFunction "Hydrogel backbone, crosslinkable via Michael addition" .
+
+<https://lovamap.com/ontology#reagent/10.1186-s13036-017-0055-6/rgd-peptide> a lova:Reagent ;
+    rdfs:label "RGD adhesion peptide (Ac-GCGYG-RGDSPG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "GCGYGRGDSPG" ;
+    lova:concentration "100–150 μM (final, in hydrogel); 0.1 mg/vial" ;
+    lova:supplier "Genscript, Piscataway, NJ" ;
+    lova:reagentFunction "Integrin binding / cell adhesion site" .
+
+<https://lovamap.com/ontology#reagent/10.1186-s13036-017-0055-6/mmp-crosslinker> a lova:Reagent ;
+    rdfs:label "Bis-cysteine MMP-degradable crosslinker (GCRDGPQGIWGQDRCG)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:sequence "GCRDGPQGIWGQDRCG" ;
+    lova:concentration "1.0 mg dissolved in 20 μL 0.3 M TEOA buffer" ;
+    lova:reagentFunction "MMP-degradable crosslinking of HA-AC via Michael addition" .
+
+<https://lovamap.com/ontology#reagent/10.1186-s13036-017-0055-6/teoa-buffer> a lova:Reagent ;
+    rdfs:label "Triethanolamine (TEOA) buffer" ;
+    lova:reagentRole "solvent" ;
+    lova:concentration "0.3 M, pH 8.4" .
+
+<https://lovamap.com/ontology#reagent/10.1186-s13036-017-0055-6/noggin> a lova:Reagent ;
+    rdfs:label "Noggin" ;
+    lova:reagentRole "other" ;
+    lova:molecularWeight "50 kDa (monomeric)" ;
+    lova:concentration "0.25–0.9 μg/mL (gradient); 0.4 μg/mL (combined experiment)" ;
+    lova:reagentFunction "Inhibitor binding BMP-4, regulates activator-inhibitor morphogen signaling" .
+
+<https://lovamap.com/ontology#reagent/10.1186-s13036-017-0055-6/bmp2> a lova:Reagent ;
+    rdfs:label "BMP-2 (Bone Morphogenic Protein 2)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "500 ng/mL; 0.3 μg/mL (combined experiment)" ;
+    lova:reagentFunction "Activator of MGP, promotes spheroid formation and chemotactic migration" .
+
+<https://lovamap.com/ontology#reagent/10.1186-s13036-017-0055-6/dapi> a lova:Reagent ;
+    rdfs:label "DAPI nuclear stain" ;
+    lova:reagentRole "other" ;
+    lova:concentration "300 nM" ;
+    lova:supplier "Invitrogen" ;
+    lova:reagentFunction "Nuclear staining" .
+
+<https://lovamap.com/ontology#reagent/10.1186-s13036-017-0055-6/phalloidin> a lova:Reagent ;
+    rdfs:label "Alexa Fluor 488 phalloidin" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Invitrogen" ;
+    lova:reagentFunction "F-actin staining" .
+
+<https://lovamap.com/ontology#reagent/10.1186-s13036-017-0055-6/pfa> a lova:Reagent ;
+    rdfs:label "Paraformaldehyde (PFA)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "4%" ;
+    lova:reagentFunction "Fixation" .
+
+<https://lovamap.com/ontology#reagent/10.1186-s13036-017-0055-6/bsa> a lova:Reagent ;
+    rdfs:label "Bovine serum albumin (BSA)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "1%" ;
+    lova:reagentFunction "Blocking agent during staining" .
+
+<https://lovamap.com/ontology#reagent/10.1186-s13036-017-0055-6/trypsin-edta> a lova:Reagent ;
+    rdfs:label "Trypsin-EDTA" ;
+    lova:reagentRole "enzyme" ;
+    lova:concentration "0.25%" ;
+    lova:reagentFunction "Cell passaging" .
+
+<https://lovamap.com/ontology#reagent/10.1186-s13036-017-0055-6/dmem> a lova:Reagent ;
+    rdfs:label "Dulbecco's Modified Eagle's Medium (DMEM)" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Cell culture medium" .
+
+<https://lovamap.com/ontology#reagent/10.1186-s13036-017-0055-6/fbs> a lova:Reagent ;
+    rdfs:label "Fetal bovine serum (FBS), heat-inactivated" ;
+    lova:reagentRole "other" ;
+    lova:concentration "15%" .
+
+<https://lovamap.com/ontology#reagent/10.1186-s13036-017-0055-6/pen-strep> a lova:Reagent ;
+    rdfs:label "Penicillin/Streptomycin" ;
+    lova:reagentRole "other" ;
+    lova:concentration "1% (10,000 IU/10,000 μg/mL)" ;
+    lova:supplier "Mediatech, VA" .
+
+<https://lovamap.com/ontology#reagent/10.1186-s13036-017-0055-6/agarose> a lova:Reagent ;
+    rdfs:label "Agarose (low gelling point)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "0.5% (w/w) in PBS" ;
+    lova:reagentFunction "Sample immobilization for SPIM imaging" .
+
+<https://lovamap.com/ontology#experiment/10.1186-s13036-017-0055-6/pattern-formation> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1186-s13036-017-0055-6> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1186-s13036-017-0055-6/ha-hydrogel-control> ;
+    rdfs:label "3D VMC pattern formation time-course in HA hydrogel" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "3D morphogenesis imaging" ;
+    lova:assayOrMethod "SPIM (selective plane illumination microscopy), F-actin/DAPI staining" ;
+    lova:cellType "Vascular mesenchymal cells (VMC)" ;
+    lova:cultureDuration "1, 7, 15 days" .
+
+<https://lovamap.com/ontology#experiment/10.1186-s13036-017-0055-6/noggin-treatment> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1186-s13036-017-0055-6> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1186-s13036-017-0055-6/ha-hydrogel-noggin> ;
+    rdfs:label "Noggin-induced alteration of 3D VMC multicellular structure" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Morphogen-induced morphological alteration" ;
+    lova:assayOrMethod "SPIM imaging with F-actin staining" ;
+    lova:cellType "Vascular mesenchymal cells (VMC)" ;
+    lova:cultureDuration "11 days" .
+
+<https://lovamap.com/ontology#experiment/10.1186-s13036-017-0055-6/bmp2-treatment> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1186-s13036-017-0055-6> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1186-s13036-017-0055-6/ha-hydrogel-bmp2> ;
+    rdfs:label "BMP-2-induced spheroid formation in VMC-HA hydrogel" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Morphogen-induced spheroid formation" ;
+    lova:assayOrMethod "SPIM imaging with F-actin/DAPI staining" ;
+    lova:cellType "Vascular mesenchymal cells (VMC)" ;
+    lova:cultureDuration "13 days" .
+
+<https://lovamap.com/ontology#experiment/10.1186-s13036-017-0055-6/rheology> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1186-s13036-017-0055-6> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1186-s13036-017-0055-6/ha-hydrogel-control> ;
+    rdfs:label "Rheological characterization of HA hydrogel stiffness" ;
+    lova:experimentCategory "Mechanical" ;
+    lova:experimentType "Rheology" ;
+    lova:equipment "Physica MCR plate-to-plate rheometer, Anton Paar, Ashland, VA" ;
+    lova:frequency "0.1–10 rad/s" ;
+    lova:temperature "25°C" .
+
+<https://lovamap.com/ontology#experiment/10.1186-s13036-017-0055-6/covf-measurement> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1186-s13036-017-0055-6> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1186-s13036-017-0055-6/ha-hydrogel-control> ,
+                       <https://lovamap.com/ontology#material/10.1186-s13036-017-0055-6/ha-hydrogel-noggin> ,
+                       <https://lovamap.com/ontology#material/10.1186-s13036-017-0055-6/ha-hydrogel-bmp2> ;
+    rdfs:label "Cell occupied volume fraction (COVF) and geometric parameter measurement" ;
+    lova:experimentCategory "Image analysis" ;
+    lova:experimentType "3D volumetric quantification" ;
+    lova:assayOrMethod "Voxel thresholding/3D image reconstruction (Amira 5.2)" ;
+    lova:sampleSize 4 .
+
+<https://lovamap.com/ontology#experiment/10.1186-s13036-017-0055-6/combined-treatment> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1186-s13036-017-0055-6> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1186-s13036-017-0055-6/ha-hydrogel-noggin-bmp2> ;
+    rdfs:label "Combined Noggin and BMP-2 effects on VMC multicellular morphology" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Combined morphogen treatment" ;
+    lova:cellType "Vascular mesenchymal cells (VMC)" ;
+    lova:cultureDuration "5, 14, 20 days" .
+
+<https://lovamap.com/ontology#outcome/10.1186-s13036-017-0055-6/day1-distribution> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1186-s13036-017-0055-6/pattern-formation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1186-s13036-017-0055-6> ;
+    rdfs:label "VMC distribution at Day 1" ;
+    lova:measurementType "Cell morphology / distribution" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Uniformly distributed, round cells; few cells with small sprouting projections" ;
+    lova:timePoint "Day 1" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1186-s13036-017-0055-6/day7-network> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1186-s13036-017-0055-6/pattern-formation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1186-s13036-017-0055-6> ;
+    rdfs:label "VMC network formation at Day 7" ;
+    lova:measurementType "Cell morphology / network formation" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Branched 3D network with stem, branches, and sub-branches" ;
+    lova:timePoint "Day 7" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1186-s13036-017-0055-6/day15-aggregation> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1186-s13036-017-0055-6/pattern-formation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1186-s13036-017-0055-6> ;
+    rdfs:label "VMC aggregation at Day 15, network feature size" ;
+    lova:measurementType "Network feature size" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "more than 200 μm" ;
+    lova:timePoint "Day 15" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1186-s13036-017-0055-6/control-cell-count> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1186-s13036-017-0055-6/noggin-treatment> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1186-s13036-017-0055-6> ;
+    rdfs:label "Approximate cell count in control thin network sample" ;
+    lova:measurementType "Cell count" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1000000.0 ;
+    qudt:unit "cells" ;
+    lova:timePoint "Day 11" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1186-s13036-017-0055-6/noggin-branch-size> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1186-s13036-017-0055-6/noggin-treatment> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1186-s13036-017-0055-6> ;
+    rdfs:label "Large branch structure dimension, Noggin-treated sample" ;
+    lova:measurementType "Branch structure size" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "more than 100 μm" ;
+    lova:timePoint "Day 11" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1186-s13036-017-0055-6/bmp2-spheroid-diameter> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1186-s13036-017-0055-6/bmp2-treatment> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1186-s13036-017-0055-6> ;
+    rdfs:label "Spheroid diameter after BMP-2 treatment" ;
+    lova:measurementType "Spheroid diameter" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 200.0 ;
+    qudt:unit "μm" ;
+    lova:timePoint "Day 13" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1186-s13036-017-0055-6/bmp2-spheroid-count> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1186-s13036-017-0055-6/bmp2-treatment> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1186-s13036-017-0055-6> ;
+    rdfs:label "Number of spheroids per micro-well" ;
+    lova:measurementType "Spheroid count" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "approximately one dozen spheroids per micro-well" ;
+    lova:timePoint "Day 13" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1186-s13036-017-0055-6/storage-modulus> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1186-s13036-017-0055-6/rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1186-s13036-017-0055-6> ;
+    rdfs:label "Storage modulus (G') of HA hydrogel, frequency-independent" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Mechanical" ;
+    lova:valueString "~250 Pa, frequency-independent (0.1–10 Hz)" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1186-s13036-017-0055-6/loss-modulus> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1186-s13036-017-0055-6/rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1186-s13036-017-0055-6> ;
+    rdfs:label "Loss modulus (G'') of HA hydrogel" ;
+    lova:measurementType "Loss modulus (G'')" ;
+    lova:measurementCategory "Mechanical" ;
+    lova:valueString "1–10 Pa across frequency range" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1186-s13036-017-0055-6/loss-tangent> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1186-s13036-017-0055-6/rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1186-s13036-017-0055-6> ;
+    rdfs:label "Loss tangent (G''/G') of HA hydrogel" ;
+    lova:measurementType "Loss tangent" ;
+    lova:measurementCategory "Mechanical" ;
+    lova:valueString "<0.05" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1186-s13036-017-0055-6/covf-control> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1186-s13036-017-0055-6/covf-measurement> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1186-s13036-017-0055-6> ;
+    rdfs:label "Cell occupied volume fraction (COVF), control 3D networks" ;
+    lova:measurementType "Cell occupied volume fraction (COVF)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.095 ;
+    qudt:unit "dimensionless" ;
+    lova:stdDev 0.03 ;
+    lova:sampleSize 4 ;
+    lova:comparisonGroup "Control" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1186-s13036-017-0055-6/covf-thicker> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1186-s13036-017-0055-6/covf-measurement> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1186-s13036-017-0055-6> ;
+    rdfs:label "Cell occupied volume fraction (COVF), 3D thicker networks" ;
+    lova:measurementType "Cell occupied volume fraction (COVF)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.155 ;
+    qudt:unit "dimensionless" ;
+    lova:stdDev 0.02 ;
+    lova:sampleSize 4 ;
+    lova:pValue 0.03 ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "Control 3D networks" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1186-s13036-017-0055-6/covf-spherical> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1186-s13036-017-0055-6/covf-measurement> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1186-s13036-017-0055-6> ;
+    rdfs:label "Cell occupied volume fraction (COVF), spherical structures" ;
+    lova:measurementType "Cell occupied volume fraction (COVF)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.245 ;
+    qudt:unit "dimensionless" ;
+    lova:stdDev 0.03 ;
+    lova:sampleSize 4 ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "Control 3D networks" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1186-s13036-017-0055-6/length-control> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1186-s13036-017-0055-6/covf-measurement> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1186-s13036-017-0055-6> ;
+    rdfs:label "Characteristic length between network nodes, control 3D networks" ;
+    lova:measurementType "Characteristic network length" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 250.0 ;
+    qudt:unit "μm" ;
+    lova:stdDev 110.0 ;
+    lova:sampleSize 20 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1186-s13036-017-0055-6/length-thicker> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1186-s13036-017-0055-6/covf-measurement> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1186-s13036-017-0055-6> ;
+    rdfs:label "Characteristic length between network nodes, 3D thicker networks" ;
+    lova:measurementType "Characteristic network length" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 410.0 ;
+    qudt:unit "μm" ;
+    lova:stdDev 40.0 ;
+    lova:sampleSize 20 ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "Control 3D networks" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1186-s13036-017-0055-6/diameter-spherical> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1186-s13036-017-0055-6/covf-measurement> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1186-s13036-017-0055-6> ;
+    rdfs:label "Diameter of multicellular spheroids" ;
+    lova:measurementType "Spheroid diameter" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 220.0 ;
+    qudt:unit "μm" ;
+    lova:stdDev 40.0 ;
+    lova:sampleSize 20 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1186-s13036-017-0055-6/diameter-spherical-range> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1186-s13036-017-0055-6/covf-measurement> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1186-s13036-017-0055-6> ;
+    rdfs:label "Reported range of spheroid diameter" ;
+    lova:measurementType "Spheroid diameter" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "150-280 μm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1186-s13036-017-0055-6/combined-day14> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1186-s13036-017-0055-6/combined-treatment> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1186-s13036-017-0055-6> ;
+    rdfs:label "Combined Noggin+BMP-2 irregular cell aggregation, Day 14" ;
+    lova:measurementType "Cell morphology / aggregation" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Irregular aggregation of cells, miscellaneous morphological features" ;
+    lova:timePoint "Day 14" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1186-s13036-017-0055-6/combined-day20> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1186-s13036-017-0055-6/combined-treatment> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1186-s13036-017-0055-6> ;
+    rdfs:label "Combined Noggin+BMP-2 morphology at Day 20" ;
+    lova:measurementType "Cell morphology / aggregation" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "More aggregated and complex topologies, distinct morphological features" ;
+    lova:timePoint "Day 20" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#comparison/10.1186-s13036-017-0055-6/covf-thicker-vs-control> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1186-s13036-017-0055-6> ;
+    rdfs:label "COVF higher in 3D thicker networks vs control" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1186-s13036-017-0055-6/covf-thicker> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1186-s13036-017-0055-6/covf-control> ;
+    lova:direction "higher" ;
+    lova:pValue 0.03 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1186-s13036-017-0055-6/covf-spherical-vs-control> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1186-s13036-017-0055-6> ;
+    rdfs:label "COVF higher in spherical structures vs control" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1186-s13036-017-0055-6/covf-spherical> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1186-s13036-017-0055-6/covf-control> ;
+    lova:direction "higher" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1186-s13036-017-0055-6/length-thicker-vs-control> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1186-s13036-017-0055-6> ;
+    rdfs:label "Characteristic network length higher in 3D thicker networks vs control" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1186-s13036-017-0055-6/length-thicker> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1186-s13036-017-0055-6/length-control> ;
+    lova:direction "higher" ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true .

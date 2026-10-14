@@ -1,0 +1,845 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> a bibo:AcademicArticle ;
+    rdfs:label "Yan et al., 2009 — Single-protein nanocapsules for intracellular delivery" ;
+    dc:title "A novel intracellular protein delivery platform based on single-protein nanocapsules" ;
+    dc:identifier "10.1038/nnano.2009.341" ;
+    dc:date "2009"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/nature-nanotechnology> ;
+    dc:creator <https://lovamap.com/ontology#author/yan-ming> ,
+               <https://lovamap.com/ontology#author/du-juanjuan> ,
+               <https://lovamap.com/ontology#author/gu-zhen> ,
+               <https://lovamap.com/ontology#author/liang-min> ,
+               <https://lovamap.com/ontology#author/hu-yufang> ,
+               <https://lovamap.com/ontology#author/zhang-wenjun> ,
+               <https://lovamap.com/ontology#author/priceman-saul> ,
+               <https://lovamap.com/ontology#author/wu-lily> ,
+               <https://lovamap.com/ontology#author/zhou-z-hong> ,
+               <https://lovamap.com/ontology#author/liu-zheng> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ,
+               <https://lovamap.com/ontology#author/tang-yi> ,
+               <https://lovamap.com/ontology#author/lu-yunfeng> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/yan-ming>
+                      <https://lovamap.com/ontology#author/du-juanjuan>
+                      <https://lovamap.com/ontology#author/gu-zhen>
+                      <https://lovamap.com/ontology#author/liang-min>
+                      <https://lovamap.com/ontology#author/hu-yufang>
+                      <https://lovamap.com/ontology#author/zhang-wenjun>
+                      <https://lovamap.com/ontology#author/priceman-saul>
+                      <https://lovamap.com/ontology#author/wu-lily>
+                      <https://lovamap.com/ontology#author/zhou-z-hong>
+                      <https://lovamap.com/ontology#author/liu-zheng>
+                      <https://lovamap.com/ontology#author/segura-tatiana>
+                      <https://lovamap.com/ontology#author/tang-yi>
+                      <https://lovamap.com/ontology#author/lu-yunfeng> ) ;
+    dc:bibliographicCitation "Yan et al., 2009" ;
+    lova:focusMaterial "Single-protein nanocapsules (EGFP, HRP, BSA, SOD, caspase-3) with degradable and non-degradable polymer shells for intracellular protein delivery" .
+
+<https://lovamap.com/ontology#journal/nature-nanotechnology> a bibo:Journal ;
+    dc:title "Nature Nanotechnology" ;
+    bibo:issn "1748-3387" .
+
+<https://lovamap.com/ontology#author/yan-ming> a foaf:Person ;
+    foaf:familyName "Yan" ; foaf:givenName "Ming" ; foaf:name "Ming Yan" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California at Los Angeles" .
+
+<https://lovamap.com/ontology#author/du-juanjuan> a foaf:Person ;
+    foaf:familyName "Du" ; foaf:givenName "Juanjuan" ; foaf:name "Juanjuan Du" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California at Los Angeles" .
+
+<https://lovamap.com/ontology#author/gu-zhen> a foaf:Person ;
+    foaf:familyName "Gu" ; foaf:givenName "Zhen" ; foaf:name "Zhen Nan Gu" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California at Los Angeles" .
+
+<https://lovamap.com/ontology#author/liang-min> a foaf:Person ;
+    foaf:familyName "Liang" ; foaf:givenName "Min" ; foaf:name "Min Liang" ;
+    schema:affiliation "Department of Microbiology, Immunology and Molecular Genetics, University of California at Los Angeles" .
+
+<https://lovamap.com/ontology#author/hu-yufang> a foaf:Person ;
+    foaf:familyName "Hu" ; foaf:givenName "Yufang" ; foaf:name "Yufang Hu" ;
+    schema:affiliation "Department of Medical and Molecular Pharmacology, UCLA David Geffen School of Medicine, University of California at Los Angeles" .
+
+<https://lovamap.com/ontology#author/zhang-wenjun> a foaf:Person ;
+    foaf:familyName "Zhang" ; foaf:givenName "Wenjun" ; foaf:name "Wenjun Zhang" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California at Los Angeles" .
+
+<https://lovamap.com/ontology#author/priceman-saul> a foaf:Person ;
+    foaf:familyName "Priceman" ; foaf:givenName "Saul" ; foaf:name "Saul J. Priceman" ;
+    schema:affiliation "Department of Medical and Molecular Pharmacology, UCLA David Geffen School of Medicine, University of California at Los Angeles" .
+
+<https://lovamap.com/ontology#author/wu-lily> a foaf:Person ;
+    foaf:familyName "Wu" ; foaf:givenName "Lily" ; foaf:name "Lily L. Wu" ;
+    schema:affiliation "Department of Medical and Molecular Pharmacology, UCLA David Geffen School of Medicine, University of California at Los Angeles" .
+
+<https://lovamap.com/ontology#author/zhou-z-hong> a foaf:Person ;
+    foaf:familyName "Zhou" ; foaf:givenName "Z. Hong" ; foaf:name "Z. Hong Zhou" ;
+    schema:affiliation "Department of Microbiology, Immunology and Molecular Genetics, University of California at Los Angeles" ;
+    schema:affiliation "California NanoSystems Institute, University of California at Los Angeles" .
+
+<https://lovamap.com/ontology#author/liu-zheng> a foaf:Person ;
+    foaf:familyName "Liu" ; foaf:givenName "Zheng" ; foaf:name "Zheng Liu" ;
+    schema:affiliation "Department of Chemical Engineering, Tsinghua University, Beijing" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ; foaf:givenName "Tatiana" ; foaf:name "Tatiana Segura" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California at Los Angeles" .
+
+<https://lovamap.com/ontology#author/tang-yi> a foaf:Person ;
+    foaf:familyName "Tang" ; foaf:givenName "Yi" ; foaf:name "Yi Tang" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California at Los Angeles" .
+
+<https://lovamap.com/ontology#author/lu-yunfeng> a foaf:Person ;
+    foaf:familyName "Lu" ; foaf:givenName "Yunfeng" ; foaf:name "Yunfeng Lu" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California at Los Angeles" .
+
+<https://lovamap.com/ontology#material/10.1038-nnano.2009.341/nhrp> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "Non-degradable HRP nanocapsule (nHRP)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "HRP protein core with acrylamide/DMAEMA/methylenebisacrylamide polymer shell (non-degradable)" ;
+    lova:particleSizeMin 15.0 ;
+    lova:particleSizeMax 15.0 ;
+    lova:particleSizeUnit "nm" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1038-nnano.2009.341/nanocapsule-synthesis> .
+
+<https://lovamap.com/ontology#material/10.1038-nnano.2009.341/negfp> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "Non-degradable EGFP nanocapsule (nEGFP)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "EGFP protein core with acrylamide/DMAEMA/methylenebisacrylamide polymer shell (non-degradable)" ;
+    lova:particleSizeMin 11.7 ;
+    lova:particleSizeMax 11.7 ;
+    lova:particleSizeUnit "nm" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1038-nnano.2009.341/nanocapsule-synthesis> .
+
+<https://lovamap.com/ontology#material/10.1038-nnano.2009.341/de-negfp> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "Degradable EGFP nanocapsule (de-nEGFP)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "EGFP protein core with acrylamide/DMAEMA/glycerol dimethacrylate polymer shell (acid-degradable)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1038-nnano.2009.341/nanocapsule-synthesis> .
+
+<https://lovamap.com/ontology#material/10.1038-nnano.2009.341/nbsa> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "Non-degradable BSA nanocapsule (nBSA)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "BSA protein core with non-degradable polymer shell" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1038-nnano.2009.341/nanocapsule-synthesis> .
+
+<https://lovamap.com/ontology#material/10.1038-nnano.2009.341/de-nbsa> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "Degradable BSA nanocapsule (de-nBSA)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "BSA protein core with acid-degradable polymer shell" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1038-nnano.2009.341/nanocapsule-synthesis> .
+
+<https://lovamap.com/ontology#material/10.1038-nnano.2009.341/nsod> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "Non-degradable SOD nanocapsule (nSOD)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Cu,Zn-SOD protein core with non-degradable polymer shell" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1038-nnano.2009.341/nanocapsule-synthesis> .
+
+<https://lovamap.com/ontology#material/10.1038-nnano.2009.341/ncas> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "Non-degradable caspase-3 nanocapsule (nCAS)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Caspase-3 protein core with non-degradable polymer shell" ;
+    lova:particleSizeMin 20.0 ;
+    lova:particleSizeMax 20.0 ;
+    lova:particleSizeUnit "nm" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1038-nnano.2009.341/nanocapsule-synthesis> .
+
+<https://lovamap.com/ontology#material/10.1038-nnano.2009.341/de-ncas> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "Degradable caspase-3 nanocapsule (de-nCAS)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Caspase-3 protein core with acid-degradable polymer shell (glycerol dimethacrylate crosslinked)" ;
+    lova:particleSizeMin 6.0 ;
+    lova:particleSizeMax 20.0 ;
+    lova:particleSizeUnit "nm" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1038-nnano.2009.341/nanocapsule-synthesis> .
+
+<https://lovamap.com/ontology#material/10.1038-nnano.2009.341/native-egfp> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "Native EGFP (unencapsulated control)" ;
+    lova:particleMaterial "EGFP protein, no shell" .
+
+<https://lovamap.com/ontology#material/10.1038-nnano.2009.341/native-hrp> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "Native HRP (unencapsulated control)" ;
+    lova:particleMaterial "HRP protein, no shell" .
+
+<https://lovamap.com/ontology#material/10.1038-nnano.2009.341/native-cas> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "Native caspase-3 (unencapsulated control)" ;
+    lova:particleMaterial "Caspase-3 protein, no shell" ;
+    lova:particleSizeMin 6.0 ;
+    lova:particleSizeMax 6.0 ;
+    lova:particleSizeUnit "nm" .
+
+<https://lovamap.com/ontology#material/10.1038-nnano.2009.341/tat-egfp> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "TAT-EGFP fusion protein (CPP-assisted delivery control)" ;
+    lova:particleMaterial "EGFP fused with HIV-Tat-derived cell-penetrating peptide (TAT)" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1038-nnano.2009.341/nanocapsule-synthesis> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "Single-protein nanocapsule synthesis via acryloylation and in situ free-radical polymerization" ;
+    lova:chemistry "Free radical polymerization (in situ surface-initiated)" ;
+    lova:manufacturingMethod "Acryloylation of protein surface followed by aqueous free-radical copolymerization with monomers and crosslinker" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1038-nnano.2009.341/acrylamide> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-nnano.2009.341/dmaema> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-nnano.2009.341/mbam> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-nnano.2009.341/gdma> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-nnano.2009.341/nas> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-nnano.2009.341/aps> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-nnano.2009.341/temed> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-nnano.2009.341/dmso> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-nnano.2009.341/sodium-carbonate-buffer> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-nnano.2009.341/phosphate-buffer> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-nnano.2009.341/dmap-stabilizer> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-nnano.2009.341/nickel-resin> .
+
+<https://lovamap.com/ontology#reagent/10.1038-nnano.2009.341/acrylamide> a lova:Reagent ;
+    rdfs:label "Acrylamide (neutral monomer 1)" ;
+    lova:reagentRole "monomer" ;
+    lova:reagentFunction "Neutral monomer forming polymer shell" .
+
+<https://lovamap.com/ontology#reagent/10.1038-nnano.2009.341/dmaema> a lova:Reagent ;
+    rdfs:label "2-Dimethylaminoethyl methacrylate (cationic monomer 2)" ;
+    lova:reagentRole "monomer" ;
+    lova:reagentFunction "Cationic monomer controlling nanocapsule surface charge" .
+
+<https://lovamap.com/ontology#reagent/10.1038-nnano.2009.341/mbam> a lova:Reagent ;
+    rdfs:label "N,N'-methylenebisacrylamide (non-degradable crosslinker 3)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:reagentFunction "Forms non-degradable polymer shell" .
+
+<https://lovamap.com/ontology#reagent/10.1038-nnano.2009.341/gdma> a lova:Reagent ;
+    rdfs:label "Glycerol dimethacrylate (acid-degradable crosslinker 4)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:reagentFunction "Forms acid-degradable polymer shell" .
+
+<https://lovamap.com/ontology#reagent/10.1038-nnano.2009.341/nas> a lova:Reagent ;
+    rdfs:label "N-acryloxysuccinimide" ;
+    lova:reagentRole "other" ;
+    lova:concentration "4 mg in 40 μl DMSO" ;
+    lova:reagentFunction "Conjugates polymerizable acryl groups to protein surface (acryloylation)" .
+
+<https://lovamap.com/ontology#reagent/10.1038-nnano.2009.341/aps> a lova:Reagent ;
+    rdfs:label "Ammonium persulphate" ;
+    lova:reagentRole "initiator" ;
+    lova:concentration "2 mg" ;
+    lova:reagentFunction "Initiates radical polymerization" .
+
+<https://lovamap.com/ontology#reagent/10.1038-nnano.2009.341/temed> a lova:Reagent ;
+    rdfs:label "N,N,N',N'-tetramethylethylenediamine (TEMED)" ;
+    lova:reagentRole "initiator" ;
+    lova:concentration "4 μl" ;
+    lova:reagentFunction "Co-initiator for radical polymerization" .
+
+<https://lovamap.com/ontology#reagent/10.1038-nnano.2009.341/dmso> a lova:Reagent ;
+    rdfs:label "Dimethyl sulphoxide (DMSO)" ;
+    lova:reagentRole "solvent" .
+
+<https://lovamap.com/ontology#reagent/10.1038-nnano.2009.341/sodium-carbonate-buffer> a lova:Reagent ;
+    rdfs:label "Sodium carbonate buffer" ;
+    lova:reagentRole "solvent" ;
+    lova:concentration "50 mM, pH 8.5" .
+
+<https://lovamap.com/ontology#reagent/10.1038-nnano.2009.341/phosphate-buffer> a lova:Reagent ;
+    rdfs:label "Phosphate buffer" ;
+    lova:reagentRole "solvent" ;
+    lova:concentration "20 mM, pH 7.0" .
+
+<https://lovamap.com/ontology#reagent/10.1038-nnano.2009.341/dmap-stabilizer> a lova:Reagent ;
+    rdfs:label "4-Dimethylaminoantipyrine" ;
+    lova:reagentRole "other" ;
+    lova:concentration "1:10 weight ratio to HRP" ;
+    lova:reagentFunction "Stabilizer during acryloylation and polymerization of HRP nanocapsules" .
+
+<https://lovamap.com/ontology#reagent/10.1038-nnano.2009.341/nickel-resin> a lova:Reagent ;
+    rdfs:label "Nickel-resin affinity column" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Sigma Aldrich" ;
+    lova:reagentFunction "Protein purification" .
+
+<https://lovamap.com/ontology#experiment/10.1038-nnano.2009.341/tem-afm-characterization> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-nnano.2009.341/nhrp> ;
+    rdfs:label "Structural characterization of nHRP nanocapsules by TEM, AFM, DLS" ;
+    lova:experimentCategory "Physical characterization" ;
+    lova:experimentType "Nanoparticle sizing" ;
+    lova:assayOrMethod "TEM, AFM, dynamic light scattering" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nnano.2009.341/nhrp-diameter> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nnano.2009.341/tem-afm-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "Uniform diameter of nHRP nanocapsules" ;
+    lova:measurementType "Nanocapsule diameter" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 15.0 ;
+    qudt:unit "nm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nnano.2009.341/nhrp-shell-thickness> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nnano.2009.341/tem-afm-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "Average polymer shell thickness of nHRP" ;
+    lova:measurementType "Shell thickness" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 5.0 ;
+    qudt:unit "nm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nnano.2009.341/hrp-radius> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nnano.2009.341/tem-afm-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "Radius of native HRP molecule" ;
+    lova:measurementType "Protein radius" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 5.0 ;
+    qudt:unit "nm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nnano.2009.341/gold-label-size> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nnano.2009.341/tem-afm-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "Size of gold nanoparticle label per HRP molecule" ;
+    lova:measurementType "Gold label diameter" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 1.4 ;
+    qudt:unit "nm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1038-nnano.2009.341/cell-uptake> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-nnano.2009.341/negfp> ,
+                      <https://lovamap.com/ontology#material/10.1038-nnano.2009.341/native-egfp> ,
+                      <https://lovamap.com/ontology#material/10.1038-nnano.2009.341/tat-egfp> ;
+    rdfs:label "Cell transduction efficiency of nEGFP vs native EGFP and TAT-EGFP in HeLa cells" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cellular uptake" ;
+    lova:assayOrMethod "Fluorescence-assisted cell sorting (FACS)" ;
+    lova:cellType "HeLa" ;
+    lova:cultureDuration "3 h" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nnano.2009.341/negfp-fluorescence> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nnano.2009.341/cell-uptake> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "Cellular fluorescence intensity of HeLa cells incubated with nEGFP" ;
+    lova:measurementType "Cellular fluorescence intensity" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Significantly higher than native EGFP; two to three orders of magnitude higher than TAT-EGFP at same protein concentration" ;
+    lova:comparisonGroup "Native EGFP; TAT-EGFP" ;
+    lova:scope "Bulk/global" ;
+    lova:timePoint "3 h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nnano.2009.341/native-egfp-fluorescence> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nnano.2009.341/cell-uptake> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "Cellular fluorescence intensity of HeLa cells incubated with native EGFP" ;
+    lova:measurementType "Cellular fluorescence intensity" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Low/background compared to nEGFP" ;
+    lova:scope "Bulk/global" ;
+    lova:timePoint "3 h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nnano.2009.341/tat-egfp-fluorescence> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nnano.2009.341/cell-uptake> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "Cellular fluorescence intensity of HeLa cells incubated with TAT-EGFP fusion protein" ;
+    lova:measurementType "Cellular fluorescence intensity" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Two to three orders of magnitude lower than nEGFP at same protein concentration" ;
+    lova:scope "Bulk/global" ;
+    lova:timePoint "3 h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-nnano.2009.341/negfp-vs-tategfp> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "nEGFP uptake higher than TAT-EGFP uptake in HeLa cells" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-nnano.2009.341/negfp-fluorescence> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-nnano.2009.341/tat-egfp-fluorescence> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#comparison/10.1038-nnano.2009.341/negfp-vs-native-egfp-uptake> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "nEGFP uptake higher than native EGFP uptake in HeLa cells" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-nnano.2009.341/negfp-fluorescence> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-nnano.2009.341/native-egfp-fluorescence> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#experiment/10.1038-nnano.2009.341/endocytosis-inhibition> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-nnano.2009.341/negfp> ;
+    rdfs:label "Endocytosis pathway study of nEGFP uptake in HeLa cells" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Endocytosis inhibition" ;
+    lova:cellType "HeLa" ;
+    lova:temperature "37°C; 4°C" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nnano.2009.341/uptake-37c> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nnano.2009.341/endocytosis-inhibition> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "Cellular fluorescence intensity of nEGFP uptake at 37°C" ;
+    lova:measurementType "Cellular fluorescence intensity (% of control)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 100.0 ;
+    qudt:unit "%" ;
+    lova:temperature "37°C" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nnano.2009.341/uptake-4c> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nnano.2009.341/endocytosis-inhibition> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "Cellular fluorescence intensity of nEGFP uptake at 4°C" ;
+    lova:measurementType "Cellular fluorescence intensity (% of control)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Much lower than at 37°C" ;
+    lova:temperature "4°C" ;
+    lova:comparisonGroup "37°C" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-nnano.2009.341/uptake-temp> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "nEGFP uptake lower at 4°C vs 37°C" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-nnano.2009.341/uptake-4c> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-nnano.2009.341/uptake-37c> ;
+    lova:direction "lower" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nnano.2009.341/beta-cd-inhibition> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nnano.2009.341/endocytosis-inhibition> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "β-cyclodextrin effectively inhibits nanocapsule uptake, suggesting caveolae-mediated endocytosis" ;
+    lova:measurementType "Endocytosis inhibitor effect" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "β-cyclodextrin inhibited uptake; Amiloride and CPZ did not" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1038-nnano.2009.341/zeta-potential-uptake> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-nnano.2009.341/negfp> ;
+    rdfs:label "Effect of nanocapsule zeta potential on cellular uptake in HeLa cells" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cellular uptake vs surface charge" ;
+    lova:cellType "HeLa" ;
+    lova:cultureDuration "3 h" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nnano.2009.341/zeta-6-7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nnano.2009.341/zeta-potential-uptake> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "Cellular fluorescence intensity of nEGFP at zeta potential 6.7 mV" ;
+    lova:measurementType "Cellular fluorescence intensity" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 6.7 ;
+    qudt:unit "mV" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nnano.2009.341/zeta-8-6> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nnano.2009.341/zeta-potential-uptake> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "Zeta potential 8.6 mV tested in nEGFP uptake study" ;
+    lova:measurementType "Zeta potential" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 8.6 ;
+    qudt:unit "mV" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nnano.2009.341/zeta-10-9> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nnano.2009.341/zeta-potential-uptake> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "Zeta potential 10.9 mV tested in nEGFP uptake study (used in FACS comparisons)" ;
+    lova:measurementType "Zeta potential" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 10.9 ;
+    qudt:unit "mV" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nnano.2009.341/zeta-13-3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nnano.2009.341/zeta-potential-uptake> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "Zeta potential 13.3 mV tested in nEGFP uptake study, highest fluorescence intensity" ;
+    lova:measurementType "Zeta potential" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 13.3 ;
+    qudt:unit "mV" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1038-nnano.2009.341/cytotoxicity-mtt> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-nnano.2009.341/negfp> ,
+                      <https://lovamap.com/ontology#material/10.1038-nnano.2009.341/native-egfp> ;
+    rdfs:label "MTT cytotoxicity assay comparing nEGFP and native EGFP in HeLa cells" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell viability" ;
+    lova:assayOrMethod "MTT assay" ;
+    lova:cellType "HeLa" ;
+    lova:cultureDuration "3 h" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nnano.2009.341/negfp-viability-max-conc> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nnano.2009.341/cytotoxicity-mtt> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "HeLa cell viability decrease after exposure to 1.67 μM nEGFP" ;
+    lova:measurementType "Cell viability decrease" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 15.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "3 h" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1038-nnano.2009.341/protease-stability> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-nnano.2009.341/negfp> ,
+                      <https://lovamap.com/ontology#material/10.1038-nnano.2009.341/native-egfp> ;
+    rdfs:label "Protease resistance of nEGFP vs native EGFP against trypsin and α-chymotrypsin" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Protease stability" ;
+    lova:temperature "50°C" ;
+    lova:medium "1 mg ml-1 trypsin and α-chymotrypsin" ;
+    lova:cultureDuration "3 h" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nnano.2009.341/native-egfp-protease-retention> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nnano.2009.341/protease-stability> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "Fluorescence retention of native EGFP after protease exposure" ;
+    lova:measurementType "Fluorescence retention" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 60.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "3 h" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nnano.2009.341/negfp-protease-retention> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nnano.2009.341/protease-stability> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "Fluorescence retention of nEGFP after protease exposure" ;
+    lova:measurementType "Fluorescence retention" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 90.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "3 h" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-nnano.2009.341/protease-retention-comparison> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "nEGFP retains higher fluorescence than native EGFP after protease exposure" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-nnano.2009.341/negfp-protease-retention> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-nnano.2009.341/native-egfp-protease-retention> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#experiment/10.1038-nnano.2009.341/intracellular-stability> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-nnano.2009.341/negfp> ,
+                      <https://lovamap.com/ontology#material/10.1038-nnano.2009.341/tat-egfp> ;
+    rdfs:label "Intracellular stability of nEGFP vs TAT-EGFP over time in HeLa cells" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Intracellular stability" ;
+    lova:cellType "HeLa" ;
+    lova:cultureDuration "0, 48, 144 h" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nnano.2009.341/negfp-stability-144h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nnano.2009.341/intracellular-stability> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "Cellular fluorescence intensity of nEGFP at 144 h" ;
+    lova:measurementType "Cellular fluorescence intensity (% of initial)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Significantly improved stability over TAT-EGFP" ;
+    lova:timePoint "144 h" ;
+    lova:isTimeSeries true ;
+    lova:comparisonGroup "TAT-EGFP" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nnano.2009.341/tategfp-stability-144h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nnano.2009.341/intracellular-stability> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "Cellular fluorescence intensity of TAT-EGFP at 144 h" ;
+    lova:measurementType "Cellular fluorescence intensity (% of initial)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Lower than nEGFP, decreasing faster over time" ;
+    lova:timePoint "144 h" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-nnano.2009.341/stability-negfp-vs-tategfp> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "nEGFP intracellular stability higher than TAT-EGFP at 144 h" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-nnano.2009.341/negfp-stability-144h> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-nnano.2009.341/tategfp-stability-144h> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#experiment/10.1038-nnano.2009.341/in-vivo-stability> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-nnano.2009.341/negfp> ,
+                      <https://lovamap.com/ontology#material/10.1038-nnano.2009.341/native-egfp> ,
+                      <https://lovamap.com/ontology#material/10.1038-nnano.2009.341/nhrp> ;
+    rdfs:label "In vivo stability and activity of nanocapsules in nude mice" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "In vivo imaging" ;
+    lova:cellSource "Nude mice" ;
+    lova:seedingDensity "0.2 mg nEGFP or native EGFP, intraperitoneal injection" ;
+    lova:cultureDuration "8 h, 50 h" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nnano.2009.341/invivo-negfp-fluorescence-8h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nnano.2009.341/in-vivo-stability> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "Organ section fluorescence of nEGFP-injected mice at 8 h" ;
+    lova:measurementType "Tissue fluorescence intensity" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Intense fluorescence observed" ;
+    lova:timePoint "8 h" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nnano.2009.341/invivo-negfp-fluorescence-50h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nnano.2009.341/in-vivo-stability> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "Organ section fluorescence of nEGFP-injected mice remained high at 50 h" ;
+    lova:measurementType "Tissue fluorescence intensity" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Remained high, in contrast to control mice at background levels" ;
+    lova:timePoint "50 h" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#experiment/10.1038-nnano.2009.341/hrp-prodrug-therapy> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-nnano.2009.341/nhrp> ,
+                      <https://lovamap.com/ontology#material/10.1038-nnano.2009.341/native-hrp> ;
+    rdfs:label "IAA/HRP prodrug therapy cytotoxicity in HeLa cells" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell viability" ;
+    lova:assayOrMethod "MTT assay" ;
+    lova:cellType "HeLa" ;
+    lova:cultureDuration "12 h" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nnano.2009.341/nhrp-iaa-viability> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nnano.2009.341/hrp-prodrug-therapy> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "HeLa cell proliferation after nHRP + IAA treatment" ;
+    lova:measurementType "Cell proliferation" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Rapidly decreasing cell viability with increasing IAA concentration" ;
+    lova:comparisonGroup "Native HRP; untreated control" ;
+    lova:timePoint "12 h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nnano.2009.341/nativehrp-iaa-viability> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nnano.2009.341/hrp-prodrug-therapy> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "HeLa cell proliferation after native HRP + IAA treatment" ;
+    lova:measurementType "Cell proliferation" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Similar to untreated control, no significant decrease" ;
+    lova:timePoint "12 h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-nnano.2009.341/hrp-iaa-comparison> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "nHRP + IAA treatment lowers cell viability more than native HRP + IAA" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-nnano.2009.341/nhrp-iaa-viability> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-nnano.2009.341/nativehrp-iaa-viability> ;
+    lova:direction "lower" .
+
+<https://lovamap.com/ontology#experiment/10.1038-nnano.2009.341/sod-oxidative-protection> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-nnano.2009.341/nsod> ;
+    rdfs:label "nSOD protection of HeLa cells against paraquat-induced oxidative injury" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell viability" ;
+    lova:assayOrMethod "MTT assay" ;
+    lova:cellType "HeLa" ;
+    lova:cultureDuration "12 h" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nnano.2009.341/nsod-viability-dose-response> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nnano.2009.341/sod-oxidative-protection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "HeLa cell viability after nSOD treatment and paraquat exposure across 0-600 nM nSOD" ;
+    lova:measurementType "Cell proliferation" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Protective at low concentrations, lowers viability at high concentrations" ;
+    lova:timePoint "12 h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1038-nnano.2009.341/ph-stability-ncas> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-nnano.2009.341/ncas> ,
+                      <https://lovamap.com/ontology#material/10.1038-nnano.2009.341/de-ncas> ;
+    rdfs:label "pH-dependent size evolution of nCAS and de-nCAS nanocapsules" ;
+    lova:experimentCategory "Physical characterization" ;
+    lova:experimentType "Nanoparticle degradation / sizing" ;
+    lova:pH "5.5; 7.4" ;
+    lova:cultureDuration "0-3 h" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nnano.2009.341/de-ncas-ph5-5-degradation> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nnano.2009.341/ph-stability-ncas> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "de-nCAS diameter decrease at pH 5.5 within 3 h" ;
+    lova:measurementType "Nanocapsule diameter" ;
+    lova:measurementCategory "Physical" ;
+    lova:valueString "Decreased from 20 nm to 6 nm within 3 h at pH 5.5" ;
+    lova:pH "5.5" ;
+    lova:timePoint "3 h" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nnano.2009.341/ncas-ph-stable> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nnano.2009.341/ph-stability-ncas> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "nCAS remains stable in size at both pH 5.5 and pH 7.4" ;
+    lova:measurementType "Nanocapsule diameter" ;
+    lova:measurementCategory "Physical" ;
+    lova:valueString "Stable at 20 nm, no size change observed" ;
+    lova:pH "5.5 and 7.4" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-nnano.2009.341/ncas-vs-denacs-ph5-5> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "de-nCAS degrades at pH 5.5 while nCAS remains stable" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-nnano.2009.341/de-ncas-ph5-5-degradation> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-nnano.2009.341/ncas-ph-stable> ;
+    lova:direction "lower" .
+
+<https://lovamap.com/ontology#experiment/10.1038-nnano.2009.341/protease-stability-degradable> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-nnano.2009.341/de-negfp> ,
+                      <https://lovamap.com/ontology#material/10.1038-nnano.2009.341/negfp> ,
+                      <https://lovamap.com/ontology#material/10.1038-nnano.2009.341/native-egfp> ;
+    rdfs:label "Protease stability of de-nEGFP and nEGFP at pH 7.4" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Protease stability" ;
+    lova:temperature "50°C" ;
+    lova:pH "7.4" ;
+    lova:medium "1 mg ml-1 trypsin and α-chymotrypsin" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nnano.2009.341/de-negfp-protease-stable-ph7-4> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nnano.2009.341/protease-stability-degradable> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "de-nEGFP remains stable against proteases at pH 7.4" ;
+    lova:measurementType "Fluorescence retention" ;
+    lova:measurementCategory "Biochemical" ;
+    lova:valueString "Stable, similar to nEGFP" ;
+    lova:pH "7.4" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1038-nnano.2009.341/intracellular-degradation> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-nnano.2009.341/de-negfp> ,
+                      <https://lovamap.com/ontology#material/10.1038-nnano.2009.341/negfp> ;
+    rdfs:label "Intracellular degradation of de-nEGFP vs nEGFP in HeLa cells" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Intracellular degradation" ;
+    lova:cellType "HeLa" ;
+    lova:cultureDuration "0, 24, 48 h" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nnano.2009.341/de-negfp-fluorescence-24h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nnano.2009.341/intracellular-degradation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "Cellular fluorescence intensity of de-nEGFP at 24 h" ;
+    lova:measurementType "Cellular fluorescence intensity (% of initial)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Significantly lower than nEGFP, indicating shell degradation" ;
+    lova:timePoint "24 h" ;
+    lova:isTimeSeries true ;
+    lova:comparisonGroup "nEGFP" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nnano.2009.341/negfp-fluorescence-24h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nnano.2009.341/intracellular-degradation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "Cellular fluorescence intensity of nEGFP at 24 h" ;
+    lova:measurementType "Cellular fluorescence intensity (% of initial)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Remains high, non-degradable shell intact" ;
+    lova:timePoint "24 h" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-nnano.2009.341/de-negfp-vs-negfp-24h> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "de-nEGFP cellular fluorescence lower than nEGFP at 24 h due to shell degradation" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-nnano.2009.341/de-negfp-fluorescence-24h> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-nnano.2009.341/negfp-fluorescence-24h> ;
+    lova:direction "lower" .
+
+<https://lovamap.com/ontology#experiment/10.1038-nnano.2009.341/caspase-apoptosis> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-nnano.2009.341/de-ncas> ,
+                      <https://lovamap.com/ontology#material/10.1038-nnano.2009.341/ncas> ,
+                      <https://lovamap.com/ontology#material/10.1038-nnano.2009.341/native-cas> ,
+                      <https://lovamap.com/ontology#material/10.1038-nnano.2009.341/de-nbsa> ,
+                      <https://lovamap.com/ontology#material/10.1038-nnano.2009.341/nbsa> ;
+    rdfs:label "Apoptosis induction by de-nCAS vs nCAS, native CAS, de-nBSA, nBSA in HeLa cells" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell viability / apoptosis" ;
+    lova:assayOrMethod "MTT assay; APO-BrdU TUNEL assay" ;
+    lova:cellType "HeLa" ;
+    lova:cultureDuration "48 h" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nnano.2009.341/de-ncas-viability> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nnano.2009.341/caspase-apoptosis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "HeLa cell proliferation after de-nCAS treatment" ;
+    lova:measurementType "Cell proliferation" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Significantly lower viability than native CAS, nCAS, de-nBSA, nBSA" ;
+    lova:timePoint "48 h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nnano.2009.341/ncas-viability> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nnano.2009.341/caspase-apoptosis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "HeLa cell proliferation after nCAS treatment" ;
+    lova:measurementType "Cell proliferation" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Similar viability to untreated, high" ;
+    lova:timePoint "48 h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-nnano.2009.341/de-ncas-vs-ncas-viability> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "de-nCAS treatment results in lower HeLa cell viability than nCAS" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-nnano.2009.341/de-ncas-viability> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-nnano.2009.341/ncas-viability> ;
+    lova:direction "lower" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nnano.2009.341/tunel-de-ncas> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nnano.2009.341/caspase-apoptosis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "TUNEL assay positive staining confirms apoptotic DNA fragmentation in de-nCAS treated HeLa cells" ;
+    lova:measurementType "Apoptosis (TUNEL staining)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Positive TUNEL (Alexa Fluor 488) and PI staining observed in de-nCAS treated cells" ;
+    lova:assayOrMethod "APO-BrdU TUNEL assay" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#experiment/10.1038-nnano.2009.341/multiple-protein-delivery> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-nnano.2009.341/negfp> ,
+                      <https://lovamap.com/ontology#material/10.1038-nnano.2009.341/nhrp> ,
+                      <https://lovamap.com/ontology#material/10.1038-nnano.2009.341/nbsa> ;
+    rdfs:label "Simultaneous delivery of multiple distinct protein nanocapsules (nEGFP, nHRP, nBSA) to HeLa cells" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Multiple protein delivery" ;
+    lova:assayOrMethod "Confocal fluorescence microscopy" ;
+    lova:cellType "HeLa" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nnano.2009.341/multiple-protein-colocalization> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nnano.2009.341/multiple-protein-delivery> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nnano.2009.341> ;
+    rdfs:label "Simultaneous intracellular presence of nEGFP (green), rhodamine-B-labelled nHRP (red), NIR-667-labelled nBSA (blue) in HeLa cells" ;
+    lova:measurementType "Multi-channel fluorescence localization" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Co-delivery of three distinct nanocapsules visualized by confocal microscopy" ;
+    lova:dataSource "[FIG-E]" .

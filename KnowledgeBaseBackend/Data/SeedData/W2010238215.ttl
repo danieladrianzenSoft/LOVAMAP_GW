@@ -1,0 +1,744 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1002-cbic.201300687> a bibo:AcademicArticle ;
+    rdfs:label "Griffin et al., 2014 — Hybrid Photopatterned Enzymatic Reaction (HyPER)" ;
+    dc:title "Hybrid Photopatterned Enzymatic Reaction (HyPER) for in Situ Cell Manipulation" ;
+    dc:identifier "10.1002/cbic.201300687" ;
+    dc:date "2014"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/chembiochem> ;
+    dc:creator <https://lovamap.com/ontology#author/griffin-donald> ,
+               <https://lovamap.com/ontology#author/deribaborrajo-jacob> ,
+               <https://lovamap.com/ontology#author/soon-allyson> ,
+               <https://lovamap.com/ontology#author/acosta-velez-giovanny> ,
+               <https://lovamap.com/ontology#author/oshita-victor> ,
+               <https://lovamap.com/ontology#author/darling-nicole> ,
+               <https://lovamap.com/ontology#author/mack-julia> ,
+               <https://lovamap.com/ontology#author/barker-thomas> ,
+               <https://lovamap.com/ontology#author/iruela-arispe-luisa> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/griffin-donald>
+                       <https://lovamap.com/ontology#author/deribaborrajo-jacob>
+                       <https://lovamap.com/ontology#author/soon-allyson>
+                       <https://lovamap.com/ontology#author/acosta-velez-giovanny>
+                       <https://lovamap.com/ontology#author/oshita-victor>
+                       <https://lovamap.com/ontology#author/darling-nicole>
+                       <https://lovamap.com/ontology#author/mack-julia>
+                       <https://lovamap.com/ontology#author/barker-thomas>
+                       <https://lovamap.com/ontology#author/iruela-arispe-luisa>
+                       <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    dc:bibliographicCitation "Griffin et al., 2014" ;
+    lova:focusMaterial "HA- and PEG-based hydrogels functionalized with photocaged FXIIIa (K*) peptide for spatially controlled enzymatic immobilization of bioactive signals (RGD, FN9*10, VEGF, PDGF)" .
+
+<https://lovamap.com/ontology#author/griffin-donald> a foaf:Person ;
+    foaf:familyName "Griffin" ; foaf:givenName "Donald Richieri" ; foaf:name "Donald Richieri Griffin" .
+<https://lovamap.com/ontology#author/deribaborrajo-jacob> a foaf:Person ;
+    foaf:familyName "de Riba Borrajo" ; foaf:givenName "Jacob" ; foaf:name "Jacob de Riba Borrajo" .
+<https://lovamap.com/ontology#author/soon-allyson> a foaf:Person ;
+    foaf:familyName "Soon" ; foaf:givenName "Allyson" ; foaf:name "Allyson Soon" .
+<https://lovamap.com/ontology#author/acosta-velez-giovanny> a foaf:Person ;
+    foaf:familyName "Acosta-Vélez" ; foaf:givenName "Giovanny F." ; foaf:name "Giovanny F. Acosta-Vélez" .
+<https://lovamap.com/ontology#author/oshita-victor> a foaf:Person ;
+    foaf:familyName "Oshita" ; foaf:givenName "Victor" ; foaf:name "Victor Oshita" .
+<https://lovamap.com/ontology#author/darling-nicole> a foaf:Person ;
+    foaf:familyName "Darling" ; foaf:givenName "Nicole J." ; foaf:name "Nicole J. Darling" .
+<https://lovamap.com/ontology#author/mack-julia> a foaf:Person ;
+    foaf:familyName "Mack" ; foaf:givenName "Julia J." ; foaf:name "Julia J. Mack" .
+<https://lovamap.com/ontology#author/barker-thomas> a foaf:Person ;
+    foaf:familyName "Barker" ; foaf:givenName "Thomas Harrison" ; foaf:name "Thomas Harrison Barker" .
+<https://lovamap.com/ontology#author/iruela-arispe-luisa> a foaf:Person ;
+    foaf:familyName "Iruela-Arispe" ; foaf:givenName "M. Luisa" ; foaf:name "M. Luisa Iruela-Arispe" .
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ; foaf:givenName "Tatiana" ; foaf:name "Tatiana Segura" .
+
+<https://lovamap.com/ontology#journal/chembiochem> a bibo:Journal ;
+    dc:title "ChemBioChem" ;
+    bibo:issn "1439-4227" .
+
+<https://lovamap.com/ontology#material/10.1002-cbic.201300687/caged-k-peptide-solution> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cbic.201300687> ;
+    rdfs:label "Caged K-peptide (K*) soluble solution (0.2 mM in PBS) for photodeprotection kinetics" ;
+    lova:particleMaterial "Ortho-nitrobenzyl-caged K-peptide (Ac-FKGGGERC-NH2)" .
+
+<https://lovamap.com/ontology#material/10.1002-cbic.201300687/ha-ac-type-a> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cbic.201300687> ;
+    rdfs:label "HA-AC/MMP hydrogel Type A (non-clustered K* peptide, 1.6 mM)" ;
+    lova:particleMaterial "Acrylated hyaluronic acid (HA-AC)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-cbic.201300687/ha-ac-synthesis> ;
+    lova:stiffnessValue 300.0 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:packingConfiguration "Bulk crosslinked hydrogel" .
+
+<https://lovamap.com/ontology#material/10.1002-cbic.201300687/ha-ac-type-b> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cbic.201300687> ;
+    rdfs:label "HA-AC/MMP hydrogel Type B (clustered K* peptide, 1.6 mM)" ;
+    lova:particleMaterial "Acrylated hyaluronic acid (HA-AC)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-cbic.201300687/ha-ac-synthesis> .
+
+<https://lovamap.com/ontology#material/10.1002-cbic.201300687/peg-mal-type-c> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cbic.201300687> ;
+    rdfs:label "PEG-MAL hydrogel Type C (4 wt%, r-ratio 0.75) with RGD and K* peptide" ;
+    lova:particleMaterial "4-arm PEG-maleimide (PEG-MAL, 20 kDa)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-cbic.201300687/peg-mal-synthesis> .
+
+<https://lovamap.com/ontology#material/10.1002-cbic.201300687/peg-vs-livedead> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cbic.201300687> ;
+    rdfs:label "PEG-VS hydrogel encapsulating mMSCs with caged K peptide (Live/Dead assay)" ;
+    lova:particleMaterial "4-arm PEG-vinylsulfone (PEG-VS, 40 kDa)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-cbic.201300687/peg-vs-synthesis> .
+
+<https://lovamap.com/ontology#material/10.1002-cbic.201300687/ha-ac-rgd-patterning> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cbic.201300687> ;
+    rdfs:label "HA-AC hydrogel Type B variant with PEG dithiol crosslinker for Q-RGD patterning (mMSC spreading)" ;
+    lova:particleMaterial "Acrylated hyaluronic acid (HA-AC)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-cbic.201300687/ha-ac-synthesis> .
+
+<https://lovamap.com/ontology#material/10.1002-cbic.201300687/ha-ac-vegf-patterning> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cbic.201300687> ;
+    rdfs:label "HA-AC hydrogel Type B with 0.2 mM RGD for Q-VEGF patterning (HUVEC proliferation)" ;
+    lova:particleMaterial "Acrylated hyaluronic acid (HA-AC)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-cbic.201300687/ha-ac-synthesis> .
+
+<https://lovamap.com/ontology#material/10.1002-cbic.201300687/ha-ac-pdgf-insitu> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cbic.201300687> ;
+    rdfs:label "HA-AC hydrogel Type A with encapsulated mMSCs for in situ Q-PDGF patterning" ;
+    lova:particleMaterial "Acrylated hyaluronic acid (HA-AC)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-cbic.201300687/ha-ac-synthesis> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-cbic.201300687/ha-ac-synthesis> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cbic.201300687> ;
+    rdfs:label "HA-AC/MMP hydrogel synthesis with FXIIIa-mediated HyPER immobilization" ;
+    lova:chemistry "Michael-type addition (acrylate-thiol)" ;
+    lova:manufacturingMethod "Solution crosslinking between Sigmacote-functionalized glass coverslips" ;
+    lova:annealingChemistry "Enzymatic (Factor XIIIa transglutamination)" ;
+    lova:annealingConditions "37°C, 45 min" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/hyaluronic-acid> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/ha-acrylate> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/n-acryloyl-ethylenediamine> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/dmtmm> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/mmp-crosslinker> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/caged-k-peptide> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/fxiiia> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/teoa> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-cbic.201300687/peg-mal-synthesis> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cbic.201300687> ;
+    rdfs:label "PEG-MAL hydrogel synthesis (Type C)" ;
+    lova:chemistry "Michael-type addition (maleimide-thiol)" ;
+    lova:manufacturingMethod "Solution crosslinking between Sigmacote-functionalized glass coverslips" ;
+    lova:annealingConditions "37°C, 10 min" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/peg-mal> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/mmp-crosslinker> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/q-rgd-peptide> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/caged-k-peptide> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-cbic.201300687/peg-vs-synthesis> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cbic.201300687> ;
+    rdfs:label "PEG-VS hydrogel synthesis with FXIIIa-mediated HyPER (encapsulated mMSCs)" ;
+    lova:chemistry "Michael-type addition (vinylsulfone-thiol)" ;
+    lova:manufacturingMethod "Solution crosslinking between glass slides" ;
+    lova:annealingChemistry "Enzymatic (Factor XIIIa transglutamination)" ;
+    lova:annealingConditions "37°C, 30 min" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/peg-vs> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/caged-k-peptide> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/mmp-crosslinker> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/fxiiia> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-cbic.201300687/caged-k-peptide-synthesis> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cbic.201300687> ;
+    rdfs:label "Synthesis of photocaged K-peptide via reductive amination" ;
+    lova:chemistry "Reductive amination" ;
+    lova:manufacturingMethod "Direct peptide modification via picoline borane reductive amination, preparatory HPLC purification" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/k-peptide> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/onb-cage> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/picoline-borane> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/vanillin> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/ethyl-4-bromobutyrate> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/potassium-carbonate> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/dmf> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/nitric-acid> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/trifluoroacetic-acid> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/methanol> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/acetic-acid> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/ethanol> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/sulfuric-acid> .
+
+<https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/hyaluronic-acid> a lova:Reagent ;
+    rdfs:label "Hyaluronic acid (60,000 Da)" ;
+    lova:reagentRole "monomer" ;
+    lova:molecularWeight "60,000 Da" ;
+    lova:supplier "Genzyme Corporation" ;
+    lova:reagentFunction "Hydrogel backbone polymer" .
+
+<https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/ha-acrylate> a lova:Reagent ;
+    rdfs:label "Acrylated hyaluronic acid (HA-AC, 64.45% acrylate modification)" ;
+    lova:reagentRole "monomer" ;
+    lova:concentration "0.08 mg/μL" ;
+    lova:reagentFunction "Crosslinkable HA backbone for Michael addition hydrogel" .
+
+<https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/n-acryloyl-ethylenediamine> a lova:Reagent ;
+    rdfs:label "N-acryloyl ethylene diamine" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Acrylate functionalization of HA" .
+
+<https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/dmtmm> a lova:Reagent ;
+    rdfs:label "4-(4,6-dimethoxy[1,3,5]triazin-2-yl)-4-methylmorpholinium chloride (DMTMM)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Fisher Scientific" ;
+    lova:reagentFunction "Coupling reagent for HA-AC synthesis" .
+
+<https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/mmp-crosslinker> a lova:Reagent ;
+    rdfs:label "MMP-degradable crosslinker peptide (Ac-GCRDGPQGIWGQDRCG-NH2)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:sequence "GCRDGPQGIWGQDRCG" ;
+    lova:supplier "Genscript" ;
+    lova:reagentFunction "Enzymatically degradable crosslink between HA/PEG arms" .
+
+<https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/caged-k-peptide> a lova:Reagent ;
+    rdfs:label "Photocaged K-peptide (K*, Ac-FKGGGERC-NH2 caged at lysine ε-amine)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "FKGGGERC" ;
+    lova:concentration "1.6 mM" ;
+    lova:reagentFunction "FXIIIa lysine substrate, photocaged until light exposure" .
+
+<https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/k-peptide> a lova:Reagent ;
+    rdfs:label "K-peptide (Ac-FKGGGERC-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "FKGGGERC" ;
+    lova:supplier "Genscript" ;
+    lova:reagentFunction "FXIIIa lysine donor substrate" .
+
+<https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/onb-cage> a lova:Reagent ;
+    rdfs:label "4-(4-formyl-2-methoxy-5-nitrophenoxy)butanoic acid (o-NB photocage)" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Photolabile ortho-nitrobenzyl caging group (λpeak~350nm, t1/2~7-8min at 10mW/cm2)" .
+
+<https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/picoline-borane> a lova:Reagent ;
+    rdfs:label "Picoline borane complex" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Sigma Aldrich" ;
+    lova:reagentFunction "Reductive amination catalyst for K-peptide caging" .
+
+<https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/vanillin> a lova:Reagent ;
+    rdfs:label "Vanillin" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Fisher Scientific" ;
+    lova:reagentFunction "Starting material for o-NB cage synthesis" .
+
+<https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/ethyl-4-bromobutyrate> a lova:Reagent ;
+    rdfs:label "Ethyl-4-bromobutyrate" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Fisher Scientific" .
+
+<https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/potassium-carbonate> a lova:Reagent ;
+    rdfs:label "Potassium carbonate" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Fisher Scientific" .
+
+<https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/dmf> a lova:Reagent ;
+    rdfs:label "Dimethylformamide (DMF)" ;
+    lova:reagentRole "solvent" ;
+    lova:supplier "Fisher Scientific" .
+
+<https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/nitric-acid> a lova:Reagent ;
+    rdfs:label "Nitric acid (70%)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Fisher Scientific" .
+
+<https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/trifluoroacetic-acid> a lova:Reagent ;
+    rdfs:label "Trifluoroacetic acid" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Fisher Scientific" .
+
+<https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/methanol> a lova:Reagent ;
+    rdfs:label "Methanol" ;
+    lova:reagentRole "solvent" ;
+    lova:supplier "Fisher Scientific" .
+
+<https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/acetic-acid> a lova:Reagent ;
+    rdfs:label "Acetic acid" ;
+    lova:reagentRole "solvent" ;
+    lova:supplier "Fisher Scientific" .
+
+<https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/ethanol> a lova:Reagent ;
+    rdfs:label "Ethanol" ;
+    lova:reagentRole "solvent" ;
+    lova:supplier "Fisher Scientific" .
+
+<https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/sulfuric-acid> a lova:Reagent ;
+    rdfs:label "Sulfuric acid" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Fisher Scientific" .
+
+<https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/teoa> a lova:Reagent ;
+    rdfs:label "Triethanolamine (TEOA, 0.3 M)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Fisher Scientific" ;
+    lova:reagentFunction "Buffer for hydrogel gelation" .
+
+<https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/peg-vs> a lova:Reagent ;
+    rdfs:label "4-arm PEG-vinylsulfone (PEG-VS, 40 kDa)" ;
+    lova:reagentRole "monomer" ;
+    lova:molecularWeight "40 kDa" ;
+    lova:supplier "JenKem Inc." .
+
+<https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/peg-mal> a lova:Reagent ;
+    rdfs:label "4-arm PEG-maleimide (PEG-MAL, 20 kDa)" ;
+    lova:reagentRole "monomer" ;
+    lova:molecularWeight "20 kDa" ;
+    lova:supplier "JenKem Inc." .
+
+<https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/peg-dithiol> a lova:Reagent ;
+    rdfs:label "PEG dithiol (MW 1000 Da)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:molecularWeight "1000 Da" ;
+    lova:supplier "Sigma Aldrich" ;
+    lova:reagentFunction "Non-degradable crosslinker" .
+
+<https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/fxiiia> a lova:Reagent ;
+    rdfs:label "Factor XIIIa (FXIIIa)" ;
+    lova:reagentRole "enzyme" ;
+    lova:concentration "180 U/mL stock, 10 U/mL working" ;
+    lova:reagentFunction "Catalyzes amide bond formation between K and Q peptides" .
+
+<https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/q-rgd-peptide> a lova:Reagent ;
+    rdfs:label "Q-RGD peptide (NQEQVSPLRGDSPGNH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "NQEQVSPLRGDSPGNH2" ;
+    lova:supplier "Genscript" ;
+    lova:reagentFunction "Cell adhesion ligand, FXIIIa glutamine substrate" .
+
+<https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/fitc-q-rgd> a lova:Reagent ;
+    rdfs:label "FITC-labeled Q-RGD peptide (FITC-NQEQVSPLRGDSPG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "NQEQVSPLRGDSPG" ;
+    lova:supplier "Genscript" ;
+    lova:reagentFunction "Fluorescent tracer for FXIIIa immobilization quantification" .
+
+<https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/q-vegf> a lova:Reagent ;
+    rdfs:label "Q-VEGF (Q-peptide tagged vascular endothelial growth factor)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "100 μg/mL" ;
+    lova:reagentFunction "Growth factor bioactive signal immobilized via FXIIIa" .
+
+<https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/q-pdgf> a lova:Reagent ;
+    rdfs:label "Q-PDGF (Q-peptide tagged platelet-derived growth factor)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "100 μg/mL" ;
+    lova:reagentFunction "Growth factor bioactive signal immobilized via FXIIIa" .
+
+<https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/q-fn9-10> a lova:Reagent ;
+    rdfs:label "Q-FNIII9*-10 (engineered fibronectin fragment)" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Protein fragment bioactive signal immobilized via FXIIIa" .
+
+<https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/rgd-positive-control> a lova:Reagent ;
+    rdfs:label "Ac-GCREGRGDSPG-NH2 (bulk-incorporated RGD peptide)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "GCREGRGDSPG" ;
+    lova:concentration "1.6 mM" ;
+    lova:reagentFunction "Positive control RGD immobilized prior to gelation" .
+
+<https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/thrombin> a lova:Reagent ;
+    rdfs:label "Thrombin" ;
+    lova:reagentRole "enzyme" ;
+    lova:concentration "1 U/mL" ;
+    lova:reagentFunction "Activates Factor XIII to FXIIIa" .
+
+<https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/cacl2> a lova:Reagent ;
+    rdfs:label "Calcium chloride (CaCl2)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "0.9 mM / 50 mM" ;
+    lova:reagentFunction "Cofactor for FXIIIa enzymatic activity" .
+
+<https://lovamap.com/ontology#reagent/10.1002-cbic.201300687/nhs-alexa555> a lova:Reagent ;
+    rdfs:label "NHS-Alexa 555 (succinimidyl ester Alexa 555)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "10 μg/mL" ;
+    lova:supplier "Invitrogen" ;
+    lova:reagentFunction "Amine-reactive fluorescent dye for deprotection visualization" .
+
+<https://lovamap.com/ontology#experiment/10.1002-cbic.201300687/k-deprotection-kinetics> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cbic.201300687> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-cbic.201300687/caged-k-peptide-solution> ;
+    rdfs:label "Photodeprotection kinetics of caged K-peptide (TNBS assay)" ;
+    lova:experimentCategory "Chemical" ;
+    lova:experimentType "Photodeprotection kinetics" ;
+    lova:assayOrMethod "Trinitrobenzene sulfonate (TNBS) primary amine assay" ;
+    lova:equipment "Irgacure Series 1000 UV lamp, 365 nm bandpass filter" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#experiment/10.1002-cbic.201300687/enzymatic-attachment-quant> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cbic.201300687> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-cbic.201300687/ha-ac-type-a> ;
+    rdfs:label "Quantification of FXIIIa-mediated FITC-Q-RGD immobilization vs. deprotection level" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Enzymatic bioconjugation quantification" ;
+    lova:assayOrMethod "Fluorescence depletion assay" ;
+    lova:sampleSize 12 .
+
+<https://lovamap.com/ontology#experiment/10.1002-cbic.201300687/patterning-multi-signal> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cbic.201300687> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-cbic.201300687/ha-ac-type-a> ,
+                       <https://lovamap.com/ontology#material/10.1002-cbic.201300687/peg-mal-type-c> ;
+    rdfs:label "Spatial patterning of Q-RGD, Q-FNIII9*10, Q-PDGF, Q-VEGF via HyPER (photomask, gradient filter, two-photon)" ;
+    lova:experimentCategory "Chemical" ;
+    lova:experimentType "Spatial bioconjugate patterning" ;
+    lova:assayOrMethod "Photomask UV patterning / two-photon confocal patterning" ;
+    lova:equipment "Omnicure Series 1000, Zeiss Confocal CTR MIC microscope" .
+
+<https://lovamap.com/ontology#experiment/10.1002-cbic.201300687/clustering-comparison> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cbic.201300687> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-cbic.201300687/ha-ac-type-a> ,
+                       <https://lovamap.com/ontology#material/10.1002-cbic.201300687/ha-ac-type-b> ;
+    rdfs:label "Comparison of homogeneous vs. clustered K*-peptide presentation on Q-RGD/Q-VEGF immobilization sharpness" ;
+    lova:experimentCategory "Chemical" ;
+    lova:experimentType "Immobilization pattern fidelity comparison" .
+
+<https://lovamap.com/ontology#experiment/10.1002-cbic.201300687/mmsc-spreading> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cbic.201300687> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-cbic.201300687/ha-ac-rgd-patterning> ;
+    rdfs:label "mMSC spreading on Q-RGD HyPER-modified hydrogel surfaces" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell attachment / spreading" ;
+    lova:cellType "mMSC" ;
+    lova:cellSource "ATCC Cat. CRL-12424" ;
+    lova:seedingDensity "4,000 cells per gel" ;
+    lova:cultureDuration "72 hours" ;
+    lova:cultureMedium "DMEM w/ 10% BGS and 0.1% P/S (CDMEM)" ;
+    lova:equipment "Zeiss Observer Z1 fluorescent microscope" .
+
+<https://lovamap.com/ontology#experiment/10.1002-cbic.201300687/huvec-proliferation> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cbic.201300687> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-cbic.201300687/ha-ac-vegf-patterning> ;
+    rdfs:label "HUVEC proliferation on Q-VEGF HyPER-modified hydrogels at varying deprotection %" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell proliferation" ;
+    lova:assayOrMethod "CyQUANT Cell Proliferation Assay" ;
+    lova:cellType "HUVEC" ;
+    lova:cellSource "Lonza Cat. CC-2519" ;
+    lova:seedingDensity "4,000 cells per gel" ;
+    lova:cultureDuration "5 days" ;
+    lova:cultureMedium "EGM-2 (without VEGF)" ;
+    lova:sampleSize 6 .
+
+<https://lovamap.com/ontology#experiment/10.1002-cbic.201300687/livedead-mmsc> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cbic.201300687> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-cbic.201300687/peg-vs-livedead> ;
+    rdfs:label "Live/Dead viability analysis of mMSCs encapsulated in HyPER-patterned PEG-VS hydrogels" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell viability" ;
+    lova:assayOrMethod "LIVE/DEAD assay (Life Technologies)" ;
+    lova:cellType "mMSC" ;
+    lova:seedingDensity "1500 cells per μL" ;
+    lova:cultureDuration "24 hours" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#experiment/10.1002-cbic.201300687/pdgf-insitu-mmsc> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cbic.201300687> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-cbic.201300687/ha-ac-pdgf-insitu> ;
+    rdfs:label "In situ immobilization of Q-PDGF gradient vs. homogeneous vs. soluble, effect on encapsulated mMSC morphology" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell morphology / cytoskeletal staining" ;
+    lova:assayOrMethod "Rhodamine phalloidin / DAPI staining" ;
+    lova:cellType "mMSC" ;
+    lova:seedingDensity "5000 cells per μL" ;
+    lova:cultureDuration "24 h pre-patterning + 2 days post-patterning" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#outcome/10.1002-cbic.201300687/k-degradation-constant> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-cbic.201300687/k-deprotection-kinetics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cbic.201300687> ;
+    rdfs:label "Intensity-dependent degradation constant of caged K-peptide" ;
+    lova:measurementType "Photodegradation rate constant (k)" ;
+    lova:measurementCategory "Chemical" ;
+    qudt:numericValue 0.00024 ;
+    qudt:unit "sec^-1 (mW/cm^2)^-1" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-cbic.201300687/t-half-20mwcm2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-cbic.201300687/k-deprotection-kinetics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cbic.201300687> ;
+    rdfs:label "K-peptide deprotection half-life at 20 mW/cm2" ;
+    lova:measurementType "Half-life (t1/2)" ;
+    lova:measurementCategory "Chemical" ;
+    qudt:numericValue 208.0 ;
+    qudt:unit "sec" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-cbic.201300687/t-half-10mwcm2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-cbic.201300687/k-deprotection-kinetics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cbic.201300687> ;
+    rdfs:label "K-peptide deprotection half-life at 10 mW/cm2" ;
+    lova:measurementType "Half-life (t1/2)" ;
+    lova:measurementCategory "Chemical" ;
+    qudt:numericValue 416.0 ;
+    qudt:unit "sec" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-cbic.201300687/qrgd-100pct-uncaged> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-cbic.201300687/enzymatic-attachment-quant> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cbic.201300687> ;
+    rdfs:label "Q-RGD immobilized concentration at 100% K* deprotection" ;
+    lova:measurementType "Immobilized Q-peptide concentration" ;
+    lova:measurementCategory "Chemical" ;
+    qudt:numericValue 0.446 ;
+    qudt:unit "mM" ;
+    lova:stdDev 0.085 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-cbic.201300687/qrgd-50pct-predicted> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-cbic.201300687/enzymatic-attachment-quant> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cbic.201300687> ;
+    rdfs:label "Predicted Q-RGD immobilized concentration at 50% K* deprotection" ;
+    lova:measurementType "Predicted immobilized Q-peptide concentration" ;
+    lova:measurementCategory "Chemical" ;
+    qudt:numericValue 0.223 ;
+    qudt:unit "mM" ;
+    lova:stdDev 0.042 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-cbic.201300687/qrgd-50pct-actual> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-cbic.201300687/enzymatic-attachment-quant> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cbic.201300687> ;
+    rdfs:label "Observed Q-RGD immobilized concentration at 50% K* deprotection" ;
+    lova:measurementType "Observed immobilized Q-peptide concentration" ;
+    lova:measurementCategory "Chemical" ;
+    qudt:numericValue 0.253 ;
+    qudt:unit "mM" ;
+    lova:stdDev 0.024 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-cbic.201300687/fxiiia-efficiency> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-cbic.201300687/enzymatic-attachment-quant> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cbic.201300687> ;
+    rdfs:label "Efficiency of FXIIIa utilization of fully deprotected K-peptide" ;
+    lova:measurementType "Conjugation efficiency" ;
+    lova:measurementCategory "Chemical" ;
+    qudt:numericValue 27.2 ;
+    qudt:unit "%" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-cbic.201300687/vegf-pattern-width> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-cbic.201300687/patterning-multi-signal> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cbic.201300687> ;
+    rdfs:label "Two-photon patterned Q-VEGF feature width" ;
+    lova:measurementType "Pattern width" ;
+    lova:measurementCategory "Chemical" ;
+    qudt:numericValue 180.0 ;
+    qudt:unit "μm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-cbic.201300687/vegf-pattern-height> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-cbic.201300687/patterning-multi-signal> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cbic.201300687> ;
+    rdfs:label "Two-photon patterned Q-VEGF feature height" ;
+    lova:measurementType "Pattern height" ;
+    lova:measurementCategory "Chemical" ;
+    qudt:numericValue 75.0 ;
+    qudt:unit "μm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-cbic.201300687/vegf-pattern-lettering> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-cbic.201300687/patterning-multi-signal> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cbic.201300687> ;
+    rdfs:label "Minimum two-photon patterned Q-VEGF lettering thickness" ;
+    lova:measurementType "Minimum feature thickness" ;
+    lova:measurementCategory "Chemical" ;
+    qudt:numericValue 6.0 ;
+    qudt:unit "μm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-cbic.201300687/vegf-pattern-zdepth> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-cbic.201300687/patterning-multi-signal> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cbic.201300687> ;
+    rdfs:label "Z-axis depth of two-photon patterned Q-VEGF feature" ;
+    lova:measurementType "Pattern z-depth" ;
+    lova:measurementCategory "Chemical" ;
+    qudt:numericValue 20.0 ;
+    qudt:unit "μm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-cbic.201300687/clustered-pattern-sharpness> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-cbic.201300687/clustering-comparison> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cbic.201300687> ;
+    rdfs:label "Pattern sharpness/background with clustered K*-peptide presentation" ;
+    lova:measurementType "Immobilization pattern sharpness" ;
+    lova:measurementCategory "Chemical" ;
+    lova:valueString "Sharper pattern with less background signal" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-cbic.201300687/homogeneous-pattern-sharpness> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-cbic.201300687/clustering-comparison> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cbic.201300687> ;
+    rdfs:label "Pattern sharpness/background with homogeneous K*-peptide presentation" ;
+    lova:measurementType "Immobilization pattern sharpness" ;
+    lova:measurementCategory "Chemical" ;
+    lova:valueString "Less defined pattern with higher background signal" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-cbic.201300687/huvec-prolif-0pct> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-cbic.201300687/huvec-proliferation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cbic.201300687> ;
+    rdfs:label "HUVEC count at Day 5, 0% K* deprotected" ;
+    lova:measurementType "Cell number" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 4500.0 ;
+    qudt:unit "cells" ;
+    lova:timePoint "Day 5" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-cbic.201300687/huvec-prolif-10pct> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-cbic.201300687/huvec-proliferation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cbic.201300687> ;
+    rdfs:label "HUVEC count at Day 5, 10% K* deprotected" ;
+    lova:measurementType "Cell number" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 5000.0 ;
+    qudt:unit "cells" ;
+    lova:timePoint "Day 5" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-cbic.201300687/huvec-prolif-40pct> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-cbic.201300687/huvec-proliferation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cbic.201300687> ;
+    rdfs:label "HUVEC count at Day 5, 40% K* deprotected" ;
+    lova:measurementType "Cell number" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 8500.0 ;
+    qudt:unit "cells" ;
+    lova:timePoint "Day 5" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-cbic.201300687/huvec-prolif-80pct> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-cbic.201300687/huvec-proliferation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cbic.201300687> ;
+    rdfs:label "HUVEC count at Day 5, 80% K* deprotected" ;
+    lova:measurementType "Cell number" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 7000.0 ;
+    qudt:unit "cells" ;
+    lova:timePoint "Day 5" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-cbic.201300687/huvec-prolif-noqvegf> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-cbic.201300687/huvec-proliferation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cbic.201300687> ;
+    rdfs:label "HUVEC count at Day 5, no Q-VEGF control" ;
+    lova:measurementType "Cell number" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 100.0 ;
+    qudt:unit "cells" ;
+    lova:timePoint "Day 5" ;
+    lova:comparisonGroup "-Q-VEGF" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-cbic.201300687/mmsc-spreading-full-exposure> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-cbic.201300687/mmsc-spreading> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cbic.201300687> ;
+    rdfs:label "mMSC spreading on fully light-exposed, Q-RGD, FXIIIa-conjugated gel" ;
+    lova:measurementType "Cell spreading" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Significant spreading similar to bulk-RGD positive control" ;
+    lova:timePoint "Day 3" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-cbic.201300687/mmsc-spreading-no-fxiiia> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-cbic.201300687/mmsc-spreading> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cbic.201300687> ;
+    rdfs:label "mMSC spreading on light-exposed gel without FXIIIa" ;
+    lova:measurementType "Cell spreading" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "No spreading observed" ;
+    lova:timePoint "Day 3" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-cbic.201300687/livedead-with-qrgd> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-cbic.201300687/livedead-mmsc> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cbic.201300687> ;
+    rdfs:label "mMSC viability after light exposure + Q-RGD conjugation" ;
+    lova:measurementType "Cell viability (LIVE/DEAD)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "High viability, equivalent to unexposed control" ;
+    lova:timePoint "24h" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-cbic.201300687/pdgf-gradient-morphology> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-cbic.201300687/pdgf-insitu-mmsc> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cbic.201300687> ;
+    rdfs:label "mMSC morphology in gradient-immobilized Q-PDGF gel" ;
+    lova:measurementType "Cell morphology / polarization" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "More polarized and extended cells compared to homogeneous or soluble Q-PDGF conditions" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-cbic.201300687/pdgf-homogeneous-morphology> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-cbic.201300687/pdgf-insitu-mmsc> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cbic.201300687> ;
+    rdfs:label "mMSC morphology in homogeneous-immobilized Q-PDGF gel" ;
+    lova:measurementType "Cell morphology / polarization" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Less polarized/extended morphology than gradient condition" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-cbic.201300687/qrgd-predicted-vs-actual-50pct> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cbic.201300687> ;
+    rdfs:label "Predicted vs. observed Q-RGD immobilization at 50% K* deprotection — matches prediction" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-cbic.201300687/qrgd-50pct-actual> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-cbic.201300687/qrgd-50pct-predicted> ;
+    lova:direction "no difference" .
+
+<https://lovamap.com/ontology#comparison/10.1002-cbic.201300687/clustered-vs-homogeneous-sharpness> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cbic.201300687> ;
+    rdfs:label "Clustered K*-peptide shows sharper immobilization pattern than homogeneous K*-peptide" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-cbic.201300687/clustered-pattern-sharpness> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-cbic.201300687/homogeneous-pattern-sharpness> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#comparison/10.1002-cbic.201300687/huvec-40-vs-10> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cbic.201300687> ;
+    rdfs:label "HUVEC proliferation higher at 40% vs 10% K* deprotection" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-cbic.201300687/huvec-prolif-40pct> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-cbic.201300687/huvec-prolif-10pct> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-cbic.201300687/huvec-80-vs-10> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cbic.201300687> ;
+    rdfs:label "HUVEC proliferation higher at 80% vs 10% K* deprotection" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-cbic.201300687/huvec-prolif-80pct> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-cbic.201300687/huvec-prolif-10pct> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-cbic.201300687/huvec-40-vs-80> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cbic.201300687> ;
+    rdfs:label "HUVEC proliferation at 40% vs 80% K* deprotection — no significant difference" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-cbic.201300687/huvec-prolif-40pct> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-cbic.201300687/huvec-prolif-80pct> ;
+    lova:direction "no difference" ;
+    lova:isSignificant false .
+
+<https://lovamap.com/ontology#comparison/10.1002-cbic.201300687/mmsc-spreading-fxiiia-vs-none> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cbic.201300687> ;
+    rdfs:label "mMSC spreading higher with FXIIIa conjugation than without" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-cbic.201300687/mmsc-spreading-full-exposure> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-cbic.201300687/mmsc-spreading-no-fxiiia> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#comparison/10.1002-cbic.201300687/pdgf-gradient-vs-homogeneous> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cbic.201300687> ;
+    rdfs:label "mMSC polarization higher in gradient Q-PDGF vs homogeneous Q-PDGF" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-cbic.201300687/pdgf-gradient-morphology> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-cbic.201300687/pdgf-homogeneous-morphology> ;
+    lova:direction "higher" .

@@ -1,0 +1,597 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1172-jci.insight.97180> a bibo:AcademicArticle ;
+    rdfs:label "Ding et al., 2017 — Integrating light-sheet imaging with virtual reality" ;
+    dc:title "Integrating light-sheet imaging with virtual reality to recapitulate developmental cardiac mechanics" ;
+    dc:identifier "10.1172/jci.insight.97180" ;
+    dc:date "2017"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/jci-insight> ;
+    dc:creator <https://lovamap.com/ontology#author/ding-yichen> ,
+               <https://lovamap.com/ontology#author/abiri-arash> ,
+               <https://lovamap.com/ontology#author/abiri-parinaz> ,
+               <https://lovamap.com/ontology#author/li-shuoran> ,
+               <https://lovamap.com/ontology#author/chang-chihchiang> ,
+               <https://lovamap.com/ontology#author/baek-kyungin> ,
+               <https://lovamap.com/ontology#author/hsu-jeffrey> ,
+               <https://lovamap.com/ontology#author/sideris-elias> ,
+               <https://lovamap.com/ontology#author/li-yilei> ,
+               <https://lovamap.com/ontology#author/lee-juhyun> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ,
+               <https://lovamap.com/ontology#author/nguyen-thaophuong> ,
+               <https://lovamap.com/ontology#author/bui-alexander> ,
+               <https://lovamap.com/ontology#author/packard-rene> ,
+               <https://lovamap.com/ontology#author/fei-peng> ,
+               <https://lovamap.com/ontology#author/hsiai-tzungk> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/ding-yichen>
+                      <https://lovamap.com/ontology#author/abiri-arash>
+                      <https://lovamap.com/ontology#author/abiri-parinaz>
+                      <https://lovamap.com/ontology#author/li-shuoran>
+                      <https://lovamap.com/ontology#author/chang-chihchiang>
+                      <https://lovamap.com/ontology#author/baek-kyungin>
+                      <https://lovamap.com/ontology#author/hsu-jeffrey>
+                      <https://lovamap.com/ontology#author/sideris-elias>
+                      <https://lovamap.com/ontology#author/li-yilei>
+                      <https://lovamap.com/ontology#author/lee-juhyun>
+                      <https://lovamap.com/ontology#author/segura-tatiana>
+                      <https://lovamap.com/ontology#author/nguyen-thaophuong>
+                      <https://lovamap.com/ontology#author/bui-alexander>
+                      <https://lovamap.com/ontology#author/packard-rene>
+                      <https://lovamap.com/ontology#author/fei-peng>
+                      <https://lovamap.com/ontology#author/hsiai-tzungk> ) ;
+    dc:bibliographicCitation "Ding et al., 2017" ;
+    lova:focusMaterial "Hyaluronic acid-based microgel scaffolds with human dermal fibroblasts; zebrafish and mouse cardiac tissue imaged via light-sheet fluorescence microscopy and virtual reality" .
+
+<https://lovamap.com/ontology#journal/jci-insight> a bibo:Journal ;
+    dc:title "JCI Insight" ;
+    bibo:issn "2379-3708" .
+
+<https://lovamap.com/ontology#author/ding-yichen> a foaf:Person ;
+    foaf:familyName "Ding" ; foaf:givenName "Yichen" ; foaf:name "Yichen Ding" ;
+    schema:affiliation "Department of Medicine, David Geffen School of Medicine, UCLA, Los Angeles, California, USA" ;
+    schema:affiliation "Department of Bioengineering, David Geffen School of Medicine, UCLA, Los Angeles, California, USA" .
+
+<https://lovamap.com/ontology#author/abiri-arash> a foaf:Person ;
+    foaf:familyName "Abiri" ; foaf:givenName "Arash" ; foaf:name "Arash Abiri" ;
+    schema:affiliation "Department of Medicine, David Geffen School of Medicine, UCLA, Los Angeles, California, USA" ;
+    schema:affiliation "Department of Biomedical Engineering, University of California, Irvine, Irvine, California, USA" .
+
+<https://lovamap.com/ontology#author/abiri-parinaz> a foaf:Person ;
+    foaf:familyName "Abiri" ; foaf:givenName "Parinaz" ; foaf:name "Parinaz Abiri" ;
+    schema:affiliation "Department of Medicine, David Geffen School of Medicine, UCLA, Los Angeles, California, USA" ;
+    schema:affiliation "Department of Bioengineering, David Geffen School of Medicine, UCLA, Los Angeles, California, USA" .
+
+<https://lovamap.com/ontology#author/li-shuoran> a foaf:Person ;
+    foaf:familyName "Li" ; foaf:givenName "Shuoran" ; foaf:name "Shuoran Li" ;
+    schema:affiliation "Chemical and Biomolecular Engineering Department, UCLA, Los Angeles, California, USA" .
+
+<https://lovamap.com/ontology#author/chang-chihchiang> a foaf:Person ;
+    foaf:familyName "Chang" ; foaf:givenName "Chih-Chiang" ; foaf:name "Chih-Chiang Chang" ;
+    schema:affiliation "Department of Bioengineering, David Geffen School of Medicine, UCLA, Los Angeles, California, USA" .
+
+<https://lovamap.com/ontology#author/baek-kyungin> a foaf:Person ;
+    foaf:familyName "Baek" ; foaf:givenName "Kyung In" ; foaf:name "Kyung In Baek" ;
+    schema:affiliation "Department of Bioengineering, David Geffen School of Medicine, UCLA, Los Angeles, California, USA" .
+
+<https://lovamap.com/ontology#author/hsu-jeffrey> a foaf:Person ;
+    foaf:familyName "Hsu" ; foaf:givenName "Jeffrey J." ; foaf:name "Jeffrey J. Hsu" ;
+    schema:affiliation "Department of Medicine, David Geffen School of Medicine, UCLA, Los Angeles, California, USA" .
+
+<https://lovamap.com/ontology#author/sideris-elias> a foaf:Person ;
+    foaf:familyName "Sideris" ; foaf:givenName "Elias" ; foaf:name "Elias Sideris" ;
+    schema:affiliation "Chemical and Biomolecular Engineering Department, UCLA, Los Angeles, California, USA" .
+
+<https://lovamap.com/ontology#author/li-yilei> a foaf:Person ;
+    foaf:familyName "Li" ; foaf:givenName "Yilei" ; foaf:name "Yilei Li" ;
+    schema:affiliation "Electrical Engineering Department, UCLA, Los Angeles, California, USA" .
+
+<https://lovamap.com/ontology#author/lee-juhyun> a foaf:Person ;
+    foaf:familyName "Lee" ; foaf:givenName "Juhyun" ; foaf:name "Juhyun Lee" ;
+    schema:affiliation "Department of Bioengineering, David Geffen School of Medicine, UCLA, Los Angeles, California, USA" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ; foaf:givenName "Tatiana" ; foaf:name "Tatiana Segura" ;
+    schema:affiliation "Department of Bioengineering, David Geffen School of Medicine, UCLA, Los Angeles, California, USA" ;
+    schema:affiliation "Chemical and Biomolecular Engineering Department, UCLA, Los Angeles, California, USA" .
+
+<https://lovamap.com/ontology#author/nguyen-thaophuong> a foaf:Person ;
+    foaf:familyName "Nguyen" ; foaf:givenName "Thao Phuong" ; foaf:name "Thao Phuong Nguyen" ;
+    schema:affiliation "Department of Medicine, David Geffen School of Medicine, UCLA, Los Angeles, California, USA" .
+
+<https://lovamap.com/ontology#author/bui-alexander> a foaf:Person ;
+    foaf:familyName "Bui" ; foaf:givenName "Alexander" ; foaf:name "Alexander Bui" ;
+    schema:affiliation "Department of Bioengineering, David Geffen School of Medicine, UCLA, Los Angeles, California, USA" ;
+    schema:affiliation "Medical Imaging Informatics Group, Department of Radiological Sciences, David Geffen School of Medicine, UCLA, Los Angeles, California, USA" .
+
+<https://lovamap.com/ontology#author/packard-rene> a foaf:Person ;
+    foaf:familyName "Packard" ; foaf:givenName "René R. Sevag" ; foaf:name "René R. Sevag Packard" ;
+    schema:affiliation "Department of Medicine, David Geffen School of Medicine, UCLA, Los Angeles, California, USA" .
+
+<https://lovamap.com/ontology#author/fei-peng> a foaf:Person ;
+    foaf:familyName "Fei" ; foaf:givenName "Peng" ; foaf:name "Peng Fei" ;
+    schema:affiliation "School of Optical and Electronic Information, Huazhong University of Science and Technology, Wuhan, China" .
+
+<https://lovamap.com/ontology#author/hsiai-tzungk> a foaf:Person ;
+    foaf:familyName "Hsiai" ; foaf:givenName "Tzung K." ; foaf:name "Tzung K. Hsiai" ;
+    schema:affiliation "Department of Medicine, David Geffen School of Medicine, UCLA, Los Angeles, California, USA" ;
+    schema:affiliation "Department of Bioengineering, David Geffen School of Medicine, UCLA, Los Angeles, California, USA" ;
+    schema:affiliation "Medical Engineering, California Institute of Technology, Pasadena, California, USA" .
+
+<https://lovamap.com/ontology#material/10.1172-jci.insight.97180/ha-hydrogel-bead> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1172-jci.insight.97180> ;
+    rdfs:label "Hyaluronic acid-based (HA-based) microgel bead scaffold seeded with HDFs" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Hyaluronic acid (HA)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1172-jci.insight.97180/ha-microgel-fabrication> .
+
+<https://lovamap.com/ontology#material/10.1172-jci.insight.97180/zebrafish-adult-heart> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1172-jci.insight.97180> ;
+    rdfs:label "Adult transgenic Tg(cmlc2:gfp) zebrafish heart (60 dpf)" .
+
+<https://lovamap.com/ontology#material/10.1172-jci.insight.97180/zebrafish-embryo-heart> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1172-jci.insight.97180> ;
+    rdfs:label "Embryonic transgenic Tg(cmlc2:gfp) zebrafish heart (~120 hpf, 5 dpf)" .
+
+<https://lovamap.com/ontology#material/10.1172-jci.insight.97180/mouse-heart-romk> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1172-jci.insight.97180> ;
+    rdfs:label "Adult C57BL/6 mouse heart (7.5 months, male) with AAV9-ROMK-GFP gene therapy" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1172-jci.insight.97180/aav9-romk-gfp-construct> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1172-jci.insight.97180/ha-microgel-fabrication> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1172-jci.insight.97180> ;
+    rdfs:label "Microfluidic HA-acrylate microgel fabrication with enzymatic Factor XIII annealing" ;
+    lova:chemistry "Michael-type addition (thiol-acrylate)" ;
+    lova:manufacturingMethod "Microfluidic water-in-oil emulsion" ;
+    lova:annealingChemistry "Enzymatic (Factor XIII transglutamination)" ;
+    lova:annealingConditions "37°C, 90 min" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1172-jci.insight.97180/ha-acrylate> ,
+                    <https://lovamap.com/ontology#reagent/10.1172-jci.insight.97180/k-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1172-jci.insight.97180/q-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1172-jci.insight.97180/rgd-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1172-jci.insight.97180/mmp-dithiol-linker> ,
+                    <https://lovamap.com/ontology#reagent/10.1172-jci.insight.97180/alexa-fluor-488-maleimide> ,
+                    <https://lovamap.com/ontology#reagent/10.1172-jci.insight.97180/mineral-oil-span80> ,
+                    <https://lovamap.com/ontology#reagent/10.1172-jci.insight.97180/factor-xiii> ,
+                    <https://lovamap.com/ontology#reagent/10.1172-jci.insight.97180/pfa> ,
+                    <https://lovamap.com/ontology#reagent/10.1172-jci.insight.97180/phalloidin-rhodamineb> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1172-jci.insight.97180/aav9-romk-gfp-construct> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1172-jci.insight.97180> ;
+    rdfs:label "AAV9-mediated cardiac-specific ROMK-GFP gene delivery construct" ;
+    lova:chemistry "Viral vector gene delivery" ;
+    lova:manufacturingMethod "Intravenous injection of AAV9 vector in tail" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1172-jci.insight.97180/aav9-romk-gfp> ,
+                    <https://lovamap.com/ontology#reagent/10.1172-jci.insight.97180/anti-gfp-antibody> ,
+                    <https://lovamap.com/ontology#reagent/10.1172-jci.insight.97180/anti-romk-antibody> ,
+                    <https://lovamap.com/ontology#reagent/10.1172-jci.insight.97180/secondary-antibody-hrp> .
+
+<https://lovamap.com/ontology#reagent/10.1172-jci.insight.97180/ha-acrylate> a lova:Reagent ;
+    rdfs:label "Acrylated hyaluronic acid (HA) backbone" ;
+    lova:reagentRole "monomer" ;
+    lova:reagentFunction "Hydrogel network backbone" .
+
+<https://lovamap.com/ontology#reagent/10.1172-jci.insight.97180/k-peptide> a lova:Reagent ;
+    rdfs:label "K-peptide (Ac-FKGGERCG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "FKGGERCG" ;
+    lova:concentration "500 μM" .
+
+<https://lovamap.com/ontology#reagent/10.1172-jci.insight.97180/q-peptide> a lova:Reagent ;
+    rdfs:label "Q-peptide (Ac-NQEQVSPLGGERCG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "NQEQVSPLGGERCG" ;
+    lova:concentration "500 μM" .
+
+<https://lovamap.com/ontology#reagent/10.1172-jci.insight.97180/rgd-peptide> a lova:Reagent ;
+    rdfs:label "RGD (Ac-RGDSPGERCG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "RGDSPGERCG" ;
+    lova:concentration "1,000 μM" ;
+    lova:reagentFunction "Cell adhesion" .
+
+<https://lovamap.com/ontology#reagent/10.1172-jci.insight.97180/mmp-dithiol-linker> a lova:Reagent ;
+    rdfs:label "Dithiol MMP-sensitive linker peptide (Ac-GCRDGPQGIWGQDRCG-NH2)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:sequence "GCRDGPQGIWGQDRCG" ;
+    lova:concentration "7.8 mM" ;
+    lova:supplier "Genscript" ;
+    lova:reagentFunction "Enzymatically degradable crosslink" .
+
+<https://lovamap.com/ontology#reagent/10.1172-jci.insight.97180/alexa-fluor-488-maleimide> a lova:Reagent ;
+    rdfs:label "Alexa Fluor 488–maleimide" ;
+    lova:reagentRole "other" ;
+    lova:concentration "10 μM" ;
+    lova:supplier "Life Technologies" ;
+    lova:reagentFunction "Fluorescent labeling of microgels" .
+
+<https://lovamap.com/ontology#reagent/10.1172-jci.insight.97180/mineral-oil-span80> a lova:Reagent ;
+    rdfs:label "Heavy mineral oil with 1% span-80 surfactant" ;
+    lova:reagentRole "carrier oil" ;
+    lova:concentration "1% span-80" ;
+    lova:reagentFunction "Water-in-oil emulsion carrier phase" .
+
+<https://lovamap.com/ontology#reagent/10.1172-jci.insight.97180/factor-xiii> a lova:Reagent ;
+    rdfs:label "Activated Factor XIII" ;
+    lova:reagentRole "enzyme" ;
+    lova:concentration "5 units/ml" ;
+    lova:reagentFunction "Annealing (inter-particle crosslinking)" .
+
+<https://lovamap.com/ontology#reagent/10.1172-jci.insight.97180/pfa> a lova:Reagent ;
+    rdfs:label "Paraformaldehyde (PFA)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "4%" ;
+    lova:reagentFunction "Fixative" .
+
+<https://lovamap.com/ontology#reagent/10.1172-jci.insight.97180/phalloidin-rhodamineb> a lova:Reagent ;
+    rdfs:label "Rhodamine B–conjugated Phalloidin" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Life Technologies" ;
+    lova:reagentFunction "F-actin staining" .
+
+<https://lovamap.com/ontology#reagent/10.1172-jci.insight.97180/aav9-romk-gfp> a lova:Reagent ;
+    rdfs:label "AAV9-ROMK-GFP (adenoassociated virus vector 9 carrying ROMK-GFP fusion)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Vector Biolabs" ;
+    lova:concentration "8.7 × 10^12 viral genomes" ;
+    lova:reagentFunction "Cardiac-specific gene therapy delivery of ROMK ion channel fused to GFP" .
+
+<https://lovamap.com/ontology#reagent/10.1172-jci.insight.97180/anti-gfp-antibody> a lova:Reagent ;
+    rdfs:label "Primary antibody against GFP (sc-8334)" ;
+    lova:reagentRole "other" ;
+    lova:catalogNumber "sc-8334" ;
+    lova:supplier "Santa Cruz Biotechnology" .
+
+<https://lovamap.com/ontology#reagent/10.1172-jci.insight.97180/anti-romk-antibody> a lova:Reagent ;
+    rdfs:label "Primary antibody against ROMK (APC-001)" ;
+    lova:reagentRole "other" ;
+    lova:catalogNumber "APC-001" ;
+    lova:supplier "Alomone Labs" .
+
+<https://lovamap.com/ontology#reagent/10.1172-jci.insight.97180/secondary-antibody-hrp> a lova:Reagent ;
+    rdfs:label "Envision+ System-HRP anti-rabbit polyclonal antibody (K4002)" ;
+    lova:reagentRole "other" ;
+    lova:catalogNumber "K4002" ;
+    lova:supplier "Dako" .
+
+<https://lovamap.com/ontology#experiment/10.1172-jci.insight.97180/hdf-hydrogel-imaging> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1172-jci.insight.97180> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1172-jci.insight.97180/ha-hydrogel-bead> ;
+    rdfs:label "VR-LSFM imaging of HDFs embedded in HA-based hydrogel microgels" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell-material interaction imaging" ;
+    lova:assayOrMethod "Light-sheet fluorescence microscopy (LSFM) + virtual reality (VR) reconstruction" ;
+    lova:cellType "Human dermal fibroblast (HDF)" ;
+    lova:cellSource "Human dermal" ;
+    lova:seedingDensity "1,500 cells/μl" ;
+    lova:cultureDuration "2 days" ;
+    lova:temperature "37°C" .
+
+<https://lovamap.com/ontology#experiment/10.1172-jci.insight.97180/zebrafish-adult-trabecular-imaging> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1172-jci.insight.97180> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1172-jci.insight.97180/zebrafish-adult-heart> ;
+    rdfs:label "VR-LSFM visualization of endocardial trabecular network in adult zebrafish heart" ;
+    lova:experimentCategory "Imaging" ;
+    lova:experimentType "3D architecture visualization" ;
+    lova:assayOrMethod "Light-sheet fluorescence microscopy (LSFM) + virtual reality (VR)" .
+
+<https://lovamap.com/ontology#experiment/10.1172-jci.insight.97180/mouse-romk-imaging> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1172-jci.insight.97180> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1172-jci.insight.97180/mouse-heart-romk> ;
+    rdfs:label "VR-LSFM localization of ROMK channel expression in adult mouse heart following gene therapy" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Gene therapy expression localization imaging" ;
+    lova:assayOrMethod "Light-sheet fluorescence microscopy (LSFM) + virtual reality (VR)" .
+
+<https://lovamap.com/ontology#experiment/10.1172-jci.insight.97180/zebrafish-embryo-4d-contraction> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1172-jci.insight.97180> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1172-jci.insight.97180/zebrafish-embryo-heart> ;
+    rdfs:label "4D VR-LSFM imaging of contracting zebrafish embryonic heart" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "4D cardiac contractile function imaging" ;
+    lova:assayOrMethod "Light-sheet fluorescence microscopy (LSFM) + batch intensity normalized segmentation (BINS) + deformable image registration (DIR)" ;
+    lova:cultureDuration "~120 hours post fertilization" .
+
+<https://lovamap.com/ontology#experiment/10.1172-jci.insight.97180/bins-validation> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1172-jci.insight.97180> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1172-jci.insight.97180/zebrafish-embryo-heart> ;
+    rdfs:label "Validation of BINS segmentation algorithm via Dice similarity coefficient" ;
+    lova:experimentCategory "Computational/Image Analysis" ;
+    lova:experimentType "Segmentation validation" ;
+    lova:assayOrMethod "Dice similarity coefficient" ;
+    lova:sampleSize 60 .
+
+<https://lovamap.com/ontology#experiment/10.1172-jci.insight.97180/user-survey> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1172-jci.insight.97180> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1172-jci.insight.97180/ha-hydrogel-bead> ,
+                      <https://lovamap.com/ontology#material/10.1172-jci.insight.97180/zebrafish-adult-heart> ,
+                      <https://lovamap.com/ontology#material/10.1172-jci.insight.97180/mouse-heart-romk> ;
+    rdfs:label "Participant survey of VR-LSFM user experience" ;
+    lova:experimentCategory "Survey" ;
+    lova:experimentType "Usability questionnaire" ;
+    lova:assayOrMethod "Likert-scale questionnaire (1–5)" ;
+    lova:sampleSize 20 .
+
+<https://lovamap.com/ontology#experiment/10.1172-jci.insight.97180/fps-test> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1172-jci.insight.97180> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1172-jci.insight.97180/mouse-heart-romk> ;
+    rdfs:label "Frame rate test of mouse heart VR model" ;
+    lova:experimentCategory "Technical" ;
+    lova:experimentType "Rendering performance test" .
+
+<https://lovamap.com/ontology#outcome/10.1172-jci.insight.97180/hdf-percolation> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1172-jci.insight.97180/hdf-hydrogel-imaging> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1172-jci.insight.97180> ;
+    rdfs:label "HDFs percolated through the hydrogel matrix" ;
+    lova:measurementType "Cell percolation through hydrogel matrix" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "HDFs percolated through the hydrogel matrix, confirmed via 3D VR reconstruction" ;
+    lova:scope "Regional" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1172-jci.insight.97180/trabecular-distance> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1172-jci.insight.97180/zebrafish-adult-trabecular-imaging> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1172-jci.insight.97180> ;
+    rdfs:label "Distance between ventriculobulbar valve leaflets/trabecular ridges in adult zebrafish heart" ;
+    lova:measurementType "Distance between trabecular ridges/valve leaflets" ;
+    lova:measurementCategory "Imaging" ;
+    qudt:numericValue 29.5 ;
+    qudt:unit "μm" ;
+    lova:scope "Regional" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1172-jci.insight.97180/aav9-dose> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1172-jci.insight.97180/mouse-romk-imaging> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1172-jci.insight.97180> ;
+    rdfs:label "AAV9-ROMK-GFP viral vector dose administered to mouse" ;
+    lova:measurementType "Viral vector dose" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 8.7E12 ;
+    qudt:unit "viral genomes" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1172-jci.insight.97180/mouse-age> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1172-jci.insight.97180/mouse-romk-imaging> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1172-jci.insight.97180> ;
+    rdfs:label "Age of mouse at imaging" ;
+    lova:measurementType "Animal age at imaging" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 7.5 ;
+    qudt:unit "months" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1172-jci.insight.97180/injection-age> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1172-jci.insight.97180/mouse-romk-imaging> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1172-jci.insight.97180> ;
+    rdfs:label "Age of mouse at AAV9 viral injection" ;
+    lova:measurementType "Age at viral injection" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.0 ;
+    qudt:unit "months" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1172-jci.insight.97180/sections-count> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1172-jci.insight.97180/zebrafish-embryo-4d-contraction> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1172-jci.insight.97180> ;
+    rdfs:label "Number of imaged heart sections for 4D zebrafish heart reconstruction" ;
+    lova:measurementType "Number of imaged sections" ;
+    lova:measurementCategory "Imaging" ;
+    qudt:numericValue 300.0 ;
+    qudt:unit "sections" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1172-jci.insight.97180/frames-per-section> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1172-jci.insight.97180/zebrafish-embryo-4d-contraction> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1172-jci.insight.97180> ;
+    rdfs:label "Number of xy planes (frames) captured per section" ;
+    lova:measurementType "Frames captured per section" ;
+    lova:measurementCategory "Imaging" ;
+    qudt:numericValue 300.0 ;
+    qudt:unit "frames" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1172-jci.insight.97180/exposure-time> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1172-jci.insight.97180/zebrafish-embryo-4d-contraction> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1172-jci.insight.97180> ;
+    rdfs:label "Exposure time per frame during zebrafish heart imaging" ;
+    lova:measurementType "Exposure time per frame" ;
+    lova:measurementCategory "Imaging" ;
+    qudt:numericValue 10.0 ;
+    qudt:unit "ms" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1172-jci.insight.97180/reconstructed-hearts> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1172-jci.insight.97180/zebrafish-embryo-4d-contraction> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1172-jci.insight.97180> ;
+    rdfs:label "Number of reconstructed digital hearts per cardiac cycle" ;
+    lova:measurementType "Number of reconstructed digital hearts" ;
+    lova:measurementCategory "Imaging" ;
+    qudt:numericValue 50.0 ;
+    qudt:unit "hearts" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1172-jci.insight.97180/ventricular-volume> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1172-jci.insight.97180/zebrafish-embryo-4d-contraction> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1172-jci.insight.97180> ;
+    rdfs:label "Ventricular volume of contracting embryonic zebrafish heart" ;
+    lova:measurementType "Ventricular volume" ;
+    lova:measurementCategory "Imaging" ;
+    qudt:numericValue 0.001804 ;
+    qudt:unit "mm³" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1172-jci.insight.97180/volumetric-change> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1172-jci.insight.97180/zebrafish-embryo-4d-contraction> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1172-jci.insight.97180> ;
+    rdfs:label "Volumetric change (ΔV) between consecutive frames of contracting embryonic zebrafish heart" ;
+    lova:measurementType "Volumetric change (ΔV) between frames" ;
+    lova:measurementCategory "Imaging" ;
+    qudt:numericValue 9.0E-6 ;
+    qudt:unit "mm³" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1172-jci.insight.97180/dice-coefficient> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1172-jci.insight.97180/bins-validation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1172-jci.insight.97180> ;
+    rdfs:label "Dice similarity coefficient for BINS segmentation validation" ;
+    lova:measurementType "Dice similarity coefficient" ;
+    lova:measurementCategory "Computational/Image Analysis" ;
+    qudt:numericValue 0.92 ;
+    lova:stdDev 0.02 ;
+    lova:sampleSize 60 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1172-jci.insight.97180/n-participants> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1172-jci.insight.97180/user-survey> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1172-jci.insight.97180> ;
+    rdfs:label "Number of survey participants" ;
+    lova:measurementType "Number of participants" ;
+    lova:measurementCategory "Survey" ;
+    qudt:numericValue 20.0 ;
+    qudt:unit "participants" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1172-jci.insight.97180/n-male-participants> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1172-jci.insight.97180/user-survey> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1172-jci.insight.97180> ;
+    rdfs:label "Number of male survey participants" ;
+    lova:measurementType "Male participants" ;
+    lova:measurementCategory "Survey" ;
+    qudt:numericValue 16.0 ;
+    qudt:unit "participants" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1172-jci.insight.97180/n-female-participants> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1172-jci.insight.97180/user-survey> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1172-jci.insight.97180> ;
+    rdfs:label "Number of female survey participants" ;
+    lova:measurementType "Female participants" ;
+    lova:measurementCategory "Survey" ;
+    qudt:numericValue 4.0 ;
+    qudt:unit "participants" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1172-jci.insight.97180/median-age> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1172-jci.insight.97180/user-survey> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1172-jci.insight.97180> ;
+    rdfs:label "Median age of survey participants" ;
+    lova:measurementType "Median participant age" ;
+    lova:measurementCategory "Survey" ;
+    qudt:numericValue 30.0 ;
+    qudt:unit "years" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1172-jci.insight.97180/q1-medical-training> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1172-jci.insight.97180/user-survey> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1172-jci.insight.97180> ;
+    rdfs:label "Survey response: this technology is useful in my medical training" ;
+    lova:measurementType "Likert score: useful in medical training" ;
+    lova:measurementCategory "Survey" ;
+    qudt:numericValue 4.3 ;
+    lova:stdDev 1.1 ;
+    lova:sampleSize 20 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1172-jci.insight.97180/q2-headmounted> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1172-jci.insight.97180/user-survey> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1172-jci.insight.97180> ;
+    rdfs:label "Survey response: this technology is based on a head-mounted device" ;
+    lova:measurementType "Likert score: head-mounted device" ;
+    lova:measurementCategory "Survey" ;
+    qudt:numericValue 4.8 ;
+    lova:stdDev 0.7 ;
+    lova:sampleSize 20 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1172-jci.insight.97180/q3-highres> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1172-jci.insight.97180/user-survey> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1172-jci.insight.97180> ;
+    rdfs:label "Survey response: this technology presents the architecture in high resolution" ;
+    lova:measurementType "Likert score: high-resolution architecture" ;
+    lova:measurementCategory "Survey" ;
+    qudt:numericValue 4.5 ;
+    lova:stdDev 0.7 ;
+    lova:sampleSize 20 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1172-jci.insight.97180/q4-immersive> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1172-jci.insight.97180/user-survey> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1172-jci.insight.97180> ;
+    rdfs:label "Survey response: this technology provides 3D immersive experience" ;
+    lova:measurementType "Likert score: 3D immersive experience" ;
+    lova:measurementCategory "Survey" ;
+    qudt:numericValue 4.8 ;
+    lova:stdDev 0.5 ;
+    lova:sampleSize 20 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1172-jci.insight.97180/q5-userdirected> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1172-jci.insight.97180/user-survey> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1172-jci.insight.97180> ;
+    rdfs:label "Survey response: this technology provides user-directed movements" ;
+    lova:measurementType "Likert score: user-directed movements" ;
+    lova:measurementCategory "Survey" ;
+    qudt:numericValue 4.7 ;
+    lova:stdDev 0.4 ;
+    lova:sampleSize 20 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1172-jci.insight.97180/q6-multichannel> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1172-jci.insight.97180/user-survey> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1172-jci.insight.97180> ;
+    rdfs:label "Survey response: this technology provides multichannel signals" ;
+    lova:measurementType "Likert score: multichannel signals" ;
+    lova:measurementCategory "Survey" ;
+    qudt:numericValue 4.4 ;
+    lova:stdDev 1.0 ;
+    lova:sampleSize 20 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1172-jci.insight.97180/q7-dizziness> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1172-jci.insight.97180/user-survey> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1172-jci.insight.97180> ;
+    rdfs:label "Survey response: I do NOT feel dizzy when I operate the demo" ;
+    lova:measurementType "Likert score: no dizziness" ;
+    lova:measurementCategory "Survey" ;
+    qudt:numericValue 4.1 ;
+    lova:stdDev 0.9 ;
+    lova:sampleSize 20 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1172-jci.insight.97180/fps-vr> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1172-jci.insight.97180/fps-test> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1172-jci.insight.97180> ;
+    rdfs:label "Frame rate of VR-LSFM mouse heart demonstration" ;
+    lova:measurementType "Frame rate (VR demonstration)" ;
+    lova:measurementCategory "Technical" ;
+    qudt:numericValue 60.0 ;
+    qudt:unit "FPS" ;
+    lova:comparisonGroup "Cinematic films (24 FPS)" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1172-jci.insight.97180/fps-cinematic> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1172-jci.insight.97180/fps-test> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1172-jci.insight.97180> ;
+    rdfs:label "Standard cinematic film frame rate" ;
+    lova:measurementType "Frame rate (cinematic film standard)" ;
+    lova:measurementCategory "Technical" ;
+    qudt:numericValue 24.0 ;
+    qudt:unit "FPS" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1172-jci.insight.97180/fps-vr-vs-cinematic> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1172-jci.insight.97180> ;
+    rdfs:label "VR-LSFM mouse heart demonstration frame rate higher than cinematic film standard" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1172-jci.insight.97180/fps-vr> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1172-jci.insight.97180/fps-cinematic> ;
+    lova:direction "higher" .

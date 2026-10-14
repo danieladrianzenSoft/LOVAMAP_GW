@@ -1,0 +1,890 @@
+@prefix bibo: <http://purl.org/ontology/bibo/> .
+@prefix dc1: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix lova: <https://lovamap.com/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2007.09.036/asma-msc-3d-vs-2d> a lova:ComparisonResult ;
+    rdfs:label "aSMA higher in 3D PEG hydrogel vs 2D plasticware (MSC)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:direction "higher" ;
+    lova:foldChange 4.5 ;
+    lova:isSignificant true ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/asma-msc-3d> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/asma-msc-2d> ;
+    lova:pValue 0.0004 .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2007.09.036/asma-smc-3d-vs-2d> a lova:ComparisonResult ;
+    rdfs:label "aSMA higher in 3D PEG hydrogel vs 2D plasticware (SMC)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:direction "higher" ;
+    lova:foldChange 1.7 ;
+    lova:isSignificant true ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/asma-smc-3d> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/asma-smc-2d> ;
+    lova:pValue 0.025 .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2007.09.036/cd105-smc-3d-vs-2d> a lova:ComparisonResult ;
+    rdfs:label "CD105 lower in 3D PEG hydrogel vs 2D plasticware (SMC)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:direction "lower" ;
+    lova:isSignificant true ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/cd105-smc-3d> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/cd105-smc-2d> ;
+    lova:pValue 0.0002 .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2007.09.036/mmp1-msc-3d-vs-2d> a lova:ComparisonResult ;
+    rdfs:label "MMP-1 lower in 3D hydrogel vs 2D plasticware (MSC)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:direction "lower" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/mmp1-msc-3d> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/mmp1-smc> .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2007.09.036/myosin-msc-3d-vs-2d> a lova:ComparisonResult ;
+    rdfs:label "Myosin higher in 3D PEG hydrogel vs 2D plasticware (MSC)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:direction "higher" ;
+    lova:foldChange 9.6 ;
+    lova:isSignificant true ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/myosin-msc-3d> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/myosin-msc-2d> ;
+    lova:pValue 0.00001 .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2007.09.036/myosin-smc-3d-vs-2d> a lova:ComparisonResult ;
+    rdfs:label "Myosin higher in 3D PEG hydrogel vs 2D plasticware (SMC)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:direction "higher" ;
+    lova:foldChange 4.4 ;
+    lova:isSignificant true ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/myosin-smc-3d> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/myosin-smc-2d> ;
+    lova:pValue 0.00004 .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2007.09.036/spreading-smc-vs-msc> a lova:ComparisonResult ;
+    rdfs:label "SMC network formation higher than MSC within 3D hydrogel" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:direction "higher" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/spreading-smc> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/spreading-msc> .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2007.09.036/thy1-smc-3d-vs-2d> a lova:ComparisonResult ;
+    rdfs:label "THY-1 lower in 3D PEG hydrogel vs 2D plasticware (SMC)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:direction "lower" ;
+    lova:isSignificant true ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/thy1-smc-3d> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/thy1-smc-2d> ;
+    lova:pValue 0.0001 .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/a1-msc-3d> a lova:Outcome ;
+    rdfs:label "a1 integrin expression in MSC, significant increase in 3D vs 2D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:comparisonGroup "2D polystyrene plasticware" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-facs-msc> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "a1 integrin expression" ;
+    lova:pValue 0.031 ;
+    lova:timePoint "Day 14" ;
+    lova:valueString "Significant increase" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/a3-msc-3d> a lova:Outcome ;
+    rdfs:label "a3 integrin expression in MSC, decreased in 3D vs 2D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:comparisonGroup "2D polystyrene plasticware" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-facs-msc> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "a3 integrin expression" ;
+    lova:pValue 0.002 ;
+    lova:timePoint "Day 14" ;
+    lova:valueString "Decrease" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/a3-smc-3d> a lova:Outcome ;
+    rdfs:label "a3 integrin expression in SMC, significant decrease in 3D vs 2D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:comparisonGroup "2D polystyrene plasticware" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-facs-smc> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "a3 integrin expression" ;
+    lova:pValue 0.006 ;
+    lova:timePoint "Day 14" ;
+    lova:valueString "Significant decrease" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/a5-msc-3d> a lova:Outcome ;
+    rdfs:label "a5 integrin expression in MSC, decreased in 3D vs 2D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:comparisonGroup "2D polystyrene plasticware" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-facs-msc> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "a5 integrin expression" ;
+    lova:pValue 0.019 ;
+    lova:timePoint "Day 14" ;
+    lova:valueString "Decrease" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/a5-smc-3d> a lova:Outcome ;
+    rdfs:label "a5 integrin expression in SMC, significant decrease in 3D vs 2D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:comparisonGroup "2D polystyrene plasticware" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-facs-smc> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "a5 integrin expression" ;
+    lova:pValue 0.0002 ;
+    lova:timePoint "Day 14" ;
+    lova:valueString "Significant decrease" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/av-msc-3d> a lova:Outcome ;
+    rdfs:label "av integrin expression in MSC, significant increase in 3D vs 2D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:comparisonGroup "2D polystyrene plasticware" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-facs-msc> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "av integrin expression" ;
+    lova:pValue 0.005 ;
+    lova:timePoint "Day 14" ;
+    lova:valueString "Significant increase" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/av-smc-3d> a lova:Outcome ;
+    rdfs:label "av integrin expression in SMC, slight increase in 3D vs 2D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:comparisonGroup "2D polystyrene plasticware" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-facs-smc> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "av integrin expression" ;
+    lova:pValue 0.010 ;
+    lova:timePoint "Day 14" ;
+    lova:valueString "Slight increase" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/b1-msc-3d> a lova:Outcome ;
+    rdfs:label "b1 integrin expression in MSC, significant increase in 3D vs 2D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:comparisonGroup "2D polystyrene plasticware" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-facs-msc> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "b1 integrin expression" ;
+    lova:pValue 0.002 ;
+    lova:timePoint "Day 14" ;
+    lova:valueString "Significant increase" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/b1-smc-3d> a lova:Outcome ;
+    rdfs:label "b1 integrin expression in SMC, slight decrease in 3D vs 2D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:comparisonGroup "2D polystyrene plasticware" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-facs-smc> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "b1 integrin expression" ;
+    lova:pValue 0.010 ;
+    lova:timePoint "Day 14" ;
+    lova:valueString "Slight decrease" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/b3-msc-3d> a lova:Outcome ;
+    rdfs:label "b3 integrin expression in MSC, slight increase in 3D vs 2D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:comparisonGroup "2D polystyrene plasticware" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-facs-msc> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "b3 integrin expression" ;
+    lova:pValue 0.026 ;
+    lova:timePoint "Day 14" ;
+    lova:valueString "Slight increase" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/b3-smc-3d> a lova:Outcome ;
+    rdfs:label "b3 integrin expression in SMC, no significant regulation 3D vs 2D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:comparisonGroup "2D polystyrene plasticware" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-facs-smc> ;
+    lova:isSignificant false ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "b3 integrin expression" ;
+    lova:pValue 0.364 ;
+    lova:timePoint "Day 14" ;
+    lova:valueString "No significant regulation" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/cd105-msc-3d> a lova:Outcome ;
+    rdfs:label "CD105 expression in MSC, no change in 3D vs 2D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:comparisonGroup "2D polystyrene plasticware" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-facs-msc> ;
+    lova:isSignificant false ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "CD105 expression" ;
+    lova:pValue 0.072 ;
+    lova:timePoint "Day 14" ;
+    lova:valueString "No change" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/ecm-proteins-positive> a lova:Outcome ;
+    rdfs:label "Positive staining for collagen I, laminin and elastin in MSC and SMC cultures, pericellular localization" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:dataSource "[FIG-E]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-ecm-ihc> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "ECM protein deposition (collagen I, laminin, elastin)" ;
+    lova:valueString "Both MSCs and SMCs stained positive for collagen type 1, laminin and elastin; expression more pronounced in SMCs; pericellular localization indicating minimal diffusion" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/gel-degradation-holes> a lova:Outcome ;
+    rdfs:label "Numerous cell-sized holes visible in gels with cells vs no degradation in cell-free control gels" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:comparisonGroup "Cell-free control gel" ;
+    lova:dataSource "[FIG-E]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-histology> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Gel degradation (histological holes)" ;
+    lova:timePoint "14 d" ;
+    lova:valueString "Numerous holes visible in MSC and SMC cultured gels after 14 d; control cell-free gels showed no signs of degradation" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/mmp2-msc-3d> a lova:Outcome ;
+    rdfs:label "Active MMP-2 expression in MSC, no dependence on matrix dimensionality" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-zymography-msc> ;
+    lova:isSignificant false ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Active MMP-2 expression" ;
+    lova:valueString "No significant change between 2D and 3D cultures" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/mmp2-smc> a lova:Outcome ;
+    rdfs:label "Active MMP-2 expression in SMC, higher than in MSC on 2D plasticware" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-zymography-smc> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Active MMP-2 expression" ;
+    lova:valueString "Higher than in MSCs on 2D plasticware; no significant change between 2D and 3D cultures" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/proliferation-msc-3d> a lova:Outcome ;
+    rdfs:label "MSC proliferation markedly reduced in 3D hydrogel vs 2D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:comparisonGroup "2D polystyrene plasticware" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-proliferation-msc> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Cell proliferation (Alamar Blue % reduction)" ;
+    lova:valueString "Almost no increase in cell number in 3D hydrogel from day 6-15, compared to rapid proliferation on 2D plasticware" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/proliferation-smc-3d> a lova:Outcome ;
+    rdfs:label "SMC proliferation in 3D hydrogel, slower initially then exceeds 2D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:comparisonGroup "2D polystyrene plasticware" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-proliferation-smc> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Cell proliferation (Alamar Blue % reduction)" ;
+    lova:valueString "Slower proliferation than 2D during first 12 d; higher proliferation than 2D during 2nd-3rd week; no decline after day 15 (unlike 2D)" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/storage-modulus> a lova:Outcome ;
+    rdfs:label "Storage modulus (G') of suitable soft hydrogel formulation" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    qudt:numericValue 192.0 ;
+    qudt:unit "Pa" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-rheometry> ;
+    lova:measurementCategory "Mechanical" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:scope "Bulk/global" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/thy1-msc-3d> a lova:Outcome ;
+    rdfs:label "THY-1 expression in MSC, slight decrease in 3D vs 2D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:comparisonGroup "2D polystyrene plasticware" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-facs-msc> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "THY-1 expression" ;
+    lova:pValue 0.011 ;
+    lova:timePoint "Day 14" ;
+    lova:valueString "Slight decrease" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/viability-msc> a lova:Outcome ;
+    rdfs:label "MSC viability within hydrogel, high at 1.5 and 21 days" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:dataSource "[FIG-E]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-viability-msc> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Cell viability" ;
+    lova:scope "Bulk/global" ;
+    lova:timePoint "1.5 d and 21 d" ;
+    lova:valueString "High viability maintained over 3-week period despite less cell spreading" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/viability-smc> a lova:Outcome ;
+    rdfs:label "SMC viability within hydrogel, high at 1.5 and 21 days" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:dataSource "[FIG-E]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-viability-smc> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Cell viability" ;
+    lova:scope "Bulk/global" ;
+    lova:timePoint "1.5 d and 21 d" ;
+    lova:valueString "High viability (cell death less than a few percent, predominantly at outer gel surfaces)" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-ecm-ihc> a lova:Experiment ;
+    rdfs:label "Immunohistochemical detection of newly synthesized ECM proteins" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:assayOrMethod "Immunofluorescence staining (collagen I, laminin, elastin)" ;
+    lova:cellType "SMC and MSC" ;
+    lova:cultureDuration "7, 14, 21 d" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immunohistochemistry" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2007.09.036/peg-peptide-hydrogel> .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-histology> a lova:Experiment ;
+    rdfs:label "Histological assessment of gel degradation by H&E staining" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:assayOrMethod "Hematoxylin and eosin (H&E) staining" ;
+    lova:cellType "SMC and MSC" ;
+    lova:cultureDuration "7, 14, 21 d" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Histology" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2007.09.036/peg-peptide-hydrogel> .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-rheometry> a lova:Experiment ;
+    rdfs:label "Dynamic rheometry of PEG-peptide hydrogel" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:assayOrMethod "Dynamic rheometry" ;
+    lova:experimentCategory "Mechanical" ;
+    lova:experimentType "Rheometry" ;
+    lova:frequency "0.1-10 Hz" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2007.09.036/peg-peptide-hydrogel> .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-spreading-smc> a lova:Experiment ;
+    rdfs:label "Cell spreading of SMCs within PEG hydrogel (phalloidin staining)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:assayOrMethod "Rhodamine phalloidin staining" ;
+    lova:cellType "Primary human bladder smooth muscle cells (SMC)" ;
+    lova:cultureDuration "1.5 d, 21 d" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cytoskeletal staining" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2007.09.036/peg-peptide-hydrogel> .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-viability-smc> a lova:Experiment ;
+    rdfs:label "Cell viability of SMCs within PEG hydrogel (live/dead)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:assayOrMethod "LIVE/DEAD Viability/Cytotoxicity Kit" ;
+    lova:cellSource "Human bladder wall tissue" ;
+    lova:cellType "Primary human bladder smooth muscle cells (SMC)" ;
+    lova:cultureDuration "1.5 d, 21 d" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell viability" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2007.09.036/peg-peptide-hydrogel> .
+
+<https://lovamap.com/ontology#journal/biomaterials> a bibo:Journal ;
+    dc1:title "Biomaterials" ;
+    bibo:issn "0142-9612" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/asma-msc-2d> a lova:Outcome ;
+    rdfs:label "aSMA expression in MSC, 2D baseline" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:comparisonGroup "3D PEG hydrogel" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-facs-msc> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "alpha-smooth muscle actin (aSMA) expression" ;
+    lova:timePoint "Day 14" ;
+    lova:valueString "2D polystyrene baseline" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/asma-msc-3d> a lova:Outcome ;
+    rdfs:label "aSMA expression in MSC, increased 4.5-fold in 3D vs 2D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:comparedToControl 4.5 ;
+    lova:comparisonGroup "2D polystyrene plasticware" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-facs-msc> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "alpha-smooth muscle actin (aSMA) expression" ;
+    lova:pValue 0.0004 ;
+    lova:timePoint "Day 14" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/asma-smc-2d> a lova:Outcome ;
+    rdfs:label "aSMA expression in SMC, 2D baseline" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:comparisonGroup "3D PEG hydrogel" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-facs-smc> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "alpha-smooth muscle actin (aSMA) expression" ;
+    lova:timePoint "Day 14" ;
+    lova:valueString "2D polystyrene baseline" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/asma-smc-3d> a lova:Outcome ;
+    rdfs:label "aSMA expression in SMC, 3D vs 2D, increased 1.7-fold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:comparedToControl 1.7 ;
+    lova:comparisonGroup "2D polystyrene plasticware" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-facs-smc> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "alpha-smooth muscle actin (aSMA) expression" ;
+    lova:pValue 0.025 ;
+    lova:timePoint "Day 14" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/cd105-smc-2d> a lova:Outcome ;
+    rdfs:label "CD105 expression in SMC, 2D baseline" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:comparisonGroup "3D PEG hydrogel" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-facs-smc> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "CD105 expression" ;
+    lova:timePoint "Day 14" ;
+    lova:valueString "2D polystyrene baseline (high)" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/cd105-smc-3d> a lova:Outcome ;
+    rdfs:label "CD105 expression in SMC, large decrease in 3D vs 2D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:comparisonGroup "2D polystyrene plasticware" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-facs-smc> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "CD105 expression" ;
+    lova:pValue 0.0002 ;
+    lova:timePoint "Day 14" ;
+    lova:valueString "Large decrease" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/mmp1-msc-3d> a lova:Outcome ;
+    rdfs:label "MMP-1 expression in MSC, reduced within 3D hydrogel vs 2D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:comparisonGroup "2D polystyrene plasticware" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-zymography-msc> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "MMP-1 expression" ;
+    lova:valueString "Much less MMP-1 expressed within 3D PEG hydrogels than in 2D plasticware cultures" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/mmp1-smc> a lova:Outcome ;
+    rdfs:label "MMP-1 expression in SMC, no dependence on matrix dimensionality" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:comparisonGroup "2D polystyrene plasticware" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-zymography-smc> ;
+    lova:isSignificant false ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "MMP-1 expression" ;
+    lova:valueString "No significant change in expression between 2D and 3D cultures" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/myosin-msc-2d> a lova:Outcome ;
+    rdfs:label "Myosin expression in MSC, 2D baseline" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:comparisonGroup "3D PEG hydrogel" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-facs-msc> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Myosin expression" ;
+    lova:timePoint "Day 14" ;
+    lova:valueString "2D polystyrene baseline" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/myosin-msc-3d> a lova:Outcome ;
+    rdfs:label "Myosin expression in MSC, increased 9.6-fold in 3D vs 2D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:comparedToControl 9.6 ;
+    lova:comparisonGroup "2D polystyrene plasticware" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-facs-msc> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Myosin expression" ;
+    lova:pValue 0.00001 ;
+    lova:timePoint "Day 14" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/myosin-smc-2d> a lova:Outcome ;
+    rdfs:label "Myosin expression in SMC, 2D baseline" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:comparisonGroup "3D PEG hydrogel" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-facs-smc> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Myosin expression" ;
+    lova:timePoint "Day 14" ;
+    lova:valueString "2D polystyrene baseline" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/myosin-smc-3d> a lova:Outcome ;
+    rdfs:label "Myosin expression in SMC, 3D vs 2D, increased 4.4-fold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:comparedToControl 4.4 ;
+    lova:comparisonGroup "2D polystyrene plasticware" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-facs-smc> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Myosin expression" ;
+    lova:pValue 0.00004 ;
+    lova:timePoint "Day 14" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/spreading-msc> a lova:Outcome ;
+    rdfs:label "MSCs spread less extensively than SMCs, forming fewer networks" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:comparisonGroup "SMC" ;
+    lova:dataSource "[FIG-E]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-spreading-msc> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Cell spreading/network formation" ;
+    lova:timePoint "1.5 d and 21 d" ;
+    lova:valueString "Less extensive network formation and slower spreading compared to SMCs" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/spreading-smc> a lova:Outcome ;
+    rdfs:label "SMCs formed networks throughout gel by 21 d" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:dataSource "[FIG-E]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-spreading-smc> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Cell spreading/network formation" ;
+    lova:timePoint "1.5 d and 21 d" ;
+    lova:valueString "Elongated spindle shape within 1.5 d; extensive networks throughout gel by 21 d" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/thy1-smc-2d> a lova:Outcome ;
+    rdfs:label "THY-1 expression in SMC, 2D baseline" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:comparisonGroup "3D PEG hydrogel" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-facs-smc> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "THY-1 expression" ;
+    lova:timePoint "Day 14" ;
+    lova:valueString "2D polystyrene baseline (high)" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2007.09.036/thy1-smc-3d> a lova:Outcome ;
+    rdfs:label "THY-1 expression in SMC, large decrease in 3D vs 2D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:comparisonGroup "2D polystyrene plasticware" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-facs-smc> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "THY-1 expression" ;
+    lova:pValue 0.0001 ;
+    lova:timePoint "Day 14" ;
+    lova:valueString "Large decrease" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2007.09.036/mmp-peptide-crosslinker> a lova:Reagent ;
+    rdfs:label "MMP-sensitive bis-cysteine peptide crosslinker (Ac-GCREGPQGIWGQERCG-NH2)" ;
+    lova:reagentFunction "Cell-mediated enzymatic (MMP) gel degradation site; inter-chain crosslinking" ;
+    lova:reagentRole "crosslinker" ;
+    lova:sequence "GCREGPQGIWGQERCG" ;
+    lova:supplier "NEOMPS, Strasbourg, France" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2007.09.036/peg-oh> a lova:Reagent ;
+    rdfs:label "Four-armed PEG-OH (20 kDa)" ;
+    lova:molecularWeight "20 kDa" ;
+    lova:reagentFunction "Base macromer, vinyl sulfone-functionalized to form PEG-VS" ;
+    lova:reagentRole "monomer" ;
+    lova:supplier "Nektar, Aerogen Ltd., Galway, IE" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2007.09.036/rgd-peptide> a lova:Reagent ;
+    rdfs:label "RGD cell adhesion peptide (Ac-GCGWGRGDSPG-NH2)" ;
+    lova:concentration "300 μM" ;
+    lova:reagentFunction "Cell adhesion (integrin binding)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "GCGWGRGDSPG" ;
+    lova:supplier "NEOMPS, Strasbourg, France" .
+
+<https://lovamap.com/ontology#author/adelow-catharina> a foaf:Person ;
+    foaf:familyName "Adelöw" ;
+    foaf:givenName "Catharina" ;
+    foaf:name "Catharina Adelöw" ;
+    schema:affiliation "Institute of Bioengineering, Ecole Polytechnique Fédérale de Lausanne, Switzerland" .
+
+<https://lovamap.com/ontology#author/frey-peter> a foaf:Person ;
+    foaf:familyName "Frey" ;
+    foaf:givenName "Peter" ;
+    foaf:name "Peter Frey" ;
+    schema:affiliation "Department of Pediatric Surgery and Urology, Centre Hospitalier Universitaire Vaudois, CH-1011 Lausanne, Switzerland",
+        "Institute of Bioengineering, Ecole Polytechnique Fédérale de Lausanne, Switzerland" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California, Los Angeles, CA, USA",
+        "Institute of Bioengineering, Ecole Polytechnique Fédérale de Lausanne, Switzerland" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-proliferation-smc> a lova:Experiment ;
+    rdfs:label "SMC proliferation, 3D hydrogel vs 2D plasticware (Alamar Blue)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:assayOrMethod "Alamar Blue assay" ;
+    lova:assayURI <http://purl.obolibrary.org/obo/OBI_0002039> ;
+    lova:cellType "Primary human bladder smooth muscle cells (SMC)" ;
+    lova:cultureDuration "3, 6, 9, 12, 15, 18, 21 d" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell proliferation" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2007.09.036/peg-peptide-hydrogel> .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-spreading-msc> a lova:Experiment ;
+    rdfs:label "Cell spreading of MSCs within PEG hydrogel (phalloidin staining)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:assayOrMethod "Rhodamine phalloidin staining" ;
+    lova:cellType "Human mesenchymal stem cells (MSC)" ;
+    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000134> ;
+    lova:cultureDuration "1.5 d, 21 d" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cytoskeletal staining" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2007.09.036/peg-peptide-hydrogel> .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-viability-msc> a lova:Experiment ;
+    rdfs:label "Cell viability of MSCs within PEG hydrogel (live/dead)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:assayOrMethod "LIVE/DEAD Viability/Cytotoxicity Kit" ;
+    lova:cellSource "Human bone marrow" ;
+    lova:cellType "Human mesenchymal stem cells (MSC)" ;
+    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000134> ;
+    lova:cultureDuration "1.5 d, 21 d" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell viability" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2007.09.036/peg-peptide-hydrogel> .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-zymography-smc> a lova:Experiment ;
+    rdfs:label "MMP-1 and MMP-2 secretion by SMCs, 2D vs 3D (zymography)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:assayOrMethod "Zymography" ;
+    lova:cellType "Primary human bladder smooth muscle cells (SMC)" ;
+    lova:cultureDuration "1.5, 3, 6, 9, 12, 15, 18, 21 d" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Protease secretion" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2007.09.036/peg-peptide-hydrogel> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2007.09.036/michael-addition-peg-vs> a lova:FabricationMethod ;
+    rdfs:label "Michael-type addition crosslinking of PEG-VS with bis-cysteine MMP-sensitive peptide and RGD" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:annealingConditions "37°C, 15 min crosslinking; swelled in complete medium for 3h" ;
+    lova:chemistry "Michael-type addition (vinyl sulfone-thiol)" ;
+    lova:chemistryURI <http://purl.obolibrary.org/obo/RXNO_0000009> ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2007.09.036/divinyl-sulfone>,
+        <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2007.09.036/mmp-peptide-crosslinker>,
+        <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2007.09.036/nah>,
+        <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2007.09.036/peg-oh>,
+        <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2007.09.036/rgd-peptide>,
+        <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2007.09.036/thf> ;
+    lova:manufacturingMethod "Bulk crosslinking between Sigmacote-coated glass slides with 1 mm spacers, cast and encapsulating cells" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2007.09.036/thf> a lova:Reagent ;
+    rdfs:label "Tetrahydrofuran (THF)" ;
+    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_45775> ;
+    lova:reagentFunction "Solvent for PEG-OH functionalization reaction" ;
+    lova:reagentRole "solvent" ;
+    lova:supplier "Aldrich/Fluka, Basel, CH" .
+
+<https://lovamap.com/ontology#author/hubbell-jeffrey> a foaf:Person ;
+    owl:sameAs <https://orcid.org/0000-0003-0276-5456> ;
+    foaf:familyName "Hubbell" ;
+    foaf:givenName "Jeffrey A." ;
+    foaf:name "Jeffrey A. Hubbell" ;
+    schema:affiliation "Institute of Bioengineering, Ecole Polytechnique Fédérale de Lausanne, Switzerland",
+        "Institute of Chemical Sciences and Engineering, Ecole Polytechnique Fédérale de Lausanne, Switzerland" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-proliferation-msc> a lova:Experiment ;
+    rdfs:label "MSC proliferation, 3D hydrogel vs 2D plasticware (Alamar Blue)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:assayOrMethod "Alamar Blue assay" ;
+    lova:assayURI <http://purl.obolibrary.org/obo/OBI_0002039> ;
+    lova:cellType "Human mesenchymal stem cells (MSC)" ;
+    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000134> ;
+    lova:cultureDuration "3, 6, 9, 12, 15, 18, 21 d" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell proliferation" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2007.09.036/peg-peptide-hydrogel> .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-zymography-msc> a lova:Experiment ;
+    rdfs:label "MMP-1 and MMP-2 secretion by MSCs, 2D vs 3D (zymography)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:assayOrMethod "Zymography" ;
+    lova:cellType "Human mesenchymal stem cells (MSC)" ;
+    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000134> ;
+    lova:cultureDuration "1.5, 3, 6, 9, 12, 15, 18, 21 d" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Protease secretion" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2007.09.036/peg-peptide-hydrogel> .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2007.09.036/divinyl-sulfone> a lova:Reagent ;
+    rdfs:label "Divinyl sulfone" ;
+    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_53729> ;
+    lova:inchiKey "AFOSIXZFDONLBT-UHFFFAOYSA-N" ;
+    lova:reagentFunction "Functionalization of PEG-OH end groups to vinyl sulfone (PEG-VS)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Aldrich/Fluka, Basel, CH" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2007.09.036/nah> a lova:Reagent ;
+    rdfs:label "Sodium hydride (NaH)" ;
+    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_30141> ;
+    lova:inchiKey "BZKBCQXYZZXSCO-UHFFFAOYSA-N" ;
+    lova:reagentFunction "Base catalyst for PEG-OH functionalization" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Fluka, Basel, CH" .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2007.09.036/peg-peptide-hydrogel> a lova:Material ;
+    rdfs:label "Enzymatically degradable PEG-peptide hydrogel (RGD-functionalized, MMP-crosslinked, soft formulation)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2007.09.036/michael-addition-peg-vs> ;
+    lova:particleMaterial "4-arm PEG-vinyl sulfone (PEG-VS, 20 kDa)" ;
+    lova:reportedPoreSize "23 nm" ;
+    lova:scaffoldDimensions "2.3 cm diameter after swelling (1 mm thick), punched into 0.6 cm diameter discs" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:stiffnessUnit "Pa" ;
+    lova:stiffnessValue 192.0 ;
+    lova:surfaceModification "RGD-functionalized (Ac-GCGWGRGDSPG-NH2)" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-facs-msc> a lova:Experiment ;
+    rdfs:label "FACS analysis of integrin and SMC-specific protein expression, MSCs, 2D vs 3D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:assayOrMethod "FACS" ;
+    lova:assayURI <http://purl.obolibrary.org/obo/OBI_0000916> ;
+    lova:cellType "Human mesenchymal stem cells (MSC)" ;
+    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000134> ;
+    lova:cultureDuration "14 d" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Flow cytometry" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2007.09.036/peg-peptide-hydrogel> .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-facs-smc> a lova:Experiment ;
+    rdfs:label "FACS analysis of integrin and SMC-specific protein expression, SMCs, 2D vs 3D" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> ;
+    lova:assayOrMethod "FACS" ;
+    lova:assayURI <http://purl.obolibrary.org/obo/OBI_0000916> ;
+    lova:cellType "Primary human bladder smooth muscle cells (SMC)" ;
+    lova:cultureDuration "14 d" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Flow cytometry" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2007.09.036/peg-peptide-hydrogel> .
+
+<https://lovamap.com/ontology#agent/rdf_enrichment> a prov:SoftwareAgent ;
+    rdfs:label "rdf_enrichment pipeline" .
+
+<https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2007.09.036> a bibo:AcademicArticle ;
+    rdfs:label "Adelöw et al., 2007 — Effect of enzymatically degradable PEG hydrogels on smooth muscle cell phenotype" ;
+    dc1:bibliographicCitation "Adelöw et al., 2007" ;
+    dc1:creator <https://lovamap.com/ontology#author/adelow-catharina>,
+        <https://lovamap.com/ontology#author/frey-peter>,
+        <https://lovamap.com/ontology#author/hubbell-jeffrey>,
+        <https://lovamap.com/ontology#author/segura-tatiana> ;
+    dc1:date "2007"^^xsd:gYear ;
+    dc1:identifier "10.1016/j.biomaterials.2007.09.036" ;
+    dc1:title "The effect of enzymatically degradable poly(ethylene glycol) hydrogels on smooth muscle cell phenotype" ;
+    dc1:type "Research Article" ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/adelow-catharina> <https://lovamap.com/ontology#author/segura-tatiana> <https://lovamap.com/ontology#author/hubbell-jeffrey> <https://lovamap.com/ontology#author/frey-peter> ) ;
+    lova:focusMaterial "Enzymatically degradable PEG-peptide hydrogels (4-arm PEG-VS, RGD-functionalized, MMP-peptide crosslinked) used to culture primary human bladder smooth muscle cells (SMCs) and human bone marrow-derived mesenchymal stem cells (MSCs)" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/biomaterials> .
+
+[] a rdf:Statement ;
+    rdf:object "BZKBCQXYZZXSCO-UHFFFAOYSA-N" ;
+    rdf:predicate lova:inchiKey ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2007.09.036/nah> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CHEBI_45775> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2007.09.036/thf> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CHEBI_30141> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2007.09.036/nah> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CL_0000134> ;
+    rdf:predicate lova:cellTypeURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-viability-msc> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CL_0000134> ;
+    rdf:predicate lova:cellTypeURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-facs-msc> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CL_0000134> ;
+    rdf:predicate lova:cellTypeURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-spreading-msc> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CL_0000134> ;
+    rdf:predicate lova:cellTypeURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-zymography-msc> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/OBI_0002039> ;
+    rdf:predicate lova:assayURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-proliferation-msc> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CL_0000134> ;
+    rdf:predicate lova:cellTypeURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-proliferation-msc> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/OBI_0000916> ;
+    rdf:predicate lova:assayURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-facs-smc> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CHEBI_53729> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2007.09.036/divinyl-sulfone> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/OBI_0002039> ;
+    rdf:predicate lova:assayURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-proliferation-smc> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <https://orcid.org/0000-0003-0276-5456> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#author/hubbell-jeffrey> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/OBI_0000916> ;
+    rdf:predicate lova:assayURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2007.09.036/exp-facs-msc> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/RXNO_0000009> ;
+    rdf:predicate lova:chemistryURI ;
+    rdf:subject <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2007.09.036/michael-addition-peg-vs> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object "AFOSIXZFDONLBT-UHFFFAOYSA-N" ;
+    rdf:predicate lova:inchiKey ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2007.09.036/divinyl-sulfone> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+

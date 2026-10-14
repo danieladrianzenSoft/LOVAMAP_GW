@@ -1,0 +1,836 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1021-nn504371h> a bibo:AcademicArticle ;
+    rdfs:label "Du et al., 2014 — Gold-Nanocrystal-Enhanced Bioluminescent Nanocapsules" ;
+    dc:title "Gold-Nanocrystal-Enhanced Bioluminescent Nanocapsules" ;
+    dc:identifier "10.1021/nn504371h" ;
+    dc:date "2014"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/acs-nano> ;
+    dc:creator <https://lovamap.com/ontology#author/du-juanjuan> ,
+               <https://lovamap.com/ontology#author/jin-jing> ,
+               <https://lovamap.com/ontology#author/liu-yang> ,
+               <https://lovamap.com/ontology#author/li-jie> ,
+               <https://lovamap.com/ontology#author/tokatlian-talar> ,
+               <https://lovamap.com/ontology#author/lu-zuhong> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ,
+               <https://lovamap.com/ontology#author/yuan-xu-bo> ,
+               <https://lovamap.com/ontology#author/yang-xianjin> ,
+               <https://lovamap.com/ontology#author/lu-yunfeng> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/du-juanjuan>
+                       <https://lovamap.com/ontology#author/jin-jing>
+                       <https://lovamap.com/ontology#author/liu-yang>
+                       <https://lovamap.com/ontology#author/li-jie>
+                       <https://lovamap.com/ontology#author/tokatlian-talar>
+                       <https://lovamap.com/ontology#author/lu-zuhong>
+                       <https://lovamap.com/ontology#author/segura-tatiana>
+                       <https://lovamap.com/ontology#author/yuan-xu-bo>
+                       <https://lovamap.com/ontology#author/yang-xianjin>
+                       <https://lovamap.com/ontology#author/lu-yunfeng> ) ;
+    dc:bibliographicCitation "Du et al., 2014" ;
+    lova:focusMaterial "Gold-nanocrystal-conjugated HRP bioluminescent protein nanocapsules (BPNs) for metal-enhanced bioluminescence" .
+
+<https://lovamap.com/ontology#journal/acs-nano> a bibo:Journal ;
+    dc:title "ACS Nano" ;
+    bibo:issn "1936-0851" .
+
+<https://lovamap.com/ontology#author/du-juanjuan> a foaf:Person ;
+    foaf:familyName "Du" ;
+    foaf:givenName "Juanjuan" ;
+    foaf:name "Juanjuan Du" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California at Los Angeles, Los Angeles, California 90095, United States" .
+
+<https://lovamap.com/ontology#author/jin-jing> a foaf:Person ;
+    foaf:familyName "Jin" ;
+    foaf:givenName "Jing" ;
+    foaf:name "Jing Jin" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California at Los Angeles, Los Angeles, California 90095, United States" ;
+    schema:affiliation "School of Biological Science and Medical Engineering, Southeast University, Nanjing 210096, China" .
+
+<https://lovamap.com/ontology#author/liu-yang> a foaf:Person ;
+    foaf:familyName "Liu" ;
+    foaf:givenName "Yang" ;
+    foaf:name "Yang Liu" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California at Los Angeles, Los Angeles, California 90095, United States" .
+
+<https://lovamap.com/ontology#author/li-jie> a foaf:Person ;
+    foaf:familyName "Li" ;
+    foaf:givenName "Jie" ;
+    foaf:name "Jie Li" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California at Los Angeles, Los Angeles, California 90095, United States" .
+
+<https://lovamap.com/ontology#author/tokatlian-talar> a foaf:Person ;
+    foaf:familyName "Tokatlian" ;
+    foaf:givenName "Talar" ;
+    foaf:name "Talar Tokatlian" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California at Los Angeles, Los Angeles, California 90095, United States" .
+
+<https://lovamap.com/ontology#author/lu-zuhong> a foaf:Person ;
+    foaf:familyName "Lu" ;
+    foaf:givenName "Zuhong" ;
+    foaf:name "Zuhong Lu" ;
+    schema:affiliation "School of Biological Science and Medical Engineering, Southeast University, Nanjing 210096, China" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California at Los Angeles, Los Angeles, California 90095, United States" .
+
+<https://lovamap.com/ontology#author/yuan-xu-bo> a foaf:Person ;
+    foaf:familyName "Yuan" ;
+    foaf:givenName "Xu-bo" ;
+    foaf:name "Xu-bo Yuan" ;
+    schema:affiliation "School of Materials Science and Engineering, Tianjin University, 92 Weijin Road, Nankai District, Tianjin 300072, China" .
+
+<https://lovamap.com/ontology#author/yang-xianjin> a foaf:Person ;
+    foaf:familyName "Yang" ;
+    foaf:givenName "Xianjin" ;
+    foaf:name "Xianjin Yang" ;
+    schema:affiliation "School of Materials Science and Engineering, Tianjin University, 92 Weijin Road, Nankai District, Tianjin 300072, China" .
+
+<https://lovamap.com/ontology#author/lu-yunfeng> a foaf:Person ;
+    foaf:familyName "Lu" ;
+    foaf:givenName "Yunfeng" ;
+    foaf:name "Yunfeng Lu" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California at Los Angeles, Los Angeles, California 90095, United States" .
+
+<https://lovamap.com/ontology#material/10.1021-nn504371h/gnc-8nm> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "Gold nanocrystal (GNC), 8 nm" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Gold" ;
+    lova:particleSizeMin 8.0 ;
+    lova:particleSizeMax 8.0 ;
+    lova:particleSizeUnit "nm" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:surfaceModification "3-mercaptopropionic acid-capped" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-nn504371h/gnc-synthesis> .
+
+<https://lovamap.com/ontology#material/10.1021-nn504371h/gnc-5nm> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "Gold nanocrystal (GNC), 5 nm" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Gold" ;
+    lova:particleSizeMin 5.0 ;
+    lova:particleSizeMax 5.0 ;
+    lova:particleSizeUnit "nm" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:surfaceModification "3-mercaptopropionic acid-capped" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-nn504371h/gnc-synthesis> .
+
+<https://lovamap.com/ontology#material/10.1021-nn504371h/nhrp> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "HRP nanocapsule (nHRP)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Polyacrylamide-encapsulated horseradish peroxidase" ;
+    lova:particleSizeMin 27.0 ;
+    lova:particleSizeMax 27.0 ;
+    lova:particleSizeUnit "nm" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:surfaceModification "Surface amine groups" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-nn504371h/hrp-encapsulation> .
+
+<https://lovamap.com/ontology#material/10.1021-nn504371h/native-hrp> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "Native horseradish peroxidase (HRP)" ;
+    lova:particleShape "Globular protein" ;
+    lova:particleMaterial "Horseradish peroxidase" ;
+    lova:particleSizeMin 3.0 ;
+    lova:particleSizeMax 3.0 ;
+    lova:particleSizeUnit "nm" .
+
+<https://lovamap.com/ontology#material/10.1021-nn504371h/bpn-0.5-1> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "Bioluminescent protein nanocapsule (BPN), GNC/nHRP ratio 0.5:1" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Gold nanocrystal-conjugated HRP nanocapsule" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-nn504371h/bpn-conjugation> .
+
+<https://lovamap.com/ontology#material/10.1021-nn504371h/bpn-1-1> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "Bioluminescent protein nanocapsule (BPN), GNC/nHRP ratio 1:1" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Gold nanocrystal-conjugated HRP nanocapsule" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-nn504371h/bpn-conjugation> .
+
+<https://lovamap.com/ontology#material/10.1021-nn504371h/bpn-2-1> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "Bioluminescent protein nanocapsule (BPN2:1), GNC/nHRP ratio 2:1" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Gold nanocrystal-conjugated HRP nanocapsule" ;
+    lova:surfaceModification "Net positive surface charge (zeta potential 7.33 mV)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-nn504371h/bpn-conjugation> .
+
+<https://lovamap.com/ontology#material/10.1021-nn504371h/bpn-5-1> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "Bioluminescent protein nanocapsule (BPN), GNC/nHRP ratio 5:1" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Gold nanocrystal-conjugated HRP nanocapsule" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-nn504371h/bpn-conjugation> .
+
+<https://lovamap.com/ontology#material/10.1021-nn504371h/gnc-hrp-direct> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "Direct GNC-HRP conjugate (no nanocapsule spacer)" ;
+    lova:particleMaterial "Gold nanocrystal directly conjugated to native HRP" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-nn504371h/direct-gnc-hrp-conjugation> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1021-nn504371h/gnc-synthesis> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "Citrate reduction synthesis of gold nanocrystals with mercaptopropionate surface modification" ;
+    lova:chemistry "Citrate reduction of HAuCl4" ;
+    lova:manufacturingMethod "Citrate reduction followed by surface modification with sodium mercaptopropionate" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1021-nn504371h/hauc14> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-nn504371h/trisodium-citrate> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-nn504371h/sodium-mercaptopropionate> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1021-nn504371h/hrp-encapsulation> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "Acryloylation and in situ radical polymerization encapsulation of HRP" ;
+    lova:chemistry "Radical polymerization" ;
+    lova:manufacturingMethod "Acryloylation of HRP lysine groups followed by in situ free radical polymerization of surrounding monomers" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1021-nn504371h/n-acryloxysuccinimide> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-nn504371h/ammonium-persulfate> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-nn504371h/temed> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-nn504371h/apmaam> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-nn504371h/acrylamide> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-nn504371h/mbaam> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1021-nn504371h/bpn-conjugation> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "EDC/NHS conjugation of gold nanocrystals to HRP nanocapsules" ;
+    lova:chemistry "EDC/NHS carbodiimide coupling" ;
+    lova:manufacturingMethod "Conjugation of carboxyl-modified GNC to amine-bearing nHRP via EDC/NHS activation" ;
+    lova:annealingChemistry "Carbodiimide-mediated amide bond formation" ;
+    lova:annealingConditions "Room temperature, 1 h" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1021-nn504371h/edc> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-nn504371h/nhs> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1021-nn504371h/direct-gnc-hrp-conjugation> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "Direct EDC/NHS conjugation of GNC to native HRP (control, no polymer spacer)" ;
+    lova:chemistry "EDC/NHS carbodiimide coupling" ;
+    lova:manufacturingMethod "Direct conjugation of GNC to native HRP without encapsulating polymer shell" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1021-nn504371h/edc> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-nn504371h/nhs> .
+
+<https://lovamap.com/ontology#reagent/10.1021-nn504371h/hauc14> a lova:Reagent ;
+    rdfs:label "Chloroauric acid (HAuCl4)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "0.01%" ;
+    lova:reagentFunction "Gold nanocrystal precursor" .
+
+<https://lovamap.com/ontology#reagent/10.1021-nn504371h/trisodium-citrate> a lova:Reagent ;
+    rdfs:label "Trisodium citrate" ;
+    lova:reagentRole "other" ;
+    lova:concentration "1%" ;
+    lova:reagentFunction "Reducing agent for gold nanocrystal synthesis" .
+
+<https://lovamap.com/ontology#reagent/10.1021-nn504371h/sodium-mercaptopropionate> a lova:Reagent ;
+    rdfs:label "Sodium mercaptopropionate (3-mercaptopropionic acid)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "0.01 M" ;
+    lova:reagentFunction "Surface capping ligand for gold nanocrystals" .
+
+<https://lovamap.com/ontology#reagent/10.1021-nn504371h/n-acryloxysuccinimide> a lova:Reagent ;
+    rdfs:label "N-acryloxysuccinimide" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Acryloylation of HRP lysine groups to introduce polymerizable vinyl groups" .
+
+<https://lovamap.com/ontology#reagent/10.1021-nn504371h/ammonium-persulfate> a lova:Reagent ;
+    rdfs:label "Ammonium persulfate" ;
+    lova:reagentRole "initiator" ;
+    lova:concentration "0.2 mg" ;
+    lova:reagentFunction "Radical polymerization initiator" .
+
+<https://lovamap.com/ontology#reagent/10.1021-nn504371h/temed> a lova:Reagent ;
+    rdfs:label "N,N,N',N'-tetramethylethylenediamine (TEMED)" ;
+    lova:reagentRole "initiator" ;
+    lova:concentration "0.4 μL" ;
+    lova:reagentFunction "Polymerization accelerator/catalyst" .
+
+<https://lovamap.com/ontology#reagent/10.1021-nn504371h/apmaam> a lova:Reagent ;
+    rdfs:label "N-(3-aminopropyl)methacrylamide (APMAAm)" ;
+    lova:reagentRole "monomer" ;
+    lova:concentration "molar ratio 3 (APMAAm:acrylamide:MBAAm = 3:7:1)" ;
+    lova:reagentFunction "Cationic monomer providing surface amine groups on nHRP" .
+
+<https://lovamap.com/ontology#reagent/10.1021-nn504371h/acrylamide> a lova:Reagent ;
+    rdfs:label "Acrylamide" ;
+    lova:reagentRole "monomer" ;
+    lova:concentration "molar ratio 7 (APMAAm:acrylamide:MBAAm = 3:7:1)" ;
+    lova:reagentFunction "Neutral monomer" .
+
+<https://lovamap.com/ontology#reagent/10.1021-nn504371h/mbaam> a lova:Reagent ;
+    rdfs:label "N,N'-methylenebisacrylamide" ;
+    lova:reagentRole "crosslinker" ;
+    lova:concentration "molar ratio 1 (APMAAm:acrylamide:MBAAm = 3:7:1)" ;
+    lova:reagentFunction "Crosslinking monomer for nanocapsule polymer shell" .
+
+<https://lovamap.com/ontology#reagent/10.1021-nn504371h/edc> a lova:Reagent ;
+    rdfs:label "Ethyl(dimethylaminopropyl)carbodiimide (EDC)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "molar ratio GNC:EDC:NHS = 1:10:2; EDC:NHS = 10:1" ;
+    lova:reagentFunction "Carbodiimide coupling agent for GNC-nHRP conjugation" .
+
+<https://lovamap.com/ontology#reagent/10.1021-nn504371h/nhs> a lova:Reagent ;
+    rdfs:label "N-hydroxysuccinimide (NHS)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "molar ratio GNC:EDC:NHS = 1:10:2; EDC:NHS = 10:1" ;
+    lova:reagentFunction "NHS-ester activation for carbodiimide coupling" .
+
+<https://lovamap.com/ontology#reagent/10.1021-nn504371h/luminol> a lova:Reagent ;
+    rdfs:label "Luminol" ;
+    lova:reagentRole "other" ;
+    lova:concentration "20 mM (stock), 10 μL added; 200 nM in cell assay" ;
+    lova:reagentFunction "Bioluminescence/chemiluminescence substrate oxidized by HRP" .
+
+<https://lovamap.com/ontology#reagent/10.1021-nn504371h/hydrogen-peroxide> a lova:Reagent ;
+    rdfs:label "Hydrogen peroxide" ;
+    lova:reagentRole "other" ;
+    lova:concentration "50 mM (stock), 10 μL added; 500 nM in cell assay" ;
+    lova:reagentFunction "Co-substrate for HRP-catalyzed luminol oxidation" .
+
+<https://lovamap.com/ontology#experiment/10.1021-nn504371h/tem-characterization> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-nn504371h/gnc-8nm> ,
+                       <https://lovamap.com/ontology#material/10.1021-nn504371h/nhrp> ,
+                       <https://lovamap.com/ontology#material/10.1021-nn504371h/bpn-2-1> ,
+                       <https://lovamap.com/ontology#material/10.1021-nn504371h/native-hrp> ;
+    rdfs:label "TEM characterization of GNC, nHRP and BPN" ;
+    lova:experimentCategory "Physicochemical characterization" ;
+    lova:experimentType "Transmission electron microscopy" ;
+    lova:assayOrMethod "TEM imaging" .
+
+<https://lovamap.com/ontology#outcome/10.1021-nn504371h/gnc-diameter> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-nn504371h/tem-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "Gold nanocrystal diameter" ;
+    lova:measurementType "Particle diameter" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 8.0 ;
+    qudt:unit "nm" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-nn504371h/nhrp-diameter> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-nn504371h/tem-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "nHRP average diameter" ;
+    lova:measurementType "Particle diameter" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 27.0 ;
+    qudt:unit "nm" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-nn504371h/native-hrp-diameter> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-nn504371h/tem-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "Native HRP diameter" ;
+    lova:measurementType "Particle diameter" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 3.0 ;
+    qudt:unit "nm" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-nn504371h/nhrp-shell-thickness> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-nn504371h/tem-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "Estimated nHRP polymer shell thickness" ;
+    lova:measurementType "Shell thickness" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 10.0 ;
+    qudt:unit "nm" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1021-nn504371h/zeta-potential> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-nn504371h/bpn-2-1> ;
+    rdfs:label "Zeta potential measurement of BPN" ;
+    lova:experimentCategory "Physicochemical characterization" ;
+    lova:experimentType "Zeta potential measurement" .
+
+<https://lovamap.com/ontology#outcome/10.1021-nn504371h/bpn-zeta-potential> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-nn504371h/zeta-potential> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "BPN zeta potential" ;
+    lova:measurementType "Zeta potential" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 7.33 ;
+    qudt:unit "mV" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1021-nn504371h/uvvis-spectroscopy> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-nn504371h/gnc-8nm> ,
+                       <https://lovamap.com/ontology#material/10.1021-nn504371h/bpn-2-1> ;
+    rdfs:label "UV-vis absorption spectroscopy of GNC and BPN" ;
+    lova:experimentCategory "Optical characterization" ;
+    lova:experimentType "UV-vis spectroscopy" ;
+    lova:equipment "UV-vis spectrometer" .
+
+<https://lovamap.com/ontology#outcome/10.1021-nn504371h/gnc-absorption-peak> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-nn504371h/uvvis-spectroscopy> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "GNC surface plasmon resonance absorption peak" ;
+    lova:measurementType "Absorption peak wavelength" ;
+    lova:measurementCategory "Optical" ;
+    qudt:numericValue 525.0 ;
+    qudt:unit "nm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-nn504371h/bpn-absorption-redshift> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-nn504371h/uvvis-spectroscopy> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "BPN surface plasmon absorption red-shift relative to GNC" ;
+    lova:measurementType "Absorption peak red shift" ;
+    lova:measurementCategory "Optical" ;
+    lova:valueString "~7 nm red shift relative to GNC peak (525 nm)" ;
+    lova:comparisonGroup "GNC" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1021-nn504371h/gel-electrophoresis> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-nn504371h/gnc-8nm> ,
+                       <https://lovamap.com/ontology#material/10.1021-nn504371h/bpn-2-1> ;
+    rdfs:label "Agarose gel electrophoresis of GNC and BPN" ;
+    lova:experimentCategory "Physicochemical characterization" ;
+    lova:experimentType "Agarose gel electrophoresis" .
+
+<https://lovamap.com/ontology#outcome/10.1021-nn504371h/gnc-migration> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-nn504371h/gel-electrophoresis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "GNC electrophoretic migration" ;
+    lova:measurementType "Electrophoretic migration direction" ;
+    lova:measurementCategory "Physicochemical" ;
+    lova:valueString "Migrates toward anode (net negative charge)" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-nn504371h/bpn-migration> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-nn504371h/gel-electrophoresis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "BPN electrophoretic migration" ;
+    lova:measurementType "Electrophoretic migration direction" ;
+    lova:measurementCategory "Physicochemical" ;
+    lova:valueString "Migrates toward cathode (net positive charge)" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1021-nn504371h/bioluminescence-enhancement-ratio> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-nn504371h/bpn-0.5-1> ,
+                       <https://lovamap.com/ontology#material/10.1021-nn504371h/bpn-1-1> ,
+                       <https://lovamap.com/ontology#material/10.1021-nn504371h/bpn-2-1> ,
+                       <https://lovamap.com/ontology#material/10.1021-nn504371h/bpn-5-1> ,
+                       <https://lovamap.com/ontology#material/10.1021-nn504371h/gnc-hrp-direct> ,
+                       <https://lovamap.com/ontology#material/10.1021-nn504371h/native-hrp> ;
+    rdfs:label "Bioluminescence enhancement factor vs GNC/nHRP ratio" ;
+    lova:experimentCategory "Optical" ;
+    lova:experimentType "Bioluminescence intensity measurement" ;
+    lova:assayOrMethod "Luminol/H2O2 chemiluminescent reaction catalyzed by HRP" ;
+    lova:equipment "Modulus Single Tube Multimode Reader" ;
+    lova:pH "9.0" .
+
+<https://lovamap.com/ontology#outcome/10.1021-nn504371h/bpn-a-ef> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-nn504371h/bioluminescence-enhancement-ratio> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "Bioluminescence enhancement factor, BPN A (GNC/nHRP 0.5:1)" ;
+    lova:measurementType "Bioluminescence enhancement factor" ;
+    lova:measurementCategory "Optical" ;
+    qudt:numericValue 6.1 ;
+    qudt:unit "fold" ;
+    lova:comparisonGroup "Native HRP" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-nn504371h/bpn-b-ef> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-nn504371h/bioluminescence-enhancement-ratio> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "Bioluminescence enhancement factor, BPN B (GNC/nHRP 1:1)" ;
+    lova:measurementType "Bioluminescence enhancement factor" ;
+    lova:measurementCategory "Optical" ;
+    qudt:numericValue 7.0 ;
+    qudt:unit "fold" ;
+    lova:comparisonGroup "Native HRP" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-nn504371h/bpn-c-ef> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-nn504371h/bioluminescence-enhancement-ratio> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "Bioluminescence enhancement factor, BPN2:1 (GNC/nHRP 2:1)" ;
+    lova:measurementType "Bioluminescence enhancement factor" ;
+    lova:measurementCategory "Optical" ;
+    qudt:numericValue 9.5 ;
+    qudt:unit "fold" ;
+    lova:comparisonGroup "Native HRP" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-nn504371h/bpn-d-ef> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-nn504371h/bioluminescence-enhancement-ratio> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "Bioluminescence enhancement factor, BPN D (GNC/nHRP 5:1)" ;
+    lova:measurementType "Bioluminescence enhancement factor" ;
+    lova:measurementCategory "Optical" ;
+    qudt:numericValue 9.1 ;
+    qudt:unit "fold" ;
+    lova:comparisonGroup "Native HRP" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-nn504371h/gnc-hrp-direct-ef-c> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-nn504371h/bioluminescence-enhancement-ratio> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "Bioluminescence enhancement factor, direct GNC-HRP conjugate (ratio 2:1)" ;
+    lova:measurementType "Bioluminescence enhancement factor" ;
+    lova:measurementCategory "Optical" ;
+    qudt:numericValue 0.75 ;
+    qudt:unit "fold" ;
+    lova:comparisonGroup "Native HRP" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-nn504371h/native-hrp-ef-baseline> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-nn504371h/bioluminescence-enhancement-ratio> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "Bioluminescence enhancement factor baseline, native HRP" ;
+    lova:measurementType "Bioluminescence enhancement factor" ;
+    lova:measurementCategory "Optical" ;
+    qudt:numericValue 1.0 ;
+    qudt:unit "fold" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#experiment/10.1021-nn504371h/gnc-size-effect> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-nn504371h/gnc-5nm> ,
+                       <https://lovamap.com/ontology#material/10.1021-nn504371h/gnc-8nm> ,
+                       <https://lovamap.com/ontology#material/10.1021-nn504371h/nhrp> ;
+    rdfs:label "Effect of GNC size on bioluminescence enhancement" ;
+    lova:experimentCategory "Optical" ;
+    lova:experimentType "Bioluminescence intensity measurement" ;
+    lova:assayOrMethod "Luminol/H2O2 chemiluminescent reaction catalyzed by HRP" .
+
+<https://lovamap.com/ontology#outcome/10.1021-nn504371h/ef-5nm> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-nn504371h/gnc-size-effect> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "Bioluminescence enhancement factor, 5 nm GNC conjugate" ;
+    lova:measurementType "Bioluminescence enhancement factor" ;
+    lova:measurementCategory "Optical" ;
+    qudt:numericValue 2.3 ;
+    qudt:unit "fold" ;
+    lova:comparisonGroup "nHRP" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-nn504371h/ef-8nm> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-nn504371h/gnc-size-effect> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "Bioluminescence enhancement factor, 8 nm GNC conjugate (BPN)" ;
+    lova:measurementType "Bioluminescence enhancement factor" ;
+    lova:measurementCategory "Optical" ;
+    qudt:numericValue 7.1 ;
+    qudt:unit "fold" ;
+    lova:comparisonGroup "nHRP" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1021-nn504371h/time-dependent-decay> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-nn504371h/nhrp> ,
+                       <https://lovamap.com/ontology#material/10.1021-nn504371h/bpn-2-1> ;
+    rdfs:label "Time-dependent bioluminescence decay of nHRP and BPN2:1" ;
+    lova:experimentCategory "Optical" ;
+    lova:experimentType "Bioluminescence decay kinetics" ;
+    lova:assayOrMethod "Luminol/H2O2 chemiluminescent reaction catalyzed by HRP" .
+
+<https://lovamap.com/ontology#outcome/10.1021-nn504371h/bpn-8fold-retention> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-nn504371h/time-dependent-decay> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "BPN2:1 retains 8-fold higher bioluminescence intensity than nHRP after 25 min" ;
+    lova:measurementType "Bioluminescence intensity retention" ;
+    lova:measurementCategory "Optical" ;
+    qudt:numericValue 8.0 ;
+    qudt:unit "fold" ;
+    lova:timePoint "25 min" ;
+    lova:comparisonGroup "nHRP" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-nn504371h/bpn-decay-rate> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-nn504371h/time-dependent-decay> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "BPN2:1 bioluminescence decay rate (k)" ;
+    lova:measurementType "Bioluminescence decay rate constant" ;
+    lova:measurementCategory "Optical" ;
+    qudt:numericValue 0.12 ;
+    qudt:unit "s^-1" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-nn504371h/nhrp-decay-rate> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-nn504371h/time-dependent-decay> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "nHRP bioluminescence decay rate (k)" ;
+    lova:measurementType "Bioluminescence decay rate constant" ;
+    lova:measurementCategory "Optical" ;
+    qudt:numericValue 0.05 ;
+    qudt:unit "s^-1" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1021-nn504371h/thermal-stability> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-nn504371h/native-hrp> ,
+                       <https://lovamap.com/ontology#material/10.1021-nn504371h/bpn-2-1> ;
+    rdfs:label "Thermal stability of native HRP and BPN2:1 at 60°C" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Thermal stability assay" ;
+    lova:assayOrMethod "Chromogenic TMB assay" ;
+    lova:temperature "60°C" ;
+    lova:medium "100 mM phosphate buffer, pH 7.0" .
+
+<https://lovamap.com/ontology#outcome/10.1021-nn504371h/hrp-residual-activity-40min> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-nn504371h/thermal-stability> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "Native HRP residual activity after 40 min at 60°C" ;
+    lova:measurementType "Relative residual enzyme activity" ;
+    lova:measurementCategory "Biochemical" ;
+    lova:valueString "Lost more than 50% of original activity" ;
+    lova:timePoint "40 min" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-nn504371h/bpn-residual-activity-40min> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-nn504371h/thermal-stability> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "BPN2:1 residual activity after 40 min at 60°C" ;
+    lova:measurementType "Relative residual enzyme activity" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 80.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "40 min" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1021-nn504371h/cell-viability> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-nn504371h/bpn-2-1> ;
+    rdfs:label "HeLa cell viability assay after BPN2:1 incubation" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell viability" ;
+    lova:cellType "HeLa" ;
+    lova:cultureDuration "3 h" ;
+    lova:cultureMedium "DMEM + 10% bovine growth serum + 1% penicillin/streptomycin" ;
+    lova:temperature "37°C" .
+
+<https://lovamap.com/ontology#outcome/10.1021-nn504371h/cell-viability-outcome> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-nn504371h/cell-viability> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "HeLa cell viability after 3h BPN2:1 incubation" ;
+    lova:measurementType "Cell viability" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 90.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "3 h" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1021-nn504371h/cell-uptake-imaging> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-nn504371h/bpn-2-1> ;
+    rdfs:label "Fluorescence microscopy of HeLa cells treated with rhodamine-B-labeled BPN2:1" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Fluorescence microscopy" ;
+    lova:assayOrMethod "Rhodamine-B labeling" ;
+    lova:cellType "HeLa" ;
+    lova:cultureDuration "2 h" ;
+    lova:temperature "37°C" .
+
+<https://lovamap.com/ontology#outcome/10.1021-nn504371h/cell-uptake-fluorescence> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-nn504371h/cell-uptake-imaging> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "Intense intracellular fluorescence signal indicating substantial BPN2:1 cellular uptake" ;
+    lova:measurementType "Intracellular fluorescence signal" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Intense fluorescence signal observed in cell cytoplasm, indicating substantial cell uptake" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#experiment/10.1021-nn504371h/cell-bioluminescence-comparison> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-nn504371h/native-hrp> ,
+                       <https://lovamap.com/ontology#material/10.1021-nn504371h/nhrp> ,
+                       <https://lovamap.com/ontology#material/10.1021-nn504371h/bpn-2-1> ;
+    rdfs:label "Intracellular bioluminescence comparison in HeLa cells: native HRP vs nHRP vs BPN2:1" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Intracellular bioluminescence imaging" ;
+    lova:equipment "Cooled CCD camera (IVIS, Xenogen)" ;
+    lova:cellType "HeLa" ;
+    lova:seedingDensity "10000 cells/well" ;
+    lova:cultureDuration "3 h" ;
+    lova:temperature "37°C" ;
+    lova:medium "PBS" .
+
+<https://lovamap.com/ontology#outcome/10.1021-nn504371h/cell-biolum-native-hrp> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-nn504371h/cell-bioluminescence-comparison> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "Intracellular bioluminescence intensity, native HRP-treated HeLa cells" ;
+    lova:measurementType "Bioluminescence intensity" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.002 ;
+    qudt:unit "10^8 p/sec/cm2/sr" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-nn504371h/cell-biolum-nhrp> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-nn504371h/cell-bioluminescence-comparison> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "Intracellular bioluminescence intensity, nHRP-treated HeLa cells" ;
+    lova:measurementType "Bioluminescence intensity" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.8 ;
+    qudt:unit "10^8 p/sec/cm2/sr" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-nn504371h/cell-biolum-bpn21> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-nn504371h/cell-bioluminescence-comparison> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "Intracellular bioluminescence intensity, BPN2:1-treated HeLa cells" ;
+    lova:measurementType "Bioluminescence intensity" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 7.0 ;
+    qudt:unit "10^8 p/sec/cm2/sr" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-nn504371h/bpn-vs-nativehrp-2000fold> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-nn504371h/cell-bioluminescence-comparison> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "BPN2:1-treated cells emit 2000-fold higher bioluminescence than native HRP-treated cells" ;
+    lova:measurementType "Bioluminescence fold enhancement" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2000.0 ;
+    qudt:unit "fold" ;
+    lova:comparisonGroup "Native HRP" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-nn504371h/bpn-vs-nhrp-4fold> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-nn504371h/cell-bioluminescence-comparison> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "BPN2:1-treated cells show 4-fold enhancement vs nHRP-treated cells" ;
+    lova:measurementType "Bioluminescence fold enhancement" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 4.0 ;
+    qudt:unit "fold" ;
+    lova:comparisonGroup "nHRP" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1021-nn504371h/concentration-dependent-cell-biolum> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-nn504371h/bpn-2-1> ;
+    rdfs:label "Concentration-dependent intracellular bioluminescence of BPN2:1" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Intracellular bioluminescence imaging" ;
+    lova:equipment "Cooled CCD camera (IVIS, Xenogen)" ;
+    lova:cellType "HeLa" ;
+    lova:cultureDuration "3 h" ;
+    lova:temperature "37°C" .
+
+<https://lovamap.com/ontology#outcome/10.1021-nn504371h/biolum-116nm> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-nn504371h/concentration-dependent-cell-biolum> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "Bioluminescence intensity at BPN2:1 concentration 116 nM" ;
+    lova:measurementType "Bioluminescence intensity" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.6 ;
+    qudt:unit "10^8 p/sec/cm2/sr" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-nn504371h/biolum-232nm> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-nn504371h/concentration-dependent-cell-biolum> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "Bioluminescence intensity at BPN2:1 concentration 232 nM" ;
+    lova:measurementType "Bioluminescence intensity" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 4.3 ;
+    qudt:unit "10^8 p/sec/cm2/sr" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-nn504371h/biolum-465nm> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-nn504371h/concentration-dependent-cell-biolum> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "Bioluminescence intensity at BPN2:1 concentration 465 nM" ;
+    lova:measurementType "Bioluminescence intensity" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 7.0 ;
+    qudt:unit "10^8 p/sec/cm2/sr" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1021-nn504371h/bpn-vs-direct-conjugate-ef> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "Bioluminescence enhancement higher in nanocapsule-based BPN2:1 than direct GNC-HRP conjugate" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-nn504371h/bpn-c-ef> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-nn504371h/gnc-hrp-direct-ef-c> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#comparison/10.1021-nn504371h/8nm-vs-5nm-ef> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "Bioluminescence enhancement higher with 8 nm GNC than 5 nm GNC" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-nn504371h/ef-8nm> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-nn504371h/ef-5nm> ;
+    lova:direction "higher" ;
+    lova:foldChange 3.1 .
+
+<https://lovamap.com/ontology#comparison/10.1021-nn504371h/decay-rate-bpn-vs-nhrp> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "Bioluminescence decay rate faster (higher k) for BPN2:1 than nHRP" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-nn504371h/bpn-decay-rate> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-nn504371h/nhrp-decay-rate> ;
+    lova:direction "higher" ;
+    lova:foldChange 2.4 .
+
+<https://lovamap.com/ontology#comparison/10.1021-nn504371h/bpn-vs-nhrp-cell-biolum> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "Intracellular bioluminescence higher in BPN2:1-treated than nHRP-treated HeLa cells" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-nn504371h/cell-biolum-bpn21> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-nn504371h/cell-biolum-nhrp> ;
+    lova:direction "higher" ;
+    lova:foldChange 4.0 .
+
+<https://lovamap.com/ontology#comparison/10.1021-nn504371h/bpn-vs-nativehrp-cell-biolum> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "Intracellular bioluminescence higher in BPN2:1-treated than native HRP-treated HeLa cells" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-nn504371h/cell-biolum-bpn21> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-nn504371h/cell-biolum-native-hrp> ;
+    lova:direction "higher" ;
+    lova:foldChange 2000.0 .
+
+<https://lovamap.com/ontology#comparison/10.1021-nn504371h/thermal-stability-bpn-vs-hrp> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "Thermal residual activity higher for BPN2:1 than native HRP after 40 min at 60°C" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-nn504371h/bpn-residual-activity-40min> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-nn504371h/hrp-residual-activity-40min> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#experiment/10.1021-nn504371h/invivo-luciferase-bpn> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-nn504371h/bpn-2-1> ;
+    rdfs:label "Firefly luciferase-based BPN bioluminescence enhancement, in vitro and in vivo" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "In vivo bioluminescence imaging" ;
+    lova:assayOrMethod "Intramuscular injection, firefly luciferase substrate" .
+
+<https://lovamap.com/ontology#outcome/10.1021-nn504371h/luciferase-bpn-invitro-ef> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-nn504371h/invivo-luciferase-bpn> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "Firefly luciferase-based BPN bioluminescence enhancement, in vitro" ;
+    lova:measurementType "Bioluminescence enhancement factor" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.0 ;
+    qudt:unit "fold" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-nn504371h/luciferase-bpn-invivo-ef> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-nn504371h/invivo-luciferase-bpn> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-nn504371h> ;
+    rdfs:label "Firefly luciferase-based BPN bioluminescence enhancement, in vivo (intramuscular injection)" ;
+    lova:measurementType "Bioluminescence enhancement factor" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Similar level of enhancement (~2-fold) as observed in vitro" ;
+    lova:dataSource "[TEXT]" .

@@ -1,0 +1,1093 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> a bibo:AcademicArticle ;
+    rdfs:label "Xi et al., 2021 — Point-of-care antimicrobial coating protects orthopaedic implants from bacterial challenge" ;
+    dc:title "Point-of-care antimicrobial coating protects orthopaedic implants from bacterial challenge" ;
+    dc:identifier "10.1038/s41467-021-25383-z" ;
+    dc:date "2021"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/nature-communications> ;
+    dc:creator <https://lovamap.com/ontology#author/xi-weixian> ,
+               <https://lovamap.com/ontology#author/hegde-vishal> ,
+               <https://lovamap.com/ontology#author/zoller-stephen> ,
+               <https://lovamap.com/ontology#author/park-howard> ,
+               <https://lovamap.com/ontology#author/hart-christopher> ,
+               <https://lovamap.com/ontology#author/kondo-takeru> ,
+               <https://lovamap.com/ontology#author/hamad-christopher> ,
+               <https://lovamap.com/ontology#author/hu-yanwei> ,
+               <https://lovamap.com/ontology#author/loftin-amanda> ,
+               <https://lovamap.com/ontology#author/johansen-daniel> ,
+               <https://lovamap.com/ontology#author/burke-zachary> ,
+               <https://lovamap.com/ontology#author/clarkson-samuel> ,
+               <https://lovamap.com/ontology#author/ishmael-chad> ,
+               <https://lovamap.com/ontology#author/hori-kellyn> ,
+               <https://lovamap.com/ontology#author/mamouei-zeinab> ,
+               <https://lovamap.com/ontology#author/okawa-hiroko> ,
+               <https://lovamap.com/ontology#author/nishimura-ichiro> ,
+               <https://lovamap.com/ontology#author/bernthal-nicholas> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/xi-weixian>
+                       <https://lovamap.com/ontology#author/hegde-vishal>
+                       <https://lovamap.com/ontology#author/zoller-stephen>
+                       <https://lovamap.com/ontology#author/park-howard>
+                       <https://lovamap.com/ontology#author/hart-christopher>
+                       <https://lovamap.com/ontology#author/kondo-takeru>
+                       <https://lovamap.com/ontology#author/hamad-christopher>
+                       <https://lovamap.com/ontology#author/hu-yanwei>
+                       <https://lovamap.com/ontology#author/loftin-amanda>
+                       <https://lovamap.com/ontology#author/johansen-daniel>
+                       <https://lovamap.com/ontology#author/burke-zachary>
+                       <https://lovamap.com/ontology#author/clarkson-samuel>
+                       <https://lovamap.com/ontology#author/ishmael-chad>
+                       <https://lovamap.com/ontology#author/hori-kellyn>
+                       <https://lovamap.com/ontology#author/mamouei-zeinab>
+                       <https://lovamap.com/ontology#author/okawa-hiroko>
+                       <https://lovamap.com/ontology#author/nishimura-ichiro>
+                       <https://lovamap.com/ontology#author/bernthal-nicholas>
+                       <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    dc:bibliographicCitation "Xi et al., 2021" ;
+    lova:focusMaterial "Point-of-care PEG-PAM / PEG-PAMDA amphiphilic polymer coating loaded with antibiotics (e.g., vancomycin, rifampin) applied to titanium and stainless-steel orthopaedic implants" .
+
+<https://lovamap.com/ontology#journal/nature-communications> a bibo:Journal ;
+    dc:title "Nature Communications" ;
+    bibo:issn "2041-1723" .
+
+<https://lovamap.com/ontology#author/xi-weixian> a foaf:Person ;
+    foaf:familyName "Xi" ; foaf:givenName "Weixian" ; foaf:name "Weixian Xi" .
+<https://lovamap.com/ontology#author/hegde-vishal> a foaf:Person ;
+    foaf:familyName "Hegde" ; foaf:givenName "Vishal V." ; foaf:name "Vishal V. Hegde" .
+<https://lovamap.com/ontology#author/zoller-stephen> a foaf:Person ;
+    foaf:familyName "Zoller" ; foaf:givenName "Stephen D." ; foaf:name "Stephen D. Zoller" .
+<https://lovamap.com/ontology#author/park-howard> a foaf:Person ;
+    foaf:familyName "Park" ; foaf:givenName "Howard Y." ; foaf:name "Howard Y. Park" .
+<https://lovamap.com/ontology#author/hart-christopher> a foaf:Person ;
+    foaf:familyName "Hart" ; foaf:givenName "Christopher M." ; foaf:name "Christopher M. Hart" .
+<https://lovamap.com/ontology#author/kondo-takeru> a foaf:Person ;
+    foaf:familyName "Kondo" ; foaf:givenName "Takeru" ; foaf:name "Takeru Kondo" .
+<https://lovamap.com/ontology#author/hamad-christopher> a foaf:Person ;
+    foaf:familyName "Hamad" ; foaf:givenName "Christopher David" ; foaf:name "Christopher David Hamad" .
+<https://lovamap.com/ontology#author/hu-yanwei> a foaf:Person ;
+    foaf:familyName "Hu" ; foaf:givenName "Yan Wei" ; foaf:name "Yan Wei Hu" .
+<https://lovamap.com/ontology#author/loftin-amanda> a foaf:Person ;
+    foaf:familyName "Loftin" ; foaf:givenName "Amanda H." ; foaf:name "Amanda H. Loftin" .
+<https://lovamap.com/ontology#author/johansen-daniel> a foaf:Person ;
+    foaf:familyName "Johansen" ; foaf:givenName "Daniel" ; foaf:name "Daniel Johansen" .
+<https://lovamap.com/ontology#author/burke-zachary> a foaf:Person ;
+    foaf:familyName "Burke" ; foaf:givenName "Zachary D. C." ; foaf:name "Zachary D. C. Burke" .
+<https://lovamap.com/ontology#author/clarkson-samuel> a foaf:Person ;
+    foaf:familyName "Clarkson" ; foaf:givenName "Samuel J." ; foaf:name "Samuel J. Clarkson" .
+<https://lovamap.com/ontology#author/ishmael-chad> a foaf:Person ;
+    foaf:familyName "Ishmael" ; foaf:givenName "Chad R." ; foaf:name "Chad R. Ishmael" .
+<https://lovamap.com/ontology#author/hori-kellyn> a foaf:Person ;
+    foaf:familyName "Hori" ; foaf:givenName "Kellyn R." ; foaf:name "Kellyn R. Hori" .
+<https://lovamap.com/ontology#author/mamouei-zeinab> a foaf:Person ;
+    foaf:familyName "Mamouei" ; foaf:givenName "Zeinab" ; foaf:name "Zeinab Mamouei" .
+<https://lovamap.com/ontology#author/okawa-hiroko> a foaf:Person ;
+    foaf:familyName "Okawa" ; foaf:givenName "Hiroko" ; foaf:name "Hiroko Okawa" .
+<https://lovamap.com/ontology#author/nishimura-ichiro> a foaf:Person ;
+    foaf:familyName "Nishimura" ; foaf:givenName "Ichiro" ; foaf:name "Ichiro Nishimura" .
+<https://lovamap.com/ontology#author/bernthal-nicholas> a foaf:Person ;
+    foaf:familyName "Bernthal" ; foaf:givenName "Nicholas Matthew" ; foaf:name "Nicholas Matthew Bernthal" .
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ; foaf:givenName "Tatiana" ; foaf:name "Tatiana Segura" .
+
+<https://lovamap.com/ontology#material/10.1038-s41467-021-25383-z/peg-pam-coating> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "Tetra-PEG-PAM amphiphilic polymer coating (6% w/v, single layer)" ;
+    lova:particleMaterial "tetra-PEG-PAM (PEG and polyallyl mercaptan branched block copolymer)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1038-s41467-021-25383-z/implant-coating-process> ;
+    lova:scaffoldDimensions "~2 µm coating thickness (single layer)" .
+
+<https://lovamap.com/ontology#material/10.1038-s41467-021-25383-z/peg-pamda-coating> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "Covalently crosslinked PEG-PAMDA coating (3 layers)" ;
+    lova:particleMaterial "tetra-PEG-SH crosslinked with PAMDA (polyallyl mercaptan diallyl)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1038-s41467-021-25383-z/peg-pamda-coating-process> ;
+    lova:scaffoldDimensions "3 layers; ~352 µg vancomycin loading" .
+
+<https://lovamap.com/ontology#material/10.1038-s41467-021-25383-z/ti-implant-0.8mm> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "Titanium K-wire implant (0.8 mm diameter) coated with PEG-PAM/Vancomycin" ;
+    lova:particleMaterial "Titanium" ;
+    lova:particleShape "Wire/pin" ;
+    lova:scaffoldDimensions "0.8 mm diameter × 6 mm length" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1038-s41467-021-25383-z/implant-coating-process> .
+
+<https://lovamap.com/ontology#material/10.1038-s41467-021-25383-z/ss-implant-0.1mm> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "Stainless-steel implant (0.1 mm diameter)" ;
+    lova:particleMaterial "Stainless steel" ;
+    lova:scaffoldDimensions "0.1 mm diameter" .
+
+<https://lovamap.com/ontology#material/10.1038-s41467-021-25383-z/ss-implant-0.6mm> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "Stainless-steel implant (0.6 mm diameter)" ;
+    lova:particleMaterial "Stainless steel" ;
+    lova:scaffoldDimensions "0.6 mm diameter" .
+
+<https://lovamap.com/ontology#material/10.1038-s41467-021-25383-z/ss-implant-0.8mm> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "Stainless-steel implant (0.8 mm diameter)" ;
+    lova:particleMaterial "Stainless steel" ;
+    lova:scaffoldDimensions "0.8 mm diameter" .
+
+<https://lovamap.com/ontology#material/10.1038-s41467-021-25383-z/spine-ss-implant-0.1mm> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "L-shaped stainless-steel spine implant (0.1 mm diameter)" ;
+    lova:particleMaterial "Stainless steel" ;
+    lova:particleShape "L-shaped" ;
+    lova:scaffoldDimensions "0.1 mm diameter" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1038-s41467-021-25383-z/pam-synthesis> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "One-pot UV thiol-ene synthesis of polyallyl mercaptan (PAM)" ;
+    lova:chemistry "Thiol-ene radical copolymerization" ;
+    lova:manufacturingMethod "One-pot UV-initiated polymerization in chloroform, 365 nm 20 mW/cm2, 30 min" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1038-s41467-021-25383-z/allyl-sulfide> ,
+                     <https://lovamap.com/ontology#reagent/10.1038-s41467-021-25383-z/propanedithiol> ,
+                     <https://lovamap.com/ontology#reagent/10.1038-s41467-021-25383-z/dmpa> ,
+                     <https://lovamap.com/ontology#reagent/10.1038-s41467-021-25383-z/chloroform> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1038-s41467-021-25383-z/pamda-synthesis> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "One-pot UV thiol-ene synthesis of PAMDA (1:1.2 dithiol:diallyl ratio)" ;
+    lova:chemistry "Thiol-ene radical copolymerization" ;
+    lova:manufacturingMethod "One-pot UV-initiated polymerization in chloroform, 365 nm 20 mW/cm2, 30 min, 1:1.2 stoichiometric ratio of 1,3-propanedithiol to allylsulfide" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1038-s41467-021-25383-z/allyl-sulfide> ,
+                     <https://lovamap.com/ontology#reagent/10.1038-s41467-021-25383-z/propanedithiol> ,
+                     <https://lovamap.com/ontology#reagent/10.1038-s41467-021-25383-z/dmpa> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1038-s41467-021-25383-z/tetra-peg-pam-coupling> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "UV thiol-ene grafting of PAM onto tetra-PEG-SH core to form tetra-PEG-PAM" ;
+    lova:chemistry "Thiol-ene click coupling" ;
+    lova:manufacturingMethod "UV-activated coupling, one mole tetra-PEG-SH per four moles PAM" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1038-s41467-021-25383-z/tetra-peg-sh> ,
+                     <https://lovamap.com/ontology#reagent/10.1038-s41467-021-25383-z/dmpa> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1038-s41467-021-25383-z/implant-coating-process> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "In situ PEG-PAM dip-coating and UV curing on metal implant surface" ;
+    lova:chemistry "Thiol-ene click chemistry (self-assembling, non-covalent crosslinking)" ;
+    lova:manufacturingMethod "Dip-coating of implant in PAM/tetra-PEG-SH/antibiotic solution in chloroform, followed by UV curing" ;
+    lova:annealingChemistry "UV-activated thiol-ene conjugation forming amphiphilic block copolymer on implant surface" ;
+    lova:annealingConditions "365 nm, 20 mW/cm2, 5 min" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1038-s41467-021-25383-z/tetra-peg-sh> ,
+                     <https://lovamap.com/ontology#reagent/10.1038-s41467-021-25383-z/dmpa> ,
+                     <https://lovamap.com/ontology#reagent/10.1038-s41467-021-25383-z/chloroform> ,
+                     <https://lovamap.com/ontology#reagent/10.1038-s41467-021-25383-z/vancomycin> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1038-s41467-021-25383-z/peg-pamda-coating-process> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "Covalently crosslinked PEG-PAMDA multilayer coating process" ;
+    lova:chemistry "Thiol-ene click chemistry (covalent crosslinking)" ;
+    lova:manufacturingMethod "Dip-coating in tetra-PEG-SH/PAMDA/vancomycin solution, 3 sequential layers, UV curing" ;
+    lova:annealingChemistry "UV-activated thiol-ene covalent crosslinking between tetra-PEG-SH and PAMDA" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1038-s41467-021-25383-z/tetra-peg-sh> ,
+                     <https://lovamap.com/ontology#reagent/10.1038-s41467-021-25383-z/vancomycin> .
+
+<https://lovamap.com/ontology#reagent/10.1038-s41467-021-25383-z/allyl-sulfide> a lova:Reagent ;
+    rdfs:label "Diallyl sulfide (allylsulfide)" ;
+    lova:reagentRole "monomer" ;
+    lova:reagentFunction "Backbone monomer for PAM/PAMDA synthesis" .
+
+<https://lovamap.com/ontology#reagent/10.1038-s41467-021-25383-z/propanedithiol> a lova:Reagent ;
+    rdfs:label "1,3-propanedithiol" ;
+    lova:reagentRole "monomer" ;
+    lova:reagentFunction "Thiol monomer for thiol-ene copolymerization with allyl sulfide" .
+
+<https://lovamap.com/ontology#reagent/10.1038-s41467-021-25383-z/dmpa> a lova:Reagent ;
+    rdfs:label "2,2-Dimethoxy-2-phenylacetophenone (DMPA)" ;
+    lova:reagentRole "photoinitiator" ;
+    lova:concentration "1 mol%" ;
+    lova:reagentFunction "UV photoinitiator for thiol-ene polymerization" .
+
+<https://lovamap.com/ontology#reagent/10.1038-s41467-021-25383-z/tetra-peg-sh> a lova:Reagent ;
+    rdfs:label "Tetra-PEG-SH (star-PEG-thiol)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:concentration "6 wt%" ;
+    lova:reagentFunction "PEG core for grafting PAM/PAMDA to form amphiphilic coating" .
+
+<https://lovamap.com/ontology#reagent/10.1038-s41467-021-25383-z/vancomycin> a lova:Reagent ;
+    rdfs:label "Vancomycin" ;
+    lova:reagentRole "other" ;
+    lova:concentration "20 mg/ml" ;
+    lova:reagentFunction "Antibacterial drug loaded into coating" .
+
+<https://lovamap.com/ontology#reagent/10.1038-s41467-021-25383-z/chloroform> a lova:Reagent ;
+    rdfs:label "Chloroform" ;
+    lova:reagentRole "solvent" ;
+    lova:reagentFunction "Solvent for coating precursor solution" .
+
+<https://lovamap.com/ontology#reagent/10.1038-s41467-021-25383-z/h2o2> a lova:Reagent ;
+    rdfs:label "Hydrogen peroxide (30%)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "30%" ;
+    lova:reagentFunction "Oxidation of PAM thioether to sulfone/sulfoxide" .
+
+<https://lovamap.com/ontology#reagent/10.1038-s41467-021-25383-z/cy5.5-maleimide> a lova:Reagent ;
+    rdfs:label "Cy5.5 maleimide" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Fluorescent label for in vivo coating degradation imaging" .
+
+<https://lovamap.com/ontology#reagent/10.1038-s41467-021-25383-z/rifampin> a lova:Reagent ;
+    rdfs:label "Rifampin" ;
+    lova:reagentRole "other" ;
+    lova:concentration "20 mg/ml" ;
+    lova:reagentFunction "Antibacterial drug loaded into coating" .
+
+<https://lovamap.com/ontology#reagent/10.1038-s41467-021-25383-z/ceftriaxone> a lova:Reagent ;
+    rdfs:label "Ceftriaxone" ; lova:reagentRole "other" ; lova:concentration "20 mg/ml" ; lova:reagentFunction "Antibacterial drug loaded into coating" .
+
+<https://lovamap.com/ontology#reagent/10.1038-s41467-021-25383-z/cefazolin> a lova:Reagent ;
+    rdfs:label "Cefazolin" ; lova:reagentRole "other" ; lova:concentration "20 mg/ml" ; lova:reagentFunction "Antibacterial drug loaded into coating" .
+
+<https://lovamap.com/ontology#reagent/10.1038-s41467-021-25383-z/cefepime> a lova:Reagent ;
+    rdfs:label "Cefepime" ; lova:reagentRole "other" ; lova:concentration "20 mg/ml" ; lova:reagentFunction "Antibacterial drug loaded into coating" .
+
+<https://lovamap.com/ontology#reagent/10.1038-s41467-021-25383-z/tobramycin> a lova:Reagent ;
+    rdfs:label "Tobramycin" ; lova:reagentRole "other" ; lova:concentration "20 mg/ml" ; lova:reagentFunction "Antibacterial drug loaded into coating, active against Pseudomonas aeruginosa PAO1" .
+
+<https://lovamap.com/ontology#reagent/10.1038-s41467-021-25383-z/piperacillin-tazobactam> a lova:Reagent ;
+    rdfs:label "Piperacillin and Tazobactam" ; lova:reagentRole "other" ; lova:concentration "20 mg/ml" ; lova:reagentFunction "Antibacterial drug loaded into coating, active against E. coli RR1" .
+
+<https://lovamap.com/ontology#reagent/10.1038-s41467-021-25383-z/clindamycin> a lova:Reagent ;
+    rdfs:label "Clindamycin" ; lova:reagentRole "other" ; lova:concentration "20 mg/ml" ; lova:reagentFunction "Antibacterial drug loaded into coating" .
+
+<https://lovamap.com/ontology#reagent/10.1038-s41467-021-25383-z/linezolid> a lova:Reagent ;
+    rdfs:label "Linezolid" ; lova:reagentRole "other" ; lova:concentration "20 mg/ml" ; lova:reagentFunction "Antibacterial drug loaded into coating" .
+
+<https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/rheology> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s41467-021-25383-z/peg-pam-coating> ;
+    rdfs:label "Oscillatory rheometry of PEG-PAM hydrogel, pre- and post-oxidation" ;
+    lova:experimentCategory "Rheological" ;
+    lova:experimentType "Oscillatory rheometry" ;
+    lova:equipment "Physica MCR 301, Anton Paar" ;
+    lova:temperature "25°C" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/storage-modulus-pegpam> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "Storage modulus (G') of 4-6% PEG-PAM hydrogel" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 400.0 ;
+    qudt:unit "Pa" ;
+    lova:sampleSize 2 ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/loss-modulus-pegpam> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "Loss modulus (G'') of 4-6% PEG-PAM hydrogel" ;
+    lova:measurementType "Loss modulus (G'')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 30.0 ;
+    qudt:unit "Pa" ;
+    lova:sampleSize 2 ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/gpc> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s41467-021-25383-z/peg-pam-coating> ;
+    rdfs:label "GPC/light scattering characterization of PAM" ;
+    lova:experimentCategory "Chemical characterization" ;
+    lova:experimentType "Gel permeation chromatography" ;
+    lova:equipment "SSI Accuflow Series III, Wyatt DAWN EOS, Optilab rEX" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/pam-mn> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/gpc> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "Number-average molecular weight (Mn) of PAM" ;
+    lova:measurementType "Molecular weight (Mn)" ;
+    lova:measurementCategory "Chemical characterization" ;
+    qudt:numericValue 767.0 ;
+    qudt:unit "g/mol" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/spr-binding> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s41467-021-25383-z/peg-pam-coating> ;
+    rdfs:label "Surface plasmon resonance binding of PEG-PAM to gold surface" ;
+    lova:experimentCategory "Chemical characterization" ;
+    lova:experimentType "Surface Plasmon Resonance" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/pegpam-kd-gold> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/spr-binding> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "PEG-PAM dissociation constant (K_D) on gold in water" ;
+    lova:measurementType "Dissociation constant (K_D)" ;
+    lova:measurementCategory "Chemical characterization" ;
+    qudt:numericValue 4.35 ;
+    qudt:unit "μM" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/coating-thickness> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s41467-021-25383-z/peg-pam-coating> ;
+    rdfs:label "Coating thickness measurement via AFM / 3D profilometry" ;
+    lova:experimentCategory "Physical characterization" ;
+    lova:experimentType "3D profilometry/AFM" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/thickness-1layer> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/coating-thickness> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "Single-layer PEG-PAM coating thickness on titanium surface" ;
+    lova:measurementType "Coating thickness" ;
+    lova:measurementCategory "Physical characterization" ;
+    qudt:numericValue 2.0 ;
+    qudt:unit "µm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/thickness-8layer> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/coating-thickness> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "8-layer PEG-PAM coating thickness on titanium surface" ;
+    lova:measurementType "Coating thickness" ;
+    lova:measurementCategory "Physical characterization" ;
+    qudt:numericValue 100.0 ;
+    qudt:unit "µm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/vanc-loading-layers> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s41467-021-25383-z/ti-implant-0.8mm> ;
+    rdfs:label "Vancomycin loading quantification for multi-layer PEG-PAM coatings" ;
+    lova:experimentCategory "Chemical characterization" ;
+    lova:experimentType "Antibiotic loading quantification" ;
+    lova:sampleSize 4 .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/vanc-loading-1layer> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/vanc-loading-layers> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "Vancomycin loading, 1 layer PEG-PAM coating" ;
+    lova:measurementType "Vancomycin loading" ;
+    lova:measurementCategory "Chemical characterization" ;
+    qudt:numericValue 70.0 ;
+    qudt:unit "µg" ;
+    lova:sampleSize 4 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/vanc-loading-3layer> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/vanc-loading-layers> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "Vancomycin loading, 3 layer PEG-PAM coating" ;
+    lova:measurementType "Vancomycin loading" ;
+    lova:measurementCategory "Chemical characterization" ;
+    qudt:numericValue 100.0 ;
+    qudt:unit "µg" ;
+    lova:sampleSize 4 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/vanc-loading-5layer> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/vanc-loading-layers> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "Vancomycin loading, 5 layer PEG-PAM coating" ;
+    lova:measurementType "Vancomycin loading" ;
+    lova:measurementCategory "Chemical characterization" ;
+    qudt:numericValue 200.0 ;
+    qudt:unit "µg" ;
+    lova:sampleSize 4 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/vanc-loading-8layer> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/vanc-loading-layers> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "Vancomycin loading, 8 layer PEG-PAM coating" ;
+    lova:measurementType "Vancomycin loading" ;
+    lova:measurementCategory "Chemical characterization" ;
+    qudt:numericValue 350.0 ;
+    qudt:unit "µg" ;
+    lova:sampleSize 4 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-s41467-021-25383-z/vanc-loading-3-vs-8> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "Vancomycin loading higher in 8-layer vs 3-layer PEG-PAM coating" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/vanc-loading-8layer> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/vanc-loading-3layer> ;
+    lova:direction "higher" ;
+    lova:pValue 0.012 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1038-s41467-021-25383-z/vanc-loading-1-vs-8> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "Vancomycin loading higher in 8-layer vs 1-layer PEG-PAM coating" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/vanc-loading-8layer> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/vanc-loading-1layer> ;
+    lova:direction "higher" ;
+    lova:pValue 0.002 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/vanc-release> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s41467-021-25383-z/ti-implant-0.8mm> ;
+    rdfs:label "In vitro vancomycin release from PEG-PAM coatings" ;
+    lova:experimentCategory "Pharmacological" ;
+    lova:experimentType "In vitro drug release" ;
+    lova:assayOrMethod "UV-Vis spectrometry at 280 nm" ;
+    lova:medium "PBS" ;
+    lova:temperature "37°C" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/vanc-mic> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/vanc-release> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "MIC of vancomycin for Xen36 S. aureus" ;
+    lova:measurementType "Minimum inhibitory concentration (MIC)" ;
+    lova:measurementCategory "Pharmacological" ;
+    qudt:numericValue 0.5 ;
+    qudt:unit "μg/mL" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/vanc-release-duration-1layer> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/vanc-release> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "Duration above MIC for single-layer PEG-PAM/Vanc coating" ;
+    lova:measurementType "Duration above MIC" ;
+    lova:measurementCategory "Pharmacological" ;
+    qudt:numericValue 14.0 ;
+    qudt:unit "days" ;
+    lova:sampleSize 3 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/vanc-release-duration-3layer> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/vanc-release> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "Duration above MIC for 3-layer PEG-PAM/Vanc coating" ;
+    lova:measurementType "Duration above MIC" ;
+    lova:measurementCategory "Pharmacological" ;
+    qudt:numericValue 17.0 ;
+    qudt:unit "days" ;
+    lova:sampleSize 3 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/zoi-saureus> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s41467-021-25383-z/ti-implant-0.8mm> ;
+    rdfs:label "Zone of inhibition assay of PEG-PAM/Vanc coated titanium pins against S. aureus Xen36" ;
+    lova:experimentCategory "Microbiological" ;
+    lova:experimentType "Zone of inhibition" ;
+    lova:cellType "Staphylococcus aureus (Xen36)" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/zoi-nocoat> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/zoi-saureus> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "ZOI diameter, uncoated titanium pin vs S. aureus" ;
+    lova:measurementType "Zone of inhibition diameter" ;
+    lova:measurementCategory "Microbiological" ;
+    lova:valueString "not detected (n.d.)" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/zoi-pegpam-only> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/zoi-saureus> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "ZOI diameter, PEG-PAM-only coated pin vs S. aureus" ;
+    lova:measurementType "Zone of inhibition diameter" ;
+    lova:measurementCategory "Microbiological" ;
+    lova:valueString "not detected (n.d.)" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/zoi-pegpam-vanc> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/zoi-saureus> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "ZOI diameter, PEG-PAM+Vanc coated pin vs S. aureus" ;
+    lova:measurementType "Zone of inhibition diameter" ;
+    lova:measurementCategory "Microbiological" ;
+    qudt:numericValue 13.0 ;
+    qudt:unit "mm" ;
+    lova:sampleSize 3 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-s41467-021-25383-z/zoi-vanc-vs-nocoat> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "ZOI diameter higher for PEG-PAM+Vanc vs no coating against S. aureus" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/zoi-pegpam-vanc> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/zoi-nocoat> ;
+    lova:direction "higher" ;
+    lova:pValue 0.0001 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/zoi-pao1> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s41467-021-25383-z/ti-implant-0.8mm> ;
+    rdfs:label "Zone of inhibition assay of PEG-PAM/Tobramycin coated pins against Pseudomonas aeruginosa PAO1" ;
+    lova:experimentCategory "Microbiological" ;
+    lova:experimentType "Zone of inhibition" ;
+    lova:cellType "Pseudomonas aeruginosa (PAO1)" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/zoi-pao1-control> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/zoi-pao1> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "ZOI diameter, PEG-PAM-only coated pin vs PAO1" ;
+    lova:measurementType "Zone of inhibition diameter" ;
+    lova:measurementCategory "Microbiological" ;
+    lova:valueString "not detected (n.d.)" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/zoi-pao1-tobra> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/zoi-pao1> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "ZOI diameter, PEG-PAM+Tobramycin coated pin vs PAO1" ;
+    lova:measurementType "Zone of inhibition diameter" ;
+    lova:measurementCategory "Microbiological" ;
+    qudt:numericValue 13.0 ;
+    qudt:unit "mm" ;
+    lova:sampleSize 3 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-s41467-021-25383-z/zoi-pao1-tobra-vs-control> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "ZOI diameter higher for PEG-PAM+Tobramycin vs PEG-PAM-only against PAO1" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/zoi-pao1-tobra> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/zoi-pao1-control> ;
+    lova:direction "higher" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/zoi-ecoli> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s41467-021-25383-z/ti-implant-0.8mm> ;
+    rdfs:label "Zone of inhibition assay of PEG-PAM/Piperacillin+Tazobactam coated pins against E. coli RR1" ;
+    lova:experimentCategory "Microbiological" ;
+    lova:experimentType "Zone of inhibition" ;
+    lova:cellType "Escherichia coli (RR1)" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/zoi-ecoli-control> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/zoi-ecoli> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "ZOI diameter, PEG-PAM-only coated pin vs E. coli" ;
+    lova:measurementType "Zone of inhibition diameter" ;
+    lova:measurementCategory "Microbiological" ;
+    lova:valueString "not detected (n.d.)" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/zoi-ecoli-piptazo> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/zoi-ecoli> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "ZOI diameter, PEG-PAM+Piperacillin/Tazobactam coated pin vs E. coli" ;
+    lova:measurementType "Zone of inhibition diameter" ;
+    lova:measurementCategory "Microbiological" ;
+    qudt:numericValue 6.5 ;
+    qudt:unit "mm" ;
+    lova:sampleSize 3 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-s41467-021-25383-z/zoi-ecoli-piptazo-vs-control> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "ZOI diameter higher for PEG-PAM+Piperacillin/Tazobactam vs PEG-PAM-only against E. coli" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/zoi-ecoli-piptazo> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/zoi-ecoli-control> ;
+    lova:direction "higher" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/push-in-force> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s41467-021-25383-z/ti-implant-0.8mm> ;
+    rdfs:label "In vivo push-in force osseointegration test, control vs PEG-PAM/Vanc coated Ti implants" ;
+    lova:experimentCategory "Mechanical" ;
+    lova:experimentType "Push-in force test" ;
+    lova:equipment "Instron 1000 N load cell" ;
+    lova:strainRate "1 mm/min" ;
+    lova:cellSource "C57BL/6 wild-type mice, 12-week-old male" ;
+    lova:sampleSize 12 .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/pushin-control-2wk> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/push-in-force> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "Push-in force, control implant, 2 weeks" ;
+    lova:measurementType "Push-in force" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 13.2 ;
+    qudt:unit "N" ;
+    lova:stdDev 4.0 ;
+    lova:sampleSize 12 ;
+    lova:timePoint "2 weeks" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/pushin-pegpamvanc-2wk> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/push-in-force> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "Push-in force, PEG-PAM/Vanc coated implant, 2 weeks" ;
+    lova:measurementType "Push-in force" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 7.0 ;
+    qudt:unit "N" ;
+    lova:stdDev 5.1 ;
+    lova:sampleSize 12 ;
+    lova:timePoint "2 weeks" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/pushin-control-4wk> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/push-in-force> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "Push-in force, control implant, 4 weeks" ;
+    lova:measurementType "Push-in force" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 30.2 ;
+    qudt:unit "N" ;
+    lova:stdDev 4.6 ;
+    lova:sampleSize 12 ;
+    lova:timePoint "4 weeks" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/pushin-pegpamvanc-4wk> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/push-in-force> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "Push-in force, PEG-PAM/Vanc coated implant, 4 weeks" ;
+    lova:measurementType "Push-in force" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 27.6 ;
+    qudt:unit "N" ;
+    lova:stdDev 5.6 ;
+    lova:sampleSize 12 ;
+    lova:timePoint "4 weeks" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-s41467-021-25383-z/pushin-2wk-control-vs-coated> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "Push-in force lower in PEG-PAM/Vanc coated vs control implants at 2 weeks" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/pushin-pegpamvanc-2wk> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/pushin-control-2wk> ;
+    lova:direction "lower" ;
+    lova:pValue 0.0061 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1038-s41467-021-25383-z/pushin-4wk-control-vs-coated> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "No difference in push-in force between PEG-PAM/Vanc coated and control implants at 4 weeks" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/pushin-pegpamvanc-4wk> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/pushin-control-4wk> ;
+    lova:direction "no difference" ;
+    lova:isSignificant false .
+
+<https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/in-vivo-degradation> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s41467-021-25383-z/peg-pam-coating> ;
+    rdfs:label "In vivo biodegradation of Cy5.5-labeled PEG-PAM coating" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "In vivo fluorescence imaging" ;
+    lova:equipment "IVIS Lumina II" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/degradation-3wk> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/in-vivo-degradation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "PEG-PAM coating fluorescence signal at 3 weeks post-implantation" ;
+    lova:measurementType "Fluorescence signal (coating degradation)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "no detectable fluorescence signal at 3 weeks" ;
+    lova:sampleSize 3 ;
+    lova:timePoint "3 weeks" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/pji-main> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s41467-021-25383-z/ti-implant-0.8mm> ;
+    rdfs:label "In vivo PJI mouse model: no coating vs PEG-PAM vs PEG-PAM/Vanc, S. aureus Xen36 challenge" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "In vivo infection bioluminescence imaging" ;
+    lova:assayOrMethod "IVIS Lumina II bioluminescence imaging" ;
+    lova:cellType "Staphylococcus aureus (Xen36)" ;
+    lova:cellSource "12-week-old male C57BL/6 wild-type mice" ;
+    lova:cultureDuration "21 days post-operative" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/biolum-nocoat> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/pji-main> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "In vivo bioluminescence, no coatings group" ;
+    lova:measurementType "Bacterial bioluminescence" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "elevated bioluminescence persisting through POD21" ;
+    lova:sampleSize 15 ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/biolum-pegpam> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/pji-main> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "In vivo bioluminescence, PEG-PAM only group" ;
+    lova:measurementType "Bacterial bioluminescence" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "elevated bioluminescence persisting through POD21" ;
+    lova:sampleSize 14 ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/biolum-pegpamvanc> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/pji-main> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "In vivo bioluminescence, PEG-PAM/Vanc group" ;
+    lova:measurementType "Bacterial bioluminescence" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "signal not above baseline from POD1 onward" ;
+    lova:sampleSize 14 ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-s41467-021-25383-z/biolum-pegpamvanc-vs-nocoat> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "Bioluminescence lower in PEG-PAM/Vanc vs no coating" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/biolum-pegpamvanc> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/biolum-nocoat> ;
+    lova:direction "lower" ;
+    lova:pValue 0.0001 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/pji-cfu> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s41467-021-25383-z/ti-implant-0.8mm> ;
+    rdfs:label "CFU quantification from implant and tissue at POD21, PJI model" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Colony-forming unit quantification" ;
+    lova:sampleSize 5 ;
+    lova:timePoint "POD 21" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/cfu-nocoat-pct> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/pji-cfu> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "Percent implants/tissue CFU-positive, no coating group" ;
+    lova:measurementType "Percent CFU-positive" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 100.0 ;
+    qudt:unit "%" ;
+    lova:sampleSize 5 ;
+    lova:timePoint "POD 21" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/cfu-pegpam-pct> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/pji-cfu> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "Percent implants/tissue CFU-positive, PEG-PAM only group" ;
+    lova:measurementType "Percent CFU-positive" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 100.0 ;
+    qudt:unit "%" ;
+    lova:sampleSize 5 ;
+    lova:timePoint "POD 21" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/cfu-pegpamvanc-pct> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/pji-cfu> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "Percent implants/tissue CFU-positive, PEG-PAM/Vanc group" ;
+    lova:measurementType "Percent CFU-positive" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.0 ;
+    qudt:unit "%" ;
+    lova:sampleSize 5 ;
+    lova:timePoint "POD 21" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-s41467-021-25383-z/cfu-vanc-vs-nocoat> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "CFU-positive implants lower in PEG-PAM/Vanc vs no coating" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/cfu-pegpamvanc-pct> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/cfu-nocoat-pct> ;
+    lova:direction "lower" ;
+    lova:isSignificant false .
+
+<https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/pji-high-challenge> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s41467-021-25383-z/ti-implant-0.8mm> ;
+    rdfs:label "High bacterial challenge of PEG-PAM/Vanc coated implants (1x10^6 CFU) vs control" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "In vivo infection bioluminescence imaging" ;
+    lova:cellType "Staphylococcus aureus (Xen36)" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/biolum-highchallenge-control> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/pji-high-challenge> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "Bioluminescence, control group, 1x10^6 CFU challenge" ;
+    lova:measurementType "Bacterial bioluminescence" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "elevated bioluminescence" ;
+    lova:sampleSize 4 ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/biolum-highchallenge-vanc> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/pji-high-challenge> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "Bioluminescence, PEG-PAM/Vanc group, 1x10^6 CFU challenge" ;
+    lova:measurementType "Bacterial bioluminescence" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "signal not above baseline" ;
+    lova:sampleSize 6 ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-s41467-021-25383-z/biolum-highchallenge-vanc-vs-control> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "Bioluminescence lower in PEG-PAM/Vanc vs control under 1x10^6 CFU challenge" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/biolum-highchallenge-vanc> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/biolum-highchallenge-control> ;
+    lova:direction "lower" ;
+    lova:pValue 0.003 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/pji-iv-ancef-comparison> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s41467-021-25383-z/ti-implant-0.8mm> ;
+    rdfs:label "Comparison of PEG-PAM/Vanc coating vs systemic IV-ancef vs combination, PJI model" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "In vivo infection bioluminescence imaging" ;
+    lova:cellType "Staphylococcus aureus (Xen36)" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/biolum-ivancef> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/pji-iv-ancef-comparison> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "Bioluminescence, IV-Ancef group" ;
+    lova:measurementType "Bacterial bioluminescence" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "higher bioluminescence than PEG-PAM/Vanc group, POD0-10" ;
+    lova:sampleSize 6 ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/biolum-pegpamvanc-vs-ivancef> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/pji-iv-ancef-comparison> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "Bioluminescence, PEG-PAM/Vanc group in IV-ancef comparison study" ;
+    lova:measurementType "Bacterial bioluminescence" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "lower bioluminescence than IV-ancef alone" ;
+    lova:sampleSize 6 ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-s41467-021-25383-z/pegpamvanc-vs-ivancef> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "Bioluminescence lower in PEG-PAM/Vanc coating vs IV-Ancef alone" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/biolum-pegpamvanc-vs-ivancef> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/biolum-ivancef> ;
+    lova:direction "lower" ;
+    lova:pValue 0.0004 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/rifampin-vanc-combo> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s41467-021-25383-z/ti-implant-0.8mm> ;
+    rdfs:label "In vivo evaluation of combination Rifampin + Vancomycin PEG-PAM coating" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "In vivo infection bioluminescence imaging" ;
+    lova:cellType "Staphylococcus aureus (Xen36)" ;
+    lova:sampleSize 6 .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/rifampin-loading-alone> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/rifampin-vanc-combo> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "Rifampin loading, rifampin-only coating" ;
+    lova:measurementType "Antibiotic loading" ;
+    lova:measurementCategory "Chemical characterization" ;
+    qudt:numericValue 37.8 ;
+    qudt:unit "µg/implant" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/rifampin-loading-combo> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/rifampin-vanc-combo> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "Rifampin loading in combined rifampin+vancomycin coating" ;
+    lova:measurementType "Antibiotic loading" ;
+    lova:measurementCategory "Chemical characterization" ;
+    qudt:numericValue 28.0 ;
+    qudt:unit "µg/implant" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/vanc-loading-combo> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/rifampin-vanc-combo> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "Vancomycin loading in combined rifampin+vancomycin coating" ;
+    lova:measurementType "Antibiotic loading" ;
+    lova:measurementCategory "Chemical characterization" ;
+    qudt:numericValue 12.8 ;
+    qudt:unit "µg/implant" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/biolum-pegpam-rifvanc-group> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/rifampin-vanc-combo> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "Bioluminescence, PEG-PAM only group (Rifampin/Vanc study)" ;
+    lova:measurementType "Bacterial bioluminescence" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "elevated bioluminescence" ;
+    lova:sampleSize 6 ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/biolum-pegpam-rifvanc-combo> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/rifampin-vanc-combo> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "Bioluminescence, PEG-PAM+Vanc+Rif group" ;
+    lova:measurementType "Bacterial bioluminescence" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "signal suppressed near baseline" ;
+    lova:sampleSize 6 ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-s41467-021-25383-z/biolum-rifvanc-vs-pegpamonly> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "Bioluminescence lower in PEG-PAM+Vanc+Rif vs PEG-PAM only" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/biolum-pegpam-rifvanc-combo> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/biolum-pegpam-rifvanc-group> ;
+    lova:direction "lower" ;
+    lova:pValue 0.007 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/ss-implant-sizes> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s41467-021-25383-z/ss-implant-0.1mm> ,
+                      <https://lovamap.com/ontology#material/10.1038-s41467-021-25383-z/ss-implant-0.6mm> ,
+                      <https://lovamap.com/ontology#material/10.1038-s41467-021-25383-z/ss-implant-0.8mm> ;
+    rdfs:label "In vivo evaluation of PEG-PAM/Vanc coating on different sized stainless-steel implants" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "In vivo infection bioluminescence imaging" ;
+    lova:cellType "Staphylococcus aureus (Xen36)" ;
+    lova:sampleSize 5 .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/biolum-ss-control> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/ss-implant-sizes> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "Bioluminescence, control stainless-steel implant group" ;
+    lova:measurementType "Bacterial bioluminescence" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "elevated bioluminescence" ;
+    lova:sampleSize 5 ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/biolum-ss-vanc-groups> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/ss-implant-sizes> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "Bioluminescence, PEG-PAM/Vanc coated 0.1/0.6/0.8 mm stainless-steel implants" ;
+    lova:measurementType "Bacterial bioluminescence" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "signal suppressed near baseline across all sizes" ;
+    lova:sampleSize 5 ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-s41467-021-25383-z/biolum-ss-vanc-vs-control> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "Bioluminescence lower in PEG-PAM/Vanc coated stainless-steel implants (all sizes) vs control" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/biolum-ss-vanc-groups> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/biolum-ss-control> ;
+    lova:direction "lower" ;
+    lova:pValue 0.0001 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/spine-pegpam-vanc> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s41467-021-25383-z/spine-ss-implant-0.1mm> ;
+    rdfs:label "Spine implant infection model: single-layer PEG-PAM vs PEG-PAM/Vanc" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "In vivo infection bioluminescence imaging" ;
+    lova:cellType "Staphylococcus aureus (Xen36)" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/biolum-spine-pegpam> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/spine-pegpam-vanc> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "Bioluminescence, PEG-PAM only, spine implant model" ;
+    lova:measurementType "Bacterial bioluminescence" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "elevated bioluminescence" ;
+    lova:sampleSize 3 ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/biolum-spine-pegpamvanc> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/spine-pegpam-vanc> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "Bioluminescence, PEG-PAM+Vanc, spine implant model" ;
+    lova:measurementType "Bacterial bioluminescence" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "similar bioluminescence level to PEG-PAM alone (coating ineffective)" ;
+    lova:sampleSize 3 ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-s41467-021-25383-z/spine-pegpamvanc-vs-pegpam> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "No difference in bioluminescence between PEG-PAM+Vanc and PEG-PAM alone in spine implant model" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/biolum-spine-pegpamvanc> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/biolum-spine-pegpam> ;
+    lova:direction "no difference" ;
+    lova:isSignificant false .
+
+<https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/spine-pegpamda-vanc> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s41467-021-25383-z/peg-pamda-coating> ;
+    rdfs:label "Spine implant infection model: 3-layer PEG-PAMDA vs PEG-PAMDA/Vanc" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "In vivo infection bioluminescence imaging" ;
+    lova:cellType "Staphylococcus aureus (Xen36)" ;
+    lova:sampleSize 6 .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/biolum-spine-pamda> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/spine-pegpamda-vanc> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "Bioluminescence, 3-layer PEG-PAMDA only, spine implant model" ;
+    lova:measurementType "Bacterial bioluminescence" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "elevated bioluminescence" ;
+    lova:sampleSize 6 ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/biolum-spine-pamdavanc> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/spine-pegpamda-vanc> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "Bioluminescence, 3-layer PEG-PAMDA+Vanc, spine implant model" ;
+    lova:measurementType "Bacterial bioluminescence" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "significantly decreased bioluminescence" ;
+    lova:sampleSize 6 ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-s41467-021-25383-z/spine-pamdavanc-vs-pamda> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "Bioluminescence lower in 3-layer PEG-PAMDA+Vanc vs PEG-PAMDA alone" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/biolum-spine-pamdavanc> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/biolum-spine-pamda> ;
+    lova:direction "lower" ;
+    lova:pValue 0.0116 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/spine-release-comparison> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s41467-021-25383-z/peg-pam-coating> ,
+                      <https://lovamap.com/ontology#material/10.1038-s41467-021-25383-z/peg-pamda-coating> ;
+    rdfs:label "In vitro vancomycin release comparison: PEG-PAM single layer vs PEG-PAMDA 3 layers" ;
+    lova:experimentCategory "Pharmacological" ;
+    lova:experimentType "In vitro drug release" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/vanc-loading-pegpam-1layer-spine> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/spine-release-comparison> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "Vancomycin loading, single-layer PEG-PAM coating (spine implant)" ;
+    lova:measurementType "Vancomycin loading" ;
+    lova:measurementCategory "Chemical characterization" ;
+    qudt:numericValue 140.0 ;
+    qudt:unit "µg" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/vanc-loading-pamda-3layer-spine> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41467-021-25383-z/spine-release-comparison> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "Vancomycin loading, 3-layer PEG-PAMDA coating" ;
+    lova:measurementType "Vancomycin loading" ;
+    lova:measurementCategory "Chemical characterization" ;
+    qudt:numericValue 352.0 ;
+    qudt:unit "µg" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-s41467-021-25383-z/vanc-loading-pamda-vs-pegpam> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41467-021-25383-z> ;
+    rdfs:label "Vancomycin loading higher in 3-layer PEG-PAMDA vs single-layer PEG-PAM coating" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/vanc-loading-pamda-3layer-spine> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-s41467-021-25383-z/vanc-loading-pegpam-1layer-spine> ;
+    lova:direction "higher" ;
+    lova:foldChange 2.51 .

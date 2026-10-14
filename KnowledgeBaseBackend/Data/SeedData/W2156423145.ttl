@@ -1,0 +1,718 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> a bibo:AcademicArticle ;
+    rdfs:label "Segura et al., 2007 — RNAi Targeting HIF-1α Reduces Post-Operative Adhesions" ;
+    dc:title "RNA Interference Targeting Hypoxia Inducible Factor 1α Reduces Post-Operative Adhesions in Rats" ;
+    dc:identifier "10.1016/j.jss.2006.07.045" ;
+    dc:date "2007"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/journal-of-surgical-research> ;
+    dc:creator <https://lovamap.com/ontology#author/segura-tatiana> ,
+               <https://lovamap.com/ontology#author/schmokel-hugo> ,
+               <https://lovamap.com/ontology#author/hubbell-jeffrey> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/segura-tatiana>
+                       <https://lovamap.com/ontology#author/schmokel-hugo>
+                       <https://lovamap.com/ontology#author/hubbell-jeffrey> ) ;
+    dc:bibliographicCitation "Segura et al., 2007" ;
+    lova:focusMaterial "siRNA targeting HIF-1α and PAI-1 delivered via PEI polyplexes to prevent post-operative abdominal adhesions in a rat uterine horn injury model" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" ;
+    schema:affiliation "Ecole Polytechnique Fédérale de Lausanne (EPFL), Institute of Bioengineering and Institute of Chemical Sciences and Engineering, Lausanne, Switzerland" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California, Los Angeles, California" .
+
+<https://lovamap.com/ontology#author/schmokel-hugo> a foaf:Person ;
+    foaf:familyName "Schmökel" ;
+    foaf:givenName "Hugo" ;
+    foaf:name "Hugo Schmökel" ;
+    schema:affiliation "Ecole Polytechnique Fédérale de Lausanne (EPFL), Institute of Bioengineering and Institute of Chemical Sciences and Engineering, Lausanne, Switzerland" .
+
+<https://lovamap.com/ontology#author/hubbell-jeffrey> a foaf:Person ;
+    foaf:familyName "Hubbell" ;
+    foaf:givenName "Jeffrey A." ;
+    foaf:name "Jeffrey A. Hubbell" ;
+    schema:affiliation "Ecole Polytechnique Fédérale de Lausanne (EPFL), Institute of Bioengineering and Institute of Chemical Sciences and Engineering, Lausanne, Switzerland" .
+
+<https://lovamap.com/ontology#journal/journal-of-surgical-research> a bibo:Journal ;
+    dc:title "Journal of Surgical Research" ;
+    bibo:issn "0022-4804" .
+
+<https://lovamap.com/ontology#material/10.1016-j.jss.2006.07.045/sirna-hif1-invitro> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    rdfs:label "siRNA against HIF-1α complexed with Lipofectamine 2000 (in vitro transfection)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.jss.2006.07.045/lf2000-transfection> .
+
+<https://lovamap.com/ontology#material/10.1016-j.jss.2006.07.045/sirna-pai1-invitro> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    rdfs:label "siRNA against PAI-1 complexed with Lipofectamine 2000 (in vitro transfection)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.jss.2006.07.045/lf2000-transfection> .
+
+<https://lovamap.com/ontology#material/10.1016-j.jss.2006.07.045/sirna-hif1-invivo> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    rdfs:label "siRNA against HIF-1α complexed with PEI (in vivo intraperitoneal delivery)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.jss.2006.07.045/pei-complexation> .
+
+<https://lovamap.com/ontology#material/10.1016-j.jss.2006.07.045/sirna-pai1-invivo> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    rdfs:label "siRNA against PAI-1 complexed with PEI (in vivo intraperitoneal delivery)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.jss.2006.07.045/pei-complexation> .
+
+<https://lovamap.com/ontology#material/10.1016-j.jss.2006.07.045/sirna-dual-invivo> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    rdfs:label "Combined siRNA against HIF-1α (2 nmol) and PAI-1 (2 nmol) complexed with PEI (in vivo)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.jss.2006.07.045/pei-complexation> .
+
+<https://lovamap.com/ontology#material/10.1016-j.jss.2006.07.045/sirna-laminac-invivo> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    rdfs:label "siRNA against Lamin A/C complexed with PEI (negative control, in vivo)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.jss.2006.07.045/pei-complexation> .
+
+<https://lovamap.com/ontology#material/10.1016-j.jss.2006.07.045/saline-invivo> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    rdfs:label "150 mM NaCl saline vehicle control (in vivo)" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.jss.2006.07.045/lf2000-transfection> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    rdfs:label "Lipofectamine 2000-mediated siRNA transfection (in vitro)" ;
+    lova:manufacturingMethod "Cationic lipid-mediated transfection" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.jss.2006.07.045/sirna-hif1-human> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.jss.2006.07.045/sirna-pai1-human> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.jss.2006.07.045/sirna-hif1-rat> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.jss.2006.07.045/sirna-pai1-rat> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.jss.2006.07.045/lf2000> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.jss.2006.07.045/pei-complexation> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    rdfs:label "Polyethylenimine (PEI) polyplex formation for in vivo siRNA delivery" ;
+    lova:chemistry "Electrostatic complexation with cationic polymer" ;
+    lova:manufacturingMethod "siRNA/jetPEI polyplex formation" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.jss.2006.07.045/sirna-hif1-rat> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.jss.2006.07.045/sirna-pai1-rat> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.jss.2006.07.045/sirna-laminac> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.jss.2006.07.045/jetpei> .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jss.2006.07.045/sirna-pai1-human> a lova:Reagent ;
+    rdfs:label "siRNA targeting human PAI-1 mRNA (NM_000602)" ;
+    lova:reagentRole "other" ;
+    lova:sequence "CAAUCUUGAAUCCCAUAGC; ACUUGCUUGACCGUGCUCC; UCAUUCCCAGGUUCUCUAG; AAACUGUCUGAACAUGUCG" ;
+    lova:supplier "Dharmacon (Lafayette, CO)" ;
+    lova:reagentFunction "Knockdown of PAI-1 mRNA via RNA interference" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jss.2006.07.045/sirna-hif1-human> a lova:Reagent ;
+    rdfs:label "siRNA targeting human HIF-1α mRNA (NM_001530 / NM_181054)" ;
+    lova:reagentRole "other" ;
+    lova:sequence "CAAGUCUAAAUCUGUGUCC; UAUAUAAUGGUACUUCCUC; UUUGUCUAGUGCUUCCAUC; CAAAGCGACAGAUAACACG" ;
+    lova:supplier "Dharmacon (Lafayette, CO)" ;
+    lova:reagentFunction "Knockdown of HIF-1α mRNA via RNA interference" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jss.2006.07.045/sirna-pai1-rat> a lova:Reagent ;
+    rdfs:label "siRNA targeting rat PAI-1 mRNA (NM_012620)" ;
+    lova:reagentRole "other" ;
+    lova:sequence "UCACUGAUCAUACCUUUGG; UCCCAUAGCAUCUUGGAUC; AACAUGCUGAGGGUUUCGC; GAGGGCUGAAGACAUCUGC" ;
+    lova:supplier "Dharmacon (Lafayette, CO)" ;
+    lova:reagentFunction "Knockdown of PAI-1 mRNA via RNA interference, used in rat fibroblasts and in vivo" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jss.2006.07.045/sirna-hif1-rat> a lova:Reagent ;
+    rdfs:label "siRNA targeting rat HIF-1α mRNA (NM_024359)" ;
+    lova:reagentRole "other" ;
+    lova:sequence "UAUUUGUUCACGUUAUCAG; AAUACAUUGACCAUAUCGC; CAACUCAGUAAUCCUUUCA; UAAUUCACACACACAAUGC" ;
+    lova:supplier "Dharmacon (Lafayette, CO)" ;
+    lova:reagentFunction "Knockdown of HIF-1α mRNA via RNA interference, used in rat fibroblasts and in vivo" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jss.2006.07.045/sirna-laminac> a lova:Reagent ;
+    rdfs:label "siRNA targeting Lamin A/C (negative control)" ;
+    lova:reagentRole "other" ;
+    lova:sequence "GGUGGUGACGATCTGGGCUUU" ;
+    lova:supplier "Dharmacon (Lafayette, CO)" ;
+    lova:reagentFunction "Negative control siRNA targeting a non-essential nuclear membrane protein" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jss.2006.07.045/sirna-neg> a lova:Reagent ;
+    rdfs:label "Non-coding siRNA (siNEG), sequence not disclosed" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Dharmacon (Lafayette, CO)" ;
+    lova:reagentFunction "Mock-transfection negative control" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jss.2006.07.045/jetpei> a lova:Reagent ;
+    rdfs:label "jetPEI (polyethylenimine)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "PolyPlus (Illkirch, France)" ;
+    lova:reagentFunction "Cationic polymer delivery vehicle for siRNA in vivo" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jss.2006.07.045/lf2000> a lova:Reagent ;
+    rdfs:label "Lipofectamine 2000 (LF2000)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Invitrogen (Basel, Switzerland)" ;
+    lova:concentration "1.25 μL per well" ;
+    lova:reagentFunction "Transfection reagent for in vitro siRNA delivery" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.jss.2006.07.045/exp-invitro-knockdown-human> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.jss.2006.07.045/sirna-hif1-invitro> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.jss.2006.07.045/sirna-pai1-invitro> ;
+    rdfs:label "In vitro siRNA-mediated knockdown of HIF-1α and PAI-1 mRNA in normal human dermal fibroblasts (NHDF)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Gene knockdown (RT-qPCR)" ;
+    lova:assayOrMethod "Real time RT-qPCR (SYBR Green, Bio-Rad iCycler IQ), GAPDH housekeeping gene, Ct method" ;
+    lova:cellType "Normal human dermal fibroblast (NHDF)" ;
+    lova:cellSource "Human dermis (Cambrex, Verviers, Belgium)" ;
+    lova:cultureMedium "FGM-2 (FBM supplemented with 2% FBS, hFGF-B, insulin, gentamicin/amphotericin-B)" ;
+    lova:cultureDuration "48h" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.jss.2006.07.045/exp-invitro-knockdown-rat> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.jss.2006.07.045/sirna-hif1-invitro> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.jss.2006.07.045/sirna-pai1-invitro> ;
+    rdfs:label "In vitro siRNA-mediated knockdown of HIF-1α and PAI-1 mRNA in rat fibroblasts (RF)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Gene knockdown (RT-qPCR)" ;
+    lova:assayOrMethod "Real time RT-qPCR (SYBR Green, Bio-Rad iCycler IQ), GAPDH housekeeping gene, Ct method" ;
+    lova:cellType "Rat fibroblast (RF)" ;
+    lova:cellSource "LGC Promochem, Molsheim Cedex, France" ;
+    lova:cultureMedium "DMEM + 10% FBS" ;
+    lova:cultureDuration "48h" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.jss.2006.07.045/exp-cotransfection-ratio> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.jss.2006.07.045/sirna-hif1-invitro> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.jss.2006.07.045/sirna-pai1-invitro> ;
+    rdfs:label "Co-transfection of siRNA-HIF-1α and siRNA-PAI-1 at varying ratios in NHDF" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Gene knockdown (RT-qPCR)" ;
+    lova:assayOrMethod "Real time RT-qPCR" ;
+    lova:cellType "Normal human dermal fibroblast (NHDF)" ;
+    lova:cultureDuration "48h" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.jss.2006.07.045/exp-time-course> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.jss.2006.07.045/sirna-hif1-invitro> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.jss.2006.07.045/sirna-pai1-invitro> ;
+    rdfs:label "Time course of siRNA-mediated mRNA knockdown in NHDF" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Gene knockdown time course (RT-qPCR)" ;
+    lova:assayOrMethod "Real time RT-qPCR" ;
+    lova:cellType "Normal human dermal fibroblast (NHDF)" ;
+    lova:cultureDuration "24, 48, 96, 192 hours" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.jss.2006.07.045/exp-pai1-activity> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.jss.2006.07.045/sirna-hif1-invitro> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.jss.2006.07.045/sirna-pai1-invitro> ;
+    rdfs:label "PAI-1 protein activity assay after siRNA transfection in NHDF" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Enzyme activity assay" ;
+    lova:assayOrMethod "PAI-1 activity assay kit (Calbiochem; VWR) using uPA chromogenic substrate, absorbance at 405nm, normalized to total protein (Coomassie Plus Bradford Assay, Pierce)" ;
+    lova:cellType "Normal human dermal fibroblast (NHDF)" ;
+    lova:cultureDuration "2 days post-transfection" ;
+    lova:temperature "37°C" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.jss.2006.07.045/exp-invivo-adhesion> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.jss.2006.07.045/sirna-hif1-invivo> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.jss.2006.07.045/sirna-pai1-invivo> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.jss.2006.07.045/sirna-dual-invivo> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.jss.2006.07.045/sirna-laminac-invivo> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.jss.2006.07.045/saline-invivo> ;
+    rdfs:label "In vivo rat model of ischemic/serosal uterine horn injury for assessment of abdominal adhesion formation after siRNA/PEI treatment" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Post-operative adhesion assay" ;
+    lova:assayOrMethod "Blinded surgeon clinical and extent assessment, 8 days post-surgery" ;
+    lova:cellSource "White female OFA rats" ;
+    lova:cultureDuration "8 days" ;
+    lova:sampleSize 57 .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jss.2006.07.045/hif1-knockdown-human> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jss.2006.07.045/exp-invitro-knockdown-human> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    rdfs:label "HIF-1α mRNA down-regulation in NHDF after siRNA-HIF-1α transfection" ;
+    lova:measurementType "HIF-1α mRNA down-regulation" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 82.0 ;
+    qudt:unit "%" ;
+    lova:scope "Bulk/global" ;
+    lova:timePoint "48h" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jss.2006.07.045/pai1-knockdown-human> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jss.2006.07.045/exp-invitro-knockdown-human> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    rdfs:label "PAI-1 mRNA down-regulation in NHDF after siRNA-PAI-1 transfection" ;
+    lova:measurementType "PAI-1 mRNA down-regulation" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 84.0 ;
+    qudt:unit "%" ;
+    lova:scope "Bulk/global" ;
+    lova:timePoint "48h" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jss.2006.07.045/hif1-knockdown-rat> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jss.2006.07.045/exp-invitro-knockdown-rat> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    rdfs:label "HIF-1α mRNA down-regulation in RF after siRNA-HIF-1α transfection" ;
+    lova:measurementType "HIF-1α mRNA down-regulation" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 69.0 ;
+    qudt:unit "%" ;
+    lova:scope "Bulk/global" ;
+    lova:timePoint "48h" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jss.2006.07.045/pai1-knockdown-rat> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jss.2006.07.045/exp-invitro-knockdown-rat> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    rdfs:label "PAI-1 mRNA down-regulation in RF after siRNA-PAI-1 transfection" ;
+    lova:measurementType "PAI-1 mRNA down-regulation" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 97.0 ;
+    qudt:unit "%" ;
+    lova:scope "Bulk/global" ;
+    lova:timePoint "48h" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jss.2006.07.045/cotransfection-hif1-100-0> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jss.2006.07.045/exp-cotransfection-ratio> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    rdfs:label "Relative HIF-1α expression at siRNA-PAI-1:siRNA-HIF-1 ratio 100:0" ;
+    lova:measurementType "Relative HIF-1α expression level" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.29 ;
+    qudt:unit "relative expression (normalized)" ;
+    lova:timePoint "48h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jss.2006.07.045/cotransfection-hif1-70-30> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jss.2006.07.045/exp-cotransfection-ratio> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    rdfs:label "Relative HIF-1α expression at siRNA-PAI-1:siRNA-HIF-1 ratio 70:30" ;
+    lova:measurementType "Relative HIF-1α expression level" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.07 ;
+    qudt:unit "relative expression (normalized)" ;
+    lova:timePoint "48h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jss.2006.07.045/cotransfection-hif1-50-50> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jss.2006.07.045/exp-cotransfection-ratio> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    rdfs:label "Relative HIF-1α expression at siRNA-PAI-1:siRNA-HIF-1 ratio 50:50" ;
+    lova:measurementType "Relative HIF-1α expression level" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.03 ;
+    qudt:unit "relative expression (normalized)" ;
+    lova:timePoint "48h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jss.2006.07.045/cotransfection-hif1-30-70> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jss.2006.07.045/exp-cotransfection-ratio> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    rdfs:label "Relative HIF-1α expression at siRNA-PAI-1:siRNA-HIF-1 ratio 30:70" ;
+    lova:measurementType "Relative HIF-1α expression level" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.02 ;
+    qudt:unit "relative expression (normalized)" ;
+    lova:timePoint "48h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jss.2006.07.045/cotransfection-hif1-0-100> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jss.2006.07.045/exp-cotransfection-ratio> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    rdfs:label "Relative HIF-1α expression at siRNA-PAI-1:siRNA-HIF-1 ratio 0:100" ;
+    lova:measurementType "Relative HIF-1α expression level" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.01 ;
+    qudt:unit "relative expression (normalized)" ;
+    lova:timePoint "48h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jss.2006.07.045/cotransfection-pai1-100-0> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jss.2006.07.045/exp-cotransfection-ratio> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    rdfs:label "Relative PAI-1 expression at siRNA-PAI-1:siRNA-HIF-1 ratio 100:0" ;
+    lova:measurementType "Relative PAI-1 expression level" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.12 ;
+    qudt:unit "relative expression (normalized)" ;
+    lova:timePoint "48h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jss.2006.07.045/cotransfection-pai1-0-100> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jss.2006.07.045/exp-cotransfection-ratio> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    rdfs:label "Relative PAI-1 expression at siRNA-PAI-1:siRNA-HIF-1 ratio 0:100" ;
+    lova:measurementType "Relative PAI-1 expression level" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.31 ;
+    qudt:unit "relative expression (normalized)" ;
+    lova:timePoint "48h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jss.2006.07.045/time-course-hif1-192h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jss.2006.07.045/exp-time-course> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    rdfs:label "Relative HIF-1α expression 192h after siRNA-HIF-1α transfection" ;
+    lova:measurementType "Relative HIF-1α expression level" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.02 ;
+    qudt:unit "relative expression (normalized)" ;
+    lova:timePoint "192 hours" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jss.2006.07.045/time-course-pai1-48h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jss.2006.07.045/exp-time-course> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    rdfs:label "PAI-1 mRNA down-regulation at 48h (decreased from 94% to 77% down-regulation)" ;
+    lova:measurementType "PAI-1 mRNA down-regulation" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "77% down-regulation (decreased from 94% down-regulation at earlier time point)" ;
+    lova:timePoint "48h" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jss.2006.07.045/time-course-pai1-192h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jss.2006.07.045/exp-time-course> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    rdfs:label "Relative PAI-1 expression 192h after siRNA-PAI-1 transfection" ;
+    lova:measurementType "Relative PAI-1 expression level" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.23 ;
+    qudt:unit "relative expression (normalized)" ;
+    lova:timePoint "192 hours" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jss.2006.07.045/pai1-activity-hif1sirna> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jss.2006.07.045/exp-pai1-activity> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    rdfs:label "PAI-1 activity assay absorbance (405nm)/mg protein after siRNA-HIF-1α transfection" ;
+    lova:measurementType "PAI-1 protein activity (uPA inhibition absorbance)" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 5.7 ;
+    qudt:unit "Absorbance (405 nm)/mg protein" ;
+    lova:stdDev 0.4 ;
+    lova:pValue 0.01 ;
+    lova:isSignificant true ;
+    lova:timePoint "2 days post-transfection" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jss.2006.07.045/pai1-activity-pai1sirna> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jss.2006.07.045/exp-pai1-activity> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    rdfs:label "PAI-1 activity assay absorbance (405nm)/mg protein after siRNA-PAI-1 transfection" ;
+    lova:measurementType "PAI-1 protein activity (uPA inhibition absorbance)" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 5.15 ;
+    qudt:unit "Absorbance (405 nm)/mg protein" ;
+    lova:stdDev 0.15 ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true ;
+    lova:timePoint "2 days post-transfection" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jss.2006.07.045/pai1-activity-dual> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jss.2006.07.045/exp-pai1-activity> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    rdfs:label "PAI-1 activity assay absorbance (405nm)/mg protein after co-transfection of siRNA-HIF-1α and siRNA-PAI-1 (50:50)" ;
+    lova:measurementType "PAI-1 protein activity (uPA inhibition absorbance)" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 5.55 ;
+    qudt:unit "Absorbance (405 nm)/mg protein" ;
+    lova:stdDev 1.25 ;
+    lova:pValue 0.01 ;
+    lova:isSignificant true ;
+    lova:timePoint "2 days post-transfection" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jss.2006.07.045/pai1-activity-untreated> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jss.2006.07.045/exp-pai1-activity> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    rdfs:label "PAI-1 activity assay absorbance (405nm)/mg protein in untreated cells" ;
+    lova:measurementType "PAI-1 protein activity (uPA inhibition absorbance)" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 3.35 ;
+    qudt:unit "Absorbance (405 nm)/mg protein" ;
+    lova:stdDev 0.5 ;
+    lova:timePoint "2 days post-transfection" ;
+    lova:comparisonGroup "Untreated" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jss.2006.07.045/adhesion-saline> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jss.2006.07.045/exp-invivo-adhesion> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    rdfs:label "Percent abdominal adhesions, saline control" ;
+    lova:measurementType "Percent of uterine horn involved in abdominal adhesions" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 69.0 ;
+    qudt:unit "%" ;
+    lova:stdDev 5.0 ;
+    lova:sampleSize 9 ;
+    lova:timePoint "8 days post-surgery" ;
+    lova:comparisonGroup "Saline control" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jss.2006.07.045/adhesion-laminac> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jss.2006.07.045/exp-invivo-adhesion> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    rdfs:label "Percent abdominal adhesions, siRNA-Lamin A/C control (4 nmol)" ;
+    lova:measurementType "Percent of uterine horn involved in abdominal adhesions" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 60.0 ;
+    qudt:unit "%" ;
+    lova:stdDev 8.0 ;
+    lova:sampleSize 5 ;
+    lova:timePoint "8 days post-surgery" ;
+    lova:comparisonGroup "Saline control" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jss.2006.07.045/adhesion-hif1-1nmol> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jss.2006.07.045/exp-invivo-adhesion> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    rdfs:label "Percent abdominal adhesions, siRNA-HIF-1α 1 nmol" ;
+    lova:measurementType "Percent of uterine horn involved in abdominal adhesions" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 51.0 ;
+    qudt:unit "%" ;
+    lova:stdDev 8.0 ;
+    lova:sampleSize 7 ;
+    lova:timePoint "8 days post-surgery" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jss.2006.07.045/adhesion-hif1-4nmol> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jss.2006.07.045/exp-invivo-adhesion> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    rdfs:label "Percent abdominal adhesions, siRNA-HIF-1α 4 nmol" ;
+    lova:measurementType "Percent of uterine horn involved in abdominal adhesions" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 33.0 ;
+    qudt:unit "%" ;
+    lova:stdDev 6.0 ;
+    lova:sampleSize 7 ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true ;
+    lova:timePoint "8 days post-surgery" ;
+    lova:comparisonGroup "Saline control" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jss.2006.07.045/adhesion-hif1-10nmol> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jss.2006.07.045/exp-invivo-adhesion> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    rdfs:label "Percent abdominal adhesions, siRNA-HIF-1α 10 nmol" ;
+    lova:measurementType "Percent of uterine horn involved in abdominal adhesions" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 41.0 ;
+    qudt:unit "%" ;
+    lova:stdDev 10.0 ;
+    lova:sampleSize 4 ;
+    lova:timePoint "8 days post-surgery" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jss.2006.07.045/adhesion-pai1-1nmol> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jss.2006.07.045/exp-invivo-adhesion> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    rdfs:label "Percent abdominal adhesions, siRNA-PAI-1 1 nmol" ;
+    lova:measurementType "Percent of uterine horn involved in abdominal adhesions" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 48.0 ;
+    qudt:unit "%" ;
+    lova:stdDev 6.0 ;
+    lova:sampleSize 7 ;
+    lova:timePoint "8 days post-surgery" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jss.2006.07.045/adhesion-pai1-4nmol> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jss.2006.07.045/exp-invivo-adhesion> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    rdfs:label "Percent abdominal adhesions, siRNA-PAI-1 4 nmol" ;
+    lova:measurementType "Percent of uterine horn involved in abdominal adhesions" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 44.0 ;
+    qudt:unit "%" ;
+    lova:stdDev 8.0 ;
+    lova:sampleSize 7 ;
+    lova:pValue 0.01 ;
+    lova:isSignificant true ;
+    lova:timePoint "8 days post-surgery" ;
+    lova:comparisonGroup "Saline control" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jss.2006.07.045/adhesion-pai1-10nmol> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jss.2006.07.045/exp-invivo-adhesion> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    rdfs:label "Percent abdominal adhesions, siRNA-PAI-1 10 nmol" ;
+    lova:measurementType "Percent of uterine horn involved in abdominal adhesions" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 58.0 ;
+    qudt:unit "%" ;
+    lova:stdDev 3.0 ;
+    lova:sampleSize 4 ;
+    lova:timePoint "8 days post-surgery" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jss.2006.07.045/adhesion-dual-4nmol> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jss.2006.07.045/exp-invivo-adhesion> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    rdfs:label "Percent abdominal adhesions, dual siRNA-HIF-1α + siRNA-PAI-1 (4 nmol total, 2+2)" ;
+    lova:measurementType "Percent of uterine horn involved in abdominal adhesions" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 40.0 ;
+    qudt:unit "%" ;
+    lova:stdDev 7.0 ;
+    lova:sampleSize 7 ;
+    lova:pValue 0.01 ;
+    lova:isSignificant true ;
+    lova:timePoint "8 days post-surgery" ;
+    lova:comparisonGroup "Saline control" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jss.2006.07.045/clinical-grade-saline> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jss.2006.07.045/exp-invivo-adhesion> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    rdfs:label "Clinical adhesion grade, saline control" ;
+    lova:measurementType "Clinical adhesion grade (0-5)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.0 ;
+    qudt:unit "grade (0-5)" ;
+    lova:stdDev 0.3 ;
+    lova:sampleSize 9 ;
+    lova:timePoint "8 days post-surgery" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jss.2006.07.045/clinical-grade-hif1-4nmol> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jss.2006.07.045/exp-invivo-adhesion> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    rdfs:label "Clinical adhesion grade, siRNA-HIF-1α 4 nmol" ;
+    lova:measurementType "Clinical adhesion grade (0-5)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.1 ;
+    qudt:unit "grade (0-5)" ;
+    lova:stdDev 0.3 ;
+    lova:sampleSize 7 ;
+    lova:timePoint "8 days post-surgery" ;
+    lova:comparisonGroup "Saline control" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jss.2006.07.045/clinical-grade-pai1-4nmol> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jss.2006.07.045/exp-invivo-adhesion> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    rdfs:label "Clinical adhesion grade, siRNA-PAI-1 4 nmol" ;
+    lova:measurementType "Clinical adhesion grade (0-5)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.4 ;
+    qudt:unit "grade (0-5)" ;
+    lova:stdDev 0.3 ;
+    lova:sampleSize 7 ;
+    lova:timePoint "8 days post-surgery" ;
+    lova:comparisonGroup "Saline control" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jss.2006.07.045/clinical-grade-dual-4nmol> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jss.2006.07.045/exp-invivo-adhesion> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    rdfs:label "Clinical adhesion grade, dual siRNA-HIF-1α + siRNA-PAI-1 (4 nmol total)" ;
+    lova:measurementType "Clinical adhesion grade (0-5)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.6 ;
+    qudt:unit "grade (0-5)" ;
+    lova:stdDev 0.6 ;
+    lova:sampleSize 7 ;
+    lova:pValue 0.17 ;
+    lova:isSignificant false ;
+    lova:timePoint "8 days post-surgery" ;
+    lova:comparisonGroup "Saline control" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.jss.2006.07.045/hif1-4nmol-vs-saline> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    rdfs:label "Percent abdominal adhesions lower with siRNA-HIF-1α 4 nmol vs saline control" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.jss.2006.07.045/adhesion-hif1-4nmol> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.jss.2006.07.045/adhesion-saline> ;
+    lova:direction "lower" ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.jss.2006.07.045/pai1-4nmol-vs-saline> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    rdfs:label "Percent abdominal adhesions lower with siRNA-PAI-1 4 nmol vs saline control" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.jss.2006.07.045/adhesion-pai1-4nmol> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.jss.2006.07.045/adhesion-saline> ;
+    lova:direction "lower" ;
+    lova:pValue 0.01 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.jss.2006.07.045/dual-4nmol-vs-saline> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    rdfs:label "Percent abdominal adhesions lower with dual siRNA (4 nmol total) vs saline control" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.jss.2006.07.045/adhesion-dual-4nmol> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.jss.2006.07.045/adhesion-saline> ;
+    lova:direction "lower" ;
+    lova:pValue 0.01 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.jss.2006.07.045/hif1-vs-pai1-4nmol> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    rdfs:label "Greater reduction of abdominal adhesions with siRNA-HIF-1α vs siRNA-PAI-1 at 4 nmol" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.jss.2006.07.045/adhesion-hif1-4nmol> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.jss.2006.07.045/adhesion-pai1-4nmol> ;
+    lova:direction "lower" ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.jss.2006.07.045/hif1-10nmol-vs-4nmol> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    rdfs:label "No further reduction of abdominal adhesions with siRNA-HIF-1α 10 nmol vs 4 nmol" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.jss.2006.07.045/adhesion-hif1-10nmol> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.jss.2006.07.045/adhesion-hif1-4nmol> ;
+    lova:direction "no difference" ;
+    lova:isSignificant false .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.jss.2006.07.045/pai1-10nmol-vs-4nmol> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    rdfs:label "No further reduction of abdominal adhesions with siRNA-PAI-1 10 nmol vs 4 nmol" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.jss.2006.07.045/adhesion-pai1-10nmol> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.jss.2006.07.045/adhesion-pai1-4nmol> ;
+    lova:direction "no difference" ;
+    lova:isSignificant false .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.jss.2006.07.045/pai1-activity-hif1-vs-untreated> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    rdfs:label "PAI-1 activity absorbance higher (PAI-1 activity lower) with siRNA-HIF-1α vs untreated" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.jss.2006.07.045/pai1-activity-hif1sirna> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.jss.2006.07.045/pai1-activity-untreated> ;
+    lova:direction "higher" ;
+    lova:pValue 0.01 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.jss.2006.07.045/pai1-activity-pai1-vs-untreated> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    rdfs:label "PAI-1 activity absorbance higher (PAI-1 activity lower) with siRNA-PAI-1 vs untreated" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.jss.2006.07.045/pai1-activity-pai1sirna> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.jss.2006.07.045/pai1-activity-untreated> ;
+    lova:direction "higher" ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.jss.2006.07.045/pai1-activity-dual-vs-untreated> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    rdfs:label "PAI-1 activity absorbance higher (PAI-1 activity lower) with dual siRNA vs untreated" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.jss.2006.07.045/pai1-activity-dual> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.jss.2006.07.045/pai1-activity-untreated> ;
+    lova:direction "higher" ;
+    lova:pValue 0.01 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.jss.2006.07.045/pai1-activity-hif1-vs-pai1> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jss.2006.07.045> ;
+    rdfs:label "No statistical difference in PAI-1 activity between siRNA-HIF-1α and siRNA-PAI-1 treatment groups" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.jss.2006.07.045/pai1-activity-hif1sirna> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.jss.2006.07.045/pai1-activity-pai1sirna> ;
+    lova:direction "no difference" ;
+    lova:isSignificant false .

@@ -1,0 +1,47 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.3389-fbioe.2024.1340893> a bibo:AcademicArticle ;
+    rdfs:label "Ansari et al., 2024 — A review of advanced hydrogels for cartilage tissue engineering" ;
+    dc:title "A review of advanced hydrogels for cartilage tissue engineering" ;
+    dc:identifier "10.3389/fbioe.2024.1340893" ;
+    dc:date "2024"^^xsd:gYear ;
+    dc:type "Review" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/frontiers-in-bioengineering-and-biotechnology> ;
+    dc:creator <https://lovamap.com/ontology#author/ansari-mojtaba> ,
+               <https://lovamap.com/ontology#author/darvishi-ahmad> ,
+               <https://lovamap.com/ontology#author/sabzevari-alireza> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/ansari-mojtaba>
+                       <https://lovamap.com/ontology#author/darvishi-ahmad>
+                       <https://lovamap.com/ontology#author/sabzevari-alireza> ) ;
+    dc:bibliographicCitation "Ansari et al., 2024" ;
+    lova:focusMaterial "Review of hydrogels (natural, synthetic, decellularized ECM-based, magnetic, electroconductive, biomimetic fibrillar, stimuli-responsive) for cartilage tissue engineering, cartilage-targeting drug delivery, and mechanosignaling" .
+
+<https://lovamap.com/ontology#author/ansari-mojtaba> a foaf:Person ;
+    foaf:familyName "Ansari" ;
+    foaf:givenName "Mojtaba" ;
+    foaf:name "Mojtaba Ansari" ;
+    schema:affiliation "Department of Biomedical Engineering, Meybod University, Meybod, Iran" .
+
+<https://lovamap.com/ontology#author/darvishi-ahmad> a foaf:Person ;
+    foaf:familyName "Darvishi" ;
+    foaf:givenName "Ahmad" ;
+    foaf:name "Ahmad Darvishi" ;
+    schema:affiliation "Department of Biomedical Engineering, Meybod University, Meybod, Iran" .
+
+<https://lovamap.com/ontology#author/sabzevari-alireza> a foaf:Person ;
+    foaf:familyName "Sabzevari" ;
+    foaf:givenName "Alireza" ;
+    foaf:name "Alireza Sabzevari" ;
+    schema:affiliation "Department of Biomedical Engineering, Meybod University, Meybod, Iran" .
+
+<https://lovamap.com/ontology#journal/frontiers-in-bioengineering-and-biotechnology> a bibo:Journal ;
+    dc:title "Frontiers in Bioengineering and Biotechnology" ;
+    bibo:issn "2296-4185" .

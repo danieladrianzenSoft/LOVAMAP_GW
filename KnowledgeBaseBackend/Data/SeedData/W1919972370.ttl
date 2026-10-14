@@ -1,0 +1,979 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> a bibo:AcademicArticle ;
+    rdfs:label "Siegman et al., 2015 — Encapsulation of PEGylated LPEI Polyplexes in HA Hydrogels" ;
+    dc:title "Encapsulation of PEGylated low-molecular-weight PEI polyplexes in hyaluronic acid hydrogels reduces aggregation" ;
+    dc:identifier "10.1016/j.actbio.2015.09.020" ;
+    dc:date "2015"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/acta-biomaterialia> ;
+    dc:creator <https://lovamap.com/ontology#author/siegman-shayne> ,
+               <https://lovamap.com/ontology#author/truong-norman> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/siegman-shayne>
+                       <https://lovamap.com/ontology#author/truong-norman>
+                       <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    dc:bibliographicCitation "Siegman et al., 2015" ;
+    lova:focusMaterial "sPEG-PEI and LPEI DNA polyplexes incorporated into porous/nonporous hyaluronic acid hydrogels" .
+
+<https://lovamap.com/ontology#author/siegman-shayne> a foaf:Person ;
+    foaf:familyName "Siegman" ;
+    foaf:givenName "Shayne N." ;
+    foaf:name "Shayne N. Siegman" .
+
+<https://lovamap.com/ontology#author/truong-norman> a foaf:Person ;
+    foaf:familyName "Truong" ;
+    foaf:givenName "Norman F." ;
+    foaf:name "Norman F. Truong" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" .
+
+<https://lovamap.com/ontology#journal/acta-biomaterialia> a bibo:Journal ;
+    dc:title "Acta Biomaterialia" ;
+    bibo:issn "1742-7061" .
+
+<https://lovamap.com/ontology#material/10.1016-j.actbio.2015.09.020/speg-pei-np7> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "sPEG-PEI/DNA polyplex (N/P 7)" ;
+    lova:particleMaterial "sPEG-PEI (PEGylated low-molecular-weight PEI)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2015.09.020/speg-pei-synthesis> .
+
+<https://lovamap.com/ontology#material/10.1016-j.actbio.2015.09.020/speg-pei-np12> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "sPEG-PEI/DNA polyplex (N/P 12)" ;
+    lova:particleMaterial "sPEG-PEI (PEGylated low-molecular-weight PEI)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2015.09.020/speg-pei-synthesis> .
+
+<https://lovamap.com/ontology#material/10.1016-j.actbio.2015.09.020/lpei-np7> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "LPEI/DNA polyplex (N/P 7)" ;
+    lova:particleMaterial "Linear PEI (25 kDa)" .
+
+<https://lovamap.com/ontology#material/10.1016-j.actbio.2015.09.020/lpei-np12> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "LPEI/DNA polyplex (N/P 12)" ;
+    lova:particleMaterial "Linear PEI (25 kDa)" .
+
+<https://lovamap.com/ontology#material/10.1016-j.actbio.2015.09.020/ha-porous-hydrogel> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "Porous HA hydrogel (3.5% w/v, MMP-crosslinked, RGD-functionalized)" ;
+    lova:particleMaterial "Hyaluronic acid (HA-Ac)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:packingConfiguration "Porous (PMMA-templated)" ;
+    lova:reportedPoreSize "53-63 μm (template bead size)" ;
+    lova:scaffoldDimensions "6 mm diameter (initial), 4 mm diameter (transfection), 8 mm diameter (rheology)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2015.09.020/ha-hydrogel-crosslinking> ,
+                              <https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2015.09.020/porous-templating> .
+
+<https://lovamap.com/ontology#material/10.1016-j.actbio.2015.09.020/ha-nonporous-hydrogel> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "Nonporous HA hydrogel (3.5% w/v, MMP-crosslinked, RGD-functionalized)" ;
+    lova:particleMaterial "Hyaluronic acid (HA-Ac)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:packingConfiguration "Nonporous" ;
+    lova:scaffoldDimensions "1mm spacer thickness" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2015.09.020/ha-hydrogel-crosslinking> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2015.09.020/speg-pei-synthesis> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "Synthesis of sPEG-PEI via amine-carboxylic acid conjugation" ;
+    lova:chemistry "Amine to carboxylic acid (NHS-ester) conjugation" ;
+    lova:manufacturingMethod "Solution-phase reaction with dialysis purification (10,000 MWCO, 5 days)" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2015.09.020/lmw-pei> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2015.09.020/peg-scm> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2015.09.020/ha-hydrogel-crosslinking> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "HA hydrogel formation via Michael-type addition crosslinking" ;
+    lova:chemistry "Michael-type addition (thiol-acrylate)" ;
+    lova:manufacturingMethod "Solution gelation, pH 7.6-7.8" ;
+    lova:annealingConditions "37°C, 30 min (nonporous) / 20 min additional incubation (porous)" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2015.09.020/ha> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2015.09.020/adh> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2015.09.020/edc> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2015.09.020/nhs-ac> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2015.09.020/hs-mmp-sh> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2015.09.020/rgd> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2015.09.020/teoa> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2015.09.020/porous-templating> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "Porous hydrogel templating using sintered PMMA microspheres" ;
+    lova:manufacturingMethod "Sintered PMMA microsphere templating, centrifugation infusion, acetone dissolution" ;
+    lova:annealingConditions "Sintering at 37°C for 2 h; acetone wash 48 h" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2015.09.020/pmma-microspheres> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2015.09.020/cne-lyophilization> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "Caged nanoparticle encapsulation (CnE) lyophilization of polyplexes" ;
+    lova:manufacturingMethod "Lyophilization with sucrose and low-melting agarose" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2015.09.020/sucrose> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2015.09.020/agarose-lowmelt> .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2015.09.020/lmw-pei> a lova:Reagent ;
+    rdfs:label "Low molecular weight linear PEI (LMW-PEI, 2.5 kDa)" ;
+    lova:reagentRole "other" ;
+    lova:molecularWeight "2.5 kDa" ;
+    lova:supplier "Polysciences" ;
+    lova:reagentFunction "Gene carrier polymer, conjugated to PEG arms to form sPEG-PEI" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2015.09.020/lpei> a lova:Reagent ;
+    rdfs:label "High molecular weight linear PEI (LPEI, 25 kDa)" ;
+    lova:reagentRole "other" ;
+    lova:molecularWeight "25 kDa" ;
+    lova:supplier "Polysciences" ;
+    lova:reagentFunction "DNA complexation / gene carrier polymer" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2015.09.020/peg-scm> a lova:Reagent ;
+    rdfs:label "8-arm PEG succinimidyl carboxyl methyl ester (PEG-SCM, 10 kDa)" ;
+    lova:reagentRole "other" ;
+    lova:molecularWeight "10 kDa" ;
+    lova:supplier "Creative PEGWorks" ;
+    lova:reagentFunction "PEGylation of PEI to form sPEG-PEI" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2015.09.020/ha> a lova:Reagent ;
+    rdfs:label "Sodium hyaluronan (HA, 60 kDa)" ;
+    lova:reagentRole "monomer" ;
+    lova:molecularWeight "60 kDa" ;
+    lova:supplier "Genzyme Corporation" ;
+    lova:reagentFunction "Hydrogel backbone polymer" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2015.09.020/adh> a lova:Reagent ;
+    rdfs:label "Adipic acid dihydrazide (ADH)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "36.77 g (211.07 mmol)" ;
+    lova:reagentFunction "HA modification with hydrazide groups" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2015.09.020/edc> a lova:Reagent ;
+    rdfs:label "1-ethyl-3-[3-dimethylaminopropyl] carbodiimide hydrochloride (EDC)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "4 g" ;
+    lova:reagentFunction "Carbodiimide coupling agent for HA-ADH conjugation" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2015.09.020/nhs-ac> a lova:Reagent ;
+    rdfs:label "N-acryloxysuccinimide (NHS-Ac)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "4.46 g" ;
+    lova:reagentFunction "Acrylate modification of HA-ADH to form HA-Ac" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2015.09.020/hs-mmp-sh> a lova:Reagent ;
+    rdfs:label "MMP-cleavable peptide crosslinker (Ac-GCRDGPQGIWGQDRCG-NH2)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:sequence "GCRDGPQGIWGQDRCG" ;
+    lova:supplier "Genscript" ;
+    lova:concentration "0.8 mg per hydrogel aliquot" ;
+    lova:reagentFunction "MMP-degradable hydrogel crosslinker" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2015.09.020/rgd> a lova:Reagent ;
+    rdfs:label "Cell adhesion peptide RGD (Ac-GCGYGRGDSPG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "GCGYGRGDSPG" ;
+    lova:supplier "Genscript" ;
+    lova:concentration "100 μM" ;
+    lova:reagentFunction "Cell adhesion" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2015.09.020/teoa> a lova:Reagent ;
+    rdfs:label "Triethanolamine (TEOA)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "0.3M, pH 8.8" ;
+    lova:reagentFunction "Buffer for Michael addition hydrogel gelation" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2015.09.020/sucrose> a lova:Reagent ;
+    rdfs:label "Sucrose" ;
+    lova:reagentRole "other" ;
+    lova:supplier "MP Biomedicals" ;
+    lova:concentration "3.5 mg (0.01 mmol)" ;
+    lova:reagentFunction "Protects polyplexes from inactivation during lyophilization (CnE)" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2015.09.020/agarose-lowmelt> a lova:Reagent ;
+    rdfs:label "Low-melting point agarose" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Invitrogen" ;
+    lova:concentration "0.1 mg" ;
+    lova:reagentFunction "Protects polyplexes from aggregation during CnE" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2015.09.020/pmma-microspheres> a lova:Reagent ;
+    rdfs:label "PMMA microspheres (53-63 μm)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Cospheric" ;
+    lova:concentration "0.4444 mg/μL" ;
+    lova:reagentFunction "Sacrificial porogen template for porous hydrogel" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2015.09.020/pgluc> a lova:Reagent ;
+    rdfs:label "pGluc plasmid (Gaussia luciferase)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "New England Biolabs" ;
+    lova:reagentFunction "Reporter gene plasmid" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2015.09.020/pseap> a lova:Reagent ;
+    rdfs:label "pSEAP plasmid (secreted embryonic alkaline phosphatase)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "BD Biosciences" ;
+    lova:reagentFunction "Reporter gene plasmid" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2015.09.020/chlorpromazine> a lova:Reagent ;
+    rdfs:label "Chlorpromazine" ;
+    lova:reagentRole "other" ;
+    lova:concentration "10 μg/mL" ;
+    lova:supplier "Fisher Scientific" ;
+    lova:reagentFunction "Clathrin-mediated endocytosis inhibitor" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2015.09.020/genistein> a lova:Reagent ;
+    rdfs:label "Genistein" ;
+    lova:reagentRole "other" ;
+    lova:concentration "200 μM" ;
+    lova:supplier "Sigma Aldrich" ;
+    lova:reagentFunction "Caveolae-mediated endocytosis inhibitor" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2015.09.020/amiloride> a lova:Reagent ;
+    rdfs:label "Amiloride hydrochloride" ;
+    lova:reagentRole "other" ;
+    lova:concentration "100 μM" ;
+    lova:supplier "Sigma Aldrich" ;
+    lova:reagentFunction "Macropinocytosis inhibitor" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/dls-size-stability> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2015.09.020/speg-pei-np7> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.actbio.2015.09.020/speg-pei-np12> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.actbio.2015.09.020/lpei-np7> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.actbio.2015.09.020/lpei-np12> ;
+    rdfs:label "Polyplex size and stability over 5 days (DLS)" ;
+    lova:experimentCategory "Physicochemical" ;
+    lova:experimentType "Particle size and stability" ;
+    lova:assayOrMethod "Photon correlation spectroscopy" ;
+    lova:equipment "Malvern Zetasizer" ;
+    lova:temperature "25°C" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/zeta-potential> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2015.09.020/speg-pei-np7> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.actbio.2015.09.020/speg-pei-np12> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.actbio.2015.09.020/lpei-np7> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.actbio.2015.09.020/lpei-np12> ;
+    rdfs:label "Zeta potential measurement of polyplexes in NaCl and PBS" ;
+    lova:experimentCategory "Physicochemical" ;
+    lova:experimentType "Zeta potential" ;
+    lova:assayOrMethod "Photon correlation spectroscopy" ;
+    lova:equipment "Malvern Zetasizer" ;
+    lova:temperature "25°C" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/gel-retardation> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2015.09.020/speg-pei-np7> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.actbio.2015.09.020/lpei-np7> ;
+    rdfs:label "Agarose gel retardation assay" ;
+    lova:experimentCategory "Physicochemical" ;
+    lova:experimentType "Gel retardation" ;
+    lova:assayOrMethod "Agarose gel electrophoresis with SYBR Safe DNA stain" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/mtt-cytotoxicity> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2015.09.020/speg-pei-np7> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.actbio.2015.09.020/speg-pei-np12> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.actbio.2015.09.020/lpei-np7> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.actbio.2015.09.020/lpei-np12> ;
+    rdfs:label "MTT cytotoxicity assay of polyplexes" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cytotoxicity" ;
+    lova:assayOrMethod "MTT assay (CellTiter 96 AQueous One Solution)" ;
+    lova:cellType "D1 (mouse bone-marrow derived mesenchymal stem cells)" ;
+    lova:cellSource "Mouse bone marrow" ;
+    lova:seedingDensity "12,000 cells/well" ;
+    lova:cultureDuration "2 days" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/2d-bolus-transfection> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2015.09.020/speg-pei-np7> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.actbio.2015.09.020/speg-pei-np12> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.actbio.2015.09.020/lpei-np7> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.actbio.2015.09.020/lpei-np12> ;
+    rdfs:label "2-D bolus transfection with pGluc polyplexes" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transfection efficiency" ;
+    lova:assayOrMethod "Gaussia luciferase assay (BioLux kit)" ;
+    lova:cellType "D1" ;
+    lova:seedingDensity "40,000 cells/well" ;
+    lova:cultureDuration "48 h" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/dna-internalization-time> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2015.09.020/speg-pei-np7> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.actbio.2015.09.020/lpei-np12> ;
+    rdfs:label "Internalized radiolabelled DNA over different polyplex exposure times" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cellular DNA internalization" ;
+    lova:assayOrMethod "32P radiolabelling, scintillation counting" ;
+    lova:cellType "D1" ;
+    lova:seedingDensity "20,000 cells/well" ;
+    lova:cultureDuration "2, 4, 8 h" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/endocytosis-inhibition> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2015.09.020/speg-pei-np7> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.actbio.2015.09.020/lpei-np12> ;
+    rdfs:label "DNA internalization under inhibition of endocytosis pathways" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Endocytosis pathway inhibition" ;
+    lova:assayOrMethod "Pharmacological inhibitors + scintillation counting" ;
+    lova:cellType "D1" ;
+    lova:seedingDensity "20,000 cells/well" ;
+    lova:cultureDuration "4 h" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/rheology> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2015.09.020/ha-porous-hydrogel> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.actbio.2015.09.020/ha-nonporous-hydrogel> ;
+    rdfs:label "Rheological characterization of HA hydrogels" ;
+    lova:experimentCategory "Mechanical" ;
+    lova:experimentType "Oscillatory shear rheology" ;
+    lova:equipment "Physica MCR, Anton Paar (8mm plate)" ;
+    lova:strainRate "0.1% strain" ;
+    lova:frequency "0.1-10 rad/s" ;
+    lova:temperature "37°C" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/aggregation-imaging> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2015.09.020/ha-porous-hydrogel> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.actbio.2015.09.020/ha-nonporous-hydrogel> ;
+    rdfs:label "Visualization of polyplex aggregation in HA hydrogels" ;
+    lova:experimentCategory "Imaging" ;
+    lova:experimentType "Fluorescence imaging" ;
+    lova:assayOrMethod "Epifluorescence microscopy" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/dna-loading-quantification> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2015.09.020/ha-porous-hydrogel> ;
+    rdfs:label "Quantification of DNA loaded onto surface-coated porous hydrogels" ;
+    lova:experimentCategory "Physicochemical" ;
+    lova:experimentType "DNA loading quantification" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/dna-release> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2015.09.020/ha-porous-hydrogel> ;
+    rdfs:label "DNA release from surface-coated porous hydrogels" ;
+    lova:experimentCategory "Physicochemical" ;
+    lova:experimentType "DNA release kinetics" ;
+    lova:assayOrMethod "Scintillation counting" ;
+    lova:medium "Collagenase type 1 (1 U/mL) or PBS" ;
+    lova:cultureDuration "14 days" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/3d-transfection> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2015.09.020/ha-porous-hydrogel> ;
+    rdfs:label "3D transfection from surface-coated porous HA hydrogels" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "3D transfection" ;
+    lova:assayOrMethod "Gaussia luciferase assay" ;
+    lova:cellType "D1" ;
+    lova:seedingDensity "1,000,000 cells/mL (40,000 cells/hydrogel)" ;
+    lova:cultureDuration "14 days (measured at 2, 4, 7 days)" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/two-gene-delivery> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2015.09.020/ha-porous-hydrogel> ;
+    rdfs:label "Two-gene delivery system (pGluc encapsulated + pSEAP surface-coated)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Dual-gene transfection" ;
+    lova:assayOrMethod "Gaussia luciferase and pSEAP assays" ;
+    lova:cellType "HEK293T-MMP2" ;
+    lova:seedingDensity "40,000 cells/hydrogel" ;
+    lova:cultureDuration "14 days (measured at 2, 4, 7, 10, 14 days)" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/zeta-speg-np7-nacl> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/zeta-potential> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "Zeta potential of sPEG-PEI polyplexes N/P 7 in 150mM NaCl" ;
+    lova:measurementType "Zeta potential" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 10.47 ;
+    qudt:unit "mV" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/zeta-speg-np7-pbs> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/zeta-potential> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "Zeta potential of sPEG-PEI polyplexes N/P 7 in PBS" ;
+    lova:measurementType "Zeta potential" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 2.16 ;
+    qudt:unit "mV" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/zeta-speg-np12-nacl> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/zeta-potential> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "Zeta potential of sPEG-PEI polyplexes N/P 12 in 150mM NaCl" ;
+    lova:measurementType "Zeta potential" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 22.17 ;
+    qudt:unit "mV" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/zeta-speg-np12-pbs> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/zeta-potential> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "Zeta potential of sPEG-PEI polyplexes N/P 12 in PBS" ;
+    lova:measurementType "Zeta potential" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 5.68 ;
+    qudt:unit "mV" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/zeta-lpei-np7-nacl> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/zeta-potential> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "Zeta potential of LPEI polyplexes N/P 7 in 150mM NaCl" ;
+    lova:measurementType "Zeta potential" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 25.00 ;
+    qudt:unit "mV" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/zeta-lpei-np7-pbs> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/zeta-potential> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "Zeta potential of LPEI polyplexes N/P 7 in PBS" ;
+    lova:measurementType "Zeta potential" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 11.03 ;
+    qudt:unit "mV" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/zeta-lpei-np12-nacl> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/zeta-potential> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "Zeta potential of LPEI polyplexes N/P 12 in 150mM NaCl" ;
+    lova:measurementType "Zeta potential" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 30.43 ;
+    qudt:unit "mV" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/zeta-lpei-np12-pbs> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/zeta-potential> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "Zeta potential of LPEI polyplexes N/P 12 in PBS" ;
+    lova:measurementType "Zeta potential" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 12.83 ;
+    qudt:unit "mV" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2015.09.020/zeta-np7-nacl-comparison> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "Zeta potential higher for LPEI vs sPEG-PEI polyplexes N/P 7 in NaCl" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/zeta-lpei-np7-nacl> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/zeta-speg-np7-nacl> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/nitrogen-lpei> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/zeta-potential> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "Nitrogen content of LPEI backbone" ;
+    lova:measurementType "Nitrogen content" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 25.25 ;
+    qudt:unit "nmol N/1 µg LPEI" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/nitrogen-speg-pei> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/zeta-potential> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "Nitrogen content of sPEG-PEI backbone" ;
+    lova:measurementType "Nitrogen content" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 15.63 ;
+    qudt:unit "nmol N/1 µg sPEG-PEI" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/gel-retard-speg> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/gel-retardation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "N/P ratio for complete retardation of sPEG-PEI polyplexes" ;
+    lova:measurementType "N/P ratio for complete DNA shielding" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 6.0 ;
+    qudt:unit "N/P ratio" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/gel-retard-lpei> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/gel-retardation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "N/P ratio for complete retardation of LPEI polyplexes" ;
+    lova:measurementType "N/P ratio for complete DNA shielding" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 4.0 ;
+    qudt:unit "N/P ratio" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2015.09.020/gel-retard-comparison> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "Complete DNA shielding occurs at higher N/P ratio for sPEG-PEI than LPEI" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/gel-retard-speg> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/gel-retard-lpei> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/mtt-speg-np7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/mtt-cytotoxicity> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "No metabolic activity decrease for sPEG-PEI N/P 7 up to 200 ng/µL" ;
+    lova:measurementType "Cytotoxicity threshold" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "No decrease up to 200 ng/µL DNA concentration" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/mtt-lpei-np7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/mtt-cytotoxicity> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "Significant metabolic activity decrease for LPEI N/P 7 starting at 100 ng/mL" ;
+    lova:measurementType "Cytotoxicity threshold" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Significant decrease starting at 100 ng/mL" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2015.09.020/mtt-np7-comparison> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "sPEG-PEI N/P 7 less cytotoxic than LPEI N/P 7" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/mtt-speg-np7> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/mtt-lpei-np7> ;
+    lova:direction "lower" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/mtt-speg-np12> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/mtt-cytotoxicity> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "No metabolic activity decrease for sPEG-PEI N/P 12 up to 100 ng/µL" ;
+    lova:measurementType "Cytotoxicity threshold" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "No decrease up to 100 ng/µL DNA concentration" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/mtt-lpei-np12> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/mtt-cytotoxicity> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "Significant metabolic activity decrease for LPEI N/P 12 starting at 50 ng/mL" ;
+    lova:measurementType "Cytotoxicity threshold" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Significant decrease starting at 50 ng/mL" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2015.09.020/mtt-np12-comparison> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "sPEG-PEI N/P 12 less cytotoxic than LPEI N/P 12" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/mtt-speg-np12> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/mtt-lpei-np12> ;
+    lova:direction "lower" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/2d-raw-rlu-speg-np7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/2d-bolus-transfection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "Raw RLU for sPEG-PEI N/P 7 bolus transfection" ;
+    lova:measurementType "Gaussia luciferase expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 5000.0 ;
+    qudt:unit "RLU" ;
+    lova:timePoint "48h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/2d-raw-rlu-lpei-np7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/2d-bolus-transfection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "Raw RLU for LPEI N/P 7 bolus transfection" ;
+    lova:measurementType "Gaussia luciferase expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 250000.0 ;
+    qudt:unit "RLU" ;
+    lova:timePoint "48h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/2d-raw-rlu-speg-np12> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/2d-bolus-transfection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "Raw RLU for sPEG-PEI N/P 12 bolus transfection" ;
+    lova:measurementType "Gaussia luciferase expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 70000.0 ;
+    qudt:unit "RLU" ;
+    lova:timePoint "48h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/2d-raw-rlu-lpei-np12> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/2d-bolus-transfection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "Raw RLU for LPEI N/P 12 bolus transfection" ;
+    lova:measurementType "Gaussia luciferase expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1700000.0 ;
+    qudt:unit "RLU" ;
+    lova:timePoint "48h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2015.09.020/2d-rlu-np7-comparison> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "sPEG-PEI N/P 7 lower transgene expression than LPEI N/P 7" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/2d-raw-rlu-speg-np7> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/2d-raw-rlu-lpei-np7> ;
+    lova:direction "lower" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2015.09.020/2d-rlu-np12-comparison> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "sPEG-PEI N/P 12 lower transgene expression than LPEI N/P 12" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/2d-raw-rlu-speg-np12> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/2d-raw-rlu-lpei-np12> ;
+    lova:direction "lower" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/internalized-speg-2h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/dna-internalization-time> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "Mass of DNA internalized, sPEG-PEI N/P 7, 2h" ;
+    lova:measurementType "Mass of DNA internalized" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.005 ;
+    qudt:unit "µg" ;
+    lova:timePoint "2h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/internalized-lpei-2h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/dna-internalization-time> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "Mass of DNA internalized, LPEI N/P 12, 2h" ;
+    lova:measurementType "Mass of DNA internalized" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.038 ;
+    qudt:unit "µg" ;
+    lova:timePoint "2h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/internalized-speg-4h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/dna-internalization-time> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "Mass of DNA internalized, sPEG-PEI N/P 7, 4h" ;
+    lova:measurementType "Mass of DNA internalized" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.015 ;
+    qudt:unit "µg" ;
+    lova:timePoint "4h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/internalized-lpei-4h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/dna-internalization-time> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "Mass of DNA internalized, LPEI N/P 12, 4h" ;
+    lova:measurementType "Mass of DNA internalized" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.065 ;
+    qudt:unit "µg" ;
+    lova:timePoint "4h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/internalized-speg-8h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/dna-internalization-time> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "Mass of DNA internalized, sPEG-PEI N/P 7, 8h" ;
+    lova:measurementType "Mass of DNA internalized" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.013 ;
+    qudt:unit "µg" ;
+    lova:timePoint "8h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/internalized-lpei-8h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/dna-internalization-time> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "Mass of DNA internalized, LPEI N/P 12, 8h (decrease from 4h)" ;
+    lova:measurementType "Mass of DNA internalized" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.04 ;
+    qudt:unit "µg" ;
+    lova:timePoint "8h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2015.09.020/internalized-4h-comparison> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "LPEI polyplexes internalized more than sPEG-PEI polyplexes at 4h" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/internalized-lpei-4h> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/internalized-speg-4h> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/endocytosis-genistein-speg> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/endocytosis-inhibition> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "Normalized DNA internalization, sPEG-PEI N/P 7, genistein (caveolae) treatment" ;
+    lova:measurementType "Normalized DNA internalization" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.55 ;
+    qudt:unit "normalized units" ;
+    lova:timePoint "4h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/endocytosis-genistein-lpei> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/endocytosis-inhibition> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "Normalized DNA internalization, LPEI N/P 12, genistein (caveolae) treatment" ;
+    lova:measurementType "Normalized DNA internalization" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.42 ;
+    qudt:unit "normalized units" ;
+    lova:timePoint "4h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/gprime-porous> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "Storage modulus (G') of porous HA hydrogel" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 523.0 ;
+    qudt:unit "Pa" ;
+    lova:stdDev 32.0 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/gprime-nonporous> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "Storage modulus (G') of nonporous HA hydrogel" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 222.0 ;
+    qudt:unit "Pa" ;
+    lova:stdDev 23.0 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2015.09.020/gprime-comparison> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "Porous HA hydrogel has higher storage modulus than nonporous" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/gprime-porous> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/gprime-nonporous> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/dna-loaded-speg-np7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/dna-loading-quantification> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "DNA loaded via sPEG-PEI N/P 7 surface coating" ;
+    lova:measurementType "DNA loading mass" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 3.45 ;
+    qudt:unit "µg" ;
+    lova:stdDev 0.19 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/dna-loaded-speg-np12> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/dna-loading-quantification> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "DNA loaded via sPEG-PEI N/P 12 surface coating" ;
+    lova:measurementType "DNA loading mass" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 4.26 ;
+    qudt:unit "µg" ;
+    lova:stdDev 1.20 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/dna-loaded-lpei-np7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/dna-loading-quantification> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "DNA loaded via LPEI N/P 7 surface coating" ;
+    lova:measurementType "DNA loading mass" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 3.91 ;
+    qudt:unit "µg" ;
+    lova:stdDev 1.62 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/dna-loaded-lpei-np12> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/dna-loading-quantification> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "DNA loaded via LPEI N/P 12 surface coating" ;
+    lova:measurementType "DNA loading mass" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 4.56 ;
+    qudt:unit "µg" ;
+    lova:stdDev 0.70 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2015.09.020/dna-loaded-np7-comparison> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "No significant difference in DNA loaded between sPEG-PEI and LPEI at N/P 7" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/dna-loaded-speg-np7> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/dna-loaded-lpei-np7> ;
+    lova:direction "no difference" ;
+    lova:isSignificant false .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/release-speg-np7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/dna-release> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "90% DNA release reached for sPEG-PEI N/P 7 in Col I" ;
+    lova:measurementType "Cumulative DNA release (90% threshold)" ;
+    lova:measurementCategory "Physicochemical" ;
+    lova:valueString "90% release by day 5" ;
+    lova:timePoint "Day 5" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/release-lpei-np7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/dna-release> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "90% DNA release reached for LPEI N/P 7 in Col I" ;
+    lova:measurementType "Cumulative DNA release (90% threshold)" ;
+    lova:measurementCategory "Physicochemical" ;
+    lova:valueString "90% release by day 7" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/release-speg-np12> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/dna-release> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "90% DNA release reached for sPEG-PEI N/P 12 in Col I" ;
+    lova:measurementType "Cumulative DNA release (90% threshold)" ;
+    lova:measurementCategory "Physicochemical" ;
+    lova:valueString "90% release by day 12" ;
+    lova:timePoint "Day 12" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/release-lpei-np12> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/dna-release> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "LPEI N/P 12 did not reach 90% release by day 14" ;
+    lova:measurementType "Cumulative DNA release (90% threshold)" ;
+    lova:measurementCategory "Physicochemical" ;
+    lova:valueString "Did not achieve 90% release by day 14" ;
+    lova:timePoint "Day 14" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2015.09.020/release-np7-comparison> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "sPEG-PEI N/P 7 released faster than LPEI N/P 7" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/release-speg-np7> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/release-lpei-np7> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/cumulative-rlu-lpei-np12> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/3d-transfection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "Cumulative transgene expression, LPEI N/P 12 surface-coated, 14 days" ;
+    lova:measurementType "Cumulative Gaussia luciferase expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 19950000.0 ;
+    qudt:unit "RLU" ;
+    lova:timePoint "Day 14" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/cumulative-rlu-speg-np12> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/3d-transfection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "Cumulative transgene expression, sPEG-PEI N/P 12 surface-coated, 14 days" ;
+    lova:measurementType "Cumulative Gaussia luciferase expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 12890000.0 ;
+    qudt:unit "RLU" ;
+    lova:timePoint "Day 14" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2015.09.020/cumulative-rlu-np12-comparison> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "LPEI N/P 12 cumulative expression not significantly different from sPEG-PEI N/P 12" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/cumulative-rlu-lpei-np12> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/cumulative-rlu-speg-np12> ;
+    lova:direction "no difference" ;
+    lova:isSignificant false .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/cumulative-rlu-lpei-np7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/3d-transfection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "Cumulative transgene expression, LPEI N/P 7 surface-coated, 14 days" ;
+    lova:measurementType "Cumulative Gaussia luciferase expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2474000.0 ;
+    qudt:unit "RLU" ;
+    lova:timePoint "Day 14" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/cumulative-rlu-speg-np7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/3d-transfection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "Cumulative transgene expression, sPEG-PEI N/P 7 surface-coated, 14 days" ;
+    lova:measurementType "Cumulative Gaussia luciferase expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 9010000.0 ;
+    qudt:unit "RLU" ;
+    lova:timePoint "Day 14" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2015.09.020/cumulative-rlu-np7-comparison> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "LPEI N/P 7 cumulative expression not significantly different from sPEG-PEI N/P 7" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/cumulative-rlu-lpei-np7> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/cumulative-rlu-speg-np7> ;
+    lova:direction "no difference" ;
+    lova:isSignificant false .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/pei-conjugation-efficiency> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/dls-size-stability> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "Percentage of PEG arms conjugated with PEI (NMR)" ;
+    lova:measurementType "Conjugation efficiency" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 94.9 ;
+    qudt:unit "%" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/ha-adh-modification> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/dls-size-stability> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "Percentage modification of HA carboxyl groups to ADH groups" ;
+    lova:measurementType "Degree of substitution" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 54.67 ;
+    qudt:unit "%" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/ha-ac-modification> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/dls-size-stability> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "Percentage acrylate modification of HA-Ac" ;
+    lova:measurementType "Degree of substitution" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 11.42 ;
+    qudt:unit "%" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/aggregation-speg-vs-lpei> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/aggregation-imaging> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "Visual aggregation of sPEG-PEI vs LPEI polyplexes in encapsulated porous/nonporous HA hydrogels" ;
+    lova:measurementType "Polyplex aggregation (qualitative)" ;
+    lova:measurementCategory "Imaging" ;
+    lova:valueString "sPEG-PEI polyplexes show noticeably less aggregation than LPEI polyplexes in both porous and nonporous hydrogels" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2015.09.020/surface-coating-homogeneity> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2015.09.020/aggregation-imaging> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2015.09.020> ;
+    rdfs:label "Surface-coated polyplexes show more homogeneous distribution than encapsulated" ;
+    lova:measurementType "Spatial distribution (qualitative)" ;
+    lova:measurementCategory "Imaging" ;
+    lova:valueString "More homogenous surface distribution observed for surface-coated polyplexes compared to encapsulated polyplex aggregation" ;
+    lova:dataSource "[FIG-E]" .

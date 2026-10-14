@@ -1,0 +1,842 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> a bibo:AcademicArticle ;
+    rdfs:label "Miller et al., 2024 — Wound Healing Splinting Devices for Faster Access and Use" ;
+    dc:title "Wound Healing Splinting Devices for Faster Access and Use" ;
+    dc:identifier "10.1016/j.xjidi.2024.100332" ;
+    dc:date "2024"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/jid-innovations> ;
+    dc:creator <https://lovamap.com/ontology#author/miller-andrew> ,
+               <https://lovamap.com/ontology#author/anderson-alexa> ,
+               <https://lovamap.com/ontology#author/suarez-arnedo-alejandra> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/miller-andrew>
+                       <https://lovamap.com/ontology#author/anderson-alexa>
+                       <https://lovamap.com/ontology#author/suarez-arnedo-alejandra>
+                       <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    dc:bibliographicCitation "Miller et al., 2024" ;
+    lova:focusMaterial "Silicone, titanium, and adhesive PDMS (aPDMS) wound splints for murine wound healing models" .
+
+<https://lovamap.com/ontology#author/miller-andrew> a foaf:Person ;
+    foaf:familyName "Miller" ;
+    foaf:givenName "Andrew W." ;
+    foaf:name "Andrew W. Miller" .
+
+<https://lovamap.com/ontology#author/anderson-alexa> a foaf:Person ;
+    foaf:familyName "Anderson" ;
+    foaf:givenName "Alexa R." ;
+    foaf:name "Alexa R. Anderson" .
+
+<https://lovamap.com/ontology#author/suarez-arnedo-alejandra> a foaf:Person ;
+    foaf:familyName "Suarez-Arnedo" ;
+    foaf:givenName "Alejandra" ;
+    foaf:name "Alejandra Suarez-Arnedo" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" .
+
+<https://lovamap.com/ontology#journal/jid-innovations> a bibo:Journal ;
+    dc:title "JID Innovations" ;
+    bibo:issn "2667-0267" .
+
+<https://lovamap.com/ontology#material/10.1016-j.xjidi.2024.100332/silicone-splint> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "Silicone wound splint (doughnut shape)" ;
+    lova:particleShape "Ring/doughnut" ;
+    lova:particleMaterial "USP Class IV silicone" ;
+    lova:scaffoldDimensions "14 mm outer diameter x 7 mm inner diameter, 0.08-inch thick sheet" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.xjidi.2024.100332/silicone-splint-fab> .
+
+<https://lovamap.com/ontology#material/10.1016-j.xjidi.2024.100332/titanium-splint> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "Titanium wound splint with resealable microcentrifuge tube cap" ;
+    lova:particleMaterial "Ti6Al4V Grade 23 titanium" ;
+    lova:stiffnessQualitative "Rigid" ;
+    lova:scaffoldDimensions "Base plate radius of curvature 36.61; base + cap mass 0.95 g" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.xjidi.2024.100332/titanium-splint-fab> .
+
+<https://lovamap.com/ontology#material/10.1016-j.xjidi.2024.100332/apdms-155> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "aPDMS splint (1.55 uM EO-PEI, low/not very adhesive)" ;
+    lova:particleMaterial "PDMS with EO-PEI" ;
+    lova:stiffnessQualitative "Soft, tacky elastomer" ;
+    lova:scaffoldDimensions "14 mm outer diameter x 7 mm inner diameter, ~1.5 mm height" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.xjidi.2024.100332/apdms-fab-155> .
+
+<https://lovamap.com/ontology#material/10.1016-j.xjidi.2024.100332/apdms-169> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "aPDMS splint (1.69 uM EO-PEI, optimal adhesive w/o residue)" ;
+    lova:particleMaterial "PDMS with EO-PEI" ;
+    lova:stiffnessQualitative "Soft, tacky elastomer" ;
+    lova:scaffoldDimensions "14 mm outer diameter x 7 mm inner diameter, ~1.5 mm height" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.xjidi.2024.100332/apdms-fab-169> .
+
+<https://lovamap.com/ontology#material/10.1016-j.xjidi.2024.100332/apdms-184> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "aPDMS splint (1.84 uM EO-PEI, very adhesive w/ residue)" ;
+    lova:particleMaterial "PDMS with EO-PEI" ;
+    lova:stiffnessQualitative "Soft, tacky elastomer" ;
+    lova:scaffoldDimensions "14 mm outer diameter x 7 mm inner diameter, ~1.5 mm height" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.xjidi.2024.100332/apdms-fab-184> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.xjidi.2024.100332/silicone-splint-fab> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "Silicone splint fabrication (biopsy punch)" ;
+    lova:manufacturingMethod "Biopsy punch cutting from silicone sheet (14mm outer, 7mm inner)" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.xjidi.2024.100332/silicone-sheet> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.xjidi.2024.100332/titanium-splint-fab> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "Titanium splint 3D printing" ;
+    lova:manufacturingMethod "3D printing (3D Systems DMP ProX 320), spherical powder bed fusion" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.xjidi.2024.100332/ti6al4v-powder> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.xjidi.2024.100332/microcentrifuge-cap> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.xjidi.2024.100332/apdms-fab-155> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "aPDMS fabrication, 1.55 uM EO-PEI" ;
+    lova:chemistry "PDMS crosslinking disrupted by EO-PEI" ;
+    lova:manufacturingMethod "Casting and thermal curing" ;
+    lova:annealingConditions "60 degC oven, 16-18 hours" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.xjidi.2024.100332/sylgard-base> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.xjidi.2024.100332/sylgard-curing-agent> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.xjidi.2024.100332/eo-pei-155> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.xjidi.2024.100332/apdms-fab-169> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "aPDMS fabrication, 1.69 uM EO-PEI (optimal)" ;
+    lova:chemistry "PDMS crosslinking disrupted by EO-PEI" ;
+    lova:manufacturingMethod "Casting and thermal curing" ;
+    lova:annealingConditions "60 degC oven, 16-18 hours" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.xjidi.2024.100332/sylgard-base> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.xjidi.2024.100332/sylgard-curing-agent> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.xjidi.2024.100332/eo-pei-169> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.xjidi.2024.100332/apdms-fab-184> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "aPDMS fabrication, 1.84 uM EO-PEI" ;
+    lova:chemistry "PDMS crosslinking disrupted by EO-PEI" ;
+    lova:manufacturingMethod "Casting and thermal curing" ;
+    lova:annealingConditions "60 degC oven, 16-18 hours" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.xjidi.2024.100332/sylgard-base> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.xjidi.2024.100332/sylgard-curing-agent> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.xjidi.2024.100332/eo-pei-184> .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.xjidi.2024.100332/silicone-sheet> a lova:Reagent ;
+    rdfs:label "USP Class IV silicone sheet (Firm Matte Silicone Sheeting)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Firm Matte Silicone Sheeting" ;
+    lova:catalogNumber "70P001-100-080" ;
+    lova:reagentFunction "Splint base material" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.xjidi.2024.100332/ti6al4v-powder> a lova:Reagent ;
+    rdfs:label "Ti6Al4V Grade 23 spherical powder" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "3D printing material for titanium splint" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.xjidi.2024.100332/microcentrifuge-cap> a lova:Reagent ;
+    rdfs:label "Microcentrifuge tube cap" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Fisher Scientific" ;
+    lova:catalogNumber "1615-5510" ;
+    lova:reagentFunction "Resealable cap for titanium splint system" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.xjidi.2024.100332/sylgard-base> a lova:Reagent ;
+    rdfs:label "SYLGARD 184 Silicone Elastomer Base" ;
+    lova:reagentRole "monomer" ;
+    lova:supplier "Dow Chemical" ;
+    lova:concentration "10 parts base to 1 part curing agent" ;
+    lova:reagentFunction "PDMS elastomer base" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.xjidi.2024.100332/sylgard-curing-agent> a lova:Reagent ;
+    rdfs:label "SYLGARD 184 Silicone Elastomer Curing Agent" ;
+    lova:reagentRole "crosslinker" ;
+    lova:supplier "Dow Chemical" ;
+    lova:reagentFunction "PDMS curing/crosslinking agent" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.xjidi.2024.100332/eo-pei-155> a lova:Reagent ;
+    rdfs:label "Ethoxylated PEI (EO-PEI), 80% ethoxylated, 37wt% in water - 1.55 uM" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Sigma-Aldrich" ;
+    lova:catalogNumber "306185-100G" ;
+    lova:concentration "1.55 uM" ;
+    lova:reagentFunction "Disrupts PDMS crosslinking to create adhesive, tacky surface" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.xjidi.2024.100332/eo-pei-169> a lova:Reagent ;
+    rdfs:label "Ethoxylated PEI (EO-PEI), 80% ethoxylated, 37wt% in water - 1.69 uM" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Sigma-Aldrich" ;
+    lova:catalogNumber "306185-100G" ;
+    lova:concentration "1.69 uM" ;
+    lova:reagentFunction "Disrupts PDMS crosslinking to create adhesive, tacky surface" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.xjidi.2024.100332/eo-pei-184> a lova:Reagent ;
+    rdfs:label "Ethoxylated PEI (EO-PEI), 80% ethoxylated, 37wt% in water - 1.84 uM" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Sigma-Aldrich" ;
+    lova:catalogNumber "306185-100G" ;
+    lova:concentration "1.84 uM" ;
+    lova:reagentFunction "Disrupts PDMS crosslinking to create adhesive, tacky surface" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.xjidi.2024.100332/superglue> a lova:Reagent ;
+    rdfs:label "Superglue (Krazy glue)" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Temporary adhesive for splint attachment to skin" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.xjidi.2024.100332/nylon-suture> a lova:Reagent ;
+    rdfs:label "Nylon monofilament suture line" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Surgical Specialties" ;
+    lova:catalogNumber "931B" ;
+    lova:reagentFunction "Suturing splint to skin" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.xjidi.2024.100332/tegaderm> a lova:Reagent ;
+    rdfs:label "Tegaderm film (circular, 12mm diameter)" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Wound dressing seal over splint" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.xjidi.2024.100332/tack-test> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.xjidi.2024.100332/apdms-155> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.xjidi.2024.100332/apdms-169> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.xjidi.2024.100332/apdms-184> ;
+    rdfs:label "aPDMS tack test across EO-PEI concentrations" ;
+    lova:experimentCategory "Rheological" ;
+    lova:experimentType "Tack test" ;
+    lova:assayOrMethod "Rheometer tack test (pull-off force)" ;
+    lova:equipment "Anton Paar Physica MCR 301" ;
+    lova:strainRate "100 um/second plate lift velocity" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.xjidi.2024.100332/invivo-titanium-vs-silicone> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.xjidi.2024.100332/titanium-splint> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.xjidi.2024.100332/silicone-splint> ;
+    rdfs:label "In vivo titanium vs silicone splint wound healing (C57BL/6J mice)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Splinted excisional wound healing" ;
+    lova:cellSource "Mouse (C57BL/6J) dorsal skin" ;
+    lova:cultureDuration "14 days" ;
+    lova:atmosphere "In vivo" ;
+    lova:sampleSize 5 .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.xjidi.2024.100332/invivo-apdms-vs-silicone> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.xjidi.2024.100332/apdms-169> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.xjidi.2024.100332/silicone-splint> ;
+    rdfs:label "In vivo aPDMS vs silicone splint wound healing (SKH1-Elite mice)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Splinted excisional wound healing" ;
+    lova:cellSource "Mouse (SKH1-Elite) dorsal skin" ;
+    lova:cultureDuration "14 days" ;
+    lova:atmosphere "In vivo" ;
+    lova:sampleSize 4 .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.xjidi.2024.100332/surgery-time> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.xjidi.2024.100332/silicone-splint> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.xjidi.2024.100332/apdms-169> ;
+    rdfs:label "Surgical application time comparison" ;
+    lova:experimentCategory "Procedural" ;
+    lova:experimentType "Surgical time measurement" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.xjidi.2024.100332/titanium-mass-opt> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.xjidi.2024.100332/titanium-splint> ;
+    rdfs:label "Titanium splint design mass iteration" ;
+    lova:experimentCategory "Design" ;
+    lova:experimentType "Mass measurement" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.xjidi.2024.100332/splint-wound-ratio> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.xjidi.2024.100332/titanium-splint> ;
+    rdfs:label "Splint outer diameter to wound diameter ratio" ;
+    lova:experimentCategory "Design" ;
+    lova:experimentType "Geometric ratio measurement" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.xjidi.2024.100332/apdms-adhesion-duration> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.xjidi.2024.100332/apdms-169> ;
+    rdfs:label "aPDMS skin adhesion duration" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Adhesion durability" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/pull-off-155> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.xjidi.2024.100332/tack-test> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "Minimal normal (pull-off) force, 1.55 uM EO-PEI" ;
+    lova:measurementType "Pull-off force" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue -9.739 ;
+    qudt:unit "N" ;
+    lova:sampleSize 3 ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/pull-off-169> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.xjidi.2024.100332/tack-test> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "Minimal normal (pull-off) force, 1.69 uM EO-PEI" ;
+    lova:measurementType "Pull-off force" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue -7.949 ;
+    qudt:unit "N" ;
+    lova:sampleSize 3 ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/pull-off-184> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.xjidi.2024.100332/tack-test> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "Minimal normal (pull-off) force, 1.84 uM EO-PEI" ;
+    lova:measurementType "Pull-off force" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue -4.763 ;
+    qudt:unit "N" ;
+    lova:sampleSize 3 ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/auc-155> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.xjidi.2024.100332/tack-test> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "Area/Pull-Off Force (normalized AUC), 1.55 uM EO-PEI" ;
+    lova:measurementType "Area/pull-off force ratio" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 1.7 ;
+    qudt:unit "dimensionless (normalized AUC)" ;
+    lova:sampleSize 3 ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/auc-169> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.xjidi.2024.100332/tack-test> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "Area/Pull-Off Force (normalized AUC), 1.69 uM EO-PEI" ;
+    lova:measurementType "Area/pull-off force ratio" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 2.6 ;
+    qudt:unit "dimensionless (normalized AUC)" ;
+    lova:sampleSize 3 ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/auc-184> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.xjidi.2024.100332/tack-test> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "Area/Pull-Off Force (normalized AUC), 1.84 uM EO-PEI" ;
+    lova:measurementType "Area/pull-off force ratio" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 3.8 ;
+    qudt:unit "dimensionless (normalized AUC)" ;
+    lova:sampleSize 3 ;
+    lova:isSignificant true ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.xjidi.2024.100332/auc-184-vs-155> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "Normalized AUC higher at 1.84 uM vs 1.55 uM EO-PEI" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/auc-184> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/auc-155> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/dermis-area-unsplinted> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.xjidi.2024.100332/invivo-titanium-vs-silicone> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "Dermis area, unsplinted wounds (titanium study)" ;
+    lova:measurementType "Dermis area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 300000.0 ;
+    qudt:unit "um^2" ;
+    lova:sampleSize 5 ;
+    lova:timePoint "Day 14" ;
+    lova:comparisonGroup "Unsplinted" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/dermis-area-silicone> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.xjidi.2024.100332/invivo-titanium-vs-silicone> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "Dermis area, silicone-splinted wounds" ;
+    lova:measurementType "Dermis area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 950000.0 ;
+    qudt:unit "um^2" ;
+    lova:sampleSize 5 ;
+    lova:timePoint "Day 14" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "Unsplinted" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/dermis-area-titanium> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.xjidi.2024.100332/invivo-titanium-vs-silicone> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "Dermis area, titanium-splinted wounds" ;
+    lova:measurementType "Dermis area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 800000.0 ;
+    qudt:unit "um^2" ;
+    lova:sampleSize 5 ;
+    lova:timePoint "Day 14" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "Unsplinted" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.xjidi.2024.100332/dermis-silicone-vs-unsplinted> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "Dermis area higher in silicone-splinted vs unsplinted wounds" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/dermis-area-silicone> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/dermis-area-unsplinted> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.xjidi.2024.100332/dermis-titanium-vs-unsplinted> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "Dermis area higher in titanium-splinted vs unsplinted wounds" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/dermis-area-titanium> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/dermis-area-unsplinted> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/aspect-unsplinted> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.xjidi.2024.100332/invivo-titanium-vs-silicone> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "Wound aspect ratio, unsplinted (day 7)" ;
+    lova:measurementType "Wound aspect ratio" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.7 ;
+    qudt:unit "dimensionless" ;
+    lova:sampleSize 3 ;
+    lova:timePoint "Day 7" ;
+    lova:comparisonGroup "Unsplinted" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/aspect-silicone> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.xjidi.2024.100332/invivo-titanium-vs-silicone> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "Wound aspect ratio, silicone splint (day 7)" ;
+    lova:measurementType "Wound aspect ratio" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.0 ;
+    qudt:unit "dimensionless" ;
+    lova:sampleSize 3 ;
+    lova:timePoint "Day 7" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "Unsplinted" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/aspect-titanium> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.xjidi.2024.100332/invivo-titanium-vs-silicone> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "Wound aspect ratio, titanium splint (day 7)" ;
+    lova:measurementType "Wound aspect ratio" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.0 ;
+    qudt:unit "dimensionless" ;
+    lova:sampleSize 3 ;
+    lova:timePoint "Day 7" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "Unsplinted" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.xjidi.2024.100332/aspect-silicone-vs-unsplinted> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "Wound aspect ratio lower in silicone-splinted vs unsplinted wounds" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/aspect-silicone> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/aspect-unsplinted> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.xjidi.2024.100332/aspect-titanium-vs-unsplinted> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "Wound aspect ratio lower in titanium-splinted vs unsplinted wounds" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/aspect-titanium> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/aspect-unsplinted> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/epi-unsplinted> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.xjidi.2024.100332/invivo-titanium-vs-silicone> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "Epidermal fold change, unsplinted" ;
+    lova:measurementType "Epidermal fold change" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.5 ;
+    qudt:unit "fold change" ;
+    lova:sampleSize 5 ;
+    lova:isSignificant false ;
+    lova:comparisonGroup "Unsplinted" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/epi-silicone> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.xjidi.2024.100332/invivo-titanium-vs-silicone> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "Epidermal fold change, silicone splint" ;
+    lova:measurementType "Epidermal fold change" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.3 ;
+    qudt:unit "fold change" ;
+    lova:sampleSize 5 ;
+    lova:isSignificant false ;
+    lova:comparisonGroup "Unsplinted" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/epi-titanium> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.xjidi.2024.100332/invivo-titanium-vs-silicone> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "Epidermal fold change, titanium splint" ;
+    lova:measurementType "Epidermal fold change" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.0 ;
+    qudt:unit "fold change" ;
+    lova:sampleSize 5 ;
+    lova:isSignificant false ;
+    lova:comparisonGroup "Unsplinted" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.xjidi.2024.100332/epi-silicone-vs-unsplinted> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "No significant difference in epidermal fold change, silicone vs unsplinted" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/epi-silicone> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/epi-unsplinted> ;
+    lova:direction "no difference" ;
+    lova:isSignificant false .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/mass-added-titanium> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.xjidi.2024.100332/titanium-mass-opt> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "Mass added per mouse by final titanium splint design" ;
+    lova:measurementType "Splint mass" ;
+    lova:measurementCategory "Design" ;
+    qudt:numericValue 0.95 ;
+    qudt:unit "g" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/mass-initial-design> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.xjidi.2024.100332/titanium-mass-opt> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "Mass of initial screw-cap base plus cap design" ;
+    lova:measurementType "Splint mass" ;
+    lova:measurementCategory "Design" ;
+    lova:valueString ">2 g (approximately 10% of typical mouse body mass)" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/mass-nylon-design> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.xjidi.2024.100332/titanium-mass-opt> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "Mass of nylon prototype capped splint" ;
+    lova:measurementType "Splint mass" ;
+    lova:measurementCategory "Design" ;
+    qudt:numericValue 0.33 ;
+    qudt:unit "g" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.xjidi.2024.100332/mass-nylon-vs-titanium> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "Nylon prototype splint mass lower than final titanium splint mass" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/mass-nylon-design> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/mass-added-titanium> ;
+    lova:direction "lower" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/surgery-time-traditional> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.xjidi.2024.100332/surgery-time> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "Surgical application time, traditional sutured splints" ;
+    lova:measurementType "Surgical time per wound" ;
+    lova:measurementCategory "Procedural" ;
+    lova:valueString "10-15 minutes per wound" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/surgery-time-apdms> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.xjidi.2024.100332/surgery-time> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "Surgical application time, aPDMS splints" ;
+    lova:measurementType "Surgical time per wound" ;
+    lova:measurementCategory "Procedural" ;
+    lova:valueString "10-15 seconds per wound" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.xjidi.2024.100332/surgery-time-apdms-vs-traditional> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "Surgery time much lower with aPDMS splints vs traditional sutured splints" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/surgery-time-apdms> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/surgery-time-traditional> ;
+    lova:direction "lower" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/ratio-ours> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.xjidi.2024.100332/splint-wound-ratio> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "Splint outer diameter to wound diameter ratio, our titanium design" ;
+    lova:measurementType "Splint-to-wound diameter ratio" ;
+    lova:measurementCategory "Design" ;
+    qudt:numericValue 3.51 ;
+    qudt:unit "ratio" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/ratio-conventional> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.xjidi.2024.100332/splint-wound-ratio> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "Splint outer diameter to wound diameter ratio, conventional splints" ;
+    lova:measurementType "Splint-to-wound diameter ratio" ;
+    lova:measurementCategory "Design" ;
+    lova:valueString "2:1 to 3:1" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.xjidi.2024.100332/ratio-ours-vs-conventional> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "Our splint-to-wound ratio higher (17% increase) vs conventional splints" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/ratio-ours> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/ratio-conventional> ;
+    lova:direction "higher" ;
+    lova:foldChange 1.17 .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/dermis-area-unsplinted2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.xjidi.2024.100332/invivo-apdms-vs-silicone> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "Dermis area, unsplinted wounds (aPDMS study)" ;
+    lova:measurementType "Dermis area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 300000.0 ;
+    qudt:unit "um^2" ;
+    lova:sampleSize 4 ;
+    lova:comparisonGroup "Unsplinted" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/dermis-area-silicone2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.xjidi.2024.100332/invivo-apdms-vs-silicone> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "Dermis area, silicone-splinted wounds (aPDMS study)" ;
+    lova:measurementType "Dermis area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1000000.0 ;
+    qudt:unit "um^2" ;
+    lova:sampleSize 4 ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "Unsplinted" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/dermis-area-apdms> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.xjidi.2024.100332/invivo-apdms-vs-silicone> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "Dermis area, aPDMS-splinted wounds" ;
+    lova:measurementType "Dermis area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 850000.0 ;
+    qudt:unit "um^2" ;
+    lova:sampleSize 4 ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "Unsplinted" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.xjidi.2024.100332/dermis-silicone2-vs-unsplinted2> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "Dermis area higher in silicone-splinted vs unsplinted wounds (aPDMS study)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/dermis-area-silicone2> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/dermis-area-unsplinted2> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.xjidi.2024.100332/dermis-apdms-vs-unsplinted2> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "Dermis area higher in aPDMS-splinted vs unsplinted wounds" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/dermis-area-apdms> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/dermis-area-unsplinted2> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/muscle-unsplinted> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.xjidi.2024.100332/invivo-apdms-vs-silicone> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "Panniculus carnosus muscle distance, unsplinted wounds" ;
+    lova:measurementType "Muscle separation distance" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1800.0 ;
+    qudt:unit "um" ;
+    lova:sampleSize 4 ;
+    lova:comparisonGroup "Unsplinted" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/muscle-silicone> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.xjidi.2024.100332/invivo-apdms-vs-silicone> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "Panniculus carnosus muscle distance, silicone-splinted wounds" ;
+    lova:measurementType "Muscle separation distance" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 3400.0 ;
+    qudt:unit "um" ;
+    lova:sampleSize 4 ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "Unsplinted" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/muscle-apdms> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.xjidi.2024.100332/invivo-apdms-vs-silicone> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "Panniculus carnosus muscle distance, aPDMS-splinted wounds" ;
+    lova:measurementType "Muscle separation distance" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 3100.0 ;
+    qudt:unit "um" ;
+    lova:sampleSize 4 ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "Unsplinted" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.xjidi.2024.100332/muscle-silicone-vs-unsplinted> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "Muscle separation distance higher in silicone-splinted vs unsplinted wounds" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/muscle-silicone> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/muscle-unsplinted> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.xjidi.2024.100332/muscle-apdms-vs-unsplinted> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "Muscle separation distance higher in aPDMS-splinted vs unsplinted wounds" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/muscle-apdms> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/muscle-unsplinted> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/aspect-unsplinted2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.xjidi.2024.100332/invivo-apdms-vs-silicone> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "Wound aspect ratio, unsplinted (aPDMS study, day 7)" ;
+    lova:measurementType "Wound aspect ratio" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 5.0 ;
+    qudt:unit "dimensionless" ;
+    lova:sampleSize 3 ;
+    lova:timePoint "Day 7" ;
+    lova:comparisonGroup "Unsplinted" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/aspect-silicone2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.xjidi.2024.100332/invivo-apdms-vs-silicone> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "Wound aspect ratio, silicone splint (aPDMS study, day 7)" ;
+    lova:measurementType "Wound aspect ratio" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.2 ;
+    qudt:unit "dimensionless" ;
+    lova:sampleSize 3 ;
+    lova:timePoint "Day 7" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "Unsplinted" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/aspect-apdms2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.xjidi.2024.100332/invivo-apdms-vs-silicone> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "Wound aspect ratio, aPDMS splint (day 7)" ;
+    lova:measurementType "Wound aspect ratio" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.3 ;
+    qudt:unit "dimensionless" ;
+    lova:sampleSize 3 ;
+    lova:timePoint "Day 7" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "Unsplinted" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.xjidi.2024.100332/aspect-silicone2-vs-unsplinted2> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "Wound aspect ratio lower in silicone-splinted vs unsplinted wounds (aPDMS study)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/aspect-silicone2> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/aspect-unsplinted2> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.xjidi.2024.100332/aspect-apdms2-vs-unsplinted2> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "Wound aspect ratio lower in aPDMS-splinted vs unsplinted wounds" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/aspect-apdms2> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/aspect-unsplinted2> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/epi-unsplinted2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.xjidi.2024.100332/invivo-apdms-vs-silicone> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "Epidermal fold change, unsplinted (aPDMS study)" ;
+    lova:measurementType "Epidermal fold change" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.8 ;
+    qudt:unit "fold change" ;
+    lova:sampleSize 4 ;
+    lova:isSignificant false ;
+    lova:comparisonGroup "Unsplinted" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/epi-silicone2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.xjidi.2024.100332/invivo-apdms-vs-silicone> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "Epidermal fold change, silicone splint (aPDMS study)" ;
+    lova:measurementType "Epidermal fold change" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.5 ;
+    qudt:unit "fold change" ;
+    lova:sampleSize 4 ;
+    lova:isSignificant false ;
+    lova:comparisonGroup "Unsplinted" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/epi-apdms2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.xjidi.2024.100332/invivo-apdms-vs-silicone> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "Epidermal fold change, aPDMS splint" ;
+    lova:measurementType "Epidermal fold change" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.1 ;
+    qudt:unit "fold change" ;
+    lova:sampleSize 4 ;
+    lova:isSignificant false ;
+    lova:comparisonGroup "Unsplinted" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.xjidi.2024.100332/epi-apdms2-vs-unsplinted2> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "No significant difference in epidermal fold change, aPDMS vs unsplinted" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/epi-apdms2> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/epi-unsplinted2> ;
+    lova:direction "no difference" ;
+    lova:isSignificant false .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/adhesion-hairless> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.xjidi.2024.100332/apdms-adhesion-duration> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "aPDMS adhesion duration on hairless (SKH-1) mice" ;
+    lova:measurementType "Adhesion duration" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "10-14 days" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/adhesion-haired-shaved> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.xjidi.2024.100332/apdms-adhesion-duration> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "aPDMS adhesion duration on shaved haired mice" ;
+    lova:measurementType "Adhesion duration" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "8-12 days" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.xjidi.2024.100332/adhesion-shelf> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.xjidi.2024.100332/apdms-adhesion-duration> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.xjidi.2024.100332> ;
+    rdfs:label "aPDMS shelf adhesiveness duration" ;
+    lova:measurementType "Adhesion duration" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "2-4 weeks" ;
+    lova:dataSource "[TEXT]" .

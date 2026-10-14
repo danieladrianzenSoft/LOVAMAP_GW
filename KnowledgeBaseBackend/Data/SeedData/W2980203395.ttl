@@ -1,0 +1,653 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1097-brs.0000000000003279> a bibo:AcademicArticle ;
+    rdfs:label "Hegde et al., 2019 — Antimicrobial Implant Coating for Spinal Implant Infection" ;
+    dc:title "The Use of a Novel Antimicrobial Implant Coating In Vivo to Prevent Spinal Implant Infection" ;
+    dc:identifier "10.1097/brs.0000000000003279" ;
+    dc:date "2019"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/spine> ;
+    dc:creator <https://lovamap.com/ontology#author/hegde-vishal> ,
+               <https://lovamap.com/ontology#author/park-howard> ,
+               <https://lovamap.com/ontology#author/dworsky-erik> ,
+               <https://lovamap.com/ontology#author/zoller-stephen> ,
+               <https://lovamap.com/ontology#author/xi-weixian> ,
+               <https://lovamap.com/ontology#author/johansen-daniel> ,
+               <https://lovamap.com/ontology#author/loftin-amanda> ,
+               <https://lovamap.com/ontology#author/hamad-christopher> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ,
+               <https://lovamap.com/ontology#author/bernthal-nicholas> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/hegde-vishal>
+                       <https://lovamap.com/ontology#author/park-howard>
+                       <https://lovamap.com/ontology#author/dworsky-erik>
+                       <https://lovamap.com/ontology#author/zoller-stephen>
+                       <https://lovamap.com/ontology#author/xi-weixian>
+                       <https://lovamap.com/ontology#author/johansen-daniel>
+                       <https://lovamap.com/ontology#author/loftin-amanda>
+                       <https://lovamap.com/ontology#author/hamad-christopher>
+                       <https://lovamap.com/ontology#author/segura-tatiana>
+                       <https://lovamap.com/ontology#author/bernthal-nicholas> ) ;
+    dc:bibliographicCitation "Hegde et al., 2019" ;
+    lova:focusMaterial "PEG-PPS biodegradable polymer coating on stainless steel spinal implants delivering vancomycin or tigecycline to prevent S. aureus spinal implant infection in a mouse model" .
+
+<https://lovamap.com/ontology#journal/spine> a bibo:Journal ;
+    dc:title "Spine" ;
+    bibo:issn "0362-2436" .
+
+<https://lovamap.com/ontology#author/hegde-vishal> a foaf:Person ;
+    foaf:familyName "Hegde" ;
+    foaf:givenName "Vishal" ;
+    foaf:name "Vishal V. Hegde" ;
+    schema:affiliation "Department of Orthopaedic Surgery, David Geffen School of Medicine at University of California Los Angeles (UCLA), Santa Monica, CA" .
+
+<https://lovamap.com/ontology#author/park-howard> a foaf:Person ;
+    foaf:familyName "Park" ;
+    foaf:givenName "Howard" ;
+    foaf:name "Howard Y. Park" ;
+    schema:affiliation "Department of Orthopaedic Surgery, David Geffen School of Medicine at University of California Los Angeles (UCLA), Santa Monica, CA" .
+
+<https://lovamap.com/ontology#author/dworsky-erik> a foaf:Person ;
+    foaf:familyName "Dworsky" ;
+    foaf:givenName "Erik" ;
+    foaf:name "Erik M. Dworsky" ;
+    schema:affiliation "Department of Orthopaedic Surgery, David Geffen School of Medicine at University of California Los Angeles (UCLA), Santa Monica, CA" .
+
+<https://lovamap.com/ontology#author/zoller-stephen> a foaf:Person ;
+    foaf:familyName "Zoller" ;
+    foaf:givenName "Stephen" ;
+    foaf:name "Stephen D. Zoller" ;
+    schema:affiliation "Department of Orthopaedic Surgery, David Geffen School of Medicine at University of California Los Angeles (UCLA), Santa Monica, CA" .
+
+<https://lovamap.com/ontology#author/xi-weixian> a foaf:Person ;
+    foaf:familyName "Xi" ;
+    foaf:givenName "Weixian" ;
+    foaf:name "Weixian Xi" ;
+    schema:affiliation "Department of Bioengineering, University of California Los Angeles (UCLA), Los Angeles, CA" .
+
+<https://lovamap.com/ontology#author/johansen-daniel> a foaf:Person ;
+    foaf:familyName "Johansen" ;
+    foaf:givenName "Daniel" ;
+    foaf:name "Daniel Johansen" ;
+    schema:affiliation "Department of Orthopaedic Surgery, David Geffen School of Medicine at University of California Los Angeles (UCLA), Santa Monica, CA" .
+
+<https://lovamap.com/ontology#author/loftin-amanda> a foaf:Person ;
+    foaf:familyName "Loftin" ;
+    foaf:givenName "Amanda" ;
+    foaf:name "Amanda H. Loftin" ;
+    schema:affiliation "Department of Orthopaedic Surgery, David Geffen School of Medicine at University of California Los Angeles (UCLA), Santa Monica, CA" .
+
+<https://lovamap.com/ontology#author/hamad-christopher> a foaf:Person ;
+    foaf:familyName "Hamad" ;
+    foaf:givenName "Christopher" ;
+    foaf:name "Christopher David Hamad" ;
+    schema:affiliation "Department of Orthopaedic Surgery, David Geffen School of Medicine at University of California Los Angeles (UCLA), Santa Monica, CA" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" ;
+    schema:affiliation "Department of Bioengineering, University of California Los Angeles (UCLA), Los Angeles, CA" .
+
+<https://lovamap.com/ontology#author/bernthal-nicholas> a foaf:Person ;
+    foaf:familyName "Bernthal" ;
+    foaf:givenName "Nicholas" ;
+    foaf:name "Nicholas Matthew Bernthal" ;
+    schema:affiliation "Department of Orthopaedic Surgery, David Geffen School of Medicine at University of California Los Angeles (UCLA), Santa Monica, CA" .
+
+<https://lovamap.com/ontology#material/10.1097-brs.0000000000003279/peg-pps-implant> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1097-brs.0000000000003279> ;
+    rdfs:label "Stainless steel K-wire implant with PEG-PPS coating alone (no antibiotic)" ;
+    lova:particleShape "Wire (L-shaped implant)" ;
+    lova:particleMaterial "Orthopedic-grade stainless steel K-wire coated with PEG-PPS polymer" ;
+    lova:particleSizeMin 0.1 ;
+    lova:particleSizeMax 0.1 ;
+    lova:particleSizeUnit "mm" ;
+    lova:stiffnessQualitative "Rigid" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1097-brs.0000000000003279/coating-peg-pps> .
+
+<https://lovamap.com/ontology#material/10.1097-brs.0000000000003279/peg-pps-vanc-implant> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1097-brs.0000000000003279> ;
+    rdfs:label "Stainless steel K-wire implant with PEG-PPS-vancomycin coating" ;
+    lova:particleShape "Wire (L-shaped implant)" ;
+    lova:particleMaterial "Orthopedic-grade stainless steel K-wire coated with PEG-PPS polymer loaded with vancomycin" ;
+    lova:particleSizeMin 0.1 ;
+    lova:particleSizeMax 0.1 ;
+    lova:particleSizeUnit "mm" ;
+    lova:stiffnessQualitative "Rigid" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1097-brs.0000000000003279/coating-peg-pps-vanc> .
+
+<https://lovamap.com/ontology#material/10.1097-brs.0000000000003279/peg-pps-tig-implant> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1097-brs.0000000000003279> ;
+    rdfs:label "Stainless steel K-wire implant with PEG-PPS-tigecycline coating" ;
+    lova:particleShape "Wire (L-shaped implant)" ;
+    lova:particleMaterial "Orthopedic-grade stainless steel K-wire coated with PEG-PPS polymer loaded with tigecycline" ;
+    lova:particleSizeMin 0.1 ;
+    lova:particleSizeMax 0.1 ;
+    lova:particleSizeUnit "mm" ;
+    lova:stiffnessQualitative "Rigid" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1097-brs.0000000000003279/coating-peg-pps-tig> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1097-brs.0000000000003279/coating-peg-pps> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1097-brs.0000000000003279> ;
+    rdfs:label "PEG-PPS dip-coating of stainless steel K-wire (no antibiotic)" ;
+    lova:chemistry "Thiol-silane surface functionalization and PEG-PPS polymer coating" ;
+    lova:manufacturingMethod "Oxygen plasma treatment followed by silanization and wet-dry dip coating (10 cycles)" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1097-brs.0000000000003279/peg-pps> ,
+                    <https://lovamap.com/ontology#reagent/10.1097-brs.0000000000003279/silane> ,
+                    <https://lovamap.com/ontology#reagent/10.1097-brs.0000000000003279/rhodamine> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1097-brs.0000000000003279/coating-peg-pps-vanc> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1097-brs.0000000000003279> ;
+    rdfs:label "PEG-PPS-vancomycin dip-coating of stainless steel K-wire" ;
+    lova:chemistry "Thiol-silane surface functionalization and PEG-PPS polymer coating with encapsulated antibiotic" ;
+    lova:manufacturingMethod "Oxygen plasma treatment followed by silanization and wet-dry dip coating (10 cycles) in antibiotic-encapsulated PEG-PPS solution" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1097-brs.0000000000003279/peg-pps> ,
+                    <https://lovamap.com/ontology#reagent/10.1097-brs.0000000000003279/silane> ,
+                    <https://lovamap.com/ontology#reagent/10.1097-brs.0000000000003279/vancomycin> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1097-brs.0000000000003279/coating-peg-pps-tig> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1097-brs.0000000000003279> ;
+    rdfs:label "PEG-PPS-tigecycline dip-coating of stainless steel K-wire" ;
+    lova:chemistry "Thiol-silane surface functionalization and PEG-PPS polymer coating with encapsulated antibiotic" ;
+    lova:manufacturingMethod "Oxygen plasma treatment followed by silanization and wet-dry dip coating (10 cycles) in antibiotic-encapsulated PEG-PPS solution" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1097-brs.0000000000003279/peg-pps> ,
+                    <https://lovamap.com/ontology#reagent/10.1097-brs.0000000000003279/silane> ,
+                    <https://lovamap.com/ontology#reagent/10.1097-brs.0000000000003279/tigecycline> .
+
+<https://lovamap.com/ontology#reagent/10.1097-brs.0000000000003279/peg-pps> a lova:Reagent ;
+    rdfs:label "4-arm Poly(ethylene glycol)-poly(propylene sulfide) (PEG-PPS)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "6% (w/v)" ;
+    lova:reagentFunction "Biodegradable polymer coating providing passive and active (ROS-triggered) antibiotic release" .
+
+<https://lovamap.com/ontology#reagent/10.1097-brs.0000000000003279/silane> a lova:Reagent ;
+    rdfs:label "(3-mercaptopropyl) trimethoxysilane" ;
+    lova:reagentRole "other" ;
+    lova:concentration "1% (v/v)" ;
+    lova:reagentFunction "Surface silanization of stainless steel K-wire to enable polymer attachment" .
+
+<https://lovamap.com/ontology#reagent/10.1097-brs.0000000000003279/rhodamine> a lova:Reagent ;
+    rdfs:label "Rhodamine" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Model molecule for visualization of PEG-PPS coating" .
+
+<https://lovamap.com/ontology#reagent/10.1097-brs.0000000000003279/vancomycin> a lova:Reagent ;
+    rdfs:label "Vancomycin" ;
+    lova:reagentRole "other" ;
+    lova:concentration "20 mg/mL" ;
+    lova:reagentFunction "Antibiotic encapsulated in PEG-PPS coating for local delivery against S. aureus" .
+
+<https://lovamap.com/ontology#reagent/10.1097-brs.0000000000003279/tigecycline> a lova:Reagent ;
+    rdfs:label "Tigecycline" ;
+    lova:reagentRole "other" ;
+    lova:concentration "20 mg/mL" ;
+    lova:reagentFunction "Antibiotic encapsulated in PEG-PPS coating for local delivery against S. aureus" .
+
+<https://lovamap.com/ontology#experiment/10.1097-brs.0000000000003279/sem-eds-characterization> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1097-brs.0000000000003279> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1097-brs.0000000000003279/peg-pps-implant> ;
+    rdfs:label "SEM/EDS characterization of PEG-PPS coated implant" ;
+    lova:experimentCategory "Materials characterization" ;
+    lova:experimentType "Surface microstructure analysis" ;
+    lova:assayOrMethod "Scanning electron microscopy and energy dispersive spectroscopy" ;
+    lova:equipment "Nova 230 Nano SEM" .
+
+<https://lovamap.com/ontology#experiment/10.1097-brs.0000000000003279/in-vivo-bioluminescence> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1097-brs.0000000000003279> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1097-brs.0000000000003279/peg-pps-implant> ,
+                      <https://lovamap.com/ontology#material/10.1097-brs.0000000000003279/peg-pps-vanc-implant> ,
+                      <https://lovamap.com/ontology#material/10.1097-brs.0000000000003279/peg-pps-tig-implant> ;
+    rdfs:label "In vivo S. aureus bioluminescence monitoring of mouse spinal implant infection" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Infection burden monitoring" ;
+    lova:assayOrMethod "In vivo bioluminescence imaging (IVIS Lumina II)" ;
+    lova:cellType "Bioluminescent Staphylococcus aureus Xen36" ;
+    lova:cellSource "S. aureus ATCC 49525 (Wright) derivative" ;
+    lova:seedingDensity "1 × 10^3 CFU inoculum per implant" ;
+    lova:cultureDuration "Postoperative day 0 to 28" ;
+    lova:sampleSize 6 .
+
+<https://lovamap.com/ontology#experiment/10.1097-brs.0000000000003279/cfu-quantification> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1097-brs.0000000000003279> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1097-brs.0000000000003279/peg-pps-implant> ,
+                      <https://lovamap.com/ontology#material/10.1097-brs.0000000000003279/peg-pps-vanc-implant> ,
+                      <https://lovamap.com/ontology#material/10.1097-brs.0000000000003279/peg-pps-tig-implant> ;
+    rdfs:label "CFU quantification from implants and surrounding bone/soft tissue at POD 28" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Colony forming unit quantification" ;
+    lova:assayOrMethod "Implant sonication and CFU counting" ;
+    lova:cellType "Staphylococcus aureus Xen36" ;
+    lova:timePoint "Postoperative day 28" ;
+    lova:sampleSize 6 .
+
+<https://lovamap.com/ontology#outcome/10.1097-brs.0000000000003279/biolum-peg-pod0> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1097-brs.0000000000003279/in-vivo-bioluminescence> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1097-brs.0000000000003279> ;
+    rdfs:label "Bioluminescence flux — PEG-PPS — POD 0" ;
+    lova:measurementType "Mean maximum bioluminescent flux" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 5.0E4 ;
+    qudt:unit "photons/s/cm2/sr" ;
+    lova:timePoint "POD 0" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1097-brs.0000000000003279/biolum-tig-pod0> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1097-brs.0000000000003279/in-vivo-bioluminescence> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1097-brs.0000000000003279> ;
+    rdfs:label "Bioluminescence flux — PEG-PPS-Tig — POD 0" ;
+    lova:measurementType "Mean maximum bioluminescent flux" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 4.0E4 ;
+    qudt:unit "photons/s/cm2/sr" ;
+    lova:timePoint "POD 0" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1097-brs.0000000000003279/biolum-vanc-pod0> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1097-brs.0000000000003279/in-vivo-bioluminescence> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1097-brs.0000000000003279> ;
+    rdfs:label "Bioluminescence flux — PEG-PPS-Vanc — POD 0" ;
+    lova:measurementType "Mean maximum bioluminescent flux" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 4.0E4 ;
+    qudt:unit "photons/s/cm2/sr" ;
+    lova:timePoint "POD 0" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1097-brs.0000000000003279/biolum-peg-pod3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1097-brs.0000000000003279/in-vivo-bioluminescence> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1097-brs.0000000000003279> ;
+    rdfs:label "Bioluminescence flux — PEG-PPS — POD 3" ;
+    lova:measurementType "Mean maximum bioluminescent flux" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 3.5E5 ;
+    qudt:unit "photons/s/cm2/sr" ;
+    lova:timePoint "POD 3" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1097-brs.0000000000003279/biolum-tig-pod3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1097-brs.0000000000003279/in-vivo-bioluminescence> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1097-brs.0000000000003279> ;
+    rdfs:label "Bioluminescence flux — PEG-PPS-Tig — POD 3" ;
+    lova:measurementType "Mean maximum bioluminescent flux" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 3.0E5 ;
+    qudt:unit "photons/s/cm2/sr" ;
+    lova:timePoint "POD 3" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1097-brs.0000000000003279/biolum-vanc-pod3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1097-brs.0000000000003279/in-vivo-bioluminescence> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1097-brs.0000000000003279> ;
+    rdfs:label "Bioluminescence flux — PEG-PPS-Vanc — POD 3" ;
+    lova:measurementType "Mean maximum bioluminescent flux" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 6.0E4 ;
+    qudt:unit "photons/s/cm2/sr" ;
+    lova:timePoint "POD 3" ;
+    lova:isTimeSeries true ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 ;
+    lova:comparisonGroup "PEG-PPS, PEG-PPS-Tig" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1097-brs.0000000000003279/biolum-peg-pod7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1097-brs.0000000000003279/in-vivo-bioluminescence> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1097-brs.0000000000003279> ;
+    rdfs:label "Bioluminescence flux — PEG-PPS — POD 7" ;
+    lova:measurementType "Mean maximum bioluminescent flux" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 7.5E5 ;
+    qudt:unit "photons/s/cm2/sr" ;
+    lova:timePoint "POD 7" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1097-brs.0000000000003279/biolum-tig-pod7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1097-brs.0000000000003279/in-vivo-bioluminescence> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1097-brs.0000000000003279> ;
+    rdfs:label "Bioluminescence flux — PEG-PPS-Tig — POD 7" ;
+    lova:measurementType "Mean maximum bioluminescent flux" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 4.5E5 ;
+    qudt:unit "photons/s/cm2/sr" ;
+    lova:timePoint "POD 7" ;
+    lova:isTimeSeries true ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 ;
+    lova:comparisonGroup "PEG-PPS" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1097-brs.0000000000003279/biolum-vanc-pod7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1097-brs.0000000000003279/in-vivo-bioluminescence> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1097-brs.0000000000003279> ;
+    rdfs:label "Bioluminescence flux — PEG-PPS-Vanc — POD 7" ;
+    lova:measurementType "Mean maximum bioluminescent flux" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.1E5 ;
+    qudt:unit "photons/s/cm2/sr" ;
+    lova:timePoint "POD 7" ;
+    lova:isTimeSeries true ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 ;
+    lova:comparisonGroup "PEG-PPS, PEG-PPS-Tig" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1097-brs.0000000000003279/biolum-peg-pod10> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1097-brs.0000000000003279/in-vivo-bioluminescence> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1097-brs.0000000000003279> ;
+    rdfs:label "Bioluminescence flux — PEG-PPS — POD 10" ;
+    lova:measurementType "Mean maximum bioluminescent flux" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 4.8E5 ;
+    qudt:unit "photons/s/cm2/sr" ;
+    lova:timePoint "POD 10" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1097-brs.0000000000003279/biolum-tig-pod10> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1097-brs.0000000000003279/in-vivo-bioluminescence> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1097-brs.0000000000003279> ;
+    rdfs:label "Bioluminescence flux — PEG-PPS-Tig — POD 10" ;
+    lova:measurementType "Mean maximum bioluminescent flux" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.0E5 ;
+    qudt:unit "photons/s/cm2/sr" ;
+    lova:timePoint "POD 10" ;
+    lova:isTimeSeries true ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 ;
+    lova:comparisonGroup "PEG-PPS" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1097-brs.0000000000003279/biolum-vanc-pod10> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1097-brs.0000000000003279/in-vivo-bioluminescence> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1097-brs.0000000000003279> ;
+    rdfs:label "Bioluminescence flux — PEG-PPS-Vanc — POD 10" ;
+    lova:measurementType "Mean maximum bioluminescent flux" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 9.0E4 ;
+    qudt:unit "photons/s/cm2/sr" ;
+    lova:timePoint "POD 10" ;
+    lova:isTimeSeries true ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 ;
+    lova:comparisonGroup "PEG-PPS, PEG-PPS-Tig" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1097-brs.0000000000003279/biolum-peg-pod14> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1097-brs.0000000000003279/in-vivo-bioluminescence> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1097-brs.0000000000003279> ;
+    rdfs:label "Bioluminescence flux — PEG-PPS — POD 14" ;
+    lova:measurementType "Mean maximum bioluminescent flux" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.2E5 ;
+    qudt:unit "photons/s/cm2/sr" ;
+    lova:timePoint "POD 14" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1097-brs.0000000000003279/biolum-tig-pod14> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1097-brs.0000000000003279/in-vivo-bioluminescence> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1097-brs.0000000000003279> ;
+    rdfs:label "Bioluminescence flux — PEG-PPS-Tig — POD 14" ;
+    lova:measurementType "Mean maximum bioluminescent flux" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.7E5 ;
+    qudt:unit "photons/s/cm2/sr" ;
+    lova:timePoint "POD 14" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1097-brs.0000000000003279/biolum-vanc-pod14> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1097-brs.0000000000003279/in-vivo-bioluminescence> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1097-brs.0000000000003279> ;
+    rdfs:label "Bioluminescence flux — PEG-PPS-Vanc — POD 14 (below baseline)" ;
+    lova:measurementType "Mean maximum bioluminescent flux" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 6.5E4 ;
+    qudt:unit "photons/s/cm2/sr" ;
+    lova:timePoint "POD 14" ;
+    lova:isTimeSeries true ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "PEG-PPS, PEG-PPS-Tig" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1097-brs.0000000000003279/biolum-peg-pod28> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1097-brs.0000000000003279/in-vivo-bioluminescence> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1097-brs.0000000000003279> ;
+    rdfs:label "Bioluminescence flux — PEG-PPS — POD 28" ;
+    lova:measurementType "Mean maximum bioluminescent flux" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.6E5 ;
+    qudt:unit "photons/s/cm2/sr" ;
+    lova:timePoint "POD 28" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1097-brs.0000000000003279/biolum-tig-pod28> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1097-brs.0000000000003279/in-vivo-bioluminescence> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1097-brs.0000000000003279> ;
+    rdfs:label "Bioluminescence flux — PEG-PPS-Tig — POD 28" ;
+    lova:measurementType "Mean maximum bioluminescent flux" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.3E5 ;
+    qudt:unit "photons/s/cm2/sr" ;
+    lova:timePoint "POD 28" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1097-brs.0000000000003279/biolum-vanc-pod28> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1097-brs.0000000000003279/in-vivo-bioluminescence> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1097-brs.0000000000003279> ;
+    rdfs:label "Bioluminescence flux — PEG-PPS-Vanc — POD 28" ;
+    lova:measurementType "Mean maximum bioluminescent flux" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 6.5E4 ;
+    qudt:unit "photons/s/cm2/sr" ;
+    lova:timePoint "POD 28" ;
+    lova:isTimeSeries true ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "PEG-PPS, PEG-PPS-Tig" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1097-brs.0000000000003279/cfu-implant-peg> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1097-brs.0000000000003279/cfu-quantification> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1097-brs.0000000000003279> ;
+    rdfs:label "CFUs from implant — PEG-PPS group — POD 28" ;
+    lova:measurementType "Colony-forming units on implant" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.0E2 ;
+    qudt:unit "CFU" ;
+    lova:stdDev 43.0 ;
+    lova:sampleSize 6 ;
+    lova:timePoint "POD 28" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1097-brs.0000000000003279/cfu-implant-tig> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1097-brs.0000000000003279/cfu-quantification> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1097-brs.0000000000003279> ;
+    rdfs:label "CFUs from implant — PEG-PPS-Tig group — POD 28" ;
+    lova:measurementType "Colony-forming units on implant" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 8.5E1 ;
+    qudt:unit "CFU" ;
+    lova:stdDev 37.0 ;
+    lova:sampleSize 6 ;
+    lova:timePoint "POD 28" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1097-brs.0000000000003279/cfu-implant-vanc> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1097-brs.0000000000003279/cfu-quantification> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1097-brs.0000000000003279> ;
+    rdfs:label "CFUs from implant — PEG-PPS-Vanc group — POD 28" ;
+    lova:measurementType "Colony-forming units on implant" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.4E1 ;
+    qudt:unit "CFU" ;
+    lova:stdDev 15.0 ;
+    lova:sampleSize 6 ;
+    lova:timePoint "POD 28" ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 ;
+    lova:comparisonGroup "PEG-PPS, PEG-PPS-Tig" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1097-brs.0000000000003279/cfu-tissue-peg> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1097-brs.0000000000003279/cfu-quantification> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1097-brs.0000000000003279> ;
+    rdfs:label "CFUs from surrounding bone/soft tissue — PEG-PPS group — POD 28" ;
+    lova:measurementType "Colony-forming units in surrounding tissue" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 5.4E3 ;
+    qudt:unit "CFU" ;
+    lova:stdDev 1800.0 ;
+    lova:sampleSize 6 ;
+    lova:timePoint "POD 28" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1097-brs.0000000000003279/cfu-tissue-tig> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1097-brs.0000000000003279/cfu-quantification> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1097-brs.0000000000003279> ;
+    rdfs:label "CFUs from surrounding bone/soft tissue — PEG-PPS-Tig group — POD 28" ;
+    lova:measurementType "Colony-forming units in surrounding tissue" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 4.8E3 ;
+    qudt:unit "CFU" ;
+    lova:stdDev 1900.0 ;
+    lova:sampleSize 6 ;
+    lova:timePoint "POD 28" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1097-brs.0000000000003279/cfu-tissue-vanc> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1097-brs.0000000000003279/cfu-quantification> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1097-brs.0000000000003279> ;
+    rdfs:label "CFUs from surrounding bone/soft tissue — PEG-PPS-Vanc group — POD 28" ;
+    lova:measurementType "Colony-forming units in surrounding tissue" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.3E3 ;
+    qudt:unit "CFU" ;
+    lova:stdDev 900.0 ;
+    lova:sampleSize 6 ;
+    lova:timePoint "POD 28" ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 ;
+    lova:comparisonGroup "PEG-PPS, PEG-PPS-Tig" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1097-brs.0000000000003279/growth-proportion-peg> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1097-brs.0000000000003279/cfu-quantification> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1097-brs.0000000000003279> ;
+    rdfs:label "Proportion of implants/tissue with bacterial growth — PEG-PPS group" ;
+    lova:measurementType "Proportion of samples with bacterial growth" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "6 of 6 implants and surrounding bone/soft tissue demonstrated growth" ;
+    lova:sampleSize 6 ;
+    lova:timePoint "POD 28" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1097-brs.0000000000003279/growth-proportion-tig> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1097-brs.0000000000003279/cfu-quantification> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1097-brs.0000000000003279> ;
+    rdfs:label "Proportion of implants/tissue with bacterial growth — PEG-PPS-Tig group" ;
+    lova:measurementType "Proportion of samples with bacterial growth" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "6 of 6 implants and surrounding bone/soft tissue demonstrated growth" ;
+    lova:sampleSize 6 ;
+    lova:timePoint "POD 28" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1097-brs.0000000000003279/growth-proportion-vanc> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1097-brs.0000000000003279/cfu-quantification> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1097-brs.0000000000003279> ;
+    rdfs:label "Proportion of implants/tissue with bacterial growth — PEG-PPS-Vanc group" ;
+    lova:measurementType "Proportion of samples with bacterial growth" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Only 2 of 6 implants and surrounding bone/soft tissue demonstrated growth; bacterial elimination in 4 of 6 mice (66%)" ;
+    lova:sampleSize 6 ;
+    lova:timePoint "POD 28" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1097-brs.0000000000003279/cfu-implant-vanc-vs-peg> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1097-brs.0000000000003279> ;
+    rdfs:label "Implant CFUs lower in PEG-PPS-Vanc vs PEG-PPS at POD 28" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1097-brs.0000000000003279/cfu-implant-vanc> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1097-brs.0000000000003279/cfu-implant-peg> ;
+    lova:direction "lower" ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true ;
+    lova:foldChange 4.17 .
+
+<https://lovamap.com/ontology#comparison/10.1097-brs.0000000000003279/cfu-implant-vanc-vs-tig> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1097-brs.0000000000003279> ;
+    rdfs:label "Implant CFUs lower in PEG-PPS-Vanc vs PEG-PPS-Tig at POD 28" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1097-brs.0000000000003279/cfu-implant-vanc> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1097-brs.0000000000003279/cfu-implant-tig> ;
+    lova:direction "lower" ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1097-brs.0000000000003279/cfu-tissue-vanc-vs-peg> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1097-brs.0000000000003279> ;
+    rdfs:label "Tissue CFUs lower in PEG-PPS-Vanc vs PEG-PPS at POD 28" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1097-brs.0000000000003279/cfu-tissue-vanc> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1097-brs.0000000000003279/cfu-tissue-peg> ;
+    lova:direction "lower" ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true ;
+    lova:foldChange 4.15 .
+
+<https://lovamap.com/ontology#comparison/10.1097-brs.0000000000003279/cfu-tissue-vanc-vs-tig> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1097-brs.0000000000003279> ;
+    rdfs:label "Tissue CFUs lower in PEG-PPS-Vanc vs PEG-PPS-Tig at POD 28" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1097-brs.0000000000003279/cfu-tissue-vanc> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1097-brs.0000000000003279/cfu-tissue-tig> ;
+    lova:direction "lower" ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1097-brs.0000000000003279/biolum-vanc-vs-peg-pod3-28> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1097-brs.0000000000003279> ;
+    rdfs:label "Bioluminescent signal lower in PEG-PPS-Vanc vs PEG-PPS from POD 3 to 28" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1097-brs.0000000000003279/biolum-vanc-pod7> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1097-brs.0000000000003279/biolum-peg-pod7> ;
+    lova:direction "lower" ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1097-brs.0000000000003279/biolum-vanc-vs-tig-pod7> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1097-brs.0000000000003279> ;
+    rdfs:label "Bioluminescent signal lower in PEG-PPS-Vanc vs PEG-PPS-Tig at POD 7" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1097-brs.0000000000003279/biolum-vanc-pod7> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1097-brs.0000000000003279/biolum-tig-pod7> ;
+    lova:direction "lower" ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1097-brs.0000000000003279/biolum-tig-vs-peg-pod10> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1097-brs.0000000000003279> ;
+    rdfs:label "Bioluminescent signal lower in PEG-PPS-Tig vs PEG-PPS at POD 10 (POD 5-10 window)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1097-brs.0000000000003279/biolum-tig-pod10> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1097-brs.0000000000003279/biolum-peg-pod10> ;
+    lova:direction "lower" ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1097-brs.0000000000003279/biolum-tig-vs-peg-pod28> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1097-brs.0000000000003279> ;
+    rdfs:label "No difference in bioluminescent signal between PEG-PPS-Tig and PEG-PPS at POD 28" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1097-brs.0000000000003279/biolum-tig-pod28> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1097-brs.0000000000003279/biolum-peg-pod28> ;
+    lova:direction "no difference" .

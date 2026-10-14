@@ -1,0 +1,710 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> a bibo:AcademicArticle ;
+    rdfs:label "Nih et al., 2018 — Dual-function injectable angiogenic biomaterial for brain repair" ;
+    dc:title "Dual-function injectable angiogenic biomaterial for the repair of brain tissue following stroke" ;
+    dc:identifier "10.1038/s41563-018-0083-8" ;
+    dc:date "2018"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/nature-materials> ;
+    dc:creator <https://lovamap.com/ontology#author/nih-lina> ,
+               <https://lovamap.com/ontology#author/gojgini-shiva> ,
+               <https://lovamap.com/ontology#author/carmichael-stanley> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/nih-lina>
+                      <https://lovamap.com/ontology#author/gojgini-shiva>
+                      <https://lovamap.com/ontology#author/carmichael-stanley>
+                      <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    dc:bibliographicCitation "Nih et al., 2018" ;
+    lova:focusMaterial "Hyaluronic acid injectable hydrogel loaded with heparin nanoparticle-clustered VEGF for stroke cavity repair" .
+
+<https://lovamap.com/ontology#author/nih-lina> a foaf:Person ;
+    foaf:familyName "Nih" ;
+    foaf:givenName "Lina R." ;
+    foaf:name "Lina R. Nih" .
+
+<https://lovamap.com/ontology#author/gojgini-shiva> a foaf:Person ;
+    foaf:familyName "Gojgini" ;
+    foaf:givenName "Shiva" ;
+    foaf:name "Shiva Gojgini" .
+
+<https://lovamap.com/ontology#author/carmichael-stanley> a foaf:Person ;
+    foaf:familyName "Carmichael" ;
+    foaf:givenName "Stanley Thomas" ;
+    foaf:name "Stanley Thomas Carmichael" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" .
+
+<https://lovamap.com/ontology#journal/nature-materials> a bibo:Journal ;
+    dc:title "Nature Materials" ;
+    bibo:issn "1476-1122" .
+
+<https://lovamap.com/ontology#material/10.1038-s41563-018-0083-8/empty-gel> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    rdfs:label "Empty gel (RGD-functionalized HA hydrogel, no VEGF/heparin)" ;
+    lova:particleMaterial "Hyaluronic acid" ;
+    lova:surfaceModification "RGD-functionalized" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1038-s41563-018-0083-8/ha-hydrogel> .
+
+<https://lovamap.com/ontology#material/10.1038-s41563-018-0083-8/gel-vs> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    rdfs:label "HA hydrogel loaded with 200 ng soluble VEGF (Gel + Vs)" ;
+    lova:particleMaterial "Hyaluronic acid + soluble VEGF" ;
+    lova:surfaceModification "RGD-functionalized" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1038-s41563-018-0083-8/ha-hydrogel> .
+
+<https://lovamap.com/ontology#material/10.1038-s41563-018-0083-8/gel-nh> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    rdfs:label "HA hydrogel with 1 μg heparin nanoparticles (Gel + nH)" ;
+    lova:particleMaterial "Heparin nanoparticles" ;
+    lova:surfaceModification "RGD-functionalized" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1038-s41563-018-0083-8/heparin-nanoparticle-vegf> .
+
+<https://lovamap.com/ontology#material/10.1038-s41563-018-0083-8/gel-lcv> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    rdfs:label "HA hydrogel with 1 μg nH loaded with 200 ng VEGF, low cluster (Gel + lcV)" ;
+    lova:particleMaterial "Heparin nanoparticles + VEGF (low clustering density)" ;
+    lova:surfaceModification "RGD-functionalized" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1038-s41563-018-0083-8/heparin-nanoparticle-vegf> .
+
+<https://lovamap.com/ontology#material/10.1038-s41563-018-0083-8/gel-hcv> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    rdfs:label "HA hydrogel with 0.01 μg nH loaded with VEGF (high cluster) + 0.99 μg unloaded nH (Gel + hcV)" ;
+    lova:particleMaterial "Heparin nanoparticles + VEGF (high clustering density) + naked heparin nanoparticles" ;
+    lova:surfaceModification "RGD-functionalized" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1038-s41563-018-0083-8/heparin-nanoparticle-vegf> .
+
+<https://lovamap.com/ontology#material/10.1038-s41563-018-0083-8/gel-hcv-endostatin> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    rdfs:label "Gel + hcV with daily endostatin injection (days 5-15)" ;
+    lova:particleMaterial "Heparin nanoparticles + VEGF (high clustering density) + endostatin" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1038-s41563-018-0083-8/heparin-nanoparticle-vegf> .
+
+<https://lovamap.com/ontology#material/10.1038-s41563-018-0083-8/gel-hcv-cno> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    rdfs:label "Gel + hcV with AAV5-hM4D DREADD and CNO neuronal silencing" ;
+    lova:particleMaterial "Heparin nanoparticles + VEGF (high clustering density)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1038-s41563-018-0083-8/heparin-nanoparticle-vegf> .
+
+<https://lovamap.com/ontology#material/10.1038-s41563-018-0083-8/gel-hcv-minus-nh> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    rdfs:label "Gel + (hcV-nH): high cluster VEGF particles without naked heparin particles" ;
+    lova:particleMaterial "Heparin nanoparticles fully loaded with high-cluster VEGF (no naked particles)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1038-s41563-018-0083-8/heparin-nanoparticle-vegf> .
+
+<https://lovamap.com/ontology#material/10.1038-s41563-018-0083-8/gel-lcv-plus-nh> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    rdfs:label "Gel + (lcV+nH): low cluster VEGF with additional naked heparin particles" ;
+    lova:particleMaterial "Heparin nanoparticles + VEGF (low clustering density) + added naked heparin nanoparticles" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1038-s41563-018-0083-8/heparin-nanoparticle-vegf> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1038-s41563-018-0083-8/ha-hydrogel> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    rdfs:label "In situ gelling RGD-functionalized hyaluronic acid hydrogel (hyaluronidase and MMP degradable)" ;
+    lova:chemistry "Hyaluronidase- and MMP-degradable crosslinking" ;
+    lova:manufacturingMethod "In situ gelation after intracranial injection (6 μL, 30-gauge needle, 1 μL/min)" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1038-s41563-018-0083-8/hyaluronic-acid> ,
+                     <https://lovamap.com/ontology#reagent/10.1038-s41563-018-0083-8/rgd-peptide> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1038-s41563-018-0083-8/heparin-nanoparticle-vegf> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    rdfs:label "Heparin nanoparticle synthesis and VEGF clustering via radical polymerization" ;
+    lova:chemistry "Radical polymerization (UV 365 nm)" ;
+    lova:manufacturingMethod "Water-in-oil emulsion (Tween-80/Span-80, 8% HLB) and sonication" ;
+    lova:annealingConditions "UV light 365 nm, 10 minutes" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1038-s41563-018-0083-8/heparin> ,
+                     <https://lovamap.com/ontology#reagent/10.1038-s41563-018-0083-8/abh> ,
+                     <https://lovamap.com/ontology#reagent/10.1038-s41563-018-0083-8/apma> ,
+                     <https://lovamap.com/ontology#reagent/10.1038-s41563-018-0083-8/tween80> ,
+                     <https://lovamap.com/ontology#reagent/10.1038-s41563-018-0083-8/span80> ,
+                     <https://lovamap.com/ontology#reagent/10.1038-s41563-018-0083-8/vegf165> .
+
+<https://lovamap.com/ontology#reagent/10.1038-s41563-018-0083-8/hyaluronic-acid> a lova:Reagent ;
+    rdfs:label "Hyaluronic acid (60,000 Da)" ;
+    lova:reagentRole "monomer" ;
+    lova:molecularWeight "60,000 Da" ;
+    lova:supplier "Genzyme, Cambridge, MA" ;
+    lova:reagentFunction "Hydrogel backbone, hyaluronidase- and MMP-degradable" .
+
+<https://lovamap.com/ontology#reagent/10.1038-s41563-018-0083-8/heparin> a lova:Reagent ;
+    rdfs:label "Heparin (porcine intestinal mucosa)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Alfa Aesar" ;
+    lova:reagentFunction "Growth factor binding / nanoparticle backbone" .
+
+<https://lovamap.com/ontology#reagent/10.1038-s41563-018-0083-8/abh> a lova:Reagent ;
+    rdfs:label "p-azidobenzyl hydrazide (ABH)" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Heparin modification for photo-crosslinking" .
+
+<https://lovamap.com/ontology#reagent/10.1038-s41563-018-0083-8/apma> a lova:Reagent ;
+    rdfs:label "N-(3-Aminopropyl) methacrylamide" ;
+    lova:reagentRole "crosslinker" ;
+    lova:concentration "27 molar excess" ;
+    lova:reagentFunction "Conjugation to remaining carboxylic acid groups on heparin via EDC coupling" .
+
+<https://lovamap.com/ontology#reagent/10.1038-s41563-018-0083-8/tween80> a lova:Reagent ;
+    rdfs:label "Tween-80" ;
+    lova:reagentRole "surfactant" ;
+    lova:reagentFunction "Water-in-oil emulsion formation for nanoparticle synthesis" .
+
+<https://lovamap.com/ontology#reagent/10.1038-s41563-018-0083-8/span80> a lova:Reagent ;
+    rdfs:label "Span-80 (8% HLB)" ;
+    lova:reagentRole "surfactant" ;
+    lova:concentration "8% HLB" ;
+    lova:reagentFunction "Water-in-oil emulsion formation for nanoparticle synthesis" .
+
+<https://lovamap.com/ontology#reagent/10.1038-s41563-018-0083-8/vegf165> a lova:Reagent ;
+    rdfs:label "VEGF165 (Telbermin)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "20 μg/ml" ;
+    lova:supplier "Genentech" ;
+    lova:reagentFunction "Angiogenic growth factor, clustered onto heparin nanoparticles" .
+
+<https://lovamap.com/ontology#reagent/10.1038-s41563-018-0083-8/rgd-peptide> a lova:Reagent ;
+    rdfs:label "RGD adhesion peptide" ;
+    lova:reagentRole "peptide" ;
+    lova:concentration "1.17 mole RGD-reacting HA : 1 mole RGD" ;
+    lova:reagentFunction "Cell adhesion, clustered ligand presentation" .
+
+<https://lovamap.com/ontology#reagent/10.1038-s41563-018-0083-8/brdu> a lova:Reagent ;
+    rdfs:label "5-bromo-2'-deoxyuridine (BrdU)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "100 mg/kg" ;
+    lova:supplier "Sigma, St. Louis, MO" ;
+    lova:reagentFunction "Cell proliferation marker" .
+
+<https://lovamap.com/ontology#reagent/10.1038-s41563-018-0083-8/endostatin> a lova:Reagent ;
+    rdfs:label "Recombinant mouse Endostatin" ;
+    lova:reagentRole "other" ;
+    lova:concentration "100 μg/ml" ;
+    lova:supplier "Alpha Diagnostic, San Antonio, TX" ;
+    lova:reagentFunction "VEGF-independent angiogenesis inhibitor" .
+
+<https://lovamap.com/ontology#reagent/10.1038-s41563-018-0083-8/cno> a lova:Reagent ;
+    rdfs:label "Clozapine-N-oxide (CNO)" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "DREADD ligand for neuronal silencing" .
+
+<https://lovamap.com/ontology#reagent/10.1038-s41563-018-0083-8/rose-bengal> a lova:Reagent ;
+    rdfs:label "Rose Bengal" ;
+    lova:reagentRole "other" ;
+    lova:concentration "10 mg/ml, i.p." ;
+    lova:reagentFunction "Light-sensitive dye for photothrombotic stroke induction" .
+
+<https://lovamap.com/ontology#experiment/10.1038-s41563-018-0083-8/vascular-density-2wk> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s41563-018-0083-8/empty-gel> ,
+                       <https://lovamap.com/ontology#material/10.1038-s41563-018-0083-8/gel-vs> ,
+                       <https://lovamap.com/ontology#material/10.1038-s41563-018-0083-8/gel-nh> ,
+                       <https://lovamap.com/ontology#material/10.1038-s41563-018-0083-8/gel-lcv> ,
+                       <https://lovamap.com/ontology#material/10.1038-s41563-018-0083-8/gel-hcv> ;
+    rdfs:label "Vascular density (Glut-1 Area %) in infarct and peri-infarct, day 10 post-transplant" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immunohistochemistry quantification" ;
+    lova:assayOrMethod "Glut-1 immunostaining" ;
+    lova:cellSource "Mouse brain (distal MCAo stroke)" ;
+    lova:timePoint "Day 10 post-transplant / 2 weeks post-stroke" ;
+    lova:sampleSize 8 .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-018-0083-8/glut1-infarct-hcv> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-018-0083-8/vascular-density-2wk> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    rdfs:label "Glut-1 Area (%) in infarct, Gel + hcV, day 10" ;
+    lova:measurementType "Vascular density (Glut-1 Area %)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "~40% (highest of all groups, ****)" ;
+    lova:scope "Regional" ;
+    lova:timePoint "Day 10" ;
+    lova:comparisonGroup "No gel, Empty gel, Gel+Vs, Gel+nH, Gel+lcV" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-018-0083-8/glut1-infarct-lcv> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-018-0083-8/vascular-density-2wk> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    rdfs:label "Glut-1 Area (%) in infarct, Gel + lcV, day 10" ;
+    lova:measurementType "Vascular density (Glut-1 Area %)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "~18% (lower than hcV)" ;
+    lova:scope "Regional" ;
+    lova:timePoint "Day 10" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-s41563-018-0083-8/glut1-hcv-vs-lcv-infarct> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    rdfs:label "Infarct vascular density (Glut-1 Area) higher in Gel+hcV than Gel+lcV at day 10" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-s41563-018-0083-8/glut1-infarct-hcv> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-s41563-018-0083-8/glut1-infarct-lcv> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1038-s41563-018-0083-8/pericyte-coverage-2wk> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s41563-018-0083-8/gel-hcv> ;
+    rdfs:label "Pericyte vascular coverage (PDGFR-β Area %), day 10" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immunohistochemistry quantification" ;
+    lova:assayOrMethod "PDGFR-β immunostaining" ;
+    lova:timePoint "Day 10" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-018-0083-8/pdgfrb-infarct-hcv> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-018-0083-8/pericyte-coverage-2wk> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    rdfs:label "PDGFR-β Area (%) in infarct, Gel+hcV, day 10" ;
+    lova:measurementType "Pericyte vascular coverage (PDGFR-β Area %)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "~45% (highest of all groups, ****)" ;
+    lova:scope "Regional" ;
+    lova:timePoint "Day 10" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1038-s41563-018-0083-8/vascular-growth-16wk> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s41563-018-0083-8/gel-hcv> ,
+                       <https://lovamap.com/ontology#material/10.1038-s41563-018-0083-8/gel-vs> ,
+                       <https://lovamap.com/ontology#material/10.1038-s41563-018-0083-8/gel-lcv> ,
+                       <https://lovamap.com/ontology#material/10.1038-s41563-018-0083-8/empty-gel> ;
+    rdfs:label "Long-term vascular morphology and growth, 16 weeks post-stroke" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Vascular morphology quantification" ;
+    lova:assayOrMethod "Glut-1 immunostaining" ;
+    lova:timePoint "16 weeks" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-018-0083-8/contralateral-glut1-area> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-018-0083-8/vascular-growth-16wk> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    rdfs:label "Contralateral reference Glut-1 Area (%)" ;
+    lova:measurementType "Vascular density (Glut-1 Area %)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 7.99 ;
+    qudt:unit "%" ;
+    lova:scope "Regional" ;
+    lova:timePoint "16 weeks" ;
+    lova:comparisonGroup "Contralateral hemisphere" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-018-0083-8/contralateral-vessel-tortuosity> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-018-0083-8/vascular-growth-16wk> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    rdfs:label "Contralateral reference vessel tortuosity" ;
+    lova:measurementType "Vessel tortuosity" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.21 ;
+    qudt:unit "ratio" ;
+    lova:timePoint "16 weeks" ;
+    lova:comparisonGroup "Contralateral hemisphere" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-018-0083-8/contralateral-vessel-diameter> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-018-0083-8/vascular-growth-16wk> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    rdfs:label "Contralateral reference vessel diameter" ;
+    lova:measurementType "Vessel diameter" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 7.28 ;
+    qudt:unit "μm" ;
+    lova:timePoint "16 weeks" ;
+    lova:comparisonGroup "Contralateral hemisphere" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-018-0083-8/contralateral-ramification> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-018-0083-8/vascular-growth-16wk> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    rdfs:label "Contralateral reference number of vessel ramifications" ;
+    lova:measurementType "Number of vessel ramifications" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.91 ;
+    qudt:unit "branches/vessel" ;
+    lova:timePoint "16 weeks" ;
+    lova:comparisonGroup "Contralateral hemisphere" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-018-0083-8/vessel-diameter-hcv> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-018-0083-8/vascular-growth-16wk> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    rdfs:label "Vessel diameter, Gel+hcV, 16 weeks" ;
+    lova:measurementType "Vessel diameter" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Close to contralateral value, significantly reduced vs Vs" ;
+    lova:timePoint "16 weeks" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-018-0083-8/vessel-diameter-vs> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-018-0083-8/vascular-growth-16wk> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    rdfs:label "Vessel diameter, Gel+Vs, 16 weeks" ;
+    lova:measurementType "Vessel diameter" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Larger diameter than hcV condition" ;
+    lova:timePoint "16 weeks" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-s41563-018-0083-8/vessel-diameter-hcv-vs-vs> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    rdfs:label "Vessel diameter lower in Gel+hcV vs Gel+Vs, 16 weeks" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-s41563-018-0083-8/vessel-diameter-hcv> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-s41563-018-0083-8/vessel-diameter-vs> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1038-s41563-018-0083-8/axonogenesis-nf200> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s41563-018-0083-8/gel-hcv> ,
+                       <https://lovamap.com/ontology#material/10.1038-s41563-018-0083-8/empty-gel> ,
+                       <https://lovamap.com/ontology#material/10.1038-s41563-018-0083-8/gel-vs> ,
+                       <https://lovamap.com/ontology#material/10.1038-s41563-018-0083-8/gel-lcv> ;
+    rdfs:label "Axonal neurofilament (NF200) quantification in and around stroke site, 2 and 16 weeks" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immunohistochemistry quantification" ;
+    lova:assayOrMethod "NF200 immunostaining" ;
+    lova:timePoint "2 weeks, 16 weeks" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-018-0083-8/nf200-infarct-hcv-16wk> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-018-0083-8/axonogenesis-nf200> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    rdfs:label "NF200 Area (%) in infarct, Gel+hcV, 16 weeks" ;
+    lova:measurementType "Axonal area (NF200 Area %)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Higher than contralateral reference value (18.29%), ****" ;
+    lova:timePoint "16 weeks" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "Contralateral hemisphere" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-018-0083-8/contralateral-nf200-infarct> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-018-0083-8/axonogenesis-nf200> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    rdfs:label "Contralateral reference NF200 Area (%), infarct region" ;
+    lova:measurementType "Axonal area (NF200 Area %)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 18.29 ;
+    qudt:unit "%" ;
+    lova:timePoint "16 weeks" ;
+    lova:comparisonGroup "Contralateral hemisphere" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-s41563-018-0083-8/nf200-hcv-vs-contralateral> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    rdfs:label "NF200 area in Gel+hcV infarct higher than contralateral homologous cortex, 16 weeks" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-s41563-018-0083-8/nf200-infarct-hcv-16wk> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-s41563-018-0083-8/contralateral-nf200-infarct> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-018-0083-8/penetration-angle-contralateral> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-018-0083-8/axonogenesis-nf200> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    rdfs:label "Contralateral reference NF200 penetration angle" ;
+    lova:measurementType "Axonal penetration angle" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 73.95 ;
+    qudt:unit "degrees" ;
+    lova:timePoint "16 weeks" ;
+    lova:comparisonGroup "Contralateral hemisphere" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1038-s41563-018-0083-8/vascular-axonal-association-16wk> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s41563-018-0083-8/gel-hcv> ,
+                       <https://lovamap.com/ontology#material/10.1038-s41563-018-0083-8/gel-hcv-endostatin> ;
+    rdfs:label "Co-staining of vessels (Glut-1) and axons (NF200) and endostatin blockade, 16 weeks" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Co-localization / immunohistochemistry quantification" ;
+    lova:assayOrMethod "Glut-1 / NF200 double immunostaining" ;
+    lova:timePoint "16 weeks" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-018-0083-8/nf200-on-vessels-hcv> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-018-0083-8/vascular-axonal-association-16wk> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    rdfs:label "Axons covering vessel surface (%), Gel+hcV" ;
+    lova:measurementType "NF200 area on vessel surface (%)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Statistically higher percent of NF200 in direct contact with vessels vs other groups" ;
+    lova:timePoint "16 weeks" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-018-0083-8/nf200-around-vessels-endostatin> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-018-0083-8/vascular-axonal-association-16wk> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    rdfs:label "Axons around vessels (NF200 area %), Gel+hcV+Endostatin" ;
+    lova:measurementType "NF200 area within 50 μm of vessels (%)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Significantly reduced compared to Gel+hcV ($$$, p<0.001)" ;
+    lova:timePoint "16 weeks" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-018-0083-8/nf200-around-vessels-hcv> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-018-0083-8/vascular-axonal-association-16wk> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    rdfs:label "Axons around vessels (NF200 area %), Gel+hcV" ;
+    lova:measurementType "NF200 area within 50 μm of vessels (%)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Significantly higher than all other groups (****)" ;
+    lova:timePoint "16 weeks" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-s41563-018-0083-8/nf200-endostatin-vs-hcv> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    rdfs:label "NF200 around vessels reduced with endostatin blockade vs Gel+hcV, 16 weeks" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-s41563-018-0083-8/nf200-around-vessels-endostatin> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-s41563-018-0083-8/nf200-around-vessels-hcv> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1038-s41563-018-0083-8/behavioral-tests> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s41563-018-0083-8/empty-gel> ,
+                       <https://lovamap.com/ontology#material/10.1038-s41563-018-0083-8/gel-vs> ,
+                       <https://lovamap.com/ontology#material/10.1038-s41563-018-0083-8/gel-lcv> ,
+                       <https://lovamap.com/ontology#material/10.1038-s41563-018-0083-8/gel-hcv> ;
+    rdfs:label "Post-stroke neurological recovery: Cylinder, Grid, Pasta tests over 16 weeks" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Behavioral testing" ;
+    lova:assayOrMethod "Cylinder test, Grid test, Pasta handling test" ;
+    lova:cultureDuration "16 weeks" ;
+    lova:sampleSize 12 .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-018-0083-8/cylinder-score-hcv> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-018-0083-8/behavioral-tests> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    rdfs:label "Cylinder test asymmetry score, Gel+hcV, week 12-16" ;
+    lova:measurementType "Contralateral forelimb use (asymmetry score)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Significantly increased contralateral forelimb use beginning week 12" ;
+    lova:timePoint "Week 12-16" ;
+    lova:isSignificant true ;
+    lova:sampleSize 12 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-018-0083-8/pasta-time-hcv> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-018-0083-8/behavioral-tests> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    rdfs:label "Pasta handling test time per piece, Gel+hcV, weeks 8-16" ;
+    lova:measurementType "Time to manipulate/eat a piece of pasta (seconds)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Significantly reduced time weeks 8 to 16" ;
+    lova:timePoint "Week 8-16" ;
+    lova:isSignificant true ;
+    lova:sampleSize 12 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1038-s41563-018-0083-8/endostatin-blockade> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s41563-018-0083-8/gel-hcv-endostatin> ,
+                       <https://lovamap.com/ontology#material/10.1038-s41563-018-0083-8/gel-hcv> ;
+    rdfs:label "Endostatin-mediated angiogenesis blockade and behavioral/axonal effects" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Pharmacological blockade" ;
+    lova:assayOrMethod "Endostatin subcutaneous injection, days 5-15" ;
+    lova:temperature "Subcutaneous injection" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-018-0083-8/cylinder-score-hcv-endostatin> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-018-0083-8/endostatin-blockade> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    rdfs:label "Cylinder test asymmetry score, Gel+hcV+Endostatin" ;
+    lova:measurementType "Contralateral forelimb use (asymmetry score)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Significantly decelerated recovery compared with hcV" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-s41563-018-0083-8/cylinder-endostatin-vs-hcv> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    rdfs:label "Cylinder test recovery lower with endostatin blockade vs Gel+hcV" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-s41563-018-0083-8/cylinder-score-hcv-endostatin> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-s41563-018-0083-8/cylinder-score-hcv> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1038-s41563-018-0083-8/dreadd-cno-silencing> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s41563-018-0083-8/gel-hcv-cno> ;
+    rdfs:label "AAV5-hM4D DREADD / CNO neuronal silencing and behavioral effect" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Chemogenetic neuronal silencing" ;
+    lova:assayOrMethod "AAV5 hM4D DREADD injection (week 13), CNO i.p. (week 16)" ;
+    lova:timePoint "Week 13, Week 16" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-018-0083-8/behavior-cno-silencing> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-018-0083-8/dreadd-cno-silencing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    rdfs:label "Behavioral recovery worsened after CNO-induced silencing of axonal projections" ;
+    lova:measurementType "Behavioral recovery (combined tests)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Improved motor functions lost, deficit worsened after CNO administration" ;
+    lova:timePoint "Week 16" ;
+    lova:isSignificant true ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1038-s41563-018-0083-8/hcv-nh-vs-lcv-nh-2wk> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s41563-018-0083-8/gel-hcv-minus-nh> ,
+                       <https://lovamap.com/ontology#material/10.1038-s41563-018-0083-8/gel-lcv-plus-nh> ,
+                       <https://lovamap.com/ontology#material/10.1038-s41563-018-0083-8/gel-hcv> ,
+                       <https://lovamap.com/ontology#material/10.1038-s41563-018-0083-8/empty-gel> ;
+    rdfs:label "Role of naked heparin particles: hcV-nH vs lcV+nH comparison, 2 weeks post-stroke" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immunohistochemistry quantification" ;
+    lova:assayOrMethod "Glut-1, GFAP, Iba-1, NF200 immunostaining" ;
+    lova:timePoint "2 weeks" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-018-0083-8/microglia-area-hcv-nh> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-018-0083-8/hcv-nh-vs-lcv-nh-2wk> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    rdfs:label "Microglial (Iba-1) area, Gel+(hcV-nH), 2 weeks" ;
+    lova:measurementType "Microglial area (Iba-1 Area %)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Significantly increased microglia area compared to hcV, worse than empty gel control" ;
+    lova:timePoint "2 weeks" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-018-0083-8/microglia-area-hcv> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-018-0083-8/hcv-nh-vs-lcv-nh-2wk> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    rdfs:label "Microglial (Iba-1) area, Gel+hcV, 2 weeks" ;
+    lova:measurementType "Microglial area (Iba-1 Area %)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Reduced microglial area" ;
+    lova:timePoint "2 weeks" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-s41563-018-0083-8/microglia-hcv-nh-vs-hcv> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    rdfs:label "Microglial area higher in Gel+(hcV-nH) vs Gel+hcV, 2 weeks" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-s41563-018-0083-8/microglia-area-hcv-nh> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-s41563-018-0083-8/microglia-area-hcv> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-018-0083-8/axonal-growth-lcv-nh> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-018-0083-8/hcv-nh-vs-lcv-nh-2wk> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    rdfs:label "Axonal area (NF200), Gel+(lcV+nH), 2 weeks" ;
+    lova:measurementType "Axonal area (NF200 Area %)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "No axonal growth promoted" ;
+    lova:timePoint "2 weeks" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#experiment/10.1038-s41563-018-0083-8/cytokine-analysis> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s41563-018-0083-8/gel-nh> ;
+    rdfs:label "Multiplex ELISA cytokine analysis of brain infarct core, 3 and 10 days post-transplant" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cytokine secretion" ;
+    lova:assayOrMethod "Multiplex ELISA (Bio-Plex)" ;
+    lova:timePoint "Day 3, Day 10" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-018-0083-8/tnf-alpha-day3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-018-0083-8/cytokine-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    rdfs:label "TNF-α concentration decrease, Gel+nH, day 3" ;
+    lova:measurementType "TNF-α concentration" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Significantly decreased brain TNF-α" ;
+    lova:pValue 0.0076 ;
+    lova:isSignificant true ;
+    lova:timePoint "Day 3" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1038-s41563-018-0083-8/vegfr2-phosphorylation> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s41563-018-0083-8/gel-hcv> ,
+                       <https://lovamap.com/ontology#material/10.1038-s41563-018-0083-8/gel-lcv> ;
+    rdfs:label "VEGFR-2 phosphorylation assay in HUVECs exposed to VEGF clusters" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Signaling assay" ;
+    lova:assayOrMethod "Western blot phospho-VEGFR2 (Y1175, Y1214)" ;
+    lova:cellType "HUVEC" ;
+    lova:cellSource "Human Umbilical Vein Endothelial Cells (LONZA, CC-2519)" ;
+    lova:cultureDuration "5 min exposure" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-018-0083-8/vegfr2-phospho-hcv> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-018-0083-8/vegfr2-phosphorylation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    rdfs:label "Phosphorylation at Y1175/Y1214, hcV condition" ;
+    lova:measurementType "VEGFR-2 phosphorylation (Y1175, Y1214)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Statistically higher phosphorylation for hcV than mcV or lcV (p<0.05)" ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1038-s41563-018-0083-8/huvec-proliferation> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s41563-018-0083-8/gel-hcv> ,
+                       <https://lovamap.com/ontology#material/10.1038-s41563-018-0083-8/gel-lcv> ;
+    rdfs:label "Endothelial cell proliferation assay with different VEGF clustering densities" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Proliferation assay" ;
+    lova:assayOrMethod "CyQUANT Cell Proliferation Assay Kit" ;
+    lova:cellType "HUVEC" ;
+    lova:cultureDuration "2 days" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-018-0083-8/huvec-proliferation-outcome> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-018-0083-8/huvec-proliferation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    rdfs:label "Endothelial cell proliferation across VEGF clustering densities" ;
+    lova:measurementType "Relative cell proliferation (fluorescence)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "All VEGF clustering densities promoted the same level of endothelial cell proliferation" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1038-s41563-018-0083-8/tail-vein-bleeding> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s41563-018-0083-8/gel-hcv> ;
+    rdfs:label "Tail vein bleeding assay for heparin vs heparin nanoparticle anticoagulant activity" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Coagulation assay" ;
+    lova:assayOrMethod "Tail vein bleeding time" ;
+    lova:cellSource "C57BL/6 male mice, 8-12 weeks (Jackson Laboratories)" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-018-0083-8/bleeding-time-heparin-nanoparticles> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-018-0083-8/tail-vein-bleeding> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    rdfs:label "Tail vein bleeding time with heparin nanoparticles" ;
+    lova:measurementType "Tail vein bleeding time" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Reduced blood coagulation reduction ability compared to native heparin" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-018-0083-8/bda-retrograde-distance> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-018-0083-8/vascular-axonal-association-16wk> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    rdfs:label "Distance of retrogradely BDA-traced neuronal cell bodies from injection site" ;
+    lova:measurementType "Retrograde axonal tracing distance" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 800.0 ;
+    qudt:unit "μm" ;
+    lova:valueString "Up to 800 μm distant" ;
+    lova:timePoint "16 weeks" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-018-0083-8/infarct-size-vs> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-018-0083-8/vascular-density-2wk> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-018-0083-8> ;
+    rdfs:label "Infarct size increase, Gel+Vs condition, 2 weeks" ;
+    lova:measurementType "Infarct size" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Significantly increased infarct size, maintained at 16 weeks" ;
+    lova:isSignificant true ;
+    lova:timePoint "2 weeks, 16 weeks" ;
+    lova:dataSource "[TEXT]" .

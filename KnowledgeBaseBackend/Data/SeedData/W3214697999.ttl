@@ -1,0 +1,859 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1002-adhm.202101867> a bibo:AcademicArticle ;
+    rdfs:label "Kurt & Segura, 2021 — Nucleic Acid Delivery from Granular Hydrogels" ;
+    dc:title "Nucleic Acid Delivery from Granular Hydrogels" ;
+    dc:identifier "10.1002/adhm.202101867" ;
+    dc:date "2021"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/advanced-healthcare-materials> ;
+    dc:creator <https://lovamap.com/ontology#author/kurt-evan> , <https://lovamap.com/ontology#author/segura-tatiana> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/kurt-evan> <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    dc:bibliographicCitation "Kurt & Segura, 2021" ;
+    lova:focusMaterial "DNA/PEI polyplexes coated with hyaluronic acid (unmodified, acrylamide, or norbornene-modified), lyophilized and loaded into shredded hydrogel microparticles (sHMP) annealed into Flowable Linked Irregular Particle (FLIP) granular hydrogel scaffolds for sustained nucleic acid delivery" .
+
+<https://lovamap.com/ontology#author/kurt-evan> a foaf:Person ;
+    foaf:familyName "Kurt" ;
+    foaf:givenName "Evan" ;
+    foaf:name "Evan Kurt" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" .
+
+<https://lovamap.com/ontology#journal/advanced-healthcare-materials> a bibo:Journal ;
+    dc:title "Advanced Healthcare Materials" ;
+    bibo:issn "2192-2640" .
+
+###############################################
+# MATERIALS
+###############################################
+
+<https://lovamap.com/ontology#material/10.1002-adhm.202101867/dna-pei-particle> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    rdfs:label "DNA/PEI polyplex (uncoated)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Linear PEI (L-PEI) condensed plasmid DNA" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adhm.202101867/dna-pei-complexation> .
+
+<https://lovamap.com/ontology#material/10.1002-adhm.202101867/ha-coated-particle> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    rdfs:label "HA-coated DNA/PEI particle (unmodified HA)" ;
+    lova:particleMaterial "Unmodified hyaluronic acid coating" ;
+    lova:surfaceModification "HA coating" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adhm.202101867/ha-coating> .
+
+<https://lovamap.com/ontology#material/10.1002-adhm.202101867/haac-coated-particle> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    rdfs:label "HA-AC coated DNA/PEI particle" ;
+    lova:particleMaterial "HA-acrylamide (HA-AC) coating" ;
+    lova:surfaceModification "HA-AC coating" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adhm.202101867/ha-coating> .
+
+<https://lovamap.com/ontology#material/10.1002-adhm.202101867/hanb-coated-particle> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    rdfs:label "HA-NB coated DNA/PEI particle (optimized, w/w 5, 87.5 μg sucrose/μg DNA)" ;
+    lova:particleMaterial "HA-norbornene (HA-NB) coating" ;
+    lova:surfaceModification "HA-NB coating" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adhm.202101867/ha-coating> .
+
+<https://lovamap.com/ontology#material/10.1002-adhm.202101867/bulk-haac-hydrogel> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    rdfs:label "Bulk 3.5 wt% HA-AC hydrogel (nanoporous)" ;
+    lova:particleMaterial "HA-AC" ;
+    lova:reportedPorosity 0.0 ;
+    lova:scaffoldDimensions "35 μL, 1 mm thick, cast between Sigmacoted glass slides" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adhm.202101867/bulk-gel-formation> .
+
+<https://lovamap.com/ontology#material/10.1002-adhm.202101867/shmp-40um> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    rdfs:label "Shredded hydrogel microparticles (sHMP), 40 μm sieve" ;
+    lova:particleShape "Irregular" ;
+    lova:particleMaterial "HA-AC" ;
+    lova:particleSizeMax 40.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adhm.202101867/shmp-sieving> .
+
+<https://lovamap.com/ontology#material/10.1002-adhm.202101867/shmp-70um> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    rdfs:label "Shredded hydrogel microparticles (sHMP), 70 μm sieve" ;
+    lova:particleShape "Irregular" ;
+    lova:particleMaterial "HA-AC" ;
+    lova:particleSizeMax 70.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adhm.202101867/shmp-sieving> .
+
+<https://lovamap.com/ontology#material/10.1002-adhm.202101867/shmp-100um> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    rdfs:label "Shredded hydrogel microparticles (sHMP), 100 μm sieve" ;
+    lova:particleShape "Irregular" ;
+    lova:particleMaterial "HA-AC" ;
+    lova:particleSizeMax 100.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adhm.202101867/shmp-sieving> .
+
+<https://lovamap.com/ontology#material/10.1002-adhm.202101867/flip-40um> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    rdfs:label "FLIP scaffold (annealed, 40 μm sHMP)" ;
+    lova:particleShape "Irregular" ;
+    lova:particleMaterial "HA-AC" ;
+    lova:particleSizeMax 40.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:packingConfiguration "Random, annealed, jammed" ;
+    lova:reportedPorosity 0.159 ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adhm.202101867/flip-annealing> .
+
+<https://lovamap.com/ontology#material/10.1002-adhm.202101867/flip-70um> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    rdfs:label "FLIP scaffold (annealed, 70 μm sHMP)" ;
+    lova:particleShape "Irregular" ;
+    lova:particleMaterial "HA-AC" ;
+    lova:particleSizeMax 70.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:packingConfiguration "Random, annealed, jammed" ;
+    lova:reportedPorosity 0.200 ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adhm.202101867/flip-annealing> .
+
+<https://lovamap.com/ontology#material/10.1002-adhm.202101867/flip-100um> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    rdfs:label "FLIP scaffold (annealed, 100 μm sHMP)" ;
+    lova:particleShape "Irregular" ;
+    lova:particleMaterial "HA-AC" ;
+    lova:particleSizeMax 100.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:packingConfiguration "Random, annealed, jammed" ;
+    lova:reportedPorosity 0.290 ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adhm.202101867/flip-annealing> .
+
+<https://lovamap.com/ontology#material/10.1002-adhm.202101867/flip-loaded> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    rdfs:label "DNA/PEI particle-loaded FLIP scaffold (HA-NB coated, 2.5 μg/μL gel)" ;
+    lova:particleShape "Irregular" ;
+    lova:particleMaterial "HA-AC" ;
+    lova:packingConfiguration "Random, annealed, jammed" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adhm.202101867/flip-annealing> .
+
+###############################################
+# FABRICATION METHODS
+###############################################
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-adhm.202101867/dna-pei-complexation> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    rdfs:label "DNA/PEI complexation" ;
+    lova:chemistry "Electrostatic complexation (polyplex formation)" ;
+    lova:manufacturingMethod "Vortex mixing, 15 min incubation at 25°C" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-adhm.202101867/l-pei> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adhm.202101867/plasmid-dna> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-adhm.202101867/ha-coating> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    rdfs:label "HA coating and sucrose lyophilization of DNA/PEI particles" ;
+    lova:chemistry "Electrostatic coating" ;
+    lova:manufacturingMethod "Lyophilization" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-adhm.202101867/ha-unmodified> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adhm.202101867/ha-ac> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adhm.202101867/ha-nb> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adhm.202101867/sucrose> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-adhm.202101867/ha-ac-synthesis> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    rdfs:label "Synthesis of HA-acrylamide (HA-AC)" ;
+    lova:chemistry "Carbodiimide/NHS-ester coupling" ;
+    lova:manufacturingMethod "EDAC/NHS chemistry, dialysis, lyophilization" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-adhm.202101867/sodium-hyaluronan> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adhm.202101867/adh> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adhm.202101867/edac> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adhm.202101867/nhs-ac> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-adhm.202101867/ha-nb-synthesis> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    rdfs:label "Synthesis of HA-norbornene (HA-NB)" ;
+    lova:chemistry "DMTMM-mediated amide coupling" ;
+    lova:manufacturingMethod "Precipitation, dialysis, lyophilization" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-adhm.202101867/sodium-hyaluronan> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adhm.202101867/dmtmm> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adhm.202101867/nma> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-adhm.202101867/bulk-gel-formation> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    rdfs:label "Bulk HA-AC hydrogel formation with MMP-dithiol crosslinker" ;
+    lova:chemistry "Michael addition" ;
+    lova:manufacturingMethod "Mold casting between Sigmacoted glass slides, 37°C 60 min" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-adhm.202101867/ha-ac> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adhm.202101867/mmp-dithiol-peptide> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-adhm.202101867/shmp-sieving> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    rdfs:label "Shredding of bulk HA-AC hydrogel into sHMP by cell-strainer sieving" ;
+    lova:manufacturingMethod "Centrifugation through cell sieve (40, 70, or 100 μm, pluriSelect-USA)" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-adhm.202101867/rgd-peptide> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adhm.202101867/q-peptide> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adhm.202101867/k-peptide> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-adhm.202101867/flip-annealing> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    rdfs:label "FLIP scaffold annealing via Factor XIII/Thrombin transamination" ;
+    lova:annealingChemistry "Enzymatic (Factor XIII/Thrombin transamination, Q/K peptide)" ;
+    lova:annealingConditions "37°C, 1 hour, humidified" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-adhm.202101867/factor-xiii> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adhm.202101867/thrombin> .
+
+###############################################
+# REAGENTS
+###############################################
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202101867/l-pei> a lova:Reagent ;
+    rdfs:label "Linear polyethylenimine (L-PEI, 25 kDa)" ;
+    lova:reagentRole "carrier" ;
+    lova:molecularWeight "25 kDa" ;
+    lova:supplier "Polyscience" ;
+    lova:reagentFunction "Cationic condensation of plasmid DNA" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202101867/plasmid-dna> a lova:Reagent ;
+    rdfs:label "Plasmid DNA encoding GLuc/eGFP (CMV-GFP-P2A-GLuc)" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Transgene delivery; nucleic acid payload" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202101867/ha-unmodified> a lova:Reagent ;
+    rdfs:label "Unmodified hyaluronic acid (HA, 70 kDa)" ;
+    lova:reagentRole "other" ;
+    lova:molecularWeight "70 kDa" ;
+    lova:supplier "Contipro" ;
+    lova:reagentFunction "Polyplex coating" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202101867/ha-ac> a lova:Reagent ;
+    rdfs:label "Hyaluronic acid-acrylamide (HA-AC)" ;
+    lova:reagentRole "monomer" ;
+    lova:reagentFunction "Polyplex coating; hydrogel crosslinking component (Michael addition)" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202101867/ha-nb> a lova:Reagent ;
+    rdfs:label "Hyaluronic acid-norbornene (HA-NB)" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Polyplex coating" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202101867/sucrose> a lova:Reagent ;
+    rdfs:label "Sucrose cryoprotectant" ;
+    lova:reagentRole "other" ;
+    lova:concentration "45–350 μg sucrose/μg DNA (optimized at 87.5 μg sucrose/μg DNA)" ;
+    lova:reagentFunction "Cryoprotection for lyophilization" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202101867/sodium-hyaluronan> a lova:Reagent ;
+    rdfs:label "Sodium hyaluronan (70 kDa)" ;
+    lova:reagentRole "monomer" ;
+    lova:molecularWeight "70 kDa (50-90 kDa)" ;
+    lova:supplier "Contipro" ;
+    lova:concentration "1 g/200 mL" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202101867/adh> a lova:Reagent ;
+    rdfs:label "Adipic dihydrazide (ADH)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Fisher Scientific" ;
+    lova:concentration "1:40 molar ratio with HA, 18.35 g" ;
+    lova:reagentFunction "Adds amine groups to HA carboxylic acid side chains" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202101867/edac> a lova:Reagent ;
+    rdfs:label "N-(3-Dimethylaminopropyl)-N'-ethylcarbodiimide hydrochloride (EDAC HCl)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "VWR" ;
+    lova:concentration "1:4 molar ratio (HA to EDC), 2.02 g" ;
+    lova:reagentFunction "Activates carboxylic acids on HA" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202101867/nhs-ac> a lova:Reagent ;
+    rdfs:label "N-Succinimidyl Acrylate (NHS-AC)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "TCI Chemicals" ;
+    lova:concentration "1:5 molar ratio (HA to NHS-AC), 2.23 g" ;
+    lova:reagentFunction "Adds acrylate groups to HA-ADH" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202101867/dmtmm> a lova:Reagent ;
+    rdfs:label "4-(4,6-dimethoxy-1,3,5-triazin-2-yl)-4-methyl-morpholinium chloride (DMTMM)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Thermo Fisher Scientific" ;
+    lova:concentration "3.111 g, ~1:633 molar ratio to HA" ;
+    lova:reagentFunction "Activates HA carboxylic acid for norbornene coupling" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202101867/nma> a lova:Reagent ;
+    rdfs:label "5-norbornene-2-methylamine (NMA)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "TCI America" ;
+    lova:concentration "0.677 mL, ~1:343 molar ratio to activated HA" ;
+    lova:reagentFunction "Introduces norbornene functional groups to HA" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202101867/mmp-dithiol-peptide> a lova:Reagent ;
+    rdfs:label "MMP-cleavable dithiol crosslinker peptide (Ac-GCRDGPQGIWGQDRCG-NH2)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:sequence "GCRDGPQGIWGQDRCG" ;
+    lova:supplier "Genscript" ;
+    lova:concentration "SH/HA monomer ratio of 19.00" ;
+    lova:reagentFunction "MMP-degradable hydrogel crosslinking" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202101867/rgd-peptide> a lova:Reagent ;
+    rdfs:label "RGD peptide (RGDSP)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "RGDSP" ;
+    lova:concentration "1 mM" ;
+    lova:reagentFunction "Cell adhesion ligand" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202101867/q-peptide> a lova:Reagent ;
+    rdfs:label "Q-peptide (Ac-NQEQVSPLGGERCG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "NQEQVSPLGGERCG" ;
+    lova:concentration "0.75 mM" ;
+    lova:reagentFunction "Factor XIII annealing substrate" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202101867/k-peptide> a lova:Reagent ;
+    rdfs:label "K-peptide (Ac-FKGGERCG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "FKGGERCG" ;
+    lova:concentration "0.75 mM" ;
+    lova:reagentFunction "Factor XIII annealing substrate" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202101867/factor-xiii> a lova:Reagent ;
+    rdfs:label "Factor XIII (Fibrogammin 1250)" ;
+    lova:reagentRole "enzyme" ;
+    lova:supplier "CSL Behring" ;
+    lova:catalogNumber "Fibrogammin 1250" ;
+    lova:concentration "0.01 U/μL gel" ;
+    lova:reagentFunction "Inter-microgel annealing (transglutamination)" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202101867/thrombin> a lova:Reagent ;
+    rdfs:label "Thrombin (with calcium, bovine plasma)" ;
+    lova:reagentRole "enzyme" ;
+    lova:supplier "Sigma Life Science" ;
+    lova:concentration "0.002 U/μL gel" ;
+    lova:reagentFunction "Activates Factor XIII for annealing" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202101867/collagenase-iv> a lova:Reagent ;
+    rdfs:label "Type IV Collagenase" ;
+    lova:reagentRole "enzyme" ;
+    lova:supplier "Worthington Biochemical" ;
+    lova:concentration "0, 5, 10, 25 U/mL (degradation study); 200 U/mL (cell extraction)" ;
+    lova:reagentFunction "Hydrogel degradation / particle release" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202101867/hyaluronidase> a lova:Reagent ;
+    rdfs:label "Hyaluronidase" ;
+    lova:reagentRole "enzyme" ;
+    lova:supplier "Worthington Biochemical" ;
+    lova:concentration "0, 50, 100, 250 U/mL (degradation study)" ;
+    lova:reagentFunction "Hydrogel degradation / particle release" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.202101867/tritc-dextran> a lova:Reagent ;
+    rdfs:label "TRITC-dextran (500 kDa)" ;
+    lova:reagentRole "other" ;
+    lova:molecularWeight "500 kDa" ;
+    lova:supplier "Sigma-Aldrich" ;
+    lova:concentration "1 μg/mL" ;
+    lova:reagentFunction "Void space fluorescent labeling for porosity imaging" .
+
+###############################################
+# EXPERIMENTS AND OUTCOMES
+###############################################
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.202101867/doe-size-charge> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.202101867/ha-coated-particle> ,
+                       <https://lovamap.com/ontology#material/10.1002-adhm.202101867/haac-coated-particle> ,
+                       <https://lovamap.com/ontology#material/10.1002-adhm.202101867/hanb-coated-particle> ;
+    rdfs:label "DOE optimization of particle size and charge across N/P and HA/PEI ratios" ;
+    lova:experimentCategory "Physicochemical" ;
+    lova:experimentType "Dynamic/electrophoretic light scattering" ;
+    lova:assayOrMethod "DLS/ELS (Malvern ZetaSizer ZS, Anton Paar Litesizer 500)" ;
+    lova:equipment "Malvern ZetaSizer ZS; Anton Paar Litesizer 500" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202101867/optimal-np-ratio> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202101867/doe-size-charge> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    rdfs:label "Optimal N/P ratio for DNA/PEI complexation" ;
+    lova:measurementType "N/P ratio" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 20.0 ;
+    qudt:unit "ratio" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.202101867/particle-stability-reconstitution> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.202101867/hanb-coated-particle> ,
+                       <https://lovamap.com/ontology#material/10.1002-adhm.202101867/dna-pei-particle> ;
+    rdfs:label "Particle stability following reconstitution in buffer over time" ;
+    lova:experimentCategory "Physicochemical" ;
+    lova:experimentType "Dynamic light scattering time course" ;
+    lova:assayOrMethod "DLS" ;
+    lova:cultureDuration "0, 2, 4, 6, 8 hr" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202101867/pei-sucrose-aggregation> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202101867/particle-stability-reconstitution> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    rdfs:label "PEI + sucrose (lyophilized, no HA coating) aggregation over time" ;
+    lova:measurementType "Hydrodynamic diameter" ;
+    lova:measurementCategory "Physicochemical" ;
+    lova:valueString "Increased from ~150 nm to up to ~3500 nm by 6 hr, indicating aggregation" ;
+    lova:timePoint "0-8 hr" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202101867/hanb-sucrose-stability> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202101867/particle-stability-reconstitution> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    rdfs:label "HA-NB coated + sucrose particle size stability over time" ;
+    lova:measurementType "Hydrodynamic diameter" ;
+    lova:measurementCategory "Physicochemical" ;
+    lova:valueString "Remained substantially lower than uncoated PEI+sucrose, generally below ~500 nm" ;
+    lova:timePoint "0-8 hr" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.202101867/hanb-vs-pei-sucrose-stability> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    rdfs:label "HA-NB coating reduces particle aggregation vs uncoated PEI upon sucrose lyophilization/reconstitution" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.202101867/hanb-sucrose-stability> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.202101867/pei-sucrose-aggregation> ;
+    lova:direction "lower" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.202101867/2d-transfection-lyophilized> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.202101867/ha-coated-particle> ,
+                       <https://lovamap.com/ontology#material/10.1002-adhm.202101867/haac-coated-particle> ,
+                       <https://lovamap.com/ontology#material/10.1002-adhm.202101867/hanb-coated-particle> ;
+    rdfs:label "2D transfection of lyophilized HA-coated DNA/PEI particles in mouse MSCs" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transfection" ;
+    lova:assayOrMethod "Gaussia luciferase (GLuc) assay" ;
+    lova:cellType "Mouse mesenchymal stem cells" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202101867/rlu-haac-w1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202101867/2d-transfection-lyophilized> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    rdfs:label "RLU for HA-AC coated particles at HA/PEI w/w=1 (2D transfection)" ;
+    lova:measurementType "Transfection (RLU)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1000000.0 ;
+    qudt:unit "RLU" ;
+    lova:comparisonGroup "Bolus (0 w/w, positive control)" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202101867/rlu-bolus-positive-control> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202101867/2d-transfection-lyophilized> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    rdfs:label "RLU for bolus (fresh, uncoated) DNA/PEI particles (positive control)" ;
+    lova:measurementType "Transfection (RLU)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 800000000.0 ;
+    qudt:unit "RLU" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.202101867/haac-w1-vs-bolus> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    rdfs:label "HA-AC coated particles at w/w=1 show markedly lower transfection than bolus" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.202101867/rlu-haac-w1> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.202101867/rlu-bolus-positive-control> ;
+    lova:direction "lower" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.202101867/2d-viability> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.202101867/ha-coated-particle> ,
+                       <https://lovamap.com/ontology#material/10.1002-adhm.202101867/haac-coated-particle> ,
+                       <https://lovamap.com/ontology#material/10.1002-adhm.202101867/hanb-coated-particle> ;
+    rdfs:label "Viability of 2D transfected mouse MSCs (PrestoBlue)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell viability" ;
+    lova:assayOrMethod "PrestoBlue" ;
+    lova:cellType "Mouse mesenchymal stem cells" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202101867/viability-hanb-w1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202101867/2d-viability> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    rdfs:label "Viability of cells with HA-NB coated particles at w/w=1 (2D)" ;
+    lova:measurementType "Cell viability" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 88.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.202101867/particle-size-distribution-haac> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.202101867/ha-coated-particle> ,
+                       <https://lovamap.com/ontology#material/10.1002-adhm.202101867/haac-coated-particle> ,
+                       <https://lovamap.com/ontology#material/10.1002-adhm.202101867/hanb-coated-particle> ;
+    rdfs:label "Particle size distribution of coated particles loaded in HA-AC bulk gel" ;
+    lova:experimentCategory "Physicochemical" ;
+    lova:experimentType "Particle size analysis" ;
+    lova:assayOrMethod "Confocal microscopy, ImageJ particle analysis" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202101867/sucrose-opt-concentration> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202101867/particle-size-distribution-haac> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    rdfs:label "Optimized sucrose cryoprotectant concentration" ;
+    lova:measurementType "Sucrose concentration" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 87.5 ;
+    qudt:unit "μg sucrose/μg DNA" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.202101867/particle-release-collagenase> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.202101867/bulk-haac-hydrogel> ;
+    rdfs:label "DNA/PEI particle release from bulk HA-AC gel via collagenase degradation" ;
+    lova:experimentCategory "Physicochemical" ;
+    lova:experimentType "Release assay" ;
+    lova:assayOrMethod "P32 scintillation counting" ;
+    lova:equipment "Beckman-Coulter LS 6500 scintillation counter" ;
+    lova:temperature "37°C" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202101867/release-no-enzyme> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202101867/particle-release-collagenase> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    rdfs:label "Minimal polyplex release with 0 U/mL collagenase" ;
+    lova:measurementType "Polyplex release (%)" ;
+    lova:measurementCategory "Physicochemical" ;
+    lova:valueString "Minimal release without enzymatic degradation" ;
+    lova:timePoint "0-6 hr" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202101867/release-25u-collagenase> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202101867/particle-release-collagenase> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    rdfs:label "Polyplex release at 25 U/mL collagenase" ;
+    lova:measurementType "Polyplex release (%)" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 100.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "6 hr" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.202101867/release-with-vs-without-collagenase> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    rdfs:label "Polyplex release higher with collagenase degradation vs no enzyme" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.202101867/release-25u-collagenase> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.202101867/release-no-enzyme> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.202101867/shmp-formation> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.202101867/shmp-40um> ,
+                       <https://lovamap.com/ontology#material/10.1002-adhm.202101867/shmp-70um> ,
+                       <https://lovamap.com/ontology#material/10.1002-adhm.202101867/shmp-100um> ;
+    rdfs:label "sHMP formation and cross-sectional area quantification" ;
+    lova:experimentCategory "Physicochemical" ;
+    lova:experimentType "Particle size analysis" ;
+    lova:assayOrMethod "Confocal microscopy, binary/watershed ImageJ analysis" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.202101867/flip-void-space> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.202101867/flip-40um> ,
+                       <https://lovamap.com/ontology#material/10.1002-adhm.202101867/flip-70um> ,
+                       <https://lovamap.com/ontology#material/10.1002-adhm.202101867/flip-100um> ;
+    rdfs:label "FLIP scaffold void space (porosity) quantification via dextran labeling" ;
+    lova:experimentCategory "Structural" ;
+    lova:experimentType "Void space analysis" ;
+    lova:assayOrMethod "TRITC-dextran confocal imaging, IMARIS volume rendering" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202101867/porosity-40um> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202101867/flip-void-space> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    rdfs:label "Void space fraction of 40 μm FLIP scaffold" ;
+    lova:measurementType "Void space fraction (porosity)" ;
+    lova:measurementCategory "Structural" ;
+    qudt:numericValue 15.9 ;
+    qudt:unit "%" ;
+    lova:stdDev 9.1 ;
+    lova:sampleSize 3 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202101867/porosity-70um> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202101867/flip-void-space> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    rdfs:label "Void space fraction of 70 μm FLIP scaffold" ;
+    lova:measurementType "Void space fraction (porosity)" ;
+    lova:measurementCategory "Structural" ;
+    qudt:numericValue 20.0 ;
+    qudt:unit "%" ;
+    lova:stdDev 6.5 ;
+    lova:sampleSize 3 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202101867/porosity-100um> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202101867/flip-void-space> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    rdfs:label "Void space fraction of 100 μm FLIP scaffold" ;
+    lova:measurementType "Void space fraction (porosity)" ;
+    lova:measurementCategory "Structural" ;
+    qudt:numericValue 29.0 ;
+    qudt:unit "%" ;
+    lova:stdDev 7.4 ;
+    lova:sampleSize 3 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.202101867/porosity-40-vs-100> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    rdfs:label "Porosity higher in 100 μm FLIP vs 40 μm FLIP" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.202101867/porosity-100um> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.202101867/porosity-40um> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.202101867/flip-mechanical-properties> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.202101867/flip-40um> ,
+                       <https://lovamap.com/ontology#material/10.1002-adhm.202101867/flip-70um> ,
+                       <https://lovamap.com/ontology#material/10.1002-adhm.202101867/flip-100um> ,
+                       <https://lovamap.com/ontology#material/10.1002-adhm.202101867/bulk-haac-hydrogel> ;
+    rdfs:label "Mechanical characterization of FLIP scaffolds (rheology and compression)" ;
+    lova:experimentCategory "Mechanical" ;
+    lova:experimentType "Rheology / Compression" ;
+    lova:equipment "Physica MCR rheometer (Anton Paar); TA Instruments RSA III" ;
+    lova:strainRate "0.5 mm/min (compression)" ;
+    lova:frequency "0.1-10 rad/s (frequency sweep)" ;
+    lova:temperature "37°C (annealing)" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202101867/gprime-bulk-gel> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202101867/flip-mechanical-properties> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    rdfs:label "Storage modulus (G') of bulk nanoporous HA-AC hydrogel" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 800.0 ;
+    qudt:unit "Pa" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202101867/gprime-flip-40um-annealed> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202101867/flip-mechanical-properties> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    rdfs:label "Storage modulus (G') of annealed 40 μm FLIP scaffold" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 420.0 ;
+    qudt:unit "Pa" ;
+    lova:comparisonGroup "Bulk hydrogel" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.202101867/gprime-bulk-vs-flip40> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    rdfs:label "Bulk HA-AC hydrogel has higher storage modulus than annealed 40 μm FLIP scaffold" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.202101867/gprime-bulk-gel> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.202101867/gprime-flip-40um-annealed> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.202101867/cell-spreading-flip> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.202101867/flip-40um> ;
+    rdfs:label "Cell spreading within annealed FLIP scaffold" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell spreading / morphology" ;
+    lova:assayOrMethod "Actin/DAPI staining, confocal, IMARIS surface rendering" ;
+    lova:cellType "D1 MSC, HDF, NPC" ;
+    lova:seedingDensity "1.0 x 10^5 cells/10 μL gel" ;
+    lova:cultureDuration "48 hours" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.202101867/jamming-annealing-time> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.202101867/flip-loaded> ;
+    rdfs:label "Jamming study of annealing time for DNA/PEI particle-loaded FLIP" ;
+    lova:experimentCategory "Mechanical" ;
+    lova:experimentType "Rheology (time sweep)" ;
+    lova:temperature "37°C" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.202101867/loaded-flip-rheology> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.202101867/flip-loaded> ;
+    rdfs:label "Shear rheology and compression of loaded vs non-loaded annealed FLIP gels" ;
+    lova:experimentCategory "Mechanical" ;
+    lova:experimentType "Rheology / Compression" ;
+    lova:temperature "37°C, 1 hour incubation" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202101867/youngsmod-gel-only> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202101867/loaded-flip-rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    rdfs:label "Young's modulus of gel-only (non-loaded) FLIP scaffold" ;
+    lova:measurementType "Young's modulus" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 1686.0 ;
+    qudt:unit "Pa" ;
+    lova:stdDev 338.0 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202101867/youngsmod-polyplex-loaded> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202101867/loaded-flip-rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    rdfs:label "Young's modulus of polyplex-loaded FLIP scaffold" ;
+    lova:measurementType "Young's modulus" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 1509.0 ;
+    qudt:unit "Pa" ;
+    lova:stdDev 403.0 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.202101867/youngsmod-gelonly-vs-loaded> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    rdfs:label "Young's modulus not markedly different between gel-only and polyplex-loaded FLIP" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.202101867/youngsmod-gel-only> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.202101867/youngsmod-polyplex-loaded> ;
+    lova:direction "no difference" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.202101867/3d-transfection-flip> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.202101867/flip-loaded> ;
+    rdfs:label "3D transfection of D1 MSCs in DNA/PEI particle-loaded FLIP scaffolds" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transfection" ;
+    lova:assayOrMethod "Gaussia luciferase (GLuc) assay (FLASH kit, NanoLight)" ;
+    lova:cellType "D1 mouse mesenchymal stem cells" ;
+    lova:seedingDensity "1.0 x 10^5 cells/10 μL gel" ;
+    lova:cultureDuration "48 hours" ;
+    lova:sampleSize 5 .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202101867/rlu-flip-hanb-w5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202101867/3d-transfection-flip> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    rdfs:label "RLU for HA-NB coated particles (w/w=5) in FLIP (48h)" ;
+    lova:measurementType "Transfection (RLU)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 10000000.0 ;
+    qudt:unit "RLU" ;
+    lova:timePoint "48 hours" ;
+    lova:comparisonGroup "Bolus transfection" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202101867/rlu-flip-bolus-control> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202101867/3d-transfection-flip> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    rdfs:label "RLU for bolus transfection control in FLIP culture (48h)" ;
+    lova:measurementType "Transfection (RLU)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 100000000.0 ;
+    qudt:unit "RLU" ;
+    lova:timePoint "48 hours" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.202101867/3d-viability-flip> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.202101867/flip-loaded> ;
+    rdfs:label "Viability of D1 MSCs in FLIP scaffolds compared to bolus transfection" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell viability" ;
+    lova:assayOrMethod "PrestoBlue" ;
+    lova:cellType "D1 mouse mesenchymal stem cells" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202101867/viability-flip-hanb> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202101867/3d-viability-flip> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    rdfs:label "Viability of cells in HA-NB coated gel-polyplex+coating FLIP" ;
+    lova:measurementType "Cell viability" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 85.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "Bolus" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202101867/viability-bolus> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202101867/3d-viability-flip> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    rdfs:label "Viability of cells with bolus transfection" ;
+    lova:measurementType "Cell viability" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 70.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.202101867/viability-flip-vs-bolus> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    rdfs:label "Viability improved by HA-NB coating/FLIP delivery compared to bolus transfection" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.202101867/viability-flip-hanb> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.202101867/viability-bolus> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.202101867/time-study-flip-transfection> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.202101867/flip-loaded> ;
+    rdfs:label "Monthly time study of GLuc expression in loaded FLIP vs bolus vs cell-only control" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transfection time series" ;
+    lova:assayOrMethod "Gaussia luciferase (GLuc) assay" ;
+    lova:cellType "D1 mouse mesenchymal stem cells" ;
+    lova:cultureDuration "~30 days, measured every 2-3 days" ;
+    lova:sampleSize 5 .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202101867/cumrlu-polyplex-loaded-day30> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202101867/time-study-flip-transfection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    rdfs:label "Cumulative RLU for polyplex-loaded FLIP at day 30" ;
+    lova:measurementType "Cumulative transfection (RLU)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Sustained RLU/day signal over the month-long study" ;
+    lova:timePoint "Day 30" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202101867/cumrlu-bolus-day30> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202101867/time-study-flip-transfection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    rdfs:label "Cumulative RLU for bolus transfection at day 30" ;
+    lova:measurementType "Cumulative transfection (RLU)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Higher initial RLU but dissipated (declining RLU/day) over time" ;
+    lova:timePoint "Day 30" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.202101867/sustained-vs-declining-transfection> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    rdfs:label "Loaded FLIP gives sustained transfection over time while bolus transfection dissipates despite higher overall RLU" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.202101867/cumrlu-polyplex-loaded-day30> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.202101867/cumrlu-bolus-day30> ;
+    lova:direction "no difference" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.202101867/cns-transfection> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.202101867/flip-loaded> ;
+    rdfs:label "Transfection of CNS cell types (human astrocytes, mouse NPCs) in FLIP" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transfection" ;
+    lova:assayOrMethod "Gaussia luciferase (GLuc) assay" ;
+    lova:cellType "Human astrocytes; mouse primary neural progenitor cells (NPC)" ;
+    lova:cultureDuration "48 hours" ;
+    lova:sampleSize 4 .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202101867/rlu-npc-flip> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202101867/cns-transfection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    rdfs:label "RLU for NPC transfection via polyplex-loaded FLIP" ;
+    lova:measurementType "Transfection (RLU)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1000000.0 ;
+    qudt:unit "RLU" ;
+    lova:timePoint "48 hours" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.202101867/doe-rgd-clustering-flip> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.202101867/flip-loaded> ;
+    rdfs:label "DOE optimization of RGD clustering and nanoparticle-loaded/unloaded sHMP ratio in FLIP for transfection and spreading" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transfection / cell spreading DOE" ;
+    lova:assayOrMethod "Gaussia luciferase (GLuc) assay; confocal surface area via IMARIS" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.202101867/optimal-nanoparticle-loading-fraction> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.202101867/doe-rgd-clustering-flip> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.202101867> ;
+    rdfs:label "Optimal nanoparticle-loaded FLIP content and RGD clustering balance" ;
+    lova:measurementType "Optimal loaded/unloaded FLIP content and RGD clustering" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "60-80% nanoparticle content and 20% RGD clustering was optimal balance between transfection and spreading/viability" ;
+    lova:dataSource "[TEXT]" .

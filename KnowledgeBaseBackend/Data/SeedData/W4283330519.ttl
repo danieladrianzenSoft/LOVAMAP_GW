@@ -1,0 +1,950 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1002-adma.202201921> a bibo:AcademicArticle ;
+    rdfs:label "Wilson et al., 2022 — Stoichiometric Post-Modification of HA MAP Scaffolds" ;
+    dc:title "Stoichiometric Post‐Modification of Hydrogel Microparticles Dictates Neural Stem Cell Fate in Microporous Annealed Particle Scaffolds" ;
+    dc:identifier "10.1002/adma.202201921" ;
+    dc:date "2022"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/advanced-materials> ;
+    dc:creator <https://lovamap.com/ontology#author/wilson-katrina> ,
+               <https://lovamap.com/ontology#author/lesher-perez-sasha> ,
+               <https://lovamap.com/ontology#author/naffaa-moawiah> ,
+               <https://lovamap.com/ontology#author/kelly-sean> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/wilson-katrina>
+                       <https://lovamap.com/ontology#author/lesher-perez-sasha>
+                       <https://lovamap.com/ontology#author/naffaa-moawiah>
+                       <https://lovamap.com/ontology#author/kelly-sean>
+                       <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    dc:bibliographicCitation "Wilson et al., 2022" ;
+    lova:focusMaterial "Hyaluronic acid-norbornene (HA-NB) microgels assembled into microporous annealed particle (MAP) scaffolds via tetrazine–norbornene click chemistry, post-modified stoichiometrically with laminin-derived peptides (IKVAV, YIGSR, RGD) to control neural progenitor cell fate" .
+
+<https://lovamap.com/ontology#author/wilson-katrina> a foaf:Person ;
+    foaf:familyName "Wilson" ;
+    foaf:givenName "Katrina" ;
+    foaf:name "Katrina L. Wilson" .
+
+<https://lovamap.com/ontology#author/lesher-perez-sasha> a foaf:Person ;
+    foaf:familyName "Lesher-Pérez" ;
+    foaf:givenName "Sasha Cai" ;
+    foaf:name "Sasha Cai Lesher-Pérez" .
+
+<https://lovamap.com/ontology#author/naffaa-moawiah> a foaf:Person ;
+    foaf:familyName "Naffaa" ;
+    foaf:givenName "Moawiah" ;
+    foaf:name "Moawiah M. Naffaa" .
+
+<https://lovamap.com/ontology#author/kelly-sean> a foaf:Person ;
+    foaf:familyName "Kelly" ;
+    foaf:givenName "Sean" ;
+    foaf:name "Sean H. Kelly" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" .
+
+<https://lovamap.com/ontology#journal/advanced-materials> a bibo:Journal ;
+    dc:title "Advanced Materials" ;
+    bibo:issn "0935-9648" .
+
+# ---------------- Materials ----------------
+
+<https://lovamap.com/ontology#material/10.1002-adma.202201921/hanb-microgel-50um> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "HA-NB microgels, average 50 μm diameter" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Hyaluronic acid-norbornene (HA-NB)" ;
+    lova:particleSizeMin 44.0 ;
+    lova:particleSizeMax 56.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:sizeDistribution "Monodisperse, average 50 μm, std +/-4-6 μm" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adma.202201921/microfluidic-hanb-microgel> .
+
+<https://lovamap.com/ontology#material/10.1002-adma.202201921/hanb-microgel-100um> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "HA-NB microgels, average 100 μm diameter" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Hyaluronic acid-norbornene (HA-NB)" ;
+    lova:particleSizeMin 89.0 ;
+    lova:particleSizeMax 111.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:sizeDistribution "Monodisperse, average 100 μm, std +/-5-11 μm" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adma.202201921/microfluidic-hanb-microgel> .
+
+<https://lovamap.com/ontology#material/10.1002-adma.202201921/map-scaffold-r5> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "MAP scaffold, Tet/HA ratio R5" ;
+    lova:particleMaterial "HA-NB microgels annealed with 4arm-PEG-Tet" ;
+    lova:packingConfiguration "Jammed" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adma.202201921/peg-tet-annealing> .
+
+<https://lovamap.com/ontology#material/10.1002-adma.202201921/map-scaffold-r7> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "MAP scaffold, Tet/HA ratio R7" ;
+    lova:particleMaterial "HA-NB microgels annealed with 4arm-PEG-Tet" ;
+    lova:packingConfiguration "Jammed" ;
+    lova:reportedPorosity 0.2177 ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adma.202201921/peg-tet-annealing> .
+
+<https://lovamap.com/ontology#material/10.1002-adma.202201921/map-scaffold-r8> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "MAP scaffold, Tet/HA ratio R8" ;
+    lova:particleMaterial "HA-NB microgels annealed with 4arm-PEG-Tet" ;
+    lova:packingConfiguration "Jammed" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adma.202201921/peg-tet-annealing> .
+
+<https://lovamap.com/ontology#material/10.1002-adma.202201921/map-scaffold-r21> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "MAP scaffold, Tet/HA ratio R21" ;
+    lova:particleMaterial "HA-NB microgels annealed with 4arm-PEG-Tet" ;
+    lova:packingConfiguration "Jammed" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adma.202201921/peg-tet-annealing> .
+
+<https://lovamap.com/ontology#material/10.1002-adma.202201921/map-all> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "MAP scaffold, RGD + high IKVAV + YIGSR (ALL condition)" ;
+    lova:particleMaterial "HA-NB microgels post-modified with RGD, high IKVAV, and YIGSR" ;
+    lova:packingConfiguration "Jammed" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:surfaceModification "RGD + high IKVAV + YIGSR" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adma.202201921/peptide-postmod> .
+
+<https://lovamap.com/ontology#material/10.1002-adma.202201921/map-yigsr> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "MAP scaffold, YIGSR-only" ;
+    lova:particleMaterial "HA-NB microgels post-modified with YIGSR only" ;
+    lova:packingConfiguration "Jammed" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:surfaceModification "YIGSR only" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adma.202201921/peptide-postmod> .
+
+<https://lovamap.com/ontology#material/10.1002-adma.202201921/map-low-ikvav> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "MAP scaffold, low IKVAV only" ;
+    lova:particleMaterial "HA-NB microgels post-modified with low IKVAV" ;
+    lova:surfaceModification "low IKVAV only" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adma.202201921/peptide-postmod> .
+
+<https://lovamap.com/ontology#material/10.1002-adma.202201921/map-high-ikvav> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "MAP scaffold, high IKVAV only" ;
+    lova:particleMaterial "HA-NB microgels post-modified with high IKVAV" ;
+    lova:surfaceModification "high IKVAV only" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adma.202201921/peptide-postmod> .
+
+<https://lovamap.com/ontology#material/10.1002-adma.202201921/map-low-ikvav-rgd-yigsr> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "MAP scaffold, low IKVAV + RGD + YIGSR" ;
+    lova:particleMaterial "HA-NB microgels post-modified with RGD, low IKVAV, and YIGSR" ;
+    lova:surfaceModification "RGD + low IKVAV + YIGSR" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adma.202201921/peptide-postmod> .
+
+# ---------------- Fabrication Methods ----------------
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-adma.202201921/microfluidic-hanb-microgel> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "Flow-focusing microfluidic synthesis of HA-NB microgels via thiol-ene photopolymerization" ;
+    lova:chemistry "Radical thiol-ene photopolymerization" ;
+    lova:manufacturingMethod "Planar flow-focusing microfluidic water-in-oil emulsion" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-adma.202201921/ha> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adma.202201921/dmtmm> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adma.202201921/nma> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adma.202201921/mmp-peptide> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adma.202201921/tcep> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adma.202201921/lap> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adma.202201921/span80> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adma.202201921/mineral-oil> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-adma.202201921/peg-tet-annealing> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "Tetrazine-norbornene annealing of microgels into MAP scaffold" ;
+    lova:chemistry "Inverse electron-demand Diels-Alder (tetrazine-norbornene) click reaction" ;
+    lova:manufacturingMethod "Bulk mixing and casting between slides" ;
+    lova:annealingChemistry "Tetrazine-norbornene cycloaddition" ;
+    lova:annealingConditions "2 h at 37 °C" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-adma.202201921/peg-tet-4arm> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adma.202201921/tetra-peg-sh> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adma.202201921/methyltetrazine-peg4-maleimide> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adma.202201921/tea> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-adma.202201921/tet-af-labeling> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "Stoichiometric post-modification of microgels with tetrazine-Alexa Fluor conjugates" ;
+    lova:chemistry "Inverse electron-demand Diels-Alder (tetrazine-norbornene) click reaction" ;
+    lova:annealingConditions "37 °C, 1 h under agitation" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-adma.202201921/hs-peg-sh> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adma.202201921/af488-maleimide> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adma.202201921/af555> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adma.202201921/af647> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adma.202201921/methyltetrazine-peg4-maleimide> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-adma.202201921/peptide-postmod> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "Post-fabrication peptide modification of microgels (RGD thiol-ene; IKVAV/YIGSR tetrazine-norbornene)" ;
+    lova:chemistry "Thiol-ene click (RGD); tetrazine-norbornene click (IKVAV, YIGSR)" ;
+    lova:annealingConditions "RGD: UV 2 min with LAP; IKVAV/YIGSR: 2 h at room temperature" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-adma.202201921/ikvav-peptide> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adma.202201921/yigsr-peptide> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adma.202201921/rgd-peptide> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adma.202201921/lap> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adma.202201921/methyltetrazine-nhs> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adma.202201921/rink-amide-resin> .
+
+# ---------------- Reagents ----------------
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.202201921/ha> a lova:Reagent ;
+    rdfs:label "Hyaluronic acid (HA)" ;
+    lova:reagentRole "monomer" ;
+    lova:molecularWeight "79 000 Da" ;
+    lova:supplier "Contipro" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.202201921/dmtmm> a lova:Reagent ;
+    rdfs:label "4-(4,6-dimethoxy[1.3.5]triazin-2-yl)-4-methylmorpholinium chloride (DMTMM)" ;
+    lova:reagentRole "other" ;
+    lova:molecularWeight "294.74 Da" ;
+    lova:supplier "TCI America" ;
+    lova:reagentFunction "Carboxylic acid activation for HA norbornene functionalization" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.202201921/nma> a lova:Reagent ;
+    rdfs:label "5-norbornene-2-methanamine (NMA)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "TCI America" ;
+    lova:reagentFunction "Norbornene functionalization of HA" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.202201921/mmp-peptide> a lova:Reagent ;
+    rdfs:label "Di-thiol MMP-sensitive linker peptide (Ac-GCRDGPQGIWGQDRCG-NH2)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:sequence "GCRDGPQGIWGQDRCG" ;
+    lova:concentration "2.8 × 10−3 M; SH/HA ratio of 14" ;
+    lova:supplier "Genscript" ;
+    lova:reagentFunction "Protease-degradable intra-microgel crosslinker" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.202201921/tcep> a lova:Reagent ;
+    rdfs:label "Tris(2-carboxyethyl)phosphine (TCEP)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "TCEP/SH ratio of 0.25" ;
+    lova:supplier "Sigma-Aldrich" ;
+    lova:reagentFunction "Reducing agent" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.202201921/lap> a lova:Reagent ;
+    rdfs:label "Lithium phenyl(2,4,6-trimethylbenzoyl)phosphinate (LAP)" ;
+    lova:reagentRole "photoinitiator" ;
+    lova:concentration "9.90 × 10−3 M" ;
+    lova:supplier "TCI America" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.202201921/span80> a lova:Reagent ;
+    rdfs:label "Span-80" ;
+    lova:reagentRole "surfactant" ;
+    lova:concentration "5% (v/v)" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.202201921/mineral-oil> a lova:Reagent ;
+    rdfs:label "Heavy mineral oil" ;
+    lova:reagentRole "carrier oil" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.202201921/peg-tet-4arm> a lova:Reagent ;
+    rdfs:label "Tetra-polyethylene glycol-tetrazine (4arm-PEG-Tet)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:reagentFunction "Inter-microgel annealing crosslinker" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.202201921/tetra-peg-sh> a lova:Reagent ;
+    rdfs:label "Tetra-PEG-SH" ;
+    lova:reagentRole "monomer" ;
+    lova:molecularWeight "20 000 Da" ;
+    lova:supplier "NOF America" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.202201921/methyltetrazine-peg4-maleimide> a lova:Reagent ;
+    rdfs:label "Methyltetrazine-PEG4-maleimide" ;
+    lova:reagentRole "other" ;
+    lova:molecularWeight "514.53 Da" ;
+    lova:supplier "Kerafast" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.202201921/tea> a lova:Reagent ;
+    rdfs:label "Triethylamine (TEA)" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Base catalyst for thiol-Michael addition" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.202201921/hs-peg-sh> a lova:Reagent ;
+    rdfs:label "HS-PEG-SH" ;
+    lova:reagentRole "other" ;
+    lova:molecularWeight "3500 Da" ;
+    lova:supplier "JenKem Technology USA" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.202201921/af488-maleimide> a lova:Reagent ;
+    rdfs:label "Alexa Fluor 488 C2 maleimide" ;
+    lova:reagentRole "other" ;
+    lova:molecularWeight "1250 Da" ;
+    lova:supplier "Thermo Fisher Scientific" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.202201921/af555> a lova:Reagent ;
+    rdfs:label "Alexa Fluor 555 C2-tetrazine" ;
+    lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.202201921/af647> a lova:Reagent ;
+    rdfs:label "Alexa Fluor 647 C2-tetrazine" ;
+    lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.202201921/ikvav-peptide> a lova:Reagent ;
+    rdfs:label "Tetrazine-IKVAV peptide (Tet-GSGYGIKVAV-CONH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "GSGYGIKVAV" ;
+    lova:concentration "high: 0.3 × 10−3 M; low: 0.01 × 10−3 M" ;
+    lova:reagentFunction "Promotes NPC growth and migration; binds beta1-integrin" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.202201921/yigsr-peptide> a lova:Reagent ;
+    rdfs:label "Tetrazine-YIGSR peptide (Tet-GSGYGYIGSR-CONH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "GSGYGYIGSR" ;
+    lova:concentration "0.048 × 10−3 M; high: 0.1 × 10−3 M" ;
+    lova:reagentFunction "Promotes NPC growth and migration; maintains stemness" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.202201921/rgd-peptide> a lova:Reagent ;
+    rdfs:label "RGD peptide (Ac-RGDSPGERCG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "RGDSPGERCG" ;
+    lova:concentration "1 × 10−3 M" ;
+    lova:reagentFunction "Cell adhesion" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.202201921/methyltetrazine-nhs> a lova:Reagent ;
+    rdfs:label "Methyltetrazine-NHS ester" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Click Chemistry Tools" ;
+    lova:catalogNumber "1128" ;
+    lova:reagentFunction "Conjugation of methyltetrazine to peptide N-terminus" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.202201921/rink-amide-resin> a lova:Reagent ;
+    rdfs:label "Rink Amide ProTide Resin" ;
+    lova:reagentRole "other" ;
+    lova:supplier "CEM" ;
+    lova:catalogNumber "R003" ;
+    lova:reagentFunction "Solid-phase peptide synthesis support" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.202201921/dextran-trmr> a lova:Reagent ;
+    rdfs:label "70 kDa Dextran Tetramethylrhodamine" ;
+    lova:reagentRole "other" ;
+    lova:molecularWeight "70 kDa" ;
+    lova:reagentFunction "Void space tracer for pore interconnectivity imaging" .
+
+# ---------------- Experiments ----------------
+
+<https://lovamap.com/ontology#experiment/10.1002-adma.202201921/microgel-sizing> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adma.202201921/hanb-microgel-50um> ,
+                       <https://lovamap.com/ontology#material/10.1002-adma.202201921/hanb-microgel-100um> ;
+    rdfs:label "Microgel size distribution characterization" ;
+    lova:experimentCategory "Physical characterization" ;
+    lova:experimentType "Particle size distribution" ;
+    lova:assayOrMethod "Fluorescence imaging with MATLAB-based size analysis" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adma.202201921/rheology> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adma.202201921/map-scaffold-r5> ,
+                       <https://lovamap.com/ontology#material/10.1002-adma.202201921/map-scaffold-r7> ,
+                       <https://lovamap.com/ontology#material/10.1002-adma.202201921/map-scaffold-r8> ,
+                       <https://lovamap.com/ontology#material/10.1002-adma.202201921/map-scaffold-r21> ;
+    rdfs:label "Rheological characterization of MAP scaffolds at varying Tet/HA ratios" ;
+    lova:experimentCategory "Rheological" ;
+    lova:experimentType "Storage modulus measurement" ;
+    lova:equipment "Physica MCR plate-to-plate rheometer (Anton Paar)" ;
+    lova:strainRate "1% strain" ;
+    lova:frequency "angular frequency 0.5–10 rad s−1" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adma.202201921/void-space> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adma.202201921/map-scaffold-r7> ;
+    rdfs:label "Void space quantification of MAP scaffold" ;
+    lova:experimentCategory "Physical characterization" ;
+    lova:experimentType "Void space quantification" ;
+    lova:assayOrMethod "Confocal imaging with IMARIS rendering" ;
+    lova:medium "70 kDa Dextran Tetramethylrhodamine solution" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adma.202201921/flow-cytometry> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adma.202201921/hanb-microgel-100um> ;
+    rdfs:label "Flow cytometry of isolated NPCs for GFAP/SOX2" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Flow cytometry" ;
+    lova:cellType "NPC (P2)" ;
+    lova:cellSource "SVZ of P12 C57/BL6 mice" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adma.202201921/cell-spreading> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adma.202201921/map-all> ,
+                       <https://lovamap.com/ontology#material/10.1002-adma.202201921/map-yigsr> ,
+                       <https://lovamap.com/ontology#material/10.1002-adma.202201921/map-low-ikvav> ,
+                       <https://lovamap.com/ontology#material/10.1002-adma.202201921/map-high-ikvav> ,
+                       <https://lovamap.com/ontology#material/10.1002-adma.202201921/map-low-ikvav-rgd-yigsr> ;
+    rdfs:label "Cell spreading quantification at D7 across peptide conditions" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell spreading" ;
+    lova:assayOrMethod "Confocal imaging + IMARIS" ;
+    lova:cellType "NPC" ;
+    lova:cultureDuration "7 days" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#experiment/10.1002-adma.202201921/time-lapse> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adma.202201921/map-all> ,
+                       <https://lovamap.com/ontology#material/10.1002-adma.202201921/map-yigsr> ;
+    rdfs:label "Time-lapse imaging of NPC spreading (ALL) vs neurosphere formation (YIGSR)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Live cell imaging" ;
+    lova:assayOrMethod "Time-lapse bright-field microscopy" ;
+    lova:equipment "Olympus VivaView FL Incubator microscope" ;
+    lova:cellType "NPC" ;
+    lova:cultureDuration "up to 96 h" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adma.202201921/microgel-displacement> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adma.202201921/map-all> ,
+                       <https://lovamap.com/ontology#material/10.1002-adma.202201921/map-yigsr> ;
+    rdfs:label "Microgel displacement tracking as proxy for contractile force" ;
+    lova:experimentCategory "Mechanical" ;
+    lova:experimentType "Microgel displacement tracking" ;
+    lova:assayOrMethod "Fiji manual tracking" ;
+    lova:cellType "NPC" ;
+    lova:cultureDuration "48 h" ;
+    lova:sampleSize 6 .
+
+<https://lovamap.com/ontology#experiment/10.1002-adma.202201921/immunostaining> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adma.202201921/map-all> ,
+                       <https://lovamap.com/ontology#material/10.1002-adma.202201921/map-yigsr> ;
+    rdfs:label "Immunofluorescence staining for differentiation and stemness markers" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immunofluorescence" ;
+    lova:assayOrMethod "Confocal imaging" ;
+    lova:cellType "NPC" ;
+    lova:cultureDuration "7 days" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adma.202201921/angiogenic-multiplex> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adma.202201921/map-all> ,
+                       <https://lovamap.com/ontology#material/10.1002-adma.202201921/map-yigsr> ;
+    rdfs:label "Angiogenic growth factor multiplex assay" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Cytokine secretion" ;
+    lova:assayOrMethod "Luminex multiplex immunoassay" ;
+    lova:cellType "NPC" ;
+    lova:cultureDuration "4 and 7 days" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adma.202201921/maldi-characterization> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adma.202201921/map-all> ;
+    rdfs:label "MALDI mass spectrometry characterization of tetrazine-peptides" ;
+    lova:experimentCategory "Chemical characterization" ;
+    lova:experimentType "Mass spectrometry" ;
+    lova:assayOrMethod "MALDI (Bruker Autoflex Speed LRF)" .
+
+# ---------------- Outcomes ----------------
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202201921/microgel-size-50um> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202201921/microgel-sizing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "Average microgel diameter (small device)" ;
+    lova:measurementType "Particle diameter" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 50.0 ;
+    qudt:unit "μm" ;
+    lova:valueString "average 50 μm, std +/-4-6 μm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202201921/microgel-size-100um> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202201921/microgel-sizing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "Average microgel diameter (large device)" ;
+    lova:measurementType "Particle diameter" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 100.0 ;
+    qudt:unit "μm" ;
+    lova:valueString "average 100 μm, std +/-5-11 μm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202201921/storage-modulus-r5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202201921/rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "Storage modulus (G') of R5 MAP scaffold" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 161.0 ;
+    qudt:unit "Pa" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202201921/storage-modulus-r7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202201921/rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "Storage modulus (G') of R7 MAP scaffold" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 349.0 ;
+    qudt:unit "Pa" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202201921/storage-modulus-r8> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202201921/rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "Storage modulus (G') of R8 MAP scaffold" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 522.0 ;
+    qudt:unit "Pa" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202201921/storage-modulus-r21> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202201921/rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "Storage modulus (G') of R21 MAP scaffold" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 5846.0 ;
+    qudt:unit "Pa" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202201921/void-space-percent> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202201921/void-space> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "Percent void space of R7 MAP scaffold" ;
+    lova:measurementType "Void space percentage" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 21.77 ;
+    qudt:unit "%" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202201921/gfap-sox2-double-positive> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202201921/flow-cytometry> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "GFAP+/SOX2+ double-positive NPCs" ;
+    lova:measurementType "GFAP+/SOX2+ percentage" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 61.7 ;
+    qudt:unit "%" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202201921/sox2-only-positive> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202201921/flow-cytometry> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "SOX2-only positive NPCs" ;
+    lova:measurementType "SOX2-only percentage" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 21.8 ;
+    qudt:unit "%" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202201921/gfap-only-positive> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202201921/flow-cytometry> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "GFAP-only positive NPCs" ;
+    lova:measurementType "GFAP-only percentage" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 16.2 ;
+    qudt:unit "%" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202201921/spreading-high-ikvav-rgd-yigsr> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202201921/cell-spreading> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "Cell spreading at D7, high IKVAV + RGD + YIGSR" ;
+    lova:measurementType "Cell spreading (% area)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 11.3 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 7" ;
+    lova:sampleSize 3 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202201921/spreading-low-ikvav-rgd-yigsr> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202201921/cell-spreading> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "Cell spreading at D7, low IKVAV + RGD + YIGSR" ;
+    lova:measurementType "Cell spreading (% area)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 8.5 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 7" ;
+    lova:sampleSize 3 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202201921/spreading-high-ikvav> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202201921/cell-spreading> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "Cell spreading at D7, high IKVAV only" ;
+    lova:measurementType "Cell spreading (% area)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 9.5 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 7" ;
+    lova:sampleSize 3 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202201921/spreading-low-ikvav> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202201921/cell-spreading> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "Cell spreading at D7, low IKVAV only" ;
+    lova:measurementType "Cell spreading (% area)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 6.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 7" ;
+    lova:sampleSize 3 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202201921/spreading-yigsr> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202201921/cell-spreading> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "Cell spreading at D7, YIGSR only" ;
+    lova:measurementType "Cell spreading (% area)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 5.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 7" ;
+    lova:sampleSize 3 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202201921/percent-spreading-12h-all> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202201921/time-lapse> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "Percent cells spreading in ALL condition at 12h" ;
+    lova:measurementType "Percent cells spreading" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 93.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "12h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202201921/percent-neurospheres-12h-yigsr> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202201921/time-lapse> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "Percent neurospheres formed in YIGSR condition at 12h" ;
+    lova:measurementType "Percent neurospheres formed" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 98.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "12h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202201921/time-to-full-spreading-all> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202201921/time-lapse> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "Time for NPCs to fully spread in ALL condition" ;
+    lova:measurementType "Time to full spreading" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 12.0 ;
+    qudt:unit "h" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202201921/time-to-neurosphere-formation> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202201921/time-lapse> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "Time to complete neurosphere formation in YIGSR condition" ;
+    lova:measurementType "Time to neurosphere formation" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 6.0 ;
+    qudt:unit "h" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202201921/microgel-displacement-all> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202201921/microgel-displacement> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "Average microgel displacement in ALL condition over 48h" ;
+    lova:measurementType "Microgel displacement from origin" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 71.0 ;
+    qudt:unit "μm" ;
+    lova:timePoint "48h" ;
+    lova:sampleSize 6 ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "YIGSR-only" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202201921/microgel-displacement-yigsr> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202201921/microgel-displacement> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "Microgel displacement in YIGSR-only condition over 48h" ;
+    lova:measurementType "Microgel displacement from origin" ;
+    lova:measurementCategory "Mechanical" ;
+    lova:valueString "no displacement observed, scaffold remained still" ;
+    lova:timePoint "48h" ;
+    lova:sampleSize 6 ;
+    lova:comparisonGroup "ALL condition" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202201921/neurosphere-diameter> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202201921/time-lapse> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "Average neurosphere diameter in YIGSR-only condition" ;
+    lova:measurementType "Neurosphere diameter" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 45.0 ;
+    qudt:unit "μm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202201921/maldi-ikvav> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202201921/maldi-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "MALDI m/z for Tet-GSGYGIKVAV-CONH2" ;
+    lova:measurementType "[M+H]+ m/z" ;
+    lova:measurementCategory "Chemical characterization" ;
+    qudt:numericValue 1163.685 ;
+    qudt:unit "m/z" ;
+    lova:valueString "predicted [M+H]+ 1161.31" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202201921/maldi-yigsr> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202201921/maldi-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "MALDI m/z for Tet-GSGYGYIGSR-CONH2" ;
+    lova:measurementType "[M+H]+ m/z" ;
+    lova:measurementCategory "Chemical characterization" ;
+    qudt:numericValue 1229.577 ;
+    qudt:unit "m/z" ;
+    lova:valueString "predicted [M+H]+ 1227.2" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202201921/endotoxin-level> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202201921/microgel-sizing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "Endotoxin level of microgels" ;
+    lova:measurementType "Endotoxin concentration" ;
+    lova:measurementCategory "Physical" ;
+    lova:valueString "consistently below 0.2 endotoxin U/mL" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202201921/hanb-functionalization> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202201921/microgel-sizing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "HA norbornene functionalization degree used (NMR)" ;
+    lova:measurementType "Norbornene functionalization degree" ;
+    lova:measurementCategory "Chemical characterization" ;
+    qudt:numericValue 33.5 ;
+    qudt:unit "%" ;
+    lova:valueString "22%, 33.5%, and 52% functionalization explored; 33.5% chosen" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202201921/peg-tet-conversion> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202201921/rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "4arm-PEG-Tet conversion yield (NMR)" ;
+    lova:measurementType "Reaction conversion" ;
+    lova:measurementCategory "Chemical characterization" ;
+    qudt:numericValue 76.5 ;
+    qudt:unit "%" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202201921/ang2-day4-all> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202201921/angiogenic-multiplex> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "Angiopoietin-2 secretion, ALL, Day 4" ;
+    lova:measurementType "Angiopoietin-2 secretion" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 900.0 ;
+    qudt:unit "pg/mL" ;
+    lova:timePoint "Day 4" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202201921/ang2-day4-yigsr> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202201921/angiogenic-multiplex> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "Angiopoietin-2 secretion, YIGSR, Day 4" ;
+    lova:measurementType "Angiopoietin-2 secretion" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 1400.0 ;
+    qudt:unit "pg/mL" ;
+    lova:timePoint "Day 4" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202201921/ang2-day7-all> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202201921/angiogenic-multiplex> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "Angiopoietin-2 secretion, ALL, Day 7" ;
+    lova:measurementType "Angiopoietin-2 secretion" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 1200.0 ;
+    qudt:unit "pg/mL" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202201921/ang2-day7-yigsr> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202201921/angiogenic-multiplex> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "Angiopoietin-2 secretion, YIGSR, Day 7" ;
+    lova:measurementType "Angiopoietin-2 secretion" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 3000.0 ;
+    qudt:unit "pg/mL" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202201921/vegf2-day4-all> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202201921/angiogenic-multiplex> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "VEGF-2 secretion, ALL, Day 4" ;
+    lova:measurementType "VEGF-2 secretion" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 600.0 ;
+    qudt:unit "pg/mL" ;
+    lova:timePoint "Day 4" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202201921/vegf2-day4-yigsr> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202201921/angiogenic-multiplex> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "VEGF-2 secretion, YIGSR, Day 4" ;
+    lova:measurementType "VEGF-2 secretion" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 700.0 ;
+    qudt:unit "pg/mL" ;
+    lova:timePoint "Day 4" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202201921/vegf2-day7-all> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202201921/angiogenic-multiplex> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "VEGF-2 secretion, ALL, Day 7" ;
+    lova:measurementType "VEGF-2 secretion" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 300.0 ;
+    qudt:unit "pg/mL" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202201921/vegf2-day7-yigsr> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202201921/angiogenic-multiplex> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "VEGF-2 secretion, YIGSR, Day 7" ;
+    lova:measurementType "VEGF-2 secretion" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 800.0 ;
+    qudt:unit "pg/mL" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202201921/mcp1-day4-all> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202201921/angiogenic-multiplex> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "MCP-1 secretion, ALL, Day 4" ;
+    lova:measurementType "MCP-1 secretion" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 800.0 ;
+    qudt:unit "pg/mL" ;
+    lova:timePoint "Day 4" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202201921/mcp1-day4-yigsr> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202201921/angiogenic-multiplex> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "MCP-1 secretion, YIGSR, Day 4" ;
+    lova:measurementType "MCP-1 secretion" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 900.0 ;
+    qudt:unit "pg/mL" ;
+    lova:timePoint "Day 4" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202201921/mcp1-day7-all> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202201921/angiogenic-multiplex> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "MCP-1 secretion, ALL, Day 7" ;
+    lova:measurementType "MCP-1 secretion" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 350.0 ;
+    qudt:unit "pg/mL" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202201921/mcp1-day7-yigsr> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202201921/angiogenic-multiplex> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "MCP-1 secretion, YIGSR, Day 7" ;
+    lova:measurementType "MCP-1 secretion" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 300.0 ;
+    qudt:unit "pg/mL" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202201921/fgf2-day4-all> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202201921/angiogenic-multiplex> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "FGF-2 secretion, ALL, Day 4" ;
+    lova:measurementType "FGF-2 secretion" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 400.0 ;
+    qudt:unit "pg/mL" ;
+    lova:timePoint "Day 4" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202201921/fgf2-day4-yigsr> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202201921/angiogenic-multiplex> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "FGF-2 secretion, YIGSR, Day 4" ;
+    lova:measurementType "FGF-2 secretion" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 500.0 ;
+    qudt:unit "pg/mL" ;
+    lova:timePoint "Day 4" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202201921/fgf2-day7-all> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202201921/angiogenic-multiplex> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "FGF-2 secretion, ALL, Day 7" ;
+    lova:measurementType "FGF-2 secretion" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 1200.0 ;
+    qudt:unit "pg/mL" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202201921/fgf2-day7-yigsr> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202201921/angiogenic-multiplex> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "FGF-2 secretion, YIGSR, Day 7" ;
+    lova:measurementType "FGF-2 secretion" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 1500.0 ;
+    qudt:unit "pg/mL" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+# ---------------- Comparison Results ----------------
+
+<https://lovamap.com/ontology#comparison/10.1002-adma.202201921/spreading-ikvav-vs-yigsr> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "Cell spreading higher in high IKVAV+RGD+YIGSR vs YIGSR-only at D7" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adma.202201921/spreading-high-ikvav-rgd-yigsr> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adma.202201921/spreading-yigsr> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-adma.202201921/displacement-all-vs-yigsr> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "Microgel displacement higher in ALL condition vs YIGSR-only" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adma.202201921/microgel-displacement-all> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adma.202201921/microgel-displacement-yigsr> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-adma.202201921/storage-modulus-r5-vs-r21> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "Storage modulus higher in R21 vs R5 MAP scaffold" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adma.202201921/storage-modulus-r21> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adma.202201921/storage-modulus-r5> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-adma.202201921/ang2-all-vs-yigsr-day7> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.202201921> ;
+    rdfs:label "No significant difference in Angiopoietin-2 secretion between ALL and YIGSR at Day 7" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adma.202201921/ang2-day7-all> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adma.202201921/ang2-day7-yigsr> ;
+    lova:direction "no difference" ;
+    lova:isSignificant false .

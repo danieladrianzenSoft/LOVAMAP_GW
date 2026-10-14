@@ -1,0 +1,837 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1002-advs.202204882> a bibo:AcademicArticle ;
+    rdfs:label "Liu et al., 2023 — A Balance between Pro-Inflammatory and Pro-Reparative Macrophages is Observed in Regenerative D-MAPS" ;
+    dc:title "A Balance between Pro‐Inflammatory and Pro‐Reparative Macrophages is Observed in Regenerative D‐MAPS" ;
+    dc:identifier "10.1002/advs.202204882" ;
+    dc:date "2023"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/advanced-science> ;
+    dc:creator <https://lovamap.com/ontology#author/liu-yining> ,
+               <https://lovamap.com/ontology#author/suarez-arnedo-alejandra> ,
+               <https://lovamap.com/ontology#author/shetty-shamitha> ,
+               <https://lovamap.com/ontology#author/wu-yaoying> ,
+               <https://lovamap.com/ontology#author/schneider-michelle> ,
+               <https://lovamap.com/ontology#author/collier-joelh> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/liu-yining>
+                       <https://lovamap.com/ontology#author/suarez-arnedo-alejandra>
+                       <https://lovamap.com/ontology#author/shetty-shamitha>
+                       <https://lovamap.com/ontology#author/wu-yaoying>
+                       <https://lovamap.com/ontology#author/schneider-michelle>
+                       <https://lovamap.com/ontology#author/collier-joelh>
+                       <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    dc:bibliographicCitation "Liu et al., 2023" ;
+    lova:focusMaterial "Microporous annealed particle scaffolds (MAPS) formed from PEG microgels crosslinked with L- or D-chirality MMP-degradable peptides, implanted subcutaneously in mice to study immune/macrophage response" .
+
+<https://lovamap.com/ontology#author/liu-yining> a foaf:Person ;
+    foaf:familyName "Liu" ;
+    foaf:givenName "Yining" ;
+    foaf:name "Yining Liu" .
+
+<https://lovamap.com/ontology#author/suarez-arnedo-alejandra> a foaf:Person ;
+    foaf:familyName "Suarez-Arnedo" ;
+    foaf:givenName "Alejandra" ;
+    foaf:name "Alejandra Suarez-Arnedo" .
+
+<https://lovamap.com/ontology#author/shetty-shamitha> a foaf:Person ;
+    foaf:familyName "Shetty" ;
+    foaf:givenName "Shamitha" ;
+    foaf:name "Shamitha Shetty" .
+
+<https://lovamap.com/ontology#author/wu-yaoying> a foaf:Person ;
+    foaf:familyName "Wu" ;
+    foaf:givenName "Yaoying" ;
+    foaf:name "Yaoying Wu" .
+
+<https://lovamap.com/ontology#author/schneider-michelle> a foaf:Person ;
+    foaf:familyName "Schneider" ;
+    foaf:givenName "Michelle" ;
+    foaf:name "Michelle Schneider" .
+
+<https://lovamap.com/ontology#author/collier-joelh> a foaf:Person ;
+    foaf:familyName "Collier" ;
+    foaf:givenName "Joel H." ;
+    foaf:name "Joel H. Collier" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" .
+
+<https://lovamap.com/ontology#journal/advanced-science> a bibo:Journal ;
+    dc:title "Advanced Science" ;
+    bibo:issn "2198-3844" .
+
+<https://lovamap.com/ontology#material/10.1002-advs.202204882/l-maps> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    rdfs:label "L-MAPS (L-chirality MMP-peptide crosslinked microporous annealed particle scaffold)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "8-arm PEG Vinylsulfone (20 kDa)" ;
+    lova:particleSizeMin 70.0 ;
+    lova:particleSizeMax 70.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:surfaceModification "RGD-functionalized (Ac-RGDSPGERCG-NH2)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-advs.202204882/l-maps-fab> ;
+    lova:packingConfiguration "Jammed" ;
+    lova:scaffoldDimensions "50 µL per injection, four injections subcutaneously" .
+
+<https://lovamap.com/ontology#material/10.1002-advs.202204882/d-maps> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    rdfs:label "D-MAPS (D-chirality MMP-peptide crosslinked microporous annealed particle scaffold)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "8-arm PEG Vinylsulfone (20 kDa)" ;
+    lova:particleSizeMin 70.0 ;
+    lova:particleSizeMax 70.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:surfaceModification "RGD-functionalized (Ac-RGDSPGERCG-NH2)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-advs.202204882/d-maps-fab> ;
+    lova:packingConfiguration "Jammed" ;
+    lova:scaffoldDimensions "50 µL per injection, four injections subcutaneously" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-advs.202204882/l-maps-fab> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    rdfs:label "Microfluidic PEG-VS microgel scaffold with L-MMP peptide crosslinker, Factor XIII/thrombin annealing" ;
+    lova:chemistry "Michael-type addition (thiol-ene)" ;
+    lova:manufacturingMethod "Microfluidic water-in-oil emulsion" ;
+    lova:annealingChemistry "Enzymatic (Factor XIII and thrombin mediated crosslinking)" ;
+    lova:annealingConditions "37°C, 30 min" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-advs.202204882/peg-vs> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-advs.202204882/k-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-advs.202204882/q-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-advs.202204882/rgd-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-advs.202204882/l-mmp-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-advs.202204882/af647-maleimide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-advs.202204882/thrombin> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-advs.202204882/factor-xiii> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-advs.202204882/triethanolamine> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-advs.202204882/span-80> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-advs.202204882/triethylamine> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-advs.202204882/d-maps-fab> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    rdfs:label "Microfluidic PEG-VS microgel scaffold with D-MMP peptide crosslinker, Factor XIII/thrombin annealing" ;
+    lova:chemistry "Michael-type addition (thiol-ene)" ;
+    lova:manufacturingMethod "Microfluidic water-in-oil emulsion" ;
+    lova:annealingChemistry "Enzymatic (Factor XIII and thrombin mediated crosslinking)" ;
+    lova:annealingConditions "37°C, 30 min" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-advs.202204882/peg-vs> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-advs.202204882/k-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-advs.202204882/q-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-advs.202204882/rgd-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-advs.202204882/d-mmp-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-advs.202204882/af647-maleimide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-advs.202204882/thrombin> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-advs.202204882/factor-xiii> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-advs.202204882/triethanolamine> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-advs.202204882/span-80> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-advs.202204882/triethylamine> .
+
+<https://lovamap.com/ontology#reagent/10.1002-advs.202204882/peg-vs> a lova:Reagent ;
+    rdfs:label "8-arm PEG Vinylsulfone (20 kDa)" ;
+    lova:reagentRole "monomer" ;
+    lova:molecularWeight "20 kDa" ;
+    lova:concentration "10% w/v" ;
+    lova:supplier "JenKem Technology" .
+
+<https://lovamap.com/ontology#reagent/10.1002-advs.202204882/k-peptide> a lova:Reagent ;
+    rdfs:label "K-peptide (Ac-FKGGERCG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "FKGGERCG" ;
+    lova:concentration "1000 µM" ;
+    lova:supplier "GenScript" .
+
+<https://lovamap.com/ontology#reagent/10.1002-advs.202204882/q-peptide> a lova:Reagent ;
+    rdfs:label "Q-peptide (Ac-NQEQVSPLGGERCG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "NQEQVSPLGGERCG" ;
+    lova:concentration "1000 µM" ;
+    lova:supplier "GenScript" .
+
+<https://lovamap.com/ontology#reagent/10.1002-advs.202204882/rgd-peptide> a lova:Reagent ;
+    rdfs:label "RGD peptide (Ac-RGDSPGERCG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "RGDSPGERCG" ;
+    lova:concentration "1000 µM" ;
+    lova:supplier "GenScript" ;
+    lova:reagentFunction "Cell adhesion (fibronectin minimal integrin binding sequence)" .
+
+<https://lovamap.com/ontology#reagent/10.1002-advs.202204882/l-mmp-peptide> a lova:Reagent ;
+    rdfs:label "L-chirality di-thiol MMP-sensitive peptide (Ac-GCRDGPQGIWGQDRCG-NH2)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:sequence "GCRDGPQGIWGQDRCG" ;
+    lova:concentration "12 mM" ;
+    lova:supplier "GenScript" ;
+    lova:reagentFunction "MMP-degradable inter-particle crosslinking" .
+
+<https://lovamap.com/ontology#reagent/10.1002-advs.202204882/d-mmp-peptide> a lova:Reagent ;
+    rdfs:label "D-chirality di-thiol MMP-sensitive peptide (Ac-GCRDGPQGIWGQDRCG-NH2, D-amino acids at cleavage site)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:sequence "GCRDGPQGIWGQDRCG" ;
+    lova:concentration "12 mM" ;
+    lova:supplier "GenScript" ;
+    lova:reagentFunction "Slowed MMP-mediated degradation, inter-particle crosslinking" .
+
+<https://lovamap.com/ontology#reagent/10.1002-advs.202204882/af647-maleimide> a lova:Reagent ;
+    rdfs:label "Alexa Fluor 647-maleimide" ;
+    lova:reagentRole "other" ;
+    lova:concentration "10 µM" ;
+    lova:supplier "Invitrogen" ;
+    lova:reagentFunction "Fluorescent labeling of microgels for tracking" .
+
+<https://lovamap.com/ontology#reagent/10.1002-advs.202204882/thrombin> a lova:Reagent ;
+    rdfs:label "Thrombin" ;
+    lova:reagentRole "enzyme" ;
+    lova:concentration "4 U/mL (from 200 U/mL stock)" ;
+    lova:supplier "Sigma" ;
+    lova:reagentFunction "Annealing/gelation catalyst" .
+
+<https://lovamap.com/ontology#reagent/10.1002-advs.202204882/factor-xiii> a lova:Reagent ;
+    rdfs:label "Factor XIII" ;
+    lova:reagentRole "enzyme" ;
+    lova:concentration "10 U/mL (from 250 U/mL stock)" ;
+    lova:reagentFunction "Enzymatic annealing (transglutamination) of microgels into scaffold" .
+
+<https://lovamap.com/ontology#reagent/10.1002-advs.202204882/triethanolamine> a lova:Reagent ;
+    rdfs:label "Triethanolamine" ;
+    lova:reagentRole "solvent" ;
+    lova:concentration "0.3 M, pH 8.8" ;
+    lova:supplier "Sigma" .
+
+<https://lovamap.com/ontology#reagent/10.1002-advs.202204882/span-80> a lova:Reagent ;
+    rdfs:label "Span-80" ;
+    lova:reagentRole "surfactant" ;
+    lova:concentration "1% v/v and 5% v/v" ;
+    lova:supplier "VWR" ;
+    lova:reagentFunction "Emulsion stabilization in oil phase" .
+
+<https://lovamap.com/ontology#reagent/10.1002-advs.202204882/triethylamine> a lova:Reagent ;
+    rdfs:label "Triethylamine" ;
+    lova:reagentRole "other" ;
+    lova:concentration "3% v/v" ;
+    lova:reagentFunction "On-chip gelation control" .
+
+<https://lovamap.com/ontology#experiment/10.1002-advs.202204882/histology-scoring> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-advs.202204882/l-maps> ,
+                       <https://lovamap.com/ontology#material/10.1002-advs.202204882/d-maps> ;
+    rdfs:label "Histologic assessment of tissue integration (collagen/fibroplasia, granulation tissue/vascularization)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Histology scoring" ;
+    lova:assayOrMethod "H&E staining, modified 4-point scoring system" ;
+    lova:cultureDuration "4, 7, 14 days" ;
+    lova:sampleSize 6 .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.202204882/collagen-score-d-day14> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.202204882/histology-scoring> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    rdfs:label "Collagen/fibroplasia score, D-MAPS, day 14" ;
+    lova:measurementType "Collagen/fibroplasia score" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.6 ;
+    qudt:unit "score (0-4)" ;
+    lova:timePoint "Day 14" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.202204882/collagen-score-l-day14> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.202204882/histology-scoring> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    rdfs:label "Collagen/fibroplasia score, L-MAPS, day 14" ;
+    lova:measurementType "Collagen/fibroplasia score" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.7 ;
+    qudt:unit "score (0-4)" ;
+    lova:timePoint "Day 14" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.202204882/granulation-score-d-day14> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.202204882/histology-scoring> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    rdfs:label "Granulation tissue and vascularization score, D-MAPS, day 14" ;
+    lova:measurementType "Granulation tissue and vascularization score" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.7 ;
+    qudt:unit "score (0-4)" ;
+    lova:timePoint "Day 14" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.202204882/granulation-score-l-day14> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.202204882/histology-scoring> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    rdfs:label "Granulation tissue and vascularization score, L-MAPS, day 14" ;
+    lova:measurementType "Granulation tissue and vascularization score" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.6 ;
+    qudt:unit "score (0-4)" ;
+    lova:timePoint "Day 14" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1002-advs.202204882/vessel-area> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-advs.202204882/l-maps> ,
+                       <https://lovamap.com/ontology#material/10.1002-advs.202204882/d-maps> ;
+    rdfs:label "Blood vessel area quantification via ImageJ" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Angiogenesis quantification" ;
+    lova:assayOrMethod "H&E staining, ImageJ vessel area measurement" ;
+    lova:cultureDuration "4, 14 days" ;
+    lova:sampleSize 6 .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.202204882/vessel-area-d-day14> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.202204882/vessel-area> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    rdfs:label "Vessel area, D-MAPS, day 14" ;
+    lova:measurementType "Vessel area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.32 ;
+    qudt:unit "mm²" ;
+    lova:timePoint "Day 14" ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 ;
+    lova:comparisonGroup "L-MAPS" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.202204882/vessel-area-l-day14> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.202204882/vessel-area> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    rdfs:label "Vessel area, L-MAPS, day 14" ;
+    lova:measurementType "Vessel area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.05 ;
+    qudt:unit "mm²" ;
+    lova:timePoint "Day 14" ;
+    lova:comparisonGroup "D-MAPS" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-advs.202204882/vessel-area-d-vs-l-day14> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    rdfs:label "Vessel area higher in D-MAPS vs L-MAPS at day 14" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-advs.202204882/vessel-area-d-day14> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-advs.202204882/vessel-area-l-day14> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 .
+
+<https://lovamap.com/ontology#experiment/10.1002-advs.202204882/ihc-cd11b-cd11c> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-advs.202204882/l-maps> ,
+                       <https://lovamap.com/ontology#material/10.1002-advs.202204882/d-maps> ;
+    rdfs:label "Immunohistochemical quantification of CD11b+ and CD11c+ area" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immunohistochemistry" ;
+    lova:assayOrMethod "IHC staining, ImageJ quantification" ;
+    lova:cultureDuration "4, 14 days" ;
+    lova:sampleSize 6 .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.202204882/cd11b-area-d-day4> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.202204882/ihc-cd11b-cd11c> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    rdfs:label "CD11b+ area%, D-MAPS, day 4" ;
+    lova:measurementType "CD11b+ area%" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 70.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 4" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "L-MAPS" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.202204882/cd11b-area-l-day4> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.202204882/ihc-cd11b-cd11c> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    rdfs:label "CD11b+ area%, L-MAPS, day 4" ;
+    lova:measurementType "CD11b+ area%" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 25.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 4" ;
+    lova:comparisonGroup "D-MAPS" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.202204882/cd11b-area-d-day14> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.202204882/ihc-cd11b-cd11c> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    rdfs:label "CD11b+ area%, D-MAPS, day 14" ;
+    lova:measurementType "CD11b+ area%" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 40.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 14" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "L-MAPS" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.202204882/cd11b-area-l-day14> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.202204882/ihc-cd11b-cd11c> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    rdfs:label "CD11b+ area%, L-MAPS, day 14" ;
+    lova:measurementType "CD11b+ area%" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 80.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 14" ;
+    lova:comparisonGroup "D-MAPS" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-advs.202204882/cd11b-d-vs-l-day4> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    rdfs:label "CD11b+ area% higher in D-MAPS vs L-MAPS at day 4" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-advs.202204882/cd11b-area-d-day4> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-advs.202204882/cd11b-area-l-day4> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-advs.202204882/cd11b-d-vs-l-day14> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    rdfs:label "CD11b+ area% lower in D-MAPS vs L-MAPS at day 14" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-advs.202204882/cd11b-area-d-day14> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-advs.202204882/cd11b-area-l-day14> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.202204882/cd11c-area-d-day14> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.202204882/ihc-cd11b-cd11c> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    rdfs:label "CD11c+ area%, D-MAPS, day 14" ;
+    lova:measurementType "CD11c+ area%" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 35.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 14" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "L-MAPS" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.202204882/cd11c-area-l-day14> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.202204882/ihc-cd11b-cd11c> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    rdfs:label "CD11c+ area%, L-MAPS, day 14" ;
+    lova:measurementType "CD11c+ area%" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 80.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 14" ;
+    lova:comparisonGroup "D-MAPS" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-advs.202204882/cd11c-d-vs-l-day14> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    rdfs:label "CD11c+ area% lower in D-MAPS vs L-MAPS at day 14" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-advs.202204882/cd11c-area-d-day14> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-advs.202204882/cd11c-area-l-day14> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1002-advs.202204882/cytokine-elisa> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-advs.202204882/l-maps> ,
+                       <https://lovamap.com/ontology#material/10.1002-advs.202204882/d-maps> ;
+    rdfs:label "Cytokine concentration in implants (ELISA)" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Cytokine secretion" ;
+    lova:assayOrMethod "ELISA" ;
+    lova:cultureDuration "4, 7, 10, 14, 21 days" ;
+    lova:sampleSize 5 .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.202204882/tnf-d-day4> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.202204882/cytokine-elisa> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    rdfs:label "TNF-α concentration, D-MAPS, day 4" ;
+    lova:measurementType "TNF-α concentration" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 150.0 ;
+    qudt:unit "pg/mL" ;
+    lova:timePoint "Day 4" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "L-MAPS" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.202204882/tnf-l-day4> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.202204882/cytokine-elisa> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    rdfs:label "TNF-α concentration, L-MAPS, day 4" ;
+    lova:measurementType "TNF-α concentration" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 10.0 ;
+    qudt:unit "pg/mL" ;
+    lova:timePoint "Day 4" ;
+    lova:comparisonGroup "D-MAPS" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-advs.202204882/tnf-d-vs-l-day4> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    rdfs:label "TNF-α higher in D-MAPS vs L-MAPS at day 4" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-advs.202204882/tnf-d-day4> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-advs.202204882/tnf-l-day4> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.202204882/il1b-d-day4> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.202204882/cytokine-elisa> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    rdfs:label "IL-1β concentration, D-MAPS, day 4" ;
+    lova:measurementType "IL-1β concentration" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 150.0 ;
+    qudt:unit "pg/mL" ;
+    lova:timePoint "Day 4" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "L-MAPS" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.202204882/il1b-l-day4> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.202204882/cytokine-elisa> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    rdfs:label "IL-1β concentration, L-MAPS, day 4" ;
+    lova:measurementType "IL-1β concentration" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 10.0 ;
+    qudt:unit "pg/mL" ;
+    lova:timePoint "Day 4" ;
+    lova:comparisonGroup "D-MAPS" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-advs.202204882/il1b-d-vs-l-day4> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    rdfs:label "IL-1β higher in D-MAPS vs L-MAPS at day 4" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-advs.202204882/il1b-d-day4> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-advs.202204882/il1b-l-day4> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.202204882/tgfb-d-day4> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.202204882/cytokine-elisa> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    rdfs:label "TGF-β concentration, D-MAPS, day 4" ;
+    lova:measurementType "TGF-β concentration" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 650.0 ;
+    qudt:unit "pg/mL" ;
+    lova:timePoint "Day 4" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "L-MAPS" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.202204882/tgfb-l-day4> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.202204882/cytokine-elisa> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    rdfs:label "TGF-β concentration, L-MAPS, day 4" ;
+    lova:measurementType "TGF-β concentration" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 50.0 ;
+    qudt:unit "pg/mL" ;
+    lova:timePoint "Day 4" ;
+    lova:comparisonGroup "D-MAPS" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-advs.202204882/tgfb-d-vs-l-day4> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    rdfs:label "TGF-β higher in D-MAPS vs L-MAPS at day 4" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-advs.202204882/tgfb-d-day4> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-advs.202204882/tgfb-l-day4> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.202204882/il4-d-day4> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.202204882/cytokine-elisa> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    rdfs:label "IL-4 concentration, D-MAPS, day 4" ;
+    lova:measurementType "IL-4 concentration" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 45.0 ;
+    qudt:unit "pg/mL" ;
+    lova:timePoint "Day 4" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "L-MAPS" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.202204882/il4-l-day4> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.202204882/cytokine-elisa> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    rdfs:label "IL-4 concentration, L-MAPS, day 4" ;
+    lova:measurementType "IL-4 concentration" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 10.0 ;
+    qudt:unit "pg/mL" ;
+    lova:timePoint "Day 4" ;
+    lova:comparisonGroup "D-MAPS" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-advs.202204882/il4-d-vs-l-day4> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    rdfs:label "IL-4 higher in D-MAPS vs L-MAPS at day 4" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-advs.202204882/il4-d-day4> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-advs.202204882/il4-l-day4> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1002-advs.202204882/flow-innate-panel> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-advs.202204882/l-maps> ,
+                       <https://lovamap.com/ontology#material/10.1002-advs.202204882/d-maps> ;
+    rdfs:label "Flow cytometry immune cell infiltration profile (11-color innate panel)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Flow cytometry" ;
+    lova:assayOrMethod "Spectral flow cytometry (Cytek NL-3000)" ;
+    lova:cultureDuration "4, 7, 10, 14, 21 days" ;
+    lova:sampleSize 5 .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.202204882/cd11b-pos-live-day14> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.202204882/flow-innate-panel> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    rdfs:label "CD11b+ cells percentage of total live cells, day 14" ;
+    lova:measurementType "CD11b+ cell percentage" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 60.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 14" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.202204882/macrophage-pct-d-day14> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.202204882/flow-innate-panel> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    rdfs:label "Macrophage percentage among CD45+ live cells, D-MAPS, day 14" ;
+    lova:measurementType "Macrophage percentage" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Statistically significant increase vs L-MAPS" ;
+    lova:timePoint "Day 14" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "L-MAPS" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.202204882/macrophage-pct-l-day14> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.202204882/flow-innate-panel> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    rdfs:label "Macrophage percentage among CD45+ live cells, L-MAPS, day 14" ;
+    lova:measurementType "Macrophage percentage" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Lower than D-MAPS at day 14" ;
+    lova:timePoint "Day 14" ;
+    lova:comparisonGroup "D-MAPS" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-advs.202204882/macrophage-d-vs-l-day14> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    rdfs:label "Macrophage abundance higher in D-MAPS vs L-MAPS at day 14" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-advs.202204882/macrophage-pct-d-day14> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-advs.202204882/macrophage-pct-l-day14> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1002-advs.202204882/flow-macrophage-panel> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-advs.202204882/l-maps> ,
+                       <https://lovamap.com/ontology#material/10.1002-advs.202204882/d-maps> ;
+    rdfs:label "Macrophage phenotype flow cytometry (9-color macrophage panel)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Flow cytometry" ;
+    lova:assayOrMethod "Spectral flow cytometry, tSNE/FlowSOM clustering" ;
+    lova:cultureDuration "4, 7, 14 days" ;
+    lova:sampleSize 6 .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.202204882/cd86-mfi-d-day4> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.202204882/flow-macrophage-panel> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    rdfs:label "CD86 MFI in macrophages (CD11b+F4/80+), D-MAPS, day 4" ;
+    lova:measurementType "CD86 MFI" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Statistically higher than L-MAPS" ;
+    lova:timePoint "Day 4" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "L-MAPS" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.202204882/inos-mfi-d-day7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.202204882/flow-macrophage-panel> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    rdfs:label "iNOS MFI in macrophages (CD11b+F4/80+), D-MAPS, day 7" ;
+    lova:measurementType "iNOS MFI" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Significantly higher than L-MAPS" ;
+    lova:timePoint "Day 7" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "L-MAPS" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.202204882/arg1-mfi-l-day14> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.202204882/flow-macrophage-panel> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    rdfs:label "Arg1 MFI in macrophages (CD11b+F4/80+), L-MAPS, day 14" ;
+    lova:measurementType "Arg1 MFI" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Drastically higher than D-MAPS" ;
+    lova:timePoint "Day 14" ;
+    lova:comparisonGroup "D-MAPS" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.202204882/arg1-mfi-d-day14> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.202204882/flow-macrophage-panel> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    rdfs:label "Arg1 MFI in macrophages (CD11b+F4/80+), D-MAPS, day 14" ;
+    lova:measurementType "Arg1 MFI" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Lower than L-MAPS" ;
+    lova:timePoint "Day 14" ;
+    lova:comparisonGroup "L-MAPS" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-advs.202204882/arg1-l-vs-d-day14> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    rdfs:label "Arg1 MFI higher in L-MAPS vs D-MAPS at day 14" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-advs.202204882/arg1-mfi-l-day14> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-advs.202204882/arg1-mfi-d-day14> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#experiment/10.1002-advs.202204882/maps-internalization> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-advs.202204882/l-maps> ,
+                       <https://lovamap.com/ontology#material/10.1002-advs.202204882/d-maps> ;
+    rdfs:label "MAPS internalization by infiltrating cells (AF647 tracking)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Flow cytometry / fluorescence microscopy" ;
+    lova:assayOrMethod "Spectral flow cytometry, AF647 MFI" ;
+    lova:cultureDuration "4, 7, 10, 14, 21 days" ;
+    lova:sampleSize 5 .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.202204882/maps-pos-macrophage-d-day7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.202204882/maps-internalization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    rdfs:label "MAPS+ macrophage percentage, D-MAPS, day 7" ;
+    lova:measurementType "MAPS+ macrophage percentage" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Significantly higher than L-MAPS" ;
+    lova:timePoint "Day 7" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "L-MAPS" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#experiment/10.1002-advs.202204882/apc-migration> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-advs.202204882/l-maps> ,
+                       <https://lovamap.com/ontology#material/10.1002-advs.202204882/d-maps> ;
+    rdfs:label "APC migration to dLN and spleen (20-color APC panel)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Flow cytometry" ;
+    lova:assayOrMethod "Spectral flow cytometry, MFI of AF647 in CD11c+ cells" ;
+    lova:cultureDuration "4, 7, 14 days" ;
+    lova:sampleSize 6 .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.202204882/maps-mfi-spleen-day14> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.202204882/apc-migration> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    rdfs:label "MAPS+ (AF647) MFI in spleen CD11c+ cells, day 14" ;
+    lova:measurementType "AF647 MFI in CD11c+ cells" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Significantly higher than baseline control" ;
+    lova:timePoint "Day 14" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "Baseline control (no implant)" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#experiment/10.1002-advs.202204882/igg-elisa> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-advs.202204882/l-maps> ,
+                       <https://lovamap.com/ontology#material/10.1002-advs.202204882/d-maps> ;
+    rdfs:label "Serum IgG and linker-specific antibody ELISA" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Antibody titer assay" ;
+    lova:assayOrMethod "ELISA" ;
+    lova:cultureDuration "4, 7, 14 days" ;
+    lova:sampleSize 6 .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.202204882/anti-d-mmp-igg-day14> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.202204882/igg-elisa> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    rdfs:label "Anti-D-MMP IgG level, D-MAPS, day 14" ;
+    lova:measurementType "Anti-D-MMP IgG concentration" ;
+    lova:measurementCategory "Biochemical" ;
+    lova:valueString "All mice developed linker-specific IgG response; significantly higher than control" ;
+    lova:timePoint "Day 14" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "Control" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.202204882/anti-l-mmp-igg-day14> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.202204882/igg-elisa> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    rdfs:label "Anti-L-MMP IgG level, L-MAPS, day 14" ;
+    lova:measurementType "Anti-L-MMP IgG concentration" ;
+    lova:measurementCategory "Biochemical" ;
+    lova:valueString "Less uniform response, with strong responders and non-responders" ;
+    lova:timePoint "Day 14" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-advs.202204882/igg-d-vs-l-day14> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    rdfs:label "Linker-specific IgG response more robust/uniform in D-MAPS vs L-MAPS at day 14" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-advs.202204882/anti-d-mmp-igg-day14> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-advs.202204882/anti-l-mmp-igg-day14> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.202204882/igg-subtype-d-igg2b> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.202204882/igg-elisa> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    rdfs:label "Anti-MMP IgG2b subtype level, D-MAPS, day 14" ;
+    lova:measurementType "IgG2b subtype concentration" ;
+    lova:measurementCategory "Biochemical" ;
+    lova:valueString "IgG2b-biased response in D-MAPS" ;
+    lova:timePoint "Day 14" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.202204882/igg-subtype-l-igg1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.202204882/igg-elisa> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    rdfs:label "Anti-MMP IgG1 subtype level, L-MAPS, day 14" ;
+    lova:measurementType "IgG1 subtype concentration" ;
+    lova:measurementCategory "Biochemical" ;
+    lova:valueString "IgG1-dominant response in L-MAPS" ;
+    lova:timePoint "Day 14" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1002-advs.202204882/bcell-flow> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-advs.202204882/l-maps> ,
+                       <https://lovamap.com/ontology#material/10.1002-advs.202204882/d-maps> ;
+    rdfs:label "B cell activation flow cytometry (CD95+, GL7+) in dLN and spleen (9-color B panel)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Flow cytometry" ;
+    lova:assayOrMethod "Spectral flow cytometry" ;
+    lova:cultureDuration "4, 7, 14 days" ;
+    lova:sampleSize 6 .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.202204882/gl7-dln-day7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.202204882/bcell-flow> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    rdfs:label "GL7+% in total B cell population, dLN, day 7" ;
+    lova:measurementType "GL7+% of B cells" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Peak at day 7" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-advs.202204882/gl7-spleen-day7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-advs.202204882/bcell-flow> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-advs.202204882> ;
+    rdfs:label "GL7+% in total B cell population, spleen, day 7" ;
+    lova:measurementType "GL7+% of B cells" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Peak at day 7" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .

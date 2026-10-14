@@ -1,0 +1,967 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> a bibo:AcademicArticle ;
+    rdfs:label "Segura et al., 2003 — Substrate-mediated DNA delivery" ;
+    dc:title "Substrate-mediated DNA delivery: role of the cationic polymer structure and extent of modification" ;
+    dc:identifier "10.1016/j.jconrel.2003.08.003" ;
+    dc:date "2003"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/journal-of-controlled-release> ;
+    dc:creator <https://lovamap.com/ontology#author/segura-tatiana> ,
+               <https://lovamap.com/ontology#author/volk-matthew> ,
+               <https://lovamap.com/ontology#author/shea-lonnie> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/segura-tatiana>
+                       <https://lovamap.com/ontology#author/volk-matthew>
+                       <https://lovamap.com/ontology#author/shea-lonnie> ) ;
+    dc:bibliographicCitation "Segura et al., 2003" ;
+    lova:focusMaterial "DNA complexed with biotinylated cationic polymers (polylysine, polyethylenimine) tethered to neutravidin-coated substrates for substrate-mediated gene delivery" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" ;
+    schema:affiliation "Department of Chemical Engineering, Northwestern University, Evanston, IL" .
+
+<https://lovamap.com/ontology#author/volk-matthew> a foaf:Person ;
+    foaf:familyName "Volk" ;
+    foaf:givenName "Matthew J." ;
+    foaf:name "Matthew J. Volk" ;
+    schema:affiliation "Department of Chemical Engineering, Northwestern University, Evanston, IL" .
+
+<https://lovamap.com/ontology#author/shea-lonnie> a foaf:Person ;
+    foaf:familyName "Shea" ;
+    foaf:givenName "Lonnie D." ;
+    foaf:name "Lonnie D. Shea" ;
+    schema:affiliation "Department of Chemical Engineering, Northwestern University, Evanston, IL" ;
+    schema:affiliation "Department of Biomedical Engineering, Northwestern University, Evanston, IL" .
+
+<https://lovamap.com/ontology#journal/journal-of-controlled-release> a bibo:Journal ;
+    dc:title "Journal of Controlled Release" ;
+    bibo:issn "0168-3659" .
+
+<https://lovamap.com/ontology#material/10.1016-j.jconrel.2003.08.003/k214b-3.8> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "DNA/K214-B(3.8) complex" ;
+    lova:particleMaterial "Poly-L-lysine (K214) biotinylated at 3.8 mol biotin/mol PL" ;
+    lova:stiffnessQualitative "Condensed polyelectrolyte complex" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.jconrel.2003.08.003/pl-biotinylation> ,
+                              <https://lovamap.com/ontology#fabrication-method/10.1016-j.jconrel.2003.08.003/pl-dna-complex-tethering> .
+
+<https://lovamap.com/ontology#material/10.1016-j.jconrel.2003.08.003/k214b-12.9> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "DNA/K214-B(12.9) complex" ;
+    lova:particleMaterial "Poly-L-lysine (K214) biotinylated at 12.9 mol biotin/mol PL" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.jconrel.2003.08.003/pl-biotinylation> ,
+                              <https://lovamap.com/ontology#fabrication-method/10.1016-j.jconrel.2003.08.003/pl-dna-complex-tethering> .
+
+<https://lovamap.com/ontology#material/10.1016-j.jconrel.2003.08.003/dk214b-10.9> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "DNA/DK214-B(10.9) complex (poly-D-lysine, non-enzymatically degradable)" ;
+    lova:particleMaterial "Poly-D-lysine (DK214) biotinylated at 10.9 mol biotin/mol PL" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.jconrel.2003.08.003/pl-biotinylation> ,
+                              <https://lovamap.com/ontology#fabrication-method/10.1016-j.jconrel.2003.08.003/pl-dna-complex-tethering> .
+
+<https://lovamap.com/ontology#material/10.1016-j.jconrel.2003.08.003/k19> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "DNA/K19 complex (nonbiotinylated low-MW polylysine control)" ;
+    lova:particleMaterial "Poly-L-lysine K19 (Cys-Trp-Lys19)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.jconrel.2003.08.003/pl-dna-complex-tethering> .
+
+<https://lovamap.com/ontology#material/10.1016-j.jconrel.2003.08.003/k214-nonbiotin> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "DNA/K214 complex (nonbiotinylated control)" ;
+    lova:particleMaterial "Poly-L-lysine K214 (unmodified)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.jconrel.2003.08.003/pl-dna-complex-tethering> .
+
+<https://lovamap.com/ontology#material/10.1016-j.jconrel.2003.08.003/pei> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "DNA/PEI complex (nonbiotinylated linear PEI)" ;
+    lova:particleMaterial "Linear polyethylenimine (PEI)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.jconrel.2003.08.003/pei-dna-complex-tethering> .
+
+<https://lovamap.com/ontology#material/10.1016-j.jconrel.2003.08.003/pei-biotin> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "DNA/PEI-biotin complex (biotinylated linear PEI)" ;
+    lova:particleMaterial "Biotinylated linear polyethylenimine (PEI-biotin, 7-10 mol biotin/mol PEI)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.jconrel.2003.08.003/pei-dna-complex-tethering> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.jconrel.2003.08.003/pl-biotinylation> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "Biotinylation of polylysine (K214, DK214) via NHS-biotin chemistry" ;
+    lova:chemistry "Succinimide ester (NHS)/amine conjugation chemistry" ;
+    lova:manufacturingMethod "Dialysis cassette purification and monomeric avidin column separation; lyophilized and stored at -20°C" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2003.08.003/k214> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2003.08.003/dk214> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2003.08.003/ez-link-biotin> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.jconrel.2003.08.003/pl-dna-complex-tethering> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "DNA/polylysine complex formation and biotin-neutravidin surface tethering" ;
+    lova:chemistry "Electrostatic polyelectrolyte complexation + biotin-neutravidin noncovalent binding" ;
+    lova:manufacturingMethod "Stepwise addition of cationic polymer solution to DNA solution, vortexing, incubation" ;
+    lova:annealingChemistry "Biotin-neutravidin noncovalent interaction" ;
+    lova:annealingConditions "2 h incubation at room temperature on neutravidin surface, followed by TBS wash" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2003.08.003/plasmid-dna> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2003.08.003/k19> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2003.08.003/k214-b-3.8> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2003.08.003/k214-b-12.9> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2003.08.003/dk214-b-10.9> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2003.08.003/neutravidin> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.jconrel.2003.08.003/pei-dna-complex-tethering> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "DNA/PEI complex formation and biotin-neutravidin surface tethering" ;
+    lova:chemistry "Electrostatic polyelectrolyte complexation + biotin-neutravidin noncovalent binding" ;
+    lova:manufacturingMethod "Mixing PEI solution with DNA at N/P ratio of 5, incubation on neutravidin surface" ;
+    lova:annealingChemistry "Biotin-neutravidin noncovalent interaction" ;
+    lova:annealingConditions "2 h incubation at room temperature on neutravidin surface, followed by TBS wash" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2003.08.003/plasmid-dna> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2003.08.003/pei> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2003.08.003/pei-biotin> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2003.08.003/neutravidin> .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2003.08.003/plasmid-dna> a lova:Reagent ;
+    rdfs:label "Plasmid DNA encoding luciferase (pNGVL1-Luc)" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Reporter plasmid for luciferase gene expression" ;
+    lova:supplier "Qiagen" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2003.08.003/k19> a lova:Reagent ;
+    rdfs:label "Polylysine peptide Cys-Trp-Lys19 (K19)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "Cys-Trp-Lys19" ;
+    lova:supplier "BioPeptide, San Diego, CA" ;
+    lova:reagentFunction "Nonbiotinylated low-molecular-weight cationic polymer for DNA condensation" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2003.08.003/k214> a lova:Reagent ;
+    rdfs:label "Poly-L-lysine K214 (LLys214)" ;
+    lova:reagentRole "peptide" ;
+    lova:molecularWeight "27,400 Da (average)" ;
+    lova:supplier "Sigma, St Louis, MO" ;
+    lova:reagentFunction "Cationic polymer for DNA condensation" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2003.08.003/dk214> a lova:Reagent ;
+    rdfs:label "Poly-D-lysine DK214" ;
+    lova:reagentRole "peptide" ;
+    lova:molecularWeight "27,200 Da (average)" ;
+    lova:supplier "Sigma" ;
+    lova:reagentFunction "Nonenzymatically degradable cationic polymer for DNA condensation" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2003.08.003/k214-b-3.8> a lova:Reagent ;
+    rdfs:label "Biotinylated K214 [K214-B(3.8)]" ;
+    lova:reagentRole "peptide" ;
+    lova:concentration "3.8 mol biotin/mol PL" ;
+    lova:reagentFunction "Biotinylated cationic polymer for biotin-neutravidin surface tethering" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2003.08.003/k214-b-12.9> a lova:Reagent ;
+    rdfs:label "Biotinylated K214 [K214-B(12.9)]" ;
+    lova:reagentRole "peptide" ;
+    lova:concentration "12.9 mol biotin/mol PL" ;
+    lova:reagentFunction "Biotinylated cationic polymer for biotin-neutravidin surface tethering" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2003.08.003/dk214-b-10.9> a lova:Reagent ;
+    rdfs:label "Biotinylated DK214 [DK214-B(10.9)]" ;
+    lova:reagentRole "peptide" ;
+    lova:concentration "10.9 mol biotin/mol PL" ;
+    lova:reagentFunction "Biotinylated nondegradable cationic polymer for biotin-neutravidin surface tethering" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2003.08.003/ez-link-biotin> a lova:Reagent ;
+    rdfs:label "EZ-link-Sulfo-NHS-LC-Biotin" ;
+    lova:reagentRole "crosslinker" ;
+    lova:concentration "2.8 mg per 10 mg PL in 1 mL PBS" ;
+    lova:supplier "Pierce, Rockford, IL" ;
+    lova:reagentFunction "Biotinylation reagent for covalent modification of polylysine amines" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2003.08.003/neutravidin> a lova:Reagent ;
+    rdfs:label "Neutravidin (NA)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Pierce, Rockford, IL" ;
+    lova:reagentFunction "Substrate-binding protein for biotin-tethered DNA complexes" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2003.08.003/pei> a lova:Reagent ;
+    rdfs:label "Linear polyethylenimine (PEI)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "7 mM amine content" ;
+    lova:supplier "PolyTransfection, Strasbourg, France" ;
+    lova:reagentFunction "Cationic polymer for DNA condensation" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2003.08.003/pei-biotin> a lova:Reagent ;
+    rdfs:label "Biotinylated linear PEI (PEI-biotin)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "7-10 mol biotin/mol PEI" ;
+    lova:supplier "PolyTransfection, Strasbourg, France" ;
+    lova:reagentFunction "Biotinylated cationic polymer for biotin-neutravidin surface tethering" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/gel-electrophoresis-pl> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.jconrel.2003.08.003/k214b-3.8> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.jconrel.2003.08.003/k214b-12.9> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.jconrel.2003.08.003/dk214b-10.9> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.jconrel.2003.08.003/k19> ;
+    rdfs:label "Gel electrophoresis DNA retardation assay for biotinylated polylysine" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Gel electrophoresis (DNA mobility retardation)" ;
+    lova:assayOrMethod "Agarose gel electrophoresis" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/gel-k214b-3.8> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/gel-electrophoresis-pl> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "Charge ratio for complete mobility elimination — K214-B(3.8)" ;
+    lova:measurementType "Charge ratio at full DNA mobility elimination" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 2.4 ;
+    qudt:unit "charge ratio (+/-)" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/gel-k214b-12.9> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/gel-electrophoresis-pl> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "Charge ratio for complete mobility elimination — K214-B(12.9)" ;
+    lova:measurementType "Charge ratio at full DNA mobility elimination" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 3.1 ;
+    qudt:unit "charge ratio (+/-)" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/gel-dk214b-10.9> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/gel-electrophoresis-pl> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "Charge ratio for complete mobility elimination — DK214-B(10.9)" ;
+    lova:measurementType "Charge ratio at full DNA mobility elimination" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 3.1 ;
+    qudt:unit "charge ratio (+/-)" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/gel-unmodified-pl> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/gel-electrophoresis-pl> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "Charge ratio for complete mobility elimination — unmodified K214/DK214" ;
+    lova:measurementType "Charge ratio at full DNA mobility elimination" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 1.2 ;
+    qudt:unit "charge ratio (+/-)" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/gel-k19> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/gel-electrophoresis-pl> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "Charge ratio for complete mobility elimination — K19" ;
+    lova:measurementType "Charge ratio at full DNA mobility elimination" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 3.1 ;
+    qudt:unit "charge ratio (+/-)" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/gel-electrophoresis-pei> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.jconrel.2003.08.003/pei> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.jconrel.2003.08.003/pei-biotin> ;
+    rdfs:label "Gel electrophoresis DNA retardation assay for PEI and PEI-biotin" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Gel electrophoresis (DNA mobility retardation)" ;
+    lova:assayOrMethod "Agarose gel electrophoresis" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/gel-pei-np> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/gel-electrophoresis-pei> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "N/P ratio for complete mobility stop — PEI and PEI-biotin" ;
+    lova:measurementType "N/P ratio at full DNA mobility elimination" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 1.3 ;
+    qudt:unit "N/P ratio" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/fluorescence-aggregation> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.jconrel.2003.08.003/k214-nonbiotin> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.jconrel.2003.08.003/k214b-3.8> ;
+    rdfs:label "Fluorescence microscopy of complex aggregation on neutravidin substrate" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Fluorescence microscopy imaging" ;
+    lova:assayOrMethod "FITC-labeled beta-galactosidase plasmid imaging" ;
+    lova:equipment "Leica fluorescence microscope with digital camera" ;
+    lova:temperature "Room temperature" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/aggregation-nonbiotin> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/fluorescence-aggregation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "Complex aggregation observed for nonbiotinylated K214/DNA over 120 min" ;
+    lova:measurementType "Visual complex aggregation" ;
+    lova:measurementCategory "Biochemical" ;
+    lova:valueString "Aggregates visible within 20 min, increased in size through 120 min, largest aggregates visible to the naked eye" ;
+    lova:timePoint "20, 40, 120 min" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/aggregation-biotin> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/fluorescence-aggregation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "Complex stability for biotinylated K214-B(3.8)/DNA over 120 min" ;
+    lova:measurementType "Visual complex aggregation" ;
+    lova:measurementCategory "Biochemical" ;
+    lova:valueString "No aggregation observed; complexes stable and uniformly dispersed throughout 120 min incubation" ;
+    lova:timePoint "20, 40, 120 min" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/density-vs-charge-ratio> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.jconrel.2003.08.003/k214b-3.8> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.jconrel.2003.08.003/k214b-12.9> ;
+    rdfs:label "Substrate DNA density vs charge ratio for biotinylated K214" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Surface DNA density quantification" ;
+    lova:assayOrMethod "Hoechst dye fluorometric assay (Turner Designs TD-360)" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/density-k214b-3.8-cr0.6> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/density-vs-charge-ratio> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "DNA density — K214-B(3.8), charge ratio 0.6 (129 mol biotin/mol DNA)" ;
+    lova:measurementType "Surface-associated DNA density" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 0.32 ;
+    qudt:unit "μg/cm2" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/density-k214b-3.8-cr1.8> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/density-vs-charge-ratio> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "DNA density — K214-B(3.8), charge ratio 1.8 (387 mol biotin/mol DNA)" ;
+    lova:measurementType "Surface-associated DNA density" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 0.38 ;
+    qudt:unit "μg/cm2" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/density-k214b-3.8-cr3.0> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/density-vs-charge-ratio> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "DNA density — K214-B(3.8), charge ratio 3.0 (645 mol biotin/mol DNA)" ;
+    lova:measurementType "Surface-associated DNA density" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 0.85 ;
+    qudt:unit "μg/cm2" ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/density-k214b-3.8-cr5.5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/density-vs-charge-ratio> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "DNA density — K214-B(3.8), charge ratio 5.5 (1183 mol biotin/mol DNA)" ;
+    lova:measurementType "Surface-associated DNA density" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 1.8 ;
+    qudt:unit "μg/cm2" ;
+    lova:stdDev 0.37 ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/density-k214b-12.9-cr0.6> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/density-vs-charge-ratio> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "DNA density — K214-B(12.9), charge ratio 0.6 (438 mol biotin/mol DNA)" ;
+    lova:measurementType "Surface-associated DNA density" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 0.42 ;
+    qudt:unit "μg/cm2" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/density-k214b-12.9-cr1.8> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/density-vs-charge-ratio> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "DNA density — K214-B(12.9), charge ratio 1.8 (1314 mol biotin/mol DNA)" ;
+    lova:measurementType "Surface-associated DNA density" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 0.53 ;
+    qudt:unit "μg/cm2" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/density-k214b-12.9-cr3.0> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/density-vs-charge-ratio> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "DNA density — K214-B(12.9), charge ratio 3.0 (2190 mol biotin/mol DNA)" ;
+    lova:measurementType "Surface-associated DNA density" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 2.4 ;
+    qudt:unit "μg/cm2" ;
+    lova:stdDev 0.28 ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/density-k214b-12.9-cr5.5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/density-vs-charge-ratio> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "DNA density — K214-B(12.9), charge ratio 5.5 (4016 mol biotin/mol DNA)" ;
+    lova:measurementType "Surface-associated DNA density" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 2.25 ;
+    qudt:unit "μg/cm2" ;
+    lova:stdDev 0.58 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.jconrel.2003.08.003/density-cr1.8-vs-cr3.0-3.8> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "DNA density higher at charge ratio 3.0 vs 1.8 for K214-B(3.8)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/density-k214b-3.8-cr3.0> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/density-k214b-3.8-cr1.8> ;
+    lova:direction "higher" ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.jconrel.2003.08.003/density-cr1.8-vs-cr3.0-12.9> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "DNA density higher at charge ratio 3.0 vs 1.8 for K214-B(12.9)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/density-k214b-12.9-cr3.0> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/density-k214b-12.9-cr1.8> ;
+    lova:direction "higher" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.jconrel.2003.08.003/density-cr3.0-vs-cr5.5-3.8> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "DNA density higher at charge ratio 5.5 vs 3.0 for K214-B(3.8)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/density-k214b-3.8-cr5.5> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/density-k214b-3.8-cr3.0> ;
+    lova:direction "higher" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.jconrel.2003.08.003/density-cr3.0-vs-cr5.5-12.9> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "No difference in DNA density between charge ratio 3.0 and 5.5 for K214-B(12.9)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/density-k214b-12.9-cr5.5> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/density-k214b-12.9-cr3.0> ;
+    lova:direction "no difference" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/density-transfection-biotin-distribution> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.jconrel.2003.08.003/k214b-3.8> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.jconrel.2003.08.003/k214b-12.9> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.jconrel.2003.08.003/k19> ;
+    rdfs:label "Substrate DNA density and luciferase transfection vs biotin distribution (charge ratio 5.5:1)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transfection assay" ;
+    lova:assayOrMethod "Luciferase reporter assay; Hoechst dye DNA quantification" ;
+    lova:cellType "HEK293T" ;
+    lova:seedingDensity "7000 cells/well" ;
+    lova:temperature "37°C" ;
+    lova:atmosphere "5% CO2" ;
+    lova:cultureMedium "DMEM + 10% FBS + 1% penicillin/streptomycin" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/density-100-0-3.8> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/density-transfection-biotin-distribution> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "DNA density — 100:0 biotinylated:nonbiotinylated K214-B(3.8) (1276 mol biotin/mol DNA)" ;
+    lova:measurementType "Surface-associated DNA density" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 1.8 ;
+    qudt:unit "μg/cm2" ;
+    lova:stdDev 0.37 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/density-100-0-12.9> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/density-transfection-biotin-distribution> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "DNA density — 100:0 biotinylated:nonbiotinylated K214-B(12.9) (4022 mol biotin/mol DNA)" ;
+    lova:measurementType "Surface-associated DNA density" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 2.25 ;
+    qudt:unit "μg/cm2" ;
+    lova:stdDev 0.58 ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/density-5-95-3.8> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/density-transfection-biotin-distribution> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "DNA density — 5:95 biotinylated:nonbiotinylated K214-B(3.8) (64 mol biotin/mol DNA)" ;
+    lova:measurementType "Surface-associated DNA density" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 0.18 ;
+    qudt:unit "μg/cm2" ;
+    lova:stdDev 0.15 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/density-5-95-12.9> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/density-transfection-biotin-distribution> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "DNA density — 5:95 biotinylated:nonbiotinylated K214-B(12.9) (201 mol biotin/mol DNA)" ;
+    lova:measurementType "Surface-associated DNA density" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 0.25 ;
+    qudt:unit "μg/cm2" ;
+    lova:stdDev 0.1 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/density-no-tethers> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/density-transfection-biotin-distribution> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "DNA density — nonspecifically adsorbed K19/DNA complex on NA surface (no tethers)" ;
+    lova:measurementType "Surface-associated DNA density" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 0.25 ;
+    qudt:unit "μg/cm2" ;
+    lova:stdDev 0.07 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/transfection-100-0-3.8> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/density-transfection-biotin-distribution> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "Luciferase transfection — 100:0 K214-B(3.8)" ;
+    lova:measurementType "Luciferase expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 200000.0 ;
+    qudt:unit "RLU/mg protein" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/transfection-100-0-12.9> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/density-transfection-biotin-distribution> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "Luciferase transfection — 100:0 K214-B(12.9)" ;
+    lova:measurementType "Luciferase expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2000000.0 ;
+    qudt:unit "RLU/mg protein" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/transfection-5-95-3.8> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/density-transfection-biotin-distribution> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "Luciferase transfection — 5:95 K214-B(3.8)" ;
+    lova:measurementType "Luciferase expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 500000.0 ;
+    qudt:unit "RLU/mg protein" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/transfection-5-95-12.9> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/density-transfection-biotin-distribution> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "Luciferase transfection — 5:95 K214-B(12.9)" ;
+    lova:measurementType "Luciferase expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 5200000.0 ;
+    qudt:unit "RLU/mg protein" ;
+    lova:stdDev 800000.0 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.jconrel.2003.08.003/transfection-5-95-vs-100-0-12.9> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "Luciferase expression higher for 5:95 vs 100:0 K214-B(12.9)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/transfection-5-95-12.9> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/transfection-100-0-12.9> ;
+    lova:direction "higher" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.jconrel.2003.08.003/transfection-5-95-12.9-vs-3.8> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "Luciferase expression ninefold higher for K214-B(12.9) vs K214-B(3.8) at 5:95 ratio" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/transfection-5-95-12.9> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/transfection-5-95-3.8> ;
+    lova:direction "higher" ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true ;
+    lova:foldChange 9.0 .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/pdl-vs-pl-transfection> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.jconrel.2003.08.003/k214b-12.9> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.jconrel.2003.08.003/dk214b-10.9> ;
+    rdfs:label "Transfection comparison of enzymatically degradable (PL) vs nondegradable (PDL) polylysine" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transfection assay" ;
+    lova:assayOrMethod "Luciferase reporter assay" ;
+    lova:cellType "HEK293T" ;
+    lova:cultureMedium "DMEM + 10% FBS + 1% penicillin/streptomycin" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/pdl-100-0-k214b-12.9> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/pdl-vs-pl-transfection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "Luciferase expression — 100:0 K214-B(12.9) (4016 mol biotin/mol DNA)" ;
+    lova:measurementType "Luciferase expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 250000.0 ;
+    qudt:unit "RLU/mg protein" ;
+    lova:stdDev 150000.0 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/pdl-100-0-dk214b-10.9> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/pdl-vs-pl-transfection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "Luciferase expression — 100:0 DK214-B(10.9) (3393 mol biotin/mol DNA)" ;
+    lova:measurementType "Luciferase expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1850000.0 ;
+    qudt:unit "RLU/mg protein" ;
+    lova:stdDev 650000.0 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/pdl-5-95-k214b-12.9> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/pdl-vs-pl-transfection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "Luciferase expression — 5:95 K214-B(12.9) (201 mol biotin/mol DNA)" ;
+    lova:measurementType "Luciferase expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 5150000.0 ;
+    qudt:unit "RLU/mg protein" ;
+    lova:stdDev 650000.0 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/pdl-5-95-dk214b-10.9> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/pdl-vs-pl-transfection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "Luciferase expression — 5:95 DK214-B(10.9) (167 mol biotin/mol DNA)" ;
+    lova:measurementType "Luciferase expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 6100000.0 ;
+    qudt:unit "RLU/mg protein" ;
+    lova:stdDev 850000.0 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.jconrel.2003.08.003/pdl-vs-pl-100-0> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "Transfection fivefold higher with DK214-B(10.9) vs K214-B(12.9) at 100:0 ratio" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/pdl-100-0-dk214b-10.9> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/pdl-100-0-k214b-12.9> ;
+    lova:direction "higher" ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true ;
+    lova:foldChange 5.0 .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.jconrel.2003.08.003/pdl-vs-pl-5-95> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "No significant difference between DK214-B(10.9) and K214-B(12.9) at 5:95 ratio" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/pdl-5-95-dk214b-10.9> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/pdl-5-95-k214b-12.9> ;
+    lova:direction "no difference" ;
+    lova:isSignificant false .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/pl-release> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.jconrel.2003.08.003/k214b-12.9> ;
+    rdfs:label "Release of substrate-associated DNA/polylysine complexes with/without PEI" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Release study" ;
+    lova:assayOrMethod "32P-labeled DNA scintillation counting" ;
+    lova:temperature "37°C" ;
+    lova:medium "PBS" ;
+    lova:cultureDuration "8 days" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/release-24h-range> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/pl-release> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "DNA released at 24 h for K214-B(12.9) complexes" ;
+    lova:measurementType "Percent DNA released" ;
+    lova:measurementCategory "Biochemical" ;
+    lova:valueString "10-20%" ;
+    lova:timePoint "24 h" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/release-8d-nopei> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/pl-release> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "DNA released over 8 days without PEI addition" ;
+    lova:measurementType "Percent DNA released" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 30.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "8 days" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/release-8d-pei> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/pl-release> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "DNA released over 8 days with PEI addition" ;
+    lova:measurementType "Percent DNA released" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 21.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "8 days" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/release-100-0-k214b-12.9> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/pl-release> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "DNA released — 100:0 K214-B(12.9), 8 days (156 ng DNA)" ;
+    lova:measurementType "Percent DNA released" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 24.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "8 days" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/release-5-95-k214b-12.9> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/pl-release> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "DNA released — 5:95 K214-B(12.9), 8 days (53 ng DNA)" ;
+    lova:measurementType "Percent DNA released" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 31.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "8 days" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/expression-timecourse> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.jconrel.2003.08.003/k214b-3.8> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.jconrel.2003.08.003/k19> ;
+    rdfs:label "Luciferase expression profile: substrate-mediated vs bolus delivery over 8 days" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transfection time course" ;
+    lova:assayOrMethod "Luciferase reporter assay" ;
+    lova:cellType "HEK293T" ;
+    lova:seedingDensity "5000 cells/well" ;
+    lova:cultureDuration "1, 2, 4, 8 days" ;
+    lova:temperature "37°C" ;
+    lova:atmosphere "5% CO2" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/expression-substrate-d4> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/expression-timecourse> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "Substrate-mediated luciferase expression at day 4 significantly greater than bolus delivery" ;
+    lova:measurementType "Luciferase expression" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Luciferase activity at day 4 similar to day 2, then decreasing" ;
+    lova:timePoint "Day 4" ;
+    lova:comparisonGroup "Bolus delivery" ;
+    lova:pValue 0.01 ;
+    lova:isSignificant true ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/expression-substrate-d8> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/expression-timecourse> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "Substrate-mediated luciferase expression at day 8 significantly greater than bolus delivery" ;
+    lova:measurementType "Luciferase expression" ;
+    lova:measurementCategory "Biological" ;
+    lova:timePoint "Day 8" ;
+    lova:comparisonGroup "Bolus delivery" ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/expression-bolus-d2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/expression-timecourse> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "Bolus delivery luciferase expression peaks at day 2 then decreases by order of magnitude" ;
+    lova:measurementType "Luciferase expression" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Maximal expression at day 2, decreased by an order of magnitude through remainder of study" ;
+    lova:timePoint "Day 2" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.jconrel.2003.08.003/expression-substrate-vs-bolus-d4> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "Luciferase expression higher for substrate-mediated vs bolus delivery at day 4" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/expression-substrate-d4> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/expression-bolus-d2> ;
+    lova:direction "higher" ;
+    lova:pValue 0.01 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/pei-density-transfection> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.jconrel.2003.08.003/pei> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.jconrel.2003.08.003/pei-biotin> ;
+    rdfs:label "Substrate DNA density and luciferase transfection for PEI/DNA complexes (N/P ratio 5)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transfection assay" ;
+    lova:assayOrMethod "32P-labeled DNA scintillation counting; luciferase reporter assay" ;
+    lova:cellType "HEK293T" ;
+    lova:seedingDensity "5000-7000 cells/well" ;
+    lova:cultureMedium "DMEM + 10% FBS + 1% penicillin/streptomycin" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/pei-density-100-0> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/pei-density-transfection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "DNA density — 100:0 biotinylated:nonbiotinylated PEI (2482 mol biotin/mol DNA)" ;
+    lova:measurementType "Surface-associated DNA density" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 0.98 ;
+    qudt:unit "μg/cm2" ;
+    lova:stdDev 0.03 ;
+    lova:pValue 0.01 ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/pei-density-50-50> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/pei-density-transfection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "DNA density — 50:50 biotinylated:nonbiotinylated PEI (1241 mol biotin/mol DNA)" ;
+    lova:measurementType "Surface-associated DNA density" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 0.74 ;
+    qudt:unit "μg/cm2" ;
+    lova:stdDev 0.08 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/pei-density-5-95> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/pei-density-transfection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "DNA density — 5:95 biotinylated:nonbiotinylated PEI (124 mol biotin/mol DNA)" ;
+    lova:measurementType "Surface-associated DNA density" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 0.77 ;
+    qudt:unit "μg/cm2" ;
+    lova:stdDev 0.08 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/pei-density-0-100> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/pei-density-transfection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "DNA density — 0:100 biotinylated:nonbiotinylated PEI (nonbiotinylated only)" ;
+    lova:measurementType "Surface-associated DNA density" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 0.69 ;
+    qudt:unit "μg/cm2" ;
+    lova:stdDev 0.02 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/pei-transfection-100-0> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/pei-density-transfection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "Luciferase transfection — PEI complexes, 100:0 biotin ratio" ;
+    lova:measurementType "Luciferase expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 11200000.0 ;
+    qudt:unit "RLU/mg protein" ;
+    lova:stdDev 100000.0 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/pei-transfection-0-100> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/pei-density-transfection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "Luciferase transfection — PEI complexes, 0:100 (nonbiotinylated only)" ;
+    lova:measurementType "Luciferase expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 12700000.0 ;
+    qudt:unit "RLU/mg protein" ;
+    lova:stdDev 4300000.0 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.jconrel.2003.08.003/pei-transfection-biotin-vs-nonbiotin> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "No difference in luciferase expression between biotinylated and nonbiotinylated PEI complexes" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/pei-transfection-100-0> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/pei-transfection-0-100> ;
+    lova:direction "no difference" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/pei-release> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.jconrel.2003.08.003/pei> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.jconrel.2003.08.003/pei-biotin> ;
+    rdfs:label "Release of substrate-associated DNA/PEI complexes over 8 days" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Release study" ;
+    lova:assayOrMethod "32P-labeled DNA scintillation counting" ;
+    lova:temperature "37°C" ;
+    lova:medium "PBS" ;
+    lova:cultureDuration "8 days" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/pei-release-biotin-1d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/pei-release> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "DNA released — biotinylated PEI, day 1" ;
+    lova:measurementType "Percent DNA released" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 15.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 1" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/pei-release-biotin-8d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/pei-release> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "DNA released — biotinylated PEI, day 8" ;
+    lova:measurementType "Percent DNA released" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 32.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 8" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/pei-release-nonbiotin-1d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/pei-release> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "DNA released — nonbiotinylated PEI, day 1" ;
+    lova:measurementType "Percent DNA released" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 15.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 1" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/pei-release-nonbiotin-4d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/pei-release> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "DNA released — nonbiotinylated PEI, day 4" ;
+    lova:measurementType "Percent DNA released" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 34.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 4" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/pei-release-nonbiotin-8d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/pei-release> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "DNA released — nonbiotinylated PEI, day 8" ;
+    lova:measurementType "Percent DNA released" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 59.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 8" ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.jconrel.2003.08.003/pei-release-biotin-vs-nonbiotin-8d> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "Release higher for nonbiotinylated vs biotinylated PEI complexes at day 8" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/pei-release-nonbiotin-8d> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/pei-release-biotin-8d> ;
+    lova:direction "higher" ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/tcp-binding-control> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.jconrel.2003.08.003/k19> ;
+    rdfs:label "Nonspecific binding of K19/DNA complexes to tissue culture plastic (TCP)" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Surface DNA density quantification" ;
+    lova:assayOrMethod "Hoechst dye fluorometric assay" ;
+    lova:cultureDuration "2 h" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/tcp-density-k19> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2003.08.003/tcp-binding-control> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "DNA density — K19/DNA complex on TCP (nonspecific adsorption)" ;
+    lova:measurementType "Surface-associated DNA density" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 4.7 ;
+    qudt:unit "μg/cm2" ;
+    lova:stdDev 0.79 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.jconrel.2003.08.003/tcp-vs-na-density> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2003.08.003> ;
+    rdfs:label "DNA density higher on TCP than NA for nonspecifically adsorbed complexes, despite lower transfection" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/tcp-density-k19> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2003.08.003/density-no-tethers> ;
+    lova:direction "higher" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true .

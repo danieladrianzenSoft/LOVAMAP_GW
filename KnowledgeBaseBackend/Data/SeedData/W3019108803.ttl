@@ -1,0 +1,1232 @@
+@prefix bibo: <http://purl.org/ontology/bibo/> .
+@prefix dc1: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix lova: <https://lovamap.com/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.201901391/cd11b-infarct-tetmap-vs-nogel> a lova:ComparisonResult ;
+    rdfs:label "CD11b+ infarct area lower in Tet-MAP vs No Gel" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    lova:direction "lower" ;
+    lova:isSignificant true ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/cd11b-infarct-tetmap> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/cd11b-infarct-nogel> .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.201901391/cd11b-periinfarct-tetmap-vs-nogel> a lova:ComparisonResult ;
+    rdfs:label "CD11b+ peri-infarct area lower in Tet-MAP vs No Gel" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    lova:direction "lower" ;
+    lova:isSignificant true ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/cd11b-periinfarct-tetmap> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/cd11b-periinfarct-nogel> .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.201901391/max-stress-10-vs-2.5> a lova:ComparisonResult ;
+    rdfs:label "Max stress higher at Tet/HA=10 vs Tet/HA=2.5" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/max-stress-10> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/max-stress-2.5> .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.201901391/max-stress-20-vs-2.5> a lova:ComparisonResult ;
+    rdfs:label "Max stress higher at Tet/HA=20 vs Tet/HA=2.5" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/max-stress-20> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/max-stress-2.5> .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.201901391/occvol-10-vs-20-day5> a lova:ComparisonResult ;
+    rdfs:label "Percent occupied volume no difference at Tet/HA=10 vs Tet/HA=20, day 5" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    lova:direction "no difference" ;
+    lova:isSignificant false ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/occ-vol-10-day5> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/occ-vol-20-day5> .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.201901391/occvol-2.5-vs-10-day2> a lova:ComparisonResult ;
+    rdfs:label "Percent occupied volume higher at Tet/HA=2.5 vs Tet/HA=10, day 2" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/occ-vol-2.5-day2> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/occ-vol-10-day2> .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.201901391/occvol-2.5-vs-10-day5> a lova:ComparisonResult ;
+    rdfs:label "Percent occupied volume higher at Tet/HA=2.5 vs Tet/HA=10, day 5" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/occ-vol-2.5-day5> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/occ-vol-10-day5> .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.201901391/occvol-2.5-vs-20-day2> a lova:ComparisonResult ;
+    rdfs:label "Percent occupied volume higher at Tet/HA=2.5 vs Tet/HA=20, day 2" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/occ-vol-2.5-day2> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/occ-vol-20-day2> .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.201901391/occvol-2.5-vs-20-day5> a lova:ComparisonResult ;
+    rdfs:label "Percent occupied volume higher at Tet/HA=2.5 vs Tet/HA=20, day 5" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/occ-vol-2.5-day5> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/occ-vol-20-day5> .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.201901391/occvol-5-vs-10-day2> a lova:ComparisonResult ;
+    rdfs:label "Percent occupied volume higher at Tet/HA=5 vs Tet/HA=10, day 2" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/occ-vol-5-day2> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/occ-vol-10-day2> .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.201901391/prolif-2.5-vs-20-day2> a lova:ComparisonResult ;
+    rdfs:label "Relative proliferation higher at Tet/HA=2.5 vs Tet/HA=20, day 2" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/prolif-2.5-day2> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/prolif-20-day2> .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.201901391/prolif-2.5-vs-20-day5> a lova:ComparisonResult ;
+    rdfs:label "Relative proliferation higher at Tet/HA=2.5 vs Tet/HA=20, day 5" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/prolif-2.5-day5> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/prolif-20-day5> .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.201901391/scar-thickness-tetmap-vs-nogel> a lova:ComparisonResult ;
+    rdfs:label "Scar thickness lower in Tet-MAP vs No Gel" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    lova:direction "lower" ;
+    lova:isSignificant true ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/scar-thickness-tetmap> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/scar-thickness-nogel> .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.201901391/storage-modulus-10-vs-2.5> a lova:ComparisonResult ;
+    rdfs:label "Storage modulus higher at Tet/HA=10 vs Tet/HA=2.5" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/storage-modulus-10> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/storage-modulus-2.5> .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.201901391/storage-modulus-20-vs-10> a lova:ComparisonResult ;
+    rdfs:label "Storage modulus higher at Tet/HA=20 vs Tet/HA=10" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/storage-modulus-20> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/storage-modulus-10> .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.201901391/youngs-modulus-10-vs-2.5> a lova:ComparisonResult ;
+    rdfs:label "Young's modulus higher at Tet/HA=10 vs Tet/HA=2.5" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/youngs-modulus-10> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/youngs-modulus-2.5> .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.201901391/youngs-modulus-20-vs-10> a lova:ComparisonResult ;
+    rdfs:label "Young's modulus higher at Tet/HA=20 vs Tet/HA=10" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/youngs-modulus-20> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/youngs-modulus-10> .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/alexa647-tet-conversion> a lova:Outcome ;
+    rdfs:label "Alexa Fluor 647 C2-tetrazine synthesis conversion" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    qudt:numericValue 98.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/nmr-characterization> ;
+    lova:measurementCategory "Chemical" ;
+    lova:measurementType "Reaction conversion" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/cell-number-fold-day14> a lova:Outcome ;
+    rdfs:label "Normalized cell number at day 14 relative to day 2" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    lova:comparedToControl 3.0 ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/cell-proliferation-timecourse> ;
+    lova:isTimeSeries true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Cell number (normalized to day 2)" ;
+    lova:timePoint "Day 14" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/cross-time-25c> a lova:Outcome ;
+    rdfs:label "Time to exceed uncrosslinked HMP modulus at 25°C" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    qudt:numericValue 26.4 ;
+    qudt:unit "min" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/annealing-kinetics> ;
+    lova:measurementCategory "Rheological" ;
+    lova:measurementType "Time to exceed uncrosslinked HMP modulus" ;
+    lova:temperature "25°C" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/cross-time-37c> a lova:Outcome ;
+    rdfs:label "Time to exceed uncrosslinked HMP modulus at 37°C" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    qudt:numericValue 12.6 ;
+    qudt:unit "min" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/annealing-kinetics> ;
+    lova:measurementCategory "Rheological" ;
+    lova:measurementType "Time to exceed uncrosslinked HMP modulus" ;
+    lova:temperature "37°C" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/ha-nb-modification> a lova:Outcome ;
+    rdfs:label "HA norbornene modification degree" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    qudt:numericValue 44.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/nmr-characterization> ;
+    lova:measurementCategory "Chemical" ;
+    lova:measurementType "Degree of norbornene modification" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/loss-modulus-10> a lova:Outcome ;
+    rdfs:label "Loss modulus (G'') Tet/HA=10" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    qudt:numericValue 28.0 ;
+    qudt:unit "Pa" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/rheology-frequency-sweep> ;
+    lova:measurementCategory "Rheological" ;
+    lova:measurementType "Loss modulus (G'')" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/loss-modulus-2.5> a lova:Outcome ;
+    rdfs:label "Loss modulus (G'') Tet/HA=2.5" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    qudt:numericValue 12.0 ;
+    qudt:unit "Pa" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/rheology-frequency-sweep> ;
+    lova:measurementCategory "Rheological" ;
+    lova:measurementType "Loss modulus (G'')" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/loss-modulus-20> a lova:Outcome ;
+    rdfs:label "Loss modulus (G'') Tet/HA=20" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    qudt:numericValue 55.0 ;
+    qudt:unit "Pa" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/rheology-frequency-sweep> ;
+    lova:measurementCategory "Rheological" ;
+    lova:measurementType "Loss modulus (G'')" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/loss-modulus-5> a lova:Outcome ;
+    rdfs:label "Loss modulus (G'') Tet/HA=5" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    qudt:numericValue 24.0 ;
+    qudt:unit "Pa" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/rheology-frequency-sweep> ;
+    lova:measurementCategory "Rheological" ;
+    lova:measurementType "Loss modulus (G'')" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/max-stress-5> a lova:Outcome ;
+    rdfs:label "Max stress Tet/HA=5" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    qudt:numericValue 900.0 ;
+    qudt:unit "Pa" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/compression-test> ;
+    lova:measurementCategory "Mechanical" ;
+    lova:measurementType "Max stress" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/occ-vol-5-day5> a lova:Outcome ;
+    rdfs:label "Percent occupied volume, Tet/HA=5, day 5" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    qudt:numericValue 6.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/percent-occupied-volume> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Percent occupied volume" ;
+    lova:timePoint "Day 5" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/plateau-time-25c> a lova:Outcome ;
+    rdfs:label "Time to reach annealed plateau modulus at 25°C" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    qudt:numericValue 89.6 ;
+    qudt:unit "min" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/annealing-kinetics> ;
+    lova:measurementCategory "Rheological" ;
+    lova:measurementType "Time to reach annealed plateau modulus" ;
+    lova:temperature "25°C" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/plateau-time-37c> a lova:Outcome ;
+    rdfs:label "Time to reach annealed plateau modulus at 37°C" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    qudt:numericValue 60.5 ;
+    qudt:unit "min" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/annealing-kinetics> ;
+    lova:measurementCategory "Rheological" ;
+    lova:measurementType "Time to reach annealed plateau modulus" ;
+    lova:temperature "37°C" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/prolif-10-day2> a lova:Outcome ;
+    rdfs:label "Relative proliferation, Tet/HA=10, day 2" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    qudt:numericValue 0.62 ;
+    qudt:unit "ratio" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/relative-proliferation> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Relative proliferation" ;
+    lova:timePoint "Day 2" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/prolif-10-day5> a lova:Outcome ;
+    rdfs:label "Relative proliferation, Tet/HA=10, day 5" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    qudt:numericValue 0.86 ;
+    qudt:unit "ratio" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/relative-proliferation> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Relative proliferation" ;
+    lova:timePoint "Day 5" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/prolif-5-day2> a lova:Outcome ;
+    rdfs:label "Relative proliferation, Tet/HA=5, day 2" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    qudt:numericValue 0.83 ;
+    qudt:unit "ratio" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/relative-proliferation> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Relative proliferation" ;
+    lova:timePoint "Day 2" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/prolif-5-day5> a lova:Outcome ;
+    rdfs:label "Relative proliferation, Tet/HA=5, day 5" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    qudt:numericValue 0.98 ;
+    qudt:unit "ratio" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/relative-proliferation> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Relative proliferation" ;
+    lova:timePoint "Day 5" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/storage-modulus-5> a lova:Outcome ;
+    rdfs:label "Storage modulus (G') Tet/HA=5" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    qudt:numericValue 445.0 ;
+    qudt:unit "Pa" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/rheology-frequency-sweep> ;
+    lova:measurementCategory "Rheological" ;
+    lova:measurementType "Storage modulus (G')" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/tetra-peg-tet-modification> a lova:Outcome ;
+    rdfs:label "Tetra-PEG-Tet modification degree" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    qudt:numericValue 100.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/nmr-characterization> ;
+    lova:measurementCategory "Chemical" ;
+    lova:measurementType "Degree of tetrazine modification" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/viability-2.5-day1> a lova:Outcome ;
+    rdfs:label "HDF viability, Tet/HA=2.5, day 1" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/cell-viability> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Cell viability" ;
+    lova:timePoint "Day 1" ;
+    lova:valueString ">95%" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/viability-2.5-day8> a lova:Outcome ;
+    rdfs:label "HDF viability, Tet/HA=2.5, day 8" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/cell-viability> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Cell viability" ;
+    lova:timePoint "Day 8" ;
+    lova:valueString ">95%" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/viability-20-day1> a lova:Outcome ;
+    rdfs:label "HDF viability, Tet/HA=20, day 1" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/cell-viability> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Cell viability" ;
+    lova:timePoint "Day 1" ;
+    lova:valueString ">95%" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/viability-20-day8> a lova:Outcome ;
+    rdfs:label "HDF viability, Tet/HA=20, day 8" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/cell-viability> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Cell viability" ;
+    lova:timePoint "Day 8" ;
+    lova:valueString ">95%" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/void-fraction-10> a lova:Outcome ;
+    rdfs:label "Void fraction Tet/HA=10" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    qudt:numericValue 0.39 ;
+    qudt:unit "fraction" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/void-fraction-analysis> ;
+    lova:isSignificant false ;
+    lova:measurementCategory "Structural" ;
+    lova:measurementType "Void fraction" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/void-fraction-2.5> a lova:Outcome ;
+    rdfs:label "Void fraction Tet/HA=2.5" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    qudt:numericValue 0.32 ;
+    qudt:unit "fraction" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/void-fraction-analysis> ;
+    lova:isSignificant false ;
+    lova:measurementCategory "Structural" ;
+    lova:measurementType "Void fraction" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/void-fraction-20> a lova:Outcome ;
+    rdfs:label "Void fraction Tet/HA=20" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    qudt:numericValue 0.31 ;
+    qudt:unit "fraction" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/void-fraction-analysis> ;
+    lova:isSignificant false ;
+    lova:measurementCategory "Structural" ;
+    lova:measurementType "Void fraction" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/void-fraction-5> a lova:Outcome ;
+    rdfs:label "Void fraction Tet/HA=5" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    qudt:numericValue 0.34 ;
+    qudt:unit "fraction" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/void-fraction-analysis> ;
+    lova:isSignificant false ;
+    lova:measurementCategory "Structural" ;
+    lova:measurementType "Void fraction" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/youngs-modulus-5> a lova:Outcome ;
+    rdfs:label "Young's modulus Tet/HA=5" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    qudt:numericValue 2191.0 ;
+    qudt:unit "Pa" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/compression-test> ;
+    lova:measurementCategory "Mechanical" ;
+    lova:measurementType "Young's modulus" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/cell-proliferation-timecourse> a lova:Experiment ;
+    rdfs:label "Long-term HDF proliferation in Tet/HA=2.5 Tet-MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    lova:assayOrMethod "IMARIS Spot modeling of DAPI channel" ;
+    lova:cellType "Human dermal fibroblasts (HDF)" ;
+    lova:cultureDuration "2, 4, 5, 7, 14 days" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell proliferation (nuclei counting)" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.201901391/tet-map-2.5> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-adhm.201901391/hmp-synthesis> a lova:FabricationMethod ;
+    rdfs:label "HA-NB HMP synthesis via thiol-norbornene photo-click, inverse suspension polymerization" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    lova:chemistry "Radical-mediated step-growth thiol-norbornene photo-click reaction" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-adhm.201901391/dmtmm>,
+        <https://lovamap.com/ontology#reagent/10.1002-adhm.201901391/dtt>,
+        <https://lovamap.com/ontology#reagent/10.1002-adhm.201901391/ha>,
+        <https://lovamap.com/ontology#reagent/10.1002-adhm.201901391/hexane>,
+        <https://lovamap.com/ontology#reagent/10.1002-adhm.201901391/lap>,
+        <https://lovamap.com/ontology#reagent/10.1002-adhm.201901391/norbornene-amine>,
+        <https://lovamap.com/ontology#reagent/10.1002-adhm.201901391/pluronic>,
+        <https://lovamap.com/ontology#reagent/10.1002-adhm.201901391/rgd-peptide>,
+        <https://lovamap.com/ontology#reagent/10.1002-adhm.201901391/span80> ;
+    lova:manufacturingMethod "Inverse suspension (water-in-oil) emulsion polymerization with UV photopolymerization" .
+
+<https://lovamap.com/ontology#journal/advanced-healthcare-materials> a bibo:Journal ;
+    dc1:title "Advanced Healthcare Materials" ;
+    bibo:issn "2192-2640" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/cd11b-infarct-nogel> a lova:Outcome ;
+    rdfs:label "CD11b+ positive area in infarct, No Gel" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    qudt:numericValue 50.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "Infarct" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/in-vivo-cd11b> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "CD11b+ positive area" ;
+    lova:scope "Regional" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/cd11b-infarct-tetmap> a lova:Outcome ;
+    rdfs:label "CD11b+ positive area in infarct, Tet-MAP" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    qudt:numericValue 18.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "Infarct" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/in-vivo-cd11b> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "CD11b+ positive area" ;
+    lova:scope "Regional" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/cd11b-periinfarct-nogel> a lova:Outcome ;
+    rdfs:label "CD11b+ positive area in peri-infarct, No Gel" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    qudt:numericValue 25.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "Peri-infarct" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/in-vivo-cd11b> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "CD11b+ positive area" ;
+    lova:scope "Regional" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/cd11b-periinfarct-tetmap> a lova:Outcome ;
+    rdfs:label "CD11b+ positive area in peri-infarct, Tet-MAP" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    qudt:numericValue 17.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "Peri-infarct" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/in-vivo-cd11b> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "CD11b+ positive area" ;
+    lova:scope "Regional" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/max-stress-10> a lova:Outcome ;
+    rdfs:label "Max stress Tet/HA=10" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    qudt:numericValue 1150.0 ;
+    qudt:unit "Pa" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/compression-test> ;
+    lova:measurementCategory "Mechanical" ;
+    lova:measurementType "Max stress" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/max-stress-20> a lova:Outcome ;
+    rdfs:label "Max stress Tet/HA=20" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    qudt:numericValue 1900.0 ;
+    qudt:unit "Pa" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/compression-test> ;
+    lova:measurementCategory "Mechanical" ;
+    lova:measurementType "Max stress" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/occ-vol-20-day2> a lova:Outcome ;
+    rdfs:label "Percent occupied volume, Tet/HA=20, day 2" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    qudt:numericValue 0.3 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/percent-occupied-volume> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Percent occupied volume" ;
+    lova:timePoint "Day 2" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/occ-vol-5-day2> a lova:Outcome ;
+    rdfs:label "Percent occupied volume, Tet/HA=5, day 2" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    qudt:numericValue 3.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/percent-occupied-volume> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Percent occupied volume" ;
+    lova:timePoint "Day 2" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/prolif-2.5-day2> a lova:Outcome ;
+    rdfs:label "Relative proliferation, Tet/HA=2.5, day 2" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    qudt:numericValue 1.0 ;
+    qudt:unit "ratio" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/relative-proliferation> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Relative proliferation" ;
+    lova:timePoint "Day 2" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/prolif-2.5-day5> a lova:Outcome ;
+    rdfs:label "Relative proliferation, Tet/HA=2.5, day 5" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    qudt:numericValue 1.0 ;
+    qudt:unit "ratio" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/relative-proliferation> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Relative proliferation" ;
+    lova:timePoint "Day 5" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/prolif-20-day2> a lova:Outcome ;
+    rdfs:label "Relative proliferation, Tet/HA=20, day 2" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    qudt:numericValue 0.63 ;
+    qudt:unit "ratio" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/relative-proliferation> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Relative proliferation" ;
+    lova:timePoint "Day 2" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/prolif-20-day5> a lova:Outcome ;
+    rdfs:label "Relative proliferation, Tet/HA=20, day 5" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    qudt:numericValue 0.70 ;
+    qudt:unit "ratio" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/relative-proliferation> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Relative proliferation" ;
+    lova:timePoint "Day 5" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/scar-thickness-nogel> a lova:Outcome ;
+    rdfs:label "Scar thickness, No Gel" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    qudt:numericValue 330.0 ;
+    qudt:unit "μm" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/in-vivo-scar-thickness> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Scar thickness" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/scar-thickness-tetmap> a lova:Outcome ;
+    rdfs:label "Scar thickness, Tet-MAP" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    qudt:numericValue 55.0 ;
+    qudt:unit "μm" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/in-vivo-scar-thickness> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Scar thickness" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/storage-modulus-2.5> a lova:Outcome ;
+    rdfs:label "Storage modulus (G') Tet/HA=2.5" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    qudt:numericValue 278.0 ;
+    qudt:unit "Pa" ;
+    lova:comparisonGroup "FXIIIa-annealed MAP (previous work)" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/rheology-frequency-sweep> ;
+    lova:measurementCategory "Rheological" ;
+    lova:measurementType "Storage modulus (G')" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/storage-modulus-20> a lova:Outcome ;
+    rdfs:label "Storage modulus (G') Tet/HA=20" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    qudt:numericValue 2016.0 ;
+    qudt:unit "Pa" ;
+    lova:comparisonGroup "FXIIIa-annealed MAP (previous work)" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/rheology-frequency-sweep> ;
+    lova:measurementCategory "Rheological" ;
+    lova:measurementType "Storage modulus (G')" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/youngs-modulus-2.5> a lova:Outcome ;
+    rdfs:label "Young's modulus Tet/HA=2.5" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    qudt:numericValue 1648.0 ;
+    qudt:unit "Pa" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/compression-test> ;
+    lova:measurementCategory "Mechanical" ;
+    lova:measurementType "Young's modulus" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/youngs-modulus-20> a lova:Outcome ;
+    rdfs:label "Young's modulus Tet/HA=20" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    qudt:numericValue 4533.0 ;
+    qudt:unit "Pa" ;
+    lova:comparisonGroup "FXIIIa-annealed MAP (previous work)" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/compression-test> ;
+    lova:measurementCategory "Mechanical" ;
+    lova:measurementType "Young's modulus" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.201901391/hs-peg-sh> a lova:Reagent ;
+    rdfs:label "HS-PEG-SH" ;
+    lova:concentration "2.8 mg" ;
+    lova:molecularWeight "3500 Da" ;
+    lova:reagentFunction "PEG backbone used for Alexa Fluor 647 C2-tetrazine synthesis" ;
+    lova:reagentRole "monomer" ;
+    lova:supplier "JenKem Technology USA, Plano, TX" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.201901391/lap> a lova:Reagent ;
+    rdfs:label "Lithium phenyl-(2,4,6-trimethylbenzoyl)phosphinate (LAP)" ;
+    lova:reagentFunction "Photoinitiates thiol-norbornene polymerization under UV" ;
+    lova:reagentRole "photoinitiator" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.201901391/rgd-peptide> a lova:Reagent ;
+    rdfs:label "RGD peptide" ;
+    lova:reagentFunction "Cell adhesion; used for RGD-modified hyaluronic acid HMPs in cell culture experiments" ;
+    lova:reagentRole "peptide" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.201901391/tetra-peg-sh> a lova:Reagent ;
+    rdfs:label "Tetra-PEG-SH" ;
+    lova:concentration "100 mg" ;
+    lova:molecularWeight "20,000 Da" ;
+    lova:reagentFunction "Thiol-terminated PEG backbone for Tetra-PEG-Tet crosslinker synthesis" ;
+    lova:reagentRole "monomer" ;
+    lova:supplier "NOF America, White Plains, NY" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.201901391/tetra-peg-tet> a lova:Reagent ;
+    rdfs:label "Tetra-PEG-Tetrazine (Tetra-PEG-Tet)" ;
+    lova:concentration "0.11-0.89 mM depending on Tet/HA ratio (2.5-20); concentrated stock 0.22-1.79 mM" ;
+    lova:reagentFunction "Annealing crosslinker linking excess norbornene groups on HMPs to form MAP scaffold" ;
+    lova:reagentRole "crosslinker" .
+
+<https://lovamap.com/ontology#author/anderson-alexa> a foaf:Person ;
+    foaf:familyName "Anderson" ;
+    foaf:givenName "Alexa R." ;
+    foaf:name "Alexa R. Anderson" .
+
+<https://lovamap.com/ontology#author/darling-nicole> a foaf:Person ;
+    foaf:familyName "Darling" ;
+    foaf:givenName "Nicole J." ;
+    foaf:name "Nicole J. Darling" .
+
+<https://lovamap.com/ontology#author/pong-cassie> a foaf:Person ;
+    foaf:familyName "Pong" ;
+    foaf:givenName "Cassie" ;
+    foaf:name "Cassie Pong" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" .
+
+<https://lovamap.com/ontology#author/sideris-elias> a foaf:Person ;
+    foaf:familyName "Sideris" ;
+    foaf:givenName "Elias" ;
+    foaf:name "Elias Sideris" .
+
+<https://lovamap.com/ontology#material/10.1002-adhm.201901391/tet-map-5-invivo> a lova:Material ;
+    rdfs:label "Tet-MAP scaffold, Tet/HA ratio = 5, injected into mouse stroke core" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adhm.201901391/tet-map-annealing> ;
+    lova:packingConfiguration "Jammed" ;
+    lova:particleMaterial "Hyaluronic acid-norbornene (HA-NB)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleSizeMax 100.0 ;
+    lova:particleSizeMin 60.0 ;
+    lova:particleSizeUnit "μm" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/max-stress-2.5> a lova:Outcome ;
+    rdfs:label "Max stress Tet/HA=2.5" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    qudt:numericValue 650.0 ;
+    qudt:unit "Pa" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/compression-test> ;
+    lova:measurementCategory "Mechanical" ;
+    lova:measurementType "Max stress" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/occ-vol-10-day2> a lova:Outcome ;
+    rdfs:label "Percent occupied volume, Tet/HA=10, day 2" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    qudt:numericValue 1.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/percent-occupied-volume> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Percent occupied volume" ;
+    lova:timePoint "Day 2" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/occ-vol-10-day5> a lova:Outcome ;
+    rdfs:label "Percent occupied volume, Tet/HA=10, day 5" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    qudt:numericValue 1.3 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/percent-occupied-volume> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Percent occupied volume" ;
+    lova:timePoint "Day 5" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/occ-vol-2.5-day2> a lova:Outcome ;
+    rdfs:label "Percent occupied volume, Tet/HA=2.5, day 2" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    qudt:numericValue 4.5 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/percent-occupied-volume> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Percent occupied volume" ;
+    lova:timePoint "Day 2" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/occ-vol-2.5-day5> a lova:Outcome ;
+    rdfs:label "Percent occupied volume, Tet/HA=2.5, day 5" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    qudt:numericValue 9.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/percent-occupied-volume> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Percent occupied volume" ;
+    lova:timePoint "Day 5" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/occ-vol-20-day5> a lova:Outcome ;
+    rdfs:label "Percent occupied volume, Tet/HA=20, day 5" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    qudt:numericValue 0.8 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/percent-occupied-volume> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Percent occupied volume" ;
+    lova:timePoint "Day 5" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/storage-modulus-10> a lova:Outcome ;
+    rdfs:label "Storage modulus (G') Tet/HA=10" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    qudt:numericValue 864.0 ;
+    qudt:unit "Pa" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/rheology-frequency-sweep> ;
+    lova:measurementCategory "Rheological" ;
+    lova:measurementType "Storage modulus (G')" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201901391/youngs-modulus-10> a lova:Outcome ;
+    rdfs:label "Young's modulus Tet/HA=10" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    qudt:numericValue 3299.0 ;
+    qudt:unit "Pa" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/compression-test> ;
+    lova:measurementCategory "Mechanical" ;
+    lova:measurementType "Young's modulus" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.201901391/dtt> a lova:Reagent ;
+    rdfs:label "Dithiothreitol (DTT)" ;
+    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_18320> ;
+    lova:reagentFunction "Nondegradable crosslinker for HA-NB HMP formation via thiol-ene" ;
+    lova:reagentRole "crosslinker" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.201901391/ha> a lova:Reagent ;
+    rdfs:label "Hyaluronic acid (HA)" ;
+    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_16336> ;
+    lova:reagentFunction "Backbone polymer for HMP formation; functionalized with norbornene groups via carboxylic acid" ;
+    lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.201901391/norbornene-amine> a lova:Reagent ;
+    rdfs:label "5-Norbornene-2-methylamine (norbornene amine)" ;
+    owl:sameAs <https://pubchem.ncbi.nlm.nih.gov/compound/247182> ;
+    lova:reagentFunction "Functionalization of HA carboxylic acid groups to form HA-Norbornene (HA-NB), 44% modification by NMR" ;
+    lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.201901391/pluronic> a lova:Reagent ;
+    rdfs:label "Pluronic (in PBS)" ;
+    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_53514> ;
+    lova:concentration "1% in PBS" ;
+    lova:reagentFunction "Swelling/washing surfactant for HMPs post-polymerization" ;
+    lova:reagentRole "surfactant" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.201901391/tea> a lova:Reagent ;
+    rdfs:label "Triethylamine (TEA)" ;
+    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_35026> ;
+    lova:concentration "0.5 molar equivalent" ;
+    lova:reagentFunction "Base catalyst for thiol-Michael addition reactions" ;
+    lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#author/carmichael-stanley> a foaf:Person ;
+    owl:sameAs <https://orcid.org/0000-0002-1169-9203> ;
+    foaf:familyName "Carmichael" ;
+    foaf:givenName "Stanley Thomas" ;
+    foaf:name "Stanley Thomas Carmichael" .
+
+<https://lovamap.com/ontology#author/xi-weixian> a foaf:Person ;
+    owl:sameAs <https://orcid.org/0000-0002-8068-9439> ;
+    foaf:familyName "Xi" ;
+    foaf:givenName "Weixian" ;
+    foaf:name "Weixian Xi" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/in-vivo-scar-thickness> a lova:Experiment ;
+    rdfs:label "In vivo astrocytic scar thickness (GFAP) response to Tet-MAP in PT stroke model" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    lova:assayOrMethod "GFAP immunostaining" ;
+    lova:cellSource "Mouse brain (C57BL/6)" ;
+    lova:cellType "Astrocytes (GFAP+)" ;
+    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000127> ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immunohistochemistry" ;
+    lova:sampleSize 5 ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.201901391/tet-map-5-invivo> .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/nmr-characterization> a lova:Experiment ;
+    rdfs:label "NMR characterization of HA-NB, Tetra-PEG-Tet, and Alexa647-Tet" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    lova:experimentCategory "Chemical characterization" ;
+    lova:experimentType "NMR analysis" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.201901391/hmp-uncrosslinked> .
+
+<https://lovamap.com/ontology#material/10.1002-adhm.201901391/hmp-uncrosslinked> a lova:Material ;
+    rdfs:label "Packed uncrosslinked HA-NB HMPs (not annealed)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adhm.201901391/hmp-synthesis> ;
+    lova:packingConfiguration "Jammed" ;
+    lova:particleMaterial "Hyaluronic acid-norbornene (HA-NB)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleSizeMax 100.0 ;
+    lova:particleSizeMin 60.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:sizeDistribution "Gaussian, mean 125.8 μm ± 35.51 μm (100-60 μm filter range)" ;
+    lova:stiffnessQualitative "Soft hydrogel" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.201901391/alexa647-c2-maleimide> a lova:Reagent ;
+    rdfs:label "Alexa Fluor 647 C2 maleimide" ;
+    owl:sameAs <https://pubchem.ncbi.nlm.nih.gov/compound/178189153> ;
+    lova:concentration "1 mg" ;
+    lova:inchiKey "DWGFRMIASUGRKA-UHFFFAOYSA-N" ;
+    lova:molecularWeight "1250 Da" ;
+    lova:reagentFunction "Fluorescent label for tetrazine-functionalized dye synthesis" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Thermo Fisher Scientific" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.201901391/dmtmm> a lova:Reagent ;
+    rdfs:label "DMTMM" ;
+    owl:sameAs <https://pubchem.ncbi.nlm.nih.gov/compound/2734059> ;
+    lova:inchiKey "BMTZEAOGFDXDAD-UHFFFAOYSA-M" ;
+    lova:reagentFunction "Activation of HA carboxylic acid groups prior to norbornene-amine conjugation" ;
+    lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.201901391/hexane> a lova:Reagent ;
+    rdfs:label "Hexane" ;
+    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_29021> ;
+    lova:inchiKey "VLKZOEOYAKHREP-UHFFFAOYSA-N" ;
+    lova:reagentFunction "Continuous (oil) phase for inverse suspension polymerization" ;
+    lova:reagentRole "carrier oil" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.201901391/methyltetrazine-peg4-maleimide> a lova:Reagent ;
+    rdfs:label "Methyltetrazine-PEG4-maleimide" ;
+    owl:sameAs <https://pubchem.ncbi.nlm.nih.gov/compound/86580469> ;
+    lova:concentration "15 mg" ;
+    lova:inchiKey "DPEUPJJPNNSKGW-UHFFFAOYSA-N" ;
+    lova:molecularWeight "514.53 Da" ;
+    lova:reagentFunction "Bifunctional linker adding tetrazine functionality to PEG-SH for annealing" ;
+    lova:reagentRole "crosslinker" ;
+    lova:supplier "Kerafast, Boston, MA" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.201901391/span80> a lova:Reagent ;
+    rdfs:label "Span-80" ;
+    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_183688> ;
+    lova:concentration "3%" ;
+    lova:inchiKey "NWGKJDSIEKMTRX-AAZCQSIUSA-N" ;
+    lova:reagentFunction "Stabilizes water-in-oil emulsion during HMP fabrication" ;
+    lova:reagentRole "surfactant" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/annealing-kinetics> a lova:Experiment ;
+    rdfs:label "Annealing kinetics time sweep of Tet-MAP scaffold formation" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    lova:experimentCategory "Rheological" ;
+    lova:experimentType "Time sweep" ;
+    lova:frequency "1 Hz" ;
+    lova:strainRate "1% strain" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.201901391/hmp-uncrosslinked>,
+        <https://lovamap.com/ontology#material/10.1002-adhm.201901391/tet-map-10> .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/cell-viability> a lova:Experiment ;
+    rdfs:label "HDF viability in Tet-MAP scaffolds" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    lova:assayOrMethod "Live/Dead Kit (Invitrogen)" ;
+    lova:cellType "Human dermal fibroblasts (HDF)" ;
+    lova:cultureDuration "1, 8 days" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell viability" ;
+    lova:seedingDensity "2,000 cells/μL" ;
+    lova:temperature "37°C" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.201901391/tet-map-2.5>,
+        <https://lovamap.com/ontology#material/10.1002-adhm.201901391/tet-map-20> .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/in-vivo-cd11b> a lova:Experiment ;
+    rdfs:label "In vivo CD11b+ microglia/macrophage response to Tet-MAP in PT stroke model" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    lova:assayOrMethod "CD11b immunostaining" ;
+    lova:cellSource "Mouse brain (C57BL/6)" ;
+    lova:cellType "Microglia/macrophage (CD11b+)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immunohistochemistry" ;
+    lova:sampleSize 5 ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.201901391/tet-map-5-invivo> .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/void-fraction-analysis> a lova:Experiment ;
+    rdfs:label "Void fraction quantification of Tet-MAP scaffolds via IMARIS" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    lova:assayOrMethod "2,000 kDa FITC-dextran labeling + IMARIS 3D reconstruction" ;
+    lova:experimentCategory "Structural" ;
+    lova:experimentType "Void fraction analysis" ;
+    lova:sampleSize 3 ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.201901391/tet-map-10>,
+        <https://lovamap.com/ontology#material/10.1002-adhm.201901391/tet-map-2.5>,
+        <https://lovamap.com/ontology#material/10.1002-adhm.201901391/tet-map-20>,
+        <https://lovamap.com/ontology#material/10.1002-adhm.201901391/tet-map-5> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-adhm.201901391/tet-map-annealing> a lova:FabricationMethod ;
+    rdfs:label "Tet-MAP annealing via tetrazine-norbornene inverse electron demand Diels-Alder click reaction" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    lova:annealingChemistry "Tetrazine-norbornene bioorthogonal click annealing" ;
+    lova:annealingConditions "37°C, 1 hour (60.5 min to reach plateau at 37°C; 89.6 min at 25°C)" ;
+    lova:chemistry "Tetrazine-norbornene inverse electron demand Diels-Alder cycloaddition click reaction" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-adhm.201901391/alexa647-c2-maleimide>,
+        <https://lovamap.com/ontology#reagent/10.1002-adhm.201901391/hs-peg-sh>,
+        <https://lovamap.com/ontology#reagent/10.1002-adhm.201901391/methyltetrazine-peg4-maleimide>,
+        <https://lovamap.com/ontology#reagent/10.1002-adhm.201901391/tea>,
+        <https://lovamap.com/ontology#reagent/10.1002-adhm.201901391/tetra-peg-sh>,
+        <https://lovamap.com/ontology#reagent/10.1002-adhm.201901391/tetra-peg-tet> ;
+    lova:manufacturingMethod "Jammed HMP packing followed by crosslinker addition and incubation" .
+
+<https://lovamap.com/ontology#material/10.1002-adhm.201901391/tet-map-5> a lova:Material ;
+    rdfs:label "Tet-MAP scaffold, Tet/HA ratio = 5" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adhm.201901391/tet-map-annealing> ;
+    lova:packingConfiguration "Jammed" ;
+    lova:particleMaterial "Hyaluronic acid-norbornene (HA-NB)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleSizeMax 100.0 ;
+    lova:particleSizeMin 60.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:sizeDistribution "Gaussian, mean 125.8 μm ± 35.51 μm (100-60 μm filter range)" ;
+    lova:stiffnessQualitative "Semi-rigid hydrogel" .
+
+<https://lovamap.com/ontology#material/10.1002-adhm.201901391/tet-map-10> a lova:Material ;
+    rdfs:label "Tet-MAP scaffold, Tet/HA ratio = 10" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adhm.201901391/tet-map-annealing> ;
+    lova:packingConfiguration "Jammed" ;
+    lova:particleMaterial "Hyaluronic acid-norbornene (HA-NB)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleSizeMax 100.0 ;
+    lova:particleSizeMin 60.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:sizeDistribution "Gaussian, mean 125.8 μm ± 35.51 μm (100-60 μm filter range)" ;
+    lova:stiffnessQualitative "Semi-rigid hydrogel" .
+
+<https://lovamap.com/ontology#material/10.1002-adhm.201901391/tet-map-20> a lova:Material ;
+    rdfs:label "Tet-MAP scaffold, Tet/HA ratio = 20" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adhm.201901391/tet-map-annealing> ;
+    lova:packingConfiguration "Jammed" ;
+    lova:particleMaterial "Hyaluronic acid-norbornene (HA-NB)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleSizeMax 100.0 ;
+    lova:particleSizeMin 60.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:sizeDistribution "Gaussian, mean 125.8 μm ± 35.51 μm (100-60 μm filter range)" ;
+    lova:stiffnessQualitative "Rigid hydrogel" .
+
+<https://lovamap.com/ontology#material/10.1002-adhm.201901391/tet-map-2.5> a lova:Material ;
+    rdfs:label "Tet-MAP scaffold, Tet/HA ratio = 2.5" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adhm.201901391/tet-map-annealing> ;
+    lova:packingConfiguration "Jammed" ;
+    lova:particleMaterial "Hyaluronic acid-norbornene (HA-NB)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleSizeMax 100.0 ;
+    lova:particleSizeMin 60.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:sizeDistribution "Gaussian, mean 125.8 μm ± 35.51 μm (100-60 μm filter range)" ;
+    lova:stiffnessQualitative "Soft hydrogel" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/compression-test> a lova:Experiment ;
+    rdfs:label "Compression test of Tet-MAP scaffolds" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    lova:experimentCategory "Mechanical" ;
+    lova:experimentType "Compression" ;
+    lova:sampleSize 3 ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.201901391/hmp-uncrosslinked>,
+        <https://lovamap.com/ontology#material/10.1002-adhm.201901391/tet-map-10>,
+        <https://lovamap.com/ontology#material/10.1002-adhm.201901391/tet-map-2.5>,
+        <https://lovamap.com/ontology#material/10.1002-adhm.201901391/tet-map-20>,
+        <https://lovamap.com/ontology#material/10.1002-adhm.201901391/tet-map-5> .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/percent-occupied-volume> a lova:Experiment ;
+    rdfs:label "Percent occupied cell volume in Tet-MAP scaffolds (IMARIS F-actin analysis)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    lova:assayOrMethod "F-actin (Phalloidin) staining + IMARIS surface rendering" ;
+    lova:cellType "Human dermal fibroblasts (HDF)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell spreading quantification" ;
+    lova:sampleSize 3 ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.201901391/tet-map-10>,
+        <https://lovamap.com/ontology#material/10.1002-adhm.201901391/tet-map-2.5>,
+        <https://lovamap.com/ontology#material/10.1002-adhm.201901391/tet-map-20>,
+        <https://lovamap.com/ontology#material/10.1002-adhm.201901391/tet-map-5> .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/relative-proliferation> a lova:Experiment ;
+    rdfs:label "HDF relative metabolic proliferation in Tet-MAP scaffolds" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    lova:assayOrMethod "PrestoBlue (Thermo Fisher)" ;
+    lova:cellType "Human dermal fibroblasts (HDF)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell metabolic activity" ;
+    lova:sampleSize 3 ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.201901391/tet-map-10>,
+        <https://lovamap.com/ontology#material/10.1002-adhm.201901391/tet-map-2.5>,
+        <https://lovamap.com/ontology#material/10.1002-adhm.201901391/tet-map-20>,
+        <https://lovamap.com/ontology#material/10.1002-adhm.201901391/tet-map-5> .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/rheology-frequency-sweep> a lova:Experiment ;
+    rdfs:label "Rheology frequency sweep of Tet-MAP scaffolds" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adhm.201901391> ;
+    lova:experimentCategory "Rheological" ;
+    lova:experimentType "Oscillatory frequency sweep" ;
+    lova:frequency "0.5-10 rad/s" ;
+    lova:sampleSize 3 ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.201901391/tet-map-10>,
+        <https://lovamap.com/ontology#material/10.1002-adhm.201901391/tet-map-2.5>,
+        <https://lovamap.com/ontology#material/10.1002-adhm.201901391/tet-map-20>,
+        <https://lovamap.com/ontology#material/10.1002-adhm.201901391/tet-map-5> .
+
+<https://lovamap.com/ontology#agent/rdf_enrichment> a prov:SoftwareAgent ;
+    rdfs:label "rdf_enrichment pipeline" .
+
+<https://lovamap.com/ontology#paper/10.1002-adhm.201901391> a bibo:AcademicArticle ;
+    rdfs:label "Darling et al., 2020 — Click by Click MAP Scaffolds" ;
+    dc1:bibliographicCitation "Darling et al., 2020" ;
+    dc1:creator <https://lovamap.com/ontology#author/anderson-alexa>,
+        <https://lovamap.com/ontology#author/carmichael-stanley>,
+        <https://lovamap.com/ontology#author/darling-nicole>,
+        <https://lovamap.com/ontology#author/pong-cassie>,
+        <https://lovamap.com/ontology#author/segura-tatiana>,
+        <https://lovamap.com/ontology#author/sideris-elias>,
+        <https://lovamap.com/ontology#author/xi-weixian> ;
+    dc1:date "2020"^^xsd:gYear ;
+    dc1:identifier "10.1002/adhm.201901391" ;
+    dc1:title "Click by Click Microporous Annealed Particle (MAP) Scaffolds" ;
+    dc1:type "Research Article" ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/darling-nicole> <https://lovamap.com/ontology#author/xi-weixian> <https://lovamap.com/ontology#author/sideris-elias> <https://lovamap.com/ontology#author/anderson-alexa> <https://lovamap.com/ontology#author/pong-cassie> <https://lovamap.com/ontology#author/carmichael-stanley> <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    lova:focusMaterial "Hyaluronic acid-norbornene (HA-NB) microgel MAP scaffolds annealed via tetrazine-norbornene click chemistry (Tet-MAP)" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/advanced-healthcare-materials> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CHEBI_35026> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1002-adhm.201901391/tea> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CHEBI_18320> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1002-adhm.201901391/dtt> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CL_0000127> ;
+    rdf:predicate lova:cellTypeURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1002-adhm.201901391/in-vivo-scar-thickness> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <https://pubchem.ncbi.nlm.nih.gov/compound/178189153> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1002-adhm.201901391/alexa647-c2-maleimide> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CHEBI_29021> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1002-adhm.201901391/hexane> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CHEBI_53514> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1002-adhm.201901391/pluronic> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CHEBI_16336> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1002-adhm.201901391/ha> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object "VLKZOEOYAKHREP-UHFFFAOYSA-N" ;
+    rdf:predicate lova:inchiKey ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1002-adhm.201901391/hexane> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object "DPEUPJJPNNSKGW-UHFFFAOYSA-N" ;
+    rdf:predicate lova:inchiKey ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1002-adhm.201901391/methyltetrazine-peg4-maleimide> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CHEBI_183688> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1002-adhm.201901391/span80> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <https://pubchem.ncbi.nlm.nih.gov/compound/2734059> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1002-adhm.201901391/dmtmm> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <https://orcid.org/0000-0002-8068-9439> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#author/xi-weixian> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <https://pubchem.ncbi.nlm.nih.gov/compound/247182> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1002-adhm.201901391/norbornene-amine> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object "DWGFRMIASUGRKA-UHFFFAOYSA-N" ;
+    rdf:predicate lova:inchiKey ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1002-adhm.201901391/alexa647-c2-maleimide> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <https://pubchem.ncbi.nlm.nih.gov/compound/86580469> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1002-adhm.201901391/methyltetrazine-peg4-maleimide> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object "NWGKJDSIEKMTRX-AAZCQSIUSA-N" ;
+    rdf:predicate lova:inchiKey ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1002-adhm.201901391/span80> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <https://orcid.org/0000-0002-1169-9203> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#author/carmichael-stanley> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object "BMTZEAOGFDXDAD-UHFFFAOYSA-M" ;
+    rdf:predicate lova:inchiKey ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1002-adhm.201901391/dmtmm> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+

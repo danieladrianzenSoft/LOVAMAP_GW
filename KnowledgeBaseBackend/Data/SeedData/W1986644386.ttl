@@ -1,0 +1,596 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.10.014> a bibo:AcademicArticle ;
+    rdfs:label "Tokatlian et al., 2013 — Non-viral DNA Delivery from Porous HA Hydrogels" ;
+    dc:title "Non-viral DNA delivery from porous hyaluronic acid hydrogels in mice" ;
+    dc:identifier "10.1016/j.biomaterials.2013.10.014" ;
+    dc:date "2013"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/biomaterials> ;
+    dc:creator <https://lovamap.com/ontology#author/tokatlian-talar> ,
+               <https://lovamap.com/ontology#author/cam-cynthia> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/tokatlian-talar>
+                       <https://lovamap.com/ontology#author/cam-cynthia>
+                       <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    dc:bibliographicCitation "Tokatlian et al., 2013" ;
+    lova:focusMaterial "100 μm and 60 μm porous and non-porous (n-pore) hyaluronic acid hydrogels loaded with pVEGF or pGFPluc DNA/PEI polyplexes, implanted subcutaneously in mice" .
+
+<https://lovamap.com/ontology#author/tokatlian-talar> a foaf:Person ;
+    foaf:familyName "Tokatlian" ;
+    foaf:givenName "Talar" ;
+    foaf:name "Talar Tokatlian" .
+
+<https://lovamap.com/ontology#author/cam-cynthia> a foaf:Person ;
+    foaf:familyName "Cam" ;
+    foaf:givenName "Cynthia" ;
+    foaf:name "Cynthia Cam" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" .
+
+<https://lovamap.com/ontology#journal/biomaterials> a bibo:Journal ;
+    dc:title "Biomaterials" ;
+    bibo:issn "0142-9612" .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.10.014/mat-100um-pvegf> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.10.014> ;
+    rdfs:label "100 μm porous HA hydrogel loaded with pVEGF polyplexes" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Hyaluronic acid (HA), acrylate-modified (HA-Ac)" ;
+    lova:particleSizeMin 90.0 ;
+    lova:particleSizeMax 106.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2013.10.014/fab-100um-porous> ;
+    lova:packingConfiguration "Hexagonal close-packed (theoretical) PMMA microsphere template" ;
+    lova:scaffoldDimensions "6 mm diameter × 1 mm height" .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.10.014/mat-100um-pgfpluc> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.10.014> ;
+    rdfs:label "100 μm porous HA hydrogel loaded with pGFPluc polyplexes (control)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Hyaluronic acid (HA), acrylate-modified (HA-Ac)" ;
+    lova:particleSizeMin 90.0 ;
+    lova:particleSizeMax 106.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2013.10.014/fab-100um-porous> ;
+    lova:packingConfiguration "Hexagonal close-packed (theoretical) PMMA microsphere template" ;
+    lova:scaffoldDimensions "6 mm diameter × 1 mm height" .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.10.014/mat-60um-pvegf> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.10.014> ;
+    rdfs:label "60 μm porous HA hydrogel loaded with pVEGF polyplexes" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Hyaluronic acid (HA), acrylate-modified (HA-Ac)" ;
+    lova:particleSizeMin 53.0 ;
+    lova:particleSizeMax 63.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2013.10.014/fab-60um-porous> ;
+    lova:packingConfiguration "Hexagonal close-packed (theoretical) PMMA microsphere template" ;
+    lova:scaffoldDimensions "6 mm diameter × 1 mm height" .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.10.014/mat-60um-pgfpluc> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.10.014> ;
+    rdfs:label "60 μm porous HA hydrogel loaded with pGFPluc polyplexes (control)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Hyaluronic acid (HA), acrylate-modified (HA-Ac)" ;
+    lova:particleSizeMin 53.0 ;
+    lova:particleSizeMax 63.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2013.10.014/fab-60um-porous> ;
+    lova:packingConfiguration "Hexagonal close-packed (theoretical) PMMA microsphere template" ;
+    lova:scaffoldDimensions "6 mm diameter × 1 mm height" .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.10.014/mat-npore-pvegf> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.10.014> ;
+    rdfs:label "Non-porous (n-pore) HA hydrogel loaded with pVEGF polyplexes" ;
+    lova:particleMaterial "Hyaluronic acid (HA), acrylate-modified (HA-Ac)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2013.10.014/fab-npore> ;
+    lova:scaffoldDimensions "6 mm diameter × 1 mm height" .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.10.014/mat-npore-pgfpluc> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.10.014> ;
+    rdfs:label "Non-porous (n-pore) HA hydrogel loaded with pGFPluc polyplexes (control)" ;
+    lova:particleMaterial "Hyaluronic acid (HA), acrylate-modified (HA-Ac)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2013.10.014/fab-npore> ;
+    lova:scaffoldDimensions "6 mm diameter × 1 mm height" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2013.10.014/fab-100um-porous> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.10.014> ;
+    rdfs:label "100 μm porous HA hydrogel formation via PMMA microsphere templating and Michael-type addition crosslinking" ;
+    lova:chemistry "Michael-type addition (thiol-acrylate)" ;
+    lova:manufacturingMethod "Sacrificial PMMA microsphere templating (90-106 μm beads), centrifugation perfusion, acetone dissolution of template" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.10.014/ha-60kda> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.10.014/adh> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.10.014/edc> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.10.014/nhs-ac> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.10.014/mmp-peptide> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.10.014/rgd-peptide> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.10.014/pei-25kda> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.10.014/pgfpluc-plasmid> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.10.014/pvegf-plasmid> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.10.014/sucrose> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.10.014/agarose> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.10.014/pmma-90-106> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.10.014/teoa-buffer> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2013.10.014/fab-60um-porous> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.10.014> ;
+    rdfs:label "60 μm porous HA hydrogel formation via PMMA microsphere templating and Michael-type addition crosslinking" ;
+    lova:chemistry "Michael-type addition (thiol-acrylate)" ;
+    lova:manufacturingMethod "Sacrificial PMMA microsphere templating (53-63 μm beads), centrifugation perfusion, acetone dissolution of template" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.10.014/ha-60kda> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.10.014/adh> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.10.014/edc> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.10.014/nhs-ac> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.10.014/mmp-peptide> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.10.014/rgd-peptide> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.10.014/pei-25kda> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.10.014/pgfpluc-plasmid> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.10.014/pvegf-plasmid> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.10.014/sucrose> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.10.014/agarose> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.10.014/pmma-53-63> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.10.014/teoa-buffer> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2013.10.014/fab-npore> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.10.014> ;
+    rdfs:label "Non-porous HA hydrogel formation via Michael-type addition crosslinking (no template)" ;
+    lova:chemistry "Michael-type addition (thiol-acrylate)" ;
+    lova:manufacturingMethod "Gel solution sandwiched between Sigmacoted slides with 1 mm spacers, no sacrificial template" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.10.014/ha-60kda> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.10.014/adh> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.10.014/edc> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.10.014/nhs-ac> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.10.014/mmp-peptide> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.10.014/rgd-peptide> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.10.014/pei-25kda> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.10.014/pgfpluc-plasmid> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.10.014/pvegf-plasmid> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.10.014/sucrose> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.10.014/agarose> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.10.014/teoa-buffer> .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.10.014/ha-60kda> a lova:Reagent ;
+    rdfs:label "Sodium hyaluronan (HA, 60 kDa)" ;
+    lova:reagentRole "monomer" ;
+    lova:molecularWeight "60 kDa" ;
+    lova:supplier "Genzyme Corporation" ;
+    lova:reagentFunction "Hydrogel backbone polymer" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.10.014/adh> a lova:Reagent ;
+    rdfs:label "Adipic acid dihydrazide (ADH)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "36.77 g (211.07 mmol)" ;
+    lova:reagentFunction "HA hydrazide modification intermediate (HA-ADH)" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.10.014/edc> a lova:Reagent ;
+    rdfs:label "1-ethyl-3-[3-dimethylaminopropyl] carbodiimide hydrochloride (EDC)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "4.00 g (20.84 mmol)" ;
+    lova:reagentFunction "Carbodiimide coupling reagent for HA-ADH conjugation" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.10.014/nhs-ac> a lova:Reagent ;
+    rdfs:label "N-Acryloxysuccinimide (NHS-Ac)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:concentration "4.46 g (26.38 mmol)" ;
+    lova:reagentFunction "Acrylation of HA-ADH to form acrylate-functionalized HA (HA-Ac)" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.10.014/mmp-peptide> a lova:Reagent ;
+    rdfs:label "MMP-degradable peptide crosslinker (Ac-GCRDGPQGIWGQDRCG-NH2, HS-MMP-SH)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:sequence "GCRDGPQGIWGQDRCG" ;
+    lova:supplier "Genscript" ;
+    lova:reagentFunction "Bis-cysteine MMP-degradable crosslinker via Michael-type addition with HA-Ac" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.10.014/rgd-peptide> a lova:Reagent ;
+    rdfs:label "RGD peptide (Ac-GCGYGRGDSPG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "GCGYGRGDSPG" ;
+    lova:supplier "Genscript" ;
+    lova:concentration "100 μM" ;
+    lova:reagentFunction "Cell adhesion" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.10.014/pei-25kda> a lova:Reagent ;
+    rdfs:label "Linear poly(ethylene imine) (PEI, 25 kDa)" ;
+    lova:reagentRole "other" ;
+    lova:molecularWeight "25 kDa" ;
+    lova:supplier "Polysciences" ;
+    lova:concentration "228.3 μg (N/P = 7)" ;
+    lova:reagentFunction "DNA condensation into polyplex nanoparticles for non-viral gene delivery" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.10.014/pgfpluc-plasmid> a lova:Reagent ;
+    rdfs:label "Plasmid expressing mammalian GFP-firefly luciferase (pGFPluc)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "New England Biolabs" ;
+    lova:concentration "2.5 μg/μL (250 μg per aliquot)" ;
+    lova:reagentFunction "Reporter transgene expression (control)" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.10.014/pvegf-plasmid> a lova:Reagent ;
+    rdfs:label "Plasmid expressing human VEGF-165 (pVEGF)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "New England Biolabs" ;
+    lova:concentration "2.5 μg/μL (250 μg per aliquot)" ;
+    lova:reagentFunction "Pro-angiogenic transgene expression" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.10.014/sucrose> a lova:Reagent ;
+    rdfs:label "Sucrose (Ultra pure)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "MP Biomedicals" ;
+    lova:concentration "35 mg (0.10 mmol)" ;
+    lova:reagentFunction "Protects polyplexes from inactivation/aggregation during lyophilization" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.10.014/agarose> a lova:Reagent ;
+    rdfs:label "Low-melting point agarose (UltraPure)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Invitrogen" ;
+    lova:concentration "1.0 mg" ;
+    lova:reagentFunction "Protects polyplexes from aggregation during hydrogel formation; Tm = 34.5-37.5 °C" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.10.014/pmma-90-106> a lova:Reagent ;
+    rdfs:label "PMMA microspheres (90-106 μm)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Cospheric" ;
+    lova:concentration "20 mg per 100 μL" ;
+    lova:reagentFunction "Sacrificial pore template (100 μm porous hydrogel)" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.10.014/pmma-53-63> a lova:Reagent ;
+    rdfs:label "PMMA microspheres (53-63 μm)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Cospheric" ;
+    lova:concentration "20 mg per 100 μL" ;
+    lova:reagentFunction "Sacrificial pore template (60 μm porous hydrogel)" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2013.10.014/teoa-buffer> a lova:Reagent ;
+    rdfs:label "Triethanolamine (TEOA) buffer, 0.3 M, pH 8.2" ;
+    lova:reagentRole "solvent" ;
+    lova:concentration "0.3 M" ;
+    lova:reagentFunction "Reaction buffer for Michael-type addition crosslinking" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.10.014/exp-hne-histology> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.10.014> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.10.014/mat-100um-pvegf> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.10.014/mat-100um-pgfpluc> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.10.014/mat-60um-pvegf> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.10.014/mat-60um-pgfpluc> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.10.014/mat-npore-pvegf> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.10.014/mat-npore-pgfpluc> ;
+    rdfs:label "H&E staining of hydrogel cross-sections for cellular infiltration, inflammation and vascularization assessment" ;
+    lova:experimentCategory "Histological" ;
+    lova:experimentType "H&E staining" ;
+    lova:assayOrMethod "Hematoxylin and eosin staining" ;
+    lova:cultureDuration "1, 3, 6 weeks" ;
+    lova:sampleSize 4 .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.10.014/exp-gfp-if> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.10.014> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.10.014/mat-100um-pgfpluc> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.10.014/mat-60um-pgfpluc> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.10.014/mat-npore-pgfpluc> ;
+    rdfs:label "Immunofluorescence quantification of GFP-transfected cells in pGFPluc loaded hydrogels" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transfection efficiency quantification" ;
+    lova:assayOrMethod "Immunofluorescence (anti-GFP antibody, DAPI nuclear stain)" ;
+    lova:cultureDuration "1, 3, 6 weeks" ;
+    lova:sampleSize 4 .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.10.014/exp-vessel-if> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.10.014> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.10.014/mat-100um-pvegf> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.10.014/mat-100um-pgfpluc> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.10.014/mat-60um-pvegf> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.10.014/mat-60um-pgfpluc> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.10.014/mat-npore-pvegf> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.10.014/mat-npore-pgfpluc> ;
+    rdfs:label "Immunofluorescence staining and quantification of PECAM-positive vessels and α-SMA" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Vessel quantification and characterization" ;
+    lova:assayOrMethod "Immunofluorescence (anti-CD31/PECAM, anti-α-SMA-FITC, DAPI)" ;
+    lova:equipment "Zen imaging and analysis software (Zeiss)" ;
+    lova:cultureDuration "3, 6 weeks" ;
+    lova:sampleSize 4 .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.10.014/exp-rheometry> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.10.014> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.10.014/mat-100um-pvegf> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.10.014/mat-60um-pvegf> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.10.014/mat-npore-pvegf> ;
+    rdfs:label "Plate-to-plate rheometry of porous and n-pore HA hydrogels" ;
+    lova:experimentCategory "Mechanical" ;
+    lova:experimentType "Storage modulus measurement" ;
+    lova:assayOrMethod "Plate-to-plate rheometry" ;
+    lova:equipment "Anton Parr rheometer" ;
+    lova:strainRate "Constant strain 0.01" ;
+    lova:frequency "0.1-10 Hz" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.10.014/exp-subcutaneous-implant> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.10.014> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.10.014/mat-100um-pvegf> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.10.014/mat-100um-pgfpluc> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.10.014/mat-60um-pvegf> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.10.014/mat-60um-pgfpluc> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.10.014/mat-npore-pvegf> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2013.10.014/mat-npore-pgfpluc> ;
+    rdfs:label "Subcutaneous implantation of HA hydrogels in Balb/c mice" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Subcutaneous implant model" ;
+    lova:cellSource "Female Balb/c mice, 6-8 weeks old, 20-30 g" ;
+    lova:cultureDuration "1, 3, 6 weeks" ;
+    lova:sampleSize 4 .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.10.014/storage-modulus-npore> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.10.014/exp-rheometry> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.10.014> ;
+    rdfs:label "Storage modulus of n-pore HA hydrogel" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 150.0 ;
+    qudt:unit "Pa" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.10.014/storage-modulus-60um> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.10.014/exp-rheometry> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.10.014> ;
+    rdfs:label "Storage modulus of 60 μm porous HA hydrogel" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 400.0 ;
+    qudt:unit "Pa" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.10.014/storage-modulus-100um> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.10.014/exp-rheometry> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.10.014> ;
+    rdfs:label "Storage modulus of 100 μm porous HA hydrogel" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 700.0 ;
+    qudt:unit "Pa" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2013.10.014/modulus-npore-vs-100um> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.10.014> ;
+    rdfs:label "Storage modulus significantly higher in 100 μm porous vs n-pore hydrogel" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.10.014/storage-modulus-100um> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.10.014/storage-modulus-npore> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.10.014/meshsize-npore> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.10.014/exp-rheometry> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.10.014> ;
+    rdfs:label "Mesh size of non-porous 3% HA hydrogels (0.4-0.6 r-ratio)" ;
+    lova:measurementType "Mesh size (correlation distance between crosslinks)" ;
+    lova:measurementCategory "Mechanical" ;
+    lova:valueString "~60-30 nm (corresponding to ~770-190 kg/mol between crosslinks, storage modulus 100-400 Pa)" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.10.014/vessel-density-60g-wk3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.10.014/exp-vessel-if> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.10.014> ;
+    rdfs:label "Vessel density, 60 μm porous pGFPluc loaded hydrogel, 3 weeks" ;
+    lova:measurementType "Vessel density" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 115.0 ;
+    qudt:unit "vessels/mm2" ;
+    lova:sampleSize 4 ;
+    lova:timePoint "Week 3" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.10.014/vessel-density-60v-wk3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.10.014/exp-vessel-if> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.10.014> ;
+    rdfs:label "Vessel density, 60 μm porous pVEGF loaded hydrogel, 3 weeks" ;
+    lova:measurementType "Vessel density" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 113.0 ;
+    qudt:unit "vessels/mm2" ;
+    lova:sampleSize 4 ;
+    lova:timePoint "Week 3" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.10.014/vessel-density-100g-wk3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.10.014/exp-vessel-if> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.10.014> ;
+    rdfs:label "Vessel density, 100 μm porous pGFPluc loaded hydrogel, 3 weeks" ;
+    lova:measurementType "Vessel density" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 24.0 ;
+    qudt:unit "vessels/mm2" ;
+    lova:sampleSize 4 ;
+    lova:timePoint "Week 3" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.10.014/vessel-density-100v-wk3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.10.014/exp-vessel-if> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.10.014> ;
+    rdfs:label "Vessel density, 100 μm porous pVEGF loaded hydrogel, 3 weeks" ;
+    lova:measurementType "Vessel density" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 35.0 ;
+    qudt:unit "vessels/mm2" ;
+    lova:sampleSize 4 ;
+    lova:timePoint "Week 3" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.10.014/vessel-density-npore-g-wk3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.10.014/exp-vessel-if> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.10.014> ;
+    rdfs:label "Vessel density, n-pore pGFPluc loaded hydrogel, 3 weeks" ;
+    lova:measurementType "Vessel density" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 6.0 ;
+    qudt:unit "vessels/mm2" ;
+    lova:sampleSize 4 ;
+    lova:timePoint "Week 3" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.10.014/vessel-density-60g-wk6> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.10.014/exp-vessel-if> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.10.014> ;
+    rdfs:label "Vessel density, 60 μm porous pGFPluc loaded hydrogel, 6 weeks" ;
+    lova:measurementType "Vessel density" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 65.0 ;
+    qudt:unit "vessels/mm2" ;
+    lova:sampleSize 4 ;
+    lova:timePoint "Week 6" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.10.014/vessel-density-100v-wk6> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.10.014/exp-vessel-if> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.10.014> ;
+    rdfs:label "Vessel density, 100 μm porous pVEGF loaded hydrogel, 6 weeks" ;
+    lova:measurementType "Vessel density" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 40.0 ;
+    qudt:unit "vessels/mm2" ;
+    lova:sampleSize 4 ;
+    lova:timePoint "Week 6" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2013.10.014/vessel-60g-vs-100g-wk3> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.10.014> ;
+    rdfs:label "60 μm porous pGFPluc hydrogels had significantly higher vessel density than 100 μm porous pGFPluc hydrogels at 3 weeks" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.10.014/vessel-density-60g-wk3> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.10.014/vessel-density-100g-wk3> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2013.10.014/vessel-60v-vs-100v-wk3> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.10.014> ;
+    rdfs:label "No significant difference in vessel density between 60 μm and 100 μm porous pVEGF loaded hydrogels at 3 weeks" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.10.014/vessel-density-60v-wk3> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.10.014/vessel-density-100v-wk3> ;
+    lova:direction "no difference" ;
+    lova:isSignificant false .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2013.10.014/vessel-60g-vs-npore-wk3> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.10.014> ;
+    rdfs:label "n-pore hydrogels had significantly fewer vessels than corresponding 60 μm porous hydrogels at 3 weeks" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.10.014/vessel-density-60g-wk3> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.10.014/vessel-density-npore-g-wk3> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2013.10.014/vessel-60g-wk3-vs-wk6> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.10.014> ;
+    rdfs:label "60 μm porous pGFPluc loaded hydrogels showed significant vessel regression from 3 to 6 weeks" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.10.014/vessel-density-60g-wk6> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.10.014/vessel-density-60g-wk3> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.10.014/gfp-signal-npore-wk1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.10.014/exp-gfp-if> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.10.014> ;
+    rdfs:label "GFP signal per cell, n-pore hydrogel, week 1" ;
+    lova:measurementType "GFP signal/cell" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.00005 ;
+    qudt:unit "GFP signal/cell" ;
+    lova:timePoint "Week 1" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.10.014/gfp-signal-60g-wk1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.10.014/exp-gfp-if> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.10.014> ;
+    rdfs:label "GFP signal per cell, 60 μm porous hydrogel, week 1" ;
+    lova:measurementType "GFP signal/cell" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.0005 ;
+    qudt:unit "GFP signal/cell" ;
+    lova:timePoint "Week 1" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.10.014/gfp-signal-100g-wk1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.10.014/exp-gfp-if> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.10.014> ;
+    rdfs:label "GFP signal per cell, 100 μm porous hydrogel, week 1" ;
+    lova:measurementType "GFP signal/cell" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.0001 ;
+    qudt:unit "GFP signal/cell" ;
+    lova:timePoint "Week 1" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2013.10.014/gfp-60g-vs-100g-wk1> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.10.014> ;
+    rdfs:label "GFP signal significantly higher in 60 μm porous vs 100 μm porous hydrogels at week 1" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.10.014/gfp-signal-60g-wk1> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.10.014/gfp-signal-100g-wk1> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2013.10.014/gfp-60g-vs-npore-wk1> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.10.014> ;
+    rdfs:label "GFP signal significantly higher in 60 μm porous vs n-pore hydrogels at week 1" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.10.014/gfp-signal-60g-wk1> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.10.014/gfp-signal-npore-wk1> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.10.014/vessel-size-distribution-wk3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.10.014/exp-vessel-if> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.10.014> ;
+    rdfs:label "Proportion of vessels <6 μm diameter across all vessel-positive hydrogel implants, 3 weeks" ;
+    lova:measurementType "Vessel diameter distribution" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "~40-60% of all vessels <6 μm diameter" ;
+    lova:timePoint "Week 3" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.10.014/vessel-size-distribution-wk6> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.10.014/exp-vessel-if> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.10.014> ;
+    rdfs:label "Proportion of vessels <6 μm diameter across all vessel-positive hydrogel implants, 6 weeks" ;
+    lova:measurementType "Vessel diameter distribution" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "~40-60% of all vessels <6 μm diameter" ;
+    lova:timePoint "Week 6" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.10.014/smooth-muscle-staining> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.10.014/exp-vessel-if> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.10.014> ;
+    rdfs:label "α-smooth muscle actin staining surrounding vessels" ;
+    lova:measurementType "Vessel maturity (α-SMA staining)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "No smooth muscle actin staining observed surrounding any vessels in any hydrogel cross-sections" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.10.014/fibrous-capsule> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2013.10.014/exp-hne-histology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.10.014> ;
+    rdfs:label "Fibrous capsule / inflammatory response assessment" ;
+    lova:measurementType "Fibrous capsule formation / foreign body response" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "No fibrous capsule or inflammatory tissue observed surrounding any hydrogel implants; no foreign body giant cells observed" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2013.10.014/pvegf-vs-pgfpluc-vessels-all-times> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2013.10.014> ;
+    rdfs:label "No significant increase in vessel number per area between pVEGF and corresponding pGFPluc loaded hydrogels at any time point" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.10.014/vessel-density-100v-wk3> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2013.10.014/vessel-density-100g-wk3> ;
+    lova:direction "no difference" ;
+    lova:isSignificant false .

@@ -1,0 +1,1072 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> a bibo:AcademicArticle ;
+    rdfs:label "Tokatlian et al., 2010 — Protease degradable tethers for nanoparticle release" ;
+    dc:title "Protease degradable tethers for controlled and cell-mediated release of nanoparticles in 2- and 3-dimensions" ;
+    dc:identifier "10.1016/j.biomaterials.2010.07.030" ;
+    dc:date "2010"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/biomaterials> ;
+    dc:creator <https://lovamap.com/ontology#author/tokatlian-talar> ,
+               <https://lovamap.com/ontology#author/shrum-chadwick> ,
+               <https://lovamap.com/ontology#author/kadoya-warren> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/tokatlian-talar>
+                       <https://lovamap.com/ontology#author/shrum-chadwick>
+                       <https://lovamap.com/ontology#author/kadoya-warren>
+                       <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    dc:bibliographicCitation "Tokatlian et al., 2010" ;
+    lova:focusMaterial "Fluorescent polystyrene nanoparticles tethered via protease-sensitive peptides to 2D streptavidin surfaces and 3D porous PEG hydrogels" .
+
+<https://lovamap.com/ontology#author/tokatlian-talar> a foaf:Person ;
+    foaf:familyName "Tokatlian" ;
+    foaf:givenName "Talar" ;
+    foaf:name "Talar Tokatlian" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California, Los Angeles" .
+
+<https://lovamap.com/ontology#author/shrum-chadwick> a foaf:Person ;
+    foaf:familyName "Shrum" ;
+    foaf:givenName "Chadwick" ;
+    foaf:name "Chadwick T. Shrum" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California, Los Angeles" .
+
+<https://lovamap.com/ontology#author/kadoya-warren> a foaf:Person ;
+    foaf:familyName "Kadoya" ;
+    foaf:givenName "Warren" ;
+    foaf:name "Warren M. Kadoya" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California, Los Angeles" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California, Los Angeles" .
+
+<https://lovamap.com/ontology#journal/biomaterials> a bibo:Journal ;
+    dc:title "Biomaterials" ;
+    bibo:issn "0142-9612" .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.07.030/ps-np-mmphigh> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "40 nm PS nanoparticle, MMPhigh peptide-biotin tether" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Polystyrene" ;
+    lova:particleSizeMin 40.0 ;
+    lova:particleSizeMax 40.0 ;
+    lova:particleSizeUnit "nm" ;
+    lova:surfaceModification "MMPhigh peptide-PEG3400-biotin tether" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.07.030/peptide-peg-biotin-tether> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.07.030/ps-np-mmpmed> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "40 nm PS nanoparticle, MMPmed peptide-biotin tether (1x)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Polystyrene" ;
+    lova:particleSizeMin 40.0 ;
+    lova:particleSizeMax 40.0 ;
+    lova:particleSizeUnit "nm" ;
+    lova:surfaceModification "MMPmed peptide-PEG3400-biotin tether" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.07.030/peptide-peg-biotin-tether> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.07.030/ps-np-mmplow> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "40 nm PS nanoparticle, MMPlow peptide-biotin tether" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Polystyrene" ;
+    lova:particleSizeMin 40.0 ;
+    lova:particleSizeMax 40.0 ;
+    lova:particleSizeUnit "nm" ;
+    lova:surfaceModification "MMPlow peptide-PEG3400-biotin tether" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.07.030/peptide-peg-biotin-tether> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.07.030/ps-np-mmpmed-10x> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "40 nm PS nanoparticle, MMPmed tether, 10x biotin dilution (10MMPmed-PEG-b)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Polystyrene" ;
+    lova:particleSizeMin 40.0 ;
+    lova:particleSizeMax 40.0 ;
+    lova:particleSizeUnit "nm" ;
+    lova:surfaceModification "10-fold SH-MMPmed-PEG3400-biotin dilution" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.07.030/peptide-peg-biotin-tether> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.07.030/ps-np-mmpmed-01x> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "40 nm PS nanoparticle, MMPmed tether, .1x biotin dilution (.1MMPmed-PEG-b)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Polystyrene" ;
+    lova:particleSizeMin 40.0 ;
+    lova:particleSizeMax 40.0 ;
+    lova:particleSizeUnit "nm" ;
+    lova:surfaceModification ".1-fold SH-MMPmed-PEG3400-biotin dilution" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.07.030/peptide-peg-biotin-tether> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.07.030/ps-np-mmpmed-001x> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "40 nm PS nanoparticle, MMPmed tether, .01x biotin dilution (.01MMPmed-PEG-b)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Polystyrene" ;
+    lova:particleSizeMin 40.0 ;
+    lova:particleSizeMax 40.0 ;
+    lova:particleSizeUnit "nm" ;
+    lova:surfaceModification ".01-fold SH-MMPmed-PEG3400-biotin dilution" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.07.030/peptide-peg-biotin-tether> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.07.030/ps-np-peg-control> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "40 nm PS nanoparticle, non-cleavable PEG-biotin control tether" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Polystyrene" ;
+    lova:particleSizeMin 40.0 ;
+    lova:particleSizeMax 40.0 ;
+    lova:particleSizeUnit "nm" ;
+    lova:surfaceModification "NHS-PEG3400-biotin via ADH (non-peptide, control)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.07.030/peg-control-tether> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.07.030/ps-np-pda-control> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "40 nm PS nanoparticle, biotinPDA control tether (no PEG)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Polystyrene" ;
+    lova:particleSizeMin 40.0 ;
+    lova:particleSizeMax 40.0 ;
+    lova:particleSizeUnit "nm" ;
+    lova:surfaceModification "reduced biotinPDA via EMCH (non-peptide, non-PEG control)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.07.030/pda-control-tether> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.07.030/ps-np-200nm-control> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "200 nm commercial biotinylated PS nanoparticle (control)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Polystyrene" ;
+    lova:particleSizeMin 200.0 ;
+    lova:particleSizeMax 200.0 ;
+    lova:particleSizeUnit "nm" ;
+    lova:surfaceModification "Commercially manufactured biotin" .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.07.030/porous-peg-hydrogel> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "Porous PEG-dimethacrylate hydrogel (PMMA microsphere template)" ;
+    lova:particleMaterial "PEG-dimethacrylate (PEG-DA)" ;
+    lova:stiffnessQualitative "Stiff, non-degradable" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.07.030/porous-peg-hydrogel-fabrication> ;
+    lova:packingConfiguration "Interconnected micro-porous (PMMA bead sintered template)" ;
+    lova:scaffoldDimensions "6 mm diameter (cut for rheometry)" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.07.030/peptide-peg-biotin-tether> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "Peptide-PEG-biotin tether conjugation to carboxylate PS nanoparticles" ;
+    lova:chemistry "EMCH/EDC carbodiimide coupling + maleimide-thiol conjugation" ;
+    lova:manufacturingMethod "Bead surface chemical conjugation" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.07.030/ps-beads-carboxylate> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.07.030/emch> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.07.030/edc> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.07.030/tcep> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.07.030/mmphigh-peptide> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.07.030/mmpmed-peptide> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.07.030/mmplow-peptide> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.07.030/nhs-peg-biotin> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.07.030/nhs-lc-biotin> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.07.030/peg-control-tether> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "PEG-biotin control tether conjugation (ADH/EDC + NHS-PEG-biotin)" ;
+    lova:chemistry "ADH/EDC carbodiimide coupling + NHS-ester conjugation" ;
+    lova:manufacturingMethod "Bead surface chemical conjugation" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.07.030/ps-beads-carboxylate> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.07.030/adh> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.07.030/edc> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.07.030/nhs-peg-biotin> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.07.030/pda-control-tether> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "BiotinPDA control tether conjugation (EMCH + reduced biotinPDA)" ;
+    lova:chemistry "EMCH/EDC carbodiimide coupling + reduced biotin conjugation" ;
+    lova:manufacturingMethod "Bead surface chemical conjugation" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.07.030/ps-beads-carboxylate> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.07.030/emch> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.07.030/edc> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.07.030/tcep> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.07.030/biotinpda> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.07.030/acrylate-tether-3d> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "Acrylate-modified nanoparticle tether for covalent crosslinking to porous hydrogels" ;
+    lova:chemistry "Analogous EMCH/ADH-EDC conjugation using acrylate-functionalized crosslinkers" ;
+    lova:manufacturingMethod "Photo-crosslinking of surface acrylate groups via UV with Irgacure 2959" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.07.030/nhs-peg-acrylate> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.07.030/nhs-lc-acrylate> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.07.030/irgacure-2959> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.07.030/porous-peg-hydrogel-fabrication> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "Porous PEG-DA hydrogel fabrication via sintered PMMA microsphere template" ;
+    lova:chemistry "Radical photopolymerization (methacrylate)" ;
+    lova:manufacturingMethod "PMMA microsphere sintered template, centrifugal perfusion, UV photopolymerization, acetone dissolution of template" ;
+    lova:annealingConditions "UV light, 90 s" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.07.030/peg-da> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.07.030/irgacure-2959> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.07.030/pmma-microspheres> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.07.030/rgd-peptide> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.07.030/peg-vs-4arm> .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.07.030/mmphigh-peptide> a lova:Reagent ;
+    rdfs:label "MMPhigh peptide (Ac-KRGPQGIWGQDRCGR-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "KRGPQGIWGQDRCGR" ;
+    lova:supplier "Anaspec" ;
+    lova:reagentFunction "High-sensitivity MMP-cleavable tether" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.07.030/mmpmed-peptide> a lova:Reagent ;
+    rdfs:label "MMPmed peptide (Ac-KRGPQGIAGQDRCGR-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "KRGPQGIAGQDRCGR" ;
+    lova:supplier "Anaspec" ;
+    lova:reagentFunction "Medium-sensitivity MMP-cleavable tether" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.07.030/mmplow-peptide> a lova:Reagent ;
+    rdfs:label "MMPlow peptide (Ac-KRGDQGIAGFDRCGR-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "KRGDQGIAGFDRCGR" ;
+    lova:supplier "Anaspec" ;
+    lova:reagentFunction "Low-sensitivity MMP-cleavable tether" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.07.030/nhs-peg-biotin> a lova:Reagent ;
+    rdfs:label "NHS-PEG3400-biotin" ;
+    lova:reagentRole "crosslinker" ;
+    lova:molecularWeight "3400 Da (PEG spacer)" ;
+    lova:concentration "9.7 mM" ;
+    lova:supplier "Laysan Bio Inc." ;
+    lova:reagentFunction "Biotinylation of peptide/amine-functionalized nanoparticle for streptavidin surface immobilization" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.07.030/nhs-lc-biotin> a lova:Reagent ;
+    rdfs:label "NHS-LC-biotin (no PEG spacer)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:supplier "Laysan Bio Inc." ;
+    lova:reagentFunction "Biotinylation without PEG spacer" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.07.030/nhs-peg-acrylate> a lova:Reagent ;
+    rdfs:label "NHS-PEG-acrylate" ;
+    lova:reagentRole "crosslinker" ;
+    lova:supplier "Laysan Bio Inc." ;
+    lova:reagentFunction "Acrylation of nanoparticle for covalent crosslinking to acrylate hydrogel" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.07.030/nhs-lc-acrylate> a lova:Reagent ;
+    rdfs:label "NHS-LC-acrylate (no PEG spacer)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:supplier "Laysan Bio Inc." ;
+    lova:reagentFunction "Acrylation without PEG spacer" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.07.030/emch> a lova:Reagent ;
+    rdfs:label "EMCH (3,3'-[N-ε-Maleimidocaproic acid] hydrazide)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:concentration "5.9 mM" ;
+    lova:reagentFunction "Heterobifunctional crosslinker for carboxylate-to-thiol conjugation" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.07.030/edc> a lova:Reagent ;
+    rdfs:label "EDC" ;
+    lova:reagentRole "other" ;
+    lova:concentration "2 mM" ;
+    lova:reagentFunction "Carbodiimide coupling agent for carboxylate activation" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.07.030/adh> a lova:Reagent ;
+    rdfs:label "ADH (adipic acid dihydrazide)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:concentration "5.9 mM" ;
+    lova:reagentFunction "Amine functionalization of carboxylate particles" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.07.030/biotinpda> a lova:Reagent ;
+    rdfs:label "BiotinPDA" ;
+    lova:reagentRole "other" ;
+    lova:concentration "97 mM (stock), 9.7 mM (diluted)" ;
+    lova:reagentFunction "Non-cleavable biotin control conjugate" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.07.030/tcep> a lova:Reagent ;
+    rdfs:label "TCEP" ;
+    lova:reagentRole "other" ;
+    lova:concentration "10 mM" ;
+    lova:reagentFunction "Reducing agent for thiol deprotection" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.07.030/ps-beads-carboxylate> a lova:Reagent ;
+    rdfs:label "Carboxylate-modified 40 nm polystyrene beads" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Invitrogen" ;
+    lova:concentration "2% bead solution" ;
+    lova:reagentFunction "Model nanoparticle core" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.07.030/rgd-peptide> a lova:Reagent ;
+    rdfs:label "RGD peptide (Ac-GCGYGRGDSPG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "GCGYGRGDSPG" ;
+    lova:supplier "GenScript Corp." ;
+    lova:concentration "1000 μM (final in gel)" ;
+    lova:reagentFunction "Cell adhesion" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.07.030/peg-vs-4arm> a lova:Reagent ;
+    rdfs:label "4-arm PEG-vinyl sulfone (PEG-VS, MW 20,000)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:molecularWeight "20000 Da" ;
+    lova:reagentFunction "RGD conjugation carrier for hydrogel" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.07.030/peg-da> a lova:Reagent ;
+    rdfs:label "PEG dimethacrylate (PEG-DA, MW 575)" ;
+    lova:reagentRole "monomer" ;
+    lova:molecularWeight "575 Da" ;
+    lova:concentration "10% (w/v)" ;
+    lova:reagentFunction "Hydrogel network-forming monomer" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.07.030/irgacure-2959> a lova:Reagent ;
+    rdfs:label "Irgacure 2959 photoinitiator" ;
+    lova:reagentRole "photoinitiator" ;
+    lova:concentration ".05%" ;
+    lova:supplier "Ciba" ;
+    lova:reagentFunction "UV photopolymerization initiator" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.07.030/collagenase-i> a lova:Reagent ;
+    rdfs:label "Collagenase I" ;
+    lova:reagentRole "enzyme" ;
+    lova:supplier "Worthington Biochemical Corp." ;
+    lova:reagentFunction "Bacterial equivalent to human MMP1; used to induce peptide tether cleavage" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.07.030/pmma-microspheres> a lova:Reagent ;
+    rdfs:label "PMMA microspheres (90-125 μm)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Bangs Laboratories" ;
+    lova:reagentFunction "Sacrificial sintered porogen template for porous hydrogel" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.07.030/mmp2-active> a lova:Reagent ;
+    rdfs:label "Active human matrix metalloproteinase 2 (MMP2)" ;
+    lova:reagentRole "enzyme" ;
+    lova:concentration "5 ng/well" ;
+    lova:supplier "Calbiochem" ;
+    lova:reagentFunction "Zymography reference standard" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.07.030/mmp9-active> a lova:Reagent ;
+    rdfs:label "Active human matrix metalloproteinase 9 (MMP9)" ;
+    lova:reagentRole "enzyme" ;
+    lova:concentration "5 ng/well" ;
+    lova:supplier "Calbiochem" ;
+    lova:reagentFunction "Zymography reference standard" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/particle-characterization> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.07.030/ps-np-mmphigh> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.07.030/ps-np-mmpmed> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.07.030/ps-np-mmplow> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.07.030/ps-np-peg-control> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.07.030/ps-np-pda-control> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.07.030/ps-np-200nm-control> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.07.030/ps-np-mmpmed-10x> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.07.030/ps-np-mmpmed-01x> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.07.030/ps-np-mmpmed-001x> ;
+    rdfs:label "Elemental analysis for sulfur content (degree of particle modification)" ;
+    lova:experimentCategory "Analytical" ;
+    lova:experimentType "Elemental analysis" ;
+    lova:assayOrMethod "Sulfur elemental analysis" ;
+    lova:equipment "UCLA Molecular Instrumentation Center" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/biotin-density-10xmmpmed> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/particle-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "Biotin density per particle — 10MMPmed-PEG-b" ;
+    lova:measurementType "Biotin density" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 2607.0 ;
+    qudt:unit "biotin/particle" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/biotin-density-1xmmpmed> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/particle-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "Biotin density per particle — 1MMPmed-PEG-b" ;
+    lova:measurementType "Biotin density" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 1508.0 ;
+    qudt:unit "biotin/particle" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/biotin-density-01xmmpmed> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/particle-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "Biotin density per particle — .1MMPmed-PEG-b" ;
+    lova:measurementType "Biotin density" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 1361.0 ;
+    qudt:unit "biotin/particle" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/biotin-density-001xmmpmed> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/particle-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "Biotin density per particle — .01MMPmed-PEG-b" ;
+    lova:measurementType "Biotin density" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 1022.0 ;
+    qudt:unit "biotin/particle" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/biotin-density-mmphigh> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/particle-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "Biotin density per particle — 1MMPhigh-b" ;
+    lova:measurementType "Biotin density" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 1389.0 ;
+    qudt:unit "biotin/particle" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/biotin-density-mmpmed-nopeg> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/particle-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "Biotin density per particle — 1MMPmed-b" ;
+    lova:measurementType "Biotin density" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 1685.0 ;
+    qudt:unit "biotin/particle" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/biotin-density-mmplow> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/particle-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "Biotin density per particle — 1MMPlow-b" ;
+    lova:measurementType "Biotin density" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 1864.0 ;
+    qudt:unit "biotin/particle" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/biotin-density-pda> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/particle-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "Biotin density per particle — 1bPDA (control)" ;
+    lova:measurementType "Biotin density" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 2302.0 ;
+    qudt:unit "biotin/particle" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/biotin-density-peg-control> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/particle-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "Biotin density per particle — 1PEG-b (control)" ;
+    lova:measurementType "Biotin density" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 1739.0 ;
+    qudt:unit "biotin/particle" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/biotin-density-200nm> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/particle-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "Biotin density per particle — 200 nm biotin (control)" ;
+    lova:measurementType "Biotin density" ;
+    lova:measurementCategory "Analytical" ;
+    qudt:numericValue 118364.0 ;
+    qudt:unit "biotin/particle" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/competitive-binding> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.07.030/ps-np-mmpmed-1x> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.07.030/ps-np-peg-control> ;
+    rdfs:label "Competitive binding assay in the presence/absence of excess free biotin" ;
+    lova:experimentCategory "Binding assay" ;
+    lova:experimentType "Fluorescence binding assay" ;
+    lova:assayOrMethod "Typhoon scanner fluorescence imaging" ;
+    lova:equipment "Typhoon scanner" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/fluor-cooh> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/competitive-binding> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "Mean fluorescence intensity — unmodified (-COOH) particles" ;
+    lova:measurementType "Mean fluorescence intensity" ;
+    lova:measurementCategory "Binding" ;
+    qudt:numericValue 5.8E5 ;
+    qudt:unit "AU" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/fluor-1xb> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/competitive-binding> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "Mean fluorescence intensity — 1xB biotinylated particles" ;
+    lova:measurementType "Mean fluorescence intensity" ;
+    lova:measurementCategory "Binding" ;
+    qudt:numericValue 1.08E6 ;
+    qudt:unit "AU" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/fluor-1xb-plus-biotin> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/competitive-binding> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "Mean fluorescence intensity — 1xB + excess free biotin" ;
+    lova:measurementType "Mean fluorescence intensity" ;
+    lova:measurementCategory "Binding" ;
+    qudt:numericValue 5.2E5 ;
+    qudt:unit "AU" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2010.07.030/binding-specificity> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "Binding of biotinylated particles reduced to level of unmodified particles in presence of excess free biotin" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/fluor-1xb-plus-biotin> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/fluor-1xb> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/surface-density-optimization> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.07.030/ps-np-mmpmed-10x> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.07.030/ps-np-mmpmed-1x> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.07.030/ps-np-mmpmed-01x> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.07.030/ps-np-mmpmed-001x> ;
+    rdfs:label "Surface density optimization with 10-fold dilutions of SH-MMPmed-PEG3400-biotin" ;
+    lova:experimentCategory "Binding assay" ;
+    lova:experimentType "Fluorescence binding assay" ;
+    lova:assayOrMethod "Typhoon scanner fluorescence imaging" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/fluor-10xb> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/surface-density-optimization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "Mean fluorescence intensity — 10xB dilution" ;
+    lova:measurementType "Mean fluorescence intensity" ;
+    lova:measurementCategory "Binding" ;
+    qudt:numericValue 5.0E5 ;
+    qudt:unit "AU" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/fluor-1xb-f> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/surface-density-optimization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "Mean fluorescence intensity — 1xB dilution" ;
+    lova:measurementType "Mean fluorescence intensity" ;
+    lova:measurementCategory "Binding" ;
+    qudt:numericValue 1.7E6 ;
+    qudt:unit "AU" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/fluor-01xb> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/surface-density-optimization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "Mean fluorescence intensity — .1xB dilution (highest binding)" ;
+    lova:measurementType "Mean fluorescence intensity" ;
+    lova:measurementCategory "Binding" ;
+    qudt:numericValue 3.0E6 ;
+    qudt:unit "AU" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/fluor-001xb> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/surface-density-optimization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "Mean fluorescence intensity — .01xB dilution" ;
+    lova:measurementType "Mean fluorescence intensity" ;
+    lova:measurementCategory "Binding" ;
+    qudt:numericValue 1.0E6 ;
+    qudt:unit "AU" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/zymography> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.07.030/porous-peg-hydrogel> ;
+    rdfs:label "Gelatin zymography of mMSC, HEK293T, and HEK293T-MMP2 conditioned media" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Gelatin zymography" ;
+    lova:assayOrMethod "Zymogram (coomassie stain)" ;
+    lova:cellType "mMSC, HEK293T, HEK293T-MMP2" ;
+    lova:cellSource "Mouse mesenchymal stem cells; human embryonic kidney cells" ;
+    lova:seedingDensity "100,000 cells/ml" ;
+    lova:cultureDuration "24h" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/zymography-finding> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/zymography> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "HEK293T cells express significantly lower MMP2/9 than mMSCs and HEK293T-MMP2 cells" ;
+    lova:measurementType "MMP2/MMP9 expression" ;
+    lova:measurementCategory "Biochemical" ;
+    lova:valueString "HEK293T: low MMP2/9; mMSC and HEK293T-MMP2: high MMP2/9 (gel bands)" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/release-col-i> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.07.030/ps-np-mmphigh> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.07.030/ps-np-mmpmed> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.07.030/ps-np-mmplow> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.07.030/ps-np-peg-control> ;
+    rdfs:label "Acellular release assay using Collagenase I" ;
+    lova:experimentCategory "Release kinetics" ;
+    lova:experimentType "Enzymatic release assay" ;
+    lova:assayOrMethod "Typhoon scanner fluorescence imaging" ;
+    lova:temperature "37°C" ;
+    lova:cultureDuration "120h" ;
+    lova:medium "PBS" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/coli-mmphigh-120h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/release-col-i> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "% Bound at 120h — MMPhigh in Col I" ;
+    lova:measurementType "% Bound (release)" ;
+    lova:measurementCategory "Release kinetics" ;
+    qudt:numericValue 78.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "120h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/coli-mmpmed-120h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/release-col-i> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "% Bound at 120h — MMPmed in Col I" ;
+    lova:measurementType "% Bound (release)" ;
+    lova:measurementCategory "Release kinetics" ;
+    qudt:numericValue 43.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "120h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/coli-mmplow-120h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/release-col-i> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "% Bound at 120h — MMPlow in Col I" ;
+    lova:measurementType "% Bound (release)" ;
+    lova:measurementCategory "Release kinetics" ;
+    qudt:numericValue 69.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "120h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/coli-control-release> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/release-col-i> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "Minimal release of control particles (PEG/PDA non-cleavable) in Col I and mMSC conditioned media" ;
+    lova:measurementType "% Release (control)" ;
+    lova:measurementCategory "Release kinetics" ;
+    lova:valueString "10-12%" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2010.07.030/coli-mmphigh-vs-mmpmed> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "MMPmed released significantly faster than MMPhigh in Col I at 120h" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/coli-mmpmed-120h> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/coli-mmphigh-120h> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2010.07.030/coli-mmpmed-vs-mmplow> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "MMPmed bound less than MMPlow in Col I at 120h" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/coli-mmpmed-120h> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/coli-mmplow-120h> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/release-mmsc-cm> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.07.030/ps-np-mmphigh> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.07.030/ps-np-mmpmed> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.07.030/ps-np-mmplow> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.07.030/ps-np-peg-control> ;
+    rdfs:label "Acellular release assay using mouse MSC (mMSC) conditioned media" ;
+    lova:experimentCategory "Release kinetics" ;
+    lova:experimentType "Enzymatic release assay" ;
+    lova:assayOrMethod "Typhoon scanner fluorescence imaging" ;
+    lova:temperature "37°C" ;
+    lova:cultureDuration "120h" ;
+    lova:cellType "mMSC" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/mmsc-mmphigh-120h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/release-mmsc-cm> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "% Bound at 120h — MMPhigh in mMSC CM" ;
+    lova:measurementType "% Bound (release)" ;
+    lova:measurementCategory "Release kinetics" ;
+    qudt:numericValue 75.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "120h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/mmsc-mmpmed-120h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/release-mmsc-cm> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "% Bound at 120h — MMPmed in mMSC CM" ;
+    lova:measurementType "% Bound (release)" ;
+    lova:measurementCategory "Release kinetics" ;
+    qudt:numericValue 38.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "120h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/mmsc-mmplow-120h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/release-mmsc-cm> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "% Bound at 120h — MMPlow in mMSC CM" ;
+    lova:measurementType "% Bound (release)" ;
+    lova:measurementCategory "Release kinetics" ;
+    qudt:numericValue 65.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "120h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/release-tether-density> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.07.030/ps-np-mmpmed> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.07.030/ps-np-mmpmed-01x> ;
+    rdfs:label "Release vs. tether density (# biotin per particle, MMPmed particles, Col I)" ;
+    lova:experimentCategory "Release kinetics" ;
+    lova:experimentType "Enzymatic release assay" ;
+    lova:timePoint "120h" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/tether-1500-control> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/release-tether-density> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "% Bound at 120h — 1500 biotin/particle (PBS control)" ;
+    lova:measurementType "% Bound (release)" ;
+    lova:measurementCategory "Release kinetics" ;
+    qudt:numericValue 100.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "120h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/tether-1500> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/release-tether-density> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "% Bound at 120h — 1500 biotin/particle" ;
+    lova:measurementType "% Bound (release)" ;
+    lova:measurementCategory "Release kinetics" ;
+    qudt:numericValue 91.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "120h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/tether-1350> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/release-tether-density> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "% Bound at 120h — 1350 biotin/particle" ;
+    lova:measurementType "% Bound (release)" ;
+    lova:measurementCategory "Release kinetics" ;
+    qudt:numericValue 83.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "120h" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/release-protease-conc> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.07.030/ps-np-mmpmed> ;
+    rdfs:label "Release dependence on Col I concentration (MMPmed particles)" ;
+    lova:experimentCategory "Release kinetics" ;
+    lova:experimentType "Enzymatic release assay" ;
+    lova:timePoint "120h" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/coli-0u-120h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/release-protease-conc> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "% Bound at 120h — 0 U/ml Col I (PBS control)" ;
+    lova:measurementType "% Bound (release)" ;
+    lova:measurementCategory "Release kinetics" ;
+    qudt:numericValue 100.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "120h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/coli-1u-120h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/release-protease-conc> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "% Bound at 120h — 1 U/ml Col I" ;
+    lova:measurementType "% Bound (release)" ;
+    lova:measurementCategory "Release kinetics" ;
+    qudt:numericValue 90.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "120h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/coli-10u-120h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/release-protease-conc> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "% Bound at 120h — 10 U/ml Col I" ;
+    lova:measurementType "% Bound (release)" ;
+    lova:measurementCategory "Release kinetics" ;
+    qudt:numericValue 83.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "120h" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/coli-100u-120h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/release-protease-conc> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "% Bound at 120h — 100 U/ml Col I" ;
+    lova:measurementType "% Bound (release)" ;
+    lova:measurementCategory "Release kinetics" ;
+    qudt:numericValue 75.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "120h" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2010.07.030/coli-conc-dependence> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "Release increases with higher Col I concentration" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/coli-100u-120h> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/coli-0u-120h> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/internalization-2d-mmsc> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.07.030/ps-np-mmphigh> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.07.030/ps-np-mmpmed> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.07.030/ps-np-mmplow> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.07.030/ps-np-peg-control> ;
+    rdfs:label "2D particle internalization assay by protease-expressing mMSCs" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Nanoparticle internalization" ;
+    lova:assayOrMethod "Flow cytometry; fluorescence microscopy" ;
+    lova:cellType "mMSC" ;
+    lova:cellSource "Mouse mesenchymal stem cells" ;
+    lova:seedingDensity "7000 cells/well" ;
+    lova:temperature "37°C" ;
+    lova:cultureDuration "24, 48h" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/internalization-mmphigh> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/internalization-2d-mmsc> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "Internalization WRT non-peptide control — MMPhigh" ;
+    lova:measurementType "Internalization (fold vs non-peptide control)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.75 ;
+    qudt:unit "fold" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/internalization-mmpmed> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/internalization-2d-mmsc> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "Internalization WRT non-peptide control — MMPmed" ;
+    lova:measurementType "Internalization (fold vs non-peptide control)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.7 ;
+    qudt:unit "fold" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/internalization-mmplow> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/internalization-2d-mmsc> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "Internalization WRT non-peptide control — MMPlow" ;
+    lova:measurementType "Internalization (fold vs non-peptide control)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.2 ;
+    qudt:unit "fold" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2010.07.030/internalization-high-vs-low> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "MMPhigh internalized more than MMPlow by mMSCs" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/internalization-mmphigh> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/internalization-mmplow> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2010.07.030/internalization-med-vs-low> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "MMPmed internalized more than MMPlow by mMSCs" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/internalization-mmpmed> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/internalization-mmplow> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/internalization-tether-density> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.07.030/ps-np-mmpmed-10x> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.07.030/ps-np-mmpmed> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.07.030/ps-np-mmpmed-001x> ;
+    rdfs:label "Internalization vs. tether density (# biotin per particle) by mMSCs" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Nanoparticle internalization" ;
+    lova:assayOrMethod "Flow cytometry" ;
+    lova:cellType "mMSC" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/internalization-2600-biotin> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/internalization-tether-density> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "Internalization WRT non-peptide control — 2600 biotin/particle" ;
+    lova:measurementType "Internalization (fold vs non-peptide control)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.4 ;
+    qudt:unit "fold" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/internalization-1500-biotin> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/internalization-tether-density> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "Internalization WRT non-peptide control — 1500 biotin/particle" ;
+    lova:measurementType "Internalization (fold vs non-peptide control)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.6 ;
+    qudt:unit "fold" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/internalization-1350-biotin> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/internalization-tether-density> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "Internalization WRT non-peptide control — 1350 biotin/particle" ;
+    lova:measurementType "Internalization (fold vs non-peptide control)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 3.8 ;
+    qudt:unit "fold" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2010.07.030/internalization-1350-vs-2600> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "Internalization higher at 1350 biotin/particle than 2600 biotin/particle" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/internalization-1350-biotin> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/internalization-2600-biotin> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/internalization-time-course> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.07.030/ps-np-mmphigh> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.07.030/ps-np-mmpmed> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.07.030/ps-np-mmplow> ;
+    rdfs:label "Time course of internalization by mMSCs" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Nanoparticle internalization" ;
+    lova:cellType "mMSC" ;
+    lova:isTimeSeries true .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/internalization-high-96h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/internalization-time-course> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "Internalization WRT control — MMPhigh at 96h" ;
+    lova:measurementType "Internalization (fold vs non-peptide control)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.4 ;
+    qudt:unit "fold" ;
+    lova:timePoint "96h" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/internalization-low-96h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/internalization-time-course> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "Internalization WRT control — MMPlow at 96h" ;
+    lova:measurementType "Internalization (fold vs non-peptide control)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.5 ;
+    qudt:unit "fold" ;
+    lova:timePoint "96h" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/internalization-hek> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.07.030/ps-np-mmpmed> ;
+    rdfs:label "Internalization of MMPmed particles by HEK293T vs HEK293T-MMP2 cells" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Nanoparticle internalization" ;
+    lova:cellType "HEK293T, HEK293T-MMP2" ;
+    lova:cellSource "Human embryonic kidney cells" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/internalization-hek-wt> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/internalization-hek> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "Internalization fold change — HEK293T wild type" ;
+    lova:measurementType "Internalization (fold vs non-peptide control)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.1 ;
+    qudt:unit "fold" ;
+    lova:comparedToControl 1.1 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/internalization-hek-mmp2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/internalization-hek> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "Internalization fold change — HEK293T-MMP2" ;
+    lova:measurementType "Internalization (fold vs non-peptide control)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.6 ;
+    qudt:unit "fold" ;
+    lova:comparedToControl 2.6 ;
+    lova:isSignificant true ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2010.07.030/hek-vs-hekmmp2> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "HEK293T-MMP2 internalized significantly more peptide-tethered nanoparticles than HEK293T" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/internalization-hek-mmp2> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/internalization-hek-wt> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:foldChange 2.36 .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/rheometry> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.07.030/porous-peg-hydrogel> ;
+    rdfs:label "Rheological characterization of porous PEG-DA hydrogel" ;
+    lova:experimentCategory "Mechanical" ;
+    lova:experimentType "Rheometry" ;
+    lova:assayOrMethod "Plate-to-plate oscillatory rheometry" ;
+    lova:equipment "Anton Parr rheometer" ;
+    lova:strainRate "constant strain of 0.5" ;
+    lova:frequency "0.1-10 Hz" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/storage-modulus> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/rheometry> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "Storage modulus (G') ~constant across frequency range" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 1800.0 ;
+    qudt:unit "Pa" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/loss-modulus> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/rheometry> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "Loss modulus (G'') increasing from 0.1 to 10 Hz" ;
+    lova:measurementType "Loss modulus (G'')" ;
+    lova:measurementCategory "Mechanical" ;
+    lova:valueString "~35 Pa to ~250 Pa (0.1 to 10 Hz)" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/internalization-3d-hydrogel> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.07.030/porous-peg-hydrogel> ;
+    rdfs:label "3D internalization of acrylate-modified peptide-tethered nanoparticles from porous PEG hydrogels by mMSCs" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Nanoparticle internalization" ;
+    lova:assayOrMethod "Fluorescence microscopy" ;
+    lova:cellType "mMSC" ;
+    lova:seedingDensity "30,000 cells/gel" ;
+    lova:temperature "37°C" ;
+    lova:cultureDuration "24h" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.07.030/internalization-3d-finding> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.07.030/internalization-3d-hydrogel> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "Internalization trend in 3D hydrogel: MMPhigh highest, MMPlow lowest after 48h" ;
+    lova:measurementType "Internalization (qualitative trend)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "MMPhigh > MMPmed > MMPlow internalization" ;
+    lova:timePoint "48h" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.07.030/ps-np-mmpmed-1x> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.07.030> ;
+    rdfs:label "40 nm PS nanoparticle, MMPmed peptide-biotin tether, 1x dilution (alias of ps-np-mmpmed)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Polystyrene" ;
+    lova:particleSizeMin 40.0 ;
+    lova:particleSizeMax 40.0 ;
+    lova:particleSizeUnit "nm" ;
+    lova:surfaceModification "1x SH-MMPmed-PEG3400-biotin dilution" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.07.030/peptide-peg-biotin-tether> .

@@ -1,0 +1,443 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1002-cmdc.201000541> a bibo:AcademicArticle ;
+    rdfs:label "Ng et al., 2011 — Clustered RGD Peptides Enhance Tumor Targeting of Non-Viral Vectors" ;
+    dc:title "Clustered Arg-Gly-Asp Peptides Enhances Tumor Targeting of Non-Viral Vectors" ;
+    dc:identifier "10.1002/cmdc.201000541" ;
+    dc:date "2011"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/chemmedchem> ;
+    dc:creator <https://lovamap.com/ontology#author/ng-quinn> ,
+               <https://lovamap.com/ontology#author/su-helen> ,
+               <https://lovamap.com/ontology#author/armijo-amanda> ,
+               <https://lovamap.com/ontology#author/czernin-johannes> ,
+               <https://lovamap.com/ontology#author/radu-caius> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/ng-quinn>
+                       <https://lovamap.com/ontology#author/su-helen>
+                       <https://lovamap.com/ontology#author/armijo-amanda>
+                       <https://lovamap.com/ontology#author/czernin-johannes>
+                       <https://lovamap.com/ontology#author/radu-caius>
+                       <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    dc:bibliographicCitation "Ng et al., 2011" ;
+    lova:focusMaterial "64Cu-labeled RGD nanocluster-modified DNA/PEI polyplexes (DNA/PEI-Au) for tumor-targeted non-viral gene delivery" .
+
+<https://lovamap.com/ontology#author/ng-quinn> a foaf:Person ;
+    foaf:familyName "Ng" ;
+    foaf:givenName "Quinn K. T." ;
+    foaf:name "Quinn K. T. Ng" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California, Los Angeles" .
+
+<https://lovamap.com/ontology#author/su-helen> a foaf:Person ;
+    foaf:familyName "Su" ;
+    foaf:givenName "Helen" ;
+    foaf:name "Helen Su" ;
+    schema:affiliation "Department of Molecular and Medical Pharmacology, University of California, Los Angeles" .
+
+<https://lovamap.com/ontology#author/armijo-amanda> a foaf:Person ;
+    foaf:familyName "Armijo" ;
+    foaf:givenName "Amanda Lee" ;
+    foaf:name "Amanda Lee Armijo" ;
+    schema:affiliation "Department of Molecular and Medical Pharmacology, University of California, Los Angeles" .
+
+<https://lovamap.com/ontology#author/czernin-johannes> a foaf:Person ;
+    foaf:familyName "Czernin" ;
+    foaf:givenName "Johannes" ;
+    foaf:name "Johannes Czernin" ;
+    schema:affiliation "Department of Molecular and Medical Pharmacology, University of California, Los Angeles" .
+
+<https://lovamap.com/ontology#author/radu-caius> a foaf:Person ;
+    foaf:familyName "Radu" ;
+    foaf:givenName "Caius G." ;
+    foaf:name "Caius G. Radu" ;
+    schema:affiliation "Department of Molecular and Medical Pharmacology, University of California, Los Angeles" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California, Los Angeles" .
+
+<https://lovamap.com/ontology#journal/chemmedchem> a bibo:Journal ;
+    dc:title "ChemMedChem" ;
+    bibo:issn "1860-7179" .
+
+<https://lovamap.com/ontology#material/10.1002-cmdc.201000541/control-polyplex> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cmdc.201000541> ;
+    rdfs:label "Unmodified DNA/PEI polyplex (control)" ;
+    lova:particleMaterial "DNA/branched PEI (25 kDa) polyplex" ;
+    lova:surfaceModification "None (unmodified)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-cmdc.201000541/dota-pei-rgd-polyplex> .
+
+<https://lovamap.com/ontology#material/10.1002-cmdc.201000541/low-rgd-polyplex> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cmdc.201000541> ;
+    rdfs:label "Low RGD nanocluster modified DNA/PEI polyplex (DNA/PEI-Au, low)" ;
+    lova:particleMaterial "DNA/branched PEI (25 kDa) polyplex" ;
+    lova:surfaceModification "RGD nanocluster, low density (0.1 pmol/μg DNA; 16×10^10 particles/μg DNA)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-cmdc.201000541/dota-pei-rgd-polyplex> .
+
+<https://lovamap.com/ontology#material/10.1002-cmdc.201000541/high-rgd-polyplex> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cmdc.201000541> ;
+    rdfs:label "High RGD nanocluster modified DNA/PEI polyplex (DNA/PEI-Au, high)" ;
+    lova:particleMaterial "DNA/branched PEI (25 kDa) polyplex" ;
+    lova:surfaceModification "RGD nanocluster, high density (0.2 pmol/μg DNA; 32×10^10 particles/μg DNA)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-cmdc.201000541/dota-pei-rgd-polyplex> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-cmdc.201000541/dota-pei-rgd-polyplex> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cmdc.201000541> ;
+    rdfs:label "DOTA-PEI 64Cu labeling, polyplex self-assembly, and RGD nanocluster surface modification" ;
+    lova:chemistry "NHS-ester amide coupling (DOTA conjugation); electrostatic polyplex self-assembly; UV-activated photocrosslinking (NHS-ASA)" ;
+    lova:manufacturingMethod "Polyplex self-assembly (electrostatic complexation) with gold-nanoparticle RGD nanocluster surface conjugation" ;
+    lova:annealingChemistry "UV-activated heterobifunctional crosslinker (NHS-ASA) conjugation of Cap-RGD peptide to polyplex surface" ;
+    lova:annealingConditions "Ambient light exposure, 15 min" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-cmdc.201000541/b-pei> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-cmdc.201000541/dota-nhs> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-cmdc.201000541/cu64> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-cmdc.201000541/plasmid-dna> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-cmdc.201000541/cap-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-cmdc.201000541/cap-rgd-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-cmdc.201000541/nhs-asa> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-cmdc.201000541/gold-nanoparticles> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-cmdc.201000541/chelex-100> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-cmdc.201000541/ammonium-acetate> .
+
+<https://lovamap.com/ontology#reagent/10.1002-cmdc.201000541/b-pei> a lova:Reagent ;
+    rdfs:label "Branched PEI (25 kDa)" ;
+    lova:reagentRole "carrier" ;
+    lova:molecularWeight "25 kDa" ;
+    lova:supplier "Sigma, St. Louis, MO" ;
+    lova:reagentFunction "Cationic polymer backbone for DNA condensation and gene delivery vector" .
+
+<https://lovamap.com/ontology#reagent/10.1002-cmdc.201000541/dota-nhs> a lova:Reagent ;
+    rdfs:label "1,4,7,10-Tetraazacyclododecane-1,4,7,10-tetraacetic acid mono(N-hydroxysuccinimide ester) (DOTA-NHS)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:concentration "10 fold molar excess" ;
+    lova:supplier "Macrocyclics, Dallas, TX" ;
+    lova:reagentFunction "Chelator conjugation to PEI for radiometal labeling" .
+
+<https://lovamap.com/ontology#reagent/10.1002-cmdc.201000541/cu64> a lova:Reagent ;
+    rdfs:label "64Cu chloride" ;
+    lova:reagentRole "other" ;
+    lova:concentration "10-15 mCi; 800 fold molar excess relative to DOTA-PEI" ;
+    lova:reagentFunction "Positron-emitting radiolabel chelated by DOTA for PET imaging" .
+
+<https://lovamap.com/ontology#reagent/10.1002-cmdc.201000541/plasmid-dna> a lova:Reagent ;
+    rdfs:label "Plasmid DNA (pDNA)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "50 μg DNA per injection; N/P ratio 10" ;
+    lova:reagentFunction "Nucleic acid cargo for polyplex formation" .
+
+<https://lovamap.com/ontology#reagent/10.1002-cmdc.201000541/cap-peptide> a lova:Reagent ;
+    rdfs:label "Cap peptide (CCVVVT-COOH)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "CCVVVT" ;
+    lova:reagentFunction "Non-targeting control peptide for gold nanoparticle surface modification" .
+
+<https://lovamap.com/ontology#reagent/10.1002-cmdc.201000541/cap-rgd-peptide> a lova:Reagent ;
+    rdfs:label "Cap-RGD peptide (Ac-CCVVVTGRGDSP-SSK-COOH)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "CCVVVTGRGDSPSSK" ;
+    lova:reagentFunction "Integrin αvβ3 binding peptide for RGD nanocluster formation and tumor targeting" .
+
+<https://lovamap.com/ontology#reagent/10.1002-cmdc.201000541/nhs-asa> a lova:Reagent ;
+    rdfs:label "NHS-ASA heterobifunctional crosslinker" ;
+    lova:reagentRole "crosslinker" ;
+    lova:reagentFunction "UV-activated conjugation of Cap-RGD-ASA to polyplex surface" .
+
+<https://lovamap.com/ontology#reagent/10.1002-cmdc.201000541/gold-nanoparticles> a lova:Reagent ;
+    rdfs:label "Citrate-stabilized gold nanoparticles" ;
+    lova:reagentRole "carrier" ;
+    lova:reagentFunction "Scaffold for RGD peptide nanocluster formation" .
+
+<https://lovamap.com/ontology#reagent/10.1002-cmdc.201000541/chelex-100> a lova:Reagent ;
+    rdfs:label "Chelex-100" ;
+    lova:reagentRole "other" ;
+    lova:concentration "1.2 mg/mL" ;
+    lova:supplier "Biorad, Hercules, CA" ;
+    lova:reagentFunction "Metal ion scavenger for solution treatment" .
+
+<https://lovamap.com/ontology#reagent/10.1002-cmdc.201000541/ammonium-acetate> a lova:Reagent ;
+    rdfs:label "Ammonium acetate buffer (pH 5.5)" ;
+    lova:reagentRole "solvent" ;
+    lova:concentration "0.1 M" ;
+    lova:reagentFunction "Buffer for 64Cu chelation reaction" .
+
+<https://lovamap.com/ontology#experiment/10.1002-cmdc.201000541/static-biodistribution-20hr> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cmdc.201000541> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-cmdc.201000541/control-polyplex> ,
+                      <https://lovamap.com/ontology#material/10.1002-cmdc.201000541/low-rgd-polyplex> ,
+                      <https://lovamap.com/ontology#material/10.1002-cmdc.201000541/high-rgd-polyplex> ;
+    rdfs:label "Micro-PET/CT static biodistribution in U87MG/HeLa xenograft mice at 20 hrs post injection" ;
+    lova:experimentCategory "Imaging/Pharmacokinetic" ;
+    lova:experimentType "Biodistribution imaging" ;
+    lova:assayOrMethod "Micro-PET/CT" ;
+    lova:equipment "micro-PET FOCUS 220 PET scanner (Siemens); MicroCAT II CT scanner (Siemens)" ;
+    lova:cellType "HeLa (medium αvβ3), U87MG (high αvβ3) subcutaneous xenograft tumors" ;
+    lova:cellSource "Human cervical cancer (HeLa); human glioblastoma (U87MG)" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#experiment/10.1002-cmdc.201000541/dynamic-biodistribution-40min> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cmdc.201000541> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-cmdc.201000541/control-polyplex> ,
+                      <https://lovamap.com/ontology#material/10.1002-cmdc.201000541/low-rgd-polyplex> ,
+                      <https://lovamap.com/ontology#material/10.1002-cmdc.201000541/high-rgd-polyplex> ;
+    rdfs:label "Micro-PET/CT dynamic biodistribution in U87MG/HeLa xenograft mice over 40 min" ;
+    lova:experimentCategory "Imaging/Pharmacokinetic" ;
+    lova:experimentType "Dynamic biodistribution imaging" ;
+    lova:assayOrMethod "Micro-PET/CT" ;
+    lova:equipment "micro-PET FOCUS 220 PET scanner (Siemens); MicroCAT II CT scanner (Siemens)" ;
+    lova:cellType "HeLa (medium αvβ3), U87MG (high αvβ3) subcutaneous xenograft tumors" ;
+    lova:cellSource "Human cervical cancer (HeLa); human glioblastoma (U87MG)" .
+
+<https://lovamap.com/ontology#experiment/10.1002-cmdc.201000541/competitive-blocking> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cmdc.201000541> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-cmdc.201000541/control-polyplex> ,
+                      <https://lovamap.com/ontology#material/10.1002-cmdc.201000541/high-rgd-polyplex> ;
+    rdfs:label "Competitive binding/blocking with free RGD peptide in U87MG/HeLa xenograft mice" ;
+    lova:experimentCategory "Imaging/Pharmacokinetic" ;
+    lova:experimentType "Competitive binding assay" ;
+    lova:assayOrMethod "Micro-PET/CT" ;
+    lova:cellType "HeLa (medium αvβ3), U87MG (high αvβ3) subcutaneous xenograft tumors" ;
+    lova:cellSource "Human cervical cancer (HeLa); human glioblastoma (U87MG)" .
+
+<https://lovamap.com/ontology#outcome/10.1002-cmdc.201000541/u87-accum-range-20hr> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-cmdc.201000541/static-biodistribution-20hr> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cmdc.201000541> ;
+    rdfs:label "U87MG tumor accumulation range (RGD nanocluster modified polyplexes) at 20 hrs" ;
+    lova:measurementType "Tumor accumulation (%ID/g)" ;
+    lova:measurementCategory "Imaging/Pharmacokinetic" ;
+    lova:valueString "3.8-22 %ID/g" ;
+    lova:timePoint "20 hrs" ;
+    lova:scope "Bulk/global" ;
+    lova:comparisonGroup "HeLa tumor" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-cmdc.201000541/control-accum-range-20hr> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-cmdc.201000541/static-biodistribution-20hr> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cmdc.201000541> ;
+    rdfs:label "Control (unmodified) polyplex tumor accumulation range at 20 hrs" ;
+    lova:measurementType "Tumor accumulation (%ID/g)" ;
+    lova:measurementCategory "Imaging/Pharmacokinetic" ;
+    lova:valueString "4-15 %ID/g" ;
+    lova:timePoint "20 hrs" ;
+    lova:scope "Bulk/global" ;
+    lova:isSignificant false ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-cmdc.201000541/control-u87-20hr-fig> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-cmdc.201000541/static-biodistribution-20hr> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cmdc.201000541> ;
+    rdfs:label "Control polyplex accumulation in U87MG tumor at 20 hrs (Fig 2d)" ;
+    lova:measurementType "Tumor accumulation (%ID/g)" ;
+    lova:measurementCategory "Imaging/Pharmacokinetic" ;
+    qudt:numericValue 13.0 ;
+    qudt:unit "%ID/g" ;
+    lova:sampleSize 3 ;
+    lova:timePoint "20 hrs" ;
+    lova:scope "Bulk/global" ;
+    lova:comparisonGroup "HeLa tumor" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-cmdc.201000541/control-hela-20hr-fig> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-cmdc.201000541/static-biodistribution-20hr> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cmdc.201000541> ;
+    rdfs:label "Control polyplex accumulation in HeLa tumor at 20 hrs (Fig 2d)" ;
+    lova:measurementType "Tumor accumulation (%ID/g)" ;
+    lova:measurementCategory "Imaging/Pharmacokinetic" ;
+    qudt:numericValue 13.0 ;
+    qudt:unit "%ID/g" ;
+    lova:sampleSize 3 ;
+    lova:timePoint "20 hrs" ;
+    lova:scope "Bulk/global" ;
+    lova:comparisonGroup "U87MG tumor" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-cmdc.201000541/low-u87-20hr-fig> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-cmdc.201000541/static-biodistribution-20hr> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cmdc.201000541> ;
+    rdfs:label "Low RGD nanocluster modified polyplex accumulation in U87MG tumor at 20 hrs (Fig 2d)" ;
+    lova:measurementType "Tumor accumulation (%ID/g)" ;
+    lova:measurementCategory "Imaging/Pharmacokinetic" ;
+    qudt:numericValue 20.0 ;
+    qudt:unit "%ID/g" ;
+    lova:sampleSize 3 ;
+    lova:timePoint "20 hrs" ;
+    lova:scope "Bulk/global" ;
+    lova:comparisonGroup "HeLa tumor" ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-cmdc.201000541/low-hela-20hr-fig> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-cmdc.201000541/static-biodistribution-20hr> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cmdc.201000541> ;
+    rdfs:label "Low RGD nanocluster modified polyplex accumulation in HeLa tumor at 20 hrs (Fig 2d)" ;
+    lova:measurementType "Tumor accumulation (%ID/g)" ;
+    lova:measurementCategory "Imaging/Pharmacokinetic" ;
+    qudt:numericValue 10.0 ;
+    qudt:unit "%ID/g" ;
+    lova:sampleSize 3 ;
+    lova:timePoint "20 hrs" ;
+    lova:scope "Bulk/global" ;
+    lova:comparisonGroup "U87MG tumor" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-cmdc.201000541/high-u87-20hr-fig> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-cmdc.201000541/static-biodistribution-20hr> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cmdc.201000541> ;
+    rdfs:label "High RGD nanocluster modified polyplex accumulation in U87MG tumor at 20 hrs (Fig 2d)" ;
+    lova:measurementType "Tumor accumulation (%ID/g)" ;
+    lova:measurementCategory "Imaging/Pharmacokinetic" ;
+    qudt:numericValue 27.0 ;
+    qudt:unit "%ID/g" ;
+    lova:sampleSize 3 ;
+    lova:timePoint "20 hrs" ;
+    lova:scope "Bulk/global" ;
+    lova:comparisonGroup "HeLa tumor" ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-cmdc.201000541/high-hela-20hr-fig> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-cmdc.201000541/static-biodistribution-20hr> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cmdc.201000541> ;
+    rdfs:label "High RGD nanocluster modified polyplex accumulation in HeLa tumor at 20 hrs (Fig 2d)" ;
+    lova:measurementType "Tumor accumulation (%ID/g)" ;
+    lova:measurementCategory "Imaging/Pharmacokinetic" ;
+    qudt:numericValue 16.0 ;
+    qudt:unit "%ID/g" ;
+    lova:sampleSize 3 ;
+    lova:timePoint "20 hrs" ;
+    lova:scope "Bulk/global" ;
+    lova:comparisonGroup "U87MG tumor" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-cmdc.201000541/control-u87-vs-hela> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cmdc.201000541> ;
+    rdfs:label "No significant difference in control polyplex accumulation between U87MG and HeLa tumors at 20 hrs" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-cmdc.201000541/control-u87-20hr-fig> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-cmdc.201000541/control-hela-20hr-fig> ;
+    lova:direction "no difference" ;
+    lova:isSignificant false .
+
+<https://lovamap.com/ontology#comparison/10.1002-cmdc.201000541/low-u87-vs-hela> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cmdc.201000541> ;
+    rdfs:label "Low RGD nanocluster polyplex accumulation higher in U87MG vs HeLa tumor at 20 hrs" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-cmdc.201000541/low-u87-20hr-fig> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-cmdc.201000541/low-hela-20hr-fig> ;
+    lova:direction "higher" ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-cmdc.201000541/high-u87-vs-hela> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cmdc.201000541> ;
+    rdfs:label "High RGD nanocluster polyplex accumulation higher in U87MG vs HeLa tumor at 20 hrs" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-cmdc.201000541/high-u87-20hr-fig> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-cmdc.201000541/high-hela-20hr-fig> ;
+    lova:direction "higher" ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1002-cmdc.201000541/liver-accum-40min> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-cmdc.201000541/dynamic-biodistribution-40min> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cmdc.201000541> ;
+    rdfs:label "Liver accumulation within 40 min (all conditions)" ;
+    lova:measurementType "Organ accumulation (%ID/g)" ;
+    lova:measurementCategory "Imaging/Pharmacokinetic" ;
+    lova:valueString "30-60 %ID/g" ;
+    lova:timePoint "within 40 min" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-cmdc.201000541/kidney-accum-40min> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-cmdc.201000541/dynamic-biodistribution-40min> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cmdc.201000541> ;
+    rdfs:label "Kidney accumulation within 40 min (all conditions)" ;
+    lova:measurementType "Organ accumulation (%ID/g)" ;
+    lova:measurementCategory "Imaging/Pharmacokinetic" ;
+    lova:valueString "15-30 %ID/g" ;
+    lova:timePoint "within 40 min" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-cmdc.201000541/other-organs-40min> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-cmdc.201000541/dynamic-biodistribution-40min> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cmdc.201000541> ;
+    rdfs:label "Lungs, blood, and muscle accumulation within 40 min (all conditions)" ;
+    lova:measurementType "Organ accumulation (%ID/g)" ;
+    lova:measurementCategory "Imaging/Pharmacokinetic" ;
+    lova:valueString "<10 %ID/g" ;
+    lova:timePoint "within 40 min" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-cmdc.201000541/liver-accum-20hr> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-cmdc.201000541/static-biodistribution-20hr> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cmdc.201000541> ;
+    rdfs:label "Liver accumulation at 20 hrs (all conditions)" ;
+    lova:measurementType "Organ accumulation (%ID/g)" ;
+    lova:measurementCategory "Imaging/Pharmacokinetic" ;
+    lova:valueString "~20 %ID/g" ;
+    lova:timePoint "20 hrs" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-cmdc.201000541/kidney-accum-20hr> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-cmdc.201000541/static-biodistribution-20hr> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cmdc.201000541> ;
+    rdfs:label "Kidney accumulation at 20 hrs (all conditions)" ;
+    lova:measurementType "Organ accumulation (%ID/g)" ;
+    lova:measurementCategory "Imaging/Pharmacokinetic" ;
+    lova:valueString "<10 %ID/g" ;
+    lova:timePoint "20 hrs" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-cmdc.201000541/u87-hela-foldchange> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-cmdc.201000541/dynamic-biodistribution-40min> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cmdc.201000541> ;
+    rdfs:label "Increase in U87MG vs HeLa tumor difference between 40 min and 20 hrs (low and high RGD conditions)" ;
+    lova:measurementType "Tumor accumulation fold increase" ;
+    lova:measurementCategory "Imaging/Pharmacokinetic" ;
+    lova:valueString "~2-fold increase" ;
+    lova:timePoint "40 min to 20 hrs" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-cmdc.201000541/u87-blocked-40min> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-cmdc.201000541/competitive-blocking> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cmdc.201000541> ;
+    rdfs:label "U87MG tumor accumulation after RGD peptide blocking at 40 min" ;
+    lova:measurementType "Tumor accumulation (%ID/g)" ;
+    lova:measurementCategory "Imaging/Pharmacokinetic" ;
+    lova:valueString "<2 %ID/g" ;
+    lova:timePoint "40 min" ;
+    lova:scope "Bulk/global" ;
+    lova:comparisonGroup "Unblocked RGD-modified polyplex" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-cmdc.201000541/hela-blocked-40min> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-cmdc.201000541/competitive-blocking> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cmdc.201000541> ;
+    rdfs:label "HeLa tumor accumulation (with and without RGD peptide blocking) at 40 min" ;
+    lova:measurementType "Tumor accumulation (%ID/g)" ;
+    lova:measurementCategory "Imaging/Pharmacokinetic" ;
+    lova:valueString "<5 %ID/g" ;
+    lova:timePoint "40 min" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-cmdc.201000541/u87-blocked-vs-unblocked> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-cmdc.201000541> ;
+    rdfs:label "RGD peptide blocking reduces U87MG tumor accumulation of RGD nanocluster modified polyplex" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-cmdc.201000541/u87-blocked-40min> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-cmdc.201000541/high-u87-20hr-fig> ;
+    lova:direction "lower" .

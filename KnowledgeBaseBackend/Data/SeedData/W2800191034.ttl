@@ -1,0 +1,889 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> a bibo:AcademicArticle ;
+    rdfs:label "Zhu et al., 2018 — Star PEG-PPS Wound Healing Hydrogel" ;
+    dc:title "Accelerated wound healing by injectable star poly(ethylene glycol)-b-poly(propylene sulfide) scaffolds loaded with poorly water-soluble drugs" ;
+    dc:identifier "10.1016/j.jconrel.2018.05.006" ;
+    dc:date "2018"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/journal-of-controlled-release> ;
+    dc:creator <https://lovamap.com/ontology#author/zhu-suwei> ,
+               <https://lovamap.com/ontology#author/li-shuoran> ,
+               <https://lovamap.com/ontology#author/escuin-ordinas-helena> ,
+               <https://lovamap.com/ontology#author/dimatteo-robert> ,
+               <https://lovamap.com/ontology#author/xi-weixian> ,
+               <https://lovamap.com/ontology#author/ribas-antoni> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/zhu-suwei>
+                       <https://lovamap.com/ontology#author/li-shuoran>
+                       <https://lovamap.com/ontology#author/escuin-ordinas-helena>
+                       <https://lovamap.com/ontology#author/dimatteo-robert>
+                       <https://lovamap.com/ontology#author/xi-weixian>
+                       <https://lovamap.com/ontology#author/ribas-antoni>
+                       <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    dc:bibliographicCitation "Zhu et al., 2018" ;
+    lova:focusMaterial "Star-shaped 4-arm PEG113-PPSx amphiphilic block copolymer self-assembled hydrogels for hydrophobic drug delivery and dermal wound repair" .
+
+<https://lovamap.com/ontology#author/zhu-suwei> a foaf:Person ;
+    foaf:familyName "Zhu" ; foaf:givenName "Suwei" ; foaf:name "Suwei Zhu" .
+<https://lovamap.com/ontology#author/li-shuoran> a foaf:Person ;
+    foaf:familyName "Li" ; foaf:givenName "Shuoran" ; foaf:name "Shuoran Li" .
+<https://lovamap.com/ontology#author/escuin-ordinas-helena> a foaf:Person ;
+    foaf:familyName "Escuin-Ordinas" ; foaf:givenName "Helena" ; foaf:name "Helena Escuin-Ordinas" .
+<https://lovamap.com/ontology#author/dimatteo-robert> a foaf:Person ;
+    foaf:familyName "Dimatteo" ; foaf:givenName "Robert" ; foaf:name "Robert Dimatteo" .
+<https://lovamap.com/ontology#author/xi-weixian> a foaf:Person ;
+    foaf:familyName "Xi" ; foaf:givenName "Weixian" ; foaf:name "Weixian Xi" .
+<https://lovamap.com/ontology#author/ribas-antoni> a foaf:Person ;
+    foaf:familyName "Ribas" ; foaf:givenName "Antoni" ; foaf:name "Antoni Ribas" .
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ; foaf:givenName "Tatiana" ; foaf:name "Tatiana Segura" .
+
+<https://lovamap.com/ontology#journal/journal-of-controlled-release> a bibo:Journal ;
+    dc:title "Journal of Controlled Release" ;
+    bibo:issn "0168-3659" .
+
+<https://lovamap.com/ontology#material/10.1016-j.jconrel.2018.05.006/pps2.5> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "star-PEG113-PPS2.5 hydrogel" ;
+    lova:particleMaterial "4-arm star-PEG113-PPS2.5 block copolymer" ;
+    lova:stiffnessQualitative "Liquid-like (sol) in water" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.jconrel.2018.05.006/star-peg-pps-synthesis> .
+
+<https://lovamap.com/ontology#material/10.1016-j.jconrel.2018.05.006/pps5> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "star-PEG113-PPS5 hydrogel" ;
+    lova:particleMaterial "4-arm star-PEG113-PPS5 block copolymer" ;
+    lova:stiffnessQualitative "Gel state, self-assembled, shear-thinning and self-healing" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.jconrel.2018.05.006/star-peg-pps-synthesis> .
+
+<https://lovamap.com/ontology#material/10.1016-j.jconrel.2018.05.006/pps16> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "star-PEG113-PPS16 hydrogel" ;
+    lova:particleMaterial "4-arm star-PEG113-PPS16 block copolymer" ;
+    lova:stiffnessQualitative "Partially hydrated gel in water; elastic gel in methanol" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.jconrel.2018.05.006/star-peg-pps-synthesis> .
+
+<https://lovamap.com/ontology#material/10.1016-j.jconrel.2018.05.006/fibrin-control> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "Fibrin gel control (10 mg/mL fibrinogen, 1 w/v%)" ;
+    lova:particleMaterial "Fibrin (fibrinogen)" .
+
+<https://lovamap.com/ontology#material/10.1016-j.jconrel.2018.05.006/pps5-vem> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "star-PEG113-PPS5 hydrogel loaded with 150 μg vemurafenib (PPS+VEM)" ;
+    lova:particleMaterial "4-arm star-PEG113-PPS5 block copolymer + vemurafenib" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.jconrel.2018.05.006/star-peg-pps-synthesis> .
+
+<https://lovamap.com/ontology#material/10.1016-j.jconrel.2018.05.006/dmso-vem> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "DMSO + 2 mg vemurafenib control" ;
+    lova:particleMaterial "Vemurafenib dissolved in DMSO" .
+
+<https://lovamap.com/ontology#material/10.1016-j.jconrel.2018.05.006/dmso-control> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "DMSO vehicle control" ;
+    lova:particleMaterial "DMSO" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.jconrel.2018.05.006/star-peg-pps-synthesis> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "Three-step synthesis of 4-arm star-PEG113-PPSx block copolymer" ;
+    lova:chemistry "Thiol-ene radical addition and thiolate-initiated ring-opening polymerization of propylene sulfide" ;
+    lova:manufacturingMethod "Batch solution synthesis (allylation, thioacetylation, ring-opening polymerization, disulfide end-capping)" ;
+    lova:annealingChemistry "Self-assembly via hydrophobic interactions and hydrogen bonding; disulfide exchange crosslinking at physiological pH" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2018.05.006/peg-4arm> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2018.05.006/nah> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2018.05.006/allyl-bromide> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2018.05.006/aibn> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2018.05.006/thioacetic-acid> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2018.05.006/sodium-methoxide> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2018.05.006/propylene-sulfide> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2018.05.006/dithiodipyridine> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2018.05.006/rgd-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2018.05.006/tcep> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2018.05.006/alexa488-maleimide> .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2018.05.006/peg-4arm> a lova:Reagent ;
+    rdfs:label "4-arm poly(ethylene glycol) (PEG, MW 20,000)" ;
+    lova:reagentRole "monomer" ;
+    lova:molecularWeight "20,000 Da" ;
+    lova:concentration "10 g, 2 mmol arms" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2018.05.006/nah> a lova:Reagent ;
+    rdfs:label "Sodium hydride (NaH)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "0.6 g, 16 mmol (8x excess over arms)" ;
+    lova:reagentFunction "Deprotonation of PEG hydroxyl groups" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2018.05.006/allyl-bromide> a lova:Reagent ;
+    rdfs:label "Allyl bromide" ;
+    lova:reagentRole "other" ;
+    lova:concentration "1.6 mL, 20 mmol (10x excess over arms)" ;
+    lova:reagentFunction "Allylation of PEG end groups" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2018.05.006/aibn> a lova:Reagent ;
+    rdfs:label "2,2'-Azobis(2-methylpropionitrile) (AIBN)" ;
+    lova:reagentRole "initiator" ;
+    lova:concentration "1.5 g, 9 mmol" ;
+    lova:reagentFunction "Radical thiol-ene initiator" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2018.05.006/thioacetic-acid> a lova:Reagent ;
+    rdfs:label "Thioacetic acid" ;
+    lova:reagentRole "other" ;
+    lova:concentration "2 mL, 26 mmol" ;
+    lova:reagentFunction "Thiol-ene addition to form PEG-thioacetate" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2018.05.006/sodium-methoxide> a lova:Reagent ;
+    rdfs:label "Sodium methoxide" ;
+    lova:reagentRole "other" ;
+    lova:concentration "83 mg, 1.53 mmol (10x excess over arms)" ;
+    lova:reagentFunction "Deacetylation to generate free thiolate initiator" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2018.05.006/propylene-sulfide> a lova:Reagent ;
+    rdfs:label "Propylene sulfide" ;
+    lova:reagentRole "monomer" ;
+    lova:concentration "2.5x, 5x, or 16x molar equivalents of PEG arms" ;
+    lova:reagentFunction "Ring-opening polymerization to form hydrophobic PPS block" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2018.05.006/dithiodipyridine> a lova:Reagent ;
+    rdfs:label "2,2'-dithiodipyridine" ;
+    lova:reagentRole "crosslinker" ;
+    lova:concentration "168 mg, 0.77 mmol (5x excess over arms)" ;
+    lova:reagentFunction "End-capping; provides disulfide bridge for reduction-responsive crosslinking" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2018.05.006/rgd-peptide> a lova:Reagent ;
+    rdfs:label "RGD adhesive peptide (Acetyl-GCGYGRGDSPG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "GCGYGRGDSPG" ;
+    lova:concentration "500 μM" ;
+    lova:reagentFunction "Cell adhesion via integrin binding" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2018.05.006/tcep> a lova:Reagent ;
+    rdfs:label "Tris(2-carboxyethyl)phosphine (TCEP)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "n(Polymer arm):n(TCEP) = 1:0.5" ;
+    lova:reagentFunction "Reducing agent, induces disulfide exchange crosslinking" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2018.05.006/alexa488-maleimide> a lova:Reagent ;
+    rdfs:label "Alexa Fluor 488-maleimide" ;
+    lova:reagentRole "other" ;
+    lova:concentration "1 mg/mL" ;
+    lova:reagentFunction "Fluorescent labeling of polymer" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2018.05.006/brdu> a lova:Reagent ;
+    rdfs:label "Bromodeoxyuridine (BrdU)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "10 mg/mL" ;
+    lova:reagentFunction "Model hydrophobic drug / proliferating cell marker" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2018.05.006/vemurafenib> a lova:Reagent ;
+    rdfs:label "Vemurafenib (VEM)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "150 μg per wound (PPS); 2 mg per dose x3 doses at 0.1 mg/μL (DMSO)" ;
+    lova:reagentFunction "BRAF inhibitor promoting paradoxical MAPK activation and wound closure" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2018.05.006/h2o2> a lova:Reagent ;
+    rdfs:label "Hydrogen peroxide" ;
+    lova:reagentRole "other" ;
+    lova:concentration "5 v/v%" ;
+    lova:reagentFunction "Oxidizing agent inducing PPS oxidation and hydrogel dissolution" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2018.05.006/rifampicin> a lova:Reagent ;
+    rdfs:label "Rifampicin" ;
+    lova:reagentRole "other" ;
+    lova:concentration "5 mg/mL" ;
+    lova:reagentFunction "Test hydrophobic molecule for solubilization" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2018.05.006/eosin-y> a lova:Reagent ;
+    rdfs:label "Eosin Y" ;
+    lova:reagentRole "other" ;
+    lova:concentration "2.5 mg/mL" ;
+    lova:reagentFunction "Test hydrophobic molecule for solubilization" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.jconrel.2018.05.006/irgacure2959> a lova:Reagent ;
+    rdfs:label "Irgacure® 2959" ;
+    lova:reagentRole "photoinitiator" ;
+    lova:concentration "5 mg/mL" ;
+    lova:supplier "BASF" ;
+    lova:reagentFunction "Test hydrophobic molecule for solubilization" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/rheology-frequency-sweep> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.jconrel.2018.05.006/pps2.5> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.jconrel.2018.05.006/pps5> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.jconrel.2018.05.006/pps16> ;
+    rdfs:label "Rheological frequency sweep of star-PEG-PPSx hydrogels" ;
+    lova:experimentCategory "Rheological" ;
+    lova:experimentType "Frequency sweep" ;
+    lova:equipment "Physica MCR 301, Anton Paar" ;
+    lova:temperature "37°C" ;
+    lova:frequency "0.1-100 rad/s" ;
+    lova:preconditioning "Self-assembled overnight" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/rheology-concentration> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.jconrel.2018.05.006/pps5> ;
+    rdfs:label "Concentration-dependent storage/loss modulus of star-PEG-PPS5 hydrogels" ;
+    lova:experimentCategory "Rheological" ;
+    lova:experimentType "Storage/loss modulus vs polymer concentration" ;
+    lova:equipment "Physica MCR 301, Anton Paar" ;
+    lova:temperature "37°C" ;
+    lova:strainRate "1% strain" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/amplitude-sweep-yield> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.jconrel.2018.05.006/pps5> ;
+    rdfs:label "Amplitude sweep yielding and self-healing of star-PEG-PPS5 hydrogel" ;
+    lova:experimentCategory "Rheological" ;
+    lova:experimentType "Amplitude sweep (yield strain)" ;
+    lova:frequency "20 rad/s" ;
+    lova:equipment "Physica MCR 301, Anton Paar" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/tcep-stiffening> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.jconrel.2018.05.006/pps5> ;
+    rdfs:label "TCEP-induced stiffening of star-PEG-PPS5 hydrogel" ;
+    lova:experimentCategory "Rheological" ;
+    lova:experimentType "Reduction-induced stiffening" ;
+    lova:strainRate "1% strain" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/h2o2-oxidation> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.jconrel.2018.05.006/pps5> ;
+    rdfs:label "Hydrogen peroxide-induced viscosity decrease of star-PEG-PPS5" ;
+    lova:experimentCategory "Rheological" ;
+    lova:experimentType "Oxidation-induced viscosity decrease" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/water-content> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.jconrel.2018.05.006/pps5> ;
+    rdfs:label "Water content measurement of star-PEG-PPS5 hydrogel" ;
+    lova:experimentCategory "Physicochemical" ;
+    lova:experimentType "Water content" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/solubilization> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.jconrel.2018.05.006/pps5> ;
+    rdfs:label "Solubilization of hydrophobic molecules in star-PEG-PPS5 hydrogel" ;
+    lova:experimentCategory "Physicochemical" ;
+    lova:assayOrMethod "Phase contrast microscopy" ;
+    lova:equipment "Zeiss Observer Z1" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/wound-healing-biocompatibility> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.jconrel.2018.05.006/pps2.5> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.jconrel.2018.05.006/pps5> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.jconrel.2018.05.006/fibrin-control> ;
+    rdfs:label "Mouse splinted dermal excisional wound healing biocompatibility experiment" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Wound healing" ;
+    lova:assayOrMethod "H&E staining, immunofluorescence (Ly6G, Ki-67)" ;
+    lova:cellSource "Mouse (Charles River Laboratories)" ;
+    lova:cultureDuration "3, 7 days" ;
+    lova:sampleSize 4 .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/brdu-delivery> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.jconrel.2018.05.006/pps2.5> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.jconrel.2018.05.006/pps5> ;
+    rdfs:label "BrdU delivery at mouse dermal wound bed via star-PEG-PPS hydrogel" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Hydrophobic drug delivery / retention" ;
+    lova:assayOrMethod "Immunofluorescence (BrdU, Ki-67)" ;
+    lova:cellSource "Mouse (Charles River Laboratories)" ;
+    lova:cultureDuration "3, 7 days" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/brdu-release> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.jconrel.2018.05.006/pps5> ;
+    rdfs:label "In vitro BrdU release from star-PEG-PPS5 hydrogel" ;
+    lova:experimentCategory "Physicochemical" ;
+    lova:experimentType "In vitro drug release" ;
+    lova:cultureDuration "6 days" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/vem-delivery> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.jconrel.2018.05.006/pps5-vem> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.jconrel.2018.05.006/dmso-vem> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.jconrel.2018.05.006/dmso-control> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.jconrel.2018.05.006/pps5> ;
+    rdfs:label "Vemurafenib delivery via star-PEG-PPS5 hydrogel at mouse dermal wounds" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Wound healing / drug delivery" ;
+    lova:assayOrMethod "H&E, immunohistochemistry (Ki-67, pErk)" ;
+    lova:cellSource "Mouse" ;
+    lova:cultureDuration "14 days" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/tissue-regeneration-quality> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.jconrel.2018.05.006/pps5-vem> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.jconrel.2018.05.006/pps5> ;
+    rdfs:label "Keratin-14, CD31, NG2 staining of wounds at day 14" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immunofluorescence tissue quality assessment" ;
+    lova:assayOrMethod "Immunofluorescence (K14, CD31, NG2)" ;
+    lova:cultureDuration "14 days" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/g-prime-3pct> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/rheology-concentration> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "Storage modulus (G') at 3 w/v% star-PEG-PPS5" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 35.0 ; qudt:unit "Pa" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/g-prime-5pct> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/rheology-concentration> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "Storage modulus (G') at 5 w/v% star-PEG-PPS5" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 270.0 ; qudt:unit "Pa" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/g-prime-7.5pct> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/rheology-concentration> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "Storage modulus (G') at 7.5 w/v% star-PEG-PPS5" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 907.0 ; qudt:unit "Pa" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/g-prime-10pct> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/rheology-concentration> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "Storage modulus (G') at 10 w/v% star-PEG-PPS5" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 1850.0 ; qudt:unit "Pa" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/yield-strain-5pct> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/amplitude-sweep-yield> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "Yield strain at 5 w/v% star-PEG-PPS5" ;
+    lova:measurementType "Yield strain" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 33.0 ; qudt:unit "%" ;
+    lova:stdDev 4.0 ;
+    lova:pValue 0.11 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/yield-strain-7.5pct> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/amplitude-sweep-yield> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "Yield strain at 7.5 w/v% star-PEG-PPS5" ;
+    lova:measurementType "Yield strain" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 27.0 ; qudt:unit "%" ;
+    lova:stdDev 6.0 ;
+    lova:pValue 0.11 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/yield-strain-10pct> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/amplitude-sweep-yield> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "Yield strain at 10 w/v% star-PEG-PPS5" ;
+    lova:measurementType "Yield strain" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 20.0 ; qudt:unit "%" ;
+    lova:stdDev 8.0 ;
+    lova:pValue 0.11 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/water-content-pps5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/water-content> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "Water content of star-PEG-PPS5 hydrogel" ;
+    lova:measurementType "Water content" ;
+    lova:measurementCategory "Physicochemical" ;
+    lova:valueString "over 90 w/w%" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/tcep-gprime-before> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/tcep-stiffening> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "Elastic modulus (G') without TCEP, star-PEG-PPS5 4.75%" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 100.0 ; qudt:unit "Pa" ;
+    lova:comparisonGroup "star-PEG-PPS5 + 0.5x TCEP" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/tcep-gprime-after> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/tcep-stiffening> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "Elastic modulus (G') with 0.5x TCEP, star-PEG-PPS5 4.75%" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 300.0 ; qudt:unit "Pa" ;
+    lova:comparisonGroup "star-PEG-PPS5 without TCEP" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.jconrel.2018.05.006/tcep-stiffening-comparison> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "TCEP increases elastic modulus of star-PEG-PPS5 hydrogel" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/tcep-gprime-after> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/tcep-gprime-before> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/h2o2-viscosity-effect> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/h2o2-oxidation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "H2O2 decreases viscosity of star-PEG-PPS5 (3 w/v%)" ;
+    lova:measurementType "Viscosity" ;
+    lova:measurementCategory "Rheological" ;
+    lova:valueString "decreased viscosity in presence of 5 v/v% H2O2" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/ly6g-fibrin> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/wound-healing-biocompatibility> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "Ly6G+ area, fibrin matrix, day 7" ;
+    lova:measurementType "Ly6G+ area (%)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 5.0 ; qudt:unit "%" ;
+    lova:timePoint "Day 7" ;
+    lova:sampleSize 4 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/ly6g-pps2.5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/wound-healing-biocompatibility> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "Ly6G+ area, star-PEG-PPS2.5, day 7" ;
+    lova:measurementType "Ly6G+ area (%)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.0 ; qudt:unit "%" ;
+    lova:timePoint "Day 7" ;
+    lova:sampleSize 4 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/ly6g-pps5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/wound-healing-biocompatibility> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "Ly6G+ area, star-PEG-PPS5, day 7" ;
+    lova:measurementType "Ly6G+ area (%)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.3 ; qudt:unit "%" ;
+    lova:timePoint "Day 7" ;
+    lova:sampleSize 4 ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.jconrel.2018.05.006/ly6g-fibrin-vs-pps5> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "Ly6G+ area lower in star-PEG-PPS5 vs fibrin at day 7" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/ly6g-pps5> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/ly6g-fibrin> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/wound-remaining-fibrin-d3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/wound-healing-biocompatibility> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "% wound remaining, fibrin matrix, day 3" ;
+    lova:measurementType "% wound remaining" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 95.0 ; qudt:unit "%" ;
+    lova:timePoint "Day 3" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/wound-remaining-pps2.5-d3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/wound-healing-biocompatibility> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "% wound remaining, star-PEG-PPS2.5, day 3" ;
+    lova:measurementType "% wound remaining" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 90.0 ; qudt:unit "%" ;
+    lova:timePoint "Day 3" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/wound-remaining-pps5-d3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/wound-healing-biocompatibility> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "% wound remaining, star-PEG-PPS5, day 3" ;
+    lova:measurementType "% wound remaining" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 70.0 ; qudt:unit "%" ;
+    lova:timePoint "Day 3" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.jconrel.2018.05.006/wound-remaining-fibrin-vs-pps5> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "Wound remaining lower in star-PEG-PPS5 vs fibrin at day 3" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/wound-remaining-pps5-d3> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/wound-remaining-fibrin-d3> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/brdu-release-day0> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/brdu-release> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "In vitro daily released BrdU, day 0" ;
+    lova:measurementType "In vitro daily BrdU release" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 10.0 ; qudt:unit "mg/mL" ;
+    lova:timePoint "Day 0" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/brdu-release-day1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/brdu-release> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "In vitro daily released BrdU, day 1" ;
+    lova:measurementType "In vitro daily BrdU release" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 5.5 ; qudt:unit "mg/mL" ;
+    lova:timePoint "Day 1" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/brdu-release-day3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/brdu-release> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "In vitro daily released BrdU, day 3" ;
+    lova:measurementType "In vitro daily BrdU release" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 0.5 ; qudt:unit "mg/mL" ;
+    lova:timePoint "Day 3" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/brdu-regionI-d3-pps2.5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/brdu-delivery> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "Normalized BrdU+/Ki-67+ Region I, star-PEG-PPS2.5, day 3" ;
+    lova:measurementType "Normalized BrdU+/Ki-67+ signal" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.6 ; qudt:unit "ratio" ;
+    lova:scope "Regional" ;
+    lova:timePoint "Day 3" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/brdu-regionI-d3-pps5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/brdu-delivery> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "Normalized BrdU+/Ki-67+ Region I, star-PEG-PPS5, day 3" ;
+    lova:measurementType "Normalized BrdU+/Ki-67+ signal" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.7 ; qudt:unit "ratio" ;
+    lova:scope "Regional" ;
+    lova:timePoint "Day 3" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.jconrel.2018.05.006/brdu-regionI-d3> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "Normalized BrdU+ higher in star-PEG-PPS5 vs PPS2.5 in Region I, day 3" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/brdu-regionI-d3-pps5> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/brdu-regionI-d3-pps2.5> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/brdu-regionI-d7-pps2.5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/brdu-delivery> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "Normalized BrdU+/Ki-67+ Region I, star-PEG-PPS2.5, day 7" ;
+    lova:measurementType "Normalized BrdU+/Ki-67+ signal" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.1 ; qudt:unit "ratio" ;
+    lova:scope "Regional" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/brdu-regionI-d7-pps5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/brdu-delivery> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "Normalized BrdU+/Ki-67+ Region I, star-PEG-PPS5, day 7" ;
+    lova:measurementType "Normalized BrdU+/Ki-67+ signal" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.3 ; qudt:unit "ratio" ;
+    lova:scope "Regional" ;
+    lova:timePoint "Day 7" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.jconrel.2018.05.006/brdu-regionI-d7> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "Normalized BrdU+ higher in star-PEG-PPS5 vs PPS2.5 in Region I, day 7" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/brdu-regionI-d7-pps5> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/brdu-regionI-d7-pps2.5> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/solubility-rifampicin> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/solubilization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "Maximum solubilized concentration of rifampicin in star-PEG-PPS5" ;
+    lova:measurementType "Maximum solubilized concentration" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 5.0 ; qudt:unit "mg/mL" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/solubility-eosinY> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/solubilization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "Maximum solubilized concentration of Eosin Y in star-PEG-PPS5" ;
+    lova:measurementType "Maximum solubilized concentration" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 2.5 ; qudt:unit "mg/mL" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/solubility-irgacure> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/solubilization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "Maximum solubilized concentration of Irgacure 2959 in star-PEG-PPS5" ;
+    lova:measurementType "Maximum solubilized concentration" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 5.0 ; qudt:unit "mg/mL" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/solubility-vemurafenib> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/solubilization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "Maximum solubilized concentration of vemurafenib in star-PEG-PPS5" ;
+    lova:measurementType "Maximum solubilized concentration" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 3.0 ; qudt:unit "mg/mL" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/wound-remaining-d14-pps> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/vem-delivery> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "% wound remaining, star-PEG-PPS5 alone, day 14" ;
+    lova:measurementType "% wound remaining" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 35.0 ; qudt:unit "%" ;
+    lova:timePoint "Day 14" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/wound-remaining-d14-pps-vem> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/vem-delivery> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "% wound remaining, star-PEG-PPS5 + VEM, day 14" ;
+    lova:measurementType "% wound remaining" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 5.0 ; qudt:unit "%" ;
+    lova:timePoint "Day 14" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.jconrel.2018.05.006/wound-remaining-d14-comparison> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "Wound remaining lower in star-PEG-PPS5+VEM vs PPS5 alone at day 14" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/wound-remaining-d14-pps-vem> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/wound-remaining-d14-pps> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/ki67-dmso> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/vem-delivery> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "Ki67+ cell counts, DMSO control, day 14" ;
+    lova:measurementType "Ki67+ cell count" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 70.0 ; qudt:unit "cells" ;
+    lova:timePoint "Day 14" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/ki67-dmso-vem> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/vem-delivery> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "Ki67+ cell counts, DMSO + 2mg VEM, day 14" ;
+    lova:measurementType "Ki67+ cell count" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 280.0 ; qudt:unit "cells" ;
+    lova:timePoint "Day 14" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/ki67-pps> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/vem-delivery> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "Ki67+ cell counts, star-PEG-PPS5 alone, day 14" ;
+    lova:measurementType "Ki67+ cell count" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 180.0 ; qudt:unit "cells" ;
+    lova:timePoint "Day 14" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/ki67-pps-vem> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/vem-delivery> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "Ki67+ cell counts, star-PEG-PPS5 + VEM, day 14" ;
+    lova:measurementType "Ki67+ cell count" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 530.0 ; qudt:unit "cells" ;
+    lova:timePoint "Day 14" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/perk-dmso> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/vem-delivery> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "pErk+ cell counts, DMSO control, day 14" ;
+    lova:measurementType "pErk+ cell count" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 50.0 ; qudt:unit "cells" ;
+    lova:timePoint "Day 14" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/perk-dmso-vem> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/vem-delivery> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "pErk+ cell counts, DMSO + 2mg VEM, day 14" ;
+    lova:measurementType "pErk+ cell count" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 300.0 ; qudt:unit "cells" ;
+    lova:timePoint "Day 14" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/perk-pps> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/vem-delivery> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "pErk+ cell counts, star-PEG-PPS5 alone, day 14" ;
+    lova:measurementType "pErk+ cell count" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 190.0 ; qudt:unit "cells" ;
+    lova:timePoint "Day 14" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/perk-pps-vem> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/vem-delivery> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "pErk+ cell counts, star-PEG-PPS5 + VEM, day 14" ;
+    lova:measurementType "pErk+ cell count" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 510.0 ; qudt:unit "cells" ;
+    lova:timePoint "Day 14" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/k14-thickness-pps5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/tissue-regeneration-quality> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "Keratin-14 layer thickness, star-PEG-PPS5, day 14" ;
+    lova:measurementType "K14 layer thickness" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 3.0 ; qudt:unit "μm" ;
+    lova:timePoint "Day 14" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/k14-thickness-pps5-vem> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/tissue-regeneration-quality> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "Keratin-14 layer thickness, star-PEG-PPS5+VEM, day 14" ;
+    lova:measurementType "K14 layer thickness" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 28.0 ; qudt:unit "μm" ;
+    lova:timePoint "Day 14" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/k14-thickness-normal> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/tissue-regeneration-quality> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "Keratin-14 layer thickness, normal skin" ;
+    lova:measurementType "K14 layer thickness" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 28.0 ; qudt:unit "μm" ;
+    lova:comparisonGroup "Normal skin" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.jconrel.2018.05.006/k14-thickness-comparison> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "K14 layer thickness higher in star-PEG-PPS5+VEM vs PPS5 alone, similar to normal skin" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/k14-thickness-pps5-vem> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/k14-thickness-pps5> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/cd31-area-pps5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/tissue-regeneration-quality> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "CD31+ area, star-PEG-PPS5, day 14" ;
+    lova:measurementType "CD31+ area (%)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 4.5 ; qudt:unit "%" ;
+    lova:timePoint "Day 14" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/cd31-area-pps5-vem> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/tissue-regeneration-quality> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "CD31+ area, star-PEG-PPS5+VEM, day 14" ;
+    lova:measurementType "CD31+ area (%)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 9.5 ; qudt:unit "%" ;
+    lova:timePoint "Day 14" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.jconrel.2018.05.006/cd31-comparison> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "CD31+ area higher in star-PEG-PPS5+VEM vs PPS5 alone" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/cd31-area-pps5-vem> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/cd31-area-pps5> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/ng2-area-pps5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/tissue-regeneration-quality> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "NG2+ area, star-PEG-PPS5, day 14" ;
+    lova:measurementType "NG2+ area (%)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.5 ; qudt:unit "%" ;
+    lova:timePoint "Day 14" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/ng2-area-pps5-vem> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/tissue-regeneration-quality> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "NG2+ area, star-PEG-PPS5+VEM, day 14" ;
+    lova:measurementType "NG2+ area (%)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 8.0 ; qudt:unit "%" ;
+    lova:timePoint "Day 14" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.jconrel.2018.05.006/ng2-comparison> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "NG2+ area higher in star-PEG-PPS5+VEM vs PPS5 alone" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/ng2-area-pps5-vem> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/ng2-area-pps5> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/vem-dose-pps> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/vem-delivery> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "VEM total dose delivered via star-PEG-PPS5 hydrogel (single dose)" ;
+    lova:measurementType "Drug dose" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 150.0 ; qudt:unit "μg" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/vem-dose-dmso> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.jconrel.2018.05.006/vem-delivery> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "VEM total dose delivered in DMSO (3 doses of 2 mg)" ;
+    lova:measurementType "Drug dose" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 6000.0 ; qudt:unit "μg" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.jconrel.2018.05.006/vem-dose-comparison> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.jconrel.2018.05.006> ;
+    rdfs:label "VEM total dose 40-fold lower in star-PEG-PPS5 delivery vs DMSO delivery" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/vem-dose-pps> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.jconrel.2018.05.006/vem-dose-dmso> ;
+    lova:direction "lower" ;
+    lova:foldChange 40.0 .

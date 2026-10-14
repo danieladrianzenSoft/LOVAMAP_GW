@@ -1,0 +1,929 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1002-adfm.202500696> a bibo:AcademicArticle ;
+    rdfs:label "Erning et al., 2025 — CLUVENA MAP Scaffolds for Stroke" ;
+    dc:title "Delivery of Angiogenic Therapy from Flowable Hyaluronic Acid Porous Scaffolds Results in Functional Improvement without Anti-Inflammatory Agents" ;
+    dc:identifier "10.1002/adfm.202500696" ;
+    dc:date "2025"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/advanced-functional-materials> ;
+    dc:creator <https://lovamap.com/ontology#author/erning-kevin> ,
+               <https://lovamap.com/ontology#author/wilson-katrina> ,
+               <https://lovamap.com/ontology#author/smith-cara> ,
+               <https://lovamap.com/ontology#author/nguyen-long> ,
+               <https://lovamap.com/ontology#author/joseph-neica> ,
+               <https://lovamap.com/ontology#author/irengo-rachel> ,
+               <https://lovamap.com/ontology#author/cao-lauren> ,
+               <https://lovamap.com/ontology#author/cumaran-mohanapriya> ,
+               <https://lovamap.com/ontology#author/shi-yi> ,
+               <https://lovamap.com/ontology#author/lyu-sihan> ,
+               <https://lovamap.com/ontology#author/riley-lindsay> ,
+               <https://lovamap.com/ontology#author/dunn-timothy> ,
+               <https://lovamap.com/ontology#author/carmichael-stanley> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/erning-kevin>
+                       <https://lovamap.com/ontology#author/wilson-katrina>
+                       <https://lovamap.com/ontology#author/smith-cara>
+                       <https://lovamap.com/ontology#author/nguyen-long>
+                       <https://lovamap.com/ontology#author/joseph-neica>
+                       <https://lovamap.com/ontology#author/irengo-rachel>
+                       <https://lovamap.com/ontology#author/cao-lauren>
+                       <https://lovamap.com/ontology#author/cumaran-mohanapriya>
+                       <https://lovamap.com/ontology#author/shi-yi>
+                       <https://lovamap.com/ontology#author/lyu-sihan>
+                       <https://lovamap.com/ontology#author/riley-lindsay>
+                       <https://lovamap.com/ontology#author/dunn-timothy>
+                       <https://lovamap.com/ontology#author/carmichael-stanley>
+                       <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    dc:bibliographicCitation "Erning et al., 2025" ;
+    lova:focusMaterial "Hyaluronic acid-based microporous annealed particle (MAP) scaffolds functionalized with clustered VEGF-coated heparin nanoparticles (CLUVENA) for ischemic stroke treatment" .
+
+<https://lovamap.com/ontology#author/erning-kevin> a foaf:Person ;
+    foaf:familyName "Erning" ; foaf:givenName "Kevin" ; foaf:name "Kevin Erning" .
+<https://lovamap.com/ontology#author/wilson-katrina> a foaf:Person ;
+    foaf:familyName "Wilson" ; foaf:givenName "Katrina L." ; foaf:name "Katrina L. Wilson" .
+<https://lovamap.com/ontology#author/smith-cara> a foaf:Person ;
+    foaf:familyName "Smith" ; foaf:givenName "Cara S." ; foaf:name "Cara S. Smith" .
+<https://lovamap.com/ontology#author/nguyen-long> a foaf:Person ;
+    foaf:familyName "Nguyen" ; foaf:givenName "Long" ; foaf:name "Long Nguyen" .
+<https://lovamap.com/ontology#author/joseph-neica> a foaf:Person ;
+    foaf:familyName "Joseph" ; foaf:givenName "Neica I." ; foaf:name "Neica I. Joseph" .
+<https://lovamap.com/ontology#author/irengo-rachel> a foaf:Person ;
+    foaf:familyName "Irengo" ; foaf:givenName "Rachel" ; foaf:name "Rachel Irengo" .
+<https://lovamap.com/ontology#author/cao-lauren> a foaf:Person ;
+    foaf:familyName "Cao" ; foaf:givenName "Lauren Y." ; foaf:name "Lauren Y. Cao" .
+<https://lovamap.com/ontology#author/cumaran-mohanapriya> a foaf:Person ;
+    foaf:familyName "Cumaran" ; foaf:givenName "Mohanapriya" ; foaf:name "Mohanapriya Cumaran" .
+<https://lovamap.com/ontology#author/shi-yi> a foaf:Person ;
+    foaf:familyName "Shi" ; foaf:givenName "Yi" ; foaf:name "Yi Shi" .
+<https://lovamap.com/ontology#author/lyu-sihan> a foaf:Person ;
+    foaf:familyName "Lyu" ; foaf:givenName "Sihan" ; foaf:name "Sihan Lyu" .
+<https://lovamap.com/ontology#author/riley-lindsay> a foaf:Person ;
+    foaf:familyName "Riley" ; foaf:givenName "Lindsay" ; foaf:name "Lindsay Riley" .
+<https://lovamap.com/ontology#author/dunn-timothy> a foaf:Person ;
+    foaf:familyName "Dunn" ; foaf:givenName "Timothy William" ; foaf:name "Timothy William Dunn" .
+<https://lovamap.com/ontology#author/carmichael-stanley> a foaf:Person ;
+    foaf:familyName "Carmichael" ; foaf:givenName "Stanley Thomas" ; foaf:name "Stanley Thomas Carmichael" .
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ; foaf:givenName "Tatiana" ; foaf:name "Tatiana Segura" .
+
+<https://lovamap.com/ontology#journal/advanced-functional-materials> a bibo:Journal ;
+    dc:title "Advanced Functional Materials" ;
+    bibo:issn "1616-301X" .
+
+<https://lovamap.com/ontology#material/10.1002-adfm.202500696/nh-abh> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "Heparin-ABH nanoparticle (nH-ABH)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Heparin-methacrylamide-ABH" ;
+    lova:particleSizeMin 80.0 ;
+    lova:particleSizeMax 80.0 ;
+    lova:particleSizeUnit "nm" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adfm.202500696/nh-abh-synthesis> .
+
+<https://lovamap.com/ontology#material/10.1002-adfm.202500696/nh-nb> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "Heparin-norbornene nanoparticle (nH-NB)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Heparin-norbornene" ;
+    lova:particleSizeMin 130.0 ;
+    lova:particleSizeMax 130.0 ;
+    lova:particleSizeUnit "nm" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adfm.202500696/nh-nb-synthesis> .
+
+<https://lovamap.com/ontology#material/10.1002-adfm.202500696/cluvena> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "Clustered VEGF nanoparticle (CLUVENA, VEGF-coated nH-NB)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Heparin-norbornene with covalently bound VEGF" ;
+    lova:surfaceModification "VEGF-165 covalently conjugated" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adfm.202500696/cluvena-fabrication> .
+
+<https://lovamap.com/ontology#material/10.1002-adfm.202500696/map-scaffold> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "HA-NB MAP scaffold (base)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Hyaluronic acid-norbornene (HA-NB)" ;
+    lova:particleSizeMin 100.0 ;
+    lova:particleSizeMax 100.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:stiffnessValue 300.0 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:packingConfiguration "Jammed" ;
+    lova:reportedPorosity 0.25 ;
+    lova:reportedPoreSize "10-50 μm (rigid sphere diameter accommodated)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adfm.202500696/map-fabrication> .
+
+<https://lovamap.com/ontology#material/10.1002-adfm.202500696/map-cluvena> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "MAP + CLUVENA scaffold (M+C)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "HA-NB microgels with surface-bound CLUVENA" ;
+    lova:packingConfiguration "Jammed" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adfm.202500696/map-fabrication> .
+
+<https://lovamap.com/ontology#material/10.1002-adfm.202500696/map-cluvena-nh> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "MAP + CLUVENA + naked heparin nanoparticles (M+C+N)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "HA-NB microgels with surface-bound CLUVENA and co-delivered naked nH" ;
+    lova:packingConfiguration "Jammed" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adfm.202500696/map-fabrication> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-adfm.202500696/nh-abh-synthesis> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "Heparin-ABH nanoparticle synthesis via inverse emulsion radical polymerization" ;
+    lova:chemistry "Radical polymerization (methacrylamide/ABH)" ;
+    lova:manufacturingMethod "Inverse emulsion polymerization (hexane/water)" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-adfm.202500696/heparin> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adfm.202500696/dmtmm> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adfm.202500696/abh> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adfm.202500696/apma> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adfm.202500696/aps> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adfm.202500696/temed> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adfm.202500696/tween80> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adfm.202500696/span80> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-adfm.202500696/nh-nb-synthesis> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "Heparin-norbornene nanoparticle synthesis via inverse emulsion thiol-ene chemistry" ;
+    lova:chemistry "Thiol-ene click chemistry (norbornene/DTT) with radical initiation" ;
+    lova:manufacturingMethod "Inverse emulsion polymerization (hexane/water)" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-adfm.202500696/heparin> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adfm.202500696/dmtmm> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adfm.202500696/nma> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adfm.202500696/dtt> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adfm.202500696/tcep> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adfm.202500696/aps> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adfm.202500696/temed> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adfm.202500696/tween80> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adfm.202500696/span80> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-adfm.202500696/cluvena-fabrication> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "Covalent VEGF binding to nH-NB to form CLUVENA" ;
+    lova:chemistry "UV-initiated thiol-norbornene photoclick" ;
+    lova:manufacturingMethod "Covalent surface conjugation" ;
+    lova:annealingConditions "20 mW/cm2 UV light (365 nm), 30 min, on ice 30 min pre-incubation" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-adfm.202500696/vegf165> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adfm.202500696/lap> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adfm.202500696/bsa> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-adfm.202500696/map-fabrication> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "HA-NB MAP scaffold fabrication via microfluidic emulsion and tetrazine-norbornene annealing" ;
+    lova:chemistry "Inverse-electron-demand Diels-Alder tetrazine-norbornene click reaction" ;
+    lova:manufacturingMethod "Microfluidic flow-focusing water-in-oil emulsion" ;
+    lova:annealingChemistry "Tetrazine-norbornene click annealing" ;
+    lova:annealingConditions "Annealing (HA monomer/tetrazine) ratio of 7; incubated 2 hr at 37°C" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-adfm.202500696/ha-nb> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adfm.202500696/mmp-peptide> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adfm.202500696/tcep> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adfm.202500696/lap> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adfm.202500696/pegtetrazine> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adfm.202500696/rgd> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-adfm.202500696/span80> .
+
+<https://lovamap.com/ontology#reagent/10.1002-adfm.202500696/heparin> a lova:Reagent ;
+    rdfs:label "Heparin (porcine intestinal mucosa)" ;
+    lova:reagentRole "monomer" ;
+    lova:supplier "Alfa Aesar" ;
+    lova:catalogNumber "A16198" ;
+    lova:reagentFunction "Backbone for heparin nanoparticle formation" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adfm.202500696/dmtmm> a lova:Reagent ;
+    rdfs:label "4-(4,6-Dimethoxy-1,3,5-triazin-2-yl)-4-methylmorpholinium chloride (DMTMM)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:molecularWeight "294.74 Da" ;
+    lova:supplier "TCI America" ;
+    lova:reagentFunction "Carboxylic acid activation for conjugation to heparin/HA" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adfm.202500696/abh> a lova:Reagent ;
+    rdfs:label "p-Azidobenzoyl hydrazide (ABH)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:supplier "BioWorld" ;
+    lova:reagentFunction "Reactive photocrosslinking handle on heparin for VEGF binding" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adfm.202500696/apma> a lova:Reagent ;
+    rdfs:label "N-(3-Aminopropyl)methacrylamide hydrochloride (APMA)" ;
+    lova:reagentRole "monomer" ;
+    lova:supplier "Ambeed" ;
+    lova:reagentFunction "Methacrylamide functionalization of heparin for radical polymerization" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adfm.202500696/nma> a lova:Reagent ;
+    rdfs:label "Norbornene-2-methylamine (NMA) / 5-Norbornene-2-methanamine" ;
+    lova:reagentRole "crosslinker" ;
+    lova:supplier "TCI America" ;
+    lova:catalogNumber "N0907" ;
+    lova:reagentFunction "Norbornene functionalization of heparin/HA backbone" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adfm.202500696/dtt> a lova:Reagent ;
+    rdfs:label "Dithiothreitol (DTT)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:reagentFunction "Thiol crosslinking component for nH-NB nanoparticle formation" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adfm.202500696/tcep> a lova:Reagent ;
+    rdfs:label "Tris(2-carboxyethyl)phosphine (TCEP)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Sigma-Aldrich" ;
+    lova:reagentFunction "Reducing agent for thiol groups" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adfm.202500696/aps> a lova:Reagent ;
+    rdfs:label "Ammonium persulfate (APS)" ;
+    lova:reagentRole "initiator" ;
+    lova:concentration "300 mg mL-1 stock" ;
+    lova:reagentFunction "Radical polymerization initiator" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adfm.202500696/temed> a lova:Reagent ;
+    rdfs:label "Tetramethylethylenediamine (TEMED)" ;
+    lova:reagentRole "initiator" ;
+    lova:reagentFunction "Radical polymerization catalyst" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adfm.202500696/tween80> a lova:Reagent ;
+    rdfs:label "Tween-80" ;
+    lova:reagentRole "surfactant" ;
+    lova:reagentFunction "Surfactant for inverse emulsion nanoparticle formation" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adfm.202500696/span80> a lova:Reagent ;
+    rdfs:label "Span-80" ;
+    lova:reagentRole "surfactant" ;
+    lova:concentration "5% (v/v) in heavy mineral oil" ;
+    lova:reagentFunction "Surfactant for emulsion/microgel formation" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adfm.202500696/vegf165> a lova:Reagent ;
+    rdfs:label "Human recombinant VEGF-165" ;
+    lova:reagentRole "other" ;
+    lova:supplier "BioLegend" ;
+    lova:catalogNumber "583706" ;
+    lova:reagentFunction "Angiogenic growth factor covalently bound to heparin nanoparticles" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adfm.202500696/lap> a lova:Reagent ;
+    rdfs:label "Lithium phenyl(2,4,6-trimethylbenzoyl)phosphinate (LAP)" ;
+    lova:reagentRole "photoinitiator" ;
+    lova:concentration "9.90 mM (microgel formulation); 10 mM (VEGF binding)" ;
+    lova:supplier "TCI America" ;
+    lova:reagentFunction "Photoinitiator for UV-crosslinking reactions" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adfm.202500696/bsa> a lova:Reagent ;
+    rdfs:label "Bovine serum albumin (BSA)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "1%" ;
+    lova:reagentFunction "Blocking agent for Amicon filter during CLUVENA purification" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adfm.202500696/ha-nb> a lova:Reagent ;
+    rdfs:label "Hyaluronic acid-norbornene (HA-NB)" ;
+    lova:reagentRole "monomer" ;
+    lova:molecularWeight "79,000 Da" ;
+    lova:concentration "3.5% w/v" ;
+    lova:reagentFunction "Base polymer for MAP microgel formation; 33.5% norbornene functionalization" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adfm.202500696/mmp-peptide> a lova:Reagent ;
+    rdfs:label "MMP-sensitive di-thiol linker peptide (Ac-GCRDGPQGIWGQDRCG-NH2)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:sequence "GCRDGPQGIWGQDRCG" ;
+    lova:supplier "Genscript" ;
+    lova:reagentFunction "Enzymatically degradable crosslinker within HA-NB microgels" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adfm.202500696/pegtetrazine> a lova:Reagent ;
+    rdfs:label "4-arm PEG-tetrazine (4arm-PEG-Tet)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:molecularWeight "20,000 Da (tetra-PEG-SH backbone)" ;
+    lova:supplier "NOF America" ;
+    lova:reagentFunction "Inter-microgel annealing crosslinker via tetrazine-norbornene click reaction" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adfm.202500696/methyltetrazine-maleimide> a lova:Reagent ;
+    rdfs:label "Methyltetrazine-PEG4-maleimide" ;
+    lova:reagentRole "crosslinker" ;
+    lova:molecularWeight "514.53 Da" ;
+    lova:supplier "Kerafast" ;
+    lova:reagentFunction "Conjugation of tetrazine to PEG-SH for annealing crosslinker synthesis" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adfm.202500696/rgd> a lova:Reagent ;
+    rdfs:label "RGD cell adhesion peptide (RGDSPGERCG)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "RGDSPGERCG" ;
+    lova:concentration "1 mM" ;
+    lova:supplier "Genscript" ;
+    lova:reagentFunction "Promotes astrocyte infiltration into MAP microgels" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adfm.202500696/sem-characterization> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adfm.202500696/nh-abh> ,
+                       <https://lovamap.com/ontology#material/10.1002-adfm.202500696/nh-nb> ;
+    rdfs:label "SEM characterization of nH-ABH and nH-NB" ;
+    lova:experimentCategory "Physical characterization" ;
+    lova:experimentType "Particle morphology" ;
+    lova:assayOrMethod "Scanning electron microscopy (SEM)" ;
+    lova:equipment "Hitachi TM3030Plus Tabletop SEM" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/nh-abh-sem-diameter> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202500696/sem-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "nH-ABH diameter by SEM" ;
+    lova:measurementType "Particle diameter" ;
+    lova:measurementCategory "Physical" ;
+    lova:valueString "approximately 100 nm" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/nh-nb-sem-diameter> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202500696/sem-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "nH-NB diameter by SEM" ;
+    lova:measurementType "Particle diameter" ;
+    lova:measurementCategory "Physical" ;
+    lova:valueString "approximately 100 nm" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adfm.202500696/dls-characterization> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adfm.202500696/nh-abh> ,
+                       <https://lovamap.com/ontology#material/10.1002-adfm.202500696/nh-nb> ;
+    rdfs:label "DLS particle size distribution of nH-ABH and nH-NB" ;
+    lova:experimentCategory "Physical characterization" ;
+    lova:experimentType "Dynamic light scattering" ;
+    lova:assayOrMethod "Dynamic Light Scattering (DLS)" ;
+    lova:equipment "Anton Paar Litesizer DLS" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/nh-abh-dls-diameter> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202500696/dls-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "nH-ABH diameter by DLS" ;
+    lova:measurementType "Particle diameter" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 80.0 ;
+    qudt:unit "nm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/nh-nb-dls-diameter> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202500696/dls-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "nH-NB diameter by DLS" ;
+    lova:measurementType "Particle diameter" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 130.0 ;
+    qudt:unit "nm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adfm.202500696/dls-diameter-comparison> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "No significant difference in DLS diameter between nH-ABH and nH-NB" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/nh-abh-dls-diameter> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/nh-nb-dls-diameter> ;
+    lova:direction "no difference" ;
+    lova:isSignificant false .
+
+<https://lovamap.com/ontology#experiment/10.1002-adfm.202500696/vegf-binding-efficiency> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adfm.202500696/nh-abh> ,
+                       <https://lovamap.com/ontology#material/10.1002-adfm.202500696/nh-nb> ;
+    rdfs:label "VEGF binding efficiency to nH-ABH vs nH-NB" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "VEGF binding efficiency" ;
+    lova:assayOrMethod "VEGF ELISA" ;
+    lova:equipment "R&D Systems DY293B-05 ELISA kit" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/nh-nb-binding-efficiency> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202500696/vegf-binding-efficiency> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "VEGF binding efficiency for nH-NB" ;
+    lova:measurementType "VEGF binding efficiency" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 99.99 ;
+    qudt:unit "%" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/nh-abh-binding-efficiency> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202500696/vegf-binding-efficiency> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "VEGF binding efficiency for nH-ABH" ;
+    lova:measurementType "VEGF binding efficiency" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 76.84 ;
+    qudt:unit "%" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adfm.202500696/binding-efficiency-comparison> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "nH-NB has higher VEGF binding efficiency than nH-ABH" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/nh-nb-binding-efficiency> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/nh-abh-binding-efficiency> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adfm.202500696/vegfr2-phosphorylation> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adfm.202500696/nh-abh> ,
+                       <https://lovamap.com/ontology#material/10.1002-adfm.202500696/nh-nb> ,
+                       <https://lovamap.com/ontology#material/10.1002-adfm.202500696/cluvena> ;
+    rdfs:label "VEGFR-2 phosphorylation in HUVECs treated with CLUVENA formulations" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Receptor phosphorylation assay" ;
+    lova:assayOrMethod "Total and phospho-VEGFR-2 ELISA" ;
+    lova:cellType "HUVEC" ;
+    lova:cellSource "Human umbilical vein" ;
+    lova:cultureDuration "15 min treatment" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/pbs-pvegfr2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202500696/vegfr2-phosphorylation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "Normalized pVEGFR2:VEGFR2 ratio — PBS" ;
+    lova:measurementType "Normalized pVEGFR2:VEGFR2 ratio" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.05 ;
+    qudt:unit "ratio" ;
+    lova:timePoint "15 min" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/nh-pvegfr2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202500696/vegfr2-phosphorylation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "Normalized pVEGFR2:VEGFR2 ratio — naked nH" ;
+    lova:measurementType "Normalized pVEGFR2:VEGFR2 ratio" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.05 ;
+    qudt:unit "ratio" ;
+    lova:timePoint "15 min" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/soluble-vegf-pvegfr2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202500696/vegfr2-phosphorylation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "Normalized pVEGFR2:VEGFR2 ratio — Soluble VEGF" ;
+    lova:measurementType "Normalized pVEGFR2:VEGFR2 ratio" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.5 ;
+    qudt:unit "ratio" ;
+    lova:timePoint "15 min" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/cluvena-abh-pvegfr2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202500696/vegfr2-phosphorylation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "Normalized pVEGFR2:VEGFR2 ratio — CLUVENA (nH-ABH)" ;
+    lova:measurementType "Normalized pVEGFR2:VEGFR2 ratio" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.55 ;
+    qudt:unit "ratio" ;
+    lova:timePoint "15 min" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/cluvena-nb-pvegfr2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202500696/vegfr2-phosphorylation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "Normalized pVEGFR2:VEGFR2 ratio — CLUVENA (nH-NB)" ;
+    lova:measurementType "Normalized pVEGFR2:VEGFR2 ratio" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.0 ;
+    qudt:unit "ratio" ;
+    lova:timePoint "15 min" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adfm.202500696/cluvena-nb-vs-soluble-vegf> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "CLUVENA (nH-NB) induces higher pVEGFR2:VEGFR2 ratio than soluble VEGF" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/cluvena-nb-pvegfr2> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/soluble-vegf-pvegfr2> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-adfm.202500696/cluvena-nb-vs-cluvena-abh> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "CLUVENA (nH-NB) induces higher pVEGFR2:VEGFR2 ratio than CLUVENA (nH-ABH)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/cluvena-nb-pvegfr2> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/cluvena-abh-pvegfr2> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-adfm.202500696/cluvena-abh-vs-soluble-vegf> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "No difference between CLUVENA (nH-ABH) and soluble VEGF in pVEGFR2 ratio" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/cluvena-abh-pvegfr2> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/soluble-vegf-pvegfr2> ;
+    lova:direction "no difference" ;
+    lova:isSignificant false .
+
+<https://lovamap.com/ontology#experiment/10.1002-adfm.202500696/vegf-release-assay> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adfm.202500696/map-cluvena> ;
+    rdfs:label "VEGF release assay from CLUVENA-MAP scaffold" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Protein release assay" ;
+    lova:assayOrMethod "VEGF ELISA" ;
+    lova:medium "PBS" ;
+    lova:temperature "37°C" ;
+    lova:cultureDuration "11 days (264 hr)" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/vegf-added> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202500696/vegf-release-assay> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "VEGF loaded into CLUVENA-MAP" ;
+    lova:measurementType "VEGF amount loaded" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 200.0 ;
+    qudt:unit "ng" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/vegf-released-264hr> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202500696/vegf-release-assay> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "VEGF released from CLUVENA-MAP at 264 hr" ;
+    lova:measurementType "VEGF released" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 0.011 ;
+    qudt:unit "ng" ;
+    lova:timePoint "264 hr" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adfm.202500696/anti-xa-assay> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adfm.202500696/cluvena> ,
+                       <https://lovamap.com/ontology#material/10.1002-adfm.202500696/nh-nb> ;
+    rdfs:label "Anti-Xa heparin coagulation assay in vivo" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Coagulation assay" ;
+    lova:assayOrMethod "HemosIL Liquid Heparin assay (Anti-Factor Xa)" ;
+    lova:equipment "ACL TOP Analyzer, Beckman Coulter" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/pbs-antixa> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202500696/anti-xa-assay> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "Anti-Xa activity — PBS" ;
+    lova:measurementType "Anti-Factor Xa activity" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 0.1 ;
+    qudt:unit "IU/mL" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/heparin-8-82ug-antixa> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202500696/anti-xa-assay> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "Anti-Xa activity — Heparin 8.82 μg" ;
+    lova:measurementType "Anti-Factor Xa activity" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 0.55 ;
+    qudt:unit "IU/mL" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/cluvena-antixa> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202500696/anti-xa-assay> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "Anti-Xa activity — CLUVENA 0.01 μg" ;
+    lova:measurementType "Anti-Factor Xa activity" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 0.15 ;
+    qudt:unit "IU/mL" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adfm.202500696/heparin-vs-pbs-antixa> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "Clinical bolus heparin (8.82 μg) has higher anti-Xa activity than PBS" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/heparin-8-82ug-antixa> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/pbs-antixa> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-adfm.202500696/heparin-vs-cluvena-antixa> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "Clinical bolus heparin (8.82 μg) has higher anti-Xa activity than CLUVENA" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/heparin-8-82ug-antixa> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/cluvena-antixa> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-adfm.202500696/cluvena-vs-pbs-antixa> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "CLUVENA has no difference in anti-Xa activity compared to PBS" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/cluvena-antixa> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/pbs-antixa> ;
+    lova:direction "no difference" ;
+    lova:isSignificant false .
+
+<https://lovamap.com/ontology#experiment/10.1002-adfm.202500696/rheology> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adfm.202500696/map-scaffold> ;
+    rdfs:label "Rheological characterization of MAP scaffold" ;
+    lova:experimentCategory "Mechanical" ;
+    lova:experimentType "Rheology" ;
+    lova:assayOrMethod "Plate-to-plate rheometry, frequency sweep" ;
+    lova:equipment "Physica MCR, Anton Paar" ;
+    lova:frequency "0.1 to 10 s-1 angular frequency, 1% strain" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/storage-modulus> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202500696/rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "Storage modulus of MAP scaffold (Tet/HA ratio 7)" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 300.0 ;
+    qudt:unit "Pa" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adfm.202500696/vvf-measurement> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adfm.202500696/map-scaffold> ;
+    rdfs:label "Void volume fraction measurement of MAP scaffold" ;
+    lova:experimentCategory "Physical characterization" ;
+    lova:experimentType "Void volume fraction" ;
+    lova:assayOrMethod "Confocal imaging with IMARIS surface rendering" ;
+    lova:equipment "Nikon C2 confocal microscope" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/vvf-outcome> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202500696/vvf-measurement> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "Void volume fraction of MAP scaffold" ;
+    lova:measurementType "Void volume fraction" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 25.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adfm.202500696/lovamap-analysis> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adfm.202500696/map-scaffold> ;
+    rdfs:label "LOVAMAP 3D pore analysis of MAP scaffold" ;
+    lova:experimentCategory "Physical characterization" ;
+    lova:experimentType "3D pore characterization" ;
+    lova:assayOrMethod "LOVAMAP" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/pore-sphere-diameter> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202500696/lovamap-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "Rigid sphere diameter accommodated by MAP pores" ;
+    lova:measurementType "Largest enclosed sphere diameter" ;
+    lova:measurementCategory "Physical" ;
+    lova:valueString "10-50 μm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/pore-volume-median> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202500696/lovamap-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "Median 3D pore volume of MAP scaffold" ;
+    lova:measurementType "3D pore volume" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 34.0 ;
+    qudt:unit "pL" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/pore-aspect-ratio-median> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202500696/lovamap-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "Median 3D pore aspect ratio of MAP scaffold" ;
+    lova:measurementType "3D pore aspect ratio" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 3.83 ;
+    qudt:unit "ratio" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adfm.202500696/astrogliosis-assessment> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adfm.202500696/map-scaffold> ,
+                       <https://lovamap.com/ontology#material/10.1002-adfm.202500696/map-cluvena> ,
+                       <https://lovamap.com/ontology#material/10.1002-adfm.202500696/map-cluvena-nh> ;
+    rdfs:label "In vivo astrogliosis and astrocyte infiltration assessment post-stroke" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immunohistochemistry — astrogliosis" ;
+    lova:assayOrMethod "GFAP immunofluorescence" ;
+    lova:cellType "Astrocyte (GFAP+)" ;
+    lova:cellSource "Mouse brain (stroke infarct)" ;
+    lova:cultureDuration "Day 15 and Day 35 post-stroke" ;
+    lova:sampleSize 6 .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/scar-thickness-stroke-d15> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202500696/astrogliosis-assessment> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "Scar thickness — Stroke only, Day 15" ;
+    lova:measurementType "Astrocytic scar thickness" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 155.0 ;
+    qudt:unit "μm" ;
+    lova:timePoint "Day 15" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/scar-thickness-map-d15> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202500696/astrogliosis-assessment> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "Scar thickness — MAP, Day 15" ;
+    lova:measurementType "Astrocytic scar thickness" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 30.0 ;
+    qudt:unit "μm" ;
+    lova:timePoint "Day 15" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adfm.202500696/scar-thickness-map-vs-stroke-d15> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "MAP reduces scar thickness compared to stroke only at Day 15" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/scar-thickness-map-d15> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/scar-thickness-stroke-d15> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1002-adfm.202500696/vessel-analysis> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adfm.202500696/map-scaffold> ,
+                       <https://lovamap.com/ontology#material/10.1002-adfm.202500696/map-cluvena> ,
+                       <https://lovamap.com/ontology#material/10.1002-adfm.202500696/map-cluvena-nh> ;
+    rdfs:label "In vivo perfused vessel analysis post-stroke" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immunofluorescence — perfused vessel analysis" ;
+    lova:assayOrMethod "Tomato lectin perfusion labeling" ;
+    lova:cultureDuration "Day 15 and Day 35 post-stroke" ;
+    lova:sampleSize 6 .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/vessel-area-map-d15> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202500696/vessel-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "Normalized vessel area — MAP, Day 15" ;
+    lova:measurementType "Normalized perfused vessel area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 8.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 15" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/vessel-area-mc-d15> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202500696/vessel-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "Normalized vessel area — M+C, Day 15" ;
+    lova:measurementType "Normalized perfused vessel area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 22.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 15" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/vessel-area-mc-d35> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202500696/vessel-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "Normalized vessel area — M+C, Day 35" ;
+    lova:measurementType "Normalized perfused vessel area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 48.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 35" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/vessel-area-mcn-d35> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202500696/vessel-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "Normalized vessel area — M+C+N, Day 35" ;
+    lova:measurementType "Normalized perfused vessel area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 20.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 35" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adfm.202500696/vessel-area-mc-vs-map-d15> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "M+C has higher normalized vessel area than MAP alone at Day 15" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/vessel-area-mc-d15> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/vessel-area-map-d15> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-adfm.202500696/vessel-area-mc-vs-mcn-d35> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "M+C has higher normalized vessel area than M+C+N at Day 35" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/vessel-area-mc-d35> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/vessel-area-mcn-d35> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1002-adfm.202500696/aqp4-analysis> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adfm.202500696/map-scaffold> ,
+                       <https://lovamap.com/ontology#material/10.1002-adfm.202500696/map-cluvena> ,
+                       <https://lovamap.com/ontology#material/10.1002-adfm.202500696/map-cluvena-nh> ;
+    rdfs:label "AQP4 coverage on perfused vessels in infarct" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immunofluorescence — astrocytic end-feet/BBB maturation" ;
+    lova:assayOrMethod "AQP4/Tomato lectin co-localization" ;
+    lova:cultureDuration "Day 15 and Day 35 post-stroke" ;
+    lova:sampleSize 5 .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/aqp4-map-d35> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202500696/aqp4-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "Percent AQP4+ in TL+ — MAP, Day 35" ;
+    lova:measurementType "AQP4 coverage on perfused vessels" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 45.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 35" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/aqp4-mc-d35> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202500696/aqp4-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "Percent AQP4+ in TL+ — M+C, Day 35" ;
+    lova:measurementType "AQP4 coverage on perfused vessels" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 85.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 35" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adfm.202500696/aqp4-mc-vs-map-d35> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "M+C has higher AQP4 coverage on perfused vessels than MAP alone at Day 35" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/aqp4-mc-d35> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/aqp4-map-d35> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1002-adfm.202500696/neurite-sprouting> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adfm.202500696/map-scaffold> ,
+                       <https://lovamap.com/ontology#material/10.1002-adfm.202500696/map-cluvena> ,
+                       <https://lovamap.com/ontology#material/10.1002-adfm.202500696/map-cluvena-nh> ;
+    rdfs:label "Neurite sprouting assessment (NF200) in infarct" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immunofluorescence — neurite sprouting" ;
+    lova:assayOrMethod "NF200 immunofluorescence" ;
+    lova:cultureDuration "Day 15 and Day 35 post-stroke" ;
+    lova:sampleSize 6 .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/nf200-map-d15> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202500696/neurite-sprouting> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "Neuron positive area — MAP, Day 15" ;
+    lova:measurementType "Neuron positive area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 5.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 15" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/nf200-mc-d15> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202500696/neurite-sprouting> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "Neuron positive area — M+C, Day 15" ;
+    lova:measurementType "Neuron positive area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 9.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 15" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adfm.202500696/nf200-mc-vs-map-d15> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "M+C has higher neuron positive area than MAP alone at Day 15" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/nf200-mc-d15> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/nf200-map-d15> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1002-adfm.202500696/behavioral-testing> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adfm.202500696/map-cluvena> ,
+                       <https://lovamap.com/ontology#material/10.1002-adfm.202500696/map-cluvena-nh> ;
+    rdfs:label "Spontaneous forelimb (cylinder) test with DANNCE tracking" ;
+    lova:experimentCategory "Behavioral" ;
+    lova:experimentType "Behavioral assessment - forelimb use" ;
+    lova:assayOrMethod "Cylinder test with DANNCE (3-Dimensional Aligned Neural Network for Computational Ethology)" ;
+    lova:cultureDuration "16 weeks post-injection" ;
+    lova:sampleSize 8 .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/functional-recovery-mc> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202500696/behavioral-testing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "M+C shows significant functional recovery in right forepaw rearing vs stroke" ;
+    lova:measurementType "Baseline normalized right forepaw rearing" ;
+    lova:measurementCategory "Behavioral" ;
+    lova:valueString "Significant functional recovery vs stroke as early as week 1" ;
+    lova:timePoint "Week 1 to Week 16" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/functional-recovery-mcn> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202500696/behavioral-testing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "M+C+N shows no significant functional recovery vs stroke" ;
+    lova:measurementType "Baseline normalized right forepaw rearing" ;
+    lova:measurementCategory "Behavioral" ;
+    lova:valueString "No significant functional recovery vs stroke" ;
+    lova:timePoint "Week 1 to Week 16" ;
+    lova:isSignificant false ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adfm.202500696/functional-recovery-mc-vs-mcn> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adfm.202500696> ;
+    rdfs:label "M+C shows greater functional recovery than M+C+N despite similar histological improvements" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/functional-recovery-mc> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adfm.202500696/functional-recovery-mcn> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .

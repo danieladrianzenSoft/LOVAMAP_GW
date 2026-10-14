@@ -1,0 +1,815 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> a bibo:AcademicArticle ;
+    rdfs:label "Sideris et al., 2016 — Particle Hydrogels Based on Hyaluronic Acid Building Blocks" ;
+    dc:title "Particle Hydrogels Based on Hyaluronic Acid Building Blocks" ;
+    dc:identifier "10.1021/acsbiomaterials.6b00444" ;
+    dc:date "2016"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/acs-biomaterials-science-engineering> ;
+    dc:creator <https://lovamap.com/ontology#author/sideris-elias> ,
+               <https://lovamap.com/ontology#author/griffin-donald> ,
+               <https://lovamap.com/ontology#author/ding-yichen> ,
+               <https://lovamap.com/ontology#author/li-shuoran> ,
+               <https://lovamap.com/ontology#author/weaver-westbrook> ,
+               <https://lovamap.com/ontology#author/dicarlo-dino> ,
+               <https://lovamap.com/ontology#author/hsiai-tzung> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/sideris-elias>
+                       <https://lovamap.com/ontology#author/griffin-donald>
+                       <https://lovamap.com/ontology#author/ding-yichen>
+                       <https://lovamap.com/ontology#author/li-shuoran>
+                       <https://lovamap.com/ontology#author/weaver-westbrook>
+                       <https://lovamap.com/ontology#author/dicarlo-dino>
+                       <https://lovamap.com/ontology#author/hsiai-tzung>
+                       <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    dc:bibliographicCitation "Sideris et al., 2016" ;
+    lova:focusMaterial "Hyaluronic acid (HA)-based microporous annealed particle (MAP) hydrogels formed via three distinct annealing chemistries (enzymatic FXIII, photoinitiated Eosin Y, carbodiimide/NHS)" .
+
+<https://lovamap.com/ontology#author/sideris-elias> a foaf:Person ;
+    foaf:familyName "Sideris" ;
+    foaf:givenName "Elias" ;
+    foaf:name "Elias Sideris" ;
+    schema:affiliation "Chemical and Biomolecular Engineering Department, University of California Los Angeles" .
+
+<https://lovamap.com/ontology#author/griffin-donald> a foaf:Person ;
+    foaf:familyName "Griffin" ;
+    foaf:givenName "Donald R." ;
+    foaf:name "Donald R. Griffin" ;
+    schema:affiliation "Chemical and Biomolecular Engineering Department, University of California Los Angeles" .
+
+<https://lovamap.com/ontology#author/ding-yichen> a foaf:Person ;
+    foaf:familyName "Ding" ;
+    foaf:givenName "Yichen" ;
+    foaf:name "Yichen Ding" ;
+    schema:affiliation "Division of Cardiology, Department of Medicine, University of California Los Angeles" ;
+    schema:affiliation "Department of Bioengineering, University of California Los Angeles" .
+
+<https://lovamap.com/ontology#author/li-shuoran> a foaf:Person ;
+    foaf:familyName "Li" ;
+    foaf:givenName "Shuoran" ;
+    foaf:name "Shuoran Li" ;
+    schema:affiliation "Chemical and Biomolecular Engineering Department, University of California Los Angeles" .
+
+<https://lovamap.com/ontology#author/weaver-westbrook> a foaf:Person ;
+    foaf:familyName "Weaver" ;
+    foaf:givenName "Westbrook M." ;
+    foaf:name "Westbrook M. Weaver" ;
+    schema:affiliation "Department of Bioengineering, University of California Los Angeles" .
+
+<https://lovamap.com/ontology#author/dicarlo-dino> a foaf:Person ;
+    foaf:familyName "Di Carlo" ;
+    foaf:givenName "Dino" ;
+    foaf:name "Dino Di Carlo" ;
+    schema:affiliation "Department of Bioengineering, University of California Los Angeles" .
+
+<https://lovamap.com/ontology#author/hsiai-tzung> a foaf:Person ;
+    foaf:familyName "Hsiai" ;
+    foaf:givenName "Tzung" ;
+    foaf:name "Tzung Hsiai" ;
+    schema:affiliation "Division of Cardiology, Department of Medicine, University of California Los Angeles" ;
+    schema:affiliation "Department of Bioengineering, University of California Los Angeles" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" ;
+    schema:affiliation "Chemical and Biomolecular Engineering Department, University of California Los Angeles" ;
+    schema:affiliation "Division of Dermatology, Department of Medicine, University of California Los Angeles" ;
+    schema:affiliation "Department of Bioengineering, University of California Los Angeles" .
+
+<https://lovamap.com/ontology#journal/acs-biomaterials-science-engineering> a bibo:Journal ;
+    dc:title "ACS Biomaterials Science & Engineering" ;
+    bibo:issn "2373-9878" .
+
+<https://lovamap.com/ontology#material/10.1021-acsbiomaterials.6b00444/ha-microgel-building-block> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    rdfs:label "HA-AM microgel building block (pre-annealing)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "HA-acrylamide (HA-AM)" ;
+    lova:particleSizeMin 63.0 ;
+    lova:particleSizeMax 82.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:sizeDistribution "Narrow, mean bead size 74 μm" ;
+    lova:stiffnessQualitative "Soft hydrogel" .
+
+<https://lovamap.com/ontology#material/10.1021-acsbiomaterials.6b00444/map-fxiii> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    rdfs:label "HA MAP scaffold annealed with FXIII" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "HA-acrylamide (HA-AM)" ;
+    lova:particleSizeMin 63.0 ;
+    lova:particleSizeMax 82.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:sizeDistribution "Narrow, mean bead size 74 μm" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:packingConfiguration "Random" ;
+    lova:reportedPorosity 0.1099 ;
+    lova:reportedPoreSize "Pore diameter percentiles: 25%<11.2 μm, 50%<16.6 μm, 75%<22.9 μm" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-acsbiomaterials.6b00444/fab-fxiii> .
+
+<https://lovamap.com/ontology#material/10.1021-acsbiomaterials.6b00444/map-eosiny> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    rdfs:label "HA MAP scaffold annealed with Eosin Y (photoinitiated)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "HA-acrylamide (HA-AM)" ;
+    lova:particleSizeMin 63.0 ;
+    lova:particleSizeMax 82.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:sizeDistribution "Narrow, mean bead size 74 μm" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:packingConfiguration "Random" ;
+    lova:reportedPorosity 0.1564 ;
+    lova:reportedPoreSize "Pore diameter percentiles: 25%<11.7 μm, 50%<17.8 μm, 75%<25.9 μm" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-acsbiomaterials.6b00444/fab-eosiny> .
+
+<https://lovamap.com/ontology#material/10.1021-acsbiomaterials.6b00444/map-pegnhs> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    rdfs:label "HA MAP scaffold annealed with star PEG-NHS (carbodiimide chemistry)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "HA-acrylamide (HA-AM)" ;
+    lova:particleSizeMin 63.0 ;
+    lova:particleSizeMax 82.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:sizeDistribution "Narrow, mean bead size 74 μm" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:packingConfiguration "Random" ;
+    lova:reportedPorosity 0.1108 ;
+    lova:reportedPoreSize "Pore diameter percentiles: 25%<10.9 μm, 50%<15.0 μm, 75%<20.5 μm" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-acsbiomaterials.6b00444/fab-pegnhs> .
+
+<https://lovamap.com/ontology#material/10.1021-acsbiomaterials.6b00444/nonannealed-microgels> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    rdfs:label "Densely packed, non-annealed HA microgel building blocks" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "HA-acrylamide (HA-AM)" ;
+    lova:packingConfiguration "Densely packed, non-annealed" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1021-acsbiomaterials.6b00444/fab-fxiii> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    rdfs:label "Microfluidic HA-AM microgel generation with FXIII enzymatic annealing" ;
+    lova:chemistry "Michael-type addition (acrylamide/thiol)" ;
+    lova:manufacturingMethod "Microfluidic water-in-oil flow-focusing droplet generation; pinch channel width 50 μm, aqueous channel width 25 μm; aqueous flow 1.0-1.2 μL/min; pinch oil flow 6.0-8.0 μL/min; outer oil flow 6.0-8.0 μL/min" ;
+    lova:annealingChemistry "Enzymatic (Factor XIII transglutamination)" ;
+    lova:annealingConditions "37°C, 90 min, with 5 U/mL FXIII, 1 U/mL thrombin, 10 mM CaCl2" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/ha-am> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/mmp-crosslinker> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/k-peptide> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/q-peptide> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/rgd-peptide> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/alexa488-maleimide> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/span80> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/mineral-oil> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/adh> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/edc> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/nhs-am> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/fxiii> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/thrombin> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/cacl2> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1021-acsbiomaterials.6b00444/fab-eosiny> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    rdfs:label "Microfluidic HA-AM microgel generation with Eosin Y photoinitiated radical annealing" ;
+    lova:chemistry "Michael-type addition (acrylamide/thiol); radical polymerization for annealing" ;
+    lova:manufacturingMethod "Microfluidic water-in-oil flow-focusing droplet generation; pinch channel width 50 μm, aqueous channel width 25 μm; aqueous flow 1.0-1.2 μL/min; pinch oil flow 6.0-8.0 μL/min; outer oil flow 6.0-8.0 μL/min" ;
+    lova:annealingChemistry "Photoinitiated radical polymerization (Eosin Y / white light)" ;
+    lova:annealingConditions "White light exposure, 1 min, with 10 μM Eosin Y and 500 μM L-cysteine" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/ha-am> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/mmp-crosslinker> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/k-peptide> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/q-peptide> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/rgd-peptide> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/alexa488-maleimide> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/span80> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/mineral-oil> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/adh> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/edc> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/nhs-am> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/eosin-y> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/l-cysteine> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1021-acsbiomaterials.6b00444/fab-pegnhs> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    rdfs:label "Microfluidic HA-AM microgel generation with star PEG-NHS carbodiimide-type annealing" ;
+    lova:chemistry "Michael-type addition (acrylamide/thiol); amine-NHS ester crosslinking for annealing" ;
+    lova:manufacturingMethod "Microfluidic water-in-oil flow-focusing droplet generation; pinch channel width 50 μm, aqueous channel width 25 μm; aqueous flow 1.0-1.2 μL/min; pinch oil flow 6.0-8.0 μL/min; outer oil flow 6.0-8.0 μL/min" ;
+    lova:annealingChemistry "Carbodiimide/amine-NHS ester crosslinking (lysine side chain of K-peptide + 4-arm PEG-NHS)" ;
+    lova:annealingConditions "Incubation between hydrophobic glass slides with 1 μM 4-arm PEG-NHS" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/ha-am> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/mmp-crosslinker> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/k-peptide> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/q-peptide> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/rgd-peptide> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/alexa488-maleimide> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/span80> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/mineral-oil> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/adh> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/edc> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/nhs-am> ,
+                     <https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/peg-nhs> .
+
+<https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/ha-am> a lova:Reagent ;
+    rdfs:label "Hyaluronic acid-acrylamide (HA-AM)" ;
+    lova:reagentRole "monomer" ;
+    lova:molecularWeight "60000 Da" ;
+    lova:concentration "7% w/v precursor solution; 3.5 wt % final microgel" ;
+    lova:supplier "Genzyme Corporation, Cambridge, MA" ;
+    lova:reagentFunction "HA polymer backbone, 14% acrylamide modification, forms microgel building block" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/mmp-crosslinker> a lova:Reagent ;
+    rdfs:label "MMP-2 sensitive dithiol crosslinker peptide (Ac-GCRDGPQGIWGQDRCG-NH2)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:sequence "GCRDGPQGIWGQDRCG" ;
+    lova:concentration "7.8 mM cross-linker solution; 3.9 mM final (thiol:AM 0.8)" ;
+    lova:supplier "Genscript" ;
+    lova:reagentFunction "MMP-degradable intra-microgel crosslink" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/k-peptide> a lova:Reagent ;
+    rdfs:label "K-peptide (Ac-FKGGERCG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "FKGGERCG" ;
+    lova:concentration "500 μM precursor; 250 μM final" ;
+    lova:reagentFunction "Factor XIIIa substrate for enzymatic annealing" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/q-peptide> a lova:Reagent ;
+    rdfs:label "Q-peptide (Ac-NQEQVSPLGGERCG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "NQEQVSPLGGERCG" ;
+    lova:concentration "500 μM precursor; 250 μM final" ;
+    lova:reagentFunction "Factor XIIIa substrate for enzymatic annealing" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/rgd-peptide> a lova:Reagent ;
+    rdfs:label "RGD peptide (Ac-RGDSPGERCG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "RGDSPGERCG" ;
+    lova:concentration "1000 μM precursor; 500 μM final" ;
+    lova:reagentFunction "Cell adhesion (integrin-mediated)" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/alexa488-maleimide> a lova:Reagent ;
+    rdfs:label "Alexa-Fluor 488-maleimide" ;
+    lova:reagentRole "other" ;
+    lova:concentration "10 μM reacted; 5 μM final" ;
+    lova:supplier "Life Technologies" ;
+    lova:reagentFunction "Fluorescent labeling of crosslinker" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/span80> a lova:Reagent ;
+    rdfs:label "Span-80 surfactant" ;
+    lova:reagentRole "surfactant" ;
+    lova:concentration "1% v/v (pinch oil), 5% v/v (outer oil)" ;
+    lova:reagentFunction "Stabilizes water-in-oil emulsion droplets" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/mineral-oil> a lova:Reagent ;
+    rdfs:label "Heavy mineral oil" ;
+    lova:reagentRole "carrier oil" ;
+    lova:reagentFunction "Continuous phase for droplet generation" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/adh> a lova:Reagent ;
+    rdfs:label "Adipic dihydrazide (ADH)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "18.0 g, 105.5 mmol" ;
+    lova:reagentFunction "Modifies HA to form HA-ADH intermediate" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/edc> a lova:Reagent ;
+    rdfs:label "1-ethyl-3-(dimethylaminopropyl) carbodiimide hydrochloride (EDC)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "4.0 g, 20 mmol" ;
+    lova:reagentFunction "Carbodiimide coupling agent for HA-ADH synthesis" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/nhs-am> a lova:Reagent ;
+    rdfs:label "N-acryloxysuccinimide (NHS-AM)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "1.33 g, 4.4 mmol" ;
+    lova:reagentFunction "Introduces acrylamide group onto HA-ADH to form HA-AM" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/fxiii> a lova:Reagent ;
+    rdfs:label "Factor XIII (FXIII)" ;
+    lova:reagentRole "enzyme" ;
+    lova:concentration "5 U/mL" ;
+    lova:reagentFunction "Enzymatic annealing (transglutaminase)" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/thrombin> a lova:Reagent ;
+    rdfs:label "Thrombin" ;
+    lova:reagentRole "enzyme" ;
+    lova:concentration "1 U/mL" ;
+    lova:reagentFunction "Activates Factor XIII to FXIIIa" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/cacl2> a lova:Reagent ;
+    rdfs:label "Calcium chloride (CaCl2)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "10 mM" ;
+    lova:reagentFunction "Cofactor for FXIII activity" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/eosin-y> a lova:Reagent ;
+    rdfs:label "Eosin Y" ;
+    lova:reagentRole "photoinitiator" ;
+    lova:concentration "10 μM" ;
+    lova:reagentFunction "Photoinitiator for radical polymerization annealing" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/l-cysteine> a lova:Reagent ;
+    rdfs:label "L-cysteine" ;
+    lova:reagentRole "other" ;
+    lova:concentration "500 μM" ;
+    lova:reagentFunction "Thiol donor for radical reaction with Eosin Y" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acsbiomaterials.6b00444/peg-nhs> a lova:Reagent ;
+    rdfs:label "4-arm PEG-NHS (star PEG-NHS)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:concentration "1 μM" ;
+    lova:reagentFunction "Amine-NHS ester crosslinking for annealing via K-peptide lysine" .
+
+<https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.6b00444/microgel-sizing> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-acsbiomaterials.6b00444/ha-microgel-building-block> ;
+    rdfs:label "HA microgel size/volume distribution analysis" ;
+    lova:experimentCategory "Physical characterization" ;
+    lova:experimentType "Particle size and volume distribution" ;
+    lova:assayOrMethod "Fluorescence microscopy and image analysis" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.6b00444/microgel-diameter-oil-phase> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.6b00444/microgel-sizing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    rdfs:label "Microgel diameter distribution in oil phase" ;
+    lova:measurementType "Microgel diameter" ;
+    lova:measurementCategory "Physical" ;
+    lova:valueString "45-54 μm" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.6b00444/microgel-diameter-aqueous> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.6b00444/microgel-sizing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    rdfs:label "Microgel diameter distribution after purification/swelling" ;
+    lova:measurementType "Microgel diameter" ;
+    lova:measurementCategory "Physical" ;
+    lova:valueString "Mean 74 μm, range 63-82 μm" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.6b00444/microgel-volume-increase> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.6b00444/microgel-sizing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    rdfs:label "Volumetric increase from oil phase to aqueous swollen state" ;
+    lova:measurementType "Volumetric swelling increase" ;
+    lova:measurementCategory "Physical" ;
+    lova:valueString ">3.4x volumetric increase" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.6b00444/microgel-volume-oil-fig> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.6b00444/microgel-sizing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    rdfs:label "Microgel volume in oil phase (Figure 1G)" ;
+    lova:measurementType "Microgel volume" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 62000.0 ;
+    qudt:unit "μm³" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.6b00444/microgel-volume-aqueous-fig> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.6b00444/microgel-sizing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    rdfs:label "Microgel volume in aqueous phase (Figure 1G)" ;
+    lova:measurementType "Microgel volume" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 210000.0 ;
+    qudt:unit "μm³" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.6b00444/bead-size-freq-60um> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.6b00444/microgel-sizing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    rdfs:label "Bead size frequency at 60 μm (Figure 1H)" ;
+    lova:measurementType "Bead size frequency" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 2.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.6b00444/bead-size-freq-70um> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.6b00444/microgel-sizing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    rdfs:label "Bead size frequency at 70 μm (Figure 1H)" ;
+    lova:measurementType "Bead size frequency" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 49.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.6b00444/bead-size-freq-80um> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.6b00444/microgel-sizing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    rdfs:label "Bead size frequency at 80 μm (Figure 1H)" ;
+    lova:measurementType "Bead size frequency" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 49.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.6b00444/ha-am-nmr> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-acsbiomaterials.6b00444/ha-microgel-building-block> ;
+    rdfs:label "HA-AM percent modification characterization" ;
+    lova:experimentCategory "Chemical characterization" ;
+    lova:experimentType "NMR characterization" ;
+    lova:assayOrMethod "1H NMR (D2O)" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.6b00444/ha-am-percent-modification> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.6b00444/ha-am-nmr> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    rdfs:label "HA-AM percent acrylamide modification" ;
+    lova:measurementType "Percent modification" ;
+    lova:measurementCategory "Chemical" ;
+    qudt:numericValue 14.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.6b00444/pore-interconnectivity-assay> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-acsbiomaterials.6b00444/map-fxiii> ,
+                      <https://lovamap.com/ontology#material/10.1021-acsbiomaterials.6b00444/map-eosiny> ,
+                      <https://lovamap.com/ontology#material/10.1021-acsbiomaterials.6b00444/map-pegnhs> ;
+    rdfs:label "Pore interconnectivity assay via labeled dextran diffusion" ;
+    lova:experimentCategory "Physical characterization" ;
+    lova:experimentType "Pore interconnectivity assay" ;
+    lova:assayOrMethod "Confocal and sheet confocal microscopy with rhodamine-labeled high MW dextran" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.6b00444/pore-interconnectivity> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.6b00444/pore-interconnectivity-assay> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    rdfs:label "Pore interconnectivity observed in all three annealing chemistries" ;
+    lova:measurementType "Pore interconnectivity" ;
+    lova:measurementCategory "Physical" ;
+    lova:valueString "Dextran dye inhabits all empty spaces within scaffold structure, indicating interconnected pores" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.6b00444/compression-testing> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-acsbiomaterials.6b00444/map-fxiii> ,
+                      <https://lovamap.com/ontology#material/10.1021-acsbiomaterials.6b00444/map-eosiny> ,
+                      <https://lovamap.com/ontology#material/10.1021-acsbiomaterials.6b00444/map-pegnhs> ,
+                      <https://lovamap.com/ontology#material/10.1021-acsbiomaterials.6b00444/nonannealed-microgels> ;
+    rdfs:label "Instron compression testing of annealed and non-annealed scaffolds" ;
+    lova:experimentCategory "Mechanical" ;
+    lova:experimentType "Compression testing" ;
+    lova:equipment "Instron 5500 series" ;
+    lova:strainRate "1 mm/min" ;
+    lova:preconditioning "Swollen in HEPES buffer saline 4h at room temperature" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.6b00444/youngs-modulus-fxiii> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.6b00444/compression-testing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    rdfs:label "Young's modulus in compression - FXIII annealed scaffold" ;
+    lova:measurementType "Young's modulus (compression)" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 932.0 ;
+    qudt:unit "Pa" ;
+    lova:stdDev 76.0 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.6b00444/youngs-modulus-eosiny> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.6b00444/compression-testing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    rdfs:label "Young's modulus in compression - Eosin Y annealed scaffold" ;
+    lova:measurementType "Young's modulus (compression)" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 1020.0 ;
+    qudt:unit "Pa" ;
+    lova:stdDev 132.0 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.6b00444/youngs-modulus-pegnhs> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.6b00444/compression-testing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    rdfs:label "Young's modulus in compression - star PEG-NHS annealed scaffold" ;
+    lova:measurementType "Young's modulus (compression)" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 873.0 ;
+    qudt:unit "Pa" ;
+    lova:stdDev 74.0 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.6b00444/youngs-modulus-nonannealed> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.6b00444/compression-testing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    rdfs:label "Young's modulus (slope) of non-annealed densely packed microgels" ;
+    lova:measurementType "Young's modulus (compression)" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 66.3 ;
+    qudt:unit "Pa" ;
+    lova:stdDev 5.2 ;
+    lova:comparisonGroup "Annealed microgel scaffolds" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1021-acsbiomaterials.6b00444/annealed-vs-nonannealed-modulus> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    rdfs:label "Annealed scaffolds resist applied force more than 13-fold compared to non-annealed beads" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.6b00444/youngs-modulus-fxiii> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.6b00444/youngs-modulus-nonannealed> ;
+    lova:direction "higher" ;
+    lova:foldChange 13.0 .
+
+<https://lovamap.com/ontology#comparison/10.1021-acsbiomaterials.6b00444/modulus-fxiii-vs-eosiny> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    rdfs:label "Young's modulus statistically similar between FXIII and Eosin Y annealed scaffolds" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.6b00444/youngs-modulus-fxiii> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.6b00444/youngs-modulus-eosiny> ;
+    lova:direction "no difference" .
+
+<https://lovamap.com/ontology#comparison/10.1021-acsbiomaterials.6b00444/modulus-fxiii-vs-pegnhs> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    rdfs:label "Young's modulus statistically similar between FXIII and star PEG-NHS annealed scaffolds" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.6b00444/youngs-modulus-fxiii> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.6b00444/youngs-modulus-pegnhs> ;
+    lova:direction "no difference" .
+
+<https://lovamap.com/ontology#comparison/10.1021-acsbiomaterials.6b00444/modulus-eosiny-vs-pegnhs> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    rdfs:label "Young's modulus statistically similar between Eosin Y and star PEG-NHS annealed scaffolds" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.6b00444/youngs-modulus-eosiny> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.6b00444/youngs-modulus-pegnhs> ;
+    lova:direction "no difference" .
+
+<https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.6b00444/afm-nanoindentation> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-acsbiomaterials.6b00444/ha-microgel-building-block> ;
+    rdfs:label "AFM nanoindentation of individual HA microgels" ;
+    lova:experimentCategory "Mechanical" ;
+    lova:experimentType "AFM nanoindentation" ;
+    lova:equipment "NanoWizard II AFM (JPK Instruments) on Axio Observer D.1 (Zeiss)" ;
+    lova:temperature "25°C" ;
+    lova:sampleSize 20 .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.6b00444/youngs-modulus-afm-individual> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.6b00444/afm-nanoindentation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    rdfs:label "Young's modulus of individual microgel beads (AFM)" ;
+    lova:measurementType "Young's modulus (AFM)" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 882.0 ;
+    qudt:unit "Pa" ;
+    lova:stdDev 144.0 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1021-acsbiomaterials.6b00444/afm-vs-bulk-modulus> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    rdfs:label "Individual microgel AFM modulus statistically same as bulk annealed scaffold modulus" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.6b00444/youngs-modulus-afm-individual> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.6b00444/youngs-modulus-fxiii> ;
+    lova:direction "no difference" .
+
+<https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.6b00444/void-fraction-pore-size-analysis> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-acsbiomaterials.6b00444/map-fxiii> ,
+                      <https://lovamap.com/ontology#material/10.1021-acsbiomaterials.6b00444/map-eosiny> ,
+                      <https://lovamap.com/ontology#material/10.1021-acsbiomaterials.6b00444/map-pegnhs> ;
+    rdfs:label "Void fraction and pore size analysis via confocal/MatLab image processing" ;
+    lova:experimentCategory "Physical characterization" ;
+    lova:experimentType "Void fraction and pore size analysis" ;
+    lova:assayOrMethod "Confocal microscopy with custom MatLab image analysis" ;
+    lova:sampleSize 6 .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.6b00444/void-fraction-fxiii> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.6b00444/void-fraction-pore-size-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    rdfs:label "Total void fraction - FXIII annealed scaffold" ;
+    lova:measurementType "Total void fraction" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 10.99 ;
+    qudt:unit "%" ;
+    lova:stdDev 1.817 ;
+    lova:sampleSize 6 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.6b00444/void-fraction-eosiny> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.6b00444/void-fraction-pore-size-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    rdfs:label "Total void fraction - Eosin Y annealed scaffold" ;
+    lova:measurementType "Total void fraction" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 15.64 ;
+    qudt:unit "%" ;
+    lova:stdDev 3.049 ;
+    lova:sampleSize 6 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.6b00444/void-fraction-pegnhs> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.6b00444/void-fraction-pore-size-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    rdfs:label "Total void fraction - star PEG-NHS annealed scaffold" ;
+    lova:measurementType "Total void fraction" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 11.08 ;
+    qudt:unit "%" ;
+    lova:stdDev 1.978 ;
+    lova:sampleSize 6 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1021-acsbiomaterials.6b00444/void-fraction-eosiny-vs-fxiii> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    rdfs:label "Void fraction higher in Eosin Y annealed scaffold vs FXIII" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.6b00444/void-fraction-eosiny> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.6b00444/void-fraction-fxiii> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#comparison/10.1021-acsbiomaterials.6b00444/void-fraction-eosiny-vs-pegnhs> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    rdfs:label "Void fraction higher in Eosin Y annealed scaffold vs star PEG-NHS" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.6b00444/void-fraction-eosiny> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.6b00444/void-fraction-pegnhs> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#comparison/10.1021-acsbiomaterials.6b00444/void-fraction-pegnhs-vs-fxiii> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    rdfs:label "Void fraction no significant difference between star PEG-NHS and FXIII annealed scaffolds" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.6b00444/void-fraction-pegnhs> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.6b00444/void-fraction-fxiii> ;
+    lova:direction "no difference" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.6b00444/pore-diameter-percentiles-fxiii> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.6b00444/void-fraction-pore-size-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    rdfs:label "Pore diameter percentiles - FXIII annealed scaffold" ;
+    lova:measurementType "Pore diameter percentiles" ;
+    lova:measurementCategory "Physical" ;
+    lova:valueString "25%<11.2 μm, 50%<16.6 μm, 75%<22.9 μm" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.6b00444/pore-diameter-percentiles-eosiny> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.6b00444/void-fraction-pore-size-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    rdfs:label "Pore diameter percentiles - Eosin Y annealed scaffold" ;
+    lova:measurementType "Pore diameter percentiles" ;
+    lova:measurementCategory "Physical" ;
+    lova:valueString "25%<11.7 μm, 50%<17.8 μm, 75%<25.9 μm" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.6b00444/pore-diameter-percentiles-pegnhs> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.6b00444/void-fraction-pore-size-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    rdfs:label "Pore diameter percentiles - star PEG-NHS annealed scaffold" ;
+    lova:measurementType "Pore diameter percentiles" ;
+    lova:measurementCategory "Physical" ;
+    lova:valueString "25%<10.9 μm, 50%<15.0 μm, 75%<20.5 μm" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.6b00444/pore-area-percentiles-fxiii> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.6b00444/void-fraction-pore-size-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    rdfs:label "Pore area percentiles - FXIII annealed scaffold" ;
+    lova:measurementType "Pore area percentiles" ;
+    lova:measurementCategory "Physical" ;
+    lova:valueString "25%<98.4 μm², 50%<216 μm², 75%<410 μm²" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.6b00444/pore-area-percentiles-eosiny> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.6b00444/void-fraction-pore-size-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    rdfs:label "Pore area percentiles - Eosin Y annealed scaffold" ;
+    lova:measurementType "Pore area percentiles" ;
+    lova:measurementCategory "Physical" ;
+    lova:valueString "25%<108 μm², 50%<249 μm², 75%<525 μm²" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.6b00444/pore-area-percentiles-pegnhs> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.6b00444/void-fraction-pore-size-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    rdfs:label "Pore area percentiles - star PEG-NHS annealed scaffold" ;
+    lova:measurementType "Pore area percentiles" ;
+    lova:measurementCategory "Physical" ;
+    lova:valueString "25%<94.0 μm², 50%<176 μm², 75%<329 μm²" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.6b00444/eosiny-settling-time-control> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-acsbiomaterials.6b00444/map-eosiny> ;
+    rdfs:label "Void fraction control via microgel settling time before Eosin Y annealing" ;
+    lova:experimentCategory "Physical characterization" ;
+    lova:experimentType "Void fraction control via settling time" ;
+    lova:assayOrMethod "Confocal microscopy with MatLab image analysis" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.6b00444/void-fraction-eosiny-text> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.6b00444/eosiny-settling-time-control> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    rdfs:label "Average void space of Eosin Y annealed scaffold (short settling)" ;
+    lova:measurementType "Total void fraction" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 15.82 ;
+    qudt:unit "%" ;
+    lova:timePoint "Instant" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.6b00444/void-fraction-instant-settling> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.6b00444/eosiny-settling-time-control> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    rdfs:label "Void fraction - instant settling (Figure 3C)" ;
+    lova:measurementType "Total void fraction" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 14.5 ;
+    qudt:unit "%" ;
+    lova:timePoint "Instant" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.6b00444/void-fraction-30min-settling> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.6b00444/eosiny-settling-time-control> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    rdfs:label "Void fraction - 30 minutes settling (Figure 3C)" ;
+    lova:measurementType "Total void fraction" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 10.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "30 minutes" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.6b00444/void-fraction-90min-settling> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.6b00444/eosiny-settling-time-control> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    rdfs:label "Void fraction - 90 minutes settling (Figure 3C)" ;
+    lova:measurementType "Total void fraction" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 9.3 ;
+    qudt:unit "%" ;
+    lova:timePoint "90 minutes" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.6b00444/pore-diameter-settling-short> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.6b00444/eosiny-settling-time-control> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    rdfs:label "Pore diameter - short incubation time before annealing" ;
+    lova:measurementType "Pore diameter" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 26.0 ;
+    qudt:unit "μm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.6b00444/pore-diameter-settling-long> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.6b00444/eosiny-settling-time-control> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    rdfs:label "Pore diameter - long incubation time before annealing" ;
+    lova:measurementType "Pore diameter" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 20.0 ;
+    qudt:unit "μm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1021-acsbiomaterials.6b00444/void-fraction-instant-vs-90min> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    rdfs:label "Void fraction lower after 90 minutes settling vs instant" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.6b00444/void-fraction-90min-settling> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.6b00444/void-fraction-instant-settling> ;
+    lova:direction "lower" .
+
+<https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.6b00444/cell-spreading> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-acsbiomaterials.6b00444/map-fxiii> ,
+                      <https://lovamap.com/ontology#material/10.1021-acsbiomaterials.6b00444/map-eosiny> ,
+                      <https://lovamap.com/ontology#material/10.1021-acsbiomaterials.6b00444/map-pegnhs> ;
+    rdfs:label "Human dermal fibroblast spreading in HA MAP scaffolds" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell spreading" ;
+    lova:assayOrMethod "Confocal microscopy and sheet confocal microscopy, Phalloidin/DAPI staining" ;
+    lova:cellType "Human dermal fibroblasts (HDF)" ;
+    lova:cellSource "Human dermis (Life Technologies)" ;
+    lova:seedingDensity "1500 cells/μL of gel" ;
+    lova:cultureDuration "2 days" ;
+    lova:cultureMedium "DMEM + 10% FBS + 0.1% penicillin/streptomycin" ;
+    lova:temperature "37°C" ;
+    lova:atmosphere "5% CO2" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.6b00444/cell-spreading-day2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.6b00444/cell-spreading> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    rdfs:label "HDF cell spreading observed at day 2 in all annealing conditions" ;
+    lova:measurementType "Cell spreading" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Cell spreading evident for all three annealing conditions at day 2" ;
+    lova:timePoint "Day 2" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.6b00444/eosiny-toxicity-test> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-acsbiomaterials.6b00444/map-eosiny> ;
+    rdfs:label "Eosin Y toxicity test on human dermal fibroblasts" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cytotoxicity assay" ;
+    lova:cellType "Human dermal fibroblasts (HDF)" .
+
+<https://lovamap.com/ontology#outcome/10.1021-acsbiomaterials.6b00444/eosiny-toxicity> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acsbiomaterials.6b00444/eosiny-toxicity-test> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-acsbiomaterials.6b00444> ;
+    rdfs:label "Eosin Y cytotoxicity threshold on HDF metabolism" ;
+    lova:measurementType "Cell metabolism" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "No significant effect on cell metabolism up to 10 μM Eosin Y; higher concentrations decreased cell metabolism" ;
+    lova:dataSource "[TEXT]" .

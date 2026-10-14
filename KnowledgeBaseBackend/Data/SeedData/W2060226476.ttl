@@ -1,0 +1,576 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1021-bm301346e> a bibo:AcademicArticle ;
+    rdfs:label "Grover et al., 2012 — Biocompatible Hydrogels by Oxime Click Chemistry" ;
+    dc:title "Biocompatible Hydrogels by Oxime Click Chemistry" ;
+    dc:identifier "10.1021/bm301346e" ;
+    dc:date "2012"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/biomacromolecules> ;
+    dc:creator <https://lovamap.com/ontology#author/grover-gregory> ,
+               <https://lovamap.com/ontology#author/lam-jonathan> ,
+               <https://lovamap.com/ontology#author/nguyen-thi> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ,
+               <https://lovamap.com/ontology#author/maynard-heather> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/grover-gregory>
+                       <https://lovamap.com/ontology#author/lam-jonathan>
+                       <https://lovamap.com/ontology#author/nguyen-thi>
+                       <https://lovamap.com/ontology#author/segura-tatiana>
+                       <https://lovamap.com/ontology#author/maynard-heather> ) ;
+    dc:bibliographicCitation "Grover et al., 2012" ;
+    lova:focusMaterial "Oxime-crosslinked 8-arm aminooxy PEG / glutaraldehyde hydrogels, RGD-functionalized for MSC encapsulation" .
+
+<https://lovamap.com/ontology#author/grover-gregory> a foaf:Person ;
+    foaf:familyName "Grover" ;
+    foaf:givenName "Gregory N." ;
+    foaf:name "Gregory N. Grover" ;
+    schema:affiliation "Department of Chemistry and Biochemistry and the California NanoSystems Institute, University of California, Los Angeles" ;
+    schema:affiliation "Biomedical Engineering IDP, University of California, Los Angeles" .
+
+<https://lovamap.com/ontology#author/lam-jonathan> a foaf:Person ;
+    foaf:familyName "Lam" ;
+    foaf:givenName "Jonathan" ;
+    foaf:name "Jonathan Lam" ;
+    schema:affiliation "Biomedical Engineering IDP, University of California, Los Angeles" .
+
+<https://lovamap.com/ontology#author/nguyen-thi> a foaf:Person ;
+    foaf:familyName "Nguyen" ;
+    foaf:givenName "Thi Hoa Tam" ;
+    foaf:name "Thi Hoa Tam Nguyen" ;
+    schema:affiliation "Department of Chemistry and Biochemistry and the California NanoSystems Institute, University of California, Los Angeles" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" ;
+    schema:affiliation "Biomedical Engineering IDP, University of California, Los Angeles" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering and the California NanoSystems Institute, University of California, Los Angeles" .
+
+<https://lovamap.com/ontology#author/maynard-heather> a foaf:Person ;
+    foaf:familyName "Maynard" ;
+    foaf:givenName "Heather D." ;
+    foaf:name "Heather D. Maynard" ;
+    schema:affiliation "Department of Chemistry and Biochemistry and the California NanoSystems Institute, University of California, Los Angeles" ;
+    schema:affiliation "Biomedical Engineering IDP, University of California, Los Angeles" .
+
+<https://lovamap.com/ontology#journal/biomacromolecules> a bibo:Journal ;
+    dc:title "Biomacromolecules" ;
+    bibo:issn "1525-7797" .
+
+<https://lovamap.com/ontology#material/10.1021-bm301346e/aopeg-3pct-r07> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm301346e> ;
+    rdfs:label "3 wt% AO-PEG/glutaraldehyde hydrogel, r=0.7" ;
+    lova:particleMaterial "8-arm aminooxy PEG (AO-PEG)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:stiffnessValue 258.0 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-bm301346e/oxime-click-aopeg-glutaraldehyde> .
+
+<https://lovamap.com/ontology#material/10.1021-bm301346e/aopeg-3pct-r08> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm301346e> ;
+    rdfs:label "3 wt% AO-PEG/glutaraldehyde hydrogel, r=0.8" ;
+    lova:particleMaterial "8-arm aminooxy PEG (AO-PEG)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-bm301346e/oxime-click-aopeg-glutaraldehyde> .
+
+<https://lovamap.com/ontology#material/10.1021-bm301346e/aopeg-3pct-r10> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm301346e> ;
+    rdfs:label "3 wt% AO-PEG/glutaraldehyde hydrogel, r=1.0" ;
+    lova:particleMaterial "8-arm aminooxy PEG (AO-PEG)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-bm301346e/oxime-click-aopeg-glutaraldehyde> .
+
+<https://lovamap.com/ontology#material/10.1021-bm301346e/aopeg-5pct-r10> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm301346e> ;
+    rdfs:label "5 wt% AO-PEG/glutaraldehyde hydrogel, r=1.0" ;
+    lova:particleMaterial "8-arm aminooxy PEG (AO-PEG)" ;
+    lova:stiffnessQualitative "Semi-rigid hydrogel" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-bm301346e/oxime-click-aopeg-glutaraldehyde> .
+
+<https://lovamap.com/ontology#material/10.1021-bm301346e/aopeg-7pct-r10> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm301346e> ;
+    rdfs:label "7 wt% AO-PEG/glutaraldehyde hydrogel, r=1.0" ;
+    lova:particleMaterial "8-arm aminooxy PEG (AO-PEG)" ;
+    lova:stiffnessQualitative "Semi-rigid hydrogel" ;
+    lova:stiffnessValue 4196.0 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-bm301346e/oxime-click-aopeg-glutaraldehyde> .
+
+<https://lovamap.com/ontology#material/10.1021-bm301346e/aopeg-rgd-3pct-r07> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm301346e> ;
+    rdfs:label "RGD-functionalized 3 wt% AO-PEG/glutaraldehyde hydrogel, r=0.7 (MSC encapsulation)" ;
+    lova:particleMaterial "8-arm aminooxy PEG (AO-PEG)" ;
+    lova:surfaceModification "RGD-functionalized (100 μM final concentration)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-bm301346e/oxime-click-aopeg-rgd-glutaraldehyde> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1021-bm301346e/oxime-click-aopeg-glutaraldehyde> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm301346e> ;
+    rdfs:label "Oxime click crosslinking of 8-arm aminooxy PEG with glutaraldehyde" ;
+    lova:chemistry "Oxime Click chemistry (aminooxy + aldehyde)" ;
+    lova:manufacturingMethod "Mixing of two liquid components (AO-PEG solution + glutaraldehyde crosslinker)" ;
+    lova:annealingChemistry "Oxime bond formation (acid catalyzed)" ;
+    lova:annealingConditions "37 °C, pH-dependent gelation time (pH 6.0: 5 min; pH 7.2: 30 min; pH 8.0: slow/incomplete at 30 min)" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1021-bm301346e/ao-peg> ,
+                    <https://lovamap.com/ontology#reagent/10.1021-bm301346e/glutaraldehyde> ,
+                    <https://lovamap.com/ontology#reagent/10.1021-bm301346e/n-hydroxyphthalimide> ,
+                    <https://lovamap.com/ontology#reagent/10.1021-bm301346e/hydrazine> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1021-bm301346e/oxime-click-aopeg-rgd-glutaraldehyde> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm301346e> ;
+    rdfs:label "Oxime click crosslinking of RGD-functionalized AO-PEG with glutaraldehyde for MSC encapsulation" ;
+    lova:chemistry "Oxime Click chemistry (aminooxy + aldehyde)" ;
+    lova:manufacturingMethod "Mixing MSCs in complete medium with PEG-RGD (PBS, pH 7.2), then combined with glutaraldehyde cross-linker" ;
+    lova:annealingChemistry "Oxime bond formation" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1021-bm301346e/ao-peg> ,
+                    <https://lovamap.com/ontology#reagent/10.1021-bm301346e/glutaraldehyde> ,
+                    <https://lovamap.com/ontology#reagent/10.1021-bm301346e/rgd-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1021-bm301346e/fmoc-aminolevulinic-acid> .
+
+<https://lovamap.com/ontology#reagent/10.1021-bm301346e/ao-peg> a lova:Reagent ;
+    rdfs:label "8-arm aminooxy PEG (AO-PEG)" ;
+    lova:reagentRole "monomer" ;
+    lova:reagentFunction "PEG scaffold for hydrogel formation via oxime click chemistry; synthesized by Mitsunobu reaction of N-hydroxyphthalimide with 8-arm hydroxyl-terminated PEG star followed by hydrazine reduction" .
+
+<https://lovamap.com/ontology#reagent/10.1021-bm301346e/glutaraldehyde> a lova:Reagent ;
+    rdfs:label "Glutaraldehyde" ;
+    lova:reagentRole "crosslinker" ;
+    lova:reagentFunction "Aldehyde cross-linker reacting with aminooxy groups to form oxime-linked hydrogel; mixture of oligomer/polymer/cyclic hemiacetal species" .
+
+<https://lovamap.com/ontology#reagent/10.1021-bm301346e/n-hydroxyphthalimide> a lova:Reagent ;
+    rdfs:label "N-hydroxyphthalimide" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Mitsunobu reaction reagent used in synthesis of aminooxy PEG" .
+
+<https://lovamap.com/ontology#reagent/10.1021-bm301346e/hydrazine> a lova:Reagent ;
+    rdfs:label "Hydrazine" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Reduction reagent used in synthesis of aminooxy PEG (removal of phthalimide protecting group)" .
+
+<https://lovamap.com/ontology#reagent/10.1021-bm301346e/rgd-peptide> a lova:Reagent ;
+    rdfs:label "Ketone-modified RGD peptide (GRGDSP)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "GRGDSP" ;
+    lova:concentration "100 μM final concentration in hydrogel" ;
+    lova:reagentFunction "Integrin-binding ligand for cell adhesion, conjugated to AO-PEG via oxime bond" .
+
+<https://lovamap.com/ontology#reagent/10.1021-bm301346e/fmoc-aminolevulinic-acid> a lova:Reagent ;
+    rdfs:label "Fmoc-5-aminolevulinic acid" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Used to install ketone group onto N-terminus of RGD peptide during solid phase peptide synthesis" .
+
+<https://lovamap.com/ontology#experiment/10.1021-bm301346e/rheology-peg-wtpct> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm301346e> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-bm301346e/aopeg-3pct-r10> ,
+                      <https://lovamap.com/ontology#material/10.1021-bm301346e/aopeg-5pct-r10> ,
+                      <https://lovamap.com/ontology#material/10.1021-bm301346e/aopeg-7pct-r10> ;
+    rdfs:label "Rheological characterization of AO-PEG hydrogels at varying PEG wt% (r=1.0)" ;
+    lova:experimentCategory "Mechanical" ;
+    lova:experimentType "Oscillatory rheology (frequency sweep)" ;
+    lova:assayOrMethod "Plate-to-plate rheometry" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#experiment/10.1021-bm301346e/rheology-r-ratio> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm301346e> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-bm301346e/aopeg-3pct-r07> ,
+                      <https://lovamap.com/ontology#material/10.1021-bm301346e/aopeg-3pct-r08> ,
+                      <https://lovamap.com/ontology#material/10.1021-bm301346e/aopeg-3pct-r10> ;
+    rdfs:label "Rheological characterization of AO-PEG hydrogels at varying r ratio (PEG=3 wt%)" ;
+    lova:experimentCategory "Mechanical" ;
+    lova:experimentType "Oscillatory rheology (frequency sweep)" ;
+    lova:assayOrMethod "Plate-to-plate rheometry" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#experiment/10.1021-bm301346e/gelation-kinetics-ph> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm301346e> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-bm301346e/aopeg-3pct-r10> ;
+    rdfs:label "Gelation kinetics of 3 wt% AO-PEG hydrogel (r=1) as a function of pH" ;
+    lova:experimentCategory "Rheological" ;
+    lova:experimentType "In situ storage modulus measurement during gelation" ;
+    lova:assayOrMethod "Plate-to-plate rheometry" ;
+    lova:temperature "37 °C" .
+
+<https://lovamap.com/ontology#experiment/10.1021-bm301346e/water-content-swelling> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm301346e> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-bm301346e/aopeg-3pct-r07> ,
+                      <https://lovamap.com/ontology#material/10.1021-bm301346e/aopeg-3pct-r10> ,
+                      <https://lovamap.com/ontology#material/10.1021-bm301346e/aopeg-7pct-r10> ;
+    rdfs:label "Water content and swelling ratio measurements of AO-PEG hydrogels" ;
+    lova:experimentCategory "Physicochemical" ;
+    lova:experimentType "Water content / swelling ratio" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#experiment/10.1021-bm301346e/live-dead-staining> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm301346e> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-bm301346e/aopeg-rgd-3pct-r07> ;
+    rdfs:label "Live/Dead staining of MSCs encapsulated in RGD-functionalized oxime hydrogel" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell viability" ;
+    lova:assayOrMethod "Live/Dead staining" ;
+    lova:cellType "Mouse MSC" ;
+    lova:cellSource "Mouse mesenchymal stem cells" ;
+    lova:seedingDensity "5000 cells/μL of gel" ;
+    lova:cultureDuration "1, 4, 7 days" .
+
+<https://lovamap.com/ontology#experiment/10.1021-bm301346e/mtt-assay> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm301346e> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-bm301346e/aopeg-rgd-3pct-r07> ;
+    rdfs:label "MTT metabolic activity assay of encapsulated MSCs" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Metabolic activity / proliferation" ;
+    lova:assayOrMethod "MTT assay" ;
+    lova:cellType "Mouse MSC" ;
+    lova:cultureDuration "1, 4, 7 days" .
+
+<https://lovamap.com/ontology#experiment/10.1021-bm301346e/cell-spreading> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm301346e> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-bm301346e/aopeg-rgd-3pct-r07> ;
+    rdfs:label "Cell spreading assessment: MSCs on top vs encapsulated in RGD-functionalized hydrogel" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell morphology / spreading" ;
+    lova:cellType "Mouse MSC" ;
+    lova:seedingDensity "5000 cells/μL" ;
+    lova:cultureDuration "1, 4, 7 days" .
+
+<https://lovamap.com/ontology#experiment/10.1021-bm301346e/sem-imaging> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm301346e> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-bm301346e/aopeg-rgd-3pct-r07> ;
+    rdfs:label "SEM imaging of oxime hydrogel structure" ;
+    lova:experimentCategory "Structural" ;
+    lova:experimentType "Pore morphology" ;
+    lova:assayOrMethod "Scanning Electron Microscopy (SEM)" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm301346e/storage-modulus-3pct-r10> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm301346e/rheology-peg-wtpct> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm301346e> ;
+    rdfs:label "Storage modulus — 3 wt% AO-PEG, r=1.0" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 900.0 ;
+    qudt:unit "Pa" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm301346e/storage-modulus-5pct-r10> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm301346e/rheology-peg-wtpct> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm301346e> ;
+    rdfs:label "Storage modulus — 5 wt% AO-PEG, r=1.0" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 2300.0 ;
+    qudt:unit "Pa" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm301346e/storage-modulus-7pct-r10> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm301346e/rheology-peg-wtpct> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm301346e> ;
+    rdfs:label "Storage modulus — 7 wt% AO-PEG, r=1.0" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 4196.0 ;
+    qudt:unit "Pa" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm301346e/storage-modulus-3pct-r07> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm301346e/rheology-r-ratio> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm301346e> ;
+    rdfs:label "Storage modulus — 3 wt% AO-PEG, r=0.7" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 258.0 ;
+    qudt:unit "Pa" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm301346e/storage-modulus-3pct-r08> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm301346e/rheology-r-ratio> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm301346e> ;
+    rdfs:label "Storage modulus — 3 wt% AO-PEG, r=0.8" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 550.0 ;
+    qudt:unit "Pa" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm301346e/storage-modulus-3pct-r10-v2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm301346e/rheology-r-ratio> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm301346e> ;
+    rdfs:label "Storage modulus — 3 wt% AO-PEG, r=1.0 (r-ratio series)" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 980.0 ;
+    qudt:unit "Pa" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm301346e/water-content-3pct-r07> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm301346e/water-content-swelling> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm301346e> ;
+    rdfs:label "Water content — 3 wt% AO-PEG, r=0.7" ;
+    lova:measurementType "Water content" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 99.26 ;
+    qudt:unit "%" ;
+    lova:stdDev 0.08 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm301346e/water-content-3pct-r10> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm301346e/water-content-swelling> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm301346e> ;
+    rdfs:label "Water content — 3 wt% AO-PEG, r=1.0" ;
+    lova:measurementType "Water content" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 98.49 ;
+    qudt:unit "%" ;
+    lova:stdDev 0.14 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm301346e/water-content-7pct-r10> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm301346e/water-content-swelling> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm301346e> ;
+    rdfs:label "Water content — 7 wt% AO-PEG, r=1.0" ;
+    lova:measurementType "Water content" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 95.78 ;
+    qudt:unit "%" ;
+    lova:stdDev 0.25 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm301346e/swelling-ratio-3pct-r07> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm301346e/water-content-swelling> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm301346e> ;
+    rdfs:label "Swelling ratio — 3 wt% AO-PEG, r=0.7" ;
+    lova:measurementType "Swelling ratio" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 1.76 ;
+    qudt:unit "ratio" ;
+    lova:stdDev 0.07 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm301346e/swelling-ratio-3pct-r10> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm301346e/water-content-swelling> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm301346e> ;
+    rdfs:label "Swelling ratio — 3 wt% AO-PEG, r=1.0" ;
+    lova:measurementType "Swelling ratio" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 1.09 ;
+    qudt:unit "ratio" ;
+    lova:stdDev 0.02 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm301346e/swelling-ratio-7pct-r10> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm301346e/water-content-swelling> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm301346e> ;
+    rdfs:label "Swelling ratio — 7 wt% AO-PEG, r=1.0" ;
+    lova:measurementType "Swelling ratio" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 1.45 ;
+    qudt:unit "ratio" ;
+    lova:stdDev 0.17 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm301346e/gelation-time-ph6> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm301346e/gelation-kinetics-ph> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm301346e> ;
+    rdfs:label "Gelation time at pH 6.0" ;
+    lova:measurementType "Gelation time" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 5.0 ;
+    qudt:unit "min" ;
+    lova:pH "6.0" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm301346e/gelation-time-ph72> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm301346e/gelation-kinetics-ph> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm301346e> ;
+    rdfs:label "Gelation time at pH 7.2" ;
+    lova:measurementType "Gelation time" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 30.0 ;
+    qudt:unit "min" ;
+    lova:pH "7.2" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm301346e/gelation-time-ph8> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm301346e/gelation-kinetics-ph> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm301346e> ;
+    rdfs:label "Gelation at pH 8.0 — only partially cross-linked at 30 min" ;
+    lova:measurementType "Gelation time" ;
+    lova:measurementCategory "Rheological" ;
+    lova:valueString "Only partially cross-linked at 30 min" ;
+    lova:pH "8.0" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm301346e/mtt-day1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm301346e/mtt-assay> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm301346e> ;
+    rdfs:label "MTT relative absorbance — Day 1" ;
+    lova:measurementType "Metabolic activity (MTT reduction)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.75 ;
+    qudt:unit "relative fluorescence/absorbance" ;
+    lova:timePoint "Day 1" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm301346e/mtt-day4> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm301346e/mtt-assay> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm301346e> ;
+    rdfs:label "MTT relative absorbance — Day 4" ;
+    lova:measurementType "Metabolic activity (MTT reduction)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.1 ;
+    qudt:unit "relative fluorescence/absorbance" ;
+    lova:timePoint "Day 4" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm301346e/mtt-day7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm301346e/mtt-assay> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm301346e> ;
+    rdfs:label "MTT relative absorbance — Day 7" ;
+    lova:measurementType "Metabolic activity (MTT reduction)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.1 ;
+    qudt:unit "relative fluorescence/absorbance" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm301346e/viability-day1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm301346e/live-dead-staining> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm301346e> ;
+    rdfs:label "MSC viability (Live/Dead) — Day 1" ;
+    lova:measurementType "Cell viability" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "High viability (predominantly live/green staining)" ;
+    lova:timePoint "Day 1" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm301346e/viability-day4> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm301346e/live-dead-staining> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm301346e> ;
+    rdfs:label "MSC viability (Live/Dead) — Day 4" ;
+    lova:measurementType "Cell viability" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "High viability (predominantly live/green staining)" ;
+    lova:timePoint "Day 4" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm301346e/viability-day7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm301346e/live-dead-staining> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm301346e> ;
+    rdfs:label "MSC viability (Live/Dead) — Day 7" ;
+    lova:measurementType "Cell viability" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "High viability (predominantly live/green staining)" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm301346e/spreading-ontop-day1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm301346e/cell-spreading> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm301346e> ;
+    rdfs:label "MSC morphology on top of hydrogel — Day 1 (spread)" ;
+    lova:measurementType "Cell morphology" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Spread morphology" ;
+    lova:timePoint "Day 1" ;
+    lova:comparisonGroup "MSCs encapsulated inside hydrogel" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm301346e/spreading-encapsulated-day1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm301346e/cell-spreading> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm301346e> ;
+    rdfs:label "MSC morphology encapsulated in hydrogel — Day 1 (rounded)" ;
+    lova:measurementType "Cell morphology" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Rounded morphology, no spreading" ;
+    lova:timePoint "Day 1" ;
+    lova:comparisonGroup "MSCs on top of hydrogel" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm301346e/spreading-encapsulated-day4> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm301346e/cell-spreading> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm301346e> ;
+    rdfs:label "MSC morphology encapsulated in hydrogel — Day 4 (rounded)" ;
+    lova:measurementType "Cell morphology" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Rounded morphology, no spreading" ;
+    lova:timePoint "Day 4" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm301346e/spreading-encapsulated-day7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm301346e/cell-spreading> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm301346e> ;
+    rdfs:label "MSC morphology encapsulated in hydrogel — Day 7 (rounded)" ;
+    lova:measurementType "Cell morphology" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Rounded morphology, no spreading" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1021-bm301346e/sem-pore-size> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-bm301346e/sem-imaging> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm301346e> ;
+    rdfs:label "SEM-observed pore size — no pores larger than 5 μm (resolution limit)" ;
+    lova:measurementType "Pore size" ;
+    lova:measurementCategory "Structural" ;
+    lova:valueString "No pores larger than 5 μm observed (instrument resolution limit)" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1021-bm301346e/storage-modulus-3pct-vs-7pct-r10> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm301346e> ;
+    rdfs:label "Storage modulus higher at 7 wt% vs 3 wt% AO-PEG (r=1.0)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-bm301346e/storage-modulus-7pct-r10> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-bm301346e/storage-modulus-3pct-r10> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#comparison/10.1021-bm301346e/storage-modulus-r07-vs-r10-3pct> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm301346e> ;
+    rdfs:label "Storage modulus lower at r=0.7 vs r=1.0 (3 wt% AO-PEG)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-bm301346e/storage-modulus-3pct-r07> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-bm301346e/storage-modulus-3pct-r10-v2> ;
+    lova:direction "lower" .
+
+<https://lovamap.com/ontology#comparison/10.1021-bm301346e/water-content-r07-vs-r10-3pct> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm301346e> ;
+    rdfs:label "Water content higher at r=0.7 vs r=1.0 (3 wt% AO-PEG)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-bm301346e/water-content-3pct-r07> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-bm301346e/water-content-3pct-r10> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#comparison/10.1021-bm301346e/swelling-ratio-r07-vs-r10-3pct> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm301346e> ;
+    rdfs:label "Swelling ratio higher at r=0.7 vs r=1.0 (3 wt% AO-PEG)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-bm301346e/swelling-ratio-3pct-r07> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-bm301346e/swelling-ratio-3pct-r10> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#comparison/10.1021-bm301346e/gelation-ph6-vs-ph72> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm301346e> ;
+    rdfs:label "Gelation time shorter at pH 6.0 vs pH 7.2" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-bm301346e/gelation-time-ph6> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-bm301346e/gelation-time-ph72> ;
+    lova:direction "lower" .
+
+<https://lovamap.com/ontology#comparison/10.1021-bm301346e/spreading-ontop-vs-encapsulated> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm301346e> ;
+    rdfs:label "MSCs on top of hydrogel spread more than MSCs encapsulated inside hydrogel at Day 1" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-bm301346e/spreading-ontop-day1> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-bm301346e/spreading-encapsulated-day1> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#comparison/10.1021-bm301346e/mtt-day1-vs-day7> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1021-bm301346e> ;
+    rdfs:label "MTT metabolic activity higher at Day 7 vs Day 1" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-bm301346e/mtt-day7> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-bm301346e/mtt-day1> ;
+    lova:direction "higher" .

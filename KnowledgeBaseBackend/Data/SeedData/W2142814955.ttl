@@ -1,0 +1,870 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1039-c5tb00807g> a bibo:AcademicArticle ;
+    rdfs:label "Cam et al., 2015 — Systematic evaluation of natural scaffolds in cutaneous wound healing" ;
+    dc:title "Systematic evaluation of natural scaffolds in cutaneous wound healing" ;
+    dc:identifier "10.1039/c5tb00807g" ;
+    dc:date "2015"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/journal-of-materials-chemistry-b> ;
+    dc:creator <https://lovamap.com/ontology#author/cam-cynthia> ,
+               <https://lovamap.com/ontology#author/zhu-suwei> ,
+               <https://lovamap.com/ontology#author/truong-norman-f> ,
+               <https://lovamap.com/ontology#author/scumpia-philip-o> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/cam-cynthia>
+                       <https://lovamap.com/ontology#author/zhu-suwei>
+                       <https://lovamap.com/ontology#author/truong-norman-f>
+                       <https://lovamap.com/ontology#author/scumpia-philip-o>
+                       <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    dc:bibliographicCitation "Cam et al., 2015" ;
+    lova:focusMaterial "Fibrin, microporous hyaluronic acid, composite, and VEGF-nanocapsule-loaded composite hydrogels as acellular scaffolds for cutaneous wound healing" .
+
+<https://lovamap.com/ontology#author/cam-cynthia> a foaf:Person ;
+    foaf:familyName "Cam" ;
+    foaf:givenName "Cynthia" ;
+    foaf:name "Cynthia Cam" .
+
+<https://lovamap.com/ontology#author/zhu-suwei> a foaf:Person ;
+    foaf:familyName "Zhu" ;
+    foaf:givenName "Suwei" ;
+    foaf:name "Suwei Zhu" .
+
+<https://lovamap.com/ontology#author/truong-norman-f> a foaf:Person ;
+    foaf:familyName "Truong" ;
+    foaf:givenName "Norman F." ;
+    foaf:name "Norman F. Truong" .
+
+<https://lovamap.com/ontology#author/scumpia-philip-o> a foaf:Person ;
+    foaf:familyName "Scumpia" ;
+    foaf:givenName "Philip O." ;
+    foaf:name "Philip O. Scumpia" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" .
+
+<https://lovamap.com/ontology#journal/journal-of-materials-chemistry-b> a bibo:Journal ;
+    dc:title "Journal of Materials Chemistry B" ;
+    bibo:issn "2050-750X" .
+
+<https://lovamap.com/ontology#material/10.1039-c5tb00807g/untreated-u> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "Untreated wound (U) - no scaffold" .
+
+<https://lovamap.com/ontology#material/10.1039-c5tb00807g/fibrin-f> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "Fibrin gel (F)" ;
+    lova:particleMaterial "Fibrin" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:stiffnessValue 390.0 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1039-c5tb00807g/fibrin-gel-formation> ;
+    lova:scaffoldDimensions "4 mm diameter × 1 mm height (implanted, cut via biopsy punch)" .
+
+<https://lovamap.com/ontology#material/10.1039-c5tb00807g/porous-ha-mu> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "Microporous hyaluronic acid gel (μ)" ;
+    lova:particleMaterial "Hyaluronic acid (HA)-acrylate, MMP-peptide crosslinked" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:stiffnessValue 597.2 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:reportedPoreSize "53-63 μm (PMMA porogen size)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1039-c5tb00807g/porous-ha-gel-formation> ;
+    lova:scaffoldDimensions "4 mm diameter × 1 mm height (implanted, cut via biopsy punch)" .
+
+<https://lovamap.com/ontology#material/10.1039-c5tb00807g/composite-muf> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "Composite porous HA/fibrin gel (µ/F)" ;
+    lova:particleMaterial "Hyaluronic acid (HA) + Fibrin composite" ;
+    lova:reportedPoreSize "53-63 μm (PMMA porogen size)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1039-c5tb00807g/composite-gel-formation> ;
+    lova:scaffoldDimensions "4 mm diameter × 1 mm height (implanted, cut via biopsy punch)" .
+
+<https://lovamap.com/ontology#material/10.1039-c5tb00807g/inductive-muf-nv> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "Inductive composite gel with VEGF nanocapsules (µ/F/nV)" ;
+    lova:particleMaterial "Hyaluronic acid (HA) + Fibrin + VEGF nanocapsules" ;
+    lova:reportedPoreSize "53-63 μm (PMMA porogen size)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1039-c5tb00807g/inductive-composite-formation> ;
+    lova:scaffoldDimensions "4 mm diameter × 1 mm height (implanted, cut via biopsy punch)" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1039-c5tb00807g/porous-ha-gel-formation> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "Porous hyaluronic acid hydrogel formation via PMMA microsphere templating" ;
+    lova:chemistry "Michael-type addition (thiol-ene)" ;
+    lova:manufacturingMethod "PMMA microsphere porogen templating, centrifugation infusion (700 g, 12 min, 4°C), acetone dissolution of porogen" ;
+    lova:annealingConditions "37°C, 30-45 min polymerization" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1039-c5tb00807g/sodium-hyaluronan> ,
+                    <https://lovamap.com/ontology#reagent/10.1039-c5tb00807g/adh> ,
+                    <https://lovamap.com/ontology#reagent/10.1039-c5tb00807g/edc> ,
+                    <https://lovamap.com/ontology#reagent/10.1039-c5tb00807g/nhs-ac> ,
+                    <https://lovamap.com/ontology#reagent/10.1039-c5tb00807g/hs-mmp-sh> ,
+                    <https://lovamap.com/ontology#reagent/10.1039-c5tb00807g/rgd> ,
+                    <https://lovamap.com/ontology#reagent/10.1039-c5tb00807g/teoa> ,
+                    <https://lovamap.com/ontology#reagent/10.1039-c5tb00807g/pmma-microspheres> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1039-c5tb00807g/fibrin-gel-formation> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "Fibrin gel formation via thrombin-catalyzed polymerization" ;
+    lova:chemistry "Enzymatic polymerization (thrombin-catalyzed fibrin formation)" ;
+    lova:manufacturingMethod "In situ gelation" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1039-c5tb00807g/fibrinogen> ,
+                    <https://lovamap.com/ontology#reagent/10.1039-c5tb00807g/thrombin> ,
+                    <https://lovamap.com/ontology#reagent/10.1039-c5tb00807g/cacl2> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1039-c5tb00807g/composite-gel-formation> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "Composite porous HA/fibrin gel formation" ;
+    lova:chemistry "Michael-type addition + enzymatic fibrin polymerization" ;
+    lova:manufacturingMethod "Rehydration of porous HA gel with fibrinogen followed by thrombin/CaCl2 submersion" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1039-c5tb00807g/fibrinogen> ,
+                    <https://lovamap.com/ontology#reagent/10.1039-c5tb00807g/thrombin> ,
+                    <https://lovamap.com/ontology#reagent/10.1039-c5tb00807g/cacl2> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1039-c5tb00807g/inductive-composite-formation> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "Inductive composite gel formation with VEGF nanocapsules" ;
+    lova:chemistry "Michael-type addition + enzymatic fibrin polymerization + free-radical nanocapsule synthesis" ;
+    lova:manufacturingMethod "VEGF nanocapsules mixed into fibrinogen hydration solution prior to thrombin/CaCl2 submersion of porous HA gel" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1039-c5tb00807g/fibrinogen> ,
+                    <https://lovamap.com/ontology#reagent/10.1039-c5tb00807g/thrombin> ,
+                    <https://lovamap.com/ontology#reagent/10.1039-c5tb00807g/cacl2> ,
+                    <https://lovamap.com/ontology#reagent/10.1039-c5tb00807g/vegf-nanocapsule> ,
+                    <https://lovamap.com/ontology#reagent/10.1039-c5tb00807g/vegf165> ,
+                    <https://lovamap.com/ontology#reagent/10.1039-c5tb00807g/apm> ,
+                    <https://lovamap.com/ontology#reagent/10.1039-c5tb00807g/aam> ,
+                    <https://lovamap.com/ontology#reagent/10.1039-c5tb00807g/knrvk-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1039-c5tb00807g/aps> ,
+                    <https://lovamap.com/ontology#reagent/10.1039-c5tb00807g/temed> .
+
+<https://lovamap.com/ontology#reagent/10.1039-c5tb00807g/sodium-hyaluronan> a lova:Reagent ;
+    rdfs:label "Sodium hyaluronan (HA, 60 kDa)" ;
+    lova:reagentRole "monomer" ;
+    lova:molecularWeight "60 kDa" ;
+    lova:supplier "Genzyme Corporation" ;
+    lova:reagentFunction "Backbone polymer for HA hydrogel, acrylate-functionalized for crosslinking" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c5tb00807g/adh> a lova:Reagent ;
+    rdfs:label "Adipic acid dihydrazide (ADH)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "18.0 g (105.5 mmol)" ;
+    lova:reagentFunction "HA carboxyl group modification intermediate" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c5tb00807g/edc> a lova:Reagent ;
+    rdfs:label "1-ethyl-3-[3-dimethylaminopropyl] carbodiimide hydrochloride (EDC)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "4.0 g (20 mmol)" ;
+    lova:reagentFunction "Carbodiimide coupling agent for HA-ADH conjugation" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c5tb00807g/nhs-ac> a lova:Reagent ;
+    rdfs:label "N-acryloxysuccinimide (NHS-Ac)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "1.33 g (4.4 mmol)" ;
+    lova:reagentFunction "Acrylation of HA-ADH intermediate" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c5tb00807g/hs-mmp-sh> a lova:Reagent ;
+    rdfs:label "MMP-degradable peptide crosslinker (Ac-GCRDGPQGIWGQDRCG-NH2)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:sequence "Ac-GCRDGPQGIWGQDRCG-NH2" ;
+    lova:supplier "Genscript" ;
+    lova:reagentFunction "Bis-cysteine MMP-degradable crosslinker for Michael-type addition hydrogel" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c5tb00807g/rgd> a lova:Reagent ;
+    rdfs:label "RGD peptide (Ac-GCGYGRGDSPG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "Ac-GCGYGRGDSPG-NH2" ;
+    lova:supplier "Genscript" ;
+    lova:concentration "100 μM" ;
+    lova:reagentFunction "Cell adhesion peptide" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c5tb00807g/teoa> a lova:Reagent ;
+    rdfs:label "Triethanolamine (TEOA)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "0.3 M" ;
+    lova:reagentFunction "Buffer for Michael-type addition reaction, pH 8.8" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c5tb00807g/pmma-microspheres> a lova:Reagent ;
+    rdfs:label "Polymethyl methacrylate (PMMA) microspheres (53-63 μm)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "24 mg at 0.4444 mg/μl" ;
+    lova:supplier "Cospheric, Santa Barbara, CA" ;
+    lova:reagentFunction "Sacrificial porogen template for pore formation" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c5tb00807g/fibrinogen> a lova:Reagent ;
+    rdfs:label "Fibrinogen" ;
+    lova:reagentRole "monomer" ;
+    lova:concentration "10 mg/ml" ;
+    lova:reagentFunction "Forms fibrin network upon thrombin cleavage" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c5tb00807g/thrombin> a lova:Reagent ;
+    rdfs:label "Thrombin" ;
+    lova:reagentRole "enzyme" ;
+    lova:concentration "2 U/ml" ;
+    lova:supplier "Sigma Aldrich, St. Louis, MO" ;
+    lova:reagentFunction "Cleaves fibrinogen to form fibrin" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c5tb00807g/cacl2> a lova:Reagent ;
+    rdfs:label "Calcium chloride (CaCl2)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "5 mM" ;
+    lova:reagentFunction "Cofactor for thrombin-catalyzed fibrin polymerization" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c5tb00807g/vegf165> a lova:Reagent ;
+    rdfs:label "VEGF 165 (vascular endothelial growth factor-A)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Genentech, San Francisco, CA" ;
+    lova:reagentFunction "Pro-angiogenic growth factor encapsulated in nanocapsules" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c5tb00807g/apm> a lova:Reagent ;
+    rdfs:label "N-(3-aminopropyl) methacrylamide (APM)" ;
+    lova:reagentRole "monomer" ;
+    lova:reagentFunction "Positively charged monomer for VEGF nanocapsule shell" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c5tb00807g/aam> a lova:Reagent ;
+    rdfs:label "Acrylamide (AAm)" ;
+    lova:reagentRole "monomer" ;
+    lova:reagentFunction "Neutral monomer for VEGF nanocapsule shell" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c5tb00807g/knrvk-peptide> a lova:Reagent ;
+    rdfs:label "Bisacrylated KNRVK peptide crosslinker" ;
+    lova:reagentRole "crosslinker" ;
+    lova:sequence "KNRVK" ;
+    lova:reagentFunction "Plasmin-degradable crosslinker for VEGF nanocapsule shell" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c5tb00807g/aps> a lova:Reagent ;
+    rdfs:label "Ammonium persulfate (APS)" ;
+    lova:reagentRole "initiator" ;
+    lova:reagentFunction "Free-radical polymerization initiator for nanocapsule synthesis" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c5tb00807g/temed> a lova:Reagent ;
+    rdfs:label "Tetramethylethyldiamine (TEMED)" ;
+    lova:reagentRole "initiator" ;
+    lova:reagentFunction "Free-radical polymerization accelerator for nanocapsule synthesis" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c5tb00807g/vegf-nanocapsule> a lova:Reagent ;
+    rdfs:label "Plasmin-degradable VEGF nanocapsule (nV)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "50 ng (100% degradable, L) or 150 ng (25% degradable, L)" ;
+    lova:reagentFunction "Controlled release of VEGF for pro-angiogenic signaling" .
+
+<https://lovamap.com/ontology#experiment/10.1039-c5tb00807g/rheology-mu> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1039-c5tb00807g/porous-ha-mu> ;
+    rdfs:label "Storage modulus measurement of porous HA hydrogel" ;
+    lova:experimentCategory "Mechanical" ;
+    lova:experimentType "Rheology" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/storage-modulus-mu> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c5tb00807g/rheology-mu> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "Storage modulus of microporous HA hydrogel" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 597.2 ;
+    qudt:unit "Pa" ;
+    lova:stdDev 140.5 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1039-c5tb00807g/rheology-fibrin> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1039-c5tb00807g/fibrin-f> ;
+    rdfs:label "Storage modulus measurement of fibrin gel" ;
+    lova:experimentCategory "Mechanical" ;
+    lova:experimentType "Rheology" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/storage-modulus-fibrin> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c5tb00807g/rheology-fibrin> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "Storage modulus of fibrin gel (10 mg/ml)" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 390.0 ;
+    qudt:unit "Pa" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1039-c5tb00807g/stiffness-mu-vs-fibrin> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "Storage modulus higher in porous HA gel vs fibrin gel" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/storage-modulus-mu> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/storage-modulus-fibrin> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#experiment/10.1039-c5tb00807g/wound-closure-fig1> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1039-c5tb00807g/untreated-u> ,
+                      <https://lovamap.com/ontology#material/10.1039-c5tb00807g/fibrin-f> ,
+                      <https://lovamap.com/ontology#material/10.1039-c5tb00807g/porous-ha-mu> ;
+    rdfs:label "Wound closure assay - conductive scaffolds (U, F, μ)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Wound closure assay" ;
+    lova:assayOrMethod "Digital image wound area quantification" ;
+    lova:cultureDuration "7 days" ;
+    lova:sampleSize 4 .
+
+<https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/wc-u-fig1-day7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c5tb00807g/wound-closure-fig1> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "Remaining wound % at day 7 - untreated (U)" ;
+    lova:measurementType "Remaining wound area (%)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 85.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/wc-f-fig1-day7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c5tb00807g/wound-closure-fig1> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "Remaining wound % at day 7 - fibrin (F)" ;
+    lova:measurementType "Remaining wound area (%)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 90.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/wc-mu-fig1-day7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c5tb00807g/wound-closure-fig1> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "Remaining wound % at day 7 - microporous HA (μ)" ;
+    lova:measurementType "Remaining wound area (%)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 65.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1039-c5tb00807g/wc-mu-vs-u-fig1> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "μ wounds close more rapidly than U wounds by day 7" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/wc-mu-fig1-day7> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/wc-u-fig1-day7> ;
+    lova:direction "lower" ;
+    lova:isSignificant true ;
+    lova:foldChange 1.3 .
+
+<https://lovamap.com/ontology#comparison/10.1039-c5tb00807g/wc-mu-vs-f-fig1> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "μ wounds close more rapidly than F wounds by day 7" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/wc-mu-fig1-day7> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/wc-f-fig1-day7> ;
+    lova:direction "lower" ;
+    lova:isSignificant true ;
+    lova:foldChange 1.3 .
+
+<https://lovamap.com/ontology#comparison/10.1039-c5tb00807g/wc-f-vs-u-fig1> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "F wounds closed more slowly than U wounds" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/wc-f-fig1-day7> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/wc-u-fig1-day7> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#experiment/10.1039-c5tb00807g/wound-closure-fig2> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1039-c5tb00807g/fibrin-f> ,
+                      <https://lovamap.com/ontology#material/10.1039-c5tb00807g/porous-ha-mu> ,
+                      <https://lovamap.com/ontology#material/10.1039-c5tb00807g/composite-muf> ;
+    rdfs:label "Wound closure assay - composite scaffolds (F, μ, µ/F)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Wound closure assay" ;
+    lova:assayOrMethod "Digital image wound area quantification" ;
+    lova:cultureDuration "7 days" ;
+    lova:sampleSize 4 .
+
+<https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/wc-f-fig2-day7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c5tb00807g/wound-closure-fig2> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "Remaining wound % at day 7 - fibrin (F)" ;
+    lova:measurementType "Remaining wound area (%)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 68.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/wc-mu-fig2-day7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c5tb00807g/wound-closure-fig2> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "Remaining wound % at day 7 - microporous HA (μ)" ;
+    lova:measurementType "Remaining wound area (%)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 63.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/wc-muf-fig2-day7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c5tb00807g/wound-closure-fig2> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "Remaining wound % at day 7 - composite (µ/F)" ;
+    lova:measurementType "Remaining wound area (%)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 65.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1039-c5tb00807g/wc-muf-vs-f-fig2> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "Composite (µ/F) wounds close more rapidly than fibrin (F) alone, p=0.058 at day 7" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/wc-muf-fig2-day7> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/wc-f-fig2-day7> ;
+    lova:direction "lower" ;
+    lova:pValue 0.058 ;
+    lova:isSignificant false .
+
+<https://lovamap.com/ontology#experiment/10.1039-c5tb00807g/wound-closure-fig3> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1039-c5tb00807g/untreated-u> ,
+                      <https://lovamap.com/ontology#material/10.1039-c5tb00807g/composite-muf> ,
+                      <https://lovamap.com/ontology#material/10.1039-c5tb00807g/inductive-muf-nv> ;
+    rdfs:label "Wound closure assay - inductive scaffolds (U, µ/F, µ/F/nV)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Wound closure assay" ;
+    lova:assayOrMethod "Digital image wound area quantification" ;
+    lova:cultureDuration "7 days" ;
+    lova:sampleSize 4 .
+
+<https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/wc-u-fig3-day7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c5tb00807g/wound-closure-fig3> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "Remaining wound % at day 7 - untreated (U)" ;
+    lova:measurementType "Remaining wound area (%)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 87.23 ;
+    qudt:unit "%" ;
+    lova:stdErr 2.48 ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/wc-muf-fig3-day7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c5tb00807g/wound-closure-fig3> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "Remaining wound % at day 7 - composite (µ/F)" ;
+    lova:measurementType "Remaining wound area (%)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 74.86 ;
+    qudt:unit "%" ;
+    lova:stdErr 4.56 ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/wc-mufnv-fig3-day7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c5tb00807g/wound-closure-fig3> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "Remaining wound % at day 7 - inductive composite (µ/F/nV)" ;
+    lova:measurementType "Remaining wound area (%)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 56.75 ;
+    qudt:unit "%" ;
+    lova:stdErr 5.43 ;
+    lova:timePoint "Day 7" ;
+    lova:isSignificant true ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1039-c5tb00807g/wc-mufnv-vs-muf-fig3> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "µ/F/nV wounds significantly smaller than µ/F wounds at day 7" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/wc-mufnv-fig3-day7> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/wc-muf-fig3-day7> ;
+    lova:direction "lower" ;
+    lova:isSignificant true ;
+    lova:foldChange 1.3 .
+
+<https://lovamap.com/ontology#comparison/10.1039-c5tb00807g/wc-mufnv-vs-u-fig3> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "µ/F/nV wounds significantly smaller than U wounds at day 7" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/wc-mufnv-fig3-day7> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/wc-u-fig3-day7> ;
+    lova:direction "lower" ;
+    lova:isSignificant true ;
+    lova:foldChange 1.5 .
+
+<https://lovamap.com/ontology#experiment/10.1039-c5tb00807g/histology-fig1> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1039-c5tb00807g/untreated-u> ,
+                      <https://lovamap.com/ontology#material/10.1039-c5tb00807g/fibrin-f> ,
+                      <https://lovamap.com/ontology#material/10.1039-c5tb00807g/porous-ha-mu> ;
+    rdfs:label "Histological scoring - conductive scaffolds (U, F, μ)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Histology scoring" ;
+    lova:assayOrMethod "H&E staining, 12-point pathologist scoring" ;
+    lova:cultureDuration "7 days" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/hist-fibroplasia-mu-fig1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c5tb00807g/histology-fig1> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "Fibroplasia score - μ treated wounds, day 7" ;
+    lova:measurementType "Fibroplasia score" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.9 ;
+    qudt:unit "score" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/hist-fibroplasia-u-fig1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c5tb00807g/histology-fig1> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "Fibroplasia score - U treated wounds, day 7" ;
+    lova:measurementType "Fibroplasia score" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.6 ;
+    qudt:unit "score" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1039-c5tb00807g/fibroplasia-mu-vs-u-fig1> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "Trend towards decreased fibroplasia in μ vs U wounds" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/hist-fibroplasia-mu-fig1> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/hist-fibroplasia-u-fig1> ;
+    lova:direction "lower" .
+
+<https://lovamap.com/ontology#experiment/10.1039-c5tb00807g/histology-fig2> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1039-c5tb00807g/fibrin-f> ,
+                      <https://lovamap.com/ontology#material/10.1039-c5tb00807g/porous-ha-mu> ,
+                      <https://lovamap.com/ontology#material/10.1039-c5tb00807g/composite-muf> ;
+    rdfs:label "Histological scoring - composite scaffolds (F, μ, µ/F)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Histology scoring" ;
+    lova:assayOrMethod "H&E staining, 12-point pathologist scoring" ;
+    lova:cultureDuration "7 days" .
+
+<https://lovamap.com/ontology#experiment/10.1039-c5tb00807g/histology-fig3> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1039-c5tb00807g/untreated-u> ,
+                      <https://lovamap.com/ontology#material/10.1039-c5tb00807g/composite-muf> ,
+                      <https://lovamap.com/ontology#material/10.1039-c5tb00807g/inductive-muf-nv> ;
+    rdfs:label "Histological scoring - inductive scaffolds (U, µ/F, µ/F/nV)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Histology scoring" ;
+    lova:assayOrMethod "H&E staining, 12-point pathologist scoring" ;
+    lova:cultureDuration "7 days" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/hist-inflammation-mufnv-fig3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c5tb00807g/histology-fig3> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "Inflammation score - µ/F/nV treated wounds, day 7" ;
+    lova:measurementType "Inflammation score" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.6 ;
+    qudt:unit "score" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/hist-inflammation-u-fig3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c5tb00807g/histology-fig3> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "Inflammation score - U treated wounds, day 7" ;
+    lova:measurementType "Inflammation score" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 3.3 ;
+    qudt:unit "score" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1039-c5tb00807g/inflammation-mufnv-vs-u-fig3> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "Decreased inflammatory response in µ/F/nV vs U wounds" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/hist-inflammation-mufnv-fig3> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/hist-inflammation-u-fig3> ;
+    lova:direction "lower" .
+
+<https://lovamap.com/ontology#experiment/10.1039-c5tb00807g/ifc-fig1> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1039-c5tb00807g/untreated-u> ,
+                      <https://lovamap.com/ontology#material/10.1039-c5tb00807g/fibrin-f> ,
+                      <https://lovamap.com/ontology#material/10.1039-c5tb00807g/porous-ha-mu> ;
+    rdfs:label "Immunofluorescence quantification - conductive scaffolds (U, F, μ)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immunofluorescence staining" ;
+    lova:assayOrMethod "CD31/NG2/DAPI staining, ImageJ quantification" ;
+    lova:cultureDuration "7 days" ;
+    lova:sampleSize 4 .
+
+<https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/cd31-u-fig1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c5tb00807g/ifc-fig1> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "CD31+ area % - U treated wounds, day 7" ;
+    lova:measurementType "CD31+ area (%)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.58 ;
+    qudt:unit "%" ;
+    lova:stdDev 0.71 ;
+    lova:timePoint "Day 7" ;
+    lova:isSignificant false ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/cd31-f-fig1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c5tb00807g/ifc-fig1> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "CD31+ area % - F treated wounds, day 7" ;
+    lova:measurementType "CD31+ area (%)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.18 ;
+    qudt:unit "%" ;
+    lova:stdDev 0.47 ;
+    lova:timePoint "Day 7" ;
+    lova:isSignificant false ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/cd31-mu-fig1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c5tb00807g/ifc-fig1> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "CD31+ area % - μ treated wounds, day 7" ;
+    lova:measurementType "CD31+ area (%)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.17 ;
+    qudt:unit "%" ;
+    lova:stdDev 0.50 ;
+    lova:timePoint "Day 7" ;
+    lova:isSignificant false ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1039-c5tb00807g/cd31-f-vs-u-fig1> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "CD31+ area higher in F vs U, not significant" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/cd31-f-fig1> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/cd31-u-fig1> ;
+    lova:direction "higher" ;
+    lova:isSignificant false .
+
+<https://lovamap.com/ontology#comparison/10.1039-c5tb00807g/cd31-mu-vs-u-fig1> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "CD31+ area higher in μ vs U, not significant" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/cd31-mu-fig1> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/cd31-u-fig1> ;
+    lova:direction "higher" ;
+    lova:isSignificant false .
+
+<https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/ng2-u-fig1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c5tb00807g/ifc-fig1> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "NG2+ area % - U treated wounds, day 7" ;
+    lova:measurementType "NG2+ area (%)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.18 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/ng2-f-fig1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c5tb00807g/ifc-fig1> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "NG2+ area % - F treated wounds, day 7" ;
+    lova:measurementType "NG2+ area (%)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.10 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/ng2-mu-fig1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c5tb00807g/ifc-fig1> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "NG2+ area % - μ treated wounds, day 7" ;
+    lova:measurementType "NG2+ area (%)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.78 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 7" ;
+    lova:isSignificant true ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1039-c5tb00807g/ng2-mu-vs-f-fig1> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "NG2+ area 5-fold higher in μ vs F wounds" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/ng2-mu-fig1> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/ng2-f-fig1> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:foldChange 5.0 .
+
+<https://lovamap.com/ontology#comparison/10.1039-c5tb00807g/ng2-mu-vs-u-fig1> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "NG2+ area 9-fold higher in μ vs U wounds" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/ng2-mu-fig1> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/ng2-u-fig1> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:foldChange 9.0 .
+
+<https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/dapi-u-fig1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c5tb00807g/ifc-fig1> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "DAPI+ area % - U treated wounds, day 7" ;
+    lova:measurementType "DAPI+ area (%)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 23.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1039-c5tb00807g/ifc-fig2> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1039-c5tb00807g/fibrin-f> ,
+                      <https://lovamap.com/ontology#material/10.1039-c5tb00807g/porous-ha-mu> ,
+                      <https://lovamap.com/ontology#material/10.1039-c5tb00807g/composite-muf> ;
+    rdfs:label "Immunofluorescence quantification - composite scaffolds (F, μ, µ/F)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immunofluorescence staining" ;
+    lova:assayOrMethod "CD31/NG2/DAPI staining, ImageJ quantification" ;
+    lova:cultureDuration "7 days" ;
+    lova:sampleSize 4 .
+
+<https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/ng2-f-fig2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c5tb00807g/ifc-fig2> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "NG2+ area % - F treated wounds (Fig2), day 7" ;
+    lova:measurementType "NG2+ area (%)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.10 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/ng2-mu-fig2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c5tb00807g/ifc-fig2> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "NG2+ area % - μ treated wounds (Fig2), day 7" ;
+    lova:measurementType "NG2+ area (%)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.78 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 7" ;
+    lova:isSignificant true ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/ng2-muf-fig2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c5tb00807g/ifc-fig2> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "NG2+ area % - µ/F treated wounds, day 7" ;
+    lova:measurementType "NG2+ area (%)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.35 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1039-c5tb00807g/ng2-mu-vs-f-fig2> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "NG2+ area 9-fold higher in μ vs F (composite experiment)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/ng2-mu-fig2> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/ng2-f-fig2> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:foldChange 9.0 .
+
+<https://lovamap.com/ontology#comparison/10.1039-c5tb00807g/ng2-muf-vs-f-fig2> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "NG2+ area 4-fold higher in µ/F vs F" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/ng2-muf-fig2> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/ng2-f-fig2> ;
+    lova:direction "higher" ;
+    lova:pValue 0.0673 ;
+    lova:foldChange 4.0 .
+
+<https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/dapi-f-fig2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c5tb00807g/ifc-fig2> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "DAPI+ area % - F treated wounds, day 7" ;
+    lova:measurementType "DAPI+ area (%)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 35.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/dapi-muf-fig2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c5tb00807g/ifc-fig2> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "DAPI+ area % - µ/F treated wounds, day 7" ;
+    lova:measurementType "DAPI+ area (%)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 20.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 7" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1039-c5tb00807g/dapi-muf-vs-f-fig2> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "DAPI+ area lower in µ/F vs F, significant" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/dapi-muf-fig2> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/dapi-f-fig2> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1039-c5tb00807g/ifc-fig3> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1039-c5tb00807g/untreated-u> ,
+                      <https://lovamap.com/ontology#material/10.1039-c5tb00807g/composite-muf> ,
+                      <https://lovamap.com/ontology#material/10.1039-c5tb00807g/inductive-muf-nv> ;
+    rdfs:label "Immunofluorescence quantification - inductive scaffolds (U, µ/F, µ/F/nV)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immunofluorescence staining" ;
+    lova:assayOrMethod "CD31/NG2/DAPI staining, ImageJ quantification" ;
+    lova:cultureDuration "7 days" ;
+    lova:sampleSize 4 .
+
+<https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/ng2-u-fig3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c5tb00807g/ifc-fig3> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "NG2+ area % - U treated wounds (Fig3), day 7" ;
+    lova:measurementType "NG2+ area (%)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.18 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/ng2-muf-fig3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c5tb00807g/ifc-fig3> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "NG2+ area % - µ/F treated wounds (Fig3), day 7" ;
+    lova:measurementType "NG2+ area (%)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.35 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/ng2-mufnv-fig3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c5tb00807g/ifc-fig3> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "NG2+ area % - µ/F/nV treated wounds, day 7" ;
+    lova:measurementType "NG2+ area (%)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.78 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 7" ;
+    lova:isSignificant true ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1039-c5tb00807g/ng2-mufnv-vs-muf-fig3> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "NG2+ area 2-fold higher in µ/F/nV vs µ/F" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/ng2-mufnv-fig3> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/ng2-muf-fig3> ;
+    lova:direction "higher" ;
+    lova:foldChange 2.0 .
+
+<https://lovamap.com/ontology#comparison/10.1039-c5tb00807g/ng2-mufnv-vs-u-fig3> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c5tb00807g> ;
+    rdfs:label "NG2+ area 5-fold higher in µ/F/nV vs U, significant" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/ng2-mufnv-fig3> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1039-c5tb00807g/ng2-u-fig3> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:foldChange 5.0 .

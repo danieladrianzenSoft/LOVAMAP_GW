@@ -1,0 +1,1001 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1002-adtp.202200048> a bibo:AcademicArticle ;
+    rdfs:label "Sideris et al., 2022 — MAP Hydrogel Stroke Treatment" ;
+    dc:title "Particle Hydrogels Decrease Cerebral Atrophy and Attenuate Astrocyte and Microglia/Macrophage Reactivity after Stroke" ;
+    dc:identifier "10.1002/adtp.202200048" ;
+    dc:date "2022"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/advanced-therapeutics> ;
+    dc:creator <https://lovamap.com/ontology#author/sideris-elias> ,
+               <https://lovamap.com/ontology#author/kioulaphides-sophia> ,
+               <https://lovamap.com/ontology#author/wilson-katrina> ,
+               <https://lovamap.com/ontology#author/yu-aaron> ,
+               <https://lovamap.com/ontology#author/chen-jun> ,
+               <https://lovamap.com/ontology#author/carmichael-stanley> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/sideris-elias>
+                      <https://lovamap.com/ontology#author/kioulaphides-sophia>
+                      <https://lovamap.com/ontology#author/wilson-katrina>
+                      <https://lovamap.com/ontology#author/yu-aaron>
+                      <https://lovamap.com/ontology#author/chen-jun>
+                      <https://lovamap.com/ontology#author/carmichael-stanley>
+                      <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    dc:bibliographicCitation "Sideris et al., 2022" ;
+    lova:focusMaterial "Hyaluronic acid-based microporous annealed particle (MAP) hydrogels injected directly into the stroke core to modulate astrocyte and microglia/macrophage reactivity and reduce cerebral atrophy" .
+
+<https://lovamap.com/ontology#author/sideris-elias> a foaf:Person ;
+    foaf:familyName "Sideris" ; foaf:givenName "Elias" ; foaf:name "Elias Sideris" .
+<https://lovamap.com/ontology#author/kioulaphides-sophia> a foaf:Person ;
+    foaf:familyName "Kioulaphides" ; foaf:givenName "Sophia" ; foaf:name "Sophia Kioulaphides" .
+<https://lovamap.com/ontology#author/wilson-katrina> a foaf:Person ;
+    foaf:familyName "Wilson" ; foaf:givenName "Katrina L." ; foaf:name "Katrina L. Wilson" .
+<https://lovamap.com/ontology#author/yu-aaron> a foaf:Person ;
+    foaf:familyName "Yu" ; foaf:givenName "Aaron" ; foaf:name "Aaron Yu" .
+<https://lovamap.com/ontology#author/chen-jun> a foaf:Person ;
+    foaf:familyName "Chen" ; foaf:givenName "Jun" ; foaf:name "Jun Chen" .
+<https://lovamap.com/ontology#author/carmichael-stanley> a foaf:Person ;
+    foaf:familyName "Carmichael" ; foaf:givenName "Stanley Thomas" ; foaf:name "Stanley Thomas Carmichael" .
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ; foaf:givenName "Tatiana" ; foaf:name "Tatiana Segura" .
+
+<https://lovamap.com/ontology#journal/advanced-therapeutics> a bibo:Journal ;
+    dc:title "Advanced Therapeutics" ;
+    bibo:issn "2366-3987" .
+
+# ---------------- Materials ----------------
+
+<https://lovamap.com/ontology#material/10.1002-adtp.202200048/ha-map> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "HA-MAP hydrogel (3.5%, 80µm microgels, +RGD)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Hyaluronic acid (HA)" ;
+    lova:particleSizeMin 80.0 ;
+    lova:particleSizeMax 80.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:stiffnessValue 927.0 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adtp.202200048/ha-map-fab> ;
+    lova:packingConfiguration "Jammed" ;
+    lova:surfaceModification "RGD-functionalized" .
+
+<https://lovamap.com/ontology#material/10.1002-adtp.202200048/ha-map-norgd> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "HA-MAP hydrogel (-RGD)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Hyaluronic acid (HA)" ;
+    lova:particleSizeMin 80.0 ;
+    lova:particleSizeMax 80.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adtp.202200048/ha-map-fab> ;
+    lova:packingConfiguration "Jammed" ;
+    lova:surfaceModification "No RGD" .
+
+<https://lovamap.com/ontology#material/10.1002-adtp.202200048/ha-nonporous> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "HA nanoporous (bulk, non-granular) hydrogel" ;
+    lova:particleMaterial "Hyaluronic acid (HA)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adtp.202200048/nonporous-fab> ;
+    lova:packingConfiguration "Non-porous (bulk gel)" .
+
+<https://lovamap.com/ontology#material/10.1002-adtp.202200048/peg-map> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "PEG-MAP hydrogel (+RGD)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "4-arm PEG-Vinyl sulfone (20 kDa)" ;
+    lova:particleSizeMin 80.0 ;
+    lova:particleSizeMax 80.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adtp.202200048/peg-map-fab> ;
+    lova:packingConfiguration "Jammed" ;
+    lova:surfaceModification "RGD-functionalized" .
+
+<https://lovamap.com/ontology#material/10.1002-adtp.202200048/peg-map-norgd> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "PEG-MAP hydrogel (-RGD)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "4-arm PEG-Vinyl sulfone (20 kDa)" ;
+    lova:particleSizeMin 80.0 ;
+    lova:particleSizeMax 80.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adtp.202200048/peg-map-fab> ;
+    lova:packingConfiguration "Jammed" ;
+    lova:surfaceModification "No RGD" .
+
+<https://lovamap.com/ontology#material/10.1002-adtp.202200048/ha-map-45pct> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "HA-MAP hydrogel (4.5%, stiffer)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Hyaluronic acid (HA)" ;
+    lova:particleSizeMin 80.0 ;
+    lova:particleSizeMax 80.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:stiffnessValue 1500.0 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adtp.202200048/ha-map-fab> ;
+    lova:packingConfiguration "Jammed" ;
+    lova:surfaceModification "RGD-functionalized" .
+
+# ---------------- Fabrication Methods ----------------
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-adtp.202200048/ha-map-fab> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "HA-MAP microgel fabrication via microfluidic flow focusing and FXIII/thrombin annealing" ;
+    lova:chemistry "Michael-type addition (thiol-ene)" ;
+    lova:manufacturingMethod "Microfluidic water-in-oil emulsion (flow focusing)" ;
+    lova:annealingChemistry "Enzymatic (Factor XIII and thrombin crosslinking)" ;
+    lova:annealingConditions "37°C, 90 min" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-adtp.202200048/ha-acrylate> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adtp.202200048/k-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adtp.202200048/q-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adtp.202200048/rgd-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adtp.202200048/mmp-crosslinker> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adtp.202200048/fxiii> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adtp.202200048/thrombin> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adtp.202200048/span-80> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adtp.202200048/teoa> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adtp.202200048/cacl2> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adtp.202200048/alexa647-maleimide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adtp.202200048/sigmacote> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-adtp.202200048/peg-map-fab> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "PEG-MAP microgel fabrication via microfluidic flow focusing and FXIII/thrombin annealing" ;
+    lova:chemistry "Michael-type addition (thiol-ene)" ;
+    lova:manufacturingMethod "Microfluidic water-in-oil emulsion (flow focusing)" ;
+    lova:annealingChemistry "Enzymatic (Factor XIII and thrombin crosslinking)" ;
+    lova:annealingConditions "37°C, 90 min" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-adtp.202200048/peg-vs> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adtp.202200048/k-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adtp.202200048/q-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adtp.202200048/rgd-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adtp.202200048/mmp-crosslinker> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adtp.202200048/fxiii> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adtp.202200048/thrombin> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-adtp.202200048/nonporous-fab> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "Nanoporous (bulk) HA hydrogel, same precursor composition as HA-MAP, mixed by vortex, gelled in situ" ;
+    lova:chemistry "Michael-type addition (thiol-ene)" ;
+    lova:manufacturingMethod "Bulk mixing (vortex/pipette), in situ gelation (no microfluidics)" ;
+    lova:annealingChemistry "Enzymatic (Factor XIII and thrombin crosslinking)" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-adtp.202200048/ha-acrylate> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adtp.202200048/k-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adtp.202200048/q-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adtp.202200048/rgd-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adtp.202200048/mmp-crosslinker> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adtp.202200048/fxiii> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adtp.202200048/thrombin> .
+
+# ---------------- Reagents ----------------
+
+<https://lovamap.com/ontology#reagent/10.1002-adtp.202200048/ha-acrylate> a lova:Reagent ;
+    rdfs:label "Acrylate-functionalized hyaluronic acid (HA, 70-90 kDa)" ;
+    lova:reagentRole "monomer" ;
+    lova:molecularWeight "70,000-90,000 Da" ;
+    lova:concentration "7% w/v precursor (3.5% final hydrogel)" ;
+    lova:reagentFunction "Base polymer backbone; brain extracellular matrix component" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adtp.202200048/k-peptide> a lova:Reagent ;
+    rdfs:label "K-peptide (Ac-FKGGERCG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "FKGGERCG" ;
+    lova:concentration "250 µM" ;
+    lova:reagentFunction "Crosslinking peptide component (transglutaminase substrate)" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adtp.202200048/q-peptide> a lova:Reagent ;
+    rdfs:label "Q-peptide (Ac-NQEQVSPLGGERCG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "NQEQVSPLGGERCG" ;
+    lova:concentration "250 µM" ;
+    lova:reagentFunction "Crosslinking peptide component (transglutaminase substrate)" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adtp.202200048/rgd-peptide> a lova:Reagent ;
+    rdfs:label "RGD peptide (Ac-RGDSPGERCG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "RGDSPGERCG" ;
+    lova:concentration "500 µM" ;
+    lova:reagentFunction "Cell adhesion via integrin binding" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adtp.202200048/mmp-crosslinker> a lova:Reagent ;
+    rdfs:label "MMP-sensitive di-thiol peptide crosslinker (Ac-GCRDGPQGIWGQDRCG-NH2)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:sequence "GCRDGPQGIWGQDRCG" ;
+    lova:concentration "7.8 mM" ;
+    lova:supplier "Genscript" ;
+    lova:reagentFunction "Enzymatically (MMP) degradable crosslink" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adtp.202200048/fxiii> a lova:Reagent ;
+    rdfs:label "Factor XIII (FXIII)" ;
+    lova:reagentRole "enzyme" ;
+    lova:concentration "5 U/mL" ;
+    lova:reagentFunction "Annealing (inter-particle crosslinking)" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adtp.202200048/thrombin> a lova:Reagent ;
+    rdfs:label "Thrombin" ;
+    lova:reagentRole "enzyme" ;
+    lova:concentration "1 U/mL" ;
+    lova:reagentFunction "Activates Factor XIII for annealing" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adtp.202200048/span-80> a lova:Reagent ;
+    rdfs:label "Span-80" ;
+    lova:reagentRole "surfactant" ;
+    lova:concentration "1% in heavy mineral oil" ;
+    lova:reagentFunction "Stabilizes water-in-oil emulsion during microgel formation" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adtp.202200048/teoa> a lova:Reagent ;
+    rdfs:label "Triethanolamine (TEOA) buffer" ;
+    lova:reagentRole "solvent" ;
+    lova:concentration "0.3 M, pH 8.8" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adtp.202200048/cacl2> a lova:Reagent ;
+    rdfs:label "Calcium chloride (CaCl2)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "10 mM" ;
+    lova:reagentFunction "Cofactor for FXIII/thrombin crosslinking" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adtp.202200048/alexa647-maleimide> a lova:Reagent ;
+    rdfs:label "Alexa-Fluor 647-maleimide" ;
+    lova:reagentRole "other" ;
+    lova:concentration "10 µM" ;
+    lova:supplier "Life Technologies" ;
+    lova:reagentFunction "Fluorescent labeling of MMP crosslinker" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adtp.202200048/sigmacote> a lova:Reagent ;
+    rdfs:label "Sigmacote" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Sigma-Aldrich" ;
+    lova:reagentFunction "Surface coating of glass slides to prevent gel adhesion during annealing" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adtp.202200048/peg-vs> a lova:Reagent ;
+    rdfs:label "4-arm PEG-Vinyl sulfone (20 kDa)" ;
+    lova:reagentRole "monomer" ;
+    lova:molecularWeight "20,000 Da" ;
+    lova:concentration "10% w/v" ;
+    lova:supplier "Jenkem" ;
+    lova:reagentFunction "Synthetic base polymer backbone" .
+
+# ---------------- Experiments ----------------
+
+<https://lovamap.com/ontology#experiment/10.1002-adtp.202200048/microgel-characterization> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adtp.202200048/ha-map> ;
+    rdfs:label "Microgel size distribution characterization" ;
+    lova:experimentCategory "Material characterization" ;
+    lova:experimentType "Particle size distribution" ;
+    lova:assayOrMethod "Fluorescence microscopy, histogram analysis" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adtp.202200048/mechanical-testing> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adtp.202200048/ha-map> ;
+    rdfs:label "MAP scaffold mechanical compression testing" ;
+    lova:experimentCategory "Mechanical" ;
+    lova:experimentType "Compression testing" ;
+    lova:equipment "Instron 5500 series" ;
+    lova:strainRate "1 mm/min" ;
+    lova:preconditioning "Swollen in HEPES buffer saline, 4h, room temperature" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adtp.202200048/brain-cortex-volume> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adtp.202200048/ha-map> ;
+    rdfs:label "Global brain and cortex volume measurement after stroke ± MAP injection" ;
+    lova:experimentCategory "Histological/Morphometric" ;
+    lova:experimentType "Brain/cortex volume measurement" ;
+    lova:assayOrMethod "FIJI image analysis of coronal sections" ;
+    lova:sampleSize 5 .
+
+<https://lovamap.com/ontology#experiment/10.1002-adtp.202200048/nf200-bundle-count> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adtp.202200048/ha-map> ;
+    rdfs:label "NF200 striatal axonal bundle quantification" ;
+    lova:experimentCategory "Histological/Morphometric" ;
+    lova:experimentType "Axonal bundle counting (watershed segmentation)" ;
+    lova:assayOrMethod "NF200 IHC, FIJI watershed analysis" ;
+    lova:sampleSize 5 .
+
+<https://lovamap.com/ontology#experiment/10.1002-adtp.202200048/astrocyte-reactivity-ihc> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adtp.202200048/ha-map> ;
+    rdfs:label "Astrocyte reactivity via IHC (pERK, S100β, GFAP), 2 days post-injection" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immunohistochemistry" ;
+    lova:assayOrMethod "pERK/GFAP, S100β/GFAP IHC" ;
+    lova:cultureDuration "2 days post injection (7 days post stroke)" ;
+    lova:sampleSize 5 .
+
+<https://lovamap.com/ontology#experiment/10.1002-adtp.202200048/astrocyte-reactivity-hcr> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adtp.202200048/ha-map> ;
+    rdfs:label "Astrocyte reactivity via HCR in situ hybridization (C3, SLC1A2)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "In situ hybridization (HCR)" ;
+    lova:assayOrMethod "C3/SLC1A2 probe hybridization" ;
+    lova:sampleSize 5 .
+
+<https://lovamap.com/ontology#experiment/10.1002-adtp.202200048/microglia-reactivity> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adtp.202200048/ha-map> ;
+    rdfs:label "Microglia/macrophage reactivity via CD11b, iNOS, Arg1 IHC" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immunohistochemistry" ;
+    lova:assayOrMethod "iNOS/CD11b, Arg1/CD11b IHC" ;
+    lova:sampleSize 5 .
+
+<https://lovamap.com/ontology#experiment/10.1002-adtp.202200048/cspg-quantification> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adtp.202200048/ha-map> ;
+    rdfs:label "Chondroitin sulfate proteoglycan (CSPG) quantification" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immunohistochemistry" ;
+    lova:assayOrMethod "CSPG IHC quantification" ;
+    lova:sampleSize 5 .
+
+<https://lovamap.com/ontology#experiment/10.1002-adtp.202200048/astrocyte-microglia-progression> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adtp.202200048/ha-map> ;
+    rdfs:label "Astrocyte scar thickness/infiltration and microglia reactivity over time (7,15,30 days)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immunohistochemistry (time course)" ;
+    lova:assayOrMethod "GFAP, Iba1 IHC" ;
+    lova:cultureDuration "7, 15, 30 days post stroke" ;
+    lova:sampleSize 5 .
+
+<https://lovamap.com/ontology#experiment/10.1002-adtp.202200048/axon-progression> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adtp.202200048/ha-map> ;
+    rdfs:label "NF200 axon progression and infiltration over time" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immunohistochemistry (time course)" ;
+    lova:assayOrMethod "NF200, GFAP IHC" ;
+    lova:cultureDuration "7, 15, 30 days post stroke" ;
+    lova:sampleSize 5 .
+
+<https://lovamap.com/ontology#experiment/10.1002-adtp.202200048/vessel-progression> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adtp.202200048/ha-map> ;
+    rdfs:label "Vessel (Glut-1) infiltration over time" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immunohistochemistry (time course)" ;
+    lova:assayOrMethod "Glut-1, GFAP IHC" ;
+    lova:cultureDuration "15, 30 days post stroke" ;
+    lova:sampleSize 5 .
+
+<https://lovamap.com/ontology#experiment/10.1002-adtp.202200048/microstructure-rgd-backbone-comparison> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adtp.202200048/ha-map> ,
+                      <https://lovamap.com/ontology#material/10.1002-adtp.202200048/ha-nonporous> ,
+                      <https://lovamap.com/ontology#material/10.1002-adtp.202200048/ha-map-norgd> ,
+                      <https://lovamap.com/ontology#material/10.1002-adtp.202200048/peg-map> ,
+                      <https://lovamap.com/ontology#material/10.1002-adtp.202200048/peg-map-norgd> ;
+    rdfs:label "Comparison of microstructure, RGD, and polymer backbone effects on astrocyte/microglia response, 1 week post stroke" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immunohistochemistry" ;
+    lova:assayOrMethod "GFAP, Iba1 IHC" ;
+    lova:cultureDuration "7 days post stroke" ;
+    lova:sampleSize 5 .
+
+# ---------------- Outcomes ----------------
+
+<https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/youngs-modulus-ha-map> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adtp.202200048/mechanical-testing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "Young's modulus of HA-MAP scaffold" ;
+    lova:measurementType "Young's modulus" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 927.0 ;
+    qudt:unit "Pa" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/perk-sham-periinfarct> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adtp.202200048/astrocyte-reactivity-ihc> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "pERK/GFAP highly reactive astrocytes, sham, peri-infarct" ;
+    lova:measurementType "pERK/GFAP positive astrocytes" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 56.0 ;
+    qudt:unit "%" ;
+    lova:scope "Regional" ;
+    lova:comparisonGroup "HA-MAP" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/perk-map-periinfarct> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adtp.202200048/astrocyte-reactivity-ihc> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "pERK/GFAP highly reactive astrocytes, HA-MAP, peri-infarct" ;
+    lova:measurementType "pERK/GFAP positive astrocytes" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 25.0 ;
+    qudt:unit "%" ;
+    lova:scope "Regional" ;
+    lova:comparisonGroup "Sham" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/perk-map-infarct> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adtp.202200048/astrocyte-reactivity-ihc> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "pERK/GFAP highly reactive astrocytes, HA-MAP, infarct" ;
+    lova:measurementType "pERK/GFAP positive astrocytes" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 12.0 ;
+    qudt:unit "%" ;
+    lova:scope "Per-pore" ;
+    lova:comparisonGroup "HA-MAP peri-infarct" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/s100b-sham-periinfarct> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adtp.202200048/astrocyte-reactivity-ihc> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "S100β/GFAP highly reactive astrocytes, sham, peri-infarct" ;
+    lova:measurementType "S100β/GFAP positive astrocytes" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 69.0 ;
+    qudt:unit "%" ;
+    lova:scope "Regional" ;
+    lova:comparisonGroup "HA-MAP" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/s100b-map-periinfarct> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adtp.202200048/astrocyte-reactivity-ihc> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "S100β/GFAP highly reactive astrocytes, HA-MAP, peri-infarct" ;
+    lova:measurementType "S100β/GFAP positive astrocytes" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 26.0 ;
+    qudt:unit "%" ;
+    lova:scope "Regional" ;
+    lova:comparisonGroup "Sham" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/s100b-map-infarct> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adtp.202200048/astrocyte-reactivity-ihc> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "S100β/GFAP highly reactive astrocytes, HA-MAP, infarct" ;
+    lova:measurementType "S100β/GFAP positive astrocytes" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 15.0 ;
+    qudt:unit "%" ;
+    lova:scope "Per-pore" ;
+    lova:comparisonGroup "HA-MAP peri-infarct" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/c3-sham-periinfarct> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adtp.202200048/astrocyte-reactivity-hcr> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "C3/SLC1A2 highly reactive astrocytes, sham, peri-infarct" ;
+    lova:measurementType "C3/SLC1A2 positive astrocytes" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 54.2 ;
+    qudt:unit "%" ;
+    lova:scope "Regional" ;
+    lova:comparisonGroup "HA-MAP" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/c3-map-periinfarct> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adtp.202200048/astrocyte-reactivity-hcr> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "C3/SLC1A2 highly reactive astrocytes, HA-MAP (3.5%), peri-infarct" ;
+    lova:measurementType "C3/SLC1A2 positive astrocytes" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 25.2 ;
+    qudt:unit "%" ;
+    lova:scope "Regional" ;
+    lova:comparisonGroup "Sham" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/c3-map-infarct> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adtp.202200048/astrocyte-reactivity-hcr> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "C3/SLC1A2 highly reactive astrocytes, HA-MAP, infarct" ;
+    lova:measurementType "C3/SLC1A2 positive astrocytes" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 10.7 ;
+    qudt:unit "%" ;
+    lova:scope "Per-pore" ;
+    lova:comparisonGroup "HA-MAP peri-infarct" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/cspg-ha-map-infarct> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adtp.202200048/cspg-quantification> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "CSPG percent area, HA-MAP, infarct" ;
+    lova:measurementType "CSPG positive area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 5.3 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "Sham infarct" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/cspg-ha-map-periinfarct> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adtp.202200048/cspg-quantification> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "CSPG percent area, HA-MAP, peri-infarct" ;
+    lova:measurementType "CSPG positive area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 9.8 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "Sham peri-infarct" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/cspg-sham-infarct> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adtp.202200048/cspg-quantification> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "CSPG percent area, sham, infarct" ;
+    lova:measurementType "CSPG positive area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 59.7 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "HA-MAP infarct" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/cspg-sham-periinfarct> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adtp.202200048/cspg-quantification> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "CSPG percent area, sham, peri-infarct" ;
+    lova:measurementType "CSPG positive area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 38.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "HA-MAP peri-infarct" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/astrocyte-infiltration-map-day30> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adtp.202200048/astrocyte-microglia-progression> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "Astrocyte infiltration distance into lesion, HA-MAP, day 30" ;
+    lova:measurementType "Astrocyte infiltration distance" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 500.0 ;
+    qudt:unit "µm" ;
+    lova:timePoint "Day 30" ;
+    lova:comparisonGroup "Sham" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/axon-infiltration-map-day30> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adtp.202200048/axon-progression> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "Axon infiltration distance into lesion, HA-MAP, day 30" ;
+    lova:measurementType "Axon infiltration distance" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 450.0 ;
+    qudt:unit "µm" ;
+    lova:timePoint "Day 30" ;
+    lova:comparisonGroup "Sham" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/vessel-infiltration-map-day30> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adtp.202200048/vessel-progression> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "Average vessel infiltration distance, HA-MAP, day 30" ;
+    lova:measurementType "Vessel infiltration distance" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 207.0 ;
+    qudt:unit "µm" ;
+    lova:timePoint "Day 30" ;
+    lova:comparisonGroup "Axon/astrocyte infiltration" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/axon-astrocyte-infiltration-avg-day30> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adtp.202200048/axon-progression> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "Average axon/astrocyte infiltration distance, HA-MAP, day 30" ;
+    lova:measurementType "Axon/astrocyte infiltration distance" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 467.0 ;
+    qudt:unit "µm" ;
+    lova:timePoint "Day 30" ;
+    lova:comparisonGroup "Vessel infiltration" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/nf200-healthy-periinfarct> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adtp.202200048/axon-progression> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "NF200 percent area, healthy (uninjured) peri-infarct ROI" ;
+    lova:measurementType "NF200 positive area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 53.2 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "Stroke day 5" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/nf200-stroke-day5-periinfarct> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adtp.202200048/axon-progression> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "NF200 percent area, stroke day 5, peri-infarct" ;
+    lova:measurementType "NF200 positive area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 20.4 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 5" ;
+    lova:comparisonGroup "Healthy" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/iba1-periinfarct-sham-day7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adtp.202200048/astrocyte-microglia-progression> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "Iba1 percent area, sham, peri-infarct, day 7 (peak inflammation)" ;
+    lova:measurementType "Iba1 positive area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 18.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 7" ;
+    lova:comparisonGroup "HA-MAP" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/iba1-periinfarct-map-day7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adtp.202200048/astrocyte-microglia-progression> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "Iba1 percent area, HA-MAP, peri-infarct, day 7" ;
+    lova:measurementType "Iba1 positive area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 5.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 7" ;
+    lova:comparisonGroup "Sham" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/iba1-infarct-sham-day7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adtp.202200048/astrocyte-microglia-progression> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "Iba1 percent area, sham, infarct, day 7 (peak inflammation)" ;
+    lova:measurementType "Iba1 positive area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 57.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 7" ;
+    lova:comparisonGroup "HA-MAP" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/iba1-infarct-map-day7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adtp.202200048/astrocyte-microglia-progression> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "Iba1 percent area, HA-MAP, infarct, day 7" ;
+    lova:measurementType "Iba1 positive area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 10.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 7" ;
+    lova:comparisonGroup "Sham" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/iba1-infarct-sham-day30> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adtp.202200048/astrocyte-microglia-progression> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "Iba1 percent area, sham, infarct, day 30" ;
+    lova:measurementType "Iba1 positive area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 33.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 30" ;
+    lova:comparisonGroup "HA-MAP day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/arg1-infarct-sham> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adtp.202200048/microglia-reactivity> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "Arg1/DAPI, sham, infarct" ;
+    lova:measurementType "Arg1 positive cells (pro-repair microglia/macrophage)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "~0.5-0.7 Arg1/DAPI ratio" ;
+    lova:comparisonGroup "HA-MAP" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/arg1-infarct-map> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adtp.202200048/microglia-reactivity> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "Arg1/DAPI, HA-MAP, infarct" ;
+    lova:measurementType "Arg1 positive cells (pro-repair microglia/macrophage)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "~1.5-1.9 Arg1/DAPI ratio, almost 3-fold higher than sham" ;
+    lova:comparedToControl 3.0 ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "Sham" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/scar-thickness-sham-day30> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adtp.202200048/astrocyte-microglia-progression> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "Scar thickness, sham, day 30" ;
+    lova:measurementType "Scar thickness (GFAP)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 410.0 ;
+    qudt:unit "µm" ;
+    lova:timePoint "Day 30" ;
+    lova:comparisonGroup "HA-MAP" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/scar-thickness-map-day30> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adtp.202200048/astrocyte-microglia-progression> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "Scar thickness, HA-MAP, day 30" ;
+    lova:measurementType "Scar thickness (GFAP)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 65.0 ;
+    qudt:unit "µm" ;
+    lova:timePoint "Day 30" ;
+    lova:comparisonGroup "Sham" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/brain-volume-sham-16wk> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adtp.202200048/brain-cortex-volume> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "Brain volume, sham, 16 weeks post stroke" ;
+    lova:measurementType "Brain volume" ;
+    lova:measurementCategory "Histological/Morphometric" ;
+    qudt:numericValue 29.0 ;
+    qudt:unit "mm3" ;
+    lova:timePoint "16 weeks" ;
+    lova:comparisonGroup "HA-MAP" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/brain-volume-map-16wk> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adtp.202200048/brain-cortex-volume> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "Brain volume, HA-MAP, 16 weeks post stroke" ;
+    lova:measurementType "Brain volume" ;
+    lova:measurementCategory "Histological/Morphometric" ;
+    qudt:numericValue 30.0 ;
+    qudt:unit "mm3" ;
+    lova:timePoint "16 weeks" ;
+    lova:comparisonGroup "Sham" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/scar-thickness-nonporous-fig6> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adtp.202200048/microstructure-rgd-backbone-comparison> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "Scar thickness, non-porous HA hydrogel, day 7" ;
+    lova:measurementType "Scar thickness (GFAP)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 175.0 ;
+    qudt:unit "µm" ;
+    lova:comparisonGroup "HA-MAP" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/scar-thickness-ha-map-fig6> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adtp.202200048/microstructure-rgd-backbone-comparison> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "Scar thickness, HA-MAP, day 7" ;
+    lova:measurementType "Scar thickness (GFAP)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 100.0 ;
+    qudt:unit "µm" ;
+    lova:comparisonGroup "Non-porous" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/scar-thickness-ha-map-norgd-fig6> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adtp.202200048/microstructure-rgd-backbone-comparison> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "Scar thickness, HA-MAP (-RGD), day 7" ;
+    lova:measurementType "Scar thickness (GFAP)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 175.0 ;
+    qudt:unit "µm" ;
+    lova:comparisonGroup "HA-MAP" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/scar-thickness-peg-map-fig6> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adtp.202200048/microstructure-rgd-backbone-comparison> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "Scar thickness, PEG-MAP, day 7" ;
+    lova:measurementType "Scar thickness (GFAP)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 230.0 ;
+    qudt:unit "µm" ;
+    lova:comparisonGroup "HA-MAP" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/scar-thickness-peg-map-norgd-fig6> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adtp.202200048/microstructure-rgd-backbone-comparison> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "Scar thickness, PEG-MAP (-RGD), day 7" ;
+    lova:measurementType "Scar thickness (GFAP)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 330.0 ;
+    qudt:unit "µm" ;
+    lova:comparisonGroup "PEG-MAP" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/pore-area-ha-map> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adtp.202200048/microgel-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "Median pore area of HA-MAP (80-100µm microgels)" ;
+    lova:measurementType "Median pore area" ;
+    lova:measurementCategory "Material characterization" ;
+    qudt:numericValue 200.0 ;
+    qudt:unit "µm²" ;
+    lova:valueString "Corresponds to ~15-20 µm when measured per z-stack" ;
+    lova:dataSource "[TEXT]" .
+
+# ---------------- Comparison Results ----------------
+
+<https://lovamap.com/ontology#comparison/10.1002-adtp.202200048/perk-sham-vs-map-periinfarct> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "pERK/GFAP reactive astrocytes lower in HA-MAP vs sham, peri-infarct" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/perk-map-periinfarct> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/perk-sham-periinfarct> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-adtp.202200048/perk-periinfarct-vs-infarct-map> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "pERK/GFAP reactive astrocytes lower in HA-MAP infarct vs peri-infarct" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/perk-map-infarct> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/perk-map-periinfarct> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-adtp.202200048/s100b-sham-vs-map-periinfarct> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "S100β/GFAP reactive astrocytes lower in HA-MAP vs sham, peri-infarct" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/s100b-map-periinfarct> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/s100b-sham-periinfarct> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-adtp.202200048/s100b-periinfarct-vs-infarct-map> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "S100β/GFAP reactive astrocytes lower in HA-MAP infarct vs peri-infarct" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/s100b-map-infarct> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/s100b-map-periinfarct> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-adtp.202200048/c3-sham-vs-map-periinfarct> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "C3/SLC1A2 reactive astrocytes lower in HA-MAP vs sham, peri-infarct" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/c3-map-periinfarct> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/c3-sham-periinfarct> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-adtp.202200048/c3-periinfarct-vs-infarct-map> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "C3/SLC1A2 reactive astrocytes lower in HA-MAP infarct vs peri-infarct" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/c3-map-infarct> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/c3-map-periinfarct> ;
+    lova:direction "lower" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adtp.202200048/cspg-sham-vs-map-infarct> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "CSPG percent area lower in HA-MAP vs sham, infarct" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/cspg-ha-map-infarct> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/cspg-sham-infarct> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-adtp.202200048/cspg-sham-vs-map-periinfarct> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "CSPG percent area lower in HA-MAP vs sham, peri-infarct" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/cspg-ha-map-periinfarct> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/cspg-sham-periinfarct> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-adtp.202200048/iba1-periinfarct-sham-vs-map-day7> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "Iba1 percent area 3-fold lower in HA-MAP vs sham, peri-infarct, day 7" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/iba1-periinfarct-map-day7> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/iba1-periinfarct-sham-day7> ;
+    lova:direction "lower" ;
+    lova:foldChange 3.0 .
+
+<https://lovamap.com/ontology#comparison/10.1002-adtp.202200048/iba1-infarct-sham-vs-map-day7> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "Iba1 percent area 6-fold lower in HA-MAP vs sham, infarct, day 7" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/iba1-infarct-map-day7> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/iba1-infarct-sham-day7> ;
+    lova:direction "lower" ;
+    lova:foldChange 6.0 .
+
+<https://lovamap.com/ontology#comparison/10.1002-adtp.202200048/iba1-infarct-sham-day30-vs-map-day7> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "Iba1 percent area, sham infarct day 30, still 3-fold higher than HA-MAP infarct day 7" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/iba1-infarct-sham-day30> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/iba1-infarct-map-day7> ;
+    lova:direction "higher" ;
+    lova:foldChange 3.0 .
+
+<https://lovamap.com/ontology#comparison/10.1002-adtp.202200048/arg1-infarct-sham-vs-map> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "Arg1/DAPI almost 3-fold higher in HA-MAP vs sham, infarct" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/arg1-infarct-map> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/arg1-infarct-sham> ;
+    lova:direction "higher" ;
+    lova:foldChange 3.0 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-adtp.202200048/scar-thickness-sham-vs-map-day30> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "Scar thickness lower in HA-MAP vs sham at day 30" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/scar-thickness-map-day30> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/scar-thickness-sham-day30> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-adtp.202200048/brain-volume-sham-vs-map-16wk> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "Brain volume lower in sham vs HA-MAP at 16 weeks" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/brain-volume-sham-16wk> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/brain-volume-map-16wk> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-adtp.202200048/scar-thickness-nonporous-vs-ha-map> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "Scar thickness lower in HA-MAP vs non-porous hydrogel" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/scar-thickness-ha-map-fig6> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/scar-thickness-nonporous-fig6> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-adtp.202200048/scar-thickness-ha-map-vs-norgd> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "Scar thickness lower in HA-MAP vs HA-MAP(-RGD)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/scar-thickness-ha-map-fig6> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/scar-thickness-ha-map-norgd-fig6> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-adtp.202200048/scar-thickness-ha-map-vs-peg-map> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "Scar thickness lower in HA-MAP vs PEG-MAP" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/scar-thickness-ha-map-fig6> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/scar-thickness-peg-map-fig6> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-adtp.202200048/scar-thickness-peg-map-vs-norgd> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "Scar thickness no significant difference between PEG-MAP and PEG-MAP(-RGD)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/scar-thickness-peg-map-fig6> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/scar-thickness-peg-map-norgd-fig6> ;
+    lova:direction "no difference" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adtp.202200048/axon-infiltration-sham-vs-map-day30> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "Axon infiltration distance higher in HA-MAP vs sham at day 30" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/axon-infiltration-map-day30> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/vessel-infiltration-map-day30> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-adtp.202200048/vessel-vs-axon-astrocyte-infiltration-day30> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "Vessel infiltration distance lower than axon/astrocyte infiltration distance at day 30" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/vessel-infiltration-map-day30> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/axon-astrocyte-infiltration-avg-day30> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-adtp.202200048/nf200-healthy-vs-stroke-day5> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adtp.202200048> ;
+    rdfs:label "NF200 percent area lower in stroke day 5 vs healthy, peri-infarct" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/nf200-stroke-day5-periinfarct> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adtp.202200048/nf200-healthy-periinfarct> ;
+    lova:direction "lower" .

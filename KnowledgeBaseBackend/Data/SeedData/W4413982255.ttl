@@ -1,0 +1,862 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> a bibo:AcademicArticle ;
+    rdfs:label "Suarez-Arnedo et al., 2025 — Comparative proteomic analysis of skin wound healing" ;
+    dc:title "Comparative proteomic analysis of skin wound healing responses to biomaterial treatments identifies key pathways which govern differential regenerative outcomes" ;
+    dc:identifier "10.1016/j.biomaterials.2025.123667" ;
+    dc:date "2025"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/biomaterials> ;
+    dc:creator <https://lovamap.com/ontology#author/suarez-arnedo-alejandra> ,
+               <https://lovamap.com/ontology#author/caston-eleanor> ,
+               <https://lovamap.com/ontology#author/liu-yining> ,
+               <https://lovamap.com/ontology#author/bai-hongxia> ,
+               <https://lovamap.com/ontology#author/muddiman-david> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/suarez-arnedo-alejandra>
+                      <https://lovamap.com/ontology#author/caston-eleanor>
+                      <https://lovamap.com/ontology#author/liu-yining>
+                      <https://lovamap.com/ontology#author/bai-hongxia>
+                      <https://lovamap.com/ontology#author/muddiman-david>
+                      <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    dc:bibliographicCitation "Suarez-Arnedo et al., 2025" ;
+    lova:focusMaterial "Three wound-care biomaterials (Woun'Dres collagen hydrogel, LMAP, DMAP microporous annealed particle scaffolds) compared by proteomic analysis across wound healing timepoints" .
+
+<https://lovamap.com/ontology#author/suarez-arnedo-alejandra> a foaf:Person ;
+    foaf:familyName "Suarez-Arnedo" ;
+    foaf:givenName "Alejandra" ;
+    foaf:name "Alejandra Suarez-Arnedo" ;
+    schema:affiliation "Duke University" .
+
+<https://lovamap.com/ontology#author/caston-eleanor> a foaf:Person ;
+    foaf:familyName "Caston" ;
+    foaf:givenName "Eleanor" ;
+    foaf:name "Eleanor L. P. Caston" ;
+    schema:affiliation "Duke University" .
+
+<https://lovamap.com/ontology#author/liu-yining> a foaf:Person ;
+    foaf:familyName "Liu" ;
+    foaf:givenName "Yining" ;
+    foaf:name "Yining Liu" ;
+    schema:affiliation "Duke University" .
+
+<https://lovamap.com/ontology#author/bai-hongxia> a foaf:Person ;
+    foaf:familyName "Bai" ;
+    foaf:givenName "Hongxia" ;
+    foaf:name "Hongxia Bai" ;
+    schema:affiliation "Duke University" .
+
+<https://lovamap.com/ontology#author/muddiman-david> a foaf:Person ;
+    foaf:familyName "Muddiman" ;
+    foaf:givenName "David" ;
+    foaf:name "David C. Muddiman" ;
+    schema:affiliation "North Carolina State University" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" ;
+    schema:affiliation "Duke University" .
+
+<https://lovamap.com/ontology#journal/biomaterials> a bibo:Journal ;
+    dc:title "Biomaterials" ;
+    bibo:issn "0142-9612" .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2025.123667/wound-dres> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "Woun'Dres® collagen hydrogel (clinical reference)" ;
+    lova:particleMaterial "Collagen" ;
+    lova:stiffnessQualitative "Viscous liquid (does not gel)" ;
+    lova:packingConfiguration "Flowable liquid (non-particulate)" ;
+    lova:scaffoldDimensions "10 μL applied per 5 mm wound" .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2025.123667/lmap> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "LMAP — microporous annealed particle scaffold with L-amino acid MMP-sensitive crosslinker" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "4-arm PEG-VS" ;
+    lova:sizeDistribution "Matched in microparticle size to DMAP" ;
+    lova:stiffnessQualitative "Soft hydrogel, matched mechanical properties to DMAP" ;
+    lova:packingConfiguration "Jammed, annealed microgel packing" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2025.123667/lmap-fab> ;
+    lova:scaffoldDimensions "10 μL injected per 5 mm wound" .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2025.123667/dmap> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "DMAP — microporous annealed particle scaffold with D-amino acid MMP-sensitive crosslinker" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "4-arm PEG-VS" ;
+    lova:sizeDistribution "Matched in microparticle size to LMAP" ;
+    lova:stiffnessQualitative "Soft hydrogel, matched mechanical properties to LMAP" ;
+    lova:packingConfiguration "Jammed, annealed microgel packing" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2025.123667/dmap-fab> ;
+    lova:scaffoldDimensions "10 μL injected per 5 mm wound" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2025.123667/lmap-fab> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "Microfluidic generation of LMAP microgels with Factor XIII/thrombin annealing" ;
+    lova:chemistry "Michael-type addition (thiol-vinylsulfone)" ;
+    lova:manufacturingMethod "Microfluidic water-in-oil emulsion" ;
+    lova:annealingChemistry "Enzymatic (thrombin-activated Factor XIII transglutamination)" ;
+    lova:annealingConditions "30 minute gelation time, room temperature" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2025.123667/peg-vs> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2025.123667/triethylamine> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2025.123667/k-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2025.123667/q-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2025.123667/rgd-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2025.123667/l-mmp-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2025.123667/alexa647-maleimide> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2025.123667/span-80> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2025.123667/mineral-oil> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2025.123667/pluronic-f127> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2025.123667/hepes-buffer> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2025.123667/thrombin> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2025.123667/factor-xiii> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2025.123667/dmap-fab> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "Microfluidic generation of DMAP microgels with Factor XIII/thrombin annealing" ;
+    lova:chemistry "Michael-type addition (thiol-vinylsulfone)" ;
+    lova:manufacturingMethod "Microfluidic water-in-oil emulsion" ;
+    lova:annealingChemistry "Enzymatic (thrombin-activated Factor XIII transglutamination)" ;
+    lova:annealingConditions "30 minute gelation time, room temperature" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2025.123667/peg-vs> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2025.123667/triethylamine> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2025.123667/k-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2025.123667/q-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2025.123667/rgd-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2025.123667/d-mmp-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2025.123667/alexa647-maleimide> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2025.123667/span-80> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2025.123667/mineral-oil> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2025.123667/pluronic-f127> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2025.123667/hepes-buffer> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2025.123667/thrombin> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2025.123667/factor-xiii> .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2025.123667/peg-vs> a lova:Reagent ;
+    rdfs:label "4-arm Polyethylene Glycol-Vinylsulfone (PEG-VS, 20 kDa)" ;
+    lova:reagentRole "monomer" ;
+    lova:molecularWeight "20 kDa" ;
+    lova:concentration "10% w/v" ;
+    lova:supplier "JenKem" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2025.123667/triethylamine> a lova:Reagent ;
+    rdfs:label "Triethylamine" ;
+    lova:reagentRole "other" ;
+    lova:concentration "0.3 M, pH 8.8" ;
+    lova:supplier "Sigma" ;
+    lova:reagentFunction "pH adjustment to control on-chip gelation rate" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2025.123667/k-peptide> a lova:Reagent ;
+    rdfs:label "K-peptide (Ac-FKGGERCG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "FKGGERCG" ;
+    lova:concentration "500 μM" ;
+    lova:supplier "GenScript" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2025.123667/q-peptide> a lova:Reagent ;
+    rdfs:label "Q-peptide (Ac-NQEQVSPLGGERCG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "NQEQVSPLGGERCG" ;
+    lova:concentration "500 μM" ;
+    lova:supplier "GenScript" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2025.123667/rgd-peptide> a lova:Reagent ;
+    rdfs:label "RGD peptide (Ac-RGDSPGERCG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "RGDSPGERCG" ;
+    lova:concentration "1000 μM" ;
+    lova:supplier "GenScript" ;
+    lova:reagentFunction "Cell adhesion" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2025.123667/l-mmp-peptide> a lova:Reagent ;
+    rdfs:label "L-MMP di-thiol MMP-sensitive crosslinker peptide (Ac-GCRDGPQGIWGQDRCG-NH2)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:sequence "GCRDGPQGIWGQDRCG" ;
+    lova:concentration "16 mM" ;
+    lova:supplier "GenScript" ;
+    lova:reagentFunction "Inter-particle/intra-network MMP-degradable crosslinking (L-amino acids)" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2025.123667/d-mmp-peptide> a lova:Reagent ;
+    rdfs:label "D-MMP di-thiol MMP-sensitive crosslinker peptide with D-amino acids (Ac-GCRDGPQ-D-GI-D-W-D-GQDRCG-NH2)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:concentration "16.4 mM" ;
+    lova:supplier "GenScript" ;
+    lova:reagentFunction "Inter-particle/intra-network MMP-degradable crosslinking (3 D-amino acid substitutions)" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2025.123667/alexa647-maleimide> a lova:Reagent ;
+    rdfs:label "Alexa-Fluor 647-maleimide" ;
+    lova:reagentRole "other" ;
+    lova:concentration "10 μM" ;
+    lova:supplier "Thermo Fisher" ;
+    lova:reagentFunction "Fluorescent labeling of crosslinker peptide" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2025.123667/span-80> a lova:Reagent ;
+    rdfs:label "Span-80" ;
+    lova:reagentRole "surfactant" ;
+    lova:concentration "1% v/v (pinching oil phase); 5% v/v (second oil inlet)" ;
+    lova:supplier "Sigma Aldrich" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2025.123667/mineral-oil> a lova:Reagent ;
+    rdfs:label "Heavy mineral oil" ;
+    lova:reagentRole "carrier oil" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2025.123667/pluronic-f127> a lova:Reagent ;
+    rdfs:label "Pluronic F127" ;
+    lova:reagentRole "surfactant" ;
+    lova:concentration "2%" ;
+    lova:supplier "Sigma Aldrich" ;
+    lova:reagentFunction "Assists removal of surfactant during microgel washing" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2025.123667/hepes-buffer> a lova:Reagent ;
+    rdfs:label "HEPES buffer (pH 8.3, 0.3 M)" ;
+    lova:reagentRole "solvent" ;
+    lova:concentration "0.3 M, pH 8.3" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2025.123667/thrombin> a lova:Reagent ;
+    rdfs:label "Thrombin" ;
+    lova:reagentRole "enzyme" ;
+    lova:concentration "4 U/mL final (200 U/mL stock in 200 mM Tris-HCl, 150 mM NaCl, 20 mM CaCl2)" ;
+    lova:reagentFunction "In situ gelation of MAP scaffold during wound injection" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2025.123667/factor-xiii> a lova:Reagent ;
+    rdfs:label "Factor XIII" ;
+    lova:reagentRole "enzyme" ;
+    lova:concentration "10 U/mL final (250 U/mL stock)" ;
+    lova:reagentFunction "Annealing (inter-particle crosslinking) of MAP microgels" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/day4-proteomics> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2025.123667/wound-dres> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2025.123667/lmap> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2025.123667/dmap> ;
+    rdfs:label "Proteomic analysis of wound tissue, Day 4 (inflammation phase)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Bottom-up proteomics" ;
+    lova:assayOrMethod "LC-MS/MS (FASP sample preparation)" ;
+    lova:equipment "EASY nanoLC-1200 interfaced to Orbitrap Exploris 240" ;
+    lova:cellSource "Mouse dorsal wound tissue (1.5 mm biopsy punch)" ;
+    lova:timePoint "Day 4" ;
+    lova:sampleSize 4 .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/day14-proteomics> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2025.123667/wound-dres> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2025.123667/lmap> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2025.123667/dmap> ;
+    rdfs:label "Proteomic analysis of wound tissue, Day 14 (proliferative phase)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Bottom-up proteomics" ;
+    lova:assayOrMethod "LC-MS/MS (FASP sample preparation)" ;
+    lova:equipment "EASY nanoLC-1200 interfaced to Orbitrap Exploris 240" ;
+    lova:cellSource "Mouse dorsal wound tissue (1.5 mm biopsy punch)" ;
+    lova:timePoint "Day 14" ;
+    lova:sampleSize 4 .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/day21-proteomics> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2025.123667/wound-dres> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2025.123667/lmap> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2025.123667/dmap> ;
+    rdfs:label "Proteomic analysis of wound tissue, Day 21 (remodeling phase)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Bottom-up proteomics" ;
+    lova:assayOrMethod "LC-MS/MS (FASP sample preparation)" ;
+    lova:equipment "EASY nanoLC-1200 interfaced to Orbitrap Exploris 240" ;
+    lova:cellSource "Mouse dorsal wound tissue (1.5 mm biopsy punch)" ;
+    lova:timePoint "Day 21" ;
+    lova:sampleSize 4 .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/rheometry> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2025.123667/wound-dres> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2025.123667/lmap> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2025.123667/dmap> ;
+    rdfs:label "Rheological characterization of biomaterials (amplitude/frequency sweeps)" ;
+    lova:experimentCategory "Rheological" ;
+    lova:experimentType "Oscillatory rheometry" ;
+    lova:assayOrMethod "Amplitude sweep then frequency sweep for storage modulus" ;
+    lova:equipment "Rheometer (Anton Paar)" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/psr-collagen-day21> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2025.123667/wound-dres> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2025.123667/lmap> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2025.123667/dmap> ;
+    rdfs:label "Picrosirius Red (PSR) staining and collagen quantification, Day 21" ;
+    lova:experimentCategory "Histological" ;
+    lova:experimentType "Collagen organization quantification" ;
+    lova:assayOrMethod "Picrosirius Red staining with polarized light imaging, ImageJ analysis" ;
+    lova:equipment "Zeiss Axio Scan (brightfield); Zeiss microscope with polarized light filter" ;
+    lova:timePoint "Day 21" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/hair-follicle-day21> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2025.123667/wound-dres> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2025.123667/lmap> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2025.123667/dmap> ;
+    rdfs:label "Histological quantification of neogenic hair follicles and afollicular percentage, Day 21" ;
+    lova:experimentCategory "Histological" ;
+    lova:experimentType "Hair follicle quantification" ;
+    lova:assayOrMethod "H&E staining, blinded dermatopathologist-assisted analysis" ;
+    lova:timePoint "Day 21" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/cell-infiltration-day7> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2025.123667/wound-dres> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2025.123667/dmap> ;
+    rdfs:label "Cell infiltration quantification at wound infiltrating edge, Day 7" ;
+    lova:experimentCategory "Histological" ;
+    lova:experimentType "Nuclei area quantification" ;
+    lova:assayOrMethod "HALO software Area Quantification (v2.4.3)" ;
+    lova:timePoint "Day 7" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/total-proteins-identified> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/day4-proteomics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "Total unique proteins identified across all groups and timepoints" ;
+    lova:measurementType "Protein identification count" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "close to 5,000 proteins" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/shared-proteins-day4> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/day4-proteomics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "Proteins detected in all three treatment groups, Day 4" ;
+    lova:measurementType "Shared protein count" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 4106.0 ;
+    qudt:unit "proteins" ;
+    lova:valueString "87%" ;
+    lova:timePoint "Day 4" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/shared-proteins-day14> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/day14-proteomics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "Proteins detected in all three treatment groups, Day 14" ;
+    lova:measurementType "Shared protein count" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 4630.0 ;
+    qudt:unit "proteins" ;
+    lova:valueString "97%" ;
+    lova:timePoint "Day 14" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/shared-proteins-day21> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/day21-proteomics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "Proteins detected in all three treatment groups, Day 21" ;
+    lova:measurementType "Shared protein count" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 4554.0 ;
+    qudt:unit "proteins" ;
+    lova:valueString "95%" ;
+    lova:timePoint "Day 21" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/venn-total-day4-woundres> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/day4-proteomics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "Total proteins identified, Woun'Dres, Day 4" ;
+    lova:measurementType "Total protein count" ;
+    qudt:numericValue 4621.0 ;
+    qudt:unit "proteins" ;
+    lova:timePoint "Day 4" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/venn-total-day4-lmap> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/day4-proteomics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "Total proteins identified, LMAP, Day 4" ;
+    lova:measurementType "Total protein count" ;
+    qudt:numericValue 4471.0 ;
+    qudt:unit "proteins" ;
+    lova:timePoint "Day 4" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/venn-total-day4-dmap> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/day4-proteomics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "Total proteins identified, DMAP, Day 4" ;
+    lova:measurementType "Total protein count" ;
+    qudt:numericValue 4148.0 ;
+    qudt:unit "proteins" ;
+    lova:timePoint "Day 4" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/venn-total-day14-woundres> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/day14-proteomics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "Total proteins identified, Woun'Dres, Day 14" ;
+    lova:measurementType "Total protein count" ;
+    qudt:numericValue 4794.0 ;
+    qudt:unit "proteins" ;
+    lova:timePoint "Day 14" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/venn-total-day14-lmap> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/day14-proteomics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "Total proteins identified, LMAP, Day 14" ;
+    lova:measurementType "Total protein count" ;
+    qudt:numericValue 4696.0 ;
+    qudt:unit "proteins" ;
+    lova:timePoint "Day 14" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/venn-total-day14-dmap> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/day14-proteomics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "Total proteins identified, DMAP, Day 14" ;
+    lova:measurementType "Total protein count" ;
+    qudt:numericValue 4734.0 ;
+    qudt:unit "proteins" ;
+    lova:timePoint "Day 14" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/venn-total-day21-woundres> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/day21-proteomics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "Total proteins identified, Woun'Dres, Day 21" ;
+    lova:measurementType "Total protein count" ;
+    qudt:numericValue 4800.0 ;
+    qudt:unit "proteins" ;
+    lova:timePoint "Day 21" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/venn-total-day21-lmap> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/day21-proteomics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "Total proteins identified, LMAP, Day 21" ;
+    lova:measurementType "Total protein count" ;
+    qudt:numericValue 4655.0 ;
+    qudt:unit "proteins" ;
+    lova:timePoint "Day 21" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/venn-total-day21-dmap> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/day21-proteomics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "Total proteins identified, DMAP, Day 21" ;
+    lova:measurementType "Total protein count" ;
+    qudt:numericValue 4664.0 ;
+    qudt:unit "proteins" ;
+    lova:timePoint "Day 21" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/unique-proteins-woundres> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/day4-proteomics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "Cumulative unique proteins across all timepoints, Woun'Dres" ;
+    lova:measurementType "Unique protein count" ;
+    qudt:numericValue 133.0 ;
+    qudt:unit "proteins" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/unique-proteins-lmap> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/day4-proteomics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "Cumulative unique proteins across all timepoints, LMAP" ;
+    lova:measurementType "Unique protein count" ;
+    qudt:numericValue 146.0 ;
+    qudt:unit "proteins" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/unique-proteins-dmap> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/day4-proteomics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "Cumulative unique proteins across all timepoints, DMAP" ;
+    lova:measurementType "Unique protein count" ;
+    qudt:numericValue 61.0 ;
+    qudt:unit "proteins" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/dep-day4-wd-vs-lmap-wd> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/day4-proteomics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "Differentially expressed proteins upregulated in Woun'Dres vs LMAP, Day 4" ;
+    lova:measurementType "DEP count" ;
+    qudt:numericValue 74.0 ;
+    qudt:unit "proteins" ;
+    lova:comparisonGroup "LMAP" ;
+    lova:timePoint "Day 4" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/dep-day4-wd-vs-lmap-lmap> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/day4-proteomics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "Differentially expressed proteins upregulated in LMAP vs Woun'Dres, Day 4" ;
+    lova:measurementType "DEP count" ;
+    qudt:numericValue 267.0 ;
+    qudt:unit "proteins" ;
+    lova:comparisonGroup "Woun'Dres" ;
+    lova:timePoint "Day 4" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/dep-day4-lmap-vs-dmap-lmap> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/day4-proteomics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "Differentially expressed proteins upregulated in LMAP vs DMAP, Day 4" ;
+    lova:measurementType "DEP count" ;
+    qudt:numericValue 1024.0 ;
+    qudt:unit "proteins" ;
+    lova:comparisonGroup "DMAP" ;
+    lova:timePoint "Day 4" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/dep-day4-lmap-vs-dmap-dmap> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/day4-proteomics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "Differentially expressed proteins upregulated in DMAP vs LMAP, Day 4" ;
+    lova:measurementType "DEP count" ;
+    qudt:numericValue 235.0 ;
+    qudt:unit "proteins" ;
+    lova:comparisonGroup "LMAP" ;
+    lova:timePoint "Day 4" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/dep-day4-wd-vs-dmap-wd> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/day4-proteomics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "Differentially expressed proteins upregulated in Woun'Dres vs DMAP, Day 4" ;
+    lova:measurementType "DEP count" ;
+    qudt:numericValue 326.0 ;
+    qudt:unit "proteins" ;
+    lova:comparisonGroup "DMAP" ;
+    lova:timePoint "Day 4" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/dep-day4-wd-vs-dmap-dmap> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/day4-proteomics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "Differentially expressed proteins upregulated in DMAP vs Woun'Dres, Day 4" ;
+    lova:measurementType "DEP count" ;
+    qudt:numericValue 172.0 ;
+    qudt:unit "proteins" ;
+    lova:comparisonGroup "Woun'Dres" ;
+    lova:timePoint "Day 4" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/dep-day21-wd-vs-lmap-wd> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/day21-proteomics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "Differentially expressed proteins upregulated in Woun'Dres vs LMAP, Day 21" ;
+    lova:measurementType "DEP count" ;
+    qudt:numericValue 336.0 ;
+    qudt:unit "proteins" ;
+    lova:comparisonGroup "LMAP" ;
+    lova:timePoint "Day 21" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/dep-day21-wd-vs-lmap-lmap> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/day21-proteomics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "Differentially expressed proteins upregulated in LMAP vs Woun'Dres, Day 21" ;
+    lova:measurementType "DEP count" ;
+    qudt:numericValue 165.0 ;
+    qudt:unit "proteins" ;
+    lova:comparisonGroup "Woun'Dres" ;
+    lova:timePoint "Day 21" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/dep-day21-lmap-vs-dmap-lmap> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/day21-proteomics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "Differentially expressed proteins upregulated in LMAP vs DMAP, Day 21" ;
+    lova:measurementType "DEP count" ;
+    qudt:numericValue 72.0 ;
+    qudt:unit "proteins" ;
+    lova:comparisonGroup "DMAP" ;
+    lova:timePoint "Day 21" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/dep-day21-lmap-vs-dmap-dmap> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/day21-proteomics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "Differentially expressed proteins upregulated in DMAP vs LMAP, Day 21" ;
+    lova:measurementType "DEP count" ;
+    qudt:numericValue 86.0 ;
+    qudt:unit "proteins" ;
+    lova:comparisonGroup "LMAP" ;
+    lova:timePoint "Day 21" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/dep-day21-wd-vs-dmap-wd> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/day21-proteomics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "Differentially expressed proteins upregulated in Woun'Dres vs DMAP, Day 21" ;
+    lova:measurementType "DEP count" ;
+    qudt:numericValue 326.0 ;
+    qudt:unit "proteins" ;
+    lova:comparisonGroup "DMAP" ;
+    lova:timePoint "Day 21" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/dep-day21-wd-vs-dmap-dmap> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/day21-proteomics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "Differentially expressed proteins upregulated in DMAP vs Woun'Dres, Day 21" ;
+    lova:measurementType "DEP count" ;
+    qudt:numericValue 172.0 ;
+    qudt:unit "proteins" ;
+    lova:comparisonGroup "Woun'Dres" ;
+    lova:timePoint "Day 21" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/go-terms-day4-comp1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/day4-proteomics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "Differentially expressed GO biological processes, Woun'Dres vs LMAP, Day 4" ;
+    lova:measurementType "GO biological process count" ;
+    qudt:numericValue 74.0 ;
+    qudt:unit "GO terms" ;
+    lova:timePoint "Day 4" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/go-terms-day4-comp2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/day4-proteomics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "Differentially expressed GO biological processes, LMAP vs DMAP, Day 4" ;
+    lova:measurementType "GO biological process count" ;
+    qudt:numericValue 96.0 ;
+    qudt:unit "GO terms" ;
+    lova:timePoint "Day 4" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/go-terms-day4-comp3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/day4-proteomics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "Differentially expressed GO biological processes, Woun'Dres vs DMAP, Day 4" ;
+    lova:measurementType "GO biological process count" ;
+    qudt:numericValue 16.0 ;
+    qudt:unit "GO terms" ;
+    lova:timePoint "Day 4" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/go-terms-day14-comp1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/day14-proteomics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "Differentially expressed GO biological processes, Woun'Dres vs LMAP, Day 14" ;
+    lova:measurementType "GO biological process count" ;
+    qudt:numericValue 23.0 ;
+    qudt:unit "GO terms" ;
+    lova:timePoint "Day 14" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/go-terms-day14-comp2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/day14-proteomics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "Differentially expressed GO biological processes, LMAP vs DMAP, Day 14" ;
+    lova:measurementType "GO biological process count" ;
+    qudt:numericValue 74.0 ;
+    qudt:unit "GO terms" ;
+    lova:timePoint "Day 14" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/go-terms-day14-comp3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/day14-proteomics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "Differentially expressed GO biological processes, Woun'Dres vs DMAP, Day 14" ;
+    lova:measurementType "GO biological process count" ;
+    qudt:numericValue 100.0 ;
+    qudt:unit "GO terms" ;
+    lova:timePoint "Day 14" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/go-terms-day21-comp1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/day21-proteomics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "Differentially expressed GO biological processes, Woun'Dres vs LMAP, Day 21" ;
+    lova:measurementType "GO biological process count" ;
+    qudt:numericValue 31.0 ;
+    qudt:unit "GO terms" ;
+    lova:timePoint "Day 21" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/go-terms-day21-comp2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/day21-proteomics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "Differentially expressed GO biological processes, LMAP vs DMAP, Day 21" ;
+    lova:measurementType "GO biological process count" ;
+    qudt:numericValue 27.0 ;
+    qudt:unit "GO terms" ;
+    lova:timePoint "Day 21" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/go-terms-day21-comp3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/day21-proteomics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "Differentially expressed GO biological processes, Woun'Dres vs DMAP, Day 21" ;
+    lova:measurementType "GO biological process count" ;
+    qudt:numericValue 80.0 ;
+    qudt:unit "GO terms" ;
+    lova:timePoint "Day 21" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/pearson-r-day4> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/day4-proteomics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "Pearson R correlation between DMAP and Woun'Dres proteomes, Day 4" ;
+    lova:measurementType "Pearson correlation" ;
+    lova:valueString "0.95-1" ;
+    lova:timePoint "Day 4" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/pearson-r-day14> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/day14-proteomics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "Pearson R correlation between DMAP and Woun'Dres proteomes, Day 14" ;
+    lova:measurementType "Pearson correlation" ;
+    lova:valueString "0.54-0.95" ;
+    lova:timePoint "Day 14" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/pearson-r-day21> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/day21-proteomics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "Pearson R correlation between DMAP and Woun'Dres proteomes, Day 21" ;
+    lova:measurementType "Pearson correlation" ;
+    lova:valueString "0.27-0.96" ;
+    lova:timePoint "Day 21" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/lox-pvalue-day14> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/day14-proteomics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "LOX expression comparison, Woun'Dres vs LMAP, Day 14" ;
+    lova:measurementType "LOX normalized expression" ;
+    lova:measurementCategory "Biological" ;
+    lova:pValue 0.1 ;
+    lova:timePoint "Day 14" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/collagen-area-woundres-day21> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/psr-collagen-day21> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "%Area Collagen, Woun'Dres, Day 21" ;
+    lova:measurementType "%Area Collagen" ;
+    lova:measurementCategory "Histological" ;
+    qudt:numericValue 16.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 21" ;
+    lova:comparisonGroup "Normal skin" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/collagen-area-lmap-day21> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/psr-collagen-day21> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "%Area Collagen, LMAP, Day 21" ;
+    lova:measurementType "%Area Collagen" ;
+    lova:measurementCategory "Histological" ;
+    qudt:numericValue 27.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 21" ;
+    lova:comparisonGroup "Normal skin" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/collagen-area-dmap-day21> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/psr-collagen-day21> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "%Area Collagen, DMAP, Day 21" ;
+    lova:measurementType "%Area Collagen" ;
+    lova:measurementCategory "Histological" ;
+    qudt:numericValue 29.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 21" ;
+    lova:comparisonGroup "Normal skin" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/fiber-ratio-woundres-day21> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/psr-collagen-day21> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "Collagen fiber length/width ratio, Woun'Dres, Day 21" ;
+    lova:measurementType "Fiber length/width ratio" ;
+    lova:measurementCategory "Histological" ;
+    qudt:numericValue 3.3 ;
+    qudt:unit "ratio" ;
+    lova:timePoint "Day 21" ;
+    lova:comparisonGroup "Normal skin" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/fiber-ratio-lmap-day21> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/psr-collagen-day21> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "Collagen fiber length/width ratio, LMAP, Day 21" ;
+    lova:measurementType "Fiber length/width ratio" ;
+    lova:measurementCategory "Histological" ;
+    qudt:numericValue 2.6 ;
+    qudt:unit "ratio" ;
+    lova:timePoint "Day 21" ;
+    lova:comparisonGroup "Normal skin" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/fiber-ratio-dmap-day21> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/psr-collagen-day21> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "Collagen fiber length/width ratio, DMAP, Day 21" ;
+    lova:measurementType "Fiber length/width ratio" ;
+    lova:measurementCategory "Histological" ;
+    qudt:numericValue 2.7 ;
+    qudt:unit "ratio" ;
+    lova:timePoint "Day 21" ;
+    lova:comparisonGroup "Normal skin" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/muscle-terms-day14-comp2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2025.123667/day14-proteomics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "Muscle-related GO terms repeated in LMAP vs DMAP comparison, Day 14" ;
+    lova:measurementType "GO term distribution" ;
+    lova:valueString "11 muscle-related terms; 91% upregulated in DMAP alone, 9% upregulated in both groups" ;
+    lova:timePoint "Day 14" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2025.123667/collagen-area-wd-vs-lmap-day21> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "%Area Collagen lower in Woun'Dres vs LMAP at Day 21" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/collagen-area-woundres-day21> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/collagen-area-lmap-day21> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2025.123667/collagen-area-wd-vs-dmap-day21> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "%Area Collagen lower in Woun'Dres vs DMAP at Day 21" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/collagen-area-woundres-day21> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/collagen-area-dmap-day21> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2025.123667/fiber-ratio-wd-vs-lmap-day21> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "Collagen fiber length/width ratio higher in Woun'Dres vs LMAP at Day 21" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/fiber-ratio-woundres-day21> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/fiber-ratio-lmap-day21> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2025.123667/fiber-ratio-wd-vs-dmap-day21> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "Collagen fiber length/width ratio higher in Woun'Dres vs DMAP at Day 21 (not significant)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/fiber-ratio-woundres-day21> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/fiber-ratio-dmap-day21> ;
+    lova:direction "higher" ;
+    lova:isSignificant false .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2025.123667/dep-day4-vs-day21-wd-lmap> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2025.123667> ;
+    rdfs:label "DEP count (Woun'Dres upregulated vs LMAP) higher at Day 21 compared to Day 4" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/dep-day21-wd-vs-lmap-wd> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2025.123667/dep-day4-wd-vs-lmap-wd> ;
+    lova:direction "higher" .

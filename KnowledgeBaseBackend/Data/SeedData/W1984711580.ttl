@@ -1,0 +1,37 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.02.030> a bibo:AcademicArticle ;
+    rdfs:label "Collier & Segura, 2011 — Evolving the use of peptides as components of biomaterials" ;
+    dc:title "Evolving the use of peptides as components of biomaterials" ;
+    dc:identifier "10.1016/j.biomaterials.2011.02.030" ;
+    dc:date "2011"^^xsd:gYear ;
+    dc:type "Review" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/biomaterials> ;
+    dc:creator <https://lovamap.com/ontology#author/collier-joel> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/collier-joel>
+                       <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    dc:bibliographicCitation "Collier & Segura, 2011" ;
+    lova:focusMaterial "Peptide-based components (adhesion peptides, proteolytic substrates, self-assembling and surface-binding peptides) used within synthetic biomaterials" .
+
+<https://lovamap.com/ontology#author/collier-joel> a foaf:Person ;
+    foaf:familyName "Collier" ;
+    foaf:givenName "Joel H." ;
+    foaf:name "Joel H. Collier" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" .
+
+<https://lovamap.com/ontology#journal/biomaterials> a bibo:Journal ;
+    dc:title "Biomaterials" ;
+    bibo:issn "0142-9612" .

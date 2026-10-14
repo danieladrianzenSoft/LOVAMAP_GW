@@ -1,0 +1,955 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> a bibo:AcademicArticle ;
+    rdfs:label "Griffin et al., 2020 — Activating an adaptive immune response from a hydrogel scaffold imparts regenerative wound healing" ;
+    dc:title "Activating an adaptive immune response from a hydrogel scaffold imparts regenerative wound healing" ;
+    dc:identifier "10.1038/s41563-020-00844-w" ;
+    dc:date "2020"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/nature-materials> ;
+    dc:creator <https://lovamap.com/ontology#author/griffin-donald> ,
+               <https://lovamap.com/ontology#author/archang-maani> ,
+               <https://lovamap.com/ontology#author/kuan-chen-hsiang> ,
+               <https://lovamap.com/ontology#author/weaver-westbrook> ,
+               <https://lovamap.com/ontology#author/weinstein-jason> ,
+               <https://lovamap.com/ontology#author/feng-an-chieh> ,
+               <https://lovamap.com/ontology#author/ruccia-amber> ,
+               <https://lovamap.com/ontology#author/sideris-elias> ,
+               <https://lovamap.com/ontology#author/ragkousis-vasileios> ,
+               <https://lovamap.com/ontology#author/koh-jaekyung> ,
+               <https://lovamap.com/ontology#author/plikus-maksim> ,
+               <https://lovamap.com/ontology#author/di-carlo-dino> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ,
+               <https://lovamap.com/ontology#author/scumpia-philip> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/griffin-donald>
+                       <https://lovamap.com/ontology#author/archang-maani>
+                       <https://lovamap.com/ontology#author/kuan-chen-hsiang>
+                       <https://lovamap.com/ontology#author/weaver-westbrook>
+                       <https://lovamap.com/ontology#author/weinstein-jason>
+                       <https://lovamap.com/ontology#author/feng-an-chieh>
+                       <https://lovamap.com/ontology#author/ruccia-amber>
+                       <https://lovamap.com/ontology#author/sideris-elias>
+                       <https://lovamap.com/ontology#author/ragkousis-vasileios>
+                       <https://lovamap.com/ontology#author/koh-jaekyung>
+                       <https://lovamap.com/ontology#author/plikus-maksim>
+                       <https://lovamap.com/ontology#author/di-carlo-dino>
+                       <https://lovamap.com/ontology#author/segura-tatiana>
+                       <https://lovamap.com/ontology#author/scumpia-philip> ) ;
+    dc:bibliographicCitation "Griffin et al., 2020" ;
+    lova:focusMaterial "MAP (microporous annealed particle) PEG-based hydrogel scaffolds crosslinked with L- or D-chiral MMP-degradable peptides, used in murine skin wound healing" .
+
+<https://lovamap.com/ontology#author/griffin-donald> a foaf:Person ;
+    foaf:familyName "Griffin" ; foaf:givenName "Donald Richieri" ; foaf:name "Donald Richieri Griffin" .
+<https://lovamap.com/ontology#author/archang-maani> a foaf:Person ;
+    foaf:familyName "Archang" ; foaf:givenName "Maani M." ; foaf:name "Maani M. Archang" .
+<https://lovamap.com/ontology#author/kuan-chen-hsiang> a foaf:Person ;
+    foaf:familyName "Kuan" ; foaf:givenName "Chen-Hsiang" ; foaf:name "Chen-Hsiang Kuan" .
+<https://lovamap.com/ontology#author/weaver-westbrook> a foaf:Person ;
+    foaf:familyName "Weaver" ; foaf:givenName "Westbrook M." ; foaf:name "Westbrook M. Weaver" .
+<https://lovamap.com/ontology#author/weinstein-jason> a foaf:Person ;
+    foaf:familyName "Weinstein" ; foaf:givenName "Jason S." ; foaf:name "Jason S. Weinstein" .
+<https://lovamap.com/ontology#author/feng-an-chieh> a foaf:Person ;
+    foaf:familyName "Feng" ; foaf:givenName "An-Chieh" ; foaf:name "An-Chieh Feng" .
+<https://lovamap.com/ontology#author/ruccia-amber> a foaf:Person ;
+    foaf:familyName "Ruccia" ; foaf:givenName "Amber" ; foaf:name "Amber Ruccia" .
+<https://lovamap.com/ontology#author/sideris-elias> a foaf:Person ;
+    foaf:familyName "Sideris" ; foaf:givenName "Elias" ; foaf:name "Elias Sideris" .
+<https://lovamap.com/ontology#author/ragkousis-vasileios> a foaf:Person ;
+    foaf:familyName "Ragkousis" ; foaf:givenName "Vasileios" ; foaf:name "Vasileios Ragkousis" .
+<https://lovamap.com/ontology#author/koh-jaekyung> a foaf:Person ;
+    foaf:familyName "Koh" ; foaf:givenName "Jaekyung" ; foaf:name "Jaekyung Koh" .
+<https://lovamap.com/ontology#author/plikus-maksim> a foaf:Person ;
+    foaf:familyName "Plikus" ; foaf:givenName "Maksim V." ; foaf:name "Maksim V. Plikus" .
+<https://lovamap.com/ontology#author/di-carlo-dino> a foaf:Person ;
+    foaf:familyName "Di Carlo" ; foaf:givenName "Dino" ; foaf:name "Dino Di Carlo" .
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ; foaf:givenName "Tatiana" ; foaf:name "Tatiana Segura" .
+<https://lovamap.com/ontology#author/scumpia-philip> a foaf:Person ;
+    foaf:familyName "Scumpia" ; foaf:givenName "Philip O." ; foaf:name "Philip O. Scumpia" .
+
+<https://lovamap.com/ontology#journal/nature-materials> a bibo:Journal ;
+    dc:title "Nature Materials" ;
+    bibo:issn "1476-1122" .
+
+<https://lovamap.com/ontology#material/10.1038-s41563-020-00844-w/l-map> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "L-MAP (L-peptide crosslinked MAP hydrogel)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "4-arm PEG-vinyl sulfone, L-chirality MMP crosslinker" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:stiffnessValue 525.0 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1038-s41563-020-00844-w/microfluidic-map-hydrogel> ;
+    lova:packingConfiguration "Jammed" .
+
+<https://lovamap.com/ontology#material/10.1038-s41563-020-00844-w/d-map> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "D-MAP (D-peptide crosslinked MAP hydrogel)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "4-arm PEG-vinyl sulfone, D-chirality MMP crosslinker" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:stiffnessValue 500.0 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1038-s41563-020-00844-w/microfluidic-map-hydrogel> ;
+    lova:packingConfiguration "Jammed" .
+
+<https://lovamap.com/ontology#material/10.1038-s41563-020-00844-w/ld-map-1to1> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "1:1 mixture of L-MAP and D-MAP" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "4-arm PEG-vinyl sulfone, L- and D-chirality MMP crosslinkers (1:1 v/v)" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1038-s41563-020-00844-w/microfluidic-map-hydrogel> ;
+    lova:packingConfiguration "Jammed" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1038-s41563-020-00844-w/microfluidic-map-hydrogel> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "Microfluidic water-in-oil formation of PEG-VS MAP microgels with MMP-sensitive L- or D-chiral crosslinker, enzymatically annealed via Thrombin/Factor XIII" ;
+    lova:chemistry "Michael-type addition (thiol-vinyl sulfone)" ;
+    lova:manufacturingMethod "Microfluidic water-in-oil emulsion" ;
+    lova:annealingChemistry "Enzymatic (Thrombin/Factor XIII transglutamination)" ;
+    lova:annealingConditions "Room temperature overnight reaction; annealing at wound/implant site" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1038-s41563-020-00844-w/peg-vs> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-s41563-020-00844-w/teoa> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-s41563-020-00844-w/k-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-s41563-020-00844-w/q-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-s41563-020-00844-w/rgd-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-s41563-020-00844-w/mmp-l-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-s41563-020-00844-w/mmp-d-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-s41563-020-00844-w/mineral-oil> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-s41563-020-00844-w/span80> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-s41563-020-00844-w/thrombin> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-s41563-020-00844-w/fxiii> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-s41563-020-00844-w/collagenase-i> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-s41563-020-00844-w/collagenase-iv> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-s41563-020-00844-w/dnase-i> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-s41563-020-00844-w/lps> .
+
+<https://lovamap.com/ontology#reagent/10.1038-s41563-020-00844-w/peg-vs> a lova:Reagent ;
+    rdfs:label "4-arm PEG-vinyl sulfone (20 kDa)" ;
+    lova:reagentRole "monomer" ;
+    lova:molecularWeight "20 kDa" ;
+    lova:concentration "10% w/v" ;
+    lova:supplier "JenKem USA" .
+
+<https://lovamap.com/ontology#reagent/10.1038-s41563-020-00844-w/teoa> a lova:Reagent ;
+    rdfs:label "Triethanolamine" ;
+    lova:reagentRole "other" ;
+    lova:concentration "300 mM, pH 8.25" ;
+    lova:supplier "Sigma" .
+
+<https://lovamap.com/ontology#reagent/10.1038-s41563-020-00844-w/k-peptide> a lova:Reagent ;
+    rdfs:label "K-peptide (Ac-FKGGERCG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "FKGGERCG" ;
+    lova:concentration "500 μM" ;
+    lova:supplier "GenScript" ;
+    lova:reagentFunction "Factor XIII substrate for crosslinking" .
+
+<https://lovamap.com/ontology#reagent/10.1038-s41563-020-00844-w/q-peptide> a lova:Reagent ;
+    rdfs:label "Q-peptide (Ac-NQEQVSPLGGERCG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "NQEQVSPLGGERCG" ;
+    lova:concentration "500 μM" ;
+    lova:reagentFunction "Factor XIII substrate for crosslinking" .
+
+<https://lovamap.com/ontology#reagent/10.1038-s41563-020-00844-w/rgd-peptide> a lova:Reagent ;
+    rdfs:label "RGD peptide (Ac-RGDSPGERCG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "RGDSPGERCG" ;
+    lova:concentration "1 mM" ;
+    lova:supplier "GenScript" ;
+    lova:reagentFunction "Cell adhesion" .
+
+<https://lovamap.com/ontology#reagent/10.1038-s41563-020-00844-w/mmp-l-peptide> a lova:Reagent ;
+    rdfs:label "L-chirality MMP-sensitive crosslinker peptide (Ac-GCRDGPQGIWGQDRCG-NH2)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:sequence "GCRDGPQGIWGQDRCG" ;
+    lova:concentration "8 mM" ;
+    lova:supplier "GenScript" ;
+    lova:reagentFunction "Enzymatically (MMP) degradable L-MAP crosslink" .
+
+<https://lovamap.com/ontology#reagent/10.1038-s41563-020-00844-w/mmp-d-peptide> a lova:Reagent ;
+    rdfs:label "D-chirality MMP-sensitive crosslinker peptide (Ac-GCRDGPQ(D)GI(D)W(D)GQDRCG-NH2)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:sequence "GCRDGPQ_D GI_D W_D GQDRCG" ;
+    lova:concentration "8.2 mM" ;
+    lova:supplier "GenScript" ;
+    lova:reagentFunction "Slower-degrading D-amino acid MAP crosslink, antigenic" .
+
+<https://lovamap.com/ontology#reagent/10.1038-s41563-020-00844-w/mineral-oil> a lova:Reagent ;
+    rdfs:label "Heavy mineral oil" ;
+    lova:reagentRole "carrier oil" ;
+    lova:supplier "Fisher" .
+
+<https://lovamap.com/ontology#reagent/10.1038-s41563-020-00844-w/span80> a lova:Reagent ;
+    rdfs:label "Span-80" ;
+    lova:reagentRole "surfactant" ;
+    lova:concentration "0.25% v/v and 5% v/v" ;
+    lova:supplier "Sigma" .
+
+<https://lovamap.com/ontology#reagent/10.1038-s41563-020-00844-w/thrombin> a lova:Reagent ;
+    rdfs:label "Thrombin" ;
+    lova:reagentRole "enzyme" ;
+    lova:concentration "2 U/ml" ;
+    lova:supplier "Sigma" ;
+    lova:reagentFunction "Annealing/crosslinking initiation" .
+
+<https://lovamap.com/ontology#reagent/10.1038-s41563-020-00844-w/fxiii> a lova:Reagent ;
+    rdfs:label "Factor XIII (FXIII)" ;
+    lova:reagentRole "enzyme" ;
+    lova:concentration "10 U/ml" ;
+    lova:supplier "CSL Behring" ;
+    lova:reagentFunction "Annealing (inter-particle crosslinking)" .
+
+<https://lovamap.com/ontology#reagent/10.1038-s41563-020-00844-w/collagenase-i> a lova:Reagent ;
+    rdfs:label "Collagenase I" ;
+    lova:reagentRole "enzyme" ;
+    lova:concentration "5 U/mL" ;
+    lova:reagentFunction "In vitro degradation of MAP microgels" .
+
+<https://lovamap.com/ontology#reagent/10.1038-s41563-020-00844-w/collagenase-iv> a lova:Reagent ;
+    rdfs:label "Collagenase IV" ;
+    lova:reagentRole "enzyme" ;
+    lova:concentration "200 U/ml" ;
+    lova:reagentFunction "Digestion of particles for endotoxin testing" .
+
+<https://lovamap.com/ontology#reagent/10.1038-s41563-020-00844-w/dnase-i> a lova:Reagent ;
+    rdfs:label "DNase I" ;
+    lova:reagentRole "enzyme" ;
+    lova:concentration "125 U/ml" .
+
+<https://lovamap.com/ontology#reagent/10.1038-s41563-020-00844-w/lps> a lova:Reagent ;
+    rdfs:label "Lipopolysaccharide (LPS)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "10 ng/ml" ;
+    lova:reagentFunction "TLR4 agonist, macrophage activation" .
+
+<https://lovamap.com/ontology#experiment/10.1038-s41563-020-00844-w/rheology-modulus> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s41563-020-00844-w/l-map> ,
+                       <https://lovamap.com/ontology#material/10.1038-s41563-020-00844-w/d-map> ;
+    rdfs:label "Rheological characterization of L-MAP and D-MAP storage modulus" ;
+    lova:experimentCategory "Rheological" ;
+    lova:experimentType "Storage modulus measurement" ;
+    lova:equipment "Rheometer" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/modulus-l-r08> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-020-00844-w/rheology-modulus> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "Storage modulus of L-MAP (r=0.8)" ;
+    lova:measurementType "Storage modulus" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 525.0 ;
+    qudt:unit "Pa" ;
+    lova:isSignificant false ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/modulus-d-r086> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-020-00844-w/rheology-modulus> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "Storage modulus of D-MAP (r=0.86)" ;
+    lova:measurementType "Storage modulus" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 490.0 ;
+    qudt:unit "Pa" ;
+    lova:isSignificant false ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-s41563-020-00844-w/modulus-l-vs-d> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "No significant difference in storage modulus between L-MAP and D-MAP formulations" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/modulus-l-r08> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/modulus-d-r086> ;
+    lova:direction "no difference" ;
+    lova:isSignificant false .
+
+<https://lovamap.com/ontology#experiment/10.1038-s41563-020-00844-w/collagenase-degradation> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s41563-020-00844-w/l-map> ,
+                       <https://lovamap.com/ontology#material/10.1038-s41563-020-00844-w/d-map> ;
+    rdfs:label "In vitro enzymolysis of L-MAP and D-MAP with Collagenase I" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Enzymatic degradation assay" ;
+    lova:assayOrMethod "Confocal imaging, MATLAB/ImageJ quantification" ;
+    lova:cultureDuration "2 hours (imaged every 30 seconds)" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/l-bead-remaining-30min> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-020-00844-w/collagenase-degradation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "% of L-bead microgels remaining at 30 min collagenase exposure" ;
+    lova:measurementType "% beads remaining" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 2.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "30 minutes" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/d-bead-remaining-30min> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-020-00844-w/collagenase-degradation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "% of D-bead microgels remaining at 30 min collagenase exposure" ;
+    lova:measurementType "% beads remaining" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 98.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "30 minutes" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-s41563-020-00844-w/l-vs-d-degradation-invitro> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "L-MAP degrades faster than D-MAP in vitro with Collagenase I" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/l-bead-remaining-30min> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/d-bead-remaining-30min> ;
+    lova:direction "lower" .
+
+<https://lovamap.com/ontology#experiment/10.1038-s41563-020-00844-w/excisional-wound-skh1> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s41563-020-00844-w/l-map> ,
+                       <https://lovamap.com/ontology#material/10.1038-s41563-020-00844-w/d-map> ,
+                       <https://lovamap.com/ontology#material/10.1038-s41563-020-00844-w/ld-map-1to1> ;
+    rdfs:label "Splinted excisional wound healing model in SKH1 mice treated with sham, L-MAP, D-MAP, or 1:1 L/D-MAP" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Wound healing / Histology" ;
+    lova:assayOrMethod "H&E and Trichrome staining" ;
+    lova:cellSource "Female SKH1 hairless mice" ;
+    lova:cultureDuration "21 days" ;
+    lova:sampleSize 4 .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/skinthickness-sham> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-020-00844-w/excisional-wound-skh1> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "Total skin thickness — Sham" ;
+    lova:measurementType "Total skin thickness" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.22 ;
+    qudt:unit "mm" ;
+    lova:timePoint "Day 21" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/skinthickness-lonly> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-020-00844-w/excisional-wound-skh1> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "Total skin thickness — L-only" ;
+    lova:measurementType "Total skin thickness" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.40 ;
+    qudt:unit "mm" ;
+    lova:timePoint "Day 21" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/skinthickness-ldmix> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-020-00844-w/excisional-wound-skh1> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "Total skin thickness — 1:1 L/D" ;
+    lova:measurementType "Total skin thickness" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.39 ;
+    qudt:unit "mm" ;
+    lova:timePoint "Day 21" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-s41563-020-00844-w/skinthickness-sham-vs-lonly> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "Total skin thickness higher in L-only vs Sham" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/skinthickness-lonly> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/skinthickness-sham> ;
+    lova:direction "higher" ;
+    lova:pValue 0.0341 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1038-s41563-020-00844-w/skinthickness-sham-vs-ldmix> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "Total skin thickness higher in 1:1 L/D vs Sham" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/skinthickness-ldmix> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/skinthickness-sham> ;
+    lova:direction "higher" ;
+    lova:pValue 0.0460 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/hairfollicles-sham> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-020-00844-w/excisional-wound-skh1> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "Hair follicles per section — Sham" ;
+    lova:measurementType "Hair follicles per section" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.2 ;
+    qudt:unit "follicles/section" ;
+    lova:timePoint "Day 21" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/hairfollicles-donly> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-020-00844-w/excisional-wound-skh1> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "Hair follicles per section — D-only" ;
+    lova:measurementType "Hair follicles per section" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 4.2 ;
+    qudt:unit "follicles/section" ;
+    lova:timePoint "Day 21" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/hairfollicles-ldmix> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-020-00844-w/excisional-wound-skh1> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "Hair follicles per section — 1:1 L/D" ;
+    lova:measurementType "Hair follicles per section" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 6.0 ;
+    qudt:unit "follicles/section" ;
+    lova:timePoint "Day 21" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-s41563-020-00844-w/hairfollicles-sham-vs-ldmix> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "Hair follicles higher in 1:1 L/D vs Sham" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/hairfollicles-ldmix> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/hairfollicles-sham> ;
+    lova:direction "higher" ;
+    lova:pValue 0.0007 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1038-s41563-020-00844-w/hairfollicles-sham-vs-donly> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "Hair follicles higher in D-only vs Sham" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/hairfollicles-donly> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/hairfollicles-sham> ;
+    lova:direction "higher" ;
+    lova:pValue 0.0220 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/sebaceous-sham> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-020-00844-w/excisional-wound-skh1> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "Sebaceous glands per section — Sham" ;
+    lova:measurementType "Sebaceous glands per section" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.5 ;
+    qudt:unit "glands/section" ;
+    lova:timePoint "Day 21" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/sebaceous-ldmix> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-020-00844-w/excisional-wound-skh1> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "Sebaceous glands per section — 1:1 L/D" ;
+    lova:measurementType "Sebaceous glands per section" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 6.5 ;
+    qudt:unit "glands/section" ;
+    lova:timePoint "Day 21" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-s41563-020-00844-w/sebaceous-sham-vs-ldmix> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "Sebaceous glands higher in 1:1 L/D vs Sham" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/sebaceous-ldmix> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/sebaceous-sham> ;
+    lova:direction "higher" ;
+    lova:pValue 0.0110 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1038-s41563-020-00844-w/tensiometry> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s41563-020-00844-w/l-map> ,
+                       <https://lovamap.com/ontology#material/10.1038-s41563-020-00844-w/d-map> ,
+                       <https://lovamap.com/ontology#material/10.1038-s41563-020-00844-w/ld-map-1to1> ;
+    rdfs:label "Tensiometry of healed incisional wounds in SKH1 mice" ;
+    lova:experimentCategory "Mechanical" ;
+    lova:experimentType "Tensile strength testing" ;
+    lova:equipment "Instron model 3342, 50N load cell" ;
+    lova:strainRate "5 mm/min" ;
+    lova:cultureDuration "28 days" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/tensile-sham> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-020-00844-w/tensiometry> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "% tissue failure force relative to uninjured control — Sham" ;
+    lova:measurementType "% tissue failure force relative to uninjured control" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 15.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 28" ;
+    lova:valueString "approximately 15% of unwounded skin" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/tensile-donly> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-020-00844-w/tensiometry> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "% tissue failure force relative to uninjured control — D-only" ;
+    lova:measurementType "% tissue failure force relative to uninjured control" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 23.5 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 28" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/tensile-ldmix> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-020-00844-w/tensiometry> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "% tissue failure force relative to uninjured control — 1:1 L/D" ;
+    lova:measurementType "% tissue failure force relative to uninjured control" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 24.5 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 28" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-s41563-020-00844-w/tensile-sham-vs-donly> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "Tensile strength higher in D-only vs Sham (~80% improvement)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/tensile-donly> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/tensile-sham> ;
+    lova:direction "higher" ;
+    lova:pValue 0.0273 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1038-s41563-020-00844-w/tensile-sham-vs-ldmix> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "Tensile strength higher in 1:1 L/D vs Sham (~80% improvement)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/tensile-ldmix> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/tensile-sham> ;
+    lova:direction "higher" ;
+    lova:pValue 0.0131 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1038-s41563-020-00844-w/hair-neogenesis-b6> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s41563-020-00844-w/d-map> ;
+    rdfs:label "Hair follicle neogenesis in D-MAP treated full-thickness wounds in B6 mice" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Wound healing / Immunofluorescence" ;
+    lova:assayOrMethod "H&E, Masson Trichrome, KRT5/PLIN, SOX9/SMA immunostaining" ;
+    lova:cellSource "C57Bl/6 mice" ;
+    lova:cultureDuration "Day 18" ;
+    lova:sampleSize 4 .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/hair-neogenesis-observed> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-020-00844-w/hair-neogenesis-b6> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "D-MAP treated wounds show numerous neogenic hair follicles and epidermal cysts vs scarring in control" ;
+    lova:measurementType "Hair follicle neogenesis" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "D-MAP wounds display KRT5+ neogenic hair follicles with SOX9+ bulge regions; control wounds heal with scarring and no neogenic follicles" ;
+    lova:timePoint "Day 18" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#experiment/10.1038-s41563-020-00844-w/cd11b-immunofluorescence> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s41563-020-00844-w/l-map> ,
+                       <https://lovamap.com/ontology#material/10.1038-s41563-020-00844-w/d-map> ,
+                       <https://lovamap.com/ontology#material/10.1038-s41563-020-00844-w/ld-map-1to1> ;
+    rdfs:label "CD11b+ myeloid cell infiltrate quantification in healed wounds" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immunofluorescence" ;
+    lova:assayOrMethod "Confocal immunofluorescence, CD11b staining" ;
+    lova:cultureDuration "21 days" ;
+    lova:sampleSize 21 .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/cd11b-sham> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-020-00844-w/cd11b-immunofluorescence> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "CD11b/DAPI signal — Sham" ;
+    lova:measurementType "CD11b/DAPI signal" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.06 ;
+    qudt:unit "AU" ;
+    lova:timePoint "Day 21" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/cd11b-lonly> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-020-00844-w/cd11b-immunofluorescence> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "CD11b/DAPI signal — L-only" ;
+    lova:measurementType "CD11b/DAPI signal" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.12 ;
+    qudt:unit "AU" ;
+    lova:timePoint "Day 21" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/cd11b-donly> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-020-00844-w/cd11b-immunofluorescence> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "CD11b/DAPI signal — D-only" ;
+    lova:measurementType "CD11b/DAPI signal" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.49 ;
+    qudt:unit "AU" ;
+    lova:timePoint "Day 21" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-s41563-020-00844-w/cd11b-sham-vs-donly> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "CD11b/DAPI signal higher in D-only vs Sham" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/cd11b-donly> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/cd11b-sham> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:pValue 0.0001 .
+
+<https://lovamap.com/ontology#comparison/10.1038-s41563-020-00844-w/cd11b-lonly-vs-donly> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "CD11b/DAPI signal higher in D-only vs L-only" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/cd11b-donly> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/cd11b-lonly> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:pValue 0.0001 .
+
+<https://lovamap.com/ontology#experiment/10.1038-s41563-020-00844-w/il33-macrophage-quant> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s41563-020-00844-w/l-map> ,
+                       <https://lovamap.com/ontology#material/10.1038-s41563-020-00844-w/d-map> ;
+    rdfs:label "Quantification of IL-33+CD11b+F4/80+ macrophages in subcutaneous L- or D-MAP implants" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immunofluorescence" ;
+    lova:assayOrMethod "Confocal immunofluorescence, IL-33/CD11b/F4/80/DAPI staining" ;
+    lova:cultureDuration "21 days" ;
+    lova:sampleSize 5 .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/il33-edge-donly> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-020-00844-w/il33-macrophage-quant> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "IL33+CD11b+ F4/80+ cells/mm2 at hydrogel edge — D-only" ;
+    lova:measurementType "IL33+CD11b+ cell density" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 900.0 ;
+    qudt:unit "cells/mm2" ;
+    lova:scope "Regional" ;
+    lova:timePoint "Day 21" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/il33-edge-lonly> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-020-00844-w/il33-macrophage-quant> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "IL33+CD11b+ F4/80+ cells/mm2 at hydrogel edge — L-only" ;
+    lova:measurementType "IL33+CD11b+ cell density" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 250.0 ;
+    qudt:unit "cells/mm2" ;
+    lova:scope "Regional" ;
+    lova:timePoint "Day 21" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-s41563-020-00844-w/il33-edge-donly-vs-lonly> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "IL33+CD11b+F4/80+ cells higher at edge of D-MAP vs L-MAP implants" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/il33-edge-donly> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/il33-edge-lonly> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:pValue 0.00014 .
+
+<https://lovamap.com/ontology#experiment/10.1038-s41563-020-00844-w/bmdm-qpcr-uncleaved> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s41563-020-00844-w/l-map> ,
+                       <https://lovamap.com/ontology#material/10.1038-s41563-020-00844-w/d-map> ;
+    rdfs:label "qPCR of inflammatory gene expression in BMDMs stimulated with intact L- or D-peptide +/- LPS" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "qPCR" ;
+    lova:cellType "Bone marrow derived macrophages (BMDM)" ;
+    lova:cellSource "C57Bl/6 murine bone marrow" ;
+    lova:cultureDuration "6 hours" ;
+    lova:sampleSize 6 .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/tnf-0h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-020-00844-w/bmdm-qpcr-uncleaved> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "Tnf fold change — 0 hour control" ;
+    lova:measurementType "Tnf expression fold change" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.0 ;
+    qudt:unit "fold change" ;
+    lova:timePoint "6 hours" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/tnf-lps> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-020-00844-w/bmdm-qpcr-uncleaved> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "Tnf fold change — LPS" ;
+    lova:measurementType "Tnf expression fold change" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 6.5 ;
+    qudt:unit "fold change" ;
+    lova:timePoint "6 hours" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-s41563-020-00844-w/tnf-0h-vs-lps> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "Tnf expression higher with LPS vs 0 hour control" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/tnf-lps> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/tnf-0h> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/lpeptide-vs-dpeptide-bmdm> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-020-00844-w/bmdm-qpcr-uncleaved> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "L- or D-peptide alone (1mg/ml) do not induce Tnf, Il1b, Cxcl2, or Mx1 expression in BMDMs at 6h" ;
+    lova:measurementType "Pro-inflammatory gene expression" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "No significant induction of Tnf, Il1b, Cxcl2, Mx1 by L- or D-peptide alone" ;
+    lova:timePoint "6 hours" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1038-s41563-020-00844-w/bmdm-qpcr-cleaved> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s41563-020-00844-w/d-map> ;
+    rdfs:label "qPCR of inflammatory gene expression in BMDMs stimulated with cleaved D-peptide or LPS" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "qPCR" ;
+    lova:cellType "Bone marrow derived macrophages (BMDM)" ;
+    lova:cellSource "C57Bl/6 murine bone marrow" ;
+    lova:cultureDuration "6 hours" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/cleaved-dpeptide-no-induction> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-020-00844-w/bmdm-qpcr-cleaved> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "Cleaved D-peptide (1mg/ml) does not induce Tnf, Il1b, Cxcl2, or Mx1 transcription at 6h" ;
+    lova:measurementType "Pro-inflammatory gene expression" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "No induction of Tnf, Il1b, Cxcl2, Mx1 by cleaved D-peptide at 1mg/ml" ;
+    lova:timePoint "6 hours" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1038-s41563-020-00844-w/elisa-wound-model> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s41563-020-00844-w/l-map> ,
+                       <https://lovamap.com/ontology#material/10.1038-s41563-020-00844-w/d-map> ,
+                       <https://lovamap.com/ontology#material/10.1038-s41563-020-00844-w/ld-map-1to1> ;
+    rdfs:label "ELISA for anti-D and anti-L specific IgG subtype antibodies in wound-healing SKH1 mice" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "ELISA" ;
+    lova:assayOrMethod "Alkaline phosphatase ELISA, OD405" ;
+    lova:cultureDuration "21 days" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/antiD-igg1-lonly> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-020-00844-w/elisa-wound-model> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "Anti-D peptide IgG1 OD405 — L only" ;
+    lova:measurementType "Anti-D peptide IgG1 (OD405)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.1 ;
+    qudt:unit "OD405" ;
+    lova:timePoint "Day 21" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/antiD-igg1-donly> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-020-00844-w/elisa-wound-model> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "Anti-D peptide IgG1 OD405 — D only" ;
+    lova:measurementType "Anti-D peptide IgG1 (OD405)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.35 ;
+    qudt:unit "OD405" ;
+    lova:timePoint "Day 21" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-s41563-020-00844-w/antiD-igg1-lonly-vs-donly> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "Anti-D peptide IgG1 higher in D-only vs L-only" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/antiD-igg1-donly> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/antiD-igg1-lonly> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/antiD-igg2a-donly> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-020-00844-w/elisa-wound-model> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "Anti-D peptide IgG2a OD405 — D only" ;
+    lova:measurementType "Anti-D peptide IgG2a (OD405)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.09 ;
+    qudt:unit "OD405" ;
+    lova:timePoint "Day 21" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/antiD-igg3-ldmix> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-020-00844-w/elisa-wound-model> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "Anti-D peptide IgG3 OD405 — 1:1 L/D" ;
+    lova:measurementType "Anti-D peptide IgG3 (OD405)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.15 ;
+    qudt:unit "OD405" ;
+    lova:timePoint "Day 21" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1038-s41563-020-00844-w/elisa-subq-model> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s41563-020-00844-w/d-map> ;
+    rdfs:label "ELISA for anti-D peptide antibodies after subcutaneous D-MAP injection in Balb/c vs Balb/c.Rag2-/-γc-/- mice" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "ELISA" ;
+    lova:assayOrMethod "Alkaline phosphatase ELISA, OD405" ;
+    lova:cultureDuration "21 days" ;
+    lova:sampleSize 5 .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/antiD-igg1-balbc> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-020-00844-w/elisa-subq-model> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "Anti-D peptide IgG1 OD405 — Balb/c (subcutaneous injection)" ;
+    lova:measurementType "Anti-D peptide IgG1 (OD405)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.21 ;
+    qudt:unit "OD405" ;
+    lova:timePoint "Day 21" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/antiD-igg1-rag2gc> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-020-00844-w/elisa-subq-model> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "Anti-D peptide IgG1 OD405 — Balb/c.Rag2-/-γc-/- (subcutaneous injection)" ;
+    lova:measurementType "Anti-D peptide IgG1 (OD405)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.07 ;
+    qudt:unit "OD405" ;
+    lova:timePoint "Day 21" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-s41563-020-00844-w/antiD-igg1-balbc-vs-rag2gc> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "Anti-D peptide IgG1 higher in Balb/c vs Balb/c.Rag2-/-γc-/-" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/antiD-igg1-balbc> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/antiD-igg1-rag2gc> ;
+    lova:direction "higher" ;
+    lova:pValue 0.0022 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1038-s41563-020-00844-w/subq-cd11b-dapi> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s41563-020-00844-w/l-map> ,
+                       <https://lovamap.com/ontology#material/10.1038-s41563-020-00844-w/d-map> ;
+    rdfs:label "Quantification of DAPI+ cells and CD11b+ myeloid cells in subcutaneous L-MAP/D-MAP implants in Balb/c vs Balb/c.Rag2-/-γc-/- mice" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immunofluorescence" ;
+    lova:cultureDuration "21 days" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/cd11b-dapi-donly-balbc> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-020-00844-w/subq-cd11b-dapi> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "CD11b/DAPI signal — D only, Balb/c" ;
+    lova:measurementType "CD11b/DAPI signal" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.43 ;
+    qudt:unit "AU" ;
+    lova:timePoint "Day 21" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/cd11b-dapi-lonly-balbc> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-020-00844-w/subq-cd11b-dapi> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "CD11b/DAPI signal — L only, Balb/c" ;
+    lova:measurementType "CD11b/DAPI signal" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.09 ;
+    qudt:unit "AU" ;
+    lova:timePoint "Day 21" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-s41563-020-00844-w/cd11b-dapi-lonly-vs-donly-balbc> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "CD11b/DAPI signal higher in D-only vs L-only in Balb/c mice" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/cd11b-dapi-donly-balbc> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/cd11b-dapi-lonly-balbc> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1038-s41563-020-00844-w/b6-rag1-hair-sebaceous> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-s41563-020-00844-w/ld-map-1to1> ;
+    rdfs:label "Hair follicle and sebaceous gland quantification in B6 vs B6.Rag1-/- mice treated sham or 1:1 L/D-MAP" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Wound healing / Histology" ;
+    lova:cellSource "C57Bl/6 (B6) and B6.Rag1-/- mice" ;
+    lova:cultureDuration "25 days" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/b6-sham-hairfollicles> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-020-00844-w/b6-rag1-hair-sebaceous> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "Hair follicles/section — B6 Sham" ;
+    lova:measurementType "Hair follicles per section" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.8 ;
+    qudt:unit "follicles/section" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/b6-ldmix-hairfollicles> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-020-00844-w/b6-rag1-hair-sebaceous> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "Hair follicles/section — B6 1:1 L/D" ;
+    lova:measurementType "Hair follicles per section" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 6.5 ;
+    qudt:unit "follicles/section" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/rag1-ldmix-hairfollicles> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-020-00844-w/b6-rag1-hair-sebaceous> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "Hair follicles/section — B6.Rag1-/- 1:1 L/D" ;
+    lova:measurementType "Hair follicles per section" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.4 ;
+    qudt:unit "follicles/section" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-s41563-020-00844-w/b6-sham-vs-ldmix-hairfollicles> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "Hair follicles higher in B6 1:1 L/D vs B6 Sham" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/b6-ldmix-hairfollicles> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/b6-sham-hairfollicles> ;
+    lova:direction "higher" ;
+    lova:pValue 0.0039 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1038-s41563-020-00844-w/b6-vs-rag1-ldmix-hairfollicles> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "Hair follicles lower in B6.Rag1-/- 1:1 L/D vs B6 1:1 L/D, requiring intact adaptive immunity" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/rag1-ldmix-hairfollicles> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/b6-ldmix-hairfollicles> ;
+    lova:direction "lower" ;
+    lova:pValue 0.002 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/b6-sham-sebaceous> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-020-00844-w/b6-rag1-hair-sebaceous> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "Sebaceous glands/section — B6 Sham" ;
+    lova:measurementType "Sebaceous glands per section" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.6 ;
+    qudt:unit "glands/section" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/b6-ldmix-sebaceous> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-s41563-020-00844-w/b6-rag1-hair-sebaceous> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "Sebaceous glands/section — B6 1:1 L/D" ;
+    lova:measurementType "Sebaceous glands per section" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 4.7 ;
+    qudt:unit "glands/section" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-s41563-020-00844-w/b6-sham-vs-ldmix-sebaceous> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-s41563-020-00844-w> ;
+    rdfs:label "Sebaceous glands higher in B6 1:1 L/D vs B6 Sham" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/b6-ldmix-sebaceous> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-s41563-020-00844-w/b6-sham-sebaceous> ;
+    lova:direction "higher" ;
+    lova:pValue 0.0039 ;
+    lova:isSignificant true .

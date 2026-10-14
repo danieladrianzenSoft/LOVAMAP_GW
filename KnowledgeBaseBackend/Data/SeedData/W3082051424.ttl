@@ -1,0 +1,849 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1002-admi.202001055> a bibo:AcademicArticle ;
+    rdfs:label "Anderson & Segura, 2020 — Injectable Biomaterials for Treatment of Glioblastoma" ;
+    dc:title "Injectable Biomaterials for Treatment of Glioblastoma" ;
+    dc:identifier "10.1002/admi.202001055" ;
+    dc:date "2020"^^xsd:gYear ;
+    dc:type "Review" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/advanced-materials-interfaces> ;
+    dc:creator <https://lovamap.com/ontology#author/anderson-alexa> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/anderson-alexa>
+                       <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    dc:bibliographicCitation "Anderson & Segura, 2020" ;
+    lova:focusMaterial "Injectable biomaterials (hydrogels, nanoparticles, liposomes, lipid nanocapsules) for local delivery of chemotherapy, radiotherapy, and targeted therapies to treat glioblastoma" .
+
+<https://lovamap.com/ontology#author/anderson-alexa> a foaf:Person ;
+    foaf:familyName "Anderson" ;
+    foaf:givenName "Alexa R." ;
+    foaf:name "Alexa R. Anderson" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" .
+
+<https://lovamap.com/ontology#journal/advanced-materials-interfaces> a bibo:Journal ;
+    dc:title "Advanced Materials Interfaces" ;
+    bibo:issn "2196-7350" .
+
+<https://lovamap.com/ontology#material/10.1002-admi.202001055/ptx-plga-peg-dma> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "PTX-loaded PLGA nanoparticles in PEG-DMA hydrogel (post-resection, ref 40)" ;
+    lova:particleMaterial "PLGA" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-admi.202001055/peg-dma-photopolymer> .
+
+<https://lovamap.com/ontology#material/10.1002-admi.202001055/plga-peg-dma-blank> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "Blank PLGA nanoparticles in PEG-DMA hydrogel, no drug (ref 40)" ;
+    lova:particleMaterial "PLGA" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-admi.202001055/peg-dma-photopolymer> .
+
+<https://lovamap.com/ontology#material/10.1002-admi.202001055/ptx-plga-np-alone> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "PTX-loaded PLGA nanoparticles alone, no hydrogel (ref 40)" ;
+    lova:particleMaterial "PLGA" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-admi.202001055/peg-dma-photopolymer> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "Photopolymerizable PEG-DMA hydrogel with PLGA nanoparticles" ;
+    lova:chemistry "Photopolymerization" ;
+    lova:manufacturingMethod "In situ photopolymerization of PEG-DMA hydrogel mixed with PLGA nanoparticles, injected into tumor resection cavity" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-admi.202001055/peg-dma> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-admi.202001055/tpo> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-admi.202001055/plga> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-admi.202001055/ptx> .
+
+<https://lovamap.com/ontology#reagent/10.1002-admi.202001055/peg-dma> a lova:Reagent ;
+    rdfs:label "PEG-dimethacrylate (PEG-DMA)" ;
+    lova:reagentRole "monomer" ;
+    lova:reagentFunction "Hydrogel-forming crosslinkable monomer" .
+
+<https://lovamap.com/ontology#reagent/10.1002-admi.202001055/tpo> a lova:Reagent ;
+    rdfs:label "TPO" ;
+    lova:reagentRole "photoinitiator" ;
+    lova:reagentFunction "Photoinitiator for PEG-DMA photopolymerization" .
+
+<https://lovamap.com/ontology#reagent/10.1002-admi.202001055/plga> a lova:Reagent ;
+    rdfs:label "PLGA (poly(lactic-co-glycolic acid))" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Nanoparticle carrier matrix for PTX" .
+
+<https://lovamap.com/ontology#reagent/10.1002-admi.202001055/ptx> a lova:Reagent ;
+    rdfs:label "Paclitaxel (PTX)" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Anti-tumor chemotherapeutic agent" .
+
+<https://lovamap.com/ontology#experiment/10.1002-admi.202001055/survival-resection-ptx-plga> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-admi.202001055/ptx-plga-peg-dma> ,
+                       <https://lovamap.com/ontology#material/10.1002-admi.202001055/plga-peg-dma-blank> ,
+                       <https://lovamap.com/ontology#material/10.1002-admi.202001055/ptx-plga-np-alone> ;
+    rdfs:label "Survival of mice after resection-cavity treatment with PTX PLGA-NP/PEG-DMA hydrogel (ref 40)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Survival study" ;
+    lova:assayOrMethod "Kaplan-Meier survival analysis" .
+
+<https://lovamap.com/ontology#outcome/10.1002-admi.202001055/survival-untreated> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-admi.202001055/survival-resection-ptx-plga> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "Median survival — Untreated" ;
+    lova:measurementType "Median survival time" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 35.0 ;
+    qudt:unit "days" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-admi.202001055/survival-resection-untreated> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-admi.202001055/survival-resection-ptx-plga> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "Median survival — Resection + Untreated" ;
+    lova:measurementType "Median survival time" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 52.0 ;
+    qudt:unit "days" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-admi.202001055/survival-resection-ptx-plga-np> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-admi.202001055/survival-resection-ptx-plga> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "Median survival — Resection + PTX PLGA-NPs" ;
+    lova:measurementType "Median survival time" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 72.0 ;
+    qudt:unit "days" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-admi.202001055/survival-resection-plga-hydrogel> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-admi.202001055/survival-resection-ptx-plga> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "Median survival — Resection + PLGA-NPs hydrogel (no drug)" ;
+    lova:measurementType "Median survival time" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 63.5 ;
+    qudt:unit "days" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-admi.202001055/survival-resection-ptx-plga-hydrogel> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-admi.202001055/survival-resection-ptx-plga> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "Median survival — Resection + PTX PLGA-NPs hydrogel" ;
+    lova:measurementType "Median survival time" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Not reached (--)" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-admi.202001055/ptx-plga-hydrogel-vs-untreated> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "Resection+PLGA-NPs hydrogel survival higher than Resection+Untreated" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-admi.202001055/survival-resection-plga-hydrogel> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-admi.202001055/survival-resection-untreated> ;
+    lova:direction "higher" ;
+    lova:pValue 0.01 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-admi.202001055/ptx-plga-np-vs-untreated> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "Resection+PTX PLGA-NPs survival higher than Resection+Untreated" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-admi.202001055/survival-resection-ptx-plga-np> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-admi.202001055/survival-resection-untreated> ;
+    lova:direction "higher" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#material/10.1002-admi.202001055/chitosan-radio-chemo> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "Chitosan hydrogel with 131I-loaded alginate microparticles and TMZ (ref 53)" ;
+    lova:particleMaterial "Chitosan; alginate microparticles" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-admi.202001055/chitosan-radio-chemo> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-admi.202001055/chitosan-radio-chemo> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "Injectable, degradable chitosan hydrogel encapsulating 131I-loaded alginate microparticles and TMZ" ;
+    lova:manufacturingMethod "Alginate microparticle encapsulation of radioisotope within chitosan hydrogel matrix" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-admi.202001055/chitosan> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-admi.202001055/alginate> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-admi.202001055/tmz> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-admi.202001055/i131> .
+
+<https://lovamap.com/ontology#reagent/10.1002-admi.202001055/chitosan> a lova:Reagent ;
+    rdfs:label "Chitosan" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Degradable hydrogel matrix" .
+
+<https://lovamap.com/ontology#reagent/10.1002-admi.202001055/alginate> a lova:Reagent ;
+    rdfs:label "Alginate" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Microparticle matrix encapsulating radioisotope" .
+
+<https://lovamap.com/ontology#reagent/10.1002-admi.202001055/tmz> a lova:Reagent ;
+    rdfs:label "Temozolomide (TMZ)" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Alkylating chemotherapeutic agent" .
+
+<https://lovamap.com/ontology#reagent/10.1002-admi.202001055/i131> a lova:Reagent ;
+    rdfs:label "Iodine-131 (131I)" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Local radiotherapeutic isotope, half-life 8 days" .
+
+<https://lovamap.com/ontology#experiment/10.1002-admi.202001055/radioactivity-leakage> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-admi.202001055/chitosan-radio-chemo> ;
+    rdfs:label "Radioactivity leakage from alginate microparticles in chitosan matrix over 42 days (ref 53)" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Radioactivity leakage study" ;
+    lova:cultureDuration "42 days" .
+
+<https://lovamap.com/ontology#outcome/10.1002-admi.202001055/radioactivity-leakage-42d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-admi.202001055/radioactivity-leakage> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "Radioactivity leakage over 42 days" ;
+    lova:measurementType "Radioactivity leakage" ;
+    lova:measurementCategory "Biochemical" ;
+    lova:valueString "<1% leakage over 42 days" ;
+    lova:timePoint "42 days" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-admi.202001055/radioactivity-leakage-peak> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-admi.202001055/radioactivity-leakage> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "Peak radioactivity leakage (~day 10)" ;
+    lova:measurementType "Radioactivity leakage" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 0.67 ;
+    qudt:unit "%" ;
+    lova:timePoint "~day 10" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1002-admi.202001055/tmz-release-chitosan> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-admi.202001055/chitosan-radio-chemo> ;
+    rdfs:label "TMZ release from chitosan matrix over 48 hours (ref 53)" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Drug release study" ;
+    lova:cultureDuration "48 hours" .
+
+<https://lovamap.com/ontology#outcome/10.1002-admi.202001055/tmz-release-8h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-admi.202001055/tmz-release-chitosan> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "TMZ release at 8h" ;
+    lova:measurementType "% TMZ release" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 76.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "8h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-admi.202001055/tmz-release-24h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-admi.202001055/tmz-release-chitosan> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "TMZ release at 24h" ;
+    lova:measurementType "% TMZ release" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 76.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "24h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-admi.202001055/tmz-release-48h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-admi.202001055/tmz-release-chitosan> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "TMZ release at 48h" ;
+    lova:measurementType "% TMZ release" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 87.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "48h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1002-admi.202001055/d54-survival-tmz> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-admi.202001055/chitosan-radio-chemo> ;
+    rdfs:label "D54 human GBM cell survival vs TMZ concentration, TMZ-hydrogel vs free TMZ (ref 53)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell viability" ;
+    lova:cellType "D54 (human GBM cell line)" .
+
+<https://lovamap.com/ontology#outcome/10.1002-admi.202001055/survival-tmzhydrogel-10uM> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-admi.202001055/d54-survival-tmz> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "D54 survival — TMZ-Hydrogel, 10 µM" ;
+    lova:measurementType "Cell survival (% of untreated)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 70.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "Free-TMZ" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-admi.202001055/survival-tmzhydrogel-25uM> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-admi.202001055/d54-survival-tmz> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "D54 survival — TMZ-Hydrogel, 25 µM" ;
+    lova:measurementType "Cell survival (% of untreated)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 58.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "Free-TMZ" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-admi.202001055/survival-tmzhydrogel-50uM> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-admi.202001055/d54-survival-tmz> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "D54 survival — TMZ-Hydrogel, 50 µM" ;
+    lova:measurementType "Cell survival (% of untreated)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 43.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "Free-TMZ" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-admi.202001055/survival-tmzhydrogel-100uM> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-admi.202001055/d54-survival-tmz> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "D54 survival — TMZ-Hydrogel, 100 µM" ;
+    lova:measurementType "Cell survival (% of untreated)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 18.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "Free-TMZ" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-admi.202001055/survival-freetmz-10uM> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-admi.202001055/d54-survival-tmz> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "D54 survival — Free-TMZ, 10 µM" ;
+    lova:measurementType "Cell survival (% of untreated)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 73.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "TMZ-Hydrogel" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-admi.202001055/survival-freetmz-25uM> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-admi.202001055/d54-survival-tmz> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "D54 survival — Free-TMZ, 25 µM" ;
+    lova:measurementType "Cell survival (% of untreated)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 27.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "TMZ-Hydrogel" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-admi.202001055/survival-freetmz-50uM> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-admi.202001055/d54-survival-tmz> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "D54 survival — Free-TMZ, 50 µM" ;
+    lova:measurementType "Cell survival (% of untreated)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 28.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "TMZ-Hydrogel" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-admi.202001055/survival-freetmz-100uM> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-admi.202001055/d54-survival-tmz> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "D54 survival — Free-TMZ, 100 µM" ;
+    lova:measurementType "Cell survival (% of untreated)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 16.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "TMZ-Hydrogel" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-admi.202001055/survival-50uM-hydrogel-vs-free> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "D54 survival at 50 µM: TMZ-Hydrogel higher than Free-TMZ" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-admi.202001055/survival-tmzhydrogel-50uM> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-admi.202001055/survival-freetmz-50uM> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#material/10.1002-admi.202001055/gemc12-lnc> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "GemC12-loaded lipid nanocapsule (LNC) hydrogel (ref 62)" ;
+    lova:particleMaterial "Lipid nanocapsule with Gemcitabine-lauroyl (GemC12) and lauroyl surfactant" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-admi.202001055/lnc-hydrogel> .
+
+<https://lovamap.com/ontology#material/10.1002-admi.202001055/ptx-gemc12-lnc> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "Dual GemC12- and PTX-loaded LNC hydrogel (PTX-GemC12-LNC, ref 63)" ;
+    lova:particleMaterial "Lipid nanocapsule with Gemcitabine-lauroyl (GemC12) and Paclitaxel" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-admi.202001055/lnc-hydrogel> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-admi.202001055/lnc-hydrogel> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "Lipid nanocapsule (LNC) hydrogel formulation with lauroyl surfactant" ;
+    lova:manufacturingMethod "Lipid nanocapsule formulation forming an injectable hydrogel" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-admi.202001055/gemc12> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-admi.202001055/lauroyl-surfactant> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-admi.202001055/ptx> .
+
+<https://lovamap.com/ontology#reagent/10.1002-admi.202001055/gemc12> a lova:Reagent ;
+    rdfs:label "Gemcitabine-lauroyl (GemC12)" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Lipophilic chemotherapeutic prodrug of Gemcitabine" .
+
+<https://lovamap.com/ontology#reagent/10.1002-admi.202001055/lauroyl-surfactant> a lova:Reagent ;
+    rdfs:label "Lauroyl surfactant" ;
+    lova:reagentRole "surfactant" ;
+    lova:reagentFunction "Lipid nanocapsule surfactant/stabilizer" .
+
+<https://lovamap.com/ontology#experiment/10.1002-admi.202001055/intratumoral-survival-gemc12> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-admi.202001055/gemc12-lnc> ;
+    rdfs:label "Intra-tumoral injection survival in orthotopic U87 model (ref 62)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Survival study" ;
+    lova:assayOrMethod "Kaplan-Meier survival analysis" .
+
+<https://lovamap.com/ontology#outcome/10.1002-admi.202001055/intratumoral-survival-gemc12lnc> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-admi.202001055/intratumoral-survival-gemc12> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "GemC12-LNC significantly increased survival vs untreated/GemHCl/GemC12/GemC12 IV groups (intratumoral)" ;
+    lova:measurementType "Median survival time" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "GemC12-LNC survival curve highest among tested groups" ;
+    lova:comparisonGroup "No treatment, Unloaded LNC, GemHCl, GemC12, GemC12 iv" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#experiment/10.1002-admi.202001055/postresection-survival-gemc12> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-admi.202001055/gemc12-lnc> ;
+    rdfs:label "Post-resection injection survival in orthotopic U87 model (ref 62)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Survival study" ;
+    lova:assayOrMethod "Kaplan-Meier survival analysis" .
+
+<https://lovamap.com/ontology#outcome/10.1002-admi.202001055/postresection-survival-gemc12lnc> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-admi.202001055/postresection-survival-gemc12> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "GemC12-LNC hydrogel delayed tumor recurrence post-resection" ;
+    lova:measurementType "Median survival time" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "GemC12-LNC hydrogel delayed tumor recurrence vs other groups" ;
+    lova:comparisonGroup "No treatment, Unloaded LNC, GemHCl, GemC12, GemC12 iv" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#experiment/10.1002-admi.202001055/release-gemc12-ptx> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-admi.202001055/ptx-gemc12-lnc> ;
+    rdfs:label "Cumulative release of GemC12 and PTX from PTX-GemC12-LNC (ref 63)" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Drug release study" .
+
+<https://lovamap.com/ontology#outcome/10.1002-admi.202001055/gemc12-release-1d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-admi.202001055/release-gemc12-ptx> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "Cumulative GemC12 release at 1 day" ;
+    lova:measurementType "Cumulative GemC12 release" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 45.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "1 day" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-admi.202001055/gemc12-release-7d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-admi.202001055/release-gemc12-ptx> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "Cumulative GemC12 release at 7 days" ;
+    lova:measurementType "Cumulative GemC12 release" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 51.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "7 days" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-admi.202001055/ptx-release-1d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-admi.202001055/release-gemc12-ptx> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "Cumulative PTX release at 1 day" ;
+    lova:measurementType "Cumulative PTX release" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 44.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "1 day" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-admi.202001055/ptx-release-2d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-admi.202001055/release-gemc12-ptx> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "Cumulative PTX release at ~2 days" ;
+    lova:measurementType "Cumulative PTX release" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 53.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "~2 days" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1002-admi.202001055/ic50-gl261> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-admi.202001055/gemc12-lnc> ,
+                       <https://lovamap.com/ontology#material/10.1002-admi.202001055/ptx-gemc12-lnc> ;
+    rdfs:label "IC50 of GemC12 and PTX alone vs. dually loaded in LNC for GL261 cells (ref 63)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cytotoxicity assay (IC50)" ;
+    lova:cellType "GL261 (mouse glioma cell line)" .
+
+<https://lovamap.com/ontology#outcome/10.1002-admi.202001055/ic50-ptx-lnc> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-admi.202001055/ic50-gl261> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "IC50 of PTX-LNC on GL261 cells" ;
+    lova:measurementType "IC50" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 600.0 ;
+    qudt:unit "nM" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-admi.202001055/ic50-gemc12-lnc> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-admi.202001055/ic50-gl261> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "IC50 of GemC12-LNC (GemC12) on GL261 cells" ;
+    lova:measurementType "IC50" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 45.0 ;
+    qudt:unit "nM" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-admi.202001055/ic50-gemc12-combo> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-admi.202001055/ic50-gl261> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "IC50 of GemC12 in PTX-GemC12-LNC on GL261 cells" ;
+    lova:measurementType "IC50" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 30.0 ;
+    qudt:unit "nM" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-admi.202001055/ic50-ptx-combo> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-admi.202001055/ic50-gl261> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "IC50 of PTX in PTX-GemC12-LNC on GL261 cells" ;
+    lova:measurementType "IC50" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 4.0 ;
+    qudt:unit "nM" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-admi.202001055/ic50-ptx-combo-vs-alone> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "IC50 of PTX dramatically lower in combo (PTX-GemC12-LNC) vs PTX-LNC alone on GL261" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-admi.202001055/ic50-ptx-combo> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-admi.202001055/ic50-ptx-lnc> ;
+    lova:direction "lower" ;
+    lova:foldChange 150.0 .
+
+<https://lovamap.com/ontology#material/10.1002-admi.202001055/tm-tmz-bg> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "Triglycerol monostearate (Tm) hydrogel loaded with TMZ and BG (MGMT inhibitor), ref 67" ;
+    lova:particleMaterial "Triglycerol monostearate (Tm)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-admi.202001055/tm-hydrogel> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-admi.202001055/tm-hydrogel> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "Enzyme-responsive triglycerol monostearate hydrogel loaded with TMZ and BG" ;
+    lova:chemistry "Enzyme-responsive (MMP-cleavable)" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-admi.202001055/tm> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-admi.202001055/tmz> ,
+                     <https://lovamap.com/ontology#reagent/10.1002-admi.202001055/bg> .
+
+<https://lovamap.com/ontology#reagent/10.1002-admi.202001055/tm> a lova:Reagent ;
+    rdfs:label "Triglycerol monostearate (Tm)" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Enzyme-responsive hydrogel matrix, releases cargo in presence of high MMP activity" .
+
+<https://lovamap.com/ontology#reagent/10.1002-admi.202001055/bg> a lova:Reagent ;
+    rdfs:label "O6-benzylamine (BG)" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "MGMT inhibitor, combats chemoresistance" .
+
+<https://lovamap.com/ontology#experiment/10.1002-admi.202001055/release-tmz-bg> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-admi.202001055/tm-tmz-bg> ;
+    rdfs:label "Cumulative release of TMZ and BG from Tm(TMZ+BG) hydrogel under MMPs, MMPs+inhibitor, CSF, CSF+inhibitor conditions (ref 67)" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Drug release study" ;
+    lova:medium "PBS" ;
+    lova:temperature "37 °C" ;
+    lova:sampleSize 4 .
+
+<https://lovamap.com/ontology#outcome/10.1002-admi.202001055/tmz-release-mmps-d15> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-admi.202001055/release-tmz-bg> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "Cumulative TMZ release at day 15, MMPs condition" ;
+    lova:measurementType "Cumulative TMZ release" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 62.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 15" ;
+    lova:comparisonGroup "PBS" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-admi.202001055/tmz-release-csf-d15> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-admi.202001055/release-tmz-bg> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "Cumulative TMZ release at day 15, CSF condition" ;
+    lova:measurementType "Cumulative TMZ release" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 78.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 15" ;
+    lova:comparisonGroup "PBS" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-admi.202001055/tmz-release-mmpsinhibitor-d15> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-admi.202001055/release-tmz-bg> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "Cumulative TMZ release at day 15, MMPs inhibitor condition" ;
+    lova:measurementType "Cumulative TMZ release" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 32.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 15" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-admi.202001055/tmz-release-csfinhibitor-d15> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-admi.202001055/release-tmz-bg> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "Cumulative TMZ release at day 15, CSF + MMPs inhibitor condition" ;
+    lova:measurementType "Cumulative TMZ release" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 35.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 15" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-admi.202001055/tmz-release-pbs-d15> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-admi.202001055/release-tmz-bg> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "Cumulative TMZ release at day 15, PBS condition" ;
+    lova:measurementType "Cumulative TMZ release" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 25.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 15" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-admi.202001055/bg-release-mmps-d15> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-admi.202001055/release-tmz-bg> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "Cumulative BG release at day 15, MMPs condition" ;
+    lova:measurementType "Cumulative BG release" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 60.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 15" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-admi.202001055/bg-release-csf-d15> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-admi.202001055/release-tmz-bg> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "Cumulative BG release at day 15, CSF condition" ;
+    lova:measurementType "Cumulative BG release" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 68.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 15" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-admi.202001055/bg-release-mmpsinhibitor-d15> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-admi.202001055/release-tmz-bg> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "Cumulative BG release at day 15, MMPs inhibitor condition" ;
+    lova:measurementType "Cumulative BG release" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 33.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 15" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-admi.202001055/bg-release-csfinhibitor-d15> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-admi.202001055/release-tmz-bg> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "Cumulative BG release at day 15, CSF + MMPs inhibitor condition" ;
+    lova:measurementType "Cumulative BG release" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 43.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 15" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-admi.202001055/bg-release-pbs-d15> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-admi.202001055/release-tmz-bg> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "Cumulative BG release at day 15, PBS condition" ;
+    lova:measurementType "Cumulative BG release" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 20.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 15" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-admi.202001055/tmz-release-mmps-vs-pbs> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "TMZ release higher under MMPs vs PBS condition" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-admi.202001055/tmz-release-mmps-d15> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-admi.202001055/tmz-release-pbs-d15> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#comparison/10.1002-admi.202001055/tmz-release-csf-vs-pbs> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "TMZ release higher under CSF vs PBS condition" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-admi.202001055/tmz-release-csf-d15> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-admi.202001055/tmz-release-pbs-d15> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#experiment/10.1002-admi.202001055/survival-tm-tmz-bg> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-admi.202001055/tm-tmz-bg> ;
+    rdfs:label "Survival of glioma-bearing mice post-operative treatment with Tm(TMZ+BG) hydrogel and comparators (ref 67)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Survival study" ;
+    lova:assayOrMethod "Kaplan-Meier survival analysis" .
+
+<https://lovamap.com/ontology#outcome/10.1002-admi.202001055/survival-pbs> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-admi.202001055/survival-tm-tmz-bg> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "Median survival — PBS" ;
+    lova:measurementType "Median survival time" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 25.5 ;
+    qudt:unit "days" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-admi.202001055/survival-tm> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-admi.202001055/survival-tm-tmz-bg> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "Median survival — Tm" ;
+    lova:measurementType "Median survival time" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 33.5 ;
+    qudt:unit "days" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-admi.202001055/survival-tmzig> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-admi.202001055/survival-tm-tmz-bg> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "Median survival — TMZ (i.g.)" ;
+    lova:measurementType "Median survival time" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 36.5 ;
+    qudt:unit "days" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-admi.202001055/survival-tmtmz> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-admi.202001055/survival-tm-tmz-bg> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "Median survival — Tm(TMZ)" ;
+    lova:measurementType "Median survival time" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 39.5 ;
+    qudt:unit "days" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-admi.202001055/survival-tmtmzbg> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-admi.202001055/survival-tm-tmz-bg> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "Median survival — Tm(TMZ+BG)" ;
+    lova:measurementType "Median survival time" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 54.5 ;
+    qudt:unit "days" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-admi.202001055/survival-tmtmzbg-vs-pbs> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "Tm(TMZ+BG) median survival higher than PBS" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-admi.202001055/survival-tmtmzbg> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-admi.202001055/survival-pbs> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-admi.202001055/survival-tmtmzbg-vs-tmtmz> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "Tm(TMZ+BG) median survival higher than Tm(TMZ)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-admi.202001055/survival-tmtmzbg> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-admi.202001055/survival-tmtmz> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1002-admi.202001055/mgmt-positive-cells> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-admi.202001055/tm-tmz-bg> ;
+    rdfs:label "MGMT positive cells by IHC staining, day 26 post-implantation (ref 67)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immunohistochemistry" ;
+    lova:assayOrMethod "IHC staining for MGMT" ;
+    lova:timePoint "Day 26" .
+
+<https://lovamap.com/ontology#outcome/10.1002-admi.202001055/mgmt-pbs> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-admi.202001055/mgmt-positive-cells> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "MGMT positive cells — PBS" ;
+    lova:measurementType "% MGMT positive cells" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 74.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 26" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-admi.202001055/mgmt-tm> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-admi.202001055/mgmt-positive-cells> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "MGMT positive cells — Tm" ;
+    lova:measurementType "% MGMT positive cells" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 70.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 26" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-admi.202001055/mgmt-tmzig> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-admi.202001055/mgmt-positive-cells> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "MGMT positive cells — TMZ (i.g.)" ;
+    lova:measurementType "% MGMT positive cells" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 68.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 26" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-admi.202001055/mgmt-tmtmz> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-admi.202001055/mgmt-positive-cells> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "MGMT positive cells — Tm(TMZ)" ;
+    lova:measurementType "% MGMT positive cells" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 66.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 26" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-admi.202001055/mgmt-tmtmzbg> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-admi.202001055/mgmt-positive-cells> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "MGMT positive cells — Tm(TMZ+BG)" ;
+    lova:measurementType "% MGMT positive cells" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 27.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 26" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-admi.202001055/mgmt-tmtmzbg-vs-tmtmz> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-admi.202001055> ;
+    rdfs:label "MGMT positive cells lower in Tm(TMZ+BG) vs Tm(TMZ)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-admi.202001055/mgmt-tmtmzbg> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-admi.202001055/mgmt-tmtmz> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .

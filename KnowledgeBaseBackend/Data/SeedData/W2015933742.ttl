@@ -1,0 +1,881 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1002-adma.201101771> a bibo:AcademicArticle ;
+    rdfs:label "Wen et al., 2011 — Enzyme-Responsive Nanocapsules" ;
+    dc:title "Controlled Protein Delivery Based on Enzyme‐Responsive Nanocapsules" ;
+    dc:identifier "10.1002/adma.201101771" ;
+    dc:date "2011"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/advanced-materials> ;
+    dc:creator <https://lovamap.com/ontology#author/wen-jing> ,
+               <https://lovamap.com/ontology#author/anderson-sean> ,
+               <https://lovamap.com/ontology#author/du-juanjuan> ,
+               <https://lovamap.com/ontology#author/yan-ming> ,
+               <https://lovamap.com/ontology#author/wang-jun> ,
+               <https://lovamap.com/ontology#author/shen-meiqing> ,
+               <https://lovamap.com/ontology#author/lu-yunfeng> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/wen-jing>
+                       <https://lovamap.com/ontology#author/anderson-sean>
+                       <https://lovamap.com/ontology#author/du-juanjuan>
+                       <https://lovamap.com/ontology#author/yan-ming>
+                       <https://lovamap.com/ontology#author/wang-jun>
+                       <https://lovamap.com/ontology#author/shen-meiqing>
+                       <https://lovamap.com/ontology#author/lu-yunfeng>
+                       <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    dc:bibliographicCitation "Wen et al., 2011" ;
+    lova:focusMaterial "Protein (BSA, VEGF) nanocapsules formed by in situ free-radical polymerization around protein molecules, with plasmin- or MMP-cleavable peptide crosslinkers for enzyme-responsive controlled release" .
+
+<https://lovamap.com/ontology#author/wen-jing> a foaf:Person ;
+    foaf:familyName "Wen" ; foaf:givenName "Jing" ; foaf:name "Jing Wen" ;
+    schema:affiliation "Key Laboratory for Green Chemical Technology of State Education Ministry, School of Chemical Engineering and Technology, Tianjin University, Tianjin, 300072, China" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California Los Angeles, Los Angeles, CA 90095, USA" .
+
+<https://lovamap.com/ontology#author/anderson-sean> a foaf:Person ;
+    foaf:familyName "Anderson" ; foaf:givenName "Sean M." ; foaf:name "Sean M. Anderson" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California Los Angeles, Los Angeles, CA 90095, USA" .
+
+<https://lovamap.com/ontology#author/du-juanjuan> a foaf:Person ;
+    foaf:familyName "Du" ; foaf:givenName "Juanjuan" ; foaf:name "Juanjuan Du" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California Los Angeles, Los Angeles, CA 90095, USA" .
+
+<https://lovamap.com/ontology#author/yan-ming> a foaf:Person ;
+    foaf:familyName "Yan" ; foaf:givenName "Ming" ; foaf:name "Ming Yan" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California Los Angeles, Los Angeles, CA 90095, USA" .
+
+<https://lovamap.com/ontology#author/wang-jun> a foaf:Person ;
+    foaf:familyName "Wang" ; foaf:givenName "Jun" ; foaf:name "Jun Wang" ;
+    schema:affiliation "Key Laboratory for Green Chemical Technology of State Education Ministry, School of Chemical Engineering and Technology, Tianjin University, Tianjin, 300072, China" .
+
+<https://lovamap.com/ontology#author/shen-meiqing> a foaf:Person ;
+    foaf:familyName "Shen" ; foaf:givenName "Meiqing" ; foaf:name "Meiqing Shen" ;
+    schema:affiliation "Key Laboratory for Green Chemical Technology of State Education Ministry, School of Chemical Engineering and Technology, Tianjin University, Tianjin, 300072, China" .
+
+<https://lovamap.com/ontology#author/lu-yunfeng> a foaf:Person ;
+    foaf:familyName "Lu" ; foaf:givenName "Yunfeng" ; foaf:name "Yunfeng Lu" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California Los Angeles, Los Angeles, CA 90095, USA" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ; foaf:givenName "Tatiana" ; foaf:name "Tatiana Segura" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California Los Angeles, Los Angeles, CA 90095, USA" .
+
+<https://lovamap.com/ontology#journal/advanced-materials> a bibo:Journal ;
+    dc:title "Advanced Materials" ;
+    bibo:issn "0935-9648" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-adma.201101771/nanocapsule-synthesis> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "In situ free-radical polymerization encapsulation of protein molecules" ;
+    lova:chemistry "Free-radical polymerization" ;
+    lova:manufacturingMethod "Electrostatic/hydrogen-bonding enrichment of charged monomers and crosslinkers around protein surface followed by in situ free-radical polymerization forming a thin polymer shell" ;
+    lova:annealingConditions "90-120 min, nitrogen atmosphere, 4°C" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-adma.201101771/apm> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adma.201101771/aam> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adma.201101771/bis> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adma.201101771/knrvk-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adma.201101771/klgpak-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adma.201101771/aps> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adma.201101771/temed> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adma.201101771/hs-peg-sh> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adma.201101771/dtnb> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adma.201101771/sodium-bicarbonate-buffer> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adma.201101771/phosphate-buffer> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adma.201101771/bsa-protein> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adma.201101771/vegf-protein> .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.201101771/apm> a lova:Reagent ;
+    rdfs:label "N-(3-aminopropyl) methacrylamide (APM)" ;
+    lova:reagentRole "monomer" ;
+    lova:concentration "10 mg mL-1 aqueous solution" ;
+    lova:reagentFunction "Positively charged monomer, controls nanocapsule surface charge" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.201101771/aam> a lova:Reagent ;
+    rdfs:label "Acrylamide (AAm)" ;
+    lova:reagentRole "monomer" ;
+    lova:reagentFunction "Neutral monomer" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.201101771/bis> a lova:Reagent ;
+    rdfs:label "N,N'-methylene bisacrylamide (BIS)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:reagentFunction "Non-degradable crosslinker" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.201101771/knrvk-peptide> a lova:Reagent ;
+    rdfs:label "Bisacryloylated plasmin-specific peptide (Lys-Asn-Arg-Val-Lys, KNRVK)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:sequence "KNRVK" ;
+    lova:reagentFunction "Plasmin-cleavable (degradable) crosslinker" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.201101771/klgpak-peptide> a lova:Reagent ;
+    rdfs:label "Bisacryloylated MMP-cleavable peptide (Lys-Leu-Gly-Pro-Ala-Lys, KLGPAK)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:sequence "KLGPAK" ;
+    lova:reagentFunction "MMP-cleavable (degradable) crosslinker" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.201101771/aps> a lova:Reagent ;
+    rdfs:label "Ammonium persulfate" ;
+    lova:reagentRole "initiator" ;
+    lova:concentration "1:10 molar ratio to total monomers" ;
+    lova:reagentFunction "Free-radical polymerization initiator" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.201101771/temed> a lova:Reagent ;
+    rdfs:label "N,N,N',N'-tetramethylethylenediamine (TEMED)" ;
+    lova:reagentRole "initiator" ;
+    lova:concentration "10% solution" ;
+    lova:reagentFunction "Polymerization accelerator/initiator" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.201101771/hs-peg-sh> a lova:Reagent ;
+    rdfs:label "HS-(CH2CH2O)75-SH (HS-PEG-SH)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:reagentFunction "Dithiol crosslinker for Michael addition hydrogel formation; used to test protein disulfide bond protection" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.201101771/dtnb> a lova:Reagent ;
+    rdfs:label "5,5'-dithio-bis(2-nitrobenzoic acid) (DTNB, Ellman's reagent)" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Quantification of free thiol groups (Ellman's test)" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.201101771/sodium-bicarbonate-buffer> a lova:Reagent ;
+    rdfs:label "Sodium bicarbonate buffer, 10 mM, pH 8.5" ;
+    lova:reagentRole "solvent" ;
+    lova:concentration "10 mM, pH 8.5" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.201101771/phosphate-buffer> a lova:Reagent ;
+    rdfs:label "Phosphate buffer, 10 mM, pH 7.4" ;
+    lova:reagentRole "solvent" ;
+    lova:concentration "10 mM, pH 7.4" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.201101771/bsa-protein> a lova:Reagent ;
+    rdfs:label "Bovine serum albumin (BSA)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "250 μg in 500 μL buffer" ;
+    lova:reagentFunction "Model protein cargo" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.201101771/vegf-protein> a lova:Reagent ;
+    rdfs:label "Vascular endothelial growth factor (VEGF)" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Model therapeutic protein cargo; specific and critical for angiogenesis" .
+
+<https://lovamap.com/ontology#material/10.1002-adma.201101771/nvegf> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "VEGF nanocapsule (nVEGF), V:M 1:6000, APM:AAm:crosslinker 5:5:1" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Protein nanocapsule (polymer shell around VEGF)" ;
+    lova:particleSizeMin 20.0 ;
+    lova:particleSizeMax 45.0 ;
+    lova:particleSizeUnit "nm" ;
+    lova:sizeDistribution "25-60 nm (DLS)" ;
+    lova:surfaceModification "Zeta potential +1.4 mV" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adma.201101771/nanocapsule-synthesis> .
+
+<https://lovamap.com/ontology#material/10.1002-adma.201101771/nvegf-100> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "nVEGF, 100% degradable (plasmin-cleavable) crosslinker" ;
+    lova:particleMaterial "Protein nanocapsule, VEGF core" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adma.201101771/nanocapsule-synthesis> .
+
+<https://lovamap.com/ontology#material/10.1002-adma.201101771/nvegf-50> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "nVEGF, 50% degradable crosslinker" ;
+    lova:particleMaterial "Protein nanocapsule, VEGF core" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adma.201101771/nanocapsule-synthesis> .
+
+<https://lovamap.com/ontology#material/10.1002-adma.201101771/nvegf-33> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "nVEGF, 33% degradable crosslinker" ;
+    lova:particleMaterial "Protein nanocapsule, VEGF core" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adma.201101771/nanocapsule-synthesis> .
+
+<https://lovamap.com/ontology#material/10.1002-adma.201101771/nvegf-30> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "nVEGF, 30% degradable crosslinker" ;
+    lova:particleMaterial "Protein nanocapsule, VEGF core" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adma.201101771/nanocapsule-synthesis> .
+
+<https://lovamap.com/ontology#material/10.1002-adma.201101771/nvegf-25> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "nVEGF, 25% degradable crosslinker" ;
+    lova:particleMaterial "Protein nanocapsule, VEGF core" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adma.201101771/nanocapsule-synthesis> .
+
+<https://lovamap.com/ontology#material/10.1002-adma.201101771/nvegf-0> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "nVEGF, 0% degradable crosslinker (non-degradable control)" ;
+    lova:particleMaterial "Protein nanocapsule, VEGF core" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adma.201101771/nanocapsule-synthesis> .
+
+<https://lovamap.com/ontology#material/10.1002-adma.201101771/nbsa-100> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "nBSA, 100% degradable crosslinker" ;
+    lova:particleMaterial "Protein nanocapsule, BSA core" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adma.201101771/nanocapsule-synthesis> .
+
+<https://lovamap.com/ontology#material/10.1002-adma.201101771/nbsa-50> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "nBSA, 50% degradable crosslinker" ;
+    lova:particleMaterial "Protein nanocapsule, BSA core" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adma.201101771/nanocapsule-synthesis> .
+
+<https://lovamap.com/ontology#material/10.1002-adma.201101771/nbsa-33> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "nBSA, 33% degradable crosslinker" ;
+    lova:particleMaterial "Protein nanocapsule, BSA core" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adma.201101771/nanocapsule-synthesis> .
+
+<https://lovamap.com/ontology#material/10.1002-adma.201101771/nbsa-25> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "nBSA, 25% degradable crosslinker" ;
+    lova:particleMaterial "Protein nanocapsule, BSA core" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adma.201101771/nanocapsule-synthesis> .
+
+<https://lovamap.com/ontology#material/10.1002-adma.201101771/nbsa-0> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "nBSA, 0% degradable crosslinker (non-degradable control)" ;
+    lova:particleMaterial "Protein nanocapsule, BSA core" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adma.201101771/nanocapsule-synthesis> .
+
+<https://lovamap.com/ontology#material/10.1002-adma.201101771/nbsa-nrv> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "nBSA_NRV: BSA nanocapsule with plasmin-cleavable KNRVK crosslinker" ;
+    lova:particleMaterial "Protein nanocapsule, BSA core" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adma.201101771/nanocapsule-synthesis> .
+
+<https://lovamap.com/ontology#material/10.1002-adma.201101771/nbsa-lgpa> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "nBSA_LGPA: BSA nanocapsule with MMP-cleavable KLGPAK crosslinker" ;
+    lova:particleMaterial "Protein nanocapsule, BSA core" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adma.201101771/nanocapsule-synthesis> .
+
+<https://lovamap.com/ontology#material/10.1002-adma.201101771/native-vegf> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "Native (free, unencapsulated) VEGF, control" ;
+    lova:particleMaterial "VEGF protein" .
+
+<https://lovamap.com/ontology#material/10.1002-adma.201101771/native-bsa> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "Native (free, unencapsulated) BSA, control" ;
+    lova:particleMaterial "BSA protein" .
+
+<https://lovamap.com/ontology#material/10.1002-adma.201101771/ha-hydrogel> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "Hyaluronic acid (HA) hydrogel incorporating FITC-labeled BSA or nBSA" ;
+    lova:particleMaterial "Hyaluronic acid (HA)" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adma.201101771/tem-dls-characterization> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adma.201101771/nvegf> ;
+    rdfs:label "TEM and DLS characterization of nVEGF nanocapsules" ;
+    lova:experimentCategory "Physicochemical" ;
+    lova:experimentType "Particle size and surface charge characterization" ;
+    lova:assayOrMethod "TEM; DLS; zeta potential measurement" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adma.201101771/stability-dls> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adma.201101771/nvegf> ,
+                      <https://lovamap.com/ontology#material/10.1002-adma.201101771/native-vegf> ;
+    rdfs:label "Stability of nVEGF monitored by DLS in PBS at 4°C" ;
+    lova:experimentCategory "Physicochemical" ;
+    lova:experimentType "Colloidal stability" ;
+    lova:assayOrMethod "DLS" ;
+    lova:temperature "4°C" ;
+    lova:medium "PBS pH 7.4" ;
+    lova:cultureDuration "8 days" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adma.201101771/sds-page-degradation> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adma.201101771/nbsa-100> ,
+                      <https://lovamap.com/ontology#material/10.1002-adma.201101771/nbsa-50> ,
+                      <https://lovamap.com/ontology#material/10.1002-adma.201101771/nbsa-33> ,
+                      <https://lovamap.com/ontology#material/10.1002-adma.201101771/nbsa-0> ,
+                      <https://lovamap.com/ontology#material/10.1002-adma.201101771/native-bsa> ;
+    rdfs:label "SDS-PAGE degradation assay of nBSA with plasmin treatment" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Protein release assay" ;
+    lova:assayOrMethod "SDS-PAGE" ;
+    lova:cultureDuration "30 min" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adma.201101771/dls-degradation-kinetics> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adma.201101771/nvegf-100> ,
+                      <https://lovamap.com/ontology#material/10.1002-adma.201101771/nvegf-50> ,
+                      <https://lovamap.com/ontology#material/10.1002-adma.201101771/nvegf-30> ,
+                      <https://lovamap.com/ontology#material/10.1002-adma.201101771/nvegf-25> ,
+                      <https://lovamap.com/ontology#material/10.1002-adma.201101771/nvegf-0> ;
+    rdfs:label "DLS degradation kinetics of nVEGF with plasmin" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Degradation kinetics" ;
+    lova:assayOrMethod "DLS" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adma.201101771/elisa-vegf-release> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adma.201101771/nvegf-100> ,
+                      <https://lovamap.com/ontology#material/10.1002-adma.201101771/nvegf-50> ,
+                      <https://lovamap.com/ontology#material/10.1002-adma.201101771/nvegf-33> ,
+                      <https://lovamap.com/ontology#material/10.1002-adma.201101771/nvegf-25> ,
+                      <https://lovamap.com/ontology#material/10.1002-adma.201101771/nvegf-0> ;
+    rdfs:label "ELISA quantification of VEGF release from nVEGF" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Protein release quantification" ;
+    lova:assayOrMethod "ELISA" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adma.201101771/sds-page-specificity> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adma.201101771/nbsa-nrv> ,
+                      <https://lovamap.com/ontology#material/10.1002-adma.201101771/nbsa-lgpa> ,
+                      <https://lovamap.com/ontology#material/10.1002-adma.201101771/native-bsa> ;
+    rdfs:label "SDS-PAGE specificity assay with plasmin vs collagenase" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Enzyme specificity assay" ;
+    lova:assayOrMethod "SDS-PAGE" ;
+    lova:cultureDuration "30 min" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adma.201101771/western-blot-vegfr2> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adma.201101771/nvegf-100> ,
+                      <https://lovamap.com/ontology#material/10.1002-adma.201101771/nvegf-50> ,
+                      <https://lovamap.com/ontology#material/10.1002-adma.201101771/nvegf-33> ,
+                      <https://lovamap.com/ontology#material/10.1002-adma.201101771/nvegf-25> ,
+                      <https://lovamap.com/ontology#material/10.1002-adma.201101771/nvegf-0> ,
+                      <https://lovamap.com/ontology#material/10.1002-adma.201101771/native-vegf> ;
+    rdfs:label "Western blot analysis of VEGFR-2 phosphorylation in HUVECs by released VEGF" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Receptor phosphorylation assay" ;
+    lova:assayOrMethod "Western blot" ;
+    lova:cellType "HUVEC" ;
+    lova:cellSource "Human umbilical vein endothelial cells" ;
+    lova:cultureDuration "5 min (cell exposure), 15 min (plasmin pre-treatment)" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adma.201101771/ellman-disulfide-protection> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adma.201101771/nvegf-100> ,
+                      <https://lovamap.com/ontology#material/10.1002-adma.201101771/native-vegf> ;
+    rdfs:label "Ellman's assay of disulfide bond protection, VEGF vs nVEGF" ;
+    lova:experimentCategory "Physicochemical" ;
+    lova:experimentType "Disulfide bond protection assay" ;
+    lova:assayOrMethod "Ellman's test (DTNB)" ;
+    lova:cultureDuration "30 min" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adma.201101771/fluorescence-leaching> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adma.201101771/native-bsa> ,
+                      <https://lovamap.com/ontology#material/10.1002-adma.201101771/ha-hydrogel> ;
+    rdfs:label "Fluorescence leaching assay of BSA vs nBSA from HA hydrogels" ;
+    lova:experimentCategory "Physicochemical" ;
+    lova:experimentType "Protein leaching/release assay" ;
+    lova:assayOrMethod "Fluorescence spectroscopy" ;
+    lova:medium "PBS buffer, 400 μL" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-tem-size-range> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201101771/tem-dls-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "nVEGF diameter by TEM" ;
+    lova:measurementType "Nanocapsule diameter (TEM)" ;
+    lova:measurementCategory "Physicochemical" ;
+    lova:valueString "20-45 nm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-dls-size-range> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201101771/tem-dls-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "nVEGF diameter by DLS" ;
+    lova:measurementType "Nanocapsule diameter (DLS)" ;
+    lova:measurementCategory "Physicochemical" ;
+    lova:valueString "25-60 nm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-zeta-potential> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201101771/tem-dls-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "nVEGF zeta potential" ;
+    lova:measurementType "Zeta potential" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 1.4 ;
+    qudt:unit "mV" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-zeta-range> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201101771/tem-dls-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "Tunable zeta potential range across nanocapsule compositions" ;
+    lova:measurementType "Zeta potential tunable range" ;
+    lova:measurementCategory "Physicochemical" ;
+    lova:valueString "-7 to +5 mV" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-stability-8days> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201101771/stability-dls> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "nVEGF colloidal stability over 8 days" ;
+    lova:measurementType "Nanocapsule aggregation stability" ;
+    lova:measurementCategory "Physicochemical" ;
+    lova:valueString "No obvious aggregation observed over 8 days" ;
+    lova:timePoint "8 days" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-nvegf-size-0h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201101771/stability-dls> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "nVEGF diameter at time 0" ;
+    lova:measurementType "Nanocapsule diameter (DLS)" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 35.0 ;
+    qudt:unit "nm" ;
+    lova:timePoint "0h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-nvegf-size-210h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201101771/stability-dls> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "nVEGF diameter at 210h" ;
+    lova:measurementType "Nanocapsule diameter (DLS)" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 36.0 ;
+    qudt:unit "nm" ;
+    lova:timePoint "210h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-vegf-control-size> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201101771/stability-dls> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "Native VEGF diameter, constant over time" ;
+    lova:measurementType "Native VEGF diameter (DLS)" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 4.0 ;
+    qudt:unit "nm" ;
+    lova:timePoint "0-210h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-nbsa-100-plasmin> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201101771/sds-page-degradation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "nBSA band after plasmin treatment (100% degradable crosslinker)" ;
+    lova:measurementType "SDS-PAGE band pattern" ;
+    lova:measurementCategory "Biochemical" ;
+    lova:valueString "Well-defined band similar to native BSA, indicating release" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-nbsa-0-plasmin> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201101771/sds-page-degradation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "nBSA band pattern (0% degradable crosslinker, non-degradable) after plasmin treatment" ;
+    lova:measurementType "SDS-PAGE band pattern" ;
+    lova:measurementCategory "Biochemical" ;
+    lova:valueString "Broad dispersion similar to untreated nBSA, no release" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-nbsa-before-plasmin> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201101771/sds-page-degradation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "nBSA band pattern before plasmin treatment" ;
+    lova:measurementType "SDS-PAGE band pattern" ;
+    lova:measurementCategory "Biochemical" ;
+    lova:valueString "Broadly dispersed within the gel, no release" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-deg-100-40min> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201101771/dls-degradation-kinetics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "nVEGF 100% degradable crosslinker, complete degradation" ;
+    lova:measurementType "% Degradation" ;
+    lova:measurementCategory "Biochemical" ;
+    lova:valueString "Complete degradation (100%) after 40 min" ;
+    lova:timePoint "40 min" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-deg-100-80min> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201101771/dls-degradation-kinetics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "nVEGF 100% degradable crosslinker, % degradation at 80 min" ;
+    lova:measurementType "% Degradation" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 98.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "80 min" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-deg-50-80min> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201101771/dls-degradation-kinetics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "nVEGF 50% degradable crosslinker, % degradation at 80 min" ;
+    lova:measurementType "% Degradation" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 98.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "80 min" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-deg-30-80min> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201101771/dls-degradation-kinetics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "nVEGF 30% degradable crosslinker, % degradation at 80 min" ;
+    lova:measurementType "% Degradation" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 70.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "80 min" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-deg-25-80min> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201101771/dls-degradation-kinetics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "nVEGF 25% degradable crosslinker, % degradation at 80 min" ;
+    lova:measurementType "% Degradation" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 52.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "80 min" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-deg-0-80min> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201101771/dls-degradation-kinetics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "nVEGF 0% degradable crosslinker, % degradation at 80 min" ;
+    lova:measurementType "% Degradation" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 0.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "80 min" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-release-100-plasmin> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201101771/elisa-vegf-release> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "VEGF concentration released from nVEGF, 100% degradable crosslinker, with plasmin" ;
+    lova:measurementType "VEGF concentration released" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 500.0 ;
+    qudt:unit "pg/mL" ;
+    lova:comparisonGroup "without plasmin" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-release-50-plasmin> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201101771/elisa-vegf-release> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "VEGF concentration released from nVEGF, 50% degradable crosslinker, with plasmin" ;
+    lova:measurementType "VEGF concentration released" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 200.0 ;
+    qudt:unit "pg/mL" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-release-33-plasmin> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201101771/elisa-vegf-release> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "VEGF concentration released from nVEGF, 33% degradable crosslinker, with plasmin" ;
+    lova:measurementType "VEGF concentration released" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 170.0 ;
+    qudt:unit "pg/mL" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-release-25-plasmin> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201101771/elisa-vegf-release> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "VEGF concentration released from nVEGF, 25% degradable crosslinker, with plasmin" ;
+    lova:measurementType "VEGF concentration released" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 50.0 ;
+    qudt:unit "pg/mL" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-release-0-plasmin> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201101771/elisa-vegf-release> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "VEGF concentration released from nVEGF, 0% degradable crosslinker, with plasmin" ;
+    lova:measurementType "VEGF concentration released" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue -20.0 ;
+    qudt:unit "pg/mL" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-release-no-plasmin> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201101771/elisa-vegf-release> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "No free VEGF detected without plasmin for all nVEGF samples" ;
+    lova:measurementType "VEGF concentration released" ;
+    lova:measurementCategory "Biochemical" ;
+    lova:valueString "No free VEGF detected in any nVEGF sample without plasmin" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-encapsulation-efficiency> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201101771/elisa-vegf-release> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "VEGF encapsulation efficiency" ;
+    lova:measurementType "VEGF encapsulation efficiency" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 90.0 ;
+    qudt:unit "%" ;
+    lova:valueString "More than 90%" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-release-100-efficiency> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201101771/elisa-vegf-release> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "VEGF release efficiency, nVEGF 100% degradable crosslinker" ;
+    lova:measurementType "VEGF release efficiency" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 95.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-nbsa-nrv-plasmin> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201101771/sds-page-specificity> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "nBSA_NRV + plasmin" ;
+    lova:measurementType "SDS-PAGE band pattern" ;
+    lova:measurementCategory "Biochemical" ;
+    lova:valueString "Well-defined band similar to native BSA, released" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-nbsa-nrv-collagenase> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201101771/sds-page-specificity> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "nBSA_NRV + collagenase" ;
+    lova:measurementType "SDS-PAGE band pattern" ;
+    lova:measurementCategory "Biochemical" ;
+    lova:valueString "No well-defined band, not released" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-nbsa-lgpa-plasmin> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201101771/sds-page-specificity> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "nBSA_LGPA + plasmin" ;
+    lova:measurementType "SDS-PAGE band pattern" ;
+    lova:measurementCategory "Biochemical" ;
+    lova:valueString "Broad dispersion, not released, confirming specificity to MMP/collagenase" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-pvegfr2-native> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201101771/western-blot-vegfr2> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "pVEGFR-2/VEGFR-2 ratio, native VEGF" ;
+    lova:measurementType "pVEGFR-2/VEGFR-2 ratio" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.46 ;
+    qudt:unit "ratio" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-pvegfr2-100> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201101771/western-blot-vegfr2> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "pVEGFR-2/VEGFR-2 ratio, nVEGF 100% degradable crosslinker" ;
+    lova:measurementType "pVEGFR-2/VEGFR-2 ratio" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.59 ;
+    qudt:unit "ratio" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-pvegfr2-50> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201101771/western-blot-vegfr2> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "pVEGFR-2/VEGFR-2 ratio, nVEGF 50% degradable crosslinker" ;
+    lova:measurementType "pVEGFR-2/VEGFR-2 ratio" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.53 ;
+    qudt:unit "ratio" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-pvegfr2-33> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201101771/western-blot-vegfr2> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "pVEGFR-2/VEGFR-2 ratio, nVEGF 33% degradable crosslinker" ;
+    lova:measurementType "pVEGFR-2/VEGFR-2 ratio" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.46 ;
+    qudt:unit "ratio" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-pvegfr2-25> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201101771/western-blot-vegfr2> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "pVEGFR-2/VEGFR-2 ratio, nVEGF 25% degradable crosslinker" ;
+    lova:measurementType "pVEGFR-2/VEGFR-2 ratio" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.30 ;
+    qudt:unit "ratio" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-pvegfr2-0> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201101771/western-blot-vegfr2> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "pVEGFR-2/VEGFR-2 ratio, nVEGF 0% degradable crosslinker" ;
+    lova:measurementType "pVEGFR-2/VEGFR-2 ratio" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.06 ;
+    qudt:unit "ratio" ;
+    lova:valueString "ratio less than 0.1" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-disulfide-vegf-1-0> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201101771/ellman-disulfide-protection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "Disulfide bond remaining, native VEGF, molar ratio 1:0" ;
+    lova:measurementType "Disulfide bond remaining" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 100.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-disulfide-vegf-1-1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201101771/ellman-disulfide-protection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "Disulfide bond remaining, native VEGF, molar ratio 1:1" ;
+    lova:measurementType "Disulfide bond remaining" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 95.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-disulfide-vegf-1-3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201101771/ellman-disulfide-protection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "Disulfide bond remaining, native VEGF, molar ratio 1:3" ;
+    lova:measurementType "Disulfide bond remaining" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 60.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-disulfide-vegf-1-5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201101771/ellman-disulfide-protection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "Disulfide bond remaining, native VEGF, molar ratio 1:5" ;
+    lova:measurementType "Disulfide bond remaining" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 5.0 ;
+    qudt:unit "%" ;
+    lova:valueString "All disulfide bonds were broken" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-disulfide-nvegf-1-0> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201101771/ellman-disulfide-protection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "Disulfide bond remaining, nVEGF, molar ratio 1:0" ;
+    lova:measurementType "Disulfide bond remaining" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 100.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-disulfide-nvegf-1-1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201101771/ellman-disulfide-protection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "Disulfide bond remaining, nVEGF, molar ratio 1:1" ;
+    lova:measurementType "Disulfide bond remaining" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 98.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-disulfide-nvegf-1-3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201101771/ellman-disulfide-protection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "Disulfide bond remaining, nVEGF, molar ratio 1:3" ;
+    lova:measurementType "Disulfide bond remaining" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 95.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-disulfide-nvegf-1-5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201101771/ellman-disulfide-protection> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "Disulfide bond remaining, nVEGF, molar ratio 1:5" ;
+    lova:measurementType "Disulfide bond remaining" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 97.0 ;
+    qudt:unit "%" ;
+    lova:valueString "Disulfide bonds retained at all nVEGF:HS-PEG-SH ratios" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-fluor-bsa-9h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201101771/fluorescence-leaching> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "Fluorescence intensity of leached native BSA at 9h" ;
+    lova:measurementType "Fluorescence intensity (leached protein)" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 2300.0 ;
+    qudt:unit "FSU" ;
+    lova:timePoint "9h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-fluor-nbsa-9h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201101771/fluorescence-leaching> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "Fluorescence intensity of leached nBSA at 9h" ;
+    lova:measurementType "Fluorescence intensity (leached protein)" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 550.0 ;
+    qudt:unit "FSU" ;
+    lova:timePoint "9h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-fluor-bsa-1h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201101771/fluorescence-leaching> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "Fluorescence intensity of leached native BSA at 1h" ;
+    lova:measurementType "Fluorescence intensity (leached protein)" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 530.0 ;
+    qudt:unit "FSU" ;
+    lova:timePoint "1h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-fluor-nbsa-1h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201101771/fluorescence-leaching> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "Fluorescence intensity of leached nBSA at 1h" ;
+    lova:measurementType "Fluorescence intensity (leached protein)" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 170.0 ;
+    qudt:unit "FSU" ;
+    lova:timePoint "1h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adma.201101771/deg-100-vs-0> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "Degradation at 80 min higher for nVEGF 100% vs 0% degradable crosslinker" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-deg-100-80min> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-deg-0-80min> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adma.201101771/release-100-vs-0> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "VEGF release higher for nVEGF 100% vs 0% degradable crosslinker" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-release-100-plasmin> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-release-0-plasmin> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adma.201101771/pvegfr2-native-vs-100> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "pVEGFR-2/VEGFR-2 ratio: native VEGF vs nVEGF 100% — no difference" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-pvegfr2-native> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-pvegfr2-100> ;
+    lova:direction "no difference" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adma.201101771/pvegfr2-100-vs-0> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "pVEGFR-2/VEGFR-2 ratio higher for nVEGF 100% vs 0% degradable crosslinker" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-pvegfr2-100> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-pvegfr2-0> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adma.201101771/disulfide-nvegf-vs-vegf-1-5> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "Disulfide bond remaining higher for nVEGF vs native VEGF at 1:5 molar ratio" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-disulfide-nvegf-1-5> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-disulfide-vegf-1-5> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adma.201101771/leaching-bsa-vs-nbsa-9h> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201101771> ;
+    rdfs:label "Leaching fluorescence intensity higher for native BSA vs nBSA at 9h" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-fluor-bsa-9h> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adma.201101771/o-fluor-nbsa-9h> ;
+    lova:direction "higher" .

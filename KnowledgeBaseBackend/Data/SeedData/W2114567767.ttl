@@ -1,0 +1,825 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1002-bit.20393> a bibo:AcademicArticle ;
+    rdfs:label "Bengali et al., 2005 — Gene Delivery Through Cell Culture Substrate Adsorbed DNA Complexes" ;
+    dc:title "Gene delivery through cell culture substrate adsorbed DNA complexes" ;
+    dc:identifier "10.1002/bit.20393" ;
+    dc:date "2005"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/biotechnology-and-bioengineering> ;
+    dc:creator <https://lovamap.com/ontology#author/bengali-zain> ,
+               <https://lovamap.com/ontology#author/pannier-angela> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ,
+               <https://lovamap.com/ontology#author/anderson-brian> ,
+               <https://lovamap.com/ontology#author/jang-jae-hyung> ,
+               <https://lovamap.com/ontology#author/mustoe-thomas> ,
+               <https://lovamap.com/ontology#author/shea-lonnie> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/bengali-zain>
+                       <https://lovamap.com/ontology#author/pannier-angela>
+                       <https://lovamap.com/ontology#author/segura-tatiana>
+                       <https://lovamap.com/ontology#author/anderson-brian>
+                       <https://lovamap.com/ontology#author/jang-jae-hyung>
+                       <https://lovamap.com/ontology#author/mustoe-thomas>
+                       <https://lovamap.com/ontology#author/shea-lonnie> ) ;
+    dc:bibliographicCitation "Bengali et al., 2005" ;
+    lova:focusMaterial "PEI polyplexes and Lipofectamine 2000 lipoplexes adsorbed onto tissue culture polystyrene (PS), serum-coated polystyrene (FBS-PS), and PLG biomaterial disks for substrate-mediated gene delivery" .
+
+<https://lovamap.com/ontology#author/bengali-zain> a foaf:Person ;
+    foaf:familyName "Bengali" ;
+    foaf:givenName "Zain" ;
+    foaf:name "Zain Bengali" ;
+    schema:affiliation "Department of Interdepartmental Biological Sciences, Northwestern University" .
+
+<https://lovamap.com/ontology#author/pannier-angela> a foaf:Person ;
+    foaf:familyName "Pannier" ;
+    foaf:givenName "Angela" ;
+    foaf:name "Angela K. Pannier" ;
+    schema:affiliation "Department of Interdepartmental Biological Sciences, Northwestern University" ;
+    schema:affiliation "Department of Chemical and Biological Engineering, Northwestern University" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" ;
+    schema:affiliation "Department of Chemical and Biological Engineering, Northwestern University" .
+
+<https://lovamap.com/ontology#author/anderson-brian> a foaf:Person ;
+    foaf:familyName "Anderson" ;
+    foaf:givenName "Brian Curtis" ;
+    foaf:name "Brian Curtis Anderson" ;
+    schema:affiliation "Department of Chemical and Biological Engineering, Northwestern University" .
+
+<https://lovamap.com/ontology#author/jang-jae-hyung> a foaf:Person ;
+    foaf:familyName "Jang" ;
+    foaf:givenName "Jae-Hyung" ;
+    foaf:name "Jae-Hyung Jang" ;
+    schema:affiliation "Department of Chemical and Biological Engineering, Northwestern University" .
+
+<https://lovamap.com/ontology#author/mustoe-thomas> a foaf:Person ;
+    foaf:familyName "Mustoe" ;
+    foaf:givenName "Thomas A." ;
+    foaf:name "Thomas A. Mustoe" ;
+    schema:affiliation "Division of Plastic and Reconstructive Surgery, Northwestern University, Chicago" .
+
+<https://lovamap.com/ontology#author/shea-lonnie> a foaf:Person ;
+    foaf:familyName "Shea" ;
+    foaf:givenName "Lonnie D." ;
+    foaf:name "Lonnie D. Shea" ;
+    schema:affiliation "Department of Chemical and Biological Engineering, Northwestern University" ;
+    schema:affiliation "Department of Biomedical Engineering, Northwestern University" ;
+    schema:affiliation "Robert H. Lurie Comprehensive Cancer Center, Northwestern University, Chicago" .
+
+<https://lovamap.com/ontology#journal/biotechnology-and-bioengineering> a bibo:Journal ;
+    dc:title "Biotechnology and Bioengineering" ;
+    bibo:issn "0006-3592" .
+
+<https://lovamap.com/ontology#material/10.1002-bit.20393/pei-polyplex> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "PEI polyplex (plasmid DNA + branched PEI, N/P 5-25)" ;
+    lova:particleMaterial "Branched polyethylenimine (PEI, 25 kDa)" ;
+    lova:particleSizeMin 121.0 ;
+    lova:particleSizeMax 1062.0 ;
+    lova:particleSizeUnit "nm" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-bit.20393/polyplex-formation> .
+
+<https://lovamap.com/ontology#material/10.1002-bit.20393/lipofectamine-lipoplex> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "Lipofectamine 2000 lipoplex (plasmid DNA + cationic lipid, DNA:lipid 0.5-5 µg:µL)" ;
+    lova:particleMaterial "Lipofectamine 2000" ;
+    lova:particleSizeMin 603.0 ;
+    lova:particleSizeMax 1089.0 ;
+    lova:particleSizeUnit "nm" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-bit.20393/lipoplex-formation> .
+
+<https://lovamap.com/ontology#material/10.1002-bit.20393/ps-substrate> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "Tissue culture polystyrene (PS) substrate, unmodified" ;
+    lova:surfaceModification "None (unmodified)" .
+
+<https://lovamap.com/ontology#material/10.1002-bit.20393/fbs-ps-substrate> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "Serum-modified tissue culture polystyrene (FBS-PS) substrate" ;
+    lova:surfaceModification "FBS-coated (10% heat-inactivated FBS in PBS, 2h, washed with PBS)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-bit.20393/fbs-ps-coating> .
+
+<https://lovamap.com/ontology#material/10.1002-bit.20393/plg-disk> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "Serum-coated poly(lactide-co-glycolide) (PLG) disk" ;
+    lova:particleMaterial "Poly(lactide-co-glycolide) (PLG)" ;
+    lova:scaffoldDimensions "5-mm diameter disk" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-bit.20393/plg-fabrication> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-bit.20393/polyplex-formation> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "Polyplex formation by electrostatic complexation of plasmid DNA with branched PEI" ;
+    lova:chemistry "Electrostatic self-assembly (cationic polymer-DNA complexation)" ;
+    lova:manufacturingMethod "PEI solution added dropwise to DNA (TBS), vortexed, incubated 15 min at room temperature; N/P ratio range 5-25" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-bit.20393/plasmid-dna> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-bit.20393/pei> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-bit.20393/lipoplex-formation> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "Lipoplex formation by complexation of plasmid DNA with Lipofectamine 2000" ;
+    lova:chemistry "Cationic lipid-DNA complexation" ;
+    lova:manufacturingMethod "Lipid added dropwise to DNA in serum-free DMEM, mixed by gentle pipetting, incubated 20 min; DNA:lipid ratio range 0.5-5 µg:µL" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-bit.20393/plasmid-dna> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-bit.20393/lipofectamine2000> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-bit.20393/fbs-ps-coating> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "Serum coating of tissue culture polystyrene" ;
+    lova:chemistry "Serum protein adsorption" ;
+    lova:manufacturingMethod "Incubation of PS with 10% heat-inactivated FBS in PBS (pH 7.4) for 2 h, followed by two PBS wash steps" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-bit.20393/fbs> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-bit.20393/plg-fabrication> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "PLG disk fabrication by gas foaming" ;
+    lova:manufacturingMethod "Gas foaming process" .
+
+<https://lovamap.com/ontology#reagent/10.1002-bit.20393/plasmid-dna> a lova:Reagent ;
+    rdfs:label "Plasmid DNA (luciferase or EGFP reporter, CMV promoter)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Qiagen (Santa Clara, CA) — purification reagents" ;
+    lova:reagentFunction "Reporter gene delivery (luciferase or EGFP expression)" .
+
+<https://lovamap.com/ontology#reagent/10.1002-bit.20393/pei> a lova:Reagent ;
+    rdfs:label "Branched polyethylenimine (PEI, 25 kDa)" ;
+    lova:reagentRole "other" ;
+    lova:molecularWeight "25 kDa" ;
+    lova:supplier "Aldrich (St. Louis, MO)" ;
+    lova:reagentFunction "Cationic polymer for DNA complexation (polyplex formation)" .
+
+<https://lovamap.com/ontology#reagent/10.1002-bit.20393/lipofectamine2000> a lova:Reagent ;
+    rdfs:label "Lipofectamine 2000" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Life Technologies (Gaithersburg, MD)" ;
+    lova:reagentFunction "Cationic lipid for DNA complexation (lipoplex formation)" .
+
+<https://lovamap.com/ontology#reagent/10.1002-bit.20393/fbs> a lova:Reagent ;
+    rdfs:label "Heat-inactivated fetal bovine serum (FBS)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "10% in PBS" ;
+    lova:reagentFunction "Substrate surface modification (serum coating)" .
+
+<https://lovamap.com/ontology#reagent/10.1002-bit.20393/tris-edta-buffer> a lova:Reagent ;
+    rdfs:label "Tris-EDTA buffer" ;
+    lova:reagentRole "solvent" ;
+    lova:concentration "10 mM Tris, 1 mM EDTA, pH 7.4" ;
+    lova:reagentFunction "Plasmid DNA storage buffer" .
+
+<https://lovamap.com/ontology#experiment/10.1002-bit.20393/complex-characterization> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-bit.20393/pei-polyplex> ,
+                      <https://lovamap.com/ontology#material/10.1002-bit.20393/lipofectamine-lipoplex> ;
+    rdfs:label "Physicochemical characterization of polyplexes and lipoplexes (size, zeta potential)" ;
+    lova:experimentCategory "Physicochemical" ;
+    lova:experimentType "Particle size and zeta potential measurement" ;
+    lova:equipment "Zetasizer Nano ZS (Malvern, Worcestershire, United Kingdom)" .
+
+<https://lovamap.com/ontology#experiment/10.1002-bit.20393/surface-characterization> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-bit.20393/ps-substrate> ,
+                      <https://lovamap.com/ontology#material/10.1002-bit.20393/fbs-ps-substrate> ;
+    rdfs:label "Surface characterization of PS and FBS-PS substrates (XPS, contact angle)" ;
+    lova:experimentCategory "Surface characterization" ;
+    lova:experimentType "X-ray photoelectron spectroscopy and contact angle measurement" ;
+    lova:equipment "Omicron ESCAProbe system (Al/Mg anode); goniometer (Rame-Hart) with DROPimage Standard software" ;
+    lova:temperature "Room temperature" .
+
+<https://lovamap.com/ontology#experiment/10.1002-bit.20393/dna-immobilization-release> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-bit.20393/pei-polyplex> ,
+                      <https://lovamap.com/ontology#material/10.1002-bit.20393/lipofectamine-lipoplex> ,
+                      <https://lovamap.com/ontology#material/10.1002-bit.20393/ps-substrate> ,
+                      <https://lovamap.com/ontology#material/10.1002-bit.20393/fbs-ps-substrate> ;
+    rdfs:label "Quantification of immobilized DNA and DNA release using radiolabeled plasmid" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "DNA binding/release assay" ;
+    lova:assayOrMethod "Scintillation counting of alpha-32P dATP nick-translated plasmid DNA" ;
+    lova:temperature "37°C" ;
+    lova:medium "PBS or conditioned media" .
+
+<https://lovamap.com/ontology#experiment/10.1002-bit.20393/transfection-nih3t3-luciferase> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-bit.20393/pei-polyplex> ,
+                      <https://lovamap.com/ontology#material/10.1002-bit.20393/lipofectamine-lipoplex> ,
+                      <https://lovamap.com/ontology#material/10.1002-bit.20393/ps-substrate> ,
+                      <https://lovamap.com/ontology#material/10.1002-bit.20393/fbs-ps-substrate> ;
+    rdfs:label "Substrate-mediated and bolus transfection of NIH/3T3 cells — luciferase reporter" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transfection / transgene expression" ;
+    lova:assayOrMethod "Luciferase Assay System (Promega)" ;
+    lova:cellType "NIH/3T3" ;
+    lova:cellSource "Mouse fibroblast cell line (ATCC)" ;
+    lova:seedingDensity "5,000 cells/well (substrate-mediated); 15,000 cells/well (bolus)" ;
+    lova:cultureMedium "DMEM + 1% sodium pyruvate + 1% penicillin-streptomycin + 1.5 g/L NaHCO3 + 10% FBS" ;
+    lova:cultureDuration "48 h" ;
+    lova:temperature "37°C" ;
+    lova:atmosphere "5% CO2" .
+
+<https://lovamap.com/ontology#experiment/10.1002-bit.20393/transfection-nih3t3-gfp-count> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-bit.20393/lipofectamine-lipoplex> ,
+                      <https://lovamap.com/ontology#material/10.1002-bit.20393/pei-polyplex> ,
+                      <https://lovamap.com/ontology#material/10.1002-bit.20393/ps-substrate> ,
+                      <https://lovamap.com/ontology#material/10.1002-bit.20393/fbs-ps-substrate> ;
+    rdfs:label "Transfected cell quantification (GFP) — NIH/3T3" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transfected cell counting" ;
+    lova:assayOrMethod "Epifluorescence microscopy with FITC filter" ;
+    lova:cellType "NIH/3T3" ;
+    lova:cultureDuration "48 h" .
+
+<https://lovamap.com/ontology#experiment/10.1002-bit.20393/viability-mts> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-bit.20393/pei-polyplex> ,
+                      <https://lovamap.com/ontology#material/10.1002-bit.20393/lipofectamine-lipoplex> ,
+                      <https://lovamap.com/ontology#material/10.1002-bit.20393/ps-substrate> ,
+                      <https://lovamap.com/ontology#material/10.1002-bit.20393/fbs-ps-substrate> ;
+    rdfs:label "Cellular viability assay (MTS) following transfection" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell viability" ;
+    lova:assayOrMethod "MTS assay (Promega), absorbance at 490 nm" ;
+    lova:cellType "NIH/3T3" .
+
+<https://lovamap.com/ontology#experiment/10.1002-bit.20393/confocal-distribution> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-bit.20393/pei-polyplex> ,
+                      <https://lovamap.com/ontology#material/10.1002-bit.20393/ps-substrate> ,
+                      <https://lovamap.com/ontology#material/10.1002-bit.20393/fbs-ps-substrate> ;
+    rdfs:label "Confocal microscopy of polyplex and cell distribution on substrate" ;
+    lova:experimentCategory "Imaging" ;
+    lova:experimentType "Confocal microscopy" ;
+    lova:assayOrMethod "Tetramethylrhodamine-labeled DNA; fluorescein diacetate cytoplasmic stain" ;
+    lova:cellType "NIH/3T3" ;
+    lova:cultureDuration "20 h" .
+
+<https://lovamap.com/ontology#experiment/10.1002-bit.20393/transfection-hdf> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-bit.20393/pei-polyplex> ,
+                      <https://lovamap.com/ontology#material/10.1002-bit.20393/lipofectamine-lipoplex> ,
+                      <https://lovamap.com/ontology#material/10.1002-bit.20393/ps-substrate> ,
+                      <https://lovamap.com/ontology#material/10.1002-bit.20393/fbs-ps-substrate> ;
+    rdfs:label "Substrate-mediated and bolus transfection of primary human dermal fibroblasts (HDF)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transfection / transgene expression" ;
+    lova:assayOrMethod "Luciferase Assay System (Promega); GFP epifluorescence" ;
+    lova:cellType "Human dermal fibroblasts (HDF)" ;
+    lova:cellSource "Human dermis (primary cells)" .
+
+<https://lovamap.com/ontology#experiment/10.1002-bit.20393/transfection-plg-disk> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-bit.20393/plg-disk> ,
+                      <https://lovamap.com/ontology#material/10.1002-bit.20393/pei-polyplex> ;
+    rdfs:label "Substrate-mediated transfection from serum-coated PLG disk" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transfection / transgene expression" ;
+    lova:assayOrMethod "Luciferase assay; X-gal staining of nuclear-targeted beta-galactosidase" ;
+    lova:cellType "NIH/3T3" ;
+    lova:cultureDuration "24 h (DNA incubation)" .
+
+<https://lovamap.com/ontology#outcome/10.1002-bit.20393/zavg-diameter-polyplex-np5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-bit.20393/complex-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "z-average diameter of PEI polyplex at N/P 5" ;
+    lova:measurementType "z-average diameter" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 1062.0 ;
+    qudt:unit "nm" ;
+    lova:stdDev 140.0 ;
+    lova:isSignificant true ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-bit.20393/zavg-diameter-polyplex-np25> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-bit.20393/complex-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "z-average diameter of PEI polyplex at N/P 25" ;
+    lova:measurementType "z-average diameter" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 121.0 ;
+    qudt:unit "nm" ;
+    lova:stdDev 10.0 ;
+    lova:isSignificant true ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-bit.20393/zetapotential-polyplex-np5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-bit.20393/complex-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "Zeta potential of PEI polyplex at N/P 5" ;
+    lova:measurementType "Zeta potential" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 14.33 ;
+    qudt:unit "mV" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-bit.20393/zetapotential-polyplex-np10> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-bit.20393/complex-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "Zeta potential of PEI polyplex at N/P 10 (maximum)" ;
+    lova:measurementType "Zeta potential" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 21.21 ;
+    qudt:unit "mV" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-bit.20393/zavg-diameter-lipoplex-low> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-bit.20393/complex-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "z-average diameter of lipoplex at low lipid amount" ;
+    lova:measurementType "z-average diameter" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 603.0 ;
+    qudt:unit "nm" ;
+    lova:stdDev 104.0 ;
+    lova:isSignificant true ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-bit.20393/zavg-diameter-lipoplex-high> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-bit.20393/complex-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "z-average diameter of lipoplex at high lipid amount" ;
+    lova:measurementType "z-average diameter" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 1089.0 ;
+    qudt:unit "nm" ;
+    lova:stdDev 340.0 ;
+    lova:isSignificant true ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-bit.20393/zetapotential-lipoplex-avg> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-bit.20393/complex-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "Average zeta potential of lipoplexes (DNA/lipid > 1:2)" ;
+    lova:measurementType "Zeta potential" ;
+    lova:measurementCategory "Physicochemical" ;
+    qudt:numericValue 50.0 ;
+    qudt:unit "mV" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-bit.20393/contact-angle-ps> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-bit.20393/surface-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "Contact angle of water on PS substrate" ;
+    lova:measurementType "Water contact angle" ;
+    lova:measurementCategory "Surface characterization" ;
+    qudt:numericValue 47.75 ;
+    qudt:unit "deg" ;
+    lova:stdDev 6.64 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-bit.20393/contact-angle-fbs-ps> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-bit.20393/surface-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "Contact angle of water on FBS-PS substrate" ;
+    lova:measurementType "Water contact angle" ;
+    lova:measurementCategory "Surface characterization" ;
+    qudt:numericValue 12.67 ;
+    qudt:unit "deg" ;
+    lova:stdDev 3.13 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-bit.20393/xps-nitrogen-peak> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-bit.20393/surface-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "Nitrogen peak present on FBS-PS, absent on PS (XPS)" ;
+    lova:measurementType "XPS elemental surface composition" ;
+    lova:measurementCategory "Surface characterization" ;
+    lova:valueString "Nitrogen-containing groups detected on FBS-PS surface but not on PS surface (binding energy ~400 eV)" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-bit.20393/surface-density-polyplex-fbsps-24h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-bit.20393/dna-immobilization-release> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "Polyplex surface density on FBS-PS after 24 h incubation" ;
+    lova:measurementType "DNA surface density" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 4.1 ;
+    qudt:unit "µg/cm2" ;
+    lova:isSignificant true ;
+    lova:timePoint "24 h" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-bit.20393/surface-density-polyplex-ps-24h> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-bit.20393/dna-immobilization-release> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "Polyplex surface density on PS after 24 h incubation" ;
+    lova:measurementType "DNA surface density" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 5.3 ;
+    qudt:unit "µg/cm2" ;
+    lova:isSignificant true ;
+    lova:timePoint "24 h" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-bit.20393/release-polyplex-pbs-ps-8d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-bit.20393/dna-immobilization-release> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "Polyplex release from PS in PBS after 8 days" ;
+    lova:measurementType "Percentage DNA released" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 9.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 8" ;
+    lova:medium "PBS" ;
+    lova:isSignificant true ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-bit.20393/release-polyplex-pbs-fbsps-8d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-bit.20393/dna-immobilization-release> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "Polyplex release from FBS-PS in PBS after 8 days" ;
+    lova:measurementType "Percentage DNA released" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 8.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 8" ;
+    lova:medium "PBS" ;
+    lova:isSignificant true ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-bit.20393/release-lipoplex-pbs-ps-8d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-bit.20393/dna-immobilization-release> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "Lipoplex release from PS in PBS after 8 days" ;
+    lova:measurementType "Percentage DNA released" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 6.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 8" ;
+    lova:medium "PBS" ;
+    lova:isSignificant true ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-bit.20393/release-lipoplex-pbs-fbsps-8d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-bit.20393/dna-immobilization-release> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "Lipoplex release from FBS-PS in PBS after 8 days" ;
+    lova:measurementType "Percentage DNA released" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 12.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 8" ;
+    lova:medium "PBS" ;
+    lova:isSignificant true ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-bit.20393/release-polyplex-conditioned-ps-8d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-bit.20393/dna-immobilization-release> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "Polyplex release from PS in conditioned media after 8 days" ;
+    lova:measurementType "Percentage DNA released" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 35.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 8" ;
+    lova:medium "Conditioned media" ;
+    lova:isSignificant true ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-bit.20393/release-polyplex-conditioned-fbsps-8d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-bit.20393/dna-immobilization-release> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "Polyplex release from FBS-PS in conditioned media after 8 days" ;
+    lova:measurementType "Percentage DNA released" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 47.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 8" ;
+    lova:medium "Conditioned media" ;
+    lova:isSignificant true ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-bit.20393/release-lipoplex-conditioned-fbsps-8d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-bit.20393/dna-immobilization-release> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "Lipoplex release from FBS-PS in conditioned media after 8 days" ;
+    lova:measurementType "Percentage DNA released" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 23.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 8" ;
+    lova:medium "Conditioned media" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-bit.20393/release-lipoplex-conditioned-ps-8d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-bit.20393/dna-immobilization-release> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "Lipoplex release from PS in conditioned media after 8 days" ;
+    lova:measurementType "Percentage DNA released" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 15.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 8" ;
+    lova:medium "Conditioned media" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-bit.20393/release-polyplex-serummedia-ps-8d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-bit.20393/dna-immobilization-release> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "Polyplex release from PS in serum-containing media after 8 days" ;
+    lova:measurementType "Percentage DNA released" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 18.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 8" ;
+    lova:medium "Serum-containing media (not conditioned)" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-bit.20393/release-polyplex-serummedia-fbsps-8d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-bit.20393/dna-immobilization-release> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "Polyplex release from FBS-PS in serum-containing media after 8 days" ;
+    lova:measurementType "Percentage DNA released" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 36.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 8" ;
+    lova:medium "Serum-containing media (not conditioned)" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-bit.20393/release-polyplex-trypsin-8d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-bit.20393/dna-immobilization-release> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "Polyplex release in trypsin after 8 days (both substrates)" ;
+    lova:measurementType "Percentage DNA released" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 5.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 8" ;
+    lova:medium "Trypsin" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-bit.20393/luciferase-lowdose-fbsps-np25-foldvsps> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-bit.20393/transfection-nih3t3-luciferase> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "Polyplex luciferase expression fold increase on FBS-PS vs PS at N/P 25, 0.5 µg DNA" ;
+    lova:measurementType "Fold increase in luciferase expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 17.0 ;
+    qudt:unit "fold" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "PS substrate" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-bit.20393/luciferase-highdose-fbsps-np10-foldvsps> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-bit.20393/transfection-nih3t3-luciferase> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "Polyplex luciferase expression fold increase on FBS-PS vs PS at N/P 10, 2 µg DNA" ;
+    lova:measurementType "Fold increase in luciferase expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 194.0 ;
+    qudt:unit "fold" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "PS substrate" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-bit.20393/luciferase-highdose-fbsps-np25-foldvsps> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-bit.20393/transfection-nih3t3-luciferase> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "Polyplex luciferase expression fold increase on FBS-PS vs PS at N/P 25, 2 µg DNA" ;
+    lova:measurementType "Fold increase in luciferase expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1638.0 ;
+    qudt:unit "fold" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "PS substrate" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-bit.20393/luciferase-polyplex-fbsps-vsbolus-fold> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-bit.20393/transfection-nih3t3-luciferase> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "Polyplex luciferase expression fold enhancement, FBS-PS vs bolus delivery" ;
+    lova:measurementType "Fold increase in luciferase expression" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "20- to 49-fold enhancement relative to equivalent bolus doses" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "Bolus delivery" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-bit.20393/luciferase-lipoplex-lowdose-lipidincrease-fold> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-bit.20393/transfection-nih3t3-luciferase> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "Lipoplex luciferase enhancement with increasing lipid content at low dose" ;
+    lova:measurementType "Fold increase in luciferase expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 6.5 ;
+    qudt:unit "fold" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-bit.20393/luciferase-lipoplex-highdose-lowestlipid-vsbolus-fold> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-bit.20393/transfection-nih3t3-luciferase> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "Lipoplex luciferase enhancement, FBS-PS vs bolus, lowest lipid content, highest dose" ;
+    lova:measurementType "Fold increase in luciferase expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 18.0 ;
+    qudt:unit "fold" ;
+    lova:comparisonGroup "Bolus delivery" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-bit.20393/transfected-cells-fbsps-vs-ps-fold> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-bit.20393/transfection-nih3t3-gfp-count> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "Percentage transfected cells (lipoplex), fold increase on FBS-PS vs PS" ;
+    lova:measurementType "Fold increase in transfected cell percentage" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.0 ;
+    qudt:unit "fold" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "PS substrate" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-bit.20393/polyplex-transfection-efficiency-fbsps> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-bit.20393/transfection-nih3t3-gfp-count> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "Polyplex transfection efficiency (percentage transfected cells) on FBS-PS" ;
+    lova:measurementType "Percentage transfected cells" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "<10%" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-bit.20393/viability-polyplex-bolus> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-bit.20393/viability-mts> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "Cellular viability following polyplex delivery (substrate or bolus) relative to PS control" ;
+    lova:measurementType "Cellular viability (% of control)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "No significant effect on viability (P > 0.05), values ~92-114% of control" ;
+    lova:isSignificant false ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-bit.20393/viability-lipoplex-105> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-bit.20393/viability-mts> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "Cellular viability following lipoplex delivery at DNA:lipid 1:0.5" ;
+    lova:measurementType "Cellular viability (% of control)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "~70-80% of control, significantly reduced (P<0.05) across FBS, PS and bolus delivery" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-bit.20393/viability-lipoplex-12> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-bit.20393/viability-mts> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "Cellular viability following lipoplex delivery at DNA:lipid 1:2" ;
+    lova:measurementType "Cellular viability (% of control)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "~42-71% of control, significantly reduced (P<0.05); lowest viability (~42%) observed for FBS-PS delivery" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-bit.20393/confocal-ps-distribution> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-bit.20393/confocal-distribution> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "Polyplex distribution on PS substrate (low transfection condition)" ;
+    lova:measurementType "Complex-cell spatial association" ;
+    lova:measurementCategory "Imaging" ;
+    lova:valueString "Polyplexes distributed broadly across PS substrate with only a fraction associated with cells" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-bit.20393/confocal-fbsps-distribution> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-bit.20393/confocal-distribution> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "Polyplex distribution on FBS-PS substrate (high transfection condition)" ;
+    lova:measurementType "Complex-cell spatial association" ;
+    lova:measurementCategory "Imaging" ;
+    lova:valueString "Polyplexes localized to cells or their vicinity rather than distributed across substrate" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-bit.20393/hdf-polyplex-luciferase-fold> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-bit.20393/transfection-hdf> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "HDF polyplex luciferase expression fold increase, FBS-PS vs PS" ;
+    lova:measurementType "Fold increase in luciferase expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 10.7 ;
+    qudt:unit "fold" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "PS substrate" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-bit.20393/hdf-lipoplex-percent-transfected> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-bit.20393/transfection-hdf> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "Percentage of HDF cells transfected using lipoplexes" ;
+    lova:measurementType "Percentage transfected cells" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 26.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-bit.20393/hdf-polyplex-percent-transfected> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-bit.20393/transfection-hdf> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "Percentage of HDF cells transfected using polyplexes" ;
+    lova:measurementType "Percentage transfected cells" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "<5%" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-bit.20393/hdf-polyplex-luciferase-np10-values> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-bit.20393/transfection-hdf> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "HDF polyplex luciferase activity (N/P 10) by delivery method" ;
+    lova:measurementType "Luciferase activity" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "FBS ~7×10^3 RLU/5000 cells; PS ~6.5×10^2 RLU/5000 cells; Bolus ~5×10^3 RLU/5000 cells" ;
+    qudt:unit "RLU/5000 cells" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-bit.20393/plg-dna-immobilized> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-bit.20393/transfection-plg-disk> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "DNA immobilized on 5-mm PLG disk" ;
+    lova:measurementType "Immobilized DNA mass" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 1.3 ;
+    qudt:unit "µg" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-bit.20393/plg-luciferase-expression> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-bit.20393/transfection-plg-disk> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "Luciferase expression from PLG disk substrate-mediated delivery" ;
+    lova:measurementType "Luciferase activity" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 130000.0 ;
+    qudt:unit "RLU/5000 cells" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-bit.20393/diameter-np5-vs-np25> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "Polyplex z-average diameter lower at N/P 25 vs N/P 5" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-bit.20393/zavg-diameter-polyplex-np25> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-bit.20393/zavg-diameter-polyplex-np5> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-bit.20393/luciferase-lowdose-fbsps-vs-ps-np25> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "Polyplex luciferase expression higher on FBS-PS vs PS at N/P 25, low dose" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-bit.20393/luciferase-lowdose-fbsps-np25-foldvsps> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-bit.20393/polyplex-transfection-efficiency-fbsps> ;
+    lova:direction "higher" ;
+    lova:foldChange 17.0 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-bit.20393/luciferase-highdose-fbsps-vs-ps-np25> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "Polyplex luciferase expression higher on FBS-PS vs PS at N/P 25, high dose (1638-fold)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-bit.20393/luciferase-highdose-fbsps-np25-foldvsps> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-bit.20393/luciferase-highdose-fbsps-np10-foldvsps> ;
+    lova:direction "higher" ;
+    lova:foldChange 1638.0 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-bit.20393/transfected-cells-fbsps-vs-ps> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "Lipoplex percentage of transfected cells higher on FBS-PS vs PS" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-bit.20393/transfected-cells-fbsps-vs-ps-fold> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-bit.20393/hdf-lipoplex-percent-transfected> ;
+    lova:direction "higher" ;
+    lova:foldChange 2.0 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-bit.20393/hdf-polyplex-fbsps-vs-ps> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "HDF polyplex luciferase expression higher on FBS-PS vs PS" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-bit.20393/hdf-polyplex-luciferase-fold> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-bit.20393/hdf-polyplex-percent-transfected> ;
+    lova:direction "higher" ;
+    lova:foldChange 10.7 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-bit.20393/contact-angle-ps-vs-fbsps> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "Contact angle lower on FBS-PS vs PS" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-bit.20393/contact-angle-fbs-ps> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-bit.20393/contact-angle-ps> ;
+    lova:direction "lower" .
+
+<https://lovamap.com/ontology#comparison/10.1002-bit.20393/release-conditioned-vs-pbs-ps> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "Polyplex release from PS higher in conditioned media vs PBS after 8 days" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-bit.20393/release-polyplex-conditioned-ps-8d> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-bit.20393/release-polyplex-pbs-ps-8d> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-bit.20393/release-conditioned-vs-pbs-fbsps> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-bit.20393> ;
+    rdfs:label "Polyplex release from FBS-PS higher in conditioned media vs PBS after 8 days" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-bit.20393/release-polyplex-conditioned-fbsps-8d> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-bit.20393/release-polyplex-pbs-fbsps-8d> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .

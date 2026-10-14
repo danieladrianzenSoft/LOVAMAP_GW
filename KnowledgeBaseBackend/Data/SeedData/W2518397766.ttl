@@ -1,0 +1,553 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1016-j.biopha.2016.08.018> a bibo:AcademicArticle ;
+    rdfs:label "Zhu et al., 2016 — Three dimensional tubular structure self-assembled by vascular mesenchymal cells at stiffness interfaces of hydrogels" ;
+    dc:title "Three dimensional tubular structure self-assembled by vascular mesenchymal cells at stiffness interfaces of hydrogels" ;
+    dc:identifier "10.1016/j.biopha.2016.08.018" ;
+    dc:date "2016"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/biomedicine-pharmacotherapy> ;
+    dc:creator <https://lovamap.com/ontology#author/zhu-xiaolu> ,
+               <https://lovamap.com/ontology#author/gojgini-shiva> ,
+               <https://lovamap.com/ontology#author/chen-ting-hsuan> ,
+               <https://lovamap.com/ontology#author/teng-fang> ,
+               <https://lovamap.com/ontology#author/fei-peng> ,
+               <https://lovamap.com/ontology#author/dong-siyan> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ,
+               <https://lovamap.com/ontology#author/ho-chih-ming> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/zhu-xiaolu>
+                       <https://lovamap.com/ontology#author/gojgini-shiva>
+                       <https://lovamap.com/ontology#author/chen-ting-hsuan>
+                       <https://lovamap.com/ontology#author/teng-fang>
+                       <https://lovamap.com/ontology#author/fei-peng>
+                       <https://lovamap.com/ontology#author/dong-siyan>
+                       <https://lovamap.com/ontology#author/segura-tatiana>
+                       <https://lovamap.com/ontology#author/ho-chih-ming> ) ;
+    dc:bibliographicCitation "Zhu et al., 2016" ;
+    lova:focusMaterial "Vascular mesenchymal cells self-assembling into 3D hollow tubular structures at stiffness interfaces of composite hyaluronic acid (HA) hydrogels" .
+
+<https://lovamap.com/ontology#author/zhu-xiaolu> a foaf:Person ;
+    foaf:familyName "Zhu" ;
+    foaf:givenName "Xiaolu" ;
+    foaf:name "Xiaolu Zhu" ;
+    schema:affiliation "School of Mechanical and Electrical Engineering, Hohai University, Changzhou, Jiangsu 213022, China" ;
+    schema:affiliation "Mechanical and Aerospace Engineering Department, University of California, Los Angeles, CA 90095, USA" .
+
+<https://lovamap.com/ontology#author/gojgini-shiva> a foaf:Person ;
+    foaf:familyName "Gojgini" ;
+    foaf:givenName "Shiva" ;
+    foaf:name "Shiva Gojgini" ;
+    schema:affiliation "Chemical and Biomolecular Engineering Department, University of California, Los Angeles, CA 90095, USA" .
+
+<https://lovamap.com/ontology#author/chen-ting-hsuan> a foaf:Person ;
+    foaf:familyName "Chen" ;
+    foaf:givenName "Ting-Hsuan" ;
+    foaf:name "Ting-Hsuan Chen" ;
+    schema:affiliation "Department of Mechanical and Biomedical Engineering, City University of Hong Kong, Hong Kong" .
+
+<https://lovamap.com/ontology#author/teng-fang> a foaf:Person ;
+    foaf:familyName "Teng" ;
+    foaf:givenName "Fang" ;
+    foaf:name "Fang Teng" ;
+    schema:affiliation "Department of Gynaecology and Obstetrics, Nanjing Maternity and Child Health Care Hospital Affiliated to Nanjing Medical University, Nanjing, China" .
+
+<https://lovamap.com/ontology#author/fei-peng> a foaf:Person ;
+    foaf:familyName "Fei" ;
+    foaf:givenName "Peng" ;
+    foaf:name "Peng Fei" ;
+    schema:affiliation "Mechanical and Aerospace Engineering Department, University of California, Los Angeles, CA 90095, USA" .
+
+<https://lovamap.com/ontology#author/dong-siyan> a foaf:Person ;
+    foaf:familyName "Dong" ;
+    foaf:givenName "Siyan" ;
+    foaf:name "Siyan Dong" ;
+    schema:affiliation "Mechanical and Aerospace Engineering Department, University of California, Los Angeles, CA 90095, USA" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" ;
+    schema:affiliation "Chemical and Biomolecular Engineering Department, University of California, Los Angeles, CA 90095, USA" .
+
+<https://lovamap.com/ontology#author/ho-chih-ming> a foaf:Person ;
+    foaf:familyName "Ho" ;
+    foaf:givenName "Chih-Ming" ;
+    foaf:name "Chih-Ming Ho" ;
+    schema:affiliation "Mechanical and Aerospace Engineering Department, University of California, Los Angeles, CA 90095, USA" ;
+    schema:affiliation "Bioengineering Department, University of California Los Angeles, Los Angeles, CA 90095, USA" .
+
+<https://lovamap.com/ontology#journal/biomedicine-pharmacotherapy> a bibo:Journal ;
+    dc:title "Biomedicine & Pharmacotherapy" ;
+    bibo:issn "0753-3322" .
+
+<https://lovamap.com/ontology#material/10.1016-j.biopha.2016.08.018/gel-2-lower-stiffness> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biopha.2016.08.018> ;
+    rdfs:label "Lower-stiffness HA hydrogel (Gel-2, VMC-encapsulated)" ;
+    lova:particleMaterial "Hyaluronic acid (HA)" ;
+    lova:stiffnessQualitative "Soft hydrogel (lower stiffness)" ;
+    lova:surfaceModification "RGD-functionalized (final concentration 100-150 μM)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biopha.2016.08.018/ha-michael-addition> ;
+    lova:scaffoldDimensions "Cell-laden slot: 500 μm width × 300 μm depth" .
+
+<https://lovamap.com/ontology#material/10.1016-j.biopha.2016.08.018/gel-1-higher-stiffness> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biopha.2016.08.018> ;
+    rdfs:label "Higher-stiffness HA hydrogel (Gel-1, cell-free, serrated pattern)" ;
+    lova:particleMaterial "Hyaluronic acid (HA)" ;
+    lova:stiffnessQualitative "Rigid (higher stiffness)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biopha.2016.08.018/ha-michael-addition> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biopha.2016.08.018/composite-hydrogel> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biopha.2016.08.018> ;
+    rdfs:label "Composite HA hydrogel with stiffness interface (Gel-1 + Gel-2)" ;
+    lova:particleMaterial "Hyaluronic acid (HA)" ;
+    lova:packingConfiguration "Serrated interface between higher- and lower-stiffness hydrogel regions" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biopha.2016.08.018/ha-michael-addition> ;
+    lova:scaffoldDimensions "8 mm diameter disks for rheology; cell-laden slot 500 μm width × 300 μm depth" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.biopha.2016.08.018/ha-michael-addition> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biopha.2016.08.018> ;
+    rdfs:label "Michael-addition crosslinked acrylated hyaluronic acid (HA-AC) hydrogel with MMP-degradable crosslinker and RGD functionalization" ;
+    lova:chemistry "Michael Addition chemistry (thiol-acrylate)" ;
+    lova:manufacturingMethod "SU-8 photolithography master used to cast PDMS mold with serrated pattern; sequential casting of Gel-1 (higher-stiffness, grooved) and Gel-2 (lower-stiffness, cell-laden) hydrogels; gelation at 37°C for 30 min" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.biopha.2016.08.018/ha> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biopha.2016.08.018/adh> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biopha.2016.08.018/edc> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biopha.2016.08.018/nhs-ac> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biopha.2016.08.018/hepes> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biopha.2016.08.018/teoa> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biopha.2016.08.018/mmp-crosslinker> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biopha.2016.08.018/rgd> .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biopha.2016.08.018/ha> a lova:Reagent ;
+    rdfs:label "Hyaluronic acid (HA, 60 kDa)" ;
+    lova:reagentRole "monomer" ;
+    lova:molecularWeight "60 kDa" ;
+    lova:concentration "1.0 g, 0.017 mmol" ;
+    lova:reagentFunction "Base polymer backbone for hydrogel" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biopha.2016.08.018/adh> a lova:Reagent ;
+    rdfs:label "Adipic dihydrazide (ADH)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:concentration "18.0 g, 105.5 mmol" ;
+    lova:reagentFunction "Hydrazide modification of HA to form HA-ADH" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biopha.2016.08.018/edc> a lova:Reagent ;
+    rdfs:label "1-ethyl-3-[3-dimethylaminopropyl]carbodiimide hydrochloride (EDC)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "2.0 g, 10.41 mmol" ;
+    lova:reagentFunction "Carbodiimide coupling catalyst for HA-ADH synthesis" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biopha.2016.08.018/nhs-ac> a lova:Reagent ;
+    rdfs:label "N-Acryloxy succinimide (NHS-AC)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:concentration "0.75 g, 4.4 mmol" ;
+    lova:reagentFunction "Acrylation of HA-ADH to produce HA-AC" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biopha.2016.08.018/hepes> a lova:Reagent ;
+    rdfs:label "HEPES buffer" ;
+    lova:reagentRole "solvent" ;
+    lova:concentration "pH 7.2" ;
+    lova:reagentFunction "Reaction buffer for acrylation step" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biopha.2016.08.018/teoa> a lova:Reagent ;
+    rdfs:label "Triethanolamine (TEOA) buffer" ;
+    lova:reagentRole "solvent" ;
+    lova:concentration "0.3 M, pH 8.4" ;
+    lova:reagentFunction "Buffer for gel precursor mixing and crosslinking" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biopha.2016.08.018/mmp-crosslinker> a lova:Reagent ;
+    rdfs:label "Bis-cysteine containing MMP-degradable cross linker" ;
+    lova:reagentRole "crosslinker" ;
+    lova:concentration "1.0 mg aliquot diluted in 20 μL of 0.3 M TEOA buffer" ;
+    lova:reagentFunction "MMP-degradable crosslinking of HA-AC via Michael addition" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biopha.2016.08.018/rgd> a lova:Reagent ;
+    rdfs:label "RGD cell adhesion peptide" ;
+    lova:reagentRole "peptide" ;
+    lova:concentration "Final concentration 100-150 μM (range tested 50-800 μM)" ;
+    lova:reagentFunction "Cell adhesion" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biopha.2016.08.018/cell-viability> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biopha.2016.08.018> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biopha.2016.08.018/gel-2-lower-stiffness> ;
+    rdfs:label "LIVE/DEAD cell viability assay of VMCs in HA hydrogel" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell viability" ;
+    lova:assayOrMethod "LIVE/DEAD viability/cytotoxicity kit (Molecular Probes)" ;
+    lova:cellType "Vascular mesenchymal cells (VMCs)" ;
+    lova:cultureDuration "1 day" ;
+    lova:cultureMedium "DMEM supplemented with 15% heat-inactivated FBS and 1% penicillin/streptomycin" ;
+    lova:temperature "37°C" ;
+    lova:atmosphere "5% CO2" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biopha.2016.08.018/cell-viability-day1> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biopha.2016.08.018/cell-viability> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biopha.2016.08.018> ;
+    rdfs:label "Predominantly live VMCs with minimal dead cells at day 1" ;
+    lova:measurementType "Cell viability" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Predominantly live cells (green) with only a few dead cells (red) visible" ;
+    lova:scope "Bulk/global" ;
+    lova:timePoint "Day 1" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biopha.2016.08.018/rheology> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biopha.2016.08.018> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biopha.2016.08.018/gel-1-higher-stiffness> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biopha.2016.08.018/gel-2-lower-stiffness> ;
+    rdfs:label "Rheological characterization of storage and loss moduli of composite HA hydrogels" ;
+    lova:experimentCategory "Rheological" ;
+    lova:experimentType "Oscillatory shear rheometry" ;
+    lova:equipment "Physica MCR plate-to-plate rheometer, Anton Paar, Ashland, VA (8 mm plate)" ;
+    lova:strainRate "Constant strain of 0.05" ;
+    lova:frequency "0.1 rad/s to 10 rad/s" ;
+    lova:temperature "25°C" ;
+    lova:sampleSize 5 .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biopha.2016.08.018/gl-storage> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biopha.2016.08.018/rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biopha.2016.08.018> ;
+    rdfs:label "Storage modulus (G'_L) of lower-stiffness gel at 0.1 Hz" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 120.0 ;
+    qudt:unit "Pa" ;
+    lova:sampleSize 5 ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biopha.2016.08.018/gl-loss> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biopha.2016.08.018/rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biopha.2016.08.018> ;
+    rdfs:label "Loss modulus (G''_L) of lower-stiffness gel at 0.1 Hz" ;
+    lova:measurementType "Loss modulus (G'')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 0.8 ;
+    qudt:unit "Pa" ;
+    lova:sampleSize 5 ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biopha.2016.08.018/gh-storage> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biopha.2016.08.018/rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biopha.2016.08.018> ;
+    rdfs:label "Storage modulus (G'_H) of higher-stiffness gel at 0.1 Hz" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 330.0 ;
+    qudt:unit "Pa" ;
+    lova:sampleSize 5 ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biopha.2016.08.018/gh-loss> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biopha.2016.08.018/rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biopha.2016.08.018> ;
+    rdfs:label "Loss modulus (G''_H) of higher-stiffness gel at 0.1 Hz" ;
+    lova:measurementType "Loss modulus (G'')" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 1.5 ;
+    qudt:unit "Pa" ;
+    lova:sampleSize 5 ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biopha.2016.08.018/modulus-diff-criterion> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biopha.2016.08.018/rheology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biopha.2016.08.018> ;
+    rdfs:label "Empirical range of storage modulus difference required for tube formation" ;
+    lova:measurementType "Storage modulus difference (G'_H - G'_L)" ;
+    lova:measurementCategory "Rheological" ;
+    lova:valueString "150 Pa < (G'_H − G'_L) < 400 Pa" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biopha.2016.08.018/gh-vs-gl-storage> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biopha.2016.08.018> ;
+    rdfs:label "Storage modulus higher in higher-stiffness gel vs lower-stiffness gel" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biopha.2016.08.018/gh-storage> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biopha.2016.08.018/gl-storage> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biopha.2016.08.018/tube-vs-density> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biopha.2016.08.018> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biopha.2016.08.018/composite-hydrogel> ;
+    rdfs:label "Quantification of multicellular tube number vs initial cell density" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Self-organization / tubular structure formation" ;
+    lova:assayOrMethod "Fluorescence/confocal microscopy tube counting" ;
+    lova:cellType "Vascular mesenchymal cells (VMCs)" ;
+    lova:sampleSize 5 .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biopha.2016.08.018/nt-3k> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biopha.2016.08.018/tube-vs-density> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biopha.2016.08.018> ;
+    rdfs:label "Number of multicellular tubes at 3000 cells/μL initial density" ;
+    lova:measurementType "Number of multicellular tubes" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 15.8 ;
+    qudt:unit "tubes" ;
+    lova:stdDev 3.1 ;
+    lova:sampleSize 5 ;
+    lova:comparisonGroup "Initial cell density 3000 cells/μL" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biopha.2016.08.018/nt-5k> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biopha.2016.08.018/tube-vs-density> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biopha.2016.08.018> ;
+    rdfs:label "Number of multicellular tubes at 5000 cells/μL initial density" ;
+    lova:measurementType "Number of multicellular tubes" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 17.4 ;
+    qudt:unit "tubes" ;
+    lova:stdDev 3.0 ;
+    lova:sampleSize 5 ;
+    lova:comparisonGroup "Initial cell density 5000 cells/μL" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biopha.2016.08.018/nt-7k> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biopha.2016.08.018/tube-vs-density> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biopha.2016.08.018> ;
+    rdfs:label "Number of multicellular tubes at 7000 cells/μL initial density" ;
+    lova:measurementType "Number of multicellular tubes" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 11.7 ;
+    qudt:unit "tubes" ;
+    lova:stdDev 2.5 ;
+    lova:sampleSize 5 ;
+    lova:comparisonGroup "Initial cell density 7000 cells/μL" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biopha.2016.08.018/nt-10k> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biopha.2016.08.018/tube-vs-density> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biopha.2016.08.018> ;
+    rdfs:label "Number of multicellular tubes at 10000 cells/μL initial density" ;
+    lova:measurementType "Number of multicellular tubes" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.3 ;
+    qudt:unit "tubes" ;
+    lova:stdDev 1.0 ;
+    lova:sampleSize 5 ;
+    lova:comparisonGroup "Initial cell density 10000 cells/μL" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biopha.2016.08.018/nt-5k-vs-10k> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biopha.2016.08.018> ;
+    rdfs:label "Number of multicellular tubes higher at 5000 cells/μL vs 10000 cells/μL" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biopha.2016.08.018/nt-5k> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biopha.2016.08.018/nt-10k> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biopha.2016.08.018/nt-3k-vs-10k> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biopha.2016.08.018> ;
+    rdfs:label "Number of multicellular tubes higher at 3000 cells/μL vs 10000 cells/μL" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biopha.2016.08.018/nt-3k> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biopha.2016.08.018/nt-10k> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biopha.2016.08.018/aggregate-diameter-time> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biopha.2016.08.018> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biopha.2016.08.018/composite-hydrogel> ;
+    rdfs:label "Diameter of multicellular aggregates vs incubation time (5000 cells/μL)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Self-organization / tubular structure formation" ;
+    lova:assayOrMethod "Fluorescence/confocal microscopy image analysis" ;
+    lova:cellType "Vascular mesenchymal cells (VMCs)" ;
+    lova:cultureDuration "1 to 11 days" ;
+    lova:sampleSize 5 .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biopha.2016.08.018/diam-day2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biopha.2016.08.018/aggregate-diameter-time> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biopha.2016.08.018> ;
+    rdfs:label "Diameter of multicellular aggregates at day ~2" ;
+    lova:measurementType "Diameter of multicellular aggregates" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 40.0 ;
+    qudt:unit "μm" ;
+    lova:sampleSize 5 ;
+    lova:timePoint "Day 2" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biopha.2016.08.018/diam-day3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biopha.2016.08.018/aggregate-diameter-time> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biopha.2016.08.018> ;
+    rdfs:label "Diameter of multicellular aggregates at day ~3" ;
+    lova:measurementType "Diameter of multicellular aggregates" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 55.0 ;
+    qudt:unit "μm" ;
+    lova:sampleSize 5 ;
+    lova:timePoint "Day 3" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biopha.2016.08.018/diam-day5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biopha.2016.08.018/aggregate-diameter-time> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biopha.2016.08.018> ;
+    rdfs:label "Diameter of multicellular aggregates at day ~5" ;
+    lova:measurementType "Diameter of multicellular aggregates" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 88.0 ;
+    qudt:unit "μm" ;
+    lova:sampleSize 5 ;
+    lova:timePoint "Day 5" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biopha.2016.08.018/diam-day7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biopha.2016.08.018/aggregate-diameter-time> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biopha.2016.08.018> ;
+    rdfs:label "Diameter of multicellular aggregates at day ~7" ;
+    lova:measurementType "Diameter of multicellular aggregates" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 132.0 ;
+    qudt:unit "μm" ;
+    lova:sampleSize 5 ;
+    lova:timePoint "Day 7" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biopha.2016.08.018/diam-day9> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biopha.2016.08.018/aggregate-diameter-time> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biopha.2016.08.018> ;
+    rdfs:label "Diameter of multicellular aggregates at day ~9" ;
+    lova:measurementType "Diameter of multicellular aggregates" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 155.0 ;
+    qudt:unit "μm" ;
+    lova:sampleSize 5 ;
+    lova:timePoint "Day 9" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biopha.2016.08.018/diam-day11> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biopha.2016.08.018/aggregate-diameter-time> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biopha.2016.08.018> ;
+    rdfs:label "Diameter of multicellular aggregates at day ~11 (plateau)" ;
+    lova:measurementType "Diameter of multicellular aggregates" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 160.0 ;
+    qudt:unit "μm" ;
+    lova:sampleSize 5 ;
+    lova:timePoint "Day 11" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biopha.2016.08.018/diam-day2-vs-day11> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biopha.2016.08.018> ;
+    rdfs:label "Aggregate diameter higher at day 11 vs day 2" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biopha.2016.08.018/diam-day11> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biopha.2016.08.018/diam-day2> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biopha.2016.08.018/tube-length-depth> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biopha.2016.08.018> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biopha.2016.08.018/composite-hydrogel> ;
+    rdfs:label "Dependence of tube length on depth of cell-laden slot (5000 cells/μL)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Self-organization / tubular structure formation" ;
+    lova:assayOrMethod "Fluorescence/confocal microscopy image analysis" ;
+    lova:cellType "Vascular mesenchymal cells (VMCs)" ;
+    lova:sampleSize 6 .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biopha.2016.08.018/length-ds100> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biopha.2016.08.018/tube-length-depth> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biopha.2016.08.018> ;
+    rdfs:label "Tube length at 100 μm slot depth" ;
+    lova:measurementType "Length of multicellular tube" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 90.0 ;
+    qudt:unit "μm" ;
+    lova:sampleSize 6 ;
+    lova:comparisonGroup "Cell-laden slot depth 100 μm" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biopha.2016.08.018/length-ds300> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biopha.2016.08.018/tube-length-depth> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biopha.2016.08.018> ;
+    rdfs:label "Tube length at 300 μm slot depth" ;
+    lova:measurementType "Length of multicellular tube" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 280.0 ;
+    qudt:unit "μm" ;
+    lova:sampleSize 6 ;
+    lova:comparisonGroup "Cell-laden slot depth 300 μm" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biopha.2016.08.018/length-ds500> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biopha.2016.08.018/tube-length-depth> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biopha.2016.08.018> ;
+    rdfs:label "Tube length at 500 μm slot depth" ;
+    lova:measurementType "Length of multicellular tube" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 485.0 ;
+    qudt:unit "μm" ;
+    lova:sampleSize 6 ;
+    lova:comparisonGroup "Cell-laden slot depth 500 μm" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biopha.2016.08.018/length-100-vs-500> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biopha.2016.08.018> ;
+    rdfs:label "Tube length higher at 500 μm slot depth vs 100 μm slot depth" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biopha.2016.08.018/length-ds500> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biopha.2016.08.018/length-ds100> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biopha.2016.08.018/confocal-3d-morphology> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biopha.2016.08.018> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biopha.2016.08.018/composite-hydrogel> ;
+    rdfs:label "Confocal laser-scanning microscopy of 3D multicellular tube morphology after 12 days" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "3D morphology imaging" ;
+    lova:assayOrMethod "Confocal laser-scanning microscopy (Leica TCS SP2) with Alexa Fluor 488 phalloidin staining" ;
+    lova:equipment "Leica TCS SP2 confocal laser-scanning microscope" ;
+    lova:cellType "Vascular mesenchymal cells (VMCs)" ;
+    lova:cultureDuration "12 days" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biopha.2016.08.018/tube-outer-diameter> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biopha.2016.08.018/confocal-3d-morphology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biopha.2016.08.018> ;
+    rdfs:label "Outer diameter of multicellular tube at day 12" ;
+    lova:measurementType "Tube outer diameter" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString ">150 μm" ;
+    lova:timePoint "Day 12" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biopha.2016.08.018/tube-wall-thickness> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biopha.2016.08.018/confocal-3d-morphology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biopha.2016.08.018> ;
+    rdfs:label "Wall thickness of multicellular tube at day 12" ;
+    lova:measurementType "Tube wall thickness" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "15-50 μm" ;
+    lova:timePoint "Day 12" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biopha.2016.08.018/tube-length-text> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biopha.2016.08.018/confocal-3d-morphology> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biopha.2016.08.018> ;
+    rdfs:label "Length of multicellular tube at day 12 (text-reported)" ;
+    lova:measurementType "Tube length" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString ">250 μm" ;
+    lova:timePoint "Day 12" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biopha.2016.08.018/aggregate-diameter-day8-text> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biopha.2016.08.018/aggregate-diameter-time> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biopha.2016.08.018> ;
+    rdfs:label "Diameter of aggregates along interface line on day 8 (text-reported)" ;
+    lova:measurementType "Diameter of multicellular aggregates" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString ">100 μm" ;
+    lova:timePoint "Day 8" ;
+    lova:dataSource "[TEXT]" .

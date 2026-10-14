@@ -1,0 +1,923 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> a bibo:AcademicArticle ;
+    rdfs:label "Zhu & Segura, 2016 — VEGF Nanocapsules for Cell-Demanded Release" ;
+    dc:title "Cell-Demanded VEGF Release via Nanocapsules Elicits Different Receptor Activation Dynamics and Enhanced Angiogenesis" ;
+    dc:identifier "10.1007/s10439-016-1581-y" ;
+    dc:date "2016"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/annals-of-biomedical-engineering> ;
+    dc:creator <https://lovamap.com/ontology#author/zhu-suwei> , <https://lovamap.com/ontology#author/segura-tatiana> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/zhu-suwei> <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    dc:bibliographicCitation "Zhu & Segura, 2016" ;
+    lova:focusMaterial "Protein nanocapsules (n(VEGF)) with plasmin-degradable L/D-chiral peptide crosslinks for cell-demanded VEGF release" .
+
+<https://lovamap.com/ontology#author/zhu-suwei> a foaf:Person ;
+    foaf:familyName "Zhu" ;
+    foaf:givenName "Suwei" ;
+    foaf:name "Suwei Zhu" ;
+    schema:affiliation "University of California, Los Angeles" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" ;
+    schema:affiliation "University of California, Los Angeles" .
+
+<https://lovamap.com/ontology#journal/annals-of-biomedical-engineering> a bibo:Journal ;
+    dc:title "Annals of Biomedical Engineering" ;
+    bibo:issn "0090-6964" .
+
+<https://lovamap.com/ontology#material/10.1007-s10439-016-1581-y/nvegf-100> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "n(VEGF) 100% — plasmin-degradable VEGF nanocapsule (100% L-chiral peptide crosslinker)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Polyacrylamide/N-(3-aminopropyl)methacrylamide nanogel shell crosslinked with bisacryl L-chiral KNRVK peptide, encapsulating VEGF-A165" ;
+    lova:particleSizeMin 19.0 ;
+    lova:particleSizeMax 25.0 ;
+    lova:particleSizeUnit "nm" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1007-s10439-016-1581-y/nanocapsule-synthesis> .
+
+<https://lovamap.com/ontology#material/10.1007-s10439-016-1581-y/nvegf-25> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "n(VEGF) 25% — nanocapsule with 25% L-chiral / 75% D-chiral peptide crosslinker (slow release)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Polyacrylamide nanogel shell, 25% L-chiral/75% D-chiral KNRVK peptide crosslinker" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1007-s10439-016-1581-y/nanocapsule-synthesis> .
+
+<https://lovamap.com/ontology#material/10.1007-s10439-016-1581-y/nvegf-50> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "n(VEGF) 50% — nanocapsule with 50% L-chiral / 50% D-chiral peptide crosslinker (medium release)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Polyacrylamide nanogel shell, 50% L-chiral/50% D-chiral KNRVK peptide crosslinker" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1007-s10439-016-1581-y/nanocapsule-synthesis> .
+
+<https://lovamap.com/ontology#material/10.1007-s10439-016-1581-y/nvegf-0> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "n(VEGF) 0% — non-degradable nanocapsule (100% D-chiral peptide crosslinker)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Polyacrylamide nanogel shell, 100% D-chiral KNRVK peptide crosslinker (non-degradable)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1007-s10439-016-1581-y/nanocapsule-synthesis> .
+
+<https://lovamap.com/ontology#material/10.1007-s10439-016-1581-y/vegf-soluble> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "Soluble VEGF-A165 (bolus delivery control)" ;
+    lova:particleMaterial "VEGF-A165" .
+
+<https://lovamap.com/ontology#material/10.1007-s10439-016-1581-y/vegf-low-4doses> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "VEGF low dose, 4 doses (2.5 ng/mL at days 0,2,4,6)" .
+
+<https://lovamap.com/ontology#material/10.1007-s10439-016-1581-y/vegf-high-1dose> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "VEGF high dose, 1 dose (200 ng/mL at day 0)" .
+
+<https://lovamap.com/ontology#material/10.1007-s10439-016-1581-y/vegf-high-4doses> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "VEGF high dose, 4 doses (200 ng/mL at days 0,2,4,6)" .
+
+<https://lovamap.com/ontology#material/10.1007-s10439-016-1581-y/nvegf-slow> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "n(VEGF) slow — 100 ng n(VEGF)100% + 100 ng n(VEGF)25%" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1007-s10439-016-1581-y/nanocapsule-synthesis> .
+
+<https://lovamap.com/ontology#material/10.1007-s10439-016-1581-y/nvegf-medium> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "n(VEGF) medium — 100 ng n(VEGF)100% + 100 ng n(VEGF)50%" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1007-s10439-016-1581-y/nanocapsule-synthesis> .
+
+<https://lovamap.com/ontology#material/10.1007-s10439-016-1581-y/nvegf-fast> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "n(VEGF) fast — 200 ng n(VEGF)100%" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1007-s10439-016-1581-y/nanocapsule-synthesis> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1007-s10439-016-1581-y/nanocapsule-synthesis> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "Aqueous surface-adsorption and in-situ free-radical polymerization nanocapsule synthesis around VEGF" ;
+    lova:chemistry "Free-radical polymerization (electrostatic/hydrogen-bonding monomer enrichment then in situ crosslinking)" ;
+    lova:manufacturingMethod "Surface adsorption of charged/neutral monomers and bisacrylated peptide crosslinkers around individual VEGF proteins, followed by in situ free-radical polymerization" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1007-s10439-016-1581-y/vegf-a165> ,
+                    <https://lovamap.com/ontology#reagent/10.1007-s10439-016-1581-y/aminopropyl-methacrylamide> ,
+                    <https://lovamap.com/ontology#reagent/10.1007-s10439-016-1581-y/acrylamide> ,
+                    <https://lovamap.com/ontology#reagent/10.1007-s10439-016-1581-y/knrvk-l-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1007-s10439-016-1581-y/knrvk-d-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1007-s10439-016-1581-y/ammonium-persulfate> ,
+                    <https://lovamap.com/ontology#reagent/10.1007-s10439-016-1581-y/temed> ,
+                    <https://lovamap.com/ontology#reagent/10.1007-s10439-016-1581-y/methylene-bisacrylamide> .
+
+<https://lovamap.com/ontology#reagent/10.1007-s10439-016-1581-y/vegf-a165> a lova:Reagent ;
+    rdfs:label "VEGF-A165 (VEGF)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Genentech" ;
+    lova:reagentFunction "Encapsulated growth factor payload for angiogenesis induction" .
+
+<https://lovamap.com/ontology#reagent/10.1007-s10439-016-1581-y/aminopropyl-methacrylamide> a lova:Reagent ;
+    rdfs:label "N-(3-aminopropyl)methacrylamide" ;
+    lova:reagentRole "monomer" ;
+    lova:reagentFunction "Positively charged monomer for electrostatic enrichment around protein surface" .
+
+<https://lovamap.com/ontology#reagent/10.1007-s10439-016-1581-y/acrylamide> a lova:Reagent ;
+    rdfs:label "Acrylamide" ;
+    lova:reagentRole "monomer" ;
+    lova:reagentFunction "Neutral monomer for nanogel shell formation" .
+
+<https://lovamap.com/ontology#reagent/10.1007-s10439-016-1581-y/knrvk-l-peptide> a lova:Reagent ;
+    rdfs:label "Bisacryl L-chiral peptide Ac-KNR(cleavage site)VK-Ac" ;
+    lova:reagentRole "crosslinker" ;
+    lova:sequence "KNRVK" ;
+    lova:supplier "China Tech Peptides" ;
+    lova:reagentFunction "Plasmin-degradable crosslinker enabling cell-demanded VEGF release" .
+
+<https://lovamap.com/ontology#reagent/10.1007-s10439-016-1581-y/knrvk-d-peptide> a lova:Reagent ;
+    rdfs:label "Bisacryl D-chiral peptide Ac-K(D)N(D)R(D)V(D)K(D)-Ac" ;
+    lova:reagentRole "crosslinker" ;
+    lova:reagentFunction "Slower-degrading D-chiral enantiomer crosslinker to tune release rate" .
+
+<https://lovamap.com/ontology#reagent/10.1007-s10439-016-1581-y/ammonium-persulfate> a lova:Reagent ;
+    rdfs:label "Ammonium persulfate" ;
+    lova:reagentRole "initiator" ;
+    lova:reagentFunction "Free-radical polymerization initiator" .
+
+<https://lovamap.com/ontology#reagent/10.1007-s10439-016-1581-y/temed> a lova:Reagent ;
+    rdfs:label "Tetramethylethylenediamine (TEMED)" ;
+    lova:reagentRole "initiator" ;
+    lova:reagentFunction "Polymerization catalyst/accelerator" .
+
+<https://lovamap.com/ontology#reagent/10.1007-s10439-016-1581-y/methylene-bisacrylamide> a lova:Reagent ;
+    rdfs:label "Methylene bisacrylamide" ;
+    lova:reagentRole "crosslinker" ;
+    lova:reagentFunction "Non-degradable crosslinker used for negative control nanocapsules" .
+
+<https://lovamap.com/ontology#reagent/10.1007-s10439-016-1581-y/plasmin> a lova:Reagent ;
+    rdfs:label "Plasmin" ;
+    lova:reagentRole "enzyme" ;
+    lova:concentration "0.25 μg per 50 ng VEGF content" ;
+    lova:supplier "BD Biosciences" ;
+    lova:reagentFunction "Degrades plasmin-sensitive peptide crosslinker to trigger VEGF release" .
+
+<https://lovamap.com/ontology#reagent/10.1007-s10439-016-1581-y/collagenase-iv> a lova:Reagent ;
+    rdfs:label "Collagenase IV (Col-IV)" ;
+    lova:reagentRole "enzyme" ;
+    lova:supplier "Worthington Biochemical" ;
+    lova:reagentFunction "Control protease for release-specificity testing" .
+
+<https://lovamap.com/ontology#reagent/10.1007-s10439-016-1581-y/aprotinin> a lova:Reagent ;
+    rdfs:label "Aprotinin" ;
+    lova:reagentRole "other" ;
+    lova:concentration "37.3 μg/mL (fibrin gels)" ;
+    lova:reagentFunction "Plasmin inhibitor" .
+
+<https://lovamap.com/ontology#reagent/10.1007-s10439-016-1581-y/factor-xiii> a lova:Reagent ;
+    rdfs:label "Factor XIII" ;
+    lova:reagentRole "enzyme" ;
+    lova:concentration "4 U/mL" ;
+    lova:reagentFunction "Fibrin matrix crosslinking in wound dressings" .
+
+<https://lovamap.com/ontology#reagent/10.1007-s10439-016-1581-y/fibrinogen> a lova:Reagent ;
+    rdfs:label "Fibrinogen" ;
+    lova:reagentRole "other" ;
+    lova:concentration "2 mg/mL (bead assay); 10 mg/mL (wound dressing)" ;
+    lova:reagentFunction "Fibrin matrix formation" .
+
+<https://lovamap.com/ontology#reagent/10.1007-s10439-016-1581-y/thrombin> a lova:Reagent ;
+    rdfs:label "Thrombin" ;
+    lova:reagentRole "enzyme" ;
+    lova:concentration "20 U/mL (bead assay); 2 U/mL (wound dressing)" ;
+    lova:reagentFunction "Fibrinogen-to-fibrin conversion" .
+
+<https://lovamap.com/ontology#reagent/10.1007-s10439-016-1581-y/calcium-chloride> a lova:Reagent ;
+    rdfs:label "Calcium chloride (CaCl2)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "2 mM Ca2+ (bead assay); 5 mM (wound dressing)" ;
+    lova:reagentFunction "Cofactor for fibrin polymerization" .
+
+<https://lovamap.com/ontology#experiment/10.1007-s10439-016-1581-y/tem-sizing> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1007-s10439-016-1581-y/nvegf-100> ;
+    rdfs:label "TEM sizing of purified n(VEGF)" ;
+    lova:experimentCategory "Characterization" ;
+    lova:experimentType "Particle size measurement" ;
+    lova:assayOrMethod "Transmission electron microscopy (TEM), ImageJ quantification" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/nvegf-diameter> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10439-016-1581-y/tem-sizing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "Average diameter of n(VEGF) nanocapsules" ;
+    lova:measurementType "Particle diameter" ;
+    lova:measurementCategory "Characterization" ;
+    qudt:numericValue 22.0 ;
+    qudt:unit "nm" ;
+    lova:stdDev 3.0 ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1007-s10439-016-1581-y/elisa-release> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1007-s10439-016-1581-y/nvegf-100> ;
+    rdfs:label "Protease-triggered VEGF release from n(VEGF) (ELISA)" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Protease-triggered protein release" ;
+    lova:assayOrMethod "ELISA (R&D Systems)" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/release-untreated> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10439-016-1581-y/elisa-release> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "% VEGF released — untreated n(VEGF)" ;
+    lova:measurementType "% VEGF released" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 10.0 ;
+    qudt:unit "%" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/release-collagenase> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10439-016-1581-y/elisa-release> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "% VEGF released — collagenase IV treated n(VEGF)" ;
+    lova:measurementType "% VEGF released" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 8.0 ;
+    qudt:unit "%" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/release-plasmin> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10439-016-1581-y/elisa-release> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "% VEGF released — plasmin treated n(VEGF)" ;
+    lova:measurementType "% VEGF released" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 58.0 ;
+    qudt:unit "%" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1007-s10439-016-1581-y/release-plasmin-vs-untreated> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "VEGF release higher with plasmin treatment vs untreated n(VEGF)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/release-plasmin> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/release-untreated> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1007-s10439-016-1581-y/ec-sprouting> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1007-s10439-016-1581-y/vegf-low-4doses> ,
+                      <https://lovamap.com/ontology#material/10.1007-s10439-016-1581-y/vegf-high-1dose> ,
+                      <https://lovamap.com/ontology#material/10.1007-s10439-016-1581-y/vegf-high-4doses> ,
+                      <https://lovamap.com/ontology#material/10.1007-s10439-016-1581-y/nvegf-100> ;
+    rdfs:label "Endothelial cell (HUVEC) bead sprouting assay in fibrin matrices" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Endothelial cell sprouting" ;
+    lova:assayOrMethod "HUVEC-coated Cytodex bead sprouting assay" ;
+    lova:cellType "HUVEC" ;
+    lova:cellSource "Human umbilical vein endothelial cells" ;
+    lova:cultureDuration "7 days" ;
+    lova:sampleSize 15 .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/sprouts-vegflow4x> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10439-016-1581-y/ec-sprouting> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "Number of sprouts — VEGF low, 4 doses" ;
+    lova:measurementType "Number of sprouts" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 10.2 ;
+    qudt:unit "count" ;
+    lova:timePoint "Day 7" ;
+    lova:scope "Per-bead" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/sprouts-vegfhigh1x> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10439-016-1581-y/ec-sprouting> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "Number of sprouts — VEGF high, 1 dose" ;
+    lova:measurementType "Number of sprouts" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 5.5 ;
+    qudt:unit "count" ;
+    lova:timePoint "Day 7" ;
+    lova:scope "Per-bead" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/sprouts-vegfhigh4x> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10439-016-1581-y/ec-sprouting> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "Number of sprouts — VEGF high, 4 doses" ;
+    lova:measurementType "Number of sprouts" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 3.2 ;
+    qudt:unit "count" ;
+    lova:timePoint "Day 7" ;
+    lova:scope "Per-bead" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/sprouts-nvegf1x> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10439-016-1581-y/ec-sprouting> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "Number of sprouts — n(VEGF), 1 dose" ;
+    lova:measurementType "Number of sprouts" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 9.8 ;
+    qudt:unit "count" ;
+    lova:timePoint "Day 7" ;
+    lova:scope "Per-bead" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/networklength-vegflow4x> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10439-016-1581-y/ec-sprouting> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "Network length — VEGF low, 4 doses" ;
+    lova:measurementType "Network length" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.9 ;
+    qudt:unit "mm" ;
+    lova:timePoint "Day 7" ;
+    lova:scope "Per-bead" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/networklength-vegfhigh1x> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10439-016-1581-y/ec-sprouting> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "Network length — VEGF high, 1 dose" ;
+    lova:measurementType "Network length" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.6 ;
+    qudt:unit "mm" ;
+    lova:timePoint "Day 7" ;
+    lova:scope "Per-bead" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/networklength-nvegf1x> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10439-016-1581-y/ec-sprouting> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "Network length — n(VEGF), 1 dose" ;
+    lova:measurementType "Network length" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.0 ;
+    qudt:unit "mm" ;
+    lova:timePoint "Day 7" ;
+    lova:scope "Per-bead" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1007-s10439-016-1581-y/sprouts-low4x-vs-high1x> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "Number of sprouts higher in VEGF low 4x vs VEGF high 1x" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/sprouts-vegflow4x> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/sprouts-vegfhigh1x> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 .
+
+<https://lovamap.com/ontology#comparison/10.1007-s10439-016-1581-y/sprouts-low4x-vs-high4x> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "Number of sprouts higher in VEGF low 4x vs VEGF high 4x" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/sprouts-vegflow4x> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/sprouts-vegfhigh4x> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:pValue 0.01 .
+
+<https://lovamap.com/ontology#comparison/10.1007-s10439-016-1581-y/sprouts-high1x-vs-nvegf1x> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "Number of sprouts lower in VEGF high 1x vs n(VEGF) 1x" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/sprouts-vegfhigh1x> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/sprouts-nvegf1x> ;
+    lova:direction "lower" ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 .
+
+<https://lovamap.com/ontology#comparison/10.1007-s10439-016-1581-y/sprouts-high4x-vs-nvegf1x> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "Number of sprouts lower in VEGF high 4x vs n(VEGF) 1x" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/sprouts-vegfhigh4x> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/sprouts-nvegf1x> ;
+    lova:direction "lower" ;
+    lova:isSignificant true ;
+    lova:pValue 0.01 .
+
+<https://lovamap.com/ontology#experiment/10.1007-s10439-016-1581-y/receptor-kinetics> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1007-s10439-016-1581-y/vegf-soluble> ,
+                      <https://lovamap.com/ontology#material/10.1007-s10439-016-1581-y/nvegf-100> ;
+    rdfs:label "VEGFR-2 phosphorylation kinetics — VEGF vs n(VEGF)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Receptor phosphorylation kinetics" ;
+    lova:assayOrMethod "Western blot (pVR-2/VR-2)" ;
+    lova:cellType "HUVEC" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/pvr2-vegf-5min> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10439-016-1581-y/receptor-kinetics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "Normalized pVR-2/VR-2 — VEGF at 5 min (peak)" ;
+    lova:measurementType "Normalized pVR-2/VR-2" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.0 ;
+    qudt:unit "ratio (normalized)" ;
+    lova:timePoint "5 min" ;
+    lova:scope "Bulk/global" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/pvr2-vegf-60min> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10439-016-1581-y/receptor-kinetics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "Normalized pVR-2/VR-2 — VEGF at 60 min" ;
+    lova:measurementType "Normalized pVR-2/VR-2" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.2 ;
+    qudt:unit "ratio (normalized)" ;
+    lova:timePoint "60 min" ;
+    lova:scope "Bulk/global" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/pvr2-vegf-120min> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10439-016-1581-y/receptor-kinetics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "Normalized pVR-2/VR-2 — VEGF at 120 min" ;
+    lova:measurementType "Normalized pVR-2/VR-2" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.18 ;
+    qudt:unit "ratio (normalized)" ;
+    lova:timePoint "120 min" ;
+    lova:scope "Bulk/global" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/pvr2-nvegf-15min> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10439-016-1581-y/receptor-kinetics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "Normalized pVR-2/VR-2 — n(VEGF) at 15 min (peak)" ;
+    lova:measurementType "Normalized pVR-2/VR-2" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.0 ;
+    qudt:unit "ratio (normalized)" ;
+    lova:timePoint "15 min" ;
+    lova:scope "Bulk/global" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/pvr2-nvegf-60min> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10439-016-1581-y/receptor-kinetics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "Normalized pVR-2/VR-2 — n(VEGF) at 60 min" ;
+    lova:measurementType "Normalized pVR-2/VR-2" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.58 ;
+    qudt:unit "ratio (normalized)" ;
+    lova:timePoint "60 min" ;
+    lova:scope "Bulk/global" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/pvr2-nvegf-120min> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10439-016-1581-y/receptor-kinetics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "Normalized pVR-2/VR-2 — n(VEGF) at 120 min" ;
+    lova:measurementType "Normalized pVR-2/VR-2" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.32 ;
+    qudt:unit "ratio (normalized)" ;
+    lova:timePoint "120 min" ;
+    lova:scope "Bulk/global" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1007-s10439-016-1581-y/pvr2-vegf-vs-nvegf-120min> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "Receptor phosphorylation at 120 min lower for VEGF vs n(VEGF)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/pvr2-vegf-120min> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/pvr2-nvegf-120min> ;
+    lova:direction "lower" .
+
+<https://lovamap.com/ontology#experiment/10.1007-s10439-016-1581-y/dose-response> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1007-s10439-016-1581-y/vegf-soluble> ;
+    rdfs:label "VEGFR-2 phosphorylation dose response to soluble VEGF (5 min)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Receptor phosphorylation dose response" ;
+    lova:assayOrMethod "Western blot (pVR-2/VR-2)" ;
+    lova:cellType "HUVEC" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/dose-1ng> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10439-016-1581-y/dose-response> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "pVR-2/VR-2 at VEGF 1 ng/mL" ;
+    lova:measurementType "pVR-2/VR-2 ratio" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.48 ;
+    qudt:unit "ratio" ;
+    lova:timePoint "5 min" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/dose-200ng> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10439-016-1581-y/dose-response> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "pVR-2/VR-2 at VEGF 200 ng/mL" ;
+    lova:measurementType "pVR-2/VR-2 ratio" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.81 ;
+    qudt:unit "ratio" ;
+    lova:timePoint "5 min" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1007-s10439-016-1581-y/cycling-activation> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1007-s10439-016-1581-y/vegf-soluble> ,
+                      <https://lovamap.com/ontology#material/10.1007-s10439-016-1581-y/nvegf-100> ;
+    rdfs:label "Repetitive 30-min cycling of VEGF/n(VEGF) solution across fresh HUVEC sets" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Receptor activation — repeated exposure" ;
+    lova:assayOrMethod "Phospho-ELISA" ;
+    lova:cellType "HUVEC" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/cycle1-vegf> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10439-016-1581-y/cycling-activation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "Receptor activation — VEGF, cycle 1" ;
+    lova:measurementType "Receptor activation (pVR-2/VR-2)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.13 ;
+    qudt:unit "ratio" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/cycle1-nvegf> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10439-016-1581-y/cycling-activation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "Receptor activation — n(VEGF), cycle 1" ;
+    lova:measurementType "Receptor activation (pVR-2/VR-2)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.16 ;
+    qudt:unit "ratio" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/cycle3-vegf> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10439-016-1581-y/cycling-activation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "Receptor activation — VEGF, cycle 3" ;
+    lova:measurementType "Receptor activation (pVR-2/VR-2)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.29 ;
+    qudt:unit "ratio" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/cycle3-nvegf> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10439-016-1581-y/cycling-activation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "Receptor activation — n(VEGF), cycle 3" ;
+    lova:measurementType "Receptor activation (pVR-2/VR-2)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.47 ;
+    qudt:unit "ratio" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1007-s10439-016-1581-y/cycle1-vegf-vs-nvegf> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "Receptor activation at cycle 1 higher for n(VEGF) than VEGF" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/cycle1-nvegf> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/cycle1-vegf> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 .
+
+<https://lovamap.com/ontology#comparison/10.1007-s10439-016-1581-y/cycle3-vegf-vs-nvegf> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "Receptor activation at cycle 3 higher for n(VEGF) than VEGF" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/cycle3-nvegf> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/cycle3-vegf> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:pValue 0.01 .
+
+<https://lovamap.com/ontology#experiment/10.1007-s10439-016-1581-y/thermal-stability> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1007-s10439-016-1581-y/vegf-soluble> ,
+                      <https://lovamap.com/ontology#material/10.1007-s10439-016-1581-y/nvegf-100> ,
+                      <https://lovamap.com/ontology#material/10.1007-s10439-016-1581-y/nvegf-25> ;
+    rdfs:label "Thermal stability of VEGF and n(VEGF) at 37°C over days, assayed via receptor activation" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Protein stability under storage conditions" ;
+    lova:assayOrMethod "Western blot (pVR-2/VR-2)" ;
+    lova:cellType "HUVEC" ;
+    lova:temperature "37°C" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/stability-vegf-d0> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10439-016-1581-y/thermal-stability> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "pVR-2/VR-2 — fresh VEGF (day 0, positive control)" ;
+    lova:measurementType "pVR-2/VR-2 ratio" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.42 ;
+    qudt:unit "ratio" ;
+    lova:timePoint "Day 0" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/stability-vegf-d10> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10439-016-1581-y/thermal-stability> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "pVR-2/VR-2 — VEGF stored 10 days at 37°C" ;
+    lova:measurementType "pVR-2/VR-2 ratio" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.26 ;
+    qudt:unit "ratio" ;
+    lova:timePoint "Day 10" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/stability-nvegf100-d10> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10439-016-1581-y/thermal-stability> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "pVR-2/VR-2 — n(VEGF) stored 10 days at 37°C" ;
+    lova:measurementType "pVR-2/VR-2 ratio" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.40 ;
+    qudt:unit "ratio" ;
+    lova:timePoint "Day 10" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/stability-nvegf100-d14> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10439-016-1581-y/thermal-stability> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "pVR-2/VR-2 — n(VEGF) stored 14 days at 37°C" ;
+    lova:measurementType "pVR-2/VR-2 ratio" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.23 ;
+    qudt:unit "ratio" ;
+    lova:timePoint "Day 14" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/stability-nvegf25-d10> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10439-016-1581-y/thermal-stability> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "pVR-2/VR-2 — n(VEGF)25% stored 10 days at 37°C" ;
+    lova:measurementType "pVR-2/VR-2 ratio" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.70 ;
+    qudt:unit "ratio" ;
+    lova:timePoint "Day 10" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/stability-nvegf25-d14> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10439-016-1581-y/thermal-stability> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "pVR-2/VR-2 — n(VEGF)25% stored 14 days at 37°C" ;
+    lova:measurementType "pVR-2/VR-2 ratio" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.58 ;
+    qudt:unit "ratio" ;
+    lova:timePoint "Day 14" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1007-s10439-016-1581-y/stability-vegf-vs-nvegf100-d10> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "Receptor activation at day 10 higher for n(VEGF)100% vs native VEGF" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/stability-nvegf100-d10> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/stability-vegf-d10> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#comparison/10.1007-s10439-016-1581-y/stability-nvegf25-vs-nvegf100-d10> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "Receptor activation at day 10 higher for n(VEGF)25% vs n(VEGF)100%" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/stability-nvegf25-d10> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/stability-nvegf100-d10> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#experiment/10.1007-s10439-016-1581-y/wound-healing> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1007-s10439-016-1581-y/vegf-soluble> ,
+                      <https://lovamap.com/ontology#material/10.1007-s10439-016-1581-y/nvegf-slow> ,
+                      <https://lovamap.com/ontology#material/10.1007-s10439-016-1581-y/nvegf-medium> ,
+                      <https://lovamap.com/ontology#material/10.1007-s10439-016-1581-y/nvegf-fast> ;
+    rdfs:label "Splinted mouse dermal excisional wound healing and angiogenesis assay" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "In vivo wound healing / angiogenesis" ;
+    lova:assayOrMethod "Immunohistochemistry (CD31, BrdU), H&E histology" ;
+    lova:cellSource "Female Balb/c mice, 10-12 weeks old" ;
+    lova:cultureDuration "7 days" ;
+    lova:sampleSize 4 .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/granulation-control> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10439-016-1581-y/wound-healing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "Granulation tissue area % — control" ;
+    lova:measurementType "Granulation tissue area %" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 38.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 7" ;
+    lova:sampleSize 3 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/granulation-vegf> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10439-016-1581-y/wound-healing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "Granulation tissue area % — VEGF" ;
+    lova:measurementType "Granulation tissue area %" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 40.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/granulation-slow> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10439-016-1581-y/wound-healing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "Granulation tissue area % — n(VEGF) slow" ;
+    lova:measurementType "Granulation tissue area %" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 57.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/granulation-medium> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10439-016-1581-y/wound-healing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "Granulation tissue area % — n(VEGF) medium" ;
+    lova:measurementType "Granulation tissue area %" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 56.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/granulation-fast> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10439-016-1581-y/wound-healing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "Granulation tissue area % — n(VEGF) fast" ;
+    lova:measurementType "Granulation tissue area %" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 46.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1007-s10439-016-1581-y/granulation-slow-vs-control> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "Granulation tissue area higher in n(VEGF) slow vs control" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/granulation-slow> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/granulation-control> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 .
+
+<https://lovamap.com/ontology#comparison/10.1007-s10439-016-1581-y/granulation-medium-vs-control> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "Granulation tissue area higher in n(VEGF) medium vs control" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/granulation-medium> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/granulation-control> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/vessel-control> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10439-016-1581-y/wound-healing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "Vessel density — control" ;
+    lova:measurementType "Vessel density" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 5.0 ;
+    qudt:unit "vessels/mm2" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/vessel-vegf> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10439-016-1581-y/wound-healing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "Vessel density — VEGF" ;
+    lova:measurementType "Vessel density" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 30.0 ;
+    qudt:unit "vessels/mm2" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/vessel-slow> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10439-016-1581-y/wound-healing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "Vessel density — n(VEGF) slow" ;
+    lova:measurementType "Vessel density" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 140.0 ;
+    qudt:unit "vessels/mm2" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/vessel-medium> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10439-016-1581-y/wound-healing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "Vessel density — n(VEGF) medium" ;
+    lova:measurementType "Vessel density" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 55.0 ;
+    qudt:unit "vessels/mm2" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/vessel-fast> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10439-016-1581-y/wound-healing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "Vessel density — n(VEGF) fast" ;
+    lova:measurementType "Vessel density" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 18.0 ;
+    qudt:unit "vessels/mm2" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1007-s10439-016-1581-y/vessel-slow-vs-control> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "Vessel density higher in n(VEGF) slow vs control" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/vessel-slow> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/vessel-control> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 .
+
+<https://lovamap.com/ontology#comparison/10.1007-s10439-016-1581-y/vessel-slow-vs-medium> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "Vessel density higher in n(VEGF) slow vs n(VEGF) medium" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/vessel-slow> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/vessel-medium> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1007-s10439-016-1581-y/vessel-slow-vs-fast> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "Vessel density higher in n(VEGF) slow vs n(VEGF) fast" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/vessel-slow> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/vessel-fast> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1007-s10439-016-1581-y/vessel-slow-vs-vegf> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "Vessel density higher in n(VEGF) slow vs naked VEGF" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/vessel-slow> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/vessel-vegf> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/brdu-control> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10439-016-1581-y/wound-healing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "BrdU+ cells — control" ;
+    lova:measurementType "Proliferating (BrdU+) cells" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 58.0 ;
+    qudt:unit "cells/mm2" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/brdu-vegf> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10439-016-1581-y/wound-healing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "BrdU+ cells — VEGF" ;
+    lova:measurementType "Proliferating (BrdU+) cells" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 42.0 ;
+    qudt:unit "cells/mm2" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/brdu-slow> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10439-016-1581-y/wound-healing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "BrdU+ cells — n(VEGF) slow" ;
+    lova:measurementType "Proliferating (BrdU+) cells" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 90.0 ;
+    qudt:unit "cells/mm2" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/brdu-medium> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10439-016-1581-y/wound-healing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "BrdU+ cells — n(VEGF) medium" ;
+    lova:measurementType "Proliferating (BrdU+) cells" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 82.0 ;
+    qudt:unit "cells/mm2" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1007-s10439-016-1581-y/brdu-fast> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1007-s10439-016-1581-y/wound-healing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1007-s10439-016-1581-y> ;
+    rdfs:label "BrdU+ cells — n(VEGF) fast" ;
+    lova:measurementType "Proliferating (BrdU+) cells" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 88.0 ;
+    qudt:unit "cells/mm2" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .

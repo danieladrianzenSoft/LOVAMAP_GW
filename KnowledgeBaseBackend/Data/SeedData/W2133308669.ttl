@@ -1,0 +1,475 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1002-jemt.20840> a bibo:AcademicArticle ;
+    rdfs:label "Lei et al., 2010 — Two and Three-Dimensional Gene Transfer from Enzymatically Degradable Hydrogel Scaffolds" ;
+    dc:title "Two and Three-Dimensional Gene Transfer from Enzymatically Degradable Hydrogel Scaffolds" ;
+    dc:identifier "10.1002/jemt.20840" ;
+    dc:date "2010"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/microscopy-research-and-technique> ;
+    dc:creator <https://lovamap.com/ontology#author/lei-yuguo> ,
+               <https://lovamap.com/ontology#author/ng-quinn> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/lei-yuguo>
+                       <https://lovamap.com/ontology#author/ng-quinn>
+                       <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    dc:bibliographicCitation "Lei et al., 2010" ;
+    lova:focusMaterial "MMP-degradable PEG-VS hydrogels loaded with DNA/PEI polyplexes for gene transfer to mouse MSCs in 2D and 3D" .
+
+<https://lovamap.com/ontology#author/lei-yuguo> a foaf:Person ;
+    foaf:familyName "Lei" ;
+    foaf:givenName "Yuguo" ;
+    foaf:name "Yuguo Lei" ;
+    schema:affiliation "University of California, Chemical and Biomolecular Engineering Department, Los Angeles, California" .
+
+<https://lovamap.com/ontology#author/ng-quinn> a foaf:Person ;
+    foaf:familyName "Ng" ;
+    foaf:givenName "Quinn K.T." ;
+    foaf:name "Quinn K.T. Ng" ;
+    schema:affiliation "University of California, Chemical and Biomolecular Engineering Department, Los Angeles, California" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" ;
+    schema:affiliation "University of California, Chemical and Biomolecular Engineering Department, Los Angeles, California" .
+
+<https://lovamap.com/ontology#journal/microscopy-research-and-technique> a bibo:Journal ;
+    dc:title "Microscopy Research and Technique" ;
+    bibo:issn "1059-910X" .
+
+<https://lovamap.com/ontology#material/10.1002-jemt.20840/peg-hydrogel-2d> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-jemt.20840> ;
+    rdfs:label "MMP-degradable PEG-VS hydrogel, cells seeded on top (2D), 6.0% PEG, 300 μM RGD" ;
+    lova:particleMaterial "PEG-VS crosslinked with MMPxl peptide" ;
+    lova:surfaceModification "RGD-coated (300 μM)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-jemt.20840/peg-vs-mmpxl-michael-addition> ;
+    lova:packingConfiguration "Not applicable (bulk hydrogel)" .
+
+<https://lovamap.com/ontology#material/10.1002-jemt.20840/peg-hydrogel-3d-homogeneous> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-jemt.20840> ;
+    rdfs:label "MMP-degradable PEG-VS hydrogel, cells seeded as single cells inside gel (3D homogeneous), 6.0% PEG, 300 μM RGD" ;
+    lova:particleMaterial "PEG-VS crosslinked with MMPxl peptide" ;
+    lova:surfaceModification "RGD-coated (300 μM)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-jemt.20840/peg-vs-mmpxl-michael-addition> ;
+    lova:scaffoldDimensions "100 μL gel" ;
+    lova:packingConfiguration "Not applicable (bulk hydrogel)" .
+
+<https://lovamap.com/ontology#material/10.1002-jemt.20840/peg-hydrogel-3d-clustered> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-jemt.20840> ;
+    rdfs:label "MMP-degradable PEG-VS hydrogel, cells seeded as ECM gel clusters inside gel (3D clustered), 6.0% PEG, 300 μM RGD" ;
+    lova:particleMaterial "PEG-VS crosslinked with MMPxl peptide" ;
+    lova:surfaceModification "RGD-coated (300 μM)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-jemt.20840/peg-vs-mmpxl-michael-addition> ;
+    lova:scaffoldDimensions "30 μL gel" ;
+    lova:packingConfiguration "Not applicable (bulk hydrogel)" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-jemt.20840/peg-vs-mmpxl-michael-addition> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-jemt.20840> ;
+    rdfs:label "PEG-VS/MMPxl hydrogel formation via Michael-type addition with DNA/PEI polyplex encapsulation" ;
+    lova:chemistry "Michael-type addition (thiol-vinyl sulfone)" ;
+    lova:manufacturingMethod "Bulk mixing and gelation between Teflon sheets" ;
+    lova:annealingConditions "37°C, 30 min" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-jemt.20840/peg-vs> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-jemt.20840/mmpxl-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-jemt.20840/rgd-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-jemt.20840/pei> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-jemt.20840/plasmid-dna> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-jemt.20840/divinyl-sulfone> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-jemt.20840/ecm-gel> .
+
+<https://lovamap.com/ontology#reagent/10.1002-jemt.20840/peg-vs> a lova:Reagent ;
+    rdfs:label "Four-armed PEG-vinyl sulfone (PEG-VS, 20 kDa)" ;
+    lova:reagentRole "monomer" ;
+    lova:molecularWeight "20 kDa" ;
+    lova:concentration "6.5 mg/25 μL TOEA (6.0% w/v)" ;
+    lova:supplier "Nektar, Aerogen, Galway, IE" ;
+    lova:reagentFunction "Crosslinkable PEG backbone for hydrogel network" .
+
+<https://lovamap.com/ontology#reagent/10.1002-jemt.20840/mmpxl-peptide> a lova:Reagent ;
+    rdfs:label "MMP-degradable crosslinker peptide (MMPxl, GCRDGPQGIWGQDRCG)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:sequence "GCRDGPQGIWGQDRCG" ;
+    lova:concentration "0.91 mg/10 μL TOEA" ;
+    lova:supplier "NEOMPS (Genescript, Piscataway, NJ)" ;
+    lova:reagentFunction "Enzymatically degradable crosslink between PEG-VS arms" .
+
+<https://lovamap.com/ontology#reagent/10.1002-jemt.20840/rgd-peptide> a lova:Reagent ;
+    rdfs:label "Cell-adhesion peptide RGD (Ac-GCGWGRGDSPG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "GCGWGRGDSPG" ;
+    lova:concentration "300 μM" ;
+    lova:supplier "NEOMPS (Genescript, Piscataway, NJ)" ;
+    lova:reagentFunction "Cell adhesion" .
+
+<https://lovamap.com/ontology#reagent/10.1002-jemt.20840/pei> a lova:Reagent ;
+    rdfs:label "Linear poly(ethylene imine) (PEI, 25 kg/mol)" ;
+    lova:reagentRole "other" ;
+    lova:molecularWeight "25 kg/mol" ;
+    lova:supplier "Polysciences, Warrington, PA" ;
+    lova:reagentFunction "DNA condensation to form polyplexes for nonviral gene delivery" .
+
+<https://lovamap.com/ontology#reagent/10.1002-jemt.20840/plasmid-dna> a lova:Reagent ;
+    rdfs:label "GFP-luciferase expression vector (pEGFP-LUC)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "15 μg DNA per gel, N/P = 12" ;
+    lova:supplier "BD Biosciences, Palo Alto, CA" ;
+    lova:reagentFunction "Reporter plasmid encoding GFP and luciferase for gene transfer visualization and quantification" .
+
+<https://lovamap.com/ontology#reagent/10.1002-jemt.20840/divinyl-sulfone> a lova:Reagent ;
+    rdfs:label "Divinyl sulfone" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Aldrich/Fluka, Basel, Switzerland" ;
+    lova:reagentFunction "Modification of PEG-OH to produce PEG-vinyl sulfone" .
+
+<https://lovamap.com/ontology#reagent/10.1002-jemt.20840/ecm-gel> a lova:Reagent ;
+    rdfs:label "ECM Gel (matrigel-comparable product)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Sigma-Aldrich, St. Louis, MO" ;
+    lova:reagentFunction "Formation of cell clusters for 3D clustered seeding" .
+
+<https://lovamap.com/ontology#experiment/10.1002-jemt.20840/gfp-2d> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-jemt.20840> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-jemt.20840/peg-hydrogel-2d> ;
+    rdfs:label "GFP gene transfer imaging, mMSCs seeded on top of hydrogel (2D)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Gene transfer imaging" ;
+    lova:assayOrMethod "Inverted fluorescence microscopy" ;
+    lova:cellType "mMSC (D1)" ;
+    lova:cellSource "Mouse bone marrow cloned mesenchymal stem cells (ATCC CRL12424)" ;
+    lova:seedingDensity "8,000 cells/gel" ;
+    lova:cultureDuration "25 days" ;
+    lova:cultureMedium "DMEM + 10% BGS + 1% penicillin/streptomycin" ;
+    lova:temperature "37°C" ;
+    lova:atmosphere "5% CO2" .
+
+<https://lovamap.com/ontology#experiment/10.1002-jemt.20840/luciferase-2d> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-jemt.20840> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-jemt.20840/peg-hydrogel-2d> ;
+    rdfs:label "Luciferase gene expression assay, mMSCs seeded on top of hydrogel (2D)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Luciferase reporter assay" ;
+    lova:assayOrMethod "Promega luciferase assay kit / Luminometer (Modulus, Turner Biosystems)" ;
+    lova:cellType "mMSC (D1)" ;
+    lova:cellSource "Mouse bone marrow cloned mesenchymal stem cells (ATCC CRL12424)" ;
+    lova:seedingDensity "8,000 cells/gel" ;
+    lova:cultureDuration "2, 4, 11, 26 days" ;
+    lova:cultureMedium "DMEM + 10% BGS + 1% penicillin/streptomycin" ;
+    lova:temperature "37°C" .
+
+<https://lovamap.com/ontology#experiment/10.1002-jemt.20840/gfp-3d-homogeneous> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-jemt.20840> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-jemt.20840/peg-hydrogel-3d-homogeneous> ;
+    rdfs:label "GFP gene transfer imaging, mMSCs seeded homogeneously inside hydrogel (3D)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Gene transfer imaging" ;
+    lova:assayOrMethod "Inverted fluorescence microscopy" ;
+    lova:cellType "mMSC (D1)" ;
+    lova:cellSource "Mouse bone marrow cloned mesenchymal stem cells (ATCC CRL12424)" ;
+    lova:seedingDensity "150,000 cells/100 μL gel" ;
+    lova:cultureDuration "up to 20 days" ;
+    lova:cultureMedium "DMEM + 10% BGS + 1% penicillin/streptomycin" ;
+    lova:temperature "37°C" .
+
+<https://lovamap.com/ontology#experiment/10.1002-jemt.20840/luciferase-3d-homogeneous> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-jemt.20840> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-jemt.20840/peg-hydrogel-3d-homogeneous> ;
+    rdfs:label "Luciferase gene expression assay, mMSCs seeded homogeneously inside hydrogel (3D)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Luciferase reporter assay" ;
+    lova:assayOrMethod "Promega luciferase assay kit / Luminometer (Modulus, Turner Biosystems)" ;
+    lova:cellType "mMSC (D1)" ;
+    lova:cellSource "Mouse bone marrow cloned mesenchymal stem cells (ATCC CRL12424)" ;
+    lova:seedingDensity "150,000 cells/100 μL gel" ;
+    lova:cultureDuration "3, 8 days" ;
+    lova:cultureMedium "DMEM + 10% BGS + 1% penicillin/streptomycin" ;
+    lova:temperature "37°C" .
+
+<https://lovamap.com/ontology#experiment/10.1002-jemt.20840/gfp-3d-clustered> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-jemt.20840> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-jemt.20840/peg-hydrogel-3d-clustered> ;
+    rdfs:label "GFP gene transfer imaging, mMSCs seeded as clusters inside hydrogel (3D)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Gene transfer imaging" ;
+    lova:assayOrMethod "Inverted fluorescence microscopy" ;
+    lova:cellType "mMSC (D1)" ;
+    lova:cellSource "Mouse bone marrow cloned mesenchymal stem cells (ATCC CRL12424)" ;
+    lova:seedingDensity "5,000 cells/cluster/30 μL gel" ;
+    lova:cultureDuration "up to 20 days" ;
+    lova:cultureMedium "DMEM + 10% BGS + 1% penicillin/streptomycin" ;
+    lova:temperature "37°C" .
+
+<https://lovamap.com/ontology#experiment/10.1002-jemt.20840/luciferase-3d-clustered> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-jemt.20840> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-jemt.20840/peg-hydrogel-3d-clustered> ;
+    rdfs:label "Luciferase gene expression assay, mMSCs seeded as clusters inside hydrogel (3D)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Luciferase reporter assay" ;
+    lova:assayOrMethod "Promega luciferase assay kit / Luminometer (Modulus, Turner Biosystems)" ;
+    lova:cellType "mMSC (D1)" ;
+    lova:cellSource "Mouse bone marrow cloned mesenchymal stem cells (ATCC CRL12424)" ;
+    lova:seedingDensity "5,000 cells/cluster/30 μL gel" ;
+    lova:cultureDuration "16 days" ;
+    lova:cultureMedium "DMEM + 10% BGS + 1% penicillin/streptomycin" ;
+    lova:temperature "37°C" .
+
+<https://lovamap.com/ontology#outcome/10.1002-jemt.20840/gfp-2d-day2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-jemt.20840/gfp-2d> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-jemt.20840> ;
+    rdfs:label "Weak GFP expression at Day 2, 2D culture" ;
+    lova:measurementType "GFP expression" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Weak GFP expression, not easily observed with standard fluorescence microscopy; cells spread over entire surface" ;
+    lova:timePoint "Day 2" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-jemt.20840/gfp-2d-day10-12> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-jemt.20840/gfp-2d> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-jemt.20840> ;
+    rdfs:label "GFP expression in aggregated cells at Days 10/12, 2D culture" ;
+    lova:measurementType "GFP expression" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "GFP gene expression observed in cell aggregates" ;
+    lova:timePoint "Day 10, Day 12" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-jemt.20840/gfp-2d-day16-25> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-jemt.20840/gfp-2d> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-jemt.20840> ;
+    rdfs:label "Extensive GFP expression at Days 16/25, 2D culture" ;
+    lova:measurementType "GFP expression" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "GFP gene expression visible in large number of cells spread over entire hydrogel surface" ;
+    lova:timePoint "Day 16, Day 25" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-jemt.20840/gfp-3dhomogeneous-day8> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-jemt.20840/gfp-3d-homogeneous> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-jemt.20840> ;
+    rdfs:label "Onset of GFP expression at Day 8, 3D homogeneous culture" ;
+    lova:measurementType "GFP expression" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "GFP gene expression observed starting at Day 8, mostly rounded cells expressed GFP" ;
+    lova:timePoint "Day 8" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-jemt.20840/gfp-3dclustered-day15> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-jemt.20840/gfp-3d-clustered> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-jemt.20840> ;
+    rdfs:label "Onset of GFP expression at Day 15, 3D clustered culture" ;
+    lova:measurementType "GFP expression" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "GFP gene expression observed starting at Day 15; GFP-expressing cells spread, indicating cell-cell contacts are important" ;
+    lova:timePoint "Day 15" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-jemt.20840/luciferase-2d-day2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-jemt.20840/luciferase-2d> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-jemt.20840> ;
+    rdfs:label "Luciferase expression at Day 2, 2D culture" ;
+    lova:measurementType "Luciferase expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 5300.0 ;
+    qudt:unit "RLU/mg protein" ;
+    lova:stdDev 700.0 ;
+    lova:timePoint "Day 2" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-jemt.20840/luciferase-2d-day4> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-jemt.20840/luciferase-2d> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-jemt.20840> ;
+    rdfs:label "Luciferase expression at Day 4, 2D culture" ;
+    lova:measurementType "Luciferase expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1400.0 ;
+    qudt:unit "RLU/mg protein" ;
+    lova:stdDev 80.0 ;
+    lova:timePoint "Day 4" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-jemt.20840/luciferase-2d-day11> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-jemt.20840/luciferase-2d> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-jemt.20840> ;
+    rdfs:label "Luciferase expression at Day 11, 2D culture" ;
+    lova:measurementType "Luciferase expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1500.0 ;
+    qudt:unit "RLU/mg protein" ;
+    lova:stdDev 150.0 ;
+    lova:timePoint "Day 11" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-jemt.20840/luciferase-2d-day26> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-jemt.20840/luciferase-2d> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-jemt.20840> ;
+    rdfs:label "Luciferase expression at Day 26, 2D culture" ;
+    lova:measurementType "Luciferase expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 4300.0 ;
+    qudt:unit "RLU/mg protein" ;
+    lova:stdDev 300.0 ;
+    lova:timePoint "Day 26" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-jemt.20840/luciferase-3dhomogeneous-day3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-jemt.20840/luciferase-3d-homogeneous> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-jemt.20840> ;
+    rdfs:label "Luciferase expression at Day 3, 3D homogeneous culture" ;
+    lova:measurementType "Luciferase expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2800.0 ;
+    qudt:unit "RLU/mg protein" ;
+    lova:stdDev 400.0 ;
+    lova:timePoint "Day 3" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-jemt.20840/luciferase-3dhomogeneous-day8> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-jemt.20840/luciferase-3d-homogeneous> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-jemt.20840> ;
+    rdfs:label "Luciferase expression at Day 8, 3D homogeneous culture" ;
+    lova:measurementType "Luciferase expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 5300.0 ;
+    qudt:unit "RLU/mg protein" ;
+    lova:stdDev 100.0 ;
+    lova:timePoint "Day 8" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-jemt.20840/luciferase-3dclustered-day16> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-jemt.20840/luciferase-3d-clustered> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-jemt.20840> ;
+    rdfs:label "Luciferase expression at Day 16, 3D clustered culture" ;
+    lova:measurementType "Luciferase expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 5200.0 ;
+    qudt:unit "RLU/mg protein" ;
+    lova:stdDev 100.0 ;
+    lova:timePoint "Day 16" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-jemt.20840/luciferase-untransfected-control> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-jemt.20840/luciferase-2d> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-jemt.20840> ;
+    rdfs:label "Luciferase reading for untransfected cells" ;
+    lova:measurementType "Luciferase background signal" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 50.0 ;
+    qudt:unit "RLU/mg protein" ;
+    lova:comparisonGroup "Untransfected cells" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-jemt.20840/peak-luciferase-all-approaches> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-jemt.20840/luciferase-2d> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-jemt.20840> ;
+    rdfs:label "Highest observed luciferase transgene expression across all seeding approaches" ;
+    lova:measurementType "Luciferase expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 4500.0 ;
+    qudt:unit "RLU/mg protein" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-jemt.20840/cellnumber-2d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-jemt.20840/luciferase-2d> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-jemt.20840> ;
+    rdfs:label "Cell number, 2D seeding" ;
+    lova:measurementType "Cell number" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 8000.0 ;
+    qudt:unit "cells" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-jemt.20840/cellnumber-3dhomogeneous-text> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-jemt.20840/luciferase-3d-homogeneous> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-jemt.20840> ;
+    rdfs:label "Cell number cultured inside hydrogel, 3D homogeneous (as stated in discussion)" ;
+    lova:measurementType "Cell number" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 30000.0 ;
+    qudt:unit "cells" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-jemt.20840/cellnumber-3dclustered-text> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-jemt.20840/luciferase-3d-clustered> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-jemt.20840> ;
+    rdfs:label "Cell number cultured inside hydrogel, 3D clustered (as stated in discussion)" ;
+    lova:measurementType "Cell number" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 5000.0 ;
+    qudt:unit "cells" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-jemt.20840/luciferase-day2-vs-day4> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-jemt.20840> ;
+    rdfs:label "Luciferase expression higher at Day 2 than Day 4, 2D culture" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-jemt.20840/luciferase-2d-day2> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-jemt.20840/luciferase-2d-day4> ;
+    lova:direction "higher" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-jemt.20840/luciferase-day11-vs-day26> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-jemt.20840> ;
+    rdfs:label "Luciferase expression lower at Day 11 than Day 26, 2D culture" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-jemt.20840/luciferase-2d-day11> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-jemt.20840/luciferase-2d-day26> ;
+    lova:direction "lower" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-jemt.20840/luciferase-2d-vs-3dhomogeneous-peak> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-jemt.20840> ;
+    rdfs:label "Peak luciferase expression comparable between 2D and 3D homogeneous culture despite higher cell number in 3D" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-jemt.20840/luciferase-2d-day2> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-jemt.20840/luciferase-3dhomogeneous-day8> ;
+    lova:direction "no difference" .
+
+<https://lovamap.com/ontology#comparison/10.1002-jemt.20840/luciferase-3dclustered-vs-3dhomogeneous-peak> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-jemt.20840> ;
+    rdfs:label "Peak luciferase expression comparable between 3D clustered and 3D homogeneous culture despite fewer cells in cluster" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-jemt.20840/luciferase-3dclustered-day16> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-jemt.20840/luciferase-3dhomogeneous-day8> ;
+    lova:direction "no difference" .
+
+<https://lovamap.com/ontology#comparison/10.1002-jemt.20840/luciferase-transfected-vs-untransfected> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-jemt.20840> ;
+    rdfs:label "Luciferase signal at least one order of magnitude higher in transfected than untransfected cells" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-jemt.20840/luciferase-2d-day2> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-jemt.20840/luciferase-untransfected-control> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#comparison/10.1002-jemt.20840/cellnumber-3dhomogeneous-vs-2d> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-jemt.20840> ;
+    rdfs:label "Cell number higher in 3D homogeneous culture than 2D culture" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-jemt.20840/cellnumber-3dhomogeneous-text> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-jemt.20840/cellnumber-2d> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#comparison/10.1002-jemt.20840/cellnumber-3dclustered-vs-3dhomogeneous> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-jemt.20840> ;
+    rdfs:label "Cell number lower in 3D clustered culture than 3D homogeneous culture" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-jemt.20840/cellnumber-3dclustered-text> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-jemt.20840/cellnumber-3dhomogeneous-text> ;
+    lova:direction "lower" .

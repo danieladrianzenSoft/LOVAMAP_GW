@@ -112,6 +112,14 @@ app.MapGet("/api/geometry-profiles", async (IRdfService svc, CancellationToken c
 	Results.Ok(await svc.GetGeometryProfilesAsync(ct)))
 	.WithTags("Ontology");
 
+app.MapGet("/api/reagents", async (IRdfService svc, CancellationToken ct) =>
+	Results.Ok(await svc.GetReagentsAsync(ct)))
+	.WithTags("Ontology");
+
+app.MapGet("/api/comparison-results", async (IRdfService svc, CancellationToken ct) =>
+	Results.Ok(await svc.GetComparisonResultsAsync(ct)))
+	.WithTags("Ontology");
+
 // ── NL → SPARQL Query ──
 
 app.MapPost("/api/query", async (QueryService svc, QueryRequest req, CancellationToken ct) =>

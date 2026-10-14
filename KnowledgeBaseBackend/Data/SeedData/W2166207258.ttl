@@ -1,0 +1,828 @@
+@prefix bibo: <http://purl.org/ontology/bibo/> .
+@prefix dc1: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix lova: <https://lovamap.com/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2013.10.002/infiltration-hs-vs-cs> a lova:ComparisonResult ;
+    rdfs:label "Cellular infiltration comparable between HS and CS at day 14" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    lova:direction "no difference" ;
+    lova:isSignificant false ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2013.10.002/infiltration-hs> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2013.10.002/infiltration-cs> .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2013.10.002/infiltration-porous-vs-nonporous> a lova:ComparisonResult ;
+    rdfs:label "Cellular infiltration higher in porous (HS) vs non-porous hydrogel at 14 days" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    lova:direction "higher" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2013.10.002/infiltration-hs> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2013.10.002/nonporous-infiltration-outcome> .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2013.10.002/modulus-hs-vs-cs> a lova:ComparisonResult ;
+    rdfs:label "Storage modulus comparable between HS and CS" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    lova:direction "no difference" ;
+    lova:isSignificant false ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2013.10.002/storage-modulus-hs> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2013.10.002/storage-modulus-cs> .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2013.10.002/modulus-hs-vs-ns> a lova:ComparisonResult ;
+    rdfs:label "Storage modulus higher in HS vs NS" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2013.10.002/storage-modulus-hs> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2013.10.002/storage-modulus-ns> ;
+    lova:pValue 0.001 .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2013.10.002/pore-diam-hs-vs-cs> a lova:ComparisonResult ;
+    rdfs:label "Interconnected pore diameter comparable between HS and CS" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    lova:direction "no difference" ;
+    lova:isSignificant false ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2013.10.002/pore-diam-hs> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2013.10.002/pore-diam-cs> .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2013.10.002/pore-diam-hs-vs-ns> a lova:ComparisonResult ;
+    rdfs:label "Interconnected pore diameter comparable between HS and NS" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    lova:direction "no difference" ;
+    lova:isSignificant false ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2013.10.002/pore-diam-hs> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2013.10.002/pore-diam-ns> .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2013.10.002/vessels-hs-vs-ns> a lova:ComparisonResult ;
+    rdfs:label "Vessel density not significantly different HS vs NS" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    lova:direction "no difference" ;
+    lova:isSignificant false ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2013.10.002/vessels-hs> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2013.10.002/vessels-ns> .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2013.10.002/viability-hs-vs-cs> a lova:ComparisonResult ;
+    rdfs:label "No significant difference in viability between HS and CS at day 2" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    lova:direction "no difference" ;
+    lova:isSignificant false ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2013.10.002/viability-hs-d2> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2013.10.002/viability-cs-d2> .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2013.10.002/growth-d4> a lova:Outcome ;
+    rdfs:label "Cell growth peak at day 4 (all groups)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    qudt:numericValue 90.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2013.10.002/cell-proliferation> ;
+    lova:isTimeSeries true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Cell growth (%)" ;
+    lova:timePoint "Day 4" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2013.10.002/infiltration-ns> a lova:Outcome ;
+    rdfs:label "Cellular infiltration density — NS" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    qudt:numericValue 2672.0 ;
+    qudt:unit "nuclei/mm2" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2013.10.002/in-vivo-infiltration> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Cellular infiltration" ;
+    lova:sampleSize 4 ;
+    lova:stdDev 282.0 ;
+    lova:timePoint "Day 14" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2013.10.002/msph-diam-cs> a lova:Outcome ;
+    rdfs:label "PMMA microsphere diameter — CS" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    qudt:numericValue 56.0 ;
+    qudt:unit "μm" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2013.10.002/microsphere-diameter> ;
+    lova:measurementCategory "Structural" ;
+    lova:measurementType "Microsphere diameter" ;
+    lova:scope "Bulk/global" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2013.10.002/msph-diam-hs> a lova:Outcome ;
+    rdfs:label "PMMA microsphere diameter — HS" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    qudt:numericValue 57.0 ;
+    qudt:unit "μm" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2013.10.002/microsphere-diameter> ;
+    lova:measurementCategory "Structural" ;
+    lova:measurementType "Microsphere diameter" ;
+    lova:scope "Bulk/global" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2013.10.002/msph-diam-ns> a lova:Outcome ;
+    rdfs:label "PMMA microsphere diameter — NS" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    qudt:numericValue 58.0 ;
+    qudt:unit "μm" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2013.10.002/microsphere-diameter> ;
+    lova:measurementCategory "Structural" ;
+    lova:measurementType "Microsphere diameter" ;
+    lova:scope "Bulk/global" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2013.10.002/spreading-cs-d7> a lova:Outcome ;
+    rdfs:label "mMSC end-to-end cell length at day 7 — CS" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    qudt:numericValue 31.0 ;
+    qudt:unit "μm" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2013.10.002/cell-spreading> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Cell length (spreading)" ;
+    lova:timePoint "Day 7" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2013.10.002/spreading-hs-d7> a lova:Outcome ;
+    rdfs:label "mMSC end-to-end cell length at day 7 — HS" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    qudt:numericValue 38.0 ;
+    qudt:unit "μm" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2013.10.002/cell-spreading> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Cell length (spreading)" ;
+    lova:timePoint "Day 7" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2013.10.002/spreading-ns-d7> a lova:Outcome ;
+    rdfs:label "mMSC end-to-end cell length at day 7 — NS" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    qudt:numericValue 34.0 ;
+    qudt:unit "μm" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2013.10.002/cell-spreading> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Cell length (spreading)" ;
+    lova:timePoint "Day 7" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2013.10.002/vessel-diam-fraction> a lova:Outcome ;
+    rdfs:label "Fraction of vessels ≤6 μm diameter (all groups)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2013.10.002/in-vivo-vessels> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Vessel diameter distribution" ;
+    lova:timePoint "Day 14" ;
+    lova:valueString "Approximately half of the vessels in all samples were less than 6 μm in diameter" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2013.10.002/vessels-cs> a lova:Outcome ;
+    rdfs:label "Vessel density — CS" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    qudt:numericValue 10.5 ;
+    qudt:unit "vessels/mm2" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2013.10.002/in-vivo-vessels> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Vessel density" ;
+    lova:sampleSize 4 ;
+    lova:timePoint "Day 14" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2013.10.002/viability-ns-d2> a lova:Outcome ;
+    rdfs:label "mMSC viability at day 2 — NS" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    qudt:numericValue 93.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2013.10.002/cell-viability> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Cell viability" ;
+    lova:timePoint "Day 2" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2013.10.002/water-cs> a lova:Outcome ;
+    rdfs:label "Water content — CS" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    qudt:numericValue 98.49 ;
+    qudt:unit "%" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2013.10.002/water-content> ;
+    lova:measurementCategory "Structural" ;
+    lova:measurementType "Water content" ;
+    lova:stdDev 0.22 .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2013.10.002/water-hs> a lova:Outcome ;
+    rdfs:label "Water content — HS" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    qudt:numericValue 98.38 ;
+    qudt:unit "%" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2013.10.002/water-content> ;
+    lova:measurementCategory "Structural" ;
+    lova:measurementType "Water content" ;
+    lova:stdDev 0.36 .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2013.10.002/water-ns> a lova:Outcome ;
+    rdfs:label "Water content — NS" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    qudt:numericValue 98.28 ;
+    qudt:unit "%" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2013.10.002/water-content> ;
+    lova:measurementCategory "Structural" ;
+    lova:measurementType "Water content" ;
+    lova:stdDev 0.32 .
+
+<https://lovamap.com/ontology#journal/acta-biomaterialia> a bibo:Journal ;
+    dc1:title "Acta Biomaterialia" ;
+    bibo:issn "1742-7061" .
+
+<https://lovamap.com/ontology#material/10.1016-j.actbio.2013.10.002/non-porous> a lova:Material ;
+    rdfs:label "Non-porous (n-pore) 3.5 w/v% HA hydrogel" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2013.10.002/non-porous-fab> ;
+    lova:packingConfiguration "None (bulk/non-porous)" ;
+    lova:particleMaterial "Hyaluronic acid (HA) hydrogel" ;
+    lova:reportedPoreSize "No pores" ;
+    lova:scaffoldDimensions "6 mm diameter × 1 mm height" ;
+    lova:stiffnessQualitative "Soft hydrogel" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2013.10.002/infiltration-cs> a lova:Outcome ;
+    rdfs:label "Cellular infiltration density — CS" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    qudt:numericValue 2424.0 ;
+    qudt:unit "nuclei/mm2" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2013.10.002/in-vivo-infiltration> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Cellular infiltration" ;
+    lova:sampleSize 4 ;
+    lova:stdDev 292.0 ;
+    lova:timePoint "Day 14" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2013.10.002/nonporous-infiltration-outcome> a lova:Outcome ;
+    rdfs:label "Host cells remain on periphery of non-porous hydrogel at 14 days" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    lova:comparisonGroup "Porous HA hydrogel (HS/NS/CS)" ;
+    lova:dataSource "[FIG-E]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2013.10.002/nonporous-infiltration> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Cellular infiltration" ;
+    lova:timePoint "Day 14" ;
+    lova:valueString "Host cells only penetrate hydrogel periphery; no deep infiltration observed" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2013.10.002/pore-diam-cs> a lova:Outcome ;
+    rdfs:label "Interconnected pore diameter — CS" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    qudt:numericValue 20.08 ;
+    qudt:unit "μm" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2013.10.002/pore-interconnectivity> ;
+    lova:measurementCategory "Structural" ;
+    lova:measurementType "Interconnected pore diameter" ;
+    lova:scope "Bulk/global" ;
+    lova:stdDev 8.92 .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2013.10.002/pore-diam-ns> a lova:Outcome ;
+    rdfs:label "Interconnected pore diameter — NS" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    qudt:numericValue 18.29 ;
+    qudt:unit "μm" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2013.10.002/pore-interconnectivity> ;
+    lova:measurementCategory "Structural" ;
+    lova:measurementType "Interconnected pore diameter" ;
+    lova:scope "Bulk/global" ;
+    lova:stdDev 6.81 .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2013.10.002/storage-modulus-cs> a lova:Outcome ;
+    rdfs:label "Storage modulus (G') — CS" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    qudt:numericValue 597.2 ;
+    qudt:unit "Pa" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2013.10.002/rheology> ;
+    lova:measurementCategory "Mechanical" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:stdDev 140.5 .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2013.10.002/storage-modulus-ns> a lova:Outcome ;
+    rdfs:label "Storage modulus (G') — NS" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    qudt:numericValue 488.0 ;
+    qudt:unit "Pa" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2013.10.002/rheology> ;
+    lova:measurementCategory "Mechanical" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:stdDev 129.6 .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2013.10.002/vessels-hs> a lova:Outcome ;
+    rdfs:label "Vessel density — HS" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    qudt:numericValue 10.0 ;
+    qudt:unit "vessels/mm2" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2013.10.002/in-vivo-vessels> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Vessel density" ;
+    lova:sampleSize 4 ;
+    lova:timePoint "Day 14" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2013.10.002/vessels-ns> a lova:Outcome ;
+    rdfs:label "Vessel density — NS" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    qudt:numericValue 5.5 ;
+    qudt:unit "vessels/mm2" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2013.10.002/in-vivo-vessels> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Vessel density" ;
+    lova:sampleSize 4 ;
+    lova:timePoint "Day 14" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2013.10.002/viability-cs-d2> a lova:Outcome ;
+    rdfs:label "mMSC viability at day 2 — CS" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    qudt:numericValue 95.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2013.10.002/cell-viability> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Cell viability" ;
+    lova:timePoint "Day 2" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2013.10.002/viability-hs-d2> a lova:Outcome ;
+    rdfs:label "mMSC viability at day 2 — HS" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    qudt:numericValue 82.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2013.10.002/cell-viability> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Cell viability" ;
+    lova:timePoint "Day 2" .
+
+<https://lovamap.com/ontology#author/cam-cynthia> a foaf:Person ;
+    foaf:familyName "Cam" ;
+    foaf:givenName "Cynthia" ;
+    foaf:name "Cynthia Cam" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2013.10.002/nonporous-infiltration> a lova:Experiment ;
+    rdfs:label "Subcutaneous implantation of non-porous HA hydrogel" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    lova:assayOrMethod "H&E staining" ;
+    lova:assayURI <http://purl.obolibrary.org/obo/OBI_0001032> ;
+    lova:cultureDuration "14 days" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cellular infiltration" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2013.10.002/non-porous> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2013.10.002/chemical-sintering> a lova:FabricationMethod ;
+    rdfs:label "Chemical sintering of PMMA microspheres (1% acetone in 70% ethanol) followed by HA Michael-addition hydrogel casting" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    lova:annealingChemistry "Michael-type addition (bis-cysteine MMP peptide crosslinker with acrylated HA)" ;
+    lova:annealingConditions "37°C, 30–45 min" ;
+    lova:chemistry "Michael-type addition (thiol-ene)" ;
+    lova:chemistryURI <http://purl.obolibrary.org/obo/RXNO_0000009> ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2013.10.002/acetone>,
+        <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2013.10.002/adh>,
+        <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2013.10.002/edc>,
+        <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2013.10.002/ethanol>,
+        <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2013.10.002/ha>,
+        <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2013.10.002/mmp-peptide>,
+        <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2013.10.002/nhs-ac>,
+        <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2013.10.002/pmma-microspheres>,
+        <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2013.10.002/rgd-peptide>,
+        <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2013.10.002/teoa> ;
+    lova:manufacturingMethod "PMMA microsphere suspension packing in 1% acetone/70% ethanol, dried 1-2h at 37°C" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2013.10.002/heat-sintering> a lova:FabricationMethod ;
+    rdfs:label "Heat sintering of PMMA microspheres (150°C, 17-22h) followed by HA Michael-addition hydrogel casting" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    lova:annealingChemistry "Michael-type addition (bis-cysteine MMP peptide crosslinker with acrylated HA)" ;
+    lova:annealingConditions "37°C, 30–45 min" ;
+    lova:chemistry "Michael-type addition (thiol-ene)" ;
+    lova:chemistryURI <http://purl.obolibrary.org/obo/RXNO_0000009> ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2013.10.002/adh>,
+        <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2013.10.002/edc>,
+        <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2013.10.002/ha>,
+        <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2013.10.002/mmp-peptide>,
+        <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2013.10.002/nhs-ac>,
+        <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2013.10.002/pmma-microspheres>,
+        <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2013.10.002/rgd-peptide>,
+        <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2013.10.002/teoa> ;
+    lova:manufacturingMethod "Heat sintering of packed PMMA microspheres" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2013.10.002/non-porous-fab> a lova:FabricationMethod ;
+    rdfs:label "Non-porous HA hydrogel casting (no PMMA template)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    lova:annealingChemistry "Michael-type addition (bis-cysteine MMP peptide crosslinker with acrylated HA)" ;
+    lova:annealingConditions "37°C, 30–45 min" ;
+    lova:chemistry "Michael-type addition (thiol-ene)" ;
+    lova:chemistryURI <http://purl.obolibrary.org/obo/RXNO_0000009> ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2013.10.002/ha>,
+        <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2013.10.002/mmp-peptide>,
+        <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2013.10.002/rgd-peptide>,
+        <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2013.10.002/teoa> ;
+    lova:manufacturingMethod "Gel solution sandwiched between sigmacoted slides with 1mm spacers" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2013.10.002/non-sintering> a lova:FabricationMethod ;
+    rdfs:label "Non-sintering suspension of PMMA microspheres in 70% ethanol followed by HA Michael-addition hydrogel casting" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    lova:annealingChemistry "Michael-type addition (bis-cysteine MMP peptide crosslinker with acrylated HA)" ;
+    lova:annealingConditions "37°C, 30–45 min" ;
+    lova:chemistry "Michael-type addition (thiol-ene)" ;
+    lova:chemistryURI <http://purl.obolibrary.org/obo/RXNO_0000009> ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2013.10.002/adh>,
+        <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2013.10.002/edc>,
+        <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2013.10.002/ethanol>,
+        <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2013.10.002/ha>,
+        <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2013.10.002/mmp-peptide>,
+        <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2013.10.002/nhs-ac>,
+        <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2013.10.002/pmma-microspheres>,
+        <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2013.10.002/rgd-peptide>,
+        <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2013.10.002/teoa> ;
+    lova:manufacturingMethod "PMMA microsphere suspension packing (70% ethanol), dried 1-2h at 37°C" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2013.10.002/infiltration-hs> a lova:Outcome ;
+    rdfs:label "Cellular infiltration density — HS" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    qudt:numericValue 3037.0 ;
+    qudt:unit "nuclei/mm2" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2013.10.002/in-vivo-infiltration> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Cellular infiltration" ;
+    lova:sampleSize 4 ;
+    lova:stdDev 206.0 ;
+    lova:timePoint "Day 14" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2013.10.002/pore-diam-hs> a lova:Outcome ;
+    rdfs:label "Interconnected pore diameter — HS" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    qudt:numericValue 20.75 ;
+    qudt:unit "μm" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2013.10.002/pore-interconnectivity> ;
+    lova:measurementCategory "Structural" ;
+    lova:measurementType "Interconnected pore diameter" ;
+    lova:scope "Bulk/global" ;
+    lova:stdDev 8.93 .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2013.10.002/storage-modulus-hs> a lova:Outcome ;
+    rdfs:label "Storage modulus (G') — HS" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    qudt:numericValue 713.0 ;
+    qudt:unit "Pa" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2013.10.002/rheology> ;
+    lova:measurementCategory "Mechanical" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:stdDev 317.3 .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2013.10.002/cell-proliferation> a lova:Experiment ;
+    rdfs:label "mMSC proliferation on porous HA hydrogels" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    lova:assayOrMethod "alamarBlue assay" ;
+    lova:assayURI <http://purl.obolibrary.org/obo/OBI_0002039> ;
+    lova:cellSource "Mouse bone marrow" ;
+    lova:cellType "mMSC (D1, CRL12424)" ;
+    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000134> ;
+    lova:cultureDuration "1, 4, 7 days" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell proliferation" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2013.10.002/cs-porous>,
+        <https://lovamap.com/ontology#material/10.1016-j.actbio.2013.10.002/hs-porous>,
+        <https://lovamap.com/ontology#material/10.1016-j.actbio.2013.10.002/ns-porous> .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2013.10.002/in-vivo-infiltration> a lova:Experiment ;
+    rdfs:label "Subcutaneous implantation — cellular infiltration quantification" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    lova:assayOrMethod "H&E staining, Fiji nuclei quantification" ;
+    lova:cultureDuration "14 days" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cellular infiltration" ;
+    lova:sampleSize 4 ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2013.10.002/cs-porous>,
+        <https://lovamap.com/ontology#material/10.1016-j.actbio.2013.10.002/hs-porous>,
+        <https://lovamap.com/ontology#material/10.1016-j.actbio.2013.10.002/ns-porous> .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2013.10.002/microsphere-diameter> a lova:Experiment ;
+    rdfs:label "PMMA microsphere diameter measurement after packing" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    lova:assayOrMethod "SEM imaging + ImageJ quantification" ;
+    lova:experimentCategory "Structural" ;
+    lova:experimentType "Particle size quantification" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2013.10.002/cs-porous>,
+        <https://lovamap.com/ontology#material/10.1016-j.actbio.2013.10.002/hs-porous>,
+        <https://lovamap.com/ontology#material/10.1016-j.actbio.2013.10.002/ns-porous> .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2013.10.002/pore-interconnectivity> a lova:Experiment ;
+    rdfs:label "Interconnected pore diameter measurement" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    lova:assayOrMethod "SEM imaging (500×) + ImageJ quantification" ;
+    lova:experimentCategory "Structural" ;
+    lova:experimentType "Pore interconnectivity" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2013.10.002/cs-porous>,
+        <https://lovamap.com/ontology#material/10.1016-j.actbio.2013.10.002/hs-porous>,
+        <https://lovamap.com/ontology#material/10.1016-j.actbio.2013.10.002/ns-porous> .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2013.10.002/rheology> a lova:Experiment ;
+    rdfs:label "Rheological characterization of porous hydrogels" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    lova:equipment "Physica MCR, Anton Paar" ;
+    lova:experimentCategory "Mechanical" ;
+    lova:experimentType "Rheology (oscillatory shear)" ;
+    lova:frequency "0.1–10 s⁻¹" ;
+    lova:temperature "37°C" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2013.10.002/cs-porous>,
+        <https://lovamap.com/ontology#material/10.1016-j.actbio.2013.10.002/hs-porous>,
+        <https://lovamap.com/ontology#material/10.1016-j.actbio.2013.10.002/ns-porous> .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2013.10.002/water-content> a lova:Experiment ;
+    rdfs:label "Hydrogel water content quantification" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    lova:assayOrMethod "Gravimetric swelling ratio" ;
+    lova:experimentCategory "Structural" ;
+    lova:experimentType "Water content" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2013.10.002/cs-porous>,
+        <https://lovamap.com/ontology#material/10.1016-j.actbio.2013.10.002/hs-porous>,
+        <https://lovamap.com/ontology#material/10.1016-j.actbio.2013.10.002/ns-porous> .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2013.10.002/acetone> a lova:Reagent ;
+    rdfs:label "Acetone" ;
+    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_15347> ;
+    lova:concentration "1% in 70% ethanol (chemical sintering suspension); 100% (template dissolution)" ;
+    lova:inchiKey "CSCPPACGZOOCGX-UHFFFAOYSA-N" ;
+    lova:reagentFunction "Chemical sintering of PMMA microspheres / dissolution of PMMA template" ;
+    lova:reagentRole "solvent" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2013.10.002/edc> a lova:Reagent ;
+    rdfs:label "1-ethyl-3-[3-dimethylaminopropyl] carbodiimide hydrochloride (EDC)" ;
+    lova:concentration "4.0 g, 20 mmol" ;
+    lova:reagentFunction "Carbodiimide coupling agent for HA-ADH conjugation" ;
+    lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2013.10.002/pmma-microspheres> a lova:Reagent ;
+    rdfs:label "Polymethyl methacrylate (PMMA) microspheres (53–63 μm)" ;
+    lova:concentration "0.4444 mg/μl suspension; ~24 mg per well (HS)" ;
+    lova:reagentFunction "Sacrificial porogen template for pore formation" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Cospheric" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2013.10.002/cell-spreading> a lova:Experiment ;
+    rdfs:label "mMSC spreading on porous HA hydrogels" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    lova:assayOrMethod "Rhodamine-phalloidin/DAPI staining, end-to-end length measurement" ;
+    lova:cellSource "Mouse bone marrow" ;
+    lova:cellType "mMSC (D1, CRL12424)" ;
+    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000134> ;
+    lova:cultureDuration "2, 7 days" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell spreading" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2013.10.002/cs-porous>,
+        <https://lovamap.com/ontology#material/10.1016-j.actbio.2013.10.002/hs-porous>,
+        <https://lovamap.com/ontology#material/10.1016-j.actbio.2013.10.002/ns-porous> .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2013.10.002/cell-viability> a lova:Experiment ;
+    rdfs:label "mMSC viability on porous HA hydrogels" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    lova:assayOrMethod "LIVE/DEAD viability/cytotoxicity assay" ;
+    lova:atmosphere "5% CO2" ;
+    lova:cellSource "Mouse bone marrow" ;
+    lova:cellType "mMSC (D1, CRL12424)" ;
+    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000134> ;
+    lova:cultureDuration "2, 7 days" ;
+    lova:cultureMedium "DMEM + 10% BGS + 1% penicillin/streptomycin" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell viability" ;
+    lova:temperature "37°C" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2013.10.002/cs-porous>,
+        <https://lovamap.com/ontology#material/10.1016-j.actbio.2013.10.002/hs-porous>,
+        <https://lovamap.com/ontology#material/10.1016-j.actbio.2013.10.002/ns-porous> .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2013.10.002/in-vivo-vessels> a lova:Experiment ;
+    rdfs:label "Subcutaneous implantation — blood vessel quantification" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    lova:assayOrMethod "PECAM (CD31) immunofluorescence" ;
+    lova:cultureDuration "14 days" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Vascularization / blood vessel density" ;
+    lova:sampleSize 4 ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2013.10.002/cs-porous>,
+        <https://lovamap.com/ontology#material/10.1016-j.actbio.2013.10.002/hs-porous>,
+        <https://lovamap.com/ontology#material/10.1016-j.actbio.2013.10.002/ns-porous> .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2013.10.002/adh> a lova:Reagent ;
+    rdfs:label "Adipic acid dihydrazide (ADH)" ;
+    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_141243> ;
+    lova:concentration "18.0 g, 105.5 mmol" ;
+    lova:reagentFunction "Hydrazide modification of HA carboxyl groups (HA-ADH intermediate)" ;
+    lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2013.10.002/ethanol> a lova:Reagent ;
+    rdfs:label "Ethanol" ;
+    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_16236> ;
+    lova:concentration "70%" ;
+    lova:inchiKey "LFQSCWFLJHTTHZ-UHFFFAOYSA-N" ;
+    lova:reagentFunction "Suspension/drying medium for non-sintering and chemical sintering" ;
+    lova:reagentRole "solvent" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2013.10.002/ha> a lova:Reagent ;
+    rdfs:label "Sodium hyaluronan (HA), acrylate-modified" ;
+    lova:concentration "3.5 w/v%" ;
+    lova:molecularWeight "60 kDa" ;
+    lova:reagentFunction "Hydrogel backbone, acrylate-functionalized for Michael-addition crosslinking" ;
+    lova:reagentRole "monomer" ;
+    lova:supplier "Genzyme Corporation" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2013.10.002/mmp-peptide> a lova:Reagent ;
+    rdfs:label "HS-MMP-SH peptide (Ac-GCRDGPQGIWGQDRCG-NH2)" ;
+    lova:concentration "0.9 mg per aliquot" ;
+    lova:reagentFunction "MMP-degradable bis-cysteine crosslinker enabling cell-mediated scaffold degradation" ;
+    lova:reagentRole "crosslinker" ;
+    lova:sequence "GCRDGPQGIWGQDRCG" ;
+    lova:supplier "Genscript" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2013.10.002/nhs-ac> a lova:Reagent ;
+    rdfs:label "N-acryloxysuccinimide (NHS-Ac)" ;
+    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_61358> ;
+    lova:concentration "1.33 g, 4.4 mmol" ;
+    lova:reagentFunction "Acrylation of HA-ADH intermediate" ;
+    lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2013.10.002/rgd-peptide> a lova:Reagent ;
+    rdfs:label "RGD peptide (Ac-GCGYGRGDSPG-NH2)" ;
+    lova:concentration "500 μM (in vitro); 100 μM (in vivo)" ;
+    lova:reagentFunction "Cell adhesion ligand" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "GCGYGRGDSPG" ;
+    lova:supplier "Genscript" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2013.10.002/teoa> a lova:Reagent ;
+    rdfs:label "Triethanolamine (TEOA) buffer" ;
+    lova:concentration "0.3 M, pH 8.8" ;
+    lova:reagentFunction "Buffer for Michael-type addition crosslinking reaction" ;
+    lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#material/10.1016-j.actbio.2013.10.002/cs-porous> a lova:Material ;
+    rdfs:label "Chemically sintered (CS) 60 μm porous HA hydrogel" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2013.10.002/chemical-sintering> ;
+    lova:packingConfiguration "Random/jammed" ;
+    lova:particleMaterial "Polymethyl methacrylate (PMMA) microsphere template / Hyaluronic acid (HA) hydrogel" ;
+    lova:particleShape "Sphere" ;
+    lova:particleSizeMax 63.0 ;
+    lova:particleSizeMin 53.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:reportedPoreSize "60 μm" ;
+    lova:scaffoldDimensions "6 mm diameter × 1 mm height (in vivo); 8 mm diameter (rheology)" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:stiffnessUnit "Pa" ;
+    lova:stiffnessValue 597.2 .
+
+<https://lovamap.com/ontology#material/10.1016-j.actbio.2013.10.002/hs-porous> a lova:Material ;
+    rdfs:label "Heat-sintered (HS) 60 μm porous HA hydrogel" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2013.10.002/heat-sintering> ;
+    lova:packingConfiguration "Random/jammed" ;
+    lova:particleMaterial "Polymethyl methacrylate (PMMA) microsphere template / Hyaluronic acid (HA) hydrogel" ;
+    lova:particleShape "Sphere" ;
+    lova:particleSizeMax 63.0 ;
+    lova:particleSizeMin 53.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:reportedPoreSize "60 μm" ;
+    lova:scaffoldDimensions "6 mm diameter × 1 mm height (in vivo); 8 mm diameter (rheology)" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:stiffnessUnit "Pa" ;
+    lova:stiffnessValue 713.0 .
+
+<https://lovamap.com/ontology#material/10.1016-j.actbio.2013.10.002/ns-porous> a lova:Material ;
+    rdfs:label "Non-sintered (NS) 60 μm porous HA hydrogel" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2013.10.002/non-sintering> ;
+    lova:packingConfiguration "Random/jammed" ;
+    lova:particleMaterial "Polymethyl methacrylate (PMMA) microsphere template / Hyaluronic acid (HA) hydrogel" ;
+    lova:particleShape "Sphere" ;
+    lova:particleSizeMax 63.0 ;
+    lova:particleSizeMin 53.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:reportedPoreSize "60 μm" ;
+    lova:scaffoldDimensions "6 mm diameter × 1 mm height (in vivo); 8 mm diameter (rheology)" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:stiffnessUnit "Pa" ;
+    lova:stiffnessValue 488.0 .
+
+<https://lovamap.com/ontology#agent/rdf_enrichment> a prov:SoftwareAgent ;
+    rdfs:label "rdf_enrichment pipeline" .
+
+<https://lovamap.com/ontology#paper/10.1016-j.actbio.2013.10.002> a bibo:AcademicArticle ;
+    rdfs:label "Cam & Segura, 2013 — Chemical sintering porous HA hydrogels" ;
+    dc1:bibliographicCitation "Cam & Segura, 2013" ;
+    dc1:creator <https://lovamap.com/ontology#author/cam-cynthia>,
+        <https://lovamap.com/ontology#author/segura-tatiana> ;
+    dc1:date "2013"^^xsd:gYear ;
+    dc1:identifier "10.1016/j.actbio.2013.10.002" ;
+    dc1:title "Chemical sintering generates uniform porous hyaluronic acid hydrogels" ;
+    dc1:type "Research Article" ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/cam-cynthia> <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    lova:focusMaterial "Porous hyaluronic acid hydrogels templated by PMMA microspheres using heat, non-, and chemical sintering" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/acta-biomaterialia> .
+
+[] a rdf:Statement ;
+    rdf:object "CSCPPACGZOOCGX-UHFFFAOYSA-N" ;
+    rdf:predicate lova:inchiKey ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2013.10.002/acetone> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CHEBI_15347> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2013.10.002/acetone> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CL_0000134> ;
+    rdf:predicate lova:cellTypeURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2013.10.002/cell-viability> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/OBI_0002039> ;
+    rdf:predicate lova:assayURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2013.10.002/cell-proliferation> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/RXNO_0000009> ;
+    rdf:predicate lova:chemistryURI ;
+    rdf:subject <https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2013.10.002/heat-sintering> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/RXNO_0000009> ;
+    rdf:predicate lova:chemistryURI ;
+    rdf:subject <https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2013.10.002/chemical-sintering> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CL_0000134> ;
+    rdf:predicate lova:cellTypeURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2013.10.002/cell-proliferation> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object "LFQSCWFLJHTTHZ-UHFFFAOYSA-N" ;
+    rdf:predicate lova:inchiKey ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2013.10.002/ethanol> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CHEBI_16236> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2013.10.002/ethanol> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CL_0000134> ;
+    rdf:predicate lova:cellTypeURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2013.10.002/cell-spreading> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CHEBI_141243> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2013.10.002/adh> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CHEBI_61358> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2013.10.002/nhs-ac> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/RXNO_0000009> ;
+    rdf:predicate lova:chemistryURI ;
+    rdf:subject <https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2013.10.002/non-sintering> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/OBI_0001032> ;
+    rdf:predicate lova:assayURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2013.10.002/nonporous-infiltration> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/RXNO_0000009> ;
+    rdf:predicate lova:chemistryURI ;
+    rdf:subject <https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2013.10.002/non-porous-fab> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+

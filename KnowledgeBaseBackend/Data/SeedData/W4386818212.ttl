@@ -1,0 +1,953 @@
+@prefix bibo: <http://purl.org/ontology/bibo/> .
+@prefix dc1: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix lova: <https://lovamap.com/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#comparison/10.1002-adma.202304049/cd206-130-vs-40-d21> a lova:ComparisonResult ;
+    rdfs:label "CD206+ MFI lower in 130 μm MAP vs 40 μm MAP at day 21" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    lova:direction "lower" ;
+    lova:isSignificant true ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adma.202304049/cd206-mfi-d21-130um> .
+
+<https://lovamap.com/ontology#comparison/10.1002-adma.202304049/igg-70-vs-untreated> a lova:ComparisonResult ;
+    rdfs:label "Anti-L-MMP IgG higher in 70 μm MAP vs untreated control" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adma.202304049/igg-auc-70um> .
+
+<https://lovamap.com/ontology#comparison/10.1002-adma.202304049/macrophage-130-vs-others-d7> a lova:ComparisonResult ;
+    rdfs:label "Macrophage% higher in 130 μm MAP vs 40 μm and 70 μm MAP at day 7" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adma.202304049/macrophage-d7-130um> .
+
+<https://lovamap.com/ontology#comparison/10.1002-adma.202304049/neutrophil-130-vs-40-d1> a lova:ComparisonResult ;
+    rdfs:label "Neutrophil% higher in 130 μm vs 40 μm MAP at day 1" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adma.202304049/neutrophil-d1-130um> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adma.202304049/neutrophil-d1-40um> .
+
+<https://lovamap.com/ontology#comparison/10.1002-adma.202304049/tgf-40-vs-130> a lova:ComparisonResult ;
+    rdfs:label "TGF-β higher in 40 μm MAP vs 130 μm MAP at day 21" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adma.202304049/tgf-beta-40um> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adma.202304049/tgf-beta-130um> .
+
+<https://lovamap.com/ontology#comparison/10.1002-adma.202304049/tnf-40-vs-woundres> a lova:ComparisonResult ;
+    rdfs:label "TNF concentration higher in 40 μm MAP vs Woun'Dres at day 21" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adma.202304049/tnf-40um-skin> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adma.202304049/tnf-woundres-skin> .
+
+<https://lovamap.com/ontology#material/10.1002-adma.202304049/woundres> a lova:Material ;
+    rdfs:label "Woun'Dres (clinical standard wound dressing control)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    lova:particleMaterial "Woun'Dres hydrogel dressing (clinical product)" ;
+    lova:particleShape "N/A" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202304049/afollicular-pct-woundres> a lova:Outcome ;
+    rdfs:label "Afollicular percentage — Woun'Dres" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    qudt:numericValue 80.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "40 μm, 130 μm MAP" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202304049/collagen-histology> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Histological" ;
+    lova:measurementType "Afollicular percentage" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202304049/arg1-mfi-d1-130um> a lova:Outcome ;
+    rdfs:label "Arg1+ MFI day 1 — 130 μm MAP" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    qudt:numericValue 44000.0 ;
+    qudt:unit "MFI" ;
+    lova:comparisonGroup "40 μm, 70 μm MAP, Woun'Dres" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202304049/macrophage-phenotyping> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Arg1+ MFI" ;
+    lova:timePoint "Day 1" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202304049/asma-connective-130um> a lova:Outcome ;
+    rdfs:label "α-SMA+ area/nucleus area in biomaterials — 130 μm MAP" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    qudt:numericValue 2.5 ;
+    qudt:unit "ratio" ;
+    lova:comparisonGroup "normal skin baseline" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202304049/collagen-histology> ;
+    lova:measurementCategory "Histological" ;
+    lova:measurementType "α-SMA+ area ratio" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202304049/basophil-d1-70um> a lova:Outcome ;
+    rdfs:label "Basophil% day 1 — 70 μm MAP" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    qudt:numericValue 10.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "40 μm MAP" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202304049/subq-flow-cytometry> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Basophil percentage" ;
+    lova:scope "Bulk/global" ;
+    lova:timePoint "Day 1" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202304049/cd11b-connective-woundres> a lova:Outcome ;
+    rdfs:label "CD11b+ area/nucleus area in connective tissue — Woun'Dres" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    qudt:numericValue 0.55 ;
+    qudt:unit "ratio" ;
+    lova:comparisonGroup "normal skin baseline" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202304049/collagen-histology> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Histological" ;
+    lova:measurementType "CD11b+ area ratio" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202304049/collagen-fiber-length-130um> a lova:Outcome ;
+    rdfs:label "Average collagen fiber length — 130 μm MAP day 21" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    qudt:numericValue 7.5 ;
+    qudt:unit "μm" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202304049/collagen-histology> ;
+    lova:measurementCategory "Histological" ;
+    lova:measurementType "Collagen fiber length" ;
+    lova:timePoint "Day 21" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202304049/collagen-fiber-length-woundres> a lova:Outcome ;
+    rdfs:label "Average collagen fiber length — Woun'Dres day 21" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    qudt:numericValue 5.5 ;
+    qudt:unit "μm" ;
+    lova:comparisonGroup "40 μm, 70 μm, 130 μm MAP" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202304049/collagen-histology> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Histological" ;
+    lova:measurementType "Collagen fiber length" ;
+    lova:timePoint "Day 21" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202304049/collagen-pct-130um> a lova:Outcome ;
+    rdfs:label "Area collagen % — 130 μm MAP day 21" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    qudt:numericValue 50.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202304049/collagen-histology> ;
+    lova:measurementCategory "Histological" ;
+    lova:measurementType "Area collagen percentage" ;
+    lova:timePoint "Day 21" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202304049/collagen-pct-40um> a lova:Outcome ;
+    rdfs:label "Area collagen % — 40 μm MAP day 21" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    qudt:numericValue 48.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202304049/collagen-histology> ;
+    lova:measurementCategory "Histological" ;
+    lova:measurementType "Area collagen percentage" ;
+    lova:timePoint "Day 21" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202304049/collagen-pct-woundres> a lova:Outcome ;
+    rdfs:label "Area collagen % — Woun'Dres day 21" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    qudt:numericValue 32.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "40 μm, 70 μm, 130 μm MAP" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202304049/collagen-histology> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Histological" ;
+    lova:measurementType "Area collagen percentage" ;
+    lova:timePoint "Day 21" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202304049/ed-ratio-130um> a lova:Outcome ;
+    rdfs:label "Epidermis:Dermis ratio — 130 μm MAP" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    qudt:numericValue 0.14 ;
+    qudt:unit "ratio" ;
+    lova:comparisonGroup "40 μm, 70 μm MAP, Woun'Dres" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202304049/collagen-histology> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Histological" ;
+    lova:measurementType "Epidermis:Dermis ratio" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202304049/entry-door-130um> a lova:Outcome ;
+    rdfs:label "Entry door diameter — 130 μm MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    qudt:numericValue 50.0 ;
+    qudt:unit "μm" ;
+    lova:comparisonGroup "BMDM diameter in 3D culture (~20 μm)" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202304049/void-space-characterization> ;
+    lova:measurementCategory "Structural" ;
+    lova:measurementType "Entry door diameter" ;
+    lova:scope "Per-pore" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202304049/entry-door-40um> a lova:Outcome ;
+    rdfs:label "Entry door diameter — 40 μm MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    qudt:numericValue 15.0 ;
+    qudt:unit "μm" ;
+    lova:comparisonGroup "BMDM diameter in 3D culture (~20 μm)" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202304049/void-space-characterization> ;
+    lova:measurementCategory "Structural" ;
+    lova:measurementType "Entry door diameter" ;
+    lova:scope "Per-pore" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202304049/entry-door-70um> a lova:Outcome ;
+    rdfs:label "Entry door diameter — 70 μm MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    qudt:numericValue 25.0 ;
+    qudt:unit "μm" ;
+    lova:comparisonGroup "BMDM diameter in 3D culture (~20 μm)" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202304049/void-space-characterization> ;
+    lova:measurementCategory "Structural" ;
+    lova:measurementType "Entry door diameter" ;
+    lova:scope "Per-pore" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202304049/eosinophil-d7-40um> a lova:Outcome ;
+    rdfs:label "Eosinophil% day 7 — 40 μm MAP" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    qudt:numericValue 15.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "130 μm MAP" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202304049/subq-flow-cytometry> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Eosinophil percentage" ;
+    lova:scope "Bulk/global" ;
+    lova:timePoint "Day 7" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202304049/fceri-d1-40um> a lova:Outcome ;
+    rdfs:label "FcεRI+ cell% day 1 — 40 μm MAP" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    qudt:numericValue 34.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "130 μm MAP" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202304049/subq-flow-cytometry> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "FcεRI+ cell percentage" ;
+    lova:scope "Bulk/global" ;
+    lova:timePoint "Day 1" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202304049/fceri-d21-130um> a lova:Outcome ;
+    rdfs:label "FcεRI+ cell% day 21 — 130 μm MAP" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    qudt:numericValue 70.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "40 μm and 70 μm MAP" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202304049/subq-flow-cytometry> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "FcεRI+ cell percentage" ;
+    lova:scope "Bulk/global" ;
+    lova:timePoint "Day 21" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202304049/gata3-dln-d7-all> a lova:Outcome ;
+    rdfs:label "GATA3+ cell% of CD4+ live cells in draining lymph node day 7" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    qudt:numericValue 58.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202304049/tcell-profiling> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "GATA3+ CD4+ T cell percentage" ;
+    lova:scope "Bulk/global" ;
+    lova:timePoint "Day 7" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202304049/gata3-spleen-d21-40um> a lova:Outcome ;
+    rdfs:label "GATA3+ cell% of CD4+ live cells in spleen day 21 — 40 μm MAP" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    qudt:numericValue 95.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202304049/tcell-profiling> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "GATA3+ CD4+ T cell percentage" ;
+    lova:timePoint "Day 21" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202304049/igg-auc-130um> a lova:Outcome ;
+    rdfs:label "Anti-L-MMP IgG AUC — 130 μm MAP day 21" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    qudt:numericValue 1.1 ;
+    qudt:unit "AUC" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202304049/elisa-igg> ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType "Anti-L-MMP IgG titer (AUC)" ;
+    lova:timePoint "Day 21" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202304049/igg-auc-40um> a lova:Outcome ;
+    rdfs:label "Anti-L-MMP IgG AUC — 40 μm MAP day 21" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    qudt:numericValue 1.9 ;
+    qudt:unit "AUC" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202304049/elisa-igg> ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType "Anti-L-MMP IgG titer (AUC)" ;
+    lova:timePoint "Day 21" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202304049/igg1-subtype-70um> a lova:Outcome ;
+    rdfs:label "Anti-L/D-MMP IgG1 subtype AUC — 70 μm MAP day 21" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    qudt:numericValue 1.8 ;
+    qudt:unit "AUC" ;
+    lova:comparisonGroup "40 μm, 130 μm MAP" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202304049/elisa-igg> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType "IgG1 subtype titer (AUC)" ;
+    lova:timePoint "Day 21" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202304049/largest-enclosed-sphere-130um> a lova:Outcome ;
+    rdfs:label "Largest enclosed sphere diameter — 130 μm MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    qudt:numericValue 42.0 ;
+    qudt:unit "μm" ;
+    lova:comparisonGroup "BMDM diameter in 3D culture (~20 μm)" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202304049/void-space-characterization> ;
+    lova:measurementCategory "Structural" ;
+    lova:measurementType "Largest enclosed sphere diameter" ;
+    lova:scope "Per-pore" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202304049/largest-enclosed-sphere-40um> a lova:Outcome ;
+    rdfs:label "Largest enclosed sphere diameter — 40 μm MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    qudt:numericValue 13.0 ;
+    qudt:unit "μm" ;
+    lova:comparisonGroup "BMDM diameter in 3D culture (~20 μm)" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202304049/void-space-characterization> ;
+    lova:measurementCategory "Structural" ;
+    lova:measurementType "Largest enclosed sphere diameter" ;
+    lova:scope "Per-pore" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202304049/largest-enclosed-sphere-70um> a lova:Outcome ;
+    rdfs:label "Largest enclosed sphere diameter — 70 μm MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    qudt:numericValue 23.0 ;
+    qudt:unit "μm" ;
+    lova:comparisonGroup "BMDM diameter in 3D culture (~20 μm)" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202304049/void-space-characterization> ;
+    lova:measurementCategory "Structural" ;
+    lova:measurementType "Largest enclosed sphere diameter" ;
+    lova:scope "Per-pore" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202304049/ly6c-pct-d1-all> a lova:Outcome ;
+    rdfs:label "Ly6C+ macrophage percentage day 1" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    qudt:numericValue 60.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202304049/macrophage-phenotyping> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Ly6C+ macrophage percentage" ;
+    lova:timePoint "Day 1" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202304049/mac-number-d1-40um> a lova:Outcome ;
+    rdfs:label "Macrophage number day 1 — 40 μm MAP" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    qudt:numericValue 29000.0 ;
+    qudt:unit "cells" ;
+    lova:comparisonGroup "70 μm, 130 μm MAP" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202304049/macrophage-phenotyping> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Macrophage number" ;
+    lova:timePoint "Day 1" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202304049/monocyte-d1-wound-70um> a lova:Outcome ;
+    rdfs:label "Monocyte% day 1 (wound) — 70 μm MAP" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    qudt:numericValue 30.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "40 μm, 130 μm MAP" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202304049/wound-flow-cytometry> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Monocyte percentage" ;
+    lova:timePoint "Day 1" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202304049/neutrophil-d1-wound-70um> a lova:Outcome ;
+    rdfs:label "Neutrophil% day 1 (wound) — 70 μm MAP" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    qudt:numericValue 48.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "40 μm and 130 μm MAP" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202304049/wound-flow-cytometry> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Neutrophil percentage" ;
+    lova:timePoint "Day 1" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202304049/nk-d21-wound-woundres> a lova:Outcome ;
+    rdfs:label "NK cell% day 21 (wound) — Woun'Dres" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    qudt:numericValue 13.5 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "40 μm, 70 μm, 130 μm MAP" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202304049/wound-flow-cytometry> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "NK cell percentage" ;
+    lova:timePoint "Day 21" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202304049/tbet-dln-d7-all> a lova:Outcome ;
+    rdfs:label "Tbet+ cell% of CD4+ live cells in draining lymph node day 7" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    qudt:numericValue 25.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "baseline" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202304049/tcell-profiling> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Tbet+ CD4+ T cell percentage" ;
+    lova:timePoint "Day 7" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202304049/tnf-130um-skin> a lova:Outcome ;
+    rdfs:label "TNF concentration — 130 μm MAP day 21" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    qudt:numericValue 40.0 ;
+    qudt:unit "pg/mL" ;
+    lova:comparisonGroup "Woun'Dres" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202304049/elisa-cytokines> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType "TNF concentration" ;
+    lova:timePoint "Day 21" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202304049/void-fraction-all> a lova:Outcome ;
+    rdfs:label "Void fraction of 40/70/130 μm MAP scaffolds" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202304049/void-space-characterization> ;
+    lova:measurementCategory "Structural" ;
+    lova:measurementType "Void fraction" ;
+    lova:scope "Bulk/global" ;
+    lova:valueString "25-35%" .
+
+<https://lovamap.com/ontology#journal/advanced-materials> a bibo:Journal ;
+    dc1:title "Advanced Materials" ;
+    bibo:issn "0935-9648" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202304049/cd206-mfi-d21-130um> a lova:Outcome ;
+    rdfs:label "CD206+ MFI day 21 — 130 μm MAP" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    qudt:numericValue 90000.0 ;
+    qudt:unit "MFI" ;
+    lova:comparisonGroup "40 μm, 70 μm MAP, Woun'Dres" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202304049/macrophage-phenotyping> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "CD206+ MFI" ;
+    lova:timePoint "Day 21" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202304049/igg-auc-70um> a lova:Outcome ;
+    rdfs:label "Anti-L-MMP IgG AUC — 70 μm MAP day 21" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    qudt:numericValue 3.0 ;
+    qudt:unit "AUC" ;
+    lova:comparisonGroup "untreated control, 130 μm MAP" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202304049/elisa-igg> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType "Anti-L-MMP IgG titer (AUC)" ;
+    lova:timePoint "Day 21" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202304049/macrophage-d7-130um> a lova:Outcome ;
+    rdfs:label "Macrophage% day 7 — 130 μm MAP" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    qudt:numericValue 70.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "40 μm and 70 μm MAP" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202304049/subq-flow-cytometry> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Macrophage percentage" ;
+    lova:scope "Bulk/global" ;
+    lova:timePoint "Day 7" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202304049/neutrophil-d1-130um> a lova:Outcome ;
+    rdfs:label "Neutrophil% day 1 — 130 μm MAP" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    qudt:numericValue 30.0 ;
+    qudt:unit "%" ;
+    lova:comparisonGroup "40 μm and 70 μm MAP" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202304049/subq-flow-cytometry> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Neutrophil percentage" ;
+    lova:scope "Bulk/global" ;
+    lova:timePoint "Day 1" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202304049/neutrophil-d1-40um> a lova:Outcome ;
+    rdfs:label "Neutrophil% day 1 — 40 μm MAP" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    qudt:numericValue 11.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202304049/subq-flow-cytometry> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Neutrophil percentage" ;
+    lova:scope "Bulk/global" ;
+    lova:timePoint "Day 1" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202304049/tgf-beta-130um> a lova:Outcome ;
+    rdfs:label "TGF-β concentration — 130 μm MAP day 21" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    qudt:numericValue 145.0 ;
+    qudt:unit "pg/mL" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202304049/elisa-cytokines> ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType "TGF-β concentration" ;
+    lova:timePoint "Day 21" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202304049/tgf-beta-40um> a lova:Outcome ;
+    rdfs:label "TGF-β concentration — 40 μm MAP day 21" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    qudt:numericValue 290.0 ;
+    qudt:unit "pg/mL" ;
+    lova:comparisonGroup "130 μm MAP" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202304049/elisa-cytokines> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType "TGF-β concentration" ;
+    lova:timePoint "Day 21" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202304049/tnf-40um-skin> a lova:Outcome ;
+    rdfs:label "TNF concentration — 40 μm MAP day 21" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    qudt:numericValue 60.0 ;
+    qudt:unit "pg/mL" ;
+    lova:comparisonGroup "70 μm MAP, Woun'Dres" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202304049/elisa-cytokines> ;
+    lova:isSignificant true ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType "TNF concentration" ;
+    lova:timePoint "Day 21" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.202304049/tnf-woundres-skin> a lova:Outcome ;
+    rdfs:label "TNF concentration — Woun'Dres day 21" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    qudt:numericValue 8.0 ;
+    qudt:unit "pg/mL" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.202304049/elisa-cytokines> ;
+    lova:measurementCategory "Biochemical" ;
+    lova:measurementType "TNF concentration" ;
+    lova:timePoint "Day 21" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.202304049/alexa647> a lova:Reagent ;
+    rdfs:label "AlexaFluor-647" ;
+    lova:concentration "10 μM" ;
+    lova:reagentFunction "Fluorescent labeling of microgels" ;
+    lova:reagentRole "other" ;
+    lova:supplier "ThermoFisher" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.202304049/k-peptide> a lova:Reagent ;
+    rdfs:label "K-peptide (Ac-FKGGERCG-NH2)" ;
+    lova:concentration "500 μM" ;
+    lova:reagentFunction "Factor XIII transglutamination substrate (K-peptide)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "FKGGERCG" ;
+    lova:supplier "GenScript" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.202304049/mmp-peptide> a lova:Reagent ;
+    rdfs:label "MMP-sensitive di-thiol peptide crosslinker (Ac-GCRDGPQGIWGQDRCG-NH2)" ;
+    lova:concentration "0.6 VS:thiol ratio" ;
+    lova:reagentFunction "Enzymatically degradable intra-particle crosslink; used as antigen in ELISA (L-MMP)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:sequence "GCRDGPQGIWGQDRCG" ;
+    lova:supplier "GenScript" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.202304049/peg-vs> a lova:Reagent ;
+    rdfs:label "8-arm PEG-VS" ;
+    lova:concentration "5 wt% (w/v)" ;
+    lova:reagentRole "monomer" ;
+    lova:supplier "JenKem Technology" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.202304049/q-peptide> a lova:Reagent ;
+    rdfs:label "Q-peptide (Ac-NQEQVSPLGGERCG-NH2)" ;
+    lova:concentration "500 μM" ;
+    lova:reagentFunction "Factor XIII transglutamination substrate (Q-peptide)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "NQEQVSPLGGERCG" ;
+    lova:supplier "GenScript" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.202304049/rgd-peptide> a lova:Reagent ;
+    rdfs:label "RGD peptide (Ac-RGDSPGERCG-NH2)" ;
+    lova:concentration "500 μM" ;
+    lova:reagentFunction "Cell adhesion" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "RGDSPGERCG" ;
+    lova:supplier "GenScript" .
+
+<https://lovamap.com/ontology#author/liu-yining> a foaf:Person ;
+    foaf:familyName "Liu" ;
+    foaf:givenName "Yining" ;
+    foaf:name "Yining Liu" .
+
+<https://lovamap.com/ontology#author/schneider-michelle> a foaf:Person ;
+    foaf:familyName "Schneider" ;
+    foaf:givenName "Michelle" ;
+    foaf:name "Michelle Schneider" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" .
+
+<https://lovamap.com/ontology#author/suarez-arnedo-alejandra> a foaf:Person ;
+    foaf:familyName "Suarez-Arnedo" ;
+    foaf:givenName "Alejandra" ;
+    foaf:name "Alejandra Suarez-Arnedo" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.202304049/factor-xiii> a lova:Reagent ;
+    rdfs:label "Factor XIII" ;
+    owl:sameAs <https://www.uniprot.org/uniprot/P00488> ;
+    lova:concentration "250 U/mL, 2 μL per 50 μL dried microgels" ;
+    lova:reagentFunction "Annealing (inter-particle transglutamination crosslinking)" ;
+    lova:reagentRole "enzyme" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.202304049/thrombin> a lova:Reagent ;
+    rdfs:label "Thrombin" ;
+    owl:sameAs <https://www.uniprot.org/uniprot/P00734> ;
+    lova:concentration "200 U/mL in 200 mM Tris-HCl, 150 mM NaCl, 20 mM CaCl2; 1 μL per 50 μL dried microgels" ;
+    lova:reagentFunction "Activation of Factor XIII for annealing" ;
+    lova:reagentRole "enzyme" .
+
+<https://lovamap.com/ontology#author/caston-eleanor> a foaf:Person ;
+    owl:sameAs <https://orcid.org/0000-0002-7629-053X> ;
+    foaf:familyName "Caston" ;
+    foaf:givenName "Eleanor" ;
+    foaf:name "Eleanor L. P. Caston" .
+
+<https://lovamap.com/ontology#author/riley-lindsay> a foaf:Person ;
+    owl:sameAs <https://orcid.org/0009-0003-0503-7136> ;
+    foaf:familyName "Riley" ;
+    foaf:givenName "Lindsay" ;
+    foaf:name "Lindsay Riley" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adma.202304049/wound-flow-cytometry> a lova:Experiment ;
+    rdfs:label "Wound healing immune cell flow cytometry" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    lova:assayOrMethod "13-color innate immune cell flow cytometry panel" ;
+    lova:cellSource "SKH-1 Elite mouse full-thickness excisional wound" ;
+    lova:cellType "Myeloid and lymphoid cells (neutrophils, monocytes, macrophages, FcεRI+ cells, basophils, T cells, B cells, NK cells)" ;
+    lova:cultureDuration "Days 1, 7, 21" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immune cell recruitment" ;
+    lova:sampleSize 5 ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adma.202304049/map-130um>,
+        <https://lovamap.com/ontology#material/10.1002-adma.202304049/map-40um>,
+        <https://lovamap.com/ontology#material/10.1002-adma.202304049/map-70um> .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.202304049/teoa> a lova:Reagent ;
+    rdfs:label "Triethanolamine" ;
+    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_28621> ;
+    lova:concentration "0.3 M" ;
+    lova:inchiKey "GSEJCLTVZPLZKY-UHFFFAOYSA-N" ;
+    lova:reagentRole "solvent" ;
+    lova:supplier "Sigma" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-adma.202304049/map-scaffold-fabrication> a lova:FabricationMethod ;
+    rdfs:label "PEG-VS microgel MAP scaffold via microfluidic water-in-oil emulsion with Factor XIII/Thrombin annealing" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    lova:annealingChemistry "Enzymatic (Factor XIII transglutamination activated by Thrombin)" ;
+    lova:annealingConditions "37°C, 30 min" ;
+    lova:chemistry "Michael-type addition (thiol-ene, VS-thiol)" ;
+    lova:chemistryURI <http://purl.obolibrary.org/obo/RXNO_0000009> ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-adma.202304049/alexa647>,
+        <https://lovamap.com/ontology#reagent/10.1002-adma.202304049/factor-xiii>,
+        <https://lovamap.com/ontology#reagent/10.1002-adma.202304049/k-peptide>,
+        <https://lovamap.com/ontology#reagent/10.1002-adma.202304049/mmp-peptide>,
+        <https://lovamap.com/ontology#reagent/10.1002-adma.202304049/peg-vs>,
+        <https://lovamap.com/ontology#reagent/10.1002-adma.202304049/q-peptide>,
+        <https://lovamap.com/ontology#reagent/10.1002-adma.202304049/rgd-peptide>,
+        <https://lovamap.com/ontology#reagent/10.1002-adma.202304049/teoa>,
+        <https://lovamap.com/ontology#reagent/10.1002-adma.202304049/thrombin> ;
+    lova:manufacturingMethod "Microfluidic water-in-oil emulsion (four-inlet device for 40 μm and 70 μm microgels; two-inlet device for 130 μm microgels)" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adma.202304049/elisa-igg> a lova:Experiment ;
+    rdfs:label "Anti-L-MMP IgG titer and IgG subtype ELISA" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    lova:assayOrMethod "ELISA (anti-peptide IgG titer and isotyping)" ;
+    lova:assayURI <http://purl.obolibrary.org/obo/OBI_0000661> ;
+    lova:cultureDuration "Day 21" ;
+    lova:equipment "Spectramax i3X microplate reader" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Humoral immune response" ;
+    lova:sampleSize 5 ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adma.202304049/map-130um>,
+        <https://lovamap.com/ontology#material/10.1002-adma.202304049/map-40um>,
+        <https://lovamap.com/ontology#material/10.1002-adma.202304049/map-70um> .
+
+<https://lovamap.com/ontology#experiment/10.1002-adma.202304049/macrophage-phenotyping> a lova:Experiment ;
+    rdfs:label "Macrophage phenotyping (CD206, Arg1, CD11c, MHCII, CD86, iNOS) in wounds" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    lova:assayOrMethod "7-color macrophage flow cytometry panel, FlowSOM, tSNE" ;
+    lova:cellSource "SKH-1 Elite mouse wound" ;
+    lova:cellType "Macrophage" ;
+    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000235> ;
+    lova:cultureDuration "Days 1, 7, 21" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Macrophage polarization phenotyping" ;
+    lova:sampleSize 5 ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adma.202304049/map-130um>,
+        <https://lovamap.com/ontology#material/10.1002-adma.202304049/map-40um>,
+        <https://lovamap.com/ontology#material/10.1002-adma.202304049/map-70um> .
+
+<https://lovamap.com/ontology#experiment/10.1002-adma.202304049/tcell-profiling> a lova:Experiment ;
+    rdfs:label "T cell profiling in draining lymph node and spleen" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    lova:assayOrMethod "7-color T cell flow cytometry panel" ;
+    lova:assayURI <http://purl.obolibrary.org/obo/OBI_0000916> ;
+    lova:cellType "CD4+ T cells" ;
+    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000624> ;
+    lova:cultureDuration "Days 1, 7, 21" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "T cell differentiation (GATA3/Tbet)" ;
+    lova:sampleSize 5 ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adma.202304049/map-130um>,
+        <https://lovamap.com/ontology#material/10.1002-adma.202304049/map-40um>,
+        <https://lovamap.com/ontology#material/10.1002-adma.202304049/map-70um> .
+
+<https://lovamap.com/ontology#experiment/10.1002-adma.202304049/elisa-cytokines> a lova:Experiment ;
+    rdfs:label "ELISA cytokine quantification (TGF-β, TNF) in wound" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    lova:assayOrMethod "ELISA" ;
+    lova:assayURI <http://purl.obolibrary.org/obo/OBI_0000661> ;
+    lova:cultureDuration "Day 21" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Cytokine secretion" ;
+    lova:sampleSize 5 ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adma.202304049/map-130um>,
+        <https://lovamap.com/ontology#material/10.1002-adma.202304049/map-40um>,
+        <https://lovamap.com/ontology#material/10.1002-adma.202304049/map-70um> .
+
+<https://lovamap.com/ontology#experiment/10.1002-adma.202304049/void-space-characterization> a lova:Experiment ;
+    rdfs:label "LOVAMAP void space and pore geometry characterization of MAP scaffolds" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    lova:assayOrMethod "LOVAMAP software, confocal imaging, IMARIS void volume analysis" ;
+    lova:equipment "Nikon Ti Eclipse confocal microscope, IMARIS" ;
+    lova:experimentCategory "Structural" ;
+    lova:experimentType "3D-pore/void space segmentation" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adma.202304049/map-130um>,
+        <https://lovamap.com/ontology#material/10.1002-adma.202304049/map-40um>,
+        <https://lovamap.com/ontology#material/10.1002-adma.202304049/map-70um> .
+
+<https://lovamap.com/ontology#experiment/10.1002-adma.202304049/subq-flow-cytometry> a lova:Experiment ;
+    rdfs:label "Subcutaneous implantation immune cell flow cytometry" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    lova:assayOrMethod "11-color innate immune cell flow cytometry panel" ;
+    lova:cellSource "C57BL/6 mouse subcutaneous implant" ;
+    lova:cellType "Myeloid cells (neutrophils, monocytes, macrophages, FcεRI+ cells, basophils, eosinophils, DCs, T cells)" ;
+    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000763> ;
+    lova:cultureDuration "Days 1, 4, 7, 14, 21" ;
+    lova:equipment "Cytek NL-3000 Flow Cytometer" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immune cell recruitment" ;
+    lova:sampleSize 6 ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adma.202304049/map-130um>,
+        <https://lovamap.com/ontology#material/10.1002-adma.202304049/map-40um>,
+        <https://lovamap.com/ontology#material/10.1002-adma.202304049/map-70um> .
+
+<https://lovamap.com/ontology#material/10.1002-adma.202304049/map-130um> a lova:Material ;
+    rdfs:label "130 μm PEG-VS MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adma.202304049/map-scaffold-fabrication> ;
+    lova:packingConfiguration "Random/jammed" ;
+    lova:particleMaterial "8-arm PEG-VS" ;
+    lova:particleShape "Sphere" ;
+    lova:particleSizeMax 135.0 ;
+    lova:particleSizeMin 125.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:reportedPoreSize "Largest enclosed sphere and entry doors mostly larger than myeloid cell diameter (~20 μm)" ;
+    lova:reportedPorosity 0.35 ;
+    lova:sizeDistribution "Monodisperse" .
+
+<https://lovamap.com/ontology#material/10.1002-adma.202304049/map-40um> a lova:Material ;
+    rdfs:label "40 μm PEG-VS MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adma.202304049/map-scaffold-fabrication> ;
+    lova:packingConfiguration "Random/jammed" ;
+    lova:particleMaterial "8-arm PEG-VS" ;
+    lova:particleShape "Sphere" ;
+    lova:particleSizeMax 45.0 ;
+    lova:particleSizeMin 35.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:reportedPoreSize "Largest enclosed sphere mostly below myeloid cell diameter (~20 μm)" ;
+    lova:reportedPorosity 0.25 ;
+    lova:sizeDistribution "Monodisperse" .
+
+<https://lovamap.com/ontology#material/10.1002-adma.202304049/map-70um> a lova:Material ;
+    rdfs:label "70 μm PEG-VS MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adma.202304049/map-scaffold-fabrication> ;
+    lova:packingConfiguration "Random/jammed" ;
+    lova:particleMaterial "8-arm PEG-VS" ;
+    lova:particleShape "Sphere" ;
+    lova:particleSizeMax 75.0 ;
+    lova:particleSizeMin 65.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:reportedPoreSize "Largest enclosed sphere and entry doors mostly larger than myeloid cell diameter (~20 μm)" ;
+    lova:reportedPorosity 0.30 ;
+    lova:sizeDistribution "Monodisperse" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adma.202304049/collagen-histology> a lova:Experiment ;
+    rdfs:label "Collagen architecture and inflammation histological assessment" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adma.202304049> ;
+    lova:assayOrMethod "Picro-Sirius Red staining, Masson's Trichrome, immunohistochemistry (CD11b, α-SMA)" ;
+    lova:cultureDuration "Day 21" ;
+    lova:equipment "ZEISS Axio Scan.Z1" ;
+    lova:experimentCategory "Histological" ;
+    lova:experimentType "Collagen/inflammation quantification" ;
+    lova:sampleSize 5 ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adma.202304049/map-130um>,
+        <https://lovamap.com/ontology#material/10.1002-adma.202304049/map-40um>,
+        <https://lovamap.com/ontology#material/10.1002-adma.202304049/map-70um> .
+
+<https://lovamap.com/ontology#agent/rdf_enrichment> a prov:SoftwareAgent ;
+    rdfs:label "rdf_enrichment pipeline" .
+
+<https://lovamap.com/ontology#paper/10.1002-adma.202304049> a bibo:AcademicArticle ;
+    rdfs:label "Liu et al., 2023 — Spatial Confinement in MAP Scaffolds" ;
+    dc1:bibliographicCitation "Liu et al., 2023" ;
+    dc1:creator <https://lovamap.com/ontology#author/caston-eleanor>,
+        <https://lovamap.com/ontology#author/liu-yining>,
+        <https://lovamap.com/ontology#author/riley-lindsay>,
+        <https://lovamap.com/ontology#author/schneider-michelle>,
+        <https://lovamap.com/ontology#author/segura-tatiana>,
+        <https://lovamap.com/ontology#author/suarez-arnedo-alejandra> ;
+    dc1:date "2023"^^xsd:gYear ;
+    dc1:identifier "10.1002/adma.202304049" ;
+    dc1:title "Exploring the Role of Spatial Confinement in Immune Cell Recruitment and Regeneration of Skin Wounds" ;
+    dc1:type "Research Article" ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/liu-yining> <https://lovamap.com/ontology#author/suarez-arnedo-alejandra> <https://lovamap.com/ontology#author/caston-eleanor> <https://lovamap.com/ontology#author/riley-lindsay> <https://lovamap.com/ontology#author/schneider-michelle> <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    lova:focusMaterial "PEG-VS Microporous Annealed Particle (MAP) scaffolds made of 40 μm, 70 μm, and 130 μm spherical microgels; effect of spatial confinement on immune cell recruitment and wound regeneration" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/advanced-materials> .
+
+[] a rdf:Statement ;
+    rdf:object <https://orcid.org/0009-0003-0503-7136> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#author/riley-lindsay> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CL_0000624> ;
+    rdf:predicate lova:cellTypeURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1002-adma.202304049/tcell-profiling> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <https://www.uniprot.org/uniprot/P00488> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1002-adma.202304049/factor-xiii> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/RXNO_0000009> ;
+    rdf:predicate lova:chemistryURI ;
+    rdf:subject <https://lovamap.com/ontology#fabrication-method/10.1002-adma.202304049/map-scaffold-fabrication> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CL_0000763> ;
+    rdf:predicate lova:cellTypeURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1002-adma.202304049/subq-flow-cytometry> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/OBI_0000661> ;
+    rdf:predicate lova:assayURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1002-adma.202304049/elisa-cytokines> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object "GSEJCLTVZPLZKY-UHFFFAOYSA-N" ;
+    rdf:predicate lova:inchiKey ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1002-adma.202304049/teoa> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CL_0000235> ;
+    rdf:predicate lova:cellTypeURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1002-adma.202304049/macrophage-phenotyping> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/OBI_0000661> ;
+    rdf:predicate lova:assayURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1002-adma.202304049/elisa-igg> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/CHEBI_28621> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1002-adma.202304049/teoa> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <http://purl.obolibrary.org/obo/OBI_0000916> ;
+    rdf:predicate lova:assayURI ;
+    rdf:subject <https://lovamap.com/ontology#experiment/10.1002-adma.202304049/tcell-profiling> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <https://orcid.org/0000-0002-7629-053X> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#author/caston-eleanor> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+
+[] a rdf:Statement ;
+    rdf:object <https://www.uniprot.org/uniprot/P00734> ;
+    rdf:predicate owl:sameAs ;
+    rdf:subject <https://lovamap.com/ontology#reagent/10.1002-adma.202304049/thrombin> ;
+    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
+

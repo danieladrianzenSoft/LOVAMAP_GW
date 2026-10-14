@@ -1,0 +1,814 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1002-adma.201606471> a bibo:AcademicArticle ;
+    rdfs:label "Nih et al., 2017 — MAP Hydrogels in Stroke Cavity" ;
+    dc:title "Injection of Microporous Annealing Particle (MAP) Hydrogels in the Stroke Cavity Reduces Gliosis and Inflammation and Promotes NPC Migration to the Lesion" ;
+    dc:identifier "10.1002/adma.201606471" ;
+    dc:date "2017"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/advanced-materials> ;
+    dc:creator <https://lovamap.com/ontology#author/nih-lina> ,
+               <https://lovamap.com/ontology#author/sideris-elias> ,
+               <https://lovamap.com/ontology#author/carmichael-stanley> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/nih-lina>
+                      <https://lovamap.com/ontology#author/sideris-elias>
+                      <https://lovamap.com/ontology#author/carmichael-stanley>
+                      <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    dc:bibliographicCitation "Nih et al., 2017" ;
+    lova:focusMaterial "Hyaluronic acid microporous annealed particle (MAP) hydrogels injected into stroke cavity vs nonporous HA hydrogel controls" .
+
+<https://lovamap.com/ontology#author/nih-lina> a foaf:Person ;
+    foaf:familyName "Nih" ;
+    foaf:givenName "Lina R." ;
+    foaf:name "Lina R. Nih" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California, Los Angeles" ;
+    schema:affiliation "Department of Neurology, David Geffen School of Medicine, University of California, Los Angeles" .
+
+<https://lovamap.com/ontology#author/sideris-elias> a foaf:Person ;
+    foaf:familyName "Sideris" ;
+    foaf:givenName "Elias" ;
+    foaf:name "Elias Sideris" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California, Los Angeles" .
+
+<https://lovamap.com/ontology#author/carmichael-stanley> a foaf:Person ;
+    foaf:familyName "Carmichael" ;
+    foaf:givenName "S. Thomas" ;
+    foaf:name "S. Thomas Carmichael" ;
+    schema:affiliation "Department of Neurology, David Geffen School of Medicine, University of California, Los Angeles" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" ;
+    schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California, Los Angeles" ;
+    schema:affiliation "Department of Dermatology, David Geffen School of Medicine, University of California, Los Angeles" .
+
+<https://lovamap.com/ontology#journal/advanced-materials> a bibo:Journal ;
+    dc:title "Advanced Materials" ;
+    bibo:issn "0935-9648" .
+
+<https://lovamap.com/ontology#material/10.1002-adma.201606471/map-hydrogel> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "HA MAP hydrogel (microporous annealed particle)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "Acrylate-functionalized hyaluronic acid (HA-Ac) with K, Q, RGD peptides and MMP-sensitive crosslinker" ;
+    lova:particleSizeMin 20.0 ;
+    lova:particleSizeMax 110.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:sizeDistribution "Average μgel diameter 45 μm, narrow size range" ;
+    lova:stiffnessValue 1510.0 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:packingConfiguration "Random" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adma.201606471/map-fabrication> .
+
+<https://lovamap.com/ontology#material/10.1002-adma.201606471/nanoporous-hydrogel> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "HA nanoporous hydrogel (bulk, nonporous control)" ;
+    lova:particleMaterial "Acrylate-functionalized hyaluronic acid (HA-Ac) with K, Q, RGD peptides and MMP-sensitive crosslinker" ;
+    lova:stiffnessQualitative "Same bulk modulus and biochemical signals as MAP, but bulk non-porous gel" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adma.201606471/nanoporous-fabrication> .
+
+<https://lovamap.com/ontology#material/10.1002-adma.201606471/no-gel-control> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "No Gel stroke-only control" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-adma.201606471/map-fabrication> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "Microfluidic flow-focusing HA μgel generation with FXIIIa annealing" ;
+    lova:chemistry "Michael-type addition (thiol-ene)" ;
+    lova:manufacturingMethod "Microfluidic flow-focusing water-in-oil emulsion" ;
+    lova:annealingChemistry "Enzymatic (Factor XIIIa transglutamination)" ;
+    lova:annealingConditions "37 °C, 90 min" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-adma.201606471/ha-acrylate> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adma.201606471/k-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adma.201606471/q-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adma.201606471/rgd-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adma.201606471/mmp-crosslinker> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adma.201606471/fxiii> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adma.201606471/thrombin> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adma.201606471/span-80> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adma.201606471/mineral-oil> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adma.201606471/teoa> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adma.201606471/alexa488-maleimide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adma.201606471/calcium> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-adma.201606471/nanoporous-fabrication> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "Bulk in situ gelation of HA nanoporous hydrogel" ;
+    lova:chemistry "Michael-type addition (thiol-ene)" ;
+    lova:manufacturingMethod "Bulk in situ gelation (no microfluidic emulsification)" ;
+    lova:annealingChemistry "Enzymatic (FXIIIa and thrombin added to mimic microgel condition)" ;
+    lova:annealingConditions "In situ at injection" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-adma.201606471/ha-acrylate> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adma.201606471/k-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adma.201606471/q-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adma.201606471/rgd-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adma.201606471/mmp-crosslinker> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adma.201606471/fxiii> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adma.201606471/thrombin> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adma.201606471/teoa> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adma.201606471/alexa647-maleimide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adma.201606471/calcium> .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.201606471/ha-acrylate> a lova:Reagent ;
+    rdfs:label "Acrylate-functionalized hyaluronic acid (HA-Ac)" ;
+    lova:reagentRole "monomer" ;
+    lova:concentration "7% (w/v)" ;
+    lova:reagentFunction "Backbone polymer for hydrogel network" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.201606471/k-peptide> a lova:Reagent ;
+    rdfs:label "K-peptide (Ac-FKGGERCG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "FKGGERCG" ;
+    lova:concentration "250 μM" ;
+    lova:reagentFunction "Factor XIIIa substrate for annealing" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.201606471/q-peptide> a lova:Reagent ;
+    rdfs:label "Q-peptide (Ac-NQEQVSPLGGERCG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "NQEQVSPLGGERCG" ;
+    lova:concentration "250 μM" ;
+    lova:reagentFunction "Factor XIIIa substrate for annealing" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.201606471/rgd-peptide> a lova:Reagent ;
+    rdfs:label "RGD adhesion peptide (Ac-RGDSPGERCG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "RGDSPGERCG" ;
+    lova:concentration "500 μM" ;
+    lova:reagentFunction "Cell adhesion" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.201606471/mmp-crosslinker> a lova:Reagent ;
+    rdfs:label "MMP-sensitive di-thiol crosslinker peptide (Ac-GCRDGPQGIWGQDRCG-NH2)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:sequence "GCRDGPQGIWGQDRCG" ;
+    lova:concentration "7.8×10^-3 M" ;
+    lova:supplier "Genscript" ;
+    lova:reagentFunction "Enzymatically degradable crosslink (MMP-sensitive)" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.201606471/fxiii> a lova:Reagent ;
+    rdfs:label "Factor XIII (FXIII)" ;
+    lova:reagentRole "enzyme" ;
+    lova:concentration "5 U/mL" ;
+    lova:reagentFunction "Annealing / crosslinking enzyme (transglutaminase)" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.201606471/thrombin> a lova:Reagent ;
+    rdfs:label "Thrombin" ;
+    lova:reagentRole "enzyme" ;
+    lova:concentration "1 U/mL" ;
+    lova:reagentFunction "Activates Factor XIII to FXIIIa" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.201606471/span-80> a lova:Reagent ;
+    rdfs:label "Span-80 surfactant" ;
+    lova:reagentRole "surfactant" ;
+    lova:concentration "1%" ;
+    lova:reagentFunction "Stabilizes water-in-oil emulsion droplets" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.201606471/mineral-oil> a lova:Reagent ;
+    rdfs:label "Heavy mineral oil" ;
+    lova:reagentRole "carrier oil" ;
+    lova:reagentFunction "Continuous oil phase for microfluidic droplet generation" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.201606471/teoa> a lova:Reagent ;
+    rdfs:label "Triethanolamine (TEOA) buffer" ;
+    lova:reagentRole "solvent" ;
+    lova:concentration "0.3 M, pH 8.8" ;
+    lova:reagentFunction "Buffer for HA-acrylate reaction" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.201606471/alexa488-maleimide> a lova:Reagent ;
+    rdfs:label "Alexa-Fluor 488-maleimide" ;
+    lova:reagentRole "other" ;
+    lova:concentration "10×10^-6 M" ;
+    lova:supplier "Life Technologies" ;
+    lova:reagentFunction "Fluorescent labeling of MAP microgels" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.201606471/alexa647-maleimide> a lova:Reagent ;
+    rdfs:label "Alexa-Fluor 647-maleimide" ;
+    lova:reagentRole "other" ;
+    lova:concentration "10×10^-6 M" ;
+    lova:reagentFunction "Fluorescent labeling of nanoporous hydrogel" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adma.201606471/calcium> a lova:Reagent ;
+    rdfs:label "Calcium chloride (Ca2+)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "10×10^-3 M" ;
+    lova:reagentFunction "Cofactor for Factor XIII crosslinking" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adma.201606471/mechanical-testing> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adma.201606471/map-hydrogel> ;
+    rdfs:label "Instron compression testing of annealed MAP scaffold" ;
+    lova:experimentCategory "Mechanical" ;
+    lova:experimentType "Compression" ;
+    lova:equipment "Instron 5500 series" ;
+    lova:strainRate "1 mm/min" ;
+    lova:preconditioning "Swollen in HEPES buffered saline for 4h at room temperature" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201606471/young-modulus> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201606471/mechanical-testing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "Young's modulus of annealed MAP scaffold" ;
+    lova:measurementType "Young's modulus" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 1510.0 ;
+    qudt:unit "Pa" ;
+    lova:stdDev 56.0 ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adma.201606471/ugel-size-distribution> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adma.201606471/map-hydrogel> ;
+    rdfs:label "Microfluidic μgel size distribution characterization" ;
+    lova:experimentCategory "Material characterization" ;
+    lova:experimentType "Particle size distribution" ;
+    lova:assayOrMethod "Microscopy sizing" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201606471/avg-diameter> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201606471/ugel-size-distribution> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "Average μgel diameter" ;
+    lova:measurementType "Average μgel diameter" ;
+    lova:measurementCategory "Material characterization" ;
+    qudt:numericValue 45.0 ;
+    qudt:unit "μm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201606471/size-range> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201606471/ugel-size-distribution> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "μgel size distribution range" ;
+    lova:measurementType "μgel size range" ;
+    lova:measurementCategory "Material characterization" ;
+    lova:valueString "20-110 μm, majority 20-50 μm" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adma.201606471/gfap-astrogliosis> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adma.201606471/map-hydrogel> ,
+                      <https://lovamap.com/ontology#material/10.1002-adma.201606471/nanoporous-hydrogel> ,
+                      <https://lovamap.com/ontology#material/10.1002-adma.201606471/no-gel-control> ;
+    rdfs:label "GFAP astrogliosis analysis post MCAo stroke" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immunohistochemistry" ;
+    lova:assayOrMethod "GFAP staining" ;
+    lova:cellType "Astrocytes" ;
+    lova:cellSource "Mouse brain (C57BL/6, MCAo stroke model)" ;
+    lova:equipment "Nikon C2 confocal microscope" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201606471/gfap-scar-thickness-map> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201606471/gfap-astrogliosis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "GFAP scar thickness — MAP gel" ;
+    lova:measurementType "Astrocytic scar thickness" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 43.0 ;
+    qudt:unit "μm" ;
+    lova:stdDev 8.0 ;
+    lova:timePoint "10 days postinjection" ;
+    lova:comparisonGroup "Nanoporous gel, No Gel" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201606471/gfap-scar-thickness-npore> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201606471/gfap-astrogliosis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "GFAP scar thickness — nanoporous gel" ;
+    lova:measurementType "Astrocytic scar thickness" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 234.0 ;
+    qudt:unit "μm" ;
+    lova:stdDev 54.0 ;
+    lova:timePoint "10 days postinjection" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201606471/gfap-scar-thickness-nogel> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201606471/gfap-astrogliosis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "GFAP scar thickness — No Gel" ;
+    lova:measurementType "Astrocytic scar thickness" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 325.0 ;
+    qudt:unit "μm" ;
+    lova:stdDev 69.0 ;
+    lova:timePoint "10 days postinjection" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201606471/gfap-infiltration-map> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201606471/gfap-astrogliosis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "Astrocyte infiltration length — MAP gel" ;
+    lova:measurementType "Astrocyte infiltration distance" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 279.0 ;
+    qudt:unit "μm" ;
+    lova:stdDev 71.0 ;
+    lova:timePoint "10 days postinjection" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201606471/gfap-infiltration-npore> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201606471/gfap-astrogliosis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "Astrocyte infiltration length — nanoporous gel" ;
+    lova:measurementType "Astrocyte infiltration distance" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 42.0 ;
+    qudt:unit "μm" ;
+    lova:stdDev 19.0 ;
+    lova:timePoint "10 days postinjection" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201606471/gfap-infarct-area-map> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201606471/gfap-astrogliosis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "GFAP positive area in infarct — MAP gel" ;
+    lova:measurementType "GFAP positive area (infarct)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 16.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "10 days postinjection" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201606471/gfap-infarct-area-npore> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201606471/gfap-astrogliosis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "GFAP positive area in infarct — nanoporous gel" ;
+    lova:measurementType "GFAP positive area (infarct)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 13.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "10 days postinjection" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201606471/gfap-infarct-area-nogel> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201606471/gfap-astrogliosis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "GFAP positive area in infarct — No Gel" ;
+    lova:measurementType "GFAP positive area (infarct)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 8.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "10 days postinjection" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201606471/gfap-periinfarct-area-map> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201606471/gfap-astrogliosis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "GFAP positive area in peri-infarct — MAP gel" ;
+    lova:measurementType "GFAP positive area (peri-infarct)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 9.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "10 days postinjection" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201606471/gfap-periinfarct-area-npore> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201606471/gfap-astrogliosis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "GFAP positive area in peri-infarct — nanoporous gel" ;
+    lova:measurementType "GFAP positive area (peri-infarct)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 17.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "10 days postinjection" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201606471/gfap-periinfarct-area-nogel> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201606471/gfap-astrogliosis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "GFAP positive area in peri-infarct — No Gel" ;
+    lova:measurementType "GFAP positive area (peri-infarct)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 26.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "10 days postinjection" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adma.201606471/iba1-microgliosis> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adma.201606471/map-hydrogel> ,
+                      <https://lovamap.com/ontology#material/10.1002-adma.201606471/nanoporous-hydrogel> ,
+                      <https://lovamap.com/ontology#material/10.1002-adma.201606471/no-gel-control> ;
+    rdfs:label "IBA-1 microgliosis analysis post MCAo stroke" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immunohistochemistry" ;
+    lova:assayOrMethod "IBA-1 staining" ;
+    lova:cellType "Microglia" ;
+    lova:cellSource "Mouse brain (C57BL/6, MCAo stroke model)" ;
+    lova:equipment "Nikon C2 confocal microscope" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201606471/iba1-infarct-map> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201606471/iba1-microgliosis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "IBA-1 positive area in infarct — MAP gel" ;
+    lova:measurementType "IBA-1 positive area (infarct)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 19.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "10 days postinjection" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201606471/iba1-infarct-npore> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201606471/iba1-microgliosis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "IBA-1 positive area in infarct — nanoporous gel" ;
+    lova:measurementType "IBA-1 positive area (infarct)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 58.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "10 days postinjection" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201606471/iba1-infarct-nogel> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201606471/iba1-microgliosis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "IBA-1 positive area in infarct — No Gel" ;
+    lova:measurementType "IBA-1 positive area (infarct)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 50.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "10 days postinjection" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201606471/iba1-periinfarct-map> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201606471/iba1-microgliosis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "IBA-1 positive area in peri-infarct — MAP gel" ;
+    lova:measurementType "IBA-1 positive area (peri-infarct)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 12.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "10 days postinjection" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201606471/iba1-periinfarct-npore> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201606471/iba1-microgliosis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "IBA-1 positive area in peri-infarct — nanoporous gel" ;
+    lova:measurementType "IBA-1 positive area (peri-infarct)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 27.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "10 days postinjection" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201606471/iba1-periinfarct-nogel> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201606471/iba1-microgliosis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "IBA-1 positive area in peri-infarct — No Gel" ;
+    lova:measurementType "IBA-1 positive area (peri-infarct)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 40.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "10 days postinjection" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adma.201606471/vascularization> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adma.201606471/map-hydrogel> ,
+                      <https://lovamap.com/ontology#material/10.1002-adma.201606471/nanoporous-hydrogel> ,
+                      <https://lovamap.com/ontology#material/10.1002-adma.201606471/no-gel-control> ;
+    rdfs:label "Vascularization analysis (Glut-1) post MCAo stroke" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Vascularization quantification" ;
+    lova:assayOrMethod "Glut-1 staining" ;
+    lova:cellType "Endothelial cells" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201606471/vessel-periinfarct-map> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201606471/vascularization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "Vessel positive area in peri-infarct — MAP gel" ;
+    lova:measurementType "Vessel (Glut-1) positive area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 22.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "10 days postinjection" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201606471/vessel-periinfarct-npore> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201606471/vascularization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "Vessel positive area in peri-infarct — nanoporous gel" ;
+    lova:measurementType "Vessel (Glut-1) positive area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 6.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "10 days postinjection" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201606471/vessel-periinfarct-nogel> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201606471/vascularization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "Vessel positive area in peri-infarct — No Gel" ;
+    lova:measurementType "Vessel (Glut-1) positive area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 6.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "10 days postinjection" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adma.201606471/npc-ventricle-analysis> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adma.201606471/map-hydrogel> ,
+                      <https://lovamap.com/ontology#material/10.1002-adma.201606471/nanoporous-hydrogel> ,
+                      <https://lovamap.com/ontology#material/10.1002-adma.201606471/no-gel-control> ;
+    rdfs:label "NPC (DCX/Ki67) proliferation and migration analysis from SVZ" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell proliferation and migration" ;
+    lova:assayOrMethod "DCX/Ki67 immunostaining" ;
+    lova:cellType "Neural progenitor cells (NPCs)" ;
+    lova:cellSource "Mouse subventricular zone (SVZ)" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201606471/npc-count-ventricle-map> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201606471/npc-ventricle-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "NPC count along ventricle wall — MAP gel" ;
+    lova:measurementType "NPC count (ventricle wall)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 34.0 ;
+    qudt:unit "cells/section" ;
+    lova:stdDev 6.0 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201606471/npc-count-ventricle-npore> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201606471/npc-ventricle-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "NPC count along ventricle wall — nanoporous gel" ;
+    lova:measurementType "NPC count (ventricle wall)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 18.0 ;
+    qudt:unit "cells/section" ;
+    lova:stdDev 3.0 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201606471/npc-count-ventricle-nogel> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201606471/npc-ventricle-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "NPC count along ventricle wall — No Gel" ;
+    lova:measurementType "NPC count (ventricle wall)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 22.0 ;
+    qudt:unit "cells/section" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201606471/npc-total-count-map> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201606471/npc-ventricle-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "Total NPC/Ki67 cell number — MAP gel" ;
+    lova:measurementType "Total NPC/Ki67 count" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 65.0 ;
+    qudt:unit "cells" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201606471/npc-total-count-npore> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201606471/npc-ventricle-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "Total NPC/Ki67 cell number — nanoporous gel" ;
+    lova:measurementType "Total NPC/Ki67 count" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 30.0 ;
+    qudt:unit "cells" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201606471/npc-total-count-nogel> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201606471/npc-ventricle-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "Total NPC/Ki67 cell number — No Gel" ;
+    lova:measurementType "Total NPC/Ki67 count" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 30.0 ;
+    qudt:unit "cells" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201606471/npc-migrating-count-map> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201606471/npc-ventricle-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "Migrating NPC cell number — MAP gel" ;
+    lova:measurementType "Migrating NPC count" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 32.0 ;
+    qudt:unit "cells" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201606471/npc-migrating-count-npore> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201606471/npc-ventricle-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "Migrating NPC cell number — nanoporous gel" ;
+    lova:measurementType "Migrating NPC count" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 10.0 ;
+    qudt:unit "cells" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201606471/npc-migrating-count-nogel> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201606471/npc-ventricle-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "Migrating NPC cell number — No Gel" ;
+    lova:measurementType "Migrating NPC count" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 10.0 ;
+    qudt:unit "cells" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201606471/npc-migration-distance-map> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201606471/npc-ventricle-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "NPC migration distance from SVZ — MAP gel" ;
+    lova:measurementType "NPC migration distance" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.0 ;
+    qudt:unit "mm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201606471/npc-migration-distance-npore> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201606471/npc-ventricle-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "NPC migration distance from SVZ — nanoporous gel" ;
+    lova:measurementType "NPC migration distance" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "<0.5 mm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201606471/npc-migration-distance-nogel> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201606471/npc-ventricle-analysis> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "NPC migration distance from SVZ — No Gel" ;
+    lova:measurementType "NPC migration distance" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "<0.23 mm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adma.201606471/npc-infarct-infiltration> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adma.201606471/map-hydrogel> ,
+                      <https://lovamap.com/ontology#material/10.1002-adma.201606471/nanoporous-hydrogel> ,
+                      <https://lovamap.com/ontology#material/10.1002-adma.201606471/no-gel-control> ;
+    rdfs:label "NPC infiltration into stroke cavity (DCX staining)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "NPC infiltration into stroke cavity" ;
+    lova:assayOrMethod "DCX staining" ;
+    lova:cellType "Neural progenitor cells (NPCs)" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201606471/dcx-positive-area-map> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201606471/npc-infarct-infiltration> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "DCX positive area in stroke site — MAP gel" ;
+    lova:measurementType "DCX positive area (stroke site)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 3.75 ;
+    qudt:unit "%" ;
+    lova:stdDev 1.2 ;
+    lova:timePoint "10 days postinjection" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201606471/dcx-positive-area-npore> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201606471/npc-infarct-infiltration> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "DCX positive area in stroke site — nanoporous gel" ;
+    lova:measurementType "DCX positive area (stroke site)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "10 days postinjection" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201606471/dcx-positive-area-nogel> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201606471/npc-infarct-infiltration> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "DCX positive area in stroke site — No Gel" ;
+    lova:measurementType "DCX positive area (stroke site)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "10 days postinjection" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201606471/npc-migration-depth-map> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201606471/npc-infarct-infiltration> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "NPC migration depth into MAP scaffold" ;
+    lova:measurementType "NPC migration depth into scaffold" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "up to 300 μm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adma.201606471/axonal-infiltration> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adma.201606471/map-hydrogel> ,
+                      <https://lovamap.com/ontology#material/10.1002-adma.201606471/nanoporous-hydrogel> ,
+                      <https://lovamap.com/ontology#material/10.1002-adma.201606471/no-gel-control> ;
+    rdfs:label "Axonal infiltration analysis (NF200)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Axonal infiltration quantification" ;
+    lova:assayOrMethod "NF200 staining" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adma.201606471/axonal-infiltration-outcome> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adma.201606471/axonal-infiltration> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "Axonal infiltration (NF200+) — no condition differences" ;
+    lova:measurementType "Axonal infiltration (NF200+ signal)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "No differences observed between conditions" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adma.201606471/scar-thickness-map-vs-npore> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "GFAP scar thickness lower in MAP vs nanoporous gel" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adma.201606471/gfap-scar-thickness-map> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adma.201606471/gfap-scar-thickness-npore> ;
+    lova:direction "lower" ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 .
+
+<https://lovamap.com/ontology#comparison/10.1002-adma.201606471/scar-thickness-map-vs-nogel> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "GFAP scar thickness lower in MAP vs No Gel" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adma.201606471/gfap-scar-thickness-map> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adma.201606471/gfap-scar-thickness-nogel> ;
+    lova:direction "lower" ;
+    lova:isSignificant true ;
+    lova:pValue 0.0001 .
+
+<https://lovamap.com/ontology#comparison/10.1002-adma.201606471/infiltration-map-vs-npore> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "Astrocyte infiltration higher in MAP vs nanoporous gel" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adma.201606471/gfap-infiltration-map> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adma.201606471/gfap-infiltration-npore> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:pValue 0.0001 .
+
+<https://lovamap.com/ontology#comparison/10.1002-adma.201606471/infarct-area-map-vs-nogel> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "GFAP infarct area higher in MAP vs No Gel" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adma.201606471/gfap-infarct-area-map> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adma.201606471/gfap-infarct-area-nogel> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:pValue 0.0001 .
+
+<https://lovamap.com/ontology#comparison/10.1002-adma.201606471/periinfarct-area-map-vs-nogel> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "GFAP peri-infarct area lower in MAP vs No Gel" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adma.201606471/gfap-periinfarct-area-map> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adma.201606471/gfap-periinfarct-area-nogel> ;
+    lova:direction "lower" ;
+    lova:isSignificant true ;
+    lova:pValue 0.0001 .
+
+<https://lovamap.com/ontology#comparison/10.1002-adma.201606471/iba1-infarct-map-vs-npore> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "IBA-1 infarct area lower in MAP vs nanoporous gel" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adma.201606471/iba1-infarct-map> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adma.201606471/iba1-infarct-npore> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-adma.201606471/iba1-infarct-map-vs-nogel> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "IBA-1 infarct area lower in MAP vs No Gel" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adma.201606471/iba1-infarct-map> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adma.201606471/iba1-infarct-nogel> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-adma.201606471/vessel-map-vs-npore> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "Peri-infarct vascularization higher in MAP vs nanoporous gel" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adma.201606471/vessel-periinfarct-map> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adma.201606471/vessel-periinfarct-npore> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-adma.201606471/npc-count-map-vs-npore> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "NPC count along ventricle wall higher in MAP vs nanoporous gel" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adma.201606471/npc-count-ventricle-map> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adma.201606471/npc-count-ventricle-npore> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-adma.201606471/npc-migration-map-vs-npore> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "NPC migration distance higher in MAP vs nanoporous gel" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adma.201606471/npc-migration-distance-map> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adma.201606471/npc-migration-distance-npore> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-adma.201606471/dcx-area-map-vs-npore> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adma.201606471> ;
+    rdfs:label "DCX positive area in stroke site higher in MAP vs nanoporous gel" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adma.201606471/dcx-positive-area-map> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adma.201606471/dcx-positive-area-npore> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:pValue 0.0001 .

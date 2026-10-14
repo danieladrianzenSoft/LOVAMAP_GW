@@ -8,6 +8,8 @@
 @prefix lova:    <https://lovamap.com/ontology#> .
 @prefix dc:      <http://purl.org/dc/terms/> .
 @prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix bibo:    <http://purl.org/ontology/bibo/> .
+@prefix qudt:    <http://qudt.org/schema/qudt/> .
 
 ## ── Fuseki Service ──────────────────────────────────────────────
 :service a fuseki:Service ;
@@ -50,4 +52,7 @@
         [ text:field "particleMaterial"    ; text:predicate lova:particleMaterial ]
         [ text:field "focusMaterial"       ; text:predicate lova:focusMaterial ]
         [ text:field "assayOrMethod"       ; text:predicate lova:assayOrMethod ]
+        [ text:field "reagentRole"        ; text:predicate lova:reagentRole ]
+        [ text:field "reagentFunction"    ; text:predicate lova:reagentFunction ]
+        [ text:field "direction"          ; text:predicate lova:direction ]
     ) .

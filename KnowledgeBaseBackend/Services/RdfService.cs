@@ -24,6 +24,8 @@ namespace KnowledgeBaseApi.Services
 			PREFIX rdfs:   <http://www.w3.org/2000/01/rdf-schema#>
 			PREFIX rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 			PREFIX xsd:    <http://www.w3.org/2001/XMLSchema#>
+			PREFIX bibo:   <http://purl.org/ontology/bibo/>
+			PREFIX qudt:   <http://qudt.org/schema/qudt/>
 		";
 
 		public RdfService(IFusekiClient client, IMemoryCache cache)
@@ -102,21 +104,36 @@ namespace KnowledgeBaseApi.Services
 				return await FetchGeometryProfilesAsync(ct);
 			})!;
 
+		public Task<List<ReagentDto>> GetReagentsAsync(CancellationToken ct = default) =>
+			_cache.GetOrCreateAsync("reagents", async entry =>
+			{
+				entry.SetOptions(CacheOptions());
+				return await FetchReagentsAsync(ct);
+			})!;
+
+		public Task<List<ComparisonResultDto>> GetComparisonResultsAsync(CancellationToken ct = default) =>
+			_cache.GetOrCreateAsync("comparison-results", async entry =>
+			{
+				entry.SetOptions(CacheOptions());
+				return await FetchComparisonResultsAsync(ct);
+			})!;
+
 		// ── Fetch methods (hit Fuseki) ──
 
 		private async Task<List<PaperDto>> FetchPapersAsync(CancellationToken ct)
 		{
 			var sparql = Prefixes + @"
-				SELECT ?s ?title ?doi ?year ?journal ?journalTitle ?paperType ?focusMaterial ?hasLabData ?author ?authorName WHERE {
-					?s a lova:Paper .
+				SELECT ?s ?title ?doi ?year ?journal ?journalTitle ?paperType ?focusMaterial ?hasLabData ?citation ?author ?authorName WHERE {
+					?s a bibo:AcademicArticle .
 					OPTIONAL { ?s dc:title ?title . }
 					OPTIONAL { ?s dc:identifier ?doi . }
 					OPTIONAL { ?s dc:date ?year . }
 					OPTIONAL { ?s schema:isPartOf ?journal .
 					           OPTIONAL { ?journal dc:title ?journalTitle . } }
-					OPTIONAL { ?s lova:paperType ?paperType . }
+					OPTIONAL { ?s dc:type ?paperType . }
 					OPTIONAL { ?s lova:focusMaterial ?focusMaterial . }
 					OPTIONAL { ?s lova:hasLabData ?hasLabData . }
+					OPTIONAL { ?s dc:bibliographicCitation ?citation . }
 					OPTIONAL { ?s dc:creator ?author .
 					           OPTIONAL { ?author foaf:name ?authorName . } }
 				}";
@@ -143,6 +160,7 @@ namespace KnowledgeBaseApi.Services
 						PaperType = GetStr(b, "paperType"),
 						FocusMaterial = GetStr(b, "focusMaterial"),
 						HasLabData = GetBool(b, "hasLabData"),
+						Citation = GetStr(b, "citation"),
 					};
 					map[uri] = dto;
 				}
@@ -164,7 +182,7 @@ namespace KnowledgeBaseApi.Services
 		{
 			var sparql = Prefixes + @"
 				SELECT ?s ?familyName ?givenName ?name ?affiliation WHERE {
-					?s a lova:Author .
+					?s a foaf:Person .
 					OPTIONAL { ?s foaf:familyName ?familyName . }
 					OPTIONAL { ?s foaf:givenName ?givenName . }
 					OPTIONAL { ?s foaf:name ?name . }
@@ -196,9 +214,10 @@ namespace KnowledgeBaseApi.Services
 		private async Task<List<JournalDto>> FetchJournalsAsync(CancellationToken ct)
 		{
 			var sparql = Prefixes + @"
-				SELECT ?s ?title WHERE {
-					?s a lova:Journal .
+				SELECT ?s ?title ?issn WHERE {
+					?s a bibo:Journal .
 					OPTIONAL { ?s dc:title ?title . }
+					OPTIONAL { ?s bibo:issn ?issn . }
 				}";
 
 			var json = await _client.QueryAsync(sparql, ct);
@@ -214,6 +233,7 @@ namespace KnowledgeBaseApi.Services
 				{
 					Uri = uri,
 					Title = GetStr(b, "title") ?? "",
+					Issn = GetStr(b, "issn"),
 				};
 			}
 
@@ -224,10 +244,10 @@ namespace KnowledgeBaseApi.Services
 		{
 			var sparql = Prefixes + @"
 				SELECT ?s ?label ?paper ?shape ?mat ?sizeMin ?sizeMax ?sizeUnit
-				       ?sizeDist ?stiffness ?fab ?geo ?packing ?poreSize WHERE {
+				       ?sizeDist ?stiffness ?stiffVal ?stiffUnit ?surfMod ?fab ?geo ?packing ?poreSize WHERE {
 					?s a lova:Material .
 					OPTIONAL { ?s rdfs:label ?label . }
-					OPTIONAL { ?s lova:describedIn ?paper . }
+					OPTIONAL { ?s dc:source ?paper . }
 					OPTIONAL { ?s lova:particleShape ?shape . }
 					OPTIONAL { ?s lova:particleMaterial ?mat . }
 					OPTIONAL { ?s lova:particleSizeMin ?sizeMin . }
@@ -235,6 +255,9 @@ namespace KnowledgeBaseApi.Services
 					OPTIONAL { ?s lova:particleSizeUnit ?sizeUnit . }
 					OPTIONAL { ?s lova:sizeDistribution ?sizeDist . }
 					OPTIONAL { ?s lova:stiffnessQualitative ?stiffness . }
+					OPTIONAL { ?s lova:stiffnessValue ?stiffVal . }
+					OPTIONAL { ?s lova:stiffnessUnit ?stiffUnit . }
+					OPTIONAL { ?s lova:surfaceModification ?surfMod . }
 					OPTIONAL { ?s lova:hasFabricationMethod ?fab . }
 					OPTIONAL { ?s lova:hasGeometryProfile ?geo . }
 					OPTIONAL { ?s lova:packingConfiguration ?packing . }
@@ -262,6 +285,9 @@ namespace KnowledgeBaseApi.Services
 					ParticleSizeUnit = GetStr(b, "sizeUnit"),
 					SizeDistribution = GetStr(b, "sizeDist"),
 					StiffnessQualitative = GetStr(b, "stiffness"),
+					StiffnessValue = GetDouble(b, "stiffVal"),
+					StiffnessUnit = GetStr(b, "stiffUnit"),
+					SurfaceModification = GetStr(b, "surfMod"),
 					FabricationMethodUri = GetStr(b, "fab"),
 					GeometryProfileUri = GetStr(b, "geo"),
 					PackingConfiguration = GetStr(b, "packing"),
@@ -276,10 +302,10 @@ namespace KnowledgeBaseApi.Services
 		{
 			var sparql = Prefixes + @"
 				SELECT ?s ?label ?paper ?category ?type ?assay ?cellType ?cellSource
-				       ?duration ?equipment ?temp ?material WHERE {
+				       ?duration ?equipment ?temp ?seedDensity ?medium ?sampleSize ?material WHERE {
 					?s a lova:Experiment .
 					OPTIONAL { ?s rdfs:label ?label . }
-					OPTIONAL { ?s lova:describedIn ?paper . }
+					OPTIONAL { ?s dc:source ?paper . }
 					OPTIONAL { ?s lova:experimentCategory ?category . }
 					OPTIONAL { ?s lova:experimentType ?type . }
 					OPTIONAL { ?s lova:assayOrMethod ?assay . }
@@ -288,6 +314,9 @@ namespace KnowledgeBaseApi.Services
 					OPTIONAL { ?s lova:cultureDuration ?duration . }
 					OPTIONAL { ?s lova:equipment ?equipment . }
 					OPTIONAL { ?s lova:temperature ?temp . }
+					OPTIONAL { ?s lova:seedingDensity ?seedDensity . }
+					OPTIONAL { ?s lova:cultureMedium ?medium . }
+					OPTIONAL { ?s lova:sampleSize ?sampleSize . }
 					OPTIONAL { ?s lova:usedMaterial ?material . }
 				}";
 
@@ -315,6 +344,9 @@ namespace KnowledgeBaseApi.Services
 						CultureDuration = GetStr(b, "duration"),
 						Equipment = GetStr(b, "equipment"),
 						Temperature = GetStr(b, "temp"),
+						SeedingDensity = GetStr(b, "seedDensity"),
+						CultureMedium = GetStr(b, "medium"),
+						SampleSize = GetInt(b, "sampleSize"),
 					};
 					map[uri] = dto;
 				}
@@ -331,19 +363,24 @@ namespace KnowledgeBaseApi.Services
 		{
 			var sparql = Prefixes + @"
 				SELECT ?s ?label ?paper ?experiment ?measCat ?measType ?value ?unit
-				       ?scope ?significant ?direction ?comparedTo ?dataSource WHERE {
+				       ?valueString ?scope ?significant ?direction ?comparedTo ?compGroup
+				       ?timePoint ?stdDev ?dataSource WHERE {
 					?s a lova:Outcome .
 					OPTIONAL { ?s rdfs:label ?label . }
-					OPTIONAL { ?s lova:describedIn ?paper . }
+					OPTIONAL { ?s dc:source ?paper . }
 					OPTIONAL { ?s lova:fromExperiment ?experiment . }
 					OPTIONAL { ?s lova:measurementCategory ?measCat . }
 					OPTIONAL { ?s lova:measurementType ?measType . }
-					OPTIONAL { ?s lova:value ?value . }
-					OPTIONAL { ?s lova:unit ?unit . }
+					OPTIONAL { ?s qudt:numericValue ?value . }
+					OPTIONAL { ?s qudt:unit ?unit . }
+					OPTIONAL { ?s lova:valueString ?valueString . }
 					OPTIONAL { ?s lova:scope ?scope . }
-					OPTIONAL { ?s lova:significant ?significant . }
+					OPTIONAL { ?s lova:isSignificant ?significant . }
 					OPTIONAL { ?s lova:direction ?direction . }
 					OPTIONAL { ?s lova:comparedTo ?comparedTo . }
+					OPTIONAL { ?s lova:comparisonGroup ?compGroup . }
+					OPTIONAL { ?s lova:timePoint ?timePoint . }
+					OPTIONAL { ?s lova:stdDev ?stdDev . }
 					OPTIONAL { ?s lova:dataSource ?dataSource . }
 				}";
 
@@ -366,10 +403,14 @@ namespace KnowledgeBaseApi.Services
 					MeasurementType = GetStr(b, "measType"),
 					Value = GetDouble(b, "value"),
 					Unit = GetStr(b, "unit"),
+					ValueString = GetStr(b, "valueString"),
 					Scope = GetStr(b, "scope"),
 					Significant = GetBool(b, "significant"),
 					Direction = GetStr(b, "direction"),
 					ComparedTo = GetStr(b, "comparedTo"),
+					ComparisonGroup = GetStr(b, "compGroup"),
+					TimePoint = GetStr(b, "timePoint"),
+					StdDev = GetDouble(b, "stdDev"),
 					DataSource = GetStr(b, "dataSource"),
 				};
 			}
@@ -380,21 +421,15 @@ namespace KnowledgeBaseApi.Services
 		private async Task<List<FabricationMethodDto>> FetchFabricationMethodsAsync(CancellationToken ct)
 		{
 			var sparql = Prefixes + @"
-				SELECT ?s ?label ?paper ?chemistry ?mfg ?annealChem ?annealCond
-				       ?monomer ?crosslinker ?surfactant ?enzyme ?peptide ?reagent WHERE {
+				SELECT ?s ?label ?paper ?chemistry ?mfg ?annealChem ?annealCond ?reagent WHERE {
 					?s a lova:FabricationMethod .
 					OPTIONAL { ?s rdfs:label ?label . }
-					OPTIONAL { ?s lova:describedIn ?paper . }
+					OPTIONAL { ?s dc:source ?paper . }
 					OPTIONAL { ?s lova:chemistry ?chemistry . }
 					OPTIONAL { ?s lova:manufacturingMethod ?mfg . }
 					OPTIONAL { ?s lova:annealingChemistry ?annealChem . }
 					OPTIONAL { ?s lova:annealingConditions ?annealCond . }
-					OPTIONAL { ?s lova:monomer ?monomer . }
-					OPTIONAL { ?s lova:crosslinker ?crosslinker . }
-					OPTIONAL { ?s lova:surfactant ?surfactant . }
-					OPTIONAL { ?s lova:enzyme ?enzyme . }
-					OPTIONAL { ?s lova:peptide ?peptide . }
-					OPTIONAL { ?s lova:additionalReagent ?reagent . }
+					OPTIONAL { ?s lova:hasReagent ?reagent . }
 				}";
 
 			var json = await _client.QueryAsync(sparql, ct);
@@ -417,21 +452,13 @@ namespace KnowledgeBaseApi.Services
 						ManufacturingMethod = GetStr(b, "mfg"),
 						AnnealingChemistry = GetStr(b, "annealChem"),
 						AnnealingConditions = GetStr(b, "annealCond"),
-						Monomer = GetStr(b, "monomer"),
-						Crosslinker = GetStr(b, "crosslinker"),
-						Surfactant = GetStr(b, "surfactant"),
-						Enzyme = GetStr(b, "enzyme"),
 					};
 					map[uri] = dto;
 				}
 
-				var peptide = GetStr(b, "peptide");
-				if (peptide != null && !dto.Peptides.Contains(peptide))
-					dto.Peptides.Add(peptide);
-
 				var reagent = GetStr(b, "reagent");
-				if (reagent != null && !dto.AdditionalReagents.Contains(reagent))
-					dto.AdditionalReagents.Add(reagent);
+				if (reagent != null && !dto.ReagentUris.Contains(reagent))
+					dto.ReagentUris.Add(reagent);
 			}
 
 			return map.Values.ToList();
@@ -470,6 +497,86 @@ namespace KnowledgeBaseApi.Services
 					MatchSizeMin = GetDouble(b, "sizeMin"),
 					MatchSizeMax = GetDouble(b, "sizeMax"),
 					ScaffoldCount = GetInt(b, "count"),
+				};
+			}
+
+			return map.Values.ToList();
+		}
+
+		private async Task<List<ReagentDto>> FetchReagentsAsync(CancellationToken ct)
+		{
+			var sparql = Prefixes + @"
+				SELECT ?s ?label ?role ?function ?concentration ?supplier ?molecularWeight ?sequence WHERE {
+					?s a lova:Reagent .
+					OPTIONAL { ?s rdfs:label ?label . }
+					OPTIONAL { ?s lova:reagentRole ?role . }
+					OPTIONAL { ?s lova:reagentFunction ?function . }
+					OPTIONAL { ?s lova:concentration ?concentration . }
+					OPTIONAL { ?s lova:supplier ?supplier . }
+					OPTIONAL { ?s lova:molecularWeight ?molecularWeight . }
+					OPTIONAL { ?s lova:sequence ?sequence . }
+				}";
+
+			var json = await _client.QueryAsync(sparql, ct);
+			var bindings = ParseBindings(json);
+			var map = new Dictionary<string, ReagentDto>(StringComparer.Ordinal);
+
+			foreach (var b in bindings)
+			{
+				var uri = GetStr(b, "s");
+				if (uri == null || map.ContainsKey(uri)) continue;
+
+				map[uri] = new ReagentDto
+				{
+					Uri = uri,
+					Label = GetStr(b, "label"),
+					Role = GetStr(b, "role"),
+					Function = GetStr(b, "function"),
+					Concentration = GetStr(b, "concentration"),
+					Supplier = GetStr(b, "supplier"),
+					MolecularWeight = GetStr(b, "molecularWeight"),
+					Sequence = GetStr(b, "sequence"),
+				};
+			}
+
+			return map.Values.ToList();
+		}
+
+		private async Task<List<ComparisonResultDto>> FetchComparisonResultsAsync(CancellationToken ct)
+		{
+			var sparql = Prefixes + @"
+				SELECT ?s ?label ?paper ?outcomeA ?outcomeB ?direction ?significant ?pValue ?foldChange WHERE {
+					?s a lova:ComparisonResult .
+					OPTIONAL { ?s rdfs:label ?label . }
+					OPTIONAL { ?s dc:source ?paper . }
+					OPTIONAL { ?s lova:outcomeA ?outcomeA . }
+					OPTIONAL { ?s lova:outcomeB ?outcomeB . }
+					OPTIONAL { ?s lova:direction ?direction . }
+					OPTIONAL { ?s lova:isSignificant ?significant . }
+					OPTIONAL { ?s lova:pValue ?pValue . }
+					OPTIONAL { ?s lova:foldChange ?foldChange . }
+				}";
+
+			var json = await _client.QueryAsync(sparql, ct);
+			var bindings = ParseBindings(json);
+			var map = new Dictionary<string, ComparisonResultDto>(StringComparer.Ordinal);
+
+			foreach (var b in bindings)
+			{
+				var uri = GetStr(b, "s");
+				if (uri == null || map.ContainsKey(uri)) continue;
+
+				map[uri] = new ComparisonResultDto
+				{
+					Uri = uri,
+					Label = GetStr(b, "label"),
+					PaperUri = GetStr(b, "paper"),
+					OutcomeAUri = GetStr(b, "outcomeA"),
+					OutcomeBUri = GetStr(b, "outcomeB"),
+					Direction = GetStr(b, "direction"),
+					IsSignificant = GetBool(b, "significant"),
+					PValue = GetDouble(b, "pValue"),
+					FoldChange = GetDouble(b, "foldChange"),
 				};
 			}
 

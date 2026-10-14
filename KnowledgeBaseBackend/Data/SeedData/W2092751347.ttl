@@ -1,0 +1,873 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1002-adhm.201400410> a bibo:AcademicArticle ;
+    rdfs:label "Lam et al., 2014 — Hydrogel DOE for iPSC-NPC Culture" ;
+    dc:title "Hydrogel Design of Experiments Methodology to Optimize Hydrogel for iPSC-NPC Culture" ;
+    dc:identifier "10.1002/adhm.201400410" ;
+    dc:date "2014"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/advanced-healthcare-materials> ;
+    dc:creator <https://lovamap.com/ontology#author/lam-jonathan> ,
+               <https://lovamap.com/ontology#author/carmichael-stanley> ,
+               <https://lovamap.com/ontology#author/lowry-william> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/lam-jonathan>
+                       <https://lovamap.com/ontology#author/carmichael-stanley>
+                       <https://lovamap.com/ontology#author/lowry-william>
+                       <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    dc:bibliographicCitation "Lam et al., 2014" ;
+    lova:focusMaterial "Hyaluronic acid (HA) hydrogels crosslinked via Michael-type addition, with RGD/YIGSR/IKVAV adhesion peptides optimized via design of experiments for iPSC-derived neural progenitor cell (iPS-NPC) culture and differentiation" .
+
+<https://lovamap.com/ontology#author/lam-jonathan> a foaf:Person ;
+    foaf:familyName "Lam" ;
+    foaf:givenName "Jonathan" ;
+    foaf:name "Jonathan Lam" ;
+    schema:affiliation "Biomedical Engineering Department, University of California, Los Angeles, CA, USA" .
+
+<https://lovamap.com/ontology#author/carmichael-stanley> a foaf:Person ;
+    foaf:familyName "Carmichael" ;
+    foaf:givenName "S. Thomas" ;
+    foaf:name "S. Thomas Carmichael" ;
+    schema:affiliation "Department of Neurology, David Geffen School of Medicine, University of California, Los Angeles, CA, USA" .
+
+<https://lovamap.com/ontology#author/lowry-william> a foaf:Person ;
+    foaf:familyName "Lowry" ;
+    foaf:givenName "William E." ;
+    foaf:name "William E. Lowry" ;
+    schema:affiliation "Department of Molecular Cell and Developmental Biology, Eli and Edythe Broad Center for Regenerative Medicine, University of California, Los Angeles, CA, USA" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" ;
+    schema:affiliation "Biomedical Engineering Department, University of California, Los Angeles, CA, USA" ;
+    schema:affiliation "Chemical and Biomolecular Engineering Department, University of California, Los Angeles, CA, USA" .
+
+<https://lovamap.com/ontology#journal/advanced-healthcare-materials> a bibo:Journal ;
+    dc:title "Advanced Healthcare Materials" ;
+    bibo:issn "2192-2640" .
+
+<https://lovamap.com/ontology#material/10.1002-adhm.201400410/ha-337pa> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "3.5% HA hydrogel (337 Pa storage modulus)" ;
+    lova:particleMaterial "Acrylated hyaluronic acid (60 kDa, 13% acrylate modification)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:stiffnessValue 337.0 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adhm.201400410/ha-michael-addition> .
+
+<https://lovamap.com/ontology#material/10.1002-adhm.201400410/ha-690pa> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "4.0% HA hydrogel (690.8 Pa storage modulus)" ;
+    lova:particleMaterial "Acrylated hyaluronic acid (60 kDa, 13% acrylate modification)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:stiffnessValue 690.8 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adhm.201400410/ha-michael-addition> .
+
+<https://lovamap.com/ontology#material/10.1002-adhm.201400410/ha-842pa> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "4.5% HA hydrogel (841.9 Pa storage modulus)" ;
+    lova:particleMaterial "Acrylated hyaluronic acid (60 kDa, 13% acrylate modification)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:stiffnessValue 841.9 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adhm.201400410/ha-michael-addition> .
+
+<https://lovamap.com/ontology#material/10.1002-adhm.201400410/opt3-hydrogel> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "Final optimized hydrogel (RGD 100μM, YIGSR 48μM, IKVAV 300μM; 337 Pa HA backbone)" ;
+    lova:particleMaterial "Acrylated hyaluronic acid (60 kDa, 13% acrylate modification)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:stiffnessValue 337.0 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:surfaceModification "RGD 100μM, YIGSR 48μM, IKVAV 300μM (DOE-optimized concentrations)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adhm.201400410/ha-michael-addition> .
+
+<https://lovamap.com/ontology#material/10.1002-adhm.201400410/hundred-all-hydrogel> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "100-all hydrogel (RGD 100μM, YIGSR 100μM, IKVAV 100μM, RDG 50μM)" ;
+    lova:particleMaterial "Acrylated hyaluronic acid (60 kDa, 13% acrylate modification)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:stiffnessValue 337.0 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:surfaceModification "RGD 100μM, YIGSR 100μM, IKVAV 100μM, RDG 50μM (equimolar control)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adhm.201400410/ha-michael-addition> .
+
+<https://lovamap.com/ontology#material/10.1002-adhm.201400410/rgd-only-hydrogel> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "RGD-only hydrogel (RGD 300μM, RDG 150μM)" ;
+    lova:particleMaterial "Acrylated hyaluronic acid (60 kDa, 13% acrylate modification)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:stiffnessValue 337.0 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:surfaceModification "RGD 300μM, RDG 150μM" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adhm.201400410/ha-michael-addition> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1002-adhm.201400410/ha-michael-addition> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "Acrylated HA hydrogel formed via Michael-type addition with di-thiol MMP-degradable peptide crosslinker and adhesion peptides" ;
+    lova:chemistry "Michael-type addition (thiol-acrylate)" ;
+    lova:manufacturingMethod "Solution mixing / bulk gelation between glass coverslips" ;
+    lova:annealingConditions "37°C, 30 min" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-adhm.201400410/ha-60kda> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.201400410/ha-ac> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.201400410/mmp-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.201400410/rgd-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.201400410/yigsr-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.201400410/ikvav-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.201400410/rdg-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1002-adhm.201400410/hepes> .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.201400410/ha-60kda> a lova:Reagent ;
+    rdfs:label "Hyaluronic acid (60 kDa)" ;
+    lova:reagentRole "monomer" ;
+    lova:molecularWeight "60 kDa" ;
+    lova:reagentFunction "Hydrogel backbone, nonsulfated glycosaminoglycan" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.201400410/ha-ac> a lova:Reagent ;
+    rdfs:label "Acrylated hyaluronic acid (HA-AC)" ;
+    lova:reagentRole "monomer" ;
+    lova:concentration "3.5%–4.5% w/v" ;
+    lova:reagentFunction "Hydrogel backbone with acrylate groups for crosslinking; degree of acrylate modification 13% (main text)/16% (methods) by 1H NMR" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.201400410/mmp-peptide> a lova:Reagent ;
+    rdfs:label "MMP-degradable di-thiol peptide crosslinker (Ac-GCRDGPQGIWGQDRCG-NH2)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:sequence "GCRDGPQGIWGQDRCG" ;
+    lova:supplier "Genscript" ;
+    lova:reagentFunction "Di-thiol crosslinker for Michael-type addition gelation, MMP-degradable" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.201400410/rgd-peptide> a lova:Reagent ;
+    rdfs:label "RGD adhesion peptide (Ac-GCGYGRGDSPG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "GCGYGRGDSPG" ;
+    lova:supplier "Genscript" ;
+    lova:reagentFunction "Cell adhesion ligand (integrin binding)" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.201400410/yigsr-peptide> a lova:Reagent ;
+    rdfs:label "YIGSR adhesion peptide (Ac-GCGYGYIGSR-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "GCGYGYIGSR" ;
+    lova:supplier "Genscript" ;
+    lova:reagentFunction "Cell adhesion ligand (laminin-derived)" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.201400410/ikvav-peptide> a lova:Reagent ;
+    rdfs:label "IKVAV adhesion peptide (Ac-IKVAVGYGCG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "IKVAVGYGCG" ;
+    lova:supplier "Genscript" ;
+    lova:reagentFunction "Cell adhesion ligand (laminin-derived), promotes neuronal precursor adhesion" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.201400410/rdg-peptide> a lova:Reagent ;
+    rdfs:label "Scrambled RDG filler peptide (Ac-GCGYRDGSP-NH2)" ;
+    lova:reagentRole "other" ;
+    lova:sequence "GCGYRDGSP" ;
+    lova:supplier "Genscript" ;
+    lova:reagentFunction "Inactive filler peptide to maintain constant total peptide concentration" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adhm.201400410/hepes> a lova:Reagent ;
+    rdfs:label "HEPES buffer" ;
+    lova:reagentRole "solvent" ;
+    lova:concentration "0.3 M" ;
+    lova:reagentFunction "Buffer for dissolving HA-AC and peptides during gelation" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.201400410/rheometry> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.201400410/ha-337pa> ,
+                      <https://lovamap.com/ontology#material/10.1002-adhm.201400410/ha-690pa> ,
+                      <https://lovamap.com/ontology#material/10.1002-adhm.201400410/ha-842pa> ;
+    rdfs:label "Rheometry of HA hydrogels at varying HA wt%" ;
+    lova:experimentCategory "Mechanical" ;
+    lova:experimentType "Oscillatory rheometry" ;
+    lova:equipment "Physica MCR 301, Anton Paar, 8-mm plate" ;
+    lova:frequency "0.1–10 rad/s" ;
+    lova:strainRate "1% constant strain" ;
+    lova:temperature "37°C" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/g-prime-337> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400410/rheometry> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "Storage modulus of 3.5% HA hydrogel" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 337.0 ;
+    qudt:unit "Pa" ;
+    lova:stdDev 76.22 ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/g-prime-690> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400410/rheometry> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "Storage modulus of 4.0% HA hydrogel" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 690.8 ;
+    qudt:unit "Pa" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/g-prime-842> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400410/rheometry> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "Storage modulus of 4.5% HA hydrogel" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 841.9 ;
+    qudt:unit "Pa" ;
+    lova:stdDev 112.5 ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.201400410/cell-spreading> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.201400410/ha-337pa> ,
+                      <https://lovamap.com/ontology#material/10.1002-adhm.201400410/ha-690pa> ,
+                      <https://lovamap.com/ontology#material/10.1002-adhm.201400410/ha-842pa> ;
+    rdfs:label "iPS-NPC cell spreading (phalloidin) in hydrogels of varying stiffness" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell spreading" ;
+    lova:assayOrMethod "Phalloidin staining / fluorescence quantification" ;
+    lova:cellType "iPS-NPC" ;
+    lova:cellSource "Induced pluripotent stem cell-derived neural progenitor cells" ;
+    lova:cultureDuration "1, 7 days" ;
+    lova:temperature "37°C" ;
+    lova:atmosphere "5% CO2" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/spreading-337> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400410/cell-spreading> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "Relative phalloidin signal (day7/day1) — 337 Pa hydrogel" ;
+    lova:measurementType "Relative cell spreading signal" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.7 ;
+    qudt:unit "relative signal (ratio)" ;
+    lova:isSignificant true ;
+    lova:pValue 0.01 ;
+    lova:timePoint "Day 7" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/spreading-690> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400410/cell-spreading> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "Relative phalloidin signal (day7/day1) — 690.8 Pa hydrogel" ;
+    lova:measurementType "Relative cell spreading signal" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.0 ;
+    qudt:unit "relative signal (ratio)" ;
+    lova:timePoint "Day 7" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/spreading-842> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400410/cell-spreading> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "Relative phalloidin signal (day7/day1) — 841.9 Pa hydrogel" ;
+    lova:measurementType "Relative cell spreading signal" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.7 ;
+    qudt:unit "relative signal (ratio)" ;
+    lova:timePoint "Day 7" ;
+    lova:scope "Bulk/global" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.201400410/spreading-337-vs-690> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "Cell spreading significantly greater in 337 Pa vs 690.8 Pa hydrogel" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/spreading-337> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/spreading-690> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.201400410/spreading-337-vs-842> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "Cell spreading significantly greater in 337 Pa vs 841.9 Pa hydrogel" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/spreading-337> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/spreading-842> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.201400410/doe-opt1-survival> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.201400410/ha-337pa> ;
+    rdfs:label "DOE Optimization #1 — iPS-NPC survival with RGD/YIGSR/IKVAV 0–100μM" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell survival (DOE screening)" ;
+    lova:assayOrMethod "CyQUANT cell proliferation assay" ;
+    lova:cellType "iPS-NPC" ;
+    lova:cultureDuration "1, 7 days" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/opt1-max-predicted> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400410/doe-opt1-survival> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "Predicted maximum survival peptide mixture — Optimization #1" ;
+    lova:measurementType "Predicted optimal peptide concentration" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "RGD: 100 μM, YIGSR: 48 μM, IKVAV: 100 μM" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/opt1-min-predicted> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400410/doe-opt1-survival> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "Predicted minimum survival peptide mixture — Optimization #1" ;
+    lova:measurementType "Predicted optimal peptide concentration" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "RGD: 0 μM, YIGSR: 100 μM, IKVAV: 55 μM" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.201400410/doe-opt1-confirmation> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.201400410/ha-337pa> ;
+    rdfs:label "Confirmation of Optimization #1 max/min conditions" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell survival (confirmation)" ;
+    lova:assayOrMethod "CyQUANT cell proliferation assay" ;
+    lova:cellType "iPS-NPC" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/opt1-confirm-min> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400410/doe-opt1-confirmation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "Normalized fluorescence, min condition — Optimization #1 confirmation" ;
+    lova:measurementType "Normalized fluorescence (survival)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.9 ;
+    qudt:unit "normalized fluorescence" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/opt1-confirm-max> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400410/doe-opt1-confirmation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "Normalized fluorescence, max condition — Optimization #1 confirmation" ;
+    lova:measurementType "Normalized fluorescence (survival)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.2 ;
+    qudt:unit "normalized fluorescence" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.201400410/opt1-max-vs-min> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "Survival higher in Optimization #1 max vs min predicted condition" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/opt1-confirm-max> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/opt1-confirm-min> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.201400410/doe-opt2-survival> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.201400410/ha-337pa> ;
+    rdfs:label "DOE Optimization #2 — RGD/IKVAV 100–200μM, YIGSR constant 48μM" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell survival (DOE screening)" ;
+    lova:assayOrMethod "CyQUANT cell proliferation assay" ;
+    lova:cellType "iPS-NPC" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/opt2-max-predicted> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400410/doe-opt2-survival> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "Predicted maximum survival peptide mixture — Optimization #2" ;
+    lova:measurementType "Predicted optimal peptide concentration" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "RGD: 100 μM, IKVAV: 200 μM (YIGSR fixed 48 μM)" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/opt2-min-predicted> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400410/doe-opt2-survival> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "Predicted minimum survival peptide mixture — Optimization #2" ;
+    lova:measurementType "Predicted optimal peptide concentration" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "RGD: 199 μM, IKVAV: 166 μM (YIGSR fixed 48 μM)" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.201400410/doe-opt2-confirmation> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.201400410/ha-337pa> ;
+    rdfs:label "Confirmation of Optimization #2 max/min conditions" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell survival (confirmation)" ;
+    lova:assayOrMethod "CyQUANT cell proliferation assay" ;
+    lova:cellType "iPS-NPC" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/opt2-confirm-min> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400410/doe-opt2-confirmation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "Normalized fluorescence, min condition — Optimization #2 confirmation" ;
+    lova:measurementType "Normalized fluorescence (survival)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.0 ;
+    qudt:unit "normalized fluorescence" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/opt2-confirm-max> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400410/doe-opt2-confirmation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "Normalized fluorescence, max condition — Optimization #2 confirmation" ;
+    lova:measurementType "Normalized fluorescence (survival)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.3 ;
+    qudt:unit "normalized fluorescence" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.201400410/opt2-max-vs-min> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "Survival higher in Optimization #2 max vs min predicted condition" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/opt2-confirm-max> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/opt2-confirm-min> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.201400410/doe-opt3-survival> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.201400410/ha-337pa> ;
+    rdfs:label "DOE Optimization #3 — IKVAV 200–300μM, RGD/YIGSR constant 100/48μM" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell survival (DOE screening)" ;
+    lova:assayOrMethod "CyQUANT cell proliferation assay" ;
+    lova:cellType "iPS-NPC" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/opt3-max-predicted> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400410/doe-opt3-survival> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "Predicted maximum survival peptide mixture — Optimization #3" ;
+    lova:measurementType "Predicted optimal peptide concentration" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "IKVAV: 300 μM (RGD 100 μM, YIGSR 48 μM fixed)" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/opt3-min-predicted> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400410/doe-opt3-survival> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "Predicted minimum survival peptide mixture — Optimization #3" ;
+    lova:measurementType "Predicted optimal peptide concentration" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "IKVAV: 235 μM (RGD 100 μM, YIGSR 48 μM fixed)" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.201400410/doe-opt3-confirmation> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.201400410/opt3-hydrogel> ;
+    rdfs:label "Confirmation of Optimization #3 max/min conditions" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell survival (confirmation)" ;
+    lova:assayOrMethod "CyQUANT cell proliferation assay" ;
+    lova:cellType "iPS-NPC" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/opt3-confirm-min> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400410/doe-opt3-confirmation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "Normalized fluorescence, min condition — Optimization #3 confirmation" ;
+    lova:measurementType "Normalized fluorescence (survival)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.2 ;
+    qudt:unit "normalized fluorescence" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/opt3-confirm-max> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400410/doe-opt3-confirmation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "Normalized fluorescence, max condition — Optimization #3 confirmation" ;
+    lova:measurementType "Normalized fluorescence (survival)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.9 ;
+    qudt:unit "normalized fluorescence" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.201400410/opt3-max-vs-min> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "Survival higher in Optimization #3 max vs min predicted condition" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/opt3-confirm-max> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/opt3-confirm-min> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.201400410/validation-survival> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.201400410/opt3-hydrogel> ,
+                      <https://lovamap.com/ontology#material/10.1002-adhm.201400410/hundred-all-hydrogel> ,
+                      <https://lovamap.com/ontology#material/10.1002-adhm.201400410/rgd-only-hydrogel> ;
+    rdfs:label "Final validation of optimized conditions vs RDG, RGD, 100-all controls" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell survival (validation)" ;
+    lova:assayOrMethod "CyQUANT cell proliferation assay" ;
+    lova:cellType "iPS-NPC" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/validation-opt3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400410/validation-survival> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "Normalized fluorescence — Optimization #3 condition (final validation)" ;
+    lova:measurementType "Normalized fluorescence (survival)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.5 ;
+    qudt:unit "normalized fluorescence" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/validation-100all> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400410/validation-survival> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "Normalized fluorescence — 100-all condition (final validation)" ;
+    lova:measurementType "Normalized fluorescence (survival)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.15 ;
+    qudt:unit "normalized fluorescence" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/validation-rgd> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400410/validation-survival> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "Normalized fluorescence — RGD-only condition (final validation)" ;
+    lova:measurementType "Normalized fluorescence (survival)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.1 ;
+    qudt:unit "normalized fluorescence" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.201400410/opt3-vs-rgd> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "Survival higher in Optimization #3 condition vs RGD-only condition" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/validation-opt3> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/validation-rgd> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.201400410/opt3-vs-100all> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "Survival higher in Optimization #3 condition vs 100-all condition" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/validation-opt3> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/validation-100all> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.201400410/dcx-staining> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.201400410/opt3-hydrogel> ,
+                      <https://lovamap.com/ontology#material/10.1002-adhm.201400410/hundred-all-hydrogel> ,
+                      <https://lovamap.com/ontology#material/10.1002-adhm.201400410/rgd-only-hydrogel> ;
+    rdfs:label "DOUBLECORTIN (DCX) immunostaining, 2D vs 3D hydrogel conditions" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immunohistochemistry" ;
+    lova:assayOrMethod "Immunostaining, confocal microscopy" ;
+    lova:cellType "iPS-NPC" ;
+    lova:cultureDuration "7 days" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/dcx-length-opt3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400410/dcx-staining> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "DCX extension length — Optimization #3 hydrogel" ;
+    lova:measurementType "DCX extension length" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 115.0 ;
+    qudt:unit "μm" ;
+    lova:isSignificant true ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/dcx-length-rgd> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400410/dcx-staining> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "DCX extension length — RGD-only hydrogel" ;
+    lova:measurementType "DCX extension length" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 25.0 ;
+    qudt:unit "μm" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.201400410/dcx-length-opt3-vs-rgd> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "DCX extension length higher in Optimization #3 vs RGD-only hydrogel" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/dcx-length-opt3> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/dcx-length-rgd> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.201400410/tuj1-staining> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.201400410/opt3-hydrogel> ,
+                      <https://lovamap.com/ontology#material/10.1002-adhm.201400410/hundred-all-hydrogel> ,
+                      <https://lovamap.com/ontology#material/10.1002-adhm.201400410/rgd-only-hydrogel> ;
+    rdfs:label "Tuj1 immunostaining, 2D vs 3D hydrogel conditions" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immunohistochemistry" ;
+    lova:assayOrMethod "Immunostaining, confocal microscopy" ;
+    lova:cellType "iPS-NPC" ;
+    lova:cultureDuration "7 days" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/tuj1-pos-2d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400410/tuj1-staining> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "Tuj1-positive cells — 2D culture" ;
+    lova:measurementType "Tuj1-positive cell fraction" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "<1%" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/tuj1-pos-3d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400410/tuj1-staining> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "Tuj1-positive cells — 3D hydrogel conditions (range)" ;
+    lova:measurementType "Tuj1-positive cell fraction" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "20%–30%" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.201400410/tuj1-pos-2d-vs-3d> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "Tuj1-positive cells lower in 2D vs 3D hydrogel conditions" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/tuj1-pos-2d> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/tuj1-pos-3d> ;
+    lova:direction "lower" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/tuj1-length-opt3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400410/tuj1-staining> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "Tuj1 extension length — Optimization #3 hydrogel" ;
+    lova:measurementType "Tuj1 extension length" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 100.0 ;
+    qudt:unit "μm" ;
+    lova:isSignificant true ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/tuj1-length-rgd> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400410/tuj1-staining> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "Tuj1 extension length — RGD-only hydrogel" ;
+    lova:measurementType "Tuj1 extension length" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 40.0 ;
+    qudt:unit "μm" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.201400410/tuj1-length-opt3-vs-rgd> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "Tuj1 extension length higher in Optimization #3 vs RGD-only hydrogel" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/tuj1-length-opt3> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/tuj1-length-rgd> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.201400410/flow-sox2> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.201400410/opt3-hydrogel> ,
+                      <https://lovamap.com/ontology#material/10.1002-adhm.201400410/hundred-all-hydrogel> ,
+                      <https://lovamap.com/ontology#material/10.1002-adhm.201400410/rgd-only-hydrogel> ;
+    rdfs:label "Flow cytometry for SOX2, 2D vs 3D hydrogel conditions" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Flow cytometry" ;
+    lova:assayOrMethod "FACScan X, FlowJo analysis" ;
+    lova:cellType "iPS-NPC" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/sox2-pct-2d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400410/flow-sox2> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "SOX2 percent gated — 2D" ;
+    lova:measurementType "SOX2 percent gated" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 85.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/sox2-pct-3d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400410/flow-sox2> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "SOX2 percent gated — 3D hydrogel conditions" ;
+    lova:measurementType "SOX2 percent gated" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 90.0 ;
+    qudt:unit "%" ;
+    lova:isSignificant true ;
+    lova:pValue 0.01 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.201400410/sox2-pct-3d-vs-2d> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "SOX2 percent gated higher in 3D hydrogel conditions vs 2D" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/sox2-pct-3d> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/sox2-pct-2d> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:pValue 0.01 .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/sox2-mfi-2d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400410/flow-sox2> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "SOX2 mean fluorescence — 2D" ;
+    lova:measurementType "SOX2 mean fluorescence" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 60.0 ;
+    qudt:unit "relative fluorescence units" ;
+    lova:isSignificant true ;
+    lova:pValue 0.001 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/sox2-mfi-3d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400410/flow-sox2> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "SOX2 mean fluorescence — 3D hydrogel conditions" ;
+    lova:measurementType "SOX2 mean fluorescence" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 10.0 ;
+    qudt:unit "relative fluorescence units" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.201400410/sox2-mfi-2d-vs-3d> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "SOX2 mean fluorescence lower in 3D hydrogel conditions vs 2D" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/sox2-mfi-3d> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/sox2-mfi-2d> ;
+    lova:direction "lower" ;
+    lova:isSignificant true ;
+    lova:pValue 0.001 .
+
+<https://lovamap.com/ontology#experiment/10.1002-adhm.201400410/flow-dcx> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adhm.201400410/opt3-hydrogel> ,
+                      <https://lovamap.com/ontology#material/10.1002-adhm.201400410/hundred-all-hydrogel> ,
+                      <https://lovamap.com/ontology#material/10.1002-adhm.201400410/rgd-only-hydrogel> ;
+    rdfs:label "Flow cytometry for DCX, 2D vs 3D hydrogel conditions" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Flow cytometry" ;
+    lova:assayOrMethod "FACScan X, FlowJo analysis" ;
+    lova:cellType "iPS-NPC" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/dcx-pct-2d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400410/flow-dcx> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "DCX percent gated — 2D" ;
+    lova:measurementType "DCX percent gated" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 5.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/dcx-pct-rgd> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400410/flow-dcx> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "DCX percent gated — RGD-only hydrogel" ;
+    lova:measurementType "DCX percent gated" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/dcx-pct-opt3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400410/flow-dcx> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "DCX percent gated — Optimization #3 hydrogel" ;
+    lova:measurementType "DCX percent gated" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 8.0 ;
+    qudt:unit "%" ;
+    lova:isSignificant true ;
+    lova:pValue 0.01 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.201400410/dcx-pct-2d-vs-rgd> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "DCX percent gated higher in 2D vs RGD-only hydrogel" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/dcx-pct-2d> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/dcx-pct-rgd> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.201400410/dcx-pct-opt3-vs-rgd> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "DCX percent gated higher in Optimization #3 vs RGD-only hydrogel" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/dcx-pct-opt3> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/dcx-pct-rgd> ;
+    lova:direction "higher" ;
+    lova:isSignificant true ;
+    lova:pValue 0.01 .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/dcx-mfi-2d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400410/flow-dcx> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "DCX mean fluorescence — 2D" ;
+    lova:measurementType "DCX mean fluorescence" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 10.0 ;
+    qudt:unit "relative fluorescence units" ;
+    lova:isSignificant true ;
+    lova:pValue 0.001 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/dcx-mfi-100all> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400410/flow-dcx> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "DCX mean fluorescence — 100-all hydrogel" ;
+    lova:measurementType "DCX mean fluorescence" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 17.0 ;
+    qudt:unit "relative fluorescence units" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/dcx-mfi-rgd> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400410/flow-dcx> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "DCX mean fluorescence — RGD-only hydrogel" ;
+    lova:measurementType "DCX mean fluorescence" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 18.0 ;
+    qudt:unit "relative fluorescence units" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/dcx-mfi-opt3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adhm.201400410/flow-dcx> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "DCX mean fluorescence — Optimization #3 hydrogel" ;
+    lova:measurementType "DCX mean fluorescence" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 23.0 ;
+    qudt:unit "relative fluorescence units" ;
+    lova:isSignificant true ;
+    lova:pValue 0.01 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.201400410/dcx-mfi-2d-vs-3d> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "DCX mean fluorescence lower in 2D vs all 3D hydrogel conditions" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/dcx-mfi-2d> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/dcx-mfi-opt3> ;
+    lova:direction "lower" ;
+    lova:isSignificant true ;
+    lova:pValue 0.001 .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.201400410/dcx-mfi-rgd-vs-100all> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "DCX mean fluorescence lower in RGD-only vs 100-all hydrogel" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/dcx-mfi-rgd> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/dcx-mfi-100all> ;
+    lova:direction "lower" ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 .
+
+<https://lovamap.com/ontology#comparison/10.1002-adhm.201400410/dcx-mfi-rgd-vs-opt3> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1002-adhm.201400410> ;
+    rdfs:label "DCX mean fluorescence lower in RGD-only vs Optimization #3 hydrogel" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/dcx-mfi-rgd> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adhm.201400410/dcx-mfi-opt3> ;
+    lova:direction "lower" ;
+    lova:isSignificant true ;
+    lova:pValue 0.01 .

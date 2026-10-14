@@ -1,0 +1,727 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1039-c1ib00037c> a bibo:AcademicArticle ;
+    rdfs:label "Anderson et al., 2011 — VEGF internalization and VEGFR-2 phosphorylation" ;
+    dc:title "VEGF internalization is not required for VEGFR-2 phosphorylation in bioengineered surfaces with covalently linked VEGF" ;
+    dc:identifier "10.1039/c1ib00037c" ;
+    dc:date "2011"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/integrative-biology> ;
+    dc:creator <https://lovamap.com/ontology#author/anderson-sean> ,
+               <https://lovamap.com/ontology#author/shergill-bhupinder> ,
+               <https://lovamap.com/ontology#author/barry-zachary> ,
+               <https://lovamap.com/ontology#author/manousiouthakis-eleana> ,
+               <https://lovamap.com/ontology#author/chen-tom> ,
+               <https://lovamap.com/ontology#author/botvinick-elliot> ,
+               <https://lovamap.com/ontology#author/platt-manu> ,
+               <https://lovamap.com/ontology#author/iruela-arispe-luisa> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/anderson-sean>
+                      <https://lovamap.com/ontology#author/shergill-bhupinder>
+                      <https://lovamap.com/ontology#author/barry-zachary>
+                      <https://lovamap.com/ontology#author/manousiouthakis-eleana>
+                      <https://lovamap.com/ontology#author/chen-tom>
+                      <https://lovamap.com/ontology#author/botvinick-elliot>
+                      <https://lovamap.com/ontology#author/platt-manu>
+                      <https://lovamap.com/ontology#author/iruela-arispe-luisa>
+                      <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    dc:bibliographicCitation "Anderson et al., 2011" ;
+    lova:focusMaterial "Heparin-functionalized gold surfaces presenting covalently (Vc) or electrostatically (Ve) bound VEGF to HUVECs, vs soluble VEGF (Vs) and no-VEGF control (Vn)" .
+
+<https://lovamap.com/ontology#author/anderson-sean> a foaf:Person ;
+    foaf:familyName "Anderson" ; foaf:givenName "Sean M." ; foaf:name "Sean M. Anderson" .
+
+<https://lovamap.com/ontology#author/shergill-bhupinder> a foaf:Person ;
+    foaf:familyName "Shergill" ; foaf:givenName "Bhupinder S." ; foaf:name "Bhupinder S. Shergill" .
+
+<https://lovamap.com/ontology#author/barry-zachary> a foaf:Person ;
+    foaf:familyName "Barry" ; foaf:givenName "Zachary T." ; foaf:name "Zachary T. Barry" .
+
+<https://lovamap.com/ontology#author/manousiouthakis-eleana> a foaf:Person ;
+    foaf:familyName "Manousiouthakis" ; foaf:givenName "Eleana" ; foaf:name "Eleana Manousiouthakis" .
+
+<https://lovamap.com/ontology#author/chen-tom> a foaf:Person ;
+    foaf:familyName "Chen" ; foaf:givenName "Tom T." ; foaf:name "Tom T. Chen" .
+
+<https://lovamap.com/ontology#author/botvinick-elliot> a foaf:Person ;
+    foaf:familyName "Botvinick" ; foaf:givenName "Elliot L." ; foaf:name "Elliot L. Botvinick" .
+
+<https://lovamap.com/ontology#author/platt-manu> a foaf:Person ;
+    foaf:familyName "Platt" ; foaf:givenName "Manu O." ; foaf:name "Manu O. Platt" .
+
+<https://lovamap.com/ontology#author/iruela-arispe-luisa> a foaf:Person ;
+    foaf:familyName "Iruela-Arispe" ; foaf:givenName "M. Luisa" ; foaf:name "M. Luisa Iruela-Arispe" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ; foaf:givenName "Tatiana" ; foaf:name "Tatiana Segura" .
+
+<https://lovamap.com/ontology#journal/integrative-biology> a bibo:Journal ;
+    dc:title "Integrative Biology" ;
+    bibo:issn "1757-9694" .
+
+<https://lovamap.com/ontology#material/10.1039-c1ib00037c/vc-surface> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c1ib00037c> ;
+    rdfs:label "Covalently bound VEGF (Vc) heparin-functionalized gold surface" ;
+    lova:particleMaterial "Heparin-functionalized gold surface" ;
+    lova:surfaceModification "VEGF covalently photo-crosslinked to heparin via ABH chemistry, UV 365nm 10 min, surface density 100 pg/cm2" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1039-c1ib00037c/covalent-fab> .
+
+<https://lovamap.com/ontology#material/10.1039-c1ib00037c/ve-surface> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c1ib00037c> ;
+    rdfs:label "Electrostatically bound VEGF (Ve) heparin-functionalized gold surface" ;
+    lova:particleMaterial "Heparin-functionalized gold surface" ;
+    lova:surfaceModification "VEGF electrostatically adsorbed to heparin surface, no UV crosslinking" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1039-c1ib00037c/electrostatic-fab> .
+
+<https://lovamap.com/ontology#material/10.1039-c1ib00037c/vs-soluble> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c1ib00037c> ;
+    rdfs:label "Soluble VEGF (Vs) control, 2 ng/mL" ;
+    lova:particleMaterial "Soluble VEGF in serum-free culture medium" .
+
+<https://lovamap.com/ontology#material/10.1039-c1ib00037c/vn-control> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c1ib00037c> ;
+    rdfs:label "No VEGF (Vn) negative control surface" ;
+    lova:particleMaterial "Heparin-functionalized gold surface without VEGF" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1039-c1ib00037c/covalent-fab> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c1ib00037c> ;
+    rdfs:label "Covalent VEGF-heparin gold surface fabrication (Vc)" ;
+    lova:chemistry "Photoactivated covalent conjugation via azido-benzyl hydrazide (ABH)/heparin chemistry" ;
+    lova:manufacturingMethod "E-beam deposition of Ti/Au on glass slides, alkanethiol self-assembled monolayer formation, heparin oxidation/ABH photoactivation, VEGF incubation, UV 365nm crosslinking" ;
+    lova:annealingConditions "UV 365 nm, 10 minutes, VEGF overnight 4°C in 1% BSA-PBS at 200 ng/ml" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1039-c1ib00037c/eg-oh> ,
+                     <https://lovamap.com/ontology#reagent/10.1039-c1ib00037c/eg-nh2> ,
+                     <https://lovamap.com/ontology#reagent/10.1039-c1ib00037c/heparin> ,
+                     <https://lovamap.com/ontology#reagent/10.1039-c1ib00037c/vegf> ,
+                     <https://lovamap.com/ontology#reagent/10.1039-c1ib00037c/abh> ,
+                     <https://lovamap.com/ontology#reagent/10.1039-c1ib00037c/sodium-periodate> ,
+                     <https://lovamap.com/ontology#reagent/10.1039-c1ib00037c/sodium-acetate> ,
+                     <https://lovamap.com/ontology#reagent/10.1039-c1ib00037c/sodium-cyanoborohydride> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1039-c1ib00037c/electrostatic-fab> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c1ib00037c> ;
+    rdfs:label "Electrostatic VEGF-heparin gold surface fabrication (Ve)" ;
+    lova:chemistry "Electrostatic adsorption of VEGF to heparin surface" ;
+    lova:manufacturingMethod "E-beam deposition of Ti/Au on glass slides, alkanethiol self-assembled monolayer formation, heparin immobilization, VEGF incubation without covalent UV lock" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1039-c1ib00037c/eg-oh> ,
+                     <https://lovamap.com/ontology#reagent/10.1039-c1ib00037c/eg-nh2> ,
+                     <https://lovamap.com/ontology#reagent/10.1039-c1ib00037c/heparin> ,
+                     <https://lovamap.com/ontology#reagent/10.1039-c1ib00037c/vegf> .
+
+<https://lovamap.com/ontology#reagent/10.1039-c1ib00037c/eg-oh> a lova:Reagent ;
+    rdfs:label "(1-Mercapto-11-undecyl) tetra(ethylene glycol) (EG-OH)" ;
+    lova:reagentRole "monomer" ;
+    lova:supplier "Asemblon, Redmond, WA" ;
+    lova:reagentFunction "Alkanethiol self-assembled monolayer component on gold" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c1ib00037c/eg-nh2> a lova:Reagent ;
+    rdfs:label "(1-Mercapto-11-undecyl) septa(ethylene glycol) amine (EG-NH2)" ;
+    lova:reagentRole "monomer" ;
+    lova:supplier "ProChimia, Evanston, IL" ;
+    lova:reagentFunction "Amine-functionalized alkanethiol for heparin attachment" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c1ib00037c/heparin> a lova:Reagent ;
+    rdfs:label "Heparin sodium salt (porcine intestinal mucosa)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:supplier "Alfa Aesar, Ward Hill, MA" ;
+    lova:concentration "62.5 mg/ml oxidized stock; diluted to 3 mg/ml, then 1 mg/ml" ;
+    lova:reagentFunction "VEGF-binding matrix component" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c1ib00037c/vegf> a lova:Reagent ;
+    rdfs:label "Vascular Endothelial Growth Factor (VEGF)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Genentech, South San Francisco, CA" ;
+    lova:concentration "200 ng/ml incubation; 2 ng/ml soluble equivalent; surface density 100 pg/cm2" ;
+    lova:reagentFunction "Growth factor ligand for VEGFR-2 signaling" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c1ib00037c/abh> a lova:Reagent ;
+    rdfs:label "Azido-benzyl hydrazide (ABH)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:supplier "Pierce, Rockford, IL" ;
+    lova:reagentFunction "Photoactivation crosslinker for heparin, enables UV covalent locking" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c1ib00037c/sodium-periodate> a lova:Reagent ;
+    rdfs:label "Sodium periodate" ;
+    lova:reagentRole "other" ;
+    lova:concentration "200 mM" ;
+    lova:reagentFunction "Heparin oxidation" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c1ib00037c/sodium-acetate> a lova:Reagent ;
+    rdfs:label "Sodium acetate buffer" ;
+    lova:reagentRole "solvent" ;
+    lova:concentration "100 mM, pH 4" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c1ib00037c/sodium-cyanoborohydride> a lova:Reagent ;
+    rdfs:label "Sodium cyanoborohydride" ;
+    lova:reagentRole "other" ;
+    lova:concentration "50 mM in 100 mM sodium acetate pH 4" ;
+    lova:reagentFunction "Reductive stabilization of heparin-amine linkage" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c1ib00037c/aptes> a lova:Reagent ;
+    rdfs:label "Amino-propyl triethoxysilane (APTES)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Sigma-Aldrich, St. Louis, MO" ;
+    lova:concentration "5% v/v in ethanol" ;
+    lova:reagentFunction "PDMS surface amine functionalization" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c1ib00037c/fibronectin> a lova:Reagent ;
+    rdfs:label "Fibronectin solution" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Millipore, Temecula, CA" ;
+    lova:concentration "10 μg/ml" ;
+    lova:reagentFunction "PDMS surface cell adhesion coating" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c1ib00037c/dynasore> a lova:Reagent ;
+    rdfs:label "Dynasore" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Sigma-Aldrich, St. Louis, MO" ;
+    lova:concentration "80 μM" ;
+    lova:reagentFunction "Dynamin inhibitor, blocks receptor endocytosis" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c1ib00037c/sodium-vanadate> a lova:Reagent ;
+    rdfs:label "Sodium vanadate (sodium orthovanadate)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "0.1 mM (media); 2.1 mM (lysis buffer); 0.2 mM (wash buffer)" ;
+    lova:reagentFunction "Phosphatase inhibitor" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c1ib00037c/i125-vegf> a lova:Reagent ;
+    rdfs:label "Iodine-125 labeled VEGF" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Perkin Elmer, Santa Clara, CA" ;
+    lova:concentration "diluted 1:100 in unlabeled VEGF" ;
+    lova:reagentFunction "Radiotracer for VEGF internalization assay" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c1ib00037c/polystyrene-beads> a lova:Reagent ;
+    rdfs:label "Amine-functionalized polystyrene beads (3 μm)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Spherotech, Lake Forest, IL" ;
+    lova:reagentFunction "Substrate for optical trap rupture force measurement" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c1ib00037c/bsa> a lova:Reagent ;
+    rdfs:label "Bovine serum albumin (BSA)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "1% and 5%" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c1ib00037c/egm2> a lova:Reagent ;
+    rdfs:label "EGM-2 complete medium" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Lonza, Walkersville, MD" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c1ib00037c/anti-pvegfr2-y1175> a lova:Reagent ;
+    rdfs:label "Anti-phosphotyrosine antibody pVEGFR-2/Y1175" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Cell Signaling, Boston, MA" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c1ib00037c/anti-pvegfr2-y1214> a lova:Reagent ;
+    rdfs:label "Anti-phosphotyrosine antibody pVEGFR-2/Y1214" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Invitrogen, Carlsbad, CA" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c1ib00037c/anti-phospho-p38> a lova:Reagent ;
+    rdfs:label "Phospho-p38 antibody" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Cell Signaling, Boston, MA" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c1ib00037c/secondary-hrp> a lova:Reagent ;
+    rdfs:label "HRP-conjugated secondary antibody" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Invitrogen, Carlsbad, CA" ;
+    lova:concentration "200 ng/ml" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c1ib00037c/anti-vegfr2-total> a lova:Reagent ;
+    rdfs:label "Anti-VEGFR-2 antibody (total)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Cell Signaling Technology, Boston, MA" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c1ib00037c/anti-p38-total> a lova:Reagent ;
+    rdfs:label "Anti-p38 antibody (total)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Cell Signaling Technology, Boston, MA" .
+
+<https://lovamap.com/ontology#reagent/10.1039-c1ib00037c/cdc42-glisa-kit> a lova:Reagent ;
+    rdfs:label "cdc42 GLISA kit" ;
+    lova:reagentRole "other" ;
+    lova:supplier "CytoSkeleton, Denver, CO" ;
+    lova:reagentFunction "Cdc42 activation absorbance assay" .
+
+<https://lovamap.com/ontology#experiment/10.1039-c1ib00037c/exp-phospho-kinetics> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c1ib00037c> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1039-c1ib00037c/vc-surface> ,
+                       <https://lovamap.com/ontology#material/10.1039-c1ib00037c/ve-surface> ,
+                       <https://lovamap.com/ontology#material/10.1039-c1ib00037c/vs-soluble> ,
+                       <https://lovamap.com/ontology#material/10.1039-c1ib00037c/vn-control> ;
+    rdfs:label "VEGFR-2 phosphorylation kinetics (Y1175/Y1214) Western blot time course" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Receptor phosphorylation kinetics" ;
+    lova:assayOrMethod "Western blot" ;
+    lova:cellType "HUVEC" ;
+    lova:cellSource "Human umbilical vein" ;
+    lova:cultureDuration "0, 3, 5, 15, 30, 45, 60 minutes" ;
+    lova:temperature "37°C" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#experiment/10.1039-c1ib00037c/exp-cdc42> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c1ib00037c> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1039-c1ib00037c/vc-surface> ,
+                       <https://lovamap.com/ontology#material/10.1039-c1ib00037c/vs-soluble> ;
+    rdfs:label "Cdc42 GLISA activation assay" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "GTPase activation assay" ;
+    lova:assayOrMethod "GLISA (CytoSkeleton kit)" ;
+    lova:cellType "HUVEC" ;
+    lova:cultureDuration "60 minutes" .
+
+<https://lovamap.com/ontology#experiment/10.1039-c1ib00037c/exp-p38> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c1ib00037c> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1039-c1ib00037c/vc-surface> ,
+                       <https://lovamap.com/ontology#material/10.1039-c1ib00037c/ve-surface> ,
+                       <https://lovamap.com/ontology#material/10.1039-c1ib00037c/vs-soluble> ,
+                       <https://lovamap.com/ontology#material/10.1039-c1ib00037c/vn-control> ;
+    rdfs:label "p38 phosphorylation Western blot time course" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Downstream signaling activation" ;
+    lova:assayOrMethod "Western blot" ;
+    lova:cellType "HUVEC" ;
+    lova:cultureDuration "3, 5, 15, 30, 45, 60 minutes" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#experiment/10.1039-c1ib00037c/exp-dynasore> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c1ib00037c> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1039-c1ib00037c/vc-surface> ,
+                       <https://lovamap.com/ontology#material/10.1039-c1ib00037c/ve-surface> ,
+                       <https://lovamap.com/ontology#material/10.1039-c1ib00037c/vs-soluble> ;
+    rdfs:label "Dynasore endocytosis inhibition experiment" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Endocytosis inhibition" ;
+    lova:assayOrMethod "Western blot with 80 μM dynasore pretreatment" ;
+    lova:cellType "HUVEC" ;
+    lova:cultureDuration "5, 15, 30 minutes" ;
+    lova:preconditioning "80 μM dynasore 30 minutes before treatment" .
+
+<https://lovamap.com/ontology#experiment/10.1039-c1ib00037c/exp-rupture-force> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c1ib00037c> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1039-c1ib00037c/vc-surface> ,
+                       <https://lovamap.com/ontology#material/10.1039-c1ib00037c/ve-surface> ;
+    rdfs:label "Optical trap rupture force measurement" ;
+    lova:experimentCategory "Mechanical" ;
+    lova:experimentType "Single-molecule rupture force measurement" ;
+    lova:assayOrMethod "Optical tweezers" ;
+    lova:equipment "Custom laser tweezers, 1064nm Ytterbium fiber laser (IPG), Olympus IX81 Inverted Microscope, PlanApo 60x 1.45NA objective" ;
+    lova:temperature "37°C" ;
+    lova:cellType "HUVEC" .
+
+<https://lovamap.com/ontology#experiment/10.1039-c1ib00037c/exp-internalization> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c1ib00037c> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1039-c1ib00037c/vc-surface> ,
+                       <https://lovamap.com/ontology#material/10.1039-c1ib00037c/ve-surface> ,
+                       <https://lovamap.com/ontology#material/10.1039-c1ib00037c/vs-soluble> ;
+    rdfs:label "125I-VEGF internalization assay" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Ligand internalization kinetics" ;
+    lova:assayOrMethod "Radiolabeled VEGF gamma counting" ;
+    lova:cellType "HUVEC" ;
+    lova:cultureDuration "0-60 minutes" .
+
+<https://lovamap.com/ontology#experiment/10.1039-c1ib00037c/exp-quenching> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c1ib00037c> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1039-c1ib00037c/vc-surface> ,
+                       <https://lovamap.com/ontology#material/10.1039-c1ib00037c/ve-surface> ,
+                       <https://lovamap.com/ontology#material/10.1039-c1ib00037c/vs-soluble> ;
+    rdfs:label "Receptor quenching pulse-chase experiment" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Receptor recycling assay" ;
+    lova:assayOrMethod "125I-VEGF pulse-chase" ;
+    lova:cellType "HUVEC" ;
+    lova:cultureDuration "~3 sec or 30 min cold exposure followed by 30 min hot 125I-VEGF" .
+
+<https://lovamap.com/ontology#experiment/10.1039-c1ib00037c/exp-halflife> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c1ib00037c> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1039-c1ib00037c/vc-surface> ,
+                       <https://lovamap.com/ontology#material/10.1039-c1ib00037c/vs-soluble> ;
+    rdfs:label "VEGF long-term stability (half-life) assay" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Growth factor stability/half-life" ;
+    lova:assayOrMethod "Western blot (pVEGFR-2 Y1175) after storage" ;
+    lova:cellType "HUVEC" ;
+    lova:cultureDuration "5 minutes exposure after storage up to 27 days" .
+
+<https://lovamap.com/ontology#experiment/10.1039-c1ib00037c/exp-repeat-exposure> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c1ib00037c> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1039-c1ib00037c/vc-surface> ,
+                       <https://lovamap.com/ontology#material/10.1039-c1ib00037c/ve-surface> ,
+                       <https://lovamap.com/ontology#material/10.1039-c1ib00037c/vs-soluble> ,
+                       <https://lovamap.com/ontology#material/10.1039-c1ib00037c/vn-control> ;
+    rdfs:label "Repeat exposure (4 rounds of 30-min) experiment" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Repeated activation / surface reuse" ;
+    lova:assayOrMethod "Western blot" ;
+    lova:cellType "HUVEC" ;
+    lova:cultureDuration "4 x 30 minutes" .
+
+<https://lovamap.com/ontology#experiment/10.1039-c1ib00037c/exp-affinity> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c1ib00037c> ;
+    rdfs:label "VEGF-VEGFR-2 and VEGF-matrix binding affinity analysis" ;
+    lova:experimentCategory "Mechanical" ;
+    lova:experimentType "Binding affinity / dissociation constant comparison" ;
+    lova:assayOrMethod "Literature-based affinity modeling and binding energy calculation" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c1ib00037c/y1175-vc-60min> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c1ib00037c/exp-phospho-kinetics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c1ib00037c> ;
+    rdfs:label "pVEGFR-2(Y1175)/VEGFR-2 ratio at 60 min — Vc, extended over Vs/Ve" ;
+    lova:measurementType "pVEGFR-2 (Y1175)/VEGFR-2 ratio" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.75 ;
+    qudt:unit "ratio" ;
+    lova:sampleSize 3 ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true ;
+    lova:scope "Bulk/global" ;
+    lova:timePoint "60 minutes" ;
+    lova:comparisonGroup "Vs, Ve" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c1ib00037c/y1214-vc-60min> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c1ib00037c/exp-phospho-kinetics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c1ib00037c> ;
+    rdfs:label "pVEGFR-2(Y1214)/VEGFR-2 ratio — Vc higher over Vs at all timepoints, and Ve at 45/60 min" ;
+    lova:measurementType "pVEGFR-2 (Y1214)/VEGFR-2 ratio" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Vc > Vs at all time points; Vc > Ve at 45 and 60 min" ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true ;
+    lova:sampleSize 3 ;
+    lova:scope "Bulk/global" ;
+    lova:timePoint "45, 60 minutes" ;
+    lova:comparisonGroup "Vs, Ve" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c1ib00037c/cdc42-vc> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c1ib00037c/exp-cdc42> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c1ib00037c> ;
+    rdfs:label "Cdc42 activation absorbance — Vc" ;
+    lova:measurementType "Cdc42-GTP absorbance (490 nm)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.43 ;
+    qudt:unit "absorbance (490 nm)" ;
+    lova:timePoint "60 minutes" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "Vs" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c1ib00037c/cdc42-vs> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c1ib00037c/exp-cdc42> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c1ib00037c> ;
+    rdfs:label "Cdc42 activation absorbance — Vs" ;
+    lova:measurementType "Cdc42-GTP absorbance (490 nm)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.28 ;
+    qudt:unit "absorbance (490 nm)" ;
+    lova:timePoint "60 minutes" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c1ib00037c/p38-foldchange> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c1ib00037c/exp-p38> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c1ib00037c> ;
+    rdfs:label "p38 activation fold-change — Vc and Ve vs Vs at 60 min" ;
+    lova:measurementType "Phospho-p38 activation" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString ">2-fold increase for Vc and Ve over Vs" ;
+    lova:comparedToControl 2.0 ;
+    lova:timePoint "60 minutes" ;
+    lova:comparisonGroup "Vs" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c1ib00037c/dynasore-y1175-vc-5min> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c1ib00037c/exp-dynasore> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c1ib00037c> ;
+    rdfs:label "Dynasore-induced decrease in Y1175 phosphorylation, Vc at 5 min" ;
+    lova:measurementType "pVEGFR-2 (Y1175) decrease with dynasore" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "57.6% decrease" ;
+    lova:timePoint "5 minutes" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c1ib00037c/dynasore-y1175-ve-5min> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c1ib00037c/exp-dynasore> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c1ib00037c> ;
+    rdfs:label "Dynasore-induced decrease in Y1175 phosphorylation, Ve at 5 min" ;
+    lova:measurementType "pVEGFR-2 (Y1175) decrease with dynasore" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "85.2% decrease" ;
+    lova:timePoint "5 minutes" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c1ib00037c/dynasore-y1175-vs-5min> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c1ib00037c/exp-dynasore> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c1ib00037c> ;
+    rdfs:label "Dynasore-induced decrease in Y1175 phosphorylation, Vs at 5 min" ;
+    lova:measurementType "pVEGFR-2 (Y1175) decrease with dynasore" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "81.3% decrease" ;
+    lova:timePoint "5 minutes" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c1ib00037c/dynasore-y1175-30min-increase> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c1ib00037c/exp-dynasore> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c1ib00037c> ;
+    rdfs:label "Y1175 phosphorylation increase with dynasore at 30 min — Vc and Ve" ;
+    lova:measurementType "pVEGFR-2 (Y1175) fold increase with dynasore" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "1.5-fold increase for Vc and Ve" ;
+    lova:timePoint "30 minutes" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c1ib00037c/dynasore-y1214-increase> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c1ib00037c/exp-dynasore> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c1ib00037c> ;
+    rdfs:label "Y1214 phosphorylation increase with dynasore — Vc, Vs ≥2-fold; Ve 1.1-fold (5min), 1.4-fold (30min)" ;
+    lova:measurementType "pVEGFR-2 (Y1214) fold increase with dynasore" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Vc and Vs at least 2-fold increase; Ve 1.1-fold at 5 min and 1.4-fold at 30 min" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c1ib00037c/rupture-ve> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c1ib00037c/exp-rupture-force> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c1ib00037c> ;
+    rdfs:label "Rupture force range — Ve" ;
+    lova:measurementType "Rupture force" ;
+    lova:measurementCategory "Mechanical" ;
+    lova:valueString "3-8 pN" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c1ib00037c/rupture-vc> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c1ib00037c/exp-rupture-force> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c1ib00037c> ;
+    rdfs:label "Rupture force range — Vc" ;
+    lova:measurementType "Rupture force" ;
+    lova:measurementCategory "Mechanical" ;
+    lova:valueString "6-12 pN" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c1ib00037c/internalized-vc> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c1ib00037c/exp-internalization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c1ib00037c> ;
+    rdfs:label "VEGF internalized — Vc" ;
+    lova:measurementType "VEGF internalized" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.4 ;
+    qudt:unit "fmol" ;
+    lova:timePoint "60 minutes" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c1ib00037c/internalized-ve> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c1ib00037c/exp-internalization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c1ib00037c> ;
+    rdfs:label "VEGF internalized — Ve" ;
+    lova:measurementType "VEGF internalized" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.8 ;
+    qudt:unit "fmol" ;
+    lova:timePoint "60 minutes" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c1ib00037c/internalized-vs> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c1ib00037c/exp-internalization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c1ib00037c> ;
+    rdfs:label "VEGF internalized — Vs" ;
+    lova:measurementType "VEGF internalized" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.0 ;
+    qudt:unit "fmol" ;
+    lova:timePoint "60 minutes" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c1ib00037c/vegf-supplied> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c1ib00037c/exp-internalization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c1ib00037c> ;
+    rdfs:label "Total VEGF supplied in internalization assay" ;
+    lova:measurementType "VEGF supplied" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 500.0 ;
+    qudt:unit "fmol" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c1ib00037c/quench-reduction-vc> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c1ib00037c/exp-quenching> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c1ib00037c> ;
+    rdfs:label "Significant reduction in internalized ligand for Vc in receptor quenching assay" ;
+    lova:measurementType "VEGF internalized (quenching assay)" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Significant reduction for Vc, suggesting decreased receptor recycling" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c1ib00037c/halflife-vc-37c> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c1ib00037c/exp-halflife> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c1ib00037c> ;
+    rdfs:label "VEGF half-life — Vc stored at 37°C" ;
+    lova:measurementType "VEGF half-life" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.0 ;
+    qudt:unit "days" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c1ib00037c/halflife-vs-4c> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c1ib00037c/exp-halflife> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c1ib00037c> ;
+    rdfs:label "VEGF half-life — Vs stored at 4°C" ;
+    lova:measurementType "VEGF half-life" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.0 ;
+    qudt:unit "days" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c1ib00037c/halflife-vc-4c> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c1ib00037c/exp-halflife> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c1ib00037c> ;
+    rdfs:label "VEGF half-life — Vc stored at 4°C" ;
+    lova:measurementType "VEGF half-life" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 7.0 ;
+    qudt:unit "days" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c1ib00037c/activity-vc4c-day27> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c1ib00037c/exp-halflife> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c1ib00037c> ;
+    rdfs:label "Residual activity of Vc at 4°C at day 27" ;
+    lova:measurementType "Residual pVEGFR-2 activity" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 21.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 27" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c1ib00037c/halflife-soluble-37c> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c1ib00037c/exp-halflife> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c1ib00037c> ;
+    rdfs:label "Reference soluble VEGF half-life at 37°C" ;
+    lova:measurementType "VEGF half-life (literature reference)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 100.0 ;
+    qudt:unit "minutes" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c1ib00037c/kd-vegf-vegfr2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c1ib00037c/exp-affinity> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c1ib00037c> ;
+    rdfs:label "Dissociation constant VEGF-VEGFR-2" ;
+    lova:measurementType "Dissociation constant (KD)" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 0.1 ;
+    qudt:unit "nM" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c1ib00037c/kd-vegf-matrix> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c1ib00037c/exp-affinity> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c1ib00037c> ;
+    rdfs:label "Dissociation constant VEGF-matrix (heparin, collagen, fibronectin)" ;
+    lova:measurementType "Dissociation constant (KD)" ;
+    lova:measurementCategory "Mechanical" ;
+    lova:valueString "40-160 nM" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c1ib00037c/binding-energy-ve> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c1ib00037c/exp-affinity> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c1ib00037c> ;
+    rdfs:label "Calculated binding energy — VEGF-heparin (Ve) interaction" ;
+    lova:measurementType "Binding energy" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 43.90 ;
+    qudt:unit "kJ/mol" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c1ib00037c/binding-energy-vc> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c1ib00037c/exp-affinity> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c1ib00037c> ;
+    rdfs:label "Calculated binding energy — VEGF-VEGFR-2 (Vc) interaction" ;
+    lova:measurementType "Binding energy" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 53.41 ;
+    qudt:unit "kJ/mol" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c1ib00037c/transmembrane-removal-force> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c1ib00037c/exp-affinity> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c1ib00037c> ;
+    rdfs:label "Reference force to remove transmembrane protein from cell surface" ;
+    lova:measurementType "Removal force (literature reference)" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 160.0 ;
+    qudt:unit "pN" ;
+    lova:valueString "equivalent to 293 kJ/mol binding energy" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c1ib00037c/repeat-vs-decline> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c1ib00037c/exp-repeat-exposure> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c1ib00037c> ;
+    rdfs:label "Vs declines in Y1175 activity by 3rd repeat exposure; lower Y1214 activity overall" ;
+    lova:measurementType "pVEGFR-2 activity across repeated exposures" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Vs loses Y1175 phosphorylation intensity at 3rd and 4th exposure; lower Y1214 activity compared to bound conditions" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1039-c1ib00037c/repeat-vc-ve-sustained> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1039-c1ib00037c/exp-repeat-exposure> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c1ib00037c> ;
+    rdfs:label "Vc and Ve maintain phosphorylation (Y1175, Y1214) through all four exposures" ;
+    lova:measurementType "pVEGFR-2 activity across repeated exposures" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Sustained phosphorylation through all four 30-minute treatments" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#comparison/10.1039-c1ib00037c/y1175-vc-vs-60min> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c1ib00037c> ;
+    rdfs:label "pVEGFR-2 (Y1175) higher in Vc vs Vs/Ve at 60 minutes" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1039-c1ib00037c/y1175-vc-60min> ;
+    lova:direction "higher" ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1039-c1ib00037c/cdc42-vc-vs-vs> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c1ib00037c> ;
+    rdfs:label "Cdc42 activation higher in Vc vs Vs" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1039-c1ib00037c/cdc42-vc> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1039-c1ib00037c/cdc42-vs> ;
+    lova:direction "higher" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1039-c1ib00037c/rupture-vc-vs-ve> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c1ib00037c> ;
+    rdfs:label "Rupture force higher in Vc vs Ve (6-12 pN vs 3-8 pN)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1039-c1ib00037c/rupture-vc> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1039-c1ib00037c/rupture-ve> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#comparison/10.1039-c1ib00037c/internalization-vc-vs-vs> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c1ib00037c> ;
+    rdfs:label "VEGF internalization lower in Vc vs Vs" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1039-c1ib00037c/internalized-vc> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1039-c1ib00037c/internalized-vs> ;
+    lova:direction "lower" .
+
+<https://lovamap.com/ontology#comparison/10.1039-c1ib00037c/internalization-vc-vs-ve> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c1ib00037c> ;
+    rdfs:label "VEGF internalization lower in Vc vs Ve" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1039-c1ib00037c/internalized-vc> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1039-c1ib00037c/internalized-ve> ;
+    lova:direction "lower" .
+
+<https://lovamap.com/ontology#comparison/10.1039-c1ib00037c/halflife-vc4c-vs-vs4c> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1039-c1ib00037c> ;
+    rdfs:label "VEGF half-life extended over three-fold for Vc (4°C) vs Vs (4°C)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1039-c1ib00037c/halflife-vc-4c> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1039-c1ib00037c/halflife-vs-4c> ;
+    lova:direction "higher" ;
+    lova:foldChange 3.5 .

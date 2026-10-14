@@ -1,0 +1,974 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> a bibo:AcademicArticle ;
+    rdfs:label "Anderson et al., 2009 — VEGFR-2 phosphorylation by immobilized VEGF" ;
+    dc:title "The phosphorylation of vascular endothelial growth factor receptor-2 (VEGFR-2) by engineered surfaces with electrostatically or covalently immobilized VEGF" ;
+    dc:identifier "10.1016/j.biomaterials.2009.05.030" ;
+    dc:date "2009"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/biomaterials> ;
+    dc:creator <https://lovamap.com/ontology#author/anderson-sean> ,
+               <https://lovamap.com/ontology#author/chen-tom> ,
+               <https://lovamap.com/ontology#author/iruela-arispe-m-luisa> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/anderson-sean>
+                       <https://lovamap.com/ontology#author/chen-tom>
+                       <https://lovamap.com/ontology#author/iruela-arispe-m-luisa>
+                       <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    dc:bibliographicCitation "Anderson et al., 2009" ;
+    lova:focusMaterial "Gold SAM surfaces with electrostatically or covalently immobilized VEGF via heparin, studied for VEGFR-2 phosphorylation signaling" .
+
+<https://lovamap.com/ontology#author/anderson-sean> a foaf:Person ;
+    foaf:familyName "Anderson" ;
+    foaf:givenName "Sean M." ;
+    foaf:name "Sean M. Anderson" ;
+    schema:affiliation "University of California, Los Angeles, Chemical and Biomolecular Engineering Department, Los Angeles, CA, USA" .
+
+<https://lovamap.com/ontology#author/chen-tom> a foaf:Person ;
+    foaf:familyName "Chen" ;
+    foaf:givenName "Tom T." ;
+    foaf:name "Tom T. Chen" ;
+    schema:affiliation "University of California, Los Angeles, Molecular, Cellular, and Developmental Biology Department, Los Angeles, CA, USA" .
+
+<https://lovamap.com/ontology#author/iruela-arispe-m-luisa> a foaf:Person ;
+    foaf:familyName "Iruela-Arispe" ;
+    foaf:givenName "M. Luisa" ;
+    foaf:name "M. Luisa Iruela-Arispe" ;
+    schema:affiliation "University of California, Los Angeles, Molecular, Cellular, and Developmental Biology Department, Los Angeles, CA, USA" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" ;
+    schema:affiliation "University of California, Los Angeles, Chemical and Biomolecular Engineering Department, Los Angeles, CA, USA" .
+
+<https://lovamap.com/ontology#journal/biomaterials> a bibo:Journal ;
+    dc:title "Biomaterials" ;
+    bibo:issn "0142-9612" .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2009.05.030/eg-oh-sam> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "100% EG-OH SAM on gold surface" ;
+    lova:particleMaterial "(1-Mercapto-11-undecyl) tetra(ethylene glycol) SAM on gold" ;
+    lova:surfaceModification "Non-fouling EG-OH terminated surface" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2009.05.030/sam-formation> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2009.05.030/eg-nh2-sam> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "1% EG-NH2 / 99% EG-OH SAM on gold surface" ;
+    lova:particleMaterial "(1-Mercapto-11-undecyl) septa(ethylene glycol) amine mixed SAM on gold" ;
+    lova:surfaceModification "1% EG-NH2 amine-functionalized surface" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2009.05.030/sam-formation> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2009.05.030/heparin-electrostatic-surface> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "Oxidized heparin electrostatically immobilized on EG-NH2 SAM" ;
+    lova:surfaceModification "Oxidized heparin bound via reductive amination" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2009.05.030/heparin-immobilization> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2009.05.030/heparin-abh-surface> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "Heparin-ABH photoreactive surface immobilized on EG-NH2 SAM" ;
+    lova:surfaceModification "Heparin modified with p-azidobenzoyl hydrazide, immobilized via reductive amination" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2009.05.030/heparin-abh-synthesis> ,
+                              <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2009.05.030/heparin-immobilization> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2009.05.030/vegf-electrostatic> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "VEGF electrostatically bound to heparin-modified surface" ;
+    lova:surfaceModification "VEGF bound through heparin-binding domain, no covalent lock" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2009.05.030/vegf-electrostatic-binding> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2009.05.030/vegf-covalent> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "VEGF covalently bound to heparin-ABH surface (bind-and-lock)" ;
+    lova:surfaceModification "VEGF bound via heparin-binding domain then UV covalently locked via azidobenzoyl crosslinker" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2009.05.030/vegf-covalent-binding> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2009.05.030/vegf-soluble> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "Soluble VEGF (positive control, 200 ng/ml)" ;
+    lova:surfaceModification "Soluble VEGF provided fresh in medium" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2009.05.030/sam-formation> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "Gold evaporation and SAM formation" ;
+    lova:chemistry "Thiol-gold self-assembled monolayer formation" ;
+    lova:manufacturingMethod "E-beam evaporation of 30 nm gold on 5 nm titanium adhesion layer, then SAM incubation 18 h" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2009.05.030/eg-oh> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2009.05.030/eg-nh2> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2009.05.030/heparin-abh-synthesis> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "Heparin-ABH (photoreactive heparin) synthesis" ;
+    lova:chemistry "Periodate oxidation and hydrazide conjugation" ;
+    lova:manufacturingMethod "Solution chemistry, dialysis purification, lyophilization" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2009.05.030/heparin> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2009.05.030/naio4> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2009.05.030/abh> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2009.05.030/heparin-immobilization> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "Heparin immobilization to amine SAM surface" ;
+    lova:chemistry "Schiff base formation followed by reductive amination" ;
+    lova:manufacturingMethod "Incubation on 1% EG-NH2 SAM, 24 h at 4°C" ;
+    lova:annealingConditions "Sodium cyanoborohydride 50 mM, 5 min, room temperature; quench with 500 mM Tris pH 8" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2009.05.030/sodium-cyanoborohydride> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2009.05.030/vegf-electrostatic-binding> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "VEGF electrostatic immobilization via heparin-binding domain" ;
+    lova:chemistry "Electrostatic heparin-binding domain interaction" ;
+    lova:manufacturingMethod "Incubation of VEGF (200 ng/ml in PBS) on heparin-modified surface for 24 h at 4°C" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2009.05.030/vegf> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2009.05.030/vegf-covalent-binding> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "VEGF bind-and-lock covalent immobilization" ;
+    lova:chemistry "Photoreactive p-azidobenzoyl UV crosslinking (bind-and-lock)" ;
+    lova:manufacturingMethod "VEGF (200 ng/ml in PBS) incubated 24 h at 4°C on heparin-ABH surface" ;
+    lova:annealingChemistry "Photoinitiated covalent crosslinking via p-azidobenzoyl group" ;
+    lova:annealingConditions "UV 365 nm, 10 min" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2009.05.030/vegf> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2009.05.030/abh> .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2009.05.030/eg-oh> a lova:Reagent ;
+    rdfs:label "(1-Mercapto-11-undecyl) tetra(ethylene glycol) (EG-OH)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Asemblon" ;
+    lova:concentration "2 mM solution, 99% component" ;
+    lova:reagentFunction "Non-fouling background self-assembled monolayer" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2009.05.030/eg-nh2> a lova:Reagent ;
+    rdfs:label "(1-Mercapto-11-undecyl) septa(ethylene glycol) amine (EG-NH2)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "ProChimia" ;
+    lova:concentration "2 mM solution, 1% component" ;
+    lova:reagentFunction "Amine functionalization for heparin coupling" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2009.05.030/heparin> a lova:Reagent ;
+    rdfs:label "Heparin sodium salt (porcine intestinal mucosa)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Alfa Aesar" ;
+    lova:concentration "62.5 mg/ml (oxidation step); 1 mg/ml (release/SPR injections); 3 mg/ml (ABH conjugation)" ;
+    lova:reagentFunction "Orients VEGF via heparin-binding domain; forms surface scaffold for VEGF immobilization" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2009.05.030/naio4> a lova:Reagent ;
+    rdfs:label "Sodium periodate (NaIO4)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "200 mM" ;
+    lova:reagentFunction "Oxidizes heparin to introduce aldehyde groups" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2009.05.030/abh> a lova:Reagent ;
+    rdfs:label "p-azidobenzoyl hydrazide (ABH)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:supplier "Pierce" ;
+    lova:concentration "0.65 mM" ;
+    lova:reagentFunction "Photoreactive heterobifunctional crosslinker for covalent VEGF immobilization" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2009.05.030/sodium-cyanoborohydride> a lova:Reagent ;
+    rdfs:label "Sodium cyanoborohydride" ;
+    lova:reagentRole "other" ;
+    lova:concentration "50 mM (reductive amination); 100 mM (SPR step)" ;
+    lova:reagentFunction "Reduces Schiff base to irreversible amine bond" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2009.05.030/vegf> a lova:Reagent ;
+    rdfs:label "Vascular Endothelial Growth Factor (VEGF165)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Shenandoah Biotechnology" ;
+    lova:concentration "200 ng/ml" ;
+    lova:reagentFunction "Signaling growth factor studied for VEGFR-2 phosphorylation" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2009.05.030/fibronectin> a lova:Reagent ;
+    rdfs:label "Human plasma fibronectin" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Sigma-Aldrich" ;
+    lova:concentration "20 μg/ml" ;
+    lova:reagentFunction "Backfill to mediate cell attachment to surface" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2009.05.030/aptes> a lova:Reagent ;
+    rdfs:label "APTES (aminopropyltriethoxysilane)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "5% v/v in ethanol" ;
+    lova:reagentFunction "Amine functionalization of PDMS sheets for cell culture" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2009.05.030/vegf-capture-antibody> a lova:Reagent ;
+    rdfs:label "VEGF capture antibody" ;
+    lova:reagentRole "other" ;
+    lova:supplier "R&D Systems" ;
+    lova:concentration "1 μg/ml" ;
+    lova:reagentFunction "ELISA capture of VEGF" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2009.05.030/vegf-detection-antibody> a lova:Reagent ;
+    rdfs:label "Biotinylated VEGF detection antibody" ;
+    lova:reagentRole "other" ;
+    lova:supplier "R&D Systems" ;
+    lova:concentration "1 μg/ml" ;
+    lova:reagentFunction "ELISA detection of VEGF" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2009.05.030/streptavidin-hrp> a lova:Reagent ;
+    rdfs:label "Streptavidin-HRP" ;
+    lova:reagentRole "other" ;
+    lova:supplier "R&D Systems" ;
+    lova:concentration "200 μg/ml" ;
+    lova:reagentFunction "ELISA signal amplification" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2009.05.030/py20-antibody> a lova:Reagent ;
+    rdfs:label "Anti-phosphotyrosine antibody (pY20)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Santa Cruz Biotechnology" ;
+    lova:concentration "1 μg/ml" ;
+    lova:reagentFunction "Detection of phosphorylated VEGFR-2" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2009.05.030/vegfr2-antibody> a lova:Reagent ;
+    rdfs:label "Anti-VEGFR-2 antibody" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Cell Signaling Technology" ;
+    lova:reagentFunction "Loading control for total VEGFR-2" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2009.05.030/pvegfr2-antibody> a lova:Reagent ;
+    rdfs:label "pVEGFR-2 (Tyr1175) antibody" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Cell Signaling Technology" ;
+    lova:reagentFunction "Detection of endogenous phosphorylated VEGFR-2 in HUVECs" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2009.05.030/pecam-antibody> a lova:Reagent ;
+    rdfs:label "Anti-PECAM (mouse) antibody" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Santa Cruz Biotechnology" ;
+    lova:reagentFunction "Immunostaining of PECAM-1/gap junctions" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2009.05.030/phalloidin-alexa488> a lova:Reagent ;
+    rdfs:label "Phalloidin-Alexa488" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Invitrogen" ;
+    lova:reagentFunction "Actin cytoskeleton staining" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2009.05.030/goat-anti-mouse-alexa555> a lova:Reagent ;
+    rdfs:label "Goat anti-mouse Alexa 555" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Invitrogen" ;
+    lova:reagentFunction "Secondary antibody for PECAM detection" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2009.05.030/hoescht> a lova:Reagent ;
+    rdfs:label "HOESCHT stain" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Nuclear staining" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/ir-heparin-oxidation> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2009.05.030/heparin-abh-surface> ;
+    rdfs:label "Infrared spectroscopy of heparin oxidation" ;
+    lova:experimentCategory "Spectroscopic" ;
+    lova:experimentType "FTIR" ;
+    lova:equipment "Jasco FT/IR-420" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/uv-vis-heparin-abh> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2009.05.030/heparin-abh-surface> ;
+    rdfs:label "UV absorbance characterization of Heparin-ABH" ;
+    lova:experimentCategory "Spectroscopic" ;
+    lova:experimentType "UV-Vis absorbance" ;
+    lova:equipment "Beckman Coulter DU 730" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/ellipsometry> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2009.05.030/eg-nh2-sam> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2009.05.030/eg-oh-sam> ;
+    rdfs:label "Ellipsometry of SAM surfaces before/after UV or piranha treatment" ;
+    lova:experimentCategory "Surface characterization" ;
+    lova:experimentType "Ellipsometry" ;
+    lova:equipment "SopraGES5 ellipsometer" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/contact-angle> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2009.05.030/eg-nh2-sam> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2009.05.030/eg-oh-sam> ;
+    rdfs:label "Water droplet contact angle goniometry of SAM surfaces" ;
+    lova:experimentCategory "Surface characterization" ;
+    lova:experimentType "Contact angle" ;
+    lova:equipment "Newport VPH-2 goniometer" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/spr-heparin> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2009.05.030/heparin-electrostatic-surface> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2009.05.030/eg-nh2-sam> ;
+    rdfs:label "SPR measurement of heparin binding density" ;
+    lova:experimentCategory "Biophysical" ;
+    lova:experimentType "Surface Plasmon Resonance" ;
+    lova:equipment "Biacore T100 Molecular Interaction System" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/spr-vegf> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2009.05.030/vegf-electrostatic> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2009.05.030/eg-nh2-sam> ;
+    rdfs:label "SPR measurement of VEGF binding density" ;
+    lova:experimentCategory "Biophysical" ;
+    lova:experimentType "Surface Plasmon Resonance" ;
+    lova:equipment "Biacore T100 Molecular Interaction System" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/cell-attachment-spreading> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2009.05.030/eg-oh-sam> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2009.05.030/eg-nh2-sam> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2009.05.030/heparin-electrostatic-surface> ;
+    rdfs:label "PAE/KDR cell attachment and spreading assay on modified surfaces" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell attachment/spreading" ;
+    lova:cellType "PAE/KDR (porcine aortic endothelial overexpressing KDR)" ;
+    lova:cultureMedium "F-12 + 10% BGS + 1% penicillin/streptomycin" ;
+    lova:temperature "37°C" ;
+    lova:atmosphere "5% CO2" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/elisa-vegf-density> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2009.05.030/vegf-electrostatic> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2009.05.030/vegf-covalent> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2009.05.030/eg-nh2-sam> ;
+    rdfs:label "ELISA quantification of surface-bound VEGF density and release kinetics" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "ELISA" ;
+    lova:assayOrMethod "Sandwich ELISA" ;
+    lova:equipment "BioTek PowerWave XS plate reader" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/western-blot-paekdr> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2009.05.030/vegf-electrostatic> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2009.05.030/vegf-covalent> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2009.05.030/vegf-soluble> ;
+    rdfs:label "VEGFR-2 phosphorylation Western blot in PAE/KDR cells" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Western blot" ;
+    lova:assayOrMethod "SDS-PAGE/immunoblot with pY20 antibody" ;
+    lova:cellType "PAE/KDR" ;
+    lova:cultureDuration "30 min treatment" ;
+    lova:sampleSize 5 .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/western-blot-huvec> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2009.05.030/vegf-electrostatic> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2009.05.030/vegf-covalent> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2009.05.030/vegf-soluble> ;
+    rdfs:label "Endogenous VEGFR-2 phosphorylation Western blot in HUVECs" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Western blot" ;
+    lova:assayOrMethod "SDS-PAGE/immunoblot with pVEGFR-2 (1175) antibody" ;
+    lova:cellType "HUVEC" ;
+    lova:cultureDuration "5 and 30 min" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/cell-proliferation-huvec> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2009.05.030/vegf-electrostatic> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2009.05.030/vegf-covalent> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2009.05.030/vegf-soluble> ;
+    rdfs:label "HUVEC proliferation on VEGF-modified surfaces" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell proliferation" ;
+    lova:cellType "HUVEC" ;
+    lova:seedingDensity "30,000 cells/well" ;
+    lova:cultureDuration "5 days" ;
+    lova:cultureMedium "Basal EGM-2 with fetal bovine serum" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/immunofluorescence-huvec> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2009.05.030/vegf-electrostatic> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2009.05.030/vegf-covalent> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2009.05.030/vegf-soluble> ;
+    rdfs:label "Immunofluorescent PECAM-1/morphology staining of HUVECs" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immunofluorescence microscopy" ;
+    lova:cellType "HUVEC" ;
+    lova:cultureDuration "5 days" ;
+    lova:equipment "Zeiss Observer microscope" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/uv-abs-unmodified-heparin> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/uv-vis-heparin-abh> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "UV absorbance at 290 nm of unmodified heparin" ;
+    lova:measurementType "UV absorbance at 290 nm" ;
+    lova:measurementCategory "Spectroscopic" ;
+    qudt:numericValue 0.168 ;
+    qudt:unit "absorbance units" ;
+    lova:stdDev 0.026 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/uv-abs-abh-heparin> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/uv-vis-heparin-abh> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "UV absorbance at 290 nm of Heparin-ABH" ;
+    lova:measurementType "UV absorbance at 290 nm" ;
+    lova:measurementCategory "Spectroscopic" ;
+    qudt:numericValue 0.615 ;
+    qudt:unit "absorbance units" ;
+    lova:stdDev 0.158 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/gold-thickness-increase> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/ellipsometry> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "Gold layer thickness increase" ;
+    lova:measurementType "Surface thickness increase" ;
+    lova:measurementCategory "Surface characterization" ;
+    qudt:numericValue 30.0 ;
+    qudt:unit "nm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/titanium-thickness-increase> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/ellipsometry> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "Titanium layer thickness increase" ;
+    lova:measurementType "Surface thickness increase" ;
+    lova:measurementCategory "Surface characterization" ;
+    qudt:numericValue 5.0 ;
+    qudt:unit "nm" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/contact-angle-bare-gold> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/contact-angle> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "Contact angle of bare gold" ;
+    lova:measurementType "Water contact angle" ;
+    lova:measurementCategory "Surface characterization" ;
+    qudt:numericValue 73.83 ;
+    qudt:unit "degrees" ;
+    lova:stdDev 5.17 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/contact-angle-eg-oh> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/contact-angle> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "Contact angle of EG-OH modified surface" ;
+    lova:measurementType "Water contact angle" ;
+    lova:measurementCategory "Surface characterization" ;
+    qudt:numericValue 33.41 ;
+    qudt:unit "degrees" ;
+    lova:stdDev 0.74 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/contact-angle-eg-nh2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/contact-angle> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "Contact angle of 1% EG-NH2 modified surface" ;
+    lova:measurementType "Water contact angle" ;
+    lova:measurementCategory "Surface characterization" ;
+    qudt:numericValue 30.80 ;
+    qudt:unit "degrees" ;
+    lova:stdDev 1.75 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/contact-angle-eg-nh2-uv> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/contact-angle> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "Contact angle of EG-NH2 surface after UV treatment" ;
+    lova:measurementType "Water contact angle" ;
+    lova:measurementCategory "Surface characterization" ;
+    qudt:numericValue 33.27 ;
+    qudt:unit "degrees" ;
+    lova:stdDev 0.65 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/contact-angle-piranha> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/contact-angle> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "Contact angle after piranha clean" ;
+    lova:measurementType "Water contact angle" ;
+    lova:measurementCategory "Surface characterization" ;
+    qudt:numericValue 62.80 ;
+    qudt:unit "degrees" ;
+    lova:stdDev 0.39 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/heparin-surface-density-spr> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/spr-heparin> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "Heparin surface density by SPR (600 RU)" ;
+    lova:measurementType "Heparin surface density" ;
+    lova:measurementCategory "Biophysical" ;
+    qudt:numericValue 60.0 ;
+    qudt:unit "ng/cm2" ;
+    lova:valueString "600 response units" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/vegf-surface-density-spr> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/spr-vegf> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "VEGF surface density by SPR" ;
+    lova:measurementType "VEGF surface density" ;
+    lova:measurementCategory "Biophysical" ;
+    qudt:numericValue 100.0 ;
+    qudt:unit "pg/cm2" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/vegf-density-heparin-abh-before-release> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/elisa-vegf-density> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "VEGF density on Heparin-ABH surface before release" ;
+    lova:measurementType "VEGF surface density" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 197.82 ;
+    qudt:unit "pg/cm2" ;
+    lova:stdDev 9.00 ;
+    lova:timePoint "Before release" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/vegf-density-oxidized-heparin-before-release> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/elisa-vegf-density> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "VEGF density on oxidized heparin surface before release" ;
+    lova:measurementType "VEGF surface density" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 166.15 ;
+    qudt:unit "pg/cm2" ;
+    lova:stdDev 18.38 ;
+    lova:timePoint "Before release" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/vegf-density-eg-nh2-before-release> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/elisa-vegf-density> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "VEGF density on 1% EG-NH2 surface before release" ;
+    lova:measurementType "VEGF surface density" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 120.05 ;
+    qudt:unit "pg/cm2" ;
+    lova:stdDev 9.60 ;
+    lova:timePoint "Before release" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/vegf-density-eg-nh2-after-release> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/elisa-vegf-density> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "VEGF density remaining on EG-NH2 surface after release" ;
+    lova:measurementType "VEGF surface density" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 20.0 ;
+    qudt:unit "pg/cm2" ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 ;
+    lova:timePoint "After release" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/vegf-density-heparin-surfaces-after-5days> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/elisa-vegf-density> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "VEGF density on heparin surfaces after 5 days release in PBS" ;
+    lova:measurementType "VEGF surface density" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 100.0 ;
+    qudt:unit "pg/cm2" ;
+    lova:timePoint "Day 5" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/vegf-density-covalent-after-5days-all-conditions> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/elisa-vegf-density> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "VEGF bound on covalent (heparin-ABH) surface after 5 days under all release conditions" ;
+    lova:measurementType "VEGF surface density" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 100.0 ;
+    qudt:unit "pg/cm2" ;
+    lova:timePoint "Day 5" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/vegf-density-electrostatic-after-5days-all-conditions> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/elisa-vegf-density> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "VEGF bound on electrostatic (heparin-binding domain only) surface after 5 days" ;
+    lova:measurementType "VEGF surface density" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 70.0 ;
+    qudt:unit "pg/cm2" ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 ;
+    lova:timePoint "Day 5" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2009.05.030/vegf-density-covalent-vs-electrostatic-5days> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "VEGF surface density higher for covalently bound vs electrostatically bound VEGF after 5 days release" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/vegf-density-covalent-after-5days-all-conditions> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/vegf-density-electrostatic-after-5days-all-conditions> ;
+    lova:direction "higher" ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2009.05.030/vegf-density-heparin-abh-vs-eg-nh2> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "VEGF density higher on heparin-ABH surface vs EG-NH2 surface before release" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/vegf-density-heparin-abh-before-release> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/vegf-density-eg-nh2-before-release> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2009.05.030/vegf-density-eg-nh2-release-vs-heparin-release> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "VEGF density after release lower on EG-NH2 surface vs heparin surfaces" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/vegf-density-eg-nh2-after-release> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/vegf-density-heparin-surfaces-after-5days> ;
+    lova:direction "lower" ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/cell-attachment-bg> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/cell-attachment-spreading> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "PAE/KDR cell attachment on bare gold" ;
+    lova:measurementType "Cell attachment density" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 220.0 ;
+    qudt:unit "cells/mm2" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/cell-attachment-eg-oh> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/cell-attachment-spreading> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "PAE/KDR cell attachment on EG-OH surface (no heparin)" ;
+    lova:measurementType "Cell attachment density" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.0 ;
+    qudt:unit "cells/mm2" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/cell-attachment-eg-oh-heparin> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/cell-attachment-spreading> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "PAE/KDR cell attachment on EG-OH/heparin surface" ;
+    lova:measurementType "Cell attachment density" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.0 ;
+    qudt:unit "cells/mm2" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/cell-attachment-eg-nh2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/cell-attachment-spreading> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "PAE/KDR cell attachment on EG-NH2 surface" ;
+    lova:measurementType "Cell attachment density" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 215.0 ;
+    qudt:unit "cells/mm2" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/cell-attachment-eg-nh2-heparin> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/cell-attachment-spreading> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "PAE/KDR cell attachment on EG-NH2/heparin surface" ;
+    lova:measurementType "Cell attachment density" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 310.0 ;
+    qudt:unit "cells/mm2" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/cell-attachment-tc> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/cell-attachment-spreading> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "PAE/KDR cell attachment on tissue culture plastic" ;
+    lova:measurementType "Cell attachment density" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 385.0 ;
+    qudt:unit "cells/mm2" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2009.05.030/attachment-eg-oh-vs-bg> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "PAE/KDR attachment lower on EG-OH vs bare gold" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/cell-attachment-eg-oh> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/cell-attachment-bg> ;
+    lova:direction "lower" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2009.05.030/attachment-eg-nh2-vs-tc> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "PAE/KDR attachment lower on EG-NH2 vs tissue culture plastic" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/cell-attachment-eg-nh2> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/cell-attachment-tc> ;
+    lova:direction "lower" ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/cell-spreading-bg> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/cell-attachment-spreading> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "PAE/KDR cell spreading area on bare gold" ;
+    lova:measurementType "Cell spreading area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1290.0 ;
+    qudt:unit "μm2" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/cell-spreading-eg-nh2> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/cell-attachment-spreading> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "PAE/KDR cell spreading area on EG-NH2 surface" ;
+    lova:measurementType "Cell spreading area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 770.0 ;
+    qudt:unit "μm2" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/cell-spreading-eg-nh2-heparin> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/cell-attachment-spreading> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "PAE/KDR cell spreading area on EG-NH2/heparin surface" ;
+    lova:measurementType "Cell spreading area" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1380.0 ;
+    qudt:unit "μm2" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2009.05.030/spreading-eg-nh2-vs-bg> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "PAE/KDR spreading lower on EG-NH2 vs bare gold" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/cell-spreading-eg-nh2> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/cell-spreading-bg> ;
+    lova:direction "lower" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/pvegfr2-paekdr-abh-plus> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/western-blot-paekdr> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "Normalized pVEGFR-2 in PAE/KDR cells, covalent VEGF (ABH+)" ;
+    lova:measurementType "Normalized phosphorylated VEGFR-2" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.90 ;
+    qudt:unit "normalized intensity" ;
+    lova:sampleSize 5 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/pvegfr2-paekdr-abh-minus> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/western-blot-paekdr> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "Normalized pVEGFR-2 in PAE/KDR cells, electrostatic VEGF (ABH-)" ;
+    lova:measurementType "Normalized phosphorylated VEGFR-2" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.93 ;
+    qudt:unit "normalized intensity" ;
+    lova:sampleSize 5 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/pvegfr2-paekdr-negative-control> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/western-blot-paekdr> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "Normalized pVEGFR-2 in PAE/KDR cells, negative control (no VEGF)" ;
+    lova:measurementType "Normalized phosphorylated VEGFR-2" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.60 ;
+    qudt:unit "normalized intensity" ;
+    lova:sampleSize 5 ;
+    lova:isSignificant true ;
+    lova:pValue 0.05 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/pvegfr2-paekdr-soluble> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/western-blot-paekdr> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "Normalized pVEGFR-2 in PAE/KDR cells, soluble VEGF" ;
+    lova:measurementType "Normalized phosphorylated VEGFR-2" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.15 ;
+    qudt:unit "normalized intensity" ;
+    lova:sampleSize 5 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2009.05.030/pvegfr2-paekdr-negctrl-vs-abh-plus> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "pVEGFR-2 lower in negative control vs covalent VEGF (PAE/KDR)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/pvegfr2-paekdr-negative-control> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/pvegfr2-paekdr-abh-plus> ;
+    lova:direction "lower" ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/pvegfr2-huvec-abh-plus-5min> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/western-blot-huvec> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "Normalized pVEGFR-2 in HUVECs, covalent VEGF, 5 min" ;
+    lova:measurementType "Normalized phosphorylated VEGFR-2" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.24 ;
+    qudt:unit "normalized intensity" ;
+    lova:timePoint "5 min" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/pvegfr2-huvec-abh-plus-30min> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/western-blot-huvec> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "Normalized pVEGFR-2 in HUVECs, covalent VEGF, 30 min" ;
+    lova:measurementType "Normalized phosphorylated VEGFR-2" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.195 ;
+    qudt:unit "normalized intensity" ;
+    lova:timePoint "30 min" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/pvegfr2-huvec-abh-minus-5min> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/western-blot-huvec> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "Normalized pVEGFR-2 in HUVECs, electrostatic VEGF, 5 min" ;
+    lova:measurementType "Normalized phosphorylated VEGFR-2" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.34 ;
+    qudt:unit "normalized intensity" ;
+    lova:timePoint "5 min" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/pvegfr2-huvec-abh-minus-30min> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/western-blot-huvec> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "Normalized pVEGFR-2 in HUVECs, electrostatic VEGF, 30 min" ;
+    lova:measurementType "Normalized phosphorylated VEGFR-2" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.385 ;
+    qudt:unit "normalized intensity" ;
+    lova:timePoint "30 min" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/pvegfr2-huvec-negative-5min> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/western-blot-huvec> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "Normalized pVEGFR-2 in HUVECs, negative control (no VEGF), 5 min" ;
+    lova:measurementType "Normalized phosphorylated VEGFR-2" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.105 ;
+    qudt:unit "normalized intensity" ;
+    lova:timePoint "5 min" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/pvegfr2-huvec-negative-30min> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/western-blot-huvec> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "Normalized pVEGFR-2 in HUVECs, negative control (no VEGF), 30 min" ;
+    lova:measurementType "Normalized phosphorylated VEGFR-2" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.10 ;
+    qudt:unit "normalized intensity" ;
+    lova:timePoint "30 min" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/pvegfr2-huvec-soluble-5min> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/western-blot-huvec> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "Normalized pVEGFR-2 in HUVECs, soluble VEGF, 5 min" ;
+    lova:measurementType "Normalized phosphorylated VEGFR-2" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.95 ;
+    qudt:unit "normalized intensity" ;
+    lova:timePoint "5 min" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/pvegfr2-huvec-soluble-30min> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/western-blot-huvec> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "Normalized pVEGFR-2 in HUVECs, soluble VEGF, 30 min" ;
+    lova:measurementType "Normalized phosphorylated VEGFR-2" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.49 ;
+    qudt:unit "normalized intensity" ;
+    lova:timePoint "30 min" ;
+    lova:isTimeSeries true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2009.05.030/pvegfr2-soluble-5min-vs-30min> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "pVEGFR-2 soluble VEGF dramatic decrease from 5 min to 30 min in HUVECs" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/pvegfr2-huvec-soluble-30min> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/pvegfr2-huvec-soluble-5min> ;
+    lova:direction "lower" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2009.05.030/pvegfr2-abhplus-5min-vs-30min> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "pVEGFR-2 covalent VEGF remains constant from 5 min to 30 min in HUVECs" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/pvegfr2-huvec-abh-plus-30min> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/pvegfr2-huvec-abh-plus-5min> ;
+    lova:direction "no difference" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/proliferation-abh-plus> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/cell-proliferation-huvec> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "HUVEC density at day 5 on covalent VEGF surface (ABH+)" ;
+    lova:measurementType "Cell density" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 360.0 ;
+    qudt:unit "cells/mm2" ;
+    lova:timePoint "Day 5" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/proliferation-abh-minus> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/cell-proliferation-huvec> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "HUVEC density at day 5 on electrostatic VEGF surface (ABH-)" ;
+    lova:measurementType "Cell density" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 275.0 ;
+    qudt:unit "cells/mm2" ;
+    lova:timePoint "Day 5" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/proliferation-negative-control> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/cell-proliferation-huvec> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "HUVEC density at day 5, no VEGF control" ;
+    lova:measurementType "Cell density" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 140.0 ;
+    qudt:unit "cells/mm2" ;
+    lova:timePoint "Day 5" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/proliferation-soluble> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2009.05.030/cell-proliferation-huvec> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "HUVEC density at day 5, soluble VEGF" ;
+    lova:measurementType "Cell density" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 480.0 ;
+    qudt:unit "cells/mm2" ;
+    lova:timePoint "Day 5" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2009.05.030/proliferation-abhplus-vs-negctrl> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "HUVEC proliferation higher on covalent VEGF vs no VEGF control" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/proliferation-abh-plus> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/proliferation-negative-control> ;
+    lova:direction "higher" ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2009.05.030/proliferation-abhminus-vs-negctrl> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "HUVEC proliferation higher on electrostatic VEGF vs no VEGF control" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/proliferation-abh-minus> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/proliferation-negative-control> ;
+    lova:direction "higher" ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2009.05.030/proliferation-soluble-vs-abhplus> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2009.05.030> ;
+    rdfs:label "HUVEC proliferation higher with soluble VEGF vs covalently bound VEGF" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/proliferation-soluble> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2009.05.030/proliferation-abh-plus> ;
+    lova:direction "higher" ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true .

@@ -1,0 +1,727 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> a bibo:AcademicArticle ;
+    rdfs:label "Segura et al., 2004 — Crosslinked hyaluronic acid hydrogels" ;
+    dc:title "Crosslinked hyaluronic acid hydrogels: a strategy to functionalize and pattern" ;
+    dc:identifier "10.1016/j.biomaterials.2004.02.067" ;
+    dc:date "2004"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/biomaterials> ;
+    dc:creator <https://lovamap.com/ontology#author/segura-tatiana> ,
+               <https://lovamap.com/ontology#author/anderson-brian> ,
+               <https://lovamap.com/ontology#author/chung-peter> ,
+               <https://lovamap.com/ontology#author/webber-rebecca> ,
+               <https://lovamap.com/ontology#author/shull-kenneth> ,
+               <https://lovamap.com/ontology#author/shea-lonnie> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/segura-tatiana>
+                       <https://lovamap.com/ontology#author/anderson-brian>
+                       <https://lovamap.com/ontology#author/chung-peter>
+                       <https://lovamap.com/ontology#author/webber-rebecca>
+                       <https://lovamap.com/ontology#author/shull-kenneth>
+                       <https://lovamap.com/ontology#author/shea-lonnie> ) ;
+    dc:bibliographicCitation "Segura et al., 2004" ;
+    lova:focusMaterial "Crosslinked hyaluronic acid (HA) and HA-collagen hydrogels formed with PEG diglycidyl ether, biotinylated HA hydrogels, and alginate control" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" ;
+    schema:affiliation "Department of Chemical and Biological Engineering, Northwestern University" .
+
+<https://lovamap.com/ontology#author/anderson-brian> a foaf:Person ;
+    foaf:familyName "Anderson" ;
+    foaf:givenName "Brian Curtis" ;
+    foaf:name "Brian Curtis Anderson" ;
+    schema:affiliation "Department of Chemical and Biological Engineering, Northwestern University" .
+
+<https://lovamap.com/ontology#author/chung-peter> a foaf:Person ;
+    foaf:familyName "Chung" ;
+    foaf:givenName "Peter H" ;
+    foaf:name "Peter H Chung" ;
+    schema:affiliation "Department of Biomedical Engineering, Northwestern University" .
+
+<https://lovamap.com/ontology#author/webber-rebecca> a foaf:Person ;
+    foaf:familyName "Webber" ;
+    foaf:givenName "Rebecca E." ;
+    foaf:name "Rebecca E. Webber" ;
+    schema:affiliation "Department of Materials Science and Engineering, Northwestern University" .
+
+<https://lovamap.com/ontology#author/shull-kenneth> a foaf:Person ;
+    foaf:familyName "Shull" ;
+    foaf:givenName "Kenneth R." ;
+    foaf:name "Kenneth R. Shull" ;
+    schema:affiliation "Department of Materials Science and Engineering, Northwestern University" .
+
+<https://lovamap.com/ontology#author/shea-lonnie> a foaf:Person ;
+    foaf:familyName "Shea" ;
+    foaf:givenName "Lonnie D." ;
+    foaf:name "Lonnie D. Shea" ;
+    schema:affiliation "Department of Chemical and Biological Engineering, Northwestern University" ;
+    schema:affiliation "Department of Biomedical Engineering, Northwestern University" .
+
+<https://lovamap.com/ontology#journal/biomaterials> a bibo:Journal ;
+    dc:title "Biomaterials" ;
+    bibo:issn "0142-9612" .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2004.02.067/ha-hydrogel-12.5pct> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    rdfs:label "HA hydrogel, 12.5% theoretical crosslinks" ;
+    lova:particleMaterial "Hyaluronic acid (sodium hyaluronan, 1330 kDa)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:reportedPoreSize "6-9 μm" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2004.02.067/ha-pegdg-crosslinking> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2004.02.067/ha-hydrogel-25pct> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    rdfs:label "HA hydrogel, 25% theoretical crosslinks" ;
+    lova:particleMaterial "Hyaluronic acid (sodium hyaluronan, 1330 kDa)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:stiffnessValue 14.0 ;
+    lova:stiffnessUnit "kPa" ;
+    lova:scaffoldDimensions "137±4.2 μm thickness (hydrated)" ;
+    lova:reportedPoreSize "6-9 μm" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2004.02.067/ha-pegdg-crosslinking> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2004.02.067/ha-hydrogel-50pct> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    rdfs:label "HA hydrogel, 50% theoretical crosslinks" ;
+    lova:particleMaterial "Hyaluronic acid (sodium hyaluronan, 1330 kDa)" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:stiffnessValue 21.1 ;
+    lova:stiffnessUnit "kPa" ;
+    lova:scaffoldDimensions "150±3.2 μm thickness (hydrated)" ;
+    lova:reportedPoreSize "6-9 μm" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2004.02.067/ha-pegdg-crosslinking> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2004.02.067/ha-hydrogel-100pct> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    rdfs:label "HA hydrogel, 100% theoretical crosslinks" ;
+    lova:particleMaterial "Hyaluronic acid (sodium hyaluronan, 1330 kDa)" ;
+    lova:stiffnessQualitative "Semi-rigid hydrogel" ;
+    lova:stiffnessValue 33.5 ;
+    lova:stiffnessUnit "kPa" ;
+    lova:scaffoldDimensions "248±12 μm thickness (hydrated)" ;
+    lova:reportedPoreSize "6-9 μm" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2004.02.067/ha-pegdg-crosslinking> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2004.02.067/ha-collagen-hydrogel> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    rdfs:label "HA-collagen hydrogel (0.19 mg/mL collagen, 50% theoretical crosslinks)" ;
+    lova:particleMaterial "Hyaluronic acid + rat tail collagen" ;
+    lova:stiffnessQualitative "Soft hydrogel" ;
+    lova:stiffnessValue 13.0 ;
+    lova:stiffnessUnit "kPa" ;
+    lova:scaffoldDimensions "145±7.6 μm thickness (hydrated)" ;
+    lova:reportedPoreSize "6-9 μm" ;
+    lova:surfaceModification "Topographically patterned (grooves/ridges)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2004.02.067/ha-pegdg-crosslinking> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2004.02.067/ha-biotin-hydrogel> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    rdfs:label "HA-biotin hydrogel (50% theoretical crosslinks)" ;
+    lova:particleMaterial "Biotinylated hyaluronic acid" ;
+    lova:surfaceModification "Biotin-functionalized, neutravidin-coated" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2004.02.067/ha-biotinylation> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2004.02.067/ha-biotin-collagen-hydrogel> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    rdfs:label "HA-biotin/collagen hydrogel (0.19 mg/mL collagen, 50% theoretical crosslinks)" ;
+    lova:particleMaterial "Biotinylated hyaluronic acid + rat tail collagen" ;
+    lova:surfaceModification "Biotin-functionalized, neutravidin-coated" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2004.02.067/ha-biotinylation> .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2004.02.067/alginate-hydrogel> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    rdfs:label "Alginate hydrogel (2% w/v, control)" ;
+    lova:particleMaterial "Sodium alginate" ;
+    lova:stiffnessValue 51.6 ;
+    lova:stiffnessUnit "kPa" ;
+    lova:scaffoldDimensions "984±17.4 μm thickness (hydrated)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2004.02.067/alginate-gel-prep> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2004.02.067/ha-pegdg-crosslinking> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    rdfs:label "HA/HA-collagen crosslinking with PEG diglycidyl ether" ;
+    lova:chemistry "Alcohol-epoxide crosslinking (diepoxide reaction)" ;
+    lova:manufacturingMethod "Solution casting on Teflon evaporation dish (flat or patterned), dried, then rehydrated in PBS" ;
+    lova:annealingConditions "60°C, 45 min reaction, neutralized with glacial acetic acid" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2004.02.067/sodium-hyaluronan> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2004.02.067/pegdg> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2004.02.067/collagen> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2004.02.067/ha-biotinylation> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    rdfs:label "Biotinylation of HA via AAD/EDC/sulfo-NHS and NHS-biotin conjugation" ;
+    lova:chemistry "Carbodiimide-mediated amide coupling (EDC/sulfo-NHS), followed by NHS-ester biotin conjugation" ;
+    lova:manufacturingMethod "Aqueous solution reaction, dialysis purification (MWCO 14000), lyophilization" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2004.02.067/aad> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2004.02.067/edc> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2004.02.067/sulfo-nhs> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2004.02.067/nhs-biotin> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2004.02.067/neutravidin> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2004.02.067/tnbs> ,
+                     <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2004.02.067/haba> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2004.02.067/alginate-gel-prep> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    rdfs:label "Alginate hydrogel preparation (per Kreeger et al. method)" ;
+    lova:manufacturingMethod "Ionic gelation of 2% alginate solution" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2004.02.067/sodium-alginate> .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2004.02.067/sodium-hyaluronan> a lova:Reagent ;
+    rdfs:label "Sodium hyaluronan (1330 kDa)" ;
+    lova:reagentRole "other" ;
+    lova:molecularWeight "1330 kDa" ;
+    lova:supplier "Genzyme Corporation" ;
+    lova:reagentFunction "Base polymer backbone of hydrogel" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2004.02.067/pegdg> a lova:Reagent ;
+    rdfs:label "Poly(ethylene glycol) diglycidyl ether (PEGDG, n=200)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:molecularWeight "8886 Da" ;
+    lova:supplier "Polysciences" ;
+    lova:reagentFunction "Crosslinks HA alcohol groups via epoxide reaction" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2004.02.067/collagen> a lova:Reagent ;
+    rdfs:label "Collagen (isolated from rat tail)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "0.19-1.5 mg/mL" ;
+    lova:reagentFunction "Supports cell adhesion within the hydrogel" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2004.02.067/aad> a lova:Reagent ;
+    rdfs:label "Adipic acid dihydrazide (AAD)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Sigma" ;
+    lova:concentration "6.5 g, 37.5 mmol" ;
+    lova:reagentFunction "Introduces reactive hydrazide groups onto HA backbone" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2004.02.067/edc> a lova:Reagent ;
+    rdfs:label "N-(3-dimethylpropyl)-N-ethylcarbodiimide hydrochloride (EDC)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Sigma" ;
+    lova:concentration "74.3 mg, 0.623 mmol" ;
+    lova:reagentFunction "Activates carboxylic acid groups of HA for AAD coupling" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2004.02.067/sulfo-nhs> a lova:Reagent ;
+    rdfs:label "N-hydroxysulfosuccinimide sodium salt (sulfo-NHS)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Sigma" ;
+    lova:concentration "134 mg, 0.623 mmol" ;
+    lova:reagentFunction "Co-catalyst for carbodiimide coupling" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2004.02.067/nhs-biotin> a lova:Reagent ;
+    rdfs:label "Sulfo-NHS-LC-biotin (NHS-biotin)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Pierce (Rockford, IL)" ;
+    lova:concentration "100 mg per 300 mg HA-AAD" ;
+    lova:reagentFunction "Biotinylation reagent, reacts with hydrazide groups on HA-AAD" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2004.02.067/neutravidin> a lova:Reagent ;
+    rdfs:label "Neutravidin" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Pierce (Rockford, IL)" ;
+    lova:concentration "1 mM solution in PBS" ;
+    lova:reagentFunction "Binds biotin for surface functionalization" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2004.02.067/sodium-alginate> a lova:Reagent ;
+    rdfs:label "Sodium alginate (55-65% guluronic acid)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "FMC BioPolymers (Philadelphia, PA)" ;
+    lova:concentration "2% w/v" ;
+    lova:reagentFunction "Base material for control alginate hydrogel" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2004.02.067/hyaluronidase> a lova:Reagent ;
+    rdfs:label "Hyaluronidase (HAase, bovine testes)" ;
+    lova:reagentRole "enzyme" ;
+    lova:supplier "Worthington-Biochem" ;
+    lova:concentration "100 U/mL (500 U/mg stock activity)" ;
+    lova:reagentFunction "Degrades hyaluronic acid for degradation assay" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2004.02.067/collagenase> a lova:Reagent ;
+    rdfs:label "Collagenase (Clostridium histolyticum)" ;
+    lova:reagentRole "enzyme" ;
+    lova:supplier "Worthington-Biochem" ;
+    lova:concentration "66 U/mL (132 U/mg stock activity)" ;
+    lova:reagentFunction "Degrades collagen for degradation assay" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2004.02.067/tnbs> a lova:Reagent ;
+    rdfs:label "2,4,6-trinitrobenzenesulfonic acid (TNBS)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Pierce (Rockford)" ;
+    lova:reagentFunction "Assay reagent to quantify free amines / degree of AAD modification" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2004.02.067/haba> a lova:Reagent ;
+    rdfs:label "2[4'-Hydroxyazobenzene]-benzoic acid (HABA)" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Assay reagent to quantify degree of biotin modification" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.02.067/water-content> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2004.02.067/ha-hydrogel-12.5pct> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2004.02.067/ha-hydrogel-100pct> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2004.02.067/ha-collagen-hydrogel> ;
+    rdfs:label "Water content of HA and HA-collagen hydrogels" ;
+    lova:experimentCategory "Physical characterization" ;
+    lova:experimentType "Water content (swelling) measurement" ;
+    lova:assayOrMethod "Gravimetric wet/dry weighing" ;
+    lova:medium "Distilled water" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.02.067/water-12.5pct> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.02.067/water-content> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    rdfs:label "Water content, HA hydrogel 12.5% theoretical crosslinks" ;
+    lova:measurementType "Water content" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 98.5 ;
+    qudt:unit "%" ;
+    lova:stdDev 0.189 ;
+    lova:isSignificant true ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.02.067/water-100pct> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.02.067/water-content> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    rdfs:label "Water content, HA hydrogel 100% theoretical crosslinks" ;
+    lova:measurementType "Water content" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 62.1 ;
+    qudt:unit "%" ;
+    lova:stdDev 0.644 ;
+    lova:isSignificant true ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.02.067/water-collagen-0> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.02.067/water-content> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    rdfs:label "Water content, HA hydrogel (50% crosslinks, 0 mg/mL collagen)" ;
+    lova:measurementType "Water content" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 79.3 ;
+    qudt:unit "%" ;
+    lova:stdDev 1.32 ;
+    lova:isSignificant true ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.02.067/water-collagen-added> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.02.067/water-content> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    rdfs:label "Water content, HA-collagen hydrogel (50% crosslinks, with collagen)" ;
+    lova:measurementType "Water content" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 55.6 ;
+    qudt:unit "%" ;
+    lova:stdDev 1.44 ;
+    lova:isSignificant true ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.02.067/water-collagen-1.5mg> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.02.067/water-content> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    rdfs:label "Water content, HA-collagen hydrogel, 1.5 mg/mL collagen" ;
+    lova:measurementType "Water content" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 48.43 ;
+    qudt:unit "%" ;
+    lova:stdDev 0.99 ;
+    lova:isSignificant true ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2004.02.067/water-crosslinks> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    rdfs:label "Water content lower in HA hydrogel at 100% vs 12.5% theoretical crosslinks" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.02.067/water-100pct> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.02.067/water-12.5pct> ;
+    lova:direction "lower" ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2004.02.067/water-collagen-addition> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    rdfs:label "Water content lower upon addition of collagen (50% crosslinks)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.02.067/water-collagen-added> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.02.067/water-collagen-0> ;
+    lova:direction "lower" ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.02.067/mechanical-testing> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2004.02.067/ha-hydrogel-25pct> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2004.02.067/ha-hydrogel-50pct> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2004.02.067/ha-hydrogel-100pct> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2004.02.067/ha-collagen-hydrogel> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2004.02.067/alginate-hydrogel> ;
+    rdfs:label "Mechanical testing (probe tack, relaxed sine-wave) of HA, HA-collagen, and alginate hydrogels" ;
+    lova:experimentCategory "Mechanical" ;
+    lova:experimentType "Compression/oscillatory rheology (probe tack)" ;
+    lova:equipment "Axisymmetric probe tack device with piezoelectric stepping motor" ;
+    lova:frequency "0.01-1 Hz" ;
+    lova:medium "Water (immersed)" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.02.067/e-25pct> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.02.067/mechanical-testing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    rdfs:label "Complex modulus (E*) at 0.1 Hz, HA hydrogel 25% theoretical crosslinks" ;
+    lova:measurementType "Complex modulus (E*)" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 14.0 ;
+    qudt:unit "kPa" ;
+    lova:stdDev 4.5 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.02.067/e-50pct> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.02.067/mechanical-testing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    rdfs:label "Complex modulus (E*) at 0.1 Hz, HA hydrogel 50% theoretical crosslinks" ;
+    lova:measurementType "Complex modulus (E*)" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 21.1 ;
+    qudt:unit "kPa" ;
+    lova:stdDev 4.7 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.02.067/e-100pct> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.02.067/mechanical-testing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    rdfs:label "Complex modulus (E*) at 0.1 Hz, HA hydrogel 100% theoretical crosslinks" ;
+    lova:measurementType "Complex modulus (E*)" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 33.5 ;
+    qudt:unit "kPa" ;
+    lova:stdDev 4.2 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.02.067/e-ha-collagen> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.02.067/mechanical-testing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    rdfs:label "Complex modulus (E*) at 0.1 Hz, HA-collagen hydrogel (0.19 mg/mL collagen, 50% crosslinks)" ;
+    lova:measurementType "Complex modulus (E*)" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 13.0 ;
+    qudt:unit "kPa" ;
+    lova:stdDev 3.7 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.02.067/e-alginate> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.02.067/mechanical-testing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    rdfs:label "Complex modulus (E*) at 0.1 Hz, alginate hydrogel" ;
+    lova:measurementType "Complex modulus (E*)" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 51.6 ;
+    qudt:unit "kPa" ;
+    lova:stdDev 9.2 ;
+    lova:comparisonGroup "Alginate control" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2004.02.067/e-100-vs-25> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    rdfs:label "Complex modulus higher at 100% vs 25% theoretical crosslinks" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.02.067/e-100pct> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.02.067/e-25pct> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2004.02.067/e-collagen-vs-nocollagen> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    rdfs:label "Complex modulus lower in HA-collagen hydrogel vs HA alone (50% crosslinks)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.02.067/e-ha-collagen> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.02.067/e-50pct> ;
+    lova:direction "lower" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.02.067/enzymatic-degradation-haase> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2004.02.067/ha-hydrogel-12.5pct> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2004.02.067/ha-hydrogel-25pct> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2004.02.067/ha-hydrogel-50pct> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2004.02.067/ha-hydrogel-100pct> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2004.02.067/ha-collagen-hydrogel> ;
+    rdfs:label "Enzymatic degradation of HA and HA-collagen hydrogels in hyaluronidase" ;
+    lova:experimentCategory "Degradation" ;
+    lova:experimentType "Enzymatic degradation (hyaluronidase)" ;
+    lova:assayOrMethod "Carbazole assay for uronic acid content" ;
+    lova:temperature "37°C" ;
+    lova:medium "100 U/mL hyaluronidase solution" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.02.067/degradation-12.5pct> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.02.067/enzymatic-degradation-haase> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    rdfs:label "Time to complete degradation, HA hydrogel 12.5% crosslinks, HAase" ;
+    lova:measurementType "Time to complete degradation" ;
+    lova:measurementCategory "Degradation" ;
+    qudt:numericValue 0.67 ;
+    qudt:unit "days" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.02.067/degradation-25pct> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.02.067/enzymatic-degradation-haase> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    rdfs:label "Time to complete degradation, HA hydrogel 25% crosslinks, HAase" ;
+    lova:measurementType "Time to complete degradation" ;
+    lova:measurementCategory "Degradation" ;
+    qudt:numericValue 5.0 ;
+    qudt:unit "days" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.02.067/degradation-50pct> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.02.067/enzymatic-degradation-haase> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    rdfs:label "Time to complete degradation, HA hydrogel 50% crosslinks, HAase" ;
+    lova:measurementType "Time to complete degradation" ;
+    lova:measurementCategory "Degradation" ;
+    qudt:numericValue 13.0 ;
+    qudt:unit "days" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.02.067/degradation-100pct> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.02.067/enzymatic-degradation-haase> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    rdfs:label "Time to complete degradation, HA hydrogel 100% crosslinks, HAase" ;
+    lova:measurementType "Time to complete degradation" ;
+    lova:measurementCategory "Degradation" ;
+    qudt:numericValue 13.0 ;
+    qudt:unit "days" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.02.067/degradation-ha-collagen-haase> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.02.067/enzymatic-degradation-haase> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    rdfs:label "Time to complete degradation, HA-collagen hydrogel, HAase" ;
+    lova:measurementType "Time to complete degradation" ;
+    lova:measurementCategory "Degradation" ;
+    qudt:numericValue 14.0 ;
+    qudt:unit "days" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2004.02.067/degradation-50-vs-100> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    rdfs:label "No difference in degradation time between 50% and 100% theoretical crosslinks in HAase" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.02.067/degradation-50pct> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.02.067/degradation-100pct> ;
+    lova:direction "no difference" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2004.02.067/degradation-collagen-vs-ha> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    rdfs:label "HA-collagen hydrogel degrades more slowly (higher degradation time) than HA alone in HAase" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.02.067/degradation-ha-collagen-haase> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.02.067/degradation-100pct> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.02.067/enzymatic-degradation-collagenase> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2004.02.067/ha-collagen-hydrogel> ;
+    rdfs:label "Enzymatic degradation of HA-collagen hydrogels in collagenase" ;
+    lova:experimentCategory "Degradation" ;
+    lova:experimentType "Enzymatic degradation (collagenase)" ;
+    lova:temperature "37°C" ;
+    lova:medium "66 U/mL collagenase solution" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.02.067/degradation-ha-collagen-collagenase> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.02.067/enzymatic-degradation-collagenase> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    rdfs:label "Time to complete degradation, HA-collagen hydrogel, collagenase" ;
+    lova:measurementType "Time to complete degradation" ;
+    lova:measurementCategory "Degradation" ;
+    qudt:numericValue 3.0 ;
+    qudt:unit "days" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.02.067/sem-microstructure> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2004.02.067/ha-hydrogel-50pct> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2004.02.067/ha-collagen-hydrogel> ;
+    rdfs:label "SEM microstructure characterization of HA and HA-collagen hydrogels" ;
+    lova:experimentCategory "Structural characterization" ;
+    lova:experimentType "Scanning electron microscopy" ;
+    lova:equipment "Hitachi 3500N SEM, 20 kV, 9 nm gold coating via ion sputter" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.02.067/pore-diameter> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.02.067/sem-microstructure> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    rdfs:label "Pore diameter of HA and HA-collagen hydrogel cross-sections" ;
+    lova:measurementType "Pore diameter" ;
+    lova:measurementCategory "Structural" ;
+    lova:valueString "6-9 μm" ;
+    lova:scope "Regional" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.02.067/topographical-patterning> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2004.02.067/ha-collagen-hydrogel> ;
+    rdfs:label "Topographical pattern measurement on HA-collagen hydrogels" ;
+    lova:experimentCategory "Structural characterization" ;
+    lova:experimentType "Topographical pattern measurement" ;
+    lova:assayOrMethod "SEM imaging" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.02.067/groove-width> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.02.067/topographical-patterning> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    rdfs:label "Groove width of patterned HA-collagen hydrogel surface" ;
+    lova:measurementType "Groove width" ;
+    lova:measurementCategory "Structural" ;
+    qudt:numericValue 20.65 ;
+    qudt:unit "μm" ;
+    lova:stdDev 5.06 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.02.067/ridge-width> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.02.067/topographical-patterning> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    rdfs:label "Ridge width of patterned HA-collagen hydrogel surface" ;
+    lova:measurementType "Ridge width" ;
+    lova:measurementCategory "Structural" ;
+    qudt:numericValue 30.21 ;
+    qudt:unit "μm" ;
+    lova:stdDev 8.98 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.02.067/ridge-height> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.02.067/topographical-patterning> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    rdfs:label "Ridge height of patterned HA-collagen hydrogel surface" ;
+    lova:measurementType "Ridge height" ;
+    lova:measurementCategory "Structural" ;
+    lova:valueString "~10 μm" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.02.067/cell-orientation> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2004.02.067/ha-collagen-hydrogel> ;
+    rdfs:label "Cell orientation of NIH/3T3 cells on patterned HA-collagen hydrogels" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell orientation/alignment assay" ;
+    lova:assayOrMethod "Phalloidin/Hoechst staining with fluorescence microscopy; SEM imaging; MetaView image analysis" ;
+    lova:cellType "NIH/3T3" ;
+    lova:cellSource "Mouse embryonic fibroblast cell line" ;
+    lova:seedingDensity "80,000 cells/well" ;
+    lova:cultureDuration "2 days" ;
+    lova:cultureMedium "Complete medium" ;
+    lova:sampleSize 303 .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.02.067/cell-alignment-angle> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.02.067/cell-orientation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    rdfs:label "Cell alignment angle on patterned HA-collagen hydrogel surface" ;
+    lova:measurementType "Cell orientation angle" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 9.11 ;
+    qudt:unit "degrees" ;
+    lova:stdDev 11.04 ;
+    lova:sampleSize 303 ;
+    lova:comparisonGroup "Unpatterned surface (random orientation)" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.02.067/cell-alignment-random> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.02.067/cell-orientation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    rdfs:label "Expected cell orientation angle for random (unpatterned) growth" ;
+    lova:measurementType "Cell orientation angle" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "~45° (large dispersion, unaligned)" ;
+    lova:comparisonGroup "Unpatterned surface" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2004.02.067/cell-alignment-vs-random> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    rdfs:label "Cell alignment angle lower (more aligned) on patterned vs unpatterned HA-collagen hydrogel" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.02.067/cell-alignment-angle> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.02.067/cell-alignment-random> ;
+    lova:direction "lower" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.02.067/neutravidin-binding> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2004.02.067/ha-biotin-hydrogel> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2004.02.067/ha-biotin-collagen-hydrogel> ,
+                       <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2004.02.067/ha-collagen-hydrogel> ;
+    rdfs:label "Neutravidin binding to biotinylated HA and HA-collagen hydrogels" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Neutravidin binding (fluorescence)" ;
+    lova:assayOrMethod "Fluorescence microscopy with tetramethyl-rhodamine labeled neutravidin; competitive binding assay with free biotin" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.02.067/neutravidin-ha-biotin> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.02.067/neutravidin-binding> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    rdfs:label "Integrated fluorescence intensity of rhodamine-neutravidin on HA-biotin hydrogel (no free biotin)" ;
+    lova:measurementType "Integrated fluorescence intensity" ;
+    lova:measurementCategory "Biochemical" ;
+    lova:valueString "~2.0×10^7 (arbitrary units)" ;
+    lova:isSignificant true ;
+    lova:pValue 0.001 ;
+    lova:comparisonGroup "HA hydrogel (no biotin)" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.02.067/neutravidin-ha-no-biotin> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.02.067/neutravidin-binding> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    rdfs:label "Integrated fluorescence intensity of rhodamine-neutravidin on HA hydrogel (no biotin)" ;
+    lova:measurementType "Integrated fluorescence intensity" ;
+    lova:measurementCategory "Biochemical" ;
+    lova:valueString "Two orders of magnitude lower than HA-biotin" ;
+    lova:comparisonGroup "HA-biotin hydrogel" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.02.067/neutravidin-competitive> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.02.067/neutravidin-binding> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    rdfs:label "Integrated fluorescence intensity after competitive binding with free biotin (7.2 mM)" ;
+    lova:measurementType "Integrated fluorescence intensity" ;
+    lova:measurementCategory "Biochemical" ;
+    lova:valueString "Reduced to baseline levels" ;
+    lova:isSignificant true ;
+    lova:pValue 0.001 ;
+    lova:comparisonGroup "HA-biotin hydrogel without free biotin" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2004.02.067/neutravidin-biotin-vs-nobiotin> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    rdfs:label "Fluorescence intensity higher on HA-biotin vs HA (no biotin) hydrogel" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.02.067/neutravidin-ha-biotin> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.02.067/neutravidin-ha-no-biotin> ;
+    lova:direction "higher" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true ;
+    lova:foldChange 100.0 .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2004.02.067/neutravidin-competitive-vs-noncompetitive> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    rdfs:label "Fluorescence intensity lower with competitive biotin vs without" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.02.067/neutravidin-competitive> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.02.067/neutravidin-ha-biotin> ;
+    lova:direction "lower" ;
+    lova:pValue 0.001 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.02.067/biotinylation-degree-assay> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2004.02.067/ha-biotin-hydrogel> ;
+    rdfs:label "Degree of chemical modification assay for HA-AAD and HA-biotin" ;
+    lova:experimentCategory "Chemical characterization" ;
+    lova:experimentType "Degree of modification assay" ;
+    lova:assayOrMethod "TNBS assay; HABA assay" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.02.067/aad-modification> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.02.067/biotinylation-degree-assay> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    rdfs:label "Percent of carboxylic acids modified with AAD" ;
+    lova:measurementType "Degree of chemical modification" ;
+    lova:measurementCategory "Chemical" ;
+    qudt:numericValue 8.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2004.02.067/biotin-modification> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2004.02.067/biotinylation-degree-assay> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2004.02.067> ;
+    rdfs:label "Percent of carboxylic acids biotinylated (HABA assay)" ;
+    lova:measurementType "Degree of chemical modification" ;
+    lova:measurementCategory "Chemical" ;
+    qudt:numericValue 6.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[TEXT]" .

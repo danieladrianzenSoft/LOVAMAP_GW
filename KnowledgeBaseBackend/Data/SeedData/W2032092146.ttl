@@ -1,0 +1,722 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> a bibo:AcademicArticle ;
+    rdfs:label "Tokatlian et al., 2012 — Microporous HA Hydrogels for Gene Transfer to mMSCs" ;
+    dc:title "Design and characterization of microporous hyaluronic acid hydrogels for in vitro gene transfer to mMSCs" ;
+    dc:identifier "10.1016/j.actbio.2012.07.014" ;
+    dc:date "2012"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/acta-biomaterialia> ;
+    dc:creator <https://lovamap.com/ontology#author/tokatlian-talar> ,
+               <https://lovamap.com/ontology#author/cam-cynthia> ,
+               <https://lovamap.com/ontology#author/siegman-shayne> ,
+               <https://lovamap.com/ontology#author/lei-yuguo> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/tokatlian-talar>
+                       <https://lovamap.com/ontology#author/cam-cynthia>
+                       <https://lovamap.com/ontology#author/siegman-shayne>
+                       <https://lovamap.com/ontology#author/lei-yuguo>
+                       <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    dc:bibliographicCitation "Tokatlian et al., 2012" ;
+    lova:focusMaterial "Porous hyaluronic acid (HA) hydrogels with tunable pore size for DNA/PEI polyplex delivery and gene transfer to mouse mesenchymal stem cells" .
+
+<https://lovamap.com/ontology#author/tokatlian-talar> a foaf:Person ;
+    foaf:familyName "Tokatlian" ;
+    foaf:givenName "Talar" ;
+    foaf:name "Talar Tokatlian" ;
+    schema:affiliation "University of California, Los Angeles (UCLA)" .
+
+<https://lovamap.com/ontology#author/cam-cynthia> a foaf:Person ;
+    foaf:familyName "Cam" ;
+    foaf:givenName "Cynthia" ;
+    foaf:name "Cynthia Cam" ;
+    schema:affiliation "University of California, Los Angeles (UCLA)" .
+
+<https://lovamap.com/ontology#author/siegman-shayne> a foaf:Person ;
+    foaf:familyName "Siegman" ;
+    foaf:givenName "Shayne N." ;
+    foaf:name "Shayne N. Siegman" ;
+    schema:affiliation "University of California, Los Angeles (UCLA)" .
+
+<https://lovamap.com/ontology#author/lei-yuguo> a foaf:Person ;
+    foaf:familyName "Lei" ;
+    foaf:givenName "Yuguo" ;
+    foaf:name "Yuguo Lei" ;
+    schema:affiliation "University of California, Los Angeles (UCLA)" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" ;
+    schema:affiliation "University of California, Los Angeles (UCLA)" .
+
+<https://lovamap.com/ontology#journal/acta-biomaterialia> a bibo:Journal ;
+    dc:title "Acta Biomaterialia" ;
+    bibo:issn "1742-7061" .
+
+<https://lovamap.com/ontology#material/10.1016-j.actbio.2012.07.014/mat-30um> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> ;
+    rdfs:label "30 μm μ-pore HA-MMP hydrogel" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "PMMA (template bead, dissolved)" ;
+    lova:particleSizeMin 27.0 ;
+    lova:particleSizeMax 33.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:stiffnessQualitative "Semi-rigid hydrogel" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2012.07.014/fab-porous-hydrogel> ;
+    lova:packingConfiguration "Sintered sphere template, dissolved" ;
+    lova:reportedPoreSize "~30 μm" ;
+    lova:scaffoldDimensions "6mm diameter × 1mm height (or 8mm diameter × 1mm height after swelling)" .
+
+<https://lovamap.com/ontology#material/10.1016-j.actbio.2012.07.014/mat-60um> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> ;
+    rdfs:label "60 μm μ-pore HA-MMP hydrogel" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "PMMA (template bead, dissolved)" ;
+    lova:particleSizeMin 53.0 ;
+    lova:particleSizeMax 63.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:stiffnessQualitative "Semi-rigid hydrogel" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2012.07.014/fab-porous-hydrogel> ;
+    lova:packingConfiguration "Sintered sphere template, dissolved" ;
+    lova:reportedPoreSize "~60 μm" ;
+    lova:scaffoldDimensions "6mm diameter × 1mm height (or 8mm diameter × 1mm height after swelling)" .
+
+<https://lovamap.com/ontology#material/10.1016-j.actbio.2012.07.014/mat-100um> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> ;
+    rdfs:label "100 μm μ-pore HA-MMP hydrogel" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "PMMA (template bead, dissolved)" ;
+    lova:particleSizeMin 90.0 ;
+    lova:particleSizeMax 106.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:stiffnessQualitative "Semi-rigid hydrogel" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2012.07.014/fab-porous-hydrogel> ;
+    lova:packingConfiguration "Sintered sphere template, dissolved" ;
+    lova:reportedPoreSize "~100 μm" ;
+    lova:scaffoldDimensions "6mm diameter × 1mm height (or 8mm diameter × 1mm height after swelling)" .
+
+<https://lovamap.com/ontology#material/10.1016-j.actbio.2012.07.014/mat-npore> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> ;
+    rdfs:label "Nano-porous (n-pore) HA-MMP hydrogel (no bead template)" ;
+    lova:particleMaterial "Hyaluronic acid (HA)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2012.07.014/fab-npore-hydrogel> ;
+    lova:reportedPoreSize "No visible micro-sized pores" .
+
+<https://lovamap.com/ontology#material/10.1016-j.actbio.2012.07.014/mat-twophase> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> ;
+    rdfs:label "Two-phase HA hydrogel: 3.5% μ-pore outer phase + 2.5% n-pore inner phase with mMSCs" ;
+    lova:particleMaterial "Hyaluronic acid (HA)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2012.07.014/fab-porous-hydrogel> ;
+    lova:stiffnessQualitative "Soft hydrogel (inner phase)" ;
+    lova:stiffnessValue 130.00 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:scaffoldDimensions "~8mm diameter × 1mm height after swelling" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2012.07.014/fab-porous-hydrogel> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> ;
+    rdfs:label "PMMA microsphere-templated porous HA-MMP hydrogel formation via Michael-type addition" ;
+    lova:chemistry "Michael-type addition" ;
+    lova:manufacturingMethod "Sphere/bead templating (sintered PMMA microspheres dissolved in acetone)" ;
+    lova:annealingChemistry "Covalent crosslinking (acrylate-cysteine Michael addition)" ;
+    lova:annealingConditions "37°C, 30-45 min" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2012.07.014/ha-acrylate> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2012.07.014/hs-mmp-sh> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2012.07.014/rgd-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2012.07.014/pmma-microspheres> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2012.07.014/agarose> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2012.07.014/sucrose> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2012.07.014/pei> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2012.07.014/pgluc-plasmid> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2012.07.014/adh> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2012.07.014/edc> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2012.07.014/nhs-ac> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2012.07.014/fab-npore-hydrogel> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> ;
+    rdfs:label "Direct (non-templated) HA-MMP hydrogel formation" ;
+    lova:chemistry "Michael-type addition" ;
+    lova:manufacturingMethod "Direct gelation between glass slides (no template)" ;
+    lova:annealingConditions "37°C, 30-45 min" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.actbio.2012.07.014/fab-cne> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> ;
+    rdfs:label "Caged Nanoparticle Encapsulation (CnE) technique" ;
+    lova:chemistry "Electrostatic polyplex condensation" ;
+    lova:manufacturingMethod "Lyophilization with sucrose/agarose protectants" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2012.07.014/pei> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2012.07.014/pgluc-plasmid> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2012.07.014/sucrose> ,
+                    <https://lovamap.com/ontology#reagent/10.1016-j.actbio.2012.07.014/agarose> .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2012.07.014/ha-acrylate> a lova:Reagent ;
+    rdfs:label "Acrylate-functionalized hyaluronic acid (HA-Ac)" ;
+    lova:reagentRole "monomer" ;
+    lova:molecularWeight "60 kDa" ;
+    lova:concentration "3.5 w/v% (or 2.5 w/v% for inner phase)" ;
+    lova:supplier "Genzyme Corporation" ;
+    lova:reagentFunction "Hydrogel backbone, crosslinked via Michael addition" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2012.07.014/hs-mmp-sh> a lova:Reagent ;
+    rdfs:label "MMP-degradable peptide crosslinker (Ac-GCRDGPQGIWGQDRCG-NH2, HS-MMP-SH)" ;
+    lova:reagentRole "crosslinker" ;
+    lova:sequence "GCRDGPQGIWGQDRCG" ;
+    lova:supplier "Genscript" ;
+    lova:concentration "0.91 mg per aliquot" ;
+    lova:reagentFunction "MMP-degradable inter-chain crosslinking" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2012.07.014/rgd-peptide> a lova:Reagent ;
+    rdfs:label "RGD cell adhesion peptide (Ac-GCGYGRGDSPG-NH2)" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "GCGYGRGDSPG" ;
+    lova:supplier "Genscript" ;
+    lova:concentration "500 µM" ;
+    lova:reagentFunction "Cell adhesion" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2012.07.014/pmma-microspheres> a lova:Reagent ;
+    rdfs:label "PMMA microspheres (27-33, 53-63, 90-106 μm)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Cospheric" ;
+    lova:reagentFunction "Sacrificial pore template" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2012.07.014/agarose> a lova:Reagent ;
+    rdfs:label "Low-melting point agarose (UltraPure Agarose)" ;
+    lova:reagentRole "other" ;
+    lova:molecularWeight "Tm = 34.5-37.5°C" ;
+    lova:concentration "1.0 mg per aliquot" ;
+    lova:supplier "Invitrogen" ;
+    lova:reagentFunction "Protects polyplexes from aggregation during lyophilization/gelation" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2012.07.014/sucrose> a lova:Reagent ;
+    rdfs:label "Sucrose (Ultra pure)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "35 mg (0.10 mmole)" ;
+    lova:supplier "MP Biomedicals" ;
+    lova:reagentFunction "Protects polyplexes from inactivation during lyophilization" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2012.07.014/pei> a lova:Reagent ;
+    rdfs:label "Linear poly(ethylene imine) (PEI)" ;
+    lova:reagentRole "other" ;
+    lova:molecularWeight "25 kDa" ;
+    lova:concentration "91.3-228.3 µg" ;
+    lova:supplier "Polysciences" ;
+    lova:reagentFunction "DNA condensation into polyplexes (nanoparticle formation)" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2012.07.014/pgluc-plasmid> a lova:Reagent ;
+    rdfs:label "Gaussia Luciferase reporter plasmid (pGluc)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "100-250 µg" ;
+    lova:supplier "New England Biolabs" ;
+    lova:reagentFunction "Reporter transgene for transfection quantification" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2012.07.014/adh> a lova:Reagent ;
+    rdfs:label "Adipic dihydrazide (ADH)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "18.0 g (105.5 mmole)" ;
+    lova:reagentFunction "HA modification intermediate (hydrazide linker)" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2012.07.014/edc> a lova:Reagent ;
+    rdfs:label "1-ethyl-3-[3-dimethylaminopropyl] carbodiimide hydrochloride (EDC)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "4.0 g (20 mmole)" ;
+    lova:reagentFunction "Carbodiimide coupling agent for HA modification" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.actbio.2012.07.014/nhs-ac> a lova:Reagent ;
+    rdfs:label "N-Acryloxysuccinimide (NHS-Ac)" ;
+    lova:reagentRole "other" ;
+    lova:concentration "1.33 g (4.4 mmole)" ;
+    lova:reagentFunction "Acrylate functionalization of HA-ADH" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2012.07.014/exp-sem> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2012.07.014/mat-30um> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2012.07.014/mat-60um> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2012.07.014/mat-100um> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2012.07.014/mat-npore> ;
+    rdfs:label "SEM characterization of μ-pore vs n-pore HA hydrogel structure" ;
+    lova:experimentCategory "Structural" ;
+    lova:experimentType "SEM imaging" ;
+    lova:assayOrMethod "Scanning electron microscopy" ;
+    lova:equipment "JEOL JSM-6700F FE-SEM; Nova 230 Nano SEM" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2012.07.014/exp-subq-implant> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2012.07.014/mat-100um> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2012.07.014/mat-npore> ;
+    rdfs:label "Subcutaneous implant model assessing cellular infiltration and vascularization" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "In vivo implantation" ;
+    lova:assayOrMethod "H&E staining; immunofluorescence for CD31/PECAM" ;
+    lova:cellType "Host-derived cells (mouse)" ;
+    lova:cellSource "Balb/c mouse subcutaneous tissue" ;
+    lova:cultureDuration "1, 2, 3 weeks" ;
+    lova:sampleSize 12 .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2012.07.014/exp-dna-loading> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2012.07.014/mat-30um> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2012.07.014/mat-60um> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2012.07.014/mat-100um> ;
+    rdfs:label "DNA loading efficiency after porous gel processing" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "DNA quantification" ;
+    lova:assayOrMethod "3H-dCTP radiolabeling, scintillation counting" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2012.07.014/exp-dna-release> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2012.07.014/mat-twophase> ;
+    rdfs:label "DNA polyplex release kinetics in presence of mMSCs vs PBS control" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Release kinetics" ;
+    lova:assayOrMethod "3H-dCTP radiolabeled DNA, scintillation counting" ;
+    lova:cellType "mMSC (D1, CRL12424)" ;
+    lova:cellSource "Mouse bone marrow" ;
+    lova:cultureDuration "10 days" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2012.07.014/exp-degradation> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2012.07.014/mat-twophase> ;
+    rdfs:label "Hydrogel degradation (uronic acid release) in presence of mMSCs vs PBS control" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Degradation assay" ;
+    lova:assayOrMethod "Carbazole assay (uronic acid quantification)" ;
+    lova:cellType "mMSC (D1, CRL12424)" ;
+    lova:cultureDuration "10 days" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2012.07.014/exp-pore-size-time> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2012.07.014/mat-30um> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2012.07.014/mat-60um> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2012.07.014/mat-100um> ;
+    rdfs:label "Pore size measurement over time via phase microscopy" ;
+    lova:experimentCategory "Structural" ;
+    lova:experimentType "Pore size measurement" ;
+    lova:assayOrMethod "Phase microscopy, AxioVision software" ;
+    lova:cultureDuration "2, 7, 11 days" ;
+    lova:sampleSize 27 .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2012.07.014/exp-viability> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2012.07.014/mat-twophase> ;
+    rdfs:label "Cell viability of mMSCs in DNA-loaded two-phase hydrogels" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell viability" ;
+    lova:assayOrMethod "LIVE/DEAD viability/cytotoxicity kit" ;
+    lova:cellType "mMSC (D1, CRL12424)" ;
+    lova:cultureDuration "2, 7 days" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2012.07.014/exp-mtt> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2012.07.014/mat-30um> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2012.07.014/mat-60um> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2012.07.014/mat-100um> ;
+    rdfs:label "Metabolic activity (MTT assay) across pore sizes" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Metabolic activity" ;
+    lova:assayOrMethod "MTT assay (CellTiter 96 AQueous One Solution)" ;
+    lova:cellType "mMSC (D1, CRL12424)" ;
+    lova:cultureDuration "3, 5, 7 days" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2012.07.014/exp-gene-transfer> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2012.07.014/mat-30um> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2012.07.014/mat-60um> ,
+                      <https://lovamap.com/ontology#material/10.1016-j.actbio.2012.07.014/mat-100um> ;
+    rdfs:label "Gaussia luciferase transgene expression kinetics in two-phase hydrogels" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Gene transfer / transfection" ;
+    lova:assayOrMethod "BioLux Gaussia Luciferase Assay Kit" ;
+    lova:cellType "mMSC (D1, CRL12424)" ;
+    lova:cultureDuration "10 days" ;
+    lova:sampleSize 8 .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.actbio.2012.07.014/exp-gluc-escape> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.actbio.2012.07.014/mat-twophase> ;
+    rdfs:label "Gluc protein recovery/escape assay — TC plastic vs HA hydrogel" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Reporter protein recovery" ;
+    lova:assayOrMethod "BioLux Gaussia Luciferase Assay Kit" ;
+    lova:cellType "mMSC (D1, CRL12424)" ;
+    lova:cultureDuration "48 hrs" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2012.07.014/dna-release-30um-day10> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2012.07.014/exp-dna-release> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> ;
+    rdfs:label "% DNA release at day 10 — 30 μm pore, with cells" ;
+    lova:measurementType "DNA release" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 45.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 10" ;
+    lova:comparisonGroup "PBS control" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2012.07.014/dna-release-60um-day10> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2012.07.014/exp-dna-release> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> ;
+    rdfs:label "% DNA release at day 10 — 60 μm pore, with cells" ;
+    lova:measurementType "DNA release" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 22.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 10" ;
+    lova:comparisonGroup "PBS control" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2012.07.014/dna-release-100um-day10> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2012.07.014/exp-dna-release> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> ;
+    rdfs:label "% DNA release at day 10 — 100 μm pore, with cells" ;
+    lova:measurementType "DNA release" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 34.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 10" ;
+    lova:comparisonGroup "PBS control" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2012.07.014/dna-release-30-vs-60> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> ;
+    rdfs:label "DNA release higher in 30 μm vs 60 μm pore gels at day 10" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2012.07.014/dna-release-30um-day10> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2012.07.014/dna-release-60um-day10> ;
+    lova:direction "higher" ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2012.07.014/dna-release-100-vs-60> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> ;
+    rdfs:label "DNA release higher in 100 μm vs 60 μm pore gels at day 10" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2012.07.014/dna-release-100um-day10> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2012.07.014/dna-release-60um-day10> ;
+    lova:direction "higher" ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2012.07.014/dna-release-30-vs-100> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> ;
+    rdfs:label "No significant difference in DNA release between 30 μm and 100 μm pore gels at day 10" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2012.07.014/dna-release-30um-day10> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2012.07.014/dna-release-100um-day10> ;
+    lova:direction "no difference" ;
+    lova:isSignificant false .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2012.07.014/uronic-acid-30um-pbs-day10> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2012.07.014/exp-degradation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> ;
+    rdfs:label "% uronic acid released at day 10 — 30 μm pore, PBS control" ;
+    lova:measurementType "Uronic acid release (hydrogel degradation)" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 45.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 10" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2012.07.014/uronic-acid-30um-cell-day10> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2012.07.014/exp-degradation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> ;
+    rdfs:label "% uronic acid released at day 10 — 30 μm pore, with cells" ;
+    lova:measurementType "Uronic acid release (hydrogel degradation)" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 78.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 10" ;
+    lova:comparisonGroup "PBS control" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2012.07.014/uronic-acid-60um-cell-day10> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2012.07.014/exp-degradation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> ;
+    rdfs:label "% uronic acid released at day 10 — 60 μm pore, with cells" ;
+    lova:measurementType "Uronic acid release (hydrogel degradation)" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 67.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 10" ;
+    lova:comparisonGroup "PBS control" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2012.07.014/uronic-acid-100um-cell-day10> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2012.07.014/exp-degradation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> ;
+    rdfs:label "% uronic acid released at day 10 — 100 μm pore, with cells" ;
+    lova:measurementType "Uronic acid release (hydrogel degradation)" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 37.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 10" ;
+    lova:comparisonGroup "PBS control" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2012.07.014/uronic-30-vs-100> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> ;
+    rdfs:label "Uronic acid release higher in 30 μm vs 100 μm pore gels at day 10" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2012.07.014/uronic-acid-30um-cell-day10> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2012.07.014/uronic-acid-100um-cell-day10> ;
+    lova:direction "higher" ;
+    lova:pValue 0.01 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2012.07.014/uronic-60-vs-100> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> ;
+    rdfs:label "Uronic acid release higher in 60 μm vs 100 μm pore gels at day 10" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2012.07.014/uronic-acid-60um-cell-day10> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2012.07.014/uronic-acid-100um-cell-day10> ;
+    lova:direction "higher" ;
+    lova:pValue 0.05 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2012.07.014/pore-diameter-30um-2d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2012.07.014/exp-pore-size-time> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> ;
+    rdfs:label "Pore diameter at 2 days — 30 μm pore gel" ;
+    lova:measurementType "Pore diameter" ;
+    lova:measurementCategory "Structural" ;
+    qudt:numericValue 33.0 ;
+    qudt:unit "μm" ;
+    lova:timePoint "2 days" ;
+    lova:sampleSize 27 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2012.07.014/pore-diameter-30um-11d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2012.07.014/exp-pore-size-time> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> ;
+    rdfs:label "Pore diameter at 11 days — 30 μm pore gel" ;
+    lova:measurementType "Pore diameter" ;
+    lova:measurementCategory "Structural" ;
+    qudt:numericValue 65.0 ;
+    qudt:unit "μm" ;
+    lova:timePoint "11 days" ;
+    lova:sampleSize 27 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2012.07.014/pore-diameter-30um-2d-vs-11d> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> ;
+    rdfs:label "Pore diameter increased from day 2 to day 11 in 30 μm pore gels" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2012.07.014/pore-diameter-30um-11d> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2012.07.014/pore-diameter-30um-2d> ;
+    lova:direction "higher" ;
+    lova:pValue 0.005 ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2012.07.014/pore-diameter-60um-2d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2012.07.014/exp-pore-size-time> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> ;
+    rdfs:label "Pore diameter at 2 days — 60 μm pore gel" ;
+    lova:measurementType "Pore diameter" ;
+    lova:measurementCategory "Structural" ;
+    qudt:numericValue 62.0 ;
+    qudt:unit "μm" ;
+    lova:timePoint "2 days" ;
+    lova:sampleSize 27 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2012.07.014/pore-diameter-100um-2d> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2012.07.014/exp-pore-size-time> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> ;
+    rdfs:label "Pore diameter at 2 days — 100 μm pore gel" ;
+    lova:measurementType "Pore diameter" ;
+    lova:measurementCategory "Structural" ;
+    qudt:numericValue 105.0 ;
+    qudt:unit "μm" ;
+    lova:timePoint "2 days" ;
+    lova:sampleSize 27 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2012.07.014/dna-loading-30um> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2012.07.014/exp-dna-loading> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> ;
+    rdfs:label "% DNA loading retained — 30 μm pore gel" ;
+    lova:measurementType "DNA loading efficiency" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 95.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2012.07.014/dna-loading-60um> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2012.07.014/exp-dna-loading> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> ;
+    rdfs:label "% DNA loading retained — 60 μm pore gel" ;
+    lova:measurementType "DNA loading efficiency" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 94.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2012.07.014/dna-loading-100um> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2012.07.014/exp-dna-loading> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> ;
+    rdfs:label "% DNA loading retained — 100 μm pore gel" ;
+    lova:measurementType "DNA loading efficiency" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 94.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2012.07.014/cumulative-gluc-30um-day10> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2012.07.014/exp-gene-transfer> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> ;
+    rdfs:label "Cumulative Gaussia luciferase expression at day 10 — 30 μm pore gel" ;
+    lova:measurementType "Cumulative Gaussia luciferase expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 80000.0 ;
+    qudt:unit "RLU" ;
+    lova:timePoint "Day 10" ;
+    lova:sampleSize 8 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2012.07.014/cumulative-gluc-60um-day10> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2012.07.014/exp-gene-transfer> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> ;
+    rdfs:label "Cumulative Gaussia luciferase expression at day 10 — 60 μm pore gel" ;
+    lova:measurementType "Cumulative Gaussia luciferase expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 50000.0 ;
+    qudt:unit "RLU" ;
+    lova:timePoint "Day 10" ;
+    lova:sampleSize 8 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2012.07.014/cumulative-gluc-100um-day10> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2012.07.014/exp-gene-transfer> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> ;
+    rdfs:label "Cumulative Gaussia luciferase expression at day 10 — 100 μm pore gel" ;
+    lova:measurementType "Cumulative Gaussia luciferase expression" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 100000.0 ;
+    qudt:unit "RLU" ;
+    lova:timePoint "Day 10" ;
+    lova:sampleSize 8 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2012.07.014/gluc-day10-nodifference> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> ;
+    rdfs:label "No statistically significant difference in cumulative Gluc expression among pore sizes at day 10" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2012.07.014/cumulative-gluc-30um-day10> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2012.07.014/cumulative-gluc-100um-day10> ;
+    lova:direction "no difference" ;
+    lova:isSignificant false .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2012.07.014/gluc-recovered-tc> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2012.07.014/exp-gluc-escape> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> ;
+    rdfs:label "% Gluc recovered — tissue culture plastic control" ;
+    lova:measurementType "Gaussia luciferase recovery" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 100.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "48 hrs" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2012.07.014/gluc-recovered-gel> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2012.07.014/exp-gluc-escape> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> ;
+    rdfs:label "% Gluc recovered — encapsulated in HA hydrogel" ;
+    lova:measurementType "Gaussia luciferase recovery" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 87.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "48 hrs" ;
+    lova:comparisonGroup "TC plastic" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.actbio.2012.07.014/gluc-recovery-tc-vs-gel> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> ;
+    rdfs:label "No significant difference in Gluc recovery between TC plastic and HA hydrogel" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2012.07.014/gluc-recovered-tc> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.actbio.2012.07.014/gluc-recovered-gel> ;
+    lova:direction "no difference" ;
+    lova:isSignificant false .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2012.07.014/storage-modulus-innerphase> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2012.07.014/exp-degradation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> ;
+    rdfs:label "Storage modulus of 2.5% HA inner phase gel" ;
+    lova:measurementType "Storage modulus" ;
+    lova:measurementCategory "Mechanical" ;
+    qudt:numericValue 130.00 ;
+    qudt:unit "Pa" ;
+    lova:stdDev 4.92 ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2012.07.014/mtt-absorbance-30um-day5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2012.07.014/exp-mtt> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> ;
+    rdfs:label "MTT absorbance at 490 nm, day 5 — 30 μm pore gel" ;
+    lova:measurementType "Metabolic activity (MTT absorbance)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.36 ;
+    qudt:unit "Absorbance (490 nm)" ;
+    lova:timePoint "Day 5" ;
+    lova:sampleSize 3 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2012.07.014/mtt-absorbance-60um-day5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2012.07.014/exp-mtt> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> ;
+    rdfs:label "MTT absorbance at 490 nm, day 5 — 60 μm pore gel" ;
+    lova:measurementType "Metabolic activity (MTT absorbance)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.29 ;
+    qudt:unit "Absorbance (490 nm)" ;
+    lova:timePoint "Day 5" ;
+    lova:sampleSize 3 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2012.07.014/mtt-absorbance-100um-day5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2012.07.014/exp-mtt> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> ;
+    rdfs:label "MTT absorbance at 490 nm, day 5 — 100 μm pore gel" ;
+    lova:measurementType "Metabolic activity (MTT absorbance)" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.28 ;
+    qudt:unit "Absorbance (490 nm)" ;
+    lova:timePoint "Day 5" ;
+    lova:sampleSize 3 ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2012.07.014/dna-release-pbs-all> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2012.07.014/exp-dna-release> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> ;
+    rdfs:label "DNA release in PBS control (all pore sizes) at day 10 — less than 2%" ;
+    lova:measurementType "DNA release" ;
+    lova:measurementCategory "Biochemical" ;
+    lova:valueString "<2%" ;
+    lova:timePoint "Day 10" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2012.07.014/acrylation-degree> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2012.07.014/exp-dna-loading> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> ;
+    rdfs:label "Degree of acrylation of HA-ADH" ;
+    lova:measurementType "Degree of acrylation" ;
+    lova:measurementCategory "Chemical" ;
+    qudt:numericValue 10.0 ;
+    qudt:unit "%" ;
+    lova:valueString "~16 acrylates per HA chain" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.actbio.2012.07.014/adh-modification-degree> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.actbio.2012.07.014/exp-dna-loading> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1016-j.actbio.2012.07.014> ;
+    rdfs:label "Degree of ADH modification of carboxyl groups on HA" ;
+    lova:measurementType "Degree of ADH modification" ;
+    lova:measurementCategory "Chemical" ;
+    qudt:numericValue 56.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[TEXT]" .

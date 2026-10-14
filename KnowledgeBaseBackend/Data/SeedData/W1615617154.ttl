@@ -1,0 +1,1016 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.1038-nmat4294> a bibo:AcademicArticle ;
+    rdfs:label "Griffin et al., 2015 — MAP Scaffolds for Wound Healing" ;
+    dc:title "Accelerated wound healing by injectable microporous gel scaffolds assembled from annealed building blocks" ;
+    dc:identifier "10.1038/nmat4294" ;
+    dc:date "2015"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/nature-materials> ;
+    dc:creator <https://lovamap.com/ontology#author/griffin-donald> ,
+               <https://lovamap.com/ontology#author/weaver-westbrook> ,
+               <https://lovamap.com/ontology#author/scumpia-philip> ,
+               <https://lovamap.com/ontology#author/di-carlo-dino> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/griffin-donald>
+                       <https://lovamap.com/ontology#author/weaver-westbrook>
+                       <https://lovamap.com/ontology#author/scumpia-philip>
+                       <https://lovamap.com/ontology#author/di-carlo-dino>
+                       <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    dc:bibliographicCitation "Griffin et al., 2015" ;
+    lova:focusMaterial "Microporous Annealed Particle (MAP) scaffolds assembled from PEG-VS microgel building blocks for injectable wound healing" .
+
+<https://lovamap.com/ontology#author/griffin-donald> a foaf:Person ;
+    foaf:familyName "Griffin" ;
+    foaf:givenName "Donald" ;
+    foaf:name "Donald Richieri Griffin" .
+
+<https://lovamap.com/ontology#author/weaver-westbrook> a foaf:Person ;
+    foaf:familyName "Weaver" ;
+    foaf:givenName "Westbrook" ;
+    foaf:name "Westbrook M. Weaver" .
+
+<https://lovamap.com/ontology#author/scumpia-philip> a foaf:Person ;
+    foaf:familyName "Scumpia" ;
+    foaf:givenName "Philip" ;
+    foaf:name "Philip O. Scumpia" .
+
+<https://lovamap.com/ontology#author/di-carlo-dino> a foaf:Person ;
+    foaf:familyName "Di Carlo" ;
+    foaf:givenName "Dino" ;
+    foaf:name "Dino Di Carlo" .
+
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ;
+    foaf:givenName "Tatiana" ;
+    foaf:name "Tatiana Segura" .
+
+<https://lovamap.com/ontology#journal/nature-materials> a bibo:Journal ;
+    dc:title "Nature Materials" ;
+    bibo:issn "1476-1122" .
+
+<https://lovamap.com/ontology#material/10.1038-nmat4294/map-general> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "MAP scaffold (PEG-VS microgel building blocks, FXIIIa annealed)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "PEG-VS" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:surfaceModification "RGD-coated" ;
+    lova:packingConfiguration "Jammed" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1038-nmat4294/microfluidic-peg-fxiii> .
+
+<https://lovamap.com/ontology#material/10.1038-nmat4294/map-30um> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "MAP scaffold, 30 μm building blocks" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "PEG-VS" ;
+    lova:particleSizeMin 30.0 ;
+    lova:particleSizeMax 30.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1038-nmat4294/microfluidic-peg-fxiii> .
+
+<https://lovamap.com/ontology#material/10.1038-nmat4294/map-100um> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "MAP scaffold, 100 μm building blocks" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "PEG-VS" ;
+    lova:particleSizeMin 100.0 ;
+    lova:particleSizeMax 100.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1038-nmat4294/microfluidic-peg-fxiii> .
+
+<https://lovamap.com/ontology#material/10.1038-nmat4294/map-150um> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "MAP scaffold, 150 μm building blocks" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "PEG-VS" ;
+    lova:particleSizeMin 150.0 ;
+    lova:particleSizeMax 150.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1038-nmat4294/microfluidic-peg-fxiii> .
+
+<https://lovamap.com/ontology#material/10.1038-nmat4294/building-blocks-unannealed> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "μgel building blocks without FXIIIa (unannealed)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "PEG-VS" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1038-nmat4294/microfluidic-peg-fxiii> .
+
+<https://lovamap.com/ontology#material/10.1038-nmat4294/non-porous-350pa> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "Non-porous PEG hydrogel, bulk modulus identical to MAP (350 Pa)" ;
+    lova:particleMaterial "PEG-VS" ;
+    lova:stiffnessValue 350.0 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1038-nmat4294/non-porous-bulk> .
+
+<https://lovamap.com/ontology#material/10.1038-nmat4294/non-porous-600pa> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "Non-porous PEG hydrogel, microscale modulus matched to individual μgels (600 Pa)" ;
+    lova:particleMaterial "PEG-VS" ;
+    lova:stiffnessValue 600.0 ;
+    lova:stiffnessUnit "Pa" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1038-nmat4294/non-porous-bulk> .
+
+<https://lovamap.com/ontology#material/10.1038-nmat4294/map-k-q-deficient> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "Non-annealing μgels lacking K and Q peptides" ;
+    lova:particleShape "Sphere" ;
+    lova:particleMaterial "PEG-VS" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1038-nmat4294/map-k-q-deficient-fab> .
+
+<https://lovamap.com/ontology#material/10.1038-nmat4294/precast-porous> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "Precast porous gel (porogen-based casting, matched to wound shape)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1038-nmat4294/precast-porous-fab> .
+
+<https://lovamap.com/ontology#material/10.1038-nmat4294/no-treatment> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "No treatment control (untreated wound)" .
+
+<https://lovamap.com/ontology#material/10.1038-nmat4294/peg-4.5wt> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "PEG-VS hydrogel, 4.5 wt%" ;
+    lova:particleMaterial "PEG-VS" .
+
+<https://lovamap.com/ontology#material/10.1038-nmat4294/peg-5.0wt> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "PEG-VS hydrogel, 5.0 wt%" ;
+    lova:particleMaterial "PEG-VS" .
+
+<https://lovamap.com/ontology#material/10.1038-nmat4294/peg-5.5wt> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "PEG-VS hydrogel, 5.5 wt%" ;
+    lova:particleMaterial "PEG-VS" .
+
+<https://lovamap.com/ontology#material/10.1038-nmat4294/rratio-0.7> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "PEG-VS hydrogel, r-ratio (-SH/-VS) = 0.7" ;
+    lova:particleMaterial "PEG-VS" .
+
+<https://lovamap.com/ontology#material/10.1038-nmat4294/rratio-0.8> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "PEG-VS hydrogel, r-ratio (-SH/-VS) = 0.8" ;
+    lova:particleMaterial "PEG-VS" .
+
+<https://lovamap.com/ontology#material/10.1038-nmat4294/rratio-0.9> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "PEG-VS hydrogel, r-ratio (-SH/-VS) = 0.9" ;
+    lova:particleMaterial "PEG-VS" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1038-nmat4294/microfluidic-peg-fxiii> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "Microfluidic generation of PEG-VS microgel building blocks, FXIIIa annealing" ;
+    lova:chemistry "Michael-type addition (thiol-ene)" ;
+    lova:manufacturingMethod "Microfluidic water-in-oil emulsion" ;
+    lova:annealingChemistry "Enzymatic (Factor XIII transglutamination, non-canonical amide linkage between K and Q peptides)" ;
+    lova:annealingConditions "FXIIIa addition; in vivo activated by exogenous thrombin in wound bed" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1038-nmat4294/peg-vs> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-nmat4294/rgd-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-nmat4294/k-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-nmat4294/q-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-nmat4294/mmp-crosslinker> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-nmat4294/fxiiia> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-nmat4294/thrombin> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-nmat4294/span80-025> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-nmat4294/span80-5> ,
+                    <https://lovamap.com/ontology#reagent/10.1038-nmat4294/mineral-oil> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1038-nmat4294/non-porous-bulk> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "Bulk non-porous PEG-VS hydrogel fabrication (chemically identical, no droplet formation)" ;
+    lova:chemistry "Michael-type addition (thiol-ene)" ;
+    lova:manufacturingMethod "Bulk mixing / bulk hydrogel casting" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1038-nmat4294/map-k-q-deficient-fab> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "Microfluidic μgel fabrication lacking K and Q transglutaminase peptides (non-annealing)" ;
+    lova:manufacturingMethod "Microfluidic water-in-oil emulsion" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1038-nmat4294/precast-porous-fab> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "Porogen-based casting of precast microporous gel" ;
+    lova:manufacturingMethod "Porogen-based casting" .
+
+<https://lovamap.com/ontology#reagent/10.1038-nmat4294/peg-vs> a lova:Reagent ;
+    rdfs:label "Multi-armed poly(ethylene)glycol-vinyl sulfone (PEG-VS)" ;
+    lova:reagentRole "monomer" ;
+    lova:reagentFunction "Hydrogel backbone" .
+
+<https://lovamap.com/ontology#reagent/10.1038-nmat4294/rgd-peptide> a lova:Reagent ;
+    rdfs:label "RGD peptide" ;
+    lova:reagentRole "peptide" ;
+    lova:reagentFunction "Cell adhesion" .
+
+<https://lovamap.com/ontology#reagent/10.1038-nmat4294/k-peptide> a lova:Reagent ;
+    rdfs:label "K peptide (transglutaminase substrate)" ;
+    lova:reagentRole "peptide" ;
+    lova:reagentFunction "Transglutaminase substrate for FXIIIa-mediated annealing" .
+
+<https://lovamap.com/ontology#reagent/10.1038-nmat4294/q-peptide> a lova:Reagent ;
+    rdfs:label "Q peptide (transglutaminase substrate)" ;
+    lova:reagentRole "peptide" ;
+    lova:reagentFunction "Transglutaminase substrate for FXIIIa-mediated annealing" .
+
+<https://lovamap.com/ontology#reagent/10.1038-nmat4294/mmp-crosslinker> a lova:Reagent ;
+    rdfs:label "Cysteine-terminated MMP-sensitive crosslinker peptide" ;
+    lova:reagentRole "crosslinker" ;
+    lova:reagentFunction "Cell-controlled enzymatic (MMP) degradation and resorption" .
+
+<https://lovamap.com/ontology#reagent/10.1038-nmat4294/fxiiia> a lova:Reagent ;
+    rdfs:label "Activated Factor XIII (FXIIIa)" ;
+    lova:reagentRole "enzyme" ;
+    lova:reagentFunction "Annealing of μgel building blocks via amide linkage between K and Q peptides" .
+
+<https://lovamap.com/ontology#reagent/10.1038-nmat4294/thrombin> a lova:Reagent ;
+    rdfs:label "Thrombin" ;
+    lova:reagentRole "enzyme" ;
+    lova:reagentFunction "Activates Factor XIII (FXIII) in the wound bed" .
+
+<https://lovamap.com/ontology#reagent/10.1038-nmat4294/span80-025> a lova:Reagent ;
+    rdfs:label "Span 80 in mineral oil (0.25%)" ;
+    lova:reagentRole "surfactant" ;
+    lova:concentration "0.25%" ;
+    lova:reagentFunction "Pinches and segments PEG pre-gel into droplets" .
+
+<https://lovamap.com/ontology#reagent/10.1038-nmat4294/span80-5> a lova:Reagent ;
+    rdfs:label "Span 80 in mineral oil (5%)" ;
+    lova:reagentRole "surfactant" ;
+    lova:concentration "5%" ;
+    lova:reagentFunction "Mixes and prevents downstream coalescence of μgels before complete gelation" .
+
+<https://lovamap.com/ontology#reagent/10.1038-nmat4294/mineral-oil> a lova:Reagent ;
+    rdfs:label "Mineral oil" ;
+    lova:reagentRole "carrier oil" .
+
+<https://lovamap.com/ontology#experiment/10.1038-nmat4294/gelation-kinetics> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-nmat4294/map-general> ;
+    rdfs:label "Gelation kinetics: storage modulus vs. pH and temperature" ;
+    lova:experimentCategory "Rheological" ;
+    lova:experimentType "Gelation kinetics" ;
+    lova:assayOrMethod "Rheometry" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4294/storage-modulus-ph8.25-rt> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4294/gelation-kinetics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "Storage modulus at 600s, pH 8.25, RT" ;
+    lova:measurementType "Storage Modulus" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 380.0 ;
+    qudt:unit "Pa" ;
+    lova:timePoint "600 sec post-mixing" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4294/storage-modulus-ph8.8-rt> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4294/gelation-kinetics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "Storage modulus at 600s, pH 8.8, RT" ;
+    lova:measurementType "Storage Modulus" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 780.0 ;
+    qudt:unit "Pa" ;
+    lova:timePoint "600 sec post-mixing" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4294/storage-modulus-ph8.25-37c> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4294/gelation-kinetics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "Storage modulus at 600s, pH 8.25, 37°C" ;
+    lova:measurementType "Storage Modulus" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 790.0 ;
+    qudt:unit "Pa" ;
+    lova:timePoint "600 sec post-mixing" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1038-nmat4294/storage-modulus-wtpercent> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-nmat4294/peg-4.5wt> ,
+                      <https://lovamap.com/ontology#material/10.1038-nmat4294/peg-5.0wt> ,
+                      <https://lovamap.com/ontology#material/10.1038-nmat4294/peg-5.5wt> ;
+    rdfs:label "Storage modulus vs. PEG hydrogel weight %" ;
+    lova:experimentCategory "Rheological" ;
+    lova:experimentType "Storage modulus vs. formulation" ;
+    lova:assayOrMethod "Rheometry" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4294/storage-modulus-4.5wt> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4294/storage-modulus-wtpercent> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "Storage modulus, 4.5 wt% hydrogel" ;
+    lova:measurementType "Storage Modulus" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 380.0 ;
+    qudt:unit "Pa" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4294/storage-modulus-5.0wt> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4294/storage-modulus-wtpercent> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "Storage modulus, 5.0 wt% hydrogel" ;
+    lova:measurementType "Storage Modulus" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 620.0 ;
+    qudt:unit "Pa" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4294/storage-modulus-5.5wt> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4294/storage-modulus-wtpercent> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "Storage modulus, 5.5 wt% hydrogel" ;
+    lova:measurementType "Storage Modulus" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 800.0 ;
+    qudt:unit "Pa" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1038-nmat4294/storage-modulus-rratio> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-nmat4294/rratio-0.7> ,
+                      <https://lovamap.com/ontology#material/10.1038-nmat4294/rratio-0.8> ,
+                      <https://lovamap.com/ontology#material/10.1038-nmat4294/rratio-0.9> ;
+    rdfs:label "Storage modulus vs. r-ratio (-SH/-VS)" ;
+    lova:experimentCategory "Rheological" ;
+    lova:experimentType "Storage modulus vs. formulation" ;
+    lova:assayOrMethod "Rheometry" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4294/storage-modulus-rratio-0.7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4294/storage-modulus-rratio> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "Storage modulus, r-ratio 0.7" ;
+    lova:measurementType "Storage Modulus" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 50.0 ;
+    qudt:unit "Pa" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4294/storage-modulus-rratio-0.8> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4294/storage-modulus-rratio> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "Storage modulus, r-ratio 0.8" ;
+    lova:measurementType "Storage Modulus" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 620.0 ;
+    qudt:unit "Pa" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4294/storage-modulus-rratio-0.9> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4294/storage-modulus-rratio> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "Storage modulus, r-ratio 0.9" ;
+    lova:measurementType "Storage Modulus" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 880.0 ;
+    qudt:unit "Pa" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1038-nmat4294/degradation-kinetics> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-nmat4294/map-general> ,
+                      <https://lovamap.com/ontology#material/10.1038-nmat4294/non-porous-350pa> ;
+    rdfs:label "In vitro degradation kinetics: MAP vs. non-porous gel" ;
+    lova:experimentCategory "Degradation" ;
+    lova:experimentType "Enzymatic degradation" ;
+    lova:assayOrMethod "TrypLE digestion (1:1000)" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4294/degradation-map-4hr> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4294/degradation-kinetics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "% Degradation, MAP gel, 4 hours" ;
+    lova:measurementType "% Degradation" ;
+    lova:measurementCategory "Degradation" ;
+    qudt:numericValue 40.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "4 hrs" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4294/degradation-nonporous-4hr> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4294/degradation-kinetics> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "% Degradation, Non-porous gel, 4 hours" ;
+    lova:measurementType "% Degradation" ;
+    lova:measurementCategory "Degradation" ;
+    qudt:numericValue 25.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "4 hrs" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-nmat4294/degradation-map-vs-nonporous> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "MAP gel degrades faster than non-porous gel at 4 hours" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-nmat4294/degradation-map-4hr> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-nmat4294/degradation-nonporous-4hr> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#experiment/10.1038-nmat4294/swelling-ratio> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-nmat4294/map-general> ;
+    rdfs:label "μgel swelling ratio measurement" ;
+    lova:experimentCategory "Physical" ;
+    lova:experimentType "Swelling measurement" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4294/diameter-oil-phase> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4294/swelling-ratio> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "μgel diameter in oil phase" ;
+    lova:measurementType "μgel diameter" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 67.0 ;
+    qudt:unit "μm" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4294/diameter-aq-phase> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4294/swelling-ratio> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "μgel diameter in aqueous phase (after swelling)" ;
+    lova:measurementType "μgel diameter" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 105.0 ;
+    qudt:unit "μm" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4294/swelling-ratio-qv> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4294/swelling-ratio> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "Swelling ratio (Qv)" ;
+    lova:measurementType "Swelling ratio" ;
+    lova:measurementCategory "Physical" ;
+    qudt:numericValue 4.5 ;
+    qudt:unit "dimensionless" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1038-nmat4294/rheology-buildingblocks-vs-map> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-nmat4294/building-blocks-unannealed> ,
+                      <https://lovamap.com/ontology#material/10.1038-nmat4294/map-general> ;
+    rdfs:label "Rheological characterization: building blocks vs. annealed MAP scaffold" ;
+    lova:experimentCategory "Rheological" ;
+    lova:experimentType "Storage/loss modulus measurement" ;
+    lova:assayOrMethod "Rheometry" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4294/storage-modulus-buildingblocks> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4294/rheology-buildingblocks-vs-map> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "Storage modulus, μgel building blocks (no FXIIIa)" ;
+    lova:measurementType "Storage Modulus" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 80.0 ;
+    qudt:unit "Pa" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4294/loss-modulus-buildingblocks> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4294/rheology-buildingblocks-vs-map> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "Loss modulus, μgel building blocks (no FXIIIa)" ;
+    lova:measurementType "Loss Modulus" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 10.0 ;
+    qudt:unit "Pa" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4294/storage-modulus-map> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4294/rheology-buildingblocks-vs-map> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "Storage modulus, annealed MAP scaffold (+FXIII + Thrombin)" ;
+    lova:measurementType "Storage Modulus" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 330.0 ;
+    qudt:unit "Pa" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4294/loss-modulus-map> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4294/rheology-buildingblocks-vs-map> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "Loss modulus, annealed MAP scaffold (+FXIII + Thrombin)" ;
+    lova:measurementType "Loss Modulus" ;
+    lova:measurementCategory "Rheological" ;
+    qudt:numericValue 15.0 ;
+    qudt:unit "Pa" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-nmat4294/storage-modulus-map-vs-buildingblocks> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "Storage modulus higher in annealed MAP scaffold vs. unannealed building blocks" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-nmat4294/storage-modulus-map> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-nmat4294/storage-modulus-buildingblocks> ;
+    lova:direction "higher" ;
+    lova:foldChange 3.0 .
+
+<https://lovamap.com/ontology#experiment/10.1038-nmat4294/pore-size-vs-buildingblock> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-nmat4294/map-30um> ,
+                      <https://lovamap.com/ontology#material/10.1038-nmat4294/map-100um> ,
+                      <https://lovamap.com/ontology#material/10.1038-nmat4294/map-150um> ;
+    rdfs:label "Median pore diameter vs. building block size" ;
+    lova:experimentCategory "Structural" ;
+    lova:experimentType "Pore size measurement" ;
+    lova:assayOrMethod "Confocal microscopy" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4294/pore-diameter-30um> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4294/pore-size-vs-buildingblock> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "Median pore diameter, 30 μm building blocks" ;
+    lova:measurementType "Median pore diameter" ;
+    lova:measurementCategory "Structural" ;
+    qudt:numericValue 12.0 ;
+    qudt:unit "μm" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4294/pore-diameter-100um> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4294/pore-size-vs-buildingblock> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "Median pore diameter, 100 μm building blocks" ;
+    lova:measurementType "Median pore diameter" ;
+    lova:measurementCategory "Structural" ;
+    qudt:numericValue 18.0 ;
+    qudt:unit "μm" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4294/pore-diameter-150um> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4294/pore-size-vs-buildingblock> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "Median pore diameter, 150 μm building blocks" ;
+    lova:measurementType "Median pore diameter" ;
+    lova:measurementCategory "Structural" ;
+    qudt:numericValue 37.0 ;
+    qudt:unit "μm" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1038-nmat4294/cell-viability> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-nmat4294/map-general> ;
+    rdfs:label "Cell viability 24 hours post-annealing" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell viability" ;
+    lova:cultureDuration "24 hours" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4294/viability-hdf> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4294/cell-viability> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "Cell survival, HDF, 24h in MAP scaffold" ;
+    lova:measurementType "Cell survival" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 97.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "24 hours" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4294/viability-ahmsc> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4294/cell-viability> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "Cell survival, AhMSC, 24h in MAP scaffold" ;
+    lova:measurementType "Cell survival" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 90.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "24 hours" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4294/viability-bmhmsc> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4294/cell-viability> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "Cell survival, BMhMSC, 24h in MAP scaffold" ;
+    lova:measurementType "Cell survival" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 93.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "24 hours" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.1038-nmat4294/cell-proliferation> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-nmat4294/map-general> ;
+    rdfs:label "Cell proliferation within MAP scaffold over 6 days" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell proliferation" ;
+    lova:cultureDuration "6 days" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4294/doubling-time-hdf> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4294/cell-proliferation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "Doubling time, HDF in MAP scaffold" ;
+    lova:measurementType "Doubling time" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1.5 ;
+    qudt:unit "days" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4294/doubling-time-ahmsc> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4294/cell-proliferation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "Doubling time, AhMSC in MAP scaffold" ;
+    lova:measurementType "Doubling time" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.0 ;
+    qudt:unit "days" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4294/doubling-time-bmhmsc> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4294/cell-proliferation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "Doubling time, BMhMSC in MAP scaffold" ;
+    lova:measurementType "Doubling time" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 12.0 ;
+    qudt:unit "days" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#experiment/10.1038-nmat4294/network-formation> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-nmat4294/map-general> ,
+                      <https://lovamap.com/ontology#material/10.1038-nmat4294/non-porous-350pa> ,
+                      <https://lovamap.com/ontology#material/10.1038-nmat4294/non-porous-600pa> ;
+    rdfs:label "3D cellular network formation imaging, MAP vs. non-porous gels" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "3D network formation" ;
+    lova:assayOrMethod "Confocal microscopy" ;
+    lova:cultureDuration "90 mins, 2, 4, 6 days" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4294/network-formation-map> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4294/network-formation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "Extensive 3D network formation in MAP scaffold by day 2, increasing through day 6" ;
+    lova:measurementType "3D cellular network formation" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Extensive 3D cellular network formation observed by day 2, increasing in size and complexity through day 6" ;
+    lova:timePoint "Day 6" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4294/network-formation-nonporous> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4294/network-formation> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "No appreciable network formation in non-porous gels after 6 days" ;
+    lova:measurementType "3D cellular network formation" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "No appreciable network formation observed, even after six days in culture" ;
+    lova:timePoint "Day 6" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-nmat4294/network-formation-map-vs-nonporous> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "3D network formation greater in MAP scaffold vs. non-porous gels" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-nmat4294/network-formation-map> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-nmat4294/network-formation-nonporous> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#experiment/10.1038-nmat4294/wound-healing-skh1> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-nmat4294/map-general> ,
+                      <https://lovamap.com/ontology#material/10.1038-nmat4294/non-porous-350pa> ;
+    rdfs:label "In vivo wound healing, SKH1-Hrhr mice" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "In vivo wound healing" ;
+    lova:cellSource "CLR:SKH1-Hrhr hairless mice" ;
+    lova:cultureDuration "5 days" ;
+    lova:sampleSize 5 .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4294/wound-remaining-map-day5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4294/wound-healing-skh1> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "% Wound area remaining, MAP scaffold, day 5" ;
+    lova:measurementType "% Wound remaining" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 60.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 5" ;
+    lova:comparisonGroup "Non-porous control" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4294/wound-remaining-nonporous-day5> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4294/wound-healing-skh1> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "% Wound area remaining, Non-porous control, day 5" ;
+    lova:measurementType "% Wound remaining" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 100.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 5" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-nmat4294/wound-remaining-map-vs-nonporous> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "Wound area remaining lower in MAP scaffold vs. non-porous control at day 5" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-nmat4294/wound-remaining-map-day5> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-nmat4294/wound-remaining-nonporous-day5> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1038-nmat4294/wound-healing-balbc> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-nmat4294/map-general> ,
+                      <https://lovamap.com/ontology#material/10.1038-nmat4294/no-treatment> ,
+                      <https://lovamap.com/ontology#material/10.1038-nmat4294/non-porous-350pa> ,
+                      <https://lovamap.com/ontology#material/10.1038-nmat4294/map-k-q-deficient> ,
+                      <https://lovamap.com/ontology#material/10.1038-nmat4294/precast-porous> ;
+    rdfs:label "In vivo wound healing, Balb/c mice, 7 days" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "In vivo wound healing" ;
+    lova:cellSource "Balb/c mice" ;
+    lova:cultureDuration "7 days" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4294/wound-closure-map-day7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4294/wound-healing-balbc> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "% Wound closure, MAP scaffold, day 7" ;
+    lova:measurementType "% Wound closure" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 39.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4294/wound-closure-notreatment-day7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4294/wound-healing-balbc> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "% Wound closure, no treatment, day 7" ;
+    lova:measurementType "% Wound closure" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 19.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4294/wound-closure-nonporous-day7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4294/wound-healing-balbc> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "% Wound closure, non-porous control, day 7" ;
+    lova:measurementType "% Wound closure" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 7.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4294/wound-closure-mapkq-day7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4294/wound-healing-balbc> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "% Wound closure, MAP -K,-Q (non-annealing), day 7" ;
+    lova:measurementType "% Wound closure" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 10.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4294/wound-closure-precast-day7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4294/wound-healing-balbc> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "% Wound closure, precast porous gel, day 7" ;
+    lova:measurementType "% Wound closure" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 27.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-nmat4294/wound-closure-map-vs-notreatment> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "Wound closure higher in MAP scaffold vs. no treatment at day 7" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-nmat4294/wound-closure-map-day7> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-nmat4294/wound-closure-notreatment-day7> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1038-nmat4294/wound-closure-map-vs-nonporous> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "Wound closure higher in MAP scaffold vs. non-porous control at day 7" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-nmat4294/wound-closure-map-day7> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-nmat4294/wound-closure-nonporous-day7> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1038-nmat4294/wound-closure-map-vs-kq> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "Wound closure higher in MAP scaffold vs. MAP -K,-Q at day 7" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-nmat4294/wound-closure-map-day7> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-nmat4294/wound-closure-mapkq-day7> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1038-nmat4294/wound-closure-map-vs-precast> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "No significant difference in wound closure between MAP scaffold and precast porous gel at day 7" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-nmat4294/wound-closure-map-day7> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-nmat4294/wound-closure-precast-day7> ;
+    lova:direction "no difference" ;
+    lova:isSignificant false .
+
+<https://lovamap.com/ontology#experiment/10.1038-nmat4294/immune-response-day1> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-nmat4294/map-general> ,
+                      <https://lovamap.com/ontology#material/10.1038-nmat4294/non-porous-350pa> ;
+    rdfs:label "Immune response, Day 1 post-injection" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immune response assessment" ;
+    lova:assayOrMethod "H&E staining" ;
+    lova:timePoint "Day 1" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4294/infiltrating-cells-nonporous> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4294/immune-response-day1> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "Infiltrating cells, non-porous gel" ;
+    lova:measurementType "Infiltrating cells" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 60.0 ;
+    qudt:unit "cells" ;
+    lova:timePoint "Day 1" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4294/infiltrating-cells-map> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4294/immune-response-day1> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "Infiltrating cells, MAP scaffold" ;
+    lova:measurementType "Infiltrating cells" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 320.0 ;
+    qudt:unit "cells" ;
+    lova:timePoint "Day 1" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-nmat4294/infiltrating-cells-map-vs-nonporous> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "Infiltrating cells higher in MAP scaffold vs. non-porous at Day 1" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-nmat4294/infiltrating-cells-map> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-nmat4294/infiltrating-cells-nonporous> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4294/rel-inflammation-nonporous> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4294/immune-response-day1> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "Relative inflammation, non-porous gel" ;
+    lova:measurementType "Relative inflammation" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.58 ;
+    qudt:unit "fraction" ;
+    lova:timePoint "Day 1" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4294/rel-inflammation-map> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4294/immune-response-day1> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "Relative inflammation, MAP scaffold" ;
+    lova:measurementType "Relative inflammation" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.43 ;
+    qudt:unit "fraction" ;
+    lova:timePoint "Day 1" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-nmat4294/rel-inflammation-map-vs-nonporous> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "Relative inflammation lower in MAP scaffold vs. non-porous at Day 1" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-nmat4294/rel-inflammation-map> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-nmat4294/rel-inflammation-nonporous> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1038-nmat4294/immune-response-day5> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-nmat4294/map-general> ,
+                      <https://lovamap.com/ontology#material/10.1038-nmat4294/non-porous-350pa> ;
+    rdfs:label "Immune response (CD11b+ fraction), Day 5 post-injection" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immune response assessment" ;
+    lova:assayOrMethod "Immunofluorescence staining (CD11b)" ;
+    lova:timePoint "Day 5" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4294/cd11b-map-inside> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4294/immune-response-day5> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "CD11b+ fraction, MAP scaffold, inside gel" ;
+    lova:measurementType "CD11b+ fraction" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.13 ;
+    qudt:unit "fraction" ;
+    lova:scope "Regional" ;
+    lova:timePoint "Day 5" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4294/cd11b-nonporous-inside> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4294/immune-response-day5> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "CD11b+ fraction, non-porous gel, inside gel" ;
+    lova:measurementType "CD11b+ fraction" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.43 ;
+    qudt:unit "fraction" ;
+    lova:scope "Regional" ;
+    lova:timePoint "Day 5" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4294/cd11b-map-outside> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4294/immune-response-day5> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "CD11b+ fraction, MAP scaffold, outside gel" ;
+    lova:measurementType "CD11b+ fraction" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.12 ;
+    qudt:unit "fraction" ;
+    lova:scope "Regional" ;
+    lova:timePoint "Day 5" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4294/cd11b-nonporous-outside> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4294/immune-response-day5> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "CD11b+ fraction, non-porous gel, outside gel" ;
+    lova:measurementType "CD11b+ fraction" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.31 ;
+    qudt:unit "fraction" ;
+    lova:scope "Regional" ;
+    lova:timePoint "Day 5" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-nmat4294/cd11b-inside-map-vs-nonporous> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "CD11b+ fraction lower inside MAP scaffold vs. non-porous gel at Day 5" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-nmat4294/cd11b-map-inside> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-nmat4294/cd11b-nonporous-inside> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.1038-nmat4294/cd11b-outside-map-vs-nonporous> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "CD11b+ fraction lower outside MAP scaffold vs. non-porous gel at Day 5" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-nmat4294/cd11b-map-outside> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-nmat4294/cd11b-nonporous-outside> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.1038-nmat4294/reepithelialization> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1038-nmat4294/map-general> ,
+                      <https://lovamap.com/ontology#material/10.1038-nmat4294/non-porous-350pa> ;
+    rdfs:label "Wound bed re-epithelialization and vascular network assessment, Day 5" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immunofluorescence imaging" ;
+    lova:assayOrMethod "Keratin-5/14, CD49f, PECAM-1, NG2, PDGFRβ staining" ;
+    lova:timePoint "Day 5" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4294/reepithelialization-map> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4294/reepithelialization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "Re-epithelialization, MAP scaffold, day 5" ;
+    lova:measurementType "Re-epithelialization" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Extensive re-epithelialization; keratin-5+ stratified squamous cells observed over the surface, developing hair follicle and sebaceous gland structures" ;
+    lova:timePoint "Day 5" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4294/reepithelialization-nonporous> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4294/reepithelialization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "Re-epithelialization, non-porous control, day 5" ;
+    lova:measurementType "Re-epithelialization" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "No cells observed past the wound edge; no re-epithelialization or cutaneous tissue formation" ;
+    lova:timePoint "Day 5" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-nmat4294/reepithelialization-map-vs-nonporous> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "Re-epithelialization greater in MAP scaffold vs. non-porous control at Day 5" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-nmat4294/reepithelialization-map> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-nmat4294/reepithelialization-nonporous> ;
+    lova:direction "higher" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4294/vascular-network-map> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4294/reepithelialization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "Vascular network formation, MAP scaffold, day 5" ;
+    lova:measurementType "Vascular network formation" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "PECAM-1+ endothelial cells co-localized with NG2+ and PDGFRβ+ pericytes, indicative of developing vascular network" ;
+    lova:timePoint "Day 5" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#outcome/10.1038-nmat4294/vascular-network-nonporous> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1038-nmat4294/reepithelialization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "Vascular network formation, non-porous control, day 5" ;
+    lova:measurementType "Vascular network formation" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Only single branches of endothelial cells without supporting pericytes" ;
+    lova:timePoint "Day 5" ;
+    lova:dataSource "[FIG-E]" .
+
+<https://lovamap.com/ontology#comparison/10.1038-nmat4294/vascular-network-map-vs-nonporous> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.1038-nmat4294> ;
+    rdfs:label "Vascular network development greater in MAP scaffold vs. non-porous control at Day 5" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1038-nmat4294/vascular-network-map> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1038-nmat4294/vascular-network-nonporous> ;
+    lova:direction "higher" .

@@ -11,6 +11,7 @@ namespace KnowledgeBaseApi.DTOs
 		public string? PaperType { get; set; }
 		public string? FocusMaterial { get; set; }
 		public bool? HasLabData { get; set; }
+		public string? Citation { get; set; }
 		public List<string> AuthorUris { get; set; } = new();
 		public List<string> AuthorNames { get; set; } = new();
 	}
@@ -28,6 +29,7 @@ namespace KnowledgeBaseApi.DTOs
 	{
 		public string Uri { get; set; } = "";
 		public string Title { get; set; } = "";
+		public string? Issn { get; set; }
 	}
 
 	public sealed class MaterialDto
@@ -42,6 +44,9 @@ namespace KnowledgeBaseApi.DTOs
 		public string? ParticleSizeUnit { get; set; }
 		public string? SizeDistribution { get; set; }
 		public string? StiffnessQualitative { get; set; }
+		public double? StiffnessValue { get; set; }
+		public string? StiffnessUnit { get; set; }
+		public string? SurfaceModification { get; set; }
 		public string? FabricationMethodUri { get; set; }
 		public string? GeometryProfileUri { get; set; }
 		public string? PackingConfiguration { get; set; }
@@ -61,6 +66,9 @@ namespace KnowledgeBaseApi.DTOs
 		public string? CultureDuration { get; set; }
 		public string? Equipment { get; set; }
 		public string? Temperature { get; set; }
+		public string? SeedingDensity { get; set; }
+		public string? CultureMedium { get; set; }
+		public int? SampleSize { get; set; }
 		public List<string> UsedMaterialUris { get; set; } = new();
 	}
 
@@ -74,10 +82,14 @@ namespace KnowledgeBaseApi.DTOs
 		public string? MeasurementType { get; set; }
 		public double? Value { get; set; }
 		public string? Unit { get; set; }
+		public string? ValueString { get; set; }
 		public string? Scope { get; set; }
 		public bool? Significant { get; set; }
 		public string? Direction { get; set; }
 		public string? ComparedTo { get; set; }
+		public string? ComparisonGroup { get; set; }
+		public string? TimePoint { get; set; }
+		public double? StdDev { get; set; }
 		public string? DataSource { get; set; }
 	}
 
@@ -90,12 +102,7 @@ namespace KnowledgeBaseApi.DTOs
 		public string? ManufacturingMethod { get; set; }
 		public string? AnnealingChemistry { get; set; }
 		public string? AnnealingConditions { get; set; }
-		public string? Monomer { get; set; }
-		public string? Crosslinker { get; set; }
-		public string? Surfactant { get; set; }
-		public string? Enzyme { get; set; }
-		public List<string> Peptides { get; set; } = new();
-		public List<string> AdditionalReagents { get; set; } = new();
+		public List<string> ReagentUris { get; set; } = new();
 	}
 
 	public sealed class GeometryProfileDto
@@ -108,5 +115,30 @@ namespace KnowledgeBaseApi.DTOs
 		public double? MatchSizeMin { get; set; }
 		public double? MatchSizeMax { get; set; }
 		public int? ScaffoldCount { get; set; }
+	}
+
+	public sealed class ReagentDto
+	{
+		public string Uri { get; set; } = "";
+		public string? Label { get; set; }
+		public string? Role { get; set; }
+		public string? Function { get; set; }
+		public string? Concentration { get; set; }
+		public string? Supplier { get; set; }
+		public string? MolecularWeight { get; set; }
+		public string? Sequence { get; set; }
+	}
+
+	public sealed class ComparisonResultDto
+	{
+		public string Uri { get; set; } = "";
+		public string? Label { get; set; }
+		public string? PaperUri { get; set; }
+		public string? OutcomeAUri { get; set; }
+		public string? OutcomeBUri { get; set; }
+		public string? Direction { get; set; }
+		public bool? IsSignificant { get; set; }
+		public double? PValue { get; set; }
+		public double? FoldChange { get; set; }
 	}
 }

@@ -1,0 +1,763 @@
+@prefix lova:   <https://lovamap.com/ontology#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> a bibo:AcademicArticle ;
+    rdfs:label "Swan et al., 2023 — IL7 and IL7 Flt3L co-expressing CAR T cells in GBM" ;
+    dc:title "IL7 and IL7 Flt3L co-expressing CAR T cells improve therapeutic efficacy in mouse EGFRvIII heterogeneous glioblastoma" ;
+    dc:identifier "10.3389/fimmu.2023.1085547" ;
+    dc:date "2023"^^xsd:gYear ;
+    dc:type "Research Article" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/frontiers-in-immunology> ;
+    dc:creator <https://lovamap.com/ontology#author/swan-sheridan> ,
+               <https://lovamap.com/ontology#author/mehta-nalini> ,
+               <https://lovamap.com/ontology#author/ilich-ekaterina> ,
+               <https://lovamap.com/ontology#author/shen-steven> ,
+               <https://lovamap.com/ontology#author/wilkinson-daniel> ,
+               <https://lovamap.com/ontology#author/anderson-alexa> ,
+               <https://lovamap.com/ontology#author/segura-tatiana> ,
+               <https://lovamap.com/ontology#author/sanchez-perez-luis> ,
+               <https://lovamap.com/ontology#author/sampson-john> ,
+               <https://lovamap.com/ontology#author/bellamkonda-ravi> ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/swan-sheridan>
+                       <https://lovamap.com/ontology#author/mehta-nalini>
+                       <https://lovamap.com/ontology#author/ilich-ekaterina>
+                       <https://lovamap.com/ontology#author/shen-steven>
+                       <https://lovamap.com/ontology#author/wilkinson-daniel>
+                       <https://lovamap.com/ontology#author/anderson-alexa>
+                       <https://lovamap.com/ontology#author/segura-tatiana>
+                       <https://lovamap.com/ontology#author/sanchez-perez-luis>
+                       <https://lovamap.com/ontology#author/sampson-john>
+                       <https://lovamap.com/ontology#author/bellamkonda-ravi> ) ;
+    dc:bibliographicCitation "Swan et al., 2023" ;
+    lova:focusMaterial "Third-generation EGFRvIII CAR T cells engineered to co-express IL7 and/or Flt3L, tested in a syngeneic EGFRvIII-heterogeneous mouse glioblastoma model" .
+
+<https://lovamap.com/ontology#author/swan-sheridan> a foaf:Person ;
+    foaf:familyName "Swan" ; foaf:givenName "Sheridan L." ; foaf:name "Sheridan L. Swan" .
+<https://lovamap.com/ontology#author/mehta-nalini> a foaf:Person ;
+    foaf:familyName "Mehta" ; foaf:givenName "Nalini" ; foaf:name "Nalini Mehta" .
+<https://lovamap.com/ontology#author/ilich-ekaterina> a foaf:Person ;
+    foaf:familyName "Ilich" ; foaf:givenName "Ekaterina" ; foaf:name "Ekaterina Ilich" .
+<https://lovamap.com/ontology#author/shen-steven> a foaf:Person ;
+    foaf:familyName "Shen" ; foaf:givenName "Steven H." ; foaf:name "Steven H. Shen" .
+<https://lovamap.com/ontology#author/wilkinson-daniel> a foaf:Person ;
+    foaf:familyName "Wilkinson" ; foaf:givenName "Daniel S." ; foaf:name "Daniel S. Wilkinson" .
+<https://lovamap.com/ontology#author/anderson-alexa> a foaf:Person ;
+    foaf:familyName "Anderson" ; foaf:givenName "Alexa R." ; foaf:name "Alexa R. Anderson" .
+<https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
+    foaf:familyName "Segura" ; foaf:givenName "Tatiana" ; foaf:name "Tatiana Segura" .
+<https://lovamap.com/ontology#author/sanchez-perez-luis> a foaf:Person ;
+    foaf:familyName "Sanchez-Perez" ; foaf:givenName "Luis A" ; foaf:name "Luis A Sanchez-Perez" .
+<https://lovamap.com/ontology#author/sampson-john> a foaf:Person ;
+    foaf:familyName "Sampson" ; foaf:givenName "John Howard" ; foaf:name "John Howard Sampson" .
+<https://lovamap.com/ontology#author/bellamkonda-ravi> a foaf:Person ;
+    foaf:familyName "Bellamkonda" ; foaf:givenName "Ravi V." ; foaf:name "Ravi V. Bellamkonda" .
+
+<https://lovamap.com/ontology#journal/frontiers-in-immunology> a bibo:Journal ;
+    dc:title "Frontiers in Immunology" ;
+    bibo:issn "1664-3224" .
+
+<https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/vcar> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    rdfs:label "Conventional third-generation EGFRvIII CAR T cell (vCAR)" ;
+    lova:particleMaterial "Human 139 scFv anti-EGFRvIII CAR with mouse CD8 TM, CD3z/CD28/4-1BB signaling domains" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.3389-fimmu.2023.1085547/retroviral-car-t-production> .
+
+<https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/vfl> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    rdfs:label "Flt3L-expressing EGFRvIII CAR T cell (vFL)" ;
+    lova:particleMaterial "EGFRvIII CAR with mouse Flt3L secretion cassette (P2A cleavage)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.3389-fimmu.2023.1085547/retroviral-car-t-production> .
+
+<https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/vil7> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    rdfs:label "IL7-expressing EGFRvIII CAR T cell (vIL7)" ;
+    lova:particleMaterial "EGFRvIII CAR with mouse IL7 secretion cassette (P2A cleavage)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.3389-fimmu.2023.1085547/retroviral-car-t-production> .
+
+<https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/vil7fl> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    rdfs:label "IL7 Flt3L co-expressing EGFRvIII CAR T cell (vIL7FL)" ;
+    lova:particleMaterial "EGFRvIII CAR with mouse IL7 and Flt3L secretion cassette (P2A and T2A cleavage)" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.3389-fimmu.2023.1085547/retroviral-car-t-production> .
+
+<https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/v7-3> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    rdfs:label "50% vIL7 + 50% vFL mixed CAR T cell population (7&3)" ;
+    lova:particleMaterial "Mixed 1:1 vIL7 and vFL CAR T cells" ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.3389-fimmu.2023.1085547/retroviral-car-t-production> .
+
+<https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/nt> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    rdfs:label "Non-transduced splenocytes (NT control)" .
+
+<https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/pbs> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    rdfs:label "PBS vehicle control (no CAR T cells)" .
+
+<https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/tumor-viii> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    rdfs:label "CT2A-EGFRvIII-Luc tumor cell line (vIII)" ;
+    lova:particleMaterial "CT2A mouse glioma modified to express human EGFRvIII and luciferase" .
+
+<https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/tumor-2a> a lova:Material ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    rdfs:label "CT2A-GFP-Luc tumor cell line (2A, EGFRvIII-negative)" ;
+    lova:particleMaterial "CT2A mouse glioma modified to express GFP and luciferase" .
+
+<https://lovamap.com/ontology#fabrication-method/10.3389-fimmu.2023.1085547/retroviral-car-t-production> a lova:FabricationMethod ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    rdfs:label "Retroviral transduction of concanavalin-A-activated mouse splenocytes with pMSGV EGFRvIII CAR ± IL7/Flt3L constructs" ;
+    lova:chemistry "Retroviral gene transfer with P2A/T2A self-cleaving peptide cassettes" ;
+    lova:manufacturingMethod "HEK293 retrovirus production via lipofectamine transfection; splenocyte activation with Concanavalin A/IL2; RetroNectin-mediated spinoculation transduction" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.3389-fimmu.2023.1085547/pmsgv-plasmid> ,
+                    <https://lovamap.com/ontology#reagent/10.3389-fimmu.2023.1085547/scfv-139> ,
+                    <https://lovamap.com/ontology#reagent/10.3389-fimmu.2023.1085547/il7> ,
+                    <https://lovamap.com/ontology#reagent/10.3389-fimmu.2023.1085547/flt3l> ,
+                    <https://lovamap.com/ontology#reagent/10.3389-fimmu.2023.1085547/p2a-t2a-peptides> ,
+                    <https://lovamap.com/ontology#reagent/10.3389-fimmu.2023.1085547/pcl-eco> ,
+                    <https://lovamap.com/ontology#reagent/10.3389-fimmu.2023.1085547/lipofectamine2000> ,
+                    <https://lovamap.com/ontology#reagent/10.3389-fimmu.2023.1085547/concanavalin-a> ,
+                    <https://lovamap.com/ontology#reagent/10.3389-fimmu.2023.1085547/il2> ,
+                    <https://lovamap.com/ontology#reagent/10.3389-fimmu.2023.1085547/retronectin> ,
+                    <https://lovamap.com/ontology#reagent/10.3389-fimmu.2023.1085547/biotin-car-peptide> ,
+                    <https://lovamap.com/ontology#reagent/10.3389-fimmu.2023.1085547/streptavidin-af647> .
+
+<https://lovamap.com/ontology#reagent/10.3389-fimmu.2023.1085547/pmsgv-plasmid> a lova:Reagent ;
+    rdfs:label "pMSGV retroviral plasmid backbone (MSCV promoter)" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Third-generation CAR expression backbone" .
+
+<https://lovamap.com/ontology#reagent/10.3389-fimmu.2023.1085547/scfv-139> a lova:Reagent ;
+    rdfs:label "Human 139 scFv specific for EGFRvIII with mouse CD8 TM and CD3z/CD28/4-1BB domains" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Antigen recognition and T cell co-stimulatory signaling" .
+
+<https://lovamap.com/ontology#reagent/10.3389-fimmu.2023.1085547/il7> a lova:Reagent ;
+    rdfs:label "Mouse IL7 (secreted cytokine cassette)" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Enhances CAR T cell survival, proliferation, memory formation" .
+
+<https://lovamap.com/ontology#reagent/10.3389-fimmu.2023.1085547/flt3l> a lova:Reagent ;
+    rdfs:label "Mouse Flt3L (secreted cytokine cassette)" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Promotes dendritic cell differentiation, expansion, survival" .
+
+<https://lovamap.com/ontology#reagent/10.3389-fimmu.2023.1085547/p2a-t2a-peptides> a lova:Reagent ;
+    rdfs:label "P2A and T2A self-cleaving peptides" ;
+    lova:reagentRole "other" ;
+    lova:reagentFunction "Polyprotein cleavage enabling multicistronic expression" .
+
+<https://lovamap.com/ontology#reagent/10.3389-fimmu.2023.1085547/pcl-eco> a lova:Reagent ;
+    rdfs:label "pCL-Eco helper plasmid" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Addgene" ;
+    lova:reagentFunction "Ecotropic retroviral packaging" .
+
+<https://lovamap.com/ontology#reagent/10.3389-fimmu.2023.1085547/lipofectamine2000> a lova:Reagent ;
+    rdfs:label "Lipofectamine 2000" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Invitrogen" ;
+    lova:reagentFunction "Transfection reagent for HEK293 retrovirus production" .
+
+<https://lovamap.com/ontology#reagent/10.3389-fimmu.2023.1085547/concanavalin-a> a lova:Reagent ;
+    rdfs:label "Concanavalin A" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Sigma-Aldrich" ;
+    lova:concentration "2 µg/mL" ;
+    lova:reagentFunction "Splenocyte activation" .
+
+<https://lovamap.com/ontology#reagent/10.3389-fimmu.2023.1085547/il2> a lova:Reagent ;
+    rdfs:label "Human IL2" ;
+    lova:reagentRole "other" ;
+    lova:concentration "50 IU/mL" ;
+    lova:reagentFunction "T cell expansion and survival in culture" .
+
+<https://lovamap.com/ontology#reagent/10.3389-fimmu.2023.1085547/retronectin> a lova:Reagent ;
+    rdfs:label "RetroNectin" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Takara Bio" ;
+    lova:concentration "25 µm/mL coating" ;
+    lova:reagentFunction "Enhances retroviral transduction efficiency" .
+
+<https://lovamap.com/ontology#reagent/10.3389-fimmu.2023.1085547/biotin-car-peptide> a lova:Reagent ;
+    rdfs:label "Biotin-conjugated custom tetrameric peptide" ;
+    lova:reagentRole "peptide" ;
+    lova:supplier "JPT Peptide Technologies" ;
+    lova:reagentFunction "CAR-specific tetramer staining reagent" .
+
+<https://lovamap.com/ontology#reagent/10.3389-fimmu.2023.1085547/streptavidin-af647> a lova:Reagent ;
+    rdfs:label "Streptavidin-Alexa 647" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Invitrogen" ;
+    lova:reagentFunction "Tetramer fluorescent labeling" .
+
+<https://lovamap.com/ontology#experiment/10.3389-fimmu.2023.1085547/exp-car-characterization> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/vcar> ,
+                      <https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/vfl> ,
+                      <https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/vil7> ,
+                      <https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/vil7fl> ;
+    rdfs:label "Day 4 flow cytometry CAR T cell characterization" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Flow cytometry" ;
+    lova:assayOrMethod "CD3/CD8/CAR tetramer staining" ;
+    lova:equipment "NovoCyte 2060 or Cytek NL-3000" ;
+    lova:cultureDuration "4 days" .
+
+<https://lovamap.com/ontology#outcome/10.3389-fimmu.2023.1085547/car-percent-all-groups> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3389-fimmu.2023.1085547/exp-car-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    rdfs:label "%CD3+CAR+ of Single Cells — no significant difference between groups" ;
+    lova:measurementType "CAR T cell frequency" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 73.0 ;
+    qudt:unit "%" ;
+    lova:scope "Bulk/global" ;
+    lova:isSignificant false ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.3389-fimmu.2023.1085547/cd8car-percent-all-groups> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3389-fimmu.2023.1085547/exp-car-characterization> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    rdfs:label "%CD3+CD8+CAR+ of Single Cells — no significant difference between groups" ;
+    lova:measurementType "CD8 CAR T cell frequency" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 65.0 ;
+    qudt:unit "%" ;
+    lova:scope "Bulk/global" ;
+    lova:isSignificant false ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.3389-fimmu.2023.1085547/exp-elisa-secretion> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/vcar> ,
+                      <https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/vfl> ,
+                      <https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/vil7> ,
+                      <https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/vil7fl> ,
+                      <https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/v7-3> ;
+    rdfs:label "ELISA quantification of Flt3L and IL7 secretion (alone or co-cultured with tumor cells)" ;
+    lova:experimentCategory "Biochemical" ;
+    lova:experimentType "Cytokine secretion" ;
+    lova:assayOrMethod "ELISA" ;
+    lova:equipment "Spectramax i3x plate reader" ;
+    lova:cultureDuration "24 hours" .
+
+<https://lovamap.com/ontology#outcome/10.3389-fimmu.2023.1085547/flt3l-secretion-vfl> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3389-fimmu.2023.1085547/exp-elisa-secretion> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    rdfs:label "Flt3L secretion from vFL CAR T cells, stable across tumor co-culture conditions" ;
+    lova:measurementType "Flt3L secretion" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 20.0 ;
+    qudt:unit "ng/mL" ;
+    lova:timePoint "24h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.3389-fimmu.2023.1085547/il7-secretion-vil7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3389-fimmu.2023.1085547/exp-elisa-secretion> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    rdfs:label "IL7 secretion from vIL7 CAR T cells, diminished (not significant) with 2A co-culture" ;
+    lova:measurementType "IL7 secretion" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 1.3 ;
+    qudt:unit "ng/mL" ;
+    lova:timePoint "24h" ;
+    lova:isSignificant false ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.3389-fimmu.2023.1085547/flt3l-secretion-7-3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3389-fimmu.2023.1085547/exp-elisa-secretion> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    rdfs:label "Flt3L secretion lower (not significant) for 7&3 vs vFL and vIL7FL" ;
+    lova:measurementType "Flt3L secretion" ;
+    lova:measurementCategory "Biochemical" ;
+    qudt:numericValue 10.0 ;
+    qudt:unit "ng/mL" ;
+    lova:timePoint "24h" ;
+    lova:isSignificant false ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.3389-fimmu.2023.1085547/exp-bioluminescence-killing> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/vcar> ,
+                      <https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/vfl> ,
+                      <https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/vil7> ,
+                      <https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/vil7fl> ,
+                      <https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/v7-3> ,
+                      <https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/tumor-viii> ,
+                      <https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/tumor-2a> ;
+    rdfs:label "In vitro bioluminescence tumor killing assay" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cytotoxicity (bioluminescence)" ;
+    lova:assayOrMethod "Luciferase bioluminescence" ;
+    lova:equipment "Spectramax i3x plate reader" ;
+    lova:cultureDuration "72 hours" .
+
+<https://lovamap.com/ontology#outcome/10.3389-fimmu.2023.1085547/lumin-vIII-all-car> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3389-fimmu.2023.1085547/exp-bioluminescence-killing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    rdfs:label "Relative luminescence to tumor only — vIII co-culture, all CAR T groups near zero" ;
+    lova:measurementType "Relative luminescence" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 5.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "72h" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "NT (non-transduced)" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.3389-fimmu.2023.1085547/lumin-vIII-NT> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3389-fimmu.2023.1085547/exp-bioluminescence-killing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    rdfs:label "Relative luminescence to tumor only — vIII co-culture, NT control" ;
+    lova:measurementType "Relative luminescence" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 75.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "72h" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.3389-fimmu.2023.1085547/lumin-2A-vcar> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3389-fimmu.2023.1085547/exp-bioluminescence-killing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    rdfs:label "Relative luminescence to tumor only — 2A co-culture, vCAR (significant reduction vs NT)" ;
+    lova:measurementType "Relative luminescence" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 70.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "72h" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "NT (non-transduced)" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.3389-fimmu.2023.1085547/lumin-2A-vil7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3389-fimmu.2023.1085547/exp-bioluminescence-killing> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    rdfs:label "Relative luminescence to tumor only — 2A co-culture, vIL7 (significant reduction vs NT)" ;
+    lova:measurementType "Relative luminescence" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 85.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "72h" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "NT (non-transduced)" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.3389-fimmu.2023.1085547/exp-proliferation-assay> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/vcar> ,
+                      <https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/vfl> ,
+                      <https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/vil7> ,
+                      <https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/vil7fl> ,
+                      <https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/v7-3> ,
+                      <https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/tumor-viii> ;
+    rdfs:label "CAR T cell proliferation co-cultured with vIII tumor cells" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell proliferation" ;
+    lova:assayOrMethod "CellTrace Far Red flow cytometry" ;
+    lova:cultureDuration "3 days" .
+
+<https://lovamap.com/ontology#outcome/10.3389-fimmu.2023.1085547/prolif-medium-vil7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3389-fimmu.2023.1085547/exp-proliferation-assay> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    rdfs:label "% medium proliferation CD8 T cells — vIL7, significantly increased vs vCAR" ;
+    lova:measurementType "Medium proliferation" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 35.0 ;
+    qudt:unit "%" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "vCAR" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.3389-fimmu.2023.1085547/prolif-medium-vil7fl> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3389-fimmu.2023.1085547/exp-proliferation-assay> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    rdfs:label "% medium proliferation CD8 T cells — vIL7FL, significantly increased vs vCAR" ;
+    lova:measurementType "Medium proliferation" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 45.0 ;
+    qudt:unit "%" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "vCAR" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.3389-fimmu.2023.1085547/prolif-medium-vcar> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3389-fimmu.2023.1085547/exp-proliferation-assay> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    rdfs:label "% medium proliferation CD8 T cells — vCAR" ;
+    lova:measurementType "Medium proliferation" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 12.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.3389-fimmu.2023.1085547/prolif-high-7-3> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3389-fimmu.2023.1085547/exp-proliferation-assay> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    rdfs:label "% high proliferation CD8 T cells — 7&3, significant vs vCAR" ;
+    lova:measurementType "High proliferation" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 4.0 ;
+    qudt:unit "%" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "vCAR" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.3389-fimmu.2023.1085547/exp-invivo-5gy-homogeneous> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/vcar> ,
+                      <https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/vfl> ,
+                      <https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/vil7> ,
+                      <https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/vil7fl> ,
+                      <https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/nt> ,
+                      <https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/tumor-viii> ;
+    rdfs:label "In vivo 5 Gy TBI EGFRvIII homogeneous tumor flow cytometry (day 14)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Flow cytometry (in vivo T cell populations)" ;
+    lova:assayOrMethod "Multi-color flow cytometry (LSRFortessa X-20)" ;
+    lova:cultureDuration "7 days post CAR T injection" ;
+    lova:sampleSize 8 .
+
+<https://lovamap.com/ontology#outcome/10.3389-fimmu.2023.1085547/cd8car-5gy-vil7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3389-fimmu.2023.1085547/exp-invivo-5gy-homogeneous> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    rdfs:label "%CD3+CAR+CD8+ of CD45+ — vIL7, significantly increased vs vCAR and vFL" ;
+    lova:measurementType "CD8+ CAR+ T cell percentage" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 50.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 14" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "vCAR, vFL" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.3389-fimmu.2023.1085547/cd8car-5gy-vil7fl> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3389-fimmu.2023.1085547/exp-invivo-5gy-homogeneous> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    rdfs:label "%CD3+CAR+CD8+ of CD45+ — vIL7FL, significantly increased vs vCAR and vFL" ;
+    lova:measurementType "CD8+ CAR+ T cell percentage" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 55.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 14" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "vCAR, vFL" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.3389-fimmu.2023.1085547/cd8car-5gy-vcar> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3389-fimmu.2023.1085547/exp-invivo-5gy-homogeneous> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    rdfs:label "%CD3+CAR+CD8+ of CD45+ — vCAR" ;
+    lova:measurementType "CD8+ CAR+ T cell percentage" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 5.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 14" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.3389-fimmu.2023.1085547/cd8car-5gy-vil7-vs-vcar> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    rdfs:label "CD8+ CAR+ T cells higher in vIL7 vs vCAR in 5 Gy TBI homogeneous model" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.3389-fimmu.2023.1085547/cd8car-5gy-vil7> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.3389-fimmu.2023.1085547/cd8car-5gy-vcar> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.3389-fimmu.2023.1085547/exp-invivo-05gy-het-tcells> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/vcar> ,
+                      <https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/vfl> ,
+                      <https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/vil7> ,
+                      <https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/vil7fl> ,
+                      <https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/pbs> ,
+                      <https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/tumor-viii> ,
+                      <https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/tumor-2a> ;
+    rdfs:label "In vivo 0.5 Gy TBI EGFRvIII heterogeneous tumor T cell flow cytometry (day 14)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Flow cytometry (in vivo T cell populations)" ;
+    lova:assayOrMethod "Multi-color flow cytometry (LSRFortessa X-20)" ;
+    lova:cultureDuration "7 days post CAR T injection" ;
+    lova:sampleSize 10 .
+
+<https://lovamap.com/ontology#outcome/10.3389-fimmu.2023.1085547/cd8car-05gy-vil7fl> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3389-fimmu.2023.1085547/exp-invivo-05gy-het-tcells> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    rdfs:label "%CD8+CAR+ of CD45+ — vIL7FL, significantly higher than all groups including vIL7" ;
+    lova:measurementType "CD8+ CAR+ T cell percentage" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 3.5 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 14" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "PBS, vCAR, vFL, vIL7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.3389-fimmu.2023.1085547/cd8car-05gy-vil7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3389-fimmu.2023.1085547/exp-invivo-05gy-het-tcells> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    rdfs:label "%CD8+CAR+ of CD45+ — vIL7" ;
+    lova:measurementType "CD8+ CAR+ T cell percentage" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 14" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.3389-fimmu.2023.1085547/cd8car-05gy-vil7fl-vs-vil7> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    rdfs:label "CD8+ CAR+ T cells higher in vIL7FL vs vIL7 in 0.5 Gy TBI heterogeneous model" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.3389-fimmu.2023.1085547/cd8car-05gy-vil7fl> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.3389-fimmu.2023.1085547/cd8car-05gy-vil7> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.3389-fimmu.2023.1085547/exhaustion-vfl> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3389-fimmu.2023.1085547/exp-invivo-05gy-het-tcells> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    rdfs:label "Exhausted phenotype (PD1+TIM3+LAG3+) of CAR- CD8 T cells — vFL" ;
+    lova:measurementType "Exhausted phenotype" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 40.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 14" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.3389-fimmu.2023.1085547/exhaustion-vil7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3389-fimmu.2023.1085547/exp-invivo-05gy-het-tcells> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    rdfs:label "Exhausted phenotype (PD1+TIM3+LAG3+) of CAR- CD8 T cells — vIL7, significantly decreased vs vFL" ;
+    lova:measurementType "Exhausted phenotype" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 20.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 14" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "vFL" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.3389-fimmu.2023.1085547/exhaustion-vil7-vs-vfl> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    rdfs:label "Exhausted CAR- CD8 T cells lower in vIL7 vs vFL" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.3389-fimmu.2023.1085547/exhaustion-vil7> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.3389-fimmu.2023.1085547/exhaustion-vfl> ;
+    lova:direction "lower" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.3389-fimmu.2023.1085547/cd69-vil7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3389-fimmu.2023.1085547/exp-invivo-05gy-het-tcells> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    rdfs:label "Absolute count of CD69+ CD8 CAR- T cells — vIL7, significantly increased vs PBS, vCAR, vFL" ;
+    lova:measurementType "CD69+ activation" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 80.0 ;
+    qudt:unit "cells/µL" ;
+    lova:timePoint "Day 14" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "PBS, vCAR, vFL" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.3389-fimmu.2023.1085547/exp-invivo-05gy-het-dcs> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/vcar> ,
+                      <https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/vfl> ,
+                      <https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/vil7> ,
+                      <https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/vil7fl> ,
+                      <https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/pbs> ;
+    rdfs:label "In vivo 0.5 Gy TBI EGFRvIII heterogeneous tumor dendritic cell flow cytometry (day 14)" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Flow cytometry (in vivo dendritic cell populations)" ;
+    lova:assayOrMethod "Multi-color flow cytometry (LSRFortessa X-20)" ;
+    lova:cultureDuration "7 days post CAR T injection" ;
+    lova:sampleSize 10 .
+
+<https://lovamap.com/ontology#outcome/10.3389-fimmu.2023.1085547/cdc-vil7fl> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3389-fimmu.2023.1085547/exp-invivo-05gy-het-dcs> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    rdfs:label "%cDC of CD45+ — vIL7FL, significantly increased vs all groups" ;
+    lova:measurementType "Conventional dendritic cell frequency" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 4.5 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 14" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "PBS, vCAR, vFL, vIL7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.3389-fimmu.2023.1085547/cdc-vcar> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3389-fimmu.2023.1085547/exp-invivo-05gy-het-dcs> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    rdfs:label "%cDC of CD45+ — vCAR" ;
+    lova:measurementType "Conventional dendritic cell frequency" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 14" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#comparison/10.3389-fimmu.2023.1085547/cdc-vil7fl-vs-vcar> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    rdfs:label "Conventional DCs higher in vIL7FL vs vCAR" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.3389-fimmu.2023.1085547/cdc-vil7fl> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.3389-fimmu.2023.1085547/cdc-vcar> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#outcome/10.3389-fimmu.2023.1085547/migratory-apc-vil7fl> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3389-fimmu.2023.1085547/exp-invivo-05gy-het-dcs> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    rdfs:label "%CD103+XCR1+ of cDC (migratory antigen-presenting DCs) — vIL7FL, significantly increased" ;
+    lova:measurementType "Migratory antigen-presenting cDC frequency" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 2.0 ;
+    qudt:unit "%" ;
+    lova:timePoint "Day 14" ;
+    lova:isSignificant true ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.3389-fimmu.2023.1085547/plasmacytoid-dc-all> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3389-fimmu.2023.1085547/exp-invivo-05gy-het-dcs> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    rdfs:label "Plasmacytoid DC frequency — no significant difference between groups" ;
+    lova:measurementType "Plasmacytoid dendritic cell frequency" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 0.6 ;
+    qudt:unit "%" ;
+    lova:isSignificant false ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.3389-fimmu.2023.1085547/exp-survival> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/vcar> ,
+                      <https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/vfl> ,
+                      <https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/vil7> ,
+                      <https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/vil7fl> ,
+                      <https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/pbs> ;
+    rdfs:label "Overall survival in 0.5 Gy TBI EGFRvIII heterogeneous tumor model" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Survival study" ;
+    lova:assayOrMethod "Kaplan-Meier survival analysis (log-rank Mantel-Cox test)" ;
+    lova:sampleSize 12 .
+
+<https://lovamap.com/ontology#outcome/10.3389-fimmu.2023.1085547/survival-vil7> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3389-fimmu.2023.1085547/exp-survival> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    rdfs:label "Overall survival — vIL7, 67%" ;
+    lova:measurementType "Overall survival" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 67.0 ;
+    qudt:unit "%" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "vCAR, vFL" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.3389-fimmu.2023.1085547/survival-vil7fl> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3389-fimmu.2023.1085547/exp-survival> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    rdfs:label "Overall survival — vIL7FL, 50%" ;
+    lova:measurementType "Overall survival" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 50.0 ;
+    qudt:unit "%" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "vCAR, vFL" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#outcome/10.3389-fimmu.2023.1085547/survival-vcar-vfl> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3389-fimmu.2023.1085547/exp-survival> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    rdfs:label "Overall survival — conventional or Flt3L CAR T cells, 9%" ;
+    lova:measurementType "Overall survival" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 9.0 ;
+    qudt:unit "%" ;
+    lova:dataSource "[TEXT]" .
+
+<https://lovamap.com/ontology#comparison/10.3389-fimmu.2023.1085547/survival-vil7-vs-vcarvfl> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    rdfs:label "Overall survival higher in vIL7 (67%) vs conventional/Flt3L CAR T cells (9%)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.3389-fimmu.2023.1085547/survival-vil7> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.3389-fimmu.2023.1085547/survival-vcar-vfl> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#comparison/10.3389-fimmu.2023.1085547/survival-vil7fl-vs-vcarvfl> a lova:ComparisonResult ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    rdfs:label "Overall survival higher in vIL7FL (50%) vs conventional/Flt3L CAR T cells (9%)" ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.3389-fimmu.2023.1085547/survival-vil7fl> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.3389-fimmu.2023.1085547/survival-vcar-vfl> ;
+    lova:direction "higher" ;
+    lova:isSignificant true .
+
+<https://lovamap.com/ontology#experiment/10.3389-fimmu.2023.1085547/exp-bulk-rnaseq> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/vcar> ,
+                      <https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/vil7> ,
+                      <https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/vil7fl> ;
+    rdfs:label "Bulk RNA sequencing of tumor-bearing hemisphere 7 days post CAR T delivery" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Bulk RNA sequencing" ;
+    lova:assayOrMethod "KAPA Stranded mRNA-Seq / NovaSeq Illumina; DESeq2/ashr DGE; CIBERSORTx cell fraction inference; KEGG GSEA" ;
+    lova:cultureDuration "7 days post CAR T injection" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#outcome/10.3389-fimmu.2023.1085547/cdc1-fraction-vil7fl> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3389-fimmu.2023.1085547/exp-bulk-rnaseq> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    rdfs:label "CIBERSORTx-inferred cDC1 fraction — significantly increased in vIL7FL vs vIL7" ;
+    lova:measurementType "cDC1 inferred cell fraction" ;
+    lova:measurementCategory "Biological" ;
+    lova:valueString "Significantly increased in vIL7FL vs vIL7" ;
+    lova:isSignificant true ;
+    lova:comparisonGroup "vIL7" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.3389-fimmu.2023.1085547/car-reads-vil7fl> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3389-fimmu.2023.1085547/exp-bulk-rnaseq> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    rdfs:label "Average CAR transgene reads — vIL7FL" ;
+    lova:measurementType "CAR transgene reads" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 250.0 ;
+    qudt:unit "count" ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#experiment/10.3389-fimmu.2023.1085547/exp-tcrseq> a lova:Experiment ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/vcar> ,
+                      <https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/vil7> ,
+                      <https://lovamap.com/ontology#material/10.3389-fimmu.2023.1085547/vil7fl> ;
+    rdfs:label "TCR beta chain (TRBC) repertoire sequencing of tumor-bearing hemisphere" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Immune repertoire sequencing" ;
+    lova:assayOrMethod "QIAseq Immune Repertoire RNA Library Kit, MiSeq, IMSEQ algorithm" ;
+    lova:cultureDuration "7 days post CAR T injection" ;
+    lova:sampleSize 3 .
+
+<https://lovamap.com/ontology#outcome/10.3389-fimmu.2023.1085547/trbc-clonotypes-vil7fl> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3389-fimmu.2023.1085547/exp-tcrseq> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    rdfs:label "Observed TRBC clonotype count — vIL7FL, higher trend (not significant)" ;
+    lova:measurementType "Observed clonotype count" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 1800.0 ;
+    qudt:unit "count" ;
+    lova:isSignificant false ;
+    lova:dataSource "[FIG-Q]" .
+
+<https://lovamap.com/ontology#outcome/10.3389-fimmu.2023.1085547/trbc-shannon-vil7fl> a lova:Outcome ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.3389-fimmu.2023.1085547/exp-tcrseq> ;
+    dc:source <https://lovamap.com/ontology#paper/10.3389-fimmu.2023.1085547> ;
+    rdfs:label "Extrapolated Shannon-Wiener diversity index TRBC — vIL7FL, highest (not significant)" ;
+    lova:measurementType "Shannon-Wiener diversity index" ;
+    lova:measurementCategory "Biological" ;
+    qudt:numericValue 6.3 ;
+    qudt:unit "index" ;
+    lova:isSignificant false ;
+    lova:dataSource "[FIG-Q]" .
