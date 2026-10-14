@@ -38,7 +38,7 @@
 <https://lovamap.com/ontology#author/lam-jonathan> a foaf:Person ;
     foaf:familyName "Lam" ;
     foaf:givenName "Jonathan" ;
-    foaf:name "Jonathan Lam" ;
+    foaf:name "Jonathan G. T. Lam" ;
     schema:affiliation "Biomedical Engineering IDP, University of California, Los Angeles" .
 
 <https://lovamap.com/ontology#author/nguyen-thi> a foaf:Person ;

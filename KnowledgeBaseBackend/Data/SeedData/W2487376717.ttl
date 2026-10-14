@@ -51,7 +51,7 @@
 <https://lovamap.com/ontology#author/hegde-vishal> a foaf:Person ;
     foaf:familyName "Hegde" ;
     foaf:givenName "Vishal" ;
-    foaf:name "Vishal Hegde" ;
+    foaf:name "Vishal V. Hegde" ;
     schema:affiliation "Department of Orthopaedic Surgery, Orthopaedic Hospital Research Center, David Geffen School of Medicine at University of California, Los Angeles, Los Angeles, California" .
 
 <https://lovamap.com/ontology#author/loftin-amanda> a foaf:Person ;
@@ -87,7 +87,7 @@
 <https://lovamap.com/ontology#author/bernthal-nicholas> a foaf:Person ;
     foaf:familyName "Bernthal" ;
     foaf:givenName "Nicholas" ;
-    foaf:name "Nicholas M. Bernthal" ;
+    foaf:name "Nicholas Matthew Bernthal" ;
     schema:affiliation "Department of Orthopaedic Surgery, Orthopaedic Hospital Research Center, David Geffen School of Medicine at University of California, Los Angeles, Los Angeles, California" .
 
 <https://lovamap.com/ontology#journal/journal-of-bone-and-joint-surgery> a bibo:Journal ;

@@ -86,6 +86,7 @@ public sealed class QueryService
 		_logger.LogInformation("Parsed SPARQL:\n{Sparql}", sparql);
 
 		sparql = NormalizePrefixes(sparql);
+		sparql = EnsureDistinct(sparql);
 		sparql = EnsureOrderBy(sparql);
 		sparql = EnsureLimit(sparql);
 		ValidateSelectOnly(sparql);
@@ -105,6 +106,7 @@ public sealed class QueryService
 	public async Task<QueryResult> ExecuteSparqlAsync(string sparql, CancellationToken ct)
 	{
 		sparql = NormalizePrefixes(sparql.Trim());
+		sparql = EnsureDistinct(sparql);
 		sparql = EnsureOrderBy(sparql);
 		sparql = EnsureLimit(sparql);
 		ValidateSelectOnly(sparql);
@@ -123,12 +125,13 @@ public sealed class QueryService
 		RegexOptions.Compiled);
 
 	/// <summary>
-	/// Extracts DOIs embedded in any entity URI in the results (materials, experiments, outcomes, etc.)
-	/// and fetches real paper metadata from Fuseki. Scalable: only queries papers actually referenced.
+	/// Fetches paper metadata (title, DOI, year, first author) for all papers referenced
+	/// by DOI slugs in the result URIs. Returns a lookup from DOI slug to paper info.
 	/// </summary>
-	private async Task<string> BuildSourcesBlockAsync(List<string> columns, List<Dictionary<string, string>> rows)
+	private async Task<Dictionary<string, PaperCitation>> FetchPaperCitationsAsync(List<Dictionary<string, string>> rows)
 	{
-		// Extract unique DOI slugs from ALL URIs in the results (not just paper URIs)
+		var result = new Dictionary<string, PaperCitation>(StringComparer.Ordinal);
+
 		var doiSlugs = new HashSet<string>();
 		foreach (var row in rows)
 		{
@@ -140,18 +143,18 @@ public sealed class QueryService
 			}
 		}
 
-		if (doiSlugs.Count == 0) return "";
+		if (doiSlugs.Count == 0) return result;
 
-		// Build paper URIs from DOI slugs
 		var uriFilter = string.Join(" ",
 			doiSlugs.Select(slug => $"<https://lovamap.com/ontology#paper/{slug}>"));
 
 		var sparql = AllPrefixes + $@"
-			SELECT ?paper ?title ?doi ?year ?firstAuthor WHERE {{
+			SELECT ?paper ?title ?doi ?year ?citation ?firstAuthor WHERE {{
 			  VALUES ?paper {{ {uriFilter} }}
 			  ?paper dc:title ?title ;
 			         dc:identifier ?doi .
 			  OPTIONAL {{ ?paper dc:date ?year }}
+			  OPTIONAL {{ ?paper dc:bibliographicCitation ?citation }}
 			  OPTIONAL {{ ?paper dc:creator ?author . ?author foaf:familyName ?firstAuthor }}
 			}}";
 
@@ -161,40 +164,94 @@ public sealed class QueryService
 			var doc = JsonDocument.Parse(json);
 			var bindings = doc.RootElement.GetProperty("results").GetProperty("bindings");
 
-			// Group by paper URI to collect authors
-			var papers = new Dictionary<string, (string Title, string Doi, string Year, List<string> Authors)>();
+			var papers = new Dictionary<string, (string Title, string Doi, string Year, string? Citation, List<string> Authors)>();
 			foreach (var b in bindings.EnumerateArray())
 			{
 				var uri = b.GetProperty("paper").GetProperty("value").GetString()!;
 				var title = b.GetProperty("title").GetProperty("value").GetString() ?? "";
 				var doi = b.GetProperty("doi").GetProperty("value").GetString() ?? "";
 				var year = b.TryGetProperty("year", out var y) ? y.GetProperty("value").GetString() ?? "" : "";
+				var citation = b.TryGetProperty("citation", out var c) ? c.GetProperty("value").GetString() : null;
 				var author = b.TryGetProperty("firstAuthor", out var a) ? a.GetProperty("value").GetString() ?? "" : "";
 
 				if (!papers.ContainsKey(uri))
-					papers[uri] = (title, doi, year, new List<string>());
+					papers[uri] = (title, doi, year, citation, new List<string>());
+				else if (citation != null && papers[uri].Citation == null)
+					papers[uri] = (papers[uri].Title, papers[uri].Doi, papers[uri].Year, citation, papers[uri].Authors);
 				if (!string.IsNullOrEmpty(author) && !papers[uri].Authors.Contains(author))
 					papers[uri].Authors.Add(author);
 			}
 
-			var sb = new StringBuilder();
-			sb.AppendLine("\n\nSOURCES (use ONLY these when referencing papers — do NOT invent author names):");
-			foreach (var (uri, (title, doi, year, authors)) in papers)
+			foreach (var (uri, (title, doi, year, citation, authors)) in papers)
 			{
-				var authorStr = authors.Count > 0
-					? (authors.Count == 1 ? authors[0] : $"{authors[0]} et al.")
-					: "Unknown";
-				var yearStr = string.IsNullOrEmpty(year) ? "" : $" {year}";
-				sb.AppendLine($"- {authorStr}{yearStr}: \"{title}\" → link as [{authorStr}{yearStr}](https://doi.org/{doi})");
+				var slug = DoiSlugPattern.Match(uri);
+				if (!slug.Success) continue;
+
+				// Prefer dc:bibliographicCitation (has correct author order),
+				// fall back to reconstructing from unordered dc:creator triples
+				string label;
+				if (!string.IsNullOrWhiteSpace(citation))
+				{
+					label = citation;
+				}
+				else
+				{
+					var authorStr = authors.Count > 0
+						? (authors.Count == 1 ? authors[0] : $"{authors[0]} et al.")
+						: "Unknown";
+					var yearStr = string.IsNullOrEmpty(year) ? "" : $" {year}";
+					label = $"{authorStr}{yearStr}";
+				}
+
+				result[slug.Groups[1].Value] = new PaperCitation(
+					label,
+					title,
+					doi,
+					$"[{label}](https://doi.org/{doi})"
+				);
 			}
-			return sb.ToString();
 		}
 		catch (Exception ex)
 		{
-			_logger.LogWarning(ex, "Failed to fetch paper metadata for sources");
-			return "";
+			_logger.LogWarning(ex, "Failed to fetch paper metadata for citations");
 		}
+
+		return result;
 	}
+
+	/// <summary>
+	/// Replaces any URI containing a DOI slug with the paper's citation label (e.g. "Anderson 2024").
+	/// </summary>
+	private string ResolveUriToCitation(string value, Dictionary<string, PaperCitation> citations)
+	{
+		var match = DoiSlugPattern.Match(value);
+		if (match.Success && citations.TryGetValue(match.Groups[1].Value, out var cite))
+			return cite.Label;
+
+		// Fall back to local name extraction for non-paper URIs
+		if (value.StartsWith("http"))
+		{
+			var hash = value.LastIndexOf('#');
+			if (hash >= 0) return value[(hash + 1)..];
+			var slash = value.LastIndexOf('/');
+			if (slash >= 0) return value[(slash + 1)..];
+		}
+
+		return value;
+	}
+
+	private static string BuildSourcesBlock(Dictionary<string, PaperCitation> citations)
+	{
+		if (citations.Count == 0) return "";
+
+		var sb = new StringBuilder();
+		sb.AppendLine("\n\nSOURCES (use ONLY these when referencing papers — do NOT invent author names):");
+		foreach (var cite in citations.Values)
+			sb.AppendLine($"- {cite.Label}: \"{cite.Title}\" → cite as {cite.MarkdownLink}");
+		return sb.ToString();
+	}
+
+	private sealed record PaperCitation(string Label, string Title, string Doi, string MarkdownLink);
 
 	private async Task<string?> SummarizeResultsAsync(
 		string question, List<string> columns, List<Dictionary<string, string>> rows,
@@ -202,6 +259,11 @@ public sealed class QueryService
 	{
 		try
 		{
+			// Fetch paper metadata so we can replace URIs with real citations in the table
+			var citations = await FetchPaperCitationsAsync(rows);
+			_logger.LogInformation("Paper citations resolved: {Citations}",
+				string.Join(", ", citations.Values.Select(c => c.Label)));
+
 			// Build a compact table representation (limit rows to keep prompt small)
 			var sb = new StringBuilder();
 			sb.AppendLine(string.Join(" | ", columns));
@@ -211,22 +273,14 @@ public sealed class QueryService
 				var values = columns.Select(c =>
 				{
 					var v = row.GetValueOrDefault(c, "");
-					if (v.StartsWith("http"))
-					{
-						var hash = v.LastIndexOf('#');
-						if (hash >= 0) v = v[(hash + 1)..];
-						else { var slash = v.LastIndexOf('/'); if (slash >= 0) v = v[(slash + 1)..]; }
-					}
-					return v;
+					return ResolveUriToCitation(v, citations);
 				});
 				sb.AppendLine(string.Join(" | ", values));
 			}
 			if (rows.Count > 100)
 				sb.AppendLine($"... and {rows.Count - 100} more rows");
 
-			// Fetch real paper metadata for grounded citations
-			var sourcesBlock = await BuildSourcesBlockAsync(columns, rows);
-			_logger.LogInformation("Sources block for summarizer: {Sources}", sourcesBlock);
+			var sourcesBlock = BuildSourcesBlock(citations);
 
 			var requestBody = new
 			{
@@ -405,6 +459,19 @@ public sealed class QueryService
 		return sparql.TrimEnd().TrimEnd(';') + "\n" + orderClause;
 	}
 
+	private static string EnsureDistinct(string sparql)
+	{
+		// Already has DISTINCT — leave it alone
+		if (Regex.IsMatch(sparql, @"\bSELECT\s+DISTINCT\b", RegexOptions.IgnoreCase))
+			return sparql;
+
+		// Don't add DISTINCT to aggregate queries (COUNT, SUM, etc.) — they're already deduplicated
+		if (Regex.IsMatch(sparql, @"\bSELECT\b[^{]*\b(COUNT|SUM|AVG|MIN|MAX)\s*\(", RegexOptions.IgnoreCase))
+			return sparql;
+
+		return Regex.Replace(sparql, @"\bSELECT\b", "SELECT DISTINCT", RegexOptions.IgnoreCase, TimeSpan.FromSeconds(1));
+	}
+
 	private static string EnsureLimit(string sparql)
 	{
 		if (!Regex.IsMatch(sparql, @"\bLIMIT\s+\d+", RegexOptions.IgnoreCase))
@@ -551,6 +618,14 @@ public sealed class QueryService
 		- Use the specific field for targeted search: (rdfs:label "photopolymerization")
 		- ?score gives a relevance score for ordering
 
+		IMPORTANT — Author name lookups:
+		When the user asks about a specific person by full name (e.g. "Yining Liu"), use EXACT MATCH
+		on foaf:name, NOT text:query. text:query tokenizes the name and matches any author sharing
+		any token (e.g. "Yining Liu" would also match "Zheng Liu" or "Yining Wang").
+		Correct:   ?author foaf:name "Yining Liu" .
+		Wrong:     (?author ?score) text:query (foaf:name "Yining Liu") .
+		Only use text:query for author names when doing a fuzzy/partial search (e.g. "find authors with Liu in their name").
+
 		Fallback: use FILTER(CONTAINS(LCASE(...))) only for properties NOT in the text index,
 		or for exact substring matching on numeric/boolean fields.
 
@@ -628,6 +703,7 @@ public sealed class QueryService
 
 		## Instructions
 		- Only generate SELECT queries (never INSERT, DELETE, DROP, etc.)
+		- Always use SELECT DISTINCT to avoid duplicate rows caused by multi-valued properties (e.g. multiple foaf:name values per author)
 		- Always include relevant prefixes
 		- Use OPTIONAL for properties that might not exist on every instance
 		- Prefer text:query for text search on indexed properties (faster than FILTER)

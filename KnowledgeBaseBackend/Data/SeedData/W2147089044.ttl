@@ -10,19 +10,19 @@
 
 <https://lovamap.com/ontology#paper/10.1002-adma.201500417> a bibo:AcademicArticle ;
     rdfs:label "Zhu et al., 2015 — Enzyme-Responsive Delivery of Multiple Proteins with Spatiotemporal Control" ;
-    dc:title "Enzyme‐Responsive Delivery of Multiple Proteins with Spatiotemporal Control" ;
+    dc:title "Enzyme-Responsive Delivery of Multiple Proteins with Spatiotemporal Control" ;
     dc:identifier "10.1002/adma.201500417" ;
     dc:date "2015"^^xsd:gYear ;
     dc:type "Research Article" ;
     schema:isPartOf <https://lovamap.com/ontology#journal/advanced-materials> ;
     dc:creator <https://lovamap.com/ontology#author/zhu-suwei> ,
                <https://lovamap.com/ontology#author/nih-lina> ,
-               <https://lovamap.com/ontology#author/carmichael-thomas> ,
+               <https://lovamap.com/ontology#author/carmichael-stanley> ,
                <https://lovamap.com/ontology#author/lu-yunfeng> ,
                <https://lovamap.com/ontology#author/segura-tatiana> ;
     bibo:authorList ( <https://lovamap.com/ontology#author/zhu-suwei>
                       <https://lovamap.com/ontology#author/nih-lina>
-                      <https://lovamap.com/ontology#author/carmichael-thomas>
+                      <https://lovamap.com/ontology#author/carmichael-stanley>
                       <https://lovamap.com/ontology#author/lu-yunfeng>
                       <https://lovamap.com/ontology#author/segura-tatiana> ) ;
     dc:bibliographicCitation "Zhu et al., 2015" ;
@@ -40,10 +40,10 @@
     foaf:name "Lina R. Nih" ;
     schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California, Los Angeles" .
 
-<https://lovamap.com/ontology#author/carmichael-thomas> a foaf:Person ;
+<https://lovamap.com/ontology#author/carmichael-stanley> a foaf:Person ;
     foaf:familyName "Carmichael" ;
     foaf:givenName "S. Thomas" ;
-    foaf:name "S. Thomas Carmichael" ;
+    foaf:name "Stanley Thomas Carmichael" ;
     schema:affiliation "Department of Neurology, David Geffen School of Medicine, University of California, Los Angeles" .
 
 <https://lovamap.com/ontology#author/lu-yunfeng> a foaf:Person ;

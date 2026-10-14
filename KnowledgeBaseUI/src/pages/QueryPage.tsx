@@ -4,10 +4,13 @@ import { FiSend, FiPlay, FiChevronUp, FiChevronDown, FiCode, FiX } from 'react-i
 import { useQueryState } from '../hooks/useQueryState';
 
 const EXAMPLES = [
+	'What crosslinking chemistries are used and how do they affect storage modulus?',
+	'Which experiments measured cell viability in HA hydrogels and what were the results?',
 	'How does particle size affect macrophage polarization markers like CD206 and CD86?',
-	'Compare TNF and IL-6 secretion levels across the different MAP scaffold sizes',
+	'How does void volume fraction vary with particle size across different scaffolds?',
+	'What RGD concentrations have been tested and how do they affect cell spreading?',
 	'What peptides and crosslinkers are used in each fabrication method?',
-	'Which experiments used hECFC cells and what were the vasculogenesis outcomes?',
+	'Compare transfection efficiency outcomes across different hydrogel formulations',
 ];
 
 /** Convert markdown links [text](url) to <a> tags, escaping the rest */

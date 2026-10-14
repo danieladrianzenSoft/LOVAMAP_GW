@@ -33,7 +33,7 @@
 <https://lovamap.com/ontology#author/ng-quinn> a foaf:Person ;
     foaf:familyName "Ng" ;
     foaf:givenName "Quinn K.T." ;
-    foaf:name "Quinn K.T. Ng" ;
+    foaf:name "Quinn K. T. Ng" ;
     schema:affiliation "University of California, Chemical and Biomolecular Engineering Department, Los Angeles, California" .
 
 <https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;

@@ -29,13 +29,13 @@
 <https://lovamap.com/ontology#author/lam-jonathan> a foaf:Person ;
     foaf:familyName "Lam" ;
     foaf:givenName "Jonathan" ;
-    foaf:name "Jonathan Lam" ;
+    foaf:name "Jonathan G. T. Lam" ;
     schema:affiliation "Biomedical Engineering Department, University of California, Los Angeles, CA, USA" .
 
 <https://lovamap.com/ontology#author/carmichael-stanley> a foaf:Person ;
     foaf:familyName "Carmichael" ;
     foaf:givenName "S. Thomas" ;
-    foaf:name "S. Thomas Carmichael" ;
+    foaf:name "Stanley Thomas Carmichael" ;
     schema:affiliation "Department of Neurology, David Geffen School of Medicine, University of California, Los Angeles, CA, USA" .
 
 <https://lovamap.com/ontology#author/lowry-william> a foaf:Person ;

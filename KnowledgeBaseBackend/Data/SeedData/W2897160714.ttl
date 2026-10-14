@@ -18,12 +18,12 @@
     dc:creator <https://lovamap.com/ontology#author/darling-nicole> ,
                <https://lovamap.com/ontology#author/sideris-elias> ,
                <https://lovamap.com/ontology#author/hamada-naomi> ,
-               <https://lovamap.com/ontology#author/carmichael-thomas> ,
+               <https://lovamap.com/ontology#author/carmichael-stanley> ,
                <https://lovamap.com/ontology#author/segura-tatiana> ;
     bibo:authorList ( <https://lovamap.com/ontology#author/darling-nicole>
                        <https://lovamap.com/ontology#author/sideris-elias>
                        <https://lovamap.com/ontology#author/hamada-naomi>
-                       <https://lovamap.com/ontology#author/carmichael-thomas>
+                       <https://lovamap.com/ontology#author/carmichael-stanley>
                        <https://lovamap.com/ontology#author/segura-tatiana> ) ;
     dc:bibliographicCitation "Darling et al., 2018" ;
     lova:focusMaterial "Hyaluronic acid (HA)-based microporous annealed particle (MAP) hydrogels, spatially patterned via sequential/layered injection for skin wound, subcutaneous, and stroke models" .
@@ -46,10 +46,10 @@
     foaf:name "Naomi Hamada" ;
     schema:affiliation "Department of Chemical and Biomolecular Engineering, University of California, Los Angeles" .
 
-<https://lovamap.com/ontology#author/carmichael-thomas> a foaf:Person ;
+<https://lovamap.com/ontology#author/carmichael-stanley> a foaf:Person ;
     foaf:familyName "Carmichael" ;
     foaf:givenName "S. Thomas" ;
-    foaf:name "S. Thomas Carmichael" ;
+    foaf:name "Stanley Thomas Carmichael" ;
     schema:affiliation "Department of Neurology, David Geffen School of Medicine, University of California, Los Angeles" .
 
 <https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;

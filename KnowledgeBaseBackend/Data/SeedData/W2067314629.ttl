@@ -73,7 +73,7 @@
 <https://lovamap.com/ontology#author/carmichael-stanley> a foaf:Person ;
     foaf:familyName "Carmichael" ;
     foaf:givenName "S. Thomas" ;
-    foaf:name "S. Thomas Carmichael" ;
+    foaf:name "Stanley Thomas Carmichael" ;
     schema:affiliation "Department of Neurology, University of California, Los Angeles" .
 
 <https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;

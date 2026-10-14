@@ -45,7 +45,7 @@
 <https://lovamap.com/ontology#author/chung-peter> a foaf:Person ;
     foaf:familyName "Chung" ;
     foaf:givenName "Peter H" ;
-    foaf:name "Peter H Chung" ;
+    foaf:name "Peter H. Chung" ;
     schema:affiliation "Department of Biomedical Engineering, Northwestern University" .
 
 <https://lovamap.com/ontology#author/webber-rebecca> a foaf:Person ;

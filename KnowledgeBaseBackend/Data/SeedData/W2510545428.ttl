@@ -43,7 +43,7 @@
 <https://lovamap.com/ontology#author/griffin-donald> a foaf:Person ;
     foaf:familyName "Griffin" ;
     foaf:givenName "Donald R." ;
-    foaf:name "Donald R. Griffin" ;
+    foaf:name "Donald Richieri Griffin" ;
     schema:affiliation "Chemical and Biomolecular Engineering Department, University of California Los Angeles" .
 
 <https://lovamap.com/ontology#author/ding-yichen> a foaf:Person ;
