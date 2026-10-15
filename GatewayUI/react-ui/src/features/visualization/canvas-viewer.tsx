@@ -1,10 +1,12 @@
 import React, { Suspense, useCallback, useEffect, useImperativeHandle, useRef, useState, forwardRef } from "react";
+import { useOnClickOutside } from "../../app/common/hooks/useOnClickOutside";
+import { FiChevronDown } from "react-icons/fi";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Bounds, OrbitControls, useProgress } from "@react-three/drei";
 import { PCFSoftShadowMap} from "three";
 import * as THREE from "three";
 import Model from "./model";
-import { CANVAS_CAMERA_PROPS, applyCameraFraming } from "./camera-config";
+import { CANVAS_CAMERA_PROPS, CAMERA_DISTANCE_FACTOR, applyCameraFraming } from "./camera-config";
 
 // Error boundary to catch R3F reconciliation errors (e.g. Canvas root not ready)
 class CanvasErrorBoundary extends React.Component<
@@ -89,14 +91,22 @@ const CamLight: React.FC = () => {
 // 4/27 JacklynX changed - reads camera position and emits it so the overlay can display it
 interface CameraTrackerProps {
   onPosChange: (x: number, y: number, z: number) => void;
+  onZoomChange: (zoom: number) => void;
+  controlsRef: React.RefObject<any>;
+  initialDistance: number;
 }
-const CameraTracker: React.FC<CameraTrackerProps> = ({ onPosChange }) => {
+const CameraTracker: React.FC<CameraTrackerProps> = ({ onPosChange, onZoomChange, controlsRef, initialDistance }) => {
   useFrame(({ camera }) => {
     onPosChange(
       parseFloat(camera.position.x.toFixed(1)),
       parseFloat(camera.position.y.toFixed(1)),
       parseFloat(camera.position.z.toFixed(1)),
     );
+    if (controlsRef.current && initialDistance > 0) {
+      const dist = camera.position.distanceTo(controlsRef.current.target);
+      const zoom = Math.round((initialDistance / dist) * 100);
+      onZoomChange(zoom);
+    }
   });
   return null;
 };
@@ -186,14 +196,31 @@ const AxesIndicator: React.FC<AxesIndicatorProps> = ({ controlsRef }) => {
 interface CameraControlPanelProps {
   controlsRef: React.RefObject<any>;
   livePos: { x: number; y: number; z: number };
+  liveZoom: number;
+  initialDistance: number;
   zUp: boolean;
   onToggleZUp: () => void;
 }
 
-const CameraControlPanel: React.FC<CameraControlPanelProps> = ({ controlsRef, livePos, zUp, onToggleZUp }) => {
-  const [editingAxis, setEditingAxis] = useState<'x' | 'y' | 'z' | null>(null);
+const CameraControlPanel: React.FC<CameraControlPanelProps> = ({ controlsRef, livePos, liveZoom, initialDistance, zUp, onToggleZUp }) => {
+  const [editingAxis, setEditingAxis] = useState<'x' | 'y' | 'z' | 'zoom' | null>(null);
   const [editValue, setEditValue] = useState('');
   const editingRef = useRef(false);
+  const [optionsOpen, setOptionsOpen] = useState(false);
+  const panelRef = useRef<HTMLDivElement>(null);
+
+  useOnClickOutside(panelRef, () => setOptionsOpen(false));
+
+  // Flush a position change through OrbitControls by temporarily disabling
+  // damping so the controls snapshot the new state instead of interpolating.
+  const flushControls = useCallback(() => {
+    const controls = controlsRef.current;
+    if (!controls) return;
+    const wasDamping = controls.enableDamping;
+    controls.enableDamping = false;
+    controls.update();
+    controls.enableDamping = wasDamping;
+  }, [controlsRef]);
 
   const applyEdit = useCallback((axis: 'x' | 'y' | 'z', val: string) => {
     if (!controlsRef.current) return;
@@ -204,67 +231,143 @@ const CameraControlPanel: React.FC<CameraControlPanelProps> = ({ controlsRef, li
     pos[axis] = n;
     camera.position.copy(pos);
     camera.updateProjectionMatrix();
-    controlsRef.current.update();
-  }, [controlsRef]);
+    flushControls();
+  }, [controlsRef, flushControls]);
 
-  const handleBlur = (axis: 'x' | 'y' | 'z') => {
-    applyEdit(axis, editValue);
+  const applyZoomEdit = useCallback((val: string) => {
+    if (!controlsRef.current || initialDistance <= 0) return;
+    const zoomPct = parseFloat(val);
+    if (isNaN(zoomPct) || zoomPct <= 0) return;
+    // zoom% = (initialDistance / distance) * 100  →  distance = initialDistance * 100 / zoom%
+    const newDist = initialDistance * 100 / zoomPct;
+    const camera = controlsRef.current.object;
+    const target = controlsRef.current.target as THREE.Vector3;
+    const direction = camera.position.clone().sub(target).normalize();
+    camera.position.copy(target.clone().add(direction.multiplyScalar(newDist)));
+    camera.updateProjectionMatrix();
+    flushControls();
+  }, [controlsRef, initialDistance, flushControls]);
+
+  const handleBlur = (axis: 'x' | 'y' | 'z' | 'zoom') => {
+    if (axis === 'zoom') {
+      applyZoomEdit(editValue);
+    } else {
+      applyEdit(axis, editValue);
+    }
     setEditingAxis(null);
     editingRef.current = false;
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent, axis: 'x' | 'y' | 'z') => {
-    if (e.key === 'Enter') { applyEdit(axis, editValue); setEditingAxis(null); editingRef.current = false; }
+  const handleKeyDown = (e: React.KeyboardEvent, axis: 'x' | 'y' | 'z' | 'zoom') => {
+    if (e.key === 'Enter') {
+      if (axis === 'zoom') { applyZoomEdit(editValue); } else { applyEdit(axis, editValue); }
+      setEditingAxis(null);
+      editingRef.current = false;
+    }
     if (e.key === 'Escape') { setEditingAxis(null); editingRef.current = false; }
   };
 
-  const startEdit = (axis: 'x' | 'y' | 'z') => {
+  const startEdit = (axis: 'x' | 'y' | 'z' | 'zoom') => {
     editingRef.current = true;
-    setEditValue(livePos[axis].toString());
+    setEditValue(axis === 'zoom' ? liveZoom.toString() : livePos[axis].toString());
     setEditingAxis(axis);
   };
 
   return (
     <div
-      className="absolute bottom-4 z-10 select-none left-8 md:left-8 max-md:right-6 max-md:left-auto flex flex-col items-center"
+      ref={panelRef}
+      className={`absolute bottom-4 z-10 select-none left-8 md:left-8 max-md:right-6 max-md:left-auto flex flex-col transition-all ${
+        optionsOpen ? 'bg-white bg-opacity-80 shadow-lg rounded-xl p-4 w-64 items-start' : 'items-center'
+      }`}
       onMouseDown={e => e.stopPropagation()}
     >
-      <AxesIndicator controlsRef={controlsRef} />
-      <div
-        className="flex gap-1 mt-0.5 font-mono leading-none text-gray-400"
-        style={{ fontSize: '10px' }}
-      >
-        {(['x', 'y', 'z'] as const).map(axis => (
-          <div key={axis} className="flex flex-col items-center tabular-nums">
-            <span className="uppercase">{axis}</span>
-            {editingAxis === axis ? (
-              <input
-                autoFocus
-                type="number"
-                value={editValue}
-                onChange={e => setEditValue(e.target.value)}
-                onBlur={() => handleBlur(axis)}
-                onKeyDown={e => handleKeyDown(e, axis)}
-                className="w-10 bg-transparent border-b border-gray-300 font-mono text-gray-500 text-center outline-none px-0 py-0 appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                style={{ fontSize: '10px' }}
-              />
+      {optionsOpen && (
+        <div className="flex items-center justify-between w-full border-b border-gray-300 pb-2 mb-2">
+          <span className="text-sm font-semibold text-gray-800">Camera Options</span>
+        </div>
+      )}
+
+      <div className={optionsOpen ? 'flex items-start gap-3' : ''}>
+        <AxesIndicator controlsRef={controlsRef} />
+        <div
+          className={`flex gap-2 font-mono leading-none ${optionsOpen ? 'text-sm text-gray-700 mt-4' : 'mt-0.5 text-gray-400'}`}
+          style={optionsOpen ? undefined : { fontSize: '10px' }}
+        >
+          {(['x', 'y', 'z'] as const).map(axis => (
+            <div key={axis} className="flex flex-col items-center tabular-nums">
+              <span className="uppercase font-semibold">{axis}</span>
+              {editingAxis === axis ? (
+                <input
+                  autoFocus
+                  type="number"
+                  value={editValue}
+                  onChange={e => setEditValue(e.target.value)}
+                  onBlur={() => handleBlur(axis)}
+                  onKeyDown={e => handleKeyDown(e, axis)}
+                  className={`bg-transparent border-b border-gray-300 font-mono text-gray-500 text-center outline-none px-0 py-0 appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none ${optionsOpen ? 'w-14 text-sm' : 'w-10'}`}
+                  style={optionsOpen ? undefined : { fontSize: '10px' }}
+                />
+              ) : (
+                <span
+                  className="cursor-text hover:text-gray-500 transition-colors"
+                  onClick={() => startEdit(axis)}
+                >{Math.abs(livePos[axis]) >= 100 ? Math.round(livePos[axis]) : livePos[axis].toFixed(1)}</span>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Expanded options: divider + zoom + up toggle */}
+      {optionsOpen && (
+        <div className="w-full text-sm text-gray-700 mt-2">
+          {/* Zoom percentage control */}
+          <div className="flex gap-1.5 items-center whitespace-nowrap">
+            <span className="font-semibold" title="Zoom level (100% = default fit)">Zoom</span>
+            {editingAxis === 'zoom' ? (
+              <>
+                <input
+                  autoFocus
+                  type="number"
+                  value={editValue}
+                  onChange={e => setEditValue(e.target.value)}
+                  onBlur={() => handleBlur('zoom')}
+                  onKeyDown={e => handleKeyDown(e, 'zoom')}
+                  className="w-16 bg-transparent border-b border-gray-300 text-sm text-gray-700 text-center outline-none px-0 py-0 appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                />
+                <span>%</span>
+              </>
             ) : (
               <span
-                className="cursor-text hover:text-gray-500 transition-colors"
-                onClick={() => startEdit(axis)}
-              >{Math.abs(livePos[axis]) >= 100 ? Math.round(livePos[axis]) : livePos[axis].toFixed(1)}</span>
+                className="cursor-text hover:text-gray-500 transition-colors tabular-nums"
+                onClick={() => startEdit('zoom')}
+                title="Zoom level — click to edit (100% = default fit, higher = closer)"
+              >{liveZoom}%</span>
             )}
           </div>
-        ))}
-      </div>
-      <button
-        onClick={onToggleZUp}
-        className={`mt-1 px-2 py-0.5 rounded text-gray-500 hover:text-gray-700 transition-colors cursor-pointer ${zUp ? 'font-bold' : ''}`}
-        style={{ fontSize: '10px' }}
-        title="Toggle Y-up / Z-up"
-      >
-        Up: {zUp ? 'Z' : 'Y'}
-      </button>
+          {/* Up toggle */}
+          <div className="flex gap-1.5 items-center mt-2">
+            <span className="font-semibold">Up</span>
+            <button
+              onClick={onToggleZUp}
+              className="px-2 py-0.5 rounded text-sm text-gray-700 hover:text-gray-900 transition-colors cursor-pointer"
+              title="Toggle Y-up / Z-up"
+            >
+              {zUp ? 'Z' : 'Y'}
+            </button>
+          </div>
+        </div>
+      )}
+
+      {!optionsOpen && (
+        <button
+          className="mt-2 px-2 py-0.5 rounded-md border border-gray-300 bg-white bg-opacity-90 text-gray-500 hover:text-gray-700 hover:border-gray-400 transition-colors cursor-pointer font-mono flex items-center gap-0.5"
+          style={{ fontSize: '10px' }}
+          onClick={() => setOptionsOpen(true)}
+        >
+          More options <FiChevronDown size={10} />
+        </button>
+      )}
     </div>
   );
 };
@@ -279,7 +382,9 @@ const CanvasViewer = forwardRef<CanvasViewerHandle, CanvasViewerProps>(({ meshes
   const controlsRef = useRef<any>(null);
   const hasSetCamera = useRef(false);
   const [livePos, setLivePos] = useState({ x: 0, y: 0, z: 0 });
+  const [liveZoom, setLiveZoom] = useState(100);
   const initialFramingRef = useRef<{ center: THREE.Vector3; size: number } | null>(null);
+  const [initialDistance, setInitialDistance] = useState(0);
 
   useEffect(() => {
     if (!particleBounds || !onSliceBoundsComputed) return;
@@ -295,6 +400,7 @@ const CanvasViewer = forwardRef<CanvasViewerHandle, CanvasViewerProps>(({ meshes
     if (hasSetCamera.current) return;
 
     initialFramingRef.current = { center: center.clone(), size };
+    setInitialDistance(size * CAMERA_DISTANCE_FACTOR);
     applyCameraFraming(controlsRef.current.object, center, size);
 
     controlsRef.current.target.copy(center);
@@ -368,13 +474,23 @@ const CanvasViewer = forwardRef<CanvasViewerHandle, CanvasViewerProps>(({ meshes
         onCreated={({ gl }) => {
           gl.shadowMap.enabled = true;
           gl.shadowMap.type = PCFSoftShadowMap;
+          // Block regular scroll-wheel zoom; allow trackpad pinch (ctrlKey) and Ctrl+scroll
+          const el = gl.domElement;
+          el.addEventListener('wheel', (e) => {
+            if (!e.ctrlKey) e.stopPropagation();
+          }, { capture: true });
           onCanvasCreated?.(gl.domElement);
         }}
       >
         <color attach="background" args={["white"]} />
         <ambientLight intensity={0.3} />
         <CamLight />
-        <CameraTracker onPosChange={(x, y, z) => setLivePos({ x, y, z })} />
+        <CameraTracker
+          onPosChange={(x, y, z) => setLivePos({ x, y, z })}
+          onZoomChange={setLiveZoom}
+          controlsRef={controlsRef}
+          initialDistance={initialDistance}
+        />
         <Suspense fallback={null}>
           <Bounds>
             {meshes.map((meshProps, idx) => (
@@ -411,7 +527,7 @@ const CanvasViewer = forwardRef<CanvasViewerHandle, CanvasViewerProps>(({ meshes
       </Canvas>
 
       {/* 4/27 JacklynX changed - SVG axes indicator + coordinate inputs, bottom-left */}
-      <CameraControlPanel controlsRef={controlsRef} livePos={livePos} zUp={zUp} onToggleZUp={onToggleZUp ?? (() => {})} />
+      <CameraControlPanel controlsRef={controlsRef} livePos={livePos} liveZoom={liveZoom} initialDistance={initialDistance} zUp={zUp} onToggleZUp={onToggleZUp ?? (() => {})} />
     </CanvasErrorBoundary>
   );
 });

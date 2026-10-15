@@ -77,8 +77,10 @@ const Visualization: React.FC = () => {
 	// const [dimmedParticles, setDimmedParticles] = useState(true);
 	const [colorfulParticles, setColorfulParticles] = useState(false); // default false => uniform color
 	const dimmedParticles = !colorfulParticles;
+	const [particleColorMode, setParticleColorMode] = useState<'diameter' | 'uniform'>('diameter');
+	const [particleUniformColor, setParticleUniformColor] = useState('#8a9bae');
 	const [dimmedPores, ] = useState(false);
-	const [poreOpacity, ] = useState(1);
+	const [poreOpacity, setPoreOpacity] = useState(1);
 	const [particleOpacity, setParticleOpacity] = useState(1);
 	const [userOverrideParticleOpacity, setUserOverrideParticleOpacity] = useState(false);
 	// const [poreColor, setPoreColor] = useState(null);
@@ -95,6 +97,7 @@ const Visualization: React.FC = () => {
 	// 0 = show baked-in pore colors from the GLB. > 0 = override with a
 	// shuffled TS colormap (seed = this counter). Bump via the Randomize button.
 	const [poreColorSeed, setPoreColorSeed] = useState(0);
+	const [poreUniformColor, setPoreUniformColor] = useState<string | null>(null);
 
 	const [screenshotCategory, setScreenshotCategory] = useState<number | null>(null);
 	const autoHiddenForDomainRef = useRef<number | string | null>(null);
@@ -141,7 +144,7 @@ const Visualization: React.FC = () => {
 	};
 
 	const defaultDimmedOptions = useMemo(() => ({
-		color: '#E7F6E3', 
+		color: '#8a9bae',
 		opacity: 1,
 		// #c6c9c5
 	}), []);
@@ -243,12 +246,18 @@ const Visualization: React.FC = () => {
 	}, [poresMetadata]);
 
 	const poreColorOverrideMap = useMemo(() => {
-		if (poreColorSeed === 0) return null;
 		const meta = domainStore.getActiveMetadata(1);
 		if (!meta?.ids) return null;
+		// Uniform color takes priority
+		if (poreUniformColor) {
+			const map: Record<string, string> = {};
+			for (const id of meta.ids) map[id] = poreUniformColor;
+			return map;
+		}
+		if (poreColorSeed === 0) return null;
 		return buildPoreColorMap(meta.ids, undefined, { shuffleSeed: poreColorSeed });
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [poreColorSeed, poresMetadata, poresDomainId]);
+	}, [poreColorSeed, poreUniformColor, poresMetadata, poresDomainId]);
 
 	useEffect(() => {
 		const category = 1; // pores
@@ -480,9 +489,13 @@ const Visualization: React.FC = () => {
 			slicingActive,
   			sliceXThreshold: sliceXThreshold,
 			opacity: userOverrideParticleOpacity ? particleOpacity : undefined,
-			dimmedOptions: defaultDimmedOptions,
+			dimmedOptions: dimmedParticles && particleColorMode === 'uniform'
+				? { color: particleUniformColor, opacity: defaultDimmedOptions.opacity }
+				: defaultDimmedOptions,
 			debugMode: debugMode,
-			diameterValues: scaffoldGroupStore.diameterValues,
+			diameterValues: dimmedParticles && particleColorMode === 'uniform'
+				? undefined
+				: scaffoldGroupStore.diameterValues,
 			idToIndex: domainStore.getActiveMetadata(0)?.id_to_index,
 		});
 	}
@@ -738,6 +751,8 @@ const Visualization: React.FC = () => {
 		setUserOverrideParticleOpacity(false);
 		setColorfulParticles(false);
 		setParticleColor(null);
+		setParticleColorMode('diameter');
+		setParticleUniformColor('#8a9bae');
 		// Reset slice to midpoint
 		if (sliceDomainBounds) {
 			const midpoint = (sliceDomainBounds.min.x + sliceDomainBounds.max.x) / 2;
@@ -1099,6 +1114,10 @@ const Visualization: React.FC = () => {
 							sliceXThreshold={sliceXThreshold}
 							setSliceXThreshold={setSliceXThreshold}
 							onResetOverrides={handleResetOverrides}
+							particleColorMode={particleColorMode}
+							setParticleColorMode={setParticleColorMode}
+							particleUniformColor={particleUniformColor}
+							setParticleUniformColor={setParticleUniformColor}
 						/>
 
 						<PoresPanel
@@ -1119,11 +1138,22 @@ const Visualization: React.FC = () => {
 							onToggleVisibility={() => {handleToggleShowPores(!showPores)}}
 							areEdgePoresHidden={areEdgePoresHidden}
 							onToggleHideEdgePores={handleToggleHideEdgePores}
-							onRefreshColors={() => setPoreColorSeed(s => s + 1)}
+							onRefreshColors={() => { setPoreUniformColor(null); setPoreColorSeed(s => s + 1); }}
 							onIsolatePores={handleIsolatePores}
 							onUnisolatePore={handleUnisolatePore}
 							isolatedPoreIds={isolatedPoreIds}
 							allPoreIds={domainStore.getActiveMetadata(1)?.metadata ? Object.keys(domainStore.getActiveMetadata(1)!.metadata) : undefined}
+							uniformColor={poreUniformColor}
+							onSetUniformColor={setPoreUniformColor}
+							opacity={poreOpacity}
+							setOpacity={(value: number) => {
+								setPoreOpacity(value);
+								if (value === 0 && showPores) {
+									setShowPores(false);
+								} else if (value > 0 && !showPores) {
+									setShowPores(true);
+								}
+							}}
 						/>
 					</div>
 				</>
@@ -1210,6 +1240,10 @@ const Visualization: React.FC = () => {
 							sliceXThreshold={sliceXThreshold}
 							setSliceXThreshold={setSliceXThreshold}
 							onResetOverrides={handleResetOverrides}
+							particleColorMode={particleColorMode}
+							setParticleColorMode={setParticleColorMode}
+							particleUniformColor={particleUniformColor}
+							setParticleUniformColor={setParticleUniformColor}
 							className="w-full bg-transparent shadow-none p-0"
 						/>
 					</BottomSheet>
@@ -1228,11 +1262,22 @@ const Visualization: React.FC = () => {
 							onToggleVisibility={() => {handleToggleShowPores(!showPores)}}
 							areEdgePoresHidden={areEdgePoresHidden}
 							onToggleHideEdgePores={handleToggleHideEdgePores}
-							onRefreshColors={() => setPoreColorSeed(s => s + 1)}
+							onRefreshColors={() => { setPoreUniformColor(null); setPoreColorSeed(s => s + 1); }}
 							onIsolatePores={handleIsolatePores}
 							onUnisolatePore={handleUnisolatePore}
 							isolatedPoreIds={isolatedPoreIds}
 							allPoreIds={domainStore.getActiveMetadata(1)?.metadata ? Object.keys(domainStore.getActiveMetadata(1)!.metadata) : undefined}
+							uniformColor={poreUniformColor}
+							onSetUniformColor={setPoreUniformColor}
+							opacity={poreOpacity}
+							setOpacity={(value: number) => {
+								setPoreOpacity(value);
+								if (value === 0 && showPores) {
+									setShowPores(false);
+								} else if (value > 0 && !showPores) {
+									setShowPores(true);
+								}
+							}}
 							className="w-full bg-transparent shadow-none p-0"
 						/>
 					</BottomSheet>

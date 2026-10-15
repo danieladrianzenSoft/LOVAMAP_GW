@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { Domain } from "../../app/models/domain";
 import { FiChevronDown, FiChevronUp, FiShuffle, FiX } from "react-icons/fi";
+import Slider from "../../app/common/slider/slider";
 
 /** Extract the numeric prefix from a compound pore ID (e.g. "921-abc..." → "921").
  *  If there's no dash, returns the whole string. */
@@ -10,12 +11,12 @@ const getPorePrefix = (id: string) => {
 	return idx > 0 ? id.substring(0, idx) : id;
 };
 
-/** Parse a pasted value like "[123, 456, 789]" or "123,456,789" into individual tokens. */
+/** Parse a pasted value like "[123, 456, 789]", "123,456,789", or "123 456 789" into individual tokens.
+ *  Splits on commas, spaces, or any mix thereof. */
 const parseAsList = (input: string): string[] | null => {
 	const cleaned = input.replace(/[\[\]]/g, '').trim();
-	if (!cleaned.includes(',')) return null;
-	const tokens = cleaned.split(',').map(s => s.trim()).filter(Boolean);
-	return tokens.length > 0 ? tokens : null;
+	const tokens = cleaned.split(/[\s,]+/).filter(Boolean);
+	return tokens.length > 1 ? tokens : null;
 };
 
 interface DomainPanelProps {
@@ -34,6 +35,10 @@ interface DomainPanelProps {
 	onUnisolatePore?: () => void;
 	isolatedPoreIds?: string[] | null;
 	allPoreIds?: string[];
+	uniformColor?: string | null;
+	onSetUniformColor?: (color: string | null) => void;
+	opacity?: number;
+	setOpacity?: (value: number) => void;
 }
 
 const MAX_DROPDOWN_ITEMS = 20;
@@ -55,6 +60,10 @@ const PoresPanel: React.FC<DomainPanelProps> = ({
   onUnisolatePore,
   isolatedPoreIds,
   allPoreIds,
+  uniformColor,
+  onSetUniformColor,
+  opacity,
+  setOpacity,
 }) => {
   const [searchValue, setSearchValue] = useState("");
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -121,10 +130,10 @@ const PoresPanel: React.FC<DomainPanelProps> = ({
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [dropdownOpen]);
 
-  // The "active token" is the text after the last comma (or the whole input if no comma).
+  // The "active token" is the text after the last delimiter (comma or space).
   const activeToken = useMemo(() => {
-    const parts = searchValue.split(',');
-    return parts[parts.length - 1].trim().toLowerCase();
+    const parts = searchValue.split(/[\s,]+/);
+    return (parts[parts.length - 1] ?? '').toLowerCase();
   }, [searchValue]);
 
   const filteredPoreIds = useMemo(() => {
@@ -142,9 +151,9 @@ const PoresPanel: React.FC<DomainPanelProps> = ({
       return next;
     });
     // Clear the active token from input, keep any preceding entries
-    const parts = searchValue.split(',');
+    const parts = searchValue.split(/[\s,]+/);
     parts.pop();
-    setSearchValue(parts.length > 0 ? parts.join(',') + ', ' : '');
+    setSearchValue(parts.length > 0 ? parts.join(' ') + ' ' : '');
   };
 
   const removeSelection = (id: string) => {
@@ -212,9 +221,9 @@ const PoresPanel: React.FC<DomainPanelProps> = ({
   const handleInputChange = (value: string) => {
     setSearchValue(value);
     setListMatchError(null);
-    // Open dropdown based on the active token (text after last comma)
-    const parts = value.split(',');
-    const lastToken = parts[parts.length - 1].trim();
+    // Open dropdown based on the active token (text after last delimiter)
+    const parts = value.split(/[\s,]+/);
+    const lastToken = parts[parts.length - 1] ?? '';
     setDropdownOpen(lastToken.length >= MIN_SEARCH_CHARS);
   };
 
@@ -273,7 +282,45 @@ const PoresPanel: React.FC<DomainPanelProps> = ({
 					</div>
 				)}
 
-				{onRefreshColors && (
+				{onSetUniformColor && (
+					<>
+						<div className="flex justify-between items-center mt-3 text-sm text-gray-700">
+							<span>Color type</span>
+							<select
+								value={uniformColor != null ? 'uniform' : 'random'}
+								onChange={(e) => {
+									if (e.target.value === 'uniform') {
+										onSetUniformColor('#e84393');
+									} else {
+										onSetUniformColor(null);
+										onRefreshColors?.();
+									}
+								}}
+								disabled={!visible}
+								className="text-sm border border-gray-300 rounded pl-2 pr-7 py-0.5 appearance-none bg-no-repeat focus:outline-none focus:border-link-100 disabled:opacity-50 disabled:cursor-not-allowed"
+								style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")`, backgroundPosition: 'right 0.5rem center' }}
+							>
+								<option value="random">Random</option>
+								<option value="uniform">Uniform</option>
+							</select>
+						</div>
+						{uniformColor != null && (
+							<div className="flex justify-between items-center mt-3 text-sm text-gray-700">
+								<span>Color</span>
+								<input
+									type="color"
+									value={uniformColor}
+									onChange={(e) => onSetUniformColor(e.target.value)}
+									disabled={!visible}
+									className="w-7 h-7 rounded cursor-pointer border border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
+									title="Set uniform pore color"
+								/>
+							</div>
+						)}
+					</>
+				)}
+
+				{onRefreshColors && uniformColor == null && (
 					<div className="flex justify-start">
 						<button
 							className="button-tag flex items-center gap-2 mt-3 mb-0 disabled:opacity-50 disabled:cursor-not-allowed"
@@ -286,13 +333,24 @@ const PoresPanel: React.FC<DomainPanelProps> = ({
 					</div>
 				)}
 
+				{setOpacity && (
+					<Slider
+						label="Opacity"
+						value={opacity ?? 1}
+						min={0}
+						max={1}
+						step={0.01}
+						onChange={setOpacity}
+					/>
+				)}
+
 				{onIsolatePores && onUnisolatePore && (
 					<div className="mt-3 pt-3 border-t border-gray-200">
 						<div ref={containerRef}>
 							<input
 								ref={inputRef}
 								type="text"
-								placeholder="Search ID or paste list..."
+								placeholder="Isolate by ID..."
 								value={searchValue}
 								onChange={(e) => handleInputChange(e.target.value)}
 								onKeyDown={handleKeyDown}
