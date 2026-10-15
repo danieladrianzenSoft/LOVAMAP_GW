@@ -91,13 +91,29 @@ public sealed class QueryService
 		sparql = EnsureLimit(sparql);
 		ValidateSelectOnly(sparql);
 
-		var (columns, rows) = await ExecuteRawSparqlAsync(sparql, ct);
+		List<string> columns;
+		List<Dictionary<string, string>> rows;
+		try
+		{
+			(columns, rows) = await ExecuteRawSparqlAsync(sparql, ct);
+		}
+		catch (TaskCanceledException) when (!ct.IsCancellationRequested)
+		{
+			return new QueryResult(sparql, explanation,
+				"The query took too long to execute. Try asking a more specific question.",
+				new List<string>(), new List<Dictionary<string, string>>());
+		}
 
 		// Summarize results into a readable answer
 		string? answer = null;
 		if (rows.Count > 0)
 		{
 			answer = await SummarizeResultsAsync(question, columns, rows, apiKey, model, ct);
+		}
+		else
+		{
+			answer = "No results were found. The knowledge base may not have data matching this query, "
+				+ "or the question may need to be rephrased. Try asking in a different way or with broader terms.";
 		}
 
 		return new QueryResult(sparql, explanation, answer, columns, rows);
@@ -295,9 +311,11 @@ public sealed class QueryService
 						Use specific numbers from the data. Be direct and scientific.
 						Do NOT describe the table structure — just answer the question.
 
-						IMPORTANT: A SOURCES section is provided with the exact papers and how to cite them.
-						You MUST ONLY reference papers listed in SOURCES. NEVER invent or guess author names.
-						Use the exact markdown link format provided in SOURCES.
+						If a SOURCES section is provided below the results, you MUST ONLY reference
+						papers listed there. Use the exact markdown link format provided in SOURCES.
+						NEVER invent or guess author names.
+						If NO SOURCES section is provided, do NOT reference or link to any papers.
+						Do NOT mention "sources", "references", or "cited studies" if none are provided.
 						""" },
 					new { role = "user", content = $"Question: {question}\n\nResults ({rows.Count} rows):\n{sb}{sourcesBlock}" },
 				},
@@ -521,6 +539,10 @@ public sealed class QueryService
 		- rdfs:label (string)
 		- dc:source → bibo:AcademicArticle
 		- lova:particleShape, lova:particleMaterial (strings)
+		  Common particleMaterial values: "Hyaluronic acid (HA)", "Acrylated hyaluronic acid (HA-AC)",
+		  "PEG-VS", "Polystyrene", "HA-Norb (hyaluronic acid-norbornene)"
+		  NOTE: To find experiments involving a specific material (e.g. hydrogels), search on
+		  Material labels or lova:particleMaterial, then join to Experiment via lova:usedMaterial.
 		- lova:particleSizeMin, lova:particleSizeMax (doubles, in units of lova:particleSizeUnit)
 		- lova:particleSizeUnit (string, e.g. "μm")
 		- lova:sizeDistribution, lova:stiffnessQualitative, lova:packingConfiguration, lova:reportedPoreSize (strings)
@@ -533,7 +555,13 @@ public sealed class QueryService
 		- rdfs:label (string)
 		- dc:source → bibo:AcademicArticle
 		- lova:experimentCategory, lova:experimentType, lova:assayOrMethod (strings)
+		  Common experimentType values: "Cell viability", "Cell proliferation", "Transfection",
+		  "Flow cytometry", "Immunohistochemistry", "Cell spreading", "Rheology", "Cytokine secretion",
+		  "Immunofluorescence", "Oscillatory shear rheology"
+		  NOTE: experimentType describes the assay/test performed, NOT the material used.
+		  "hydrogel" is NOT an experimentType — it appears in Material labels and lova:particleMaterial.
 		- lova:cellType, lova:cellSource, lova:cultureDuration (strings)
+		  Common cellType values: "HUVEC", "HeLa", "HDF", "NIH/3T3", "HEK293T", "mMSC", "BMDM", "hECFC"
 		- lova:equipment, lova:temperature (strings)
 		- lova:seedingDensity (string), lova:cultureMedium (string), lova:sampleSize (integer)
 		- lova:usedMaterial → lova:Material (multiple)
@@ -543,6 +571,9 @@ public sealed class QueryService
 		- dc:source → bibo:AcademicArticle
 		- lova:fromExperiment → lova:Experiment
 		- lova:measurementCategory, lova:measurementType (strings)
+		  Common measurementType values: "Storage modulus (G')", "Cell viability", "Void volume fraction",
+		  "Zeta potential", "Particle diameter", "Cell migration rate", "Vessel density",
+		  "Transfection efficiency", "Live cell fraction", "Cell length"
 		- qudt:numericValue (double), qudt:unit (string)
 		- lova:valueString (string) — text representation of value
 		- lova:scope, lova:direction, lova:comparedTo, lova:dataSource (strings)

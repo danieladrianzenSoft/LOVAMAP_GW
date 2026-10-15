@@ -8,7 +8,7 @@ const EXAMPLES = [
 	'Which experiments measured cell viability in HA hydrogels and what were the results?',
 	'How does particle size affect macrophage polarization markers like CD206 and CD86?',
 	'How does void volume fraction vary with particle size across different scaffolds?',
-	'What RGD concentrations have been tested and how do they affect cell spreading?',
+	'Which cell types have been tested in hydrogel experiments and what was their viability?',
 	'What peptides and crosslinkers are used in each fabrication method?',
 	'Compare transfection efficiency outcomes across different hydrogel formulations',
 ];
