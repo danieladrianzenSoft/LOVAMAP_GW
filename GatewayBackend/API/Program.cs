@@ -186,6 +186,7 @@ builder.Services.AddScoped<IAISearchService, AISearchService>();
 builder.Services.AddScoped<IScaffoldGroupMetadataService, ScaffoldGroupMetadataService>();
 builder.Services.AddScoped<IRdfScaffoldService, RdfScaffoldService>();
 builder.Services.AddScoped<IAnalyticsService, AnalyticsService>();
+builder.Services.AddScoped<IJobAdminStatsService, JobAdminStatsService>();
 builder.Services.AddScoped<IDescriptorValueGenerator, ParticleAspectRatioGenerator>();
 builder.Services.AddScoped<IContentService, ContentService>();
 builder.Services.AddScoped<ISeedingService, SeedingService>();

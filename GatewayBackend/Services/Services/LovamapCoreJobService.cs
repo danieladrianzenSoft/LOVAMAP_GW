@@ -259,9 +259,9 @@ namespace Services.Services
 		}
 
 		// 4/13 JacklynX changed - get all jobs for admin use in dataset descriptor rules
-		public async Task<PagedList<JobToReturnDto>> GetAllJobsAsync(PagingParams pagingParams)
+		public async Task<PagedList<JobToReturnDto>> GetAllJobsAsync(JobFilterParams filterParams)
 		{
-			var jobs = await _jobRepository.GetAllJobsAsync(pagingParams);
+			var jobs = await _jobRepository.GetAllJobsAsync(filterParams);
 			var dtos = jobs.Select(_modelMapper.MapToJobToReturnDto).ToList();
 			return new PagedList<JobToReturnDto>(dtos, jobs.TotalCount, jobs.CurrentPage, jobs.PageSize);
 		}

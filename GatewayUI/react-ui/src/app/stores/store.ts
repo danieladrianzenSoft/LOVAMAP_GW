@@ -11,6 +11,7 @@ import PublicationStore from "./publicationStore";
 import BulkUploadStore from "./bulkUploadStore";
 import DashboardStore from "./dashboardStore";
 import ContentStore from "./contentStore";
+import JobAdminStatsStore from "./jobAdminStatsStore";
 
 interface Store {
 	commonStore: CommonStore,
@@ -24,7 +25,8 @@ interface Store {
 	publicationStore: PublicationStore,
 	bulkUploadStore: BulkUploadStore,
 	dashboardStore: DashboardStore,
-	contentStore: ContentStore
+	contentStore: ContentStore,
+	jobAdminStatsStore: JobAdminStatsStore
 }
 
 export const store: Store = {
@@ -39,7 +41,8 @@ export const store: Store = {
 	publicationStore: new PublicationStore(),
 	bulkUploadStore: new BulkUploadStore(),
 	dashboardStore: new DashboardStore(),
-	contentStore: new ContentStore()
+	contentStore: new ContentStore(),
+	jobAdminStatsStore: new JobAdminStatsStore()
 }
 
 export const StoreContext = createContext(store);

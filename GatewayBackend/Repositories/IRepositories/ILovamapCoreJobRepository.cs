@@ -12,9 +12,11 @@ namespace Repositories.IRepositories
 		void Add(Job job);
 		Task<Job?> GetJobByIdAsync(Guid jobId);
 		Task<PagedList<Job>> GetJobsByCreatorIdAsync(string creatorId, PagingParams pagingParams);
-		Task<PagedList<Job>> GetAllJobsAsync(PagingParams pagingParams);
+		Task<PagedList<Job>> GetAllJobsAsync(JobFilterParams filterParams);
 		Task<IEnumerable<Job>> GetActiveJobsAsync();
 		Task<Job?> MarkJobCompletedAsync(Guid jobId, string resultFilePath, string sha256);
 		Task<Job?> UpdateJobFromCoreAsync(Guid jobId, JobStatus status, string? resultPath, string? errorMessage, DateTime? completedAt);
+		Task<JobAdminStatsDto> GetJobAdminStatsAsync(DateTime from, DateTime to);
+		Task<PagedList<UserFailureRankingDto>> GetUserFailureRankingsAsync(DateTime from, DateTime to, PagingParams pagingParams);
 	}
 }

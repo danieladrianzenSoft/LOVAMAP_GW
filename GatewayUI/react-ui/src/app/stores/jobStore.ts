@@ -13,12 +13,35 @@ export default class JobStore {
 	toolVersions: ToolVersions | null = null;
 	private hubConnection: signalR.HubConnection | null = null;
 
+	// Admin filters
+	filterStatus = '';
+	filterJobType = '';
+	filterSearch = '';
+
 	constructor() {
 		makeAutoObservable(this)
 	}
 
 	setPage = (page: number) => {
 		this.currentPage = page;
+	};
+
+	setFilterStatus = (value: string) => {
+		this.filterStatus = value;
+	};
+
+	setFilterJobType = (value: string) => {
+		this.filterJobType = value;
+	};
+
+	setFilterSearch = (value: string) => {
+		this.filterSearch = value;
+	};
+
+	clearFilters = () => {
+		this.filterStatus = '';
+		this.filterJobType = '';
+		this.filterSearch = '';
 	};
 
 	loadToolVersions = async () => {
@@ -128,7 +151,11 @@ export default class JobStore {
 
 	getAllJobs = async (): Promise<JobForList[] | null> => {
 		try {
-			const response = await agent.Jobs.getAllJobs(this.currentPage, this.pageSize);
+			const filters: { status?: string; jobType?: string; search?: string } = {};
+			if (this.filterStatus) filters.status = this.filterStatus;
+			if (this.filterJobType) filters.jobType = this.filterJobType;
+			if (this.filterSearch) filters.search = this.filterSearch;
+			const response = await agent.Jobs.getAllJobs(this.currentPage, this.pageSize, filters);
 			runInAction(() => {
 				this.jobsRan = response.data;
 				this.pagination = response.pagination;

@@ -2,8 +2,6 @@
 @prefix dc1: <http://purl.org/dc/terms/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix lova: <https://lovamap.com/ontology#> .
-@prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix qudt: <http://qudt.org/schema/qudt/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -13,7 +11,9 @@
 <https://lovamap.com/ontology#comparison/10.1021-acs.biomac.5b00519/adh-vs-cdh-degradation> a lova:ComparisonResult ;
     rdfs:label "PEG-ADH gels degrade faster than PEG-CDH gels in DMEM" ;
     dc1:source <https://lovamap.com/ontology#paper/10.1021-acs.biomac.5b00519> ;
-    lova:direction "higher degradation rate" ;
+    lova:direction "higher" ;
+    lova:materialA <https://lovamap.com/ontology#material/10.1021-acs.biomac.5b00519/peg-adh-gel> ;
+    lova:materialB <https://lovamap.com/ontology#material/10.1021-acs.biomac.5b00519/peg-cdh-gel> ;
     lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-acs.biomac.5b00519/degrad-adh-noFBS> ;
     lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-acs.biomac.5b00519/stability-cdh-all-conditions> .
 
@@ -33,6 +33,8 @@
     rdfs:label "5.0% PEG gel (1 CDH:0 AO) has higher storage modulus than 3.5% PEG gel" ;
     dc1:source <https://lovamap.com/ontology#paper/10.1021-acs.biomac.5b00519> ;
     lova:direction "higher" ;
+    lova:materialA <https://lovamap.com/ontology#material/10.1021-acs.biomac.5b00519/mixed-100-0> ;
+    lova:materialB <https://lovamap.com/ontology#material/10.1021-acs.biomac.5b00519/mixed-100-0> ;
     lova:outcomeA <https://lovamap.com/ontology#outcome/10.1021-acs.biomac.5b00519/modulus-1cdh0ao-50> ;
     lova:outcomeB <https://lovamap.com/ontology#outcome/10.1021-acs.biomac.5b00519/modulus-1cdh0ao-35> .
 
@@ -40,7 +42,8 @@
     rdfs:label "DAPI/Phalloidin staining for mMSC/HDF spreading in imine hydrogels" ;
     dc1:source <https://lovamap.com/ontology#paper/10.1021-acs.biomac.5b00519> ;
     lova:assayOrMethod "DAPI/Alexa Fluor 488-phalloidin staining" ;
-    lova:cellType "mMSC, HDF" ;
+    lova:cellType "HDF",
+        "mMSC" ;
     lova:cultureDuration "Day 2, Day 5" ;
     lova:experimentCategory "Biological" ;
     lova:experimentType "Cell morphology/spreading" ;
@@ -79,6 +82,7 @@
 <https://lovamap.com/ontology#outcome/10.1021-acs.biomac.5b00519/degrad-adh-withFBS> a lova:Outcome ;
     rdfs:label "PEG-ADH gel degradation time in DMEM (+) FBS" ;
     dc1:source <https://lovamap.com/ontology#paper/10.1021-acs.biomac.5b00519> ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1021-acs.biomac.5b00519/peg-adh-gel> ;
     lova:comparisonGroup "PEG-CDH gel" ;
     lova:dataSource "[TEXT]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.biomac.5b00519/swelling-degradation> ;
@@ -148,6 +152,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1021-acs.biomac.5b00519> ;
     qudt:numericValue 2150.0 ;
     qudt:unit "Pa" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1021-acs.biomac.5b00519/mixed-0-100> ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.biomac.5b00519/rheology> ;
     lova:measurementCategory "Rheological" ;
@@ -159,6 +164,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1021-acs.biomac.5b00519> ;
     qudt:numericValue 2900.0 ;
     qudt:unit "Pa" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1021-acs.biomac.5b00519/mixed-0-100> ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.biomac.5b00519/rheology> ;
     lova:measurementCategory "Rheological" ;
@@ -170,6 +176,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1021-acs.biomac.5b00519> ;
     qudt:numericValue 1800.0 ;
     qudt:unit "Pa" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1021-acs.biomac.5b00519/mixed-75-25> ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.biomac.5b00519/rheology> ;
     lova:measurementCategory "Rheological" ;
@@ -181,6 +188,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1021-acs.biomac.5b00519> ;
     qudt:numericValue 2300.0 ;
     qudt:unit "Pa" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1021-acs.biomac.5b00519/mixed-75-25> ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.biomac.5b00519/rheology> ;
     lova:measurementCategory "Rheological" ;
@@ -200,6 +208,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1021-acs.biomac.5b00519> ;
     qudt:numericValue 96.0 ;
     qudt:unit "%" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1021-acs.biomac.5b00519/mixed-0-100> ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.biomac.5b00519/cell-viability> ;
     lova:measurementCategory "Biological" ;
@@ -211,6 +220,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1021-acs.biomac.5b00519> ;
     qudt:numericValue 94.0 ;
     qudt:unit "%" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1021-acs.biomac.5b00519/mixed-0-100> ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.biomac.5b00519/cell-viability> ;
     lova:measurementCategory "Biological" ;
@@ -222,6 +232,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1021-acs.biomac.5b00519> ;
     qudt:numericValue 99.0 ;
     qudt:unit "%" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1021-acs.biomac.5b00519/mixed-100-0> ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.biomac.5b00519/cell-viability> ;
     lova:measurementCategory "Biological" ;
@@ -234,6 +245,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1021-acs.biomac.5b00519> ;
     qudt:numericValue 95.0 ;
     qudt:unit "%" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1021-acs.biomac.5b00519/mixed-25-75> ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.biomac.5b00519/cell-viability> ;
     lova:measurementCategory "Biological" ;
@@ -245,6 +257,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1021-acs.biomac.5b00519> ;
     qudt:numericValue 95.0 ;
     qudt:unit "%" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1021-acs.biomac.5b00519/mixed-25-75> ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.biomac.5b00519/cell-viability> ;
     lova:measurementCategory "Biological" ;
@@ -256,6 +269,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1021-acs.biomac.5b00519> ;
     qudt:numericValue 95.0 ;
     qudt:unit "%" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1021-acs.biomac.5b00519/mixed-50-50> ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.biomac.5b00519/cell-viability> ;
     lova:measurementCategory "Biological" ;
@@ -267,6 +281,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1021-acs.biomac.5b00519> ;
     qudt:numericValue 94.0 ;
     qudt:unit "%" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1021-acs.biomac.5b00519/mixed-50-50> ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.biomac.5b00519/cell-viability> ;
     lova:measurementCategory "Biological" ;
@@ -278,6 +293,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1021-acs.biomac.5b00519> ;
     qudt:numericValue 95.0 ;
     qudt:unit "%" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1021-acs.biomac.5b00519/mixed-75-25> ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.biomac.5b00519/cell-viability> ;
     lova:measurementCategory "Biological" ;
@@ -289,17 +305,61 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1021-acs.biomac.5b00519> ;
     qudt:numericValue 93.0 ;
     qudt:unit "%" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1021-acs.biomac.5b00519/mixed-75-25> ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.biomac.5b00519/cell-viability> ;
     lova:measurementCategory "Biological" ;
     lova:measurementType "Cell viability" ;
     lova:timePoint "Day 7" .
 
+<https://lovamap.com/ontology#reagent/10.1021-acs.biomac.5b00519/adipohydrazide> a lova:Reagent ;
+    rdfs:label "Adipohydrazide" ;
+    lova:reagentFunction "Precursor for EDC-coupling to form PEG-ADH" ;
+    lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acs.biomac.5b00519/bromo-diethoxyethane> a lova:Reagent ;
+    rdfs:label "2-Bromo-1,1-diethoxyethane" ;
+    lova:reagentFunction "Williamson ether synthesis reagent to form protected PEG-aldehyde (PEG-acetal)" ;
+    lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acs.biomac.5b00519/carbodihydrazide> a lova:Reagent ;
+    rdfs:label "Carbodihydrazide" ;
+    lova:reagentFunction "Precursor for EDC-coupling to form PEG-CDH" ;
+    lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acs.biomac.5b00519/hydrazine> a lova:Reagent ;
+    rdfs:label "Hydrazine" ;
+    lova:reagentFunction "Reacted with phthalimide-protected PEG to yield PEG-AO" ;
+    lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acs.biomac.5b00519/hydroxylamine> a lova:Reagent ;
+    rdfs:label "Hydroxylamine" ;
+    lova:reagentFunction "Nucleophile used to assess reversibility/exchange of hydrazone bonds to oxime bonds" ;
+    lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acs.biomac.5b00519/n-hydroxyphthalimide> a lova:Reagent ;
+    rdfs:label "N-hydroxyphthalimide" ;
+    lova:reagentFunction "Mitsunobu reaction reagent for synthesis of PEG-AO" ;
+    lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#reagent/10.1021-acs.biomac.5b00519/propionaldehyde> a lova:Reagent ;
+    rdfs:label "Propionaldehyde" ;
+    lova:reagentFunction "Model aldehyde compound used to study hydrazone bond formation by NMR" ;
+    lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#experiment/10.1021-acs.biomac.5b00519/cytotoxicity> a lova:Experiment ;
+    rdfs:label "Cytotoxicity of individual PEG components" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1021-acs.biomac.5b00519> ;
+    lova:cellType "mMSC" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cytotoxicity" .
+
 <https://lovamap.com/ontology#fabrication-method/10.1021-acs.biomac.5b00519/hydrazone-adh> a lova:FabricationMethod ;
     rdfs:label "Hydrazone hydrogel formation via PEG-ADH + PEG-CHO mixing" ;
     dc1:source <https://lovamap.com/ontology#paper/10.1021-acs.biomac.5b00519> ;
-    lova:annealingChemistry "Reversible hydrazone cross-linking (spontaneous reaction)" ;
+    lova:annealingChemistry "Hydrazone" ;
     lova:annealingConditions "pH 5.5 phosphate buffer, room temperature, gelation within 60 seconds" ;
+    lova:annealingDetail "Reversible hydrazone cross-linking (spontaneous reaction)" ;
     lova:chemistry "Hydrazone (imine) bond formation" ;
     lova:hasReagent <https://lovamap.com/ontology#reagent/10.1021-acs.biomac.5b00519/peg-adh>,
         <https://lovamap.com/ontology#reagent/10.1021-acs.biomac.5b00519/peg-cho> ;
@@ -308,8 +368,9 @@
 <https://lovamap.com/ontology#fabrication-method/10.1021-acs.biomac.5b00519/hydrazone-cdh> a lova:FabricationMethod ;
     rdfs:label "Hydrazone hydrogel formation via PEG-CDH + PEG-CHO mixing" ;
     dc1:source <https://lovamap.com/ontology#paper/10.1021-acs.biomac.5b00519> ;
-    lova:annealingChemistry "Reversible hydrazone cross-linking (spontaneous reaction)" ;
+    lova:annealingChemistry "Hydrazone" ;
     lova:annealingConditions "pH 5.5 phosphate buffer, room temperature, gelation within 60 seconds" ;
+    lova:annealingDetail "Reversible hydrazone cross-linking (spontaneous reaction)" ;
     lova:chemistry "Hydrazone (imine) bond formation" ;
     lova:hasReagent <https://lovamap.com/ontology#reagent/10.1021-acs.biomac.5b00519/peg-cdh>,
         <https://lovamap.com/ontology#reagent/10.1021-acs.biomac.5b00519/peg-cho> ;
@@ -319,25 +380,10 @@
     dc1:title "Biomacromolecules" ;
     bibo:issn "1525-7797" .
 
-<https://lovamap.com/ontology#material/10.1021-acs.biomac.5b00519/mixed-25-75> a lova:Material ;
-    rdfs:label "25:75 hydrazone:oxime PEG-CDH/PEG-AO/PEG-CHO gel" ;
-    dc1:source <https://lovamap.com/ontology#paper/10.1021-acs.biomac.5b00519> ;
-    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-acs.biomac.5b00519/mixed-hydrazone-oxime> ;
-    lova:packingConfiguration "Bulk hydrogel (non-particulate)" ;
-    lova:particleMaterial "PEG-CDH + PEG-AO + PEG-CHO" .
-
-<https://lovamap.com/ontology#material/10.1021-acs.biomac.5b00519/peg-cdh-gel> a lova:Material ;
-    rdfs:label "PEG-CDH/PEG-CHO hydrazone hydrogel (3.5-5.0 wt.%)" ;
-    dc1:source <https://lovamap.com/ontology#paper/10.1021-acs.biomac.5b00519> ;
-    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-acs.biomac.5b00519/hydrazone-cdh> ;
-    lova:packingConfiguration "Bulk hydrogel (non-particulate)" ;
-    lova:particleMaterial "8-arm PEG-carbodihydrazide (PEG-CDH) + 8-arm PEG-aldehyde (PEG-CHO)" ;
-    lova:scaffoldDimensions "40 μL, approximately 1 cm diameter × 1 mm height" ;
-    lova:stiffnessQualitative "Soft hydrogel" .
-
 <https://lovamap.com/ontology#outcome/10.1021-acs.biomac.5b00519/degrad-adh-noFBS> a lova:Outcome ;
     rdfs:label "PEG-ADH gel degradation time in DMEM (-) FBS" ;
     dc1:source <https://lovamap.com/ontology#paper/10.1021-acs.biomac.5b00519> ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1021-acs.biomac.5b00519/peg-adh-gel> ;
     lova:comparisonGroup "PEG-CDH gel" ;
     lova:dataSource "[TEXT]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.biomac.5b00519/swelling-degradation> ;
@@ -351,6 +397,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1021-acs.biomac.5b00519> ;
     qudt:numericValue 1500.0 ;
     qudt:unit "Pa" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1021-acs.biomac.5b00519/mixed-100-0> ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.biomac.5b00519/rheology> ;
     lova:measurementCategory "Rheological" ;
@@ -362,6 +409,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1021-acs.biomac.5b00519> ;
     qudt:numericValue 3400.0 ;
     qudt:unit "Pa" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1021-acs.biomac.5b00519/mixed-100-0> ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.biomac.5b00519/rheology> ;
     lova:measurementCategory "Rheological" ;
@@ -393,6 +441,7 @@
 <https://lovamap.com/ontology#outcome/10.1021-acs.biomac.5b00519/stability-cdh-all-conditions> a lova:Outcome ;
     rdfs:label "PEG-CDH gel mass stability across conditions" ;
     dc1:source <https://lovamap.com/ontology#paper/10.1021-acs.biomac.5b00519> ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1021-acs.biomac.5b00519/peg-cdh-gel> ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1021-acs.biomac.5b00519/swelling-degradation> ;
     lova:measurementCategory "Physical" ;
@@ -418,120 +467,43 @@
     lova:reagentFunction "Aminooxy component forming non-reversible oxime crosslinks, stabilizing hydrazone gels" ;
     lova:reagentRole "monomer" .
 
+<https://lovamap.com/ontology#author/bat-erhan> a foaf:Person ;
+    foaf:familyName "Bat" ;
+    foaf:givenName "Erhan" ;
+    foaf:name "Erhan Bat" .
+
+<https://lovamap.com/ontology#author/boehnke-natalie> a foaf:Person ;
+    foaf:familyName "Boehnke" ;
+    foaf:givenName "Natalie" ;
+    foaf:name "Natalie Boehnke" .
+
 <https://lovamap.com/ontology#author/cam-cynthia> a foaf:Person ;
     foaf:familyName "Cam" ;
     foaf:givenName "Cynthia" ;
     foaf:name "Cynthia Cam" .
+
+<https://lovamap.com/ontology#author/maynard-heather> a foaf:Person ;
+    foaf:familyName "Maynard" ;
+    foaf:givenName "Heather D." ;
+    foaf:name "Heather D. Maynard" .
 
 <https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
     foaf:familyName "Segura" ;
     foaf:givenName "Tatiana" ;
     foaf:name "Tatiana Segura" .
 
-<https://lovamap.com/ontology#experiment/10.1021-acs.biomac.5b00519/cytotoxicity> a lova:Experiment ;
-    rdfs:label "Cytotoxicity of individual PEG components" ;
+<https://lovamap.com/ontology#experiment/10.1021-acs.biomac.5b00519/nmr-exchange> a lova:Experiment ;
+    rdfs:label "NMR study of hydrazone-to-oxime exchange with hydroxylamine" ;
     dc1:source <https://lovamap.com/ontology#paper/10.1021-acs.biomac.5b00519> ;
-    lova:cellType "mMSC" ;
-    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000134> ;
-    lova:experimentCategory "Biological" ;
-    lova:experimentType "Cytotoxicity" .
-
-<https://lovamap.com/ontology#material/10.1021-acs.biomac.5b00519/mixed-50-50> a lova:Material ;
-    rdfs:label "50:50 hydrazone:oxime PEG-CDH/PEG-AO/PEG-CHO gel" ;
-    dc1:source <https://lovamap.com/ontology#paper/10.1021-acs.biomac.5b00519> ;
-    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-acs.biomac.5b00519/mixed-hydrazone-oxime> ;
-    lova:packingConfiguration "Bulk hydrogel (non-particulate)" ;
-    lova:particleMaterial "PEG-CDH + PEG-AO + PEG-CHO" .
-
-<https://lovamap.com/ontology#material/10.1021-acs.biomac.5b00519/peg-adh-gel> a lova:Material ;
-    rdfs:label "PEG-ADH/PEG-CHO hydrazone hydrogel (3.5-5.0 wt.%)" ;
-    dc1:source <https://lovamap.com/ontology#paper/10.1021-acs.biomac.5b00519> ;
-    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-acs.biomac.5b00519/hydrazone-adh> ;
-    lova:packingConfiguration "Bulk hydrogel (non-particulate)" ;
-    lova:particleMaterial "8-arm PEG-adipohydrazide (PEG-ADH) + 8-arm PEG-aldehyde (PEG-CHO)" ;
-    lova:scaffoldDimensions "40 μL, approximately 1 cm diameter × 1 mm height" ;
-    lova:stiffnessQualitative "Soft hydrogel" .
-
-<https://lovamap.com/ontology#reagent/10.1021-acs.biomac.5b00519/adipohydrazide> a lova:Reagent ;
-    rdfs:label "Adipohydrazide" ;
-    owl:sameAs <https://pubchem.ncbi.nlm.nih.gov/compound/66117> ;
-    lova:inchiKey "IBVAQQYNSHJXBV-UHFFFAOYSA-N" ;
-    lova:reagentFunction "Precursor for EDC-coupling to form PEG-ADH" ;
-    lova:reagentRole "other" .
-
-<https://lovamap.com/ontology#reagent/10.1021-acs.biomac.5b00519/bromo-diethoxyethane> a lova:Reagent ;
-    rdfs:label "2-Bromo-1,1-diethoxyethane" ;
-    owl:sameAs <https://pubchem.ncbi.nlm.nih.gov/compound/74852> ;
-    lova:inchiKey "LILXDMFJXYAKMK-UHFFFAOYSA-N" ;
-    lova:reagentFunction "Williamson ether synthesis reagent to form protected PEG-aldehyde (PEG-acetal)" ;
-    lova:reagentRole "other" .
-
-<https://lovamap.com/ontology#reagent/10.1021-acs.biomac.5b00519/carbodihydrazide> a lova:Reagent ;
-    rdfs:label "Carbodihydrazide" ;
-    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_61308> ;
-    lova:inchiKey "XEVRDFDBXJMZFG-UHFFFAOYSA-N" ;
-    lova:reagentFunction "Precursor for EDC-coupling to form PEG-CDH" ;
-    lova:reagentRole "other" .
-
-<https://lovamap.com/ontology#reagent/10.1021-acs.biomac.5b00519/hydrazine> a lova:Reagent ;
-    rdfs:label "Hydrazine" ;
-    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_15571> ;
-    lova:inchiKey "OAKJQQAXSVQMHS-UHFFFAOYSA-N" ;
-    lova:reagentFunction "Reacted with phthalimide-protected PEG to yield PEG-AO" ;
-    lova:reagentRole "other" .
-
-<https://lovamap.com/ontology#reagent/10.1021-acs.biomac.5b00519/hydroxylamine> a lova:Reagent ;
-    rdfs:label "Hydroxylamine" ;
-    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_15429> ;
-    lova:inchiKey "AVXURJPOCDRRFD-UHFFFAOYSA-N" ;
-    lova:reagentFunction "Nucleophile used to assess reversibility/exchange of hydrazone bonds to oxime bonds" ;
-    lova:reagentRole "other" .
-
-<https://lovamap.com/ontology#reagent/10.1021-acs.biomac.5b00519/n-hydroxyphthalimide> a lova:Reagent ;
-    rdfs:label "N-hydroxyphthalimide" ;
-    owl:sameAs <https://pubchem.ncbi.nlm.nih.gov/compound/10665> ;
-    lova:inchiKey "CFMZSMGAMPBRBE-UHFFFAOYSA-N" ;
-    lova:reagentFunction "Mitsunobu reaction reagent for synthesis of PEG-AO" ;
-    lova:reagentRole "other" .
+    lova:assayOrMethod "1H NMR" ;
+    lova:experimentCategory "Chemical" ;
+    lova:experimentType "NMR spectroscopy" .
 
 <https://lovamap.com/ontology#reagent/10.1021-acs.biomac.5b00519/peg-cdh> a lova:Reagent ;
     rdfs:label "8-arm PEG-carbodihydrazide (PEG-CDH)" ;
     lova:molecularWeight "20,000 Da" ;
     lova:reagentFunction "Hydrazide component for hydrazone crosslinking; forms more stable hydrogels than PEG-ADH" ;
     lova:reagentRole "monomer" .
-
-<https://lovamap.com/ontology#reagent/10.1021-acs.biomac.5b00519/propionaldehyde> a lova:Reagent ;
-    rdfs:label "Propionaldehyde" ;
-    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_17153> ;
-    lova:inchiKey "NBBJYMSMWIIQGU-UHFFFAOYSA-N" ;
-    lova:reagentFunction "Model aldehyde compound used to study hydrazone bond formation by NMR" ;
-    lova:reagentRole "other" .
-
-<https://lovamap.com/ontology#author/bat-erhan> a foaf:Person ;
-    owl:sameAs <https://orcid.org/0000-0002-9790-1555> ;
-    foaf:familyName "Bat" ;
-    foaf:givenName "Erhan" ;
-    foaf:name "Erhan Bat" .
-
-<https://lovamap.com/ontology#author/boehnke-natalie> a foaf:Person ;
-    owl:sameAs <https://orcid.org/0000-0002-3468-2033> ;
-    foaf:familyName "Boehnke" ;
-    foaf:givenName "Natalie" ;
-    foaf:name "Natalie Boehnke" .
-
-<https://lovamap.com/ontology#author/maynard-heather> a foaf:Person ;
-    owl:sameAs <https://orcid.org/0000-0003-3692-6289> ;
-    foaf:familyName "Maynard" ;
-    foaf:givenName "Heather D." ;
-    foaf:name "Heather D. Maynard" .
-
-<https://lovamap.com/ontology#experiment/10.1021-acs.biomac.5b00519/nmr-exchange> a lova:Experiment ;
-    rdfs:label "NMR study of hydrazone-to-oxime exchange with hydroxylamine" ;
-    dc1:source <https://lovamap.com/ontology#paper/10.1021-acs.biomac.5b00519> ;
-    lova:assayOrMethod "1H NMR" ;
-    lova:assayURI <http://purl.obolibrary.org/obo/OBI_0000623> ;
-    lova:experimentCategory "Chemical" ;
-    lova:experimentType "NMR spectroscopy" .
 
 <https://lovamap.com/ontology#experiment/10.1021-acs.biomac.5b00519/swelling-degradation> a lova:Experiment ;
     rdfs:label "Swelling and degradation study of PEG-ADH and PEG-CDH hydrogels" ;
@@ -544,27 +516,23 @@
     lova:usedMaterial <https://lovamap.com/ontology#material/10.1021-acs.biomac.5b00519/peg-adh-gel>,
         <https://lovamap.com/ontology#material/10.1021-acs.biomac.5b00519/peg-cdh-gel> .
 
-<https://lovamap.com/ontology#material/10.1021-acs.biomac.5b00519/mixed-0-100> a lova:Material ;
-    rdfs:label "0:100 hydrazone:oxime PEG-AO/PEG-CHO gel" ;
+<https://lovamap.com/ontology#material/10.1021-acs.biomac.5b00519/mixed-25-75> a lova:Material ;
+    rdfs:label "25:75 hydrazone:oxime PEG-CDH/PEG-AO/PEG-CHO gel" ;
     dc1:source <https://lovamap.com/ontology#paper/10.1021-acs.biomac.5b00519> ;
     lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-acs.biomac.5b00519/mixed-hydrazone-oxime> ;
-    lova:packingConfiguration "Bulk hydrogel (non-particulate)" ;
-    lova:particleMaterial "PEG-AO + PEG-CHO" .
-
-<https://lovamap.com/ontology#material/10.1021-acs.biomac.5b00519/mixed-100-0> a lova:Material ;
-    rdfs:label "100:0 hydrazone:oxime PEG-CDH/PEG-CHO gel" ;
-    dc1:source <https://lovamap.com/ontology#paper/10.1021-acs.biomac.5b00519> ;
-    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-acs.biomac.5b00519/mixed-hydrazone-oxime> ;
-    lova:packingConfiguration "Bulk hydrogel (non-particulate)" ;
-    lova:particleMaterial "PEG-CDH + PEG-CHO" ;
-    lova:reportedPorosity 0.0 .
-
-<https://lovamap.com/ontology#material/10.1021-acs.biomac.5b00519/mixed-75-25> a lova:Material ;
-    rdfs:label "75:25 hydrazone:oxime PEG-CDH/PEG-AO/PEG-CHO gel" ;
-    dc1:source <https://lovamap.com/ontology#paper/10.1021-acs.biomac.5b00519> ;
-    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-acs.biomac.5b00519/mixed-hydrazone-oxime> ;
-    lova:packingConfiguration "Bulk hydrogel (non-particulate)" ;
+    lova:packingConfiguration "Non-porous" ;
+    lova:packingDetail "Bulk hydrogel (non-particulate)" ;
     lova:particleMaterial "PEG-CDH + PEG-AO + PEG-CHO" .
+
+<https://lovamap.com/ontology#material/10.1021-acs.biomac.5b00519/peg-cdh-gel> a lova:Material ;
+    rdfs:label "PEG-CDH/PEG-CHO hydrazone hydrogel (3.5-5.0 wt.%)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1021-acs.biomac.5b00519> ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-acs.biomac.5b00519/hydrazone-cdh> ;
+    lova:packingConfiguration "Non-porous" ;
+    lova:packingDetail "Bulk hydrogel (non-particulate)" ;
+    lova:particleMaterial "8-arm PEG-carbodihydrazide (PEG-CDH) + 8-arm PEG-aldehyde (PEG-CHO)" ;
+    lova:scaffoldDimensions "40 μL, approximately 1 cm diameter × 1 mm height" ;
+    lova:stiffnessQualitative "Soft hydrogel" .
 
 <https://lovamap.com/ontology#reagent/10.1021-acs.biomac.5b00519/peg-cho> a lova:Reagent ;
     rdfs:label "8-arm PEG-aldehyde (PEG-CHO)" ;
@@ -572,17 +540,36 @@
     lova:reagentFunction "Aldehyde component reacting with hydrazides/aminooxy groups to form hydrazone/oxime cross-links" ;
     lova:reagentRole "crosslinker" .
 
+<https://lovamap.com/ontology#material/10.1021-acs.biomac.5b00519/mixed-50-50> a lova:Material ;
+    rdfs:label "50:50 hydrazone:oxime PEG-CDH/PEG-AO/PEG-CHO gel" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1021-acs.biomac.5b00519> ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-acs.biomac.5b00519/mixed-hydrazone-oxime> ;
+    lova:packingConfiguration "Non-porous" ;
+    lova:packingDetail "Bulk hydrogel (non-particulate)" ;
+    lova:particleMaterial "PEG-CDH + PEG-AO + PEG-CHO" .
+
 <https://lovamap.com/ontology#fabrication-method/10.1021-acs.biomac.5b00519/mixed-hydrazone-oxime> a lova:FabricationMethod ;
     rdfs:label "Mixed hydrazone/oxime hydrogel formation via PEG-CDH, PEG-AO, PEG-CHO" ;
     dc1:source <https://lovamap.com/ontology#paper/10.1021-acs.biomac.5b00519> ;
-    lova:annealingChemistry "Oxime bonds stabilize reversible hydrazone cross-links (non-reversible oxime formation)" ;
+    lova:annealingChemistry "Hydrazone" ;
     lova:annealingConditions "pH 5.5 phosphate buffer, 37°C incubation (cell gels), gelation ~60 seconds to 15 minutes" ;
+    lova:annealingDetail "Oxime bonds stabilize reversible hydrazone cross-links (non-reversible oxime formation)" ;
     lova:chemistry "Combined hydrazone and oxime (imine) bond formation" ;
     lova:hasReagent <https://lovamap.com/ontology#reagent/10.1021-acs.biomac.5b00519/ao-rgd>,
         <https://lovamap.com/ontology#reagent/10.1021-acs.biomac.5b00519/peg-ao>,
         <https://lovamap.com/ontology#reagent/10.1021-acs.biomac.5b00519/peg-cdh>,
         <https://lovamap.com/ontology#reagent/10.1021-acs.biomac.5b00519/peg-cho> ;
     lova:manufacturingMethod "Mixing PEG-CDH/PEG-AO solution with PEG-CHO solution in pH 5.5 phosphate buffer at defined ratios, sandwiched between hydrophobic glass slides with 1 mm spacers" .
+
+<https://lovamap.com/ontology#material/10.1021-acs.biomac.5b00519/peg-adh-gel> a lova:Material ;
+    rdfs:label "PEG-ADH/PEG-CHO hydrazone hydrogel (3.5-5.0 wt.%)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1021-acs.biomac.5b00519> ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-acs.biomac.5b00519/hydrazone-adh> ;
+    lova:packingConfiguration "Non-porous" ;
+    lova:packingDetail "Bulk hydrogel (non-particulate)" ;
+    lova:particleMaterial "8-arm PEG-adipohydrazide (PEG-ADH) + 8-arm PEG-aldehyde (PEG-CHO)" ;
+    lova:scaffoldDimensions "40 μL, approximately 1 cm diameter × 1 mm height" ;
+    lova:stiffnessQualitative "Soft hydrogel" .
 
 <https://lovamap.com/ontology#experiment/10.1021-acs.biomac.5b00519/rheology> a lova:Experiment ;
     rdfs:label "Rheological characterization of hydrazone/oxime PEG hydrogels" ;
@@ -599,13 +586,37 @@
         <https://lovamap.com/ontology#material/10.1021-acs.biomac.5b00519/mixed-100-0>,
         <https://lovamap.com/ontology#material/10.1021-acs.biomac.5b00519/mixed-75-25> .
 
+<https://lovamap.com/ontology#material/10.1021-acs.biomac.5b00519/mixed-0-100> a lova:Material ;
+    rdfs:label "0:100 hydrazone:oxime PEG-AO/PEG-CHO gel" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1021-acs.biomac.5b00519> ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-acs.biomac.5b00519/mixed-hydrazone-oxime> ;
+    lova:packingConfiguration "Non-porous" ;
+    lova:packingDetail "Bulk hydrogel (non-particulate)" ;
+    lova:particleMaterial "PEG-AO + PEG-CHO" .
+
+<https://lovamap.com/ontology#material/10.1021-acs.biomac.5b00519/mixed-75-25> a lova:Material ;
+    rdfs:label "75:25 hydrazone:oxime PEG-CDH/PEG-AO/PEG-CHO gel" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1021-acs.biomac.5b00519> ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-acs.biomac.5b00519/mixed-hydrazone-oxime> ;
+    lova:packingConfiguration "Non-porous" ;
+    lova:packingDetail "Bulk hydrogel (non-particulate)" ;
+    lova:particleMaterial "PEG-CDH + PEG-AO + PEG-CHO" .
+
+<https://lovamap.com/ontology#material/10.1021-acs.biomac.5b00519/mixed-100-0> a lova:Material ;
+    rdfs:label "100:0 hydrazone:oxime PEG-CDH/PEG-CHO gel" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1021-acs.biomac.5b00519> ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1021-acs.biomac.5b00519/mixed-hydrazone-oxime> ;
+    lova:packingConfiguration "Non-porous" ;
+    lova:packingDetail "Bulk hydrogel (non-particulate)" ;
+    lova:particleMaterial "PEG-CDH + PEG-CHO" ;
+    lova:reportedPorosity 0.0 .
+
 <https://lovamap.com/ontology#experiment/10.1021-acs.biomac.5b00519/cell-viability> a lova:Experiment ;
     rdfs:label "Live/Dead viability of mMSCs encapsulated in imine hydrogels" ;
     dc1:source <https://lovamap.com/ontology#paper/10.1021-acs.biomac.5b00519> ;
     lova:assayOrMethod "LIVE/DEAD viability/cytotoxicity kit (calcein AM / ethidium homodimer-1)" ;
     lova:cellSource "mouse mesenchymal stem cells" ;
     lova:cellType "mMSC" ;
-    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000134> ;
     lova:cultureDuration "1, 7 days" ;
     lova:cultureMedium "complete DMEM (+FBS)" ;
     lova:experimentCategory "Biological" ;
@@ -616,9 +627,6 @@
         <https://lovamap.com/ontology#material/10.1021-acs.biomac.5b00519/mixed-25-75>,
         <https://lovamap.com/ontology#material/10.1021-acs.biomac.5b00519/mixed-50-50>,
         <https://lovamap.com/ontology#material/10.1021-acs.biomac.5b00519/mixed-75-25> .
-
-<https://lovamap.com/ontology#agent/rdf_enrichment> a prov:SoftwareAgent ;
-    rdfs:label "rdf_enrichment pipeline" .
 
 <https://lovamap.com/ontology#paper/10.1021-acs.biomac.5b00519> a bibo:AcademicArticle ;
     rdfs:label "Boehnke et al., 2015 — Imine Hydrogels with Tunable Degradability for Tissue Engineering" ;
@@ -635,124 +643,4 @@
     bibo:authorList ( <https://lovamap.com/ontology#author/boehnke-natalie> <https://lovamap.com/ontology#author/cam-cynthia> <https://lovamap.com/ontology#author/bat-erhan> <https://lovamap.com/ontology#author/segura-tatiana> <https://lovamap.com/ontology#author/maynard-heather> ) ;
     lova:focusMaterial "PEG-based imine (hydrazone/oxime) hydrogels with tunable degradability for mMSC encapsulation" ;
     schema:isPartOf <https://lovamap.com/ontology#journal/biomacromolecules> .
-
-[] a rdf:Statement ;
-    rdf:object <https://orcid.org/0000-0003-3692-6289> ;
-    rdf:predicate owl:sameAs ;
-    rdf:subject <https://lovamap.com/ontology#author/maynard-heather> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <https://pubchem.ncbi.nlm.nih.gov/compound/10665> ;
-    rdf:predicate owl:sameAs ;
-    rdf:subject <https://lovamap.com/ontology#reagent/10.1021-acs.biomac.5b00519/n-hydroxyphthalimide> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <http://purl.obolibrary.org/obo/CHEBI_61308> ;
-    rdf:predicate owl:sameAs ;
-    rdf:subject <https://lovamap.com/ontology#reagent/10.1021-acs.biomac.5b00519/carbodihydrazide> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object "LILXDMFJXYAKMK-UHFFFAOYSA-N" ;
-    rdf:predicate lova:inchiKey ;
-    rdf:subject <https://lovamap.com/ontology#reagent/10.1021-acs.biomac.5b00519/bromo-diethoxyethane> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <http://purl.obolibrary.org/obo/CHEBI_15571> ;
-    rdf:predicate owl:sameAs ;
-    rdf:subject <https://lovamap.com/ontology#reagent/10.1021-acs.biomac.5b00519/hydrazine> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <http://purl.obolibrary.org/obo/CHEBI_15429> ;
-    rdf:predicate owl:sameAs ;
-    rdf:subject <https://lovamap.com/ontology#reagent/10.1021-acs.biomac.5b00519/hydroxylamine> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <http://purl.obolibrary.org/obo/CL_0000134> ;
-    rdf:predicate lova:cellTypeURI ;
-    rdf:subject <https://lovamap.com/ontology#experiment/10.1021-acs.biomac.5b00519/cell-viability> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <https://orcid.org/0000-0002-9790-1555> ;
-    rdf:predicate owl:sameAs ;
-    rdf:subject <https://lovamap.com/ontology#author/bat-erhan> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <http://purl.obolibrary.org/obo/CL_0000134> ;
-    rdf:predicate lova:cellTypeURI ;
-    rdf:subject <https://lovamap.com/ontology#experiment/10.1021-acs.biomac.5b00519/cytotoxicity> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object "XEVRDFDBXJMZFG-UHFFFAOYSA-N" ;
-    rdf:predicate lova:inchiKey ;
-    rdf:subject <https://lovamap.com/ontology#reagent/10.1021-acs.biomac.5b00519/carbodihydrazide> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object "IBVAQQYNSHJXBV-UHFFFAOYSA-N" ;
-    rdf:predicate lova:inchiKey ;
-    rdf:subject <https://lovamap.com/ontology#reagent/10.1021-acs.biomac.5b00519/adipohydrazide> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <http://purl.obolibrary.org/obo/OBI_0000623> ;
-    rdf:predicate lova:assayURI ;
-    rdf:subject <https://lovamap.com/ontology#experiment/10.1021-acs.biomac.5b00519/nmr-exchange> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object "NBBJYMSMWIIQGU-UHFFFAOYSA-N" ;
-    rdf:predicate lova:inchiKey ;
-    rdf:subject <https://lovamap.com/ontology#reagent/10.1021-acs.biomac.5b00519/propionaldehyde> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <https://pubchem.ncbi.nlm.nih.gov/compound/74852> ;
-    rdf:predicate owl:sameAs ;
-    rdf:subject <https://lovamap.com/ontology#reagent/10.1021-acs.biomac.5b00519/bromo-diethoxyethane> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object "CFMZSMGAMPBRBE-UHFFFAOYSA-N" ;
-    rdf:predicate lova:inchiKey ;
-    rdf:subject <https://lovamap.com/ontology#reagent/10.1021-acs.biomac.5b00519/n-hydroxyphthalimide> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object "OAKJQQAXSVQMHS-UHFFFAOYSA-N" ;
-    rdf:predicate lova:inchiKey ;
-    rdf:subject <https://lovamap.com/ontology#reagent/10.1021-acs.biomac.5b00519/hydrazine> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <http://purl.obolibrary.org/obo/CHEBI_17153> ;
-    rdf:predicate owl:sameAs ;
-    rdf:subject <https://lovamap.com/ontology#reagent/10.1021-acs.biomac.5b00519/propionaldehyde> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object "AVXURJPOCDRRFD-UHFFFAOYSA-N" ;
-    rdf:predicate lova:inchiKey ;
-    rdf:subject <https://lovamap.com/ontology#reagent/10.1021-acs.biomac.5b00519/hydroxylamine> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <https://pubchem.ncbi.nlm.nih.gov/compound/66117> ;
-    rdf:predicate owl:sameAs ;
-    rdf:subject <https://lovamap.com/ontology#reagent/10.1021-acs.biomac.5b00519/adipohydrazide> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <https://orcid.org/0000-0002-3468-2033> ;
-    rdf:predicate owl:sameAs ;
-    rdf:subject <https://lovamap.com/ontology#author/boehnke-natalie> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
 

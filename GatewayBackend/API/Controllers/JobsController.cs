@@ -327,11 +327,11 @@ public class JobsController : ControllerBase
 	// 4/13 JacklynX changed - get all jobs for admin to select specific job in dataset descriptor rules
 	[Authorize(Roles = "administrator")]
 	[HttpGet("all")]
-	public async Task<IActionResult> GetAllJobs([FromQuery] PagingParams pagingParams)
+	public async Task<IActionResult> GetAllJobs([FromQuery] JobFilterParams filterParams)
 	{
 		try
 		{
-			var jobs = await _jobService.GetAllJobsAsync(pagingParams);
+			var jobs = await _jobService.GetAllJobsAsync(filterParams);
 			Response.AddPaginationHeader(new Pagination
 			{
 				CurrentPage = jobs.CurrentPage,

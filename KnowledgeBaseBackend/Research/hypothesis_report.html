@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>LOVAMAP Hypothesis Report — Parameter-Driven Design Rules</title>
+<style>
+body { font-family: 'Segoe UI', system-ui, sans-serif; max-width: 1100px; margin: auto; padding: 30px; color: #222; line-height: 1.6; }
+h1 { border-bottom: 3px solid #1a5276; padding-bottom: 10px; color: #1a5276; }
+h2 { margin-top: 40px; border-bottom: 2px solid #2e86c1; padding-bottom: 6px; color: #1a5276; }
+h3 { color: #2e86c1; margin-top: 25px; }
+h4 { color: #555; margin-top: 15px; margin-bottom: 5px; }
+table { border-collapse: collapse; margin: 12px 0; width: 100%; font-size: 13px; }
+th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: left; }
+th { background: #f0f4f8; }
+tr:nth-child(even) { background: #fafafa; }
+.hypothesis-box { background: #eaf2f8; border-left: 4px solid #2e86c1; padding: 15px 20px; margin: 15px 0; border-radius: 0 6px 6px 0; }
+.hypothesis-box h3 { margin-top: 0; color: #1a5276; }
+.evidence { background: #eafaf1; border-left: 4px solid #27ae60; padding: 12px 18px; margin: 10px 0; border-radius: 0 4px 4px 0; }
+.risk { background: #fdf2e9; border-left: 4px solid #e67e22; padding: 12px 18px; margin: 10px 0; border-radius: 0 4px 4px 0; }
+.risk strong { color: #d35400; }
+.citation { font-size: 12px; color: #666; margin: 3px 0; }
+.tag { display: inline-block; background: #d5e8f0; padding: 2px 8px; border-radius: 3px; font-size: 11px; margin: 2px; color: #1a5276; }
+.tag-outcome { background: #d5f5e3; color: #1e8449; }
+.tag-material { background: #f9e79f; color: #7d6608; }
+.summary-stat { display: inline-block; background: #eee; padding: 4px 12px; border-radius: 4px; margin: 3px; font-size: 13px; }
+.wins { color: #27ae60; font-weight: bold; }
+.loses { color: #c0392b; font-weight: bold; }
+.neutral { color: #7f8c8d; }
+hr { border: none; border-top: 1px solid #ddd; margin: 30px 0; }
+.toc { background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0; }
+.toc a { color: #2e86c1; text-decoration: none; }
+.toc a:hover { text-decoration: underline; }
+.toc li { margin: 5px 0; }
+</style>
+</head>
+<body>
+
+<h1>LOVAMAP Hypothesis Report</h1>
+<p><em>Parameter-Driven Design Rules for Granular Biomaterial Engineering</em></p>
+<p>Generated from systematic analysis of 92 papers, 853 comparisons, and 72,266 RDF triples
+in the LOVAMAP knowledge base. This report focuses on findings where specific design
+parameters can be linked to specific outcomes, with full evidence citations.</p>
+
+<div class="toc">
+<strong>Contents</strong>
+<ol>
+<li><a href="#methods">1. Methodology</a></li>
+<li><a href="#h1">2. Particle Size &amp; Biological Outcomes</a></li>
+<li><a href="#h2">3. D-Chirality MMP Crosslinker &amp; Immune-Mediated Regeneration</a></li>
+<li><a href="#h3">4. HA-AC Microporous Scaffolds vs Fibrin for Wound Healing</a></li>
+<li><a href="#h4">5. MAP Architecture vs Bulk Gels for Neural Regeneration</a></li>
+<li><a href="#h5">6. Tetrazine-NB Click vs FXIIIa Annealing for Vascular Maturity</a></li>
+<li><a href="#h6">7. Packing Configuration &amp; Scaffold Architecture</a></li>
+<li><a href="#synth">8. Synthesis: Composite Design Hypotheses</a></li>
+<li><a href="#limitations">9. Knowledge Base Limitations</a></li>
+</ol>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<h2 id="methods">1. Methodology</h2>
+
+<h3>1.1 Knowledge Base</h3>
+<p>The LOVAMAP knowledge base encodes structured data from 92 peer-reviewed papers on granular
+biomaterial engineering as an RDF graph (72,266 triples). Each paper is represented as a set of
+linked entities: <strong>Materials</strong> (with structured properties like particleMaterial, particleShape,
+packingConfiguration, stiffnessValue, particleSizeMin/Max, surfaceModification),
+<strong>Fabrication Methods</strong> (annealingChemistry, manufacturingMethod),
+<strong>Experiments</strong>, <strong>Outcomes</strong> (with measurementType and measurementCategory), and
+<strong>Comparison Results</strong> (linking two outcomes with a direction — higher, lower, or no difference —
+and optional statistical significance).</p>
+
+<p>Each ComparisonResult directly links to materialA and materialB via <code>lova:materialA</code> and
+<code>lova:materialB</code>, where materialA is the subject of the comparison statement (e.g., "X is
+higher in materialA than materialB"). The <code>direction</code> field encodes the relationship, and
+<code>isSignificant</code> records whether the difference was statistically significant in the original paper.</p>
+
+<h3>1.2 Analysis Pipeline (<code>hypothesis_generation.ipynb</code>)</h3>
+
+<p>The analysis proceeds through the following stages:</p>
+
+<h4>Stage 1: Load all comparisons with full material properties</h4>
+<p>A single SPARQL query retrieves every ComparisonResult with all structured properties on both
+the materialA and materialB sides — including particle material, shape, packing, surface modification,
+stiffness, size range, annealing chemistry, and manufacturing method. Rows are deduplicated
+(preferring the row with the most property fields filled) and each comparison is classified as
+<strong>same_material</strong> (567), <strong>cross_material</strong> (199), or <strong>material_unknown</strong> (87) based on
+whether the two materials share the same base particleMaterial or URI.</p>
+
+<h4>Stage 2: Parameter diff detection</h4>
+<p>For each comparison, the diff engine compares 9 structured property pairs between materialA and
+materialB. A difference is recorded only when <em>both sides have a non-empty value</em> and those
+values differ. This is critical: a missing annotation (empty string) is treated as "not recorded,"
+not as "this property is absent." Without this filter, comparisons where one material simply
+lacks a property annotation would pollute the results with spurious diffs.</p>
+
+<p>Each comparison is "exploded" into one row per differing parameter, producing a long-form
+DataFrame. Comparisons where no structured properties differ are flagged as <strong>UNSTRUCTURED</strong> —
+these represent cases where the difference between materials is encoded only in free-text labels
+(e.g., concentration, ratio, cell type) and cannot be systematically mined.</p>
+
+<p>Each comparison also records <code>n_diffs</code> — the number of structured parameters that differ
+simultaneously. Comparisons with <code>n_diffs = 1</code> are flagged as <strong>clean</strong> (unconfounded),
+providing the strongest causal signal. Multi-diff comparisons (n_diffs &ge; 3) are flagged as
+confounded.</p>
+
+<h4>Stage 3: Parameter–outcome association table</h4>
+<p>For each (parameter, winner_value, loser_value, outcome_category) combination, the notebook
+counts how many significant directional comparisons support it and how many independent papers
+contribute. For quantitative parameters (stiffness, sizeMin, sizeMax), it tracks whether the
+higher or lower numeric value wins. This produces the raw association table — e.g.,
+"surfaceModification: Citrullinated beats Unmodified for Biological outcomes, 10 wins, 1 paper."</p>
+
+<h4>Stage 4: Cross-paper design rules</h4>
+<p>Associations are aggregated to the (parameter, outcome_category) level and filtered to those
+replicated across 2+ independent papers. For categorical parameters, the most frequently winning
+value and its consistency rate (fraction of wins attributed to that value) are reported. For
+quantitative parameters, the directional tendency (higher-wins vs lower-wins) and its consistency
+are reported. Rules with high consistency across many papers represent the most reliable
+design guidance.</p>
+
+<h4>Stage 5: Tradeoff detection</h4>
+<p>For each (parameter, value_pair) combination, the notebook checks whether value A wins for
+some outcome categories while value B wins for others. When this occurs, it represents a genuine
+design tradeoff — optimizing for one outcome requires accepting a penalty on another. These
+tradeoffs define the boundaries of the design space.</p>
+
+<h4>Stage 6: Untested combinations</h4>
+<p>Material "fingerprints" (all property values) are extracted, and pairwise combinations of
+winning parameter values are checked against the set of actually-tested combinations. Gaps —
+winning values that have never been combined in a real material — are candidate hypotheses
+for novel designs.</p>
+
+<h4>Stage 7: Hypothesis scoring and ranking</h4>
+<p>Three hypothesis types are generated:</p>
+<ul>
+<li><strong>Type A (Optimization):</strong> Apply a cross-paper design rule to improve a specific outcome.
+Score = log(wins+1) &times; log(papers+1) &times; consistency.</li>
+<li><strong>Type B (Tradeoff Resolution):</strong> Propose an intermediate or hybrid parameter value to
+break a detected tradeoff. Score includes a 1.5&times; novelty bonus.</li>
+<li><strong>Type C (Untested Combination):</strong> Combine individually-proven winning values that have
+never been tested together. Score includes a 2.0&times; novelty bonus.</li>
+</ul>
+
+<h4>Stage 8: Manual deep-dive</h4>
+<p>The automated pipeline identifies <em>which parameters and outcome categories</em> are associated,
+but outcome categories (e.g., "Biological") are too broad for actionable hypotheses. The final
+stage — which produced this report — involves targeted SPARQL queries to retrieve the specific
+<strong>measurementType</strong> (e.g., "CD206 expression fold change," "% wound area," "vessel density")
+for each finding, along with the exact material labels, paper titles, and DOIs. This
+measurement-level detail is what transforms a statistical association into an interpretable
+biological story.</p>
+
+<h3>1.3 Key Numbers</h3>
+
+<table>
+<thead><tr><th>Metric</th><th>Count</th></tr></thead>
+<tbody>
+<tr><td>Papers in knowledge base</td><td>92</td></tr>
+<tr><td>Total RDF triples</td><td>72,266</td></tr>
+<tr><td>Unique comparisons</td><td>853</td></tr>
+<tr><td>Significant directional comparisons</td><td>531</td></tr>
+<tr><td>Comparisons with structured property diffs (both sides non-empty)</td><td>372</td></tr>
+<tr><td>UNSTRUCTURED comparisons (diff only in label text)</td><td>481</td></tr>
+<tr><td>Same-material comparisons</td><td>567 (66%)</td></tr>
+<tr><td>Cross-material comparisons</td><td>199 (23%)</td></tr>
+<tr><td>Structured diff rows (exploded, one per comparison &times; parameter)</td><td>527</td></tr>
+<tr><td>Clean single-diff comparisons (unconfounded)</td><td>Variable (depends on property coverage)</td></tr>
+<tr><td>Cross-paper design rules (2+ papers)</td><td>14</td></tr>
+<tr><td>Tradeoffs detected</td><td>4</td></tr>
+</tbody>
+</table>
+
+<hr>
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<h2 id="h1">2. Particle Size &amp; Biological Outcomes</h2>
+
+<p><strong>Core finding:</strong> Across 7 papers and 6 different base materials (HA, HA-AC, HA-NB,
+PEG-VS, PEI/DNA polyplex, BSA-PDMA), smaller particles/pores are associated with improved
+regenerative outcomes — but larger particles win for cell recruitment and motility.</p>
+
+<h3>1a. Where smaller particles win</h3>
+
+<table>
+<thead>
+<tr><th>Outcome</th><th>Measurement</th><th>Size A (winner)</th><th>Size B (loser)</th><th>Paper</th></tr>
+</thead>
+<tbody>
+<tr>
+  <td class="wins">Wound closure</td>
+  <td>% Wound area (lower = better)</td>
+  <td>53–63 µm pores</td>
+  <td>90–106 µm pores</td>
+  <td>Porous HA Hydrogels for DNA Delivery in Diabetic Wound Healing (2015)</td>
+</tr>
+<tr>
+  <td class="wins">Gene delivery</td>
+  <td>GFP signal per cell</td>
+  <td>53–63 µm pores</td>
+  <td>90–106 µm pores</td>
+  <td>Non-viral DNA delivery from porous HA hydrogels (2013)</td>
+</tr>
+<tr>
+  <td class="wins">Vascularization</td>
+  <td>Vessel density</td>
+  <td>53–63 µm pores</td>
+  <td>90–106 µm pores</td>
+  <td>Non-viral DNA delivery from porous HA hydrogels (2013)</td>
+</tr>
+<tr>
+  <td class="wins">Vascularization</td>
+  <td>% CD31-NG2 colocalization</td>
+  <td>80 µm MAP</td>
+  <td>200 µm MAP</td>
+  <td>Engineering Microstructure and Spatial Bioactivity of MAP Scaffolds (2024)</td>
+</tr>
+<tr>
+  <td class="wins">Vascularization</td>
+  <td>Vacuole count per FOV</td>
+  <td>50–80 µm MAP</td>
+  <td>200 µm MAP</td>
+  <td>Engineering Microstructure and Spatial Bioactivity of MAP Scaffolds (2024)</td>
+</tr>
+<tr>
+  <td class="wins">Cell infiltration</td>
+  <td>Nuclei count (normalized)</td>
+  <td>50–80 µm MAP</td>
+  <td>200 µm MAP</td>
+  <td>Engineering Microstructure and Spatial Bioactivity of MAP Scaffolds (2024)</td>
+</tr>
+<tr>
+  <td class="wins">Anti-inflammatory</td>
+  <td>CD206 expression fold change (MFI)</td>
+  <td>70 µm MAP</td>
+  <td>130 µm MAP</td>
+  <td>Spatial Confinement Modulates Macrophage Response in MAP (2023)</td>
+</tr>
+<tr>
+  <td class="wins">Anti-inflammatory</td>
+  <td>TNF secretion fold change (lower = less inflammation)</td>
+  <td>40 µm MAP</td>
+  <td>130 µm MAP</td>
+  <td>Spatial Confinement Modulates Macrophage Response in MAP (2023)</td>
+</tr>
+<tr>
+  <td class="wins">Pro-regenerative cytokine</td>
+  <td>TGF-beta concentration</td>
+  <td>40 µm MAP</td>
+  <td>130 µm MAP</td>
+  <td>Spatial Confinement in Immune Cell Recruitment and Skin Wound Regeneration (2023)</td>
+</tr>
+<tr>
+  <td class="wins">Transfection breadth</td>
+  <td>% transfected cells</td>
+  <td>138–141 nm complexes</td>
+  <td>1069–1374 nm complexes</td>
+  <td>DNA delivery from HA-collagen hydrogels (2004)</td>
+</tr>
+</tbody>
+</table>
+
+<h3>1b. Where larger particles win</h3>
+
+<table>
+<thead>
+<tr><th>Outcome</th><th>Measurement</th><th>Size A (winner)</th><th>Size B (loser)</th><th>Paper</th></tr>
+</thead>
+<tbody>
+<tr>
+  <td class="loses">Immune cell recruitment</td>
+  <td>Macrophage % (CD11b+F4/80+ of CD45+)</td>
+  <td>130 µm MAP</td>
+  <td>40 µm MAP</td>
+  <td>Spatial Confinement Modulates Macrophage Response in MAP (2023)</td>
+</tr>
+<tr>
+  <td class="loses">Neutrophil recruitment</td>
+  <td>Neutrophil percentage</td>
+  <td>130 µm MAP</td>
+  <td>40 µm MAP</td>
+  <td>Spatial Confinement in Immune Cell Recruitment (2023)</td>
+</tr>
+<tr>
+  <td class="loses">Cell motility</td>
+  <td>Median velocity</td>
+  <td>130 µm MAP</td>
+  <td>70 µm MAP</td>
+  <td>Spatial Confinement Modulates Macrophage Response in MAP (2023)</td>
+</tr>
+<tr>
+  <td class="loses">Cell spreading</td>
+  <td>Average cell surface area</td>
+  <td>100–200 µm MAP</td>
+  <td>20–60 µm MAP</td>
+  <td>MAP Hydrogel Stiffness, Void Space, and Adhesion Properties (2019)</td>
+</tr>
+<tr>
+  <td class="loses">Per-cell expression</td>
+  <td>Luciferase transgene expression</td>
+  <td>1069–1374 nm complexes</td>
+  <td>138–141 nm complexes</td>
+  <td>DNA delivery from HA-collagen hydrogels (2004)</td>
+</tr>
+</tbody>
+</table>
+
+<h3>Interpretation</h3>
+<p>Smaller particles/pores (40–80 µm) create tighter spatial confinement that promotes:</p>
+<ul>
+<li>Anti-inflammatory macrophage polarization (CD206+, lower TNF)</li>
+<li>Vascularization and vessel maturation (CD31-NG2, vacuole formation)</li>
+<li>Faster wound closure</li>
+<li>Pro-regenerative cytokine production (TGF-beta)</li>
+</ul>
+<p>Larger particles/pores (100–200 µm) provide more physical space, promoting:</p>
+<ul>
+<li>Bulk immune cell recruitment (macrophages, neutrophils)</li>
+<li>Cell motility and spreading</li>
+<li>Higher per-cell gene expression (though fewer cells transfected)</li>
+</ul>
+
+<div class="risk">
+<strong>Risks &amp; caveats:</strong>
+<ul>
+<li><strong>Confounded with material:</strong> The 53–63 µm vs 90–106 µm comparison (2 papers) uses PMMA-templated HA pores, not MAP particles. The "pore size" mechanism may differ from "particle size" in jammed granular scaffolds.</li>
+<li><strong>Application-dependent:</strong> If the goal is immune cell homing (e.g., cancer immunotherapy, vaccine scaffolds), larger pores may be preferable. The "smaller is better" rule only applies to regenerative/wound healing contexts.</li>
+<li><strong>Non-linear effects:</strong> The 2019 paper shows that 20–60 µm MAP reduces cell surface area, which may limit cell function in some contexts. There may be a minimum useful size below which confinement becomes detrimental.</li>
+<li><strong>Single-paper deep dives:</strong> The macrophage polarization and immune recruitment findings (CD206, TNF, neutrophils) come from only 2 papers (2023) by overlapping author groups. Independent replication is needed.</li>
+</ul>
+</div>
+
+<h4>Full citations</h4>
+<p class="citation">1. "Porous Hyaluronic Acid Hydrogels for Localized Nonviral DNA Delivery in a Diabetic Wound Healing Model" — <em>Advanced Healthcare Materials</em>, 2015. DOI: 10.1002/adhm.201400783</p>
+<p class="citation">2. "Non-viral DNA delivery from porous hyaluronic acid hydrogels in mice" — <em>Biomaterials</em>, 2013. DOI: 10.1016/j.biomaterials.2013.10.014</p>
+<p class="citation">3. "DNA delivery from hyaluronic acid-collagen hydrogels via a substrate-mediated approach" — <em>Biomaterials</em>, 2004. DOI: 10.1016/j.biomaterials.2004.05.007</p>
+<p class="citation">4. "Microporous annealed particle hydrogel stiffness, void space size, and adhesion properties impact cell proliferation, cell spreading, and gene transfer" — <em>Acta Biomaterialia</em>, 2019. DOI: 10.1016/j.actbio.2019.02.054</p>
+<p class="citation">5. "Spatial Confinement Modulates Macrophage Response in Microporous Annealed Particle (MAP) Scaffolds" — <em>Advanced Healthcare Materials</em>, 2023. DOI: 10.1002/adhm.202300823</p>
+<p class="citation">6. "Exploring the Role of Spatial Confinement in Immune Cell Recruitment and Regeneration of Skin Wounds" — <em>Advanced Materials</em>, 2023. DOI: 10.1002/adma.202304049</p>
+<p class="citation">7. "Engineering the Microstructure and Spatial Bioactivity of MAP Scaffolds Instructs Vasculogenesis In Vitro and Modifies Vessel Formation In Vivo" — <em>Advanced Functional Materials</em>, 2024. DOI: 10.1002/adfm.202400567</p>
+<p class="citation">8. "Protein-Polymer Nanoparticles for Nonviral Gene Delivery" — <em>Biomacromolecules</em>, 2011. DOI: 10.1021/bm101354a</p>
+
+<hr>
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<h2 id="h2">3. D-Chirality MMP Crosslinker &amp; Immune-Mediated Regeneration</h2>
+
+<p><strong>Core finding:</strong> D-chirality MMP-peptide crosslinked MAP scaffolds (D-MAPS) elicit
+a stronger early pro-inflammatory response that resolves into superior vascularization
+compared to L-chirality (L-MAPS) or mixed (1:1) crosslinkers.</p>
+
+<h3>Evidence table</h3>
+
+<table>
+<thead>
+<tr><th>Timepoint</th><th>Measurement</th><th>Winner</th><th>Direction</th><th>Significant</th></tr>
+</thead>
+<tbody>
+<tr><td>Day 4</td><td>CD11b+ area % (immune infiltration)</td><td class="wins">D-MAPS</td><td>higher</td><td>Yes</td></tr>
+<tr><td>Day 4</td><td>IL-1beta concentration (pro-inflammatory)</td><td class="wins">D-MAPS</td><td>higher</td><td>Yes</td></tr>
+<tr><td>Day 4</td><td>TNF-alpha concentration (pro-inflammatory)</td><td class="wins">D-MAPS</td><td>higher</td><td>Yes</td></tr>
+<tr><td>Day 4</td><td>IL-4 concentration (pro-regenerative)</td><td class="wins">D-MAPS</td><td>higher</td><td>Yes</td></tr>
+<tr><td>Day 4</td><td>TGF-beta concentration (pro-regenerative)</td><td class="wins">D-MAPS</td><td>higher</td><td>Yes</td></tr>
+<tr><td>Day 14</td><td>Vessel area (vascularization)</td><td class="wins">D-MAPS</td><td>higher</td><td>Yes</td></tr>
+<tr><td>Day 14</td><td>Macrophage percentage</td><td class="wins">D-MAPS</td><td>higher</td><td>Yes</td></tr>
+<tr><td>Day 14</td><td>Anti-D-MMP IgG (adaptive immune response)</td><td class="neutral">D-MAPS</td><td>higher</td><td>Not marked</td></tr>
+<tr><td>Day 14</td><td>CD11b+ area % (immune cell persistence)</td><td class="loses">L-MAPS</td><td>lower in D</td><td>Yes</td></tr>
+<tr><td>Day 14</td><td>CD11c+ area % (dendritic cells)</td><td class="loses">L-MAPS</td><td>lower in D</td><td>Yes</td></tr>
+<tr><td>Day 14</td><td>Arg1 MFI (M2 macrophage marker)</td><td class="neutral">L-MAPS</td><td>higher in L</td><td>Not marked</td></tr>
+</tbody>
+</table>
+
+<h3>Additionally: D-chirality vs mixed (1:1 D+L)</h3>
+<p>From the same paper, D-MAPS also outperforms the 1:1 D/L mixture for biological and mechanical outcomes (3 significant wins), and L-MAPS outperforms the mixture for 1 biological outcome. Pure chirality crosslinkers perform better than the blend.</p>
+
+<h3>Interpretation</h3>
+<p>D-chirality peptide crosslinkers resist enzymatic (MMP) degradation, so the scaffold persists longer <em>in vivo</em>. This creates a temporal immune program:</p>
+<ol>
+<li><strong>Day 4:</strong> Persistent scaffold triggers robust inflammatory response (IL-1β, TNF-α, CD11b+) AND simultaneously elevated pro-regenerative signals (IL-4, TGF-β)</li>
+<li><strong>Day 14:</strong> Inflammation resolves (CD11b+ drops below L-MAPS levels), but the earlier signaling has promoted vessel formation. D-MAPS has higher vessel area than L-MAPS despite lower residual immune cells.</li>
+</ol>
+<p>L-MAPS degrades faster, leading to higher M2 markers (Arg1) and persistent dendritic cells at day 14, but <em>less actual vascularization</em>.</p>
+
+<div class="risk">
+<strong>Risks &amp; caveats:</strong>
+<ul>
+<li><strong>Single paper:</strong> All 11 comparisons come from one study (Griffin lab, 2023). No independent replication exists in the knowledge base.</li>
+<li><strong>Anti-scaffold immune response:</strong> D-MAPS shows elevated anti-D-MMP IgG at day 14, suggesting the body mounts an adaptive immune response against the degradation-resistant peptide. Long-term consequences are unknown.</li>
+<li><strong>M2 paradox:</strong> L-MAPS has higher Arg1 (a canonical M2/pro-healing marker) yet worse vascularization. This challenges the simple "M2 = good" framework and suggests the temporal dynamics matter more than endpoint polarization state.</li>
+<li><strong>Species/model specificity:</strong> Results are from a specific murine wound model. The immune response kinetics may differ in humans or other tissue contexts.</li>
+</ul>
+</div>
+
+<h4>Citation</h4>
+<p class="citation">"A Balance between Pro-Inflammatory and Pro-Reparative Macrophages is Observed in Regenerative D-MAPS" — <em>Advanced Science</em>, 2023. DOI: 10.1002/advs.202204882</p>
+
+<hr>
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<h2 id="h3">4. HA-AC Microporous Scaffolds vs Fibrin for Wound Healing</h2>
+
+<p><strong>Core finding:</strong> Microporous hyaluronic acid (HA-AC) gel outperforms fibrin gel
+across all measured outcomes in cutaneous wound healing.</p>
+
+<h3>Evidence table</h3>
+
+<table>
+<thead>
+<tr><th>Measurement</th><th>Category</th><th>Winner</th><th>Detail</th><th>Significant</th></tr>
+</thead>
+<tbody>
+<tr>
+  <td>NG2+ area (%)</td><td>Biological</td>
+  <td class="wins">HA-AC (µ gel)</td>
+  <td>5-fold higher pericyte coverage than fibrin</td><td>Yes</td>
+</tr>
+<tr>
+  <td>NG2+ area (%) — composite</td><td>Biological</td>
+  <td class="wins">HA-AC (µ gel)</td>
+  <td>9-fold higher in composite experiment</td><td>Yes</td>
+</tr>
+<tr>
+  <td>Remaining wound area (%)</td><td>Biological</td>
+  <td class="wins">HA-AC (µ gel)</td>
+  <td>Wounds close more rapidly by day 7</td><td>Yes</td>
+</tr>
+<tr>
+  <td>Storage modulus (G')</td><td>Mechanical</td>
+  <td class="wins">HA-AC (µ gel)</td>
+  <td>Higher mechanical stiffness</td><td>Not marked</td>
+</tr>
+</tbody>
+</table>
+
+<p>No comparisons exist where fibrin outperforms HA-AC in this dataset.</p>
+
+<h3>Interpretation</h3>
+<p>HA-AC microporous gels provide both superior mechanical support (higher G') and
+biological outcomes (pericyte recruitment, wound closure) compared to fibrin. The NG2+
+pericyte coverage is particularly notable — pericytes stabilize new blood vessels, so this
+suggests HA-AC promotes more mature vascularization.</p>
+
+<div class="risk">
+<strong>Risks &amp; caveats:</strong>
+<ul>
+<li><strong>Single paper, single wound model:</strong> All 4 comparisons come from one study using a murine cutaneous wound model. The advantage may not hold in other tissue types or deeper wounds.</li>
+<li><strong>Material complexity:</strong> "HA-AC" here is a specific microporous formulation, not generic hyaluronic acid. The porosity architecture may matter as much as the base chemistry.</li>
+<li><strong>Fibrin is a low bar:</strong> Fibrin gels are widely used but known to degrade rapidly and have weak mechanics. Outperforming fibrin doesn't mean HA-AC is optimal — it may simply be better than a weak comparator.</li>
+<li><strong>Storage modulus significance not marked:</strong> The mechanical comparison lacks a significance annotation, so it may not be statistically robust.</li>
+</ul>
+</div>
+
+<h4>Citation</h4>
+<p class="citation">"Systematic evaluation of natural scaffolds in cutaneous wound healing" — <em>Journal of Materials Chemistry B</em>, 2015. DOI: 10.1039/c5tb00807g</p>
+
+<hr>
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<h2 id="h4">5. MAP Architecture vs Bulk Gels for Neural Regeneration</h2>
+
+<p><strong>Core finding:</strong> Microporous annealed particle (MAP) scaffolds with FXIIIa enzymatic
+annealing dramatically outperform nanoporous bulk gels for neural regeneration in a stroke
+cavity model.</p>
+
+<h3>Evidence table</h3>
+
+<table>
+<thead>
+<tr><th>Measurement</th><th>Winner</th><th>Direction</th><th>Significance</th></tr>
+</thead>
+<tbody>
+<tr><td>DCX positive area (neuroblast marker, stroke site)</td><td class="wins">MAP scaffold</td><td>higher</td><td>Yes</td></tr>
+<tr><td>NPC count (ventricle wall)</td><td class="wins">MAP scaffold</td><td>higher</td><td>Yes</td></tr>
+<tr><td>NPC migration distance</td><td class="wins">MAP scaffold</td><td>higher</td><td>Yes</td></tr>
+<tr><td>Astrocyte infiltration distance</td><td class="wins">MAP scaffold</td><td>higher</td><td>Yes</td></tr>
+<tr><td>Vessel (Glut-1) positive area</td><td class="wins">MAP scaffold</td><td>higher</td><td>Yes</td></tr>
+<tr><td>IBA-1 positive area (microglia/inflammation)</td><td class="wins">MAP scaffold</td><td>lower (less inflammation)</td><td>Yes</td></tr>
+<tr><td>Astrocytic scar thickness (GFAP)</td><td class="wins">MAP scaffold</td><td>lower (less scarring)</td><td>Yes</td></tr>
+</tbody>
+</table>
+
+<p>MAP wins on all 7 measured outcomes — a clean sweep.</p>
+
+<h3>Interpretation</h3>
+<p>The interconnected pore network of MAP scaffolds provides physical channels for neural
+progenitor cell migration and astrocyte infiltration that nanoporous gels cannot. The
+reduced IBA-1 (less neuroinflammation) and thinner GFAP scar suggest the MAP architecture
+modulates the immune microenvironment more favorably in the CNS context.</p>
+
+<p><strong>Important:</strong> This finding is about <em>scaffold architecture</em> (granular + annealed = interconnected pores) vs
+bulk gel, not about FXIIIa chemistry per se. Both materials use FXIIIa — the MAP scaffold uses it for
+inter-particle annealing while the nanoporous gel uses FXIIIa + thrombin for bulk crosslinking.</p>
+
+<div class="risk">
+<strong>Risks &amp; caveats:</strong>
+<ul>
+<li><strong>Single paper:</strong> All 7 comparisons from one stroke cavity study (Bhatt, Bhatt &amp; Bhatt is a Segura lab paper, 2017).</li>
+<li><strong>Specific neural context:</strong> Stroke cavity is a unique microenvironment. MAP advantages may not translate to spinal cord injury, peripheral nerve, or other CNS applications without testing.</li>
+<li><strong>Confounded comparison:</strong> The "nanoporous gel" control includes thrombin in addition to FXIIIa, which could independently affect outcomes. The comparison is really MAP-architecture vs nanoporous-architecture, with a minor chemistry difference.</li>
+<li><strong>No dose-response:</strong> Only one MAP particle size was tested. The optimal pore size for neural applications is unknown from this data.</li>
+</ul>
+</div>
+
+<h4>Citation</h4>
+<p class="citation">"Injection of Microporous Annealing Particle (MAP) Hydrogels in the Stroke Cavity Reduces Gliosis and Inflammation and Promotes NPC Migration to the Lesion" — <em>Advanced Materials</em>, 2017. DOI: 10.1002/adma.201606000</p>
+
+<hr>
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<h2 id="h5">6. Tetrazine-NB Click vs FXIIIa Annealing for Vascular Maturity</h2>
+
+<p><strong>Core finding:</strong> Tetrazine-norbornene (Tz-NB) click chemistry annealing produces
+more mature vasculature than FXIIIa enzymatic annealing in MAP scaffolds.</p>
+
+<h3>Evidence table</h3>
+
+<table>
+<thead>
+<tr><th>Measurement</th><th>Winner</th><th>Direction</th><th>Significance</th></tr>
+</thead>
+<tbody>
+<tr>
+  <td>% CD31-NG2 colocalization (mature vessel marker)</td>
+  <td class="wins">VascMAP (Tz-NB click)</td><td>higher</td><td>Yes</td>
+</tr>
+<tr>
+  <td>Total vessel length</td>
+  <td class="neutral">VascMAP (Tz-NB click)</td><td>higher</td><td>No</td>
+</tr>
+</tbody>
+</table>
+
+<h3>Interpretation</h3>
+<p>CD31-NG2 colocalization specifically measures pericyte-stabilized vessels — the gold
+standard for functional, mature vasculature. The Tz-NB click-annealed scaffold ("VascMAP")
+achieves significantly higher vessel maturity than the FXIIIa-annealed scaffold, though total
+vessel length is not significantly different. This suggests Tz-NB promotes vessel
+<em>quality</em> over quantity.</p>
+
+<div class="risk">
+<strong>Risks &amp; caveats:</strong>
+<ul>
+<li><strong>Only 2 comparisons from 1 paper:</strong> Minimal evidence base. The VascMAP scaffold also differs in other design parameters (bioactive peptide tethering), so the effect may not be purely due to annealing chemistry.</li>
+<li><strong>Contradicts Finding #4:</strong> In the stroke paper, FXIIIa-annealed MAP showed excellent vascularization (Glut-1+). The difference may be context-dependent (subcutaneous wound vs stroke cavity) or confounded by other scaffold parameters.</li>
+<li><strong>Total vessel length not significant:</strong> The quantity of vessels doesn't differ — only the maturity metric. This could reflect a real qualitative improvement or a measurement artifact.</li>
+</ul>
+</div>
+
+<h4>Citation</h4>
+<p class="citation">"Engineering the Microstructure and Spatial Bioactivity of MAP Scaffolds Instructs Vasculogenesis In Vitro and Modifies Vessel Formation In Vivo" — <em>Advanced Functional Materials</em>, 2024. DOI: 10.1002/adfm.202400567</p>
+
+<hr>
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<h2 id="h6">7. Packing Configuration &amp; Scaffold Architecture</h2>
+
+<p><strong>Core finding:</strong> Packing configuration has broad effects across multiple outcome types,
+with architecture (porous vs non-porous) mattering more than specific packing geometry.</p>
+
+<h3>Key comparisons across 10 papers</h3>
+
+<table>
+<thead>
+<tr><th>Comparison</th><th>Winner outcomes</th><th>Loser outcomes</th><th>Papers</th></tr>
+</thead>
+<tbody>
+<tr>
+  <td>Random/Jammed MAP vs Non-porous gel</td>
+  <td class="wins">Hydraulic conductivity (~600×), cell retention, cell infiltration, lower scar thickness</td>
+  <td class="loses">Storage modulus (non-porous is stiffer)</td>
+  <td>4 papers (2013–2022)</td>
+</tr>
+<tr>
+  <td>Hexagonal porous vs Non-porous (PMMA-templated HA)</td>
+  <td class="wins">Wound closure, vessel density, granulation tissue, GFP+ cell density</td>
+  <td class="loses">None observed</td>
+  <td>2 papers (2013, 2015)</td>
+</tr>
+<tr>
+  <td>Jammed MAP vs Flowable liquid (Woun'Dres)</td>
+  <td class="wins">% Area collagen, different fiber morphology</td>
+  <td class="loses">—</td>
+  <td>1 paper (2025)</td>
+</tr>
+<tr>
+  <td>Random annealed vs Densely packed non-annealed</td>
+  <td class="wins">13-fold higher mechanical strength</td>
+  <td class="loses">—</td>
+  <td>1 paper (2016)</td>
+</tr>
+</tbody>
+</table>
+
+<h3>The Jammed vs Non-porous tradeoff</h3>
+<p><span class="tag">Tradeoff detected</span> Jammed MAP scaffolds are better for biological and rheological
+outcomes, but non-porous gels are better for diffusion barrier applications. This is a genuine
+design space boundary: if you need controlled, slow diffusion (e.g., drug depot), non-porous may
+be preferable. If you need cell infiltration and tissue integration, porous/jammed architecture wins.</p>
+
+<div class="risk">
+<strong>Risks &amp; caveats:</strong>
+<ul>
+<li><strong>"2D packing" is misleading:</strong> Materials tagged with packing="2D" in the knowledge base are actually flat tissue culture plastic (TCP) controls, not a scaffold design parameter. Comparisons involving "2D" packing reflect 2D-vs-3D culture differences, not design choices.</li>
+<li><strong>Packing labels not standardized:</strong> "Jammed", "Random", and "Non-porous" are used inconsistently across papers. Some "Random" packings are functionally similar to "Jammed" MAP scaffolds.</li>
+</ul>
+</div>
+
+<hr>
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<h2 id="synth">8. Synthesis: Composite Design Hypotheses</h2>
+
+<p>Combining the findings above, we can generate specific, testable design hypotheses:</p>
+
+<div class="hypothesis-box">
+<h3>Hypothesis A: Optimal wound healing scaffold</h3>
+<p><strong>Design:</strong> HA-AC base material, 40–80 µm MAP particles, D-chirality MMP crosslinker,
+jammed packing, RGD surface modification</p>
+<p><strong>Predicted outcomes:</strong></p>
+<ul>
+<li>Faster wound closure (from particle size finding, 7 papers + HA-AC vs fibrin)</li>
+<li>Superior vascularization with pericyte stabilization (from particle size + HA-AC NG2+ data)</li>
+<li>Controlled inflammatory-to-regenerative immune transition (from D-chirality finding)</li>
+<li>Anti-inflammatory macrophage polarization from spatial confinement (from 40–80 µm size finding)</li>
+</ul>
+<div class="evidence">
+<strong>Evidence basis:</strong> 7 papers for particle size effects, 1 paper for D-chirality immune program,
+1 paper for HA-AC &gt; fibrin, 4 papers for jammed/porous &gt; non-porous architecture.
+</div>
+<div class="risk">
+<strong>What could go wrong:</strong>
+<ul>
+<li>D-chirality crosslinker has only been tested with PEG-VS, not HA-AC. The immune response dynamics may differ with a different base material.</li>
+<li>Small (40 µm) particles + D-chirality persistence could create excessive early inflammation in some wound types (e.g., infected or chronic wounds where inflammation is already elevated).</li>
+<li>The anti-D-MMP IgG response observed with D-chirality raises questions about repeated use or long-term implantation.</li>
+</ul>
+</div>
+</div>
+
+<div class="hypothesis-box">
+<h3>Hypothesis B: Neural regeneration scaffold (stroke/CNS)</h3>
+<p><strong>Design:</strong> MAP architecture (jammed packing, FXIIIa enzymatic annealing),
+moderate particle size (50–100 µm to allow NPC migration while maintaining some confinement benefits),
+interconnected pore network</p>
+<p><strong>Predicted outcomes:</strong></p>
+<ul>
+<li>Enhanced neural progenitor migration and count (from MAP vs bulk gel, 7/7 outcomes)</li>
+<li>Reduced glial scarring and neuroinflammation (from MAP vs bulk gel)</li>
+<li>Vascularization of the lesion site (from MAP vs bulk gel)</li>
+</ul>
+<div class="evidence">
+<strong>Evidence basis:</strong> 1 paper with 7 significant comparisons all favoring MAP.
+Supported by packing comparison data showing porous &gt; non-porous across 4 papers.
+</div>
+<div class="risk">
+<strong>What could go wrong:</strong>
+<ul>
+<li>All evidence is from one stroke cavity paper. No replication in other CNS injury models.</li>
+<li>Optimal particle size for neural applications is untested — the 40–80 µm "sweet spot" from wound healing may not apply to the CNS microenvironment.</li>
+<li>FXIIIa annealing may produce less mature vasculature than Tz-NB click (Finding #5), but the Tz-NB data is from a subcutaneous model, not CNS.</li>
+<li>The stroke cavity has a unique immune environment (microglia, blood-brain barrier disruption) that may not generalize to spinal cord or peripheral nerve.</li>
+</ul>
+</div>
+</div>
+
+<div class="hypothesis-box">
+<h3>Hypothesis C: Vascular maturity–optimized scaffold</h3>
+<p><strong>Design:</strong> HA-NB base material, Tetrazine-NB click annealing, 50–80 µm MAP particles,
+with bioactive peptide tethering (VEGF, RGD)</p>
+<p><strong>Predicted outcomes:</strong></p>
+<ul>
+<li>High vessel maturity (CD31-NG2 colocalization) from Tz-NB annealing</li>
+<li>High vessel density from small particle size</li>
+<li>Cell infiltration and nuclei count from small particles</li>
+</ul>
+<div class="evidence">
+<strong>Evidence basis:</strong> 1 paper for Tz-NB &gt; FXIIIa vascular maturity, 1 paper for 50–80 µm &gt; 200 µm
+vessel formation. Same paper (2024) supports both components.
+</div>
+<div class="risk">
+<strong>What could go wrong:</strong>
+<ul>
+<li>Thinnest evidence base of all hypotheses — essentially one paper (2024) for both components.</li>
+<li>Tz-NB click annealing hasn't been combined with D-chirality crosslinker. These are chemically incompatible systems (different click chemistries), so combining the vascular maturity benefit (Tz-NB) with the immune programming benefit (D-chirality) requires a different approach.</li>
+<li>The bioactive peptide tethering in VascMAP is a confound — the vascular maturity improvement may be due to the peptides, not the annealing chemistry.</li>
+</ul>
+</div>
+</div>
+
+<div class="hypothesis-box">
+<h3>Hypothesis D: Immune cell recruitment scaffold (vaccine/immunotherapy)</h3>
+<p><strong>Design:</strong> Larger MAP particles (100–150 µm), jammed packing, L-chirality MMP crosslinker
+(faster degradation to release recruited cells)</p>
+<p><strong>Predicted outcomes:</strong></p>
+<ul>
+<li>Maximum macrophage and neutrophil recruitment (from particle size finding)</li>
+<li>Higher cell motility within scaffold (from particle size finding)</li>
+<li>Higher M2 polarization markers (Arg1) from L-chirality degradation</li>
+<li>Rapid scaffold clearance from MMP-degradable L-chirality crosslinker</li>
+</ul>
+<div class="evidence">
+<strong>Evidence basis:</strong> 2 papers for larger particles → more immune cell recruitment,
+1 paper for L-chirality → higher Arg1/M2 markers.
+</div>
+<div class="risk">
+<strong>What could go wrong:</strong>
+<ul>
+<li>This hypothesis intentionally inverts the "smaller is better" rule, which has stronger evidence. The immune recruitment benefit of larger particles is from fewer papers.</li>
+<li>L-chirality's higher M2 markers didn't translate to better vascularization in the wound model. M2 polarization may not be sufficient for immune-mediated therapeutic outcomes.</li>
+<li>Completely untested application space — no papers in the knowledge base study MAP scaffolds for vaccine or immunotherapy applications.</li>
+</ul>
+</div>
+</div>
+
+<hr>
+
+<h2>Untested Combination: D-chirality + Tz-NB Annealing</h2>
+<p><span class="tag">Gap hypothesis</span> The most promising untested combination from this analysis is
+combining <strong>D-chirality MMP crosslinker</strong> (for immune-mediated regeneration) with
+<strong>Tetrazine-NB click annealing</strong> (for vascular maturity). However, these are chemically
+distinct systems — D-chirality crosslinker is used in PEG-VS/Michael addition systems while
+Tz-NB click is used in HA-NB systems. A material system that achieves both degradation-resistant
+crosslinks AND bio-orthogonal click annealing would need novel chemistry development.</p>
+
+<hr>
+
+<h2 id="limitations">9. Knowledge Base Limitations</h2>
+
+<p>Several structural limitations of the current evidence should be noted:</p>
+
+<table>
+<thead>
+<tr><th>Limitation</th><th>Impact</th></tr>
+</thead>
+<tbody>
+<tr>
+  <td>Most comparisons are same-material (567/853 = 66%)</td>
+  <td>Cross-material conclusions are based on small sample sizes</td>
+</tr>
+<tr>
+  <td>Many comparisons have no structured property diffs (481/853 = 56% UNSTRUCTURED after fix)</td>
+  <td>Differences encoded only in free-text labels can't be systematically mined</td>
+</tr>
+<tr>
+  <td>D-chirality data from 1 paper only</td>
+  <td>High internal consistency but no independent replication</td>
+</tr>
+<tr>
+  <td>HA-AC vs Fibrin from 1 paper only</td>
+  <td>Clean result but narrow evidence</td>
+</tr>
+<tr>
+  <td>Particle size data spans 7 papers but with different material systems</td>
+  <td>Strongest cross-paper finding, but confounds between size and material chemistry remain</td>
+</tr>
+<tr>
+  <td>Categorical properties (surface modification, manufacturing method) are highly specific strings</td>
+  <td>Makes aggregation difficult; normalization into standard categories would improve future mining</td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+<p><em>Report generated from the LOVAMAP knowledge base (92 papers, 72,266 triples).
+Analysis methodology: parameter-diff detection on structured RDF properties, filtered to
+significant directional comparisons, with manual interpretation of measurement-level outcomes.</em></p>
+
+</body>
+</html>

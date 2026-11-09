@@ -18,7 +18,7 @@ namespace Services.IServices
 		);
 		Task<(bool Succeeded, string? ErrorMessage, JobResultFile? File)> GetJobResultFileAsync(Guid jobId);
 		Task<PagedList<JobToReturnDto>> GetJobsByCreatorIdAsync(string creatorId, PagingParams pagingParams);
-		Task<PagedList<JobToReturnDto>> GetAllJobsAsync(PagingParams pagingParams);
+		Task<PagedList<JobToReturnDto>> GetAllJobsAsync(JobFilterParams filterParams);
 		Task<IEnumerable<Job>> GetActiveJobsAsync();
 		Task<(bool StatusChanged, Job? Job)> SyncJobStatusAsync(Guid jobId);
 		Task<(bool Succeeded, string? ErrorMessage, byte[]? LogBytes)> FetchJobLogsFromCoreAsync(Guid jobId, CancellationToken ct = default);

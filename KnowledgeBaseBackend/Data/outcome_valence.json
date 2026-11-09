@@ -1,0 +1,200 @@
+{
+  "_description": "Outcome valence reference: whether higher or lower values are desirable for each measurement type. Used by the TTL repair workflow to infer lova:favoredOutcome when the full paper context is not available.",
+  "_usage": {
+    "generation_workflow": "NOT needed — the LLM reads the full paper and sets favoredOutcome directly from context.",
+    "repair_workflow": "Used to infer favoredOutcome from measurementType + direction. Logic: if valence='higher' and direction='higher', then favoredOutcome='A'. If valence='higher' and direction='lower', then favoredOutcome='B'."
+  },
+  "_valence_values": {
+    "higher": "Higher numeric values are better",
+    "lower": "Lower numeric values are better",
+    "range": "There is an optimal range — both too high and too low are bad",
+    "context-dependent": "Depends on experimental context — cannot be determined from measurement type alone",
+    "neutral": "No inherent directionality — just a measurement (e.g., particle size, zeta potential)"
+  },
+
+  "Biological": {
+    "Cell viability": "higher",
+    "Live cell fraction": "higher",
+    "Cell survival": "higher",
+    "Cell number": "higher",
+    "Cell count": "higher",
+    "Cell proliferation": "higher",
+    "Cell proliferation (% cell number)": "higher",
+    "Relative proliferation": "higher",
+    "Normalized proliferation": "higher",
+    "Proliferating (BrdU+) cells": "higher",
+    "Ki67+ cell count": "higher",
+    "DNA content (proliferation)": "higher",
+    "Doubling time": "lower",
+
+    "Cell migration rate": "higher",
+    "Average cell migration velocity": "higher",
+    "Max travel distance": "higher",
+    "Median velocity": "higher",
+    "NPC migration distance": "higher",
+
+    "Cell spreading area": "higher",
+    "Cell spreading (% area)": "higher",
+    "Average cell surface area": "higher",
+    "Cell length": "higher",
+    "Normalized F-actin area": "higher",
+    "Cell morphology": "context-dependent",
+
+    "Vessel density": "higher",
+    "CD31+ area (%)": "higher",
+    "PECAM-1+ cell count": "higher",
+    "Total vessel length": "higher",
+    "Vascular area percentage": "higher",
+    "Blood vessel formation": "higher",
+    "Angiogenic response": "higher",
+    "Normalized perfused vessel area": "higher",
+    "Total perfused vessel length": "higher",
+    "NG2+ area (%)": "higher",
+    "PDGFR-β positive area (%)": "higher",
+    "Number of sprouts": "higher",
+    "Branching points per HUVEC bead": "higher",
+    "Sprout number per bead": "higher",
+    "Total network length": "higher",
+    "Vessel diameter": "context-dependent",
+    "Vessel tortuosity ratio": "lower",
+
+    "Remaining wound area (%)": "lower",
+    "% Wound area": "lower",
+    "% Wound remaining": "lower",
+    "% wound remaining": "lower",
+    "Percent remaining wound area": "lower",
+    "Wound closure": "higher",
+    "% Wound closure": "higher",
+    "Percent wound closure (End/start wound area)": "higher",
+    "Wound aspect ratio": "lower",
+    "Granulation tissue area": "higher",
+    "Granulation tissue area %": "higher",
+    "Granulation gap": "lower",
+    "Re-epithelialization": "higher",
+
+    "Infiltrating cells": "higher",
+    "Cellular infiltration": "higher",
+    "Cell occupied volume fraction (COVF)": "higher",
+    "Cell density": "higher",
+    "Cell attachment density": "higher",
+    "Percent occupied volume": "higher",
+
+    "CD11b+ fraction": "context-dependent",
+    "CD206+ MFI": "higher",
+    "CD206 expression fold change (MFI)": "higher",
+    "Arg1 positive cells (pro-repair microglia/macrophage)": "higher",
+    "Arg1 MFI": "higher",
+    "iNOS expression fold change (MFI)": "lower",
+    "iNOS+CD86+ % positive cells": "lower",
+    "Macrophage percentage": "context-dependent",
+    "Neutrophil percentage": "lower",
+    "Ly6G+ area (%)": "lower",
+    "Relative inflammation": "lower",
+
+    "Scar thickness": "lower",
+    "Scar thickness (GFAP)": "lower",
+    "GFAP+ scar thickness": "lower",
+    "Astrocytic scar thickness": "lower",
+    "Reactive astrocyte signal (GFAP)": "lower",
+    "CSPG positive area": "lower",
+
+    "Hair follicles per section": "higher",
+    "Hair follicle number": "higher",
+    "Sebaceous glands per section": "higher",
+    "Epidermal fold change": "higher",
+    "Dermis area": "higher",
+    "Total skin thickness": "higher",
+    "K14 layer thickness": "higher",
+
+    "Normalized transgene expression": "higher",
+    "Luciferase expression": "higher",
+    "Transfection efficiency": "higher",
+    "GFP expression": "higher",
+    "β-galactosidase activity": "higher",
+    "Transgene expression decrease": "lower",
+    "Fold change in transgene expression": "higher",
+    "Cumulative Gaussia luciferase RLU": "higher",
+    "Transgene expression (GLuc RLU)": "higher",
+    "Mean maximum bioluminescent flux": "higher",
+    "Gaussia luciferase expression": "higher",
+    "Polyplex internalization (fold change in mean fluorescence)": "higher",
+    "Mass of DNA internalized": "higher",
+    "Internalization (fold vs non-peptide control)": "higher",
+
+    "Bacterial bioluminescence": "lower",
+    "Colony-forming units (implant)": "lower",
+    "Colony-forming units (tissue)": "lower",
+    "Proportion of samples with bacterial growth": "lower",
+    "Percent CFU-positive": "lower",
+
+    "Percent of uterine horn involved in abdominal adhesions": "lower",
+    "Clinical adhesion grade (0-5)": "lower",
+    "Adhesion duration": "lower",
+
+    "Normalized fluorescence (survival)": "higher",
+    "GFP fluorescence (survival)": "higher",
+    "Overall survival": "higher",
+    "Cell half-life": "higher",
+    "Cell retention": "higher",
+    "VEGF half-life": "higher",
+
+    "Normalized phosphorylated VEGFR-2": "higher",
+    "Normalized VEGF receptor-2 phosphorylation (pVR-2/VR-2)": "higher",
+    "pVR-2/VR-2 ratio": "higher",
+    "Relative HIF-1α expression level": "higher",
+
+    "Metabolic activity (% reduction)": "higher",
+    "Metabolic activity (MTT absorbance)": "higher",
+
+    "Contralateral forelimb use (asymmetry score)": "higher",
+    "Infarct size": "lower",
+    "Remaining infarcted tissue": "lower",
+
+    "Tumour incidence": "lower",
+    "Tumour count per mouse": "lower",
+
+    "Cytotoxicity threshold": "higher",
+    "IC50": "higher",
+    "Toxicity": "lower"
+  },
+
+  "Mechanical": {
+    "Storage modulus (G')": "context-dependent",
+    "Young's modulus": "context-dependent",
+    "Complex modulus (E*)": "context-dependent",
+    "Wound tensile strength": "higher",
+    "Pressure withstood (delamination)": "higher",
+    "Push-in force": "higher",
+    "Max stress": "higher",
+    "% tissue failure force relative to uninjured control": "higher"
+  },
+
+  "Biochemical": {
+    "% Degradation": "context-dependent",
+    "VEGF concentration released": "higher",
+    "Percentage DNA released": "context-dependent",
+    "Relative enzyme activity": "higher",
+    "Relative activity retained": "higher",
+    "Uronic acid release (hydrogel degradation)": "context-dependent"
+  },
+
+  "Histological": {
+    "Remaining gel volume": "context-dependent",
+    "Area collagen percentage": "context-dependent",
+    "Fiber length/width ratio": "context-dependent"
+  },
+
+  "Structural": {
+    "Void volume fraction": "context-dependent",
+    "Pore diameter": "context-dependent",
+    "Void space fraction (porosity)": "context-dependent"
+  },
+
+  "Microbiological": {
+    "Zone of inhibition diameter": "higher"
+  },
+
+  "Degradation": {
+    "Time to complete degradation": "context-dependent"
+  }
+}

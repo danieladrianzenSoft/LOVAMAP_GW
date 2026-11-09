@@ -1,57 +1,573 @@
-@prefix lova:   <https://lovamap.com/ontology#> .
-@prefix dc:     <http://purl.org/dc/terms/> .
-@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix bibo: <http://purl.org/ontology/bibo/> .
+@prefix dc1: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix lova: <https://lovamap.com/ontology#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <https://schema.org/> .
-@prefix bibo:   <http://purl.org/ontology/bibo/> .
-@prefix qudt:   <http://qudt.org/schema/qudt/> .
-@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> a bibo:AcademicArticle ;
-    rdfs:label "Lei et al., 2010 — Incorporation of active DNA/cationic polymer polyplexes into hydrogel scaffolds" ;
-    dc:title "Incorporation of active DNA/cationic polymer polyplexes into hydrogel scaffolds" ;
-    dc:identifier "10.1016/j.biomaterials.2010.08.016" ;
-    dc:date "2010"^^xsd:gYear ;
-    dc:type "Research Article" ;
-    schema:isPartOf <https://lovamap.com/ontology#journal/biomaterials> ;
-    dc:creator <https://lovamap.com/ontology#author/lei-yuguo> ,
-               <https://lovamap.com/ontology#author/huang-suxian> ,
-               <https://lovamap.com/ontology#author/sharif-kashani-pooria> ,
-               <https://lovamap.com/ontology#author/chen-yong> ,
-               <https://lovamap.com/ontology#author/kavehpour-pirouz> ,
-               <https://lovamap.com/ontology#author/segura-tatiana> ;
-    bibo:authorList ( <https://lovamap.com/ontology#author/lei-yuguo>
-                       <https://lovamap.com/ontology#author/huang-suxian>
-                       <https://lovamap.com/ontology#author/sharif-kashani-pooria>
-                       <https://lovamap.com/ontology#author/chen-yong>
-                       <https://lovamap.com/ontology#author/kavehpour-pirouz>
-                       <https://lovamap.com/ontology#author/segura-tatiana> ) ;
-    dc:bibliographicCitation "Lei et al., 2010" ;
-    lova:focusMaterial "DNA/PEI polyplexes encapsulated in PEG, hyaluronic acid, and fibrin hydrogel scaffolds for non-viral gene delivery" .
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2010.08.016/angiogenesis-5-vs-6.5> a lova:ComparisonResult ;
+    rdfs:label "Angiogenic response higher in 5% vs 6.5% PEG-VS/MMP hydrogel" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    lova:direction "higher" ;
+    lova:materialA <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-5> ;
+    lova:materialB <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-6.5> ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/angiogenesis-5pct> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/angiogenesis-6.5pct> .
 
-<https://lovamap.com/ontology#author/lei-yuguo> a foaf:Person ;
-    foaf:familyName "Lei" ;
-    foaf:givenName "Yuguo" ;
-    foaf:name "Yuguo Lei" ;
-    schema:affiliation "University of California, Los Angeles, Chemical and Biomolecular Engineering Department" .
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2010.08.016/angiogenesis-cne-vs-control> a lova:ComparisonResult ;
+    rdfs:label "Angiogenic response higher with CnE pVEGF encapsulation vs no-DNA/regular encapsulation controls" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    lova:direction "higher" ;
+    lova:materialB <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-6.5> ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/angiogenesis-cne-vegf> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/angiogenesis-control> .
 
-<https://lovamap.com/ontology#author/huang-suxian> a foaf:Person ;
-    foaf:familyName "Huang" ;
-    foaf:givenName "Suxian" ;
-    foaf:name "Suxian Huang" ;
-    schema:affiliation "University of California, Los Angeles, Mechanical and Aerospace Engineering Department" .
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2010.08.016/bgal-5-vs-6.5> a lova:ComparisonResult ;
+    rdfs:label "Beta-galactosidase expression higher in 5% vs 6.5% PEG-VS/MMP hydrogel" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    lova:direction "higher" ;
+    lova:materialB <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-6.5> ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/bgal-5pct-vs-6.5pct> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/bgal-6.5pct> .
 
-<https://lovamap.com/ontology#author/sharif-kashani-pooria> a foaf:Person ;
-    foaf:familyName "Sharif-Kashani" ;
-    foaf:givenName "Pooria" ;
-    foaf:name "Pooria Sharif-Kashani" ;
-    schema:affiliation "University of California, Los Angeles, Mechanical and Aerospace Engineering Department" .
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2010.08.016/gprime-300-vs-noparticle> a lova:ComparisonResult ;
+    rdfs:label "Storage modulus higher with 300 μg DNA vs no particle" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    lova:direction "higher" ;
+    lova:materialA <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-6.5> ;
+    lova:materialB <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-6.5> ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/g-prime-300ug> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/g-prime-noparticle> .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2010.08.016/gprime-50-vs-noparticle> a lova:ComparisonResult ;
+    rdfs:label "Storage modulus higher with 50 μg DNA vs no particle" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    lova:direction "higher" ;
+    lova:materialA <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-6.5> ;
+    lova:materialB <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-6.5> ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/g-prime-50ug> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/g-prime-noparticle> .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2010.08.016/sucrose-vs-fresh> a lova:ComparisonResult ;
+    rdfs:label "Lyophilized polyplexes (≥20 mM sucrose) vs Fresh polyplexes — no difference in SEAP expression" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    lova:direction "no difference" ;
+    lova:materialA <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/dna-pei-polyplex> ;
+    lova:materialB <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/dna-pei-polyplex> ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/sucrose-protection> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/sucrose-protection> .
+
+<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2010.08.016/viscosity-comparison> a lova:ComparisonResult ;
+    rdfs:label "Viscosity higher with agarose+sucrose+DNA/PEI vs PEG alone" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    lova:direction "higher" ;
+    lova:materialA <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-6.5> ;
+    lova:materialB <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-6.5> ;
+    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/viscosity-peg-agarose-sucrose-dnapei> ;
+    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/viscosity-peg-only> .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/cne-unaggregated> a lova:Outcome ;
+    rdfs:label "CnE (sucrose+agarose) encapsulation resulted in un-aggregated polyplexes up to 500 μg DNA" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-6.5> ;
+    lova:comparisonGroup "Regular polyplex encapsulation" ;
+    lova:dataSource "[FIG-E]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/confocal-distribution> ;
+    lova:measurementCategory "Structural" ;
+    lova:measurementType "Polyplex aggregation" ;
+    lova:valueString "Un-aggregated polyplexes observed at 50, 100, 300, and 500 μg DNA loading across PEG-VS/MMP, PEG-AC/UV, HA-AC/MMP, and fibrin hydrogels; jetPEI/DNA and Lipofectamine/DNA also un-aggregated" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/dna-release-burst> a lova:Outcome ;
+    rdfs:label "No DNA release in PBS until trypsin addition at 180 h; burst release upon degradation" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-6.5> ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/dna-release> ;
+    lova:measurementCategory "Physical" ;
+    lova:measurementType "DNA release" ;
+    lova:timePoint "180 h" ;
+    lova:valueString "No release observed in PBS up to 180 h; burst release of DNA occurred after trypsin addition due to rapid hydrogel degradation" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/g-prime-100ug> a lova:Outcome ;
+    rdfs:label "Storage modulus (G') of 6.5% PEG hydrogel with 100 μg DNA" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    qudt:numericValue 830.0 ;
+    qudt:unit "Pa" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-6.5> ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/rheology-modulus> ;
+    lova:measurementCategory "Mechanical" ;
+    lova:measurementType "Storage modulus (G')" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/g-prime-4.5pct-100ug> a lova:Outcome ;
+    rdfs:label "Storage modulus (G') of 4.5% PEG hydrogel with 100 μg DNA — matched 6.5% PEG without DNA" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-4.5> ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/rheology-modulus> ;
+    lova:measurementCategory "Mechanical" ;
+    lova:measurementType "Storage modulus (G')" ;
+    lova:valueString "Comparable to 6.5% PEG hydrogel without DNA loading (~400 Pa)" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/live-dead-day15> a lova:Outcome ;
+    rdfs:label "D1 cells survive and spread within polyplex-loaded PEG-VS/MMP hydrogel at day 15, minimal cell death" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-6.5> ;
+    lova:dataSource "[FIG-E]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/live-dead-viability> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Cell viability" ;
+    lova:timePoint "Day 15" ;
+    lova:valueString "Predominantly green (live) staining with minimal red (dead) staining observed; cells survived and spread without significant cell death" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/loading-efficiency-all> a lova:Outcome ;
+    rdfs:label "DNA loading efficiency above 85% for 50, 100, 300, and 500 μg DNA" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-6.5> ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/loading-efficiency> ;
+    lova:measurementCategory "Physical" ;
+    lova:measurementType "DNA loading efficiency" ;
+    lova:valueString ">85% for 50, 100, 300, and 500 μg DNA loaded" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/loss-tangent> a lova:Outcome ;
+    rdfs:label "Loss tangent (G''/G') of hydrogels tested" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-6.5> ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/rheology-modulus> ;
+    lova:measurementCategory "Mechanical" ;
+    lova:measurementType "Loss tangent" ;
+    lova:valueString "<0.006 for all hydrogels tested, indicating highly elastic behavior" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/polyplex-activity-65pct> a lova:Outcome ;
+    rdfs:label "Recovered polyplex activity ~65% of freshly prepared polyplexes (100 and 300 μg DNA)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    qudt:numericValue 65.0 ;
+    qudt:unit "%" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-6.5> ;
+    lova:comparisonGroup "Freshly prepared polyplexes" ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/polyplex-activity-recovery> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Polyplex transfection activity" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/regular-encapsulation-aggregation> a lova:Outcome ;
+    rdfs:label "Regular polyplex encapsulation resulted in severe aggregation" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-6.5> ;
+    lova:dataSource "[FIG-E]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/confocal-distribution> ;
+    lova:measurementCategory "Structural" ;
+    lova:measurementType "Polyplex aggregation" ;
+    lova:valueString "Severe polyplex aggregation, some visible to the naked eye" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/seap-cumulative-10ug-day11> a lova:Outcome ;
+    rdfs:label "Cumulative SEAP expression with 10 μg DNA loading at Day 11" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    qudt:numericValue 20.0 ;
+    qudt:unit "ng" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/fibrin-5mgml> ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/fibrin-gene-transfer> ;
+    lova:isTimeSeries true ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "SEAP cumulative expression" ;
+    lova:timePoint "Day 11" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/seap-daily-max> a lova:Outcome ;
+    rdfs:label "Daily SEAP production up to 10 ng/day for highest DNA dose" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/fibrin-5mgml> ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/fibrin-gene-transfer> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "SEAP daily expression" ;
+    lova:valueString "up to 10 ng SEAP produced daily" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/sem-agarose-morph> a lova:Outcome ;
+    rdfs:label "Agarose and agarose+polyplex morphology" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/dna-pei-polyplex> ;
+    lova:dataSource "[FIG-E]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/sem-morphology> ;
+    lova:measurementCategory "Structural" ;
+    lova:measurementType "Powder morphology" ;
+    lova:valueString "Fibrilar morphology" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/sem-combined-morph> a lova:Outcome ;
+    rdfs:label "Sucrose+agarose(+polyplex) combined morphology" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/dna-pei-polyplex> ;
+    lova:dataSource "[FIG-E]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/sem-morphology> ;
+    lova:measurementCategory "Structural" ;
+    lova:measurementType "Powder morphology" ;
+    lova:valueString "Formation of microfibers and microspheres" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/sem-sucrose-morph> a lova:Outcome ;
+    rdfs:label "Sucrose and sucrose+polyplex morphology" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/dna-pei-polyplex> ;
+    lova:dataSource "[FIG-E]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/sem-morphology> ;
+    lova:measurementCategory "Structural" ;
+    lova:measurementType "Powder morphology" ;
+    lova:valueString "Smooth and crystalline morphology" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/translucency-regression> a lova:Outcome ;
+    rdfs:label "Relative translucency vs DNA loading linear regression" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-6.5> ;
+    lova:dataSource "[FIG-Q]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/translucency> ;
+    lova:measurementCategory "Physical" ;
+    lova:measurementType "Relative translucency" ;
+    lova:valueString "y = 98.5 - 0.11x, R² = 0.99031 (DNA from 0 to 500 μg/100 μL gel)" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/pbgal> a lova:Reagent ;
+    rdfs:label "p-beta-gal vector (beta-galactosidase)" ;
+    lova:reagentFunction "Reporter plasmid expressing beta-galactosidase" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Lonnie Shea laboratory (Northwestern University), gift" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/pegfp-luc> a lova:Reagent ;
+    rdfs:label "pEGFP-LUC vector (GFP-luciferase)" ;
+    lova:reagentRole "other" ;
+    lova:supplier "BD Biosciences" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/pseap> a lova:Reagent ;
+    rdfs:label "pSEAP vector (secreted alkaline phosphatase)" ;
+    lova:reagentFunction "Reporter plasmid expressing secreted alkaline phosphatase" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Genlantis" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/pvegf> a lova:Reagent ;
+    rdfs:label "pVEGF vector (vascular endothelial growth factor)" ;
+    lova:reagentFunction "Encodes VEGF to induce angiogenesis" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Lonnie Shea laboratory (Northwestern University), gift" .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/dna-release> a lova:Experiment ;
+    rdfs:label "DNA release from high DNA loaded PEG-VS/MMP hydrogels" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    lova:assayOrMethod "HOECHST dye quantification (H33258)" ;
+    lova:experimentCategory "Physical" ;
+    lova:experimentType "Release kinetics" ;
+    lova:medium "PBS (pH 7.4), then 0.25% trypsin" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-6.5> .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/live-dead-viability> a lova:Experiment ;
+    rdfs:label "Cell viability of D1 cells encapsulated with DNA polyplexes in RGD-modified PEG-VS/MMP hydrogel" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    lova:assayOrMethod "LIVE/DEAD kit (Molecular Probes)" ;
+    lova:cellType "D1 (CRL12424, mesenchymal stem cells)" ;
+    lova:cultureDuration "15 days" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell viability" ;
+    lova:seedingDensity "150,000 cells per 5 μL fibrin clot" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-6.5> .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/loading-efficiency> a lova:Experiment ;
+    rdfs:label "DNA loading efficiency of PEG-VS/MMP hydrogels via CnE" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    lova:assayOrMethod "HOECHST dye quantification after trypsin degradation" ;
+    lova:experimentCategory "Physical" ;
+    lova:experimentType "DNA loading efficiency" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-6.5> .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/lyophilization-transfection> a lova:Experiment ;
+    rdfs:label "Transfection activity of lyophilized DNA/PEI polyplexes vs sucrose concentration" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    lova:assayOrMethod "SEAP reporter assay" ;
+    lova:cellType "HEK293" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transfection efficiency" ;
+    lova:temperature "Room temperature (incubation 15 min prior to lyophilization)" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/dna-pei-polyplex> .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/polyplex-activity-recovery> a lova:Experiment ;
+    rdfs:label "Transfection activity of polyplexes recovered from degraded hydrogel" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    lova:cellType "HEK293" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transfection efficiency" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-6.5> .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/translucency> a lova:Experiment ;
+    rdfs:label "Light translucency of high DNA loaded PEG-VS/MMP hydrogel" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    lova:equipment "Observer Z1 (Zeiss) dark field microscope, Image J" ;
+    lova:experimentCategory "Physical" ;
+    lova:experimentType "Light translucency measurement" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-6.5> .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.08.016/cne-process> a lova:FabricationMethod ;
+    rdfs:label "Caged Nanoparticle Encapsulation (CnE) process" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    lova:chemistry "Electrostatic polyplex formation and lyophilization" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/agarose>,
+        <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/jetpei>,
+        <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/lipofectamine>,
+        <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/pei>,
+        <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/sucrose> ;
+    lova:manufacturingMethod "DNA/PEI mixed in dilute solution with sucrose and agarose, lyophilized, powder reconstituted in hydrogel precursor solution prior to crosslinking" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.08.016/fibrin-enzymatic> a lova:FabricationMethod ;
+    rdfs:label "Thrombin-catalyzed fibrinogen polymerization" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    lova:annealingChemistry "Enzymatic (thrombin)" ;
+    lova:annealingConditions "37°C, 20 min" ;
+    lova:annealingDetail "Enzymatic (thrombin cleavage of fibrinogen)" ;
+    lova:chemistry "Enzymatic gelation" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/fibrinogen>,
+        <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/thrombin> ;
+    lova:manufacturingMethod "Fibrinogen mixed with thrombin, gelled at 37°C for 20 min" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.08.016/ha-ac-mmp> a lova:FabricationMethod ;
+    rdfs:label "Acrylated HA crosslinked with MMP-labile peptide" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    lova:annealingConditions "37°C, 30 min" ;
+    lova:chemistry "Michael-type addition (thiol-ene)" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/adipic-dihydrazide>,
+        <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/edc>,
+        <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/ha>,
+        <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/mmp-peptide>,
+        <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/n-acryloxysuccinimide> ;
+    lova:manufacturingMethod "Two-step HA modification (ADH coupling then acrylation) followed by thiol-ene crosslinking" .
+
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.08.016/peg-ac-uv> a lova:FabricationMethod ;
+    rdfs:label "PEG-diacrylate photo-crosslinked with UV and photoinitiator" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    lova:annealingConditions "365 nm UV, 1 min" ;
+    lova:chemistry "Radical photopolymerization" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/dmpa> ;
+    lova:manufacturingMethod "UV (365 nm) irradiation for 1 min" .
+
+<https://lovamap.com/ontology#journal/biomaterials> a bibo:Journal ;
+    dc1:title "Biomaterials" ;
+    bibo:issn "0142-9612" .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/ha-ac-mmp-3> a lova:Material ;
+    rdfs:label "3% HA-AC/MMP hydrogel" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.08.016/ha-ac-mmp> ;
+    lova:particleMaterial "HA-AC" ;
+    lova:particleMaterialDetail "Acrylate-modified hyaluronic acid (HA-AC)" ;
+    lova:scaffoldDimensions "100 μL gel volume" .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-ac-uv-6.5> a lova:Material ;
+    rdfs:label "6.5% PEG-diacrylate/UV hydrogel" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.08.016/peg-ac-uv> ;
+    lova:particleMaterial "PEG-DA" ;
+    lova:particleMaterialDetail "PEG-diacrylate (PEG-AC)" ;
+    lova:scaffoldDimensions "100 μL gel volume" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/angiogenesis-5pct> a lova:Outcome ;
+    rdfs:label "More robust angiogenic response in lower percentage (5%) hydrogel" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-5> ;
+    lova:comparisonGroup "6.5% PEG-VS/MMP hydrogel" ;
+    lova:dataSource "[FIG-E]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/cam-angiogenesis> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Angiogenic response" ;
+    lova:valueString "More robust angiogenic response in 5% PEG-VS/MMP hydrogel" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/angiogenesis-6.5pct> a lova:Outcome ;
+    rdfs:label "Less robust angiogenic response in higher percentage (6.5%) hydrogel" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-6.5> ;
+    lova:dataSource "[FIG-E]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/cam-angiogenesis> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Angiogenic response" ;
+    lova:valueString "Less robust angiogenic response in 6.5% PEG-VS/MMP hydrogel" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/angiogenesis-cne-vegf> a lova:Outcome ;
+    rdfs:label "Enhanced blood vessel formation around hydrogel with CnE-encapsulated pVEGF polyplexes" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    lova:comparisonGroup "No DNA / regular encapsulation controls" ;
+    lova:dataSource "[FIG-E]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/cam-angiogenesis> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Angiogenic response" ;
+    lova:valueString "Enhanced blood vessel formation (hyperbranched neovessels at gel area, radial neovessels around gel) observed for all hydrogels with CnE-stabilized DNA/PEI polyplexes encoding VEGF" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/angiogenesis-control> a lova:Outcome ;
+    rdfs:label "No enhanced blood vessel formation for no-DNA or regular encapsulation controls" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-6.5> ;
+    lova:dataSource "[FIG-E]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/cam-angiogenesis> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Angiogenic response" ;
+    lova:valueString "No enhanced blood vessel formation observed" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/bgal-5pct-vs-6.5pct> a lova:Outcome ;
+    rdfs:label "Beta-galactosidase expression more robust in 5% vs 6.5% PEG-VS/MMP hydrogel" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    lova:comparisonGroup "6.5% PEG-VS/MMP hydrogel" ;
+    lova:dataSource "[FIG-E]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/cam-angiogenesis> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Beta-galactosidase transgene expression" ;
+    lova:valueString "More robust X-gal (blue) staining in 5% gel compared to 6.5% gel" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/bgal-6.5pct> a lova:Outcome ;
+    rdfs:label "Beta-galactosidase expression in 6.5% PEG-VS/MMP hydrogel" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-6.5> ;
+    lova:dataSource "[FIG-E]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/cam-angiogenesis> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "Beta-galactosidase transgene expression" ;
+    lova:valueString "Less robust X-gal (blue) staining compared to 5% gel" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/g-prime-300ug> a lova:Outcome ;
+    rdfs:label "Storage modulus (G') of 6.5% PEG hydrogel with 300 μg DNA" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    qudt:numericValue 920.0 ;
+    qudt:unit "Pa" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-6.5> ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/rheology-modulus> ;
+    lova:measurementCategory "Mechanical" ;
+    lova:measurementType "Storage modulus (G')" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/g-prime-50ug> a lova:Outcome ;
+    rdfs:label "Storage modulus (G') of 6.5% PEG hydrogel with 50 μg DNA" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    qudt:numericValue 730.0 ;
+    qudt:unit "Pa" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-6.5> ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/rheology-modulus> ;
+    lova:measurementCategory "Mechanical" ;
+    lova:measurementType "Storage modulus (G')" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/viscosity-peg-agarose-sucrose-dnapei> a lova:Outcome ;
+    rdfs:label "Viscosity of PEG precursor + agarose + sucrose + DNA/PEI at low shear rate" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    qudt:numericValue 73.0 ;
+    qudt:unit "Pa.s" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-6.5> ;
+    lova:comparisonGroup "6.5% PEG precursor solution alone" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/viscosity-measurement> ;
+    lova:measurementCategory "Rheological" ;
+    lova:measurementType "Viscosity" .
+
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/viscosity-peg-only> a lova:Outcome ;
+    rdfs:label "Viscosity of 6.5% PEG precursor solution at low shear rate" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    qudt:numericValue 0.3 ;
+    qudt:unit "Pa.s" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-6.5> ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/viscosity-measurement> ;
+    lova:measurementCategory "Rheological" ;
+    lova:measurementType "Viscosity" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/adipic-dihydrazide> a lova:Reagent ;
+    rdfs:label "Adipic dihydrazide" ;
+    lova:reagentFunction "Reacted with HA carboxyl groups to form HA-ADH intermediate" ;
+    lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/agarose> a lova:Reagent ;
+    rdfs:label "UltraPure Agarose" ;
+    lova:concentration "0.02-0.04% (1-2 mg)" ;
+    lova:reagentFunction "Increases precursor solution viscosity preventing polyplex aggregation during gelation" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Invitrogen" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/dmpa> a lova:Reagent ;
+    rdfs:label "2,2-Dimethoxy-2-phenylacetophenone (DMPA)" ;
+    lova:concentration "18 mM" ;
+    lova:reagentRole "photoinitiator" ;
+    lova:supplier "Sigma" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/edc> a lova:Reagent ;
+    rdfs:label "1-ethyl-3-[3-dimethylaminopropyl] carbodiimide hydrochloride (EDC)" ;
+    lova:reagentFunction "Carbodiimide coupling agent for HA-ADH synthesis" ;
+    lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/fibrinogen> a lova:Reagent ;
+    rdfs:label "Human fibrinogen" ;
+    lova:concentration "5 mg/mL" ;
+    lova:reagentRole "monomer" ;
+    lova:supplier "Enzyme Research Laboratories" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/ha> a lova:Reagent ;
+    rdfs:label "Sodium hyaluronan (HA, 60 kDa)" ;
+    lova:molecularWeight "60 kDa" ;
+    lova:reagentRole "monomer" ;
+    lova:supplier "Genzyme Corporation" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/jetpei> a lova:Reagent ;
+    rdfs:label "jetPEI" ;
+    lova:reagentFunction "Alternative cationic polymer for DNA condensation" ;
+    lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/lipofectamine> a lova:Reagent ;
+    rdfs:label "Lipofectamine" ;
+    lova:reagentFunction "Cationic lipid reagent for DNA condensation" ;
+    lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/n-acryloxysuccinimide> a lova:Reagent ;
+    rdfs:label "N-Acryloxysuccinimide" ;
+    lova:reagentFunction "Acrylation of HA-ADH primary amines to form HA-AC" ;
+    lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/peg-vs> a lova:Reagent ;
+    rdfs:label "Four-arm PEG-vinyl sulfone (PEG-VS), synthesized from 4-arm PEG-OH (20 kDa)" ;
+    lova:molecularWeight "20 kDa" ;
+    lova:reagentRole "monomer" ;
+    lova:supplier "Nektar" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/pei> a lova:Reagent ;
+    rdfs:label "Linear poly(ethylene imine) (PEI, 25 kDa)" ;
+    lova:molecularWeight "25 kDa" ;
+    lova:reagentFunction "Condenses DNA into polyplexes through electrostatic interaction" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Polysciences" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/rgd> a lova:Reagent ;
+    rdfs:label "RGD peptide (Ac-GCGWGRGDSPG-NH2)" ;
+    lova:concentration "200 μM" ;
+    lova:reagentFunction "Cell adhesion" ;
+    lova:reagentRole "peptide" ;
+    lova:sequence "GCGWGRGDSPG" ;
+    lova:supplier "Genscript" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/sucrose> a lova:Reagent ;
+    rdfs:label "Sucrose (Ultra pure)" ;
+    lova:concentration "20 mM (protective concentration); tested up to 500 mM" ;
+    lova:reagentFunction "Cryoprotectant maintaining polyplex activity during lyophilization" ;
+    lova:reagentRole "other" ;
+    lova:supplier "MP Biomedicals" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/thrombin> a lova:Reagent ;
+    rdfs:label "Bovine plasma thrombin" ;
+    lova:concentration "2 U/mL" ;
+    lova:reagentFunction "Catalyzes fibrinogen cleavage and polymerization into fibrin" ;
+    lova:reagentRole "enzyme" ;
+    lova:supplier "Sigma" .
 
 <https://lovamap.com/ontology#author/chen-yong> a foaf:Person ;
     foaf:familyName "Chen" ;
     foaf:givenName "Yong" ;
     foaf:name "Yong Chen" ;
+    schema:affiliation "University of California, Los Angeles, Mechanical and Aerospace Engineering Department" .
+
+<https://lovamap.com/ontology#author/huang-suxian> a foaf:Person ;
+    foaf:familyName "Huang" ;
+    foaf:givenName "Suxian" ;
+    foaf:name "Suxian Huang" ;
     schema:affiliation "University of California, Los Angeles, Mechanical and Aerospace Engineering Department" .
 
 <https://lovamap.com/ontology#author/kavehpour-pirouz> a foaf:Person ;
@@ -60,659 +576,182 @@
     foaf:name "Pirouz Kavehpour" ;
     schema:affiliation "University of California, Los Angeles, Mechanical and Aerospace Engineering Department" .
 
+<https://lovamap.com/ontology#author/lei-yuguo> a foaf:Person ;
+    foaf:familyName "Lei" ;
+    foaf:givenName "Yuguo" ;
+    foaf:name "Yuguo Lei" ;
+    schema:affiliation "University of California, Los Angeles, Chemical and Biomolecular Engineering Department" .
+
 <https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
     foaf:familyName "Segura" ;
     foaf:givenName "Tatiana" ;
     foaf:name "Tatiana Segura" ;
     schema:affiliation "University of California, Los Angeles, Chemical and Biomolecular Engineering Department" .
 
-<https://lovamap.com/ontology#journal/biomaterials> a bibo:Journal ;
-    dc:title "Biomaterials" ;
-    bibo:issn "0142-9612" .
+<https://lovamap.com/ontology#author/sharif-kashani-pooria> a foaf:Person ;
+    foaf:familyName "Sharif-Kashani" ;
+    foaf:givenName "Pooria" ;
+    foaf:name "Pooria Sharif-Kashani" ;
+    schema:affiliation "University of California, Los Angeles, Mechanical and Aerospace Engineering Department" .
 
-<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-6.5> a lova:Material ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    rdfs:label "6.5% PEG-VS/MMP hydrogel" ;
-    lova:particleMaterial "Four-arm PEG-vinyl sulfone (PEG-VS)" ;
-    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp> ;
-    lova:scaffoldDimensions "100 μL gel volume" .
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/confocal-distribution> a lova:Experiment ;
+    rdfs:label "Confocal distribution of polyplexes in hydrogel scaffolds" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    lova:assayOrMethod "Ethidium bromide staining" ;
+    lova:equipment "Leica TCS SP MP confocal microscope" ;
+    lova:experimentCategory "Structural" ;
+    lova:experimentType "Confocal microscopy" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/fibrin-5mgml>,
+        <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/ha-ac-mmp-3>,
+        <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-ac-uv-6.5>,
+        <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-5>,
+        <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-6.5> .
 
-<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-5> a lova:Material ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    rdfs:label "5% PEG-VS/MMP hydrogel" ;
-    lova:particleMaterial "Four-arm PEG-vinyl sulfone (PEG-VS)" ;
-    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp> ;
-    lova:scaffoldDimensions "100 μL gel volume" .
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/fibrin-gene-transfer> a lova:Experiment ;
+    rdfs:label "Gene transfer in 3D fibrin hydrogel with co-encapsulated NIH/3T3 cells and pSEAP polyplexes" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    lova:assayOrMethod "Phospha-light SEAP Reporter Gene Assay" ;
+    lova:cellType "NIH/3T3" ;
+    lova:cultureDuration "11 days" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Transgene expression" ;
+    lova:seedingDensity "100,000 cells per 100 μL hydrogel" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/fibrin-5mgml> .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/viscosity-measurement> a lova:Experiment ;
+    rdfs:label "Viscosity of PEG hydrogel precursor solution with CnE components" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    lova:equipment "AR2000 plate-to-plate rheometer (TA Instruments)" ;
+    lova:experimentCategory "Rheological" ;
+    lova:experimentType "Viscosity measurement" ;
+    lova:temperature "25°C" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-6.5> .
 
 <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-4.5> a lova:Material ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
     rdfs:label "4.5% PEG-VS/MMP hydrogel" ;
-    lova:particleMaterial "Four-arm PEG-vinyl sulfone (PEG-VS)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
     lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp> ;
+    lova:particleMaterial "PEG-VS" ;
+    lova:particleMaterialDetail "Four-arm PEG-vinyl sulfone (PEG-VS)" ;
     lova:scaffoldDimensions "100 μL gel volume" .
 
-<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-ac-uv-6.5> a lova:Material ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    rdfs:label "6.5% PEG-diacrylate/UV hydrogel" ;
-    lova:particleMaterial "PEG-diacrylate (PEG-AC)" ;
-    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.08.016/peg-ac-uv> ;
-    lova:scaffoldDimensions "100 μL gel volume" .
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/g-prime-noparticle> a lova:Outcome ;
+    rdfs:label "Storage modulus (G') of 6.5% PEG hydrogel, no particle" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    qudt:numericValue 400.0 ;
+    qudt:unit "Pa" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-6.5> ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/rheology-modulus> ;
+    lova:measurementCategory "Mechanical" ;
+    lova:measurementType "Storage modulus (G')" .
 
-<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/ha-ac-mmp-3> a lova:Material ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    rdfs:label "3% HA-AC/MMP hydrogel" ;
-    lova:particleMaterial "Acrylate-modified hyaluronic acid (HA-AC)" ;
-    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.08.016/ha-ac-mmp> ;
-    lova:scaffoldDimensions "100 μL gel volume" .
-
-<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/fibrin-5mgml> a lova:Material ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    rdfs:label "Fibrin hydrogel (5 mg/mL fibrinogen)" ;
-    lova:particleMaterial "Fibrin" ;
-    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.08.016/fibrin-enzymatic> ;
-    lova:scaffoldDimensions "100 μL gel volume" .
-
-<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/dna-pei-polyplex> a lova:Material ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    rdfs:label "DNA/PEI polyplex nanoparticle" ;
-    lova:particleShape "Sphere" ;
-    lova:particleMaterial "DNA/polyethylenimine (PEI) polyplex" ;
-    lova:particleSizeMin 50.0 ;
-    lova:particleSizeMax 200.0 ;
-    lova:particleSizeUnit "nm" ;
-    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.08.016/cne-process> .
-
-<https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp> a lova:FabricationMethod ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    rdfs:label "PEG-VS crosslinked with MMP-labile peptide via Michael-type addition" ;
-    lova:chemistry "Michael-type addition (thiol-ene)" ;
-    lova:manufacturingMethod "Mixing PEG-VS precursor with dicysteine MMP-labile crosslinker peptide, incubated at 37°C for 30 min" ;
-    lova:annealingConditions "37°C, 30 min" ;
-    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/peg-vs> ,
-                    <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/mmp-peptide> ,
-                    <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/rgd> .
-
-<https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.08.016/peg-ac-uv> a lova:FabricationMethod ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    rdfs:label "PEG-diacrylate photo-crosslinked with UV and photoinitiator" ;
-    lova:chemistry "Radical photopolymerization" ;
-    lova:manufacturingMethod "UV (365 nm) irradiation for 1 min" ;
-    lova:annealingConditions "365 nm UV, 1 min" ;
-    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/dmpa> .
-
-<https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.08.016/ha-ac-mmp> a lova:FabricationMethod ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    rdfs:label "Acrylated HA crosslinked with MMP-labile peptide" ;
-    lova:chemistry "Michael-type addition (thiol-ene)" ;
-    lova:manufacturingMethod "Two-step HA modification (ADH coupling then acrylation) followed by thiol-ene crosslinking" ;
-    lova:annealingConditions "37°C, 30 min" ;
-    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/ha> ,
-                    <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/mmp-peptide> ,
-                    <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/edc> ,
-                    <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/adipic-dihydrazide> ,
-                    <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/n-acryloxysuccinimide> .
-
-<https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.08.016/fibrin-enzymatic> a lova:FabricationMethod ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    rdfs:label "Thrombin-catalyzed fibrinogen polymerization" ;
-    lova:chemistry "Enzymatic gelation" ;
-    lova:manufacturingMethod "Fibrinogen mixed with thrombin, gelled at 37°C for 20 min" ;
-    lova:annealingChemistry "Enzymatic (thrombin cleavage of fibrinogen)" ;
-    lova:annealingConditions "37°C, 20 min" ;
-    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/fibrinogen> ,
-                    <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/thrombin> .
-
-<https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.08.016/cne-process> a lova:FabricationMethod ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    rdfs:label "Caged Nanoparticle Encapsulation (CnE) process" ;
-    lova:chemistry "Electrostatic polyplex formation and lyophilization" ;
-    lova:manufacturingMethod "DNA/PEI mixed in dilute solution with sucrose and agarose, lyophilized, powder reconstituted in hydrogel precursor solution prior to crosslinking" ;
-    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/pei> ,
-                    <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/sucrose> ,
-                    <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/agarose> ,
-                    <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/jetpei> ,
-                    <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/lipofectamine> .
-
-<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/pei> a lova:Reagent ;
-    rdfs:label "Linear poly(ethylene imine) (PEI, 25 kDa)" ;
-    lova:reagentRole "other" ;
-    lova:molecularWeight "25 kDa" ;
-    lova:supplier "Polysciences" ;
-    lova:reagentFunction "Condenses DNA into polyplexes through electrostatic interaction" .
-
-<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/fibrinogen> a lova:Reagent ;
-    rdfs:label "Human fibrinogen" ;
-    lova:reagentRole "monomer" ;
-    lova:concentration "5 mg/mL" ;
-    lova:supplier "Enzyme Research Laboratories" .
-
-<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/thrombin> a lova:Reagent ;
-    rdfs:label "Bovine plasma thrombin" ;
-    lova:reagentRole "enzyme" ;
-    lova:concentration "2 U/mL" ;
-    lova:supplier "Sigma" ;
-    lova:reagentFunction "Catalyzes fibrinogen cleavage and polymerization into fibrin" .
-
-<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/pseap> a lova:Reagent ;
-    rdfs:label "pSEAP vector (secreted alkaline phosphatase)" ;
-    lova:reagentRole "other" ;
-    lova:supplier "Genlantis" ;
-    lova:reagentFunction "Reporter plasmid expressing secreted alkaline phosphatase" .
-
-<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/pegfp-luc> a lova:Reagent ;
-    rdfs:label "pEGFP-LUC vector (GFP-luciferase)" ;
-    lova:reagentRole "other" ;
-    lova:supplier "BD Biosciences" .
-
-<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/pvegf> a lova:Reagent ;
-    rdfs:label "pVEGF vector (vascular endothelial growth factor)" ;
-    lova:reagentRole "other" ;
-    lova:supplier "Lonnie Shea laboratory (Northwestern University), gift" ;
-    lova:reagentFunction "Encodes VEGF to induce angiogenesis" .
-
-<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/pbgal> a lova:Reagent ;
-    rdfs:label "p-beta-gal vector (beta-galactosidase)" ;
-    lova:reagentRole "other" ;
-    lova:supplier "Lonnie Shea laboratory (Northwestern University), gift" ;
-    lova:reagentFunction "Reporter plasmid expressing beta-galactosidase" .
-
-<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/peg-vs> a lova:Reagent ;
-    rdfs:label "Four-arm PEG-vinyl sulfone (PEG-VS), synthesized from 4-arm PEG-OH (20 kDa)" ;
-    lova:reagentRole "monomer" ;
-    lova:molecularWeight "20 kDa" ;
-    lova:supplier "Nektar" .
-
-<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/ha> a lova:Reagent ;
-    rdfs:label "Sodium hyaluronan (HA, 60 kDa)" ;
-    lova:reagentRole "monomer" ;
-    lova:molecularWeight "60 kDa" ;
-    lova:supplier "Genzyme Corporation" .
+<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/sucrose-protection> a lova:Outcome ;
+    rdfs:label "SEAP expression from lyophilized polyplexes with ≥20 mM sucrose equivalent to fresh polyplexes" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/dna-pei-polyplex> ;
+    lova:comparisonGroup "Fresh polyplexes" ;
+    lova:dataSource "[TEXT]" ;
+    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/lyophilization-transfection> ;
+    lova:measurementCategory "Biological" ;
+    lova:measurementType "SEAP expression" ;
+    lova:valueString "Lyophilized polyplexes at sucrose concentrations from 20 to 500 mM resulted in the same transgene expression as freshly prepared (Fresh) polyplexes" .
 
 <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/mmp-peptide> a lova:Reagent ;
     rdfs:label "MMP-labile dicysteine peptide (GCRDGPQGIWGQDRCG)" ;
+    lova:reagentFunction "Enzymatically (MMP) degradable inter-arm crosslink" ;
     lova:reagentRole "crosslinker" ;
     lova:sequence "GCRDGPQGIWGQDRCG" ;
-    lova:supplier "Genscript" ;
-    lova:reagentFunction "Enzymatically (MMP) degradable inter-arm crosslink" .
-
-<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/rgd> a lova:Reagent ;
-    rdfs:label "RGD peptide (Ac-GCGWGRGDSPG-NH2)" ;
-    lova:reagentRole "peptide" ;
-    lova:sequence "GCGWGRGDSPG" ;
-    lova:supplier "Genscript" ;
-    lova:concentration "200 μM" ;
-    lova:reagentFunction "Cell adhesion" .
-
-<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/sucrose> a lova:Reagent ;
-    rdfs:label "Sucrose (Ultra pure)" ;
-    lova:reagentRole "other" ;
-    lova:supplier "MP Biomedicals" ;
-    lova:concentration "20 mM (protective concentration); tested up to 500 mM" ;
-    lova:reagentFunction "Cryoprotectant maintaining polyplex activity during lyophilization" .
-
-<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/agarose> a lova:Reagent ;
-    rdfs:label "UltraPure Agarose" ;
-    lova:reagentRole "other" ;
-    lova:supplier "Invitrogen" ;
-    lova:concentration "0.02-0.04% (1-2 mg)" ;
-    lova:reagentFunction "Increases precursor solution viscosity preventing polyplex aggregation during gelation" .
-
-<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/edc> a lova:Reagent ;
-    rdfs:label "1-ethyl-3-[3-dimethylaminopropyl] carbodiimide hydrochloride (EDC)" ;
-    lova:reagentRole "other" ;
-    lova:reagentFunction "Carbodiimide coupling agent for HA-ADH synthesis" .
-
-<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/adipic-dihydrazide> a lova:Reagent ;
-    rdfs:label "Adipic dihydrazide" ;
-    lova:reagentRole "other" ;
-    lova:reagentFunction "Reacted with HA carboxyl groups to form HA-ADH intermediate" .
-
-<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/n-acryloxysuccinimide> a lova:Reagent ;
-    rdfs:label "N-Acryloxysuccinimide" ;
-    lova:reagentRole "other" ;
-    lova:reagentFunction "Acrylation of HA-ADH primary amines to form HA-AC" .
-
-<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/dmpa> a lova:Reagent ;
-    rdfs:label "2,2-Dimethoxy-2-phenylacetophenone (DMPA)" ;
-    lova:reagentRole "photoinitiator" ;
-    lova:concentration "18 mM" ;
-    lova:supplier "Sigma" .
-
-<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/jetpei> a lova:Reagent ;
-    rdfs:label "jetPEI" ;
-    lova:reagentRole "other" ;
-    lova:reagentFunction "Alternative cationic polymer for DNA condensation" .
-
-<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/lipofectamine> a lova:Reagent ;
-    rdfs:label "Lipofectamine" ;
-    lova:reagentRole "other" ;
-    lova:reagentFunction "Cationic lipid reagent for DNA condensation" .
-
-<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/lyophilization-transfection> a lova:Experiment ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/dna-pei-polyplex> ;
-    rdfs:label "Transfection activity of lyophilized DNA/PEI polyplexes vs sucrose concentration" ;
-    lova:experimentCategory "Biological" ;
-    lova:experimentType "Transfection efficiency" ;
-    lova:assayOrMethod "SEAP reporter assay" ;
-    lova:cellType "HEK293" ;
-    lova:temperature "Room temperature (incubation 15 min prior to lyophilization)" .
-
-<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/sucrose-protection> a lova:Outcome ;
-    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/lyophilization-transfection> ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    rdfs:label "SEAP expression from lyophilized polyplexes with ≥20 mM sucrose equivalent to fresh polyplexes" ;
-    lova:measurementType "SEAP expression" ;
-    lova:measurementCategory "Biological" ;
-    lova:valueString "Lyophilized polyplexes at sucrose concentrations from 20 to 500 mM resulted in the same transgene expression as freshly prepared (Fresh) polyplexes" ;
-    lova:comparisonGroup "Fresh polyplexes" ;
-    lova:dataSource "[TEXT]" .
-
-<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2010.08.016/sucrose-vs-fresh> a lova:ComparisonResult ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    rdfs:label "Lyophilized polyplexes (≥20 mM sucrose) vs Fresh polyplexes — no difference in SEAP expression" ;
-    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/sucrose-protection> ;
-    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/sucrose-protection> ;
-    lova:direction "no difference" .
-
-<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/viscosity-measurement> a lova:Experiment ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-6.5> ;
-    rdfs:label "Viscosity of PEG hydrogel precursor solution with CnE components" ;
-    lova:experimentCategory "Rheological" ;
-    lova:experimentType "Viscosity measurement" ;
-    lova:equipment "AR2000 plate-to-plate rheometer (TA Instruments)" ;
-    lova:temperature "25°C" .
-
-<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/viscosity-peg-only> a lova:Outcome ;
-    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/viscosity-measurement> ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    rdfs:label "Viscosity of 6.5% PEG precursor solution at low shear rate" ;
-    lova:measurementType "Viscosity" ;
-    lova:measurementCategory "Rheological" ;
-    qudt:numericValue 0.3 ;
-    qudt:unit "Pa.s" ;
-    lova:dataSource "[TEXT]" .
-
-<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/viscosity-peg-agarose-sucrose-dnapei> a lova:Outcome ;
-    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/viscosity-measurement> ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    rdfs:label "Viscosity of PEG precursor + agarose + sucrose + DNA/PEI at low shear rate" ;
-    lova:measurementType "Viscosity" ;
-    lova:measurementCategory "Rheological" ;
-    qudt:numericValue 73.0 ;
-    qudt:unit "Pa.s" ;
-    lova:comparisonGroup "6.5% PEG precursor solution alone" ;
-    lova:dataSource "[TEXT]" .
-
-<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2010.08.016/viscosity-comparison> a lova:ComparisonResult ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    rdfs:label "Viscosity higher with agarose+sucrose+DNA/PEI vs PEG alone" ;
-    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/viscosity-peg-agarose-sucrose-dnapei> ;
-    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/viscosity-peg-only> ;
-    lova:direction "higher" .
+    lova:supplier "Genscript" .
 
 <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/sem-morphology> a lova:Experiment ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/dna-pei-polyplex> ;
     rdfs:label "SEM morphology of lyophilized polyplex powders" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    lova:equipment "Hitachi S-4500 SEM" ;
     lova:experimentCategory "Structural" ;
     lova:experimentType "Scanning electron microscopy" ;
-    lova:equipment "Hitachi S-4500 SEM" .
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/dna-pei-polyplex> .
 
-<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/sem-sucrose-morph> a lova:Outcome ;
-    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/sem-morphology> ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    rdfs:label "Sucrose and sucrose+polyplex morphology" ;
-    lova:measurementType "Powder morphology" ;
-    lova:measurementCategory "Structural" ;
-    lova:valueString "Smooth and crystalline morphology" ;
-    lova:dataSource "[FIG-E]" .
+<https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp> a lova:FabricationMethod ;
+    rdfs:label "PEG-VS crosslinked with MMP-labile peptide via Michael-type addition" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    lova:annealingConditions "37°C, 30 min" ;
+    lova:chemistry "Michael-type addition (thiol-ene)" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/mmp-peptide>,
+        <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/peg-vs>,
+        <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2010.08.016/rgd> ;
+    lova:manufacturingMethod "Mixing PEG-VS precursor with dicysteine MMP-labile crosslinker peptide, incubated at 37°C for 30 min" .
 
-<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/sem-agarose-morph> a lova:Outcome ;
-    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/sem-morphology> ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    rdfs:label "Agarose and agarose+polyplex morphology" ;
-    lova:measurementType "Powder morphology" ;
-    lova:measurementCategory "Structural" ;
-    lova:valueString "Fibrilar morphology" ;
-    lova:dataSource "[FIG-E]" .
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/fibrin-5mgml> a lova:Material ;
+    rdfs:label "Fibrin hydrogel (5 mg/mL fibrinogen)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.08.016/fibrin-enzymatic> ;
+    lova:particleMaterial "Fibrin" ;
+    lova:scaffoldDimensions "100 μL gel volume" .
 
-<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/sem-combined-morph> a lova:Outcome ;
-    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/sem-morphology> ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    rdfs:label "Sucrose+agarose(+polyplex) combined morphology" ;
-    lova:measurementType "Powder morphology" ;
-    lova:measurementCategory "Structural" ;
-    lova:valueString "Formation of microfibers and microspheres" ;
-    lova:dataSource "[FIG-E]" .
-
-<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/confocal-distribution> a lova:Experiment ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-6.5> ,
-                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-5> ,
-                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-ac-uv-6.5> ,
-                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/ha-ac-mmp-3> ,
-                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/fibrin-5mgml> ;
-    rdfs:label "Confocal distribution of polyplexes in hydrogel scaffolds" ;
-    lova:experimentCategory "Structural" ;
-    lova:experimentType "Confocal microscopy" ;
-    lova:assayOrMethod "Ethidium bromide staining" ;
-    lova:equipment "Leica TCS SP MP confocal microscope" .
-
-<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/regular-encapsulation-aggregation> a lova:Outcome ;
-    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/confocal-distribution> ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    rdfs:label "Regular polyplex encapsulation resulted in severe aggregation" ;
-    lova:measurementType "Polyplex aggregation" ;
-    lova:measurementCategory "Structural" ;
-    lova:valueString "Severe polyplex aggregation, some visible to the naked eye" ;
-    lova:dataSource "[FIG-E]" .
-
-<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/cne-unaggregated> a lova:Outcome ;
-    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/confocal-distribution> ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    rdfs:label "CnE (sucrose+agarose) encapsulation resulted in un-aggregated polyplexes up to 500 μg DNA" ;
-    lova:measurementType "Polyplex aggregation" ;
-    lova:measurementCategory "Structural" ;
-    lova:valueString "Un-aggregated polyplexes observed at 50, 100, 300, and 500 μg DNA loading across PEG-VS/MMP, PEG-AC/UV, HA-AC/MMP, and fibrin hydrogels; jetPEI/DNA and Lipofectamine/DNA also un-aggregated" ;
-    lova:comparisonGroup "Regular polyplex encapsulation" ;
-    lova:dataSource "[FIG-E]" .
-
-<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/translucency> a lova:Experiment ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-6.5> ;
-    rdfs:label "Light translucency of high DNA loaded PEG-VS/MMP hydrogel" ;
-    lova:experimentCategory "Physical" ;
-    lova:experimentType "Light translucency measurement" ;
-    lova:equipment "Observer Z1 (Zeiss) dark field microscope, Image J" .
-
-<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/translucency-regression> a lova:Outcome ;
-    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/translucency> ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    rdfs:label "Relative translucency vs DNA loading linear regression" ;
-    lova:measurementType "Relative translucency" ;
-    lova:measurementCategory "Physical" ;
-    lova:valueString "y = 98.5 - 0.11x, R² = 0.99031 (DNA from 0 to 500 μg/100 μL gel)" ;
-    lova:dataSource "[FIG-Q]" .
-
-<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/dna-release> a lova:Experiment ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-6.5> ;
-    rdfs:label "DNA release from high DNA loaded PEG-VS/MMP hydrogels" ;
-    lova:experimentCategory "Physical" ;
-    lova:experimentType "Release kinetics" ;
-    lova:assayOrMethod "HOECHST dye quantification (H33258)" ;
-    lova:medium "PBS (pH 7.4), then 0.25% trypsin" .
-
-<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/dna-release-burst> a lova:Outcome ;
-    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/dna-release> ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    rdfs:label "No DNA release in PBS until trypsin addition at 180 h; burst release upon degradation" ;
-    lova:measurementType "DNA release" ;
-    lova:measurementCategory "Physical" ;
-    lova:valueString "No release observed in PBS up to 180 h; burst release of DNA occurred after trypsin addition due to rapid hydrogel degradation" ;
-    lova:timePoint "180 h" ;
-    lova:dataSource "[TEXT]" .
-
-<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/rheology-modulus> a lova:Experiment ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-6.5> ,
-                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-4.5> ;
-    rdfs:label "Storage and loss modulus of PEG-VS/MMP hydrogels with varying DNA loading" ;
-    lova:experimentCategory "Mechanical" ;
-    lova:experimentType "Rheology" ;
-    lova:equipment "AR2000 plate-to-plate rheometer" ;
-    lova:strainRate "Constant strain 0.05" ;
-    lova:frequency "0.1-10 rad/s" .
-
-<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/g-prime-noparticle> a lova:Outcome ;
-    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/rheology-modulus> ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    rdfs:label "Storage modulus (G') of 6.5% PEG hydrogel, no particle" ;
-    lova:measurementType "Storage modulus (G')" ;
-    lova:measurementCategory "Mechanical" ;
-    qudt:numericValue 400.0 ;
-    qudt:unit "Pa" ;
-    lova:dataSource "[TEXT]" .
-
-<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/g-prime-50ug> a lova:Outcome ;
-    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/rheology-modulus> ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    rdfs:label "Storage modulus (G') of 6.5% PEG hydrogel with 50 μg DNA" ;
-    lova:measurementType "Storage modulus (G')" ;
-    lova:measurementCategory "Mechanical" ;
-    qudt:numericValue 730.0 ;
-    qudt:unit "Pa" ;
-    lova:dataSource "[TEXT]" .
-
-<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/g-prime-100ug> a lova:Outcome ;
-    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/rheology-modulus> ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    rdfs:label "Storage modulus (G') of 6.5% PEG hydrogel with 100 μg DNA" ;
-    lova:measurementType "Storage modulus (G')" ;
-    lova:measurementCategory "Mechanical" ;
-    qudt:numericValue 830.0 ;
-    qudt:unit "Pa" ;
-    lova:dataSource "[TEXT]" .
-
-<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/g-prime-300ug> a lova:Outcome ;
-    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/rheology-modulus> ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    rdfs:label "Storage modulus (G') of 6.5% PEG hydrogel with 300 μg DNA" ;
-    lova:measurementType "Storage modulus (G')" ;
-    lova:measurementCategory "Mechanical" ;
-    qudt:numericValue 920.0 ;
-    qudt:unit "Pa" ;
-    lova:dataSource "[TEXT]" .
-
-<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/g-prime-4.5pct-100ug> a lova:Outcome ;
-    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/rheology-modulus> ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    rdfs:label "Storage modulus (G') of 4.5% PEG hydrogel with 100 μg DNA — matched 6.5% PEG without DNA" ;
-    lova:measurementType "Storage modulus (G')" ;
-    lova:measurementCategory "Mechanical" ;
-    lova:valueString "Comparable to 6.5% PEG hydrogel without DNA loading (~400 Pa)" ;
-    lova:dataSource "[TEXT]" .
-
-<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/loss-tangent> a lova:Outcome ;
-    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/rheology-modulus> ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    rdfs:label "Loss tangent (G''/G') of hydrogels tested" ;
-    lova:measurementType "Loss tangent" ;
-    lova:measurementCategory "Mechanical" ;
-    lova:valueString "<0.006 for all hydrogels tested, indicating highly elastic behavior" ;
-    lova:dataSource "[TEXT]" .
-
-<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2010.08.016/gprime-50-vs-noparticle> a lova:ComparisonResult ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    rdfs:label "Storage modulus higher with 50 μg DNA vs no particle" ;
-    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/g-prime-50ug> ;
-    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/g-prime-noparticle> ;
-    lova:direction "higher" .
-
-<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2010.08.016/gprime-300-vs-noparticle> a lova:ComparisonResult ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    rdfs:label "Storage modulus higher with 300 μg DNA vs no particle" ;
-    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/g-prime-300ug> ;
-    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/g-prime-noparticle> ;
-    lova:direction "higher" .
-
-<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/loading-efficiency> a lova:Experiment ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-6.5> ;
-    rdfs:label "DNA loading efficiency of PEG-VS/MMP hydrogels via CnE" ;
-    lova:experimentCategory "Physical" ;
-    lova:experimentType "DNA loading efficiency" ;
-    lova:assayOrMethod "HOECHST dye quantification after trypsin degradation" .
-
-<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/loading-efficiency-all> a lova:Outcome ;
-    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/loading-efficiency> ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    rdfs:label "DNA loading efficiency above 85% for 50, 100, 300, and 500 μg DNA" ;
-    lova:measurementType "DNA loading efficiency" ;
-    lova:measurementCategory "Physical" ;
-    lova:valueString ">85% for 50, 100, 300, and 500 μg DNA loaded" ;
-    lova:dataSource "[FIG-Q]" .
-
-<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/polyplex-activity-recovery> a lova:Experiment ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-6.5> ;
-    rdfs:label "Transfection activity of polyplexes recovered from degraded hydrogel" ;
-    lova:experimentCategory "Biological" ;
-    lova:experimentType "Transfection efficiency" ;
-    lova:cellType "HEK293" .
-
-<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/polyplex-activity-65pct> a lova:Outcome ;
-    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/polyplex-activity-recovery> ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    rdfs:label "Recovered polyplex activity ~65% of freshly prepared polyplexes (100 and 300 μg DNA)" ;
-    lova:measurementType "Polyplex transfection activity" ;
-    lova:measurementCategory "Biological" ;
-    qudt:numericValue 65.0 ;
-    qudt:unit "%" ;
-    lova:comparisonGroup "Freshly prepared polyplexes" ;
-    lova:dataSource "[FIG-Q]" .
-
-<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/live-dead-viability> a lova:Experiment ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-6.5> ;
-    rdfs:label "Cell viability of D1 cells encapsulated with DNA polyplexes in RGD-modified PEG-VS/MMP hydrogel" ;
-    lova:experimentCategory "Biological" ;
-    lova:experimentType "Cell viability" ;
-    lova:assayOrMethod "LIVE/DEAD kit (Molecular Probes)" ;
-    lova:cellType "D1 (CRL12424, mesenchymal stem cells)" ;
-    lova:seedingDensity "150,000 cells per 5 μL fibrin clot" ;
-    lova:cultureDuration "15 days" .
-
-<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/live-dead-day15> a lova:Outcome ;
-    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/live-dead-viability> ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    rdfs:label "D1 cells survive and spread within polyplex-loaded PEG-VS/MMP hydrogel at day 15, minimal cell death" ;
-    lova:measurementType "Cell viability" ;
-    lova:measurementCategory "Biological" ;
-    lova:valueString "Predominantly green (live) staining with minimal red (dead) staining observed; cells survived and spread without significant cell death" ;
-    lova:timePoint "Day 15" ;
-    lova:dataSource "[FIG-E]" .
-
-<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/fibrin-gene-transfer> a lova:Experiment ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/fibrin-5mgml> ;
-    rdfs:label "Gene transfer in 3D fibrin hydrogel with co-encapsulated NIH/3T3 cells and pSEAP polyplexes" ;
-    lova:experimentCategory "Biological" ;
-    lova:experimentType "Transgene expression" ;
-    lova:assayOrMethod "Phospha-light SEAP Reporter Gene Assay" ;
-    lova:cellType "NIH/3T3" ;
-    lova:seedingDensity "100,000 cells per 100 μL hydrogel" ;
-    lova:cultureDuration "11 days" .
-
-<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/seap-cumulative-10ug-day11> a lova:Outcome ;
-    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/fibrin-gene-transfer> ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    rdfs:label "Cumulative SEAP expression with 10 μg DNA loading at Day 11" ;
-    lova:measurementType "SEAP cumulative expression" ;
-    lova:measurementCategory "Biological" ;
-    qudt:numericValue 20.0 ;
-    qudt:unit "ng" ;
-    lova:timePoint "Day 11" ;
-    lova:isTimeSeries true ;
-    lova:dataSource "[TEXT]" .
-
-<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/seap-daily-max> a lova:Outcome ;
-    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/fibrin-gene-transfer> ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    rdfs:label "Daily SEAP production up to 10 ng/day for highest DNA dose" ;
-    lova:measurementType "SEAP daily expression" ;
-    lova:measurementCategory "Biological" ;
-    lova:valueString "up to 10 ng SEAP produced daily" ;
-    lova:dataSource "[TEXT]" .
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-5> a lova:Material ;
+    rdfs:label "5% PEG-VS/MMP hydrogel" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp> ;
+    lova:particleMaterial "PEG-VS" ;
+    lova:particleMaterialDetail "Four-arm PEG-vinyl sulfone (PEG-VS)" ;
+    lova:scaffoldDimensions "100 μL gel volume" .
 
 <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/cam-angiogenesis> a lova:Experiment ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-5> ,
-                      <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-6.5> ;
     rdfs:label "Chorioallantoic membrane (CAM) angiogenesis and gene transfer assay" ;
-    lova:experimentCategory "Biological" ;
-    lova:experimentType "In vivo gene transfer / angiogenesis" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
     lova:assayOrMethod "X-gal staining, FITC-dextran perfusion imaging" ;
     lova:cellSource "Chicken embryo chorioallantoic membrane" ;
+    lova:cultureDuration "3 days post-implantation" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "In vivo gene transfer / angiogenesis" ;
     lova:temperature "37-38°C incubation" ;
-    lova:cultureDuration "3 days post-implantation" .
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-5>,
+        <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-6.5> .
 
-<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/bgal-5pct-vs-6.5pct> a lova:Outcome ;
-    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/cam-angiogenesis> ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    rdfs:label "Beta-galactosidase expression more robust in 5% vs 6.5% PEG-VS/MMP hydrogel" ;
-    lova:measurementType "Beta-galactosidase transgene expression" ;
-    lova:measurementCategory "Biological" ;
-    lova:valueString "More robust X-gal (blue) staining in 5% gel compared to 6.5% gel" ;
-    lova:comparisonGroup "6.5% PEG-VS/MMP hydrogel" ;
-    lova:dataSource "[FIG-E]" .
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/rheology-modulus> a lova:Experiment ;
+    rdfs:label "Storage and loss modulus of PEG-VS/MMP hydrogels with varying DNA loading" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    lova:equipment "AR2000 plate-to-plate rheometer" ;
+    lova:experimentCategory "Mechanical" ;
+    lova:experimentType "Rheology" ;
+    lova:frequency "0.1-10 rad/s" ;
+    lova:strainRate "Constant strain 0.05" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-4.5>,
+        <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-6.5> .
 
-<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/bgal-6.5pct> a lova:Outcome ;
-    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/cam-angiogenesis> ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    rdfs:label "Beta-galactosidase expression in 6.5% PEG-VS/MMP hydrogel" ;
-    lova:measurementType "Beta-galactosidase transgene expression" ;
-    lova:measurementCategory "Biological" ;
-    lova:valueString "Less robust X-gal (blue) staining compared to 5% gel" ;
-    lova:dataSource "[FIG-E]" .
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/dna-pei-polyplex> a lova:Material ;
+    rdfs:label "DNA/PEI polyplex nanoparticle" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.08.016/cne-process> ;
+    lova:particleMaterial "DNA/polyethylenimine (PEI) polyplex" ;
+    lova:particleShape "Sphere" ;
+    lova:particleSizeMax 200.0 ;
+    lova:particleSizeMin 50.0 ;
+    lova:particleSizeUnit "nm" .
 
-<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2010.08.016/bgal-5-vs-6.5> a lova:ComparisonResult ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    rdfs:label "Beta-galactosidase expression higher in 5% vs 6.5% PEG-VS/MMP hydrogel" ;
-    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/bgal-5pct-vs-6.5pct> ;
-    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/bgal-6.5pct> ;
-    lova:direction "higher" .
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp-6.5> a lova:Material ;
+    rdfs:label "6.5% PEG-VS/MMP hydrogel" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2010.08.016/peg-vs-mmp> ;
+    lova:particleMaterial "PEG-VS" ;
+    lova:particleMaterialDetail "Four-arm PEG-vinyl sulfone (PEG-VS)" ;
+    lova:scaffoldDimensions "100 μL gel volume" .
 
-<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/angiogenesis-cne-vegf> a lova:Outcome ;
-    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/cam-angiogenesis> ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    rdfs:label "Enhanced blood vessel formation around hydrogel with CnE-encapsulated pVEGF polyplexes" ;
-    lova:measurementType "Angiogenic response" ;
-    lova:measurementCategory "Biological" ;
-    lova:valueString "Enhanced blood vessel formation (hyperbranched neovessels at gel area, radial neovessels around gel) observed for all hydrogels with CnE-stabilized DNA/PEI polyplexes encoding VEGF" ;
-    lova:comparisonGroup "No DNA / regular encapsulation controls" ;
-    lova:dataSource "[FIG-E]" .
+<https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> a bibo:AcademicArticle ;
+    rdfs:label "Lei et al., 2010 — Incorporation of active DNA/cationic polymer polyplexes into hydrogel scaffolds" ;
+    dc1:bibliographicCitation "Lei et al., 2010" ;
+    dc1:creator <https://lovamap.com/ontology#author/chen-yong>,
+        <https://lovamap.com/ontology#author/huang-suxian>,
+        <https://lovamap.com/ontology#author/kavehpour-pirouz>,
+        <https://lovamap.com/ontology#author/lei-yuguo>,
+        <https://lovamap.com/ontology#author/segura-tatiana>,
+        <https://lovamap.com/ontology#author/sharif-kashani-pooria> ;
+    dc1:date "2010"^^xsd:gYear ;
+    dc1:identifier "10.1016/j.biomaterials.2010.08.016" ;
+    dc1:title "Incorporation of active DNA/cationic polymer polyplexes into hydrogel scaffolds" ;
+    dc1:type "Research Article" ;
+    bibo:authorList ( <https://lovamap.com/ontology#author/lei-yuguo> <https://lovamap.com/ontology#author/huang-suxian> <https://lovamap.com/ontology#author/sharif-kashani-pooria> <https://lovamap.com/ontology#author/chen-yong> <https://lovamap.com/ontology#author/kavehpour-pirouz> <https://lovamap.com/ontology#author/segura-tatiana> ) ;
+    lova:focusMaterial "DNA/PEI polyplexes encapsulated in PEG, hyaluronic acid, and fibrin hydrogel scaffolds for non-viral gene delivery" ;
+    schema:isPartOf <https://lovamap.com/ontology#journal/biomaterials> .
 
-<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/angiogenesis-control> a lova:Outcome ;
-    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/cam-angiogenesis> ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    rdfs:label "No enhanced blood vessel formation for no-DNA or regular encapsulation controls" ;
-    lova:measurementType "Angiogenic response" ;
-    lova:measurementCategory "Biological" ;
-    lova:valueString "No enhanced blood vessel formation observed" ;
-    lova:dataSource "[FIG-E]" .
-
-<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2010.08.016/angiogenesis-cne-vs-control> a lova:ComparisonResult ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    rdfs:label "Angiogenic response higher with CnE pVEGF encapsulation vs no-DNA/regular encapsulation controls" ;
-    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/angiogenesis-cne-vegf> ;
-    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/angiogenesis-control> ;
-    lova:direction "higher" .
-
-<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/angiogenesis-5pct> a lova:Outcome ;
-    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/cam-angiogenesis> ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    rdfs:label "More robust angiogenic response in lower percentage (5%) hydrogel" ;
-    lova:measurementType "Angiogenic response" ;
-    lova:measurementCategory "Biological" ;
-    lova:valueString "More robust angiogenic response in 5% PEG-VS/MMP hydrogel" ;
-    lova:comparisonGroup "6.5% PEG-VS/MMP hydrogel" ;
-    lova:dataSource "[FIG-E]" .
-
-<https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/angiogenesis-6.5pct> a lova:Outcome ;
-    lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2010.08.016/cam-angiogenesis> ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    rdfs:label "Less robust angiogenic response in higher percentage (6.5%) hydrogel" ;
-    lova:measurementType "Angiogenic response" ;
-    lova:measurementCategory "Biological" ;
-    lova:valueString "Less robust angiogenic response in 6.5% PEG-VS/MMP hydrogel" ;
-    lova:dataSource "[FIG-E]" .
-
-<https://lovamap.com/ontology#comparison/10.1016-j.biomaterials.2010.08.016/angiogenesis-5-vs-6.5> a lova:ComparisonResult ;
-    dc:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2010.08.016> ;
-    rdfs:label "Angiogenic response higher in 5% vs 6.5% PEG-VS/MMP hydrogel" ;
-    lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/angiogenesis-5pct> ;
-    lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2010.08.016/angiogenesis-6.5pct> ;
-    lova:direction "higher" .

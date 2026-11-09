@@ -21,6 +21,7 @@ import { Publication, PublicationToCreate, DescriptorRuleToCreate } from "../mod
 import { InputGroup } from "../models/inputGroup";
 import { RdfGraph, RdfOntologySummary } from "../models/rdfGraph";
 import { DashboardAnalytics } from "../models/dashboardAnalytics";
+import { JobAdminStats, UserFailureRanking } from "../models/jobAdminStats";
 import { ThumbnailResetPreview } from "../models/thumbnailResetPreview";
 import { ContentPageSummary, ContentPageDetail, ContentPageToCreate, ContentPageToUpdate, ContentSectionToCreate, ContentSectionToUpdate, ContentSection, ReorderSections, ReorderPages } from "../models/contentPage";
 
@@ -290,8 +291,12 @@ const Jobs = {
         const response = await axios.get<ApiResponse<JobForList[]>>(`/jobs/me?pageNumber=${pageNumber}&pageSize=${pageSize}`);
         return { data: response.data.data, pagination: extractPagination(response)! };
     },
-    getAllJobs: async (pageNumber = 1, pageSize = 10): Promise<PaginatedResponse<JobForList[]>> => {
-        const response = await axios.get<ApiResponse<JobForList[]>>(`/jobs/all?pageNumber=${pageNumber}&pageSize=${pageSize}`);
+    getAllJobs: async (pageNumber = 1, pageSize = 10, filters?: { status?: string; jobType?: string; search?: string }): Promise<PaginatedResponse<JobForList[]>> => {
+        const params: string[] = [`pageNumber=${pageNumber}`, `pageSize=${pageSize}`];
+        if (filters?.status) params.push(`status=${filters.status}`);
+        if (filters?.jobType) params.push(`jobType=${filters.jobType}`);
+        if (filters?.search) params.push(`search=${encodeURIComponent(filters.search)}`);
+        const response = await axios.get<ApiResponse<JobForList[]>>(`/jobs/all?${params.join('&')}`);
         return { data: response.data.data, pagination: extractPagination(response)! };
     },
     getJobResult: async (jobId: string) => {
@@ -352,6 +357,23 @@ const Publications = {
         requests.put<ApiResponse<string>>(`/publications/${publicationId}/scaffold-groups`, { scaffoldGroupIds }),
 }
 
+const Admin = {
+	getJobStats: (from?: string, to?: string) => {
+		const params: string[] = [];
+		if (from) params.push(`from=${from}`);
+		if (to) params.push(`to=${to}`);
+		const query = params.length > 0 ? `?${params.join('&')}` : '';
+		return requests.get<ApiResponse<JobAdminStats>>(`/admin/job-stats${query}`);
+	},
+	getUserFailureRankings: async (from?: string, to?: string, pageNumber = 1, pageSize = 10): Promise<PaginatedResponse<UserFailureRanking[]>> => {
+		const params: string[] = [`pageNumber=${pageNumber}`, `pageSize=${pageSize}`];
+		if (from) params.push(`from=${from}`);
+		if (to) params.push(`to=${to}`);
+		const response = await axios.get<ApiResponse<UserFailureRanking[]>>(`/admin/user-failure-rankings?${params.join('&')}`);
+		return { data: response.data.data ?? [], pagination: extractPagination(response)! };
+	},
+}
+
 const Analytics = {
 	getDashboardAnalytics: () => requests.get<ApiResponse<DashboardAnalytics>>('/analytics/dashboard'),
 }
@@ -388,6 +410,7 @@ const agent = {
     Publications,
 	RdfVisualization,
 	Analytics,
+	Admin,
 	Content
 }
 

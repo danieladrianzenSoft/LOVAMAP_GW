@@ -1,0 +1,17 @@
+name: rdf-analysis
+channels:
+  - defaults
+dependencies:
+  - python=3.12
+  - jupyterlab
+  - pandas
+  - numpy
+  - matplotlib
+  - seaborn
+  - scipy
+  - networkx
+  - requests
+  - python-dotenv
+  - pip
+  - pip:
+      - rdflib

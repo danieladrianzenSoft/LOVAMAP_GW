@@ -1,25 +1,15 @@
 import { useStore } from '../../app/stores/store';
 import { observer } from "mobx-react-lite";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Routes, Route, useNavigate, useParams } from "react-router-dom";
 import RunLovamap from "./run-lovamap";
 import RunSegmentation from "./run-segmentation";
 import RunMesh from "./run-mesh";
-import { JobForList, Pagination, ToolVersions } from '../../app/models/job';
+import { JobForList, ToolVersions } from '../../app/models/job';
 import { formatDate } from '../../app/utils/format-date';
 import JobDetail from './job-detail';
 import { FaArrowLeft, FaSpinner } from 'react-icons/fa';
-import DataTable, { DataTableColumn } from '../../app/common/data-table/data-table';
-import ElapsedTime from './elapsed-time';
-
-const formatJobType = (jobType?: string): string => {
-	switch (jobType) {
-		case 'Lovamap': return 'LOVAMAP';
-		case 'ParticleSegmentation': return 'Segmentation';
-		case 'MeshProcessing': return 'Mesh';
-		default: return jobType ?? '—';
-	}
-};
+import JobTable from './job-table';
 
 const BetaBadge: React.FC = () => (
 	<span className="ml-1.5 inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-semibold uppercase tracking-wide bg-amber-100 text-amber-700 leading-none align-middle">
@@ -86,105 +76,48 @@ const PageHeader: React.FC<{ title: React.ReactNode; backTo?: string }> = ({ tit
 	);
 };
 
-/* ── Sub-view: Pagination controls ── */
-const PaginationControls: React.FC<{
-	pagination: Pagination;
-	onPageChange: (page: number) => void;
-}> = ({ pagination, onPageChange }) => {
-	const { currentPage, totalPages } = pagination;
-	if (totalPages <= 1) return null;
-
-	const getPageNumbers = () => {
-		const pages: (number | '...')[] = [];
-		if (totalPages <= 7) {
-			for (let i = 1; i <= totalPages; i++) pages.push(i);
-		} else {
-			pages.push(1);
-			if (currentPage > 3) pages.push('...');
-			for (let i = Math.max(2, currentPage - 1); i <= Math.min(totalPages - 1, currentPage + 1); i++) {
-				pages.push(i);
-			}
-			if (currentPage < totalPages - 2) pages.push('...');
-			pages.push(totalPages);
-		}
-		return pages;
-	};
-
-	return (
-		<div className="flex items-center justify-center gap-1 mt-4">
-			<button
-				onClick={() => onPageChange(currentPage - 1)}
-				disabled={currentPage === 1}
-				className="px-3 py-1.5 text-sm rounded border border-gray-300 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-gray-50"
-			>
-				Previous
-			</button>
-			{getPageNumbers().map((page, idx) =>
-				page === '...' ? (
-					<span key={`ellipsis-${idx}`} className="px-2 py-1.5 text-sm text-gray-400">...</span>
-				) : (
-					<button
-						key={page}
-						onClick={() => onPageChange(page)}
-						className={`px-3 py-1.5 text-sm rounded border ${
-							page === currentPage
-								? 'bg-gray-800 text-white border-gray-800'
-								: 'border-gray-300 hover:bg-gray-50'
-						}`}
-					>
-						{page}
-					</button>
-				)
-			)}
-			<button
-				onClick={() => onPageChange(currentPage + 1)}
-				disabled={currentPage === totalPages}
-				className="px-3 py-1.5 text-sm rounded border border-gray-300 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-gray-50"
-			>
-				Next
-			</button>
-		</div>
-	);
-};
-
-/* ── Sub-view: Job table (default /jobs) ── */
-const JobTableView: React.FC<{
+/* ── Sub-view: Job list with submit cards + table (default /jobs) ── */
+const JobListIndex: React.FC<{
 	jobs: JobForList[];
 	isAdmin: boolean;
-	pagination: Pagination | null;
-	onPageChange: (page: number) => void;
 	toolVersions: ToolVersions | null;
-}> = observer(({ jobs, isAdmin, pagination, onPageChange, toolVersions }) => {
+	onPageChange: (page: number) => void;
+	fetchJobs: () => Promise<void>;
+}> = observer(({ jobs, isAdmin, toolVersions, onPageChange, fetchJobs }) => {
 	const navigate = useNavigate();
+	const { jobStore } = useStore();
+	const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-	const pageOffset = pagination ? (pagination.currentPage - 1) * pagination.itemsPerPage : 0;
+	const handleFilterChange = useCallback((setter: (v: string) => void) => (value: string) => {
+		setter(value);
+		jobStore.setPage(1);
+		fetchJobs();
+	}, [jobStore, fetchJobs]);
 
-	const jobColumns: DataTableColumn<JobForList>[] = [
-		{ header: '#', render: (_job, index) => pageOffset + index + 1 },
-		{ header: 'Id', render: (job) => job.id },
-		{ header: 'Type', render: (job) => formatJobType(job.jobType) },
-		{ header: 'Date', render: (job) => formatDate(job.submittedAt) },
-		{
-			header: 'Status',
-			render: (job) => {
-				const isActive = job.status === 'Pending' || job.status === 'Running';
-				return (
-					<span className="inline-flex items-center gap-2">
-						{job.status}
-						{isActive && (
-							<span className="text-gray-400">
-								<ElapsedTime since={job.submittedAt} />
-							</span>
-						)}
-					</span>
-				);
-			},
-		},
-		...(isAdmin ? [{
-			header: 'Submitted by',
-			render: (job: JobForList) => job.creatorEmail ?? '—',
-		}] : []),
-	];
+	const handleSearchChange = useCallback((value: string) => {
+		jobStore.setFilterSearch(value);
+		if (debounceRef.current) clearTimeout(debounceRef.current);
+		debounceRef.current = setTimeout(() => {
+			jobStore.setPage(1);
+			fetchJobs();
+		}, 400);
+	}, [jobStore, fetchJobs]);
+
+	const handleClearFilters = useCallback(() => {
+		jobStore.clearFilters();
+		jobStore.setPage(1);
+		fetchJobs();
+	}, [jobStore, fetchJobs]);
+
+	const filters = isAdmin ? {
+		status: jobStore.filterStatus,
+		jobType: jobStore.filterJobType,
+		search: jobStore.filterSearch,
+		onStatusChange: handleFilterChange(jobStore.setFilterStatus),
+		onJobTypeChange: handleFilterChange(jobStore.setFilterJobType),
+		onSearchChange: handleSearchChange,
+		onClear: handleClearFilters,
+	} : null;
 
 	return (
 		<>
@@ -230,17 +163,13 @@ const JobTableView: React.FC<{
 					</button>
 				))}
 			</div>
-			<div className="flex flex-col">
-				<DataTable
-					data={jobs ?? []}
-					columns={jobColumns}
-					onRowClick={(job) => navigate(`/jobs/${job.id.substring(0, 8)}`)}
-					rowKey={(job) => job.id}
-				/>
-				{pagination && (
-					<PaginationControls pagination={pagination} onPageChange={onPageChange} />
-				)}
-			</div>
+			<JobTable
+				jobs={jobs}
+				isAdmin={isAdmin}
+				pagination={jobStore.pagination}
+				onPageChange={onPageChange}
+				filters={filters}
+			/>
 		</>
 	);
 });
@@ -403,7 +332,7 @@ const JobList: React.FC = () => {
 	return (
 		<div className="container mx-auto py-8 px-6">
 			<Routes>
-				<Route index element={<JobTableView jobs={jobStore.jobsRan} isAdmin={isAdmin} pagination={jobStore.pagination} onPageChange={handlePageChange} toolVersions={jobStore.toolVersions} />} />
+				<Route index element={<JobListIndex jobs={jobStore.jobsRan} isAdmin={isAdmin} toolVersions={jobStore.toolVersions} onPageChange={handlePageChange} fetchJobs={fetchJobs} />} />
 				<Route path="new" element={<JobTypeGrid toolVersions={jobStore.toolVersions} />} />
 				<Route path="new/lovamap" element={<LovamapFormView onSubmitted={handleJobSubmitted} toolVersions={jobStore.toolVersions} />} />
 				<Route path="new/segmentation" element={<SegmentationFormView onSubmitted={handleJobSubmitted} toolVersions={jobStore.toolVersions} />} />

@@ -2,8 +2,6 @@
 @prefix dc1: <http://purl.org/dc/terms/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix lova: <https://lovamap.com/ontology#> .
-@prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix qudt: <http://qudt.org/schema/qudt/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -15,6 +13,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
     lova:direction "lower" ;
     lova:isSignificant true ;
+    lova:materialA <https://lovamap.com/ontology#material/10.1002-adfm.202400567/vascmap> ;
     lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adfm.202400567/branches-vascmap> ;
     lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adfm.202400567/branches-healthy> .
 
@@ -23,6 +22,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
     lova:direction "higher" ;
     lova:isSignificant true ;
+    lova:materialA <https://lovamap.com/ontology#material/10.1002-adfm.202400567/vascmap> ;
     lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adfm.202400567/cd31-area-vascmap-day7> ;
     lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adfm.202400567/cd31-area-untreated-day7> .
 
@@ -31,6 +31,8 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
     lova:direction "higher" ;
     lova:isSignificant true ;
+    lova:materialA <https://lovamap.com/ontology#material/10.1002-adfm.202400567/map-80um> ;
+    lova:materialB <https://lovamap.com/ontology#material/10.1002-adfm.202400567/map-200um> ;
     lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adfm.202400567/nuclei-count-80um-24h> ;
     lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adfm.202400567/nuclei-count-200um-24h> .
 
@@ -39,6 +41,8 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
     lova:direction "higher" ;
     lova:isSignificant true ;
+    lova:materialA <https://lovamap.com/ontology#material/10.1002-adfm.202400567/vascmap> ;
+    lova:materialB <https://lovamap.com/ontology#material/10.1002-adfm.202400567/large-peg> ;
     lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adfm.202400567/cd31-ng2-overlap-vascmap-day21> ;
     lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adfm.202400567/cd31-ng2-overlap-large-peg-day21> .
 
@@ -47,6 +51,8 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
     lova:direction "higher" ;
     lova:isSignificant true ;
+    lova:materialA <https://lovamap.com/ontology#material/10.1002-adfm.202400567/map-80um> ;
+    lova:materialB <https://lovamap.com/ontology#material/10.1002-adfm.202400567/map-200um> ;
     lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adfm.202400567/vacuoles-80um-2h> ;
     lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adfm.202400567/vacuoles-200um-2h> .
 
@@ -55,6 +61,8 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
     lova:direction "higher" ;
     lova:isSignificant false ;
+    lova:materialA <https://lovamap.com/ontology#material/10.1002-adfm.202400567/vascmap> ;
+    lova:materialB <https://lovamap.com/ontology#material/10.1002-adfm.202400567/large-peg> ;
     lova:outcomeA <https://lovamap.com/ontology#outcome/10.1002-adfm.202400567/total-vessel-length-vascmap> ;
     lova:outcomeB <https://lovamap.com/ontology#outcome/10.1002-adfm.202400567/total-vessel-length-large-peg> .
 
@@ -74,11 +82,56 @@
     lova:experimentType "Path/network modeling" ;
     lova:sampleSize 10 .
 
+<https://lovamap.com/ontology#experiment/10.1002-adfm.202400567/network-maturation-72h> a lova:Experiment ;
+    rdfs:label "hECFC network maturation assessment over 72 h in heterogeneous MAP scaffolds" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
+    lova:assayOrMethod "Confocal microscopy, ImageJ Angiogenesis Analyzer" ;
+    lova:cellType "hECFC" ;
+    lova:cultureDuration "72 h" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Network formation and lumen morphology" ;
+    lova:sampleSize 3 ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adfm.202400567/vascmap> .
+
+<https://lovamap.com/ontology#experiment/10.1002-adfm.202400567/nh-plain-heterogeneous-culture> a lova:Experiment ;
+    rdfs:label "hECFC culture in heterogeneous nH/plain μgel MAP scaffolds (no RGD)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
+    lova:assayOrMethod "Confocal microscopy, IMARIS" ;
+    lova:cellType "hECFC" ;
+    lova:cultureDuration "0 h, 24 h" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell growth with heparin nanoparticle μgels" ;
+    lova:sampleSize 3 ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adfm.202400567/map-80um> .
+
+<https://lovamap.com/ontology#experiment/10.1002-adfm.202400567/nh-rgd-heterogeneous-culture> a lova:Experiment ;
+    rdfs:label "hECFC culture in heterogeneous nH/RGD μgel MAP scaffolds" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
+    lova:assayOrMethod "Confocal microscopy, DiaAna colocalization, IMARIS" ;
+    lova:cellType "hECFC" ;
+    lova:cultureDuration "0 h, 24 h" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell growth with adhesive + heparin-loaded μgels" ;
+    lova:sampleSize 3 ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adfm.202400567/vascmap> .
+
+<https://lovamap.com/ontology#experiment/10.1002-adfm.202400567/rgd-plain-heterogeneous-culture> a lova:Experiment ;
+    rdfs:label "hECFC culture in heterogeneous RGD/plain μgel MAP scaffolds" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
+    lova:assayOrMethod "Confocal microscopy, DiaAna colocalization, IMARIS" ;
+    lova:cellType "hECFC" ;
+    lova:cultureDuration "0 h, 24 h" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Directed cell growth" ;
+    lova:sampleSize 3 ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adfm.202400567/map-80um> .
+
 <https://lovamap.com/ontology#outcome/10.1002-adfm.202400567/asma-area-day21-vascmap> a lova:Outcome ;
     rdfs:label "% area α-SMA positive in VascMAP wound at Day 21" ;
     dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
     qudt:numericValue 22.0 ;
     qudt:unit "%" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1002-adfm.202400567/vascmap> ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202400567/wound-healing-invivo> ;
     lova:measurementCategory "Biological" ;
@@ -91,6 +144,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
     qudt:numericValue 0.6 ;
     qudt:unit "fold change (dimensionless)" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1002-adfm.202400567/map-200um> ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202400567/ecfc-culture-size-variation> ;
     lova:measurementCategory "Biological" ;
@@ -104,6 +158,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
     qudt:numericValue 2.45 ;
     qudt:unit "fold change (dimensionless)" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1002-adfm.202400567/map-50um> ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202400567/ecfc-culture-size-variation> ;
     lova:measurementCategory "Biological" ;
@@ -117,6 +172,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
     qudt:numericValue 2.0 ;
     qudt:unit "fold change (dimensionless)" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1002-adfm.202400567/map-80um> ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202400567/ecfc-culture-size-variation> ;
     lova:measurementCategory "Biological" ;
@@ -174,6 +230,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
     qudt:numericValue 16.0 ;
     qudt:unit "%" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1002-adfm.202400567/vascmap> ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202400567/ecm-deposition-staining> ;
     lova:measurementCategory "Biological" ;
@@ -186,6 +243,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
     qudt:numericValue 22.0 ;
     qudt:unit "%" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1002-adfm.202400567/vascmap> ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202400567/ecm-deposition-staining> ;
     lova:measurementCategory "Biological" ;
@@ -198,6 +256,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
     qudt:numericValue 10.0 ;
     qudt:unit "%" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1002-adfm.202400567/vascmap> ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202400567/ecm-deposition-staining> ;
     lova:measurementCategory "Biological" ;
@@ -240,6 +299,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
     qudt:numericValue 1.45 ;
     qudt:unit "fold change (dimensionless)" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1002-adfm.202400567/map-50um> ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202400567/ecfc-culture-size-variation> ;
     lova:measurementCategory "Biological" ;
@@ -253,6 +313,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
     qudt:numericValue 523.0 ;
     qudt:unit "pL" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1002-adfm.202400567/map-200um> ;
     lova:dataSource "[TEXT]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202400567/lovamap-pore-volume-sim> ;
     lova:measurementCategory "Computational/Structural" ;
@@ -264,6 +325,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
     qudt:numericValue 8.5 ;
     qudt:unit "pL" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1002-adfm.202400567/map-50um> ;
     lova:dataSource "[TEXT]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202400567/lovamap-pore-volume-sim> ;
     lova:measurementCategory "Computational/Structural" ;
@@ -275,6 +337,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
     qudt:numericValue 26.4 ;
     qudt:unit "pL" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1002-adfm.202400567/map-80um> ;
     lova:dataSource "[TEXT]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202400567/lovamap-pore-volume-sim> ;
     lova:measurementCategory "Computational/Structural" ;
@@ -286,6 +349,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
     qudt:numericValue 60.0 ;
     qudt:unit "count" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1002-adfm.202400567/vascmap> ;
     lova:comparisonGroup "Healthy brain tissue" ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202400567/tumor-model-invivo> ;
@@ -311,6 +375,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
     qudt:numericValue 7000.0 ;
     qudt:unit "μm" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1002-adfm.202400567/map-200um> ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202400567/tumor-model-invivo> ;
     lova:measurementCategory "Biological" ;
@@ -335,6 +400,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
     qudt:numericValue 20.0 ;
     qudt:unit "count/FOV" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1002-adfm.202400567/map-50um> ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202400567/ecfc-culture-size-variation> ;
     lova:measurementCategory "Biological" ;
@@ -343,53 +409,23 @@
     lova:scope "Regional" ;
     lova:timePoint "2 h" .
 
-<https://lovamap.com/ontology#experiment/10.1002-adfm.202400567/network-maturation-72h> a lova:Experiment ;
-    rdfs:label "hECFC network maturation assessment over 72 h in heterogeneous MAP scaffolds" ;
+<https://lovamap.com/ontology#fabrication-method/10.1002-adfm.202400567/peg-map-fabrication> a lova:FabricationMethod ;
+    rdfs:label "PEG-VS μgel production with thiol-ene crosslinking and Factor XIII/thrombin annealing" ;
     dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
-    lova:assayOrMethod "Confocal microscopy, ImageJ Angiogenesis Analyzer" ;
-    lova:cellType "hECFC" ;
-    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0009090> ;
-    lova:cultureDuration "72 h" ;
-    lova:experimentCategory "Biological" ;
-    lova:experimentType "Network formation and lumen morphology" ;
-    lova:sampleSize 3 ;
-    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adfm.202400567/vascmap> .
-
-<https://lovamap.com/ontology#experiment/10.1002-adfm.202400567/nh-plain-heterogeneous-culture> a lova:Experiment ;
-    rdfs:label "hECFC culture in heterogeneous nH/plain μgel MAP scaffolds (no RGD)" ;
-    dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
-    lova:assayOrMethod "Confocal microscopy, IMARIS" ;
-    lova:cellType "hECFC" ;
-    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0009090> ;
-    lova:cultureDuration "0 h, 24 h" ;
-    lova:experimentCategory "Biological" ;
-    lova:experimentType "Cell growth with heparin nanoparticle μgels" ;
-    lova:sampleSize 3 ;
-    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adfm.202400567/map-80um> .
-
-<https://lovamap.com/ontology#experiment/10.1002-adfm.202400567/nh-rgd-heterogeneous-culture> a lova:Experiment ;
-    rdfs:label "hECFC culture in heterogeneous nH/RGD μgel MAP scaffolds" ;
-    dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
-    lova:assayOrMethod "Confocal microscopy, DiaAna colocalization, IMARIS" ;
-    lova:cellType "hECFC" ;
-    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0009090> ;
-    lova:cultureDuration "0 h, 24 h" ;
-    lova:experimentCategory "Biological" ;
-    lova:experimentType "Cell growth with adhesive + heparin-loaded μgels" ;
-    lova:sampleSize 3 ;
-    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adfm.202400567/vascmap> .
-
-<https://lovamap.com/ontology#experiment/10.1002-adfm.202400567/rgd-plain-heterogeneous-culture> a lova:Experiment ;
-    rdfs:label "hECFC culture in heterogeneous RGD/plain μgel MAP scaffolds" ;
-    dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
-    lova:assayOrMethod "Confocal microscopy, DiaAna colocalization, IMARIS" ;
-    lova:cellType "hECFC" ;
-    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0009090> ;
-    lova:cultureDuration "0 h, 24 h" ;
-    lova:experimentCategory "Biological" ;
-    lova:experimentType "Directed cell growth" ;
-    lova:sampleSize 3 ;
-    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adfm.202400567/map-80um> .
+    lova:annealingChemistry "Enzymatic (FXIIIa)" ;
+    lova:annealingConditions "37°C, 30 min" ;
+    lova:annealingDetail "Enzymatic (Factor XIII / thrombin crosslinking)" ;
+    lova:chemistry "Michael-type addition (thiol-ene, vinylsulfone-thiol)" ;
+    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/alexa647-maleimide>,
+        <https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/factor-xiii>,
+        <https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/k-peptide>,
+        <https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/mmp-crosslinker>,
+        <https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/peg-vs>,
+        <https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/q-peptide>,
+        <https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/rgd-peg>,
+        <https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/span80>,
+        <https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/thrombin> ;
+    lova:manufacturingMethod "Dual-inlet microfluidic water-in-oil emulsion" .
 
 <https://lovamap.com/ontology#journal/advanced-functional-materials> a bibo:Journal ;
     dc1:title "Advanced Functional Materials" ;
@@ -411,6 +447,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
     qudt:numericValue 53.0 ;
     qudt:unit "count" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1002-adfm.202400567/vascmap> ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202400567/tumor-model-invivo> ;
     lova:measurementCategory "Biological" ;
@@ -435,6 +472,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
     qudt:numericValue 5.8 ;
     qudt:unit "%" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1002-adfm.202400567/vascmap> ;
     lova:comparisonGroup "Untreated wound" ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202400567/wound-healing-invivo> ;
@@ -449,6 +487,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
     qudt:numericValue 32.0 ;
     qudt:unit "%" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1002-adfm.202400567/large-peg> ;
     lova:comparisonGroup "Healthy skin" ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202400567/wound-healing-invivo> ;
@@ -463,6 +502,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
     qudt:numericValue 72.0 ;
     qudt:unit "%" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1002-adfm.202400567/vascmap> ;
     lova:comparisonGroup "Healthy skin" ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202400567/wound-healing-invivo> ;
@@ -477,6 +517,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
     qudt:numericValue 0.65 ;
     qudt:unit "fold change (dimensionless)" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1002-adfm.202400567/map-200um> ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202400567/ecfc-culture-size-variation> ;
     lova:measurementCategory "Biological" ;
@@ -490,6 +531,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
     qudt:numericValue 1.35 ;
     qudt:unit "fold change (dimensionless)" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1002-adfm.202400567/map-80um> ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202400567/ecfc-culture-size-variation> ;
     lova:measurementCategory "Biological" ;
@@ -503,6 +545,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
     qudt:numericValue 6000.0 ;
     qudt:unit "μm" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1002-adfm.202400567/large-peg> ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202400567/tumor-model-invivo> ;
     lova:measurementCategory "Biological" ;
@@ -515,6 +558,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
     qudt:numericValue 9500.0 ;
     qudt:unit "μm" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1002-adfm.202400567/vascmap> ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202400567/tumor-model-invivo> ;
     lova:measurementCategory "Biological" ;
@@ -527,6 +571,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
     qudt:numericValue 0.5 ;
     qudt:unit "count/FOV" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1002-adfm.202400567/map-200um> ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202400567/ecfc-culture-size-variation> ;
     lova:measurementCategory "Biological" ;
@@ -540,6 +585,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
     qudt:numericValue 15.0 ;
     qudt:unit "count/FOV" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1002-adfm.202400567/map-80um> ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1002-adfm.202400567/ecfc-culture-size-variation> ;
     lova:measurementCategory "Biological" ;
@@ -557,6 +603,25 @@
     rdfs:label "Alexa Fluor 555 C2-tetrazine (Alexa555-Tet)" ;
     lova:reagentFunction "Fluorescent labeling of μgel population" ;
     lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/alexa647-maleimide> a lova:Reagent ;
+    rdfs:label "Alexa-Fluor 647-maleimide" ;
+    lova:concentration "10 μM" ;
+    lova:reagentFunction "Fluorescent labeling of crosslinker solution" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Invitrogen" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/dmtmm> a lova:Reagent ;
+    rdfs:label "4-(4,6-dimethoxy-1,3,5-triazin-2-yl)-4-methylmorpholinium chloride (DMTMM)" ;
+    lova:reagentFunction "Coupling agent for HA-tetrazine synthesis" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Thermo Fisher Scientific" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/factor-xiii> a lova:Reagent ;
+    rdfs:label "Factor XIII" ;
+    lova:concentration "250 U per mL" ;
+    lova:reagentFunction "Enzymatic annealing of PEG-VS μgels (transglutamination)" ;
+    lova:reagentRole "enzyme" .
 
 <https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/ha-nb> a lova:Reagent ;
     rdfs:label "Hyaluronic acid modified with norbornene (HA-NB)" ;
@@ -579,6 +644,13 @@
     lova:reagentFunction "Growth factor sequestration via heparin binding; covalently tethered via thiol-ene" ;
     lova:reagentRole "other" .
 
+<https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/heparin-sodium-salt> a lova:Reagent ;
+    rdfs:label "Heparin sodium salt" ;
+    lova:molecularWeight "14,000 Da" ;
+    lova:reagentFunction "Base material for heparin nanoparticle synthesis" ;
+    lova:reagentRole "other" ;
+    lova:supplier "EMD Millipore" .
+
 <https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/k-peptide> a lova:Reagent ;
     rdfs:label "K-peptide (Ac-FKGGERCG-NH2)" ;
     lova:concentration "500 μM" ;
@@ -587,17 +659,37 @@
     lova:sequence "FKGGERCG" ;
     lova:supplier "GenScript" .
 
+<https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/lap> a lova:Reagent ;
+    rdfs:label "Lithium phenyl-2,4,6-trimethylbenzoylphosphinate (LAP)" ;
+    lova:concentration "9.9 mM" ;
+    lova:reagentFunction "UV-initiated thiol-ene crosslinking" ;
+    lova:reagentRole "photoinitiator" ;
+    lova:supplier "TCI Chemicals" .
+
 <https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/mineral-oil> a lova:Reagent ;
     rdfs:label "Heavy white mineral oil" ;
     lova:reagentFunction "Continuous oil phase for microfluidic μgel generation" ;
     lova:reagentRole "carrier oil" ;
     lova:supplier "Avantor" .
 
+<https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/nb-amine> a lova:Reagent ;
+    rdfs:label "5-norbornene-2-methylamine (NB)" ;
+    lova:reagentFunction "Norbornene functionalization of HA carboxylic acid sites" ;
+    lova:reagentRole "other" ;
+    lova:supplier "TCI Chemicals" .
+
 <https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/peg-vs> a lova:Reagent ;
     rdfs:label "8-arm PEG Vinylsulfone (PEG-VS)" ;
     lova:concentration "5% (w/v)" ;
     lova:reagentFunction "Backbone μgel polymer for PEG MAP scaffold" ;
     lova:reagentRole "monomer" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/pluronic-f127> a lova:Reagent ;
+    rdfs:label "Pluronic F-127" ;
+    lova:concentration "2% (w/v)" ;
+    lova:reagentFunction "μgel washing/purification surfactant" ;
+    lova:reagentRole "surfactant" ;
+    lova:supplier "Sigma-Aldrich" .
 
 <https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/q-peptide> a lova:Reagent ;
     rdfs:label "Q-peptide (Ac-NQEQVSPLGGERCG-NH2)" ;
@@ -629,84 +721,52 @@
     lova:reagentRole "other" ;
     lova:supplier "Millipore Sigma" .
 
+<https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/tetrazine-amine> a lova:Reagent ;
+    rdfs:label "Tetrazine-amine" ;
+    lova:reagentFunction "Tetrazine functionalization of HA" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Chem-Impex" .
+
+<https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/thrombin> a lova:Reagent ;
+    rdfs:label "Thrombin" ;
+    lova:concentration "200 U per mL" ;
+    lova:reagentFunction "Converts fibrinogen-like substrates; part of annealing reaction" ;
+    lova:reagentRole "enzyme" .
+
 <https://lovamap.com/ontology#author/anderson-alexa> a foaf:Person ;
     foaf:familyName "Anderson" ;
     foaf:givenName "Alexa" ;
     foaf:name "Alexa R. Anderson" .
+
+<https://lovamap.com/ontology#author/caston-eleanor> a foaf:Person ;
+    foaf:familyName "Caston" ;
+    foaf:givenName "Eleanor" ;
+    foaf:name "Eleanor L. P. Caston" .
+
+<https://lovamap.com/ontology#author/gerecht-sharon> a foaf:Person ;
+    foaf:familyName "Gerecht" ;
+    foaf:givenName "Sharon" ;
+    foaf:name "Sharon Gerecht" .
 
 <https://lovamap.com/ontology#author/nguyen-longviet> a foaf:Person ;
     foaf:familyName "Nguyen" ;
     foaf:givenName "Long Viet" ;
     foaf:name "Long Viet Nguyen" .
 
+<https://lovamap.com/ontology#author/ntekoumes-dimitris> a foaf:Person ;
+    foaf:familyName "Ntekoumes" ;
+    foaf:givenName "Dimitris" ;
+    foaf:name "Dimitris Ntekoumes" .
+
+<https://lovamap.com/ontology#author/riley-lindsay> a foaf:Person ;
+    foaf:familyName "Riley" ;
+    foaf:givenName "Lindsay" ;
+    foaf:name "Lindsay Riley" .
+
 <https://lovamap.com/ontology#author/segura-tatiana> a foaf:Person ;
     foaf:familyName "Segura" ;
     foaf:givenName "Tatiana" ;
     foaf:name "Tatiana Segura" .
-
-<https://lovamap.com/ontology#fabrication-method/10.1002-adfm.202400567/peg-map-fabrication> a lova:FabricationMethod ;
-    rdfs:label "PEG-VS μgel production with thiol-ene crosslinking and Factor XIII/thrombin annealing" ;
-    dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
-    lova:annealingChemistry "Enzymatic (Factor XIII / thrombin crosslinking)" ;
-    lova:annealingConditions "37°C, 30 min" ;
-    lova:chemistry "Michael-type addition (thiol-ene, vinylsulfone-thiol)" ;
-    lova:chemistryURI <http://purl.obolibrary.org/obo/RXNO_0000009> ;
-    lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/alexa647-maleimide>,
-        <https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/factor-xiii>,
-        <https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/k-peptide>,
-        <https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/mmp-crosslinker>,
-        <https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/peg-vs>,
-        <https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/q-peptide>,
-        <https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/rgd-peg>,
-        <https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/span80>,
-        <https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/thrombin> ;
-    lova:manufacturingMethod "Dual-inlet microfluidic water-in-oil emulsion" .
-
-<https://lovamap.com/ontology#material/10.1002-adfm.202400567/large-peg> a lova:Material ;
-    rdfs:label "Large PEG: 200 μm PEG-VS MAP scaffold (K-peptide/Q-peptide/RGD)" ;
-    dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
-    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adfm.202400567/peg-map-fabrication> ;
-    lova:packingConfiguration "Random packing" ;
-    lova:particleMaterial "8-arm PEG-Vinylsulfone (PEG-VS)" ;
-    lova:particleShape "Sphere" ;
-    lova:particleSizeMax 200.0 ;
-    lova:particleSizeMin 200.0 ;
-    lova:particleSizeUnit "μm" ;
-    lova:surfaceModification "RGD-modified (500 μM)" .
-
-<https://lovamap.com/ontology#material/10.1002-adfm.202400567/map-50um> a lova:Material ;
-    rdfs:label "50 μm HA-NB RGD-modified MAP scaffold" ;
-    dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
-    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adfm.202400567/ha-map-fabrication> ;
-    lova:packingConfiguration "Random packing" ;
-    lova:particleMaterial "Hyaluronic acid-norbornene (HA-NB)" ;
-    lova:particleShape "Sphere" ;
-    lova:particleSizeMax 50.0 ;
-    lova:particleSizeMin 50.0 ;
-    lova:particleSizeUnit "μm" ;
-    lova:surfaceModification "RGD-modified (1 mM)" .
-
-<https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/dmtmm> a lova:Reagent ;
-    rdfs:label "4-(4,6-dimethoxy-1,3,5-triazin-2-yl)-4-methylmorpholinium chloride (DMTMM)" ;
-    lova:inchiKey "BMTZEAOGFDXDAD-UHFFFAOYSA-M" ;
-    lova:reagentFunction "Coupling agent for HA-tetrazine synthesis" ;
-    lova:reagentRole "other" ;
-    lova:supplier "Thermo Fisher Scientific" .
-
-<https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/factor-xiii> a lova:Reagent ;
-    rdfs:label "Factor XIII" ;
-    owl:sameAs <https://www.uniprot.org/uniprot/P00488> ;
-    lova:concentration "250 U per mL" ;
-    lova:reagentFunction "Enzymatic annealing of PEG-VS μgels (transglutamination)" ;
-    lova:reagentRole "enzyme" .
-
-<https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/lap> a lova:Reagent ;
-    rdfs:label "Lithium phenyl-2,4,6-trimethylbenzoylphosphinate (LAP)" ;
-    owl:sameAs <https://pubchem.ncbi.nlm.nih.gov/compound/68384915> ;
-    lova:concentration "9.9 mM" ;
-    lova:reagentFunction "UV-initiated thiol-ene crosslinking" ;
-    lova:reagentRole "photoinitiator" ;
-    lova:supplier "TCI Chemicals" .
 
 <https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/mmp-crosslinker> a lova:Reagent ;
     rdfs:label "MMP-cleavable crosslinker peptide (Ac-GCRDGPQGIWGQDRCG-NH2)" ;
@@ -716,43 +776,23 @@
     lova:sequence "GCRDGPQGIWGQDRCG" ;
     lova:supplier "GenScript" .
 
-<https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/nb-amine> a lova:Reagent ;
-    rdfs:label "5-norbornene-2-methylamine (NB)" ;
-    owl:sameAs <https://pubchem.ncbi.nlm.nih.gov/compound/247182> ;
-    lova:reagentFunction "Norbornene functionalization of HA carboxylic acid sites" ;
-    lova:reagentRole "other" ;
-    lova:supplier "TCI Chemicals" .
+<https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/span80> a lova:Reagent ;
+    rdfs:label "Span-80" ;
+    lova:concentration "5% (v/v)" ;
+    lova:reagentFunction "Surfactant for water-in-oil microfluidic droplet generation" ;
+    lova:reagentRole "surfactant" ;
+    lova:supplier "Millipore Sigma" .
 
-<https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/thrombin> a lova:Reagent ;
-    rdfs:label "Thrombin" ;
-    owl:sameAs <https://www.uniprot.org/uniprot/P00734> ;
-    lova:concentration "200 U per mL" ;
-    lova:reagentFunction "Converts fibrinogen-like substrates; part of annealing reaction" ;
-    lova:reagentRole "enzyme" .
-
-<https://lovamap.com/ontology#author/caston-eleanor> a foaf:Person ;
-    owl:sameAs <https://orcid.org/0000-0002-7629-053X> ;
-    foaf:familyName "Caston" ;
-    foaf:givenName "Eleanor" ;
-    foaf:name "Eleanor L. P. Caston" .
-
-<https://lovamap.com/ontology#author/gerecht-sharon> a foaf:Person ;
-    owl:sameAs <https://orcid.org/0000-0002-8542-4835> ;
-    foaf:familyName "Gerecht" ;
-    foaf:givenName "Sharon" ;
-    foaf:name "Sharon Gerecht" .
-
-<https://lovamap.com/ontology#author/ntekoumes-dimitris> a foaf:Person ;
-    owl:sameAs <https://orcid.org/0000-0003-0560-4594> ;
-    foaf:familyName "Ntekoumes" ;
-    foaf:givenName "Dimitris" ;
-    foaf:name "Dimitris Ntekoumes" .
-
-<https://lovamap.com/ontology#author/riley-lindsay> a foaf:Person ;
-    owl:sameAs <https://orcid.org/0009-0003-0503-7136> ;
-    foaf:familyName "Riley" ;
-    foaf:givenName "Lindsay" ;
-    foaf:name "Lindsay Riley" .
+<https://lovamap.com/ontology#experiment/10.1002-adfm.202400567/ecm-deposition-staining> a lova:Experiment ;
+    rdfs:label "Immunofluorescence staining of ECM components deposited by hECFCs in VascMAP" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
+    lova:assayOrMethod "Immunofluorescence for collagen IV, fibronectin, laminin" ;
+    lova:cellType "hECFC" ;
+    lova:cultureDuration "3 days" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "ECM deposition quantification" ;
+    lova:sampleSize 3 ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adfm.202400567/vascmap> .
 
 <https://lovamap.com/ontology#experiment/10.1002-adfm.202400567/lovamap-gap-analysis> a lova:Experiment ;
     rdfs:label "LOVAMAP gap-length analysis between remaining Population A particles in simulated heterogeneous scaffolds" ;
@@ -774,53 +814,6 @@
         <https://lovamap.com/ontology#material/10.1002-adfm.202400567/map-50um>,
         <https://lovamap.com/ontology#material/10.1002-adfm.202400567/map-80um> .
 
-<https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/alexa647-maleimide> a lova:Reagent ;
-    rdfs:label "Alexa-Fluor 647-maleimide" ;
-    owl:sameAs <https://pubchem.ncbi.nlm.nih.gov/compound/177794446> ;
-    lova:concentration "10 μM" ;
-    lova:inchiKey "DWGFRMIASUGRKA-UHFFFAOYSA-N" ;
-    lova:reagentFunction "Fluorescent labeling of crosslinker solution" ;
-    lova:reagentRole "other" ;
-    lova:supplier "Invitrogen" .
-
-<https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/heparin-sodium-salt> a lova:Reagent ;
-    rdfs:label "Heparin sodium salt" ;
-    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_230519> ;
-    lova:inchiKey "YOMTXLQWRQUKAK-UHFFFAOYSA-N" ;
-    lova:molecularWeight "14,000 Da" ;
-    lova:reagentFunction "Base material for heparin nanoparticle synthesis" ;
-    lova:reagentRole "other" ;
-    lova:supplier "EMD Millipore" .
-
-<https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/pluronic-f127> a lova:Reagent ;
-    rdfs:label "Pluronic F-127" ;
-    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_233003> ;
-    lova:concentration "2% (w/v)" ;
-    lova:inchiKey "OQNWUUGFAWNUME-UHFFFAOYSA-N" ;
-    lova:reagentFunction "μgel washing/purification surfactant" ;
-    lova:reagentRole "surfactant" ;
-    lova:supplier "Sigma-Aldrich" .
-
-<https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/tetrazine-amine> a lova:Reagent ;
-    rdfs:label "Tetrazine-amine" ;
-    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_107423> ;
-    lova:inchiKey "JGCOJRPYFRRONJ-UHFFFAOYSA-N" ;
-    lova:reagentFunction "Tetrazine functionalization of HA" ;
-    lova:reagentRole "other" ;
-    lova:supplier "Chem-Impex" .
-
-<https://lovamap.com/ontology#experiment/10.1002-adfm.202400567/ecm-deposition-staining> a lova:Experiment ;
-    rdfs:label "Immunofluorescence staining of ECM components deposited by hECFCs in VascMAP" ;
-    dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
-    lova:assayOrMethod "Immunofluorescence for collagen IV, fibronectin, laminin" ;
-    lova:cellType "hECFC" ;
-    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0009090> ;
-    lova:cultureDuration "3 days" ;
-    lova:experimentCategory "Biological" ;
-    lova:experimentType "ECM deposition quantification" ;
-    lova:sampleSize 3 ;
-    lova:usedMaterial <https://lovamap.com/ontology#material/10.1002-adfm.202400567/vascmap> .
-
 <https://lovamap.com/ontology#experiment/10.1002-adfm.202400567/heterogeneous-mixing-validation> a lova:Experiment ;
     rdfs:label "Validation of heterogeneous μgel mixture proportions and inter-μgel distance" ;
     dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
@@ -832,8 +825,9 @@
 <https://lovamap.com/ontology#fabrication-method/10.1002-adfm.202400567/ha-map-fabrication> a lova:FabricationMethod ;
     rdfs:label "HA-norbornene μgel production with thiol-ene internal crosslinking and tetrazine-norbornene annealing" ;
     dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
-    lova:annealingChemistry "Tetrazine-norbornene click annealing (HA-tetrazine crosslinker)" ;
+    lova:annealingChemistry "Tetrazine-NB click" ;
     lova:annealingConditions "37°C, 25 minutes" ;
+    lova:annealingDetail "Tetrazine-norbornene click annealing (HA-tetrazine crosslinker)" ;
     lova:chemistry "Thiol-norbornene (thiol-ene) click chemistry; tetrazine-norbornene click chemistry" ;
     lova:hasReagent <https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/alexa488-tet>,
         <https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/alexa555-tet>,
@@ -853,44 +847,12 @@
         <https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/tetrazine-amine> ;
     lova:manufacturingMethod "Microfluidic water-in-oil droplet generation (PDMS device)" .
 
-<https://lovamap.com/ontology#material/10.1002-adfm.202400567/map-200um> a lova:Material ;
-    rdfs:label "200 μm HA-NB RGD-modified MAP scaffold (Large HA)" ;
-    dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
-    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adfm.202400567/ha-map-fabrication> ;
-    lova:packingConfiguration "Random packing" ;
-    lova:particleMaterial "Hyaluronic acid-norbornene (HA-NB)" ;
-    lova:particleShape "Sphere" ;
-    lova:particleSizeMax 200.0 ;
-    lova:particleSizeMin 200.0 ;
-    lova:particleSizeUnit "μm" ;
-    lova:surfaceModification "RGD-modified (1 mM)" .
-
-<https://lovamap.com/ontology#material/10.1002-adfm.202400567/map-80um> a lova:Material ;
-    rdfs:label "80 μm HA-NB RGD-modified MAP scaffold" ;
-    dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
-    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adfm.202400567/ha-map-fabrication> ;
-    lova:packingConfiguration "Random packing" ;
-    lova:particleMaterial "Hyaluronic acid-norbornene (HA-NB)" ;
-    lova:particleShape "Sphere" ;
-    lova:particleSizeMax 80.0 ;
-    lova:particleSizeMin 80.0 ;
-    lova:particleSizeUnit "μm" ;
-    lova:surfaceModification "RGD-modified (1 mM)" .
-
-<https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/span80> a lova:Reagent ;
-    rdfs:label "Span-80" ;
-    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_183688> ;
-    lova:concentration "5% (v/v)" ;
-    lova:inchiKey "NWGKJDSIEKMTRX-AAZCQSIUSA-N" ;
-    lova:reagentFunction "Surfactant for water-in-oil microfluidic droplet generation" ;
-    lova:reagentRole "surfactant" ;
-    lova:supplier "Millipore Sigma" .
-
 <https://lovamap.com/ontology#experiment/10.1002-adfm.202400567/wound-healing-invivo> a lova:Experiment ;
     rdfs:label "Murine dermal wound healing model (SKH-1 mice)" ;
     dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
     lova:assayOrMethod "Immunofluorescence (CD31, NG2, Keratin-14), Immunohistochemistry (α-SMA)" ;
     lova:cellSource "SKH-1 mouse dermal wound" ;
+    lova:cellType "hECFC" ;
     lova:cultureDuration "7 days, 21 days" ;
     lova:experimentCategory "Biological" ;
     lova:experimentType "In vivo wound healing / vascularization" ;
@@ -899,17 +861,33 @@
         <https://lovamap.com/ontology#material/10.1002-adfm.202400567/map-200um>,
         <https://lovamap.com/ontology#material/10.1002-adfm.202400567/vascmap> .
 
-<https://lovamap.com/ontology#material/10.1002-adfm.202400567/vascmap> a lova:Material ;
-    rdfs:label "VascMAP: 80 μm HA MAP scaffold, 50% RGD-modified + 50% nH/RGD-modified μgels" ;
+<https://lovamap.com/ontology#material/10.1002-adfm.202400567/large-peg> a lova:Material ;
+    rdfs:label "Large PEG: 200 μm PEG-VS MAP scaffold (K-peptide/Q-peptide/RGD)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adfm.202400567/peg-map-fabrication> ;
+    lova:packingConfiguration "Random" ;
+    lova:packingDetail "Random packing" ;
+    lova:particleMaterial "PEG-VS" ;
+    lova:particleMaterialDetail "8-arm PEG-Vinylsulfone (PEG-VS)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleSizeMax 200.0 ;
+    lova:particleSizeMin 200.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:surfaceModification "RGD-modified (500 μM)" .
+
+<https://lovamap.com/ontology#material/10.1002-adfm.202400567/map-50um> a lova:Material ;
+    rdfs:label "50 μm HA-NB RGD-modified MAP scaffold" ;
     dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
     lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adfm.202400567/ha-map-fabrication> ;
-    lova:packingConfiguration "Random packing, well-mixed heterogeneous" ;
-    lova:particleMaterial "Hyaluronic acid-norbornene (HA-NB)" ;
+    lova:packingConfiguration "Random" ;
+    lova:packingDetail "Random packing" ;
+    lova:particleMaterial "HA-NB" ;
+    lova:particleMaterialDetail "Hyaluronic acid-norbornene (HA-NB)" ;
     lova:particleShape "Sphere" ;
-    lova:particleSizeMax 80.0 ;
-    lova:particleSizeMin 80.0 ;
+    lova:particleSizeMax 50.0 ;
+    lova:particleSizeMin 50.0 ;
     lova:particleSizeUnit "μm" ;
-    lova:surfaceModification "50% RGD-modified + 50% nH/RGD-modified (heparin nanoparticle + RGD)" .
+    lova:surfaceModification "RGD-modified (1 mM)" .
 
 <https://lovamap.com/ontology#experiment/10.1002-adfm.202400567/tumor-model-invivo> a lova:Experiment ;
     rdfs:label "Murine glioblastoma (CT2A) tumor model with biomaterial inoculation" ;
@@ -930,7 +908,6 @@
     lova:assayOrMethod "Confocal microscopy, DAPI/F-actin staining, IMARIS quantification" ;
     lova:cellSource "Human peripheral/cord blood-derived endothelial progenitor cells" ;
     lova:cellType "hECFC (human endothelial colony forming cells)" ;
-    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0009090> ;
     lova:cultureDuration "2 h, 24 h" ;
     lova:cultureMedium "EGM2 with 10% FBS" ;
     lova:experimentCategory "Biological" ;
@@ -942,8 +919,47 @@
         <https://lovamap.com/ontology#material/10.1002-adfm.202400567/map-50um>,
         <https://lovamap.com/ontology#material/10.1002-adfm.202400567/map-80um> .
 
-<https://lovamap.com/ontology#agent/rdf_enrichment> a prov:SoftwareAgent ;
-    rdfs:label "rdf_enrichment pipeline" .
+<https://lovamap.com/ontology#material/10.1002-adfm.202400567/map-80um> a lova:Material ;
+    rdfs:label "80 μm HA-NB RGD-modified MAP scaffold" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adfm.202400567/ha-map-fabrication> ;
+    lova:packingConfiguration "Random" ;
+    lova:packingDetail "Random packing" ;
+    lova:particleMaterial "HA-NB" ;
+    lova:particleMaterialDetail "Hyaluronic acid-norbornene (HA-NB)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleSizeMax 80.0 ;
+    lova:particleSizeMin 80.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:surfaceModification "RGD-modified (1 mM)" .
+
+<https://lovamap.com/ontology#material/10.1002-adfm.202400567/map-200um> a lova:Material ;
+    rdfs:label "200 μm HA-NB RGD-modified MAP scaffold (Large HA)" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adfm.202400567/ha-map-fabrication> ;
+    lova:packingConfiguration "Random" ;
+    lova:packingDetail "Random packing" ;
+    lova:particleMaterial "HA-NB" ;
+    lova:particleMaterialDetail "Hyaluronic acid-norbornene (HA-NB)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleSizeMax 200.0 ;
+    lova:particleSizeMin 200.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:surfaceModification "RGD-modified (1 mM)" .
+
+<https://lovamap.com/ontology#material/10.1002-adfm.202400567/vascmap> a lova:Material ;
+    rdfs:label "VascMAP: 80 μm HA MAP scaffold, 50% RGD-modified + 50% nH/RGD-modified μgels" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1002-adfm.202400567/ha-map-fabrication> ;
+    lova:packingConfiguration "Random" ;
+    lova:packingDetail "Random packing, well-mixed heterogeneous" ;
+    lova:particleMaterial "HA-NB" ;
+    lova:particleMaterialDetail "Hyaluronic acid-norbornene (HA-NB)" ;
+    lova:particleShape "Sphere" ;
+    lova:particleSizeMax 80.0 ;
+    lova:particleSizeMin 80.0 ;
+    lova:particleSizeUnit "μm" ;
+    lova:surfaceModification "50% RGD-modified + 50% nH/RGD-modified (heparin nanoparticle + RGD)" .
 
 <https://lovamap.com/ontology#paper/10.1002-adfm.202400567> a bibo:AcademicArticle ;
     rdfs:label "Anderson et al., 2024 — Engineering Microstructure and Spatial Bioactivity of MAP Scaffolds" ;
@@ -962,160 +978,4 @@
     bibo:authorList ( <https://lovamap.com/ontology#author/anderson-alexa> <https://lovamap.com/ontology#author/caston-eleanor> <https://lovamap.com/ontology#author/riley-lindsay> <https://lovamap.com/ontology#author/nguyen-longviet> <https://lovamap.com/ontology#author/ntekoumes-dimitris> <https://lovamap.com/ontology#author/gerecht-sharon> <https://lovamap.com/ontology#author/segura-tatiana> ) ;
     lova:focusMaterial "Hyaluronic acid (HA) and PEG microporous annealed particle (MAP) scaffolds with tunable μgel size and spatial bioactivity (RGD, heparin nanoparticles) for hECFC-driven vasculogenesis" ;
     schema:isPartOf <https://lovamap.com/ontology#journal/advanced-functional-materials> .
-
-[] a rdf:Statement ;
-    rdf:object <https://orcid.org/0009-0003-0503-7136> ;
-    rdf:predicate owl:sameAs ;
-    rdf:subject <https://lovamap.com/ontology#author/riley-lindsay> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object "BMTZEAOGFDXDAD-UHFFFAOYSA-M" ;
-    rdf:predicate lova:inchiKey ;
-    rdf:subject <https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/dmtmm> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <http://purl.obolibrary.org/obo/CL_0009090> ;
-    rdf:predicate lova:cellTypeURI ;
-    rdf:subject <https://lovamap.com/ontology#experiment/10.1002-adfm.202400567/network-maturation-72h> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <http://purl.obolibrary.org/obo/CHEBI_230519> ;
-    rdf:predicate owl:sameAs ;
-    rdf:subject <https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/heparin-sodium-salt> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <http://purl.obolibrary.org/obo/CL_0009090> ;
-    rdf:predicate lova:cellTypeURI ;
-    rdf:subject <https://lovamap.com/ontology#experiment/10.1002-adfm.202400567/ecm-deposition-staining> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <https://pubchem.ncbi.nlm.nih.gov/compound/68384915> ;
-    rdf:predicate owl:sameAs ;
-    rdf:subject <https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/lap> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object "DWGFRMIASUGRKA-UHFFFAOYSA-N" ;
-    rdf:predicate lova:inchiKey ;
-    rdf:subject <https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/alexa647-maleimide> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object "JGCOJRPYFRRONJ-UHFFFAOYSA-N" ;
-    rdf:predicate lova:inchiKey ;
-    rdf:subject <https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/tetrazine-amine> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <https://www.uniprot.org/uniprot/P00488> ;
-    rdf:predicate owl:sameAs ;
-    rdf:subject <https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/factor-xiii> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <https://orcid.org/0000-0002-8542-4835> ;
-    rdf:predicate owl:sameAs ;
-    rdf:subject <https://lovamap.com/ontology#author/gerecht-sharon> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object "OQNWUUGFAWNUME-UHFFFAOYSA-N" ;
-    rdf:predicate lova:inchiKey ;
-    rdf:subject <https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/pluronic-f127> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <http://purl.obolibrary.org/obo/RXNO_0000009> ;
-    rdf:predicate lova:chemistryURI ;
-    rdf:subject <https://lovamap.com/ontology#fabrication-method/10.1002-adfm.202400567/peg-map-fabrication> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <https://orcid.org/0000-0003-0560-4594> ;
-    rdf:predicate owl:sameAs ;
-    rdf:subject <https://lovamap.com/ontology#author/ntekoumes-dimitris> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <http://purl.obolibrary.org/obo/CHEBI_107423> ;
-    rdf:predicate owl:sameAs ;
-    rdf:subject <https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/tetrazine-amine> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <http://purl.obolibrary.org/obo/CL_0009090> ;
-    rdf:predicate lova:cellTypeURI ;
-    rdf:subject <https://lovamap.com/ontology#experiment/10.1002-adfm.202400567/nh-rgd-heterogeneous-culture> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <http://purl.obolibrary.org/obo/CL_0009090> ;
-    rdf:predicate lova:cellTypeURI ;
-    rdf:subject <https://lovamap.com/ontology#experiment/10.1002-adfm.202400567/ecfc-culture-size-variation> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <http://purl.obolibrary.org/obo/CHEBI_183688> ;
-    rdf:predicate owl:sameAs ;
-    rdf:subject <https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/span80> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <https://pubchem.ncbi.nlm.nih.gov/compound/247182> ;
-    rdf:predicate owl:sameAs ;
-    rdf:subject <https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/nb-amine> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <https://pubchem.ncbi.nlm.nih.gov/compound/177794446> ;
-    rdf:predicate owl:sameAs ;
-    rdf:subject <https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/alexa647-maleimide> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object "YOMTXLQWRQUKAK-UHFFFAOYSA-N" ;
-    rdf:predicate lova:inchiKey ;
-    rdf:subject <https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/heparin-sodium-salt> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <http://purl.obolibrary.org/obo/CHEBI_233003> ;
-    rdf:predicate owl:sameAs ;
-    rdf:subject <https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/pluronic-f127> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <http://purl.obolibrary.org/obo/CL_0009090> ;
-    rdf:predicate lova:cellTypeURI ;
-    rdf:subject <https://lovamap.com/ontology#experiment/10.1002-adfm.202400567/rgd-plain-heterogeneous-culture> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <https://orcid.org/0000-0002-7629-053X> ;
-    rdf:predicate owl:sameAs ;
-    rdf:subject <https://lovamap.com/ontology#author/caston-eleanor> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <http://purl.obolibrary.org/obo/CL_0009090> ;
-    rdf:predicate lova:cellTypeURI ;
-    rdf:subject <https://lovamap.com/ontology#experiment/10.1002-adfm.202400567/nh-plain-heterogeneous-culture> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object "NWGKJDSIEKMTRX-AAZCQSIUSA-N" ;
-    rdf:predicate lova:inchiKey ;
-    rdf:subject <https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/span80> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <https://www.uniprot.org/uniprot/P00734> ;
-    rdf:predicate owl:sameAs ;
-    rdf:subject <https://lovamap.com/ontology#reagent/10.1002-adfm.202400567/thrombin> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
 

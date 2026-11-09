@@ -2,8 +2,6 @@
 @prefix dc1: <http://purl.org/dc/terms/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix lova: <https://lovamap.com/ontology#> .
-@prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix qudt: <http://qudt.org/schema/qudt/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -15,6 +13,8 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     lova:direction "higher" ;
     lova:isSignificant true ;
+    lova:materialA <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/heparin-nanoparticle> ;
+    lova:materialB <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/heparin-nanoparticle> ;
     lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2011.06.027/branch-hnphigh> ;
     lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2011.06.027/branch-hnplow> ;
     lova:pValue 0.01 .
@@ -24,6 +24,8 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     lova:direction "higher" ;
     lova:isSignificant true ;
+    lova:materialA <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/heparin-nanoparticle> ;
+    lova:materialB <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/heparin-nanoparticle> ;
     lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2011.06.027/branch-hnphigh> ;
     lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2011.06.027/branch-vs-hnp-exp> ;
     lova:pValue 0.001 .
@@ -33,6 +35,8 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     lova:direction "no difference" ;
     lova:isSignificant false ;
+    lova:materialA <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/heparin-nanoparticle> ;
+    lova:materialB <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/heparin-nanoparticle> ;
     lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2011.06.027/branch-hnplow> ;
     lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2011.06.027/branch-vs-hnp-exp> .
 
@@ -41,6 +45,8 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     lova:direction "higher" ;
     lova:isSignificant true ;
+    lova:materialA <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/ps-nanoparticle> ;
+    lova:materialB <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/ps-nanoparticle> ;
     lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2011.06.027/branch-vchigh> ;
     lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2011.06.027/branch-vclow> ;
     lova:pValue 0.001 .
@@ -50,6 +56,8 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     lova:direction "higher" ;
     lova:isSignificant true ;
+    lova:materialA <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/ps-nanoparticle> ;
+    lova:materialB <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/ps-nanoparticle> ;
     lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2011.06.027/branch-vchigh> ;
     lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2011.06.027/branch-vs-ps> ;
     lova:pValue 0.01 .
@@ -59,6 +67,8 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     lova:direction "no difference" ;
     lova:isSignificant false ;
+    lova:materialA <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/ps-nanoparticle> ;
+    lova:materialB <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/ps-nanoparticle> ;
     lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2011.06.027/branch-vehigh> ;
     lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2011.06.027/branch-velow> .
 
@@ -67,6 +77,8 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     lova:direction "higher" ;
     lova:isSignificant true ;
+    lova:materialA <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/ps-nanoparticle> ;
+    lova:materialB <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/ps-nanoparticle> ;
     lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2011.06.027/branch-vehigh> ;
     lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2011.06.027/branch-vs-ps> ;
     lova:pValue 0.001 .
@@ -76,6 +88,8 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     lova:direction "higher" ;
     lova:isSignificant true ;
+    lova:materialA <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/heparin-nanoparticle> ;
+    lova:materialB <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/heparin-nanoparticle> ;
     lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2011.06.027/branch-vshnp-unloaded> ;
     lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2011.06.027/branch-vs-hnp-exp> ;
     lova:pValue 0.05 .
@@ -85,6 +99,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     lova:direction "higher" ;
     lova:isSignificant true ;
+    lova:materialA <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/heparin-nanoparticle> ;
     lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2011.06.027/cdc42-hnp-high> ;
     lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2011.06.027/cdc42-vs> ;
     lova:pValue 0.05 .
@@ -94,6 +109,8 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     lova:direction "higher" ;
     lova:isSignificant true ;
+    lova:materialA <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/heparin-nanoparticle> ;
+    lova:materialB <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/heparin-nanoparticle> ;
     lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2011.06.027/netlen-hnphigh> ;
     lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2011.06.027/netlen-vs-hnp-exp> ;
     lova:pValue 0.001 .
@@ -103,6 +120,8 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     lova:direction "higher" ;
     lova:isSignificant true ;
+    lova:materialA <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/heparin-nanoparticle> ;
+    lova:materialB <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/heparin-nanoparticle> ;
     lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2011.06.027/netlen-hnphigh> ;
     lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2011.06.027/netlen-vshnp-unloaded> ;
     lova:pValue 0.05 .
@@ -112,6 +131,8 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     lova:direction "higher" ;
     lova:isSignificant true ;
+    lova:materialA <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/heparin-nanoparticle> ;
+    lova:materialB <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/heparin-nanoparticle> ;
     lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2011.06.027/netlen-hnplow> ;
     lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2011.06.027/netlen-vs-hnp-exp> ;
     lova:pValue 0.001 .
@@ -121,6 +142,8 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     lova:direction "higher" ;
     lova:isSignificant true ;
+    lova:materialA <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/ps-nanoparticle> ;
+    lova:materialB <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/ps-nanoparticle> ;
     lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2011.06.027/netlen-vchigh> ;
     lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2011.06.027/netlen-vs-ps> ;
     lova:pValue 0.001 .
@@ -130,6 +153,8 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     lova:direction "no difference" ;
     lova:isSignificant false ;
+    lova:materialA <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/ps-nanoparticle> ;
+    lova:materialB <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/ps-nanoparticle> ;
     lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2011.06.027/netlen-vclow> ;
     lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2011.06.027/netlen-vs-ps> .
 
@@ -138,6 +163,8 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     lova:direction "higher" ;
     lova:isSignificant true ;
+    lova:materialA <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/ps-nanoparticle> ;
+    lova:materialB <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/ps-nanoparticle> ;
     lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2011.06.027/netlen-vehigh> ;
     lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2011.06.027/netlen-vs-ps> ;
     lova:pValue 0.001 .
@@ -147,6 +174,8 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     lova:direction "higher" ;
     lova:isSignificant true ;
+    lova:materialA <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/ps-nanoparticle> ;
+    lova:materialB <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/ps-nanoparticle> ;
     lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2011.06.027/netlen-velow> ;
     lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2011.06.027/netlen-vs-ps> ;
     lova:pValue 0.001 .
@@ -156,6 +185,8 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     lova:direction "higher" ;
     lova:isSignificant true ;
+    lova:materialA <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/heparin-nanoparticle> ;
+    lova:materialB <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/heparin-nanoparticle> ;
     lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2011.06.027/netlen-vshnp-unloaded> ;
     lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2011.06.027/netlen-vs-hnp-exp> ;
     lova:pValue 0.001 .
@@ -165,6 +196,8 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     lova:direction "higher" ;
     lova:isSignificant true ;
+    lova:materialA <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/heparin-nanoparticle> ;
+    lova:materialB <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/heparin-nanoparticle> ;
     lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2011.06.027/thickness-hnphigh> ;
     lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2011.06.027/thickness-vs-hnp-exp> ;
     lova:pValue 0.01 .
@@ -174,6 +207,8 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     lova:direction "higher" ;
     lova:isSignificant true ;
+    lova:materialA <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/heparin-nanoparticle> ;
+    lova:materialB <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/heparin-nanoparticle> ;
     lova:outcomeA <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2011.06.027/thickness-vshnp-unloaded> ;
     lova:outcomeB <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2011.06.027/thickness-vs-hnp-exp> ;
     lova:pValue 0.01 .
@@ -186,6 +221,18 @@
     lova:experimentCategory "In vivo" ;
     lova:experimentType "Angiogenesis induction" ;
     lova:temperature "38°C" ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/heparin-nanoparticle>,
+        <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/ps-nanoparticle> .
+
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2011.06.027/vegfr2-phosphorylation> a lova:Experiment ;
+    rdfs:label "VEGFR-2 phosphorylation (Y1175, Y1214) assay in HUVECs" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
+    lova:assayOrMethod "Western blot (anti-pVEGFR2-Y1175, anti-pVEGFR2-Y1214)" ;
+    lova:cellType "HUVEC" ;
+    lova:cultureDuration "5 minutes treatment" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Receptor phosphorylation" ;
+    lova:temperature "37°C" ;
     lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/heparin-nanoparticle>,
         <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/ps-nanoparticle> .
 
@@ -205,6 +252,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     qudt:numericValue 58.36 ;
     qudt:unit "nm" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/heparin-nanoparticle> ;
     lova:dataSource "[TEXT]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2011.06.027/dls-characterization> ;
     lova:measurementCategory "Physical" ;
@@ -216,6 +264,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     qudt:numericValue 0.46 ;
     qudt:unit "unitless" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/heparin-nanoparticle> ;
     lova:dataSource "[TEXT]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2011.06.027/dls-characterization> ;
     lova:measurementCategory "Physical" ;
@@ -226,6 +275,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     qudt:numericValue 273.0 ;
     qudt:unit "nm" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/ps-nanoparticle> ;
     lova:comparisonGroup "PS/hep" ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2011.06.027/dls-characterization> ;
@@ -237,6 +287,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     qudt:numericValue 0.21 ;
     qudt:unit "unitless" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/ps-nanoparticle> ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2011.06.027/dls-characterization> ;
     lova:measurementCategory "Physical" ;
@@ -247,6 +298,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     qudt:numericValue 293.0 ;
     qudt:unit "nm" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/ps-nanoparticle> ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2011.06.027/dls-characterization> ;
     lova:isSignificant true ;
@@ -258,6 +310,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     qudt:numericValue 306.0 ;
     qudt:unit "nm" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/ps-nanoparticle> ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2011.06.027/dls-characterization> ;
     lova:isSignificant true ;
@@ -269,6 +322,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     qudt:numericValue 23.0 ;
     qudt:unit "μg VEGF/mg heparin" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/heparin-nanoparticle> ;
     lova:comparisonGroup "hNP low density" ;
     lova:dataSource "[TEXT]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2011.06.027/elisa-vegf-binding> ;
@@ -280,6 +334,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     qudt:numericValue 10.0 ;
     qudt:unit "μg VEGF/mg heparin" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/heparin-nanoparticle> ;
     lova:dataSource "[TEXT]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2011.06.027/elisa-vegf-binding> ;
     lova:measurementCategory "Biochemical" ;
@@ -290,6 +345,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     qudt:numericValue 1000.0 ;
     qudt:unit "molecules/particle" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/ps-nanoparticle> ;
     lova:comparisonGroup "PS low density" ;
     lova:dataSource "[TEXT]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2011.06.027/elisa-vegf-binding> ;
@@ -301,6 +357,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     qudt:numericValue 200.0 ;
     qudt:unit "molecules/particle" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/ps-nanoparticle> ;
     lova:dataSource "[TEXT]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2011.06.027/elisa-vegf-binding> ;
     lova:measurementCategory "Biochemical" ;
@@ -311,6 +368,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     qudt:numericValue 67.0 ;
     qudt:unit "%" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/heparin-nanoparticle> ;
     lova:comparisonGroup "Vs" ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2011.06.027/cell-migration> ;
@@ -351,6 +409,12 @@
     lova:measurementCategory "Biological" ;
     lova:measurementType "Wound closure" ;
     lova:timePoint "18h" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/sodium-vanadate> a lova:Reagent ;
+    rdfs:label "Sodium vanadate" ;
+    lova:concentration "0.1 mM (pretreatment); 0.2 mM (wash buffer)" ;
+    lova:reagentFunction "Phosphatase inhibitor used in VEGFR-2 phosphorylation assay" ;
+    lova:reagentRole "other" .
 
 <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2011.06.027/heparin-nanoparticle-synthesis> a lova:FabricationMethod ;
     rdfs:label "Heparin nanoparticle synthesis via inverse emulsion radical polymerization" ;
@@ -393,6 +457,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     qudt:numericValue 2.5 ;
     qudt:unit "count" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/ps-nanoparticle> ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2011.06.027/tube-formation-ps> ;
     lova:measurementCategory "Biological" ;
@@ -404,6 +469,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     qudt:numericValue 5.5 ;
     qudt:unit "count" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/ps-nanoparticle> ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2011.06.027/tube-formation-ps> ;
     lova:measurementCategory "Biological" ;
@@ -415,6 +481,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     qudt:numericValue 6.5 ;
     qudt:unit "count" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/heparin-nanoparticle> ;
     lova:comparisonGroup "Vs" ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2011.06.027/tube-formation-hnp> ;
@@ -427,6 +494,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     qudt:numericValue 1.18 ;
     qudt:unit "arb" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/heparin-nanoparticle> ;
     lova:comparisonGroup "Vs" ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2011.06.027/cdc42-glisa> ;
@@ -450,6 +518,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     qudt:numericValue 700.0 ;
     qudt:unit "μm" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/heparin-nanoparticle> ;
     lova:comparisonGroup "Vs" ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2011.06.027/tube-formation-hnp> ;
@@ -462,6 +531,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     qudt:numericValue 430.0 ;
     qudt:unit "μm" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/ps-nanoparticle> ;
     lova:comparisonGroup "Vs" ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2011.06.027/tube-formation-ps> ;
@@ -474,6 +544,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     qudt:numericValue 300.0 ;
     qudt:unit "μm" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/ps-nanoparticle> ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2011.06.027/tube-formation-ps> ;
     lova:measurementCategory "Biological" ;
@@ -485,6 +556,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     qudt:numericValue 580.0 ;
     qudt:unit "μm" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/ps-nanoparticle> ;
     lova:comparisonGroup "Vs" ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2011.06.027/tube-formation-ps> ;
@@ -497,6 +569,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     qudt:numericValue 560.0 ;
     qudt:unit "μm" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/ps-nanoparticle> ;
     lova:comparisonGroup "Vs" ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2011.06.027/tube-formation-ps> ;
@@ -509,6 +582,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     qudt:numericValue 14.5 ;
     qudt:unit "μm" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/heparin-nanoparticle> ;
     lova:comparisonGroup "Vs" ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2011.06.027/tube-formation-hnp> ;
@@ -521,6 +595,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     qudt:numericValue 15.0 ;
     qudt:unit "μm" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/heparin-nanoparticle> ;
     lova:comparisonGroup "Vs" ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2011.06.027/tube-formation-hnp> ;
@@ -528,11 +603,51 @@
     lova:measurementType "Tube thickness" ;
     lova:sampleSize 10 .
 
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/adh> a lova:Reagent ;
+    rdfs:label "Adipic dihydrazide (ADH)" ;
+    lova:concentration "27 molar excess" ;
+    lova:reagentFunction "Saturates heparin carboxylic acid groups to prevent unwanted crosslinking" ;
+    lova:reagentRole "crosslinker" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/aprotinin> a lova:Reagent ;
+    rdfs:label "Aprotinin" ;
+    lova:reagentFunction "Protease inhibitor added to fibrinogen solution to stabilize fibrin gel" ;
+    lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/aps> a lova:Reagent ;
+    rdfs:label "Ammonium persulfate (APS)" ;
+    lova:reagentFunction "Radical polymerization initiator for heparin nanoparticle formation" ;
+    lova:reagentRole "initiator" .
+
 <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/cytodex-beads> a lova:Reagent ;
     rdfs:label "Cytodex beads" ;
     lova:reagentFunction "Cell carrier bead coated with HUVECs for sprouting assay" ;
     lova:reagentRole "other" ;
     lova:supplier "Sigma-Aldrich" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/edc> a lova:Reagent ;
+    rdfs:label "EDC (carbodiimide coupling agent)" ;
+    lova:reagentFunction "Mediates conjugation of ABH and ADH to heparin carboxylic acid groups" ;
+    lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/fibrinogen> a lova:Reagent ;
+    rdfs:label "Fibrinogen" ;
+    lova:concentration "2 mg/ml" ;
+    lova:reagentFunction "Forms fibrin hydrogel matrix upon thrombin addition" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Enzyme Research Laboratories" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/fibronectin> a lova:Reagent ;
+    rdfs:label "Fibronectin" ;
+    lova:concentration "10 μg/ml" ;
+    lova:reagentFunction "Coats cytodex beads to support HUVEC attachment" ;
+    lova:reagentRole "other" ;
+    lova:supplier "Millipore (Temecula, CA)" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/nhs-acrylate> a lova:Reagent ;
+    rdfs:label "N-acryloxysuccinimide (NHS-acrylate)" ;
+    lova:reagentFunction "Converts hydrazide amine groups on heparin to acrylate groups for radical polymerization" ;
+    lova:reagentRole "monomer" .
 
 <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/polystyrene-particles> a lova:Reagent ;
     rdfs:label "Amine-functionalized polystyrene particles (260 nm)" ;
@@ -540,12 +655,39 @@
     lova:reagentRole "other" ;
     lova:supplier "Spherotech" .
 
-<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/sodium-vanadate> a lova:Reagent ;
-    rdfs:label "Sodium vanadate" ;
-    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_35607> ;
-    lova:concentration "0.1 mM (pretreatment); 0.2 mM (wash buffer)" ;
-    lova:reagentFunction "Phosphatase inhibitor used in VEGFR-2 phosphorylation assay" ;
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/sodium-cyanoborohydride> a lova:Reagent ;
+    rdfs:label "Sodium cyanoborohydride" ;
+    lova:concentration "50 mM" ;
+    lova:reagentFunction "Reduces Schiff base to stabilize heparin-polystyrene amine linkage" ;
     lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/sodium-periodate> a lova:Reagent ;
+    rdfs:label "Sodium periodate (NaIO4)" ;
+    lova:concentration "200 mM" ;
+    lova:reagentFunction "Oxidizes heparin to generate aldehyde groups" ;
+    lova:reagentRole "other" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/span-80> a lova:Reagent ;
+    rdfs:label "Span-80 (8% HLB)" ;
+    lova:concentration "8% HLB (combined with Tween-80)" ;
+    lova:reagentFunction "Stabilizes inverse emulsion for heparin nanoparticle formation" ;
+    lova:reagentRole "surfactant" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/temed> a lova:Reagent ;
+    rdfs:label "N,N,N',N'-tetramethyl-ethane-1,2-diamine (TEMED)" ;
+    lova:reagentFunction "Radical polymerization initiator for heparin nanoparticle formation" ;
+    lova:reagentRole "initiator" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/thrombin> a lova:Reagent ;
+    rdfs:label "Thrombin" ;
+    lova:concentration "1.25 U/ml" ;
+    lova:reagentFunction "Initiates fibrinogen polymerization into fibrin gel" ;
+    lova:reagentRole "enzyme" .
+
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/tween-80> a lova:Reagent ;
+    rdfs:label "Tween-80" ;
+    lova:reagentFunction "Stabilizes inverse emulsion for heparin nanoparticle formation" ;
+    lova:reagentRole "surfactant" .
 
 <https://lovamap.com/ontology#author/anderson-sean> a foaf:Person ;
     foaf:familyName "Anderson" ;
@@ -562,17 +704,15 @@
     foaf:givenName "Shayne" ;
     foaf:name "Shayne N. Siegman" .
 
-<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2011.06.027/vegfr2-phosphorylation> a lova:Experiment ;
-    rdfs:label "VEGFR-2 phosphorylation (Y1175, Y1214) assay in HUVECs" ;
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2011.06.027/cdc42-glisa> a lova:Experiment ;
+    rdfs:label "Cdc42 activation GLISA assay in HUVECs" ;
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
-    lova:assayOrMethod "Western blot (anti-pVEGFR2-Y1175, anti-pVEGFR2-Y1214)" ;
-    lova:assayURI <http://purl.obolibrary.org/obo/OBI_0000714> ;
+    lova:assayOrMethod "cdc42 GLISA kit (CytoSkeleton)" ;
     lova:cellType "HUVEC" ;
-    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000115> ;
     lova:cultureDuration "5 minutes treatment" ;
     lova:experimentCategory "Biological" ;
-    lova:experimentType "Receptor phosphorylation" ;
-    lova:temperature "37°C" ;
+    lova:experimentType "GTPase activation" ;
+    lova:sampleSize 5 ;
     lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/heparin-nanoparticle>,
         <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/ps-nanoparticle> .
 
@@ -581,6 +721,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     qudt:numericValue 10.0 ;
     qudt:unit "count" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/heparin-nanoparticle> ;
     lova:comparisonGroup "Vs" ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2011.06.027/tube-formation-hnp> ;
@@ -593,6 +734,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     qudt:numericValue 6.0 ;
     qudt:unit "count" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/heparin-nanoparticle> ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2011.06.027/tube-formation-hnp> ;
     lova:measurementCategory "Biological" ;
@@ -604,6 +746,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     qudt:numericValue 7.0 ;
     qudt:unit "count" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/ps-nanoparticle> ;
     lova:comparisonGroup "Vs" ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2011.06.027/tube-formation-ps> ;
@@ -616,6 +759,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     qudt:numericValue 8.0 ;
     qudt:unit "count" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/ps-nanoparticle> ;
     lova:comparisonGroup "Vs" ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2011.06.027/tube-formation-ps> ;
@@ -628,6 +772,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     qudt:numericValue 3.5 ;
     qudt:unit "count" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/ps-nanoparticle> ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2011.06.027/tube-formation-ps> ;
     lova:measurementCategory "Biological" ;
@@ -639,6 +784,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     qudt:numericValue 800.0 ;
     qudt:unit "μm" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/heparin-nanoparticle> ;
     lova:comparisonGroup "Vs" ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2011.06.027/tube-formation-hnp> ;
@@ -651,6 +797,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     qudt:numericValue 550.0 ;
     qudt:unit "μm" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/heparin-nanoparticle> ;
     lova:comparisonGroup "Vs" ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2011.06.027/tube-formation-hnp> ;
@@ -663,6 +810,7 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     qudt:numericValue 10.5 ;
     qudt:unit "μm" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/heparin-nanoparticle> ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2011.06.027/tube-formation-hnp> ;
     lova:measurementCategory "Biological" ;
@@ -675,90 +823,25 @@
     lova:reagentRole "crosslinker" ;
     lova:supplier "Pierce (Rockford, IL)" .
 
-<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/adh> a lova:Reagent ;
-    rdfs:label "Adipic dihydrazide (ADH)" ;
-    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_141243> ;
-    lova:concentration "27 molar excess" ;
-    lova:reagentFunction "Saturates heparin carboxylic acid groups to prevent unwanted crosslinking" ;
-    lova:reagentRole "crosslinker" .
-
-<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/aps> a lova:Reagent ;
-    rdfs:label "Ammonium persulfate (APS)" ;
-    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_156543> ;
-    lova:reagentFunction "Radical polymerization initiator for heparin nanoparticle formation" ;
-    lova:reagentRole "initiator" .
-
-<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/edc> a lova:Reagent ;
-    rdfs:label "EDC (carbodiimide coupling agent)" ;
-    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_138727> ;
-    lova:reagentFunction "Mediates conjugation of ABH and ADH to heparin carboxylic acid groups" ;
-    lova:reagentRole "other" .
-
-<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/fibrinogen> a lova:Reagent ;
-    rdfs:label "Fibrinogen" ;
-    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_749446> ;
-    lova:concentration "2 mg/ml" ;
-    lova:reagentFunction "Forms fibrin hydrogel matrix upon thrombin addition" ;
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/heparin> a lova:Reagent ;
+    rdfs:label "Heparin sodium salt (porcine intestinal mucosa)" ;
+    lova:reagentFunction "Coating/crosslinking polymer for VEGF binding; core polymer for heparin nanoparticles" ;
     lova:reagentRole "other" ;
-    lova:supplier "Enzyme Research Laboratories" .
+    lova:supplier "Alfa Aesar" .
 
-<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/nhs-acrylate> a lova:Reagent ;
-    rdfs:label "N-acryloxysuccinimide (NHS-acrylate)" ;
-    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_61358> ;
-    lova:reagentFunction "Converts hydrazide amine groups on heparin to acrylate groups for radical polymerization" ;
-    lova:reagentRole "monomer" .
-
-<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/sodium-periodate> a lova:Reagent ;
-    rdfs:label "Sodium periodate (NaIO4)" ;
-    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_75226> ;
-    lova:concentration "200 mM" ;
-    lova:reagentFunction "Oxidizes heparin to generate aldehyde groups" ;
-    lova:reagentRole "other" .
-
-<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/span-80> a lova:Reagent ;
-    rdfs:label "Span-80 (8% HLB)" ;
-    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_183688> ;
-    lova:concentration "8% HLB (combined with Tween-80)" ;
-    lova:reagentFunction "Stabilizes inverse emulsion for heparin nanoparticle formation" ;
-    lova:reagentRole "surfactant" .
-
-<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/temed> a lova:Reagent ;
-    rdfs:label "N,N,N',N'-tetramethyl-ethane-1,2-diamine (TEMED)" ;
-    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_32850> ;
-    lova:reagentFunction "Radical polymerization initiator for heparin nanoparticle formation" ;
-    lova:reagentRole "initiator" .
-
-<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/thrombin> a lova:Reagent ;
-    rdfs:label "Thrombin" ;
-    owl:sameAs <https://www.uniprot.org/uniprot/P00734> ;
-    lova:concentration "1.25 U/ml" ;
-    lova:reagentFunction "Initiates fibrinogen polymerization into fibrin gel" ;
-    lova:reagentRole "enzyme" .
-
-<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/tween-80> a lova:Reagent ;
-    rdfs:label "Tween-80" ;
-    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_53426> ;
-    lova:reagentFunction "Stabilizes inverse emulsion for heparin nanoparticle formation" ;
-    lova:reagentRole "surfactant" .
-
-<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2011.06.027/cdc42-glisa> a lova:Experiment ;
-    rdfs:label "Cdc42 activation GLISA assay in HUVECs" ;
-    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
-    lova:assayOrMethod "cdc42 GLISA kit (CytoSkeleton)" ;
-    lova:cellType "HUVEC" ;
-    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000115> ;
-    lova:cultureDuration "5 minutes treatment" ;
-    lova:experimentCategory "Biological" ;
-    lova:experimentType "GTPase activation" ;
-    lova:sampleSize 5 ;
-    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/heparin-nanoparticle>,
-        <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/ps-nanoparticle> .
+<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/vegf> a lova:Reagent ;
+    rdfs:label "Vascular Endothelial Growth Factor (VEGF)" ;
+    lova:concentration "100 μg/ml (loading); 2 ng/ml (migration/phosphorylation assays); 200 ng/ml (tube formation assay); 2 μg/ml (CAM assay)" ;
+    lova:reagentFunction "Angiogenic growth factor bound to particles or used in soluble form" ;
+    lova:reagentRole "other" ;
+    lova:supplier "National Cancer Institute" .
 
 <https://lovamap.com/ontology#outcome/10.1016-j.biomaterials.2011.06.027/branch-vs-hnp-exp> a lova:Outcome ;
     rdfs:label "Branching points/bead — Vs (hNP experiment)" ;
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     qudt:numericValue 3.5 ;
     qudt:unit "count" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/heparin-nanoparticle> ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2011.06.027/tube-formation-hnp> ;
     lova:measurementCategory "Biological" ;
@@ -770,50 +853,24 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     qudt:numericValue 380.0 ;
     qudt:unit "μm" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/heparin-nanoparticle> ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2011.06.027/tube-formation-hnp> ;
     lova:measurementCategory "Biological" ;
     lova:measurementType "Total network length" ;
     lova:sampleSize 10 .
 
-<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/aprotinin> a lova:Reagent ;
-    rdfs:label "Aprotinin" ;
-    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_749537> ;
-    lova:inchiKey "ZPNFWUPYTFPOJU-LPYSRVMUSA-N" ;
-    lova:reagentFunction "Protease inhibitor added to fibrinogen solution to stabilize fibrin gel" ;
-    lova:reagentRole "other" .
-
-<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/fibronectin> a lova:Reagent ;
-    rdfs:label "Fibronectin" ;
-    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_5058> ;
-    lova:concentration "10 μg/ml" ;
-    lova:inchiKey "KBKUVMOUCKJDBE-LURJTMIESA-N" ;
-    lova:reagentFunction "Coats cytodex beads to support HUVEC attachment" ;
-    lova:reagentRole "other" ;
-    lova:supplier "Millipore (Temecula, CA)" .
-
-<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/heparin> a lova:Reagent ;
-    rdfs:label "Heparin sodium salt (porcine intestinal mucosa)" ;
-    owl:sameAs <http://purl.obolibrary.org/obo/CHEBI_230519> ;
-    lova:reagentFunction "Coating/crosslinking polymer for VEGF binding; core polymer for heparin nanoparticles" ;
-    lova:reagentRole "other" ;
-    lova:supplier "Alfa Aesar" .
-
-<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/sodium-cyanoborohydride> a lova:Reagent ;
-    rdfs:label "Sodium cyanoborohydride" ;
-    owl:sameAs <https://pubchem.ncbi.nlm.nih.gov/compound/5003444> ;
-    lova:concentration "50 mM" ;
-    lova:inchiKey "CVDUGUOQTVTBJH-UHFFFAOYSA-N" ;
-    lova:reagentFunction "Reduces Schiff base to stabilize heparin-polystyrene amine linkage" ;
-    lova:reagentRole "other" .
-
-<https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/vegf> a lova:Reagent ;
-    rdfs:label "Vascular Endothelial Growth Factor (VEGF)" ;
-    owl:sameAs <https://www.uniprot.org/uniprot/P15692> ;
-    lova:concentration "100 μg/ml (loading); 2 ng/ml (migration/phosphorylation assays); 200 ng/ml (tube formation assay); 2 μg/ml (CAM assay)" ;
-    lova:reagentFunction "Angiogenic growth factor bound to particles or used in soluble form" ;
-    lova:reagentRole "other" ;
-    lova:supplier "National Cancer Institute" .
+<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2011.06.027/cell-migration> a lova:Experiment ;
+    rdfs:label "HUVEC scratch wound migration assay" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
+    lova:assayOrMethod "Scratch wound assay, ImageJ quantification" ;
+    lova:cellType "HUVEC" ;
+    lova:cultureDuration "18 hours" ;
+    lova:experimentCategory "Biological" ;
+    lova:experimentType "Cell migration" ;
+    lova:sampleSize 3 ;
+    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/heparin-nanoparticle>,
+        <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/ps-nanoparticle> .
 
 <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2011.06.027/elisa-vegf-binding> a lova:Experiment ;
     rdfs:label "ELISA quantification of VEGF binding and release kinetics" ;
@@ -830,30 +887,17 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     qudt:numericValue 350.0 ;
     qudt:unit "μm" ;
+    lova:aboutMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/ps-nanoparticle> ;
     lova:dataSource "[FIG-Q]" ;
     lova:fromExperiment <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2011.06.027/tube-formation-ps> ;
     lova:measurementCategory "Biological" ;
     lova:measurementType "Total network length" ;
     lova:sampleSize 10 .
 
-<https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2011.06.027/cell-migration> a lova:Experiment ;
-    rdfs:label "HUVEC scratch wound migration assay" ;
-    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
-    lova:assayOrMethod "Scratch wound assay, ImageJ quantification" ;
-    lova:cellType "HUVEC" ;
-    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000115> ;
-    lova:cultureDuration "18 hours" ;
-    lova:experimentCategory "Biological" ;
-    lova:experimentType "Cell migration" ;
-    lova:sampleSize 3 ;
-    lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/heparin-nanoparticle>,
-        <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/ps-nanoparticle> .
-
 <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2011.06.027/dls-characterization> a lova:Experiment ;
     rdfs:label "Dynamic light scattering characterization of PS and heparin nanoparticles" ;
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     lova:assayOrMethod "Dynamic light scattering (DLS)" ;
-    lova:assayURI <http://purl.obolibrary.org/obo/OBI_0000626> ;
     lova:equipment "Malvern Zetasizer" ;
     lova:experimentCategory "Physical characterization" ;
     lova:experimentType "Particle size and polydispersity" ;
@@ -861,38 +905,11 @@
     lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/heparin-nanoparticle>,
         <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/ps-nanoparticle> .
 
-<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/heparin-nanoparticle> a lova:Material ;
-    rdfs:label "Heparin nanoparticle (hNP), VEGF bound covalently" ;
-    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
-    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2011.06.027/heparin-nanoparticle-synthesis> ;
-    lova:particleMaterial "Heparin" ;
-    lova:particleMaterialURI <http://purl.obolibrary.org/obo/CHEBI_28304> ;
-    lova:particleShape "Sphere" ;
-    lova:particleSizeMax 58.36 ;
-    lova:particleSizeMin 58.36 ;
-    lova:particleSizeUnit "nm" ;
-    lova:sizeDistribution "Polydisperse" ;
-    lova:surfaceModification "VEGF covalently bound via photoactive crosslinker ABH, high or low binding density" .
-
-<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/ps-nanoparticle> a lova:Material ;
-    rdfs:label "Heparin-coated polystyrene nanoparticle (260 nm), VEGF bound covalently or electrostatically" ;
-    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
-    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2011.06.027/ps-heparin-bind-lock> ;
-    lova:particleMaterial "Polystyrene" ;
-    lova:particleMaterialURI <http://purl.obolibrary.org/obo/CHEBI_53545> ;
-    lova:particleShape "Sphere" ;
-    lova:particleSizeMax 260.0 ;
-    lova:particleSizeMin 260.0 ;
-    lova:particleSizeUnit "nm" ;
-    lova:sizeDistribution "Monodisperse" ;
-    lova:surfaceModification "Heparin-coated (photoactive crosslinker ABH), VEGF bound covalently (Vc) or electrostatically (Ve), high or low binding density" .
-
 <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2011.06.027/tube-formation-ps> a lova:Experiment ;
     rdfs:label "Tube formation (sprouting bead) assay with PS-VEGF nanoparticles" ;
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     lova:assayOrMethod "Cytodex bead sprouting assay" ;
     lova:cellType "HUVEC" ;
-    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000115> ;
     lova:cultureDuration "9 days" ;
     lova:experimentCategory "Biological" ;
     lova:experimentType "Angiogenic sprouting / tube formation" ;
@@ -904,15 +921,35 @@
     dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
     lova:assayOrMethod "Cytodex bead sprouting assay" ;
     lova:cellType "HUVEC" ;
-    lova:cellTypeURI <http://purl.obolibrary.org/obo/CL_0000115> ;
     lova:cultureDuration "9 days" ;
     lova:experimentCategory "Biological" ;
     lova:experimentType "Angiogenic sprouting / tube formation" ;
     lova:sampleSize 10 ;
     lova:usedMaterial <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/heparin-nanoparticle> .
 
-<https://lovamap.com/ontology#agent/rdf_enrichment> a prov:SoftwareAgent ;
-    rdfs:label "rdf_enrichment pipeline" .
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/ps-nanoparticle> a lova:Material ;
+    rdfs:label "Heparin-coated polystyrene nanoparticle (260 nm), VEGF bound covalently or electrostatically" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2011.06.027/ps-heparin-bind-lock> ;
+    lova:particleMaterial "Polystyrene" ;
+    lova:particleShape "Sphere" ;
+    lova:particleSizeMax 260.0 ;
+    lova:particleSizeMin 260.0 ;
+    lova:particleSizeUnit "nm" ;
+    lova:sizeDistribution "Monodisperse" ;
+    lova:surfaceModification "Heparin-coated (photoactive crosslinker ABH), VEGF bound covalently (Vc) or electrostatically (Ve), high or low binding density" .
+
+<https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/heparin-nanoparticle> a lova:Material ;
+    rdfs:label "Heparin nanoparticle (hNP), VEGF bound covalently" ;
+    dc1:source <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> ;
+    lova:hasFabricationMethod <https://lovamap.com/ontology#fabrication-method/10.1016-j.biomaterials.2011.06.027/heparin-nanoparticle-synthesis> ;
+    lova:particleMaterial "Heparin" ;
+    lova:particleShape "Sphere" ;
+    lova:particleSizeMax 58.36 ;
+    lova:particleSizeMin 58.36 ;
+    lova:particleSizeUnit "nm" ;
+    lova:sizeDistribution "Polydisperse" ;
+    lova:surfaceModification "VEGF covalently bound via photoactive crosslinker ABH, high or low binding density" .
 
 <https://lovamap.com/ontology#paper/10.1016-j.biomaterials.2011.06.027> a bibo:AcademicArticle ;
     rdfs:label "Anderson, Siegman & Segura, 2011 — VEGF presentation in fibrin matrices" ;
@@ -927,172 +964,4 @@
     bibo:authorList ( <https://lovamap.com/ontology#author/anderson-sean> <https://lovamap.com/ontology#author/siegman-shayne> <https://lovamap.com/ontology#author/segura-tatiana> ) ;
     lova:focusMaterial "Heparin-coated polystyrene nanoparticles and heparin nanoparticles for covalent/electrostatic VEGF binding, in fibrin hydrogels, studied for effects of VEGF presentation on endothelial tube branching" ;
     schema:isPartOf <https://lovamap.com/ontology#journal/biomaterials> .
-
-[] a rdf:Statement ;
-    rdf:object <http://purl.obolibrary.org/obo/CHEBI_141243> ;
-    rdf:predicate owl:sameAs ;
-    rdf:subject <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/adh> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <https://pubchem.ncbi.nlm.nih.gov/compound/5003444> ;
-    rdf:predicate owl:sameAs ;
-    rdf:subject <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/sodium-cyanoborohydride> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <http://purl.obolibrary.org/obo/CHEBI_749537> ;
-    rdf:predicate owl:sameAs ;
-    rdf:subject <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/aprotinin> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <http://purl.obolibrary.org/obo/CHEBI_75226> ;
-    rdf:predicate owl:sameAs ;
-    rdf:subject <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/sodium-periodate> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <http://purl.obolibrary.org/obo/CHEBI_53426> ;
-    rdf:predicate owl:sameAs ;
-    rdf:subject <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/tween-80> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object "CVDUGUOQTVTBJH-UHFFFAOYSA-N" ;
-    rdf:predicate lova:inchiKey ;
-    rdf:subject <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/sodium-cyanoborohydride> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <http://purl.obolibrary.org/obo/CHEBI_35607> ;
-    rdf:predicate owl:sameAs ;
-    rdf:subject <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/sodium-vanadate> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <http://purl.obolibrary.org/obo/CHEBI_749446> ;
-    rdf:predicate owl:sameAs ;
-    rdf:subject <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/fibrinogen> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <http://purl.obolibrary.org/obo/CHEBI_5058> ;
-    rdf:predicate owl:sameAs ;
-    rdf:subject <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/fibronectin> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <http://purl.obolibrary.org/obo/CHEBI_53545> ;
-    rdf:predicate lova:particleMaterialURI ;
-    rdf:subject <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/ps-nanoparticle> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <http://purl.obolibrary.org/obo/CL_0000115> ;
-    rdf:predicate lova:cellTypeURI ;
-    rdf:subject <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2011.06.027/cdc42-glisa> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object "KBKUVMOUCKJDBE-LURJTMIESA-N" ;
-    rdf:predicate lova:inchiKey ;
-    rdf:subject <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/fibronectin> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <http://purl.obolibrary.org/obo/CHEBI_230519> ;
-    rdf:predicate owl:sameAs ;
-    rdf:subject <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/heparin> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <http://purl.obolibrary.org/obo/CHEBI_183688> ;
-    rdf:predicate owl:sameAs ;
-    rdf:subject <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/span-80> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <https://www.uniprot.org/uniprot/P15692> ;
-    rdf:predicate owl:sameAs ;
-    rdf:subject <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/vegf> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <http://purl.obolibrary.org/obo/OBI_0000714> ;
-    rdf:predicate lova:assayURI ;
-    rdf:subject <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2011.06.027/vegfr2-phosphorylation> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <http://purl.obolibrary.org/obo/CHEBI_28304> ;
-    rdf:predicate lova:particleMaterialURI ;
-    rdf:subject <https://lovamap.com/ontology#material/10.1016-j.biomaterials.2011.06.027/heparin-nanoparticle> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <https://www.uniprot.org/uniprot/P00734> ;
-    rdf:predicate owl:sameAs ;
-    rdf:subject <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/thrombin> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object "ZPNFWUPYTFPOJU-LPYSRVMUSA-N" ;
-    rdf:predicate lova:inchiKey ;
-    rdf:subject <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/aprotinin> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <http://purl.obolibrary.org/obo/OBI_0000626> ;
-    rdf:predicate lova:assayURI ;
-    rdf:subject <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2011.06.027/dls-characterization> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <http://purl.obolibrary.org/obo/CHEBI_61358> ;
-    rdf:predicate owl:sameAs ;
-    rdf:subject <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/nhs-acrylate> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <http://purl.obolibrary.org/obo/CHEBI_156543> ;
-    rdf:predicate owl:sameAs ;
-    rdf:subject <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/aps> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <http://purl.obolibrary.org/obo/CHEBI_138727> ;
-    rdf:predicate owl:sameAs ;
-    rdf:subject <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/edc> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <http://purl.obolibrary.org/obo/CL_0000115> ;
-    rdf:predicate lova:cellTypeURI ;
-    rdf:subject <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2011.06.027/cell-migration> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <http://purl.obolibrary.org/obo/CL_0000115> ;
-    rdf:predicate lova:cellTypeURI ;
-    rdf:subject <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2011.06.027/tube-formation-hnp> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <http://purl.obolibrary.org/obo/CL_0000115> ;
-    rdf:predicate lova:cellTypeURI ;
-    rdf:subject <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2011.06.027/vegfr2-phosphorylation> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <http://purl.obolibrary.org/obo/CL_0000115> ;
-    rdf:predicate lova:cellTypeURI ;
-    rdf:subject <https://lovamap.com/ontology#experiment/10.1016-j.biomaterials.2011.06.027/tube-formation-ps> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
-
-[] a rdf:Statement ;
-    rdf:object <http://purl.obolibrary.org/obo/CHEBI_32850> ;
-    rdf:predicate owl:sameAs ;
-    rdf:subject <https://lovamap.com/ontology#reagent/10.1016-j.biomaterials.2011.06.027/temed> ;
-    prov:wasGeneratedBy <https://lovamap.com/ontology#agent/rdf_enrichment> .
 
