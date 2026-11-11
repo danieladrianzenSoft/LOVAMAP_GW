@@ -342,6 +342,27 @@ namespace Services.Services
 				await _context.SaveChangesAsync();
 			}
 
+			// Backfill segmentation params from Core if GW doesn't have them yet
+			if (job.JobType == JobType.ParticleSegmentation
+				&& job.SegmentationParams == null
+				&& coreJob.SegmentationParams.HasValue
+				&& coreJob.SegmentationParams.Value.ValueKind != JsonValueKind.Null)
+			{
+				try
+				{
+					var raw = coreJob.SegmentationParams.Value.ValueKind == JsonValueKind.String
+						? coreJob.SegmentationParams.Value.GetString()!
+						: coreJob.SegmentationParams.Value.GetRawText();
+					job.SegmentationParams = JsonDocument.Parse(raw);
+					await _context.SaveChangesAsync();
+					_logger.LogInformation("Backfilled SegmentationParams from Core for job {JobId}", jobId);
+				}
+				catch (Exception ex)
+				{
+					_logger.LogWarning(ex, "Failed to backfill SegmentationParams for job {JobId}", jobId);
+				}
+			}
+
 			var coreStatus = (JobStatus)coreJob.Status;
 			_logger.LogDebug("Job {JobId}: Core status int={CoreStatusInt} enum={CoreStatus}, GW status={GwStatus}",
 				jobId, coreJob.Status, coreStatus, job.Status);
@@ -380,6 +401,41 @@ namespace Services.Services
 			{
 				_logger.LogWarning(ex, "Failed to fetch logs from Core for job {JobId}", jobId);
 				return (false, "Error connecting to processing server.", null);
+			}
+		}
+
+		public async Task BackfillSegmentationParamsAsync(Guid jobId, CancellationToken ct = default)
+		{
+			var job = await _jobRepository.GetJobByIdAsync(jobId);
+			if (job == null || job.JobType != JobType.ParticleSegmentation || job.SegmentationParams != null)
+				return;
+
+			try
+			{
+				var response = await _coreApiClient.GetJobStatusAsync(jobId.ToString(), ct);
+				if (!response.IsSuccessStatusCode) return;
+
+				var body = await response.Content.ReadAsStringAsync(ct);
+				var coreJob = JsonSerializer.Deserialize<CoreJobDto>(body, new JsonSerializerOptions
+				{
+					PropertyNameCaseInsensitive = true
+				});
+
+				if (coreJob?.SegmentationParams == null
+					|| !coreJob.SegmentationParams.HasValue
+					|| coreJob.SegmentationParams.Value.ValueKind == JsonValueKind.Null)
+					return;
+
+				var raw = coreJob.SegmentationParams.Value.ValueKind == JsonValueKind.String
+					? coreJob.SegmentationParams.Value.GetString()!
+					: coreJob.SegmentationParams.Value.GetRawText();
+				job.SegmentationParams = JsonDocument.Parse(raw);
+				await _context.SaveChangesAsync();
+				_logger.LogInformation("Backfilled SegmentationParams from Core for job {JobId}", jobId);
+			}
+			catch (Exception ex)
+			{
+				_logger.LogWarning(ex, "Failed to backfill SegmentationParams for job {JobId}", jobId);
 			}
 		}
 

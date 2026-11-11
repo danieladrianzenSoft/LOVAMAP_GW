@@ -39,8 +39,12 @@ const ROUTE_LABELS: Record<string, string> = {
 	settings: 'Settings',
 };
 
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
 const formatSegment = (segment: string): string => {
 	if (ROUTE_LABELS[segment]) return ROUTE_LABELS[segment];
+	// Truncate UUID-like segments to first 5 chars
+	if (UUID_RE.test(segment)) return segment.slice(0, 5) + '...';
 	// Fallback: decode URI and title-case dashes/underscores
 	try {
 		return decodeURIComponent(segment)
@@ -59,10 +63,14 @@ const Breadcrumbs: React.FC<{ pathname: string }> = ({ pathname }) => {
 		{ label: 'Home', to: '/' },
 		...segments.map((seg, idx) => {
 			let label = formatSegment(seg);
-			// Contextual label: numeric id following /visualize -> "Scaffold <id>"
 			const prev = segments[idx - 1];
+			// Contextual label: numeric id following /visualize -> "Scaffold <id>"
 			if (prev === 'visualize' && /^\d+$/.test(seg)) {
 				label = `Scaffold ${seg}`;
+			}
+			// /jobs/<uuid>/visualize -> "Visualize" instead of "Interact"
+			if (seg === 'visualize' && prev && UUID_RE.test(prev)) {
+				label = 'Visualize';
 			}
 			return {
 				label,

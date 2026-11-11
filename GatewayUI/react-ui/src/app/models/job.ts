@@ -90,7 +90,11 @@ export interface PreviewInfo {
 	voxel_size_sources: { dx: string; dy: string; dz: string };
 	params?: Record<string, number | string | null>;
 	slices: { name: string; z_index: number }[];
+	segmented_slices?: { name: string; z_index: number }[];
+	segmented_dimensions?: { x: number; y: number; z: number };
 }
+
+export type MeshReadiness = 'checking' | 'ready' | 'generating' | 'failed' | 'stopped' | 'unavailable' | 'not-available';
 
 export interface SaveLovamapResultRequest {
 	scaffoldGroupId?: number | null;

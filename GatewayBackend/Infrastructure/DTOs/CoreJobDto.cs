@@ -19,6 +19,7 @@ namespace Infrastructure.DTOs
 		public string? StdOut { get; set; }
 		public string? StdErr { get; set; }
 		public string? SourceJobId { get; set; }
+		public JsonElement? SegmentationParams { get; set; }
 	}
 }
 

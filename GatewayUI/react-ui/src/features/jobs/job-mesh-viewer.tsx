@@ -22,7 +22,7 @@ const JobMeshViewer: React.FC<JobMeshViewerProps> = ({ blobUrl }) => {
 	];
 
 	return (
-		<div className="h-80 border rounded-lg bg-gray-50 overflow-hidden relative">
+		<div className="h-80 border rounded-lg relative bg-gray-50 overflow-hidden">
 			<CanvasViewer meshes={meshes} />
 		</div>
 	);

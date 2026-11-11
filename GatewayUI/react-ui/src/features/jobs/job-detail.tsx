@@ -1,11 +1,12 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { FaArrowLeft, FaDownload, FaSpinner } from "react-icons/fa";
+import { FaArrowLeft, FaDownload, FaExpand, FaSpinner } from "react-icons/fa";
 import { JobDetailed, PreviewInfo } from "../../app/models/job";
 import { useStore } from "../../app/stores/store";
 import { downloadScaffoldGroupAsExcel, triggerDownload } from "../../app/common/excel-generator/excel-generator";
 import JobMeshViewer from "./job-mesh-viewer";
 import ElapsedTime from "./elapsed-time";
 import LovamapScaffoldForm from "./lovamap-scaffold-form";
+import SegmentationComparisonView from "./segmentation-comparison-view";
 import History from "../../app/helpers/History";
 
 type Props = {
@@ -63,12 +64,12 @@ const JobDetail: React.FC<Props> = ({ job, onBack, onJobSubmitted, formatDate, o
   const [particleMeshError, setParticleMeshError] = useState<string | null>(null);
   const [showParticleMesh, setShowParticleMesh] = useState(false);
 
-  // Segmentation preview state
-  const [previewUrls, setPreviewUrls] = useState<string[]>([]);
+  // Segmentation preview state — URLs keyed by filename for reliable matching
+  const [previewUrlMap, setPreviewUrlMap] = useState<Record<string, string>>({});
   const [previewInfo, setPreviewInfo] = useState<PreviewInfo | null>(null);
   const [previewLoading, setPreviewLoading] = useState(false);
   const [previewError, setPreviewError] = useState<string | null>(null);
-  const previewFetchedRef = useRef(false);
+  const previewFetchedForRef = useRef<string | null>(null);
 
   // Mesh readiness per mesh: checking → ready/generating/failed/stopped/unavailable/not-available
   type MeshReadiness = 'checking' | 'ready' | 'generating' | 'failed' | 'stopped' | 'unavailable' | 'not-available';
@@ -172,21 +173,34 @@ const JobDetail: React.FC<Props> = ({ job, onBack, onJobSubmitted, formatDate, o
   }, [showMeshSection, isSegmentation, job.id, jobStore]);
 
   // Cleanup blob URLs on unmount
+  // Track blob URLs in refs so cleanup only happens on unmount
+  const meshBlobUrlRef = useRef(meshBlobUrl);
+  meshBlobUrlRef.current = meshBlobUrl;
+  const particleMeshBlobUrlRef = useRef(particleMeshBlobUrl);
+  particleMeshBlobUrlRef.current = particleMeshBlobUrl;
+  const previewUrlMapRef = useRef(previewUrlMap);
+  previewUrlMapRef.current = previewUrlMap;
+
   useEffect(() => {
     return () => {
-      if (meshBlobUrl) URL.revokeObjectURL(meshBlobUrl);
-      if (particleMeshBlobUrl) URL.revokeObjectURL(particleMeshBlobUrl);
-      previewUrls.forEach((u) => URL.revokeObjectURL(u));
+      if (meshBlobUrlRef.current) URL.revokeObjectURL(meshBlobUrlRef.current);
+      if (particleMeshBlobUrlRef.current) URL.revokeObjectURL(particleMeshBlobUrlRef.current);
+      Object.values(previewUrlMapRef.current).forEach((u) => URL.revokeObjectURL(u));
     };
-  }, [meshBlobUrl, particleMeshBlobUrl, previewUrls]);
+  }, []);
 
   // Fetch segmentation preview images once job is Running/Completed/Failed
   // previewFetchedRef ensures single execution; no cancelled flag needed.
+  // Fetch segmentation preview images:
+  // - First fetch when job enters Running (input slices only)
+  // - Re-fetch when job enters Completed (to get segmented slices + updated info)
   useEffect(() => {
     if (!isSegmentation) return;
-    if (!['Running', 'Completed', 'Failed'].includes(job.status ?? '')) return;
-    if (previewFetchedRef.current) return;
-    previewFetchedRef.current = true;
+    const status = job.status ?? '';
+    if (!['Running', 'Completed', 'Failed'].includes(status)) return;
+    if (previewFetchedForRef.current === status) return;
+    if (previewFetchedForRef.current === 'Completed') return;
+    previewFetchedForRef.current = status;
 
     const fetchPreviews = async () => {
       setPreviewLoading(true);
@@ -205,7 +219,7 @@ const JobDetail: React.FC<Props> = ({ job, onBack, onJobSubmitted, formatDate, o
           })
         );
 
-        const urls: string[] = [];
+        const newUrlMap: Record<string, string> = {};
         let info: PreviewInfo | null = null;
 
         for (const result of results) {
@@ -216,12 +230,18 @@ const JobDetail: React.FC<Props> = ({ job, onBack, onJobSubmitted, formatDate, o
               info = JSON.parse(await blob.text()) as PreviewInfo;
             } catch { /* ignore parse errors */ }
           } else {
-            urls.push(URL.createObjectURL(blob));
+            newUrlMap[file] = URL.createObjectURL(blob);
           }
         }
 
-        setPreviewUrls(urls);
-        setPreviewInfo(info);
+        // Merge with existing URLs (keep input slices from first fetch, add segmented)
+        setPreviewUrlMap((prev) => {
+          for (const [name, url] of Object.entries(prev)) {
+            if (newUrlMap[name]) URL.revokeObjectURL(url);
+          }
+          return { ...prev, ...newUrlMap };
+        });
+        if (info) setPreviewInfo(info);
       } catch {
         setPreviewError("Could not load preview images.");
       } finally {
@@ -438,7 +458,7 @@ const JobDetail: React.FC<Props> = ({ job, onBack, onJobSubmitted, formatDate, o
             </div>
             {isLovamap && canDownload && (
               <button
-                className="button-primary text-sm px-4 py-1.5 flex items-center gap-1"
+                className="button-primary text-sm px-3 py-1 flex items-center gap-1"
                 onClick={handleInteract}
                 disabled={interactLoading}
               >
@@ -455,20 +475,53 @@ const JobDetail: React.FC<Props> = ({ job, onBack, onJobSubmitted, formatDate, o
             label="Status"
             value={
               <div>
-                <span className="inline-flex items-center gap-2">
-                  {job.status === 'Failed' ? (
-                    <span className="text-red-600 font-medium">Failed</span>
-                  ) : (
-                    job.status
+                <div className="flex items-center justify-between mb-2">
+                  <span className="inline-flex items-center gap-2">
+                    {job.status === 'Failed' ? (
+                      <span className="text-red-600 font-medium">{job.status}</span>
+                    ) : (
+                      <span>{job.status}</span>
+                    )}
+                    {(job.status === 'Pending' || job.status === 'Running') && (
+                      <span className="text-gray-400">
+                        <ElapsedTime since={job.submittedAt} />
+                      </span>
+                    )}
+                  </span>
+                  {(job.status === 'Completed' || job.status === 'Failed') && (
+                    <button
+                      className="button-outline text-sm px-3 py-1 flex items-center gap-1"
+                      onClick={async () => {
+                        const blob = await jobStore.getJobLogs(job.id);
+                        if (!blob) return;
+                        const url = URL.createObjectURL(blob);
+                        const a = document.createElement("a");
+                        a.href = url;
+                        a.download = `job_${job.id}_logs.txt`;
+                        document.body.appendChild(a);
+                        a.click();
+                        a.remove();
+                        URL.revokeObjectURL(url);
+                      }}
+                    >
+                      <FaDownload className="w-3 h-3" /> Logs
+                    </button>
                   )}
-                  {(job.status === 'Pending' || job.status === 'Running') && (
-                    <span className="text-gray-400">
-                      <ElapsedTime since={job.submittedAt} />
-                    </span>
-                  )}
-                </span>
+                </div>
+                {job.submittedAt && (
+                  <div className="text-sm py-0.5">
+                    <span className="text-gray-500">Submitted </span>
+                    <span className="text-gray-800">{formatDate(job.submittedAt)}</span>
+                  </div>
+                )}
+                {job.completedAt && (
+                  <div className="text-sm py-0.5">
+                    <span className="text-gray-500">Completed </span>
+                    <span className="text-gray-800">{formatDate(job.completedAt)}</span>
+                  </div>
+                )}
                 {job.status === 'Failed' && job.errorMessage && (
-                  <div className="mt-2 p-3 bg-red-50 border border-red-200 rounded-lg">
+                  <div className="p-3 bg-red-50 border border-red-200 rounded-lg">
                     <p className="text-sm text-red-700">{job.errorMessage}</p>
                     {job.errorMessage.includes('[INPUT]') && job.errorMessage.includes('Missing required parameters') && (
                       <p className="text-sm text-red-600 mt-2">
@@ -477,88 +530,43 @@ const JobDetail: React.FC<Props> = ({ job, onBack, onJobSubmitted, formatDate, o
                     )}
                   </div>
                 )}
-                {(job.status === 'Completed' || job.status === 'Failed') && (
-                  <button
-                    className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-700 underline mt-2"
-                    onClick={async () => {
-                      const blob = await jobStore.getJobLogs(job.id);
-                      if (!blob) return;
-                      const url = URL.createObjectURL(blob);
-                      const a = document.createElement("a");
-                      a.href = url;
-                      a.download = `job_${job.id}_logs.txt`;
-                      document.body.appendChild(a);
-                      a.click();
-                      a.remove();
-                      URL.revokeObjectURL(url);
-                    }}
-                  >
-                    <FaDownload className="w-3 h-3" /> Download Logs
-                  </button>
-                )}
               </div>
             }
           />
-          {isSegmentation && (job.segmentationParams || previewLoading || previewInfo || previewError) && (
+          {isSegmentation && (job.segmentationParams || previewInfo) && (
             <Row
               label="Inputs"
               value={(() => {
                 const params = job.segmentationParams;
                 const fmt = (v: string | undefined) => v != null ? Number(Number(v).toFixed(4)) : '?';
                 return (
-                  <div className="space-y-2">
-                    <div className="text-sm text-gray-800 space-y-1">
-                      {params && (
-                        <>
-                          <p>
-                            <span className="text-gray-500">Voxel size (µm):</span>{' '}
-                            dx = {fmt(params.dx)}, dy = {fmt(params.dy)}, dz = {fmt(params.dz)}
-                          </p>
-                          <p>
-                            <span className="text-gray-500">Fluorescent label:</span> {params.fluorescentLabel ?? '?'}
-                            {' | '}
-                            <span className="text-gray-500">Radius (µm):</span> {params.radiusUm ?? '?'}
-                          </p>
-                        </>
-                      )}
-                      {!params && previewInfo && (
+                  <div className="text-sm text-gray-800 space-y-1">
+                    {params && (
+                      <>
                         <p>
                           <span className="text-gray-500">Voxel size (µm):</span>{' '}
-                          dx = {previewInfo.voxel_size.dx != null ? Number(previewInfo.voxel_size.dx.toFixed(4)) : '?'},{' '}
-                          dy = {previewInfo.voxel_size.dy != null ? Number(previewInfo.voxel_size.dy.toFixed(4)) : '?'},{' '}
-                          dz = {previewInfo.voxel_size.dz != null ? Number(previewInfo.voxel_size.dz.toFixed(4)) : '?'}
+                          dx = {fmt(params.dx)}, dy = {fmt(params.dy)}, dz = {fmt(params.dz)}
                         </p>
-                      )}
-                      {previewInfo && (
                         <p>
-                          <span className="text-gray-500">Dimensions:</span>{' '}
-                          {previewInfo.dimensions.x} × {previewInfo.dimensions.y} × {previewInfo.dimensions.z} voxels
+                          <span className="text-gray-500">Fluorescent label:</span> {params.fluorescentLabel ?? '?'}
+                          {' | '}
+                          <span className="text-gray-500">Radius (µm):</span> {params.radiusUm ?? '?'}
                         </p>
-                      )}
-                    </div>
-                    {previewLoading && (
-                      <span className="inline-flex items-center gap-2 text-sm text-gray-400">
-                        <FaSpinner className="animate-spin" /> Loading slices...
-                      </span>
+                      </>
                     )}
-                    {previewUrls.length > 0 && (
-                      <div className="flex gap-3 flex-wrap">
-                        {previewUrls.map((url, i) => {
-                          const sliceInfo = previewInfo?.slices?.[i];
-                          return (
-                            <div key={i} className="text-center">
-                              <img
-                                src={url}
-                                alt={sliceInfo ? `Z-slice at index ${sliceInfo.z_index}` : `Slice ${i + 1}`}
-                                className="w-40 h-40 object-contain border border-gray-200 rounded bg-gray-50"
-                              />
-                              <p className="text-xs text-gray-500 mt-1">
-                                {sliceInfo ? `Z = ${sliceInfo.z_index}` : `Slice ${i + 1}`}
-                              </p>
-                            </div>
-                          );
-                        })}
-                      </div>
+                    {!params && previewInfo && (
+                      <p>
+                        <span className="text-gray-500">Voxel size (µm):</span>{' '}
+                        dx = {previewInfo.voxel_size.dx != null ? Number(previewInfo.voxel_size.dx.toFixed(4)) : '?'},{' '}
+                        dy = {previewInfo.voxel_size.dy != null ? Number(previewInfo.voxel_size.dy.toFixed(4)) : '?'},{' '}
+                        dz = {previewInfo.voxel_size.dz != null ? Number(previewInfo.voxel_size.dz.toFixed(4)) : '?'}
+                      </p>
+                    )}
+                    {previewInfo && (
+                      <p>
+                        <span className="text-gray-500">Dimensions:</span>{' '}
+                        {previewInfo.dimensions.x} × {previewInfo.dimensions.y} × {previewInfo.dimensions.z} voxels
+                      </p>
                     )}
                   </div>
                 );
@@ -566,38 +574,23 @@ const JobDetail: React.FC<Props> = ({ job, onBack, onJobSubmitted, formatDate, o
             />
           )}
 
-          <Row label="Submitted At" value={job.submittedAt ? formatDate(job.submittedAt) : undefined} />
-          <Row label="Completed At" value={job.completedAt ? formatDate(job.completedAt) : undefined} />
           {job.sourceJobId && (
             <Row label="Derived From" value={job.sourceJobId} />
           )}
-
           <Row
             label="Results"
             value={
-              job.hasResults === true ? (
-                <>
-                  <span className="inline-flex px-2 py-0.5 rounded-full bg-green-50 text-link-200 text-xs font-medium mb-2">
-                    Available
-                  </span>
-                  {canDownload && (
-                    <div className="flex gap-2 mt-1">
-                      <button
-                        className="button-primary items-center content-center w-32 flex gap-1 justify-center"
-                        onClick={handleDownload}
-                        disabled={resultsLoading}
-                      >
-                        {resultsLoading && <FaSpinner className="animate-spin" />}
-                        {isLovamap ? "Download" : "Download JSON"}
-                      </button>
-                    </div>
-                  )}
-                </>
-
+              canDownload ? (
+                <button
+                  className="button-outline text-sm px-3 py-1 flex items-center gap-1"
+                  onClick={handleDownload}
+                  disabled={resultsLoading}
+                >
+                  {resultsLoading && <FaSpinner className="animate-spin" />}
+                  <FaDownload className="w-3 h-3" /> Download
+                </button>
               ) : job.hasResults === false ? (
-                <span className="inline-flex px-2 py-0.5 rounded-full bg-gray-100 text-gray-600 text-xs font-medium">
-                  No
-                </span>
+                <span className="text-sm text-gray-400">Not available</span>
               ) : undefined
             }
           />
@@ -614,26 +607,20 @@ const JobDetail: React.FC<Props> = ({ job, onBack, onJobSubmitted, formatDate, o
                   ) : poreMeshState === 'ready' ? (
                     <div>
                       <div className="flex gap-2 mb-2">
-                        <button
-                          className="button-primary items-center content-center flex gap-1"
-                          onClick={fetchMesh}
-                          disabled={meshLoading}
-                        >
-                          {meshLoading && <FaSpinner className="animate-spin" />}
-                          {showMesh ? 'Hide' : 'View Pore Mesh'}
+                        <button className="button-outline text-sm px-3 py-1 flex items-center gap-1" onClick={downloadMesh}>
+                          <FaDownload className="w-3 h-3" /> Download
                         </button>
-                        <button
-                          className="button-outline items-center content-center"
-                          onClick={downloadMesh}
-                        >
-                          Download Pore Mesh
+                        <button className="button-primary text-sm px-3 py-1 flex items-center gap-1" onClick={fetchMesh} disabled={meshLoading}>
+                          {meshLoading && <FaSpinner className="animate-spin" />}
+                          {showMesh ? 'Hide' : 'Preview'}
+                        </button>
+                        <button className="button-outline text-sm px-3 py-1 flex items-center gap-1" onClick={() => History.push(`/jobs/${job.id}/visualize?type=${job.jobType}`)}>
+                          <FaExpand className="w-3 h-3" />
                         </button>
                       </div>
                       {meshError && <p className="text-sm text-red-500">{meshError}</p>}
                       {showMesh && meshBlobUrl && (
-                        <div className="mt-2">
-                          <JobMeshViewer blobUrl={meshBlobUrl} />
-                        </div>
+                        <div className="mt-2"><JobMeshViewer blobUrl={meshBlobUrl} /></div>
                       )}
                     </div>
                   ) : poreMeshState === 'generating' ? (
@@ -641,13 +628,9 @@ const JobDetail: React.FC<Props> = ({ job, onBack, onJobSubmitted, formatDate, o
                       <FaSpinner className="animate-spin" /> Generating pore mesh...
                     </span>
                   ) : poreMeshState === 'failed' || poreMeshState === 'stopped' ? (
-                    <span className="text-sm text-red-500">
-                      Pore mesh generation {poreMeshState}
-                    </span>
+                    <span className="text-sm text-red-500">Pore mesh generation {poreMeshState}</span>
                   ) : poreMeshState === 'unavailable' ? (
-                    <span className="text-sm text-gray-400">
-                      Processing server unavailable
-                    </span>
+                    <span className="text-sm text-gray-400">Processing server unavailable</span>
                   ) : (
                     <span className="text-sm text-gray-400">Not available</span>
                   )
@@ -663,26 +646,20 @@ const JobDetail: React.FC<Props> = ({ job, onBack, onJobSubmitted, formatDate, o
                   ) : particleMeshState === 'ready' ? (
                     <div>
                       <div className="flex gap-2 mb-2">
-                        <button
-                          className="button-primary items-center content-center flex gap-1"
-                          onClick={fetchParticleMesh}
-                          disabled={particleMeshLoading}
-                        >
-                          {particleMeshLoading && <FaSpinner className="animate-spin" />}
-                          {showParticleMesh ? 'Hide' : 'View Particle Mesh'}
+                        <button className="button-outline text-sm px-3 py-1 flex items-center gap-1" onClick={downloadParticleMesh}>
+                          <FaDownload className="w-3 h-3" /> Download
                         </button>
-                        <button
-                          className="button-outline items-center content-center"
-                          onClick={downloadParticleMesh}
-                        >
-                          Download Particle Mesh
+                        <button className="button-primary text-sm px-3 py-1 flex items-center gap-1" onClick={fetchParticleMesh} disabled={particleMeshLoading}>
+                          {particleMeshLoading && <FaSpinner className="animate-spin" />}
+                          {showParticleMesh ? 'Hide' : 'Preview'}
+                        </button>
+                        <button className="button-outline text-sm px-3 py-1 flex items-center gap-1" onClick={() => History.push(`/jobs/${job.id}/visualize?type=${job.jobType}`)}>
+                          <FaExpand className="w-3 h-3" />
                         </button>
                       </div>
                       {particleMeshError && <p className="text-sm text-red-500">{particleMeshError}</p>}
                       {showParticleMesh && particleMeshBlobUrl && (
-                        <div className="mt-2">
-                          <JobMeshViewer blobUrl={particleMeshBlobUrl} />
-                        </div>
+                        <div className="mt-2"><JobMeshViewer blobUrl={particleMeshBlobUrl} /></div>
                       )}
                     </div>
                   ) : particleMeshState === 'generating' ? (
@@ -690,13 +667,9 @@ const JobDetail: React.FC<Props> = ({ job, onBack, onJobSubmitted, formatDate, o
                       <FaSpinner className="animate-spin" /> Generating particle mesh...
                     </span>
                   ) : particleMeshState === 'failed' || particleMeshState === 'stopped' ? (
-                    <span className="text-sm text-red-500">
-                      Particle mesh generation {particleMeshState}
-                    </span>
+                    <span className="text-sm text-red-500">Particle mesh generation {particleMeshState}</span>
                   ) : particleMeshState === 'unavailable' ? (
-                    <span className="text-sm text-gray-400">
-                      Processing server unavailable
-                    </span>
+                    <span className="text-sm text-gray-400">Processing server unavailable</span>
                   ) : (
                     <span className="text-sm text-gray-400">Not available</span>
                   )
@@ -720,41 +693,42 @@ const JobDetail: React.FC<Props> = ({ job, onBack, onJobSubmitted, formatDate, o
                 ) : particleMeshState === 'ready' ? (
                   <div>
                     <div className="flex gap-2 mb-2">
-                      <button
-                        className="button-primary items-center content-center flex gap-1"
-                        onClick={fetchMesh}
-                        disabled={meshLoading}
-                      >
-                        {meshLoading && <FaSpinner className="animate-spin" />}
-                        {showMesh ? 'Viewing' : 'View Mesh'}
+                      <button className="button-outline text-sm px-3 py-1 flex items-center gap-1" onClick={downloadMesh}>
+                        <FaDownload className="w-3 h-3" /> Download
                       </button>
-                      <button
-                        className="button-outline items-center content-center"
-                        onClick={downloadMesh}
-                      >
-                        Download Mesh
+                      <button className="button-primary text-sm px-3 py-1 flex items-center gap-1" onClick={fetchMesh} disabled={meshLoading}>
+                        {meshLoading && <FaSpinner className="animate-spin" />}
+                        {showMesh ? 'Hide' : 'Preview'}
+                      </button>
+                      <button className="button-outline text-sm px-3 py-1 flex items-center gap-1" onClick={() => History.push(`/jobs/${job.id}/visualize?type=${job.jobType}`)}>
+                        <FaExpand className="w-3 h-3" />
                       </button>
                     </div>
-                    {meshError && (
-                      <p className="text-sm text-red-500">{meshError}</p>
-                    )}
+                    {meshError && <p className="text-sm text-red-500">{meshError}</p>}
                     {showMesh && meshBlobUrl && (
-                      <div className="mt-2">
-                        <JobMeshViewer blobUrl={meshBlobUrl} />
-                      </div>
+                      <div className="mt-2"><JobMeshViewer blobUrl={meshBlobUrl} /></div>
                     )}
                   </div>
                 ) : particleMeshState === 'failed' || particleMeshState === 'stopped' ? (
-                  <span className="text-sm text-red-500">
-                    Mesh generation {particleMeshState}
-                  </span>
+                  <span className="text-sm text-red-500">Mesh generation {particleMeshState}</span>
                 ) : particleMeshState === 'unavailable' ? (
-                  <span className="text-sm text-gray-400">
-                    Processing server unavailable
-                  </span>
+                  <span className="text-sm text-gray-400">Processing server unavailable</span>
                 ) : (
                   <span className="text-sm text-gray-400">Not available</span>
                 )
+              }
+            />
+          )}
+
+          {/* Validation — segmentation comparison only */}
+          {isSegmentation && previewInfo?.segmented_slices && previewInfo.segmented_slices.length > 0 && (
+            <Row
+              label="Validation"
+              value={
+                <SegmentationComparisonView
+                  previewUrlMap={previewUrlMap}
+                  previewInfo={previewInfo}
+                />
               }
             />
           )}
@@ -766,7 +740,7 @@ const JobDetail: React.FC<Props> = ({ job, onBack, onJobSubmitted, formatDate, o
                 <div>
                   {!showLovamapForm ? (
                     <button
-                      className="button-primary items-center content-center"
+                      className="button-primary text-sm px-3 py-1 flex items-center gap-1"
                       onClick={() => { setShowLovamapForm(true); fetchMesh(); }}
                     >
                       Run LOVAMAP Analysis
@@ -798,7 +772,7 @@ const JobDetail: React.FC<Props> = ({ job, onBack, onJobSubmitted, formatDate, o
                       )}
                       <div className="flex gap-2">
                         <button
-                          className="button-primary items-center content-center flex gap-1"
+                          className="button-primary text-sm px-3 py-1 flex items-center gap-1"
                           onClick={handleLovamapSubmit}
                           disabled={lovamapSubmitting}
                         >
@@ -806,7 +780,7 @@ const JobDetail: React.FC<Props> = ({ job, onBack, onJobSubmitted, formatDate, o
                           Submit
                         </button>
                         <button
-                          className="button-outline items-center content-center"
+                          className="button-outline text-sm px-3 py-1 flex items-center gap-1"
                           onClick={() => {
                             setShowLovamapForm(false);
                             setLovamapError(null);

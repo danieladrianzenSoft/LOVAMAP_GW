@@ -20,14 +20,16 @@ public class JobsController : ControllerBase
 	private readonly IConfiguration _configuration;
 	private readonly IUserService _userService;
 	private readonly IUserAuthHelper _userAuthHelper;
+	private readonly IModelMapper _modelMapper;
 
-	public JobsController(ILogger<JobsController> logger, ILovamapCoreJobService jobService, IConfiguration configuration, IUserService userService, IUserAuthHelper userAuthHelper)
+	public JobsController(ILogger<JobsController> logger, ILovamapCoreJobService jobService, IConfiguration configuration, IUserService userService, IUserAuthHelper userAuthHelper, IModelMapper modelMapper)
 	{
 		_logger = logger;
 		_jobService = jobService;
 		_configuration = configuration;
 		_userService = userService;
 		_userAuthHelper = userAuthHelper;
+		_modelMapper = modelMapper;
 	}
 
 	[AllowAnonymous]
@@ -316,12 +318,20 @@ public class JobsController : ControllerBase
 	}
 
 	[HttpGet("{jobId}")]
-    public async Task<IActionResult> GetJob(Guid jobId)
+    public async Task<IActionResult> GetJob(Guid jobId, CancellationToken ct)
     {
         var job = await _jobService.GetByIdAsync(jobId);
         if (job == null) return NotFound();
 
-        return Ok(job);
+        // One-time backfill of segmentation params from Core for old jobs
+        if (job.JobType == JobType.ParticleSegmentation && job.SegmentationParams == null)
+        {
+            await _jobService.BackfillSegmentationParamsAsync(jobId, ct);
+            job = await _jobService.GetByIdAsync(jobId);
+            if (job == null) return NotFound();
+        }
+
+        return Ok(_modelMapper.MapToJobToReturnDto(job));
     }
 
 	// 4/13 JacklynX changed - get all jobs for admin to select specific job in dataset descriptor rules

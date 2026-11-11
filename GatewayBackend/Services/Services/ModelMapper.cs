@@ -675,7 +675,8 @@ namespace Services.Services
                 SourceJobId = job.SourceJobId,
                 ScaffoldGroupId = job.Scaffold?.ScaffoldGroupId,
                 ScaffoldId = job.ScaffoldId,
-                CreatorEmail = job.Creator?.Email
+                CreatorEmail = job.Creator?.Email,
+                SegmentationParams = job.SegmentationParams
             };
 
             return coreJobDto;

@@ -19,6 +19,7 @@ namespace Infrastructure.DTOs
 		public int? ScaffoldGroupId { get; set; }
 		public int? ScaffoldId { get; set; }
 		public string? CreatorEmail { get; set; }
+		public JsonDocument? SegmentationParams { get; set; }
 	}
 }
 

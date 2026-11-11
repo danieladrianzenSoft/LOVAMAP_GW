@@ -1,7 +1,7 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import * as signalR from "@microsoft/signalr";
 import agent from "../api/agent";
-import { Job, JobForList, LovamapFromSourceJob, MeshJob, Pagination, SaveLovamapResultRequest, SegmentationJob, ToolVersions } from "../models/job";
+import { Job, JobDetailed, JobForList, LovamapFromSourceJob, MeshJob, Pagination, SaveLovamapResultRequest, SegmentationJob, ToolVersions } from "../models/job";
 import { store } from "./store";
 import environment from "../environments/environment";
 
@@ -163,6 +163,15 @@ export default class JobStore {
 			return response.data;
 		} catch (error) {
 			console.error('Error fetching all jobs:', error);
+			return null;
+		}
+	}
+
+	getJobById = async (jobId: string): Promise<JobDetailed | null> => {
+		try {
+			return await agent.Jobs.getJobById(jobId);
+		} catch (error) {
+			console.error('Error fetching job by id:', error);
 			return null;
 		}
 	}

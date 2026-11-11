@@ -33,6 +33,7 @@ import Publications from '../../features/publications/publications';
 import PublicationData from '../../features/publications/publication-data';
 import JobsMain from '../../features/jobs/jobs-main';
 import JobList from '../../features/jobs/job-list';
+import JobVisualization from '../../features/jobs/job-visualization';
 import RunSegmentation from '../../features/jobs/run-segmentation';
 import Dashboard from '../../features/dashboard/Dashboard';
 // RDF Explorer — moved to KnowledgeBase UI
@@ -125,6 +126,7 @@ const MainLayout: React.FC = observer(() => {
             <Route path="/experiments" element={<ProtectedRoute element={<CreateExperiments />} />} />
             <Route path="/my-scaffolds" element={<ProtectedRoute element={<ScaffoldGroupUploads />} />} />
             <Route path="/run" element={<JobsMain />} />
+            <Route path="/jobs/:jobId/visualize" element={<ProtectedRoute element={<JobVisualization />} />} />
             <Route path="/jobs/*" element={<ProtectedRoute element={<JobList />} />}  />
             <Route path="/segment" element={<ProtectedRoute element={<RunSegmentation />} />} />
             <Route path="/screenshots/:scaffoldId" element={<ProtectedRoute requiredRole="administrator" element={<ScreenshotViewer />} />} />

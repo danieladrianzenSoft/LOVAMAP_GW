@@ -5,7 +5,7 @@ import { Routes, Route, useNavigate, useParams } from "react-router-dom";
 import RunLovamap from "./run-lovamap";
 import RunSegmentation from "./run-segmentation";
 import RunMesh from "./run-mesh";
-import { JobForList, ToolVersions } from '../../app/models/job';
+import { JobDetailed, JobForList, ToolVersions } from '../../app/models/job';
 import { formatDate } from '../../app/utils/format-date';
 import JobDetail from './job-detail';
 import { FaArrowLeft, FaSpinner } from 'react-icons/fa';
@@ -229,8 +229,21 @@ const MeshFormView: React.FC<{ onSubmitted: () => void; toolVersions: ToolVersio
 const JobDetailView: React.FC<{ jobs: JobForList[]; onDownloadResults: (jobId: string, name?: string) => Promise<void>; onJobSubmitted: () => void }> = ({ jobs, onDownloadResults, onJobSubmitted }) => {
 	const { jobId } = useParams<{ jobId: string }>();
 	const navigate = useNavigate();
+	const { jobStore } = useStore();
+	const [fullJob, setFullJob] = useState<JobDetailed | null>(null);
 
-	const job = jobs.find((j) => j.id.startsWith(jobId ?? ''));
+	// Resolve full GUID from the list (URL may be truncated)
+	const listJob = jobs.find((j) => j.id.startsWith(jobId ?? ''));
+	const resolvedId = listJob?.id ?? jobId;
+
+	useEffect(() => {
+		if (!resolvedId) return;
+		jobStore.getJobById(resolvedId).then((j) => {
+			if (j) setFullJob(j);
+		});
+	}, [resolvedId, jobStore]);
+
+	const job = fullJob ?? (listJob as any as JobDetailed | null);
 
 	if (!job) {
 		return (
@@ -242,7 +255,7 @@ const JobDetailView: React.FC<{ jobs: JobForList[]; onDownloadResults: (jobId: s
 
 	return (
 		<JobDetail
-			job={job as any}
+			job={job}
 			onBack={() => navigate('/jobs')}
 			onJobSubmitted={onJobSubmitted}
 			formatDate={formatDate}

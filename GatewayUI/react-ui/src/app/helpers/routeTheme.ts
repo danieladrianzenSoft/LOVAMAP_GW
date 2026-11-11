@@ -12,6 +12,8 @@ export const isWhiteBackgroundRoute = (pathname: string): boolean => {
 	if (pathname === '/') return true;
 	if (WHITE_BG_ROUTES.some((r) => pathname === r || pathname.startsWith(r + '/')))
 		return true;
+	if (pathname.endsWith('/visualize'))
+		return true;
 	if (WHITE_BG_SUBPATHS_ONLY.some((r) => pathname.startsWith(r + '/') && pathname !== r))
 		return true;
 	return false;

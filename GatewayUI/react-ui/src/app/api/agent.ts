@@ -9,7 +9,7 @@ import { DescriptorType, DescriptorTypeToUpdate } from "../models/descriptorType
 import { Image, ImageCategory, ImageToCreate, ImageToUpdate } from "../models/image";
 import environment from "../environments/environment"
 import { Domain } from "../models/domain";
-import { Job, JobForList, LovamapFromSourceJob, MeshJob, MeshStatusResponse, Pagination, SaveLovamapResultRequest, SegmentationJob, ToolVersions } from "../models/job";
+import { Job, JobDetailed, JobForList, LovamapFromSourceJob, MeshJob, MeshStatusResponse, Pagination, SaveLovamapResultRequest, SegmentationJob, ToolVersions } from "../models/job";
 import { ScaffoldWithMissingThumbnail } from "../models/scaffold";
 import { ParticleDiameter, PoreInfo, PoreInfoForScaffoldGroup } from "../models/poreInfo";
 import { DomainMetadata } from "../models/domainMetadata";
@@ -300,6 +300,7 @@ const Jobs = {
         const response = await axios.get<ApiResponse<JobForList[]>>(`/jobs/all?${params.join('&')}`);
         return { data: response.data.data, pagination: extractPagination(response)! };
     },
+    getJobById: (jobId: string) => requests.get<JobDetailed>(`/jobs/${jobId}`),
     getJobResult: async (jobId: string) => {
         const response = await axios.get(`/jobs/${jobId}/result`, {
             responseType: 'blob'
