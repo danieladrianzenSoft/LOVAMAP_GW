@@ -3,6 +3,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Data.Models;
 using Infrastructure.DTOs;
+using Infrastructure.Helpers;
 
 namespace Repositories.IRepositories
 {
@@ -16,5 +17,7 @@ namespace Repositories.IRepositories
 		Task<Domain?> GetByScaffoldIdAndCategory(int scaffoldId, DomainCategory category);
 		Task<int?> GetRandomDomainIdWithMeshAsync();
 		Task<JsonDocument?> GetDomainMetadataById(int domainId);
+		Task<PagedList<DomainListItemDto>> GetFilteredList(DomainFilterParams filterParams);
+		Task<DomainSummaryDto> GetSummary();
 	}
 }

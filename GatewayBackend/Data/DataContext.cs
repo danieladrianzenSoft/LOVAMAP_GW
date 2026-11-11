@@ -398,7 +398,11 @@ public partial class DataContext : IdentityDbContext<User, Role, string>
 
 		builder.Entity<OtherDescriptor>()
             .Property(p => p.Values)
-            .HasColumnType("jsonb"); 
+            .HasColumnType("jsonb");
+
+		builder.Entity<Job>()
+			.Property(j => j.RunConfiguration)
+			.HasColumnType("jsonb");
 
 		// Many-to-Many: Scaffold to Tags
         builder.Entity<ScaffoldTag>()

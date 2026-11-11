@@ -908,6 +908,10 @@ namespace Services.Services
 				return (false, "Failed to parse job result JSON.", null, null);
 			}
 
+			// 2b) Extract version + runConfiguration and store on job
+			job.LovamapCoreVersion = LovamapResultMapper.GetVersion(resultsJson);
+			job.RunConfiguration = LovamapResultMapper.GetRunConfiguration(resultsJson);
+
 			// 3) Map result to scaffold DTO
 			var scaffoldDto = LovamapResultMapper.MapResultToScaffold(resultsJson);
 			var (meanSize, stdDev) = LovamapResultMapper.GetParticleDiameterStats(resultsJson);
@@ -1162,6 +1166,10 @@ namespace Services.Services
 
 		private async Task CreateDomainsFromJobMeshesAsync(Job job, int scaffoldId, JsonDocument resultsJson)
 		{
+			var domainSize = LovamapResultMapper.GetDomainSize(resultsJson) ?? "N/A";
+			var voxelSize = LovamapResultMapper.GetDx(resultsJson);
+			var voxelCount = LovamapResultMapper.GetNumVoxels(resultsJson);
+
 			// Pore mesh: fetch from Core using the LOVAMAP job ID
 			try
 			{
@@ -1174,7 +1182,9 @@ namespace Services.Services
 						ScaffoldId = scaffoldId,
 						Category = DomainCategory.Pores,
 						MeshFilePath = filePath,
-						DomainSize = "N/A",
+						DomainSize = domainSize,
+						VoxelSize = voxelSize,
+						VoxelCount = voxelCount,
 						CreatedAt = DateTime.UtcNow,
 						OriginalFileName = $"job_{job.Id}_pore_mesh.glb",
 						Metadata = LovamapResultMapper.BuildPoreDomainMetadata(resultsJson),
@@ -1212,7 +1222,9 @@ namespace Services.Services
 							ScaffoldId = scaffoldId,
 							Category = DomainCategory.Particles,
 							MeshFilePath = filePath,
-							DomainSize = "N/A",
+							DomainSize = domainSize,
+							VoxelSize = voxelSize,
+							VoxelCount = voxelCount,
 							CreatedAt = DateTime.UtcNow,
 							OriginalFileName = $"job_{job.Id}_particle_mesh.glb",
 							Metadata = LovamapResultMapper.BuildParticleDomainMetadata(resultsJson),

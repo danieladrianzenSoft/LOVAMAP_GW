@@ -24,6 +24,7 @@ import { DashboardAnalytics } from "../models/dashboardAnalytics";
 import { JobAdminStats, UserFailureRanking } from "../models/jobAdminStats";
 import { ThumbnailResetPreview } from "../models/thumbnailResetPreview";
 import { ContentPageSummary, ContentPageDetail, ContentPageToCreate, ContentPageToUpdate, ContentSectionToCreate, ContentSectionToUpdate, ContentSection, ReorderSections, ReorderPages } from "../models/contentPage";
+import { DomainListItem, DomainSummary, DomainLookupItem, BatchMetadataUpdateRequest, BatchMetadataUpdateResult } from "../models/domainManager";
 
 axios.defaults.baseURL = environment.baseUrl;
 
@@ -372,6 +373,20 @@ const Admin = {
 		const response = await axios.get<ApiResponse<UserFailureRanking[]>>(`/admin/user-failure-rankings?${params.join('&')}`);
 		return { data: response.data.data ?? [], pagination: extractPagination(response)! };
 	},
+	getDomainList: async (pageNumber = 1, pageSize = 10, filters?: { category?: string; hasMetadata?: boolean; hasMesh?: boolean; search?: string }): Promise<PaginatedResponse<DomainListItem[]>> => {
+		const params: string[] = [`pageNumber=${pageNumber}`, `pageSize=${pageSize}`];
+		if (filters?.category) params.push(`category=${filters.category}`);
+		if (filters?.hasMetadata !== undefined) params.push(`hasMetadata=${filters.hasMetadata}`);
+		if (filters?.hasMesh !== undefined) params.push(`hasMesh=${filters.hasMesh}`);
+		if (filters?.search) params.push(`search=${encodeURIComponent(filters.search)}`);
+		const response = await axios.get<ApiResponse<DomainListItem[]>>(`/admin/domains?${params.join('&')}`);
+		return { data: response.data.data ?? [], pagination: extractPagination(response)! };
+	},
+	getDomainSummary: () => requests.get<ApiResponse<DomainSummary>>('/admin/domains/summary'),
+	batchUpdateMetadata: (request: BatchMetadataUpdateRequest) => requests.post<ApiResponse<BatchMetadataUpdateResult>>('/admin/domains/batch-metadata', request),
+	getDomainLookup: () => requests.get<ApiResponse<DomainLookupItem[]>>('/admin/domains/lookup'),
+	batchUploadMetadata: (formData: FormData, onProgress?: (e: AxiosProgressEvent) => void) =>
+		requests.postForm<ApiResponse<BatchMetadataUpdateResult>>('/admin/domains/batch-metadata-upload', formData, onProgress),
 }
 
 const Analytics = {

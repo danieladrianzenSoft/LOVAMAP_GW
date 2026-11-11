@@ -20,6 +20,24 @@
     "publicationId": 1
   },
   {
+    "name": "NumVoidVoxels",
+    "label": "# Void Voxels",
+    "tableLabel": "Number of void voxels",
+    "category": "Global",
+    "subCategory": "General",
+    "dataType": "int",
+    "description": "Number of voxels in the **void space** of the scaffold"
+  },
+  {
+    "name": "NumUnassignedVoidVoxels",
+    "label": "# Unassigned Void Voxels",
+    "tableLabel": "Number of unassigned void voxels",
+    "category": "Global",
+    "subCategory": "General",
+    "dataType": "int",
+    "description": "Number of void voxels **not assigned to any pore**"
+  },
+  {
     "name": "NumParticles",
     "label": "# Particles",
     "tableLabel": "Number of particles",

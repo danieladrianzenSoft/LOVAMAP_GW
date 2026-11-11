@@ -16,12 +16,22 @@ namespace Services.Services
 			{ "MaxNumEquidistantParticles", "MaxNumEquidistParticles" },
 		};
 
+		private static readonly Dictionary<string, string> PoreKeyMap = new()
+		{
+			{ "NumEdges", "NumParticleEdges" },
+		};
+
 		private static readonly Dictionary<string, string> OtherKeyMap = new()
 		{
 			{ "TouchingParticle", "TouchingParticleCoord" },
 		};
 
 		// Keys to skip entirely (no matching DescriptorType)
+		private static readonly HashSet<string> GlobalKeysToSkip = new()
+		{
+			"DomainSize", // string value — belongs on the Domain model, not as a numeric descriptor
+		};
+
 		private static readonly HashSet<string> PoreKeysToSkip = new()
 		{
 		};
@@ -50,6 +60,8 @@ namespace Services.Services
 			{
 				foreach (var prop in globalEl.EnumerateObject())
 				{
+					if (GlobalKeysToSkip.Contains(prop.Name)) continue;
+
 					var descriptorName = ResolveGlobalName(prop.Name);
 					if (descriptorName == null) continue;
 
@@ -68,12 +80,14 @@ namespace Services.Services
 				{
 					if (PoreKeysToSkip.Contains(prop.Name)) continue;
 
+					var descriptorName = ResolvePoreName(prop.Name);
+
 					var valuesArray = GetValuesArray(prop.Value);
 					if (valuesArray == null) continue;
 
 					poreDescriptors.Add(new PoreDescriptorToCreateDto
 					{
-						Name = prop.Name, // Pore keys are 1:1 (except skipped ones)
+						Name = descriptorName,
 						Values = valuesArray
 					});
 				}
@@ -149,9 +163,73 @@ namespace Services.Services
 			return (0, 0);
 		}
 
+		/// <summary>
+		/// Extracts the DomainSize string from globalDescriptors (e.g. "400x400x400").
+		/// </summary>
+		public static string? GetDomainSize(JsonDocument resultsJson)
+		{
+			var root = resultsJson.RootElement;
+			if (root.TryGetProperty("globalDescriptors", out var globalEl) &&
+				globalEl.TryGetProperty("DomainSize", out var el) &&
+				el.ValueKind == JsonValueKind.String)
+			{
+				return el.GetString();
+			}
+			return null;
+		}
+
+		/// <summary>
+		/// Extracts the top-level version string from LOVAMAP results.
+		/// </summary>
+		public static string? GetVersion(JsonDocument resultsJson)
+		{
+			var root = resultsJson.RootElement;
+			if (root.TryGetProperty("version", out var el) &&
+				el.ValueKind == JsonValueKind.String)
+			{
+				return el.GetString();
+			}
+			return null;
+		}
+
+		/// <summary>
+		/// Extracts the top-level runConfiguration object from LOVAMAP results.
+		/// </summary>
+		public static JsonDocument? GetRunConfiguration(JsonDocument resultsJson)
+		{
+			var root = resultsJson.RootElement;
+			if (root.TryGetProperty("runConfiguration", out var el) &&
+				el.ValueKind == JsonValueKind.Object)
+			{
+				return JsonDocument.Parse(el.GetRawText());
+			}
+			return null;
+		}
+
+		/// <summary>
+		/// Extracts the NumVoxels value from globalDescriptors.
+		/// </summary>
+		public static int GetNumVoxels(JsonDocument resultsJson)
+		{
+			var root = resultsJson.RootElement;
+			if (root.TryGetProperty("globalDescriptors", out var globalEl) &&
+				globalEl.TryGetProperty("NumVoxels", out var el))
+			{
+				return (int)ParseDouble(el);
+			}
+			return 0;
+		}
+
 		private static string? ResolveGlobalName(string lovamapKey)
 		{
 			if (GlobalKeyMap.TryGetValue(lovamapKey, out var mapped))
+				return mapped;
+			return lovamapKey; // 1:1 by default
+		}
+
+		private static string ResolvePoreName(string lovamapKey)
+		{
+			if (PoreKeyMap.TryGetValue(lovamapKey, out var mapped))
 				return mapped;
 			return lovamapKey; // 1:1 by default
 		}

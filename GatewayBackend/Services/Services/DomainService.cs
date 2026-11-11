@@ -576,6 +576,256 @@ namespace Services.Services
 			return domains.Select(d => (d.OriginalFileName!, d.Category.ToString())).ToList();
 		}
 
+		public async Task<Infrastructure.Helpers.PagedList<DomainListItemDto>> GetDomainList(DomainFilterParams filterParams)
+		{
+			return await _domainRepository.GetFilteredList(filterParams);
+		}
+
+		public async Task<DomainSummaryDto> GetDomainSummary()
+		{
+			return await _domainRepository.GetSummary();
+		}
+
+		public async Task<(bool Succeeded, string ErrorMessage, BatchMetadataUpdateResultDto? Result)> BatchUpdateMetadata(BatchMetadataUpdateRequestDto request)
+		{
+			try
+			{
+				if (!Directory.Exists(request.SourcePath))
+				{
+					return (false, $"Source directory does not exist: {request.SourcePath}", null);
+				}
+
+				var metadataFiles = Directory.GetFiles(request.SourcePath, "*_metadata.json");
+				if (metadataFiles.Length == 0)
+				{
+					return (false, "No *_metadata.json files found in source directory", null);
+				}
+
+				var result = new BatchMetadataUpdateResultDto
+				{
+					DryRun = request.DryRun,
+					TotalFilesScanned = metadataFiles.Length
+				};
+
+				// Build domain lookup (same pattern as BatchReplaceMeshFiles)
+				var domains = await _context.Domains
+					.Where(d => d.OriginalFileName != null)
+					.ToListAsync();
+
+				var lookup = new Dictionary<string, Domain>(StringComparer.OrdinalIgnoreCase);
+				foreach (var domain in domains)
+				{
+					var normalized = NormalizeFileName(domain.OriginalFileName!);
+					lookup[normalized] = domain;
+				}
+
+				foreach (var metadataFilePath in metadataFiles)
+				{
+					var metadataFileName = Path.GetFileName(metadataFilePath);
+					// Strip _metadata.json to get the base stem, then append .glb for lookup
+					var baseStem = metadataFileName.Replace("_metadata.json", "");
+					var glbFileName = baseStem + ".glb";
+					var normalizedIncoming = NormalizeFileName(glbFileName);
+
+					if (!lookup.TryGetValue(normalizedIncoming, out var domain))
+					{
+						result.UnmatchedFiles.Add(metadataFileName);
+						continue;
+					}
+
+					// Check for companion .glb file
+					var companionGlbPath = Path.Combine(request.SourcePath, baseStem + ".glb");
+					var hasCompanionMesh = File.Exists(companionGlbPath);
+
+					var match = new BatchMetadataMatchDto
+					{
+						FileName = metadataFileName,
+						DomainId = domain.Id,
+						ScaffoldId = domain.ScaffoldId,
+						Category = domain.Category.ToString(),
+						MatchedOriginalFileName = domain.OriginalFileName!,
+						HasCompanionMesh = hasCompanionMesh,
+						Updated = false
+					};
+
+					if (request.DryRun)
+					{
+						result.Matched.Add(match);
+						continue;
+					}
+
+					// Execute metadata update
+					try
+					{
+						var metadataJson = await File.ReadAllTextAsync(metadataFilePath);
+						domain.Metadata = JsonDocument.Parse(metadataJson);
+
+						// Optionally replace mesh too
+						if (request.IncludeMeshes && hasCompanionMesh)
+						{
+							var glbBytes = await File.ReadAllBytesAsync(companionGlbPath);
+							var newFilePath = await _domainFileService.SaveGLBFile(glbBytes, domain.ScaffoldId);
+							var oldFilePath = domain.MeshFilePath;
+
+							domain.MeshFilePath = newFilePath;
+							domain.CreatedAt = DateTime.UtcNow;
+
+							await _context.SaveChangesAsync();
+
+							if (!string.IsNullOrEmpty(oldFilePath) && oldFilePath != newFilePath)
+							{
+								await _domainFileService.DeleteFile(oldFilePath);
+							}
+						}
+						else
+						{
+							await _context.SaveChangesAsync();
+						}
+
+						match.Updated = true;
+						result.Matched.Add(match);
+
+						_logger.LogInformation(
+							"Updated metadata for Domain {DomainId} (Scaffold {ScaffoldId}, {Category}): {FileName}",
+							domain.Id, domain.ScaffoldId, domain.Category, metadataFileName);
+					}
+					catch (Exception ex)
+					{
+						var error = $"Failed to update {metadataFileName} for Domain {domain.Id}: {ex.Message}";
+						_logger.LogError(ex, "Failed to update metadata for Domain {DomainId}: {FileName}", domain.Id, metadataFileName);
+						result.Errors.Add(error);
+						result.Matched.Add(match);
+					}
+				}
+
+				return (true, "", result);
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, "BatchUpdateMetadata failed");
+				return (false, $"Unexpected error: {ex.Message}", null);
+			}
+		}
+
+		public async Task<List<DomainLookupItemDto>> GetDomainLookupList()
+		{
+			return await _context.Domains
+				.AsNoTracking()
+				.Where(d => d.OriginalFileName != null)
+				.Select(d => new DomainLookupItemDto
+				{
+					Id = d.Id,
+					ScaffoldId = d.ScaffoldId,
+					Category = d.Category.ToString(),
+					OriginalFileName = d.OriginalFileName!,
+					HasMetadata = d.Metadata != null
+				})
+				.ToListAsync();
+		}
+
+		public async Task<(bool Succeeded, string ErrorMessage, BatchMetadataUpdateResultDto? Result)> BatchUpdateMetadataFromUpload(
+			IList<IFormFile> metadataFiles, IList<IFormFile>? meshFiles, List<MetadataUploadMappingDto> mappings, bool includeMeshes)
+		{
+			try
+			{
+				var result = new BatchMetadataUpdateResultDto
+				{
+					DryRun = false,
+					TotalFilesScanned = metadataFiles.Count
+				};
+
+				// Index uploaded files by filename for quick lookup
+				var metadataByName = metadataFiles.ToDictionary(f => f.FileName, f => f, StringComparer.OrdinalIgnoreCase);
+				var meshByName = meshFiles?.ToDictionary(f => f.FileName, f => f, StringComparer.OrdinalIgnoreCase)
+					?? new Dictionary<string, IFormFile>(StringComparer.OrdinalIgnoreCase);
+
+				foreach (var mapping in mappings)
+				{
+					if (!metadataByName.TryGetValue(mapping.FileName, out var metadataFile))
+					{
+						result.Errors.Add($"Metadata file not found in upload: {mapping.FileName}");
+						continue;
+					}
+
+					var domain = await _domainRepository.GetById(mapping.DomainId);
+					if (domain == null)
+					{
+						result.Errors.Add($"Domain {mapping.DomainId} not found for file {mapping.FileName}");
+						continue;
+					}
+
+					// Derive companion mesh filename: strip _metadata.json → add .glb
+					var baseStem = mapping.FileName.Replace("_metadata.json", "");
+					var companionMeshName = baseStem + ".glb";
+					var hasCompanionMesh = meshByName.ContainsKey(companionMeshName);
+
+					var match = new BatchMetadataMatchDto
+					{
+						FileName = mapping.FileName,
+						DomainId = domain.Id,
+						ScaffoldId = domain.ScaffoldId,
+						Category = domain.Category.ToString(),
+						MatchedOriginalFileName = domain.OriginalFileName ?? "",
+						HasCompanionMesh = hasCompanionMesh,
+						Updated = false
+					};
+
+					try
+					{
+						// Parse and set metadata
+						using var reader = new StreamReader(metadataFile.OpenReadStream());
+						var json = await reader.ReadToEndAsync();
+						domain.Metadata = JsonDocument.Parse(json);
+
+						// Optionally replace mesh
+						if (includeMeshes && hasCompanionMesh && meshByName.TryGetValue(companionMeshName, out var meshFile))
+						{
+							using var ms = new MemoryStream();
+							await meshFile.CopyToAsync(ms);
+							var glbBytes = ms.ToArray();
+							var newFilePath = await _domainFileService.SaveGLBFile(glbBytes, domain.ScaffoldId);
+							var oldFilePath = domain.MeshFilePath;
+
+							domain.MeshFilePath = newFilePath;
+							domain.CreatedAt = DateTime.UtcNow;
+
+							await _context.SaveChangesAsync();
+
+							if (!string.IsNullOrEmpty(oldFilePath) && oldFilePath != newFilePath)
+							{
+								await _domainFileService.DeleteFile(oldFilePath);
+							}
+						}
+						else
+						{
+							await _context.SaveChangesAsync();
+						}
+
+						match.Updated = true;
+						result.Matched.Add(match);
+
+						_logger.LogInformation(
+							"Upload: updated metadata for Domain {DomainId} (Scaffold {ScaffoldId}, {Category}): {FileName}",
+							domain.Id, domain.ScaffoldId, domain.Category, mapping.FileName);
+					}
+					catch (Exception ex)
+					{
+						var error = $"Failed to update {mapping.FileName} for Domain {domain.Id}: {ex.Message}";
+						_logger.LogError(ex, "Upload: failed to update metadata for Domain {DomainId}: {FileName}", domain.Id, mapping.FileName);
+						result.Errors.Add(error);
+						result.Matched.Add(match);
+					}
+				}
+
+				return (true, "", result);
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, "BatchUpdateMetadataFromUpload failed");
+				return (false, $"Unexpected error: {ex.Message}", null);
+			}
+		}
+
 		/// <summary>
 		/// Strips @timestamp suffix from filenames before the .glb extension.
 		/// e.g. "labeledDomain_foo@20250524T124745.glb" → "labeledDomain_foo.glb"

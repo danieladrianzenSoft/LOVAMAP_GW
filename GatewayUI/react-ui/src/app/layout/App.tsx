@@ -44,6 +44,7 @@ import InstitutionalBanner from '../../features/common/institutional-banner';
 import ContentEditorList from '../../features/admin/content-editor-list';
 import ContentEditor from '../../features/admin/content-editor';
 import DescriptorTypeEditor from '../../features/admin/descriptor-type-editor';
+import DomainManagerPage from '../../features/admin/domain-manager/domain-manager-page';
 
 const App: React.FC = () => {
   const { commonStore, userStore } = useStore();
@@ -133,6 +134,7 @@ const MainLayout: React.FC = observer(() => {
             <Route path="/admin/content" element={<ProtectedRoute requiredRole="administrator" element={<ContentEditorList />} />}/>
             <Route path="/admin/content/:slug" element={<ProtectedRoute requiredRole="administrator" element={<ContentEditor />} />}/>
             <Route path="/admin/descriptors" element={<ProtectedRoute requiredRole="administrator" element={<DescriptorTypeEditor />} />}/>
+            <Route path="/admin/domain-manager" element={<ProtectedRoute requiredRole="administrator" element={<DomainManagerPage />} />}/>
             {/* RDF Explorer — moved to KnowledgeBase UI */}
             {/* <Route path="/rdf-explorer" element={<ProtectedRoute requiredRole="administrator" element={<RdfExplorer />} />}/> */}
             <Route path="/settings" element={<ProtectedRoute element={<SettingsScreen />} />}/>

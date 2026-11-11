@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Infrastructure.DTOs;
+using Infrastructure.Helpers;
 using Data.Models;
 using System.Text.Json;
+using Microsoft.AspNetCore.Http;
 
 namespace Services.IServices
 {
@@ -16,5 +18,11 @@ namespace Services.IServices
 		Task<int?> GetRandomScaffoldIdForDomainAsync();
 		Task<(bool Succeeded, string ErrorMessage, BatchReplaceResultDto? Result)> BatchReplaceMeshFiles(BatchReplaceRequestDto request);
 		Task<List<(string FileName, string Category)>> GetAllOriginalFileNamesAsync();
+		Task<PagedList<DomainListItemDto>> GetDomainList(DomainFilterParams filterParams);
+		Task<DomainSummaryDto> GetDomainSummary();
+		Task<(bool Succeeded, string ErrorMessage, BatchMetadataUpdateResultDto? Result)> BatchUpdateMetadata(BatchMetadataUpdateRequestDto request);
+		Task<List<DomainLookupItemDto>> GetDomainLookupList();
+		Task<(bool Succeeded, string ErrorMessage, BatchMetadataUpdateResultDto? Result)> BatchUpdateMetadataFromUpload(
+			IList<IFormFile> metadataFiles, IList<IFormFile>? meshFiles, List<MetadataUploadMappingDto> mappings, bool includeMeshes);
 	}
 }

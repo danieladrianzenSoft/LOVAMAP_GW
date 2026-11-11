@@ -462,6 +462,9 @@ namespace Data.Migrations
                     b.Property<int>("RetryCount")
                         .HasColumnType("integer");
 
+                    b.Property<JsonDocument>("RunConfiguration")
+                        .HasColumnType("jsonb");
+
                     b.Property<int?>("ScaffoldId")
                         .HasColumnType("integer");
 
