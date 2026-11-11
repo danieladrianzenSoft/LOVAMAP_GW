@@ -22,6 +22,7 @@ namespace Data.Models
 		public Guid? ProducedByJobId { get; set; }
 		public Job? ProducedByJob { get; set; }
 		public JsonDocument? Metadata { get; set; }
+		public bool MeshPendingTransfer { get; set; }
 	}
 
 	public enum DomainSource 

@@ -650,7 +650,6 @@ const Visualization: React.FC = () => {
 		setShowPores(true);
 		setIsolatedPoreIds(null);
 		setPoreColorSeed(0);
-		setReplicateScrollOffset(0);
 		clearHistory();
 
 		await loadDomainAndGroup();
@@ -923,18 +922,14 @@ const Visualization: React.FC = () => {
 								<Tag key={i} text={tag} displayText={getStiffnessLabel(tag)} />
 							))}
 						</div>
-						{scaffoldGroupStore.selectedScaffoldGroup.scaffoldIds.length > 1 && (() => {
+						{(() => {
 							const ids = scaffoldGroupStore.selectedScaffoldGroup!.scaffoldIds;
+							if (ids.length <= 1) return null;
 							const maxVisible = 5;
 							const needsPaging = ids.length > maxVisible;
-							const activeIdx = ids.indexOf(selectedScaffoldId ?? -1);
-							// Auto-scroll to keep active replicate visible
-							let effectiveOffset = replicateScrollOffset;
-							if (needsPaging && activeIdx >= 0) {
-								if (activeIdx < effectiveOffset) effectiveOffset = activeIdx;
-								else if (activeIdx >= effectiveOffset + maxVisible) effectiveOffset = activeIdx - maxVisible + 1;
-							}
-							const startIdx = needsPaging ? Math.min(effectiveOffset, ids.length - maxVisible) : 0;
+							// useEffect handles auto-scroll when active replicate changes;
+							// here we just clamp to valid range
+							const startIdx = needsPaging ? Math.max(0, Math.min(replicateScrollOffset, ids.length - maxVisible)) : 0;
 							const visibleIds = needsPaging ? ids.slice(startIdx, startIdx + maxVisible) : ids;
 
 							return (

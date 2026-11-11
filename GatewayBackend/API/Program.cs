@@ -160,10 +160,13 @@ var domainDataPath = builder.Configuration["OutputPaths:Domains"]
                  ?? Environment.GetEnvironmentVariable("DOMAIN_DATA_PATH")
                  ?? "Data/Domains";
 
-builder.Services.AddScoped<IDomainFileService>(provider =>
+var domainStagingPath = builder.Configuration["OutputPaths:DomainStaging"]
+                 ?? "Data/Staging/Meshes";
+
+builder.Services.AddSingleton<IDomainFileService>(provider =>
 {
     var logger = provider.GetRequiredService<ILogger<DomainFileService>>();
-    return new DomainFileService(domainDataPath, logger);
+    return new DomainFileService(domainDataPath, domainStagingPath, logger);
 });
 
 // Add services registrations
@@ -192,9 +195,10 @@ builder.Services.AddScoped<IContentService, ContentService>();
 builder.Services.AddScoped<ISeedingService, SeedingService>();
 builder.Services.AddScoped<SeedingService>();
 
-// SignalR + job status polling
+// SignalR + background services
 builder.Services.AddSignalR();
 builder.Services.AddHostedService<JobStatusPollingService>();
+builder.Services.AddHostedService<MeshTransferWorker>();
 
 // Other services
 builder.Services.AddHttpClient();

@@ -39,12 +39,45 @@ const BatchMetadataPanel: React.FC<BatchMetadataPanelProps> = ({ onBatchComplete
 	const [droppedFiles, setDroppedFiles] = useState<File[]>([]);
 	const [includeMeshes, setIncludeMeshes] = useState(false);
 	const [categoryFilter, setCategoryFilter] = useState<"Particles" | "Pores">("Particles");
+	const [batchSize, setBatchSize] = useState(50);
 	const [phase, setPhase] = useState<Phase>("idle");
 	const [matches, setMatches] = useState<FileMatch[]>([]);
 	const [unmatched, setUnmatched] = useState<UnmatchedFile[]>([]);
 	const [result, setResult] = useState<BatchMetadataUpdateResult | null>(null);
 	const [error, setError] = useState<string | null>(null);
 	const [uploadProgress, setUploadProgress] = useState(0);
+	const [batchProgress, setBatchProgress] = useState({ current: 0, total: 0 });
+	const [invalidDomainIds, setInvalidDomainIds] = useState<Set<number> | null>(null);
+	const [repairMode, setRepairMode] = useState(false);
+	const [checkingInvalid, setCheckingInvalid] = useState(false);
+	const [infoMessage, setInfoMessage] = useState<string | null>(null);
+
+	const handleCheckInvalid = async () => {
+		setCheckingInvalid(true);
+		setError(null);
+		setInfoMessage(null);
+		try {
+			const res = await agent.Admin.getInvalidMeshDomainIds();
+			const ids = new Set(res.data ?? []);
+			setInvalidDomainIds(ids);
+			if (ids.size === 0) {
+				setRepairMode(false);
+				setInfoMessage("All meshes are valid — no repairs needed.");
+			} else {
+				setRepairMode(true);
+				setIncludeMeshes(true);
+			}
+		} catch (err: any) {
+			setError(err?.message || "Failed to check for invalid meshes");
+		} finally {
+			setCheckingInvalid(false);
+		}
+	};
+
+	const exitRepairMode = () => {
+		setRepairMode(false);
+		setInvalidDomainIds(null);
+	};
 
 	const onDrop = useCallback((acceptedFiles: File[]) => {
 		setDroppedFiles((prev) => {
@@ -76,6 +109,7 @@ const BatchMetadataPanel: React.FC<BatchMetadataPanelProps> = ({ onBatchComplete
 	const handleMatch = async () => {
 		setPhase("matching");
 		setError(null);
+		setInfoMessage(null);
 
 		try {
 			const res = await agent.Admin.getDomainLookup();
@@ -127,7 +161,21 @@ const BatchMetadataPanel: React.FC<BatchMetadataPanelProps> = ({ onBatchComplete
 				}
 			}
 
-			setMatches(newMatches);
+			// In repair mode, keep only matches whose domain has an invalid mesh
+			const finalMatches = repairMode && invalidDomainIds
+				? newMatches.filter((m) => invalidDomainIds.has(m.domainId))
+				: newMatches;
+
+			if (repairMode && invalidDomainIds && finalMatches.length === 0 && newMatches.length > 0) {
+				const matchedIds = newMatches.map((m) => m.domainId);
+				const invalidArr = Array.from(invalidDomainIds);
+				setInfoMessage(
+					`Matched ${newMatches.length} domains, but none overlap with the ${invalidDomainIds.size} invalid ones. ` +
+					`Invalid IDs: [${invalidArr.join(", ")}]. Your matched IDs include: [${matchedIds.slice(0, 10).join(", ")}${matchedIds.length > 10 ? "…" : ""}]`
+				);
+			}
+
+			setMatches(finalMatches);
 			setUnmatched(newUnmatched);
 			setPhase("matched");
 		} catch (err: any) {
@@ -141,36 +189,79 @@ const BatchMetadataPanel: React.FC<BatchMetadataPanelProps> = ({ onBatchComplete
 		setError(null);
 		setUploadProgress(0);
 
+		// Split matches into chunks
+		const chunks: FileMatch[][] = [];
+		for (let i = 0; i < matches.length; i += batchSize) {
+			chunks.push(matches.slice(i, i + batchSize));
+		}
+		setBatchProgress({ current: 0, total: chunks.length });
+
+		const aggregated: BatchMetadataUpdateResult = {
+			dryRun: false,
+			totalFilesScanned: 0,
+			matchedCount: 0,
+			unmatchedCount: 0,
+			succeededCount: 0,
+			failedCount: 0,
+			matched: [],
+			unmatchedFiles: [],
+			errors: [],
+		};
+
 		try {
-			const formData = new FormData();
+			for (let ci = 0; ci < chunks.length; ci++) {
+				const chunk = chunks[ci];
+				setBatchProgress({ current: ci + 1, total: chunks.length });
 
-			const mappings: { fileName: string; domainId: number }[] = [];
+				const formData = new FormData();
+				const mappings: { fileName: string; domainId: number }[] = [];
 
-			for (const m of matches) {
-				formData.append("metadataFiles", m.file, m.file.name);
-				mappings.push({ fileName: m.file.name, domainId: m.domainId });
+				for (const m of chunk) {
+					formData.append("metadataFiles", m.file, m.file.name);
+					mappings.push({ fileName: m.file.name, domainId: m.domainId });
 
-				if (includeMeshes && m.companionMesh) {
-					formData.append("meshFiles", m.companionMesh, m.companionMesh.name);
+					if (includeMeshes && m.companionMesh) {
+						formData.append("meshFiles", m.companionMesh, m.companionMesh.name);
+					}
 				}
+
+				formData.append("mappingsJson", JSON.stringify(mappings));
+				formData.append("includeMeshes", String(includeMeshes));
+
+				const res = await agent.Admin.batchUploadMetadata(formData, (evt) => {
+					const total = evt.total ?? 0;
+					if (total > 0) {
+						const chunkProgress = evt.loaded / total;
+						const overallProgress = (ci + chunkProgress) / chunks.length;
+						setUploadProgress(Math.round(overallProgress * 100));
+					}
+				});
+
+				const d = res.data;
+				aggregated.totalFilesScanned += d.totalFilesScanned;
+				aggregated.matchedCount += d.matchedCount;
+				aggregated.unmatchedCount += d.unmatchedCount;
+				aggregated.succeededCount += d.succeededCount;
+				aggregated.failedCount += d.failedCount;
+				aggregated.matched.push(...d.matched);
+				aggregated.unmatchedFiles.push(...d.unmatchedFiles);
+				aggregated.errors.push(...d.errors);
 			}
 
-			formData.append("mappingsJson", JSON.stringify(mappings));
-			formData.append("includeMeshes", String(includeMeshes));
-
-			const res = await agent.Admin.batchUploadMetadata(formData, (evt) => {
-				const total = evt.total ?? 0;
-				if (total > 0) {
-					setUploadProgress(Math.round((evt.loaded / total) * 100));
-				}
-			});
-
-			setResult(res.data);
+			setResult(aggregated);
 			setPhase("done");
 			onBatchComplete?.();
 		} catch (err: any) {
-			setError(err?.message || "Upload failed");
-			setPhase("matched");
+			// Show partial results if some batches succeeded
+			if (aggregated.succeededCount > 0) {
+				aggregated.errors.push(`Upload stopped at batch ${batchProgress.current}/${chunks.length}: ${err?.message || "Unknown error"}`);
+				setResult(aggregated);
+				setPhase("done");
+				onBatchComplete?.();
+			} else {
+				setError(err?.message || "Upload failed");
+				setPhase("matched");
+			}
 		}
 	};
 
@@ -182,6 +273,10 @@ const BatchMetadataPanel: React.FC<BatchMetadataPanelProps> = ({ onBatchComplete
 		setResult(null);
 		setError(null);
 		setUploadProgress(0);
+		setBatchProgress({ current: 0, total: 0 });
+		setRepairMode(false);
+		setInvalidDomainIds(null);
+		setInfoMessage(null);
 	};
 
 	const metadataCount = droppedFiles.filter((f) => f.name.endsWith("_metadata.json")).length;
@@ -257,6 +352,27 @@ const BatchMetadataPanel: React.FC<BatchMetadataPanelProps> = ({ onBatchComplete
 				</div>
 			)}
 
+			{/* Repair mode banner */}
+			{repairMode && invalidDomainIds && (
+				<div className="mb-4 border border-amber-300 rounded-lg bg-amber-50 p-3 flex items-center justify-between">
+					<div className="text-sm">
+						<span className="font-medium text-amber-800">Repair mode:</span>{" "}
+						<span className="text-amber-700">
+							{invalidDomainIds.size} domain{invalidDomainIds.size !== 1 && "s"} with invalid meshes detected.
+							Only these will be re-uploaded.
+						</span>
+					</div>
+					<button
+						type="button"
+						onClick={exitRepairMode}
+						className="text-xs text-amber-600 hover:text-amber-800 underline ml-4 shrink-0"
+						disabled={isWorking}
+					>
+						Exit repair mode
+					</button>
+				</div>
+			)}
+
 			{/* Options */}
 			{(phase === "idle" || phase === "matched") && (
 				<div className="mb-4 flex flex-wrap gap-6">
@@ -277,17 +393,35 @@ const BatchMetadataPanel: React.FC<BatchMetadataPanelProps> = ({ onBatchComplete
 							type="checkbox"
 							checked={includeMeshes}
 							onChange={(e) => setIncludeMeshes(e.target.checked)}
-							disabled={isWorking}
+							disabled={isWorking || repairMode}
 						/>
 						Include companion meshes (.glb)
+						{repairMode && <span className="text-xs text-amber-600">(forced on in repair mode)</span>}
+					</label>
+					<label className="flex items-center gap-2 text-sm">
+						Batch size:
+						<input
+							type="number"
+							min={1}
+							value={batchSize}
+							onChange={(e) => setBatchSize(e.target.value === "" ? 1 : parseInt(e.target.value) || 1)}
+							disabled={isWorking}
+							className="border rounded px-2 py-1 text-sm w-20"
+						/>
 					</label>
 				</div>
 			)}
 
 			{/* Error */}
 			{error && <p className="mb-4 text-sm text-red-600">{error}</p>}
+			{infoMessage && <p className="mb-4 text-sm text-green-600">{infoMessage}</p>}
 
 			{/* Mapper table */}
+			{phase === "matched" && matches.length === 0 && unmatched.length === 0 && (
+				<div className="mb-4 text-sm text-gray-500">
+					No matches found. {repairMode && "None of your dropped files matched the invalid domains."}
+				</div>
+			)}
 			{phase === "matched" && (matches.length > 0 || unmatched.length > 0) && (
 				<div className="mb-4 space-y-3">
 					<div className="flex gap-6 text-sm">
@@ -300,6 +434,11 @@ const BatchMetadataPanel: React.FC<BatchMetadataPanelProps> = ({ onBatchComplete
 						{includeMeshes && (
 							<span className="text-blue-600">
 								With mesh: <strong>{matchedWithMesh}</strong>
+							</span>
+						)}
+						{repairMode && (
+							<span className="text-amber-600">
+								(repair mode — only invalid meshes)
 							</span>
 						)}
 					</div>
@@ -374,7 +513,7 @@ const BatchMetadataPanel: React.FC<BatchMetadataPanelProps> = ({ onBatchComplete
 						/>
 					</div>
 					<p className="text-xs text-gray-500 mt-1">
-						Uploading… {uploadProgress}%
+						Uploading batch {batchProgress.current}/{batchProgress.total}… {uploadProgress}%
 					</p>
 				</div>
 			)}
@@ -416,14 +555,26 @@ const BatchMetadataPanel: React.FC<BatchMetadataPanelProps> = ({ onBatchComplete
 			{/* Action buttons */}
 			<div className="flex gap-3">
 				{phase === "idle" && (
-					<button
-						type="button"
-						onClick={handleMatch}
-						className="px-4 py-2 bg-gray-800 text-white text-sm rounded-md hover:bg-gray-700 disabled:opacity-40"
-						disabled={metadataCount === 0}
-					>
-						Match Files
-					</button>
+					<>
+						<button
+							type="button"
+							onClick={handleMatch}
+							className="px-4 py-2 bg-gray-800 text-white text-sm rounded-md hover:bg-gray-700 disabled:opacity-40"
+							disabled={metadataCount === 0}
+						>
+							{repairMode ? "Match & Filter Invalid" : "Match Files"}
+						</button>
+						{!repairMode && (
+							<button
+								type="button"
+								onClick={handleCheckInvalid}
+								className="px-4 py-2 border border-amber-400 text-amber-700 text-sm rounded-md hover:bg-amber-50 disabled:opacity-40"
+								disabled={checkingInvalid}
+							>
+								{checkingInvalid ? "Checking…" : "Check Invalid Meshes"}
+							</button>
+						)}
+					</>
 				)}
 				{phase === "matched" && matches.length > 0 && (
 					<button

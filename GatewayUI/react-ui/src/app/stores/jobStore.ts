@@ -222,6 +222,24 @@ export default class JobStore {
 		}
 	}
 
+	getPreviewList = async (jobId: string): Promise<{ jobId: string; files: string[] } | null> => {
+		try {
+			return await agent.Jobs.getPreviewList(jobId);
+		} catch (error) {
+			console.error('Error fetching preview list:', error);
+			return null;
+		}
+	}
+
+	getPreviewFile = async (jobId: string, filename: string): Promise<Blob | null> => {
+		try {
+			return await agent.Jobs.getPreviewFile(jobId, filename);
+		} catch (error) {
+			console.error('Error fetching preview file:', error);
+			return null;
+		}
+	}
+
 	saveJobAsScaffold = async (jobId: string, data: SaveLovamapResultRequest): Promise<{ scaffoldGroupId: number; scaffoldId: number } | null> => {
 		try {
 			const response = await agent.Jobs.saveJobAsScaffold(jobId, data);

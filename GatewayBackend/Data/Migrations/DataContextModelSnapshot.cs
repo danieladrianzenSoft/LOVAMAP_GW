@@ -239,6 +239,9 @@ namespace Data.Migrations
                     b.Property<string>("MeshFilePath")
                         .HasColumnType("text");
 
+                    b.Property<bool>("MeshPendingTransfer")
+                        .HasColumnType("boolean");
+
                     b.Property<JsonDocument>("Metadata")
                         .HasColumnType("jsonb");
 
@@ -467,6 +470,9 @@ namespace Data.Migrations
 
                     b.Property<int?>("ScaffoldId")
                         .HasColumnType("integer");
+
+                    b.Property<JsonDocument>("SegmentationParams")
+                        .HasColumnType("jsonb");
 
                     b.Property<string>("SourceJobId")
                         .HasColumnType("text");

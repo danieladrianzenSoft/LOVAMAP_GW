@@ -32,6 +32,7 @@ export interface JobDetailed {
 	scaffoldGroupId?: number;
 	scaffoldId?: number;
 	errorMessage?: string | null;
+	segmentationParams?: Record<string, string> | null;
 }
 
 export interface SegmentationJob {
@@ -80,6 +81,15 @@ export interface ToolVersions {
 	lovamap: string | null;
 	segmentationWorkflows: string | null;
 	particleSegmentation: string | null;
+}
+
+export interface PreviewInfo {
+	filename: string;
+	dimensions: { x: number; y: number; z: number };
+	voxel_size: { dx: number | null; dy: number | null; dz: number | null };
+	voxel_size_sources: { dx: string; dy: string; dz: string };
+	params?: Record<string, number | string | null>;
+	slices: { name: string; z_index: number }[];
 }
 
 export interface SaveLovamapResultRequest {

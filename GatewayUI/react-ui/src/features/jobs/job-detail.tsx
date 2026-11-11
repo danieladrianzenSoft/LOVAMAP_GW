@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { FaArrowLeft, FaDownload, FaSpinner } from "react-icons/fa";
-import { JobDetailed } from "../../app/models/job";
+import { JobDetailed, PreviewInfo } from "../../app/models/job";
 import { useStore } from "../../app/stores/store";
 import { downloadScaffoldGroupAsExcel, triggerDownload } from "../../app/common/excel-generator/excel-generator";
 import JobMeshViewer from "./job-mesh-viewer";
@@ -62,6 +62,13 @@ const JobDetail: React.FC<Props> = ({ job, onBack, onJobSubmitted, formatDate, o
   const [particleMeshLoading, setParticleMeshLoading] = useState(false);
   const [particleMeshError, setParticleMeshError] = useState<string | null>(null);
   const [showParticleMesh, setShowParticleMesh] = useState(false);
+
+  // Segmentation preview state
+  const [previewUrls, setPreviewUrls] = useState<string[]>([]);
+  const [previewInfo, setPreviewInfo] = useState<PreviewInfo | null>(null);
+  const [previewLoading, setPreviewLoading] = useState(false);
+  const [previewError, setPreviewError] = useState<string | null>(null);
+  const previewFetchedRef = useRef(false);
 
   // Mesh readiness per mesh: checking → ready/generating/failed/stopped/unavailable/not-available
   type MeshReadiness = 'checking' | 'ready' | 'generating' | 'failed' | 'stopped' | 'unavailable' | 'not-available';
@@ -169,8 +176,61 @@ const JobDetail: React.FC<Props> = ({ job, onBack, onJobSubmitted, formatDate, o
     return () => {
       if (meshBlobUrl) URL.revokeObjectURL(meshBlobUrl);
       if (particleMeshBlobUrl) URL.revokeObjectURL(particleMeshBlobUrl);
+      previewUrls.forEach((u) => URL.revokeObjectURL(u));
     };
-  }, [meshBlobUrl, particleMeshBlobUrl]);
+  }, [meshBlobUrl, particleMeshBlobUrl, previewUrls]);
+
+  // Fetch segmentation preview images once job is Running/Completed/Failed
+  // previewFetchedRef ensures single execution; no cancelled flag needed.
+  useEffect(() => {
+    if (!isSegmentation) return;
+    if (!['Running', 'Completed', 'Failed'].includes(job.status ?? '')) return;
+    if (previewFetchedRef.current) return;
+    previewFetchedRef.current = true;
+
+    const fetchPreviews = async () => {
+      setPreviewLoading(true);
+      setPreviewError(null);
+      try {
+        const list = await jobStore.getPreviewList(job.id);
+        if (!list?.files?.length) {
+          setPreviewLoading(false);
+          return;
+        }
+
+        const results = await Promise.allSettled(
+          list.files.map(async (file) => {
+            const blob = await jobStore.getPreviewFile(job.id, file);
+            return { file, blob };
+          })
+        );
+
+        const urls: string[] = [];
+        let info: PreviewInfo | null = null;
+
+        for (const result of results) {
+          if (result.status !== 'fulfilled' || !result.value.blob) continue;
+          const { file, blob } = result.value;
+          if (file.endsWith('.json')) {
+            try {
+              info = JSON.parse(await blob.text()) as PreviewInfo;
+            } catch { /* ignore parse errors */ }
+          } else {
+            urls.push(URL.createObjectURL(blob));
+          }
+        }
+
+        setPreviewUrls(urls);
+        setPreviewInfo(info);
+      } catch {
+        setPreviewError("Could not load preview images.");
+      } finally {
+        setPreviewLoading(false);
+      }
+    };
+
+    fetchPreviews();
+  }, [isSegmentation, job.status, job.id, jobStore]);
 
   const fetchMesh = useCallback(async () => {
     if (meshBlobUrl) {
@@ -439,6 +499,73 @@ const JobDetail: React.FC<Props> = ({ job, onBack, onJobSubmitted, formatDate, o
               </div>
             }
           />
+          {isSegmentation && (job.segmentationParams || previewLoading || previewInfo || previewError) && (
+            <Row
+              label="Inputs"
+              value={(() => {
+                const params = job.segmentationParams;
+                const fmt = (v: string | undefined) => v != null ? Number(Number(v).toFixed(4)) : '?';
+                return (
+                  <div className="space-y-2">
+                    <div className="text-sm text-gray-800 space-y-1">
+                      {params && (
+                        <>
+                          <p>
+                            <span className="text-gray-500">Voxel size (µm):</span>{' '}
+                            dx = {fmt(params.dx)}, dy = {fmt(params.dy)}, dz = {fmt(params.dz)}
+                          </p>
+                          <p>
+                            <span className="text-gray-500">Fluorescent label:</span> {params.fluorescentLabel ?? '?'}
+                            {' | '}
+                            <span className="text-gray-500">Radius (µm):</span> {params.radiusUm ?? '?'}
+                          </p>
+                        </>
+                      )}
+                      {!params && previewInfo && (
+                        <p>
+                          <span className="text-gray-500">Voxel size (µm):</span>{' '}
+                          dx = {previewInfo.voxel_size.dx != null ? Number(previewInfo.voxel_size.dx.toFixed(4)) : '?'},{' '}
+                          dy = {previewInfo.voxel_size.dy != null ? Number(previewInfo.voxel_size.dy.toFixed(4)) : '?'},{' '}
+                          dz = {previewInfo.voxel_size.dz != null ? Number(previewInfo.voxel_size.dz.toFixed(4)) : '?'}
+                        </p>
+                      )}
+                      {previewInfo && (
+                        <p>
+                          <span className="text-gray-500">Dimensions:</span>{' '}
+                          {previewInfo.dimensions.x} × {previewInfo.dimensions.y} × {previewInfo.dimensions.z} voxels
+                        </p>
+                      )}
+                    </div>
+                    {previewLoading && (
+                      <span className="inline-flex items-center gap-2 text-sm text-gray-400">
+                        <FaSpinner className="animate-spin" /> Loading slices...
+                      </span>
+                    )}
+                    {previewUrls.length > 0 && (
+                      <div className="flex gap-3 flex-wrap">
+                        {previewUrls.map((url, i) => {
+                          const sliceInfo = previewInfo?.slices?.[i];
+                          return (
+                            <div key={i} className="text-center">
+                              <img
+                                src={url}
+                                alt={sliceInfo ? `Z-slice at index ${sliceInfo.z_index}` : `Slice ${i + 1}`}
+                                className="w-40 h-40 object-contain border border-gray-200 rounded bg-gray-50"
+                              />
+                              <p className="text-xs text-gray-500 mt-1">
+                                {sliceInfo ? `Z = ${sliceInfo.z_index}` : `Slice ${i + 1}`}
+                              </p>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                );
+              })()}
+            />
+          )}
+
           <Row label="Submitted At" value={job.submittedAt ? formatDate(job.submittedAt) : undefined} />
           <Row label="Completed At" value={job.completedAt ? formatDate(job.completedAt) : undefined} />
           {job.sourceJobId && (

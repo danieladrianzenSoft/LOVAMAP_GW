@@ -328,6 +328,16 @@ const Jobs = {
         });
         return response.data;
     },
+    getPreviewList: async (jobId: string): Promise<{ jobId: string; files: string[] }> => {
+        const response = await axios.get(`/jobs/${jobId}/previews`);
+        return response.data;
+    },
+    getPreviewFile: async (jobId: string, filename: string): Promise<Blob> => {
+        const response = await axios.get(`/jobs/${jobId}/previews/${filename}`, {
+            responseType: 'blob'
+        });
+        return response.data;
+    },
     getToolVersions: async (): Promise<ToolVersions | null> => {
         try {
             const response = await axios.get<ToolVersions>('/jobs/tool-versions');
@@ -387,6 +397,7 @@ const Admin = {
 	getDomainLookup: () => requests.get<ApiResponse<DomainLookupItem[]>>('/admin/domains/lookup'),
 	batchUploadMetadata: (formData: FormData, onProgress?: (e: AxiosProgressEvent) => void) =>
 		requests.postForm<ApiResponse<BatchMetadataUpdateResult>>('/admin/domains/batch-metadata-upload', formData, onProgress),
+	getInvalidMeshDomainIds: () => requests.get<ApiResponse<number[]>>('/admin/domains/invalid-meshes'),
 }
 
 const Analytics = {

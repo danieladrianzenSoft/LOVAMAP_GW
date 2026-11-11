@@ -49,6 +49,7 @@ services:
     volumes:
       - /srv/lovamap-shared-data/lovamap-gw/production/Domains:/app/Data/Domains
       - /srv/lovamap-shared-data/lovamap-gw/production/JobResults:/app/Data/JobResults
+      - lovamap_gw_mesh_staging:/app/staging/meshes
 
     depends_on:
       db:
@@ -187,3 +188,4 @@ volumes:
     external: true
   lovamap_gw_fuseki_data:
     external: true
+  lovamap_gw_mesh_staging:

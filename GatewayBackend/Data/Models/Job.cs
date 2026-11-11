@@ -27,6 +27,7 @@ namespace Data.Models
 		public string? SourceJobId { get; set; }  // GW JobId (GUID string) of the source job
 		public ICollection<Domain> OutputDomains { get; set; } = new List<Domain>(); // Usually Pore, Other
 		public JsonDocument? RunConfiguration { get; set; }
+		public JsonDocument? SegmentationParams { get; set; }
 		public virtual ICollection<GlobalDescriptor> GlobalDescriptors { get; set; } = new List<GlobalDescriptor>();
 		public virtual ICollection<PoreDescriptor> PoreDescriptors { get; set; } = new List<PoreDescriptor>();
 		public virtual ICollection<OtherDescriptor> OtherDescriptors { get; set; } = new List<OtherDescriptor>();

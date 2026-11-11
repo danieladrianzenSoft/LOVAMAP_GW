@@ -24,5 +24,6 @@ namespace Services.IServices
 		Task<List<DomainLookupItemDto>> GetDomainLookupList();
 		Task<(bool Succeeded, string ErrorMessage, BatchMetadataUpdateResultDto? Result)> BatchUpdateMetadataFromUpload(
 			IList<IFormFile> metadataFiles, IList<IFormFile>? meshFiles, List<MetadataUploadMappingDto> mappings, bool includeMeshes);
+		Task<List<int>> GetDomainsWithInvalidMeshes();
 	}
 }

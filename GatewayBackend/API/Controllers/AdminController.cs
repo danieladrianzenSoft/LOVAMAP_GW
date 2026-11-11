@@ -4,6 +4,7 @@ using API.Extensions;
 using API.Models;
 using Infrastructure.DTOs;
 using Infrastructure.Helpers;
+using Infrastructure.IHelpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Services.IServices;
@@ -17,12 +18,15 @@ public class AdminController : ControllerBase
 {
 	private readonly IDomainService _domainService;
 	private readonly IJobAdminStatsService _jobAdminStatsService;
+	private readonly IDomainFileService _domainFileService;
 	private readonly ILogger<AdminController> _logger;
 
-	public AdminController(IDomainService domainService, IJobAdminStatsService jobAdminStatsService, ILogger<AdminController> logger)
+	public AdminController(IDomainService domainService, IJobAdminStatsService jobAdminStatsService,
+		IDomainFileService domainFileService, ILogger<AdminController> logger)
 	{
 		_domainService = domainService;
 		_jobAdminStatsService = jobAdminStatsService;
+		_domainFileService = domainFileService;
 		_logger = logger;
 	}
 
@@ -110,7 +114,7 @@ public class AdminController : ControllerBase
 	}
 
 	[HttpPost("domains/batch-metadata-upload")]
-	[RequestSizeLimit(500_000_000)] // 500 MB
+	[RequestSizeLimit(1_000_000_000)] // 1 GB
 	public async Task<ActionResult<ApiResponse<BatchMetadataUpdateResultDto>>> BatchUploadMetadata(
 		[FromForm] List<IFormFile> metadataFiles,
 		[FromForm] List<IFormFile>? meshFiles,
@@ -147,6 +151,13 @@ public class AdminController : ControllerBase
 		return Ok(new ApiResponse<BatchMetadataUpdateResultDto>(200, "Batch metadata upload completed", result));
 	}
 
+	[HttpGet("domains/invalid-meshes")]
+	public async Task<ActionResult<ApiResponse<List<int>>>> GetDomainsWithInvalidMeshes()
+	{
+		var invalidIds = await _domainService.GetDomainsWithInvalidMeshes();
+		return Ok(new ApiResponse<List<int>>(200, $"{invalidIds.Count} domains with invalid/missing meshes", invalidIds));
+	}
+
 	[HttpGet("user-failure-rankings")]
 	public async Task<IActionResult> GetUserFailureRankings(
 		[FromQuery] DateTime? from,
@@ -165,5 +176,19 @@ public class AdminController : ControllerBase
 			TotalPages = result.TotalPages
 		});
 		return Ok(new ApiResponse<IEnumerable<UserFailureRankingDto>>(200, "", result));
+	}
+
+	[HttpGet("domains/pending-transfers")]
+	public IActionResult GetPendingTransfers()
+	{
+		var stagedFiles = _domainFileService.GetStagedFiles()
+			.Select(Path.GetFileName)
+			.ToList();
+
+		return Ok(new ApiResponse<object>(200, "Pending transfers", new
+		{
+			StagedFileCount = stagedFiles.Count,
+			StagedFiles = stagedFiles
+		}));
 	}
 }

@@ -388,6 +388,60 @@ public class JobsController : ControllerBase
 		return Ok(new ApiResponse<object>(200, "", status));
 	}
 
+	[HttpGet("{jobId}/previews")]
+	public async Task<IActionResult> GetJobPreviews([FromRoute] string jobId, CancellationToken ct)
+	{
+		if (!Guid.TryParse(jobId, out var jobGuid))
+			return BadRequest(new ApiResponse<string>(400, "Invalid jobId"));
+
+		var currentUserId = _userService.GetCurrentUserId();
+		if (currentUserId == null) return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
+		var isAdmin = await _userAuthHelper.IsInRole(currentUserId, "administrator");
+		var job = await _jobService.GetByIdAsync(jobGuid);
+
+		if (job == null)
+			return NotFound(new ApiResponse<string>(404, "Job not found"));
+
+		if (job.CreatorId != currentUserId && !isAdmin)
+			return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
+
+		var (succeeded, errorMessage, json) = await _jobService.FetchPreviewListFromCoreAsync(jobGuid, ct);
+
+		if (!succeeded || json == null)
+			return NotFound(new ApiResponse<string>(404, errorMessage ?? "Previews not available"));
+
+		return Content(json, "application/json");
+	}
+
+	[HttpGet("{jobId}/previews/{filename}")]
+	public async Task<IActionResult> GetJobPreviewFile([FromRoute] string jobId, [FromRoute] string filename, CancellationToken ct)
+	{
+		if (!Guid.TryParse(jobId, out var jobGuid))
+			return BadRequest(new ApiResponse<string>(400, "Invalid jobId"));
+
+		// Path traversal protection
+		if (filename.Contains('/') || filename.Contains('\\') || filename.Contains(".."))
+			return BadRequest(new ApiResponse<string>(400, "Invalid filename"));
+
+		var currentUserId = _userService.GetCurrentUserId();
+		if (currentUserId == null) return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
+		var isAdmin = await _userAuthHelper.IsInRole(currentUserId, "administrator");
+		var job = await _jobService.GetByIdAsync(jobGuid);
+
+		if (job == null)
+			return NotFound(new ApiResponse<string>(404, "Job not found"));
+
+		if (job.CreatorId != currentUserId && !isAdmin)
+			return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
+
+		var (succeeded, errorMessage, fileBytes, contentType) = await _jobService.FetchPreviewFileFromCoreAsync(jobGuid, filename, ct);
+
+		if (!succeeded || fileBytes == null)
+			return NotFound(new ApiResponse<string>(404, errorMessage ?? "Preview file not available"));
+
+		return File(fileBytes, contentType ?? "application/octet-stream", filename);
+	}
+
 	[HttpGet("{jobId}/logs")]
 	public async Task<IActionResult> GetJobLogs([FromRoute] string jobId, CancellationToken ct)
 	{

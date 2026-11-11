@@ -4,6 +4,18 @@ import { Domain } from "../models/domain";
 import { runInAction } from "mobx";
 import { DomainMetadata } from "../models/domainMetadata";
 
+/** Validates that a Blob contains a valid GLB file (starts with "glTF" magic bytes). */
+async function assertValidGlb(file: Blob, context: string): Promise<void> {
+    const header = new Uint8Array(await file.slice(0, 4).arrayBuffer());
+    const isValid = header[0] === 0x67 && header[1] === 0x6C
+                 && header[2] === 0x54 && header[3] === 0x46;
+    if (!isValid) {
+        const preview = await file.slice(0, 200).text();
+        console.error(`[GLB validation] Invalid mesh (${context}). First 4 bytes:`, Array.from(header), `Preview:`, preview);
+        throw new Error(`Mesh file is corrupt or empty (${context}, size=${file.size}).`);
+    }
+}
+
 export default class DomainStore {
 	domainMesh: Blob | null = null; // Store .glb file
     domain: Domain | null = null; // Store domain
@@ -74,6 +86,7 @@ export default class DomainStore {
 
             // Fetch from API
             const { file, domain } = await agent.Domains.visualize(scaffoldId, category);
+            await assertValidGlb(file, `scaffold=${domain.scaffoldId} category=${category}`);
             const resolvedKey = this.getDomainCacheKey(domain.scaffoldId!, category);
 
             runInAction(() => {
@@ -121,21 +134,8 @@ export default class DomainStore {
             const result = await agent.Domains.visualize(scaffoldId, category); 
             const { file, domain } = result; // assumes { file: Blob, domain: Domain }
 
-            // --- DIAGNOSTIC LOGGING ---------------------------------------
-            console.log(`✔ visualize() completed. Blob info:`);
-            console.log(`   • blob size = ${file.size}`);
-            console.log(`   • blob type = ${file.type}`);
-            console.log(`   • domain =`, domain);
-
-            // Backend sometimes returns JSON-error instead of mesh
-            if (file.type.includes("application/json") || file.size < 500) {
-                try {
-                    const text = await file.text();
-                    console.warn(`WARNING: Expected GLB/DRACO mesh but received JSON instead.\n → Backend error response:`,text);
-                } catch {
-                    console.warn(`WARNING: Blob looks like JSON error (size=${file.size}), but text parsing failed.`);
-                }
-            }
+            console.log(`✔ visualize() completed. blob size=${file.size}, type=${file.type}`);
+            await assertValidGlb(file, `scaffold=${scaffoldId} category=${category}`);
 
             const blobUrl = URL.createObjectURL(file);
             return { blobUrl, domain };

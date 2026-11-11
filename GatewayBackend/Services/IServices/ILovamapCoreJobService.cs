@@ -22,6 +22,8 @@ namespace Services.IServices
 		Task<IEnumerable<Job>> GetActiveJobsAsync();
 		Task<(bool StatusChanged, Job? Job)> SyncJobStatusAsync(Guid jobId);
 		Task<(bool Succeeded, string? ErrorMessage, byte[]? LogBytes)> FetchJobLogsFromCoreAsync(Guid jobId, CancellationToken ct = default);
+		Task<(bool Succeeded, string? ErrorMessage, string? Json)> FetchPreviewListFromCoreAsync(Guid jobId, CancellationToken ct = default);
+		Task<(bool Succeeded, string? ErrorMessage, byte[]? FileBytes, string? ContentType)> FetchPreviewFileFromCoreAsync(Guid jobId, string filename, CancellationToken ct = default);
 		Task<Job?> TimeoutJobAsync(Guid jobId);
 		Task<(bool Succeeded, string? ErrorMessage, Job? Job)> SubmitJob(JobSubmissionDto jobSubmissionDto);
 		Task<(bool Succeeded, string? ErrorMessage, Job? Job)> SubmitSegmentationJob(SegmentationJobSubmissionDto dto);

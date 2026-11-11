@@ -383,6 +383,54 @@ namespace Services.Services
 			}
 		}
 
+		public async Task<(bool Succeeded, string? ErrorMessage, string? Json)> FetchPreviewListFromCoreAsync(Guid jobId, CancellationToken ct = default)
+		{
+			try
+			{
+				var response = await _coreApiClient.GetJobPreviewListAsync(jobId.ToString(), ct);
+
+				if (!response.IsSuccessStatusCode)
+				{
+					var msg = $"Core returned {response.StatusCode} for previews of job {jobId}";
+					_logger.LogWarning("FetchPreviewListFromCoreAsync: {Message}", msg);
+					return (false, msg, null);
+				}
+
+				var json = await response.Content.ReadAsStringAsync(ct);
+				return (true, null, json);
+			}
+			catch (Exception ex)
+			{
+				_logger.LogWarning(ex, "Failed to fetch preview list from Core for job {JobId}", jobId);
+				return (false, "Error connecting to processing server.", null);
+			}
+		}
+
+		public async Task<(bool Succeeded, string? ErrorMessage, byte[]? FileBytes, string? ContentType)> FetchPreviewFileFromCoreAsync(Guid jobId, string filename, CancellationToken ct = default)
+		{
+			try
+			{
+				var response = await _coreApiClient.GetJobPreviewFileAsync(jobId.ToString(), filename, ct);
+
+				if (!response.IsSuccessStatusCode)
+				{
+					var msg = $"Core returned {response.StatusCode} for preview file {filename} of job {jobId}";
+					_logger.LogWarning("FetchPreviewFileFromCoreAsync: {Message}", msg);
+					return (false, msg, null, null);
+				}
+
+				var bytes = await response.Content.ReadAsByteArrayAsync(ct);
+				var contentType = response.Content.Headers.ContentType?.MediaType
+					?? (filename.EndsWith(".png", StringComparison.OrdinalIgnoreCase) ? "image/png" : "application/octet-stream");
+				return (true, null, bytes, contentType);
+			}
+			catch (Exception ex)
+			{
+				_logger.LogWarning(ex, "Failed to fetch preview file {Filename} from Core for job {JobId}", filename, jobId);
+				return (false, "Error connecting to processing server.", null, null);
+			}
+		}
+
 		public async Task<Job?> TimeoutJobAsync(Guid jobId)
 		{
 			var job = await _jobRepository.UpdateJobFromCoreAsync(
@@ -614,6 +662,16 @@ namespace Services.Services
 			form.Add(new StringContent(dx!), "dx");
 			form.Add(new StringContent(dy!), "dy");
 			form.Add(new StringContent(dz!), "dz");
+
+			// 4b) Store segmentation params on the GW job record
+			var paramsJson = JsonSerializer.Serialize(new
+			{
+				fluorescentLabel = dto.FluorescentLabel,
+				radiusUm = dto.RadiusUm,
+				dx, dy, dz
+			});
+			job.SegmentationParams = JsonDocument.Parse(paramsJson);
+			await _context.SaveChangesAsync();
 
 			// 5) Call Core
 			HttpResponseMessage response;
@@ -1176,12 +1234,13 @@ namespace Services.Services
 				var (poreOk, _, poreMeshBytes) = await FetchJobMeshFromCoreAsync(job.Id.ToString());
 				if (poreOk && poreMeshBytes != null && poreMeshBytes.Length > 0)
 				{
-					var filePath = await _domainFileService.SaveGLBFile(poreMeshBytes, scaffoldId);
+					var (_, finalPath) = await _domainFileService.SaveGLBToStaging(poreMeshBytes, scaffoldId);
 					var poreDomain = new Domain
 					{
 						ScaffoldId = scaffoldId,
 						Category = DomainCategory.Pores,
-						MeshFilePath = filePath,
+						MeshFilePath = finalPath,
+						MeshPendingTransfer = true,
 						DomainSize = domainSize,
 						VoxelSize = voxelSize,
 						VoxelCount = voxelCount,
@@ -1216,12 +1275,13 @@ namespace Services.Services
 					var (particleOk, _, particleMeshBytes) = await FetchJobMeshFromCoreAsync(particleMeshId);
 					if (particleOk && particleMeshBytes != null && particleMeshBytes.Length > 0)
 					{
-						var filePath = await _domainFileService.SaveGLBFile(particleMeshBytes, scaffoldId);
+						var (_, finalPath) = await _domainFileService.SaveGLBToStaging(particleMeshBytes, scaffoldId);
 						var particleDomain = new Domain
 						{
 							ScaffoldId = scaffoldId,
 							Category = DomainCategory.Particles,
-							MeshFilePath = filePath,
+							MeshFilePath = finalPath,
+							MeshPendingTransfer = true,
 							DomainSize = domainSize,
 							VoxelSize = voxelSize,
 							VoxelCount = voxelCount,

@@ -48,6 +48,16 @@ namespace Infrastructure.Helpers
 			return _http.GetAsync($"jobs/{jobId}/logs", ct);
 		}
 
+		public Task<HttpResponseMessage> GetJobPreviewListAsync(string jobId, CancellationToken ct = default)
+		{
+			return _http.GetAsync($"jobs/{jobId}/previews", ct);
+		}
+
+		public Task<HttpResponseMessage> GetJobPreviewFileAsync(string jobId, string filename, CancellationToken ct = default)
+		{
+			return _http.GetAsync($"jobs/{jobId}/previews/{filename}", ct);
+		}
+
 		public Task<HttpResponseMessage> GetJobRawResultAsync(string jobId, CancellationToken ct = default)
 		{
 			// Adjust this path to match whatever endpoint you add on lovamap_core

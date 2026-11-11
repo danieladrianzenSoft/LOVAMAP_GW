@@ -54,6 +54,17 @@ namespace Services.Services
 				}
 
 				var filePath = domain.MeshFilePath;
+
+				// If transfer is pending, serve from staging instead of mount
+				if (domain.MeshPendingTransfer)
+				{
+					var stagingPath = _domainFileService.GetStagingPath(filePath!);
+					if (stagingPath != null)
+					{
+						filePath = stagingPath;
+					}
+				}
+
 				if (!File.Exists(filePath))
 				{
 					return (false, "Mesh file not found", null, null);
@@ -253,8 +264,8 @@ namespace Services.Services
 				await domainToCreate.MeshFile.CopyToAsync(memoryStream);
 				var glbBytes = memoryStream.ToArray();
 
-				// Save .glb file using DomainFileService
-				var newFilePath = await _domainFileService.SaveGLBFile(glbBytes, domainToCreate.ScaffoldId);
+				// Save .glb file to staging
+				var (_, finalPath) = await _domainFileService.SaveGLBToStaging(glbBytes, domainToCreate.ScaffoldId);
 				var originalFileName = domainToCreate.MeshFile.FileName;
 
 				string? oldFilePath = null;
@@ -266,7 +277,8 @@ namespace Services.Services
 					oldFilePath = existingDomain.MeshFilePath;
 
 					// Update existing domain
-					existingDomain.MeshFilePath = newFilePath;
+					existingDomain.MeshFilePath = finalPath;
+					existingDomain.MeshPendingTransfer = true;
 					existingDomain.VoxelCount = domainToCreate.VoxelCount ?? 0;
 					existingDomain.VoxelSize = domainToCreate.VoxelSize ?? 0;
 					existingDomain.DomainSize = domainToCreate.DomainSize ?? "N/A";
@@ -284,7 +296,8 @@ namespace Services.Services
 					{
 						ScaffoldId = domainToCreate.ScaffoldId,
 						Category = (DomainCategory)domainToCreate.Category,
-						MeshFilePath = newFilePath,
+						MeshFilePath = finalPath,
+						MeshPendingTransfer = true,
 						VoxelCount = domainToCreate.VoxelCount ?? 0,
 						VoxelSize = domainToCreate.VoxelSize ?? 0,
 						DomainSize = domainToCreate.DomainSize ?? "N/A",
@@ -299,7 +312,7 @@ namespace Services.Services
 				await _context.SaveChangesAsync();
 
 				// Now it's safe to delete the old file
-				if (!string.IsNullOrEmpty(oldFilePath) && oldFilePath != newFilePath)
+				if (!string.IsNullOrEmpty(oldFilePath) && oldFilePath != finalPath)
 				{
 					await _domainFileService.DeleteFile(oldFilePath);
 				}
@@ -517,10 +530,11 @@ namespace Services.Services
 					try
 					{
 						var glbBytes = await File.ReadAllBytesAsync(glbFilePath);
-						var newFilePath = await _domainFileService.SaveGLBFile(glbBytes, domain.ScaffoldId);
+						var (_, finalPath) = await _domainFileService.SaveGLBToStaging(glbBytes, domain.ScaffoldId);
 						var oldFilePath = domain.MeshFilePath;
 
-						domain.MeshFilePath = newFilePath;
+						domain.MeshFilePath = finalPath;
+						domain.MeshPendingTransfer = true;
 						domain.CreatedAt = DateTime.UtcNow;
 
 						// Load metadata if companion file exists
@@ -535,7 +549,7 @@ namespace Services.Services
 						await _context.SaveChangesAsync();
 
 						// Safe to delete old file after DB commit
-						if (!string.IsNullOrEmpty(oldFilePath) && oldFilePath != newFilePath)
+						if (!string.IsNullOrEmpty(oldFilePath) && oldFilePath != finalPath)
 						{
 							await _domainFileService.DeleteFile(oldFilePath);
 						}
@@ -664,15 +678,16 @@ namespace Services.Services
 						if (request.IncludeMeshes && hasCompanionMesh)
 						{
 							var glbBytes = await File.ReadAllBytesAsync(companionGlbPath);
-							var newFilePath = await _domainFileService.SaveGLBFile(glbBytes, domain.ScaffoldId);
+							var (_, finalPath) = await _domainFileService.SaveGLBToStaging(glbBytes, domain.ScaffoldId);
 							var oldFilePath = domain.MeshFilePath;
 
-							domain.MeshFilePath = newFilePath;
+							domain.MeshFilePath = finalPath;
+							domain.MeshPendingTransfer = true;
 							domain.CreatedAt = DateTime.UtcNow;
 
 							await _context.SaveChangesAsync();
 
-							if (!string.IsNullOrEmpty(oldFilePath) && oldFilePath != newFilePath)
+							if (!string.IsNullOrEmpty(oldFilePath) && oldFilePath != finalPath)
 							{
 								await _domainFileService.DeleteFile(oldFilePath);
 							}
@@ -780,18 +795,33 @@ namespace Services.Services
 						// Optionally replace mesh
 						if (includeMeshes && hasCompanionMesh && meshByName.TryGetValue(companionMeshName, out var meshFile))
 						{
+							_logger.LogInformation(
+								"Upload: saving mesh {MeshName} for Domain {DomainId} (IFormFile.Length={Length})",
+								companionMeshName, domain.Id, meshFile.Length);
+
+							using var sourceStream = meshFile.OpenReadStream();
 							using var ms = new MemoryStream();
-							await meshFile.CopyToAsync(ms);
+							await sourceStream.CopyToAsync(ms);
 							var glbBytes = ms.ToArray();
-							var newFilePath = await _domainFileService.SaveGLBFile(glbBytes, domain.ScaffoldId);
+
+							_logger.LogInformation(
+								"Upload: mesh bytes read for Domain {DomainId}: {ByteCount} bytes, first4=[{B0:X2} {B1:X2} {B2:X2} {B3:X2}]",
+								domain.Id, glbBytes.Length,
+								glbBytes.Length > 0 ? glbBytes[0] : 0,
+								glbBytes.Length > 1 ? glbBytes[1] : 0,
+								glbBytes.Length > 2 ? glbBytes[2] : 0,
+								glbBytes.Length > 3 ? glbBytes[3] : 0);
+
+							var (_, finalPath) = await _domainFileService.SaveGLBToStaging(glbBytes, domain.ScaffoldId);
 							var oldFilePath = domain.MeshFilePath;
 
-							domain.MeshFilePath = newFilePath;
+							domain.MeshFilePath = finalPath;
+							domain.MeshPendingTransfer = true;
 							domain.CreatedAt = DateTime.UtcNow;
 
 							await _context.SaveChangesAsync();
 
-							if (!string.IsNullOrEmpty(oldFilePath) && oldFilePath != newFilePath)
+							if (!string.IsNullOrEmpty(oldFilePath) && oldFilePath != finalPath)
 							{
 								await _domainFileService.DeleteFile(oldFilePath);
 							}
@@ -824,6 +854,43 @@ namespace Services.Services
 				_logger.LogError(ex, "BatchUpdateMetadataFromUpload failed");
 				return (false, $"Unexpected error: {ex.Message}", null);
 			}
+		}
+
+		private static readonly byte[] GlbMagic = { 0x67, 0x6C, 0x54, 0x46 };
+
+		public async Task<List<int>> GetDomainsWithInvalidMeshes()
+		{
+			var invalidIds = new List<int>();
+			var domains = await _context.Domains
+				.Where(d => d.MeshFilePath != null && d.MeshFilePath != "")
+				.Select(d => new { d.Id, d.MeshFilePath })
+				.ToListAsync();
+
+			foreach (var d in domains)
+			{
+				try
+				{
+					if (!File.Exists(d.MeshFilePath!))
+					{
+						invalidIds.Add(d.Id);
+						continue;
+					}
+
+					var header = new byte[4];
+					await using var fs = new FileStream(d.MeshFilePath!, FileMode.Open, FileAccess.Read, FileShare.Read);
+					var bytesRead = await fs.ReadAsync(header);
+					if (bytesRead < 4 || !header.AsSpan().SequenceEqual(GlbMagic))
+					{
+						invalidIds.Add(d.Id);
+					}
+				}
+				catch
+				{
+					invalidIds.Add(d.Id);
+				}
+			}
+
+			return invalidIds;
 		}
 
 		/// <summary>

@@ -11,31 +11,42 @@ import { CANVAS_CAMERA_PROPS, CAMERA_DISTANCE_FACTOR, applyCameraFraming } from 
 // Error boundary to catch R3F reconciliation errors (e.g. Canvas root not ready)
 class CanvasErrorBoundary extends React.Component<
   { children: React.ReactNode },
-  { hasError: boolean }
+  { hasError: boolean; errorMessage: string | null }
 > {
   constructor(props: { children: React.ReactNode }) {
     super(props);
-    this.state = { hasError: false };
+    this.state = { hasError: false, errorMessage: null };
   }
 
-  static getDerivedStateFromError() {
-    return { hasError: true };
+  static getDerivedStateFromError(error: Error) {
+    return { hasError: true, errorMessage: error.message };
   }
 
   componentDidCatch(error: Error) {
-    // Suppress R3F root-not-ready errors — the Canvas will recover on next render
-    console.warn("[CanvasViewer] Caught render error:", error.message);
-  }
-
-  componentDidUpdate(_: any, prevState: { hasError: boolean }) {
-    // Auto-recover on the next render cycle
-    if (this.state.hasError && !prevState.hasError) {
-      this.setState({ hasError: false });
-    }
+    console.error("[CanvasViewer] Render error:", error.message);
   }
 
   render() {
-    if (this.state.hasError) return null;
+    if (this.state.hasError) {
+      return (
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-50">
+          <div className="text-center p-6 max-w-md">
+            <p className="text-red-600 font-medium mb-2">Failed to load 3D mesh</p>
+            <p className="text-gray-500 text-sm mb-4">
+              {this.state.errorMessage?.includes("not valid JSON")
+                ? "The mesh file appears to be corrupt or empty."
+                : this.state.errorMessage ?? "An unexpected error occurred."}
+            </p>
+            <button
+              onClick={() => this.setState({ hasError: false, errorMessage: null })}
+              className="px-4 py-2 text-sm border rounded hover:bg-gray-100"
+            >
+              Retry
+            </button>
+          </div>
+        </div>
+      );
+    }
     return this.props.children;
   }
 }
