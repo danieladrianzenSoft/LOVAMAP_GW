@@ -167,6 +167,26 @@ export default class JobStore {
 		}
 	}
 
+	cancelJob = async (jobId: string): Promise<boolean> => {
+		try {
+			await agent.Jobs.cancelJob(jobId);
+			runInAction(() => {
+				const index = this.jobsRan.findIndex((j) => j.id === jobId);
+				if (index !== -1) {
+					this.jobsRan = [
+						...this.jobsRan.slice(0, index),
+						{ ...this.jobsRan[index], status: 'Stopped' },
+						...this.jobsRan.slice(index + 1),
+					];
+				}
+			});
+			return true;
+		} catch (error) {
+			console.error('Error cancelling job:', error);
+			return false;
+		}
+	}
+
 	getJobById = async (jobId: string): Promise<JobDetailed | null> => {
 		try {
 			return await agent.Jobs.getJobById(jobId);
@@ -240,6 +260,15 @@ export default class JobStore {
 		}
 	}
 
+	getInputFile = async (jobId: string): Promise<Blob | null> => {
+		try {
+			return await agent.Jobs.getInputFile(jobId);
+		} catch (error) {
+			console.error('Error fetching input file:', error);
+			return null;
+		}
+	}
+
 	getPreviewFile = async (jobId: string, filename: string): Promise<Blob | null> => {
 		try {
 			return await agent.Jobs.getPreviewFile(jobId, filename);
@@ -258,6 +287,25 @@ export default class JobStore {
 		} catch (error) {
 			console.error('Error saving job as scaffold:', error);
 			throw error;
+		}
+	}
+
+	transferJob = async (jobId: string, targetUserId: string): Promise<boolean> => {
+		try {
+			await agent.Jobs.transferJob(jobId, targetUserId);
+			return true;
+		} catch (error) {
+			console.error('Error transferring job:', error);
+			return false;
+		}
+	}
+
+	searchUsers = async (query: string): Promise<{ id: string; email: string }[]> => {
+		try {
+			return await agent.Jobs.searchUsers(query);
+		} catch (error) {
+			console.error('Error searching users:', error);
+			return [];
 		}
 	}
 }

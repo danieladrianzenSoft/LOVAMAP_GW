@@ -253,6 +253,9 @@ const Jobs = {
         if (job.dx != null) {
             formData.append("Dx", job.dx.toString());
         }
+        if (job.clusterExteriorPores) {
+            formData.append("ClusterExteriorPores", "true");
+        }
 
         const response =  await axios.post<ApiResponse<Job>>(`/jobs/submit-job`, formData);
 
@@ -266,6 +269,7 @@ const Jobs = {
         formData.append('Dx', job.dx.toString());
         formData.append('Dy', job.dy.toString());
         formData.append('Dz', job.dz.toString());
+        formData.append('Resolution', job.resolution);
 
         const response = await axios.post<ApiResponse<any>>(
             `/jobs/submit-segmentation-job`, formData
@@ -338,6 +342,18 @@ const Jobs = {
             responseType: 'blob'
         });
         return response.data;
+    },
+    getInputFile: async (jobId: string): Promise<Blob> => {
+        const response = await axios.get(`/jobs/${jobId}/input`, {
+            responseType: 'blob'
+        });
+        return response.data;
+    },
+    cancelJob: (jobId: string) => requests.post<ApiResponse<string>>('/jobs/' + jobId + '/cancel', {}),
+    transferJob: (jobId: string, targetUserId: string) => requests.post<ApiResponse<string>>(`/jobs/${jobId}/transfer`, { targetUserId }),
+    searchUsers: async (query: string): Promise<{ id: string; email: string }[]> => {
+        const response = await axios.get<ApiResponse<{ id: string; email: string }[]>>(`/jobs/users/search?q=${encodeURIComponent(query)}`);
+        return response.data.data ?? [];
     },
     getToolVersions: async (): Promise<ToolVersions | null> => {
         try {

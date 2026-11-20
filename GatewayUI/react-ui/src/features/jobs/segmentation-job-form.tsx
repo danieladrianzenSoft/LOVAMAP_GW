@@ -26,6 +26,7 @@ const SegmentationJobForm: React.FC<Props> = ({ onSubmit }) => {
 	const [dz, setDz] = useState<string>('');
 	const [fluorescentLabel, setFluorescentLabel] = useState<number>(1);
 	const [radiusUm, setRadiusUm] = useState<string>('');
+	const [resolution, setResolution] = useState<'normal' | 'high'>('normal');
 	const [submitAttempted, setSubmitAttempted] = useState(false);
 
 	const fileInputRef = useRef<HTMLInputElement>(null);
@@ -117,6 +118,7 @@ const SegmentationJobForm: React.FC<Props> = ({ onSubmit }) => {
 				dx: parsedDx,
 				dy: parsedDy,
 				dz: parsedDz,
+				resolution,
 			};
 			await onSubmit(job);
 		} finally {
@@ -386,6 +388,44 @@ const SegmentationJobForm: React.FC<Props> = ({ onSubmit }) => {
 										}`}
 										placeholder="e.g. 50"
 									/>
+								</div>
+
+								{/* Resolution */}
+								<div>
+									<label className="block text-xs text-gray-500 mb-2">
+										Resolution
+									</label>
+									<div className="flex gap-3">
+										<label className={`flex items-center gap-2 px-4 py-2 border rounded-lg cursor-pointer transition-colors text-sm ${
+											resolution === 'normal' ? 'border-blue-500 bg-blue-50' : 'border-gray-300 hover:border-gray-400'
+										}`}>
+											<input
+												type="radio"
+												name="resolution"
+												value="normal"
+												checked={resolution === 'normal'}
+												onChange={() => setResolution('normal')}
+												className="text-blue-600"
+											/>
+											Normal
+										</label>
+										<label className={`flex items-center gap-2 px-4 py-2 border rounded-lg cursor-pointer transition-colors text-sm ${
+											resolution === 'high' ? 'border-blue-500 bg-blue-50' : 'border-gray-300 hover:border-gray-400'
+										}`}>
+											<input
+												type="radio"
+												name="resolution"
+												value="high"
+												checked={resolution === 'high'}
+												onChange={() => setResolution('high')}
+												className="text-blue-600"
+											/>
+											High
+										</label>
+									</div>
+									<p className="text-[11px] text-gray-400 mt-1.5">
+										Normal targets ~50M voxels, High targets ~200M voxels. Higher resolution increases accuracy but takes longer to process.
+									</p>
 								</div>
 							</div>
 

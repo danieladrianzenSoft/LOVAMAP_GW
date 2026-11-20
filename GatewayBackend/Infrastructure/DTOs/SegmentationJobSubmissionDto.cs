@@ -17,6 +17,8 @@ namespace Infrastructure.DTOs
 		public string? Dx { get; set; } // pixel width µm (from metadata or user)
 		public string? Dy { get; set; } // pixel height µm
 		public string? Dz { get; set; } // pixel depth µm
+		public string? Th { get; set; } // intensity threshold (optional — if omitted, user picks via threshold preview)
+		public string? Resolution { get; set; } // "normal" (default) or "high"
 		public string? CreatorId { get; set; } // set by controller
 	}
 }

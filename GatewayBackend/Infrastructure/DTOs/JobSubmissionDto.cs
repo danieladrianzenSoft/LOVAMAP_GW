@@ -13,6 +13,7 @@ namespace Infrastructure.DTOs
 		public IFormFile? JsonFile { get; set; }
 		public Guid? JobId { get; set; }
 		public string? Dx { get; set; }
+		public bool ClusterExteriorPores { get; set; } = false;
 		public string? CreatorId { get; set; }
 		public int ScaffoldGroupId { get; set; }
 	}

@@ -154,12 +154,20 @@ namespace Services.Services
 			if (resUnitField != null && resUnitField.Length > 0)
 				resUnit = resUnitField[0].ToInt();
 
-			// For microscopy TIFFs, resolution is often pixels-per-unit where unit is µm
-			// XResolution = pixels per µm → dx = 1/XResolution
+			// XResolution/YResolution = pixels per unit → dx = 1/XResolution (in that unit)
+			// Then convert to µm based on ResolutionUnit
 			if (xRes.HasValue && xRes.Value > 0)
+			{
 				result.Dx = 1.0 / xRes.Value;
+				if (resUnit == 2) result.Dx *= 25400;      // inch → µm
+				else if (resUnit == 3) result.Dx *= 10000;  // cm → µm
+			}
 			if (yRes.HasValue && yRes.Value > 0)
+			{
 				result.Dy = 1.0 / yRes.Value;
+				if (resUnit == 2) result.Dy *= 25400;      // inch → µm
+				else if (resUnit == 3) result.Dy *= 10000;  // cm → µm
+			}
 
 			// Parse ImageJ metadata for spacing (z) and unit
 			if (!string.IsNullOrEmpty(imageDescription))

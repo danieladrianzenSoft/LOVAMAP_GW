@@ -11,6 +11,8 @@ namespace Infrastructure.IHelpers
 		Task<HttpResponseMessage> GetJobLogsAsync(string jobId, CancellationToken ct = default);
 		Task<HttpResponseMessage> GetJobPreviewListAsync(string jobId, CancellationToken ct = default);
 		Task<HttpResponseMessage> GetJobPreviewFileAsync(string jobId, string filename, CancellationToken ct = default);
+		Task<HttpResponseMessage> GetJobInputFileAsync(string jobId, CancellationToken ct = default);
 		Task<HttpResponseMessage> GetToolVersionsAsync(CancellationToken ct = default);
+		Task<HttpResponseMessage> CancelJobAsync(string jobId, CancellationToken ct = default);
 	}
 }

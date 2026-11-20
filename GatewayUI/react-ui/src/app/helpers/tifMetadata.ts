@@ -30,11 +30,32 @@ const TYPE_SIZES: Record<number, number> = {
 	10: 8, // SRATIONAL
 	11: 4, // FLOAT
 	12: 8, // DOUBLE
+	16: 8, // LONG8 (BigTIFF)
 };
 
+interface TagEntry {
+	type: number;
+	count: number;
+	valueOffset: number;
+}
+
+/** Read a slice of the File as an ArrayBuffer */
+async function readSlice(file: File, start: number, length: number): Promise<ArrayBuffer> {
+	const end = Math.min(start + length, file.size);
+	return file.slice(start, end).arrayBuffer();
+}
+
+/** Read a 64-bit unsigned int as a JS number (safe for offsets < 2^53) */
+function readUint64(view: DataView, offset: number, le: boolean): number {
+	const lo = view.getUint32(offset + (le ? 0 : 4), le);
+	const hi = view.getUint32(offset + (le ? 4 : 0), le);
+	return hi * 0x100000000 + lo;
+}
+
 /**
- * Reads TIFF IFD tags directly from the file header.
- * Only reads the bytes it needs — safe for multi-GB microscopy TIFFs.
+ * Reads TIFF IFD tags directly from the file.
+ * Supports both classic TIFF (magic 42) and BigTIFF (magic 43).
+ * Uses targeted file.slice() reads so it works even when the IFD is deep in the file.
  */
 export async function extractTifMetadata(file: File): Promise<TifMetadata> {
 	const result: TifMetadata = {
@@ -48,94 +69,211 @@ export async function extractTifMetadata(file: File): Promise<TifMetadata> {
 	};
 
 	try {
-		// Read first 64 KB for the IFD — more than enough for headers
-		const headerSize = Math.min(file.size, 64 * 1024);
-		const headerBuf = await file.slice(0, headerSize).arrayBuffer();
-		const view = new DataView(headerBuf);
+		// ── Pass 1: read file header to find IFD offset ──
+		const headerBuf = await readSlice(file, 0, 16);
+		const hdr = new DataView(headerBuf);
 
-		// Byte order: II = little-endian, MM = big-endian
-		const bom = view.getUint16(0);
-		const le = bom === 0x4949; // 'II'
+		const bom = hdr.getUint16(0);
+		const le = bom === 0x4949;
 		if (bom !== 0x4949 && bom !== 0x4d4d) {
-			console.warn('[tifMetadata] Not a valid TIFF file');
+			console.warn('[tifMetadata] Not a valid TIFF (BOM:', `0x${bom.toString(16)})`);
 			return result;
 		}
 
-		// Magic number check
-		const magic = view.getUint16(2, le);
-		if (magic !== 42) {
-			console.warn('[tifMetadata] Not a standard TIFF (magic =', magic, ')');
+		const magic = hdr.getUint16(2, le);
+		const isBigTiff = magic === 43;
+		if (magic !== 42 && magic !== 43) {
+			console.warn('[tifMetadata] Unknown TIFF version (magic =', magic, ')');
 			return result;
 		}
 
-		// Offset to first IFD
-		const ifdOffset = view.getUint32(4, le);
-		if (ifdOffset + 2 > headerBuf.byteLength) return result;
+		let ifdOffset: number;
+		if (isBigTiff) {
+			const offsetSize = hdr.getUint16(4, le);
+			if (offsetSize !== 8) {
+				console.warn('[tifMetadata] BigTIFF offset size is not 8:', offsetSize);
+				return result;
+			}
+			ifdOffset = readUint64(hdr, 8, le);
+		} else {
+			ifdOffset = hdr.getUint32(4, le);
+		}
 
-		const numEntries = view.getUint16(ifdOffset, le);
-		const tags: Record<number, { type: number; count: number; valueOffset: number }> = {};
+		console.log('[tifMetadata] format:', isBigTiff ? 'BigTIFF' : 'ClassicTIFF',
+			'| endian:', le ? 'LE' : 'BE', '| IFD offset:', ifdOffset);
+
+		if (ifdOffset >= file.size) {
+			console.warn('[tifMetadata] IFD offset beyond file size');
+			return result;
+		}
+
+		// ── Pass 2: read the IFD ──
+		// First read just enough bytes to get the entry count
+		const countSize = isBigTiff ? 8 : 2;
+		const countBuf = await readSlice(file, ifdOffset, countSize);
+		const countView = new DataView(countBuf);
+		const numEntries = isBigTiff
+			? readUint64(countView, 0, le)
+			: countView.getUint16(0, le);
+
+		const entrySize = isBigTiff ? 20 : 12;
+		const ifdDataStart = ifdOffset + countSize;
+		const ifdDataLen = numEntries * entrySize;
+
+		// Read all IFD entries + some extra for inline/nearby values
+		const ifdBuf = await readSlice(file, ifdDataStart, ifdDataLen + 1024);
+		const ifdView = new DataView(ifdBuf);
+
+		const tags: Record<number, TagEntry> = {};
 		const allTags: Record<string, any> = {};
 
 		for (let i = 0; i < numEntries; i++) {
-			const entryOffset = ifdOffset + 2 + i * 12;
-			if (entryOffset + 12 > headerBuf.byteLength) break;
+			const off = i * entrySize;
+			if (off + entrySize > ifdBuf.byteLength) break;
 
-			const tagId = view.getUint16(entryOffset, le);
-			const type = view.getUint16(entryOffset + 2, le);
-			const count = view.getUint32(entryOffset + 4, le);
+			const tagId = ifdView.getUint16(off, le);
+			const type = ifdView.getUint16(off + 2, le);
 
-			// Value or offset — if total bytes fit in 4 bytes, value is inline
-			const totalBytes = (TYPE_SIZES[type] ?? 1) * count;
-			const valueOffset = totalBytes <= 4
-				? entryOffset + 8
-				: view.getUint32(entryOffset + 8, le);
+			let count: number;
+			let valueOffset: number; // absolute file offset
+
+			if (isBigTiff) {
+				count = readUint64(ifdView, off + 4, le);
+				const totalBytes = (TYPE_SIZES[type] ?? 1) * count;
+				valueOffset = totalBytes <= 8
+					? ifdDataStart + off + 12  // inline in the entry
+					: readUint64(ifdView, off + 12, le);
+			} else {
+				count = ifdView.getUint32(off + 4, le);
+				const totalBytes = (TYPE_SIZES[type] ?? 1) * count;
+				valueOffset = totalBytes <= 4
+					? ifdDataStart + off + 8   // inline in the entry
+					: ifdView.getUint32(off + 8, le);
+			}
 
 			tags[tagId] = { type, count, valueOffset };
 
-			// Build debug log of all tags
 			const tagName = TAG_NAMES[tagId] ?? `0x${tagId.toString(16).padStart(4, '0')}`;
-			try {
-				allTags[tagName] = readTagValue(view, le, type, count, valueOffset, headerBuf.byteLength);
-			} catch {
-				allTags[tagName] = `<unreadable: type=${type}, count=${count}>`;
+			allTags[tagName] = `type=${type}, count=${count}, offset=${valueOffset}`;
+		}
+
+		console.log('[tifMetadata] IFD entries:', numEntries, '| tags:', allTags);
+
+		// ── Pass 3: read tag values we care about ──
+		// Collect all offsets we need to read, then batch them
+		const valuesToRead: number[] = [];
+		const addValueOffset = (tagId: number) => {
+			if (tags[tagId]) valuesToRead.push(tags[tagId].valueOffset);
+		};
+		addValueOffset(TAG_BITS_PER_SAMPLE);
+		addValueOffset(TAG_SAMPLES_PER_PIXEL);
+		addValueOffset(TAG_RESOLUTION_UNIT);
+		addValueOffset(TAG_X_RESOLUTION);
+		addValueOffset(TAG_Y_RESOLUTION);
+
+		let resUnit = 1;
+		let rawDx: number | null = null;
+		let rawDy: number | null = null;
+
+		// Find the range we need to read for small values (shorts + rationals)
+		// These are typically clustered near the IFD
+		if (valuesToRead.length > 0) {
+			const minOff = Math.min(...valuesToRead);
+			const maxOff = Math.max(...valuesToRead) + 8; // +8 for RATIONAL size
+			const valBuf = await readSlice(file, minOff, maxOff - minOff + 8);
+			const valView = new DataView(valBuf);
+
+			const readShortAt = (absOffset: number): number | null => {
+				const rel = absOffset - minOff;
+				if (rel < 0 || rel + 2 > valBuf.byteLength) return null;
+				return valView.getUint16(rel, le);
+			};
+
+			const readRationalAt = (absOffset: number): number | null => {
+				const rel = absOffset - minOff;
+				if (rel < 0 || rel + 8 > valBuf.byteLength) return null;
+				const num = valView.getUint32(rel, le);
+				const den = valView.getUint32(rel + 4, le);
+				return den === 0 ? null : num / den;
+			};
+
+			// BitsPerSample
+			if (tags[TAG_BITS_PER_SAMPLE]) {
+				const val = readShortAt(tags[TAG_BITS_PER_SAMPLE].valueOffset);
+				if (val != null) {
+					result.bitsPerSample = val;
+					result.isBinary = val === 1;
+				}
+			}
+
+			// SamplesPerPixel
+			if (tags[TAG_SAMPLES_PER_PIXEL]) {
+				const val = readShortAt(tags[TAG_SAMPLES_PER_PIXEL].valueOffset);
+				if (val != null) result.channels = val;
+			}
+
+			// ResolutionUnit: 1=No unit, 2=Inch, 3=Centimeter
+			if (tags[TAG_RESOLUTION_UNIT]) {
+				const val = readShortAt(tags[TAG_RESOLUTION_UNIT].valueOffset);
+				if (val != null) resUnit = val;
+			}
+
+			console.log('[tifMetadata] ResolutionUnit:', resUnit);
+
+			// XResolution (raw value = pixels per unit)
+			if (tags[TAG_X_RESOLUTION]) {
+				const val = readRationalAt(tags[TAG_X_RESOLUTION].valueOffset);
+				console.log('[tifMetadata] XResolution raw:', val, 'pixels per unit');
+				if (val != null && val > 0) rawDx = 1.0 / val;
+			}
+
+			// YResolution
+			if (tags[TAG_Y_RESOLUTION]) {
+				const val = readRationalAt(tags[TAG_Y_RESOLUTION].valueOffset);
+				if (val != null && val > 0) rawDy = 1.0 / val;
 			}
 		}
 
-		console.log('[tifMetadata] all TIFF tags:', allTags);
-
-		// BitsPerSample
-		if (tags[TAG_BITS_PER_SAMPLE]) {
-			const val = readShort(view, le, tags[TAG_BITS_PER_SAMPLE]);
-			if (val != null) {
-				result.bitsPerSample = val;
-				result.isBinary = val === 1;
-			}
-		}
-
-		// SamplesPerPixel
-		if (tags[TAG_SAMPLES_PER_PIXEL]) {
-			const val = readShort(view, le, tags[TAG_SAMPLES_PER_PIXEL]);
-			if (val != null) result.channels = val;
-		}
-
-		// XResolution (RATIONAL = numerator/denominator)
-		if (tags[TAG_X_RESOLUTION]) {
-			const val = readRational(view, le, tags[TAG_X_RESOLUTION], headerBuf.byteLength);
-			if (val != null && val > 0) result.dx = 1.0 / val;
-		}
-
-		// YResolution
-		if (tags[TAG_Y_RESOLUTION]) {
-			const val = readRational(view, le, tags[TAG_Y_RESOLUTION], headerBuf.byteLength);
-			if (val != null && val > 0) result.dy = 1.0 / val;
-		}
-
-		// ImageDescription — parse for ImageJ/OME metadata
+		// ImageDescription — parse BEFORE deciding on dx/dy, since ImageJ
+		// stores the unit here (resUnit=1) rather than in ResolutionUnit
 		if (tags[TAG_IMAGE_DESCRIPTION]) {
-			const desc = readAscii(view, tags[TAG_IMAGE_DESCRIPTION], headerBuf.byteLength, file);
-			if (desc) {
-				console.log('[tifMetadata] ImageDescription:', desc.substring(0, 500));
-				parseImageDescription(desc, result);
+			const tag = tags[TAG_IMAGE_DESCRIPTION];
+			const readLen = Math.min(tag.count, 1024 * 1024); // cap at 1MB
+			try {
+				const descBuf = await readSlice(file, tag.valueOffset, readLen);
+				const desc = new TextDecoder().decode(descBuf).replace(/\0+$/, '');
+				if (desc) {
+					console.log('[tifMetadata] ImageDescription (first 300 chars):', desc.substring(0, 300));
+					parseImageDescription(desc, result);
+				}
+			} catch (err) {
+				console.warn('[tifMetadata] Failed to read ImageDescription:', err);
+			}
+		} else {
+			console.log('[tifMetadata] No ImageDescription tag');
+		}
+
+		// ── Resolve dx/dy from XRes/YRes + unit info ──
+		// OME-XML in ImageDescription may have already set dx/dy directly — keep those.
+		// Otherwise, convert rawDx/rawDy to µm based on resUnit or ImageDescription unit.
+		if (result.dx == null && rawDx != null) {
+			if (resUnit === 2) {
+				result.dx = rawDx * 25400;      // inch → µm
+			} else if (resUnit === 3) {
+				result.dx = rawDx * 10000;       // cm → µm
+			} else if (resUnit === 1 && isUnitMicrons(result.unit)) {
+				// ImageJ convention: resUnit=1 with unit from ImageDescription
+				result.dx = rawDx;               // already in µm
+			}
+			// resUnit=1 with no recognized unit → discard (dimensionless)
+		}
+		if (result.dy == null && rawDy != null) {
+			if (resUnit === 2) {
+				result.dy = rawDy * 25400;
+			} else if (resUnit === 3) {
+				result.dy = rawDy * 10000;
+			} else if (resUnit === 1 && isUnitMicrons(result.unit)) {
+				result.dy = rawDy;
 			}
 		}
 
@@ -145,74 +283,6 @@ export async function extractTifMetadata(file: File): Promise<TifMetadata> {
 	}
 
 	return result;
-}
-
-// ── Tag value readers ──
-
-function readShort(
-	view: DataView, le: boolean,
-	tag: { type: number; count: number; valueOffset: number },
-): number | null {
-	if (tag.valueOffset + 2 > view.byteLength) return null;
-	return view.getUint16(tag.valueOffset, le);
-}
-
-function readRational(
-	view: DataView, le: boolean,
-	tag: { type: number; count: number; valueOffset: number },
-	bufLen: number,
-): number | null {
-	if (tag.valueOffset + 8 > bufLen) return null;
-	const num = view.getUint32(tag.valueOffset, le);
-	const den = view.getUint32(tag.valueOffset + 4, le);
-	return den === 0 ? null : num / den;
-}
-
-function readAscii(
-	view: DataView,
-	tag: { type: number; count: number; valueOffset: number },
-	bufLen: number,
-	file: File,
-): string | null {
-	const len = tag.count;
-	if (tag.valueOffset + len <= bufLen) {
-		const bytes = new Uint8Array(view.buffer, tag.valueOffset, len);
-		return new TextDecoder().decode(bytes).replace(/\0+$/, '');
-	}
-	// ImageDescription may be beyond our 64KB header read — skip for now
-	return null;
-}
-
-function readTagValue(
-	view: DataView, le: boolean,
-	type: number, count: number, valueOffset: number,
-	bufLen: number,
-): any {
-	if (valueOffset >= bufLen) return '<offset beyond header>';
-	switch (type) {
-		case 1: // BYTE
-			return count === 1 ? view.getUint8(valueOffset) : `<${count} bytes>`;
-		case 2: { // ASCII
-			const end = Math.min(valueOffset + count, bufLen);
-			const bytes = new Uint8Array(view.buffer, valueOffset, end - valueOffset);
-			const s = new TextDecoder().decode(bytes).replace(/\0+$/, '');
-			return s.length > 100 ? s.substring(0, 100) + '...' : s;
-		}
-		case 3: // SHORT
-			if (count === 1) return view.getUint16(valueOffset, le);
-			if (count <= 2) return Array.from({ length: count }, (_, i) => view.getUint16(valueOffset + i * 2, le));
-			return `<${count} shorts>`;
-		case 4: // LONG
-			return count === 1 ? view.getUint32(valueOffset, le) : `<${count} longs>`;
-		case 5: { // RATIONAL
-			if (valueOffset + 8 > bufLen) return '<beyond header>';
-			const n = view.getUint32(valueOffset, le);
-			const d = view.getUint32(valueOffset + 4, le);
-			return d === 0 ? 'NaN' : `${n}/${d} (${(n / d).toFixed(4)})`;
-		}
-		default:
-			return `<type=${type}, count=${count}>`;
-	}
 }
 
 // ── Common TIFF tag names for debug logging ──
@@ -238,6 +308,17 @@ const TAG_NAMES: Record<number, string> = {
 	0x0132: 'DateTime',
 	0x0153: 'SampleFormat',
 };
+
+/** Check if the unit string represents micrometers */
+function isUnitMicrons(unit: string | null): boolean {
+	if (!unit) return false;
+	// Unescape literal \uXXXX sequences that ImageJ writes (e.g. "\u00B5m" → "µm")
+	const unescaped = unit.replace(/\\u([0-9a-fA-F]{4})/g, (_, hex) =>
+		String.fromCharCode(parseInt(hex, 16))
+	);
+	const u = unescaped.toLowerCase().trim();
+	return /^(µm|\u00b5m|um|μm|microns?|micrometers?)$/.test(u);
+}
 
 function parseImageDescription(desc: string, result: TifMetadata) {
 	// ImageJ format: "ImageJ=1.53...\nchannels=1\nslices=100\nspacing=0.5\nunit=um\n"

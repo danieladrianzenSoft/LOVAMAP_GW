@@ -25,6 +25,7 @@ namespace Infrastructure.IHelpers
 		Task<IdentityResult> ConfirmEmailAsync(User user, string token);
 		Task<string> GeneratePasswordResetTokenAsync(User user);
 		Task<IdentityResult> ResetPasswordAsync(User user, string token, string newPassword);
+		Task<List<(string Id, string Email)>> SearchUsersByEmailAsync(string query, int limit = 10);
 
 	}
 }

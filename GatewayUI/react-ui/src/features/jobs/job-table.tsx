@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { observer } from "mobx-react-lite";
+import { FaStop, FaSpinner } from "react-icons/fa";
 import { JobForList, Pagination } from "../../app/models/job";
 import DataTable, { DataTableColumn } from "../../app/common/data-table/data-table";
 import PaginationControls from "../../app/common/pagination-controls/pagination-controls";
@@ -34,6 +35,7 @@ interface JobTableProps {
 	filters?: JobTableFilters | null;
 	isLoading?: boolean;
 	emptyMessage?: string;
+	onCancelJob?: (jobId: string) => Promise<void>;
 }
 
 const FilterBar: React.FC<{ filters: JobTableFilters }> = ({ filters }) => (
@@ -87,6 +89,27 @@ const FilterBar: React.FC<{ filters: JobTableFilters }> = ({ filters }) => (
 	</div>
 );
 
+const CancelButton: React.FC<{ jobId: string; onCancel: (jobId: string) => Promise<void> }> = ({ jobId, onCancel }) => {
+	const [cancelling, setCancelling] = useState(false);
+	return (
+		<button
+			className="ml-2 px-2 py-0.5 rounded border border-red-300 text-red-500 hover:text-red-700 hover:bg-red-50 hover:border-red-400 transition-colors text-xs flex items-center gap-1"
+			title="Cancel job"
+			disabled={cancelling}
+			onClick={async (e) => {
+				e.stopPropagation();
+				if (!window.confirm('Are you sure you want to cancel this job?')) return;
+				setCancelling(true);
+				await onCancel(jobId);
+				setCancelling(false);
+			}}
+		>
+			{cancelling ? <FaSpinner className="animate-spin w-3 h-3" /> : <FaStop className="w-3 h-3" />}
+			Cancel
+		</button>
+	);
+};
+
 const JobTable: React.FC<JobTableProps> = observer(({
 	jobs,
 	isAdmin,
@@ -95,6 +118,7 @@ const JobTable: React.FC<JobTableProps> = observer(({
 	filters,
 	isLoading,
 	emptyMessage = "No jobs found.",
+	onCancelJob,
 }) => {
 	const navigate = useNavigate();
 	const pageOffset = pagination ? (pagination.currentPage - 1) * pagination.itemsPerPage : 0;
@@ -112,9 +136,12 @@ const JobTable: React.FC<JobTableProps> = observer(({
 					<span className="inline-flex items-center gap-2">
 						{job.status}
 						{isActive && (
-							<span className="text-gray-400">
-								<ElapsedTime since={job.submittedAt} />
-							</span>
+							<>
+								<span className="text-gray-400">
+									<ElapsedTime since={job.submittedAt} />
+								</span>
+								{onCancelJob && <CancelButton jobId={job.id} onCancel={onCancelJob} />}
+							</>
 						)}
 					</span>
 				);

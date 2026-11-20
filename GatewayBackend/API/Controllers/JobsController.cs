@@ -452,6 +452,57 @@ public class JobsController : ControllerBase
 		return File(fileBytes, contentType ?? "application/octet-stream", filename);
 	}
 
+	[HttpGet("{jobId}/input")]
+	public async Task<IActionResult> DownloadJobInput([FromRoute] string jobId, CancellationToken ct)
+	{
+		if (!Guid.TryParse(jobId, out var jobGuid))
+			return BadRequest(new ApiResponse<string>(400, "Invalid jobId"));
+
+		var currentUserId = _userService.GetCurrentUserId();
+		if (currentUserId == null) return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
+		var isAdmin = await _userAuthHelper.IsInRole(currentUserId, "administrator");
+		var job = await _jobService.GetByIdAsync(jobGuid);
+
+		if (job == null)
+			return NotFound(new ApiResponse<string>(404, "Job not found"));
+
+		if (job.CreatorId != currentUserId && !isAdmin)
+			return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
+
+		var (succeeded, errorMessage, fileBytes, contentType, fileName) =
+			await _jobService.FetchJobInputFileFromCoreAsync(jobGuid, ct);
+
+		if (!succeeded || fileBytes == null)
+			return NotFound(new ApiResponse<string>(404, errorMessage ?? "Input file not available"));
+
+		return File(fileBytes, contentType ?? "image/tiff", fileName ?? $"job_{jobId}_input.tif");
+	}
+
+	[HttpPost("{jobId}/cancel")]
+	public async Task<IActionResult> CancelJob([FromRoute] string jobId, CancellationToken ct)
+	{
+		if (!Guid.TryParse(jobId, out var jobGuid))
+			return BadRequest(new ApiResponse<string>(400, "Invalid jobId"));
+
+		var currentUserId = _userService.GetCurrentUserId();
+		if (currentUserId == null) return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
+		var isAdmin = await _userAuthHelper.IsInRole(currentUserId, "administrator");
+		var job = await _jobService.GetByIdAsync(jobGuid);
+
+		if (job == null)
+			return NotFound(new ApiResponse<string>(404, "Job not found"));
+
+		if (job.CreatorId != currentUserId && !isAdmin)
+			return Unauthorized(new ApiResponse<string>(401, "Unauthorized"));
+
+		var (succeeded, errorMessage) = await _jobService.CancelJobAsync(jobGuid, ct);
+
+		if (!succeeded)
+			return BadRequest(new ApiResponse<string>(400, errorMessage ?? "Cannot cancel job"));
+
+		return Ok(new ApiResponse<string>(200, "Job cancelled"));
+	}
+
 	[HttpGet("{jobId}/logs")]
 	public async Task<IActionResult> GetJobLogs([FromRoute] string jobId, CancellationToken ct)
 	{
@@ -504,5 +555,38 @@ public class JobsController : ControllerBase
 			_logger.LogError(ex, "Failed to get the user's jobs");
         	return StatusCode(500, new ApiResponse<string>(500, "An error occurred while getting the user's jobs"));
 		}
+	}
+
+	[Authorize(Roles = "administrator")]
+	[HttpPost("{jobId}/transfer")]
+	public async Task<IActionResult> TransferJob([FromRoute] string jobId, [FromBody] TransferJobDto dto)
+	{
+		if (!Guid.TryParse(jobId, out var jobGuid))
+			return BadRequest(new ApiResponse<string>(400, "Invalid jobId"));
+
+		var job = await _jobService.GetByIdAsync(jobGuid);
+		if (job == null)
+			return NotFound(new ApiResponse<string>(404, "Job not found"));
+
+		var targetUser = await _userAuthHelper.GetUserById(dto.TargetUserId);
+		if (targetUser == null)
+			return BadRequest(new ApiResponse<string>(400, "Target user not found"));
+
+		job.CreatorId = targetUser.Id;
+		await _jobService.SaveChangesAsync();
+
+		return Ok(new ApiResponse<string>(200, $"Job transferred to {targetUser.Email}"));
+	}
+
+	[Authorize(Roles = "administrator")]
+	[HttpGet("users/search")]
+	public async Task<IActionResult> SearchUsers([FromQuery] string q)
+	{
+		if (string.IsNullOrWhiteSpace(q) || q.Length < 2)
+			return Ok(new ApiResponse<IEnumerable<UserSearchResultDto>>(200, "", Array.Empty<UserSearchResultDto>()));
+
+		var results = await _userAuthHelper.SearchUsersByEmailAsync(q.Trim(), 10);
+		var dtos = results.Select(r => new UserSearchResultDto { Id = r.Id, Email = r.Email });
+		return Ok(new ApiResponse<IEnumerable<UserSearchResultDto>>(200, "", dtos));
 	}
 }

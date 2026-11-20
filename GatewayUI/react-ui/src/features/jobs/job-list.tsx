@@ -86,6 +86,10 @@ const JobListIndex: React.FC<{
 }> = observer(({ jobs, isAdmin, toolVersions, onPageChange, fetchJobs }) => {
 	const navigate = useNavigate();
 	const { jobStore } = useStore();
+
+	const handleCancelJob = useCallback(async (jobId: string) => {
+		await jobStore.cancelJob(jobId);
+	}, [jobStore]);
 	const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
 	const handleFilterChange = useCallback((setter: (v: string) => void) => (value: string) => {
@@ -169,6 +173,7 @@ const JobListIndex: React.FC<{
 				pagination={jobStore.pagination}
 				onPageChange={onPageChange}
 				filters={filters}
+				onCancelJob={handleCancelJob}
 			/>
 		</>
 	);

@@ -115,6 +115,7 @@ namespace Services.Services
 			form.Add(new StringContent(uploadToken), "uploadToken");
 			form.Add(new StringContent("true"), "generateMesh");
 			form.Add(new StringContent("true"), "generateParticleMesh");
+			form.Add(new StringContent(dto.ClusterExteriorPores.ToString().ToLower()), "clusterExteriorPores");
 
 			// 5) Call Core via the typed client (auth injected by CoreClientAuthHandler)
 			HttpResponseMessage response;
@@ -500,6 +501,60 @@ namespace Services.Services
 			return job;
 		}
 
+		public async Task<(bool Succeeded, string? ErrorMessage, byte[]? FileBytes, string? ContentType, string? FileName)> FetchJobInputFileFromCoreAsync(Guid jobId, CancellationToken ct = default)
+		{
+			try
+			{
+				var response = await _coreApiClient.GetJobInputFileAsync(jobId.ToString(), ct);
+
+				if (!response.IsSuccessStatusCode)
+				{
+					var msg = $"Core returned {response.StatusCode} for input file of job {jobId}";
+					_logger.LogWarning("FetchJobInputFileFromCoreAsync: {Message}", msg);
+					return (false, msg, null, null, null);
+				}
+
+				var bytes = await response.Content.ReadAsByteArrayAsync(ct);
+				var contentType = response.Content.Headers.ContentType?.MediaType ?? "image/tiff";
+				var fileName = response.Content.Headers.ContentDisposition?.FileName?.Trim('"')
+					?? $"job_{jobId}_input.tif";
+				return (true, null, bytes, contentType, fileName);
+			}
+			catch (Exception ex)
+			{
+				_logger.LogWarning(ex, "Failed to fetch input file from Core for job {JobId}", jobId);
+				return (false, "Error connecting to processing server.", null, null, null);
+			}
+		}
+
+		public async Task<(bool Succeeded, string? ErrorMessage)> CancelJobAsync(Guid jobId, CancellationToken ct = default)
+		{
+			var job = await _jobRepository.GetJobByIdAsync(jobId);
+			if (job == null)
+				return (false, "Job not found");
+
+			if (job.Status != JobStatus.Pending && job.Status != JobStatus.Running)
+				return (false, "Job is not cancellable (current status: " + job.Status + ")");
+
+			try
+			{
+				var response = await _coreApiClient.CancelJobAsync(job.Id.ToString(), ct);
+				if (!response.IsSuccessStatusCode)
+				{
+					var body = await response.Content.ReadAsStringAsync(ct);
+					_logger.LogWarning("Core cancel for job {JobId} returned {StatusCode}: {Body}", jobId, response.StatusCode, body);
+				}
+			}
+			catch (Exception ex)
+			{
+				_logger.LogWarning(ex, "Failed to cancel job {JobId} on Core — marking as Stopped locally", jobId);
+			}
+
+			await _jobRepository.UpdateJobFromCoreAsync(jobId, JobStatus.Stopped, null, null, DateTime.UtcNow);
+			await _context.SaveChangesAsync();
+			return (true, null);
+		}
+
 		public async Task<(bool Succeeded, string? ErrorMessage, Job? Job)> MarkJobCompletedAsync(Guid jobId, string resultFilePath, string sha256)
 		{
 			try
@@ -599,6 +654,11 @@ namespace Services.Services
 				return (false, "Job does not have a particle mesh.", null);
 
 			return await FetchJobMeshFromCoreAsync(meshId, cancellationToken);
+		}
+
+		public async Task SaveChangesAsync()
+		{
+			await _context.SaveChangesAsync();
 		}
 
 		public string GetJobResultsDir()
@@ -719,13 +779,22 @@ namespace Services.Services
 			form.Add(new StringContent(dy!), "dy");
 			form.Add(new StringContent(dz!), "dz");
 
+			var resolution = string.IsNullOrWhiteSpace(dto.Resolution) ? "normal" : dto.Resolution;
+			form.Add(new StringContent(resolution), "resolution");
+
 			// 4b) Store segmentation params on the GW job record
-			var paramsJson = JsonSerializer.Serialize(new
+			var paramsDict = new Dictionary<string, string?>
 			{
-				fluorescentLabel = dto.FluorescentLabel,
-				radiusUm = dto.RadiusUm,
-				dx, dy, dz
-			});
+				["fluorescentLabel"] = dto.FluorescentLabel,
+				["radiusUm"] = dto.RadiusUm,
+				["dx"] = dx,
+				["dy"] = dy,
+				["dz"] = dz,
+				["resolution"] = resolution
+			};
+			if (!string.IsNullOrWhiteSpace(dto.Th))
+				paramsDict["th"] = dto.Th;
+			var paramsJson = JsonSerializer.Serialize(paramsDict);
 			job.SegmentationParams = JsonDocument.Parse(paramsJson);
 			await _context.SaveChangesAsync();
 
@@ -928,6 +997,7 @@ namespace Services.Services
 			form.Add(new StringContent(dto.SourceJobId.ToString()), "sourceJobId");
 			form.Add(new StringContent(string.IsNullOrWhiteSpace(dto.Dx) ? "1" : dto.Dx), "dx");
 			form.Add(new StringContent(dto.GenerateMesh.ToString().ToLower()), "generateMesh");
+			form.Add(new StringContent(dto.ClusterExteriorPores.ToString().ToLower()), "clusterExteriorPores");
 			form.Add(new StringContent(uploadUrl), "uploadUrl");
 			form.Add(new StringContent(uploadToken), "uploadToken");
 

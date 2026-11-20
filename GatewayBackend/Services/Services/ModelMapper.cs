@@ -675,6 +675,7 @@ namespace Services.Services
                 SourceJobId = job.SourceJobId,
                 ScaffoldGroupId = job.Scaffold?.ScaffoldGroupId,
                 ScaffoldId = job.ScaffoldId,
+                CreatorId = job.CreatorId,
                 CreatorEmail = job.Creator?.Email,
                 SegmentationParams = job.SegmentationParams
             };

@@ -13,6 +13,11 @@ interface Props {
 	onSourceSubmit: (job: LovamapFromSourceJob) => Promise<void>;
 }
 
+const CLUSTER_EXTERIOR_PORES_HELP =
+	'Merges boundary pores connected through surface pathways into a single pore. ' +
+	'Can give a more realistic picture near the domain boundary, but produces a few ' +
+	'very large merged pores that can skew size statistics.';
+
 const LovamapJobForm: React.FC<Props> = ({ segmentationJobs, onUploadSubmit, onSourceSubmit }) => {
 	const hasSegJobs = segmentationJobs.length > 0;
 
@@ -40,9 +45,12 @@ const LovamapJobForm: React.FC<Props> = ({ segmentationJobs, onUploadSubmit, onS
 	// Shared state
 	const [isSubmitting, setIsSubmitting] = useState(false);
 
-	// Source job options
-	const [dx, setDx] = useState<number>(1.0);
+	// Upload-only: dx for .dat/.txt files
+	const [uploadDx, setUploadDx] = useState<number>(4.0);
+
+	// Shared options
 	const [generateMesh, setGenerateMesh] = useState(true);
+	const [clusterExteriorPores, setClusterExteriorPores] = useState(false);
 
 	const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -98,21 +106,23 @@ const LovamapJobForm: React.FC<Props> = ({ segmentationJobs, onUploadSubmit, onS
 			if (mode === 'upload') {
 				if (!file || !validation || !validation.valid) return;
 				const ext = file.name.toLowerCase().split('.').pop();
+				const needsDx = ext === 'dat' || ext === 'txt';
 				const job: Job = {
 					csvFile: null,
-					datFile: (ext === 'dat' || ext === 'txt') ? file : null,
+					datFile: needsDx ? file : null,
 					jsonFile: ext === 'json' ? file : null,
 					jobId: crypto.randomUUID(),
-					dx: 2,
+					dx: needsDx ? uploadDx : undefined,
 					scaffoldGroupId: 0,
+					clusterExteriorPores: clusterExteriorPores || undefined,
 				};
 				await onUploadSubmit(job);
 			} else {
 				if (!selectedJob) return;
 				await onSourceSubmit({
 					sourceJobId: selectedJob.id,
-					dx: dx.toString(),
 					generateMesh,
+					clusterExteriorPores: clusterExteriorPores || undefined,
 				});
 			}
 		} finally {
@@ -167,7 +177,7 @@ const LovamapJobForm: React.FC<Props> = ({ segmentationJobs, onUploadSubmit, onS
 				</label>
 			</div>
 
-			{/* From source: job selector + dx + generateMesh */}
+			{/* From source: job selector + generateMesh + clusterExteriorPores */}
 			{mode === 'source' && hasSegJobs && (
 				<div className="space-y-4">
 					{/* Custom Listbox dropdown */}
@@ -215,29 +225,40 @@ const LovamapJobForm: React.FC<Props> = ({ segmentationJobs, onUploadSubmit, onS
 						</Listbox>
 					</div>
 
-					<div className="rounded-lg border border-gray-200 bg-gray-50 p-5 space-y-4">
+					<div className="rounded-lg border border-gray-200 bg-gray-50 p-5 space-y-5">
 						<div className="text-sm text-gray-500">
 							Run LOVAMAP analysis on the output of the selected particle segmentation job.
 						</div>
-						<div className="flex items-center gap-3">
-							<label className="text-sm text-gray-600 w-28">dx (voxel size)</label>
-							<input
-								type="number"
-								step="0.1"
-								min="0.01"
-								value={dx}
-								onChange={(e) => setDx(parseFloat(e.target.value) || 1)}
-								className="border border-gray-300 rounded px-2 py-1 text-sm w-24"
-							/>
+						<div className="flex justify-between items-center">
+							<span className="text-sm text-gray-600">Generate mesh</span>
+							<label className="inline-flex items-center relative w-11 h-6 cursor-pointer">
+								<input
+									type="checkbox"
+									className="sr-only peer"
+									checked={generateMesh}
+									onChange={(e) => setGenerateMesh(e.target.checked)}
+								/>
+								<div className="w-full h-full bg-gray-200 rounded-full peer-checked:bg-link-100 transition-colors" />
+								<div className="absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform transform peer-checked:translate-x-5" />
+							</label>
 						</div>
-						<div className="flex items-center gap-3">
-							<label className="text-sm text-gray-600 w-28">Generate mesh</label>
-							<input
-								type="checkbox"
-								checked={generateMesh}
-								onChange={(e) => setGenerateMesh(e.target.checked)}
-								className="h-4 w-4"
-							/>
+						<div className="space-y-1.5">
+							<div className="flex justify-between items-center">
+								<span className="text-sm text-gray-600">Cluster exterior pores</span>
+								<label className="inline-flex items-center relative w-11 h-6 cursor-pointer">
+									<input
+										type="checkbox"
+										className="sr-only peer"
+										checked={clusterExteriorPores}
+										onChange={(e) => setClusterExteriorPores(e.target.checked)}
+									/>
+									<div className="w-full h-full bg-gray-200 rounded-full peer-checked:bg-link-100 transition-colors" />
+									<div className="absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform transform peer-checked:translate-x-5" />
+								</label>
+							</div>
+							<p className="text-xs text-gray-400">
+								{CLUSTER_EXTERIOR_PORES_HELP}
+							</p>
 						</div>
 						<div className="pt-2">
 							<button
@@ -360,6 +381,47 @@ const LovamapJobForm: React.FC<Props> = ({ segmentationJobs, onUploadSubmit, onS
 									);
 								}
 								return null;
+							})()}
+
+							{/* Upload options: dx (only for .dat/.txt) + clusterExteriorPores */}
+							{validation && !isValidating && validation.valid && (() => {
+								const ext = file.name.toLowerCase().split('.').pop();
+								const needsDx = ext === 'dat' || ext === 'txt';
+								return (
+									<div className="rounded-lg border border-gray-200 bg-gray-50 p-4 mb-4 space-y-4">
+										{needsDx && (
+											<div className="flex items-center gap-3">
+												<label className="text-sm text-gray-600 w-28">dx (voxel size)</label>
+												<input
+													type="number"
+													step="0.1"
+													min="0.01"
+													value={uploadDx}
+													onChange={(e) => setUploadDx(parseFloat(e.target.value) || 4)}
+													className="border border-gray-300 rounded px-2 py-1 text-sm w-24"
+												/>
+											</div>
+										)}
+										<div className="space-y-1.5">
+											<div className="flex justify-between items-center">
+												<span className="text-sm text-gray-600">Cluster exterior pores</span>
+												<label className="inline-flex items-center relative w-11 h-6 cursor-pointer">
+													<input
+														type="checkbox"
+														className="sr-only peer"
+														checked={clusterExteriorPores}
+														onChange={(e) => setClusterExteriorPores(e.target.checked)}
+													/>
+													<div className="w-full h-full bg-gray-200 rounded-full peer-checked:bg-link-100 transition-colors" />
+													<div className="absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform transform peer-checked:translate-x-5" />
+												</label>
+											</div>
+											<p className="text-xs text-gray-400">
+												{CLUSTER_EXTERIOR_PORES_HELP}
+											</p>
+										</div>
+									</div>
+								);
 							})()}
 
 							{/* Submit */}

@@ -12,6 +12,7 @@ const SegmentationComparisonView: React.FC<SegmentationComparisonViewProps> = ({
 }) => {
   const slices = previewInfo.slices;
   const segSlices = previewInfo.segmented_slices ?? [];
+  const hasSegmented = segSlices.length > 0;
   const maxZ = previewInfo.dimensions.z;
 
   const [selectedIdx, setSelectedIdx] = useState(
@@ -31,6 +32,7 @@ const SegmentationComparisonView: React.FC<SegmentationComparisonViewProps> = ({
   return (
     <div>
       {/* Depth selector tabs */}
+      <p className="text-xs text-gray-400 mb-1.5">Cross-section at depth (Z-axis) — slice {inputSlice?.z_index ?? '?'} of {maxZ}</p>
       <div className="flex gap-1 mb-3">
         {slices.map((slice, idx) => (
           <button
@@ -42,14 +44,13 @@ const SegmentationComparisonView: React.FC<SegmentationComparisonViewProps> = ({
                 : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
             }`}
           >
-            Z {depthPct(idx)}%
+            {depthPct(idx)}% depth
           </button>
         ))}
       </div>
 
-      {/* Side-by-side comparison */}
-      <div className="grid grid-cols-2 gap-3 max-w-lg">
-        {/* Left: Raw input slice */}
+      <div className={`grid gap-3 ${hasSegmented ? 'grid-cols-2 max-w-lg' : 'grid-cols-1 max-w-xs'}`}>
+        {/* Input slice */}
         <div className="flex flex-col">
           <span className="text-xs text-gray-500 mb-1">
             Raw Input — Z = {inputSlice?.z_index ?? '?'}
@@ -69,25 +70,27 @@ const SegmentationComparisonView: React.FC<SegmentationComparisonViewProps> = ({
           </div>
         </div>
 
-        {/* Right: Segmented slice */}
-        <div className="flex flex-col">
-          <span className="text-xs text-gray-500 mb-1">
-            Segmentation Result — Z = {segSlice?.z_index ?? '?'}
-          </span>
-          <div className="border border-gray-200 rounded-lg bg-black overflow-hidden">
-            {segUrl ? (
-              <img
-                src={segUrl}
-                alt={`Segmented slice at Z=${segSlice?.z_index}`}
-                className="w-full h-auto block"
-              />
-            ) : (
-              <div className="flex items-center justify-center p-8">
-                <span className="text-sm text-gray-400">Not available</span>
-              </div>
-            )}
+        {/* Segmented slice — only when available */}
+        {hasSegmented && (
+          <div className="flex flex-col">
+            <span className="text-xs text-gray-500 mb-1">
+              Segmentation Result — Z = {segSlice?.z_index ?? '?'}
+            </span>
+            <div className="border border-gray-200 rounded-lg bg-black overflow-hidden">
+              {segUrl ? (
+                <img
+                  src={segUrl}
+                  alt={`Segmented slice at Z=${segSlice?.z_index}`}
+                  className="w-full h-auto block"
+                />
+              ) : (
+                <div className="flex items-center justify-center p-8">
+                  <span className="text-sm text-gray-400">Not available</span>
+                </div>
+              )}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

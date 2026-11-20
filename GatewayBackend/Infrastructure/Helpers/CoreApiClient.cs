@@ -74,9 +74,19 @@ namespace Infrastructure.Helpers
 			return _http.SendAsync(request, ct);
 		}
 
+		public Task<HttpResponseMessage> GetJobInputFileAsync(string jobId, CancellationToken ct = default)
+		{
+			return _http.GetAsync($"jobs/{jobId}/input-file", ct);
+		}
+
 		public Task<HttpResponseMessage> GetToolVersionsAsync(CancellationToken ct = default)
 		{
 			return _http.GetAsync("info", ct);
+		}
+
+		public Task<HttpResponseMessage> CancelJobAsync(string jobId, CancellationToken ct = default)
+		{
+			return _http.PostAsync($"jobs/{jobId}/cancel", null, ct);
 		}
 	}
 }

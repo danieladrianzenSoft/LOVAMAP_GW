@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { FaArrowLeft, FaDownload, FaExpand, FaSpinner } from "react-icons/fa";
+import { FaArrowLeft, FaDownload, FaExpand, FaSpinner, FaStop } from "react-icons/fa";
 import { JobDetailed, PreviewInfo } from "../../app/models/job";
 import { useStore } from "../../app/stores/store";
 import { downloadScaffoldGroupAsExcel, triggerDownload } from "../../app/common/excel-generator/excel-generator";
@@ -29,8 +29,13 @@ const Row: React.FC<{ label: React.ReactNode; value?: React.ReactNode }> = ({
   </div>
 );
 
+const CLUSTER_EXTERIOR_PORES_HELP =
+  'Merges boundary pores connected through surface pathways into a single pore. ' +
+  'Can give a more realistic picture near the domain boundary, but produces a few ' +
+  'very large merged pores that can skew size statistics.';
+
 const JobDetail: React.FC<Props> = ({ job, onBack, onJobSubmitted, formatDate, onDownloadResults }) => {
-  const { jobStore, scaffoldGroupStore } = useStore();
+  const { jobStore, scaffoldGroupStore, userStore } = useStore();
   const [savedScaffoldGroupId, setSavedScaffoldGroupId] = useState<number | null>(null);
   const canDownload =
     (job.status ?? "").toLowerCase() === "completed" && job.hasResults === true;
@@ -41,11 +46,22 @@ const JobDetail: React.FC<Props> = ({ job, onBack, onJobSubmitted, formatDate, o
   const showMeshSection = canDownload && (isSegmentation || isLovamap || isMeshProcessing);
   const canRunLovamap = canDownload && isSegmentation;
 
+  const isAdmin = userStore.user?.roles?.includes('administrator') ?? false;
+
   const [showLovamapForm, setShowLovamapForm] = useState(false);
   const [lovamapSubmitting, setLovamapSubmitting] = useState(false);
-  const [lovamapDx, setLovamapDx] = useState<number>(1.0);
   const [lovamapGenerateMesh, setLovamapGenerateMesh] = useState(true);
+  const [lovamapClusterExteriorPores, setLovamapClusterExteriorPores] = useState(false);
   const [lovamapError, setLovamapError] = useState<string | null>(null);
+
+  // Admin job transfer state
+  const [showTransfer, setShowTransfer] = useState(false);
+  const [transferQuery, setTransferQuery] = useState('');
+  const [transferResults, setTransferResults] = useState<{ id: string; email: string }[]>([]);
+  const [transferTarget, setTransferTarget] = useState<{ id: string; email: string } | null>(null);
+  const [transferring, setTransferring] = useState(false);
+  const [transferSuccess, setTransferSuccess] = useState<string | null>(null);
+  const transferDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const [lovamapResults, setLovamapResults] = useState<any | null>(null);
   const [showScaffoldForm, setShowScaffoldForm] = useState(false);
@@ -58,6 +74,8 @@ const JobDetail: React.FC<Props> = ({ job, onBack, onJobSubmitted, formatDate, o
   const [meshLoading, setMeshLoading] = useState(false);
   const [meshError, setMeshError] = useState<string | null>(null);
   const [showMesh, setShowMesh] = useState(false);
+  const [cancelling, setCancelling] = useState(false);
+  const [inputDownloading, setInputDownloading] = useState(false);
 
   const [particleMeshBlobUrl, setParticleMeshBlobUrl] = useState<string | null>(null);
   const [particleMeshLoading, setParticleMeshLoading] = useState(false);
@@ -421,8 +439,8 @@ const JobDetail: React.FC<Props> = ({ job, onBack, onJobSubmitted, formatDate, o
     try {
       const result = await jobStore.submitLovamapFromSource({
         sourceJobId: job.id,
-        dx: lovamapDx.toString(),
         generateMesh: lovamapGenerateMesh,
+        clusterExteriorPores: lovamapClusterExteriorPores || undefined,
       });
       if (result) {
         if (onJobSubmitted) onJobSubmitted();
@@ -456,21 +474,103 @@ const JobDetail: React.FC<Props> = ({ job, onBack, onJobSubmitted, formatDate, o
             <div className="text-sm text-gray-500">
               Id: <span className="text-gray-700">{job.id}</span>
             </div>
-            {isLovamap && canDownload && (
-              <button
-                className="button-primary text-sm px-3 py-1 flex items-center gap-1"
-                onClick={handleInteract}
-                disabled={interactLoading}
-              >
-                {interactLoading && <FaSpinner className="animate-spin" />}
-                Interact
-              </button>
-            )}
+            <div className="flex items-center gap-2">
+              {isAdmin && (
+                <button
+                  className="button-outline text-sm px-3 py-1"
+                  onClick={() => setShowTransfer((v) => !v)}
+                >
+                  Transfer Job
+                </button>
+              )}
+              {isLovamap && canDownload && (
+                <button
+                  className="button-primary text-sm px-3 py-1 flex items-center gap-1"
+                  onClick={handleInteract}
+                  disabled={interactLoading}
+                >
+                  {interactLoading && <FaSpinner className="animate-spin" />}
+                  Interact
+                </button>
+              )}
+            </div>
           </div>
+          {showTransfer && (
+            <div className="mt-3 p-3 rounded-lg border border-gray-200 bg-gray-50 space-y-2">
+              <div className="text-sm text-gray-600 font-medium">Transfer to another user</div>
+              <input
+                type="text"
+                placeholder="Search by email..."
+                value={transferQuery}
+                onChange={(e) => {
+                  const q = e.target.value;
+                  setTransferQuery(q);
+                  setTransferTarget(null);
+                  setTransferSuccess(null);
+                  if (transferDebounceRef.current) clearTimeout(transferDebounceRef.current);
+                  if (q.length >= 2) {
+                    transferDebounceRef.current = setTimeout(async () => {
+                      const results = await jobStore.searchUsers(q);
+                      setTransferResults(results);
+                    }, 400);
+                  } else {
+                    setTransferResults([]);
+                  }
+                }}
+                className="border border-gray-300 rounded px-2 py-1 text-sm w-full"
+              />
+              {transferResults.length > 0 && !transferTarget && (
+                <div className="border border-gray-200 rounded bg-white max-h-40 overflow-auto">
+                  {transferResults.map((u) => (
+                    <button
+                      key={u.id}
+                      className="block w-full text-left px-3 py-1.5 text-sm hover:bg-gray-50"
+                      onClick={() => {
+                        setTransferTarget(u);
+                        setTransferQuery(u.email);
+                        setTransferResults([]);
+                      }}
+                    >
+                      {u.email}
+                    </button>
+                  ))}
+                </div>
+              )}
+              {transferTarget && (
+                <div className="flex items-center gap-2">
+                  <span className="text-sm text-gray-700">Transfer to: <strong>{transferTarget.email}</strong></span>
+                  <button
+                    className="button-primary text-sm px-3 py-1 flex items-center gap-1"
+                    disabled={transferring}
+                    onClick={async () => {
+                      setTransferring(true);
+                      const ok = await jobStore.transferJob(job.id, transferTarget.id);
+                      setTransferring(false);
+                      if (ok) {
+                        setTransferSuccess(`Job transferred to ${transferTarget.email}`);
+                        setShowTransfer(false);
+                        setTransferQuery('');
+                        setTransferTarget(null);
+                      }
+                    }}
+                  >
+                    {transferring && <FaSpinner className="animate-spin" />}
+                    Confirm Transfer
+                  </button>
+                </div>
+              )}
+              {transferSuccess && (
+                <p className="text-sm text-green-600">{transferSuccess}</p>
+              )}
+            </div>
+          )}
         </div>
 
         <div className="px-5 py-4">
           <Row label="Type" value={job.jobType ?? undefined} />
+          {isAdmin && job.creatorEmail && (
+            <Row label="Owner" value={job.creatorEmail} />
+          )}
           <Row
             label="Status"
             value={
@@ -488,6 +588,22 @@ const JobDetail: React.FC<Props> = ({ job, onBack, onJobSubmitted, formatDate, o
                       </span>
                     )}
                   </span>
+                  {(job.status === 'Pending' || job.status === 'Running') && (
+                    <button
+                      className="button-outline text-sm px-3 py-1 flex items-center gap-1 text-red-600 border-red-300 hover:bg-red-50"
+                      disabled={cancelling}
+                      onClick={async () => {
+                        if (!window.confirm('Are you sure you want to cancel this job?')) return;
+                        setCancelling(true);
+                        const success = await jobStore.cancelJob(job.id);
+                        setCancelling(false);
+                        if (success) onBack();
+                      }}
+                    >
+                      {cancelling ? <FaSpinner className="animate-spin" /> : <FaStop className="w-3 h-3" />}
+                      Cancel
+                    </button>
+                  )}
                   {(job.status === 'Completed' || job.status === 'Failed') && (
                     <button
                       className="button-outline text-sm px-3 py-1 flex items-center gap-1"
@@ -552,6 +668,12 @@ const JobDetail: React.FC<Props> = ({ job, onBack, onJobSubmitted, formatDate, o
                           {' | '}
                           <span className="text-gray-500">Radius (µm):</span> {params.radiusUm ?? '?'}
                         </p>
+                        {params.resolution && (
+                          <p>
+                            <span className="text-gray-500">Resolution:</span>{' '}
+                            {params.resolution === 'high' ? 'High (~200M voxels)' : 'Normal (~50M voxels)'}
+                          </p>
+                        )}
                       </>
                     )}
                     {!params && previewInfo && (
@@ -563,10 +685,22 @@ const JobDetail: React.FC<Props> = ({ job, onBack, onJobSubmitted, formatDate, o
                       </p>
                     )}
                     {previewInfo && (
-                      <p>
-                        <span className="text-gray-500">Dimensions:</span>{' '}
-                        {previewInfo.dimensions.x} × {previewInfo.dimensions.y} × {previewInfo.dimensions.z} voxels
-                      </p>
+                      <>
+                        <p>
+                          <span className="text-gray-500">Input dimensions:</span>{' '}
+                          {previewInfo.dimensions.x} × {previewInfo.dimensions.y} × {previewInfo.dimensions.z} voxels
+                          {' '}({(previewInfo.dimensions.x * previewInfo.dimensions.y * previewInfo.dimensions.z).toExponential(2)})
+                        </p>
+                        {previewInfo.estimated_domain_voxels != null && (
+                          <p>
+                            <span className="text-gray-500">Domain voxels (resized):</span>{' '}
+                            {previewInfo.estimated_domain_voxels.toExponential(2)}
+                            {previewInfo.resized_voxel_size != null && (
+                              <span className="text-gray-400"> — voxel size {previewInfo.resized_voxel_size} µm</span>
+                            )}
+                          </p>
+                        )}
+                      </>
                     )}
                   </div>
                 );
@@ -720,15 +854,41 @@ const JobDetail: React.FC<Props> = ({ job, onBack, onJobSubmitted, formatDate, o
             />
           )}
 
-          {/* Validation — segmentation comparison only */}
-          {isSegmentation && previewInfo?.segmented_slices && previewInfo.segmented_slices.length > 0 && (
+          {/* Input slices preview — always show when we have input slices */}
+          {isSegmentation && previewInfo && previewInfo.slices.length > 0 && (
             <Row
-              label="Validation"
+              label={previewInfo.segmented_slices?.length ? "Validation" : "Input Preview"}
               value={
-                <SegmentationComparisonView
-                  previewUrlMap={previewUrlMap}
-                  previewInfo={previewInfo}
-                />
+                <div>
+                  <SegmentationComparisonView
+                    previewUrlMap={previewUrlMap}
+                    previewInfo={previewInfo}
+                  />
+                  <button
+                    className="button-outline text-sm px-3 py-1 flex items-center gap-1 mt-3"
+                    disabled={inputDownloading}
+                    onClick={async () => {
+                      setInputDownloading(true);
+                      try {
+                        const blob = await jobStore.getInputFile(job.id);
+                        if (!blob) return;
+                        const url = URL.createObjectURL(blob);
+                        const a = document.createElement("a");
+                        a.href = url;
+                        a.download = previewInfo.filename || `job_${job.id}_input.tif`;
+                        document.body.appendChild(a);
+                        a.click();
+                        a.remove();
+                        URL.revokeObjectURL(url);
+                      } finally {
+                        setInputDownloading(false);
+                      }
+                    }}
+                  >
+                    {inputDownloading ? <FaSpinner className="animate-spin w-3 h-3" /> : <FaDownload className="w-3 h-3" />}
+                    {inputDownloading ? 'Downloading...' : 'Download Input File'}
+                  </button>
+                </div>
               }
             />
           )}
@@ -746,26 +906,37 @@ const JobDetail: React.FC<Props> = ({ job, onBack, onJobSubmitted, formatDate, o
                       Run LOVAMAP Analysis
                     </button>
                   ) : (
-                    <div className="space-y-3">
-                      <div className="flex items-center gap-3">
-                        <label className="text-sm text-gray-600 w-24">dx (voxel size)</label>
-                        <input
-                          type="number"
-                          step="0.1"
-                          min="0.01"
-                          value={lovamapDx}
-                          onChange={(e) => setLovamapDx(parseFloat(e.target.value) || 1)}
-                          className="border border-gray-300 rounded px-2 py-1 text-sm w-24"
-                        />
+                    <div className="space-y-4">
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-gray-600">Generate mesh</span>
+                        <label className="inline-flex items-center relative w-11 h-6 cursor-pointer">
+                          <input
+                            type="checkbox"
+                            className="sr-only peer"
+                            checked={lovamapGenerateMesh}
+                            onChange={(e) => setLovamapGenerateMesh(e.target.checked)}
+                          />
+                          <div className="w-full h-full bg-gray-200 rounded-full peer-checked:bg-link-100 transition-colors" />
+                          <div className="absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform transform peer-checked:translate-x-5" />
+                        </label>
                       </div>
-                      <div className="flex items-center gap-3">
-                        <label className="text-sm text-gray-600 w-24">Generate mesh</label>
-                        <input
-                          type="checkbox"
-                          checked={lovamapGenerateMesh}
-                          onChange={(e) => setLovamapGenerateMesh(e.target.checked)}
-                          className="h-4 w-4"
-                        />
+                      <div className="space-y-1.5">
+                        <div className="flex justify-between items-center">
+                          <span className="text-sm text-gray-600">Cluster exterior pores</span>
+                          <label className="inline-flex items-center relative w-11 h-6 cursor-pointer">
+                            <input
+                              type="checkbox"
+                              className="sr-only peer"
+                              checked={lovamapClusterExteriorPores}
+                              onChange={(e) => setLovamapClusterExteriorPores(e.target.checked)}
+                            />
+                            <div className="w-full h-full bg-gray-200 rounded-full peer-checked:bg-link-100 transition-colors" />
+                            <div className="absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform transform peer-checked:translate-x-5" />
+                          </label>
+                        </div>
+                        <p className="text-xs text-gray-400">
+                          {CLUSTER_EXTERIOR_PORES_HELP}
+                        </p>
                       </div>
                       {lovamapError && (
                         <p className="text-sm text-red-500">{lovamapError}</p>

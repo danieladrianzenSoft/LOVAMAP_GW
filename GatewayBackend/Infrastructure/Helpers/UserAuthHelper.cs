@@ -123,6 +123,15 @@ namespace Infrastructure.Helpers
 			return await _userManager.ResetPasswordAsync(user, token, newPassword);
 		}
 
+		public async Task<List<(string Id, string Email)>> SearchUsersByEmailAsync(string query, int limit = 10)
+		{
+			return await _context.Users
+				.Where(u => u.Email != null && u.Email.Contains(query))
+				.Take(limit)
+				.Select(u => new ValueTuple<string, string>(u.Id, u.Email!))
+				.ToListAsync();
+		}
+
 	}
 }
 

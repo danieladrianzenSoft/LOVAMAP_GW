@@ -4,8 +4,9 @@ export interface Job {
 	datFile: File | null;
 	jsonFile: File | null;
 	jobId: string;
-	dx: number;
+	dx?: number;
 	scaffoldGroupId: number;
+	clusterExteriorPores?: boolean;
 }
 
 export interface JobForList {
@@ -33,6 +34,8 @@ export interface JobDetailed {
 	scaffoldId?: number;
 	errorMessage?: string | null;
 	segmentationParams?: Record<string, string> | null;
+	creatorId?: string;
+	creatorEmail?: string;
 }
 
 export interface SegmentationJob {
@@ -42,6 +45,7 @@ export interface SegmentationJob {
 	dx: number;
 	dy: number;
 	dz: number;
+	resolution: 'normal' | 'high';
 }
 
 export interface MeshJob {
@@ -53,6 +57,7 @@ export interface LovamapFromSourceJob {
 	sourceJobId: string;
 	dx?: string;
 	generateMesh?: boolean;
+	clusterExteriorPores?: boolean;
 }
 
 export interface MeshStatusResponse {
@@ -89,6 +94,8 @@ export interface PreviewInfo {
 	voxel_size: { dx: number | null; dy: number | null; dz: number | null };
 	voxel_size_sources: { dx: string; dy: string; dz: string };
 	params?: Record<string, number | string | null>;
+	resized_voxel_size?: number;
+	estimated_domain_voxels?: number;
 	slices: { name: string; z_index: number }[];
 	segmented_slices?: { name: string; z_index: number }[];
 	segmented_dimensions?: { x: number; y: number; z: number };

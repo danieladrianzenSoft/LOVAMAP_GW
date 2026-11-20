@@ -36,5 +36,8 @@ namespace Services.IServices
 		Task<(bool Succeeded, string? ErrorMessage, byte[]? MeshBytes)> FetchJobParticleMeshFromCoreAsync(Guid jobId, CancellationToken cancellationToken = default);
 		Task<(bool Succeeded, string? ErrorMessage, int? ScaffoldGroupId, int? ScaffoldId)> SaveResultAsScaffoldAsync(Guid jobId, SaveLovamapResultDto dto, string userId, bool isAdmin);
 		Task<MeshStatusDto> GetMeshJobStatusesAsync(Guid jobId);
+		Task<(bool Succeeded, string? ErrorMessage, byte[]? FileBytes, string? ContentType, string? FileName)> FetchJobInputFileFromCoreAsync(Guid jobId, CancellationToken ct = default);
+		Task<(bool Succeeded, string? ErrorMessage)> CancelJobAsync(Guid jobId, CancellationToken ct = default);
+		Task SaveChangesAsync();
 	}
 }
